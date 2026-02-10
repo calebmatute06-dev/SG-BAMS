@@ -30,13 +30,14 @@
         {
             label1 = new Label();
             button1 = new Button();
+            label2 = new Label();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 20F);
-            label1.Location = new Point(317, 52);
+            label1.Location = new Point(57, 106);
             label1.Name = "label1";
             label1.Size = new Size(110, 46);
             label1.TabIndex = 0;
@@ -51,11 +52,22 @@
             button1.Text = "Adios";
             button1.UseVisualStyleBackColor = true;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 17F);
+            label2.Location = new Point(256, 29);
+            label2.Name = "label2";
+            label2.Size = new Size(206, 40);
+            label2.TabIndex = 2;
+            label2.Text = "Menu Principal";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label2);
             Controls.Add(button1);
             Controls.Add(label1);
             Name = "Form1";
@@ -68,5 +80,6 @@
 
         private Label label1;
         private Button button1;
+        private Label label2;
     }
 }
