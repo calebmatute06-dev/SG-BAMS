@@ -31,6 +31,7 @@
             label1 = new Label();
             button1 = new Button();
             label2 = new Label();
+            label3 = new Label();
             SuspendLayout();
             // 
             // label1
@@ -62,11 +63,21 @@
             label2.TabIndex = 2;
             label2.Text = "Menu Principal";
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(530, 126);
+            label3.Name = "label3";
+            label3.Size = new Size(130, 20);
+            label3.TabIndex = 3;
+            label3.Text = "TROLLEADO PVTO";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(button1);
             Controls.Add(label1);
@@ -81,5 +92,6 @@
         private Label label1;
         private Button button1;
         private Label label2;
+        private Label label3;
     }
 }
