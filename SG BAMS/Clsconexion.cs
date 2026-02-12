@@ -19,7 +19,7 @@ namespace SG_BAMS
         protected SqlConnection Conectar = new SqlConnection();
 
 
-        public void abrir_conexion()
+        public void AbrirConexion()
         {
             try
             {
