@@ -1,6 +1,6 @@
 ﻿namespace SG_BAMS
 {
-    partial class Form1
+    partial class MenuPrincipal
     {
         /// <summary>
         ///  Required designer variable.
