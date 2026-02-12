@@ -35,20 +35,26 @@
             txtCon = new TextBox();
             label3 = new Label();
             btnSalir = new Button();
+            picBa = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)picBa).BeginInit();
             SuspendLayout();
             // 
             // btnIni
             // 
-            btnIni.Location = new Point(182, 347);
+            btnIni.BackColor = Color.Cyan;
+            btnIni.ForeColor = Color.Navy;
+            btnIni.Location = new Point(189, 461);
             btnIni.Name = "btnIni";
             btnIni.Size = new Size(145, 29);
             btnIni.TabIndex = 0;
             btnIni.Text = "Iniciar Sesion";
-            btnIni.UseVisualStyleBackColor = true;
+            btnIni.UseVisualStyleBackColor = false;
+            btnIni.Click += btnIni_Click;
             // 
             // txtUsu
             // 
-            txtUsu.Location = new Point(319, 178);
+            txtUsu.BackColor = Color.Cyan;
+            txtUsu.Location = new Point(325, 303);
             txtUsu.Name = "txtUsu";
             txtUsu.Size = new Size(221, 27);
             txtUsu.TabIndex = 2;
@@ -56,7 +62,8 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(208, 185);
+            label1.ForeColor = Color.Navy;
+            label1.Location = new Point(214, 310);
             label1.Name = "label1";
             label1.Size = new Size(59, 20);
             label1.TabIndex = 3;
@@ -65,7 +72,8 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(197, 264);
+            label2.ForeColor = Color.Navy;
+            label2.Location = new Point(203, 389);
             label2.Name = "label2";
             label2.Size = new Size(83, 20);
             label2.TabIndex = 4;
@@ -73,7 +81,8 @@
             // 
             // txtCon
             // 
-            txtCon.Location = new Point(319, 264);
+            txtCon.BackColor = Color.Cyan;
+            txtCon.Location = new Point(325, 389);
             txtCon.Name = "txtCon";
             txtCon.Size = new Size(221, 27);
             txtCon.TabIndex = 5;
@@ -82,7 +91,8 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 30F);
-            label3.Location = new Point(319, 54);
+            label3.ForeColor = Color.Navy;
+            label3.Location = new Point(303, 198);
             label3.Name = "label3";
             label3.Size = new Size(162, 67);
             label3.TabIndex = 6;
@@ -90,18 +100,33 @@
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(386, 347);
+            btnSalir.BackColor = Color.Cyan;
+            btnSalir.ForeColor = Color.Navy;
+            btnSalir.Location = new Point(433, 461);
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(145, 29);
             btnSalir.TabIndex = 7;
-            btnSalir.Text = "Iniciar Sesion";
-            btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.Text = "Salir";
+            btnSalir.UseVisualStyleBackColor = false;
+            btnSalir.Click += btnSalir_Click;
+            // 
+            // picBa
+            // 
+            picBa.BackColor = Color.Transparent;
+            picBa.Image = Properties.Resources.Bateria_1;
+            picBa.Location = new Point(281, 12);
+            picBa.Name = "picBa";
+            picBa.Size = new Size(202, 183);
+            picBa.TabIndex = 8;
+            picBa.TabStop = false;
             // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackColor = Color.White;
+            ClientSize = new Size(800, 514);
+            Controls.Add(picBa);
             Controls.Add(btnSalir);
             Controls.Add(label3);
             Controls.Add(txtCon);
@@ -109,8 +134,10 @@
             Controls.Add(label1);
             Controls.Add(txtUsu);
             Controls.Add(btnIni);
+            ForeColor = SystemColors.ActiveCaptionText;
             Name = "Login";
             Text = "Login";
+            ((System.ComponentModel.ISupportInitialize)picBa).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -124,5 +151,6 @@
         private TextBox txtCon;
         private Label label3;
         private Button btnSalir;
+        private PictureBox picBa;
     }
 }
