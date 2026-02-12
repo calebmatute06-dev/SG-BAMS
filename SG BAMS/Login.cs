@@ -21,7 +21,9 @@ namespace SG_BAMS
 
         private void btnIni_Click(object sender, EventArgs e)
         {
+            Clsconexion conexion = new Clsconexion();
 
+            conexion.abrir_conexion();
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
