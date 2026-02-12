@@ -17,6 +17,9 @@ namespace SG_BAMS
             InitializeComponent();
         }
 
-       
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
