@@ -14,7 +14,8 @@ namespace SG_BAMS
         private String CadenaConexion = "Data Source = AutoBattDB.mssql.somee.com; " +
                                         "Initial catalog = AutoBattDB; " +
                                         "User ID = exobonnie_SQLLogin_1; " +
-                                        "Password = w6et2uoghs; ";
+                                        "Password = w6et2uoghs;" +
+                                        "TrustServerCertificate=True;";
 
         protected SqlConnection Conectar = new SqlConnection();
 
