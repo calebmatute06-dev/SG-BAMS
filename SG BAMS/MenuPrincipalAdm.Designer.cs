@@ -29,11 +29,13 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            pictureBox13 = new PictureBox();
+            label2 = new Label();
+            pictureBox9 = new PictureBox();
             pictureBox14 = new PictureBox();
             button7 = new Button();
             pictureBox11 = new PictureBox();
             pictureBox12 = new PictureBox();
-            panel6 = new Panel();
             button6 = new Button();
             button9 = new Button();
             pictureBox10 = new PictureBox();
@@ -49,6 +51,7 @@
             btnPerfil = new Button();
             btnCerrar = new Button();
             pictureBox1 = new PictureBox();
+            panel6 = new Panel();
             panel2 = new Panel();
             pictureBox4 = new PictureBox();
             panel4 = new Panel();
@@ -59,6 +62,8 @@
             pictureBox6 = new PictureBox();
             panel8 = new Panel();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox13).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox14).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox11).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox12).BeginInit();
@@ -79,6 +84,9 @@
             // panel1
             // 
             panel1.BackColor = Color.SkyBlue;
+            panel1.Controls.Add(pictureBox13);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(pictureBox9);
             panel1.Controls.Add(pictureBox14);
             panel1.Controls.Add(button7);
             panel1.Controls.Add(pictureBox11);
@@ -103,12 +111,43 @@
             panel1.Size = new Size(286, 892);
             panel1.TabIndex = 1;
             // 
+            // pictureBox13
+            // 
+            pictureBox13.BackgroundImage = Properties.Resources.compras;
+            pictureBox13.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox13.Location = new Point(44, 328);
+            pictureBox13.Name = "pictureBox13";
+            pictureBox13.Size = new Size(74, 49);
+            pictureBox13.TabIndex = 12;
+            pictureBox13.TabStop = false;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.Navy;
+            label2.Location = new Point(87, 134);
+            label2.Name = "label2";
+            label2.Size = new Size(97, 41);
+            label2.TabIndex = 20;
+            label2.Text = "BAMS";
+            // 
+            // pictureBox9
+            // 
+            pictureBox9.BackgroundImage = Properties.Resources.bateria_2;
+            pictureBox9.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox9.Location = new Point(67, 30);
+            pictureBox9.Name = "pictureBox9";
+            pictureBox9.Size = new Size(136, 111);
+            pictureBox9.TabIndex = 12;
+            pictureBox9.TabStop = false;
+            // 
             // pictureBox14
             // 
             pictureBox14.BackColor = Color.SkyBlue;
             pictureBox14.BackgroundImage = Properties.Resources.bitacora;
             pictureBox14.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox14.Location = new Point(42, 689);
+            pictureBox14.Location = new Point(50, 700);
             pictureBox14.Name = "pictureBox14";
             pictureBox14.Size = new Size(52, 40);
             pictureBox14.TabIndex = 18;
@@ -121,7 +160,7 @@
             button7.FlatAppearance.BorderSize = 0;
             button7.FlatStyle = FlatStyle.Flat;
             button7.ForeColor = Color.Navy;
-            button7.Location = new Point(107, 578);
+            button7.Location = new Point(108, 598);
             button7.Name = "button7";
             button7.Size = new Size(126, 29);
             button7.TabIndex = 15;
@@ -133,7 +172,7 @@
             pictureBox11.BackColor = Color.SkyBlue;
             pictureBox11.BackgroundImage = Properties.Resources.Reportes;
             pictureBox11.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox11.Location = new Point(42, 622);
+            pictureBox11.Location = new Point(49, 633);
             pictureBox11.Name = "pictureBox11";
             pictureBox11.Size = new Size(56, 51);
             pictureBox11.TabIndex = 15;
@@ -144,19 +183,11 @@
             pictureBox12.BackColor = Color.SkyBlue;
             pictureBox12.BackgroundImage = Properties.Resources.Deudores;
             pictureBox12.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox12.Location = new Point(38, 554);
+            pictureBox12.Location = new Point(46, 574);
             pictureBox12.Name = "pictureBox12";
             pictureBox12.Size = new Size(63, 53);
             pictureBox12.TabIndex = 16;
             pictureBox12.TabStop = false;
-            // 
-            // panel6
-            // 
-            panel6.BackColor = Color.Navy;
-            panel6.Location = new Point(23, 758);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(260, 24);
-            panel6.TabIndex = 11;
             // 
             // button6
             // 
@@ -165,9 +196,9 @@
             button6.FlatAppearance.BorderSize = 0;
             button6.FlatStyle = FlatStyle.Flat;
             button6.ForeColor = Color.Navy;
-            button6.Location = new Point(108, 507);
+            button6.Location = new Point(125, 534);
             button6.Name = "button6";
-            button6.Size = new Size(126, 29);
+            button6.Size = new Size(114, 29);
             button6.TabIndex = 9;
             button6.Text = "Proveedores";
             button6.UseVisualStyleBackColor = false;
@@ -179,7 +210,7 @@
             button9.FlatAppearance.BorderSize = 0;
             button9.FlatStyle = FlatStyle.Flat;
             button9.ForeColor = Color.Navy;
-            button9.Location = new Point(103, 700);
+            button9.Location = new Point(103, 711);
             button9.Name = "button9";
             button9.Size = new Size(126, 29);
             button9.TabIndex = 12;
@@ -191,7 +222,7 @@
             pictureBox10.BackColor = Color.SkyBlue;
             pictureBox10.BackgroundImage = Properties.Resources.Proveedores;
             pictureBox10.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox10.Location = new Point(44, 480);
+            pictureBox10.Location = new Point(50, 507);
             pictureBox10.Name = "pictureBox10";
             pictureBox10.Size = new Size(58, 56);
             pictureBox10.TabIndex = 14;
@@ -204,7 +235,7 @@
             button8.FlatAppearance.BorderSize = 0;
             button8.FlatStyle = FlatStyle.Flat;
             button8.ForeColor = Color.Navy;
-            button8.Location = new Point(104, 644);
+            button8.Location = new Point(104, 655);
             button8.Name = "button8";
             button8.Size = new Size(126, 29);
             button8.TabIndex = 11;
@@ -216,7 +247,7 @@
             pictureBox5.BackColor = Color.SkyBlue;
             pictureBox5.BackgroundImage = Properties.Resources.Inventario;
             pictureBox5.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox5.Location = new Point(49, 425);
+            pictureBox5.Location = new Point(56, 445);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new Size(49, 49);
             pictureBox5.TabIndex = 11;
@@ -227,7 +258,7 @@
             pictureBox7.BackColor = Color.SkyBlue;
             pictureBox7.BackgroundImage = Properties.Resources.clientes;
             pictureBox7.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox7.Location = new Point(46, 363);
+            pictureBox7.Location = new Point(57, 383);
             pictureBox7.Name = "pictureBox7";
             pictureBox7.Size = new Size(52, 56);
             pictureBox7.TabIndex = 12;
@@ -238,9 +269,9 @@
             pictureBox8.BackColor = Color.SkyBlue;
             pictureBox8.BackgroundImage = Properties.Resources.Facturas1;
             pictureBox8.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox8.Location = new Point(42, 306);
+            pictureBox8.Location = new Point(51, 278);
             pictureBox8.Name = "pictureBox8";
-            pictureBox8.Size = new Size(63, 51);
+            pictureBox8.Size = new Size(56, 42);
             pictureBox8.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureBox8.TabIndex = 13;
             pictureBox8.TabStop = false;
@@ -252,7 +283,7 @@
             button5.FlatAppearance.BorderSize = 0;
             button5.FlatStyle = FlatStyle.Flat;
             button5.ForeColor = Color.Navy;
-            button5.Location = new Point(104, 445);
+            button5.Location = new Point(113, 465);
             button5.Name = "button5";
             button5.Size = new Size(126, 29);
             button5.TabIndex = 8;
@@ -266,7 +297,7 @@
             button4.FlatAppearance.BorderSize = 0;
             button4.FlatStyle = FlatStyle.Flat;
             button4.ForeColor = Color.Navy;
-            button4.Location = new Point(103, 390);
+            button4.Location = new Point(113, 410);
             button4.Name = "button4";
             button4.Size = new Size(126, 29);
             button4.TabIndex = 7;
@@ -280,7 +311,7 @@
             button3.FlatAppearance.BorderSize = 0;
             button3.FlatStyle = FlatStyle.Flat;
             button3.ForeColor = Color.Navy;
-            button3.Location = new Point(103, 328);
+            button3.Location = new Point(113, 348);
             button3.Name = "button3";
             button3.Size = new Size(126, 29);
             button3.TabIndex = 6;
@@ -294,7 +325,7 @@
             button2.FlatAppearance.BorderSize = 0;
             button2.FlatStyle = FlatStyle.Flat;
             button2.ForeColor = Color.Navy;
-            button2.Location = new Point(103, 257);
+            button2.Location = new Point(113, 291);
             button2.Name = "button2";
             button2.Size = new Size(126, 29);
             button2.TabIndex = 5;
@@ -308,7 +339,7 @@
             button1.FlatAppearance.BorderSize = 0;
             button1.FlatStyle = FlatStyle.Flat;
             button1.ForeColor = Color.Navy;
-            button1.Location = new Point(103, 192);
+            button1.Location = new Point(118, 243);
             button1.Name = "button1";
             button1.Size = new Size(126, 29);
             button1.TabIndex = 4;
@@ -349,11 +380,19 @@
             pictureBox1.BackColor = Color.Transparent;
             pictureBox1.BackgroundImage = Properties.Resources.menu;
             pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox1.Location = new Point(38, 174);
+            pictureBox1.Location = new Point(49, 212);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(63, 72);
+            pictureBox1.Size = new Size(63, 60);
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
+            // 
+            // panel6
+            // 
+            panel6.BackColor = Color.Navy;
+            panel6.Location = new Point(23, 758);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(260, 24);
+            panel6.TabIndex = 11;
             // 
             // panel2
             // 
@@ -453,6 +492,9 @@
             Text = "MenuPrincipalAdm";
             Load += MenuPrincipalAdm_Load;
             panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox13).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox14).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox11).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox12).EndInit();
@@ -502,5 +544,8 @@
         private PictureBox pictureBox12;
         private PictureBox pictureBox14;
         private Button button7;
+        private PictureBox pictureBox9;
+        private Label label2;
+        private PictureBox pictureBox13;
     }
 }
