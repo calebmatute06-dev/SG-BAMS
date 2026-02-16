@@ -63,6 +63,26 @@ namespace SG_BAMS.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ad {
+            get {
+                object obj = ResourceManager.GetObject("ad", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ajus {
+            get {
+                object obj = ResourceManager.GetObject("ajus", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Bateria_1 {
             get {
                 object obj = ResourceManager.GetObject("Bateria 1", resourceCulture);
@@ -86,6 +106,16 @@ namespace SG_BAMS.Properties {
         internal static System.Drawing.Bitmap bitacora {
             get {
                 object obj = ResourceManager.GetObject("bitacora", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap campana {
+            get {
+                object obj = ResourceManager.GetObject("campana", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

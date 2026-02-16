@@ -66,6 +66,8 @@
             button10 = new Button();
             button11 = new Button();
             button12 = new Button();
+            pictureBox17 = new PictureBox();
+            pictureBox18 = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).BeginInit();
@@ -86,6 +88,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox17).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -510,7 +514,7 @@
             button10.FlatAppearance.BorderSize = 0;
             button10.FlatStyle = FlatStyle.Flat;
             button10.ForeColor = Color.Navy;
-            button10.Location = new Point(329, 31);
+            button10.Location = new Point(345, 35);
             button10.Name = "button10";
             button10.Size = new Size(209, 29);
             button10.TabIndex = 21;
@@ -524,9 +528,9 @@
             button11.FlatAppearance.BorderSize = 0;
             button11.FlatStyle = FlatStyle.Flat;
             button11.ForeColor = Color.Navy;
-            button11.Location = new Point(943, 31);
+            button11.Location = new Point(1003, 35);
             button11.Name = "button11";
-            button11.Size = new Size(90, 29);
+            button11.Size = new Size(72, 29);
             button11.TabIndex = 22;
             button11.Text = "Ajustes";
             button11.UseVisualStyleBackColor = false;
@@ -534,15 +538,37 @@
             // button12
             // 
             button12.BackColor = Color.Transparent;
+            button12.BackgroundImage = Properties.Resources.campana;
+            button12.BackgroundImageLayout = ImageLayout.Stretch;
             button12.FlatAppearance.BorderColor = Color.White;
             button12.FlatAppearance.BorderSize = 0;
             button12.FlatStyle = FlatStyle.Flat;
             button12.ForeColor = Color.Navy;
-            button12.Location = new Point(784, 42);
+            button12.Location = new Point(880, 27);
             button12.Name = "button12";
-            button12.Size = new Size(90, 29);
+            button12.Size = new Size(59, 44);
             button12.TabIndex = 23;
             button12.UseVisualStyleBackColor = false;
+            // 
+            // pictureBox17
+            // 
+            pictureBox17.BackgroundImage = Properties.Resources.ad;
+            pictureBox17.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox17.Location = new Point(293, 31);
+            pictureBox17.Name = "pictureBox17";
+            pictureBox17.Size = new Size(69, 37);
+            pictureBox17.TabIndex = 24;
+            pictureBox17.TabStop = false;
+            // 
+            // pictureBox18
+            // 
+            pictureBox18.BackgroundImage = Properties.Resources.ajus;
+            pictureBox18.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox18.Location = new Point(954, 30);
+            pictureBox18.Name = "pictureBox18";
+            pictureBox18.Size = new Size(53, 37);
+            pictureBox18.TabIndex = 25;
+            pictureBox18.TabStop = false;
             // 
             // MenuPrincipalAdm
             // 
@@ -550,6 +576,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1105, 905);
+            Controls.Add(pictureBox18);
+            Controls.Add(pictureBox17);
             Controls.Add(button12);
             Controls.Add(button11);
             Controls.Add(button10);
@@ -585,6 +613,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox17).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox18).EndInit();
             ResumeLayout(false);
         }
 
@@ -627,5 +657,7 @@
         private Button button10;
         private Button button11;
         private Button button12;
+        private PictureBox pictureBox17;
+        private PictureBox pictureBox18;
     }
 }
