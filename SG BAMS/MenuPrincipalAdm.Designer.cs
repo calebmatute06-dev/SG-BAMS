@@ -29,7 +29,9 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            pictureBox16 = new PictureBox();
             pictureBox13 = new PictureBox();
+            pictureBox15 = new PictureBox();
             label2 = new Label();
             pictureBox9 = new PictureBox();
             pictureBox14 = new PictureBox();
@@ -61,8 +63,13 @@
             panel5 = new Panel();
             pictureBox6 = new PictureBox();
             panel8 = new Panel();
+            button10 = new Button();
+            button11 = new Button();
+            button12 = new Button();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox15).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox14).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox11).BeginInit();
@@ -84,7 +91,9 @@
             // panel1
             // 
             panel1.BackColor = Color.SkyBlue;
+            panel1.Controls.Add(pictureBox16);
             panel1.Controls.Add(pictureBox13);
+            panel1.Controls.Add(pictureBox15);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(pictureBox9);
             panel1.Controls.Add(pictureBox14);
@@ -111,22 +120,42 @@
             panel1.Size = new Size(286, 892);
             panel1.TabIndex = 1;
             // 
+            // pictureBox16
+            // 
+            pictureBox16.BackgroundImage = Properties.Resources.perfiles;
+            pictureBox16.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox16.Location = new Point(57, 834);
+            pictureBox16.Name = "pictureBox16";
+            pictureBox16.Size = new Size(40, 39);
+            pictureBox16.TabIndex = 13;
+            pictureBox16.TabStop = false;
+            // 
             // pictureBox13
             // 
             pictureBox13.BackgroundImage = Properties.Resources.compras;
             pictureBox13.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox13.Location = new Point(44, 328);
+            pictureBox13.Location = new Point(51, 328);
             pictureBox13.Name = "pictureBox13";
-            pictureBox13.Size = new Size(74, 49);
+            pictureBox13.Size = new Size(63, 49);
             pictureBox13.TabIndex = 12;
             pictureBox13.TabStop = false;
+            // 
+            // pictureBox15
+            // 
+            pictureBox15.BackgroundImage = Properties.Resources.cerrar;
+            pictureBox15.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox15.Location = new Point(50, 787);
+            pictureBox15.Name = "pictureBox15";
+            pictureBox15.Size = new Size(52, 41);
+            pictureBox15.TabIndex = 12;
+            pictureBox15.TabStop = false;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(87, 134);
+            label2.Location = new Point(93, 157);
             label2.Name = "label2";
             label2.Size = new Size(97, 41);
             label2.TabIndex = 20;
@@ -136,9 +165,9 @@
             // 
             pictureBox9.BackgroundImage = Properties.Resources.bateria_2;
             pictureBox9.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox9.Location = new Point(67, 30);
+            pictureBox9.Location = new Point(56, 30);
             pictureBox9.Name = "pictureBox9";
-            pictureBox9.Size = new Size(136, 111);
+            pictureBox9.Size = new Size(158, 124);
             pictureBox9.TabIndex = 12;
             pictureBox9.TabStop = false;
             // 
@@ -160,7 +189,7 @@
             button7.FlatAppearance.BorderSize = 0;
             button7.FlatStyle = FlatStyle.Flat;
             button7.ForeColor = Color.Navy;
-            button7.Location = new Point(108, 598);
+            button7.Location = new Point(118, 590);
             button7.Name = "button7";
             button7.Size = new Size(126, 29);
             button7.TabIndex = 15;
@@ -172,7 +201,7 @@
             pictureBox11.BackColor = Color.SkyBlue;
             pictureBox11.BackgroundImage = Properties.Resources.Reportes;
             pictureBox11.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox11.Location = new Point(49, 633);
+            pictureBox11.Location = new Point(49, 636);
             pictureBox11.Name = "pictureBox11";
             pictureBox11.Size = new Size(56, 51);
             pictureBox11.TabIndex = 15;
@@ -196,7 +225,7 @@
             button6.FlatAppearance.BorderSize = 0;
             button6.FlatStyle = FlatStyle.Flat;
             button6.ForeColor = Color.Navy;
-            button6.Location = new Point(125, 534);
+            button6.Location = new Point(130, 525);
             button6.Name = "button6";
             button6.Size = new Size(114, 29);
             button6.TabIndex = 9;
@@ -210,7 +239,7 @@
             button9.FlatAppearance.BorderSize = 0;
             button9.FlatStyle = FlatStyle.Flat;
             button9.ForeColor = Color.Navy;
-            button9.Location = new Point(103, 711);
+            button9.Location = new Point(118, 707);
             button9.Name = "button9";
             button9.Size = new Size(126, 29);
             button9.TabIndex = 12;
@@ -235,7 +264,7 @@
             button8.FlatAppearance.BorderSize = 0;
             button8.FlatStyle = FlatStyle.Flat;
             button8.ForeColor = Color.Navy;
-            button8.Location = new Point(104, 655);
+            button8.Location = new Point(118, 651);
             button8.Name = "button8";
             button8.Size = new Size(126, 29);
             button8.TabIndex = 11;
@@ -283,7 +312,7 @@
             button5.FlatAppearance.BorderSize = 0;
             button5.FlatStyle = FlatStyle.Flat;
             button5.ForeColor = Color.Navy;
-            button5.Location = new Point(113, 465);
+            button5.Location = new Point(118, 460);
             button5.Name = "button5";
             button5.Size = new Size(126, 29);
             button5.TabIndex = 8;
@@ -297,7 +326,7 @@
             button4.FlatAppearance.BorderSize = 0;
             button4.FlatStyle = FlatStyle.Flat;
             button4.ForeColor = Color.Navy;
-            button4.Location = new Point(113, 410);
+            button4.Location = new Point(118, 401);
             button4.Name = "button4";
             button4.Size = new Size(126, 29);
             button4.TabIndex = 7;
@@ -311,7 +340,7 @@
             button3.FlatAppearance.BorderSize = 0;
             button3.FlatStyle = FlatStyle.Flat;
             button3.ForeColor = Color.Navy;
-            button3.Location = new Point(113, 348);
+            button3.Location = new Point(118, 341);
             button3.Name = "button3";
             button3.Size = new Size(126, 29);
             button3.TabIndex = 6;
@@ -325,7 +354,7 @@
             button2.FlatAppearance.BorderSize = 0;
             button2.FlatStyle = FlatStyle.Flat;
             button2.ForeColor = Color.Navy;
-            button2.Location = new Point(113, 291);
+            button2.Location = new Point(118, 284);
             button2.Name = "button2";
             button2.Size = new Size(126, 29);
             button2.TabIndex = 5;
@@ -339,7 +368,7 @@
             button1.FlatAppearance.BorderSize = 0;
             button1.FlatStyle = FlatStyle.Flat;
             button1.ForeColor = Color.Navy;
-            button1.Location = new Point(118, 243);
+            button1.Location = new Point(118, 230);
             button1.Name = "button1";
             button1.Size = new Size(126, 29);
             button1.TabIndex = 4;
@@ -353,7 +382,7 @@
             btnPerfil.FlatAppearance.BorderSize = 0;
             btnPerfil.FlatStyle = FlatStyle.Flat;
             btnPerfil.ForeColor = Color.Navy;
-            btnPerfil.Location = new Point(87, 848);
+            btnPerfil.Location = new Point(118, 844);
             btnPerfil.Name = "btnPerfil";
             btnPerfil.Size = new Size(126, 29);
             btnPerfil.TabIndex = 3;
@@ -367,7 +396,7 @@
             btnCerrar.FlatAppearance.BorderSize = 0;
             btnCerrar.FlatStyle = FlatStyle.Flat;
             btnCerrar.ForeColor = Color.Navy;
-            btnCerrar.Location = new Point(87, 799);
+            btnCerrar.Location = new Point(118, 799);
             btnCerrar.Name = "btnCerrar";
             btnCerrar.Size = new Size(126, 29);
             btnCerrar.TabIndex = 2;
@@ -474,12 +503,56 @@
             panel8.Size = new Size(24, 870);
             panel8.TabIndex = 9;
             // 
+            // button10
+            // 
+            button10.BackColor = Color.Transparent;
+            button10.FlatAppearance.BorderColor = Color.White;
+            button10.FlatAppearance.BorderSize = 0;
+            button10.FlatStyle = FlatStyle.Flat;
+            button10.ForeColor = Color.Navy;
+            button10.Location = new Point(329, 31);
+            button10.Name = "button10";
+            button10.Size = new Size(209, 29);
+            button10.TabIndex = 21;
+            button10.Text = "Administración de BAMS";
+            button10.UseVisualStyleBackColor = false;
+            // 
+            // button11
+            // 
+            button11.BackColor = Color.Transparent;
+            button11.FlatAppearance.BorderColor = Color.White;
+            button11.FlatAppearance.BorderSize = 0;
+            button11.FlatStyle = FlatStyle.Flat;
+            button11.ForeColor = Color.Navy;
+            button11.Location = new Point(943, 31);
+            button11.Name = "button11";
+            button11.Size = new Size(90, 29);
+            button11.TabIndex = 22;
+            button11.Text = "Ajustes";
+            button11.UseVisualStyleBackColor = false;
+            // 
+            // button12
+            // 
+            button12.BackColor = Color.Transparent;
+            button12.FlatAppearance.BorderColor = Color.White;
+            button12.FlatAppearance.BorderSize = 0;
+            button12.FlatStyle = FlatStyle.Flat;
+            button12.ForeColor = Color.Navy;
+            button12.Location = new Point(784, 42);
+            button12.Name = "button12";
+            button12.Size = new Size(90, 29);
+            button12.TabIndex = 23;
+            button12.UseVisualStyleBackColor = false;
+            // 
             // MenuPrincipalAdm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1105, 905);
+            Controls.Add(button12);
+            Controls.Add(button11);
+            Controls.Add(button10);
             Controls.Add(panel6);
             Controls.Add(panel8);
             Controls.Add(panel5);
@@ -493,7 +566,9 @@
             Load += MenuPrincipalAdm_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox15).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox14).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox11).EndInit();
@@ -547,5 +622,10 @@
         private PictureBox pictureBox9;
         private Label label2;
         private PictureBox pictureBox13;
+        private PictureBox pictureBox16;
+        private PictureBox pictureBox15;
+        private Button button10;
+        private Button button11;
+        private Button button12;
     }
 }
