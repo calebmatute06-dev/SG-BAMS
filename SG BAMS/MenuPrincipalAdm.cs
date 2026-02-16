@@ -17,10 +17,22 @@ namespace SG_BAMS
             InitializeComponent();
         }
 
-        private void btnsalir_Click(object sender, EventArgs e)
+
+        private void MenuPrincipalAdm_Load(object sender, EventArgs e)
         {
-            Application.Exit();
 
         }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }
