@@ -45,6 +45,7 @@
             label8 = new Label();
             button8 = new Button();
             label9 = new Label();
+            kryptonLabel1 = new Krypton.Toolkit.KryptonLabel();
             SuspendLayout();
             // 
             // label1
@@ -239,11 +240,25 @@
             label9.TabIndex = 16;
             label9.Text = "BAMS";
             // 
+            // kryptonLabel1
+            // 
+            kryptonLabel1.Location = new Point(56, 90);
+            kryptonLabel1.Name = "kryptonLabel1";
+            kryptonLabel1.Size = new Size(146, 20);
+            kryptonLabel1.StateCommon.LongText.Color1 = Color.Transparent;
+            kryptonLabel1.StateCommon.LongText.Color2 = Color.Transparent;
+            kryptonLabel1.StateCommon.ShortText.Color1 = Color.Navy;
+            kryptonLabel1.StateCommon.ShortText.Color2 = Color.SkyBlue;
+            kryptonLabel1.TabIndex = 17;
+            kryptonLabel1.Values.ImageTransparentColor = Color.Transparent;
+            kryptonLabel1.Values.Text = "Administración de BAMS";
+            // 
             // frmAdministracion
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(682, 450);
+            Controls.Add(kryptonLabel1);
             Controls.Add(label9);
             Controls.Add(button8);
             Controls.Add(button7);
@@ -286,5 +301,6 @@
         private Label label8;
         private Button button8;
         private Label label9;
+        private Krypton.Toolkit.KryptonLabel kryptonLabel1;
     }
 }
