@@ -406,9 +406,9 @@
             // 
             pictureBox13.BackgroundImage = Properties.Resources.compras;
             pictureBox13.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox13.Location = new Point(51, 328);
+            pictureBox13.Location = new Point(46, 328);
             pictureBox13.Name = "pictureBox13";
-            pictureBox13.Size = new Size(63, 49);
+            pictureBox13.Size = new Size(78, 64);
             pictureBox13.TabIndex = 12;
             pictureBox13.TabStop = false;
             // 
