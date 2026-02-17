@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Krypton.Toolkit;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,9 +24,11 @@ namespace SG_BAMS
 
         }
 
+
+
         private void btnCerrar_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+
         }
 
         private void pictureBox4_Click(object sender, EventArgs e)
@@ -33,6 +36,14 @@ namespace SG_BAMS
 
         }
 
-        
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

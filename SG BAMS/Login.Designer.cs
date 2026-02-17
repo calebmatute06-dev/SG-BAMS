@@ -136,6 +136,7 @@
             Controls.Add(btnIni);
             ForeColor = SystemColors.ActiveCaptionText;
             Name = "Login";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
             ((System.ComponentModel.ISupportInitialize)picBa).EndInit();
             ResumeLayout(false);
