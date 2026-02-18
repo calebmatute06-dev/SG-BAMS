@@ -16,5 +16,10 @@ namespace SG_BAMS
         {
             InitializeComponent();
         }
+
+        private void btnsalirLogin_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

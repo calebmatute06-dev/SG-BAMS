@@ -79,7 +79,7 @@ namespace SG_BAMS
 
         private void btnsalirLogin_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
     }
 }
