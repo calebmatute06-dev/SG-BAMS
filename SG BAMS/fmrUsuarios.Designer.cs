@@ -1,4 +1,5 @@
-﻿namespace SG_BAMS
+﻿
+namespace SG_BAMS
 {
     partial class fmrUsuarios
     {
@@ -46,7 +47,7 @@
             // 
             // kryptonButton1
             // 
-            kryptonButton1.Location = new Point(93, 276);
+            kryptonButton1.Location = new Point(121, 276);
             kryptonButton1.Name = "kryptonButton1";
             kryptonButton1.Size = new Size(121, 45);
             kryptonButton1.StateCommon.Content.Image.ImageH = Krypton.Toolkit.PaletteRelativeAlign.Near;
@@ -61,7 +62,7 @@
             // 
             // kryptonButton2
             // 
-            kryptonButton2.Location = new Point(321, 276);
+            kryptonButton2.Location = new Point(332, 276);
             kryptonButton2.Name = "kryptonButton2";
             kryptonButton2.Size = new Size(121, 45);
             kryptonButton2.StateCommon.Content.Image.ImageH = Krypton.Toolkit.PaletteRelativeAlign.Near;
@@ -97,7 +98,7 @@
             label1.TabIndex = 85;
             label1.Text = "Usuarios";
             label1.TextAlign = ContentAlignment.MiddleCenter;
-            label1.Click += this.label1_Click;
+            label1.Click += label1_Click;
             // 
             // kryptonDataGridView1
             // 
@@ -186,6 +187,11 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
