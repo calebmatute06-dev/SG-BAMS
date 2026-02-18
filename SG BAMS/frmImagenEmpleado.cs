@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
-    public partial class fmrAgregarUsuarios : Form
+    public partial class frmImagenEmpleado : Form
     {
-        public fmrAgregarUsuarios()
+        public frmImagenEmpleado()
         {
             InitializeComponent();
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

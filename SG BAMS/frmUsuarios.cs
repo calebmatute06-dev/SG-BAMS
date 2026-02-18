@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
-    public partial class fmrMarcaProductos : Form
+    public partial class frmUsuarios : Form
     {
-        public fmrMarcaProductos()
+        public frmUsuarios()
         {
             InitializeComponent();
+        }
+
+        private void pictureBox16_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

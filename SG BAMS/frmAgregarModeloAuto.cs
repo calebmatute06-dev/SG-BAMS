@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
-    public partial class fmrModeloAuto : Form
+    public partial class frmAgregarModeloAuto : Form
     {
-        public fmrModeloAuto()
+        public frmAgregarModeloAuto()
         {
             InitializeComponent();
+        }
+
+        private void kryptonButton1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

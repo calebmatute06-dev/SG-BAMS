@@ -1,6 +1,6 @@
 ﻿namespace SG_BAMS
 {
-    partial class fmrAgregarUsuarios
+    partial class frmAgregarUsuarios
     {
         /// <summary>
         /// Required designer variable.

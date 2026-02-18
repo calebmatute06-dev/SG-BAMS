@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
-    public partial class fmrModificarUsuarios : Form
+    public partial class frmIngresarMarcaProducto : Form
     {
-        public fmrModificarUsuarios()
+        public frmIngresarMarcaProducto()
         {
             InitializeComponent();
         }
 
-        private void fmrModificarUsuarios_Load(object sender, EventArgs e)
+        private void kryptonTextBox1_TextChanged(object sender, EventArgs e)
         {
 
         }

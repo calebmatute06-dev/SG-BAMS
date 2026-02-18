@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
-    public partial class fmrImagenEmpleado : Form
+    public partial class frmModeloAuto : Form
     {
-        public fmrImagenEmpleado()
+        public frmModeloAuto()
         {
             InitializeComponent();
         }

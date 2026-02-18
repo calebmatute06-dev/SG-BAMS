@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
-    public partial class fmrAgregarModeloAuto : Form
+    public partial class frmModificarUsuarios : Form
     {
-        public fmrAgregarModeloAuto()
+        public frmModificarUsuarios()
         {
             InitializeComponent();
         }
 
-        private void kryptonButton1_Click(object sender, EventArgs e)
+        private void fmrModificarUsuarios_Load(object sender, EventArgs e)
         {
 
         }

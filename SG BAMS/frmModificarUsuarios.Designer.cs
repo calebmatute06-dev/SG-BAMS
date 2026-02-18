@@ -1,6 +1,6 @@
 ﻿namespace SG_BAMS
 {
-    partial class fmrModificarUsuarios
+    partial class frmModificarUsuarios
     {
         /// <summary>
         /// Required designer variable.

@@ -1,7 +1,7 @@
 ﻿
 namespace SG_BAMS
 {
-    partial class fmrAgregarModeloAuto
+    partial class frmAgregarModeloAuto
     {
         /// <summary>
         /// Required designer variable.
@@ -29,13 +29,12 @@ namespace SG_BAMS
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fmrAgregarModeloAuto));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAgregarModeloAuto));
             panel1 = new Panel();
             pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel2 = new Panel();
-            pictureBox4 = new PictureBox();
             pictureBox16 = new PictureBox();
             kryptonButton1 = new Krypton.Toolkit.KryptonButton();
             kryptonButton7 = new Krypton.Toolkit.KryptonButton();
@@ -47,8 +46,6 @@ namespace SG_BAMS
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             SuspendLayout();
             // 
@@ -95,22 +92,11 @@ namespace SG_BAMS
             // panel2
             // 
             panel2.BackColor = Color.Navy;
-            panel2.Controls.Add(pictureBox4);
             panel2.Location = new Point(3, 265);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
             panel2.Size = new Size(598, 18);
             panel2.TabIndex = 87;
-            // 
-            // pictureBox4
-            // 
-            pictureBox4.BackColor = Color.Navy;
-            pictureBox4.Location = new Point(494, -176);
-            pictureBox4.Margin = new Padding(3, 2, 3, 2);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(21, 494);
-            pictureBox4.TabIndex = 9;
-            pictureBox4.TabStop = false;
             // 
             // pictureBox16
             // 
@@ -153,7 +139,7 @@ namespace SG_BAMS
             kryptonButton7.Values.DropDownArrowColor = Color.Empty;
             kryptonButton7.Values.Text = "Agregar";
             kryptonButton7.Values.UACShieldIconSize = Krypton.Toolkit.IconSize.Tiny;
-            kryptonButton7.Click += this.kryptonButton7_Click;
+            kryptonButton7.Click += kryptonButton7_Click;
             // 
             // kryptonTextBox1
             // 
@@ -223,8 +209,6 @@ namespace SG_BAMS
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -242,7 +226,6 @@ namespace SG_BAMS
         private PictureBox pictureBox2;
         private PictureBox pictureBox1;
         private Panel panel2;
-        private PictureBox pictureBox4;
         private PictureBox pictureBox16;
         private Krypton.Toolkit.KryptonButton kryptonButton1;
         private Krypton.Toolkit.KryptonButton kryptonButton7;

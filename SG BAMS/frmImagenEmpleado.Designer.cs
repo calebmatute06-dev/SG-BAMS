@@ -1,6 +1,6 @@
 ﻿namespace SG_BAMS
 {
-    partial class fmrImagenEmpleado
+    partial class frmImagenEmpleado
     {
         /// <summary>
         /// Required designer variable.

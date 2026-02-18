@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
-    public partial class fmrUsuarios : Form
+    public partial class frmAgregarUsuarios : Form
     {
-        public fmrUsuarios()
+        public frmAgregarUsuarios()
         {
             InitializeComponent();
         }
 
-        private void pictureBox16_Click(object sender, EventArgs e)
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }
