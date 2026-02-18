@@ -53,11 +53,11 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
             label2.Location = new Point(245, 120);
             label2.Name = "label2";
-            label2.Size = new Size(131, 21);
+            label2.Size = new Size(113, 20);
             label2.TabIndex = 1;
             label2.Text = "Agregar Usuarios";
             label2.Click += label2_Click;
@@ -66,18 +66,18 @@
             // 
             label9.AutoSize = true;
             label9.BackColor = Color.Transparent;
-            label9.Font = new Font("Segoe UI", 15F);
+            label9.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label9.ForeColor = Color.Navy;
-            label9.Location = new Point(605, 414);
+            label9.Location = new Point(614, 422);
             label9.Name = "label9";
-            label9.Size = new Size(65, 28);
+            label9.Size = new Size(58, 24);
             label9.TabIndex = 16;
             label9.Text = "BAMS";
             // 
             // label1
             // 
             label1.BackColor = Color.SkyBlue;
-            label1.Font = new Font("Segoe UI", 14F);
+            label1.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
             label1.Location = new Point(257, 39);
             label1.Name = "label1";
@@ -114,44 +114,44 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label10.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Navy;
             label10.Location = new Point(245, 159);
             label10.Name = "label10";
-            label10.Size = new Size(112, 21);
+            label10.Size = new Size(98, 20);
             label10.TabIndex = 61;
             label10.Text = "Rol de Usuario";
             // 
             // label11
             // 
             label11.AutoSize = true;
-            label11.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label11.Font = new Font("Arial Narrow", 12F);
             label11.ForeColor = Color.Navy;
             label11.Location = new Point(245, 198);
             label11.Name = "label11";
-            label11.Size = new Size(107, 21);
+            label11.Size = new Size(92, 20);
             label11.TabIndex = 62;
             label11.Text = "Tipo producto";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Font = new Font("Arial Narrow", 12F);
             label3.ForeColor = Color.Navy;
             label3.Location = new Point(245, 236);
             label3.Name = "label3";
-            label3.Size = new Size(169, 21);
+            label3.Size = new Size(153, 20);
             label3.TabIndex = 63;
             label3.Text = "Tipo de Forma de Pago";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Font = new Font("Arial Narrow", 12F);
             label4.ForeColor = Color.Navy;
             label4.Location = new Point(245, 275);
             label4.Name = "label4";
-            label4.Size = new Size(56, 21);
+            label4.Size = new Size(51, 20);
             label4.TabIndex = 64;
             label4.Text = "Estado";
             label4.Click += label4_Click;
@@ -159,22 +159,22 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.Font = new Font("Arial Narrow", 12F);
             label5.ForeColor = Color.Navy;
             label5.Location = new Point(245, 315);
             label5.Name = "label5";
-            label5.Size = new Size(148, 21);
+            label5.Size = new Size(130, 20);
             label5.TabIndex = 65;
             label5.Text = "Marca de Productos";
             // 
             // label12
             // 
             label12.AutoSize = true;
-            label12.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label12.Font = new Font("Arial Narrow", 12F);
             label12.ForeColor = Color.Navy;
-            label12.Location = new Point(245, 359);
+            label12.Location = new Point(245, 354);
             label12.Name = "label12";
-            label12.Size = new Size(119, 21);
+            label12.Size = new Size(104, 20);
             label12.TabIndex = 67;
             label12.Text = "Modelo de auto";
             // 
@@ -264,7 +264,7 @@
             // 
             // kryptonButton6
             // 
-            kryptonButton6.Location = new Point(441, 359);
+            kryptonButton6.Location = new Point(441, 354);
             kryptonButton6.Name = "kryptonButton6";
             kryptonButton6.Size = new Size(75, 33);
             kryptonButton6.StateCommon.Back.Color1 = Color.SkyBlue;
