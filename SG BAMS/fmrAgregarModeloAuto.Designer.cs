@@ -1,4 +1,5 @@
-﻿namespace SG_BAMS
+﻿
+namespace SG_BAMS
 {
     partial class fmrAgregarModeloAuto
     {
@@ -227,6 +228,11 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
             ResumeLayout(false);
             PerformLayout();
+        }
+
+        private void kryptonButton7_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
