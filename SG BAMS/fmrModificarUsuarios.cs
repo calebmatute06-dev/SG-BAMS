@@ -17,7 +17,7 @@ namespace SG_BAMS
             InitializeComponent();
         }
 
-        private void kryptonButton2_Click(object sender, EventArgs e)
+        private void fmrModificarUsuarios_Load(object sender, EventArgs e)
         {
 
         }
