@@ -63,6 +63,12 @@
             panel4 = new Panel();
             panel7 = new Panel();
             pictureBox2 = new PictureBox();
+            kryptonButton11 = new Krypton.Toolkit.KryptonButton();
+            kryptonButton10 = new Krypton.Toolkit.KryptonButton();
+            pictureBox18 = new PictureBox();
+            button12 = new Button();
+            pictureBox3 = new PictureBox();
+            flowLayoutPanel1 = new FlowLayoutPanel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).BeginInit();
@@ -82,6 +88,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -619,11 +627,112 @@
             pictureBox2.TabIndex = 7;
             pictureBox2.TabStop = false;
             // 
+            // kryptonButton11
+            // 
+            kryptonButton11.Location = new Point(978, 31);
+            kryptonButton11.Name = "kryptonButton11";
+            kryptonButton11.OverrideDefault.Back.Color1 = Color.Transparent;
+            kryptonButton11.OverrideDefault.Back.Color2 = Color.Transparent;
+            kryptonButton11.OverrideDefault.Border.Rounding = 40F;
+            kryptonButton11.OverrideFocus.Back.Color1 = Color.White;
+            kryptonButton11.OverrideFocus.Back.Color2 = Color.SkyBlue;
+            kryptonButton11.Size = new Size(98, 41);
+            kryptonButton11.StateCommon.Back.Color1 = Color.White;
+            kryptonButton11.StateCommon.Back.Color2 = Color.SkyBlue;
+            kryptonButton11.StateCommon.Border.Rounding = 40F;
+            kryptonButton11.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            kryptonButton11.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            kryptonButton11.StateNormal.Back.Color1 = Color.Transparent;
+            kryptonButton11.StateNormal.Back.Color2 = Color.Transparent;
+            kryptonButton11.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
+            kryptonButton11.StatePressed.Back.Color1 = Color.Transparent;
+            kryptonButton11.StatePressed.Back.Color2 = Color.Transparent;
+            kryptonButton11.StateTracking.Border.Rounding = 40F;
+            kryptonButton11.TabIndex = 42;
+            kryptonButton11.Values.DropDownArrowColor = Color.Empty;
+            kryptonButton11.Values.Text = "Ajustes";
+            kryptonButton11.Click += kryptonButton11_Click;
+            // 
+            // kryptonButton10
+            // 
+            kryptonButton10.Location = new Point(348, 33);
+            kryptonButton10.Name = "kryptonButton10";
+            kryptonButton10.OverrideDefault.Back.Color1 = Color.Transparent;
+            kryptonButton10.OverrideDefault.Back.Color2 = Color.Transparent;
+            kryptonButton10.OverrideDefault.Border.Rounding = 40F;
+            kryptonButton10.OverrideFocus.Back.Color1 = Color.White;
+            kryptonButton10.OverrideFocus.Back.Color2 = Color.SkyBlue;
+            kryptonButton10.Size = new Size(120, 41);
+            kryptonButton10.StateCommon.Back.Color1 = Color.White;
+            kryptonButton10.StateCommon.Back.Color2 = Color.SkyBlue;
+            kryptonButton10.StateCommon.Border.Rounding = 40F;
+            kryptonButton10.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            kryptonButton10.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            kryptonButton10.StateNormal.Back.Color1 = Color.Transparent;
+            kryptonButton10.StateNormal.Back.Color2 = Color.Transparent;
+            kryptonButton10.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
+            kryptonButton10.StatePressed.Back.Color1 = Color.Transparent;
+            kryptonButton10.StatePressed.Back.Color2 = Color.Transparent;
+            kryptonButton10.StateTracking.Border.Rounding = 40F;
+            kryptonButton10.TabIndex = 41;
+            kryptonButton10.Values.DropDownArrowColor = Color.Empty;
+            kryptonButton10.Values.Text = "Inventario";
+            // 
+            // pictureBox18
+            // 
+            pictureBox18.BackgroundImage = Properties.Resources.ajus;
+            pictureBox18.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox18.Location = new Point(923, 30);
+            pictureBox18.Name = "pictureBox18";
+            pictureBox18.Size = new Size(53, 49);
+            pictureBox18.TabIndex = 40;
+            pictureBox18.TabStop = false;
+            // 
+            // button12
+            // 
+            button12.BackColor = Color.Transparent;
+            button12.BackgroundImage = Properties.Resources.campana;
+            button12.BackgroundImageLayout = ImageLayout.Stretch;
+            button12.FlatAppearance.BorderColor = Color.White;
+            button12.FlatAppearance.BorderSize = 0;
+            button12.FlatStyle = FlatStyle.Flat;
+            button12.ForeColor = Color.Navy;
+            button12.Location = new Point(858, 30);
+            button12.Name = "button12";
+            button12.Size = new Size(59, 44);
+            button12.TabIndex = 39;
+            button12.UseVisualStyleBackColor = false;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.BackColor = Color.SkyBlue;
+            pictureBox3.BackgroundImage = Properties.Resources.Inventario;
+            pictureBox3.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox3.Location = new Point(295, 30);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(49, 49);
+            pictureBox3.TabIndex = 38;
+            pictureBox3.TabStop = false;
+            // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.AutoScroll = true;
+            flowLayoutPanel1.Location = new Point(295, 147);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(780, 729);
+            flowLayoutPanel1.TabIndex = 43;
+            // 
             // InventarioAdmin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1105, 905);
+            Controls.Add(flowLayoutPanel1);
+            Controls.Add(pictureBox3);
+            Controls.Add(kryptonButton11);
+            Controls.Add(kryptonButton10);
+            Controls.Add(pictureBox18);
+            Controls.Add(button12);
             Controls.Add(panel7);
             Controls.Add(panel6);
             Controls.Add(panel4);
@@ -652,6 +761,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             panel7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox18).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ResumeLayout(false);
         }
 
@@ -692,5 +803,11 @@
         private Panel panel4;
         private Panel panel7;
         private PictureBox pictureBox2;
+        private Krypton.Toolkit.KryptonButton kryptonButton11;
+        private Krypton.Toolkit.KryptonButton kryptonButton10;
+        private PictureBox pictureBox18;
+        private Button button12;
+        private PictureBox pictureBox3;
+        private FlowLayoutPanel flowLayoutPanel1;
     }
 }
