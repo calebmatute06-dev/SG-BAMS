@@ -76,9 +76,12 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(30, 85);
+            pictureBox1.BackColor = Color.SkyBlue;
+            pictureBox1.Image = Properties.Resources.SubirArchivo;
+            pictureBox1.Location = new Point(131, 52);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(100, 50);
+            pictureBox1.Size = new Size(48, 45);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 84;
             pictureBox1.TabStop = false;
             // 
