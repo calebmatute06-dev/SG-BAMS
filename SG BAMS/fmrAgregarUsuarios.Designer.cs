@@ -48,7 +48,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial Narrow", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(97, 9);
+            label1.Location = new Point(148, 9);
             label1.Name = "label1";
             label1.Size = new Size(245, 29);
             label1.TabIndex = 1;
@@ -180,7 +180,7 @@
             // 
             pictureBox16.BackgroundImage = Properties.Resources.perfiles;
             pictureBox16.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox16.Location = new Point(307, 11);
+            pictureBox16.Location = new Point(358, 11);
             pictureBox16.Margin = new Padding(3, 2, 3, 2);
             pictureBox16.Name = "pictureBox16";
             pictureBox16.Size = new Size(35, 29);
