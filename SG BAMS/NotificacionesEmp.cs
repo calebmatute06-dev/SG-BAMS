@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
-    public partial class Notificaciones : Form
+    public partial class NotificacionesEmp : Form
     {
-        public Notificaciones()
+        public NotificacionesEmp()
         {
             InitializeComponent();
-        }
-
-        private void btnsalir_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }

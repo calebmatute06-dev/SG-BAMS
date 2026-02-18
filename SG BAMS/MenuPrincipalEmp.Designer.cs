@@ -797,7 +797,6 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1105, 919);
-            Controls.Add(dataGridView1);
             Controls.Add(pictureBox21);
             Controls.Add(pictureBox20);
             Controls.Add(pictureBox19);
@@ -813,7 +812,6 @@
             Controls.Add(kryptonButton16);
             Controls.Add(kryptonButton15);
             Controls.Add(kryptonButton14);
-            Controls.Add(kryptonButton13);
             Controls.Add(kryptonButton12);
             Controls.Add(label1);
             Controls.Add(kryptonButton11);
@@ -827,6 +825,8 @@
             Controls.Add(panel4);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            Controls.Add(dataGridView1);
+            Controls.Add(kryptonButton13);
             Name = "MenuPrincipalEmp";
             Text = "MenuPrincipalEmp";
             ((System.ComponentModel.ISupportInitialize)pictureBox21).EndInit();
