@@ -24,13 +24,6 @@ namespace SG_BAMS
 
         }
 
-
-
-        private void btnCerrar_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void pictureBox4_Click(object sender, EventArgs e)
         {
 
@@ -45,5 +38,7 @@ namespace SG_BAMS
         {
 
         }
+
+        
     }
 }
