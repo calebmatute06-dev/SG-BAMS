@@ -135,7 +135,7 @@
             // 
             // kryptonButton2
             // 
-            kryptonButton2.Location = new Point(340, 280);
+            kryptonButton2.Location = new Point(347, 280);
             kryptonButton2.Name = "kryptonButton2";
             kryptonButton2.Size = new Size(121, 45);
             kryptonButton2.StateCommon.Content.Image.ImageH = Krypton.Toolkit.PaletteRelativeAlign.Near;
@@ -150,7 +150,7 @@
             // 
             // kryptonButton1
             // 
-            kryptonButton1.Location = new Point(121, 280);
+            kryptonButton1.Location = new Point(115, 280);
             kryptonButton1.Name = "kryptonButton1";
             kryptonButton1.Size = new Size(121, 45);
             kryptonButton1.StateCommon.Content.Image.ImageH = Krypton.Toolkit.PaletteRelativeAlign.Near;

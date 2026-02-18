@@ -155,6 +155,7 @@
             kryptonButton7.StateCommon.Back.Color2 = Color.SkyBlue;
             kryptonButton7.StateCommon.Border.Rounding = 15F;
             kryptonButton7.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            kryptonButton7.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             kryptonButton7.TabIndex = 69;
             kryptonButton7.Values.DropDownArrowColor = Color.Empty;
             kryptonButton7.Values.Text = "Agregar";
@@ -169,6 +170,7 @@
             kryptonButton1.StateCommon.Back.Color2 = Color.SkyBlue;
             kryptonButton1.StateCommon.Border.Rounding = 15F;
             kryptonButton1.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            kryptonButton1.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             kryptonButton1.TabIndex = 70;
             kryptonButton1.Values.DropDownArrowColor = Color.Empty;
             kryptonButton1.Values.Text = "Salir";
@@ -183,6 +185,7 @@
             kryptonButton2.StateCommon.Back.Color2 = Color.SkyBlue;
             kryptonButton2.StateCommon.Border.Rounding = 15F;
             kryptonButton2.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            kryptonButton2.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             kryptonButton2.TabIndex = 71;
             kryptonButton2.Values.DropDownArrowColor = Color.Empty;
             kryptonButton2.Values.Text = "Imagen del empleado";

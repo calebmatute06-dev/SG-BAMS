@@ -149,7 +149,7 @@
             // 
             // kryptonButton1
             // 
-            kryptonButton1.Location = new Point(131, 280);
+            kryptonButton1.Location = new Point(115, 280);
             kryptonButton1.Name = "kryptonButton1";
             kryptonButton1.Size = new Size(121, 45);
             kryptonButton1.StateCommon.Content.Image.ImageH = Krypton.Toolkit.PaletteRelativeAlign.Near;
