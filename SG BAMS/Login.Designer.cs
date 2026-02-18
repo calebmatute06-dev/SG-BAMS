@@ -41,7 +41,7 @@
             // 
             // btnIni
             // 
-            btnIni.BackColor = Color.Cyan;
+            btnIni.BackColor = Color.SkyBlue;
             btnIni.ForeColor = Color.Navy;
             btnIni.Location = new Point(189, 461);
             btnIni.Name = "btnIni";
@@ -53,7 +53,7 @@
             // 
             // txtUsu
             // 
-            txtUsu.BackColor = Color.Cyan;
+            txtUsu.BackColor = Color.SkyBlue;
             txtUsu.Location = new Point(325, 303);
             txtUsu.Name = "txtUsu";
             txtUsu.Size = new Size(221, 27);
@@ -81,7 +81,7 @@
             // 
             // txtCon
             // 
-            txtCon.BackColor = Color.Cyan;
+            txtCon.BackColor = Color.SkyBlue;
             txtCon.Location = new Point(325, 389);
             txtCon.Name = "txtCon";
             txtCon.Size = new Size(221, 27);
@@ -100,7 +100,7 @@
             // 
             // btnSalir
             // 
-            btnSalir.BackColor = Color.Cyan;
+            btnSalir.BackColor = Color.SkyBlue;
             btnSalir.ForeColor = Color.Navy;
             btnSalir.Location = new Point(433, 461);
             btnSalir.Name = "btnSalir";
@@ -136,6 +136,7 @@
             Controls.Add(btnIni);
             ForeColor = SystemColors.ActiveCaptionText;
             Name = "Login";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
             ((System.ComponentModel.ISupportInitialize)picBa).EndInit();
             ResumeLayout(false);
