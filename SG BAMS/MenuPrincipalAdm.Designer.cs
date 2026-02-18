@@ -68,12 +68,13 @@
             pictureBox18 = new PictureBox();
             kryptonButton10 = new Krypton.Toolkit.KryptonButton();
             kryptonButton11 = new Krypton.Toolkit.KryptonButton();
-            kryptonGroup1 = new Krypton.Toolkit.KryptonGroup();
             label1 = new Label();
-            kryptonGroup2 = new Krypton.Toolkit.KryptonGroup();
-            kryptonGroup3 = new Krypton.Toolkit.KryptonGroup();
-            kryptonGroup4 = new Krypton.Toolkit.KryptonGroup();
-            kryptonGroup5 = new Krypton.Toolkit.KryptonGroup();
+            kryptonButton12 = new Krypton.Toolkit.KryptonButton();
+            kryptonButton13 = new Krypton.Toolkit.KryptonButton();
+            kryptonButton14 = new Krypton.Toolkit.KryptonButton();
+            kryptonButton15 = new Krypton.Toolkit.KryptonButton();
+            kryptonButton16 = new Krypton.Toolkit.KryptonButton();
+            kryptonButton17 = new Krypton.Toolkit.KryptonButton();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).BeginInit();
@@ -96,16 +97,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox17).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup2.Panel).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup3.Panel).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup4.Panel).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup5).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup5.Panel).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -730,14 +721,6 @@
             kryptonButton11.Values.DropDownArrowColor = Color.Empty;
             kryptonButton11.Values.Text = "Ajustes";
             // 
-            // kryptonGroup1
-            // 
-            kryptonGroup1.Location = new Point(321, 117);
-            kryptonGroup1.Size = new Size(456, 346);
-            kryptonGroup1.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroup1.StateCommon.Border.Rounding = 100F;
-            kryptonGroup1.TabIndex = 40;
-            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -746,37 +729,77 @@
             label1.Size = new Size(0, 20);
             label1.TabIndex = 41;
             // 
-            // kryptonGroup2
+            // kryptonButton12
             // 
-            kryptonGroup2.Location = new Point(321, 508);
-            kryptonGroup2.Size = new Size(456, 346);
-            kryptonGroup2.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroup2.StateCommon.Border.Rounding = 100F;
-            kryptonGroup2.TabIndex = 42;
+            kryptonButton12.Location = new Point(321, 117);
+            kryptonButton12.Name = "kryptonButton12";
+            kryptonButton12.Size = new Size(456, 346);
+            kryptonButton12.StateCommon.Border.Rounding = 100F;
+            kryptonButton12.StateNormal.Back.Color1 = Color.SkyBlue;
+            kryptonButton12.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            kryptonButton12.TabIndex = 46;
+            kryptonButton12.Values.DropDownArrowColor = Color.Empty;
+            kryptonButton12.Values.Text = "";
             // 
-            // kryptonGroup3
+            // kryptonButton13
             // 
-            kryptonGroup3.Location = new Point(823, 117);
-            kryptonGroup3.Size = new Size(211, 202);
-            kryptonGroup3.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroup3.StateCommon.Border.Rounding = 70F;
-            kryptonGroup3.TabIndex = 43;
+            kryptonButton13.Location = new Point(321, 508);
+            kryptonButton13.Name = "kryptonButton13";
+            kryptonButton13.Size = new Size(456, 346);
+            kryptonButton13.StateCommon.Border.Rounding = 100F;
+            kryptonButton13.StateNormal.Back.Color1 = Color.SkyBlue;
+            kryptonButton13.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            kryptonButton13.TabIndex = 47;
+            kryptonButton13.Values.DropDownArrowColor = Color.Empty;
+            kryptonButton13.Values.Text = "";
             // 
-            // kryptonGroup4
+            // kryptonButton14
             // 
-            kryptonGroup4.Location = new Point(832, 384);
-            kryptonGroup4.Size = new Size(211, 202);
-            kryptonGroup4.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroup4.StateCommon.Border.Rounding = 70F;
-            kryptonGroup4.TabIndex = 44;
+            kryptonButton14.Location = new Point(324, 279);
+            kryptonButton14.Name = "kryptonButton14";
+            kryptonButton14.Size = new Size(0, 0);
+            kryptonButton14.StateCommon.Border.Rounding = 100F;
+            kryptonButton14.StateNormal.Back.Color1 = Color.SkyBlue;
+            kryptonButton14.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            kryptonButton14.TabIndex = 48;
+            kryptonButton14.Values.DropDownArrowColor = Color.Empty;
+            kryptonButton14.Values.Text = "";
             // 
-            // kryptonGroup5
+            // kryptonButton15
             // 
-            kryptonGroup5.Location = new Point(832, 652);
-            kryptonGroup5.Size = new Size(211, 202);
-            kryptonGroup5.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroup5.StateCommon.Border.Rounding = 70F;
-            kryptonGroup5.TabIndex = 45;
+            kryptonButton15.Location = new Point(832, 132);
+            kryptonButton15.Name = "kryptonButton15";
+            kryptonButton15.Size = new Size(211, 202);
+            kryptonButton15.StateCommon.Border.Rounding = 70F;
+            kryptonButton15.StateNormal.Back.Color1 = Color.SkyBlue;
+            kryptonButton15.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            kryptonButton15.TabIndex = 49;
+            kryptonButton15.Values.DropDownArrowColor = Color.Empty;
+            kryptonButton15.Values.Text = "";
+            // 
+            // kryptonButton16
+            // 
+            kryptonButton16.Location = new Point(832, 397);
+            kryptonButton16.Name = "kryptonButton16";
+            kryptonButton16.Size = new Size(211, 202);
+            kryptonButton16.StateCommon.Border.Rounding = 70F;
+            kryptonButton16.StateNormal.Back.Color1 = Color.SkyBlue;
+            kryptonButton16.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            kryptonButton16.TabIndex = 50;
+            kryptonButton16.Values.DropDownArrowColor = Color.Empty;
+            kryptonButton16.Values.Text = "";
+            // 
+            // kryptonButton17
+            // 
+            kryptonButton17.Location = new Point(832, 652);
+            kryptonButton17.Name = "kryptonButton17";
+            kryptonButton17.Size = new Size(211, 202);
+            kryptonButton17.StateCommon.Border.Rounding = 70F;
+            kryptonButton17.StateNormal.Back.Color1 = Color.SkyBlue;
+            kryptonButton17.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            kryptonButton17.TabIndex = 51;
+            kryptonButton17.Values.DropDownArrowColor = Color.Empty;
+            kryptonButton17.Values.Text = "";
             // 
             // MenuPrincipalAdm
             // 
@@ -784,12 +807,13 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1105, 905);
-            Controls.Add(kryptonGroup5);
-            Controls.Add(kryptonGroup4);
-            Controls.Add(kryptonGroup3);
-            Controls.Add(kryptonGroup2);
+            Controls.Add(kryptonButton17);
+            Controls.Add(kryptonButton16);
+            Controls.Add(kryptonButton15);
+            Controls.Add(kryptonButton14);
+            Controls.Add(kryptonButton13);
+            Controls.Add(kryptonButton12);
             Controls.Add(label1);
-            Controls.Add(kryptonGroup1);
             Controls.Add(kryptonButton11);
             Controls.Add(kryptonButton10);
             Controls.Add(pictureBox18);
@@ -829,16 +853,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox17).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox18).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup2.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup3.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup4.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup5.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup5).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -884,11 +898,12 @@
         private Krypton.Toolkit.KryptonButton kryptonButton1;
         private Krypton.Toolkit.KryptonButton kryptonButton10;
         private Krypton.Toolkit.KryptonButton kryptonButton11;
-        private Krypton.Toolkit.KryptonGroup kryptonGroup1;
         private Label label1;
-        private Krypton.Toolkit.KryptonGroup kryptonGroup2;
-        private Krypton.Toolkit.KryptonGroup kryptonGroup3;
-        private Krypton.Toolkit.KryptonGroup kryptonGroup4;
-        private Krypton.Toolkit.KryptonGroup kryptonGroup5;
+        private Krypton.Toolkit.KryptonButton kryptonButton12;
+        private Krypton.Toolkit.KryptonButton kryptonButton13;
+        private Krypton.Toolkit.KryptonButton kryptonButton14;
+        private Krypton.Toolkit.KryptonButton kryptonButton15;
+        private Krypton.Toolkit.KryptonButton kryptonButton16;
+        private Krypton.Toolkit.KryptonButton kryptonButton17;
     }
 }
