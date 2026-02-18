@@ -76,7 +76,7 @@
             label1.Name = "label1";
             label1.Size = new Size(28, 33);
             label1.TabIndex = 103;
-            label1.Text = "3";
+            label1.Text = "0";
             // 
             // label3
             // 
