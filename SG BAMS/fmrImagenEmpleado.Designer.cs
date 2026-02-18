@@ -31,6 +31,8 @@
             label1 = new Label();
             kryptonButton1 = new Krypton.Toolkit.KryptonButton();
             label7 = new Label();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -50,6 +52,7 @@
             kryptonButton1.Location = new Point(106, 52);
             kryptonButton1.Name = "kryptonButton1";
             kryptonButton1.Size = new Size(240, 45);
+            kryptonButton1.StateCommon.Content.Image.ImageH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             kryptonButton1.StateCommon.Content.ShortText.Color1 = Color.Navy;
             kryptonButton1.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             kryptonButton1.StateCommon.Content.ShortText.TextH = Krypton.Toolkit.PaletteRelativeAlign.Far;
@@ -71,16 +74,26 @@
             label7.TabIndex = 83;
             label7.Text = "BAMS";
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Location = new Point(30, 85);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(100, 50);
+            pictureBox1.TabIndex = 84;
+            pictureBox1.TabStop = false;
+            // 
             // fmrImagenEmpleado
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(419, 147);
+            Controls.Add(pictureBox1);
             Controls.Add(label7);
             Controls.Add(kryptonButton1);
             Controls.Add(label1);
             Name = "fmrImagenEmpleado";
             Text = "fmrImagenEmpleado";
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -90,5 +103,6 @@
         private Label label1;
         private Krypton.Toolkit.KryptonButton kryptonButton1;
         private Label label7;
+        private PictureBox pictureBox1;
     }
 }
