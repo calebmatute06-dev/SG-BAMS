@@ -210,7 +210,6 @@
             label2.Size = new Size(93, 22);
             label2.TabIndex = 109;
             label2.Text = "Cancelar";
-            label2.Click += this.label2_Click;
             // 
             // kryptonButton2
             // 
