@@ -19,19 +19,27 @@ namespace SG_BAMS
             InitializeComponent();
         }
 
-        
 
-        private void btnIni_Click(object sender, EventArgs e)
+
+
+
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btninicioSesion_Click(object sender, EventArgs e)
         {
             ClsLogin login = new ClsLogin();
             try
             {
-                int rol = login.ValidarUsuario(txtUsu.Text,txtCon.Text);
+                int rol = login.ValidarUsuario(txtUsu.Text, txtCon.Text);
 
                 if (rol == 1)
                 {
-                    MessageBox.Show("Login correcto. ¡Bienvenido Administrador!","",MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MenuPrincipalAdm  MenAdm = new MenuPrincipalAdm();
+                    MessageBox.Show("Login correcto. ¡Bienvenido Administrador!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MenuPrincipalAdm MenAdm = new MenuPrincipalAdm();
                     MenAdm.Show();
                     txtUsu.Clear();
                     txtCon.Clear();
@@ -66,11 +74,12 @@ namespace SG_BAMS
                 MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+
         }
 
-        private void btnSalir_Click(object sender, EventArgs e)
+        private void btnsalirLogin_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
     }
 }

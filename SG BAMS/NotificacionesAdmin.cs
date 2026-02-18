@@ -10,22 +10,21 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
-    public partial class MenuPrincipalEmp : Form
+    public partial class NotificacionesAdmin : Form
     {
-        public MenuPrincipalEmp()
+        public NotificacionesAdmin()
         {
             InitializeComponent();
         }
 
         private void btnsalir_Click(object sender, EventArgs e)
         {
-
-            Application.Exit();
+            this.Close();
         }
 
-        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        private void NotificacionesAdmin_Load(object sender, EventArgs e)
         {
-            this.Close();
+
         }
     }
 }

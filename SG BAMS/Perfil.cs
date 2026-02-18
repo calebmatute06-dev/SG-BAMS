@@ -10,20 +10,14 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
-    public partial class MenuPrincipalEmp : Form
+    public partial class Perfil : Form
     {
-        public MenuPrincipalEmp()
+        public Perfil()
         {
             InitializeComponent();
         }
 
         private void btnsalir_Click(object sender, EventArgs e)
-        {
-
-            Application.Exit();
-        }
-
-        private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
             this.Close();
         }
