@@ -83,6 +83,9 @@
             label8 = new Label();
             label9 = new Label();
             label10 = new Label();
+            pictureBox19 = new PictureBox();
+            pictureBox20 = new PictureBox();
+            pictureBox21 = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).BeginInit();
@@ -105,6 +108,9 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox17).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox19).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox20).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox21).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -855,7 +861,7 @@
             label3.BackColor = Color.SkyBlue;
             label3.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(863, 777);
+            label3.Location = new Point(863, 764);
             label3.Name = "label3";
             label3.Size = new Size(162, 24);
             label3.TabIndex = 52;
@@ -867,7 +873,7 @@
             label4.BackColor = Color.SkyBlue;
             label4.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(858, 514);
+            label4.Location = new Point(858, 512);
             label4.Name = "label4";
             label4.Size = new Size(169, 24);
             label4.TabIndex = 53;
@@ -879,7 +885,7 @@
             label5.BackColor = Color.SkyBlue;
             label5.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(855, 243);
+            label5.Location = new Point(852, 245);
             label5.Name = "label5";
             label5.Size = new Size(179, 24);
             label5.TabIndex = 54;
@@ -891,7 +897,7 @@
             label6.BackColor = Color.SkyBlue;
             label6.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(933, 554);
+            label6.Location = new Point(936, 554);
             label6.Name = "label6";
             label6.Size = new Size(19, 24);
             label6.TabIndex = 55;
@@ -903,7 +909,7 @@
             label7.BackColor = Color.SkyBlue;
             label7.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Navy;
-            label7.Location = new Point(933, 817);
+            label7.Location = new Point(936, 807);
             label7.Name = "label7";
             label7.Size = new Size(19, 24);
             label7.TabIndex = 56;
@@ -915,7 +921,7 @@
             label8.BackColor = Color.SkyBlue;
             label8.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Navy;
-            label8.Location = new Point(933, 285);
+            label8.Location = new Point(936, 285);
             label8.Name = "label8";
             label8.Size = new Size(19, 24);
             label8.TabIndex = 57;
@@ -945,12 +951,48 @@
             label10.TabIndex = 59;
             label10.Text = "Productos mas vendidos";
             // 
+            // pictureBox19
+            // 
+            pictureBox19.BackColor = Color.SkyBlue;
+            pictureBox19.BackgroundImage = Properties.Resources.canti;
+            pictureBox19.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox19.Location = new Point(900, 162);
+            pictureBox19.Name = "pictureBox19";
+            pictureBox19.Size = new Size(82, 62);
+            pictureBox19.TabIndex = 60;
+            pictureBox19.TabStop = false;
+            // 
+            // pictureBox20
+            // 
+            pictureBox20.BackColor = Color.SkyBlue;
+            pictureBox20.BackgroundImage = Properties.Resources.de1;
+            pictureBox20.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox20.Location = new Point(900, 433);
+            pictureBox20.Name = "pictureBox20";
+            pictureBox20.Size = new Size(82, 62);
+            pictureBox20.TabIndex = 61;
+            pictureBox20.TabStop = false;
+            // 
+            // pictureBox21
+            // 
+            pictureBox21.BackColor = Color.SkyBlue;
+            pictureBox21.BackgroundImage = Properties.Resources.clientes1;
+            pictureBox21.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox21.Location = new Point(900, 684);
+            pictureBox21.Name = "pictureBox21";
+            pictureBox21.Size = new Size(82, 62);
+            pictureBox21.TabIndex = 62;
+            pictureBox21.TabStop = false;
+            // 
             // MenuPrincipalAdm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1105, 905);
+            Controls.Add(pictureBox21);
+            Controls.Add(pictureBox20);
+            Controls.Add(pictureBox19);
             Controls.Add(label10);
             Controls.Add(label9);
             Controls.Add(label8);
@@ -1005,6 +1047,9 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox17).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox18).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox19).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox20).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox21).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1065,5 +1110,8 @@
         private Label label8;
         private Label label9;
         private Label label10;
+        private PictureBox pictureBox19;
+        private PictureBox pictureBox20;
+        private PictureBox pictureBox21;
     }
 }
