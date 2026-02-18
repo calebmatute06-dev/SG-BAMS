@@ -22,5 +22,10 @@ namespace SG_BAMS
 
             Application.Exit();
         }
+
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

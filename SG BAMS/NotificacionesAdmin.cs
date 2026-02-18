@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
-    public partial class Perfil : Form
+    public partial class NotificacionesAdmin : Form
     {
-        public Perfil()
+        public NotificacionesAdmin()
         {
             InitializeComponent();
         }
@@ -20,6 +20,11 @@ namespace SG_BAMS
         private void btnsalir_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void NotificacionesAdmin_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
