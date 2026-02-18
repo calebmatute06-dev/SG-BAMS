@@ -1,4 +1,5 @@
-﻿namespace SG_BAMS
+﻿
+namespace SG_BAMS
 {
     partial class frmModificarFormaPago
     {
@@ -211,6 +212,11 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
             ResumeLayout(false);
             PerformLayout();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
