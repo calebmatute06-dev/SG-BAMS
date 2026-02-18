@@ -927,7 +927,7 @@
             label9.BackColor = Color.SkyBlue;
             label9.Font = new Font("Arial Narrow", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label9.ForeColor = Color.Navy;
-            label9.Location = new Point(430, 529);
+            label9.Location = new Point(439, 529);
             label9.Name = "label9";
             label9.Size = new Size(225, 35);
             label9.TabIndex = 58;
@@ -939,7 +939,7 @@
             label10.BackColor = Color.SkyBlue;
             label10.Font = new Font("Arial Narrow", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Navy;
-            label10.Location = new Point(406, 132);
+            label10.Location = new Point(413, 132);
             label10.Name = "label10";
             label10.Size = new Size(285, 35);
             label10.TabIndex = 59;
