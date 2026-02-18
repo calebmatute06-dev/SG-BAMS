@@ -64,6 +64,7 @@
             btnsalir.TabIndex = 104;
             btnsalir.Values.DropDownArrowColor = Color.Empty;
             btnsalir.Values.Text = "Salir";
+            btnsalir.Click += btnsalir_Click;
             // 
             // label1
             // 
@@ -151,6 +152,7 @@
             Controls.Add(label6);
             Name = "NotificacionesAdmin";
             Text = "NotificacionesAdmin";
+            Load += NotificacionesAdmin_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

@@ -16,5 +16,15 @@ namespace SG_BAMS
         {
             InitializeComponent();
         }
+
+        private void btnsalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void NotificacionesAdmin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
