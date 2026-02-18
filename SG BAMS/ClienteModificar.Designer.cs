@@ -105,7 +105,6 @@
             label6.Size = new Size(43, 19);
             label6.TabIndex = 225;
             label6.Text = "Salir";
-            label6.Click += this.label6_Click;
             // 
             // kryptonButton2
             // 
