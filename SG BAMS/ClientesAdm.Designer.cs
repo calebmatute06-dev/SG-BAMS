@@ -924,7 +924,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1169, 724);
+            ClientSize = new Size(1036, 681);
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox2);
             Controls.Add(kryptonTextBox1);
