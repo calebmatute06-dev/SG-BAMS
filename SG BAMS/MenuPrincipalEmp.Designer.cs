@@ -3,7 +3,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace SG_BAMS
 {
-    partial class MenuPrincipalEmp:Form
+    partial class MenuPrincipalEmp
     {
         /// <summary>
         /// Required designer variable.
