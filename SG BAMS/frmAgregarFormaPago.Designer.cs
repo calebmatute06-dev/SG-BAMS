@@ -141,11 +141,11 @@
             // 
             label9.AutoSize = true;
             label9.BackColor = Color.Transparent;
-            label9.Font = new Font("Segoe UI", 15F);
+            label9.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label9.ForeColor = Color.Navy;
-            label9.Location = new Point(508, 236);
+            label9.Location = new Point(515, 240);
             label9.Name = "label9";
-            label9.Size = new Size(65, 28);
+            label9.Size = new Size(58, 24);
             label9.TabIndex = 115;
             label9.Text = "BAMS";
             // 
