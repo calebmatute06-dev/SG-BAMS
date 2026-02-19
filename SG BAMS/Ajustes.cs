@@ -10,19 +10,14 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
-    public partial class frmAgregarEstado : Form
+    public partial class Ajustes : Form
     {
-        public frmAgregarEstado()
+        public Ajustes()
         {
             InitializeComponent();
         }
 
-        private void pictureBox16_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        private void btnsalirLogin_Click(object sender, EventArgs e)
         {
             this.Close();
         }
