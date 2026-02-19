@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Krypton.Toolkit;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,9 +16,15 @@ namespace SG_BAMS
         public frmModificarUsuarios()
         {
             InitializeComponent();
+            kryptonComboBox2.AutoSize = false;
         }
 
         private void fmrModificarUsuarios_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void kryptonComboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
