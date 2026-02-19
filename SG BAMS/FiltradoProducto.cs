@@ -19,7 +19,7 @@ namespace SG_BAMS
 
         private void FiltradoProducto_Load(object sender, EventArgs e)
         {
-        https://github.com/calebmatute06-dev/SG-BAMS.git
+        /*https://github.com/calebmatute06-dev/SG-BAMS.git;*/
         }
     }
 }
