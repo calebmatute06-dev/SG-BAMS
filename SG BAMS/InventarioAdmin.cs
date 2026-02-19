@@ -21,5 +21,10 @@ namespace SG_BAMS
         {
 
         }
+
+        private void pictureBox17_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
