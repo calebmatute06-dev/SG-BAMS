@@ -29,26 +29,21 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            kryptonButton1 = new Krypton.Toolkit.KryptonButton();
             label7 = new Label();
-            pictureBox1 = new PictureBox();
             panel2 = new Panel();
-            pictureBox4 = new PictureBox();
-            pictureBox2 = new PictureBox();
             pictureBox3 = new PictureBox();
             panel1 = new Panel();
             pictureBox5 = new PictureBox();
             pictureBox6 = new PictureBox();
             pictureBox7 = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            kryptonButton6 = new Krypton.Toolkit.KryptonButton();
+            kryptonPictureBox1 = new Krypton.Toolkit.KryptonPictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonPictureBox1).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -60,24 +55,8 @@
             label1.Name = "label1";
             label1.Size = new Size(245, 29);
             label1.TabIndex = 74;
-            label1.Text = "Imagen del Empleado";
+            label1.Text = "Imagen del Usuario";
             label1.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // kryptonButton1
-            // 
-            kryptonButton1.Location = new Point(107, 61);
-            kryptonButton1.Name = "kryptonButton1";
-            kryptonButton1.Size = new Size(240, 45);
-            kryptonButton1.StateCommon.Content.Image.ImageH = Krypton.Toolkit.PaletteRelativeAlign.Near;
-            kryptonButton1.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton1.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton1.StateCommon.Content.ShortText.TextH = Krypton.Toolkit.PaletteRelativeAlign.Far;
-            kryptonButton1.StateNormal.Back.Color1 = Color.SkyBlue;
-            kryptonButton1.StateNormal.Back.Color2 = Color.SkyBlue;
-            kryptonButton1.StateNormal.Border.Rounding = 15F;
-            kryptonButton1.TabIndex = 75;
-            kryptonButton1.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton1.Values.Text = "Subir Archivos";
             // 
             // label7
             // 
@@ -90,47 +69,14 @@
             label7.TabIndex = 83;
             label7.Text = "BAMS";
             // 
-            // pictureBox1
-            // 
-            pictureBox1.BackColor = Color.SkyBlue;
-            pictureBox1.Image = Properties.Resources.SubirArchivo;
-            pictureBox1.Location = new Point(132, 61);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(48, 45);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 84;
-            pictureBox1.TabStop = false;
-            // 
             // panel2
             // 
             panel2.BackColor = Color.Navy;
-            panel2.Controls.Add(pictureBox2);
-            panel2.Controls.Add(pictureBox4);
             panel2.Location = new Point(2, 149);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
             panel2.Size = new Size(449, 18);
             panel2.TabIndex = 88;
-            // 
-            // pictureBox4
-            // 
-            pictureBox4.BackColor = Color.Navy;
-            pictureBox4.Location = new Point(494, -176);
-            pictureBox4.Margin = new Padding(3, 2, 3, 2);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(21, 494);
-            pictureBox4.TabIndex = 9;
-            pictureBox4.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.BackColor = Color.Navy;
-            pictureBox2.Location = new Point(214, -171);
-            pictureBox2.Margin = new Padding(3, 2, 3, 2);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(21, 361);
-            pictureBox2.TabIndex = 90;
-            pictureBox2.TabStop = false;
             // 
             // pictureBox3
             // 
@@ -183,30 +129,61 @@
             pictureBox7.TabIndex = 92;
             pictureBox7.TabStop = false;
             // 
-            // fmrImagenEmpleado
+            // kryptonButton6
+            // 
+            kryptonButton6.Location = new Point(132, 57);
+            kryptonButton6.Margin = new Padding(3, 2, 3, 2);
+            kryptonButton6.Name = "kryptonButton6";
+            kryptonButton6.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            kryptonButton6.OverrideDefault.Back.Color2 = SystemColors.Window;
+            kryptonButton6.OverrideDefault.Border.Rounding = 40F;
+            kryptonButton6.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            kryptonButton6.OverrideFocus.Back.Color2 = Color.White;
+            kryptonButton6.Size = new Size(227, 49);
+            kryptonButton6.StateCommon.Back.Color1 = Color.SkyBlue;
+            kryptonButton6.StateCommon.Back.Color2 = Color.SkyBlue;
+            kryptonButton6.StateCommon.Border.Rounding = 40F;
+            kryptonButton6.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            kryptonButton6.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            kryptonButton6.StateNormal.Back.Color1 = Color.SkyBlue;
+            kryptonButton6.StateNormal.Back.Color2 = Color.White;
+            kryptonButton6.StateNormal.Border.Rounding = 40F;
+            kryptonButton6.StateTracking.Border.Rounding = 40F;
+            kryptonButton6.TabIndex = 134;
+            kryptonButton6.Values.DropDownArrowColor = Color.Empty;
+            kryptonButton6.Values.Text = "Subir Archivo";
+            // 
+            // kryptonPictureBox1
+            // 
+            kryptonPictureBox1.BackgroundImage = Properties.Resources.SubirArchivo2;
+            kryptonPictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
+            kryptonPictureBox1.Location = new Point(76, 57);
+            kryptonPictureBox1.Name = "kryptonPictureBox1";
+            kryptonPictureBox1.Size = new Size(50, 50);
+            kryptonPictureBox1.TabIndex = 135;
+            kryptonPictureBox1.TabStop = false;
+            // 
+            // frmImagenEmpleado
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(454, 170);
+            Controls.Add(kryptonPictureBox1);
+            Controls.Add(kryptonButton6);
             Controls.Add(pictureBox7);
             Controls.Add(panel1);
             Controls.Add(pictureBox3);
             Controls.Add(panel2);
-            Controls.Add(pictureBox1);
             Controls.Add(label7);
-            Controls.Add(kryptonButton1);
             Controls.Add(label1);
-            Name = "fmrImagenEmpleado";
+            Name = "frmImagenEmpleado";
             Text = "fmrImagenEmpleado";
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonPictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -214,16 +191,14 @@
         #endregion
 
         private Label label1;
-        private Krypton.Toolkit.KryptonButton kryptonButton1;
         private Label label7;
-        private PictureBox pictureBox1;
         private Panel panel2;
-        private PictureBox pictureBox4;
-        private PictureBox pictureBox2;
         private PictureBox pictureBox3;
         private Panel panel1;
         private PictureBox pictureBox5;
         private PictureBox pictureBox6;
         private PictureBox pictureBox7;
+        private Krypton.Toolkit.KryptonButton kryptonButton6;
+        private Krypton.Toolkit.KryptonPictureBox kryptonPictureBox1;
     }
 }
