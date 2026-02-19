@@ -36,6 +36,7 @@
             pictureBox1 = new PictureBox();
             pictureBox2 = new PictureBox();
             label6 = new Label();
+            listBox1 = new ListBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -136,11 +137,20 @@
             label6.TabIndex = 97;
             label6.Text = "BAMS";
             // 
+            // listBox1
+            // 
+            listBox1.FormattingEnabled = true;
+            listBox1.Location = new Point(21, 127);
+            listBox1.Name = "listBox1";
+            listBox1.Size = new Size(477, 404);
+            listBox1.TabIndex = 106;
+            // 
             // NotificacionesEmp
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(519, 551);
+            Controls.Add(listBox1);
             Controls.Add(btnsalir);
             Controls.Add(label1);
             Controls.Add(label3);
@@ -169,5 +179,6 @@
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private Label label6;
+        private ListBox listBox1;
     }
 }
