@@ -303,7 +303,7 @@
             // 
             // kryptonButton13
             // 
-            kryptonButton13.Location = new Point(322, 506);
+            kryptonButton13.Location = new Point(319, 506);
             kryptonButton13.Name = "kryptonButton13";
             kryptonButton13.OverrideDefault.Back.Color1 = Color.SkyBlue;
             kryptonButton13.OverrideDefault.Back.Color2 = Color.White;
