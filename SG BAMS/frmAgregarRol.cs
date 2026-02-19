@@ -1,5 +1,4 @@
-﻿using Krypton.Toolkit;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,13 +10,21 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
-    public partial class MenuPrincipalEmp : Form
+    public partial class frmAgregarRol : Form
     {
-        public MenuPrincipalEmp()
+        public frmAgregarRol()
         {
             InitializeComponent();
         }
 
-        
+        private void pictureBox16_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

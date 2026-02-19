@@ -1,5 +1,4 @@
-﻿using Krypton.Toolkit;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,13 +10,11 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
-    public partial class MenuPrincipalEmp : Form
+    public partial class frmModificarModelos : Form
     {
-        public MenuPrincipalEmp()
+        public frmModificarModelos()
         {
             InitializeComponent();
         }
-
-        
     }
 }
