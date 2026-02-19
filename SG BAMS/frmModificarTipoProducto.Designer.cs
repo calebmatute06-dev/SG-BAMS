@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmModificarTipoProducto));
             panel1 = new Panel();
             pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
@@ -39,10 +40,12 @@
             label9 = new Label();
             label2 = new Label();
             label1 = new Label();
+            pictureBox16 = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -170,11 +173,23 @@
             label1.Text = "Modificar Tipo de Producto";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // pictureBox16
+            // 
+            pictureBox16.BackgroundImage = (Image)resources.GetObject("pictureBox16.BackgroundImage");
+            pictureBox16.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox16.Location = new Point(435, 24);
+            pictureBox16.Margin = new Padding(3, 2, 3, 2);
+            pictureBox16.Name = "pictureBox16";
+            pictureBox16.Size = new Size(35, 29);
+            pictureBox16.TabIndex = 152;
+            pictureBox16.TabStop = false;
+            // 
             // frmModificarTipoProducto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(605, 285);
+            Controls.Add(pictureBox16);
             Controls.Add(panel1);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
@@ -191,6 +206,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -208,5 +224,6 @@
         private Label label9;
         private Label label2;
         private Label label1;
+        private PictureBox pictureBox16;
     }
 }
