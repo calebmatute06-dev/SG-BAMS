@@ -101,6 +101,9 @@
             label15 = new Label();
             label16 = new Label();
             label17 = new Label();
+            txtUsu = new Krypton.Toolkit.KryptonTextBox();
+            kryptonButton19 = new Krypton.Toolkit.KryptonButton();
+            kryptonButton20 = new Krypton.Toolkit.KryptonButton();
             panel1.SuspendLayout();
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
@@ -1200,12 +1203,70 @@
             label17.TabIndex = 0;
             label17.Text = "A543421P";
             // 
+            // txtUsu
+            // 
+            txtUsu.Location = new Point(344, 125);
+            txtUsu.Name = "txtUsu";
+            txtUsu.Size = new Size(377, 39);
+            txtUsu.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtUsu.StateCommon.Border.Rounding = 20F;
+            txtUsu.TabIndex = 50;
+            // 
+            // kryptonButton19
+            // 
+            kryptonButton19.Location = new Point(966, 125);
+            kryptonButton19.Name = "kryptonButton19";
+            kryptonButton19.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            kryptonButton19.OverrideDefault.Back.Color2 = Color.White;
+            kryptonButton19.OverrideDefault.Border.Rounding = 40F;
+            kryptonButton19.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            kryptonButton19.OverrideFocus.Back.Color2 = Color.White;
+            kryptonButton19.Size = new Size(75, 44);
+            kryptonButton19.StateCommon.Back.Color1 = Color.SkyBlue;
+            kryptonButton19.StateCommon.Back.Color2 = Color.White;
+            kryptonButton19.StateCommon.Border.Rounding = 40F;
+            kryptonButton19.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            kryptonButton19.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            kryptonButton19.StateNormal.Back.Color1 = Color.SkyBlue;
+            kryptonButton19.StateNormal.Back.Color2 = Color.White;
+            kryptonButton19.StateNormal.Border.Rounding = 40F;
+            kryptonButton19.StateTracking.Border.Rounding = 40F;
+            kryptonButton19.TabIndex = 42;
+            kryptonButton19.Values.DropDownArrowColor = Color.Empty;
+            kryptonButton19.Values.Text = "+";
+            // 
+            // kryptonButton20
+            // 
+            kryptonButton20.Location = new Point(727, 125);
+            kryptonButton20.Name = "kryptonButton20";
+            kryptonButton20.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            kryptonButton20.OverrideDefault.Back.Color2 = Color.White;
+            kryptonButton20.OverrideDefault.Border.Rounding = 40F;
+            kryptonButton20.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            kryptonButton20.OverrideFocus.Back.Color2 = Color.White;
+            kryptonButton20.Size = new Size(64, 44);
+            kryptonButton20.StateCommon.Back.Color1 = Color.SkyBlue;
+            kryptonButton20.StateCommon.Back.Color2 = Color.White;
+            kryptonButton20.StateCommon.Border.Rounding = 40F;
+            kryptonButton20.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            kryptonButton20.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            kryptonButton20.StateNormal.Back.Color1 = Color.SkyBlue;
+            kryptonButton20.StateNormal.Back.Color2 = Color.White;
+            kryptonButton20.StateNormal.Border.Rounding = 40F;
+            kryptonButton20.StateTracking.Border.Rounding = 40F;
+            kryptonButton20.TabIndex = 51;
+            kryptonButton20.Values.DropDownArrowColor = Color.Empty;
+            kryptonButton20.Values.Text = "🔎";
+            // 
             // InventarioAdmin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1105, 905);
+            Controls.Add(kryptonButton20);
+            Controls.Add(kryptonButton19);
+            Controls.Add(txtUsu);
             Controls.Add(panel12);
             Controls.Add(pictureBox21);
             Controls.Add(panel11);
@@ -1262,6 +1323,7 @@
             panel12.ResumeLayout(false);
             panel12.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -1338,5 +1400,8 @@
         private Label label15;
         private Label label16;
         private Label label17;
+        private Krypton.Toolkit.KryptonTextBox txtUsu;
+        private Krypton.Toolkit.KryptonButton kryptonButton19;
+        private Krypton.Toolkit.KryptonButton kryptonButton20;
     }
 }
