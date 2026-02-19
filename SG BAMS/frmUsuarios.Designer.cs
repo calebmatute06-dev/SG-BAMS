@@ -164,7 +164,7 @@ namespace SG_BAMS
             label7.TabIndex = 92;
             label7.Text = "BAMS";
             // 
-            // fmrUsuarios
+            // frmUsuarios
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -179,8 +179,8 @@ namespace SG_BAMS
             Controls.Add(label1);
             Controls.Add(kryptonButton2);
             Controls.Add(kryptonButton1);
-            Name = "fmrUsuarios";
-            Text = "fmrUsuarios";
+            Name = "frmUsuarios";
+            Text = "x";
             ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonDataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
