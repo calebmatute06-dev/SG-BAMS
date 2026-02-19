@@ -663,7 +663,7 @@
             // 
             // kryptonButton2
             // 
-            kryptonButton2.Location = new Point(130, 457);
+            kryptonButton2.Location = new Point(130, 455);
             kryptonButton2.Name = "kryptonButton2";
             kryptonButton2.OverrideDefault.Back.Color1 = Color.Transparent;
             kryptonButton2.OverrideDefault.Back.Color2 = Color.Transparent;
