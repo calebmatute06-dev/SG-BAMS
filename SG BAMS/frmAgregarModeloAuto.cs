@@ -10,22 +10,16 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
-    public partial class MenuPrincipalEmp : Form
+    public partial class frmAgregarModeloAuto : Form
     {
-        public MenuPrincipalEmp()
+        public frmAgregarModeloAuto()
         {
             InitializeComponent();
         }
 
-        private void btnsalir_Click(object sender, EventArgs e)
+        private void kryptonButton1_Click(object sender, EventArgs e)
         {
 
-            Application.Exit();
-        }
-
-        private void btnCerrarSesion_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }
