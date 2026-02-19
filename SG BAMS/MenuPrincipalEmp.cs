@@ -1,5 +1,4 @@
-﻿using Krypton.Toolkit;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,6 +17,9 @@ namespace SG_BAMS
             InitializeComponent();
         }
 
-        
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
