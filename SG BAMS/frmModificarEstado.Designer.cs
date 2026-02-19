@@ -202,7 +202,6 @@
             kryptonButton6.TabIndex = 137;
             kryptonButton6.Values.DropDownArrowColor = Color.Empty;
             kryptonButton6.Values.Text = "Salir";
-            kryptonButton6.Click += this.kryptonButton6_Click;
             // 
             // frmModificarEstado
             // 

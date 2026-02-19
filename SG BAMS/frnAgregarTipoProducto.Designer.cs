@@ -202,7 +202,6 @@
             kryptonButton6.TabIndex = 145;
             kryptonButton6.Values.DropDownArrowColor = Color.Empty;
             kryptonButton6.Values.Text = "Agregar";
-            kryptonButton6.Click += this.kryptonButton6_Click;
             // 
             // frnAgregarTipoProducto
             // 
