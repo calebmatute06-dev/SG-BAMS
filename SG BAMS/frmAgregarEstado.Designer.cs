@@ -28,19 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAgregarEstado));
             panel1 = new Panel();
             pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel2 = new Panel();
-            pictureBox16 = new PictureBox();
             kryptonButton1 = new Krypton.Toolkit.KryptonButton();
             kryptonButton7 = new Krypton.Toolkit.KryptonButton();
             kryptonTextBox1 = new Krypton.Toolkit.KryptonTextBox();
             label9 = new Label();
             label2 = new Label();
             label1 = new Label();
+            pictureBox16 = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -96,17 +95,6 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(598, 18);
             panel2.TabIndex = 109;
-            // 
-            // pictureBox16
-            // 
-            pictureBox16.BackgroundImage = (Image)resources.GetObject("pictureBox16.BackgroundImage");
-            pictureBox16.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox16.Location = new Point(372, 26);
-            pictureBox16.Margin = new Padding(3, 2, 3, 2);
-            pictureBox16.Name = "pictureBox16";
-            pictureBox16.Size = new Size(35, 29);
-            pictureBox16.TabIndex = 108;
-            pictureBox16.TabStop = false;
             // 
             // kryptonButton1
             // 
@@ -177,23 +165,36 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial Narrow", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(162, 24);
+            label1.Location = new Point(174, 24);
             label1.Name = "label1";
             label1.Size = new Size(245, 29);
             label1.TabIndex = 101;
             label1.Text = "Agregar Estado";
             label1.TextAlign = ContentAlignment.MiddleCenter;
+            label1.Click += this.label1_Click;
+            // 
+            // pictureBox16
+            // 
+            pictureBox16.BackgroundImage = Properties.Resources.Roles;
+            pictureBox16.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox16.Location = new Point(372, 24);
+            pictureBox16.Margin = new Padding(3, 2, 3, 2);
+            pictureBox16.Name = "pictureBox16";
+            pictureBox16.Size = new Size(35, 29);
+            pictureBox16.TabIndex = 120;
+            pictureBox16.TabStop = false;
+            pictureBox16.Click += pictureBox16_Click;
             // 
             // frmAgregarEstado
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(605, 286);
+            Controls.Add(pictureBox16);
             Controls.Add(panel1);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
             Controls.Add(panel2);
-            Controls.Add(pictureBox16);
             Controls.Add(kryptonButton1);
             Controls.Add(kryptonButton7);
             Controls.Add(kryptonTextBox1);
@@ -218,12 +219,12 @@
         private PictureBox pictureBox2;
         private PictureBox pictureBox1;
         private Panel panel2;
-        private PictureBox pictureBox16;
         private Krypton.Toolkit.KryptonButton kryptonButton1;
         private Krypton.Toolkit.KryptonButton kryptonButton7;
         private Krypton.Toolkit.KryptonTextBox kryptonTextBox1;
         private Label label9;
         private Label label2;
         private Label label1;
+        private PictureBox pictureBox16;
     }
 }

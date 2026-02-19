@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAgregarRol));
             panel1 = new Panel();
             pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
@@ -99,7 +98,7 @@
             // 
             // pictureBox16
             // 
-            pictureBox16.BackgroundImage = (Image)resources.GetObject("pictureBox16.BackgroundImage");
+            pictureBox16.BackgroundImage = Properties.Resources.Roles;
             pictureBox16.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox16.Location = new Point(388, 25);
             pictureBox16.Margin = new Padding(3, 2, 3, 2);

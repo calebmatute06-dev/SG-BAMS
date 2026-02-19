@@ -16,5 +16,10 @@ namespace SG_BAMS
         {
             InitializeComponent();
         }
+
+        private void pictureBox16_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
