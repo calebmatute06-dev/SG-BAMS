@@ -10,19 +10,14 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
-    public partial class Ingresar_datos__Compra_ : Form
+    public partial class Modificar_Datos__Deudor_ : Form
     {
-        public Ingresar_datos__Compra_()
+        public Modificar_Datos__Deudor_()
         {
             InitializeComponent();
         }
 
-        private void kryptonLabel8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
+        private void label3_Click(object sender, EventArgs e)
         {
 
         }

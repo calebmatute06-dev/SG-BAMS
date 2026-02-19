@@ -40,9 +40,9 @@
             kryptonLabel2 = new Krypton.Toolkit.KryptonLabel();
             kryptonLabel3 = new Krypton.Toolkit.KryptonLabel();
             kryptonComboBox1 = new Krypton.Toolkit.KryptonComboBox();
-            kryptonTextBox1 = new Krypton.Toolkit.KryptonTextBox();
             kryptonLabel4 = new Krypton.Toolkit.KryptonLabel();
             label1 = new Label();
+            kryptonTextBox2 = new Krypton.Toolkit.KryptonTextBox();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -200,13 +200,6 @@
             kryptonComboBox1.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             kryptonComboBox1.TabIndex = 130;
             // 
-            // kryptonTextBox1
-            // 
-            kryptonTextBox1.Location = new Point(194, 189);
-            kryptonTextBox1.Name = "kryptonTextBox1";
-            kryptonTextBox1.Size = new Size(145, 27);
-            kryptonTextBox1.TabIndex = 131;
-            // 
             // kryptonLabel4
             // 
             kryptonLabel4.Location = new Point(186, 236);
@@ -227,14 +220,22 @@
             label1.TabIndex = 149;
             label1.Text = "Agregar Producto";
             // 
+            // kryptonTextBox2
+            // 
+            kryptonTextBox2.Location = new Point(194, 183);
+            kryptonTextBox2.Name = "kryptonTextBox2";
+            kryptonTextBox2.Size = new Size(134, 33);
+            kryptonTextBox2.StateCommon.Border.Rounding = 10F;
+            kryptonTextBox2.TabIndex = 150;
+            // 
             // Agregar_Producto__Compras_
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(551, 372);
+            Controls.Add(kryptonTextBox2);
             Controls.Add(label1);
             Controls.Add(kryptonLabel4);
-            Controls.Add(kryptonTextBox1);
             Controls.Add(kryptonComboBox1);
             Controls.Add(kryptonLabel3);
             Controls.Add(kryptonLabel2);
@@ -272,8 +273,8 @@
         private Krypton.Toolkit.KryptonLabel kryptonLabel2;
         private Krypton.Toolkit.KryptonLabel kryptonLabel3;
         private Krypton.Toolkit.KryptonComboBox kryptonComboBox1;
-        private Krypton.Toolkit.KryptonTextBox kryptonTextBox1;
         private Krypton.Toolkit.KryptonLabel kryptonLabel4;
         private Label label1;
+        private Krypton.Toolkit.KryptonTextBox kryptonTextBox2;
     }
 }

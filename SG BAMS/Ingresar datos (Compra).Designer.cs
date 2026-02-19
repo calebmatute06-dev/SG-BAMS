@@ -33,13 +33,8 @@
             panel3 = new Panel();
             panel1 = new Panel();
             kryptonGroup1 = new Krypton.Toolkit.KryptonGroup();
-            kryptonLabel2 = new Krypton.Toolkit.KryptonLabel();
-            kryptonLabel3 = new Krypton.Toolkit.KryptonLabel();
-            kryptonLabel4 = new Krypton.Toolkit.KryptonLabel();
-            kryptonLabel5 = new Krypton.Toolkit.KryptonLabel();
             kryptonMonthCalendar1 = new Krypton.Toolkit.KryptonMonthCalendar();
             kryptonLabel6 = new Krypton.Toolkit.KryptonLabel();
-            kryptonLabel7 = new Krypton.Toolkit.KryptonLabel();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
             kryptonButton10 = new Krypton.Toolkit.KryptonButton();
             kryptonComboBox1 = new Krypton.Toolkit.KryptonComboBox();
@@ -47,10 +42,15 @@
             kryptonButton1 = new Krypton.Toolkit.KryptonButton();
             kryptonButton2 = new Krypton.Toolkit.KryptonButton();
             kryptonDataGridView1 = new Krypton.Toolkit.KryptonDataGridView();
-            kryptonLabel8 = new Krypton.Toolkit.KryptonLabel();
             kryptonLabel9 = new Krypton.Toolkit.KryptonLabel();
             kryptonLabel10 = new Krypton.Toolkit.KryptonLabel();
             label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
+            label4 = new Label();
+            label5 = new Label();
+            label6 = new Label();
+            label7 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
@@ -102,60 +102,20 @@
             kryptonGroup1.StateCommon.Border.Rounding = 70F;
             kryptonGroup1.TabIndex = 80;
             // 
-            // kryptonLabel2
-            // 
-            kryptonLabel2.Location = new Point(68, 128);
-            kryptonLabel2.Name = "kryptonLabel2";
-            kryptonLabel2.Size = new Size(136, 31);
-            kryptonLabel2.TabIndex = 83;
-            kryptonLabel2.Values.Text = "ID compras: ";
-            // 
-            // kryptonLabel3
-            // 
-            kryptonLabel3.Location = new Point(67, 167);
-            kryptonLabel3.Name = "kryptonLabel3";
-            kryptonLabel3.Size = new Size(136, 31);
-            kryptonLabel3.TabIndex = 84;
-            kryptonLabel3.Values.Text = "ID usuario: ";
-            // 
-            // kryptonLabel4
-            // 
-            kryptonLabel4.Location = new Point(65, 203);
-            kryptonLabel4.Name = "kryptonLabel4";
-            kryptonLabel4.Size = new Size(136, 31);
-            kryptonLabel4.TabIndex = 85;
-            kryptonLabel4.Values.Text = "Forma de pago:";
-            // 
-            // kryptonLabel5
-            // 
-            kryptonLabel5.Location = new Point(67, 237);
-            kryptonLabel5.Name = "kryptonLabel5";
-            kryptonLabel5.Size = new Size(136, 31);
-            kryptonLabel5.TabIndex = 86;
-            kryptonLabel5.Values.Text = "Proveedor:";
-            // 
             // kryptonMonthCalendar1
             // 
-            kryptonMonthCalendar1.Location = new Point(441, 109);
+            kryptonMonthCalendar1.Location = new Point(445, 105);
             kryptonMonthCalendar1.Name = "kryptonMonthCalendar1";
             kryptonMonthCalendar1.Size = new Size(293, 218);
             kryptonMonthCalendar1.TabIndex = 87;
             // 
             // kryptonLabel6
             // 
-            kryptonLabel6.Location = new Point(514, 72);
+            kryptonLabel6.Location = new Point(518, 68);
             kryptonLabel6.Name = "kryptonLabel6";
             kryptonLabel6.Size = new Size(136, 31);
             kryptonLabel6.TabIndex = 88;
             kryptonLabel6.Values.Text = "Fecha de pedido";
-            // 
-            // kryptonLabel7
-            // 
-            kryptonLabel7.Location = new Point(441, 423);
-            kryptonLabel7.Name = "kryptonLabel7";
-            kryptonLabel7.Size = new Size(67, 31);
-            kryptonLabel7.TabIndex = 89;
-            kryptonLabel7.Values.Text = "Total:";
             // 
             // sqlCommand1
             // 
@@ -265,15 +225,6 @@
             kryptonDataGridView1.Size = new Size(376, 139);
             kryptonDataGridView1.TabIndex = 95;
             // 
-            // kryptonLabel8
-            // 
-            kryptonLabel8.Location = new Point(65, 285);
-            kryptonLabel8.Name = "kryptonLabel8";
-            kryptonLabel8.Size = new Size(136, 31);
-            kryptonLabel8.TabIndex = 96;
-            kryptonLabel8.Values.Text = "Productos:";
-            kryptonLabel8.Click += kryptonLabel8_Click;
-            // 
             // kryptonLabel9
             // 
             kryptonLabel9.Location = new Point(190, 128);
@@ -284,7 +235,7 @@
             // 
             // kryptonLabel10
             // 
-            kryptonLabel10.Location = new Point(190, 165);
+            kryptonLabel10.Location = new Point(190, 164);
             kryptonLabel10.Name = "kryptonLabel10";
             kryptonLabel10.Size = new Size(136, 31);
             kryptonLabel10.TabIndex = 98;
@@ -301,28 +252,95 @@
             label1.TabIndex = 150;
             label1.Text = "Ingresar Producto";
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Location = new Point(62, 132);
+            label2.Name = "label2";
+            label2.Size = new Size(105, 24);
+            label2.TabIndex = 171;
+            label2.Text = "ID compras: ";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Location = new Point(63, 204);
+            label3.Name = "label3";
+            label3.Size = new Size(127, 24);
+            label3.TabIndex = 172;
+            label3.Text = "Forma de pago:";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.BackColor = Color.Transparent;
+            label4.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Location = new Point(63, 168);
+            label4.Name = "label4";
+            label4.Size = new Size(94, 24);
+            label4.TabIndex = 173;
+            label4.Text = "ID usuario: ";
+            label4.Click += label4_Click;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.BackColor = Color.Transparent;
+            label5.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.Location = new Point(66, 242);
+            label5.Name = "label5";
+            label5.Size = new Size(90, 24);
+            label5.TabIndex = 174;
+            label5.Text = "Proveedor:";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.BackColor = Color.Transparent;
+            label6.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.Location = new Point(62, 288);
+            label6.Name = "label6";
+            label6.Size = new Size(88, 24);
+            label6.TabIndex = 175;
+            label6.Text = "Productos:";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.BackColor = Color.Transparent;
+            label7.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label7.Location = new Point(441, 427);
+            label7.Name = "label7";
+            label7.Size = new Size(51, 24);
+            label7.TabIndex = 176;
+            label7.Text = "Total:";
+            // 
             // Ingresar_datos__Compra_
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(784, 559);
+            Controls.Add(label7);
+            Controls.Add(label6);
+            Controls.Add(label5);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(kryptonLabel10);
             Controls.Add(kryptonLabel9);
-            Controls.Add(kryptonLabel8);
             Controls.Add(kryptonDataGridView1);
             Controls.Add(kryptonButton2);
             Controls.Add(kryptonButton1);
             Controls.Add(kryptonComboBox2);
             Controls.Add(kryptonComboBox1);
             Controls.Add(kryptonButton10);
-            Controls.Add(kryptonLabel7);
             Controls.Add(kryptonLabel6);
             Controls.Add(kryptonMonthCalendar1);
-            Controls.Add(kryptonLabel5);
-            Controls.Add(kryptonLabel4);
-            Controls.Add(kryptonLabel3);
-            Controls.Add(kryptonLabel2);
             Controls.Add(kryptonGroup1);
             Controls.Add(panel1);
             Controls.Add(panel3);
@@ -348,13 +366,8 @@
         private Panel panel3;
         private Panel panel1;
         private Krypton.Toolkit.KryptonGroup kryptonGroup1;
-        private Krypton.Toolkit.KryptonLabel kryptonLabel2;
-        private Krypton.Toolkit.KryptonLabel kryptonLabel3;
-        private Krypton.Toolkit.KryptonLabel kryptonLabel4;
-        private Krypton.Toolkit.KryptonLabel kryptonLabel5;
         private Krypton.Toolkit.KryptonMonthCalendar kryptonMonthCalendar1;
         private Krypton.Toolkit.KryptonLabel kryptonLabel6;
-        private Krypton.Toolkit.KryptonLabel kryptonLabel7;
         private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
         private Krypton.Toolkit.KryptonButton kryptonButton10;
         private Krypton.Toolkit.KryptonComboBox kryptonComboBox1;
@@ -362,9 +375,14 @@
         private Krypton.Toolkit.KryptonButton kryptonButton1;
         private Krypton.Toolkit.KryptonButton kryptonButton2;
         private Krypton.Toolkit.KryptonDataGridView kryptonDataGridView1;
-        private Krypton.Toolkit.KryptonLabel kryptonLabel8;
         private Krypton.Toolkit.KryptonLabel kryptonLabel9;
         private Krypton.Toolkit.KryptonLabel kryptonLabel10;
         private Label label1;
+        private Label label2;
+        private Label label3;
+        private Label label4;
+        private Label label5;
+        private Label label6;
+        private Label label7;
     }
 }

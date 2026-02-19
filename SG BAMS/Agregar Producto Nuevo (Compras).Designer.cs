@@ -72,7 +72,7 @@
             // 
             // kryptonButton1
             // 
-            kryptonButton1.Location = new Point(286, 470);
+            kryptonButton1.Location = new Point(237, 470);
             kryptonButton1.Name = "kryptonButton1";
             kryptonButton1.OverrideDefault.Back.Color1 = Color.Transparent;
             kryptonButton1.OverrideDefault.Back.Color2 = Color.Transparent;
@@ -115,7 +115,7 @@
             // 
             // kryptonButton10
             // 
-            kryptonButton10.Location = new Point(138, 470);
+            kryptonButton10.Location = new Point(89, 470);
             kryptonButton10.Name = "kryptonButton10";
             kryptonButton10.OverrideDefault.Back.Color1 = Color.Transparent;
             kryptonButton10.OverrideDefault.Back.Color2 = Color.Transparent;

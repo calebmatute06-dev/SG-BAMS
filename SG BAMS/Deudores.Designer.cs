@@ -71,7 +71,6 @@
             pictureBox7 = new PictureBox();
             pictureBox8 = new PictureBox();
             pictureBox1 = new PictureBox();
-            kryptonButton12 = new Krypton.Toolkit.KryptonButton();
             kryptonMaskedTextBox1 = new Krypton.Toolkit.KryptonMaskedTextBox();
             kryptonGroup1 = new Krypton.Toolkit.KryptonGroup();
             kryptonDataGridView1 = new Krypton.Toolkit.KryptonDataGridView();
@@ -82,6 +81,7 @@
             pictureBox17 = new PictureBox();
             pictureBox19 = new PictureBox();
             pictureBox20 = new PictureBox();
+            kryptonButton15 = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup4).BeginInit();
@@ -752,20 +752,14 @@
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
             // 
-            // kryptonButton12
-            // 
-            kryptonButton12.Location = new Point(462, 168);
-            kryptonButton12.Name = "kryptonButton12";
-            kryptonButton12.Size = new Size(112, 31);
-            kryptonButton12.TabIndex = 69;
-            kryptonButton12.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton12.Values.Text = "Buscar";
-            // 
             // kryptonMaskedTextBox1
             // 
-            kryptonMaskedTextBox1.Location = new Point(627, 172);
+            kryptonMaskedTextBox1.Location = new Point(627, 167);
             kryptonMaskedTextBox1.Name = "kryptonMaskedTextBox1";
-            kryptonMaskedTextBox1.Size = new Size(300, 27);
+            kryptonMaskedTextBox1.Size = new Size(300, 33);
+            kryptonMaskedTextBox1.StateCommon.Border.Rounding = 10F;
+            kryptonMaskedTextBox1.StateDisabled.Border.Rounding = 10F;
+            kryptonMaskedTextBox1.StateNormal.Border.Rounding = 10F;
             kryptonMaskedTextBox1.TabIndex = 70;
             // 
             // kryptonGroup1
@@ -856,7 +850,7 @@
             // 
             // pictureBox17
             // 
-            pictureBox17.Image = (Image)resources.GetObject("pictureBox17.Image");
+            pictureBox17.Image = Properties.Resources.Logo1_Deudor;
             pictureBox17.Location = new Point(314, 37);
             pictureBox17.Name = "pictureBox17";
             pictureBox17.Size = new Size(104, 97);
@@ -884,11 +878,37 @@
             pictureBox20.TabIndex = 81;
             pictureBox20.TabStop = false;
             // 
+            // kryptonButton15
+            // 
+            kryptonButton15.Location = new Point(469, 165);
+            kryptonButton15.Name = "kryptonButton15";
+            kryptonButton15.OverrideDefault.Back.Color1 = Color.Transparent;
+            kryptonButton15.OverrideDefault.Back.Color2 = Color.Transparent;
+            kryptonButton15.OverrideDefault.Border.Rounding = 40F;
+            kryptonButton15.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            kryptonButton15.OverrideFocus.Back.Color2 = Color.White;
+            kryptonButton15.Size = new Size(95, 36);
+            kryptonButton15.StateCommon.Back.Color1 = Color.SkyBlue;
+            kryptonButton15.StateCommon.Back.Color2 = Color.SkyBlue;
+            kryptonButton15.StateCommon.Border.Rounding = 40F;
+            kryptonButton15.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            kryptonButton15.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            kryptonButton15.StateNormal.Back.Color1 = Color.Transparent;
+            kryptonButton15.StateNormal.Back.Color2 = Color.Transparent;
+            kryptonButton15.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
+            kryptonButton15.StatePressed.Back.Color1 = Color.Transparent;
+            kryptonButton15.StatePressed.Back.Color2 = Color.Transparent;
+            kryptonButton15.StateTracking.Border.Rounding = 40F;
+            kryptonButton15.TabIndex = 82;
+            kryptonButton15.Values.DropDownArrowColor = Color.Empty;
+            kryptonButton15.Values.Text = "Buscar";
+            // 
             // Deudores
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1105, 913);
+            Controls.Add(kryptonButton15);
             Controls.Add(pictureBox20);
             Controls.Add(pictureBox19);
             Controls.Add(pictureBox17);
@@ -900,7 +920,6 @@
             Controls.Add(kryptonDataGridView1);
             Controls.Add(kryptonGroup1);
             Controls.Add(kryptonMaskedTextBox1);
-            Controls.Add(kryptonButton12);
             Controls.Add(kryptonGroup5);
             Controls.Add(kryptonGroup4);
             Controls.Add(label1);
@@ -1001,7 +1020,6 @@
         private PictureBox pictureBox7;
         private PictureBox pictureBox8;
         private PictureBox pictureBox1;
-        private Krypton.Toolkit.KryptonButton kryptonButton12;
         private Krypton.Toolkit.KryptonMaskedTextBox kryptonMaskedTextBox1;
         private Krypton.Toolkit.KryptonGroup kryptonGroup1;
         private Krypton.Toolkit.KryptonDataGridView kryptonDataGridView1;
@@ -1012,5 +1030,6 @@
         private PictureBox pictureBox17;
         private PictureBox pictureBox19;
         private PictureBox pictureBox20;
+        private Krypton.Toolkit.KryptonButton kryptonButton15;
     }
 }
