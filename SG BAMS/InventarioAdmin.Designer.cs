@@ -696,9 +696,9 @@
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.AutoScroll = true;
-            flowLayoutPanel1.Location = new Point(297, 207);
+            flowLayoutPanel1.Location = new Point(291, 207);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(778, 675);
+            flowLayoutPanel1.Size = new Size(787, 675);
             flowLayoutPanel1.TabIndex = 88;
             // 
             // btnFiltro
@@ -724,7 +724,7 @@
             btnFiltro.StateTracking.Border.Rounding = 40F;
             btnFiltro.TabIndex = 96;
             btnFiltro.Values.DropDownArrowColor = Color.Empty;
-            btnFiltro.Values.Text = "\U0001f95b";
+            btnFiltro.Values.Text = "☷";
             // 
             // btnBuscar
             // 

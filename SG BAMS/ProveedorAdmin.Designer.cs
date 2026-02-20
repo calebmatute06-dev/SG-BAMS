@@ -756,7 +756,7 @@
             btnFiltro.StateTracking.Border.Rounding = 40F;
             btnFiltro.TabIndex = 101;
             btnFiltro.Values.DropDownArrowColor = Color.Empty;
-            btnFiltro.Values.Text = "\U0001f95b";
+            btnFiltro.Values.Text = "☷";
             // 
             // btnBuscar
             // 

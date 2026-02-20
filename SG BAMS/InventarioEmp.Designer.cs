@@ -121,7 +121,7 @@
             label40 = new Label();
             label41 = new Label();
             kryptonLabel2 = new Krypton.Toolkit.KryptonLabel();
-            this.btnFiltro = new Krypton.Toolkit.KryptonButton();
+            //this.btnFiltro = new Krypton.Toolkit.KryptonButton();
             btnBuscar = new Krypton.Toolkit.KryptonButton();
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
@@ -610,9 +610,9 @@
             flowLayoutPanel1.Controls.Add(panel16);
             flowLayoutPanel1.Controls.Add(panel17);
             flowLayoutPanel1.Controls.Add(panel18);
-            flowLayoutPanel1.Location = new Point(298, 207);
+            flowLayoutPanel1.Location = new Point(295, 207);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(778, 675);
+            flowLayoutPanel1.Size = new Size(781, 675);
             flowLayoutPanel1.TabIndex = 87;
             // 
             // panel9
@@ -1391,7 +1391,7 @@
             // 
             // btnFiltro
             // 
-            this.btnFiltro.Location = new Point(986, 116);
+            /*this.btnFiltro.Location = new Point(986, 116);
             this.btnFiltro.Name = "btnFiltro";
             this.btnFiltro.OverrideDefault.Back.Color1 = Color.SkyBlue;
             this.btnFiltro.OverrideDefault.Back.Color2 = Color.White;
@@ -1412,7 +1412,7 @@
             this.btnFiltro.StateTracking.Border.Rounding = 40F;
             this.btnFiltro.TabIndex = 101;
             this.btnFiltro.Values.DropDownArrowColor = Color.Empty;
-            this.btnFiltro.Values.Text = "\U0001f95b";
+            this.btnFiltro.Values.Text = "☷";*/
             // 
             // btnBuscar
             // 
@@ -1448,7 +1448,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1105, 905);
-            Controls.Add(this.btnFiltro);
+            //Controls.Add(this.btnFiltro);
             Controls.Add(btnBuscar);
             Controls.Add(kryptonLabel2);
             Controls.Add(flowLayoutPanel1);
