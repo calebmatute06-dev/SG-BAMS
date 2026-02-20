@@ -40,7 +40,6 @@
             kryptonTextBox4 = new Krypton.Toolkit.KryptonTextBox();
             label2 = new Label();
             kryptonTextBox3 = new Krypton.Toolkit.KryptonTextBox();
-            kryptonComboBox4 = new Krypton.Toolkit.KryptonComboBox();
             label1 = new Label();
             kryptonTextBox2 = new Krypton.Toolkit.KryptonTextBox();
             kryptonTextBox1 = new Krypton.Toolkit.KryptonTextBox();
@@ -49,12 +48,13 @@
             label7 = new Label();
             label4 = new Label();
             label3 = new Label();
+            cmbClasificacion = new Krypton.Toolkit.KryptonComboBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonComboBox4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cmbClasificacion).BeginInit();
             SuspendLayout();
             // 
             // pictureBox9
@@ -213,18 +213,6 @@
             kryptonTextBox3.StateCommon.Border.Rounding = 20F;
             kryptonTextBox3.TabIndex = 200;
             // 
-            // kryptonComboBox4
-            // 
-            kryptonComboBox4.DropDownStyle = ComboBoxStyle.DropDownList;
-            kryptonComboBox4.DropDownWidth = 239;
-            kryptonComboBox4.Location = new Point(211, 403);
-            kryptonComboBox4.Name = "kryptonComboBox4";
-            kryptonComboBox4.Size = new Size(239, 26);
-            kryptonComboBox4.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
-            kryptonComboBox4.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
-            kryptonComboBox4.StateCommon.Item.Border.Rounding = 10F;
-            kryptonComboBox4.TabIndex = 199;
-            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -312,16 +300,31 @@
             label3.TabIndex = 191;
             label3.Text = "ID: ";
             // 
+            // cmbClasificacion
+            // 
+            cmbClasificacion.DropDownWidth = 300;
+            cmbClasificacion.Location = new Point(200, 384);
+            cmbClasificacion.Name = "cmbClasificacion";
+            cmbClasificacion.Size = new Size(250, 52);
+            cmbClasificacion.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbClasificacion.StateCommon.ComboBox.Border.Rounding = 40F;
+            cmbClasificacion.StateCommon.ComboBox.Content.Color1 = Color.Navy;
+            cmbClasificacion.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            cmbClasificacion.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
+            cmbClasificacion.StateCommon.Item.Content.ShortText.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbClasificacion.StateNormal.ComboBox.Border.Rounding = 40F;
+            cmbClasificacion.TabIndex = 236;
+            // 
             // ModificarProveedor
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(515, 556);
+            Controls.Add(cmbClasificacion);
             Controls.Add(kryptonTextBox4);
             Controls.Add(label2);
             Controls.Add(kryptonTextBox3);
-            Controls.Add(kryptonComboBox4);
             Controls.Add(label1);
             Controls.Add(kryptonTextBox2);
             Controls.Add(kryptonTextBox1);
@@ -346,7 +349,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonComboBox4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cmbClasificacion).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -365,7 +368,6 @@
         private Krypton.Toolkit.KryptonTextBox kryptonTextBox4;
         private Label label2;
         private Krypton.Toolkit.KryptonTextBox kryptonTextBox3;
-        private Krypton.Toolkit.KryptonComboBox kryptonComboBox4;
         private Label label1;
         private Krypton.Toolkit.KryptonTextBox kryptonTextBox2;
         private Krypton.Toolkit.KryptonTextBox kryptonTextBox1;
@@ -374,5 +376,6 @@
         private Label label7;
         private Label label4;
         private Label label3;
+        private Krypton.Toolkit.KryptonComboBox cmbClasificacion;
     }
 }
