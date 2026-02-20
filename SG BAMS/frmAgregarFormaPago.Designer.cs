@@ -31,7 +31,6 @@ namespace SG_BAMS
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAgregarFormaPago));
             panel1 = new Panel();
-            pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel2 = new Panel();
@@ -42,8 +41,6 @@ namespace SG_BAMS
             pictureBox16 = new PictureBox();
             kryptonButton2 = new Krypton.Toolkit.KryptonButton();
             kryptonButton6 = new Krypton.Toolkit.KryptonButton();
-            panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
@@ -52,22 +49,11 @@ namespace SG_BAMS
             // panel1
             // 
             panel1.BackColor = Color.Navy;
-            panel1.Controls.Add(pictureBox3);
             panel1.Location = new Point(2, 3);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
             panel1.Size = new Size(598, 18);
             panel1.TabIndex = 120;
-            // 
-            // pictureBox3
-            // 
-            pictureBox3.BackColor = Color.Navy;
-            pictureBox3.Location = new Point(494, -176);
-            pictureBox3.Margin = new Padding(3, 2, 3, 2);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(21, 494);
-            pictureBox3.TabIndex = 9;
-            pictureBox3.TabStop = false;
             // 
             // pictureBox2
             // 
@@ -103,9 +89,11 @@ namespace SG_BAMS
             kryptonTextBox1.Location = new Point(309, 77);
             kryptonTextBox1.Multiline = true;
             kryptonTextBox1.Name = "kryptonTextBox1";
-            kryptonTextBox1.Size = new Size(264, 25);
+            kryptonTextBox1.Size = new Size(264, 36);
             kryptonTextBox1.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonTextBox1.StateCommon.Border.Rounding = 15F;
+            kryptonTextBox1.StateCommon.Content.Color1 = Color.Navy;
+            kryptonTextBox1.StateCommon.Content.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             kryptonTextBox1.TabIndex = 116;
             // 
             // label9
@@ -126,7 +114,7 @@ namespace SG_BAMS
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(34, 77);
+            label2.Location = new Point(34, 82);
             label2.Name = "label2";
             label2.Size = new Size(274, 25);
             label2.TabIndex = 113;
@@ -138,7 +126,7 @@ namespace SG_BAMS
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial Narrow", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(135, 23);
+            label1.Location = new Point(135, 27);
             label1.Name = "label1";
             label1.Size = new Size(313, 29);
             label1.TabIndex = 112;
@@ -153,7 +141,7 @@ namespace SG_BAMS
             pictureBox16.Location = new Point(438, 25);
             pictureBox16.Margin = new Padding(3, 2, 3, 2);
             pictureBox16.Name = "pictureBox16";
-            pictureBox16.Size = new Size(35, 29);
+            pictureBox16.Size = new Size(41, 36);
             pictureBox16.TabIndex = 131;
             pictureBox16.TabStop = false;
             // 
@@ -184,7 +172,7 @@ namespace SG_BAMS
             // 
             // kryptonButton6
             // 
-            kryptonButton6.Location = new Point(173, 168);
+            kryptonButton6.Location = new Point(188, 168);
             kryptonButton6.Margin = new Padding(3, 2, 3, 2);
             kryptonButton6.Name = "kryptonButton6";
             kryptonButton6.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -202,18 +190,18 @@ namespace SG_BAMS
             kryptonButton6.StateNormal.Back.Color2 = Color.White;
             kryptonButton6.StateNormal.Border.Rounding = 40F;
             kryptonButton6.StateTracking.Border.Rounding = 40F;
-            kryptonButton6.TabIndex = 132;
+            kryptonButton6.TabIndex = 134;
             kryptonButton6.Values.DropDownArrowColor = Color.Empty;
             kryptonButton6.Values.Text = "Agregar";
-            kryptonButton6.Click += this.kryptonButton6_Click;
             // 
             // frmAgregarFormaPago
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(605, 289);
-            Controls.Add(kryptonButton2);
             Controls.Add(kryptonButton6);
+            Controls.Add(kryptonButton2);
             Controls.Add(pictureBox16);
             Controls.Add(panel1);
             Controls.Add(pictureBox2);
@@ -225,8 +213,6 @@ namespace SG_BAMS
             Controls.Add(label1);
             Name = "frmAgregarFormaPago";
             Text = "frmAgregarFormaPago";
-            panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
@@ -242,7 +228,6 @@ namespace SG_BAMS
         #endregion
 
         private Panel panel1;
-        private PictureBox pictureBox3;
         private PictureBox pictureBox2;
         private PictureBox pictureBox1;
         private Panel panel2;

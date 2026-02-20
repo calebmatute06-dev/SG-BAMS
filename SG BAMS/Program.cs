@@ -11,7 +11,7 @@ namespace SG_BAMS
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new MenuPrincipalEmp());
+            Application.Run(new frmModificarMarcaProducto());
         }
     }
 }

@@ -36,9 +36,9 @@
             panel2 = new Panel();
             kryptonDataGridView1 = new Krypton.Toolkit.KryptonDataGridView();
             label1 = new Label();
-            pictureBox16 = new PictureBox();
             kryptonButton1 = new Krypton.Toolkit.KryptonButton();
             kryptonButton6 = new Krypton.Toolkit.KryptonButton();
+            pictureBox16 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonDataGridView1).BeginInit();
@@ -121,17 +121,6 @@
             label1.Text = "Tipo de Forma de Pago";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // pictureBox16
-            // 
-            pictureBox16.BackgroundImage = (Image)resources.GetObject("pictureBox16.BackgroundImage");
-            pictureBox16.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox16.Location = new Point(395, 36);
-            pictureBox16.Margin = new Padding(3, 2, 3, 2);
-            pictureBox16.Name = "pictureBox16";
-            pictureBox16.Size = new Size(35, 29);
-            pictureBox16.TabIndex = 132;
-            pictureBox16.TabStop = false;
-            // 
             // kryptonButton1
             // 
             kryptonButton1.Location = new Point(327, 279);
@@ -180,14 +169,26 @@
             kryptonButton6.Values.DropDownArrowColor = Color.Empty;
             kryptonButton6.Values.Text = "Agregar";
             // 
+            // pictureBox16
+            // 
+            pictureBox16.BackgroundImage = (Image)resources.GetObject("pictureBox16.BackgroundImage");
+            pictureBox16.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox16.Location = new Point(399, 36);
+            pictureBox16.Margin = new Padding(3, 2, 3, 2);
+            pictureBox16.Name = "pictureBox16";
+            pictureBox16.Size = new Size(41, 36);
+            pictureBox16.TabIndex = 135;
+            pictureBox16.TabStop = false;
+            // 
             // frmFormaPago
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(606, 386);
+            Controls.Add(pictureBox16);
             Controls.Add(kryptonButton1);
             Controls.Add(kryptonButton6);
-            Controls.Add(pictureBox16);
             Controls.Add(label7);
             Controls.Add(pictureBox1);
             Controls.Add(panel1);
@@ -213,8 +214,8 @@
         private Panel panel2;
         private Krypton.Toolkit.KryptonDataGridView kryptonDataGridView1;
         private Label label1;
-        private PictureBox pictureBox16;
         private Krypton.Toolkit.KryptonButton kryptonButton1;
         private Krypton.Toolkit.KryptonButton kryptonButton6;
+        private PictureBox pictureBox16;
     }
 }

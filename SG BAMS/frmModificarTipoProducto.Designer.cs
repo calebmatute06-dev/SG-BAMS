@@ -30,43 +30,29 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmModificarTipoProducto));
             panel1 = new Panel();
-            pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel2 = new Panel();
-            kryptonTextBox1 = new Krypton.Toolkit.KryptonTextBox();
             label9 = new Label();
             label2 = new Label();
             label1 = new Label();
-            pictureBox16 = new PictureBox();
             kryptonButton2 = new Krypton.Toolkit.KryptonButton();
             kryptonButton6 = new Krypton.Toolkit.KryptonButton();
-            panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            kryptonTextBox1 = new Krypton.Toolkit.KryptonTextBox();
+            pictureBox4 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = Color.Navy;
-            panel1.Controls.Add(pictureBox3);
             panel1.Location = new Point(4, 2);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
             panel1.Size = new Size(598, 18);
             panel1.TabIndex = 150;
-            // 
-            // pictureBox3
-            // 
-            pictureBox3.BackColor = Color.Navy;
-            pictureBox3.Location = new Point(494, -176);
-            pictureBox3.Margin = new Padding(3, 2, 3, 2);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(21, 494);
-            pictureBox3.TabIndex = 9;
-            pictureBox3.TabStop = false;
             // 
             // pictureBox2
             // 
@@ -97,16 +83,6 @@
             panel2.Size = new Size(598, 18);
             panel2.TabIndex = 149;
             // 
-            // kryptonTextBox1
-            // 
-            kryptonTextBox1.Location = new Point(299, 76);
-            kryptonTextBox1.Multiline = true;
-            kryptonTextBox1.Name = "kryptonTextBox1";
-            kryptonTextBox1.Size = new Size(264, 25);
-            kryptonTextBox1.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonTextBox1.StateCommon.Border.Rounding = 15F;
-            kryptonTextBox1.TabIndex = 146;
-            // 
             // label9
             // 
             label9.AutoSize = true;
@@ -125,7 +101,7 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(64, 76);
+            label2.Location = new Point(64, 83);
             label2.Name = "label2";
             label2.Size = new Size(229, 25);
             label2.TabIndex = 143;
@@ -142,17 +118,6 @@
             label1.TabIndex = 142;
             label1.Text = "Modificar Tipo de Producto";
             label1.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // pictureBox16
-            // 
-            pictureBox16.BackgroundImage = (Image)resources.GetObject("pictureBox16.BackgroundImage");
-            pictureBox16.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox16.Location = new Point(435, 24);
-            pictureBox16.Margin = new Padding(3, 2, 3, 2);
-            pictureBox16.Name = "pictureBox16";
-            pictureBox16.Size = new Size(35, 29);
-            pictureBox16.TabIndex = 152;
-            pictureBox16.TabStop = false;
             // 
             // kryptonButton2
             // 
@@ -202,29 +167,51 @@
             kryptonButton6.Values.DropDownArrowColor = Color.Empty;
             kryptonButton6.Values.Text = "Salir";
             // 
+            // kryptonTextBox1
+            // 
+            kryptonTextBox1.Location = new Point(299, 76);
+            kryptonTextBox1.Multiline = true;
+            kryptonTextBox1.Name = "kryptonTextBox1";
+            kryptonTextBox1.Size = new Size(264, 41);
+            kryptonTextBox1.StateCommon.Back.Color1 = Color.SkyBlue;
+            kryptonTextBox1.StateCommon.Border.Rounding = 15F;
+            kryptonTextBox1.StateCommon.Content.Color1 = Color.Navy;
+            kryptonTextBox1.StateCommon.Content.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            kryptonTextBox1.TabIndex = 155;
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.BackgroundImage = (Image)resources.GetObject("pictureBox4.BackgroundImage");
+            pictureBox4.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox4.Location = new Point(445, 24);
+            pictureBox4.Margin = new Padding(3, 2, 3, 2);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(47, 47);
+            pictureBox4.TabIndex = 156;
+            pictureBox4.TabStop = false;
+            // 
             // frmModificarTipoProducto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(605, 285);
+            Controls.Add(pictureBox4);
+            Controls.Add(kryptonTextBox1);
             Controls.Add(kryptonButton2);
             Controls.Add(kryptonButton6);
-            Controls.Add(pictureBox16);
             Controls.Add(panel1);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
             Controls.Add(panel2);
-            Controls.Add(kryptonTextBox1);
             Controls.Add(label9);
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "frmModificarTipoProducto";
             Text = "frmModificarTipoProducto";
-            panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -232,16 +219,15 @@
         #endregion
 
         private Panel panel1;
-        private PictureBox pictureBox3;
         private PictureBox pictureBox2;
         private PictureBox pictureBox1;
         private Panel panel2;
-        private Krypton.Toolkit.KryptonTextBox kryptonTextBox1;
         private Label label9;
         private Label label2;
         private Label label1;
-        private PictureBox pictureBox16;
         private Krypton.Toolkit.KryptonButton kryptonButton2;
         private Krypton.Toolkit.KryptonButton kryptonButton6;
+        private Krypton.Toolkit.KryptonTextBox kryptonTextBox1;
+        private PictureBox pictureBox4;
     }
 }

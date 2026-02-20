@@ -71,7 +71,6 @@
             pictureBox2 = new PictureBox();
             panel2 = new Panel();
             pictureBox4 = new PictureBox();
-            label7 = new Label();
             kryptonButton18 = new Krypton.Toolkit.KryptonButton();
             pictureBox18 = new PictureBox();
             button12 = new Button();
@@ -82,7 +81,6 @@
             kryptonButton4 = new Krypton.Toolkit.KryptonButton();
             kryptonButton5 = new Krypton.Toolkit.KryptonButton();
             kryptonButton6 = new Krypton.Toolkit.KryptonButton();
-            kryptonButton8 = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
             panel5.SuspendLayout();
@@ -767,17 +765,6 @@
             pictureBox4.TabIndex = 9;
             pictureBox4.TabStop = false;
             // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.ForeColor = Color.Navy;
-            label7.Location = new Point(879, 635);
-            label7.Name = "label7";
-            label7.Size = new Size(60, 25);
-            label7.TabIndex = 82;
-            label7.Text = "BAMS";
-            // 
             // kryptonButton18
             // 
             kryptonButton18.Location = new Point(853, 25);
@@ -999,36 +986,12 @@
             kryptonButton6.Values.DropDownArrowColor = Color.Empty;
             kryptonButton6.Values.Text = "Ver";
             // 
-            // kryptonButton8
-            // 
-            kryptonButton8.Location = new Point(782, 593);
-            kryptonButton8.Margin = new Padding(3, 2, 3, 2);
-            kryptonButton8.Name = "kryptonButton8";
-            kryptonButton8.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            kryptonButton8.OverrideDefault.Back.Color2 = Color.White;
-            kryptonButton8.OverrideDefault.Border.Rounding = 40F;
-            kryptonButton8.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            kryptonButton8.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton8.Size = new Size(90, 40);
-            kryptonButton8.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonButton8.StateCommon.Back.Color2 = Color.White;
-            kryptonButton8.StateCommon.Border.Rounding = 40F;
-            kryptonButton8.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton8.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton8.StateNormal.Back.Color1 = Color.SkyBlue;
-            kryptonButton8.StateNormal.Back.Color2 = Color.White;
-            kryptonButton8.StateNormal.Border.Rounding = 40F;
-            kryptonButton8.StateTracking.Border.Rounding = 40F;
-            kryptonButton8.TabIndex = 99;
-            kryptonButton8.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton8.Values.Text = "Salir";
-            // 
             // frmAdministracion
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(964, 685);
-            Controls.Add(kryptonButton8);
             Controls.Add(kryptonButton6);
             Controls.Add(kryptonButton5);
             Controls.Add(kryptonButton4);
@@ -1039,7 +1002,6 @@
             Controls.Add(kryptonButton18);
             Controls.Add(pictureBox18);
             Controls.Add(button12);
-            Controls.Add(label7);
             Controls.Add(panel2);
             Controls.Add(panel6);
             Controls.Add(panel5);
@@ -1129,7 +1091,6 @@
         private PictureBox pictureBox2;
         private Panel panel2;
         private PictureBox pictureBox4;
-        private Label label7;
         private Krypton.Toolkit.KryptonButton kryptonButton18;
         private PictureBox pictureBox18;
         private Button button12;
@@ -1140,6 +1101,5 @@
         private Krypton.Toolkit.KryptonButton kryptonButton4;
         private Krypton.Toolkit.KryptonButton kryptonButton5;
         private Krypton.Toolkit.KryptonButton kryptonButton6;
-        private Krypton.Toolkit.KryptonButton kryptonButton8;
     }
 }

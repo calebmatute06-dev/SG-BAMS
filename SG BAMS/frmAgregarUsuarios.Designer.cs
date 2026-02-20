@@ -34,7 +34,6 @@
             kryptonTextBox1 = new Krypton.Toolkit.KryptonTextBox();
             kryptonTextBox2 = new Krypton.Toolkit.KryptonTextBox();
             label4 = new Label();
-            kryptonTextBox3 = new Krypton.Toolkit.KryptonTextBox();
             label5 = new Label();
             pictureBox16 = new PictureBox();
             panel2 = new Panel();
@@ -44,9 +43,11 @@
             kryptonButton1 = new Krypton.Toolkit.KryptonButton();
             kryptonButton6 = new Krypton.Toolkit.KryptonButton();
             kryptonButton2 = new Krypton.Toolkit.KryptonButton();
+            kryptonComboBox2 = new Krypton.Toolkit.KryptonComboBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonComboBox2).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -80,7 +81,7 @@
             label9.BackColor = Color.Transparent;
             label9.Font = new Font("Segoe UI", 15F);
             label9.ForeColor = Color.Navy;
-            label9.Location = new Point(507, 305);
+            label9.Location = new Point(534, 327);
             label9.Name = "label9";
             label9.Size = new Size(65, 28);
             label9.TabIndex = 17;
@@ -94,6 +95,8 @@
             kryptonTextBox1.Size = new Size(193, 40);
             kryptonTextBox1.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonTextBox1.StateCommon.Border.Rounding = 15F;
+            kryptonTextBox1.StateCommon.Content.Color1 = Color.Navy;
+            kryptonTextBox1.StateCommon.Content.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             kryptonTextBox1.TabIndex = 18;
             // 
             // kryptonTextBox2
@@ -104,6 +107,8 @@
             kryptonTextBox2.Size = new Size(193, 40);
             kryptonTextBox2.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonTextBox2.StateCommon.Border.Rounding = 15F;
+            kryptonTextBox2.StateCommon.Content.Color1 = Color.Navy;
+            kryptonTextBox2.StateCommon.Content.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             kryptonTextBox2.TabIndex = 20;
             // 
             // label4
@@ -117,16 +122,6 @@
             label4.Size = new Size(109, 25);
             label4.TabIndex = 19;
             label4.Text = "Contraseña:";
-            // 
-            // kryptonTextBox3
-            // 
-            kryptonTextBox3.Location = new Point(228, 176);
-            kryptonTextBox3.Multiline = true;
-            kryptonTextBox3.Name = "kryptonTextBox3";
-            kryptonTextBox3.Size = new Size(193, 40);
-            kryptonTextBox3.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonTextBox3.StateCommon.Border.Rounding = 15F;
-            kryptonTextBox3.TabIndex = 22;
             // 
             // label5
             // 
@@ -261,11 +256,30 @@
             kryptonButton2.Values.DropDownArrowColor = Color.Empty;
             kryptonButton2.Values.Text = "Imagen de Empleado";
             // 
+            // kryptonComboBox2
+            // 
+            kryptonComboBox2.DropDownWidth = 300;
+            kryptonComboBox2.Location = new Point(228, 176);
+            kryptonComboBox2.Margin = new Padding(3, 2, 3, 2);
+            kryptonComboBox2.Name = "kryptonComboBox2";
+            kryptonComboBox2.Size = new Size(193, 40);
+            kryptonComboBox2.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            kryptonComboBox2.StateCommon.ComboBox.Border.Rounding = 20F;
+            kryptonComboBox2.StateCommon.ComboBox.Content.Color1 = Color.Navy;
+            kryptonComboBox2.StateCommon.ComboBox.Content.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            kryptonComboBox2.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            kryptonComboBox2.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
+            kryptonComboBox2.StateCommon.Item.Content.ShortText.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            kryptonComboBox2.StateNormal.ComboBox.Border.Rounding = 40F;
+            kryptonComboBox2.TabIndex = 129;
+            // 
             // frmAgregarUsuarios
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(628, 374);
+            Controls.Add(kryptonComboBox2);
             Controls.Add(kryptonButton2);
             Controls.Add(kryptonButton1);
             Controls.Add(kryptonButton6);
@@ -274,7 +288,6 @@
             Controls.Add(pictureBox1);
             Controls.Add(panel2);
             Controls.Add(pictureBox16);
-            Controls.Add(kryptonTextBox3);
             Controls.Add(label5);
             Controls.Add(kryptonTextBox2);
             Controls.Add(label4);
@@ -287,6 +300,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonComboBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -299,7 +313,6 @@
         private Krypton.Toolkit.KryptonTextBox kryptonTextBox1;
         private Krypton.Toolkit.KryptonTextBox kryptonTextBox2;
         private Label label4;
-        private Krypton.Toolkit.KryptonTextBox kryptonTextBox3;
         private Label label5;
         private PictureBox pictureBox16;
         private Panel panel2;
@@ -309,5 +322,6 @@
         private Krypton.Toolkit.KryptonButton kryptonButton1;
         private Krypton.Toolkit.KryptonButton kryptonButton6;
         private Krypton.Toolkit.KryptonButton kryptonButton2;
+        private Krypton.Toolkit.KryptonComboBox kryptonComboBox2;
     }
 }

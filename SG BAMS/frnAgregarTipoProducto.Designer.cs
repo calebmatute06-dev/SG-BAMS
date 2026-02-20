@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frnAgregarTipoProducto));
             pictureBox16 = new PictureBox();
             panel1 = new Panel();
-            pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel2 = new Panel();
@@ -42,8 +41,6 @@
             kryptonButton3 = new Krypton.Toolkit.KryptonButton();
             kryptonButton6 = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
-            panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -52,32 +49,21 @@
             // 
             pictureBox16.BackgroundImage = (Image)resources.GetObject("pictureBox16.BackgroundImage");
             pictureBox16.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox16.Location = new Point(436, 24);
+            pictureBox16.Location = new Point(432, 21);
             pictureBox16.Margin = new Padding(3, 2, 3, 2);
             pictureBox16.Name = "pictureBox16";
-            pictureBox16.Size = new Size(35, 29);
+            pictureBox16.Size = new Size(47, 47);
             pictureBox16.TabIndex = 142;
             pictureBox16.TabStop = false;
             // 
             // panel1
             // 
             panel1.BackColor = Color.Navy;
-            panel1.Controls.Add(pictureBox3);
             panel1.Location = new Point(5, 2);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
             panel1.Size = new Size(598, 18);
             panel1.TabIndex = 140;
-            // 
-            // pictureBox3
-            // 
-            pictureBox3.BackColor = Color.Navy;
-            pictureBox3.Location = new Point(494, -176);
-            pictureBox3.Margin = new Padding(3, 2, 3, 2);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(21, 494);
-            pictureBox3.TabIndex = 9;
-            pictureBox3.TabStop = false;
             // 
             // pictureBox2
             // 
@@ -113,9 +99,11 @@
             kryptonTextBox1.Location = new Point(300, 76);
             kryptonTextBox1.Multiline = true;
             kryptonTextBox1.Name = "kryptonTextBox1";
-            kryptonTextBox1.Size = new Size(264, 25);
+            kryptonTextBox1.Size = new Size(264, 41);
             kryptonTextBox1.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonTextBox1.StateCommon.Border.Rounding = 15F;
+            kryptonTextBox1.StateCommon.Content.Color1 = Color.Navy;
+            kryptonTextBox1.StateCommon.Content.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             kryptonTextBox1.TabIndex = 136;
             // 
             // label9
@@ -136,7 +124,7 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(65, 76);
+            label2.Location = new Point(65, 83);
             label2.Name = "label2";
             label2.Size = new Size(229, 25);
             label2.TabIndex = 133;
@@ -207,6 +195,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(607, 287);
             Controls.Add(kryptonButton3);
             Controls.Add(kryptonButton6);
@@ -222,8 +211,6 @@
             Name = "frnAgregarTipoProducto";
             Text = "frnAgregarTipoProducto";
             ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
-            panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
@@ -234,7 +221,6 @@
 
         private PictureBox pictureBox16;
         private Panel panel1;
-        private PictureBox pictureBox3;
         private PictureBox pictureBox2;
         private PictureBox pictureBox1;
         private Panel panel2;

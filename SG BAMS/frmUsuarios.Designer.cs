@@ -186,6 +186,7 @@ namespace SG_BAMS
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(603, 384);
             Controls.Add(kryptonButton3);
             Controls.Add(kryptonButton6);

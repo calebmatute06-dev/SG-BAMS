@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             pictureBox16 = new PictureBox();
-            kryptonTextBox3 = new Krypton.Toolkit.KryptonTextBox();
             label5 = new Label();
             kryptonTextBox2 = new Krypton.Toolkit.KryptonTextBox();
             label4 = new Label();
@@ -42,13 +41,15 @@
             pictureBox2 = new PictureBox();
             panel1 = new Panel();
             panel2 = new Panel();
-            kryptonComboBox2 = new Krypton.Toolkit.KryptonComboBox();
             kryptonButton1 = new Krypton.Toolkit.KryptonButton();
             kryptonButton6 = new Krypton.Toolkit.KryptonButton();
             kryptonButton3 = new Krypton.Toolkit.KryptonButton();
+            kryptonComboBox1 = new Krypton.Toolkit.KryptonComboBox();
+            kryptonComboBox2 = new Krypton.Toolkit.KryptonComboBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonComboBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonComboBox2).BeginInit();
             SuspendLayout();
             // 
@@ -62,16 +63,6 @@
             pictureBox16.Size = new Size(35, 29);
             pictureBox16.TabIndex = 84;
             pictureBox16.TabStop = false;
-            // 
-            // kryptonTextBox3
-            // 
-            kryptonTextBox3.Location = new Point(244, 188);
-            kryptonTextBox3.Multiline = true;
-            kryptonTextBox3.Name = "kryptonTextBox3";
-            kryptonTextBox3.Size = new Size(193, 40);
-            kryptonTextBox3.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonTextBox3.StateCommon.Border.Rounding = 15F;
-            kryptonTextBox3.TabIndex = 80;
             // 
             // label5
             // 
@@ -87,12 +78,14 @@
             // 
             // kryptonTextBox2
             // 
-            kryptonTextBox2.Location = new Point(244, 127);
+            kryptonTextBox2.Location = new Point(244, 120);
             kryptonTextBox2.Multiline = true;
             kryptonTextBox2.Name = "kryptonTextBox2";
             kryptonTextBox2.Size = new Size(193, 40);
             kryptonTextBox2.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonTextBox2.StateCommon.Border.Rounding = 15F;
+            kryptonTextBox2.StateCommon.Content.Color1 = Color.Navy;
+            kryptonTextBox2.StateCommon.Content.Font = new Font("Arial Narrow", 14.25F);
             kryptonTextBox2.TabIndex = 78;
             // 
             // label4
@@ -109,12 +102,14 @@
             // 
             // kryptonTextBox1
             // 
-            kryptonTextBox1.Location = new Point(244, 62);
+            kryptonTextBox1.Location = new Point(244, 64);
             kryptonTextBox1.Multiline = true;
             kryptonTextBox1.Name = "kryptonTextBox1";
             kryptonTextBox1.Size = new Size(193, 40);
             kryptonTextBox1.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonTextBox1.StateCommon.Border.Rounding = 15F;
+            kryptonTextBox1.StateCommon.Content.Color1 = Color.Navy;
+            kryptonTextBox1.StateCommon.Content.Font = new Font("Arial Narrow", 14.25F);
             kryptonTextBox1.TabIndex = 76;
             // 
             // label9
@@ -203,22 +198,6 @@
             panel2.Size = new Size(663, 18);
             panel2.TabIndex = 87;
             // 
-            // kryptonComboBox2
-            // 
-            kryptonComboBox2.DropDownWidth = 300;
-            kryptonComboBox2.Location = new Point(244, 244);
-            kryptonComboBox2.Margin = new Padding(3, 2, 3, 2);
-            kryptonComboBox2.Name = "kryptonComboBox2";
-            kryptonComboBox2.Size = new Size(193, 32);
-            kryptonComboBox2.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
-            kryptonComboBox2.StateCommon.ComboBox.Border.Rounding = 15F;
-            kryptonComboBox2.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
-            kryptonComboBox2.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
-            kryptonComboBox2.StateCommon.Item.Content.ShortText.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonComboBox2.StateNormal.ComboBox.Border.Rounding = 40F;
-            kryptonComboBox2.TabIndex = 90;
-            kryptonComboBox2.SelectedIndexChanged += kryptonComboBox2_SelectedIndexChanged;
-            // 
             // kryptonButton1
             // 
             kryptonButton1.Location = new Point(203, 345);
@@ -291,22 +270,57 @@
             kryptonButton3.Values.DropDownArrowColor = Color.Empty;
             kryptonButton3.Values.Text = "Imagen del usuario";
             // 
+            // kryptonComboBox1
+            // 
+            kryptonComboBox1.DropDownWidth = 300;
+            kryptonComboBox1.Location = new Point(244, 180);
+            kryptonComboBox1.Margin = new Padding(3, 2, 3, 2);
+            kryptonComboBox1.Name = "kryptonComboBox1";
+            kryptonComboBox1.Size = new Size(193, 40);
+            kryptonComboBox1.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            kryptonComboBox1.StateCommon.ComboBox.Border.Rounding = 20F;
+            kryptonComboBox1.StateCommon.ComboBox.Content.Color1 = Color.Navy;
+            kryptonComboBox1.StateCommon.ComboBox.Content.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            kryptonComboBox1.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            kryptonComboBox1.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
+            kryptonComboBox1.StateCommon.Item.Content.ShortText.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            kryptonComboBox1.StateNormal.ComboBox.Border.Rounding = 40F;
+            kryptonComboBox1.TabIndex = 145;
+            // 
+            // kryptonComboBox2
+            // 
+            kryptonComboBox2.DropDownWidth = 300;
+            kryptonComboBox2.Location = new Point(244, 233);
+            kryptonComboBox2.Margin = new Padding(3, 2, 3, 2);
+            kryptonComboBox2.Name = "kryptonComboBox2";
+            kryptonComboBox2.Size = new Size(193, 40);
+            kryptonComboBox2.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            kryptonComboBox2.StateCommon.ComboBox.Border.Rounding = 20F;
+            kryptonComboBox2.StateCommon.ComboBox.Content.Color1 = Color.Navy;
+            kryptonComboBox2.StateCommon.ComboBox.Content.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            kryptonComboBox2.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            kryptonComboBox2.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
+            kryptonComboBox2.StateCommon.Item.Content.ShortText.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            kryptonComboBox2.StateNormal.ComboBox.Border.Rounding = 40F;
+            kryptonComboBox2.TabIndex = 146;
+            // 
             // frmModificarUsuarios
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(665, 422);
+            Controls.Add(kryptonComboBox2);
+            Controls.Add(kryptonComboBox1);
             Controls.Add(kryptonButton3);
             Controls.Add(kryptonButton1);
             Controls.Add(kryptonButton6);
-            Controls.Add(kryptonComboBox2);
             Controls.Add(panel1);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
             Controls.Add(panel2);
             Controls.Add(label3);
             Controls.Add(pictureBox16);
-            Controls.Add(kryptonTextBox3);
             Controls.Add(label5);
             Controls.Add(kryptonTextBox2);
             Controls.Add(label4);
@@ -320,6 +334,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonComboBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonComboBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -328,7 +343,6 @@
         #endregion
 
         private PictureBox pictureBox16;
-        private Krypton.Toolkit.KryptonTextBox kryptonTextBox3;
         private Label label5;
         private Krypton.Toolkit.KryptonTextBox kryptonTextBox2;
         private Label label4;
@@ -341,9 +355,10 @@
         private PictureBox pictureBox2;
         private Panel panel1;
         private Panel panel2;
-        private Krypton.Toolkit.KryptonComboBox kryptonComboBox2;
         private Krypton.Toolkit.KryptonButton kryptonButton1;
         private Krypton.Toolkit.KryptonButton kryptonButton6;
         private Krypton.Toolkit.KryptonButton kryptonButton3;
+        private Krypton.Toolkit.KryptonComboBox kryptonComboBox1;
+        private Krypton.Toolkit.KryptonComboBox kryptonComboBox2;
     }
 }
