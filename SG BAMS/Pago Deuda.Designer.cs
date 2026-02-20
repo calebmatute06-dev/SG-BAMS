@@ -97,6 +97,7 @@
             kryptonTextBox2.Location = new Point(223, 182);
             kryptonTextBox2.Name = "kryptonTextBox2";
             kryptonTextBox2.Size = new Size(177, 33);
+            kryptonTextBox2.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonTextBox2.StateCommon.Border.Rounding = 10F;
             kryptonTextBox2.TabIndex = 169;
             // 
@@ -119,7 +120,10 @@
             kryptonComboBox1.Name = "kryptonComboBox1";
             kryptonComboBox1.Size = new Size(178, 32);
             kryptonComboBox1.StateActive.ComboBox.Border.Rounding = 10F;
+            kryptonComboBox1.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            kryptonComboBox1.StateCommon.ComboBox.Border.Rounding = 70F;
             kryptonComboBox1.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            kryptonComboBox1.StateCommon.Item.Border.Rounding = 70F;
             kryptonComboBox1.TabIndex = 166;
             // 
             // kryptonGroup1

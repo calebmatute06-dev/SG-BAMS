@@ -47,10 +47,10 @@
             panel3 = new Panel();
             pictureBox1 = new PictureBox();
             pictureBox4 = new PictureBox();
-            kryptonMaskedTextBox2 = new Krypton.Toolkit.KryptonMaskedTextBox();
             kryptonButton13 = new Krypton.Toolkit.KryptonButton();
             kryptonButton3 = new Krypton.Toolkit.KryptonButton();
             kryptonButton2 = new Krypton.Toolkit.KryptonButton();
+            kryptonTextBox2 = new Krypton.Toolkit.KryptonTextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
@@ -145,6 +145,7 @@
             kryptonLabel10.Location = new Point(182, 197);
             kryptonLabel10.Name = "kryptonLabel10";
             kryptonLabel10.Size = new Size(136, 31);
+            kryptonLabel10.StateCommon.ShortText.Color1 = Color.Navy;
             kryptonLabel10.TabIndex = 197;
             kryptonLabel10.Values.Text = "xxx-xxx";
             // 
@@ -153,6 +154,7 @@
             kryptonLabel9.Location = new Point(182, 150);
             kryptonLabel9.Name = "kryptonLabel9";
             kryptonLabel9.Size = new Size(136, 31);
+            kryptonLabel9.StateCommon.ShortText.Color1 = Color.Navy;
             kryptonLabel9.TabIndex = 196;
             kryptonLabel9.Values.Text = "xxx-xxx";
             // 
@@ -263,16 +265,6 @@
             pictureBox4.TabIndex = 182;
             pictureBox4.TabStop = false;
             // 
-            // kryptonMaskedTextBox2
-            // 
-            kryptonMaskedTextBox2.Location = new Point(176, 241);
-            kryptonMaskedTextBox2.Name = "kryptonMaskedTextBox2";
-            kryptonMaskedTextBox2.Size = new Size(117, 33);
-            kryptonMaskedTextBox2.StateCommon.Border.Rounding = 10F;
-            kryptonMaskedTextBox2.StateDisabled.Border.Rounding = 10F;
-            kryptonMaskedTextBox2.StateNormal.Border.Rounding = 10F;
-            kryptonMaskedTextBox2.TabIndex = 205;
-            // 
             // kryptonButton13
             // 
             kryptonButton13.Location = new Point(915, 341);
@@ -342,14 +334,23 @@
             kryptonButton2.Values.DropDownArrowColor = Color.Empty;
             kryptonButton2.Values.Text = "Cancelar";
             // 
+            // kryptonTextBox2
+            // 
+            kryptonTextBox2.Location = new Point(182, 235);
+            kryptonTextBox2.Name = "kryptonTextBox2";
+            kryptonTextBox2.Size = new Size(177, 33);
+            kryptonTextBox2.StateCommon.Back.Color1 = Color.SkyBlue;
+            kryptonTextBox2.StateCommon.Border.Rounding = 10F;
+            kryptonTextBox2.TabIndex = 209;
+            // 
             // Agregar_Datos__Deudores_
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1027, 402);
+            Controls.Add(kryptonTextBox2);
             Controls.Add(kryptonButton3);
             Controls.Add(kryptonButton2);
-            Controls.Add(kryptonMaskedTextBox2);
             Controls.Add(kryptonButton11);
             Controls.Add(pictureBox18);
             Controls.Add(button12);
@@ -402,9 +403,9 @@
         private Panel panel3;
         private PictureBox pictureBox1;
         private PictureBox pictureBox4;
-        private Krypton.Toolkit.KryptonMaskedTextBox kryptonMaskedTextBox2;
         private Krypton.Toolkit.KryptonButton kryptonButton13;
         private Krypton.Toolkit.KryptonButton kryptonButton3;
         private Krypton.Toolkit.KryptonButton kryptonButton2;
+        private Krypton.Toolkit.KryptonTextBox kryptonTextBox2;
     }
 }

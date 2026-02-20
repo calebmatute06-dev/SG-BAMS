@@ -35,8 +35,6 @@
             kryptonGroup1 = new Krypton.Toolkit.KryptonGroup();
             kryptonMonthCalendar1 = new Krypton.Toolkit.KryptonMonthCalendar();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
-            kryptonComboBox1 = new Krypton.Toolkit.KryptonComboBox();
-            kryptonComboBox2 = new Krypton.Toolkit.KryptonComboBox();
             kryptonDataGridView1 = new Krypton.Toolkit.KryptonDataGridView();
             kryptonLabel9 = new Krypton.Toolkit.KryptonLabel();
             kryptonLabel10 = new Krypton.Toolkit.KryptonLabel();
@@ -53,13 +51,15 @@
             kryptonButton4 = new Krypton.Toolkit.KryptonButton();
             kryptonButton5 = new Krypton.Toolkit.KryptonButton();
             kryptonButton13 = new Krypton.Toolkit.KryptonButton();
+            kryptonComboBox1 = new Krypton.Toolkit.KryptonComboBox();
+            kryptonComboBox2 = new Krypton.Toolkit.KryptonComboBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonDataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonComboBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonComboBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonDataGridView1).BeginInit();
             SuspendLayout();
             // 
             // pictureBox4
@@ -116,27 +116,6 @@
             sqlCommand1.CommandTimeout = 30;
             sqlCommand1.EnableOptimizedParameterBinding = false;
             // 
-            // kryptonComboBox1
-            // 
-            kryptonComboBox1.DropDownWidth = 94;
-            kryptonComboBox1.Location = new Point(190, 205);
-            kryptonComboBox1.Name = "kryptonComboBox1";
-            kryptonComboBox1.Size = new Size(133, 32);
-            kryptonComboBox1.StateActive.ComboBox.Border.Rounding = 10F;
-            kryptonComboBox1.StateCommon.ComboBox.Border.Rounding = 10F;
-            kryptonComboBox1.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
-            kryptonComboBox1.TabIndex = 91;
-            // 
-            // kryptonComboBox2
-            // 
-            kryptonComboBox2.DropDownWidth = 94;
-            kryptonComboBox2.Location = new Point(189, 242);
-            kryptonComboBox2.Name = "kryptonComboBox2";
-            kryptonComboBox2.Size = new Size(134, 32);
-            kryptonComboBox2.StateActive.ComboBox.Border.Rounding = 10F;
-            kryptonComboBox2.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
-            kryptonComboBox2.TabIndex = 92;
-            // 
             // kryptonDataGridView1
             // 
             kryptonDataGridView1.BorderStyle = BorderStyle.None;
@@ -152,6 +131,8 @@
             kryptonLabel9.Location = new Point(190, 128);
             kryptonLabel9.Name = "kryptonLabel9";
             kryptonLabel9.Size = new Size(136, 31);
+            kryptonLabel9.StateCommon.ShortText.Color1 = Color.Navy;
+            kryptonLabel9.StateCommon.ShortText.Font = new Font("Arial Narrow", 7.8F);
             kryptonLabel9.TabIndex = 97;
             kryptonLabel9.Values.Text = "xxx-xxx";
             // 
@@ -160,6 +141,8 @@
             kryptonLabel10.Location = new Point(190, 164);
             kryptonLabel10.Name = "kryptonLabel10";
             kryptonLabel10.Size = new Size(136, 31);
+            kryptonLabel10.StateCommon.ShortText.Color1 = Color.Navy;
+            kryptonLabel10.StateCommon.ShortText.Font = new Font("Arial Narrow", 7.8F);
             kryptonLabel10.TabIndex = 98;
             kryptonLabel10.Values.Text = "xxx-xxx";
             // 
@@ -253,6 +236,8 @@
             kryptonLabel1.Location = new Point(487, 425);
             kryptonLabel1.Name = "kryptonLabel1";
             kryptonLabel1.Size = new Size(136, 31);
+            kryptonLabel1.StateCommon.ShortText.Color1 = Color.Navy;
+            kryptonLabel1.StateCommon.ShortText.Font = new Font("Arial Narrow", 7.8F);
             kryptonLabel1.TabIndex = 177;
             kryptonLabel1.Values.Text = "L xx.xx";
             // 
@@ -359,11 +344,39 @@
             kryptonButton13.Values.DropDownArrowColor = Color.Empty;
             kryptonButton13.Values.Text = "BAMS";
             // 
+            // kryptonComboBox1
+            // 
+            kryptonComboBox1.DropDownWidth = 178;
+            kryptonComboBox1.Location = new Point(196, 200);
+            kryptonComboBox1.Name = "kryptonComboBox1";
+            kryptonComboBox1.Size = new Size(178, 32);
+            kryptonComboBox1.StateActive.ComboBox.Border.Rounding = 10F;
+            kryptonComboBox1.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            kryptonComboBox1.StateCommon.ComboBox.Border.Rounding = 70F;
+            kryptonComboBox1.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            kryptonComboBox1.StateCommon.Item.Border.Rounding = 90F;
+            kryptonComboBox1.TabIndex = 187;
+            // 
+            // kryptonComboBox2
+            // 
+            kryptonComboBox2.DropDownWidth = 178;
+            kryptonComboBox2.Location = new Point(196, 244);
+            kryptonComboBox2.Name = "kryptonComboBox2";
+            kryptonComboBox2.Size = new Size(178, 32);
+            kryptonComboBox2.StateActive.ComboBox.Border.Rounding = 10F;
+            kryptonComboBox2.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            kryptonComboBox2.StateCommon.ComboBox.Border.Rounding = 70F;
+            kryptonComboBox2.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            kryptonComboBox2.StateCommon.Item.Border.Rounding = 90F;
+            kryptonComboBox2.TabIndex = 188;
+            // 
             // Ingresar_datos__Compra_
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(784, 559);
+            Controls.Add(kryptonComboBox2);
+            Controls.Add(kryptonComboBox1);
             Controls.Add(kryptonButton3);
             Controls.Add(kryptonButton4);
             Controls.Add(kryptonButton5);
@@ -379,8 +392,6 @@
             Controls.Add(kryptonLabel10);
             Controls.Add(kryptonLabel9);
             Controls.Add(kryptonDataGridView1);
-            Controls.Add(kryptonComboBox2);
-            Controls.Add(kryptonComboBox1);
             Controls.Add(kryptonMonthCalendar1);
             Controls.Add(kryptonGroup1);
             Controls.Add(panel1);
@@ -395,9 +406,9 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonDataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonComboBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonComboBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonDataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -411,8 +422,6 @@
         private Krypton.Toolkit.KryptonGroup kryptonGroup1;
         private Krypton.Toolkit.KryptonMonthCalendar kryptonMonthCalendar1;
         private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
-        private Krypton.Toolkit.KryptonComboBox kryptonComboBox1;
-        private Krypton.Toolkit.KryptonComboBox kryptonComboBox2;
         private Krypton.Toolkit.KryptonDataGridView kryptonDataGridView1;
         private Krypton.Toolkit.KryptonLabel kryptonLabel9;
         private Krypton.Toolkit.KryptonLabel kryptonLabel10;
@@ -429,5 +438,7 @@
         private Krypton.Toolkit.KryptonButton kryptonButton4;
         private Krypton.Toolkit.KryptonButton kryptonButton5;
         private Krypton.Toolkit.KryptonButton kryptonButton13;
+        private Krypton.Toolkit.KryptonComboBox kryptonComboBox1;
+        private Krypton.Toolkit.KryptonComboBox kryptonComboBox2;
     }
 }
