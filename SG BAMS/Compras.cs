@@ -47,5 +47,12 @@ namespace SG_BAMS
         {
 
         }
+
+        private void kryptonButton13_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }
