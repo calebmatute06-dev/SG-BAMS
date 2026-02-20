@@ -64,7 +64,6 @@ namespace SG_BAMS
             pictureBox8 = new PictureBox();
             pictureBox1 = new PictureBox();
             kryptonButton11 = new Krypton.Toolkit.KryptonButton();
-            kryptonButton10 = new Krypton.Toolkit.KryptonButton();
             pictureBox18 = new PictureBox();
             button12 = new Button();
             pictureBox3 = new PictureBox();
@@ -80,6 +79,8 @@ namespace SG_BAMS
             dtFin = new Krypton.Toolkit.KryptonDateTimePicker();
             kryptonButton13 = new Krypton.Toolkit.KryptonButton();
             lbl = new Krypton.Toolkit.KryptonButton();
+            kryptonGroup1 = new Krypton.Toolkit.KryptonGroup();
+            label8 = new Label();
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             panel4.SuspendLayout();
@@ -101,6 +102,8 @@ namespace SG_BAMS
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
             SuspendLayout();
             // 
             // panel6
@@ -653,31 +656,6 @@ namespace SG_BAMS
             kryptonButton11.Values.DropDownArrowColor = Color.Empty;
             kryptonButton11.Values.Text = "Ajustes";
             // 
-            // kryptonButton10
-            // 
-            kryptonButton10.Location = new Point(381, 37);
-            kryptonButton10.Name = "kryptonButton10";
-            kryptonButton10.OverrideDefault.Back.Color1 = Color.Transparent;
-            kryptonButton10.OverrideDefault.Back.Color2 = Color.Transparent;
-            kryptonButton10.OverrideDefault.Border.Rounding = 40F;
-            kryptonButton10.OverrideFocus.Back.Color1 = Color.White;
-            kryptonButton10.OverrideFocus.Back.Color2 = Color.SkyBlue;
-            kryptonButton10.Size = new Size(133, 41);
-            kryptonButton10.StateCommon.Back.Color1 = Color.White;
-            kryptonButton10.StateCommon.Back.Color2 = Color.SkyBlue;
-            kryptonButton10.StateCommon.Border.Rounding = 40F;
-            kryptonButton10.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton10.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton10.StateNormal.Back.Color1 = Color.Transparent;
-            kryptonButton10.StateNormal.Back.Color2 = Color.Transparent;
-            kryptonButton10.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
-            kryptonButton10.StatePressed.Back.Color1 = Color.Transparent;
-            kryptonButton10.StatePressed.Back.Color2 = Color.Transparent;
-            kryptonButton10.StateTracking.Border.Rounding = 40F;
-            kryptonButton10.TabIndex = 57;
-            kryptonButton10.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton10.Values.Text = "Reportes";
-            // 
             // pictureBox18
             // 
             pictureBox18.BackgroundImage = Properties.Resources.ajus;
@@ -941,12 +919,34 @@ namespace SG_BAMS
             lbl.Values.DropDownArrowColor = Color.Empty;
             lbl.Values.Text = "Hasta aqui: ";
             // 
+            // kryptonGroup1
+            // 
+            kryptonGroup1.Location = new Point(498, 72);
+            kryptonGroup1.Size = new Size(315, 50);
+            kryptonGroup1.StateCommon.Back.Color1 = Color.SkyBlue;
+            kryptonGroup1.StateCommon.Border.Rounding = 30F;
+            kryptonGroup1.TabIndex = 245;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.BackColor = Color.SkyBlue;
+            label8.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.ForeColor = Color.Navy;
+            label8.Location = new Point(510, 80);
+            label8.Name = "label8";
+            label8.Size = new Size(287, 35);
+            label8.TabIndex = 246;
+            label8.Text = "Modificar Producto";
+            // 
             // ReporteAdmin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1105, 905);
+            Controls.Add(label8);
+            Controls.Add(kryptonGroup1);
             Controls.Add(lbl);
             Controls.Add(kryptonButton13);
             Controls.Add(dtFin);
@@ -961,7 +961,6 @@ namespace SG_BAMS
             Controls.Add(label1);
             Controls.Add(pictureBox3);
             Controls.Add(kryptonButton11);
-            Controls.Add(kryptonButton10);
             Controls.Add(pictureBox18);
             Controls.Add(button12);
             Controls.Add(panel6);
@@ -995,6 +994,8 @@ namespace SG_BAMS
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox18).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).EndInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroup1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1041,7 +1042,6 @@ namespace SG_BAMS
         private PictureBox pictureBox8;
         private PictureBox pictureBox1;
         private Krypton.Toolkit.KryptonButton kryptonButton11;
-        private Krypton.Toolkit.KryptonButton kryptonButton10;
         private PictureBox pictureBox18;
         private Button button12;
         private PictureBox pictureBox3;
@@ -1057,5 +1057,7 @@ namespace SG_BAMS
         private Krypton.Toolkit.KryptonDateTimePicker dtFin;
         private Krypton.Toolkit.KryptonButton kryptonButton13;
         private Krypton.Toolkit.KryptonButton lbl;
+        private Krypton.Toolkit.KryptonGroup kryptonGroup1;
+        private Label label8;
     }
 }
