@@ -72,7 +72,6 @@
             kryptonDataGridView1 = new Krypton.Toolkit.KryptonDataGridView();
             kryptonGroup5 = new Krypton.Toolkit.KryptonGroup();
             kryptonGroup2 = new Krypton.Toolkit.KryptonGroup();
-            pictureBox17 = new PictureBox();
             pictureBox20 = new PictureBox();
             pictureBox21 = new PictureBox();
             kryptonButton13 = new Krypton.Toolkit.KryptonButton();
@@ -80,6 +79,7 @@
             kryptonButton12 = new Krypton.Toolkit.KryptonButton();
             pictureBox22 = new PictureBox();
             textBox1 = new TextBox();
+            pictureBox17 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
@@ -107,10 +107,10 @@
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup2.Panel).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox17).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox20).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox21).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox22).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox17).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -768,17 +768,10 @@
             kryptonGroup2.StateCommon.Border.Rounding = 70F;
             kryptonGroup2.TabIndex = 81;
             // 
-            // pictureBox17
-            // 
-            pictureBox17.Location = new Point(0, 0);
-            pictureBox17.Name = "pictureBox17";
-            pictureBox17.Size = new Size(100, 50);
-            pictureBox17.TabIndex = 152;
-            pictureBox17.TabStop = false;
-            // 
             // pictureBox20
             // 
             pictureBox20.BackColor = Color.White;
+            pictureBox20.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox20.Location = new Point(779, 217);
             pictureBox20.Name = "pictureBox20";
             pictureBox20.Size = new Size(73, 62);
@@ -788,6 +781,8 @@
             // 
             // pictureBox21
             // 
+            pictureBox21.BackgroundImage = Properties.Resources.comprasnuevo;
+            pictureBox21.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox21.Location = new Point(335, 149);
             pictureBox21.Name = "pictureBox21";
             pictureBox21.Size = new Size(365, 244);
@@ -877,12 +872,25 @@
             textBox1.Size = new Size(309, 27);
             textBox1.TabIndex = 150;
             // 
+            // pictureBox17
+            // 
+            pictureBox17.BackColor = Color.White;
+            pictureBox17.BackgroundImage = Properties.Resources.compras;
+            pictureBox17.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox17.Location = new Point(779, 149);
+            pictureBox17.Name = "pictureBox17";
+            pictureBox17.Size = new Size(73, 62);
+            pictureBox17.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox17.TabIndex = 152;
+            pictureBox17.TabStop = false;
+            // 
             // Compras
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1110, 916);
+            Controls.Add(pictureBox17);
             Controls.Add(textBox1);
             Controls.Add(pictureBox22);
             Controls.Add(kryptonButton12);
@@ -890,7 +898,6 @@
             Controls.Add(kryptonButton13);
             Controls.Add(pictureBox21);
             Controls.Add(pictureBox20);
-            Controls.Add(pictureBox17);
             Controls.Add(kryptonGroup5);
             Controls.Add(kryptonDataGridView1);
             Controls.Add(label1);
@@ -938,10 +945,10 @@
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup2.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox17).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox20).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox21).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox22).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox17).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -991,7 +998,6 @@
         private Krypton.Toolkit.KryptonDataGridView kryptonDataGridView1;
         private Krypton.Toolkit.KryptonGroup kryptonGroup5;
         private Krypton.Toolkit.KryptonGroup kryptonGroup2;
-        private PictureBox pictureBox17;
         private PictureBox pictureBox20;
         private PictureBox pictureBox21;
         private Krypton.Toolkit.KryptonButton kryptonButton13;
@@ -999,5 +1005,6 @@
         private Krypton.Toolkit.KryptonButton kryptonButton12;
         private PictureBox pictureBox22;
         private TextBox textBox1;
+        private PictureBox pictureBox17;
     }
 }

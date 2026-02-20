@@ -120,7 +120,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial Narrow", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(193, 33);
+            label1.Location = new Point(151, 39);
             label1.Name = "label1";
             label1.Size = new Size(280, 39);
             label1.TabIndex = 112;
@@ -176,10 +176,13 @@
             // 
             // pictureBox4
             // 
-            pictureBox4.Location = new Point(459, 35);
+            pictureBox4.BackgroundImage = Properties.Resources.roles1;
+            pictureBox4.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox4.Image = Properties.Resources.roles;
+            pictureBox4.Location = new Point(418, 35);
             pictureBox4.Margin = new Padding(3, 4, 3, 4);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(71, 39);
+            pictureBox4.Size = new Size(71, 50);
             pictureBox4.TabIndex = 0;
             pictureBox4.TabStop = false;
             // 
