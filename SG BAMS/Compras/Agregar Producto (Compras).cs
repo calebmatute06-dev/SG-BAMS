@@ -10,17 +10,21 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
-    public partial class MenuPrincipalEmp : Form
+    public partial class Agregar_Producto__Compras_ : Form
     {
-        public MenuPrincipalEmp()
+        public Agregar_Producto__Compras_()
         {
             InitializeComponent();
         }
 
-        private void btnsalir_Click(object sender, EventArgs e)
+        private void kryptonLabel1_Click(object sender, EventArgs e)
         {
 
-            Application.Exit();
+        }
+
+        private void kryptonLabel4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

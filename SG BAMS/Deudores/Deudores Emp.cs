@@ -10,17 +10,11 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
-    public partial class MenuPrincipalAdm : Form
+    public partial class Deudores_Emp : Form
     {
-        public MenuPrincipalAdm()
+        public Deudores_Emp()
         {
             InitializeComponent();
-        }
-
-        private void btnsalir_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-
         }
     }
 }
