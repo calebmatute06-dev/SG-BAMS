@@ -11,7 +11,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
-namespace SG_BAMS
+
+namespace SG_BAMS.Login
 {
     public partial class Login : Form
     {

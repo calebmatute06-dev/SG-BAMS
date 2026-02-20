@@ -1,4 +1,4 @@
-namespace SG_BAMS
+namespace SG_BAMS.Login
 {
     internal static class Program
     {

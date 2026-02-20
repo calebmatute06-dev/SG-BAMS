@@ -770,12 +770,15 @@
             // 
             // pictureBox17
             // 
-            
+            pictureBox17.Location = new Point(0, 0);
+            pictureBox17.Name = "pictureBox17";
+            pictureBox17.Size = new Size(100, 50);
+            pictureBox17.TabIndex = 152;
+            pictureBox17.TabStop = false;
             // 
             // pictureBox20
             // 
             pictureBox20.BackColor = Color.White;
-            pictureBox20.Image = Properties.Resources.Check;
             pictureBox20.Location = new Point(779, 217);
             pictureBox20.Name = "pictureBox20";
             pictureBox20.Size = new Size(73, 62);
@@ -785,7 +788,11 @@
             // 
             // pictureBox21
             // 
-            
+            pictureBox21.Location = new Point(335, 149);
+            pictureBox21.Name = "pictureBox21";
+            pictureBox21.Size = new Size(365, 244);
+            pictureBox21.TabIndex = 151;
+            pictureBox21.TabStop = false;
             // 
             // kryptonButton13
             // 
