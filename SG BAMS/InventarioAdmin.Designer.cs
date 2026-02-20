@@ -750,6 +750,8 @@
             kryptonButton31.StateCommon.Border.Rounding = 40F;
             kryptonButton31.StateCommon.Content.ShortText.Color1 = Color.Navy;
             kryptonButton31.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            kryptonButton31.StateCommon.Content.ShortText.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            kryptonButton31.StateCommon.Content.ShortText.TextV = Krypton.Toolkit.PaletteRelativeAlign.Center;
             kryptonButton31.StateNormal.Back.Color1 = Color.SkyBlue;
             kryptonButton31.StateNormal.Back.Color2 = Color.White;
             kryptonButton31.StateNormal.Border.Rounding = 40F;
@@ -776,6 +778,8 @@
             kryptonButton20.StateCommon.Content.Padding = new Padding(0);
             kryptonButton20.StateCommon.Content.ShortText.Color1 = Color.Navy;
             kryptonButton20.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            kryptonButton20.StateCommon.Content.ShortText.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            kryptonButton20.StateCommon.Content.ShortText.TextV = Krypton.Toolkit.PaletteRelativeAlign.Center;
             kryptonButton20.StateNormal.Back.Color1 = Color.SkyBlue;
             kryptonButton20.StateNormal.Back.Color2 = Color.White;
             kryptonButton20.StateNormal.Border.Rounding = 40F;
