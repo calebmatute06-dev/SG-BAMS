@@ -16,5 +16,10 @@ namespace SG_BAMS
         {
             InitializeComponent();
         }
+
+        private void ProveedoresAdmin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

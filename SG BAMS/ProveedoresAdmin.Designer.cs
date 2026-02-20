@@ -800,6 +800,7 @@
             Controls.Add(panel1);
             Name = "ProveedoresAdmin";
             Text = "ProveedoresAdmin";
+            Load += ProveedoresAdmin_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox18).EndInit();
             panel5.ResumeLayout(false);
