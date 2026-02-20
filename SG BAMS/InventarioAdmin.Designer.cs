@@ -70,6 +70,8 @@
             panel7 = new Panel();
             pictureBox2 = new PictureBox();
             panel2 = new Panel();
+            kryptonDataGridView1 = new Krypton.Toolkit.KryptonDataGridView();
+            kryptonGroup1 = new Krypton.Toolkit.KryptonGroup();
             panel1.SuspendLayout();
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
@@ -89,6 +91,9 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
             panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonDataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
             SuspendLayout();
             // 
             // panel6
@@ -765,11 +770,34 @@
             panel2.Size = new Size(1102, 24);
             panel2.TabIndex = 192;
             // 
+            // kryptonDataGridView1
+            // 
+            kryptonDataGridView1.BorderStyle = BorderStyle.None;
+            kryptonDataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            kryptonDataGridView1.Location = new Point(346, 227);
+            kryptonDataGridView1.Name = "kryptonDataGridView1";
+            kryptonDataGridView1.RowHeadersWidth = 51;
+            kryptonDataGridView1.Size = new Size(681, 617);
+            kryptonDataGridView1.StateCommon.Background.Color1 = Color.LightBlue;
+            kryptonDataGridView1.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
+            kryptonDataGridView1.TabIndex = 194;
+            // 
+            // kryptonGroup1
+            // 
+            kryptonGroup1.Location = new Point(303, 201);
+            kryptonGroup1.Size = new Size(764, 669);
+            kryptonGroup1.StateCommon.Back.Color1 = Color.SkyBlue;
+            kryptonGroup1.StateCommon.Border.Rounding = 70F;
+            kryptonGroup1.TabIndex = 193;
+            // 
             // InventarioAdmin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(1103, 905);
+            Controls.Add(kryptonDataGridView1);
+            Controls.Add(kryptonGroup1);
             Controls.Add(panel2);
             Controls.Add(panel6);
             Controls.Add(panel4);
@@ -807,6 +835,9 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox18).EndInit();
             panel7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonDataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).EndInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroup1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -855,5 +886,7 @@
         private Panel panel7;
         private PictureBox pictureBox2;
         private Panel panel2;
+        private Krypton.Toolkit.KryptonDataGridView kryptonDataGridView1;
+        private Krypton.Toolkit.KryptonGroup kryptonGroup1;
     }
 }
