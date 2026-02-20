@@ -114,7 +114,7 @@
             btnCancelar.TabIndex = 208;
             btnCancelar.Values.DropDownArrowColor = Color.Empty;
             btnCancelar.Values.Text = "Cancelar";
-            btnCancelar.Click += this.kryptonButton1_Click;
+            //btnCancelar.Click += this.kryptonButton1_Click;
             // 
             // btnAceptar
             // 
@@ -173,7 +173,7 @@
             btnsalir.TabIndex = 205;
             btnsalir.Values.DropDownArrowColor = Color.Empty;
             btnsalir.Values.Text = "Salir";
-            btnsalir.Click += this.btnsalir_Click;
+            //btnsalir.Click += this.btnsalir_Click;
             // 
             // pictureBox3
             // 
@@ -254,7 +254,7 @@
             label15.Size = new Size(76, 33);
             label15.TabIndex = 218;
             label15.Text = "Stock:";
-            label15.Click += this.label15_Click;
+            //label15.Click += this.label15_Click;
             // 
             // label10
             // 

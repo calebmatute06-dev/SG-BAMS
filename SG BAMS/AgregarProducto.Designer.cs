@@ -119,6 +119,7 @@
             txtStock.Size = new Size(250, 39);
             txtStock.StateCommon.Back.Color1 = Color.SkyBlue;
             txtStock.StateCommon.Border.Rounding = 20F;
+            txtStock.StateCommon.Content.Color1 = Color.Navy;
             txtStock.StateNormal.Content.Color1 = Color.Navy;
             txtStock.TabIndex = 158;
             // 
@@ -128,7 +129,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(72, 423);
+            label1.Location = new Point(72, 419);
             label1.Name = "label1";
             label1.Size = new Size(91, 33);
             label1.TabIndex = 153;
@@ -141,6 +142,7 @@
             txtPrecio.Size = new Size(250, 39);
             txtPrecio.StateCommon.Back.Color1 = Color.SkyBlue;
             txtPrecio.StateCommon.Border.Rounding = 20F;
+            txtPrecio.StateCommon.Content.Color1 = Color.Navy;
             txtPrecio.StateNormal.Content.Color1 = Color.Navy;
             txtPrecio.TabIndex = 152;
             // 
@@ -151,6 +153,7 @@
             txtNombre.Size = new Size(250, 39);
             txtNombre.StateCommon.Back.Color1 = Color.SkyBlue;
             txtNombre.StateCommon.Border.Rounding = 20F;
+            txtNombre.StateCommon.Content.Color1 = Color.Navy;
             txtNombre.StateNormal.Content.Color1 = Color.Navy;
             txtNombre.TabIndex = 151;
             // 
@@ -161,6 +164,7 @@
             txtID.Size = new Size(250, 39);
             txtID.StateCommon.Back.Color1 = Color.SkyBlue;
             txtID.StateCommon.Border.Rounding = 20F;
+            txtID.StateCommon.Content.Color1 = Color.Navy;
             txtID.StateNormal.Content.Color1 = Color.Navy;
             txtID.TabIndex = 150;
             // 
@@ -336,6 +340,7 @@
             cmbEstado.Size = new Size(250, 52);
             cmbEstado.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
             cmbEstado.StateCommon.ComboBox.Border.Rounding = 40F;
+            cmbEstado.StateCommon.ComboBox.Content.Color1 = Color.Navy;
             cmbEstado.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbEstado.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
             cmbEstado.StateCommon.Item.Content.ShortText.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -350,6 +355,7 @@
             cmbModelo.Size = new Size(250, 52);
             cmbModelo.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
             cmbModelo.StateCommon.ComboBox.Border.Rounding = 40F;
+            cmbModelo.StateCommon.ComboBox.Content.Color1 = Color.Navy;
             cmbModelo.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbModelo.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
             cmbModelo.StateCommon.Item.Content.ShortText.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -364,6 +370,7 @@
             cmbTipo.Size = new Size(250, 52);
             cmbTipo.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
             cmbTipo.StateCommon.ComboBox.Border.Rounding = 40F;
+            cmbTipo.StateCommon.ComboBox.Content.Color1 = Color.Navy;
             cmbTipo.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbTipo.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
             cmbTipo.StateCommon.Item.Content.ShortText.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -378,6 +385,7 @@
             cmbMarca.Size = new Size(250, 52);
             cmbMarca.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
             cmbMarca.StateCommon.ComboBox.Border.Rounding = 40F;
+            cmbMarca.StateCommon.ComboBox.Content.Color1 = Color.Navy;
             cmbMarca.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbMarca.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
             cmbMarca.StateCommon.Item.Content.ShortText.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
