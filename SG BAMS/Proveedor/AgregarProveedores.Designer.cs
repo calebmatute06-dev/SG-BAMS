@@ -43,8 +43,6 @@
             btnCancelar = new Krypton.Toolkit.KryptonButton();
             btnAceptar = new Krypton.Toolkit.KryptonButton();
             btnsalir = new Krypton.Toolkit.KryptonButton();
-            cmbEstado = new Krypton.Toolkit.KryptonComboBox();
-            label5 = new Label();
             cmbClasificacion = new Krypton.Toolkit.KryptonComboBox();
             txtDiccionario = new Krypton.Toolkit.KryptonTextBox();
             label2 = new Label();
@@ -67,7 +65,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox10).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)cmbEstado).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cmbClasificacion).BeginInit();
             SuspendLayout();
             // 
@@ -254,37 +251,10 @@
             btnsalir.Values.DropDownArrowColor = Color.Empty;
             btnsalir.Values.Text = "Salir";
             // 
-            // cmbEstado
-            // 
-            cmbEstado.DropDownWidth = 300;
-            cmbEstado.Location = new Point(200, 376);
-            cmbEstado.Name = "cmbEstado";
-            cmbEstado.Size = new Size(250, 52);
-            cmbEstado.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
-            cmbEstado.StateCommon.ComboBox.Border.Rounding = 40F;
-            cmbEstado.StateCommon.ComboBox.Content.Color1 = Color.Navy;
-            cmbEstado.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
-            cmbEstado.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
-            cmbEstado.StateCommon.Item.Content.ShortText.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cmbEstado.StateNormal.ComboBox.Border.Rounding = 40F;
-            cmbEstado.TabIndex = 300;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.BackColor = Color.Transparent;
-            label5.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.Navy;
-            label5.Location = new Point(65, 388);
-            label5.Name = "label5";
-            label5.Size = new Size(91, 33);
-            label5.TabIndex = 299;
-            label5.Text = "Estado:";
-            // 
             // cmbClasificacion
             // 
             cmbClasificacion.DropDownWidth = 300;
-            cmbClasificacion.Location = new Point(200, 434);
+            cmbClasificacion.Location = new Point(200, 376);
             cmbClasificacion.Name = "cmbClasificacion";
             cmbClasificacion.Size = new Size(250, 52);
             cmbClasificacion.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
@@ -334,7 +304,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(65, 444);
+            label1.Location = new Point(58, 386);
             label1.Name = "label1";
             label1.Size = new Size(143, 33);
             label1.TabIndex = 294;
@@ -423,8 +393,6 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(515, 599);
-            Controls.Add(cmbEstado);
-            Controls.Add(label5);
             Controls.Add(cmbClasificacion);
             Controls.Add(txtDiccionario);
             Controls.Add(label2);
@@ -464,7 +432,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox10).EndInit();
-            ((System.ComponentModel.ISupportInitialize)cmbEstado).EndInit();
             ((System.ComponentModel.ISupportInitialize)cmbClasificacion).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -486,8 +453,6 @@
         private Krypton.Toolkit.KryptonButton btnCancelar;
         private Krypton.Toolkit.KryptonButton btnAceptar;
         private Krypton.Toolkit.KryptonButton btnsalir;
-        private Krypton.Toolkit.KryptonComboBox cmbEstado;
-        private Label label5;
         private Krypton.Toolkit.KryptonComboBox cmbClasificacion;
         private Krypton.Toolkit.KryptonTextBox txtDiccionario;
         private Label label2;
