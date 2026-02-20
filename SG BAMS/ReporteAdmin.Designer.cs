@@ -868,22 +868,27 @@ namespace SG_BAMS
             // 
             dtInicio.Location = new Point(371, 258);
             dtInicio.Name = "dtInicio";
-            dtInicio.Size = new Size(248, 47);
+            dtInicio.Size = new Size(248, 49);
             dtInicio.StateCommon.Back.Color1 = Color.SkyBlue;
             dtInicio.StateCommon.Border.Color1 = Color.SkyBlue;
             dtInicio.StateCommon.Border.Color2 = Color.SkyBlue;
             dtInicio.StateCommon.Border.Rounding = 35F;
+            dtInicio.StateCommon.Content.Color1 = Color.Navy;
+            dtInicio.StateCommon.Content.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dtInicio.TabIndex = 240;
             // 
             // dtFin
             // 
             dtFin.Location = new Point(371, 348);
             dtFin.Name = "dtFin";
-            dtFin.Size = new Size(248, 47);
+            dtFin.Size = new Size(248, 49);
             dtFin.StateCommon.Back.Color1 = Color.SkyBlue;
             dtFin.StateCommon.Border.Color1 = Color.SkyBlue;
             dtFin.StateCommon.Border.Color2 = Color.SkyBlue;
             dtFin.StateCommon.Border.Rounding = 35F;
+            dtFin.StateCommon.Content.Color1 = Color.Navy;
+            dtFin.StateCommon.Content.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtFin.StateDisabled.Content.Color1 = Color.Navy;
             dtFin.TabIndex = 241;
             // 
             // kryptonButton13
