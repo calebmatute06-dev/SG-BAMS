@@ -1,4 +1,5 @@
-﻿namespace SG_BAMS
+﻿
+namespace SG_BAMS
 {
     partial class ReporteAdmin
     {
@@ -949,6 +950,11 @@
             ((System.ComponentModel.ISupportInitialize)cmbModelo).EndInit();
             ResumeLayout(false);
             PerformLayout();
+        }
+
+        private void kryptonButton13_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
