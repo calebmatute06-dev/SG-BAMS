@@ -32,10 +32,6 @@
             pictureBox19 = new PictureBox();
             pictureBox17 = new PictureBox();
             kryptonButton10 = new Krypton.Toolkit.KryptonButton();
-            kryptonButton14 = new Krypton.Toolkit.KryptonButton();
-            kryptonGroup3 = new Krypton.Toolkit.KryptonGroup();
-            kryptonButton13 = new Krypton.Toolkit.KryptonButton();
-            kryptonGroup2 = new Krypton.Toolkit.KryptonGroup();
             kryptonDataGridView1 = new Krypton.Toolkit.KryptonDataGridView();
             kryptonGroup1 = new Krypton.Toolkit.KryptonGroup();
             label1 = new Label();
@@ -76,13 +72,11 @@
             pictureBox7 = new PictureBox();
             pictureBox8 = new PictureBox();
             pictureBox1 = new PictureBox();
+            kryptonButton12 = new Krypton.Toolkit.KryptonButton();
+            kryptonButton15 = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox20).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox19).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox17).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup3.Panel).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup2.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonDataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
@@ -111,7 +105,7 @@
             // pictureBox20
             // 
             pictureBox20.Image = Properties.Resources.Check;
-            pictureBox20.Location = new Point(693, 783);
+            pictureBox20.Location = new Point(693, 777);
             pictureBox20.Name = "pictureBox20";
             pictureBox20.Size = new Size(75, 72);
             pictureBox20.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -121,7 +115,7 @@
             // pictureBox19
             // 
             pictureBox19.Image = Properties.Resources.Más_signo;
-            pictureBox19.Location = new Point(399, 777);
+            pictureBox19.Location = new Point(406, 777);
             pictureBox19.Name = "pictureBox19";
             pictureBox19.Size = new Size(75, 72);
             pictureBox19.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -162,75 +156,6 @@
             kryptonButton10.TabIndex = 91;
             kryptonButton10.Values.DropDownArrowColor = Color.Empty;
             kryptonButton10.Values.Text = "Pago Abono";
-            // 
-            // kryptonButton14
-            // 
-            kryptonButton14.Location = new Point(809, 801);
-            kryptonButton14.Name = "kryptonButton14";
-            kryptonButton14.OverrideDefault.Back.Color1 = Color.Transparent;
-            kryptonButton14.OverrideDefault.Back.Color2 = Color.Transparent;
-            kryptonButton14.OverrideDefault.Border.Rounding = 40F;
-            kryptonButton14.OverrideFocus.Back.Color1 = Color.White;
-            kryptonButton14.OverrideFocus.Back.Color2 = Color.SkyBlue;
-            kryptonButton14.Size = new Size(98, 32);
-            kryptonButton14.StateCommon.Back.Color1 = Color.Transparent;
-            kryptonButton14.StateCommon.Back.Color2 = Color.SkyBlue;
-            kryptonButton14.StateCommon.Border.Rounding = 40F;
-            kryptonButton14.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton14.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton14.StateNormal.Back.Color1 = Color.Transparent;
-            kryptonButton14.StateNormal.Back.Color2 = Color.Transparent;
-            kryptonButton14.StateNormal.Border.Color1 = Color.Transparent;
-            kryptonButton14.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
-            kryptonButton14.StatePressed.Back.Color1 = Color.Transparent;
-            kryptonButton14.StatePressed.Back.Color2 = Color.Transparent;
-            kryptonButton14.StateTracking.Border.Rounding = 40F;
-            kryptonButton14.TabIndex = 103;
-            kryptonButton14.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton14.Values.Text = "Modificar";
-            // 
-            // kryptonGroup3
-            // 
-            kryptonGroup3.Location = new Point(774, 788);
-            kryptonGroup3.Size = new Size(165, 59);
-            kryptonGroup3.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroup3.StateCommon.Border.Rounding = 70F;
-            kryptonGroup3.TabIndex = 102;
-            // 
-            // kryptonButton13
-            // 
-            kryptonButton13.Location = new Point(515, 801);
-            kryptonButton13.Name = "kryptonButton13";
-            kryptonButton13.OverrideDefault.Back.Color1 = Color.Transparent;
-            kryptonButton13.OverrideDefault.Back.Color2 = Color.Transparent;
-            kryptonButton13.OverrideDefault.Border.Rounding = 40F;
-            kryptonButton13.OverrideFocus.Back.Color1 = Color.White;
-            kryptonButton13.OverrideFocus.Back.Color2 = Color.SkyBlue;
-            kryptonButton13.Size = new Size(98, 32);
-            kryptonButton13.StateCommon.Back.Color1 = Color.Transparent;
-            kryptonButton13.StateCommon.Back.Color2 = Color.SkyBlue;
-            kryptonButton13.StateCommon.Border.Rounding = 40F;
-            kryptonButton13.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton13.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton13.StateNormal.Back.Color1 = Color.Transparent;
-            kryptonButton13.StateNormal.Back.Color2 = Color.Transparent;
-            kryptonButton13.StateNormal.Border.Color1 = Color.SkyBlue;
-            kryptonButton13.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
-            kryptonButton13.StatePressed.Back.Color1 = Color.Transparent;
-            kryptonButton13.StatePressed.Back.Color2 = Color.Transparent;
-            kryptonButton13.StatePressed.Border.Rounding = 10F;
-            kryptonButton13.StateTracking.Border.Rounding = 40F;
-            kryptonButton13.TabIndex = 101;
-            kryptonButton13.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton13.Values.Text = "Agregar";
-            // 
-            // kryptonGroup2
-            // 
-            kryptonGroup2.Location = new Point(480, 788);
-            kryptonGroup2.Size = new Size(165, 59);
-            kryptonGroup2.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroup2.StateCommon.Border.Rounding = 70F;
-            kryptonGroup2.TabIndex = 100;
             // 
             // kryptonDataGridView1
             // 
@@ -833,19 +758,63 @@
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
             // 
+            // kryptonButton12
+            // 
+            kryptonButton12.Location = new Point(773, 787);
+            kryptonButton12.Name = "kryptonButton12";
+            kryptonButton12.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            kryptonButton12.OverrideDefault.Back.Color2 = Color.White;
+            kryptonButton12.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            kryptonButton12.OverrideFocus.Back.Color2 = Color.White;
+            kryptonButton12.Size = new Size(151, 50);
+            kryptonButton12.StateCommon.Back.Color1 = Color.SkyBlue;
+            kryptonButton12.StateCommon.Back.Color2 = Color.White;
+            kryptonButton12.StateCommon.Border.Rounding = 40F;
+            kryptonButton12.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            kryptonButton12.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            kryptonButton12.StateNormal.Back.Color1 = Color.SkyBlue;
+            kryptonButton12.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            kryptonButton12.StatePressed.Back.Color1 = Color.Transparent;
+            kryptonButton12.StatePressed.Back.Color2 = Color.Transparent;
+            kryptonButton12.TabIndex = 157;
+            kryptonButton12.Values.DropDownArrowColor = Color.Empty;
+            kryptonButton12.Values.Text = "Modificar";
+            kryptonButton12.Click += kryptonButton12_Click;
+            // 
+            // kryptonButton15
+            // 
+            kryptonButton15.Location = new Point(486, 786);
+            kryptonButton15.Name = "kryptonButton15";
+            kryptonButton15.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            kryptonButton15.OverrideDefault.Back.Color2 = Color.White;
+            kryptonButton15.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            kryptonButton15.OverrideFocus.Back.Color2 = Color.White;
+            kryptonButton15.Size = new Size(151, 50);
+            kryptonButton15.StateCommon.Back.Color1 = Color.SkyBlue;
+            kryptonButton15.StateCommon.Back.Color2 = Color.White;
+            kryptonButton15.StateCommon.Border.Rounding = 40F;
+            kryptonButton15.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            kryptonButton15.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            kryptonButton15.StateNormal.Back.Color1 = Color.SkyBlue;
+            kryptonButton15.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            kryptonButton15.StatePressed.Back.Color1 = Color.Transparent;
+            kryptonButton15.StatePressed.Back.Color2 = Color.Transparent;
+            kryptonButton15.TabIndex = 156;
+            kryptonButton15.Values.DropDownArrowColor = Color.Empty;
+            kryptonButton15.Values.Text = "Agregar";
+            kryptonButton15.Click += this.kryptonButton15_Click;
+            // 
             // Pago_Abono
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1101, 911);
+            Controls.Add(kryptonButton12);
+            Controls.Add(kryptonButton15);
             Controls.Add(pictureBox20);
             Controls.Add(pictureBox19);
             Controls.Add(pictureBox17);
             Controls.Add(kryptonButton10);
-            Controls.Add(kryptonButton14);
-            Controls.Add(kryptonGroup3);
-            Controls.Add(kryptonButton13);
-            Controls.Add(kryptonGroup2);
             Controls.Add(kryptonDataGridView1);
             Controls.Add(kryptonGroup1);
             Controls.Add(label1);
@@ -864,10 +833,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox20).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox19).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox17).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup3.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup2.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup2).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonDataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).EndInit();
@@ -902,10 +867,6 @@
         private PictureBox pictureBox19;
         private PictureBox pictureBox17;
         private Krypton.Toolkit.KryptonButton kryptonButton10;
-        private Krypton.Toolkit.KryptonButton kryptonButton14;
-        private Krypton.Toolkit.KryptonGroup kryptonGroup3;
-        private Krypton.Toolkit.KryptonButton kryptonButton13;
-        private Krypton.Toolkit.KryptonGroup kryptonGroup2;
         private Krypton.Toolkit.KryptonDataGridView kryptonDataGridView1;
         private Krypton.Toolkit.KryptonGroup kryptonGroup1;
         private Label label1;
@@ -946,5 +907,7 @@
         private PictureBox pictureBox7;
         private PictureBox pictureBox8;
         private PictureBox pictureBox1;
+        private Krypton.Toolkit.KryptonButton kryptonButton12;
+        private Krypton.Toolkit.KryptonButton kryptonButton15;
     }
 }

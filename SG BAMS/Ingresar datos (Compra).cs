@@ -26,5 +26,10 @@ namespace SG_BAMS
         {
 
         }
+
+        private void Ingresar_datos__Compra__Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

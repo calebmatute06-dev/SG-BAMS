@@ -10,23 +10,11 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
-    public partial class Modificar_Datos__Deudor_ : Form
+    public partial class Pago_Abono_Emp : Form
     {
-        public Modificar_Datos__Deudor_()
+        public Pago_Abono_Emp()
         {
             InitializeComponent();
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        
-
-        private void Modificar_Datos__Deudor__Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
