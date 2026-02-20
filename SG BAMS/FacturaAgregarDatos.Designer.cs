@@ -418,7 +418,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(912, 449);
+            ClientSize = new Size(794, 449);
             Controls.Add(kryptonButton4);
             Controls.Add(kryptonDataGridView1);
             Controls.Add(kryptonComboBox1);
