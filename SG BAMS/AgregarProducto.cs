@@ -16,5 +16,10 @@ namespace SG_BAMS
         {
             InitializeComponent();
         }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

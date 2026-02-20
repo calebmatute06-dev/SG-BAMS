@@ -197,6 +197,7 @@
             btnAceptar.TabIndex = 252;
             btnAceptar.Values.DropDownArrowColor = Color.Empty;
             btnAceptar.Values.Text = "Aceptar";
+            btnAceptar.Click += btnAceptar_Click;
             // 
             // txtStock
             // 
