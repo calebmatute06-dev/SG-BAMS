@@ -198,6 +198,7 @@
             txtStock.Size = new Size(250, 39);
             txtStock.StateCommon.Back.Color1 = Color.SkyBlue;
             txtStock.StateCommon.Border.Rounding = 20F;
+            txtStock.StateCommon.Content.Color1 = Color.Navy;
             txtStock.TabIndex = 227;
             txtStock.TextChanged += kryptonTextBox3_TextChanged;
             // 
@@ -220,6 +221,7 @@
             txtPrecio.Size = new Size(250, 39);
             txtPrecio.StateCommon.Back.Color1 = Color.SkyBlue;
             txtPrecio.StateCommon.Border.Rounding = 20F;
+            txtPrecio.StateCommon.Content.Color1 = Color.Navy;
             txtPrecio.TabIndex = 221;
             // 
             // txtNombre
@@ -229,6 +231,7 @@
             txtNombre.Size = new Size(250, 39);
             txtNombre.StateCommon.Back.Color1 = Color.SkyBlue;
             txtNombre.StateCommon.Border.Rounding = 20F;
+            txtNombre.StateCommon.Content.Color1 = Color.Navy;
             txtNombre.StateNormal.Content.Color1 = Color.Navy;
             txtNombre.TabIndex = 220;
             // 
@@ -239,6 +242,7 @@
             txtUsuario.Size = new Size(250, 39);
             txtUsuario.StateCommon.Back.Color1 = Color.SkyBlue;
             txtUsuario.StateCommon.Border.Rounding = 20F;
+            txtUsuario.StateCommon.Content.Color1 = Color.Navy;
             txtUsuario.TabIndex = 219;
             // 
             // label15
@@ -333,6 +337,7 @@
             cmbMarca.Size = new Size(250, 52);
             cmbMarca.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
             cmbMarca.StateCommon.ComboBox.Border.Rounding = 40F;
+            cmbMarca.StateCommon.ComboBox.Content.Color1 = Color.Navy;
             cmbMarca.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbMarca.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
             cmbMarca.StateCommon.Item.Content.ShortText.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -347,6 +352,7 @@
             cmbTipo.Size = new Size(250, 52);
             cmbTipo.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
             cmbTipo.StateCommon.ComboBox.Border.Rounding = 40F;
+            cmbTipo.StateCommon.ComboBox.Content.Color1 = Color.Navy;
             cmbTipo.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbTipo.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
             cmbTipo.StateCommon.Item.Content.ShortText.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -361,6 +367,7 @@
             cmbModelo.Size = new Size(250, 52);
             cmbModelo.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
             cmbModelo.StateCommon.ComboBox.Border.Rounding = 40F;
+            cmbModelo.StateCommon.ComboBox.Content.Color1 = Color.Navy;
             cmbModelo.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbModelo.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
             cmbModelo.StateCommon.Item.Content.ShortText.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -375,6 +382,7 @@
             cmbEstado.Size = new Size(250, 52);
             cmbEstado.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
             cmbEstado.StateCommon.ComboBox.Border.Rounding = 40F;
+            cmbEstado.StateCommon.ComboBox.Content.Color1 = Color.Navy;
             cmbEstado.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbEstado.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
             cmbEstado.StateCommon.Item.Content.ShortText.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -385,6 +393,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(515, 609);
             Controls.Add(cmbEstado);
             Controls.Add(cmbModelo);
