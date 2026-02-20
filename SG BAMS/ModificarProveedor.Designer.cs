@@ -31,30 +31,33 @@
             pictureBox9 = new PictureBox();
             pictureBox4 = new PictureBox();
             pictureBox1 = new PictureBox();
-            kryptonButton1 = new Krypton.Toolkit.KryptonButton();
-            kryptonButton20 = new Krypton.Toolkit.KryptonButton();
+            btnCancelar = new Krypton.Toolkit.KryptonButton();
+            btnAceptar = new Krypton.Toolkit.KryptonButton();
             label8 = new Label();
             btnsalir = new Krypton.Toolkit.KryptonButton();
             pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
-            kryptonTextBox4 = new Krypton.Toolkit.KryptonTextBox();
+            txtDiccionario = new Krypton.Toolkit.KryptonTextBox();
             label2 = new Label();
-            kryptonTextBox3 = new Krypton.Toolkit.KryptonTextBox();
+            txtRTN = new Krypton.Toolkit.KryptonTextBox();
             label1 = new Label();
-            kryptonTextBox2 = new Krypton.Toolkit.KryptonTextBox();
-            kryptonTextBox1 = new Krypton.Toolkit.KryptonTextBox();
-            txtUsu = new Krypton.Toolkit.KryptonTextBox();
+            txtTelefono = new Krypton.Toolkit.KryptonTextBox();
+            txtNombre = new Krypton.Toolkit.KryptonTextBox();
+            txtUsuario = new Krypton.Toolkit.KryptonTextBox();
             label15 = new Label();
             label7 = new Label();
             label4 = new Label();
             label3 = new Label();
             cmbClasificacion = new Krypton.Toolkit.KryptonComboBox();
+            cmbEstado = new Krypton.Toolkit.KryptonComboBox();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cmbClasificacion).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cmbEstado).BeginInit();
             SuspendLayout();
             // 
             // pictureBox9
@@ -79,57 +82,57 @@
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Navy;
-            pictureBox1.Location = new Point(-1, 542);
+            pictureBox1.Location = new Point(-1, 555);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(515, 15);
             pictureBox1.TabIndex = 186;
             pictureBox1.TabStop = false;
             // 
-            // kryptonButton1
+            // btnCancelar
             // 
-            kryptonButton1.Location = new Point(270, 492);
-            kryptonButton1.Name = "kryptonButton1";
-            kryptonButton1.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            kryptonButton1.OverrideDefault.Back.Color2 = Color.White;
-            kryptonButton1.OverrideDefault.Border.Rounding = 40F;
-            kryptonButton1.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            kryptonButton1.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton1.Size = new Size(103, 44);
-            kryptonButton1.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonButton1.StateCommon.Back.Color2 = Color.White;
-            kryptonButton1.StateCommon.Border.Rounding = 40F;
-            kryptonButton1.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton1.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton1.StateNormal.Back.Color1 = Color.SkyBlue;
-            kryptonButton1.StateNormal.Back.Color2 = Color.White;
-            kryptonButton1.StateNormal.Border.Rounding = 40F;
-            kryptonButton1.StateTracking.Border.Rounding = 40F;
-            kryptonButton1.TabIndex = 185;
-            kryptonButton1.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton1.Values.Text = "Cancelar";
+            btnCancelar.Location = new Point(270, 505);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnCancelar.OverrideDefault.Back.Color2 = Color.White;
+            btnCancelar.OverrideDefault.Border.Rounding = 40F;
+            btnCancelar.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnCancelar.OverrideFocus.Back.Color2 = Color.White;
+            btnCancelar.Size = new Size(103, 44);
+            btnCancelar.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnCancelar.StateCommon.Back.Color2 = Color.White;
+            btnCancelar.StateCommon.Border.Rounding = 40F;
+            btnCancelar.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnCancelar.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnCancelar.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnCancelar.StateNormal.Back.Color2 = Color.White;
+            btnCancelar.StateNormal.Border.Rounding = 40F;
+            btnCancelar.StateTracking.Border.Rounding = 40F;
+            btnCancelar.TabIndex = 185;
+            btnCancelar.Values.DropDownArrowColor = Color.Empty;
+            btnCancelar.Values.Text = "Cancelar";
             // 
-            // kryptonButton20
+            // btnAceptar
             // 
-            kryptonButton20.Location = new Point(391, 492);
-            kryptonButton20.Name = "kryptonButton20";
-            kryptonButton20.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            kryptonButton20.OverrideDefault.Back.Color2 = Color.White;
-            kryptonButton20.OverrideDefault.Border.Rounding = 40F;
-            kryptonButton20.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            kryptonButton20.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton20.Size = new Size(103, 44);
-            kryptonButton20.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonButton20.StateCommon.Back.Color2 = Color.White;
-            kryptonButton20.StateCommon.Border.Rounding = 40F;
-            kryptonButton20.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton20.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton20.StateNormal.Back.Color1 = Color.SkyBlue;
-            kryptonButton20.StateNormal.Back.Color2 = Color.White;
-            kryptonButton20.StateNormal.Border.Rounding = 40F;
-            kryptonButton20.StateTracking.Border.Rounding = 40F;
-            kryptonButton20.TabIndex = 184;
-            kryptonButton20.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton20.Values.Text = "Aceptar";
+            btnAceptar.Location = new Point(391, 505);
+            btnAceptar.Name = "btnAceptar";
+            btnAceptar.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnAceptar.OverrideDefault.Back.Color2 = Color.White;
+            btnAceptar.OverrideDefault.Border.Rounding = 40F;
+            btnAceptar.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnAceptar.OverrideFocus.Back.Color2 = Color.White;
+            btnAceptar.Size = new Size(103, 44);
+            btnAceptar.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnAceptar.StateCommon.Back.Color2 = Color.White;
+            btnAceptar.StateCommon.Border.Rounding = 40F;
+            btnAceptar.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnAceptar.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnAceptar.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnAceptar.StateNormal.Back.Color2 = Color.White;
+            btnAceptar.StateNormal.Border.Rounding = 40F;
+            btnAceptar.StateTracking.Border.Rounding = 40F;
+            btnAceptar.TabIndex = 184;
+            btnAceptar.Values.DropDownArrowColor = Color.Empty;
+            btnAceptar.Values.Text = "Aceptar";
             // 
             // label8
             // 
@@ -144,7 +147,7 @@
             // 
             // btnsalir
             // 
-            btnsalir.Location = new Point(20, 492);
+            btnsalir.Location = new Point(20, 505);
             btnsalir.Name = "btnsalir";
             btnsalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnsalir.OverrideDefault.Back.Color2 = Color.White;
@@ -183,14 +186,15 @@
             pictureBox2.TabIndex = 164;
             pictureBox2.TabStop = false;
             // 
-            // kryptonTextBox4
+            // txtDiccionario
             // 
-            kryptonTextBox4.Location = new Point(200, 285);
-            kryptonTextBox4.Name = "kryptonTextBox4";
-            kryptonTextBox4.Size = new Size(250, 39);
-            kryptonTextBox4.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonTextBox4.StateCommon.Border.Rounding = 20F;
-            kryptonTextBox4.TabIndex = 202;
+            txtDiccionario.Location = new Point(200, 258);
+            txtDiccionario.Name = "txtDiccionario";
+            txtDiccionario.Size = new Size(250, 39);
+            txtDiccionario.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtDiccionario.StateCommon.Border.Rounding = 20F;
+            txtDiccionario.StateCommon.Content.Color1 = Color.Navy;
+            txtDiccionario.TabIndex = 202;
             // 
             // label2
             // 
@@ -198,20 +202,21 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(65, 291);
+            label2.Location = new Point(65, 264);
             label2.Name = "label2";
             label2.Size = new Size(115, 33);
             label2.TabIndex = 201;
             label2.Text = "Direccion:";
             // 
-            // kryptonTextBox3
+            // txtRTN
             // 
-            kryptonTextBox3.Location = new Point(200, 339);
-            kryptonTextBox3.Name = "kryptonTextBox3";
-            kryptonTextBox3.Size = new Size(250, 39);
-            kryptonTextBox3.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonTextBox3.StateCommon.Border.Rounding = 20F;
-            kryptonTextBox3.TabIndex = 200;
+            txtRTN.Location = new Point(200, 312);
+            txtRTN.Name = "txtRTN";
+            txtRTN.Size = new Size(250, 39);
+            txtRTN.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtRTN.StateCommon.Border.Rounding = 20F;
+            txtRTN.StateCommon.Content.Color1 = Color.Navy;
+            txtRTN.TabIndex = 200;
             // 
             // label1
             // 
@@ -219,38 +224,41 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(65, 396);
+            label1.Location = new Point(65, 432);
             label1.Name = "label1";
             label1.Size = new Size(143, 33);
             label1.TabIndex = 198;
             label1.Text = "Clasificacion:";
             // 
-            // kryptonTextBox2
+            // txtTelefono
             // 
-            kryptonTextBox2.Location = new Point(200, 229);
-            kryptonTextBox2.Name = "kryptonTextBox2";
-            kryptonTextBox2.Size = new Size(250, 39);
-            kryptonTextBox2.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonTextBox2.StateCommon.Border.Rounding = 20F;
-            kryptonTextBox2.TabIndex = 197;
+            txtTelefono.Location = new Point(200, 202);
+            txtTelefono.Name = "txtTelefono";
+            txtTelefono.Size = new Size(250, 39);
+            txtTelefono.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtTelefono.StateCommon.Border.Rounding = 20F;
+            txtTelefono.StateCommon.Content.Color1 = Color.Navy;
+            txtTelefono.TabIndex = 197;
             // 
-            // kryptonTextBox1
+            // txtNombre
             // 
-            kryptonTextBox1.Location = new Point(200, 176);
-            kryptonTextBox1.Name = "kryptonTextBox1";
-            kryptonTextBox1.Size = new Size(250, 39);
-            kryptonTextBox1.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonTextBox1.StateCommon.Border.Rounding = 20F;
-            kryptonTextBox1.TabIndex = 196;
+            txtNombre.Location = new Point(200, 149);
+            txtNombre.Name = "txtNombre";
+            txtNombre.Size = new Size(250, 39);
+            txtNombre.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtNombre.StateCommon.Border.Rounding = 20F;
+            txtNombre.StateCommon.Content.Color1 = Color.Navy;
+            txtNombre.TabIndex = 196;
             // 
-            // txtUsu
+            // txtUsuario
             // 
-            txtUsu.Location = new Point(200, 127);
-            txtUsu.Name = "txtUsu";
-            txtUsu.Size = new Size(250, 39);
-            txtUsu.StateCommon.Back.Color1 = Color.SkyBlue;
-            txtUsu.StateCommon.Border.Rounding = 20F;
-            txtUsu.TabIndex = 195;
+            txtUsuario.Location = new Point(200, 100);
+            txtUsuario.Name = "txtUsuario";
+            txtUsuario.Size = new Size(250, 39);
+            txtUsuario.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtUsuario.StateCommon.Border.Rounding = 20F;
+            txtUsuario.StateCommon.Content.Color1 = Color.Navy;
+            txtUsuario.TabIndex = 195;
             // 
             // label15
             // 
@@ -258,7 +266,7 @@
             label15.BackColor = Color.Transparent;
             label15.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label15.ForeColor = Color.Navy;
-            label15.Location = new Point(65, 345);
+            label15.Location = new Point(65, 318);
             label15.Name = "label15";
             label15.Size = new Size(69, 33);
             label15.TabIndex = 194;
@@ -270,7 +278,7 @@
             label7.BackColor = Color.Transparent;
             label7.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Navy;
-            label7.Location = new Point(65, 235);
+            label7.Location = new Point(65, 208);
             label7.Name = "label7";
             label7.Size = new Size(116, 33);
             label7.TabIndex = 193;
@@ -282,7 +290,7 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(65, 182);
+            label4.Location = new Point(65, 155);
             label4.Name = "label4";
             label4.Size = new Size(111, 33);
             label4.TabIndex = 192;
@@ -294,7 +302,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(65, 133);
+            label3.Location = new Point(65, 106);
             label3.Name = "label3";
             label3.Size = new Size(50, 33);
             label3.TabIndex = 191;
@@ -303,7 +311,7 @@
             // cmbClasificacion
             // 
             cmbClasificacion.DropDownWidth = 300;
-            cmbClasificacion.Location = new Point(200, 384);
+            cmbClasificacion.Location = new Point(200, 422);
             cmbClasificacion.Name = "cmbClasificacion";
             cmbClasificacion.Size = new Size(250, 52);
             cmbClasificacion.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
@@ -315,20 +323,49 @@
             cmbClasificacion.StateNormal.ComboBox.Border.Rounding = 40F;
             cmbClasificacion.TabIndex = 236;
             // 
+            // cmbEstado
+            // 
+            cmbEstado.DropDownWidth = 300;
+            cmbEstado.Location = new Point(200, 364);
+            cmbEstado.Name = "cmbEstado";
+            cmbEstado.Size = new Size(250, 52);
+            cmbEstado.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbEstado.StateCommon.ComboBox.Border.Rounding = 40F;
+            cmbEstado.StateCommon.ComboBox.Content.Color1 = Color.Navy;
+            cmbEstado.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            cmbEstado.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
+            cmbEstado.StateCommon.Item.Content.ShortText.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbEstado.StateNormal.ComboBox.Border.Rounding = 40F;
+            cmbEstado.TabIndex = 240;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.BackColor = Color.Transparent;
+            label5.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.Navy;
+            label5.Location = new Point(65, 376);
+            label5.Name = "label5";
+            label5.Size = new Size(91, 33);
+            label5.TabIndex = 239;
+            label5.Text = "Estado:";
+            // 
             // ModificarProveedor
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(515, 556);
+            ClientSize = new Size(515, 570);
+            Controls.Add(cmbEstado);
+            Controls.Add(label5);
             Controls.Add(cmbClasificacion);
-            Controls.Add(kryptonTextBox4);
+            Controls.Add(txtDiccionario);
             Controls.Add(label2);
-            Controls.Add(kryptonTextBox3);
+            Controls.Add(txtRTN);
             Controls.Add(label1);
-            Controls.Add(kryptonTextBox2);
-            Controls.Add(kryptonTextBox1);
-            Controls.Add(txtUsu);
+            Controls.Add(txtTelefono);
+            Controls.Add(txtNombre);
+            Controls.Add(txtUsuario);
             Controls.Add(label15);
             Controls.Add(label7);
             Controls.Add(label4);
@@ -336,8 +373,8 @@
             Controls.Add(pictureBox9);
             Controls.Add(pictureBox4);
             Controls.Add(pictureBox1);
-            Controls.Add(kryptonButton1);
-            Controls.Add(kryptonButton20);
+            Controls.Add(btnCancelar);
+            Controls.Add(btnAceptar);
             Controls.Add(label8);
             Controls.Add(btnsalir);
             Controls.Add(pictureBox3);
@@ -350,6 +387,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)cmbClasificacion).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cmbEstado).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -359,23 +397,25 @@
         private PictureBox pictureBox9;
         private PictureBox pictureBox4;
         private PictureBox pictureBox1;
-        private Krypton.Toolkit.KryptonButton kryptonButton1;
-        private Krypton.Toolkit.KryptonButton kryptonButton20;
+        private Krypton.Toolkit.KryptonButton btnCancelar;
+        private Krypton.Toolkit.KryptonButton btnAceptar;
         private Label label8;
         private Krypton.Toolkit.KryptonButton btnsalir;
         private PictureBox pictureBox3;
         private PictureBox pictureBox2;
-        private Krypton.Toolkit.KryptonTextBox kryptonTextBox4;
+        private Krypton.Toolkit.KryptonTextBox txtDiccionario;
         private Label label2;
-        private Krypton.Toolkit.KryptonTextBox kryptonTextBox3;
+        private Krypton.Toolkit.KryptonTextBox txtRTN;
         private Label label1;
-        private Krypton.Toolkit.KryptonTextBox kryptonTextBox2;
-        private Krypton.Toolkit.KryptonTextBox kryptonTextBox1;
-        private Krypton.Toolkit.KryptonTextBox txtUsu;
+        private Krypton.Toolkit.KryptonTextBox txtTelefono;
+        private Krypton.Toolkit.KryptonTextBox txtNombre;
+        private Krypton.Toolkit.KryptonTextBox txtUsuario;
         private Label label15;
         private Label label7;
         private Label label4;
         private Label label3;
         private Krypton.Toolkit.KryptonComboBox cmbClasificacion;
+        private Krypton.Toolkit.KryptonComboBox cmbEstado;
+        private Label label5;
     }
 }
