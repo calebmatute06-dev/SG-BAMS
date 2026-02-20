@@ -67,7 +67,6 @@ namespace SG_BAMS
             pictureBox18 = new PictureBox();
             button12 = new Button();
             pictureBox3 = new PictureBox();
-            label1 = new Label();
             btnsalirLogin = new Krypton.Toolkit.KryptonButton();
             btninicioSesion = new Krypton.Toolkit.KryptonButton();
             btnLimpiar = new Krypton.Toolkit.KryptonButton();
@@ -81,6 +80,8 @@ namespace SG_BAMS
             lbl = new Krypton.Toolkit.KryptonButton();
             kryptonGroup1 = new Krypton.Toolkit.KryptonGroup();
             label8 = new Label();
+            kryptonGroup2 = new Krypton.Toolkit.KryptonGroup();
+            label1 = new Label();
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             panel4.SuspendLayout();
@@ -104,6 +105,8 @@ namespace SG_BAMS
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroup2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroup2.Panel).BeginInit();
             SuspendLayout();
             // 
             // panel6
@@ -692,20 +695,9 @@ namespace SG_BAMS
             pictureBox3.TabIndex = 37;
             pictureBox3.TabStop = false;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.Navy;
-            label1.Location = new Point(417, 167);
-            label1.Name = "label1";
-            label1.Size = new Size(160, 24);
-            label1.TabIndex = 180;
-            label1.Text = "RANGO DE FECHA";
-            // 
             // btnsalirLogin
             // 
-            btnsalirLogin.Location = new Point(387, 533);
+            btnsalirLogin.Location = new Point(387, 695);
             btnsalirLogin.Name = "btnsalirLogin";
             btnsalirLogin.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnsalirLogin.OverrideDefault.Back.Color2 = Color.White;
@@ -728,7 +720,7 @@ namespace SG_BAMS
             // 
             // btninicioSesion
             // 
-            btninicioSesion.Location = new Point(387, 467);
+            btninicioSesion.Location = new Point(387, 629);
             btninicioSesion.Name = "btninicioSesion";
             btninicioSesion.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btninicioSesion.OverrideDefault.Back.Color2 = Color.White;
@@ -749,7 +741,7 @@ namespace SG_BAMS
             // 
             // btnLimpiar
             // 
-            btnLimpiar.Location = new Point(498, 666);
+            btnLimpiar.Location = new Point(498, 828);
             btnLimpiar.Name = "btnLimpiar";
             btnLimpiar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnLimpiar.OverrideDefault.Back.Color2 = Color.White;
@@ -773,7 +765,7 @@ namespace SG_BAMS
             // 
             // btnGenerar
             // 
-            btnGenerar.Location = new Point(304, 666);
+            btnGenerar.Location = new Point(304, 828);
             btnGenerar.Name = "btnGenerar";
             btnGenerar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnGenerar.OverrideDefault.Back.Color2 = Color.White;
@@ -795,13 +787,13 @@ namespace SG_BAMS
             // 
             // kryptonButton12
             // 
-            kryptonButton12.Location = new Point(676, 186);
+            kryptonButton12.Location = new Point(676, 204);
             kryptonButton12.Name = "kryptonButton12";
             kryptonButton12.OverrideDefault.Back.Color1 = Color.SkyBlue;
             kryptonButton12.OverrideDefault.Back.Color2 = Color.White;
             kryptonButton12.OverrideFocus.Back.Color1 = Color.SkyBlue;
             kryptonButton12.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton12.Size = new Size(400, 551);
+            kryptonButton12.Size = new Size(400, 605);
             kryptonButton12.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonButton12.StateCommon.Back.Color2 = Color.White;
             kryptonButton12.StateCommon.Border.Rounding = 100F;
@@ -816,9 +808,9 @@ namespace SG_BAMS
             // listBox1
             // 
             listBox1.FormattingEnabled = true;
-            listBox1.Location = new Point(701, 224);
+            listBox1.Location = new Point(701, 244);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(353, 464);
+            listBox1.Size = new Size(353, 524);
             listBox1.TabIndex = 238;
             // 
             // btnSalir
@@ -844,7 +836,7 @@ namespace SG_BAMS
             // 
             // dtInicio
             // 
-            dtInicio.Location = new Point(371, 258);
+            dtInicio.Location = new Point(366, 339);
             dtInicio.Name = "dtInicio";
             dtInicio.Size = new Size(248, 49);
             dtInicio.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -857,7 +849,7 @@ namespace SG_BAMS
             // 
             // dtFin
             // 
-            dtFin.Location = new Point(371, 348);
+            dtFin.Location = new Point(366, 429);
             dtFin.Name = "dtFin";
             dtFin.Size = new Size(248, 49);
             dtFin.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -871,7 +863,7 @@ namespace SG_BAMS
             // 
             // kryptonButton13
             // 
-            kryptonButton13.Location = new Point(430, 213);
+            kryptonButton13.Location = new Point(425, 294);
             kryptonButton13.Name = "kryptonButton13";
             kryptonButton13.OverrideDefault.Back.Color1 = Color.Transparent;
             kryptonButton13.OverrideDefault.Back.Color2 = Color.Transparent;
@@ -896,7 +888,7 @@ namespace SG_BAMS
             // 
             // lbl
             // 
-            lbl.Location = new Point(430, 306);
+            lbl.Location = new Point(425, 387);
             lbl.Name = "lbl";
             lbl.OverrideDefault.Back.Color1 = Color.Transparent;
             lbl.OverrideDefault.Back.Color2 = Color.Transparent;
@@ -921,7 +913,7 @@ namespace SG_BAMS
             // 
             // kryptonGroup1
             // 
-            kryptonGroup1.Location = new Point(498, 72);
+            kryptonGroup1.Location = new Point(498, 110);
             kryptonGroup1.Size = new Size(315, 50);
             kryptonGroup1.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroup1.StateCommon.Border.Rounding = 30F;
@@ -933,11 +925,31 @@ namespace SG_BAMS
             label8.BackColor = Color.SkyBlue;
             label8.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Navy;
-            label8.Location = new Point(510, 80);
+            label8.Location = new Point(510, 118);
             label8.Name = "label8";
             label8.Size = new Size(287, 35);
             label8.TabIndex = 246;
             label8.Text = "Modificar Producto";
+            // 
+            // kryptonGroup2
+            // 
+            kryptonGroup2.Location = new Point(402, 263);
+            kryptonGroup2.Size = new Size(182, 33);
+            kryptonGroup2.StateCommon.Back.Color1 = Color.SkyBlue;
+            kryptonGroup2.StateCommon.Border.Rounding = 30F;
+            kryptonGroup2.TabIndex = 247;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.SkyBlue;
+            label1.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.Navy;
+            label1.Location = new Point(415, 267);
+            label1.Name = "label1";
+            label1.Size = new Size(160, 24);
+            label1.TabIndex = 248;
+            label1.Text = "RANGO DE FECHA";
             // 
             // ReporteAdmin
             // 
@@ -945,6 +957,8 @@ namespace SG_BAMS
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1105, 905);
+            Controls.Add(label1);
+            Controls.Add(kryptonGroup2);
             Controls.Add(label8);
             Controls.Add(kryptonGroup1);
             Controls.Add(lbl);
@@ -958,7 +972,6 @@ namespace SG_BAMS
             Controls.Add(btnGenerar);
             Controls.Add(btnsalirLogin);
             Controls.Add(btninicioSesion);
-            Controls.Add(label1);
             Controls.Add(pictureBox3);
             Controls.Add(kryptonButton11);
             Controls.Add(pictureBox18);
@@ -996,6 +1009,8 @@ namespace SG_BAMS
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroup2.Panel).EndInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroup2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1045,7 +1060,6 @@ namespace SG_BAMS
         private PictureBox pictureBox18;
         private Button button12;
         private PictureBox pictureBox3;
-        private Label label1;
         private Krypton.Toolkit.KryptonButton btnsalirLogin;
         private Krypton.Toolkit.KryptonButton btninicioSesion;
         private Krypton.Toolkit.KryptonButton btnLimpiar;
@@ -1059,5 +1073,7 @@ namespace SG_BAMS
         private Krypton.Toolkit.KryptonButton lbl;
         private Krypton.Toolkit.KryptonGroup kryptonGroup1;
         private Label label8;
+        private Krypton.Toolkit.KryptonGroup kryptonGroup2;
+        private Label label1;
     }
 }
