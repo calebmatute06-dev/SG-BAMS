@@ -1,4 +1,5 @@
-﻿namespace SG_BAMS
+﻿
+namespace SG_BAMS
 {
     partial class Pago_Abono
     {
@@ -859,6 +860,11 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
+        }
+
+        private void kryptonButton15_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
