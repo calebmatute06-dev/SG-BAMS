@@ -180,14 +180,7 @@
             // 
             // pictureBox4
             // 
-            pictureBox4.BackgroundImage = Properties.Resources.Roles;
-            pictureBox4.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox4.Location = new Point(391, 21);
-            pictureBox4.Margin = new Padding(3, 2, 3, 2);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(53, 48);
-            pictureBox4.TabIndex = 144;
-            pictureBox4.TabStop = false;
+            
             // 
             // frmModificarRol
             // 

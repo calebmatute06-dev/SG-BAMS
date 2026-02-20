@@ -129,13 +129,7 @@
             // 
             // kryptonPictureBox1
             // 
-            kryptonPictureBox1.BackgroundImage = Properties.Resources.SubirArchivo2;
-            kryptonPictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
-            kryptonPictureBox1.Location = new Point(76, 57);
-            kryptonPictureBox1.Name = "kryptonPictureBox1";
-            kryptonPictureBox1.Size = new Size(50, 50);
-            kryptonPictureBox1.TabIndex = 135;
-            kryptonPictureBox1.TabStop = false;
+            
             // 
             // kryptonButton1
             // 

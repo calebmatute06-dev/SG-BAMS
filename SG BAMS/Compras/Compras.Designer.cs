@@ -770,14 +770,7 @@
             // 
             // pictureBox17
             // 
-            pictureBox17.BackColor = Color.White;
-            pictureBox17.Image = Properties.Resources.Carrito2;
-            pictureBox17.Location = new Point(779, 155);
-            pictureBox17.Name = "pictureBox17";
-            pictureBox17.Size = new Size(73, 62);
-            pictureBox17.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox17.TabIndex = 84;
-            pictureBox17.TabStop = false;
+            
             // 
             // pictureBox20
             // 
@@ -792,14 +785,7 @@
             // 
             // pictureBox21
             // 
-            pictureBox21.BackColor = Color.Transparent;
-            pictureBox21.Image = Properties.Resources.Carrito;
-            pictureBox21.Location = new Point(357, 112);
-            pictureBox21.Name = "pictureBox21";
-            pictureBox21.Size = new Size(327, 291);
-            pictureBox21.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox21.TabIndex = 86;
-            pictureBox21.TabStop = false;
+            
             // 
             // kryptonButton13
             // 
