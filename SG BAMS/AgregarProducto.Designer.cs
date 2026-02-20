@@ -125,6 +125,7 @@
             // 
             cmbEstado.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbEstado.DropDownWidth = 239;
+            cmbEstado.Items.AddRange(new object[] { "ACTIVO", "INACTIVO" });
             cmbEstado.Location = new Point(218, 397);
             cmbEstado.Name = "cmbEstado";
             cmbEstado.Size = new Size(239, 26);
@@ -137,6 +138,7 @@
             // 
             cmbModelo.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbModelo.DropDownWidth = 239;
+            cmbModelo.Items.AddRange(new object[] { "TURISMO", "CIVIC", "4X4", "CAMIONETA" });
             cmbModelo.Location = new Point(218, 347);
             cmbModelo.Name = "cmbModelo";
             cmbModelo.Size = new Size(239, 26);
@@ -147,8 +149,10 @@
             // 
             // cmbTipo
             // 
+            cmbTipo.AutoCompleteCustomSource.AddRange(new string[] { "BATERIA", "ACEITE", "ACCESORIO", "HERRMAIENTA", "MANTENIMIENTO" });
             cmbTipo.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbTipo.DropDownWidth = 239;
+            cmbTipo.Items.AddRange(new object[] { "TURISMO", "CIVIC", "4X4", "PICKUP", "MOTOCICLETA" });
             cmbTipo.Location = new Point(218, 294);
             cmbTipo.Name = "cmbTipo";
             cmbTipo.Size = new Size(239, 26);
@@ -159,8 +163,10 @@
             // 
             // cmbMarca
             // 
+            cmbMarca.AutoCompleteCustomSource.AddRange(new string[] { "TOYOTA", "HONDA", "LTH", "PREMIUM", "XD" });
             cmbMarca.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbMarca.DropDownWidth = 239;
+            cmbMarca.Items.AddRange(new object[] { "TOYOTA", "HONDA", "NISSAN", "KIA" });
             cmbMarca.Location = new Point(218, 245);
             cmbMarca.Name = "cmbMarca";
             cmbMarca.Size = new Size(239, 26);
