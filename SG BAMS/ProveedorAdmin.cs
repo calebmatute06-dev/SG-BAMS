@@ -125,5 +125,10 @@ namespace SG_BAMS
 
             flowLayoutPanel1.Controls.Add(card);
         }
+
+        private void ProveedorAdmin_Load(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+        }
     }
 }

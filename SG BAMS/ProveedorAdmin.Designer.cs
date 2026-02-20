@@ -824,6 +824,7 @@
             Controls.Add(panel1);
             Name = "ProveedorAdmin";
             Text = "ProveedorAdmin";
+            Load += ProveedorAdmin_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox18).EndInit();
             panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
