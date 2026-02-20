@@ -174,7 +174,7 @@
             // 
             // kryptonCheckBox1
             // 
-            kryptonCheckBox1.Location = new Point(326, 140);
+            kryptonCheckBox1.Location = new Point(328, 140);
             kryptonCheckBox1.Name = "kryptonCheckBox1";
             kryptonCheckBox1.Size = new Size(194, 31);
             kryptonCheckBox1.StateCommon.ShortText.Color1 = Color.Navy;
