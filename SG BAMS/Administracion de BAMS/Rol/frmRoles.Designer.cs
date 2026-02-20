@@ -123,14 +123,7 @@
             // 
             // pictureBox3
             // 
-            pictureBox3.BackgroundImage = Properties.Resources.Roles;
-            pictureBox3.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox3.Location = new Point(371, 30);
-            pictureBox3.Margin = new Padding(3, 2, 3, 2);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(53, 48);
-            pictureBox3.TabIndex = 123;
-            pictureBox3.TabStop = false;
+           
             // 
             // kryptonButton1
             // 

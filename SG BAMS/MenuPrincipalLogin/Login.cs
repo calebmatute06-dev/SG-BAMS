@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace SG_BAMS
 {
     public partial class Login : Form
@@ -18,10 +19,6 @@ namespace SG_BAMS
         {
             InitializeComponent();
         }
-
-
-
-
 
 
         private void btnSalir_Click(object sender, EventArgs e)
