@@ -41,12 +41,14 @@
             btnImprimir = new Krypton.Toolkit.KryptonButton();
             btnImpresora = new Krypton.Toolkit.KryptonButton();
             btnCancelar = new Krypton.Toolkit.KryptonButton();
-            cmbTipoPagina = new Krypton.Toolkit.KryptonComboBox();
             rbHorizontal = new RadioButton();
             radioButton1 = new RadioButton();
             listBox1 = new ListBox();
             kryptonButton12 = new Krypton.Toolkit.KryptonButton();
             kryptonButton1 = new Krypton.Toolkit.KryptonButton();
+            kryptonComboBox2 = new Krypton.Toolkit.KryptonComboBox();
+            kryptonButton13 = new Krypton.Toolkit.KryptonButton();
+            groupBox1 = new GroupBox();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             panel1.SuspendLayout();
@@ -56,7 +58,8 @@
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)cmbTipoPagina).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonComboBox2).BeginInit();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // panel2
@@ -217,26 +220,11 @@
             btnCancelar.Values.DropDownArrowColor = Color.Empty;
             btnCancelar.Values.Text = "Cancelar";
             // 
-            // cmbTipoPagina
-            // 
-            cmbTipoPagina.DropDownWidth = 300;
-            cmbTipoPagina.Location = new Point(237, 140);
-            cmbTipoPagina.Name = "cmbTipoPagina";
-            cmbTipoPagina.Size = new Size(172, 52);
-            cmbTipoPagina.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
-            cmbTipoPagina.StateCommon.ComboBox.Border.Rounding = 40F;
-            cmbTipoPagina.StateCommon.ComboBox.Content.Color1 = Color.Navy;
-            cmbTipoPagina.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
-            cmbTipoPagina.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
-            cmbTipoPagina.StateCommon.Item.Content.ShortText.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cmbTipoPagina.StateNormal.ComboBox.Border.Rounding = 40F;
-            cmbTipoPagina.TabIndex = 236;
-            // 
             // rbHorizontal
             // 
             rbHorizontal.AutoSize = true;
             rbHorizontal.ForeColor = Color.Navy;
-            rbHorizontal.Location = new Point(274, 250);
+            rbHorizontal.Location = new Point(28, 71);
             rbHorizontal.Name = "rbHorizontal";
             rbHorizontal.Size = new Size(100, 24);
             rbHorizontal.TabIndex = 237;
@@ -248,7 +236,7 @@
             // 
             radioButton1.AutoSize = true;
             radioButton1.ForeColor = Color.Navy;
-            radioButton1.Location = new Point(274, 211);
+            radioButton1.Location = new Point(28, 32);
             radioButton1.Name = "radioButton1";
             radioButton1.Size = new Size(79, 24);
             radioButton1.TabIndex = 238;
@@ -305,18 +293,69 @@
             kryptonButton1.Values.DropDownArrowColor = Color.Empty;
             kryptonButton1.Values.Text = "Salir";
             // 
+            // kryptonComboBox2
+            // 
+            kryptonComboBox2.DropDownWidth = 300;
+            kryptonComboBox2.Location = new Point(229, 153);
+            kryptonComboBox2.Name = "kryptonComboBox2";
+            kryptonComboBox2.Size = new Size(191, 52);
+            kryptonComboBox2.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            kryptonComboBox2.StateCommon.ComboBox.Border.Rounding = 40F;
+            kryptonComboBox2.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            kryptonComboBox2.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
+            kryptonComboBox2.StateCommon.Item.Content.ShortText.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            kryptonComboBox2.StateNormal.ComboBox.Border.Rounding = 40F;
+            kryptonComboBox2.TabIndex = 242;
+            // 
+            // kryptonButton13
+            // 
+            kryptonButton13.Location = new Point(126, 158);
+            kryptonButton13.Name = "kryptonButton13";
+            kryptonButton13.OverrideDefault.Back.Color1 = Color.Transparent;
+            kryptonButton13.OverrideDefault.Back.Color2 = Color.Transparent;
+            kryptonButton13.OverrideDefault.Border.Rounding = 40F;
+            kryptonButton13.OverrideFocus.Back.Color1 = Color.White;
+            kryptonButton13.OverrideFocus.Back.Color2 = Color.SkyBlue;
+            kryptonButton13.Size = new Size(98, 41);
+            kryptonButton13.StateCommon.Back.Color1 = Color.Transparent;
+            kryptonButton13.StateCommon.Back.Color2 = Color.Transparent;
+            kryptonButton13.StateCommon.Border.Rounding = 40F;
+            kryptonButton13.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            kryptonButton13.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            kryptonButton13.StateNormal.Back.Color1 = Color.Transparent;
+            kryptonButton13.StateNormal.Back.Color2 = Color.Transparent;
+            kryptonButton13.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
+            kryptonButton13.StatePressed.Back.Color1 = Color.Transparent;
+            kryptonButton13.StatePressed.Back.Color2 = Color.Transparent;
+            kryptonButton13.StateTracking.Border.Rounding = 40F;
+            kryptonButton13.TabIndex = 243;
+            kryptonButton13.Values.DropDownArrowColor = Color.Empty;
+            kryptonButton13.Values.Text = "Tipo de hoja:";
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(rbHorizontal);
+            groupBox1.Controls.Add(radioButton1);
+            groupBox1.ForeColor = Color.Navy;
+            groupBox1.Location = new Point(239, 221);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(181, 125);
+            groupBox1.TabIndex = 244;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Orientacion";
+            // 
             // ImprimirReporte
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(800, 510);
+            Controls.Add(groupBox1);
+            Controls.Add(kryptonButton13);
+            Controls.Add(kryptonComboBox2);
             Controls.Add(kryptonButton1);
             Controls.Add(listBox1);
             Controls.Add(kryptonButton12);
-            Controls.Add(radioButton1);
-            Controls.Add(rbHorizontal);
-            Controls.Add(cmbTipoPagina);
             Controls.Add(btnCancelar);
             Controls.Add(btnImprimir);
             Controls.Add(btnImpresora);
@@ -337,7 +376,9 @@
             panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
-            ((System.ComponentModel.ISupportInitialize)cmbTipoPagina).EndInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonComboBox2).EndInit();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -357,11 +398,13 @@
         private Krypton.Toolkit.KryptonButton btnImprimir;
         private Krypton.Toolkit.KryptonButton btnImpresora;
         private Krypton.Toolkit.KryptonButton btnCancelar;
-        private Krypton.Toolkit.KryptonComboBox cmbTipoPagina;
         private RadioButton rbHorizontal;
         private RadioButton radioButton1;
         private ListBox listBox1;
         private Krypton.Toolkit.KryptonButton kryptonButton12;
         private Krypton.Toolkit.KryptonButton kryptonButton1;
+        private Krypton.Toolkit.KryptonComboBox kryptonComboBox2;
+        private Krypton.Toolkit.KryptonButton kryptonButton13;
+        private GroupBox groupBox1;
     }
 }

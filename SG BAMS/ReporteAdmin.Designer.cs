@@ -76,8 +76,10 @@ namespace SG_BAMS
             kryptonButton12 = new Krypton.Toolkit.KryptonButton();
             listBox1 = new ListBox();
             btnSalir = new Krypton.Toolkit.KryptonButton();
-            kryptonComboBox1 = new Krypton.Toolkit.KryptonComboBox();
-            cmbModelo = new Krypton.Toolkit.KryptonComboBox();
+            dtInicio = new Krypton.Toolkit.KryptonDateTimePicker();
+            dtFin = new Krypton.Toolkit.KryptonDateTimePicker();
+            kryptonButton13 = new Krypton.Toolkit.KryptonButton();
+            lbl = new Krypton.Toolkit.KryptonButton();
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             panel4.SuspendLayout();
@@ -99,8 +101,6 @@ namespace SG_BAMS
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonComboBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)cmbModelo).BeginInit();
             SuspendLayout();
             // 
             // panel6
@@ -719,7 +719,7 @@ namespace SG_BAMS
             label1.AutoSize = true;
             label1.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(414, 224);
+            label1.Location = new Point(417, 167);
             label1.Name = "label1";
             label1.Size = new Size(160, 24);
             label1.TabIndex = 180;
@@ -727,7 +727,7 @@ namespace SG_BAMS
             // 
             // btnsalirLogin
             // 
-            btnsalirLogin.Location = new Point(426, 466);
+            btnsalirLogin.Location = new Point(387, 533);
             btnsalirLogin.Name = "btnsalirLogin";
             btnsalirLogin.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnsalirLogin.OverrideDefault.Back.Color2 = Color.White;
@@ -750,7 +750,7 @@ namespace SG_BAMS
             // 
             // btninicioSesion
             // 
-            btninicioSesion.Location = new Point(426, 400);
+            btninicioSesion.Location = new Point(387, 467);
             btninicioSesion.Name = "btninicioSesion";
             btninicioSesion.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btninicioSesion.OverrideDefault.Back.Color2 = Color.White;
@@ -813,7 +813,7 @@ namespace SG_BAMS
             btnGenerar.TabIndex = 183;
             btnGenerar.Values.DropDownArrowColor = Color.Empty;
             btnGenerar.Values.Text = "Generar";
-            btnGenerar.Click += this.kryptonButton13_Click;
+            btnGenerar.Click += kryptonButton13_Click;
             // 
             // kryptonButton12
             // 
@@ -864,35 +864,77 @@ namespace SG_BAMS
             btnSalir.Values.DropDownArrowColor = Color.Empty;
             btnSalir.Values.Text = "Salir";
             // 
-            // kryptonComboBox1
+            // dtInicio
             // 
-            kryptonComboBox1.DropDownWidth = 300;
-            kryptonComboBox1.Location = new Point(304, 267);
-            kryptonComboBox1.Name = "kryptonComboBox1";
-            kryptonComboBox1.Size = new Size(172, 52);
-            kryptonComboBox1.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
-            kryptonComboBox1.StateCommon.ComboBox.Border.Rounding = 40F;
-            kryptonComboBox1.StateCommon.ComboBox.Content.Color1 = Color.Navy;
-            kryptonComboBox1.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
-            kryptonComboBox1.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
-            kryptonComboBox1.StateCommon.Item.Content.ShortText.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonComboBox1.StateNormal.ComboBox.Border.Rounding = 40F;
-            kryptonComboBox1.TabIndex = 236;
+            dtInicio.Location = new Point(371, 258);
+            dtInicio.Name = "dtInicio";
+            dtInicio.Size = new Size(248, 47);
+            dtInicio.StateCommon.Back.Color1 = Color.SkyBlue;
+            dtInicio.StateCommon.Border.Color1 = Color.SkyBlue;
+            dtInicio.StateCommon.Border.Color2 = Color.SkyBlue;
+            dtInicio.StateCommon.Border.Rounding = 35F;
+            dtInicio.TabIndex = 240;
             // 
-            // cmbModelo
+            // dtFin
             // 
-            cmbModelo.DropDownWidth = 300;
-            cmbModelo.Location = new Point(498, 267);
-            cmbModelo.Name = "cmbModelo";
-            cmbModelo.Size = new Size(172, 52);
-            cmbModelo.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
-            cmbModelo.StateCommon.ComboBox.Border.Rounding = 40F;
-            cmbModelo.StateCommon.ComboBox.Content.Color1 = Color.Navy;
-            cmbModelo.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
-            cmbModelo.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
-            cmbModelo.StateCommon.Item.Content.ShortText.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cmbModelo.StateNormal.ComboBox.Border.Rounding = 40F;
-            cmbModelo.TabIndex = 235;
+            dtFin.Location = new Point(371, 348);
+            dtFin.Name = "dtFin";
+            dtFin.Size = new Size(248, 47);
+            dtFin.StateCommon.Back.Color1 = Color.SkyBlue;
+            dtFin.StateCommon.Border.Color1 = Color.SkyBlue;
+            dtFin.StateCommon.Border.Color2 = Color.SkyBlue;
+            dtFin.StateCommon.Border.Rounding = 35F;
+            dtFin.TabIndex = 241;
+            // 
+            // kryptonButton13
+            // 
+            kryptonButton13.Location = new Point(430, 213);
+            kryptonButton13.Name = "kryptonButton13";
+            kryptonButton13.OverrideDefault.Back.Color1 = Color.Transparent;
+            kryptonButton13.OverrideDefault.Back.Color2 = Color.Transparent;
+            kryptonButton13.OverrideDefault.Border.Rounding = 40F;
+            kryptonButton13.OverrideFocus.Back.Color1 = Color.White;
+            kryptonButton13.OverrideFocus.Back.Color2 = Color.SkyBlue;
+            kryptonButton13.Size = new Size(133, 41);
+            kryptonButton13.StateCommon.Back.Color1 = Color.Transparent;
+            kryptonButton13.StateCommon.Back.Color2 = Color.Transparent;
+            kryptonButton13.StateCommon.Border.Rounding = 40F;
+            kryptonButton13.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            kryptonButton13.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            kryptonButton13.StateNormal.Back.Color1 = Color.Transparent;
+            kryptonButton13.StateNormal.Back.Color2 = Color.Transparent;
+            kryptonButton13.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
+            kryptonButton13.StatePressed.Back.Color1 = Color.Transparent;
+            kryptonButton13.StatePressed.Back.Color2 = Color.Transparent;
+            kryptonButton13.StateTracking.Border.Rounding = 40F;
+            kryptonButton13.TabIndex = 242;
+            kryptonButton13.Values.DropDownArrowColor = Color.Empty;
+            kryptonButton13.Values.Text = "Desde aqui:";
+            // 
+            // lbl
+            // 
+            lbl.Location = new Point(430, 306);
+            lbl.Name = "lbl";
+            lbl.OverrideDefault.Back.Color1 = Color.Transparent;
+            lbl.OverrideDefault.Back.Color2 = Color.Transparent;
+            lbl.OverrideDefault.Border.Rounding = 40F;
+            lbl.OverrideFocus.Back.Color1 = Color.White;
+            lbl.OverrideFocus.Back.Color2 = Color.SkyBlue;
+            lbl.Size = new Size(133, 41);
+            lbl.StateCommon.Back.Color1 = Color.Transparent;
+            lbl.StateCommon.Back.Color2 = Color.Transparent;
+            lbl.StateCommon.Border.Rounding = 40F;
+            lbl.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            lbl.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl.StateNormal.Back.Color1 = Color.Transparent;
+            lbl.StateNormal.Back.Color2 = Color.Transparent;
+            lbl.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
+            lbl.StatePressed.Back.Color1 = Color.Transparent;
+            lbl.StatePressed.Back.Color2 = Color.Transparent;
+            lbl.StateTracking.Border.Rounding = 40F;
+            lbl.TabIndex = 243;
+            lbl.Values.DropDownArrowColor = Color.Empty;
+            lbl.Values.Text = "Hasta aqui: ";
             // 
             // ReporteAdmin
             // 
@@ -900,11 +942,13 @@ namespace SG_BAMS
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1105, 905);
+            Controls.Add(lbl);
+            Controls.Add(kryptonButton13);
+            Controls.Add(dtFin);
+            Controls.Add(dtInicio);
             Controls.Add(btnSalir);
             Controls.Add(listBox1);
             Controls.Add(kryptonButton12);
-            Controls.Add(kryptonComboBox1);
-            Controls.Add(cmbModelo);
             Controls.Add(btnLimpiar);
             Controls.Add(btnGenerar);
             Controls.Add(btnsalirLogin);
@@ -946,8 +990,6 @@ namespace SG_BAMS
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox18).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonComboBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)cmbModelo).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1006,7 +1048,9 @@ namespace SG_BAMS
         private Krypton.Toolkit.KryptonButton kryptonButton12;
         private ListBox listBox1;
         private Krypton.Toolkit.KryptonButton btnSalir;
-        private Krypton.Toolkit.KryptonComboBox kryptonComboBox1;
-        private Krypton.Toolkit.KryptonComboBox cmbModelo;
+        private Krypton.Toolkit.KryptonDateTimePicker dtInicio;
+        private Krypton.Toolkit.KryptonDateTimePicker dtFin;
+        private Krypton.Toolkit.KryptonButton kryptonButton13;
+        private Krypton.Toolkit.KryptonButton lbl;
     }
 }
