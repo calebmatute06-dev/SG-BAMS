@@ -955,7 +955,6 @@
             kryptonButton18.TabIndex = 137;
             kryptonButton18.Values.DropDownArrowColor = Color.Empty;
             kryptonButton18.Values.Text = "";
-            kryptonButton18.Click += this.kryptonButton18_Click;
             // 
             // label7
             // 
