@@ -42,13 +42,13 @@
             btnImpresora = new Krypton.Toolkit.KryptonButton();
             btnCancelar = new Krypton.Toolkit.KryptonButton();
             rbHorizontal = new RadioButton();
-            this.rbVertical = new RadioButton();
-            this.btnSalir = new Krypton.Toolkit.KryptonButton();
             cmbTipoHoja = new Krypton.Toolkit.KryptonComboBox();
             kryptonButton13 = new Krypton.Toolkit.KryptonButton();
             groupBox1 = new GroupBox();
+            rbVertical = new RadioButton();
             listBox1 = new ListBox();
             kryptonGroup3 = new Krypton.Toolkit.KryptonGroup();
+            btnSalir = new Krypton.Toolkit.KryptonButton();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             panel1.SuspendLayout();
@@ -234,39 +234,6 @@
             rbHorizontal.Text = "Horizontal";
             rbHorizontal.UseVisualStyleBackColor = true;
             // 
-            // rbVertical
-            // 
-            this.rbVertical.AutoSize = true;
-            this.rbVertical.ForeColor = Color.Navy;
-            this.rbVertical.Location = new Point(28, 32);
-            this.rbVertical.Name = "rbVertical";
-            this.rbVertical.Size = new Size(79, 24);
-            this.rbVertical.TabIndex = 238;
-            this.rbVertical.TabStop = true;
-            this.rbVertical.Text = "Vertical";
-            this.rbVertical.UseVisualStyleBackColor = true;
-            // 
-            // btnSalir
-            // 
-            this.btnSalir.Location = new Point(30, 30);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            this.btnSalir.OverrideDefault.Back.Color2 = Color.White;
-            this.btnSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            this.btnSalir.OverrideFocus.Back.Color2 = Color.White;
-            this.btnSalir.Size = new Size(80, 41);
-            this.btnSalir.StateCommon.Back.Color1 = Color.SkyBlue;
-            this.btnSalir.StateCommon.Back.Color2 = Color.White;
-            this.btnSalir.StateCommon.Border.Rounding = 40F;
-            this.btnSalir.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            this.btnSalir.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            this.btnSalir.StateNormal.Back.Color1 = Color.SkyBlue;
-            this.btnSalir.StateNormal.Back.Color2 = Color.Transparent;
-            this.btnSalir.StateNormal.Border.Rounding = 40F;
-            this.btnSalir.TabIndex = 241;
-            this.btnSalir.Values.DropDownArrowColor = Color.Empty;
-            this.btnSalir.Values.Text = "Salir";
-            // 
             // cmbTipoHoja
             // 
             cmbTipoHoja.DropDownWidth = 300;
@@ -308,8 +275,8 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(rbVertical);
             groupBox1.Controls.Add(rbHorizontal);
-            groupBox1.Controls.Add(this.rbVertical);
             groupBox1.ForeColor = Color.Navy;
             groupBox1.Location = new Point(239, 221);
             groupBox1.Name = "groupBox1";
@@ -317,6 +284,18 @@
             groupBox1.TabIndex = 244;
             groupBox1.TabStop = false;
             groupBox1.Text = "Orientacion";
+            // 
+            // rbVertical
+            // 
+            rbVertical.AutoSize = true;
+            rbVertical.ForeColor = Color.Navy;
+            rbVertical.Location = new Point(28, 41);
+            rbVertical.Name = "rbVertical";
+            rbVertical.Size = new Size(79, 24);
+            rbVertical.TabIndex = 238;
+            rbVertical.TabStop = true;
+            rbVertical.Text = "Vertical";
+            rbVertical.UseVisualStyleBackColor = true;
             // 
             // listBox1
             // 
@@ -334,18 +313,39 @@
             kryptonGroup3.StateCommon.Border.Rounding = 30F;
             kryptonGroup3.TabIndex = 251;
             // 
+            // btnSalir
+            // 
+            btnSalir.Location = new Point(30, 30);
+            btnSalir.Name = "btnSalir";
+            btnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnSalir.OverrideDefault.Back.Color2 = Color.White;
+            btnSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnSalir.OverrideFocus.Back.Color2 = Color.White;
+            btnSalir.Size = new Size(112, 41);
+            btnSalir.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnSalir.StateCommon.Back.Color2 = Color.White;
+            btnSalir.StateCommon.Border.Rounding = 40F;
+            btnSalir.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnSalir.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnSalir.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnSalir.StateNormal.Back.Color2 = Color.Transparent;
+            btnSalir.StateNormal.Border.Rounding = 40F;
+            btnSalir.TabIndex = 253;
+            btnSalir.Values.DropDownArrowColor = Color.Empty;
+            btnSalir.Values.Text = "Salir";
+            // 
             // ImprimirReporte
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(800, 510);
+            Controls.Add(btnSalir);
             Controls.Add(listBox1);
             Controls.Add(kryptonGroup3);
             Controls.Add(groupBox1);
             Controls.Add(kryptonButton13);
             Controls.Add(cmbTipoHoja);
-            Controls.Add(this.btnSalir);
             Controls.Add(btnCancelar);
             Controls.Add(btnImprimir);
             Controls.Add(btnImpresora);
@@ -391,7 +391,7 @@
         private Krypton.Toolkit.KryptonButton btnImpresora;
         private Krypton.Toolkit.KryptonButton btnCancelar;
         private RadioButton rbHorizontal;
-        private RadioButton radioButton1;
+        private RadioButton rbVertical;
         private Krypton.Toolkit.KryptonButton kryptonButton12;
         private Krypton.Toolkit.KryptonButton kryptonButton1;
         private Krypton.Toolkit.KryptonComboBox cmbTipoHoja;
@@ -399,5 +399,6 @@
         private GroupBox groupBox1;
         private ListBox listBox1;
         private Krypton.Toolkit.KryptonGroup kryptonGroup3;
+        private Krypton.Toolkit.KryptonButton btnSalir;
     }
 }
