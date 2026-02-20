@@ -474,7 +474,7 @@
             label2.ForeColor = Color.Navy;
             label2.Location = new Point(93, 157);
             label2.Name = "label2";
-            label2.Size = new Size(78, 32);
+            label2.Size = new Size(84, 29);
             label2.TabIndex = 20;
             label2.Text = "BAMS";
             // 

@@ -10,21 +10,11 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
-    public partial class FacturaProducto : Form
+    public partial class FacturasEmp : Form
     {
-        public FacturaProducto()
+        public FacturasEmp()
         {
             InitializeComponent();
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
