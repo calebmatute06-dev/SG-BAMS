@@ -16,5 +16,15 @@ namespace SG_BAMS
         {
             InitializeComponent();
         }
+
+        private void kryptonTextBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void kryptonButton20_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
