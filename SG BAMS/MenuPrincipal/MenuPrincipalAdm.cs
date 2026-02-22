@@ -90,11 +90,11 @@ namespace SG_BAMS
                 chartStock.Legends.Clear();
                 chartStock.ChartAreas[0].Position.Auto = true;
 
-                // Configuramos la leyenda para que no corte el texto
+               
                 Legend leyendaEstandar = chartStock.Legends.Add("Default");
                 leyendaEstandar.BackColor = Color.Transparent;
-                leyendaEstandar.IsTextAutoFit = true; // Ajusta el tamaño de letra para que quepa
-                leyendaEstandar.LegendStyle = LegendStyle.Table; // Formato de tabla para mejor orden
+                leyendaEstandar.IsTextAutoFit = true; 
+                leyendaEstandar.LegendStyle = LegendStyle.Table; 
                 leyendaEstandar.Docking = Docking.Right;
 
                 var serieInventario = chartStock.Series.Add("StockSeries");
@@ -110,7 +110,7 @@ namespace SG_BAMS
                     int puntoIndice = serieInventario.Points.AddXY(nombreArticulo, valorVisual);
                     var puntoActual = serieInventario.Points[puntoIndice];
 
-                    // Asignamos los estados completos
+                    
                     if (cantidadReal == 0)
                     {
                         puntoActual.Color = Color.Red;
@@ -146,45 +146,43 @@ namespace SG_BAMS
                 ClsGraficoVentas objGraficoVentas = new ClsGraficoVentas();
                 DataTable datosVentas = await objGraficoVentas.ObtenerProductosMasVendidos();
 
-                // LOG DE DEPURACIÓN: Esto te dirá cuántas filas llegan de la base de datos
-                // MessageBox.Show("Filas recibidas: " + datosVentas.Rows.Count); 
+                
 
                 if (datosVentas != null && datosVentas.Rows.Count > 0)
                 {
-                    // 1. LIMPIEZA TOTAL
+                   
                     chartMasVendidos.Series.Clear();
                     chartMasVendidos.ChartAreas[0].AxisX.CustomLabels.Clear();
                     chartMasVendidos.DataSource = null;
 
-                    // 2. CREAR SERIE
+                   
                     var serieBarras = chartMasVendidos.Series.Add("MasVendidos");
                     serieBarras.ChartType = SeriesChartType.Column;
 
-                    // 3. AGREGAR PUNTOS POR ÍNDICE (0, 1, 2, 3...)
+                    
                     for (int i = 0; i < datosVentas.Rows.Count; i++)
                     {
                         DataRow fila = datosVentas.Rows[i];
                         string nombreProducto = fila["producto"].ToString().Trim();
                         int totalVendido = Convert.ToInt32(fila["total_vendido"]);
 
-                        // Añadimos el punto usando el índice 'i' como posición X
-                        // Esto obliga al gráfico a crear columnas distintas
+                        
                         serieBarras.Points.AddXY(i, totalVendido);
 
-                        // Le ponemos el nombre del producto a esa posición específica
+                        
                         serieBarras.Points[i].AxisLabel = nombreProducto;
 
-                        // Mostramos el valor arriba de la barra
+                        
                         serieBarras.Points[i].Label = totalVendido.ToString();
                     }
 
-                    // 4. CONFIGURACIÓN DEL EJE X
+                    
                     var area = chartMasVendidos.ChartAreas[0];
                     area.AxisX.Interval = 1;
-                    area.AxisX.LabelStyle.Angle = -45; // Inclinación para que no choquen
+                    area.AxisX.LabelStyle.Angle = -45; 
                     area.AxisX.MajorGrid.Enabled = false;
 
-                    // 5. ESTÉTICA
+                    
                     chartMasVendidos.Palette = ChartColorPalette.BrightPastel;
                     chartMasVendidos.BackColor = Color.SkyBlue;
                     area.BackColor = Color.Transparent;
@@ -244,7 +242,7 @@ namespace SG_BAMS
         {
             ClientesAdm Client = new ClientesAdm();
             Client.Show();
-            await ActualizarLabel(); // Refresca el contador automáticamente
+            await ActualizarLabel();
         }
 
         private async void kryptonButton16_Click(object sender, EventArgs e)

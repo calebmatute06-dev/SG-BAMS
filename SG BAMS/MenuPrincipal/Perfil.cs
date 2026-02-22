@@ -25,7 +25,7 @@ namespace SG_BAMS
             this.Close();
         }
 
-        // --- CORRECCIÓN AQUÍ: Debes llamar al método para que se ejecute ---
+        
         private async void Perfil_Load(object sender, EventArgs e)
         {
             await CargarDatosUsuario();
@@ -46,16 +46,16 @@ namespace SG_BAMS
                     {
                         DataRow fila = datos.Rows[0];
 
-                        // 1. Mostrar Texto
+                        
                         label4.Text = fila["nombre_usuario"].ToString();
                         label5.Text = fila["descripcion_rol"].ToString();
 
-                        // 2. Mostrar Imagen
+                        
                         if (fila["imagen_usuario"] != DBNull.Value)
                         {
                             byte[] imagenBytes = (byte[])fila["imagen_usuario"];
 
-                            // Usamos MemoryStream para convertir los bytes de SQL en imagen
+                            
                             using (MemoryStream ms = new MemoryStream(imagenBytes))
                             {
                                 pbFotoPerfil.Image = Image.FromStream(ms);
@@ -79,16 +79,16 @@ namespace SG_BAMS
             {
                 try
                 {
-                    // 1. Convertimos el archivo seleccionado a bytes
+                    
                     byte[] imagenBytes = File.ReadAllBytes(selectorImagen.FileName);
 
-                    // 2. Usamos el nombre que ya tenemos guardado en el Login
+                    
                     string usuarioLogueado = SG_BAMS.Login.Login.UsuarioLogueado;
 
                     ClsUsuario objUsuario = new ClsUsuario();
                     await objUsuario.ActualizarFotoUsuario(usuarioLogueado, imagenBytes);
 
-                    // 3. Mostramos la imagen en el PictureBox inmediatamente
+                   
                     using (MemoryStream ms = new MemoryStream(imagenBytes))
                     {
                         pbFotoPerfil.Image = Image.FromStream(ms);

@@ -89,7 +89,7 @@ namespace SG_BAMS
                 
                 dgvVentas.DataSource = datosVentas;
 
-                // Opcional: Aqui podemos cambiar el nombre de las columnas para el usuario final
+                
                 dgvVentas.Columns["factura_id"].HeaderText = "N° Factura";
                 dgvVentas.Columns["nombre_completo_cliente"].HeaderText = "Cliente";
                 dgvVentas.Columns["fecha_registro"].HeaderText = "Fecha";
@@ -109,11 +109,11 @@ namespace SG_BAMS
                 chartStock.Legends.Clear();
                 chartStock.ChartAreas[0].Position.Auto = true;
 
-                // Configuramos la leyenda para que no corte el texto
+               
                 Legend leyendaEstandar = chartStock.Legends.Add("Default");
                 leyendaEstandar.BackColor = Color.Transparent;
-                leyendaEstandar.IsTextAutoFit = true; // Ajusta el tamaño de letra para que quepa
-                leyendaEstandar.LegendStyle = LegendStyle.Table; // Formato de tabla para mejor orden
+                leyendaEstandar.IsTextAutoFit = true; 
+                leyendaEstandar.LegendStyle = LegendStyle.Table; 
                 leyendaEstandar.Docking = Docking.Right;
 
                 var serieInventario = chartStock.Series.Add("StockSeries");
@@ -129,7 +129,7 @@ namespace SG_BAMS
                     int puntoIndice = serieInventario.Points.AddXY(nombreArticulo, valorVisual);
                     var puntoActual = serieInventario.Points[puntoIndice];
 
-                    // Asignamos los estados completos
+                    
                     if (cantidadReal == 0)
                     {
                         puntoActual.Color = Color.Red;
@@ -206,8 +206,8 @@ namespace SG_BAMS
         private async void kryptonButton16_Click(object sender, EventArgs e)
         {
             Deudores_Emp deudoresForm = new Deudores_Emp();
-            deudoresForm.ShowDialog(); // El código se detiene aquí hasta cerrar la ventana
-            await ActualizarLabelDeudores(); // Se refresca al cerrar
+            deudoresForm.ShowDialog();
+            await ActualizarLabelDeudores(); 
         }
 
         private void kryptonButton9_Click(object sender, EventArgs e)
@@ -218,8 +218,8 @@ namespace SG_BAMS
         private async void kryptonButton17_Click(object sender, EventArgs e)
         {
             ClientesEmp clienemp = new ClientesEmp();
-            clienemp.ShowDialog(); // Espera a que cierres la ventana de clientes
-            await ActualizarLabel(); // Refresca el contador automáticamente
+            clienemp.ShowDialog(); 
+            await ActualizarLabel(); 
         }
 
         private void kryptonButton1_Click(object sender, EventArgs e)
@@ -246,8 +246,8 @@ namespace SG_BAMS
         private async void kryptonButton5_Click(object sender, EventArgs e)
         {
             InventarioEmp inventarioForm = new InventarioEmp();
-            inventarioForm.ShowDialog(); // Espera a que se cierre
-            await ActualizarLabelProductos(); // Refresca el número
+            inventarioForm.ShowDialog(); 
+            await ActualizarLabelProductos(); 
         }
 
         private void kryptonButton2_Click(object sender, EventArgs e)

@@ -16,12 +16,12 @@ namespace SG_BAMS.MenuPrincipal
             {
                 AbrirConexion();
 
-                // La consulta cuenta clientes únicos con deudas activas
+                
                 string sqlQuery = "SELECT COUNT(DISTINCT id_cliente) FROM Deuda WHERE id_estado = 1";
 
                 using (SqlCommand sqlCommand = new SqlCommand(sqlQuery, Conectar))
                 {
-                    // Ejecución asíncrona
+                    
                     object resultadoConsulta = await sqlCommand.ExecuteScalarAsync();
                     return resultadoConsulta != null ? Convert.ToInt32(resultadoConsulta) : 0;
                 }

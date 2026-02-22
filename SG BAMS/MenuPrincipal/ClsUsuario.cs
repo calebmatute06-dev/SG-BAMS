@@ -10,7 +10,7 @@ internal class ClsUsuario : ClsConexion
         try
         {
             AbrirConexion();
-            // Ahora la vista nos devolverá también la imagen
+            
             string consultaSql = "SELECT nombre_usuario, descripcion_rol, imagen_usuario FROM vista_perfil_usuario WHERE nombre_usuario = @usuario";
 
             using (SqlCommand comandoSql = new SqlCommand(consultaSql, Conectar))
@@ -31,12 +31,12 @@ internal class ClsUsuario : ClsConexion
         try
         {
             AbrirConexion();
-            // Usamos la tabla original para el UPDATE
+            
             string consultaSql = "UPDATE Usuario SET imagen_usuario = @foto WHERE nombre_usuario = @usuario";
 
             using (SqlCommand comandoSql = new SqlCommand(consultaSql, Conectar))
             {
-                // Especificamos SqlDbType.VarBinary o Image para compatibilidad con Somee
+                
                 comandoSql.Parameters.Add("@foto", SqlDbType.VarBinary).Value = imagenBytes;
                 comandoSql.Parameters.AddWithValue("@usuario", nombreUsuario);
 

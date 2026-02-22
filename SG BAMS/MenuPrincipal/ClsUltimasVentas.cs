@@ -14,7 +14,7 @@ namespace SG_BAMS.MenuPrincipal
             {
                 AbrirConexion();
 
-                // Llamada a la vista en snake_case
+                
                 string sqlQuery = "SELECT * FROM vista_ultimas_ventas";
 
                 using (SqlCommand sqlCommand = new SqlCommand(sqlQuery, Conectar))
@@ -27,7 +27,7 @@ namespace SG_BAMS.MenuPrincipal
             }
             catch (Exception)
             {
-                // En caso de error de red con Somee, devolvemos null
+                
                 return null;
             }
             finally
