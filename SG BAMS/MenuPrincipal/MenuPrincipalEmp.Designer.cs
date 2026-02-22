@@ -29,12 +29,15 @@ namespace SG_BAMS
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             pictureBox21 = new PictureBox();
             pictureBox20 = new PictureBox();
             pictureBox19 = new PictureBox();
             label10 = new Label();
             label9 = new Label();
-            label8 = new Label();
+            lblConteoProductos = new Label();
             label7 = new Label();
             label6 = new Label();
             label5 = new Label();
@@ -76,7 +79,8 @@ namespace SG_BAMS
             pictureBox7 = new PictureBox();
             pictureBox8 = new PictureBox();
             pictureBox1 = new PictureBox();
-            dataGridView1 = new DataGridView();
+            dgvVentas = new DataGridView();
+            chartStock = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)pictureBox21).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox20).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox19).BeginInit();
@@ -96,7 +100,8 @@ namespace SG_BAMS
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvVentas).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)chartStock).BeginInit();
             SuspendLayout();
             // 
             // pictureBox21
@@ -156,17 +161,18 @@ namespace SG_BAMS
             label9.TabIndex = 89;
             label9.Text = "Productos en stock";
             // 
-            // label8
+            // lblConteoProductos
             // 
-            label8.AutoSize = true;
-            label8.BackColor = Color.SkyBlue;
-            label8.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label8.ForeColor = Color.Navy;
-            label8.Location = new Point(937, 283);
-            label8.Name = "label8";
-            label8.Size = new Size(19, 24);
-            label8.TabIndex = 88;
-            label8.Text = "0";
+            lblConteoProductos.AutoSize = true;
+            lblConteoProductos.BackColor = Color.SkyBlue;
+            lblConteoProductos.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblConteoProductos.ForeColor = Color.Navy;
+            lblConteoProductos.Location = new Point(937, 283);
+            lblConteoProductos.Name = "lblConteoProductos";
+            lblConteoProductos.Size = new Size(19, 24);
+            lblConteoProductos.TabIndex = 88;
+            lblConteoProductos.Text = "0";
+            lblConteoProductos.Click += lblConteoClientes_Click;
             // 
             // label7
             // 
@@ -247,6 +253,7 @@ namespace SG_BAMS
             kryptonButton17.TabIndex = 82;
             kryptonButton17.Values.DropDownArrowColor = Color.Empty;
             kryptonButton17.Values.Text = "";
+            kryptonButton17.Click += kryptonButton17_Click;
             // 
             // kryptonButton16
             // 
@@ -267,6 +274,7 @@ namespace SG_BAMS
             kryptonButton16.TabIndex = 81;
             kryptonButton16.Values.DropDownArrowColor = Color.Empty;
             kryptonButton16.Values.Text = "";
+            kryptonButton16.Click += kryptonButton16_Click;
             // 
             // kryptonButton15
             // 
@@ -287,6 +295,7 @@ namespace SG_BAMS
             kryptonButton15.TabIndex = 80;
             kryptonButton15.Values.DropDownArrowColor = Color.Empty;
             kryptonButton15.Values.Text = "";
+            kryptonButton15.Click += kryptonButton15_Click_1;
             // 
             // kryptonButton14
             // 
@@ -319,6 +328,7 @@ namespace SG_BAMS
             kryptonButton13.TabIndex = 78;
             kryptonButton13.Values.DropDownArrowColor = Color.Empty;
             kryptonButton13.Values.Text = "";
+            kryptonButton13.Click += kryptonButton13_Click;
             // 
             // kryptonButton12
             // 
@@ -339,6 +349,7 @@ namespace SG_BAMS
             kryptonButton12.TabIndex = 77;
             kryptonButton12.Values.DropDownArrowColor = Color.Empty;
             kryptonButton12.Values.Text = "";
+            kryptonButton12.Click += kryptonButton12_Click;
             // 
             // label1
             // 
@@ -372,6 +383,7 @@ namespace SG_BAMS
             kryptonButton11.TabIndex = 75;
             kryptonButton11.Values.DropDownArrowColor = Color.Empty;
             kryptonButton11.Values.Text = "Ajustes";
+            kryptonButton11.Click += kryptonButton11_Click;
             // 
             // pictureBox18
             // 
@@ -397,6 +409,7 @@ namespace SG_BAMS
             button12.Size = new Size(59, 44);
             button12.TabIndex = 71;
             button12.UseVisualStyleBackColor = false;
+            button12.Click += button12_Click;
             // 
             // panel6
             // 
@@ -524,6 +537,7 @@ namespace SG_BAMS
             kryptonButton1.TabIndex = 36;
             kryptonButton1.Values.DropDownArrowColor = Color.Empty;
             kryptonButton1.Values.Text = "Empleado";
+            kryptonButton1.Click += kryptonButton1_Click;
             // 
             // btnCerrarSesion
             // 
@@ -600,6 +614,7 @@ namespace SG_BAMS
             kryptonButton8.TabIndex = 33;
             kryptonButton8.Values.DropDownArrowColor = Color.Empty;
             kryptonButton8.Values.Text = "Facturas";
+            kryptonButton8.Click += kryptonButton8_Click;
             // 
             // kryptonButton6
             // 
@@ -625,6 +640,7 @@ namespace SG_BAMS
             kryptonButton6.TabIndex = 31;
             kryptonButton6.Values.DropDownArrowColor = Color.Empty;
             kryptonButton6.Values.Text = "Clientes";
+            kryptonButton6.Click += kryptonButton6_Click;
             // 
             // kryptonButton5
             // 
@@ -650,6 +666,7 @@ namespace SG_BAMS
             kryptonButton5.TabIndex = 30;
             kryptonButton5.Values.DropDownArrowColor = Color.Empty;
             kryptonButton5.Values.Text = "Inventario";
+            kryptonButton5.Click += kryptonButton5_Click;
             // 
             // kryptonButton2
             // 
@@ -675,6 +692,7 @@ namespace SG_BAMS
             kryptonButton2.TabIndex = 27;
             kryptonButton2.Values.DropDownArrowColor = Color.Empty;
             kryptonButton2.Values.Text = "Deudores";
+            kryptonButton2.Click += kryptonButton2_Click;
             // 
             // pictureBox16
             // 
@@ -774,27 +792,54 @@ namespace SG_BAMS
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
             // 
-            // dataGridView1
+            // dgvVentas
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(358, 561);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(391, 240);
-            dataGridView1.TabIndex = 94;
+            dgvVentas.AllowUserToAddRows = false;
+            dgvVentas.AllowUserToDeleteRows = false;
+            dgvVentas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvVentas.Location = new Point(358, 561);
+            dgvVentas.Name = "dgvVentas";
+            dgvVentas.ReadOnly = true;
+            dgvVentas.RowHeadersWidth = 51;
+            dgvVentas.Size = new Size(391, 240);
+            dgvVentas.TabIndex = 94;
+            // 
+            // chartStock
+            // 
+            chartStock.BackColor = Color.SkyBlue;
+            chartStock.BorderlineColor = Color.SkyBlue;
+            chartArea1.BackColor = Color.SkyBlue;
+            chartArea1.BackSecondaryColor = Color.White;
+            chartArea1.Name = "ChartArea1";
+            chartStock.ChartAreas.Add(chartArea1);
+            legend1.BackColor = Color.SkyBlue;
+            legend1.Name = "Legend1";
+            chartStock.Legends.Add(legend1);
+            chartStock.Location = new Point(341, 190);
+            chartStock.Name = "chartStock";
+            chartStock.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.EarthTones;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            chartStock.Series.Add(series1);
+            chartStock.Size = new Size(426, 215);
+            chartStock.TabIndex = 95;
+            chartStock.Text = "chartStock";
             // 
             // MenuPrincipalEmp
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1105, 907);
-            Controls.Add(dataGridView1);
+            Controls.Add(chartStock);
+            Controls.Add(dgvVentas);
             Controls.Add(pictureBox21);
             Controls.Add(pictureBox20);
             Controls.Add(pictureBox19);
             Controls.Add(label10);
             Controls.Add(label9);
-            Controls.Add(label8);
+            Controls.Add(lblConteoProductos);
             Controls.Add(label7);
             Controls.Add(label6);
             Controls.Add(label5);
@@ -819,6 +864,7 @@ namespace SG_BAMS
             Controls.Add(panel1);
             Name = "MenuPrincipalEmp";
             Text = "MenuPrincipalEmp";
+            Load += MenuPrincipalEmp_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox21).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox20).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox19).EndInit();
@@ -839,7 +885,8 @@ namespace SG_BAMS
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvVentas).EndInit();
+            ((System.ComponentModel.ISupportInitialize)chartStock).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -856,7 +903,7 @@ namespace SG_BAMS
         private PictureBox pictureBox19;
         private Label label10;
         private Label label9;
-        private Label label8;
+        private Label lblConteoProductos;
         private Label label7;
         private Label label6;
         private Label label5;
@@ -898,6 +945,7 @@ namespace SG_BAMS
         private PictureBox pictureBox7;
         private PictureBox pictureBox8;
         private PictureBox pictureBox1;
-        private DataGridView dataGridView1;
+        private DataGridView dgvVentas;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartStock;
     }
 }

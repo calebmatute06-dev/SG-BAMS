@@ -1,4 +1,5 @@
 ﻿using Krypton.Toolkit;
+using SG_BAMS.MenuPrincipal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace SG_BAMS
 {
@@ -19,9 +21,193 @@ namespace SG_BAMS
         }
 
 
-        private void MenuPrincipalAdm_Load(object sender, EventArgs e)
+        Clscontador_cliente clsContadorCliente = new Clscontador_cliente();
+        ClsContadorDeuda clsContadorDeuda = new ClsContadorDeuda();
+        ClsContadorProducto clsContadorProducto = new ClsContadorProducto();
+        ClsGraficoStock clsGraficoStock = new ClsGraficoStock();
+        Clscontador_cliente objetoContador = new Clscontador_cliente();
+
+
+        //Bloque de contadores 
+        //--------------------------------------------------------------------
+
+
+
+        // Método asíncrono para que no se congele la interfaz al conectar con Somee
+        private async Task ActualizarLabel()
         {
 
+            int total = await objetoContador.ObtenerTotalClientes();
+
+            if (total != -1)
+                label7.Text = total.ToString();
+            else
+                label7.Text = "0";
+        }
+
+        private async Task ActualizarLabelDeudores()
+        {
+
+            int totalDeudores = await clsContadorDeuda.ObtenerTotalDeudores();
+
+            if (totalDeudores != -1)
+            {
+                label6.Text = totalDeudores.ToString();
+            }
+            else
+            {
+                label6.Text = "0";
+            }
+        }
+
+        private async Task ActualizarLabelProductos()
+        {
+
+            int totalProductos = await clsContadorProducto.ObtenerTotalProductos();
+
+            if (totalProductos != -1)
+            {
+
+                label8.Text = totalProductos.ToString();
+            }
+            else
+            {
+                label8.Text = "0";
+            }
+        }
+
+        //-----------------------------------------------------------------------------------------
+
+
+
+        private async Task CargarGraficoStock()
+        {
+            DataTable tablaStock = await clsGraficoStock.ObtenerDatosGrafico();
+
+            if (tablaStock != null && tablaStock.Rows.Count > 0)
+            {
+                chartStock.Series.Clear();
+                chartStock.Legends.Clear();
+                chartStock.ChartAreas[0].Position.Auto = true;
+
+                // Configuramos la leyenda para que no corte el texto
+                Legend leyendaEstandar = chartStock.Legends.Add("Default");
+                leyendaEstandar.BackColor = Color.Transparent;
+                leyendaEstandar.IsTextAutoFit = true; // Ajusta el tamaño de letra para que quepa
+                leyendaEstandar.LegendStyle = LegendStyle.Table; // Formato de tabla para mejor orden
+                leyendaEstandar.Docking = Docking.Right;
+
+                var serieInventario = chartStock.Series.Add("StockSeries");
+                serieInventario.ChartType = SeriesChartType.Pie;
+
+                foreach (DataRow filaDatos in tablaStock.Rows)
+                {
+                    string nombreArticulo = filaDatos["producto"].ToString();
+                    int cantidadReal = Convert.ToInt32(filaDatos["cantidad"]);
+
+                    double valorVisual = (cantidadReal == 0) ? 0.6 : cantidadReal;
+
+                    int puntoIndice = serieInventario.Points.AddXY(nombreArticulo, valorVisual);
+                    var puntoActual = serieInventario.Points[puntoIndice];
+
+                    // Asignamos los estados completos
+                    if (cantidadReal == 0)
+                    {
+                        puntoActual.Color = Color.Red;
+                        puntoActual.LegendText = nombreArticulo + " - Agotado";
+                        puntoActual.Label = "0";
+                    }
+                    else if (cantidadReal < 5)
+                    {
+                        puntoActual.Color = Color.Yellow;
+                        puntoActual.LegendText = nombreArticulo + " - A punto de agotarse";
+                        puntoActual.Label = cantidadReal.ToString();
+                    }
+                    else
+                    {
+                        puntoActual.Color = Color.Green;
+                        puntoActual.LegendText = nombreArticulo + " (" + cantidadReal + ")";
+                        puntoActual.Label = cantidadReal.ToString();
+                    }
+                }
+
+                chartStock.BackColor = Color.SkyBlue;
+                chartStock.ChartAreas[0].BackColor = Color.Transparent;
+            }
+        }
+
+
+
+
+        private async Task CargarGraficoMasVendidos()
+        {
+            try
+            {
+                ClsGraficoVentas objGraficoVentas = new ClsGraficoVentas();
+                DataTable datosVentas = await objGraficoVentas.ObtenerProductosMasVendidos();
+
+                // LOG DE DEPURACIÓN: Esto te dirá cuántas filas llegan de la base de datos
+                // MessageBox.Show("Filas recibidas: " + datosVentas.Rows.Count); 
+
+                if (datosVentas != null && datosVentas.Rows.Count > 0)
+                {
+                    // 1. LIMPIEZA TOTAL
+                    chartMasVendidos.Series.Clear();
+                    chartMasVendidos.ChartAreas[0].AxisX.CustomLabels.Clear();
+                    chartMasVendidos.DataSource = null;
+
+                    // 2. CREAR SERIE
+                    var serieBarras = chartMasVendidos.Series.Add("MasVendidos");
+                    serieBarras.ChartType = SeriesChartType.Column;
+
+                    // 3. AGREGAR PUNTOS POR ÍNDICE (0, 1, 2, 3...)
+                    for (int i = 0; i < datosVentas.Rows.Count; i++)
+                    {
+                        DataRow fila = datosVentas.Rows[i];
+                        string nombreProducto = fila["producto"].ToString().Trim();
+                        int totalVendido = Convert.ToInt32(fila["total_vendido"]);
+
+                        // Añadimos el punto usando el índice 'i' como posición X
+                        // Esto obliga al gráfico a crear columnas distintas
+                        serieBarras.Points.AddXY(i, totalVendido);
+
+                        // Le ponemos el nombre del producto a esa posición específica
+                        serieBarras.Points[i].AxisLabel = nombreProducto;
+
+                        // Mostramos el valor arriba de la barra
+                        serieBarras.Points[i].Label = totalVendido.ToString();
+                    }
+
+                    // 4. CONFIGURACIÓN DEL EJE X
+                    var area = chartMasVendidos.ChartAreas[0];
+                    area.AxisX.Interval = 1;
+                    area.AxisX.LabelStyle.Angle = -45; // Inclinación para que no choquen
+                    area.AxisX.MajorGrid.Enabled = false;
+
+                    // 5. ESTÉTICA
+                    chartMasVendidos.Palette = ChartColorPalette.BrightPastel;
+                    chartMasVendidos.BackColor = Color.SkyBlue;
+                    area.BackColor = Color.Transparent;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al separar barras: " + ex.Message);
+            }
+        }
+
+
+
+
+
+
+        private async void MenuPrincipalAdm_Load(object sender, EventArgs e)
+        {
+            await ActualizarLabel();
+            await ActualizarLabelDeudores();
+            await ActualizarLabelProductos();
+            await CargarGraficoStock();
+            await CargarGraficoMasVendidos();
         }
 
         private void pictureBox4_Click(object sender, EventArgs e)
@@ -39,6 +225,122 @@ namespace SG_BAMS
 
         }
 
-        
+        private void kryptonButton13_Click(object sender, EventArgs e)
+        {
+            InventarioAdmin invam = new InventarioAdmin();
+
+            invam.Show();
+
+        }
+
+        private void kryptonButton12_Click(object sender, EventArgs e)
+        {
+            FacturasAdm fact = new FacturasAdm();
+
+            fact.Show();
+        }
+
+        private async void kryptonButton17_Click(object sender, EventArgs e)
+        {
+            ClientesAdm Client = new ClientesAdm();
+            Client.Show();
+            await ActualizarLabel(); // Refresca el contador automáticamente
+        }
+
+        private async void kryptonButton16_Click(object sender, EventArgs e)
+        {
+            Deudores deu = new Deudores();
+            deu.Show();
+            await ActualizarLabel();
+        }
+
+        private async void kryptonButton15_Click(object sender, EventArgs e)
+        {
+            InventarioAdmin invam = new InventarioAdmin();
+
+            invam.Show();
+
+            await ActualizarLabel();
+        }
+
+        private void kryptonButton11_Click(object sender, EventArgs e)
+        {
+            Ajustes ajus = new Ajustes();
+            ajus.Show();
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            NotificacionesAdmin notifam = new NotificacionesAdmin();
+            notifam.Show();
+        }
+
+        private void kryptonButton9_Click(object sender, EventArgs e)
+        {
+            this.Show();
+
+        }
+
+        private void kryptonButton8_Click(object sender, EventArgs e)
+        {
+            FacturasAdm fact = new FacturasAdm();
+
+            fact.Show();
+        }
+
+        private void kryptonButton7_Click(object sender, EventArgs e)
+        {
+            Compras compr = new Compras();
+            compr.Show();
+        }
+
+        private void kryptonButton6_Click(object sender, EventArgs e)
+        {
+            ClientesAdm clientesAdm = new ClientesAdm();
+            clientesAdm.Show();
+        }
+
+        private void kryptonButton5_Click(object sender, EventArgs e)
+        {
+            InventarioAdmin invam = new InventarioAdmin();
+
+            invam.Show();
+        }
+
+        private void kryptonButton4_Click(object sender, EventArgs e)
+        {
+            ProveedoresAdmin proadm = new ProveedoresAdmin();
+            proadm.Show();
+        }
+
+        private void kryptonButton2_Click(object sender, EventArgs e)
+        {
+            Deudores deu = new Deudores();
+            deu.Show();
+        }
+
+        private void btnReporte_Click(object sender, EventArgs e)
+        {
+            ReporteAdmin reporte = new ReporteAdmin();
+            reporte.Show();
+        }
+
+        private void kryptonButton3_Click(object sender, EventArgs e)
+        {
+            Bitacora bit = new Bitacora();
+            bit.Show();
+        }
+
+        private void kryptonButton10_Click(object sender, EventArgs e)
+        {
+            frmAdministracion administracion = new frmAdministracion();
+            administracion.Show();
+        }
+
+        private void kryptonButton1_Click(object sender, EventArgs e)
+        {
+            Perfil perfil = new Perfil();   
+            perfil.Show();
+        }
     }
 }
