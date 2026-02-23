@@ -28,12 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            kryptonDataGridView1 = new Krypton.Toolkit.KryptonDataGridView();
-            Column1 = new DataGridViewTextBoxColumn();
-            Column2 = new DataGridViewTextBoxColumn();
-            Column3 = new DataGridViewTextBoxColumn();
-            Column4 = new DataGridViewTextBoxColumn();
-            Column5 = new DataGridViewTextBoxColumn();
             label7 = new Label();
             label9 = new Label();
             label1 = new Label();
@@ -56,61 +50,15 @@
             kryptonTextBox2 = new Krypton.Toolkit.KryptonTextBox();
             kryptonTextBox3 = new Krypton.Toolkit.KryptonTextBox();
             kryptonComboBox2 = new Krypton.Toolkit.KryptonComboBox();
-            ((System.ComponentModel.ISupportInitialize)kryptonDataGridView1).BeginInit();
+            dataGridView1 = new DataGridView();
             panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonComboBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
-            // 
-            // kryptonDataGridView1
-            // 
-            kryptonDataGridView1.BorderStyle = BorderStyle.None;
-            kryptonDataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            kryptonDataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, Column5 });
-            kryptonDataGridView1.Location = new Point(43, 207);
-            kryptonDataGridView1.Margin = new Padding(3, 4, 3, 4);
-            kryptonDataGridView1.Name = "kryptonDataGridView1";
-            kryptonDataGridView1.RowHeadersWidth = 51;
-            kryptonDataGridView1.Size = new Size(626, 200);
-            kryptonDataGridView1.TabIndex = 310;
-            // 
-            // Column1
-            // 
-            Column1.HeaderText = "Codigo";
-            Column1.MinimumWidth = 6;
-            Column1.Name = "Column1";
-            Column1.Width = 125;
-            // 
-            // Column2
-            // 
-            Column2.HeaderText = "Producto";
-            Column2.MinimumWidth = 6;
-            Column2.Name = "Column2";
-            Column2.Width = 125;
-            // 
-            // Column3
-            // 
-            Column3.HeaderText = "Cantidad";
-            Column3.MinimumWidth = 6;
-            Column3.Name = "Column3";
-            Column3.Width = 125;
-            // 
-            // Column4
-            // 
-            Column4.HeaderText = "Precio";
-            Column4.MinimumWidth = 6;
-            Column4.Name = "Column4";
-            Column4.Width = 125;
-            // 
-            // Column5
-            // 
-            Column5.HeaderText = "SubT";
-            Column5.MinimumWidth = 6;
-            Column5.Name = "Column5";
-            Column5.Width = 125;
             // 
             // label7
             // 
@@ -227,29 +175,29 @@
             // 
             // kryptonButton12
             // 
-            kryptonButton12.Location = new Point(61, 487);
+            kryptonButton12.Location = new Point(43, 483);
             kryptonButton12.Name = "kryptonButton12";
             kryptonButton12.OverrideDefault.Back.Color1 = Color.SkyBlue;
             kryptonButton12.OverrideDefault.Back.Color2 = Color.White;
             kryptonButton12.OverrideFocus.Back.Color1 = Color.SkyBlue;
             kryptonButton12.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton12.Size = new Size(146, 60);
+            kryptonButton12.Size = new Size(272, 60);
             kryptonButton12.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonButton12.StateCommon.Back.Color2 = Color.White;
-            kryptonButton12.StateCommon.Border.Rounding = 30F;
+            kryptonButton12.StateCommon.Border.Rounding = 40F;
             kryptonButton12.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton12.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            kryptonButton12.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
             kryptonButton12.StateNormal.Back.Color1 = Color.SkyBlue;
             kryptonButton12.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
             kryptonButton12.StatePressed.Back.Color1 = Color.Transparent;
             kryptonButton12.StatePressed.Back.Color2 = Color.Transparent;
             kryptonButton12.TabIndex = 314;
             kryptonButton12.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton12.Values.Text = "Agregar";
+            kryptonButton12.Values.Text = "Agregar Producto";
             // 
             // kryptonButton1
             // 
-            kryptonButton1.Location = new Point(214, 487);
+            kryptonButton1.Location = new Point(328, 483);
             kryptonButton1.Name = "kryptonButton1";
             kryptonButton1.OverrideDefault.Back.Color1 = Color.SkyBlue;
             kryptonButton1.OverrideDefault.Back.Color2 = Color.White;
@@ -258,9 +206,9 @@
             kryptonButton1.Size = new Size(146, 60);
             kryptonButton1.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonButton1.StateCommon.Back.Color2 = Color.White;
-            kryptonButton1.StateCommon.Border.Rounding = 30F;
+            kryptonButton1.StateCommon.Border.Rounding = 40F;
             kryptonButton1.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton1.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            kryptonButton1.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
             kryptonButton1.StateNormal.Back.Color1 = Color.SkyBlue;
             kryptonButton1.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
             kryptonButton1.StatePressed.Back.Color1 = Color.Transparent;
@@ -271,7 +219,7 @@
             // 
             // kryptonButton2
             // 
-            kryptonButton2.Location = new Point(367, 487);
+            kryptonButton2.Location = new Point(480, 483);
             kryptonButton2.Name = "kryptonButton2";
             kryptonButton2.OverrideDefault.Back.Color1 = Color.SkyBlue;
             kryptonButton2.OverrideDefault.Back.Color2 = Color.White;
@@ -280,9 +228,9 @@
             kryptonButton2.Size = new Size(146, 60);
             kryptonButton2.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonButton2.StateCommon.Back.Color2 = Color.White;
-            kryptonButton2.StateCommon.Border.Rounding = 30F;
+            kryptonButton2.StateCommon.Border.Rounding = 40F;
             kryptonButton2.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton2.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            kryptonButton2.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
             kryptonButton2.StateNormal.Back.Color1 = Color.SkyBlue;
             kryptonButton2.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
             kryptonButton2.StatePressed.Back.Color1 = Color.Transparent;
@@ -374,12 +322,23 @@
             kryptonComboBox2.StateNormal.ComboBox.Border.Rounding = 40F;
             kryptonComboBox2.TabIndex = 322;
             // 
+            // dataGridView1
+            // 
+            dataGridView1.BackgroundColor = Color.SkyBlue;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(61, 221);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(565, 188);
+            dataGridView1.TabIndex = 323;
+            // 
             // FacturaAgregarDatos
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1018, 599);
+            Controls.Add(dataGridView1);
             Controls.Add(kryptonComboBox2);
             Controls.Add(kryptonTextBox3);
             Controls.Add(kryptonTextBox2);
@@ -389,7 +348,6 @@
             Controls.Add(kryptonButton2);
             Controls.Add(kryptonButton1);
             Controls.Add(kryptonButton12);
-            Controls.Add(kryptonDataGridView1);
             Controls.Add(label7);
             Controls.Add(label9);
             Controls.Add(label1);
@@ -405,24 +363,18 @@
             Margin = new Padding(3, 4, 3, 4);
             Name = "FacturaAgregarDatos";
             Text = "FacturaAgregarDatos";
-            ((System.ComponentModel.ISupportInitialize)kryptonDataGridView1).EndInit();
             panel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonComboBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-        private Krypton.Toolkit.KryptonDataGridView kryptonDataGridView1;
-        private DataGridViewTextBoxColumn Column1;
-        private DataGridViewTextBoxColumn Column2;
-        private DataGridViewTextBoxColumn Column3;
-        private DataGridViewTextBoxColumn Column4;
-        private DataGridViewTextBoxColumn Column5;
         private Label label7;
         private Label label9;
         private Label label1;
@@ -445,5 +397,6 @@
         private Krypton.Toolkit.KryptonTextBox kryptonTextBox2;
         private Krypton.Toolkit.KryptonTextBox kryptonTextBox3;
         private Krypton.Toolkit.KryptonComboBox kryptonComboBox2;
+        private DataGridView dataGridView1;
     }
 }

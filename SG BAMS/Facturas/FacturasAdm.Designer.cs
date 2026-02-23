@@ -792,6 +792,7 @@
             // 
             // dgvFacturas
             // 
+            dgvFacturas.BackgroundColor = Color.SkyBlue;
             dgvFacturas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvFacturas.Location = new Point(369, 269);
             dgvFacturas.Name = "dgvFacturas";
