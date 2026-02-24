@@ -21,5 +21,12 @@ namespace SG_BAMS
         {
 
         }
+
+        private void kryptonButton6_Click(object sender, EventArgs e)
+        {
+            frmEstado verEstado = new frmEstado();
+            verEstado.Show();
+            this.Close();
+        }
     }
 }

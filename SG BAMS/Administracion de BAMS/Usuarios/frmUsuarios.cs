@@ -21,5 +21,29 @@ namespace SG_BAMS
         {
 
         }
+
+        private void kryptonButton6_Click(object sender, EventArgs e)
+        {
+            frmAgregarUsuarios agregarUsuario = new frmAgregarUsuarios();
+            agregarUsuario.Show();
+            this.Hide();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void kryptonButton3_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            frmModificarUsuarios modificarUsuario = new frmModificarUsuarios();
+            modificarUsuario.Show();
+        }
+
+        private void kryptonButton1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

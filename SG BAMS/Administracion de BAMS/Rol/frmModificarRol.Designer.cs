@@ -159,6 +159,7 @@
             kryptonButton6.TabIndex = 141;
             kryptonButton6.Values.DropDownArrowColor = Color.Empty;
             kryptonButton6.Values.Text = "Salir";
+            kryptonButton6.Click += kryptonButton6_Click;
             // 
             // kryptonTextBox1
             // 

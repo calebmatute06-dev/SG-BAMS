@@ -49,57 +49,53 @@
             // 
             pictureBox16.BackgroundImage = (Image)resources.GetObject("pictureBox16.BackgroundImage");
             pictureBox16.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox16.Location = new Point(432, 21);
-            pictureBox16.Margin = new Padding(3, 2, 3, 2);
+            pictureBox16.Location = new Point(494, 28);
             pictureBox16.Name = "pictureBox16";
-            pictureBox16.Size = new Size(47, 47);
+            pictureBox16.Size = new Size(54, 63);
             pictureBox16.TabIndex = 142;
             pictureBox16.TabStop = false;
             // 
             // panel1
             // 
             panel1.BackColor = Color.Navy;
-            panel1.Location = new Point(5, 2);
-            panel1.Margin = new Padding(3, 2, 3, 2);
+            panel1.Location = new Point(6, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(598, 18);
+            panel1.Size = new Size(683, 24);
             panel1.TabIndex = 140;
             // 
             // pictureBox2
             // 
             pictureBox2.BackColor = Color.Navy;
-            pictureBox2.Location = new Point(5, 2);
-            pictureBox2.Margin = new Padding(3, 2, 3, 2);
+            pictureBox2.Location = new Point(6, 3);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(21, 270);
+            pictureBox2.Size = new Size(24, 360);
             pictureBox2.TabIndex = 141;
             pictureBox2.TabStop = false;
             // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Navy;
-            pictureBox1.Location = new Point(582, 2);
-            pictureBox1.Margin = new Padding(3, 2, 3, 2);
+            pictureBox1.Location = new Point(665, 3);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(21, 281);
+            pictureBox1.Size = new Size(24, 375);
             pictureBox1.TabIndex = 134;
             pictureBox1.TabStop = false;
             // 
             // panel2
             // 
             panel2.BackColor = Color.Navy;
-            panel2.Location = new Point(5, 265);
-            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Location = new Point(6, 353);
             panel2.Name = "panel2";
-            panel2.Size = new Size(598, 18);
+            panel2.Size = new Size(683, 24);
             panel2.TabIndex = 139;
             // 
             // kryptonTextBox1
             // 
-            kryptonTextBox1.Location = new Point(300, 76);
+            kryptonTextBox1.Location = new Point(343, 101);
+            kryptonTextBox1.Margin = new Padding(3, 4, 3, 4);
             kryptonTextBox1.Multiline = true;
             kryptonTextBox1.Name = "kryptonTextBox1";
-            kryptonTextBox1.Size = new Size(264, 41);
+            kryptonTextBox1.Size = new Size(302, 55);
             kryptonTextBox1.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonTextBox1.StateCommon.Border.Rounding = 15F;
             kryptonTextBox1.StateCommon.Content.Color1 = Color.Navy;
@@ -112,9 +108,9 @@
             label9.BackColor = Color.Transparent;
             label9.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label9.ForeColor = Color.Navy;
-            label9.Location = new Point(518, 239);
+            label9.Location = new Point(592, 319);
             label9.Name = "label9";
-            label9.Size = new Size(58, 24);
+            label9.Size = new Size(70, 30);
             label9.TabIndex = 135;
             label9.Text = "BAMS";
             // 
@@ -124,9 +120,9 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(65, 83);
+            label2.Location = new Point(74, 111);
             label2.Name = "label2";
-            label2.Size = new Size(229, 25);
+            label2.Size = new Size(276, 31);
             label2.TabIndex = 133;
             label2.Text = "Ingrese el tipo de prodcuto:";
             // 
@@ -135,24 +131,23 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial Narrow", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(158, 24);
+            label1.Location = new Point(181, 32);
             label1.Name = "label1";
-            label1.Size = new Size(313, 29);
+            label1.Size = new Size(358, 39);
             label1.TabIndex = 132;
             label1.Text = "Agregar Tipo de Producto";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // kryptonButton3
             // 
-            kryptonButton3.Location = new Point(326, 178);
-            kryptonButton3.Margin = new Padding(3, 2, 3, 2);
+            kryptonButton3.Location = new Point(373, 237);
             kryptonButton3.Name = "kryptonButton3";
             kryptonButton3.OverrideDefault.Back.Color1 = Color.SkyBlue;
             kryptonButton3.OverrideDefault.Back.Color2 = Color.White;
             kryptonButton3.OverrideDefault.Border.Rounding = 40F;
             kryptonButton3.OverrideFocus.Back.Color1 = Color.SkyBlue;
             kryptonButton3.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton3.Size = new Size(103, 49);
+            kryptonButton3.Size = new Size(118, 65);
             kryptonButton3.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonButton3.StateCommon.Back.Color2 = Color.White;
             kryptonButton3.StateCommon.Border.Rounding = 40F;
@@ -169,15 +164,14 @@
             // 
             // kryptonButton6
             // 
-            kryptonButton6.Location = new Point(165, 178);
-            kryptonButton6.Margin = new Padding(3, 2, 3, 2);
+            kryptonButton6.Location = new Point(189, 237);
             kryptonButton6.Name = "kryptonButton6";
             kryptonButton6.OverrideDefault.Back.Color1 = Color.SkyBlue;
             kryptonButton6.OverrideDefault.Back.Color2 = Color.White;
             kryptonButton6.OverrideDefault.Border.Rounding = 40F;
             kryptonButton6.OverrideFocus.Back.Color1 = Color.SkyBlue;
             kryptonButton6.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton6.Size = new Size(103, 49);
+            kryptonButton6.Size = new Size(118, 65);
             kryptonButton6.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonButton6.StateCommon.Back.Color2 = Color.White;
             kryptonButton6.StateCommon.Border.Rounding = 40F;
@@ -190,13 +184,14 @@
             kryptonButton6.TabIndex = 145;
             kryptonButton6.Values.DropDownArrowColor = Color.Empty;
             kryptonButton6.Values.Text = "Agregar";
+            kryptonButton6.Click += kryptonButton6_Click;
             // 
             // frnAgregarTipoProducto
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(607, 287);
+            ClientSize = new Size(694, 383);
             Controls.Add(kryptonButton3);
             Controls.Add(kryptonButton6);
             Controls.Add(pictureBox16);
@@ -208,6 +203,7 @@
             Controls.Add(label9);
             Controls.Add(label2);
             Controls.Add(label1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "frnAgregarTipoProducto";
             Text = "frnAgregarTipoProducto";
             ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();

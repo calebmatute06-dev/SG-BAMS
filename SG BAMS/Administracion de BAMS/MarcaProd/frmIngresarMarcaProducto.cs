@@ -21,5 +21,12 @@ namespace SG_BAMS
         {
 
         }
+
+        private void kryptonButton1_Click(object sender, EventArgs e)
+        {
+            frmMarcaProductos verMproducto = new frmMarcaProductos();
+            verMproducto.Show();
+            this.Close();
+        }
     }
 }

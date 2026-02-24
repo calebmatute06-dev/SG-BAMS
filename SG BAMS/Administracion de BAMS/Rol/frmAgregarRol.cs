@@ -26,5 +26,12 @@ namespace SG_BAMS
         {
 
         }
+
+        private void kryptonButton1_Click(object sender, EventArgs e)
+        {
+            frmRoles verRoles = new frmRoles();
+            verRoles.Show();
+            this.Close();
+        }
     }
 }

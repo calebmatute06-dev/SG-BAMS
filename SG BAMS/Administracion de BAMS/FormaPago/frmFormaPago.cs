@@ -16,5 +16,17 @@ namespace SG_BAMS
         {
             InitializeComponent();
         }
+
+        private void kryptonButton1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void kryptonButton6_Click(object sender, EventArgs e)
+        {
+            frmAgregarFormaPago AgregarFpago = new frmAgregarFormaPago();
+            AgregarFpago.Show();
+            this.Close();
+        }
     }
 }

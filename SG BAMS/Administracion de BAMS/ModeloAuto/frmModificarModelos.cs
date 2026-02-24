@@ -16,5 +16,12 @@ namespace SG_BAMS
         {
             InitializeComponent();
         }
+
+        private void kryptonButton6_Click(object sender, EventArgs e)
+        {
+            frmModeloAuto verMauto = new frmModeloAuto();
+            verMauto.Show();
+            this.Close();
+        }
     }
 }

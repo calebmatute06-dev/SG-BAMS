@@ -32,6 +32,51 @@ namespace SG_BAMS
 
         }
 
-    
+        private void btnsalir_Click(object sender, EventArgs e)
+        {
+            frmUsuarios verUsuario = new frmUsuarios();
+            verUsuario.Show();
+        }
+
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void kryptonButton1_Click(object sender, EventArgs e)
+        {
+            frmRoles verRoles = new frmRoles();
+            verRoles.Show();
+        }
+
+        private void kryptonButton2_Click(object sender, EventArgs e)
+        {
+            frmTipoProducto verTproducto = new frmTipoProducto();
+            verTproducto.Show();
+        }
+
+        private void kryptonButton3_Click(object sender, EventArgs e)
+        {
+            frmFormaPago verFormaPago = new frmFormaPago();
+            verFormaPago.Show();
+        }
+
+        private void kryptonButton4_Click(object sender, EventArgs e)
+        {
+            frmEstado verEstado = new frmEstado();
+            verEstado.Show();
+        }
+
+        private void kryptonButton5_Click(object sender, EventArgs e)
+        {
+            frmMarcaProductos verMproducto = new frmMarcaProductos();
+            verMproducto.Show();
+        }
+
+        private void kryptonButton6_Click(object sender, EventArgs e)
+        {
+            frmModeloAuto verMauto = new frmModeloAuto();
+            verMauto.Show();
+        }
     }
 }

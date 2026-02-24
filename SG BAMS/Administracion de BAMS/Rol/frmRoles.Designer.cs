@@ -153,6 +153,7 @@
             kryptonButton1.TabIndex = 144;
             kryptonButton1.Values.DropDownArrowColor = Color.Empty;
             kryptonButton1.Values.Text = "Modificar";
+            kryptonButton1.Click += kryptonButton1_Click;
             // 
             // kryptonButton6
             // 
@@ -176,6 +177,7 @@
             kryptonButton6.TabIndex = 143;
             kryptonButton6.Values.DropDownArrowColor = Color.Empty;
             kryptonButton6.Values.Text = "Salir";
+            kryptonButton6.Click += kryptonButton6_Click;
             // 
             // kryptonButton2
             // 
@@ -199,6 +201,7 @@
             kryptonButton2.TabIndex = 145;
             kryptonButton2.Values.DropDownArrowColor = Color.Empty;
             kryptonButton2.Values.Text = "Agregar";
+            kryptonButton2.Click += kryptonButton2_Click;
             // 
             // frmRoles
             // 

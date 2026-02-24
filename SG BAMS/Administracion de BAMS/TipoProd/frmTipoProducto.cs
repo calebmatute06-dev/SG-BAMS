@@ -16,5 +16,24 @@ namespace SG_BAMS
         {
             InitializeComponent();
         }
+
+        private void kryptonButton6_Click(object sender, EventArgs e)
+        {
+            frnAgregarTipoProducto agregarTProducto = new frnAgregarTipoProducto();
+            agregarTProducto.Show();
+            this.Close();
+        }
+
+        private void kryptonButton3_Click(object sender, EventArgs e)
+        {
+            frmModificarTipoProducto ModificarTProducto = new frmModificarTipoProducto();
+            ModificarTProducto.Show();
+            this.Close();
+        }
+
+        private void kryptonButton1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

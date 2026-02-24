@@ -29,7 +29,9 @@ namespace SG_BAMS
 
         private void kryptonButton2_Click(object sender, EventArgs e)
         {
-
+            frmFormaPago frmFormaPago = new frmFormaPago();
+            frmFormaPago.Show();
+            this.Close();
         }
     }
 }

@@ -28,5 +28,19 @@ namespace SG_BAMS
         {
 
         }
+
+        private void kryptonButton6_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            frmUsuarios verUsuario = new frmUsuarios();
+            verUsuario.Show();
+
+        }
+
+        private void kryptonButton3_Click(object sender, EventArgs e)
+        {
+            frmImagenEmpleado agregarImagen = new frmImagenEmpleado();
+            agregarImagen.Show();
+        }
     }
 }

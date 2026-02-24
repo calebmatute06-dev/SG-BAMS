@@ -21,5 +21,24 @@ namespace SG_BAMS
         {
 
         }
+
+        private void kryptonButton2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            frmAgregarRol agregarRol = new frmAgregarRol();
+            agregarRol.Show();
+        }
+
+        private void kryptonButton6_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void kryptonButton1_Click(object sender, EventArgs e)
+        {
+            frmModificarRol modificarRol = new frmModificarRol();
+            modificarRol.Show();
+            this.Close();
+        }
     }
 }

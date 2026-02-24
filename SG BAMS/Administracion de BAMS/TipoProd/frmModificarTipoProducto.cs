@@ -16,5 +16,17 @@ namespace SG_BAMS
         {
             InitializeComponent();
         }
+
+        private void kryptonButton6_Click(object sender, EventArgs e)
+        {
+            frmTipoProducto verproducto = new frmTipoProducto();
+            verproducto.Show();
+            this.Close();
+        }
+
+        private void frmModificarTipoProducto_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

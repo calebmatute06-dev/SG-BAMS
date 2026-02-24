@@ -12,6 +12,7 @@ namespace SG_BAMS
 {
     public partial class frmAgregarUsuarios : Form
     {
+
         public frmAgregarUsuarios()
         {
             InitializeComponent();
@@ -20,6 +21,19 @@ namespace SG_BAMS
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void kryptonButton1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            frmUsuarios verUsuario = new frmUsuarios();
+            verUsuario.Show();
+        }
+
+        private void kryptonButton2_Click(object sender, EventArgs e)
+        {
+            frmImagenEmpleado agregarImagen = new frmImagenEmpleado();
+            agregarImagen.Show();
         }
     }
 }
