@@ -249,6 +249,7 @@
             cmbUsuarios.StateCommon.Item.Content.ShortText.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbUsuarios.StateNormal.ComboBox.Border.Rounding = 40F;
             cmbUsuarios.TabIndex = 146;
+            cmbUsuarios.SelectedIndexChanged += cmbUsuarios_SelectedIndexChanged;
             // 
             // label2
             // 

@@ -602,22 +602,6 @@ namespace SG_BAMS
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void button1_Click(object sender, EventArgs e)
         {
-            if (cmbUsuarios.SelectedItem is Usuario seleccionado)
-            {
-                face_id = seleccionado.Usuario_id;
-                face_name = seleccionado.NombreCompleto;
-
-                // *** REINICIAR BUFERS ***
-                trainedImages.Clear();
-                is_anew_face = false;
-
-                recording_type = RecordingType.training;
-                TurnOnCamera();
-            }
-            else
-            {
-                MessageBox.Show("Debe seleccionar un usuario antes de iniciar el entrenamiento.");
-            }
         }
 
         /// <summary>
@@ -627,36 +611,7 @@ namespace SG_BAMS
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void button2_Click(object sender, EventArgs e)
         {
-            TurnOffCamera();
-            try
-            {
-                if (cam != null)
-                {
-                    if (cam.IsOpened())
-                    {
-                        cam.Release();   // Se libera solo si está abierta
-                    }
 
-                    cam.Dispose();        // Se libera memoria (solo si no está ya disposed)
-                    cam = null;           // Evita llamar Release() dos veces
-                }
-
-                running = false;
-                pctCamara.Image = null;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al apagar cámara: " + ex.Message);
-            }
-            //salvamos las imagenes
-            //etiquetar las caras por las que no preguntamos nombres.
-
-            SaveFaces(face_name);
-
-            cmbUsuarios.SelectedIndex = cmbUsuarios.Items.Count - 1;
-
-            is_anew_face = false;
-            face_id = GetNextFaceId();
         }
 
         //Entrenamiento de rostros
@@ -739,16 +694,7 @@ namespace SG_BAMS
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Usuario seleccionado = cmbUsuarios.SelectedItem as Usuario;
-
-            if (seleccionado != null)
-            {
-                face_id = seleccionado.Usuario_id;
-                face_name = seleccionado.NombreCompleto;
-
-                // esto indica que NO es una nueva cara
-                is_anew_face = false;
-            }
+            
         }
 
         /// <summary>
@@ -785,7 +731,7 @@ namespace SG_BAMS
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void button4_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         /// <summary>
@@ -820,7 +766,7 @@ namespace SG_BAMS
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void button3_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         //CONVERTIR A BYTE PARA INGRESAR A LA DB
@@ -876,7 +822,7 @@ namespace SG_BAMS
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void button5_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         /// <summary>
@@ -996,6 +942,20 @@ namespace SG_BAMS
             else
             {
                 MessageBox.Show("Entrenamiento fallido");
+            }
+        }
+
+        private void cmbUsuarios_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Usuario seleccionado = cmbUsuarios.SelectedItem as Usuario;
+
+            if (seleccionado != null)
+            {
+                face_id = seleccionado.Usuario_id;
+                face_name = seleccionado.NombreCompleto;
+
+                // esto indica que NO es una nueva cara
+                is_anew_face = false;
             }
         }
     }
