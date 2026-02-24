@@ -144,6 +144,7 @@
             kryptonButton11.TabIndex = 58;
             kryptonButton11.Values.DropDownArrowColor = Color.Empty;
             kryptonButton11.Values.Text = "Ajustes";
+            kryptonButton11.Click += kryptonButton11_Click;
             // 
             // kryptonButton10
             // 
@@ -194,6 +195,7 @@
             button12.Size = new Size(59, 44);
             button12.TabIndex = 54;
             button12.UseVisualStyleBackColor = false;
+            button12.Click += button12_Click;
             // 
             // panel6
             // 
@@ -338,6 +340,7 @@
             kryptonButton1.TabIndex = 36;
             kryptonButton1.Values.DropDownArrowColor = Color.Empty;
             kryptonButton1.Values.Text = "Administrador";
+            kryptonButton1.Click += kryptonButton1_Click;
             // 
             // btnCerrarSesion
             // 
@@ -363,6 +366,7 @@
             btnCerrarSesion.TabIndex = 35;
             btnCerrarSesion.Values.DropDownArrowColor = Color.Empty;
             btnCerrarSesion.Values.Text = "Cerrar Sesión";
+            btnCerrarSesion.Click += btnCerrarSesion_Click;
             // 
             // kryptonButton9
             // 
@@ -388,6 +392,7 @@
             kryptonButton9.TabIndex = 34;
             kryptonButton9.Values.DropDownArrowColor = Color.Empty;
             kryptonButton9.Values.Text = "Menu Principal";
+            kryptonButton9.Click += kryptonButton9_Click;
             // 
             // kryptonButton8
             // 
@@ -413,6 +418,7 @@
             kryptonButton8.TabIndex = 33;
             kryptonButton8.Values.DropDownArrowColor = Color.Empty;
             kryptonButton8.Values.Text = "Facturas";
+            kryptonButton8.Click += kryptonButton8_Click;
             // 
             // kryptonButton7
             // 
@@ -438,6 +444,7 @@
             kryptonButton7.TabIndex = 32;
             kryptonButton7.Values.DropDownArrowColor = Color.Empty;
             kryptonButton7.Values.Text = "Compras";
+            kryptonButton7.Click += kryptonButton7_Click;
             // 
             // kryptonButton6
             // 
@@ -463,6 +470,7 @@
             kryptonButton6.TabIndex = 31;
             kryptonButton6.Values.DropDownArrowColor = Color.Empty;
             kryptonButton6.Values.Text = "Clientes";
+            kryptonButton6.Click += kryptonButton6_Click;
             // 
             // kryptonButton5
             // 
@@ -488,6 +496,7 @@
             kryptonButton5.TabIndex = 30;
             kryptonButton5.Values.DropDownArrowColor = Color.Empty;
             kryptonButton5.Values.Text = "Inventario";
+            kryptonButton5.Click += kryptonButton5_Click;
             // 
             // kryptonButton4
             // 
@@ -513,6 +522,7 @@
             kryptonButton4.TabIndex = 29;
             kryptonButton4.Values.DropDownArrowColor = Color.Empty;
             kryptonButton4.Values.Text = "Proveedores";
+            kryptonButton4.Click += kryptonButton4_Click;
             // 
             // kryptonButton3
             // 
@@ -538,6 +548,7 @@
             kryptonButton3.TabIndex = 28;
             kryptonButton3.Values.DropDownArrowColor = Color.Empty;
             kryptonButton3.Values.Text = "Bitacora";
+            kryptonButton3.Click += kryptonButton3_Click;
             // 
             // kryptonButton2
             // 
@@ -563,6 +574,7 @@
             kryptonButton2.TabIndex = 27;
             kryptonButton2.Values.DropDownArrowColor = Color.Empty;
             kryptonButton2.Values.Text = "Deudores";
+            kryptonButton2.Click += kryptonButton2_Click;
             // 
             // pictureBox16
             // 
@@ -618,6 +630,7 @@
             btnReporte.TabIndex = 26;
             btnReporte.Values.DropDownArrowColor = Color.Empty;
             btnReporte.Values.Text = "Reporte";
+            btnReporte.Click += btnReporte_Click;
             // 
             // label2
             // 
@@ -749,7 +762,6 @@
             // 
             // pictureBox17
             // 
-            pictureBox17.Image = Properties.Resources.Logo1_Deudor;
             pictureBox17.Location = new Point(314, 37);
             pictureBox17.Name = "pictureBox17";
             pictureBox17.Size = new Size(104, 97);
