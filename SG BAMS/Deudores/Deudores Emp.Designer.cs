@@ -102,7 +102,6 @@
             // 
             // pictureBox17
             // 
-            pictureBox17.Image = Properties.Resources.Logo1_Deudor;
             pictureBox17.Location = new Point(311, 34);
             pictureBox17.Name = "pictureBox17";
             pictureBox17.Size = new Size(104, 97);
@@ -185,6 +184,7 @@
             kryptonButton11.TabIndex = 94;
             kryptonButton11.Values.DropDownArrowColor = Color.Empty;
             kryptonButton11.Values.Text = "Ajustes";
+            kryptonButton11.Click += kryptonButton11_Click;
             // 
             // pictureBox18
             // 
@@ -210,6 +210,7 @@
             button12.Size = new Size(59, 44);
             button12.TabIndex = 91;
             button12.UseVisualStyleBackColor = false;
+            button12.Click += button12_Click;
             // 
             // panel6
             // 
@@ -346,6 +347,7 @@
             kryptonButton1.TabIndex = 36;
             kryptonButton1.Values.DropDownArrowColor = Color.Empty;
             kryptonButton1.Values.Text = "Empleado";
+            kryptonButton1.Click += kryptonButton1_Click;
             // 
             // btnCerrarSesion
             // 
@@ -371,6 +373,7 @@
             btnCerrarSesion.TabIndex = 35;
             btnCerrarSesion.Values.DropDownArrowColor = Color.Empty;
             btnCerrarSesion.Values.Text = "Cerrar Sesión";
+            btnCerrarSesion.Click += btnCerrarSesion_Click;
             // 
             // kryptonButton9
             // 
@@ -396,6 +399,7 @@
             kryptonButton9.TabIndex = 34;
             kryptonButton9.Values.DropDownArrowColor = Color.Empty;
             kryptonButton9.Values.Text = "Menu Principal";
+            kryptonButton9.Click += kryptonButton9_Click;
             // 
             // kryptonButton8
             // 
@@ -421,6 +425,7 @@
             kryptonButton8.TabIndex = 33;
             kryptonButton8.Values.DropDownArrowColor = Color.Empty;
             kryptonButton8.Values.Text = "Facturas";
+            kryptonButton8.Click += kryptonButton8_Click;
             // 
             // kryptonButton6
             // 
@@ -446,6 +451,7 @@
             kryptonButton6.TabIndex = 31;
             kryptonButton6.Values.DropDownArrowColor = Color.Empty;
             kryptonButton6.Values.Text = "Clientes";
+            kryptonButton6.Click += kryptonButton6_Click;
             // 
             // kryptonButton5
             // 
