@@ -162,6 +162,7 @@
             Controls.Add(label6);
             Name = "NotificacionesEmp";
             Text = "NotificacionesEmp";
+            Load += NotificacionesEmp_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

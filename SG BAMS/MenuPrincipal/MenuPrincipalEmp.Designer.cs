@@ -867,6 +867,7 @@ namespace SG_BAMS
             Name = "MenuPrincipalEmp";
             Text = "MenuPrincipalEmp";
             Load += MenuPrincipalEmp_Load;
+            Shown += MenuPrincipalEmp_Shown;
             ((System.ComponentModel.ISupportInitialize)pictureBox21).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox20).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox19).EndInit();

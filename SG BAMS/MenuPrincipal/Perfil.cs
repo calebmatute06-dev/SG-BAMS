@@ -25,10 +25,12 @@ namespace SG_BAMS
             this.Close();
         }
 
-        
+
         private async void Perfil_Load(object sender, EventArgs e)
         {
             await CargarDatosUsuario();
+
+
         }
 
         private async Task CargarDatosUsuario()
@@ -46,16 +48,16 @@ namespace SG_BAMS
                     {
                         DataRow fila = datos.Rows[0];
 
-                        
+
                         label4.Text = fila["nombre_usuario"].ToString();
                         label5.Text = fila["descripcion_rol"].ToString();
 
-                        
+
                         if (fila["imagen_usuario"] != DBNull.Value)
                         {
                             byte[] imagenBytes = (byte[])fila["imagen_usuario"];
 
-                            
+
                             using (MemoryStream ms = new MemoryStream(imagenBytes))
                             {
                                 pbFotoPerfil.Image = Image.FromStream(ms);
@@ -79,16 +81,16 @@ namespace SG_BAMS
             {
                 try
                 {
-                    
+
                     byte[] imagenBytes = File.ReadAllBytes(selectorImagen.FileName);
 
-                    
+
                     string usuarioLogueado = SG_BAMS.Login.Login.UsuarioLogueado;
 
                     ClsUsuario objUsuario = new ClsUsuario();
                     await objUsuario.ActualizarFotoUsuario(usuarioLogueado, imagenBytes);
 
-                   
+
                     using (MemoryStream ms = new MemoryStream(imagenBytes))
                     {
                         pbFotoPerfil.Image = Image.FromStream(ms);
@@ -101,6 +103,11 @@ namespace SG_BAMS
                     MessageBox.Show("Error al procesar la imagen: " + ex.Message);
                 }
             }
+        }
+
+        private void Perfil_Shown(object sender, EventArgs e)
+        {
+            Ayudante_UI.AplicarZoomGlobal(this);
         }
     }
 }

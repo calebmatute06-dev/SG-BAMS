@@ -30,12 +30,12 @@ namespace SG_BAMS
         //Bloque de contadores 
         //--------------------------------------------------------------------
 
-       
+
 
         // Método asíncrono para que no se congele la interfaz al conectar con Somee
         private async Task ActualizarLabel()
         {
-            
+
             int total = await objetoContador.ObtenerTotalClientes();
 
             if (total != -1)
@@ -46,7 +46,7 @@ namespace SG_BAMS
 
         private async Task ActualizarLabelDeudores()
         {
-            
+
             int totalDeudores = await clsContadorDeuda.ObtenerTotalDeudores();
 
             if (totalDeudores != -1)
@@ -61,12 +61,12 @@ namespace SG_BAMS
 
         private async Task ActualizarLabelProductos()
         {
-            
+
             int totalProductos = await clsContadorProducto.ObtenerTotalProductos();
 
             if (totalProductos != -1)
             {
-                
+
                 lblConteoProductos.Text = totalProductos.ToString();
             }
             else
@@ -87,10 +87,10 @@ namespace SG_BAMS
 
             if (datosVentas != null)
             {
-                
+
                 dgvVentas.DataSource = datosVentas;
 
-                
+
                 dgvVentas.Columns["factura_id"].HeaderText = "N° Factura";
                 dgvVentas.Columns["nombre_completo_cliente"].HeaderText = "Cliente";
                 dgvVentas.Columns["fecha_registro"].HeaderText = "Fecha";
@@ -110,11 +110,11 @@ namespace SG_BAMS
                 chartStock.Legends.Clear();
                 chartStock.ChartAreas[0].Position.Auto = true;
 
-               
+
                 Legend leyendaEstandar = chartStock.Legends.Add("Default");
                 leyendaEstandar.BackColor = Color.Transparent;
-                leyendaEstandar.IsTextAutoFit = true; 
-                leyendaEstandar.LegendStyle = LegendStyle.Table; 
+                leyendaEstandar.IsTextAutoFit = true;
+                leyendaEstandar.LegendStyle = LegendStyle.Table;
                 leyendaEstandar.Docking = Docking.Right;
 
                 var serieInventario = chartStock.Series.Add("StockSeries");
@@ -130,7 +130,7 @@ namespace SG_BAMS
                     int puntoIndice = serieInventario.Points.AddXY(nombreArticulo, valorVisual);
                     var puntoActual = serieInventario.Points[puntoIndice];
 
-                    
+
                     if (cantidadReal == 0)
                     {
                         puntoActual.Color = Color.Red;
@@ -169,11 +169,14 @@ namespace SG_BAMS
             await CargarVentasRecientes();
             await CargarGraficoStock();
 
-          
+
             ClsTemas.CargarPreferencia();
 
-            
+
             ClsTemas.AplicarTema(this);
+
+
+            
         }
 
 
@@ -215,7 +218,7 @@ namespace SG_BAMS
         {
             Deudores_Emp deudoresForm = new Deudores_Emp();
             deudoresForm.ShowDialog();
-            await ActualizarLabelDeudores(); 
+            await ActualizarLabelDeudores();
         }
 
         private void kryptonButton9_Click(object sender, EventArgs e)
@@ -226,8 +229,8 @@ namespace SG_BAMS
         private async void kryptonButton17_Click(object sender, EventArgs e)
         {
             ClientesEmp clienemp = new ClientesEmp();
-            clienemp.ShowDialog(); 
-            await ActualizarLabel(); 
+            clienemp.ShowDialog();
+            await ActualizarLabel();
         }
 
         private void kryptonButton1_Click(object sender, EventArgs e)
@@ -254,8 +257,8 @@ namespace SG_BAMS
         private async void kryptonButton5_Click(object sender, EventArgs e)
         {
             InventarioEmp inventarioForm = new InventarioEmp();
-            inventarioForm.ShowDialog(); 
-            await ActualizarLabelProductos(); 
+            inventarioForm.ShowDialog();
+            await ActualizarLabelProductos();
         }
 
         private void kryptonButton2_Click(object sender, EventArgs e)
@@ -280,11 +283,16 @@ namespace SG_BAMS
 
 
 
-        
+
 
         private void lblConteoClientes_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void MenuPrincipalEmp_Shown(object sender, EventArgs e)
+        {
+            Ayudante_UI.AplicarZoomGlobal(this);
         }
     }
 }

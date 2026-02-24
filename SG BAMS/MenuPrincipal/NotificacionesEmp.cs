@@ -21,5 +21,10 @@ namespace SG_BAMS
         {
 
         }
+
+        private void NotificacionesEmp_Load(object sender, EventArgs e)
+        {
+            Ayudante_UI.AplicarZoomGlobal(this);
+        }
     }
 }

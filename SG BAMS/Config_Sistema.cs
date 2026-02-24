@@ -1,11 +1,32 @@
 ﻿using System;
+using System.IO;
 
 namespace SG_BAMS
 {
     public static class Config_Sistema
     {
-        // El factor de escala por defecto es 1.0 (100%)
-        // Lo ponemos static para que se pueda acceder desde cualquier formulario
         public static float FactorZoom = 1.0f;
+        // Guardamos el último zoom aplicado para evitar el efecto acumulativo
+        public static float UltimoFactorAplicado = 1.0f;
+
+        private static string rutaArchivo = AppDomain.CurrentDomain.BaseDirectory + "config_zoom.txt";
+
+        public static void GuardarConfiguracion()
+        {
+            File.WriteAllText(rutaArchivo, FactorZoom.ToString());
+        }
+
+        public static void CargarConfiguracion()
+        {
+            if (File.Exists(rutaArchivo))
+            {
+                string contenido = File.ReadAllText(rutaArchivo);
+                if (float.TryParse(contenido, out float valorGuardado))
+                {
+                    FactorZoom = valorGuardado;
+                    UltimoFactorAplicado = valorGuardado; // Sincronizamos al cargar
+                }
+            }
+        }
     }
 }

@@ -228,6 +228,7 @@
             Name = "Perfil";
             Text = "Perfil";
             Load += Perfil_Load;
+            Shown += Perfil_Shown;
             ((System.ComponentModel.ISupportInitialize)pbFotoPerfil).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();

@@ -147,7 +147,7 @@
             // cmbZoom
             // 
             cmbZoom.DropDownWidth = 300;
-            cmbZoom.Items.AddRange(new object[] { "100%", "150%", "200%" });
+            cmbZoom.Items.AddRange(new object[] { "100%", "110%", "120%", "130%", "140%", "150%" });
             cmbZoom.Location = new Point(315, 218);
             cmbZoom.Name = "cmbZoom";
             cmbZoom.Size = new Size(300, 52);

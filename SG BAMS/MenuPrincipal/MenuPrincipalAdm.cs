@@ -90,11 +90,11 @@ namespace SG_BAMS
                 chartStock.Legends.Clear();
                 chartStock.ChartAreas[0].Position.Auto = true;
 
-               
+
                 Legend leyendaEstandar = chartStock.Legends.Add("Default");
                 leyendaEstandar.BackColor = Color.Transparent;
-                leyendaEstandar.IsTextAutoFit = true; 
-                leyendaEstandar.LegendStyle = LegendStyle.Table; 
+                leyendaEstandar.IsTextAutoFit = true;
+                leyendaEstandar.LegendStyle = LegendStyle.Table;
                 leyendaEstandar.Docking = Docking.Right;
 
                 var serieInventario = chartStock.Series.Add("StockSeries");
@@ -110,7 +110,7 @@ namespace SG_BAMS
                     int puntoIndice = serieInventario.Points.AddXY(nombreArticulo, valorVisual);
                     var puntoActual = serieInventario.Points[puntoIndice];
 
-                    
+
                     if (cantidadReal == 0)
                     {
                         puntoActual.Color = Color.Red;
@@ -146,43 +146,43 @@ namespace SG_BAMS
                 ClsGraficoVentas objGraficoVentas = new ClsGraficoVentas();
                 DataTable datosVentas = await objGraficoVentas.ObtenerProductosMasVendidos();
 
-                
+
 
                 if (datosVentas != null && datosVentas.Rows.Count > 0)
                 {
-                   
+
                     chartMasVendidos.Series.Clear();
                     chartMasVendidos.ChartAreas[0].AxisX.CustomLabels.Clear();
                     chartMasVendidos.DataSource = null;
 
-                   
+
                     var serieBarras = chartMasVendidos.Series.Add("MasVendidos");
                     serieBarras.ChartType = SeriesChartType.Column;
 
-                    
+
                     for (int i = 0; i < datosVentas.Rows.Count; i++)
                     {
                         DataRow fila = datosVentas.Rows[i];
                         string nombreProducto = fila["producto"].ToString().Trim();
                         int totalVendido = Convert.ToInt32(fila["total_vendido"]);
 
-                        
+
                         serieBarras.Points.AddXY(i, totalVendido);
 
-                        
+
                         serieBarras.Points[i].AxisLabel = nombreProducto;
 
-                        
+
                         serieBarras.Points[i].Label = totalVendido.ToString();
                     }
 
-                    
+
                     var area = chartMasVendidos.ChartAreas[0];
                     area.AxisX.Interval = 1;
-                    area.AxisX.LabelStyle.Angle = -45; 
+                    area.AxisX.LabelStyle.Angle = -45;
                     area.AxisX.MajorGrid.Enabled = false;
 
-                    
+
                     chartMasVendidos.Palette = ChartColorPalette.BrightPastel;
                     chartMasVendidos.BackColor = Color.SkyBlue;
                     area.BackColor = Color.Transparent;
@@ -206,6 +206,11 @@ namespace SG_BAMS
             await ActualizarLabelProductos();
             await CargarGraficoStock();
             await CargarGraficoMasVendidos();
+
+            
+
+
+
         }
 
         private void pictureBox4_Click(object sender, EventArgs e)
@@ -340,8 +345,13 @@ namespace SG_BAMS
 
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
-            Perfil perfil = new Perfil();   
+            Perfil perfil = new Perfil();
             perfil.Show();
+        }
+
+        private void MenuPrincipalAdm_Shown(object sender, EventArgs e)
+        {
+            Ayudante_UI.AplicarZoomGlobal(this);
         }
     }
 }

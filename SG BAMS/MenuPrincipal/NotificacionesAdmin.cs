@@ -24,12 +24,17 @@ namespace SG_BAMS
 
         private void NotificacionesAdmin_Load(object sender, EventArgs e)
         {
-
+            Ayudante_UI.AplicarZoomGlobal(this);
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void NotificacionesAdmin_Shown(object sender, EventArgs e)
+        {
+            Ayudante_UI.AplicarZoomGlobal(this);
         }
     }
 }
