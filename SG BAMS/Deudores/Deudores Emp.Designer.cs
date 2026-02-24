@@ -689,6 +689,7 @@
             kryptonButton15.TabIndex = 158;
             kryptonButton15.Values.DropDownArrowColor = Color.Empty;
             kryptonButton15.Values.Text = "Pago Deuda";
+            kryptonButton15.Click += kryptonButton15_Click;
             // 
             // pictureBox20
             // 

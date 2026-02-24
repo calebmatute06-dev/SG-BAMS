@@ -62,5 +62,10 @@ namespace SG_BAMS
             Clientemp.Show();
             this.Close();
         }
+
+        private void kryptonButton15_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
