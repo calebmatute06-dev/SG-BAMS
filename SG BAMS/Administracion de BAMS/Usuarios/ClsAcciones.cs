@@ -27,16 +27,15 @@ namespace SG_BAMS
         }
 
         // 1) SP_CargarUsuarios
-        public List<dynamic> ObtenerUsuarios()
+        public List<Usuario> ObtenerUsuarios()
         {
-            var lista = new List<dynamic>();
+            List<Usuario> usuarios = new List<Usuario>();
 
             try
             {
                 Abrir();
 
-                // ✅ dbo. para evitar problemas de esquema
-                using (SqlCommand cmd = new SqlCommand("dbo.SP_CargarUsuarios", sc))
+                using (SqlCommand cmd = new SqlCommand("SP_CargarUsuarios", sc))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -44,12 +43,10 @@ namespace SG_BAMS
                     {
                         while (reader.Read())
                         {
-                            // SP: SELECT id_usuario, nombre_usuario AS NombreCompleto
-                            lista.Add(new
-                            {
-                                Usuario_id = Convert.ToInt32(reader["id_usuario"]),
-                                NombreCompleto = reader["NombreCompleto"].ToString()
-                            });
+                            int id = Convert.ToInt32(reader["id_usuario"]);
+                            string nombre = reader["nombre_usuario"].ToString();
+
+                            usuarios.Add(new Usuario(id, nombre));
                         }
                     }
                 }
@@ -63,7 +60,7 @@ namespace SG_BAMS
                 Cerrar();
             }
 
-            return lista;
+            return usuarios;
         }
 
         // 2) SP_ContarFotosUsuario
@@ -75,13 +72,15 @@ namespace SG_BAMS
             {
                 Abrir();
 
-                using (SqlCommand cmd = new SqlCommand("dbo.SP_ContarFotosUsuario", sc))
+                using (SqlCommand cmd = new SqlCommand("SP_ContarFotosUsuario", sc))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@Usuario_id", SqlDbType.Int).Value = usuario_id;
+                    cmd.Parameters.AddWithValue("@Usuario_id", usuario_id);
 
                     object result = cmd.ExecuteScalar();
-                    total = (result == null || result == DBNull.Value) ? 0 : Convert.ToInt32(result);
+
+                    if (result != null && result != DBNull.Value)
+                        total = Convert.ToInt32(result);
                 }
             }
             catch (Exception ex)
@@ -97,23 +96,25 @@ namespace SG_BAMS
         }
 
         // 3) SP_GuardarFotos (tu SP NO devuelve ID; aquí es void)
-        public void GuardarFotoRostro(int usuario_id, byte[] rostro_data)
+        public int GuardarFotoRostro(int usuario_id, byte[] rostro_data)
         {
-            if (rostro_data == null || rostro_data.Length == 0)
-                throw new ArgumentException("rostro_data está vacío");
+            int nuevoRostroId = 0;
 
             try
             {
                 Abrir();
 
-                using (SqlCommand cmd = new SqlCommand("dbo.SP_GuardarFotos", sc))
+                using (SqlCommand command = new SqlCommand("SP_GuardarFotos", sc))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    command.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("@Usuario_id", SqlDbType.Int).Value = usuario_id;
-                    cmd.Parameters.Add("@RostroData", SqlDbType.VarBinary, -1).Value = rostro_data; // -1 = MAX
+                    command.Parameters.AddWithValue("@Usuario_id", usuario_id);
+                    command.Parameters.AddWithValue("@RostroData", rostro_data);
 
-                    cmd.ExecuteNonQuery();
+                    object result = command.ExecuteScalar();
+
+                    if (result != null && result != DBNull.Value)
+                        nuevoRostroId = Convert.ToInt32(result);
                 }
             }
             catch (Exception ex)
@@ -124,35 +125,36 @@ namespace SG_BAMS
             {
                 Cerrar();
             }
+
+            return nuevoRostroId;
         }
 
         // 4) SP_ObtenerRostrosPorUsuario
         public List<byte[]> ObtenerRostrosPorUsuario(int usuario_id)
         {
-            var lista = new List<byte[]>();
+            List<byte[]> lista = new List<byte[]>();
 
             try
             {
                 Abrir();
 
-                using (SqlCommand cmd = new SqlCommand("dbo.SP_ObtenerRostrosPorUsuario", sc))
+                using (SqlCommand cmd = new SqlCommand("SP_ObtenerRostrosPorUsuario", sc))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@Usuario_id", SqlDbType.Int).Value = usuario_id;
+                    cmd.Parameters.AddWithValue("@Usuario_id", usuario_id);
 
-                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    while (dr.Read())
                     {
-                        while (dr.Read())
-                        {
-                            // SP: SELECT rostro_data FROM Rostro ...
-                            lista.Add((byte[])dr["rostro_data"]);
-                        }
+                        byte[] data = (byte[])dr["RostroData"];
+                        lista.Add(data);
                     }
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al obtener los rostros: " + ex.Message, ex);
+                throw new Exception("Error al obtener el rostro: " + ex.Message, ex);
             }
             finally
             {
@@ -169,11 +171,10 @@ namespace SG_BAMS
             {
                 Abrir();
 
-                using (SqlCommand cmd = new SqlCommand("dbo.SP_BorrarFotosUsuario", sc))
+                using (SqlCommand cmd = new SqlCommand("SP_BorrarFotosUsuario", sc))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@Usuario_id", SqlDbType.Int).Value = usuario_id;
-
+                    cmd.Parameters.AddWithValue("@Usuario_id", usuario_id);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -186,5 +187,16 @@ namespace SG_BAMS
                 Cerrar();
             }
         }
+    }
+}
+public class Usuario
+{
+    public int Usuario_id { get; set; }
+    public string NombreCompleto { get; set; }
+
+    public Usuario(int usuario_id, string nombreCompleto)
+    {
+        Usuario_id = usuario_id;
+        NombreCompleto = nombreCompleto;
     }
 }
