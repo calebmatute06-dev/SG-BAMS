@@ -216,6 +216,9 @@ namespace SG_BAMS
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
             this.Close();
+
+            SG_BAMS.Login.Login log = new SG_BAMS.Login.Login();
+            log.Show();
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)

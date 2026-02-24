@@ -1016,10 +1016,12 @@
             // 
             chartArea1.Name = "ChartArea1";
             chartMasVendidos.ChartAreas.Add(chartArea1);
+            legend1.BackColor = Color.SkyBlue;
             legend1.Name = "Legend1";
             chartMasVendidos.Legends.Add(legend1);
             chartMasVendidos.Location = new Point(346, 187);
             chartMasVendidos.Name = "chartMasVendidos";
+            chartMasVendidos.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";

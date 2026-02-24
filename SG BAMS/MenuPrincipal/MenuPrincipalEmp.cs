@@ -1,4 +1,5 @@
-﻿using SG_BAMS.MenuPrincipal;
+﻿using SG_BAMS.Login;
+using SG_BAMS.MenuPrincipal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -167,13 +168,20 @@ namespace SG_BAMS
             await ActualizarLabelProductos();
             await CargarVentasRecientes();
             await CargarGraficoStock();
+
+          
+            ClsTemas.CargarPreferencia();
+
+            
+            ClsTemas.AplicarTema(this);
         }
 
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
-            //this.Close();
-            this.Dispose();
+            this.Close();
+            SG_BAMS.Login.Login log = new SG_BAMS.Login.Login();
+            log.Show();
         }
 
         private void kryptonButton12_Click(object sender, EventArgs e)

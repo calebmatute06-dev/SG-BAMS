@@ -37,15 +37,15 @@
             label2 = new Label();
             label4 = new Label();
             label5 = new Label();
-            kryptonComboBox2 = new Krypton.Toolkit.KryptonComboBox();
+            cmbZoom = new Krypton.Toolkit.KryptonComboBox();
             kryptonComboBox3 = new Krypton.Toolkit.KryptonComboBox();
-            kryptonCheckBox1 = new Krypton.Toolkit.KryptonCheckBox();
+            chkModoOscuro = new Krypton.Toolkit.KryptonCheckBox();
             btnsalir = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonComboBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cmbZoom).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonComboBox3).BeginInit();
             SuspendLayout();
             // 
@@ -144,19 +144,21 @@
             label5.TabIndex = 77;
             label5.Text = "Idioma";
             // 
-            // kryptonComboBox2
+            // cmbZoom
             // 
-            kryptonComboBox2.DropDownWidth = 300;
-            kryptonComboBox2.Location = new Point(315, 218);
-            kryptonComboBox2.Name = "kryptonComboBox2";
-            kryptonComboBox2.Size = new Size(300, 52);
-            kryptonComboBox2.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
-            kryptonComboBox2.StateCommon.ComboBox.Border.Rounding = 40F;
-            kryptonComboBox2.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
-            kryptonComboBox2.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
-            kryptonComboBox2.StateCommon.Item.Content.ShortText.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonComboBox2.StateNormal.ComboBox.Border.Rounding = 40F;
-            kryptonComboBox2.TabIndex = 79;
+            cmbZoom.DropDownWidth = 300;
+            cmbZoom.Items.AddRange(new object[] { "100%", "150%", "200%" });
+            cmbZoom.Location = new Point(315, 218);
+            cmbZoom.Name = "cmbZoom";
+            cmbZoom.Size = new Size(300, 52);
+            cmbZoom.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbZoom.StateCommon.ComboBox.Border.Rounding = 40F;
+            cmbZoom.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            cmbZoom.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
+            cmbZoom.StateCommon.Item.Content.ShortText.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbZoom.StateNormal.ComboBox.Border.Rounding = 40F;
+            cmbZoom.TabIndex = 79;
+            cmbZoom.SelectedIndexChanged += kryptonComboBox2_SelectedIndexChanged;
             // 
             // kryptonComboBox3
             // 
@@ -172,15 +174,16 @@
             kryptonComboBox3.StateNormal.ComboBox.Border.Rounding = 40F;
             kryptonComboBox3.TabIndex = 80;
             // 
-            // kryptonCheckBox1
+            // chkModoOscuro
             // 
-            kryptonCheckBox1.Location = new Point(326, 140);
-            kryptonCheckBox1.Name = "kryptonCheckBox1";
-            kryptonCheckBox1.Size = new Size(194, 31);
-            kryptonCheckBox1.StateCommon.ShortText.Color1 = Color.Navy;
-            kryptonCheckBox1.StateCommon.ShortText.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonCheckBox1.TabIndex = 81;
-            kryptonCheckBox1.Values.Text = "Activo";
+            chkModoOscuro.Location = new Point(326, 140);
+            chkModoOscuro.Name = "chkModoOscuro";
+            chkModoOscuro.Size = new Size(194, 31);
+            chkModoOscuro.StateCommon.ShortText.Color1 = Color.Navy;
+            chkModoOscuro.StateCommon.ShortText.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            chkModoOscuro.TabIndex = 81;
+            chkModoOscuro.Values.Text = "Activo";
+            chkModoOscuro.CheckedChanged += kryptonCheckBox1_CheckedChanged;
             // 
             // btnsalir
             // 
@@ -212,9 +215,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 547);
             Controls.Add(btnsalir);
-            Controls.Add(kryptonCheckBox1);
+            Controls.Add(chkModoOscuro);
             Controls.Add(kryptonComboBox3);
-            Controls.Add(kryptonComboBox2);
+            Controls.Add(cmbZoom);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label2);
@@ -226,11 +229,12 @@
             Controls.Add(label1);
             Name = "Ajustes";
             Text = "Ajustes";
+            Load += Ajustes_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonComboBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cmbZoom).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonComboBox3).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -247,9 +251,9 @@
         private Label label2;
         private Label label4;
         private Label label5;
-        private Krypton.Toolkit.KryptonComboBox kryptonComboBox2;
+        private Krypton.Toolkit.KryptonComboBox cmbZoom;
         private Krypton.Toolkit.KryptonComboBox kryptonComboBox3;
-        private Krypton.Toolkit.KryptonCheckBox kryptonCheckBox1;
+        private Krypton.Toolkit.KryptonCheckBox chkModoOscuro;
         private Krypton.Toolkit.KryptonButton btnsalir;
     }
 }

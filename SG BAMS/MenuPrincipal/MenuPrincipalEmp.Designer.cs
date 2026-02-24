@@ -370,7 +370,9 @@ namespace SG_BAMS
             kryptonButton11.OverrideFocus.Back.Color2 = Color.SkyBlue;
             kryptonButton11.Size = new Size(98, 41);
             kryptonButton11.StateCommon.Back.Color1 = Color.White;
-            kryptonButton11.StateCommon.Back.Color2 = Color.SkyBlue;
+            kryptonButton11.StateCommon.Back.Color2 = Color.White;
+            kryptonButton11.StateCommon.Border.Color1 = Color.White;
+            kryptonButton11.StateCommon.Border.Color2 = Color.White;
             kryptonButton11.StateCommon.Border.Rounding = 40F;
             kryptonButton11.StateCommon.Content.ShortText.Color1 = Color.Navy;
             kryptonButton11.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);

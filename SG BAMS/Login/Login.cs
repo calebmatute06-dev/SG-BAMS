@@ -76,5 +76,10 @@ namespace SG_BAMS.Login
         {
             Application.Exit();
         }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
