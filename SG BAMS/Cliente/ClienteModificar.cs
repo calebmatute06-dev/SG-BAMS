@@ -72,16 +72,16 @@ namespace SG_BAMS
 
                 string query = "SELECT id_estado, descripcion_estado  FROM Estado";
 
-                // Usamos SqlCommand y SqlDataReader de manera async
+                
                 using (SqlCommand cmd = new SqlCommand(query, objCl.Conectar))
                 using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                 {
                     DataTable dt = new DataTable();
-                    dt.Load(reader); // Carga los datos del reader al DataTable
+                    dt.Load(reader); 
 
-                    cmbEstado.DataSource = dt;
                     cmbEstado.DisplayMember = "descripcion_estado";
                     cmbEstado.ValueMember = "id_estado";
+                    cmbEstado.DataSource = dt;
                 }
             }
             catch (Exception ex)
