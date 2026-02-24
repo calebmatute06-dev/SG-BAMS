@@ -16,5 +16,8 @@ namespace SG_BAMS
         {
             InitializeComponent();
         }
+
+
+
     }
 }
