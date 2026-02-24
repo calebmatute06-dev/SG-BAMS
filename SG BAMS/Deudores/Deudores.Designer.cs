@@ -910,6 +910,7 @@
             Controls.Add(panel1);
             Name = "Deudores";
             Text = "Deudores";
+            Shown += Deudores_Shown;
             ((System.ComponentModel.ISupportInitialize)pictureBox18).EndInit();
             panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();

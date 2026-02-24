@@ -93,7 +93,7 @@ namespace SG_BAMS
         {
             Perfil Per = new Perfil();
             Per.Show();
-            
+
         }
 
         private void button12_Click(object sender, EventArgs e)
@@ -106,8 +106,14 @@ namespace SG_BAMS
         private void kryptonButton11_Click(object sender, EventArgs e)
         {
             Ajustes Ajus = new Ajustes();
-            
-            
+            Ajus.Show();
+
+
+        }
+
+        private void Deudores_Shown(object sender, EventArgs e)
+        {
+            Ayudante_UI.AplicarZoomGlobal(this);
         }
     }
 }

@@ -237,6 +237,8 @@ namespace SG_BAMS
 
             invam.Show();
 
+            this.Close();
+
         }
 
         private void kryptonButton12_Click(object sender, EventArgs e)
@@ -244,6 +246,7 @@ namespace SG_BAMS
             FacturasAdm fact = new FacturasAdm();
 
             fact.Show();
+            this.Close();
         }
 
         private async void kryptonButton17_Click(object sender, EventArgs e)
@@ -251,6 +254,8 @@ namespace SG_BAMS
             ClientesAdm Client = new ClientesAdm();
             Client.Show();
             await ActualizarLabel();
+
+            this.Close();
         }
 
         private async void kryptonButton16_Click(object sender, EventArgs e)
@@ -258,6 +263,8 @@ namespace SG_BAMS
             Deudores deu = new Deudores();
             deu.Show();
             await ActualizarLabel();
+
+            this.Close();
         }
 
         private async void kryptonButton15_Click(object sender, EventArgs e)
@@ -267,6 +274,8 @@ namespace SG_BAMS
             invam.Show();
 
             await ActualizarLabel();
+
+            this.Close();
         }
 
         private void kryptonButton11_Click(object sender, EventArgs e)
@@ -292,18 +301,21 @@ namespace SG_BAMS
             FacturasAdm fact = new FacturasAdm();
 
             fact.Show();
+            this.Close();
         }
 
         private void kryptonButton7_Click(object sender, EventArgs e)
         {
             Compras compr = new Compras();
             compr.Show();
+            this.Close();
         }
 
         private void kryptonButton6_Click(object sender, EventArgs e)
         {
             ClientesAdm clientesAdm = new ClientesAdm();
             clientesAdm.Show();
+            this.Close();
         }
 
         private void kryptonButton5_Click(object sender, EventArgs e)
@@ -311,30 +323,35 @@ namespace SG_BAMS
             InventarioAdmin invam = new InventarioAdmin();
 
             invam.Show();
+            this.Close();
         }
 
         private void kryptonButton4_Click(object sender, EventArgs e)
         {
             ProveedoresAdmin proadm = new ProveedoresAdmin();
             proadm.Show();
+            this.Close();
         }
 
         private void kryptonButton2_Click(object sender, EventArgs e)
         {
             Deudores deu = new Deudores();
             deu.Show();
+            this.Close();
         }
 
         private void btnReporte_Click(object sender, EventArgs e)
         {
             ReporteAdmin reporte = new ReporteAdmin();
             reporte.Show();
+            this.Close();
         }
 
         private void kryptonButton3_Click(object sender, EventArgs e)
         {
             Bitacora bit = new Bitacora();
             bit.Show();
+            this.Close();
         }
 
         private void kryptonButton10_Click(object sender, EventArgs e)
