@@ -896,22 +896,24 @@ namespace SG_BAMS
 
         private void btnEntrenar_Click(object sender, EventArgs e)
         {
-            if (cmbUsuarios.SelectedItem is Usuario seleccionado)
+            cam = new VideoCapture();
+            recording_type = RecordingType.recognition;
+
+
+            //antes de encender la camara debemos decirle a eigen donde esta el archivo preentrenado sino
+            //existe no existira el reconocimiento
+            if (File.Exists(path_trained_face_model))
             {
-                face_id = seleccionado.Usuario_id;
-                face_name = seleccionado.NombreCompleto;
-
-                // *** REINICIAR BUFERS ***
-                trainedImages.Clear();
-                is_anew_face = false;
-
-                recording_type = RecordingType.training;
+                eigen_face_recognizer.Read(path_trained_face_model);
                 TurnOnCamera();
+
             }
             else
             {
-                MessageBox.Show("Debe seleccionar un usuario antes de iniciar el entrenamiento.");
+                MessageBox.Show("Modelo entrenado invalido");
             }
+
+
         }
 
         private void btnBorrar_Click(object sender, EventArgs e)
@@ -966,21 +968,21 @@ namespace SG_BAMS
 
         private void btnEncender_Click(object sender, EventArgs e)
         {
-            cam = new VideoCapture();
-            recording_type = RecordingType.recognition;
-
-
-            //antes de encender la camara debemos decirle a eigen donde esta el archivo preentrenado sino
-            //existe no existira el reconocimiento
-            if (File.Exists(path_trained_face_model))
+            if (cmbUsuarios.SelectedItem is Usuario seleccionado)
             {
-                eigen_face_recognizer.Read(path_trained_face_model);
-                TurnOnCamera();
+                face_id = seleccionado.Usuario_id;
+                face_name = seleccionado.NombreCompleto;
 
+                // *** REINICIAR BUFERS ***
+                trainedImages.Clear();
+                is_anew_face = false;
+
+                recording_type = RecordingType.training;
+                TurnOnCamera();
             }
             else
             {
-                MessageBox.Show("Modelo entrenado invalido");
+                MessageBox.Show("Debe seleccionar un usuario antes de iniciar el entrenamiento.");
             }
         }
 
