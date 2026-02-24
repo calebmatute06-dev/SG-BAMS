@@ -785,15 +785,7 @@ namespace SG_BAMS
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void button4_Click(object sender, EventArgs e)
         {
-            bool was_trained = TrainDataSetWithEigenFaceRecognizer();
-            if (was_trained)
-            {
-                MessageBox.Show("Entrenamiendo exitoso");
-            }
-            else
-            {
-                MessageBox.Show("Entrenamiento fallido");
-            }
+           
         }
 
         /// <summary>
@@ -828,22 +820,7 @@ namespace SG_BAMS
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void button3_Click(object sender, EventArgs e)
         {
-            cam = new VideoCapture();
-            recording_type = RecordingType.recognition;
-
-
-            //antes de encender la camara debemos decirle a eigen donde esta el archivo preentrenado sino
-            //existe no existira el reconocimiento
-            if (File.Exists(path_trained_face_model))
-            {
-                eigen_face_recognizer.Read(path_trained_face_model);
-                TurnOnCamera();
-
-            }
-            else
-            {
-                MessageBox.Show("Modelo entrenado invalido");
-            }
+           
         }
 
         //CONVERTIR A BYTE PARA INGRESAR A LA DB
@@ -899,6 +876,46 @@ namespace SG_BAMS
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void button5_Click(object sender, EventArgs e)
         {
+            
+        }
+
+        /// <summary>
+        /// Handles the 1 event of the pictureBox1_Click control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnEntrenar_Click(object sender, EventArgs e)
+        {
+            if (cmbUsuarios.SelectedItem is Usuario seleccionado)
+            {
+                face_id = seleccionado.Usuario_id;
+                face_name = seleccionado.NombreCompleto;
+
+                // *** REINICIAR BUFERS ***
+                trainedImages.Clear();
+                is_anew_face = false;
+
+                recording_type = RecordingType.training;
+                TurnOnCamera();
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un usuario antes de iniciar el entrenamiento.");
+            }
+        }
+
+        private void btnBorrar_Click(object sender, EventArgs e)
+        {
             try
             {
                 // 1. Detener cualquier reconocimiento o captura
@@ -947,19 +964,37 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Handles the 1 event of the pictureBox1_Click control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void pictureBox1_Click_1(object sender, EventArgs e)
+        private void btnEncender_Click(object sender, EventArgs e)
         {
+            cam = new VideoCapture();
+            recording_type = RecordingType.recognition;
 
+
+            //antes de encender la camara debemos decirle a eigen donde esta el archivo preentrenado sino
+            //existe no existira el reconocimiento
+            if (File.Exists(path_trained_face_model))
+            {
+                eigen_face_recognizer.Read(path_trained_face_model);
+                TurnOnCamera();
+
+            }
+            else
+            {
+                MessageBox.Show("Modelo entrenado invalido");
+            }
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void btnDetener_Click(object sender, EventArgs e)
         {
-            this.Close();
+            bool was_trained = TrainDataSetWithEigenFaceRecognizer();
+            if (was_trained)
+            {
+                MessageBox.Show("Entrenamiendo exitoso");
+            }
+            else
+            {
+                MessageBox.Show("Entrenamiento fallido");
+            }
         }
     }
 

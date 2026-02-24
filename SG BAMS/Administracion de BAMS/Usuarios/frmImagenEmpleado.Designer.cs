@@ -132,6 +132,7 @@
             btnEntrenar.TabIndex = 134;
             btnEntrenar.Values.DropDownArrowColor = Color.Empty;
             btnEntrenar.Values.Text = "Entrenar";
+            btnEntrenar.Click += btnEntrenar_Click;
             // 
             // btnSalir
             // 
@@ -180,6 +181,7 @@
             btnBorrar.TabIndex = 143;
             btnBorrar.Values.DropDownArrowColor = Color.Empty;
             btnBorrar.Values.Text = "Borrar";
+            btnBorrar.Click += btnBorrar_Click;
             // 
             // btnEncender
             // 
@@ -204,6 +206,7 @@
             btnEncender.TabIndex = 144;
             btnEncender.Values.DropDownArrowColor = Color.Empty;
             btnEncender.Values.Text = "Encender Cámara";
+            btnEncender.Click += btnEncender_Click;
             // 
             // btnDetener
             // 
@@ -228,6 +231,7 @@
             btnDetener.TabIndex = 145;
             btnDetener.Values.DropDownArrowColor = Color.Empty;
             btnDetener.Values.Text = "Detener Cámara";
+            btnDetener.Click += btnDetener_Click;
             // 
             // cmbUsuarios
             // 
