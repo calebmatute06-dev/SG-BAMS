@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using SG_BAMS.Cliente;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,12 +9,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SG_BAMS.Cliente;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SG_BAMS
 {
     public partial class ClienteAgregar : Form
     {
+        
+
         public ClienteAgregar()
         {
             InitializeComponent();
@@ -21,13 +25,13 @@ namespace SG_BAMS
         private async void btnAgregar_Click(object sender, EventArgs e)
         {
             ClsAgregarClientes objAC = new ClsAgregarClientes();
-            int filasInsertadas = await objAC.AgregarClientes(txtNombre.Text,txtApellido.Text,txtTelefono.Text,txtRTN.Text);
+            int filasInsertadas = await objAC.AgregarClientes(txtNombre.Text, txtApellido.Text, txtTelefono.Text, txtRTN.Text);
 
             if (filasInsertadas > 0)
             {
                 MessageBox.Show("Cliente agregado correctamente.");
 
-                
+
                 txtNombre.Clear();
                 txtApellido.Clear();
                 txtTelefono.Clear();
@@ -40,5 +44,12 @@ namespace SG_BAMS
             }
 
         }
+
+        private void ClienteAgregar_Load(object sender, EventArgs e)
+        {
+             
+        }
+
+       
     }
 }

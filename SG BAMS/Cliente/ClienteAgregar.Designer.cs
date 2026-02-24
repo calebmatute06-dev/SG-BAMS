@@ -298,6 +298,7 @@
             Margin = new Padding(3, 4, 3, 4);
             Name = "ClienteAgregar";
             Text = "ClienteAgregar";
+            Load += ClienteAgregar_Load;
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3).EndInit();
             ResumeLayout(false);

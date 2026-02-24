@@ -20,10 +20,8 @@ namespace SG_BAMS.Cliente
 
                 AbrirConexion();
 
-                using (SqlCommand cmd = new SqlCommand("PA_insertar_cliente", Conectar))
+                using (SqlCommand cmd = new SqlCommand("PA_actualizar_cliente", Conectar))
                 {
-                    
-
 
                     cmd.CommandType = CommandType.StoredProcedure;
 
