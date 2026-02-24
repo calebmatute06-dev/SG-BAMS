@@ -127,7 +127,12 @@ namespace SG_BAMS
 
                     if ((DateTime.Now - lastSave).TotalMilliseconds >= 600)
                     {
-                        int currentUserId = (int)cmbUsuarios.SelectedValue;
+                        // USAR INVOKE PARA OBTENER EL ID DEL COMBOBOX
+                        int currentUserId = 0;
+                        this.Invoke(new Action(() => {
+                            currentUserId = (int)cmbUsuarios.SelectedValue;
+                        }));
+
                         Mat face_crop = new Mat(gray, face);
                         Cv2.Resize(face_crop, face_crop, new OpenCvSharp.Size(model_width, model_height));
 
@@ -136,7 +141,11 @@ namespace SG_BAMS
                     }
                 }
             }
-            pctCamara.Image = BitmapConverter.ToBitmap(frame);
+
+            // USAR INVOKE PARA MOSTRAR LA IMAGEN
+            this.Invoke(new Action(() => {
+                pctCamara.Image = BitmapConverter.ToBitmap(frame);
+            }));
         }
 
         private void RecognizeFace()
@@ -168,7 +177,11 @@ namespace SG_BAMS
                         HersheyFonts.HersheyComplex, 0.8, Scalar.White);
                 }
             }
-            pctCamara.Image = BitmapConverter.ToBitmap(frame);
+
+            // ACTUALIZACIÓN SEGURA DE UI
+            this.Invoke(new Action(() => {
+                pctCamara.Image = BitmapConverter.ToBitmap(frame);
+            }));
         }
 
         private void SaveToDatabaseAndLocal(int userId, Mat face)
