@@ -35,7 +35,7 @@ namespace SG_BAMS
                     DataTable dt = new DataTable();
                     dt.Load(reader);
 
-                    
+
                     cmbClientes.DisplayMember = "Nombre Completo";
                     cmbClientes.ValueMember = "id_cliente";
                     cmbClientes.DataSource = dt;
@@ -54,6 +54,12 @@ namespace SG_BAMS
         private async void ClienteExistente_Load(object sender, EventArgs e)
         {
             await LlenarComboCliente();
+        }
+
+        private void BtnAsignar_Click(object sender, EventArgs e)
+        {
+            FacturaAgregarDatos frmFA = new FacturaAgregarDatos(cmbClientes.Text, Convert.ToInt32(cmbClientes.SelectedValue));
+
         }
     }
 }

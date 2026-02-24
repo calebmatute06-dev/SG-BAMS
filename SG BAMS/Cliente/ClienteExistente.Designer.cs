@@ -179,6 +179,7 @@
             BtnAsignar.TabIndex = 334;
             BtnAsignar.Values.DropDownArrowColor = Color.Empty;
             BtnAsignar.Values.Text = "Asignar";
+            BtnAsignar.Click += BtnAsignar_Click;
             // 
             // ClienteExistente
             // 
