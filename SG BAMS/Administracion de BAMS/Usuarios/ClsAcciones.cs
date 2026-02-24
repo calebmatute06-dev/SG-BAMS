@@ -1,20 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using Microsoft.Data.SqlClient; // Usamos la librería más actual
+using Microsoft.Data.SqlClient;
 
 namespace SG_BAMS
 {
     public class ClsAcciones
     {
-        // Tu cadena de conexión de Somee
-        private string cadenaConexion = "Data Source = AutoBattDB.mssql.somee.com; " +
-                                        "Initial catalog = AutoBattDB; " +
-                                        "User ID = exobonnie_SQLLogin_1; " +
-                                        "Password = w6et2uoghs;" +
-                                        "TrustServerCertificate=True;";
+        // ✅ OPCIÓN A: Cadena directa en el código
+        // Cambia SOLO estas 2 partes en tu PC:
+        //   User ID=PEGA_TU_USUARIO_AQUI;
+        //   Password=PEGA_TU_PASSWORD_AQUI;
+        private readonly string cadenaConexion =
+            "Data Source=AutoBattDB.mssql.somee.com;" +
+            "Initial Catalog=AutoBattDB;" +
+            "User ID=PEGA_TU_USUARIO_AQUI;" +
+            "Password=PEGA_TU_PASSWORD_AQUI;" +
+            "TrustServerCertificate=True;";
 
-        // Declaramos el objeto como 'cn' para que coincida con el resto de tu código
         private SqlConnection cn;
 
         private void Abrir()
@@ -31,12 +34,14 @@ namespace SG_BAMS
         public List<dynamic> ObtenerUsuarios()
         {
             var lista = new List<dynamic>();
+
             try
             {
                 Abrir();
                 using (SqlCommand cmd = new SqlCommand("SP_CargarUsuarios", cn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
+
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
                         while (dr.Read())
@@ -50,14 +55,22 @@ namespace SG_BAMS
                     }
                 }
             }
-            catch (Exception ex) { throw new Exception("Error al cargar usuarios: " + ex.Message); }
-            finally { Cerrar(); }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al cargar usuarios: " + ex.Message);
+            }
+            finally
+            {
+                Cerrar();
+            }
+
             return lista;
         }
 
         public int ContarFotosUsuario(int usuario_id)
         {
             int total = 0;
+
             try
             {
                 Abrir();
@@ -65,34 +78,55 @@ namespace SG_BAMS
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Usuario_id", usuario_id);
-                    total = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    object result = cmd.ExecuteScalar();
+                    total = (result == null || result == DBNull.Value) ? 0 : Convert.ToInt32(result);
                 }
             }
-            catch (Exception ex) { throw new Exception("Error al contar fotos: " + ex.Message); }
-            finally { Cerrar(); }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al contar fotos: " + ex.Message);
+            }
+            finally
+            {
+                Cerrar();
+            }
+
             return total;
         }
 
         public void GuardarFotoRostro(int usuario_id, byte[] rostro_data)
         {
+            if (rostro_data == null || rostro_data.Length == 0)
+                throw new ArgumentException("rostro_data está vacío");
+
             try
             {
                 Abrir();
                 using (SqlCommand cmd = new SqlCommand("SP_GuardarFotos", cn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
+
                     cmd.Parameters.AddWithValue("@Usuario_id", usuario_id);
-                    cmd.Parameters.AddWithValue("@RostroData", rostro_data);
+                    cmd.Parameters.Add("@RostroData", SqlDbType.VarBinary, rostro_data.Length).Value = rostro_data;
+
                     cmd.ExecuteNonQuery();
                 }
             }
-            catch (Exception ex) { throw new Exception("Error al guardar rostro: " + ex.Message); }
-            finally { Cerrar(); }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al guardar rostro: " + ex.Message);
+            }
+            finally
+            {
+                Cerrar();
+            }
         }
 
         public List<byte[]> ObtenerRostrosPorUsuario(int usuario_id)
         {
-            List<byte[]> lista = new List<byte[]>();
+            var lista = new List<byte[]>();
+
             try
             {
                 Abrir();
@@ -100,17 +134,27 @@ namespace SG_BAMS
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Usuario_id", usuario_id);
+
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
                         while (dr.Read())
                         {
-                            lista.Add((byte[])dr["rostro_data"]);
+                            // Asegúrate que tu SP devuelva esta columna con este nombre
+                            if (dr["rostro_data"] != DBNull.Value)
+                                lista.Add((byte[])dr["rostro_data"]);
                         }
                     }
                 }
             }
-            catch (Exception ex) { throw new Exception("Error al obtener rostros: " + ex.Message); }
-            finally { Cerrar(); }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener rostros: " + ex.Message);
+            }
+            finally
+            {
+                Cerrar();
+            }
+
             return lista;
         }
 
@@ -126,8 +170,14 @@ namespace SG_BAMS
                     cmd.ExecuteNonQuery();
                 }
             }
-            catch (Exception ex) { throw new Exception("Error al borrar fotos: " + ex.Message); }
-            finally { Cerrar(); }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al borrar fotos: " + ex.Message);
+            }
+            finally
+            {
+                Cerrar();
+            }
         }
     }
 }
