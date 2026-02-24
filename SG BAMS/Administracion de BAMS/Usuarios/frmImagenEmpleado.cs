@@ -14,53 +14,42 @@ namespace SG_BAMS
     {
         #region Variables y configuración
 
-        // OpenCV
         private VideoCapture cam;
         private Mat frame;
         private CascadeClassifier faceDetector;
         private EigenFaceRecognizer eigenFaceRecognizer;
 
-        // Control
         private volatile bool running = false;
         private RecordingType recordingType = RecordingType.Recognition;
         private DateTime lastSave = DateTime.MinValue;
 
-        // Modelo
         private readonly int modelWidth = 100;
         private readonly int modelHeight = 100;
         private readonly int eigenComponents = 80;
         private readonly int threshold = 3000;
 
-        // Rutas
         private readonly string pathFaces = Path.Combine(Application.StartupPath, "Faces");
         private readonly string pathXml = Path.Combine(Application.StartupPath, "haarcascade_frontalface_default.xml");
         private readonly string pathModel = Path.Combine(Application.StartupPath, "Faces", "stateModel.yaml");
 
-        private enum RecordingType
-        {
-            Training = 0,
-            Recognition = 1
-        }
+        private enum RecordingType { Training = 0, Recognition = 1 }
 
         #endregion
-
-        #region Constructor / Init
 
         public frmImagenEmpleado()
         {
             InitializeComponent();
 
             StartPosition = FormStartPosition.CenterScreen;
+
             frame = new Mat();
 
-            // Asegura carpeta Faces
             if (!Directory.Exists(pathFaces))
                 Directory.CreateDirectory(pathFaces);
 
-            // Mejor visual
             pctCamara.SizeMode = PictureBoxSizeMode.Zoom;
 
-            // Conectar eventos (TU DESIGNER no los tenía)
+            // Suscripción de eventos
             btnEntrenar.Click += btnEntrenar_Click;
             btnEncender.Click += btnEncender_Click;
             btnDetener.Click += btnDetener_Click;
@@ -70,9 +59,7 @@ namespace SG_BAMS
             // Cargar detector
             if (!File.Exists(pathXml))
             {
-                MessageBox.Show("Error: No se encontró el archivo XML de detección facial:\n" + pathXml);
-
-                // Si no hay detector, no tiene sentido continuar
+                MessageBox.Show("No se encontró el archivo XML en: " + pathXml);
                 btnEntrenar.Enabled = false;
                 btnEncender.Enabled = false;
                 btnDetener.Enabled = false;
@@ -81,24 +68,15 @@ namespace SG_BAMS
             }
 
             faceDetector = new CascadeClassifier(pathXml);
-
-            // Reconocedor
             eigenFaceRecognizer = EigenFaceRecognizer.Create(eigenComponents, threshold);
 
             // Cargar modelo si existe
             if (File.Exists(pathModel))
             {
-                try
-                {
-                    eigenFaceRecognizer.Read(pathModel);
-                }
-                catch
-                {
-                    // Si el archivo está corrupto, lo ignoramos
-                }
+                try { eigenFaceRecognizer.Read(pathModel); }
+                catch { /* modelo corrupto -> ignorar */ }
             }
 
-            // Cargar usuarios
             CargarUsuariosCombo();
         }
 
@@ -109,17 +87,22 @@ namespace SG_BAMS
                 ClsAcciones db = new ClsAcciones();
                 var usuarios = db.ObtenerUsuarios();
 
+                cmbUsuarios.DataSource = null;
                 cmbUsuarios.DisplayMember = "NombreCompleto";
                 cmbUsuarios.ValueMember = "Usuario_id";
                 cmbUsuarios.DataSource = usuarios;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar usuarios: " + ex.Message);
+                MessageBox.Show(
+                    "Error al cargar usuarios (BD):\n" + ex.Message +
+                    "\n\nRevisa tu cadena de conexión y que existan los SP en la base.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
         }
-
-        #endregion
 
         #region Cámara (On/Off)
 
@@ -149,8 +132,7 @@ namespace SG_BAMS
                         else
                             RecognizeFace();
 
-                        // Evita 100% CPU
-                        await Task.Delay(10);
+                        await Task.Delay(10); // evita 100% CPU
                     }
                 });
             }
@@ -201,47 +183,57 @@ namespace SG_BAMS
                 {
                     Cv2.Rectangle(frame, face, Scalar.Red, 2);
 
-                    // Cada 500ms
+                    // Guardar cada 500ms
                     if ((DateTime.Now - lastSave).TotalMilliseconds < 500)
                         continue;
 
-                    int currentUserId = GetSelectedUserId();
-                    if (currentUserId <= 0) continue;
+                    int userId = GetSelectedUserId();
+                    if (userId <= 0) continue;
 
-                    ClsAcciones db = new ClsAcciones();
-                    int count = db.ContarFotosUsuario(currentUserId);
-
-                    if (count < 30)
+                    try
                     {
-                        using (Mat faceCrop = new Mat(gray, face))
+                        ClsAcciones db = new ClsAcciones();
+                        int count = db.ContarFotosUsuario(userId);
+
+                        if (count < 30)
                         {
-                            Cv2.Resize(faceCrop, faceCrop, new OpenCvSharp.Size(modelWidth, modelHeight));
+                            using (Mat faceCrop = new Mat(gray, face))
+                            {
+                                Cv2.Resize(faceCrop, faceCrop, new OpenCvSharp.Size(modelWidth, modelHeight));
 
-                            byte[] data = MatToByteArray(faceCrop);
-                            db.GuardarFotoRostro(currentUserId, data);
+                                byte[] data = MatToByteArray(faceCrop);
+                                db.GuardarFotoRostro(userId, data);
 
-                            // Guardado local
-                            string userDir = Path.Combine(pathFaces, currentUserId.ToString());
-                            if (!Directory.Exists(userDir))
-                                Directory.CreateDirectory(userDir);
+                                // Guardado local
+                                string userDir = Path.Combine(pathFaces, userId.ToString());
+                                if (!Directory.Exists(userDir))
+                                    Directory.CreateDirectory(userDir);
 
-                            File.WriteAllBytes(Path.Combine(userDir, $"{DateTime.Now.Ticks}.bmp"), data);
+                                File.WriteAllBytes(Path.Combine(userDir, $"{DateTime.Now.Ticks}.bmp"), data);
 
-                            lastSave = DateTime.Now;
+                                lastSave = DateTime.Now;
+                            }
+                        }
+                        else
+                        {
+                            // ya hay 30, detener y entrenar
+                            Invoke(new Action(() =>
+                            {
+                                TurnOffCamera();
+
+                                bool ok = TrainDataSet();
+                                MessageBox.Show(ok
+                                    ? "Entrenamiento completado y modelo generado."
+                                    : "Entrenamiento completado, pero no hay datos para generar modelo.");
+                            }));
                         }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        // Ya tiene 30 -> detener y entrenar automáticamente
                         Invoke(new Action(() =>
                         {
                             TurnOffCamera();
-
-                            bool ok = TrainDataSet();
-                            if (ok)
-                                MessageBox.Show("Entrenamiento completado y modelo generado.");
-                            else
-                                MessageBox.Show("Entrenamiento completado, pero NO se pudo generar modelo (sin datos).");
+                            MessageBox.Show("Error durante entrenamiento: " + ex.Message);
                         }));
                     }
                 }
@@ -276,17 +268,16 @@ namespace SG_BAMS
 
                         try
                         {
-                            // Si el modelo no existe, no intentes predecir
-                            if (File.Exists(pathModel))
+                            if (!File.Exists(pathModel))
+                            {
+                                name = "Sin modelo (entrena)";
+                            }
+                            else
                             {
                                 eigenFaceRecognizer.Predict(faceCrop, out int label, out double conf);
 
                                 if (label >= 0 && conf < threshold)
                                     name = GetFacesName(label);
-                            }
-                            else
-                            {
-                                name = "Sin modelo (entrena)";
                             }
                         }
                         catch
@@ -306,13 +297,21 @@ namespace SG_BAMS
 
         private string GetFacesName(int label)
         {
+            // cmbUsuarios contiene objetos anónimos/dynamic con Usuario_id y NombreCompleto
             foreach (var item in cmbUsuarios.Items)
             {
-                dynamic u = item;
-                if (u.Usuario_id == label)
-                    return u.NombreCompleto;
+                try
+                {
+                    dynamic u = item;
+                    int id = Convert.ToInt32(u.Usuario_id);
+                    if (id == label)
+                        return u.NombreCompleto?.ToString() ?? ("ID: " + label);
+                }
+                catch
+                {
+                    // si algún item no tiene esa estructura, lo ignoramos
+                }
             }
-
             return "ID: " + label;
         }
 
@@ -335,8 +334,16 @@ namespace SG_BAMS
 
                 foreach (var u in usuarios)
                 {
-                    // ✅ CORRECCIÓN: usar Usuario_id (como lo devuelve ClsAcciones)
-                    int id = u.Usuario_id;
+                    int id;
+                    try
+                    {
+                        dynamic du = u;
+                        id = Convert.ToInt32(du.Usuario_id);
+                    }
+                    catch
+                    {
+                        continue;
+                    }
 
                     var fotos = db.ObtenerRostrosPorUsuario(id);
 
@@ -344,7 +351,6 @@ namespace SG_BAMS
                     {
                         Mat m = Mat.FromImageData(f, ImreadModes.Grayscale);
                         Cv2.Resize(m, m, new OpenCvSharp.Size(modelWidth, modelHeight));
-
                         images.Add(m);
                         labels.Add(id);
                     }
@@ -355,6 +361,7 @@ namespace SG_BAMS
 
                 eigenFaceRecognizer.Train(images, labels);
                 eigenFaceRecognizer.Write(pathModel);
+
                 return true;
             }
             catch (Exception ex)
@@ -376,12 +383,12 @@ namespace SG_BAMS
             {
                 if (img == null || img.Empty())
                 {
+                    pctCamara.Image?.Dispose();
                     pctCamara.Image = null;
                 }
                 else
                 {
-                    // Reemplazar imagen anterior (evita fugas)
-                    var old = pctCamara.Image;
+                    Image old = pctCamara.Image;
                     pctCamara.Image = BitmapConverter.ToBitmap(img);
                     old?.Dispose();
                 }
@@ -390,8 +397,8 @@ namespace SG_BAMS
 
         private byte[] MatToByteArray(Mat m)
         {
-            using (MemoryStream ms = new MemoryStream())
-            using (Bitmap bmp = BitmapConverter.ToBitmap(m))
+            using (var ms = new MemoryStream())
+            using (var bmp = BitmapConverter.ToBitmap(m))
             {
                 bmp.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
                 return ms.ToArray();
@@ -424,7 +431,7 @@ namespace SG_BAMS
 
         #endregion
 
-        #region Eventos botones (ya conectados en el constructor)
+        #region Eventos
 
         private void btnEntrenar_Click(object sender, EventArgs e)
         {
@@ -441,7 +448,6 @@ namespace SG_BAMS
 
         private void btnEncender_Click(object sender, EventArgs e)
         {
-            // Encender cámara para reconocimiento
             recordingType = RecordingType.Recognition;
             TurnOnCamera();
         }
@@ -460,13 +466,9 @@ namespace SG_BAMS
                 return;
             }
 
-            var confirm = MessageBox.Show(
-                "¿Seguro que deseas borrar las fotos del usuario seleccionado?",
-                "Confirmar",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning);
-
-            if (confirm != DialogResult.Yes) return;
+            if (MessageBox.Show("¿Borrar fotos del usuario seleccionado?", "Confirmar",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+                return;
 
             try
             {
@@ -475,14 +477,12 @@ namespace SG_BAMS
                 ClsAcciones db = new ClsAcciones();
                 db.BorrarFotosUsuario(id);
 
-                // Borrar carpeta local
                 BorrarCarpetaUsuarioLocal(id);
 
-                // Borrar modelo para obligar a regenerarlo
                 if (File.Exists(pathModel))
                     File.Delete(pathModel);
 
-                MessageBox.Show("Fotos borradas. Vuelve a entrenar para generar modelo.");
+                MessageBox.Show("Fotos borradas. Vuelve a entrenar para generar el modelo.");
             }
             catch (Exception ex)
             {
