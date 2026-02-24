@@ -675,7 +675,7 @@ namespace SG_BAMS
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void RECONOCIMIENTO_FACIAL_Load(object sender, EventArgs e)
+        private void frmImagenEmpleado_Load(object sender, EventArgs e)
         {
             this.CenterToScreen();
         }
