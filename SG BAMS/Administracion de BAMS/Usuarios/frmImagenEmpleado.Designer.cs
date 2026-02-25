@@ -253,7 +253,6 @@
             pctCamara.Location = new Point(273, 65);
             pctCamara.Name = "pctCamara";
             pctCamara.Size = new Size(496, 301);
-            pctCamara.SizeMode = PictureBoxSizeMode.StretchImage;
             pctCamara.TabIndex = 148;
             pctCamara.TabStop = false;
             // 
