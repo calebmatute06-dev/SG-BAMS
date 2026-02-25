@@ -49,7 +49,7 @@ namespace SG_BAMS
             {
                 AbrirConexion();
 
-                using (SqlCommand cmd = new SqlCommand("SP_CargarUsuarios", Conectar))
+                using (SqlCommand cmd = new SqlCommand("PA_CargarUsuarios", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -86,7 +86,7 @@ namespace SG_BAMS
             {
                 AbrirConexion();
 
-                using (SqlCommand cmd = new SqlCommand("SP_ContarFotosUsuario", Conectar))
+                using (SqlCommand cmd = new SqlCommand("PA_ContarFotosUsuario", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Usuario_id", usuario_id);
@@ -118,7 +118,7 @@ namespace SG_BAMS
             {
                 AbrirConexion();
 
-                using (SqlCommand command = new SqlCommand("SP_GuardarFotos", Conectar))
+                using (SqlCommand command = new SqlCommand("PA_GuardarFotos", Conectar))
                 {
                     command.CommandType = CommandType.StoredProcedure;
 
@@ -152,7 +152,7 @@ namespace SG_BAMS
             {
                 AbrirConexion();
 
-                using (SqlCommand cmd = new SqlCommand("SP_ObtenerRostrosPorUsuario", Conectar))
+                using (SqlCommand cmd = new SqlCommand("PA_ObtenerRostrosPorUsuario", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Usuario_id", usuario_id);
@@ -185,7 +185,7 @@ namespace SG_BAMS
             {
                 AbrirConexion();
 
-                using (SqlCommand cmd = new SqlCommand("SP_BorrarFotosUsuario", Conectar))
+                using (SqlCommand cmd = new SqlCommand("PA_BorrarFotosUsuario", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Usuario_id", usuario_id);
