@@ -13,32 +13,27 @@ namespace SG_BAMS
     public partial class Deudores : Form
     {
 
+        // Variable global para manejar el filtrado (PascalCase por ser campo de clase)
+        private DataTable dtDeudores;
 
         public void CargarGridDeudores()
         {
-            try
-            {
-                ClsDeuda objetoDeuda = new ClsDeuda();
-                dgvDeudores.DataSource = objetoDeuda.ListarDeudores();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            ClsDeuda objetoDeuda = new ClsDeuda();
+            // Es vital que se asigne a la variable global para que el buscador trabaje con datos frescos
+            dtDeudores = objetoDeuda.ListarDeudores();
+            dgvDeudores.DataSource = dtDeudores;
         }
-
-
-
-
 
         public Deudores()
         {
             InitializeComponent();
-
             CargarGridDeudores();
 
-
+            
         }
+
+
+
 
         private void kryptonButton9_Click(object sender, EventArgs e)
         {
@@ -154,7 +149,71 @@ namespace SG_BAMS
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-           
+
+        }
+
+        private void kryptonButton12_Click(object sender, EventArgs e)
+        {
+            if (dtDeudores != null)
+            {
+                string filtro = txtBuscarNombre.Text.Trim();
+                DataView dv = dtDeudores.DefaultView;
+
+                // Filtramos por la columna "Cliente" (Asegúrate que se llame así en tu Vista SQL)
+                dv.RowFilter = string.Format("Cliente LIKE '%{0}%'", filtro);
+                dgvDeudores.DataSource = dv;
+            }
+        }
+
+        private void dgvDeudores_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvDeudores_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // 1. Evitar clics en encabezados y evitar disparos múltiples rápidos
+            if (e.RowIndex < 0) return;
+
+            try
+            {
+                // 2. Obtener el objeto de datos real vinculado a esa fila específica
+                // Esto evita que se confunda de deudor si la lista está filtrada
+                DataRowView filaSeleccionada = (DataRowView)dgvDeudores.Rows[e.RowIndex].DataBoundItem;
+
+                if (filaSeleccionada != null)
+                {
+                    // Usamos los nombres de las columnas de tu DataTable/Vista
+                    string nombreCliente = filaSeleccionada["Cliente"].ToString().Trim();
+                    string estadoDeuda = filaSeleccionada["Estado Deuda"].ToString().Trim();
+
+                    // 3. Validación de estado
+                    if (estadoDeuda.Equals("Activo", StringComparison.OrdinalIgnoreCase))
+                    {
+                        Pago_Deuda pagDe = new Pago_Deuda(nombreCliente);
+
+                        if (pagDe.ShowDialog() == DialogResult.OK)
+                        {
+                            // Al regresar, refrescamos los datos de la DB
+                            CargarGridDeudores();
+
+                            // Limpiamos el buscador para evitar que el índice se pierda
+                            txtBuscarNombre.Clear();
+                        }
+                    }
+                    else
+                    {
+                        // Mensaje informativo si no está activo
+                        MessageBox.Show($"El cliente {nombreCliente} no tiene deudas pendientes (Estado: {estadoDeuda}).",
+                                        "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Esto nos dirá si el problema es de conversión o de nombres de columna
+                Console.WriteLine("Error en Doble Clic: " + ex.Message);
+            }
         }
     }
 }

@@ -12,12 +12,20 @@ namespace SG_BAMS
 {
     public partial class Pago_Deuda : Form
     {
-        
+
         private ClsDeudas objetoDeudas = new ClsDeudas();
+        private string nombreRecibido = "";
 
         public Pago_Deuda()
         {
             InitializeComponent();
+            ConfigurarFormulario();
+        }
+
+        public Pago_Deuda(string nombreDesdeBuscador)
+        {
+            InitializeComponent();
+            this.nombreRecibido = nombreDesdeBuscador;
             ConfigurarFormulario();
         }
 
@@ -59,7 +67,24 @@ namespace SG_BAMS
                 }
             }
 
-           
+
+        }
+
+        private void Pago_Deuda_Load(object sender, EventArgs e)
+        {
+            // Ya no llamamos a CargarComboDeudores porque ConfigurarFormulario() hace ese trabajo
+
+            // Si recibimos un nombre, intentamos seleccionarlo en el combo
+            if (!string.IsNullOrEmpty(nombreRecibido))
+            {
+                // FindString busca coincidencias parciales (ej. "Juan" encuentra "Juan Pérez")
+                int index = cmbDeudores.FindString(nombreRecibido);
+
+                if (index != -1)
+                {
+                    cmbDeudores.SelectedIndex = index;
+                }
+            }
         }
     }
 

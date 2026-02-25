@@ -75,7 +75,7 @@
             pictureBox19 = new PictureBox();
             pictureBox20 = new PictureBox();
             kryptonButton12 = new Krypton.Toolkit.KryptonButton();
-            textBox1 = new TextBox();
+            txtBuscarNombre = new TextBox();
             pictureBox22 = new PictureBox();
             kryptonGroup5 = new Krypton.Toolkit.KryptonGroup();
             kryptonButton15 = new Krypton.Toolkit.KryptonButton();
@@ -763,6 +763,8 @@
             dgvDeudores.Size = new Size(631, 503);
             dgvDeudores.TabIndex = 72;
             dgvDeudores.CellContentClick += kryptonDataGridView1_CellContentClick;
+            dgvDeudores.CellDoubleClick += dgvDeudores_CellDoubleClick;
+            dgvDeudores.DoubleClick += dgvDeudores_DoubleClick;
             // 
             // pictureBox17
             // 
@@ -814,13 +816,14 @@
             kryptonButton12.TabIndex = 146;
             kryptonButton12.Values.DropDownArrowColor = Color.Empty;
             kryptonButton12.Values.Text = "Buscar";
+            kryptonButton12.Click += kryptonButton12_Click;
             // 
-            // textBox1
+            // txtBuscarNombre
             // 
-            textBox1.Location = new Point(583, 172);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(309, 27);
-            textBox1.TabIndex = 153;
+            txtBuscarNombre.Location = new Point(583, 172);
+            txtBuscarNombre.Name = "txtBuscarNombre";
+            txtBuscarNombre.Size = new Size(309, 27);
+            txtBuscarNombre.TabIndex = 153;
             // 
             // pictureBox22
             // 
@@ -891,7 +894,7 @@
             ClientSize = new Size(1105, 913);
             Controls.Add(kryptonButton13);
             Controls.Add(kryptonButton15);
-            Controls.Add(textBox1);
+            Controls.Add(txtBuscarNombre);
             Controls.Add(pictureBox22);
             Controls.Add(kryptonGroup5);
             Controls.Add(kryptonButton12);
@@ -998,7 +1001,7 @@
         private PictureBox pictureBox19;
         private PictureBox pictureBox20;
         private Krypton.Toolkit.KryptonButton kryptonButton12;
-        private TextBox textBox1;
+        private TextBox txtBuscarNombre;
         private PictureBox pictureBox22;
         private Krypton.Toolkit.KryptonGroup kryptonGroup5;
         private Krypton.Toolkit.KryptonButton kryptonButton15;

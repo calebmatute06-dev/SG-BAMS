@@ -239,6 +239,7 @@
             Controls.Add(kryptonButton13);
             Name = "Pago_Deuda";
             Text = "Pago_Deuda";
+            Load += Pago_Deuda_Load;
             ((System.ComponentModel.ISupportInitialize)cmbDeudores).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).EndInit();
