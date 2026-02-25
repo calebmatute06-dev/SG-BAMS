@@ -333,11 +333,13 @@ namespace SG_BAMS
             this.Close();
         }
 
-        private void kryptonButton2_Click(object sender, EventArgs e)
+        private async void kryptonButton2_Click(object sender, EventArgs e)
         {
             Deudores deu = new Deudores();
-            deu.Show();
+            deu.ShowDialog();
             this.Close();
+           await ActualizarLabelDeudores();
+
         }
 
         private void btnReporte_Click(object sender, EventArgs e)

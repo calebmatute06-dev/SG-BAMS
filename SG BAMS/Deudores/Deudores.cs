@@ -147,7 +147,9 @@ namespace SG_BAMS
         private void kryptonButton15_Click(object sender, EventArgs e)
         {
             Pago_Deuda PagDe = new Pago_Deuda();
-            PagDe.Show();
+            PagDe.ShowDialog();
+            CargarGridDeudores();
+
         }
 
         private void timer1_Tick(object sender, EventArgs e)

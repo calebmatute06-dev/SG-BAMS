@@ -12,7 +12,7 @@ namespace SG_BAMS
 {
     public partial class Pago_Deuda : Form
     {
-        Deudores Deu = new Deudores();
+        
         private ClsDeudas objetoDeudas = new ClsDeudas();
 
         public Pago_Deuda()
@@ -59,7 +59,7 @@ namespace SG_BAMS
                 }
             }
 
-           Deu.CargarGridDeudores();
+           
         }
     }
 
