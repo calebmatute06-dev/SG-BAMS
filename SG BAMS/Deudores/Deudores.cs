@@ -12,9 +12,32 @@ namespace SG_BAMS
 {
     public partial class Deudores : Form
     {
-        public Deudores()
+
+
+        private void CargarGridDeudores()
+        {
+            try
+            {
+                ClsDeuda objetoDeuda = new ClsDeuda();
+                dgvDeudores.DataSource = objetoDeuda.ListarDeudores();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
+
+
+        public  Deudores()
         {
             InitializeComponent();
+
+            CargarGridDeudores();
+
+
         }
 
         private void kryptonButton9_Click(object sender, EventArgs e)
@@ -114,6 +137,11 @@ namespace SG_BAMS
         private void Deudores_Shown(object sender, EventArgs e)
         {
             Ayudante_UI.AplicarZoomGlobal(this);
+        }
+
+        private void kryptonDataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
