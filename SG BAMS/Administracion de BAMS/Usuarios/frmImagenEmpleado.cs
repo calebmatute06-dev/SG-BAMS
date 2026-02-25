@@ -201,6 +201,15 @@ namespace SG_BAMS
             return new KeyValuePair<string, int>(name, id);
         }
         private DateTime lastSave = DateTime.MinValue;
+
+        private async void FinalizarCapturaEntrenamiento()
+        {
+            await TurnOffCamera(); // Apaga la cámara físicamente
+            MessageBox.Show($"Se han capturado las 30 fotos para {face_name}. Procediendo a entrenar el modelo...");
+
+            // Ejecutar el entrenamiento automáticamente
+            btnEntrenar.PerformClick();
+        }
         private void Spotface()
         {
             if (!running || cam == null || !cam.IsOpened())
@@ -212,62 +221,57 @@ namespace SG_BAMS
             using (var gray = new Mat())
             {
                 Cv2.CvtColor(frame, gray, ColorConversionCodes.BGR2GRAY);
-
-                var faces = face_detector.DetectMultiScale(gray, 1.3, 4);
+                // Detección de rostros
+                var faces = face_detector.DetectMultiScale(gray, 1.3, 5);
 
                 foreach (var face in faces)
                 {
                     Cv2.Rectangle(frame, face, Scalar.Red, 2);
 
+                    // Capturar y redimensionar
                     Mat face_crop = new Mat(gray, face);
                     Cv2.Resize(face_crop, face_crop, new OpenCvSharp.Size(model_width, model_height));
 
-                    // *** aseguro que se usan fotos del usuario correcto ***
-                    trainedImages.Add(face_crop.Clone());
-
-                    // guardar cada 500ms
+                    // Lógica de guardado cada 500ms
                     if ((DateTime.Now - lastSave).TotalMilliseconds >= 500)
                     {
                         ClsAcciones db = new ClsAcciones();
+                        int fotos_actuales = db.ContarFotosUsuario(face_id);
 
-                        int fotos_sql = db.ContarFotosUsuario(face_id);
-
-                        if (fotos_sql < 30)
+                        if (fotos_actuales < 30)
                         {
                             try
                             {
                                 byte[] data = MatToByteArray(face_crop);
+                                // Guardar en BD
                                 int new_photo_id = db.GuardarFotoRostro(face_id, data);
 
-                                // Guardar también en carpeta local
-                                string folder = GetLocalUserFolder(face_id);
-                                string file_path = Path.Combine(folder, $"{new_photo_id}.bmp");
+                                // Guardar en Carpeta Local (Formato: ID_Nombre_Indice.bmp)
+                                string folder = path_saved_faces; // Usar la carpeta raíz de rostros
+                                string file_path = Path.Combine(folder, $"{face_id}_{face_name}_{fotos_actuales}.bmp");
                                 File.WriteAllBytes(file_path, data);
 
                                 lastSave = DateTime.Now;
+                                Console.WriteLine($"Foto {fotos_actuales + 1} guardada.");
                             }
-                            catch (Exception ex)
-                            {
-                                Console.WriteLine("Error SQL: " + ex.Message);
-                            }
+                            catch (Exception ex) { Console.WriteLine("Error: " + ex.Message); }
                         }
                         else
                         {
-                            running = false;
+                            // LLEGAMOS A LAS 30 FOTOS
+                            running = false; // Detiene el loop del Task.Run
 
-                            this.BeginInvoke(new Action(() =>
-                            {
-                                TurnOffCamera();
-                                MessageBox.Show("Entrenamiento completado (30 fotos).");
-                                btnEntrenar.PerformClick(); // si quieres que entrene automáticamente
+                            // Usar Invoke para interactuar con la UI desde el hilo de la cámara
+                            this.BeginInvoke(new Action(() => {
+                                FinalizarCapturaEntrenamiento();
                             }));
-
                             return;
                         }
                     }
                 }
             }
 
+            // Actualizar la UI
             var bmp = BitmapConverter.ToBitmap(frame);
             this.BeginInvoke(new Action(() =>
             {
@@ -305,7 +309,7 @@ namespace SG_BAMS
                 MessageBox.Show("Error al iniciar cámara: " + ex.Message);
             }
         }
-        private async void TurnOffCamera()
+        private async Task TurnOffCamera()
         {
             running = false;
 
@@ -444,16 +448,15 @@ namespace SG_BAMS
                 face_id = seleccionado.Usuario_id;
                 face_name = seleccionado.NombreCompleto;
 
-                // *** REINICIAR BUFERS ***
-                trainedImages.Clear();
-                is_anew_face = false;
-
+                // Limpiar para nueva sesión
+                lastSave = DateTime.MinValue;
                 recording_type = RecordingType.training;
+
                 TurnOnCamera();
             }
             else
             {
-                MessageBox.Show("Debe seleccionar un usuario antes de iniciar el entrenamiento.");
+                MessageBox.Show("Seleccione un usuario.");
             }
         }
 
