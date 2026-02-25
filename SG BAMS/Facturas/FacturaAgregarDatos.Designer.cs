@@ -52,7 +52,6 @@
             cmbPago = new Krypton.Toolkit.KryptonComboBox();
             dgvProductos = new DataGridView();
             txtidCliente = new TextBox();
-            btnx = new Krypton.Toolkit.KryptonButton();
             panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1.Panel).BeginInit();
@@ -345,36 +344,12 @@
             txtidCliente.TabIndex = 324;
             txtidCliente.Visible = false;
             // 
-            // btnx
-            // 
-            btnx.Location = new Point(480, 64);
-            btnx.Name = "btnx";
-            btnx.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnx.OverrideDefault.Back.Color2 = Color.White;
-            btnx.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnx.OverrideFocus.Back.Color2 = Color.White;
-            btnx.Size = new Size(272, 60);
-            btnx.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnx.StateCommon.Back.Color2 = Color.White;
-            btnx.StateCommon.Border.Rounding = 40F;
-            btnx.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnx.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
-            btnx.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnx.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            btnx.StatePressed.Back.Color1 = Color.Transparent;
-            btnx.StatePressed.Back.Color2 = Color.Transparent;
-            btnx.TabIndex = 325;
-            btnx.Values.DropDownArrowColor = Color.Empty;
-            btnx.Values.Text = "Agregar Producto";
-            btnx.Click += btnx_Click;
-            // 
             // FacturaAgregarDatos
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1018, 599);
-            Controls.Add(btnx);
             Controls.Add(txtidCliente);
             Controls.Add(dgvProductos);
             Controls.Add(cmbPago);
@@ -438,6 +413,5 @@
         private Krypton.Toolkit.KryptonComboBox cmbPago;
         private DataGridView dgvProductos;
         private TextBox txtidCliente;
-        private Krypton.Toolkit.KryptonButton btnx;
     }
 }

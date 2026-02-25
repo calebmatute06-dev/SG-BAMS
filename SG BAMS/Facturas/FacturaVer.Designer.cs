@@ -96,6 +96,7 @@
             // 
             fechaDT.Location = new Point(720, 225);
             fechaDT.Margin = new Padding(10, 12, 10, 12);
+            fechaDT.MaxSelectionCount = 1;
             fechaDT.Name = "fechaDT";
             fechaDT.TabIndex = 338;
             // 

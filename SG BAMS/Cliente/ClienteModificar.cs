@@ -16,6 +16,7 @@ namespace SG_BAMS
     public partial class ClienteModificar : Form
     {
         ClsConexion objCl = new ClsConexion();
+        int idEstadoSelec;
         public ClienteModificar(int idCliente, string nombreCliente, string apellidoCliente, string telefonoCliente, string rtnCliente, int idEstado)
         {
             InitializeComponent();
@@ -24,7 +25,7 @@ namespace SG_BAMS
             txtApellido.Text = apellidoCliente;
             txtTelefono.Text = telefonoCliente;
             txtRTN.Text = rtnCliente;
-            cmbEstado.SelectedValue = idEstado;
+            idEstadoSelec = idEstado;
 
         }
 
@@ -97,6 +98,7 @@ namespace SG_BAMS
         private async void ClienteModificar_Load(object sender, EventArgs e)
         {
             await LlenarComboEstado();
+            cmbEstado.SelectedValue = idEstadoSelec;
         }
 
         private void BtnSalir_Click(object sender, EventArgs e)

@@ -17,14 +17,17 @@ namespace SG_BAMS
     {
         int idFac;
         DataTable datosCli;
+        int idPagoSele;
+        
         public FacturaVer(int idF, string nomFac, DateTime fec, string bateriaVij, int idPago)
         {
             InitializeComponent();
 
             txtCliente.Text = nomFac;
             txtBateriaVieja.Text = bateriaVij;
-            cmbPago.SelectedValue = idPago;
+            idPagoSele = idPago;
             idFac = idF;
+            fechaDT.SelectionStart = fec;
 
         }
         public FacturaVer()
@@ -72,8 +75,10 @@ namespace SG_BAMS
 
         private async void FacturaVer_Load(object sender, EventArgs e)
         {
-            await VerFacturasProductos();
             await LlenarComboPago();
+            cmbPago.SelectedValue = idPagoSele;
+            await VerFacturasProductos();
+            
         }
 
         private async Task LlenarComboPago()

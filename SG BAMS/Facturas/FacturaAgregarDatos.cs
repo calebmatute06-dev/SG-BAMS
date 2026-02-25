@@ -76,12 +76,32 @@ namespace SG_BAMS
         {
             await LlenarComboPago();
             
+
+
             dgvProductos.Columns.Add("id_producto", "Código");
             dgvProductos.Columns.Add("nombre_producto", "Nombre");
             dgvProductos.Columns.Add("cantidad", "Cantidad");
             dgvProductos.Columns.Add("precio", "Precio");
             dgvProductos.Columns.Add("subtotal", "Subtotal");
 
+        }
+
+        private void CalcularTotal()
+        {
+
+            double acumulador = 0;
+
+
+            for (int i = 0; i < dgvProductos.Rows.Count; i++)
+            {
+
+                if (dgvProductos.Rows[i].Cells["Subtotal"].Value != null)
+                {
+                    acumulador += Convert.ToDouble(dgvProductos.Rows[i].Cells["Subtotal"].Value);
+                }
+            }
+
+            TxtTotal.Text = acumulador.ToString();
         }
 
         private async void BtnAceptar_Click(object sender, EventArgs e)
@@ -134,11 +154,10 @@ namespace SG_BAMS
             double precio = await objAP.ObtenerPrecioProducto(idProducto);
             
             dgvProductos.Rows.Add(idProducto, nombresProductos, cantidades, precio, cantidades * precio);
+
+            CalcularTotal();
         }
 
-        private async void btnx_Click(object sender, EventArgs e)
-        {
-            
-        }
+       
     }
 }
