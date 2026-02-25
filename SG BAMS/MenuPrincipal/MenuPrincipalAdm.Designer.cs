@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
@@ -94,6 +95,7 @@
             pictureBox21 = new PictureBox();
             chartMasVendidos = new System.Windows.Forms.DataVisualization.Charting.Chart();
             chartStock = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            timer1 = new System.Windows.Forms.Timer(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).BeginInit();
@@ -1053,6 +1055,11 @@
             chartStock.TabIndex = 96;
             chartStock.Text = "chartStock";
             // 
+            // timer1
+            // 
+            timer1.Enabled = true;
+            timer1.Tick += timer1_Tick;
+            // 
             // MenuPrincipalAdm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -1189,5 +1196,6 @@
         private PictureBox pictureBox21;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartMasVendidos;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartStock;
+        private System.Windows.Forms.Timer timer1;
     }
 }

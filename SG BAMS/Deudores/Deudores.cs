@@ -14,7 +14,7 @@ namespace SG_BAMS
     {
 
 
-        private void CargarGridDeudores()
+        public void CargarGridDeudores()
         {
             try
             {
@@ -148,6 +148,11 @@ namespace SG_BAMS
         {
             Pago_Deuda PagDe = new Pago_Deuda();
             PagDe.Show();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+           
         }
     }
 }

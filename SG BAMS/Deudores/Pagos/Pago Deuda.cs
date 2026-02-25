@@ -12,7 +12,7 @@ namespace SG_BAMS
 {
     public partial class Pago_Deuda : Form
     {
-
+        Deudores Deu = new Deudores();
         private ClsDeudas objetoDeudas = new ClsDeudas();
 
         public Pago_Deuda()
@@ -45,6 +45,7 @@ namespace SG_BAMS
 
         private async void kryptonButton3_Click(object sender, EventArgs e)
         {
+
             if (cmbDeudores.SelectedValue != null && decimal.TryParse(txtMonto.Text, out decimal monto))
             {
                 int idDeuda = (int)cmbDeudores.SelectedValue;
@@ -57,6 +58,8 @@ namespace SG_BAMS
                     this.Close();
                 }
             }
+
+           Deu.CargarGridDeudores();
         }
     }
 

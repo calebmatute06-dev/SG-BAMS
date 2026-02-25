@@ -207,7 +207,7 @@ namespace SG_BAMS
             await CargarGraficoStock();
             await CargarGraficoMasVendidos();
 
-            
+
 
 
 
@@ -369,6 +369,11 @@ namespace SG_BAMS
         private void MenuPrincipalAdm_Shown(object sender, EventArgs e)
         {
             Ayudante_UI.AplicarZoomGlobal(this);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+          
         }
     }
 }
