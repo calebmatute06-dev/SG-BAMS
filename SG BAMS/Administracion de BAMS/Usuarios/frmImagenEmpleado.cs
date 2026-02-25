@@ -21,30 +21,21 @@ namespace SG_BAMS
         }
         private void FrameProcess(object sender, EventArgs e)
         {
-            // 1. Verificamos que la cámara esté instanciada y encendida
             if (camara != null && camaraEnEncendida)
             {
                 try
                 {
-                    // 2. Capturamos el cuadro (frame)
-                    using (Mat frameMat = camara.QueryFrame())
+                    using (var frame = camara.QueryFrame())
                     {
-                        if (frameMat != null && !frameMat.IsEmpty)
+                        if (frame != null)
                         {
-                            // 3. Convertimos a Bitmap y asignamos
-                            // El método .ToBitmap() es la forma más segura de pasarlo al PictureBox
-                            pctCamara.Image = frameMat.ToBitmap();
-
-                            // 4. ¡ESTO ES CLAVE!: Forzamos al control a pintarse de nuevo
-                            pctCamara.Invalidate();
+                            pctCamara.Image = frame.ToBitmap();
                         }
                     }
                 }
-                catch (Exception ex)
+                catch
                 {
-                    // Si hay un error de acceso a la cámara, lo detenemos para no bloquear el programa
                     DetenerCamara();
-                    Console.WriteLine("Error en video: " + ex.Message);
                 }
             }
         }
@@ -84,8 +75,6 @@ namespace SG_BAMS
             // Inicializamos la carpeta y la cámara al cargar el formulario
             clsSoporte.InicializarDirectorio();
             LlenarUsuarios();
-            camara = new VideoCapture(0);
-            Application.Idle += FrameProcess;
         }
         private void LlenarUsuarios()
         {
@@ -126,11 +115,17 @@ namespace SG_BAMS
         {
             if (camara != null)
             {
+                // 1. Primero dejamos de procesar frames
                 Application.Idle -= FrameProcess;
+                camaraEnEncendida = false;
+
+                // 2. Liberamos el hardware
                 camara.Dispose();
                 camara = null;
-                camaraEnEncendida = false;
-                pctCamara.Image = null; // Limpia el cuadro
+
+                // 3. Limpiamos la interfaz
+                pctCamara.Image = null;
+                pctCamara.Invalidate();
             }
         }
 
@@ -139,6 +134,7 @@ namespace SG_BAMS
             if (camara == null)
             {
                 camara = new VideoCapture(0);
+                // Suscribimos el proceso de dibujo
                 Application.Idle += FrameProcess;
                 camaraEnEncendida = true;
             }
