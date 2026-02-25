@@ -50,14 +50,16 @@
             TxtBateria = new Krypton.Toolkit.KryptonTextBox();
             TxtTotal = new Krypton.Toolkit.KryptonTextBox();
             cmbPago = new Krypton.Toolkit.KryptonComboBox();
-            dataGridView1 = new DataGridView();
+            dgvProductos = new DataGridView();
+            txtidCliente = new TextBox();
+            btnx = new Krypton.Toolkit.KryptonButton();
             panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cmbPago).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvProductos).BeginInit();
             SuspendLayout();
             // 
             // label7
@@ -194,6 +196,7 @@
             BtnAgregar.TabIndex = 314;
             BtnAgregar.Values.DropDownArrowColor = Color.Empty;
             BtnAgregar.Values.Text = "Agregar Producto";
+            BtnAgregar.Click += BtnAgregar_Click;
             // 
             // BtnAceptar
             // 
@@ -239,6 +242,7 @@
             BtnCancelar.TabIndex = 314;
             BtnCancelar.Values.DropDownArrowColor = Color.Empty;
             BtnCancelar.Values.Text = "Cancelar";
+            BtnCancelar.Click += BtnCancelar_Click;
             // 
             // DateTFecha
             // 
@@ -323,15 +327,46 @@
             cmbPago.StateNormal.ComboBox.Border.Rounding = 40F;
             cmbPago.TabIndex = 322;
             // 
-            // dataGridView1
+            // dgvProductos
             // 
-            dataGridView1.BackgroundColor = Color.SkyBlue;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(61, 221);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(565, 188);
-            dataGridView1.TabIndex = 323;
+            dgvProductos.BackgroundColor = Color.SkyBlue;
+            dgvProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvProductos.Location = new Point(61, 221);
+            dgvProductos.Name = "dgvProductos";
+            dgvProductos.RowHeadersWidth = 51;
+            dgvProductos.Size = new Size(565, 188);
+            dgvProductos.TabIndex = 323;
+            // 
+            // txtidCliente
+            // 
+            txtidCliente.Location = new Point(964, 27);
+            txtidCliente.Name = "txtidCliente";
+            txtidCliente.Size = new Size(30, 27);
+            txtidCliente.TabIndex = 324;
+            txtidCliente.Visible = false;
+            // 
+            // btnx
+            // 
+            btnx.Location = new Point(480, 64);
+            btnx.Name = "btnx";
+            btnx.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnx.OverrideDefault.Back.Color2 = Color.White;
+            btnx.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnx.OverrideFocus.Back.Color2 = Color.White;
+            btnx.Size = new Size(272, 60);
+            btnx.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnx.StateCommon.Back.Color2 = Color.White;
+            btnx.StateCommon.Border.Rounding = 40F;
+            btnx.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnx.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
+            btnx.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnx.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnx.StatePressed.Back.Color1 = Color.Transparent;
+            btnx.StatePressed.Back.Color2 = Color.Transparent;
+            btnx.TabIndex = 325;
+            btnx.Values.DropDownArrowColor = Color.Empty;
+            btnx.Values.Text = "Agregar Producto";
+            btnx.Click += btnx_Click;
             // 
             // FacturaAgregarDatos
             // 
@@ -339,7 +374,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1018, 599);
-            Controls.Add(dataGridView1);
+            Controls.Add(btnx);
+            Controls.Add(txtidCliente);
+            Controls.Add(dgvProductos);
             Controls.Add(cmbPago);
             Controls.Add(TxtTotal);
             Controls.Add(TxtBateria);
@@ -371,7 +408,7 @@
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)cmbPago).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvProductos).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -399,6 +436,8 @@
         private Krypton.Toolkit.KryptonTextBox TxtBateria;
         private Krypton.Toolkit.KryptonTextBox TxtTotal;
         private Krypton.Toolkit.KryptonComboBox cmbPago;
-        private DataGridView dataGridView1;
+        private DataGridView dgvProductos;
+        private TextBox txtidCliente;
+        private Krypton.Toolkit.KryptonButton btnx;
     }
 }

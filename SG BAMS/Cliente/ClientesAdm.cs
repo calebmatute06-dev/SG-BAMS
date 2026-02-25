@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+
 
 namespace SG_BAMS
 {
@@ -60,10 +60,6 @@ namespace SG_BAMS
 
         private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
-        }
-        private void dgvClientes_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
             int idCliente, idEstado;
             string nombreCliente, apellidoCliente, telefonoCliente, rtnCliente;
 
@@ -80,16 +76,14 @@ namespace SG_BAMS
                 frmMo.ShowDialog();
                 TablaClientes();
             }
-
-
-
         }
+       
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
             if (dgvClientes.CurrentRow != null)
             {
-                dgvClientes_CellClick(null, null);
+                dgvClientes_CellContentClick(null, null);
             }
         }
 

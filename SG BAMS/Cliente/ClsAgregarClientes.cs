@@ -27,8 +27,14 @@ namespace SG_BAMS.Cliente
                     cmd.Parameters.AddWithValue("@telefono_cliente", telefono);
                     cmd.Parameters.AddWithValue("@rtn_cliente", RTN);
 
-                    int filasAfectadas = await cmd.ExecuteNonQueryAsync();
-                    return filasAfectadas;
+                    object result = await cmd.ExecuteScalarAsync();
+
+                    if (result != null && result != DBNull.Value)
+                    {
+                        return Convert.ToInt32(result);
+                    }
+
+                    return 0;
 
                 }
             
@@ -36,7 +42,7 @@ namespace SG_BAMS.Cliente
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Error al insertar cliente: " + ex.Message);
                 return 0;
             }
             finally

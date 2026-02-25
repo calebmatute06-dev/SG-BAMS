@@ -33,7 +33,7 @@ namespace SG_BAMS
             InitializeComponent();
         }
 
-        
+
 
         private void kryptonButton2_Click(object sender, EventArgs e)
         {
@@ -43,7 +43,7 @@ namespace SG_BAMS
         private async void BtnModificar_Click(object sender, EventArgs e)
         {
             ClsModificarCliente objMC = new ClsModificarCliente();
-            int filasInsertadas = await objMC.ModificarClientes(Convert.ToInt32(txtID.Text),txtNombre.Text,txtApellido.Text, txtTelefono.Text, txtRTN.Text,Convert.ToInt32(cmbEstado.SelectedValue));
+            int filasInsertadas = await objMC.ModificarClientes(Convert.ToInt32(txtID.Text), txtNombre.Text, txtApellido.Text, txtTelefono.Text, txtRTN.Text, Convert.ToInt32(cmbEstado.SelectedValue));
 
             if (filasInsertadas > 0)
             {
@@ -72,12 +72,12 @@ namespace SG_BAMS
 
                 string query = "SELECT id_estado, descripcion_estado  FROM Estado";
 
-                
+
                 using (SqlCommand cmd = new SqlCommand(query, objCl.Conectar))
                 using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                 {
                     DataTable dt = new DataTable();
-                    dt.Load(reader); 
+                    dt.Load(reader);
 
                     cmbEstado.DisplayMember = "descripcion_estado";
                     cmbEstado.ValueMember = "id_estado";
@@ -97,6 +97,11 @@ namespace SG_BAMS
         private async void ClienteModificar_Load(object sender, EventArgs e)
         {
             await LlenarComboEstado();
+        }
+
+        private void BtnSalir_Click(object sender, EventArgs e)
+        {
+            this.Hide();
         }
     }
 }

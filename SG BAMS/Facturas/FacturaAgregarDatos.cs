@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using SG_BAMS.Cliente;
 using SG_BAMS.Facturas;
+using SG_BAMS.Login;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,13 +16,21 @@ namespace SG_BAMS
 {
     public partial class FacturaAgregarDatos : Form
     {
-        public FacturaAgregarDatos(string cliente, int idCliente)
+        int idCliente, idProducto, cantidades;
+        string nombresProductos;
+        public FacturaAgregarDatos(string cliente, int idCli)
         {
             InitializeComponent();
             TxtCliente.Text = cliente;
-
+            idCliente = idCli;
         }
 
+        public void SetProducto(int idProd, string nombreProd, int cantidadProd)
+        {
+            idProducto = idProd;
+            nombresProductos = nombreProd;
+            cantidades = cantidadProd;
+        }
         public FacturaAgregarDatos()
         {
             InitializeComponent();
@@ -59,34 +68,77 @@ namespace SG_BAMS
             finally
             {
                 objCl.Cerrar();
+                dgvProductos.Rows.Clear();
             }
         }
 
         private async void FacturaAgregarDatos_Load(object sender, EventArgs e)
         {
             await LlenarComboPago();
+            
+            dgvProductos.Columns.Add("id_producto", "Código");
+            dgvProductos.Columns.Add("nombre_producto", "Nombre");
+            dgvProductos.Columns.Add("cantidad", "Cantidad");
+            dgvProductos.Columns.Add("precio", "Precio");
+            dgvProductos.Columns.Add("subtotal", "Subtotal");
+
         }
 
-        private void BtnAceptar_Click(object sender, EventArgs e)
+        private async void BtnAceptar_Click(object sender, EventArgs e)
         {
+            ClsPasarUsuario objPU = new ClsPasarUsuario();
             ClsAgregarFactura objAF = new ClsAgregarFactura();
-            int filasInsertadas = await objAF.AgregarFacturas(txtNombre.Text, txtApellido.Text, txtTelefono.Text, txtRTN.Text);
+            ClsAgregarProductos objAP = new ClsAgregarProductos();
+            int idUsuario = objPU.IdUsuario();
 
-            if (filasInsertadas > 0)
+            int idFactura = await objAF.AgregarFacturas(idUsuario, idCliente, Convert.ToInt32(cmbPago.SelectedValue), DateTFecha.SelectionStart, Convert.ToInt32(TxtBateria.Text.Trim()));
+
+            if (idFactura > 0)
             {
-                MessageBox.Show("Cliente agregado correctamente.");
 
+                foreach (DataGridViewRow fila in dgvProductos.Rows)
+                {
+                    if (fila.IsNewRow) continue;
 
-                txtNombre.Clear();
-                txtApellido.Clear();
-                txtTelefono.Clear();
-                txtRTN.Clear();
-                this.Close();
+                    int idProd = Convert.ToInt32(fila.Cells[0].Value);
+                    int cantidad = Convert.ToInt32(fila.Cells[2].Value);
+
+                    await objAP.GuardarProductoFactura(idFactura, idProd, cantidad);
+                }
+
+                MessageBox.Show("Factura y productos agregados correctamente.");
+                this.Hide();
             }
             else
             {
-                MessageBox.Show("No se pudo agregar el cliente.");
+                MessageBox.Show("No se pudo agregar la factura.");
             }
+        }
+
+        private void BtnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            dgvProductos.Columns.Clear();
+        }
+
+        private async void BtnAgregar_Click(object sender, EventArgs e)
+        {
+            FacturaProducto frmProd = new FacturaProducto();
+            frmProd.FormularioFactura = this; 
+            frmProd.ShowDialog(); 
+
+            ClsAgregarProductos objAP = new ClsAgregarProductos();
+
+
+            
+            double precio = await objAP.ObtenerPrecioProducto(idProducto);
+            
+            dgvProductos.Rows.Add(idProducto, nombresProductos, cantidades, precio, cantidades * precio);
+        }
+
+        private async void btnx_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

@@ -40,7 +40,7 @@
             panel8 = new Panel();
             label11 = new Label();
             BtnModificar = new Krypton.Toolkit.KryptonButton();
-            kryptonButton3 = new Krypton.Toolkit.KryptonButton();
+            BtnSalir = new Krypton.Toolkit.KryptonButton();
             txtRTN = new Krypton.Toolkit.KryptonTextBox();
             txtTelefono = new Krypton.Toolkit.KryptonTextBox();
             txtApellido = new Krypton.Toolkit.KryptonTextBox();
@@ -193,27 +193,28 @@
             BtnModificar.Values.Text = "Modificar";
             BtnModificar.Click += BtnModificar_Click;
             // 
-            // kryptonButton3
+            // BtnSalir
             // 
-            kryptonButton3.Location = new Point(263, 465);
-            kryptonButton3.Name = "kryptonButton3";
-            kryptonButton3.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            kryptonButton3.OverrideDefault.Back.Color2 = Color.White;
-            kryptonButton3.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            kryptonButton3.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton3.Size = new Size(102, 60);
-            kryptonButton3.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonButton3.StateCommon.Back.Color2 = Color.White;
-            kryptonButton3.StateCommon.Border.Rounding = 30F;
-            kryptonButton3.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton3.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            kryptonButton3.StateNormal.Back.Color1 = Color.SkyBlue;
-            kryptonButton3.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            kryptonButton3.StatePressed.Back.Color1 = Color.Transparent;
-            kryptonButton3.StatePressed.Back.Color2 = Color.Transparent;
-            kryptonButton3.TabIndex = 321;
-            kryptonButton3.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton3.Values.Text = "Salir";
+            BtnSalir.Location = new Point(263, 465);
+            BtnSalir.Name = "BtnSalir";
+            BtnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            BtnSalir.OverrideDefault.Back.Color2 = Color.White;
+            BtnSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            BtnSalir.OverrideFocus.Back.Color2 = Color.White;
+            BtnSalir.Size = new Size(102, 60);
+            BtnSalir.StateCommon.Back.Color1 = Color.SkyBlue;
+            BtnSalir.StateCommon.Back.Color2 = Color.White;
+            BtnSalir.StateCommon.Border.Rounding = 30F;
+            BtnSalir.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            BtnSalir.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BtnSalir.StateNormal.Back.Color1 = Color.SkyBlue;
+            BtnSalir.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            BtnSalir.StatePressed.Back.Color1 = Color.Transparent;
+            BtnSalir.StatePressed.Back.Color2 = Color.Transparent;
+            BtnSalir.TabIndex = 321;
+            BtnSalir.Values.DropDownArrowColor = Color.Empty;
+            BtnSalir.Values.Text = "Salir";
+            BtnSalir.Click += BtnSalir_Click;
             // 
             // txtRTN
             // 
@@ -315,7 +316,7 @@
             Controls.Add(txtApellido);
             Controls.Add(txtNombre);
             Controls.Add(txtID);
-            Controls.Add(kryptonButton3);
+            Controls.Add(BtnSalir);
             Controls.Add(BtnModificar);
             Controls.Add(label5);
             Controls.Add(label11);
@@ -352,7 +353,7 @@
         private Panel panel8;
         private Label label11;
         private Krypton.Toolkit.KryptonButton BtnModificar;
-        private Krypton.Toolkit.KryptonButton kryptonButton3;
+        private Krypton.Toolkit.KryptonButton BtnSalir;
         private Krypton.Toolkit.KryptonTextBox txtRTN;
         private Krypton.Toolkit.KryptonTextBox txtTelefono;
         private Krypton.Toolkit.KryptonTextBox txtApellido;

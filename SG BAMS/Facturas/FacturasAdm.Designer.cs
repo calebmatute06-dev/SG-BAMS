@@ -70,8 +70,8 @@
             kryptonGroupBox1 = new Krypton.Toolkit.KryptonGroupBox();
             kryptonGroupBox2 = new Krypton.Toolkit.KryptonGroupBox();
             kryptonGroupBox3 = new Krypton.Toolkit.KryptonGroupBox();
-            kryptonButton15 = new Krypton.Toolkit.KryptonButton();
-            kryptonButton12 = new Krypton.Toolkit.KryptonButton();
+            BtnVer = new Krypton.Toolkit.KryptonButton();
+            BtnNueva = new Krypton.Toolkit.KryptonButton();
             dateTimePicker1 = new DateTimePicker();
             dateTimePicker2 = new DateTimePicker();
             dgvFacturas = new DataGridView();
@@ -730,49 +730,51 @@
             kryptonGroupBox3.StateCommon.Border.Rounding = 50F;
             kryptonGroupBox3.TabIndex = 141;
             // 
-            // kryptonButton15
+            // BtnVer
             // 
-            kryptonButton15.Location = new Point(805, 720);
-            kryptonButton15.Name = "kryptonButton15";
-            kryptonButton15.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            kryptonButton15.OverrideDefault.Back.Color2 = Color.White;
-            kryptonButton15.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            kryptonButton15.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton15.Size = new Size(86, 60);
-            kryptonButton15.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonButton15.StateCommon.Back.Color2 = Color.White;
-            kryptonButton15.StateCommon.Border.Rounding = 30F;
-            kryptonButton15.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton15.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            kryptonButton15.StateNormal.Back.Color1 = Color.SkyBlue;
-            kryptonButton15.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            kryptonButton15.StatePressed.Back.Color1 = Color.Transparent;
-            kryptonButton15.StatePressed.Back.Color2 = Color.Transparent;
-            kryptonButton15.TabIndex = 142;
-            kryptonButton15.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton15.Values.Text = "Ver";
+            BtnVer.Location = new Point(805, 720);
+            BtnVer.Name = "BtnVer";
+            BtnVer.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            BtnVer.OverrideDefault.Back.Color2 = Color.White;
+            BtnVer.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            BtnVer.OverrideFocus.Back.Color2 = Color.White;
+            BtnVer.Size = new Size(86, 60);
+            BtnVer.StateCommon.Back.Color1 = Color.SkyBlue;
+            BtnVer.StateCommon.Back.Color2 = Color.White;
+            BtnVer.StateCommon.Border.Rounding = 30F;
+            BtnVer.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            BtnVer.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BtnVer.StateNormal.Back.Color1 = Color.SkyBlue;
+            BtnVer.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            BtnVer.StatePressed.Back.Color1 = Color.Transparent;
+            BtnVer.StatePressed.Back.Color2 = Color.Transparent;
+            BtnVer.TabIndex = 142;
+            BtnVer.Values.DropDownArrowColor = Color.Empty;
+            BtnVer.Values.Text = "Ver";
+            BtnVer.Click += BtnVer_Click;
             // 
-            // kryptonButton12
+            // BtnNueva
             // 
-            kryptonButton12.Location = new Point(530, 720);
-            kryptonButton12.Name = "kryptonButton12";
-            kryptonButton12.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            kryptonButton12.OverrideDefault.Back.Color2 = Color.White;
-            kryptonButton12.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            kryptonButton12.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton12.Size = new Size(224, 60);
-            kryptonButton12.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonButton12.StateCommon.Back.Color2 = Color.White;
-            kryptonButton12.StateCommon.Border.Rounding = 30F;
-            kryptonButton12.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton12.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            kryptonButton12.StateNormal.Back.Color1 = Color.SkyBlue;
-            kryptonButton12.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            kryptonButton12.StatePressed.Back.Color1 = Color.Transparent;
-            kryptonButton12.StatePressed.Back.Color2 = Color.Transparent;
-            kryptonButton12.TabIndex = 142;
-            kryptonButton12.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton12.Values.Text = "Nueva Factura";
+            BtnNueva.Location = new Point(530, 720);
+            BtnNueva.Name = "BtnNueva";
+            BtnNueva.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            BtnNueva.OverrideDefault.Back.Color2 = Color.White;
+            BtnNueva.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            BtnNueva.OverrideFocus.Back.Color2 = Color.White;
+            BtnNueva.Size = new Size(224, 60);
+            BtnNueva.StateCommon.Back.Color1 = Color.SkyBlue;
+            BtnNueva.StateCommon.Back.Color2 = Color.White;
+            BtnNueva.StateCommon.Border.Rounding = 30F;
+            BtnNueva.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            BtnNueva.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BtnNueva.StateNormal.Back.Color1 = Color.SkyBlue;
+            BtnNueva.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            BtnNueva.StatePressed.Back.Color1 = Color.Transparent;
+            BtnNueva.StatePressed.Back.Color2 = Color.Transparent;
+            BtnNueva.TabIndex = 142;
+            BtnNueva.Values.DropDownArrowColor = Color.Empty;
+            BtnNueva.Values.Text = "Nueva Factura";
+            BtnNueva.Click += BtnNueva_Click;
             // 
             // dateTimePicker1
             // 
@@ -799,6 +801,8 @@
             dgvFacturas.RowHeadersWidth = 51;
             dgvFacturas.Size = new Size(725, 361);
             dgvFacturas.TabIndex = 37;
+            
+            dgvFacturas.CellContentClick += dgvFacturas_CellContentClick;
             // 
             // FacturasAdm
             // 
@@ -809,8 +813,8 @@
             Controls.Add(dgvFacturas);
             Controls.Add(dateTimePicker2);
             Controls.Add(dateTimePicker1);
-            Controls.Add(kryptonButton12);
-            Controls.Add(kryptonButton15);
+            Controls.Add(BtnNueva);
+            Controls.Add(BtnVer);
             Controls.Add(label4);
             Controls.Add(panel5);
             Controls.Add(panel6);
@@ -902,8 +906,8 @@
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox1;
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox2;
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox3;
-        private Krypton.Toolkit.KryptonButton kryptonButton15;
-        private Krypton.Toolkit.KryptonButton kryptonButton12;
+        private Krypton.Toolkit.KryptonButton BtnVer;
+        private Krypton.Toolkit.KryptonButton BtnNueva;
         private DateTimePicker dateTimePicker1;
         private DateTimePicker dateTimePicker2;
         private DataGridView dgvFacturas;

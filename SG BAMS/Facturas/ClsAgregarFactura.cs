@@ -17,18 +17,19 @@ namespace SG_BAMS.Facturas
             {
                 AbrirConexion();
 
-                using (SqlCommand cmd = new SqlCommand("PA_insertar_factura", Conectar))
+                using (SqlCommand cmd = new SqlCommand("PA_insertar_facturas", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.AddWithValue("@id_usuario", idusuario);
-                    cmd.Parameters.AddWithValue("@id cliente", idcliente);
+                    cmd.Parameters.AddWithValue("@id_cliente", idcliente);
                     cmd.Parameters.AddWithValue("@id_tipo_forma_pago", pago);
                     cmd.Parameters.AddWithValue("@fecha_venta", fecha);
                     cmd.Parameters.AddWithValue("@bateria_vieja", bateria);
 
-                    int filasAfectadas = await cmd.ExecuteNonQueryAsync();
-                    return filasAfectadas;
+                    int idFactura = Convert.ToInt32(await cmd.ExecuteScalarAsync());
+
+                    return idFactura;
 
                 }
 
@@ -47,5 +48,10 @@ namespace SG_BAMS.Facturas
 
 
         }
+
+       
+
+
+
     }
 }

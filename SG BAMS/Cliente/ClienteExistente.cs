@@ -26,7 +26,7 @@ namespace SG_BAMS
             {
                 objCl.AbrirConexion();
 
-                string query = "SELECT *  FROM vista_nombres_clientes";
+                string query = "SELECT * FROM vista_nombres_clientes";
 
 
                 using (SqlCommand cmd = new SqlCommand(query, objCl.Conectar))
@@ -37,7 +37,7 @@ namespace SG_BAMS
 
 
                     cmbClientes.DisplayMember = "Nombre Completo";
-                    cmbClientes.ValueMember = "id_cliente";
+                    cmbClientes.ValueMember = "ID";
                     cmbClientes.DataSource = dt;
                 }
             }
@@ -54,12 +54,38 @@ namespace SG_BAMS
         private async void ClienteExistente_Load(object sender, EventArgs e)
         {
             await LlenarComboCliente();
+            cmbClientes.SelectedIndex = 0;
         }
 
         private void BtnAsignar_Click(object sender, EventArgs e)
         {
-            FacturaAgregarDatos frmFA = new FacturaAgregarDatos(cmbClientes.Text, Convert.ToInt32(cmbClientes.SelectedValue));
+            if (cmbClientes.SelectedValue != null)
+            {
+                try
+                {
 
+                    int idCliente = Convert.ToInt32(cmbClientes.SelectedValue);
+
+                    FacturaAgregarDatos frmFA = new FacturaAgregarDatos(cmbClientes.Text, idCliente);
+                    frmFA.ShowDialog();
+                    this.Close();
+                }
+                catch
+                {
+
+                    MessageBox.Show("El sistema aún está cargando los datos. Por favor, selecciona el cliente de nuevo.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione un cliente válido de la lista.");
+            }
+        }
+
+        private void BtnSalir_Click(object sender, EventArgs e)
+        {
+            this.Hide();
         }
     }
+
 }

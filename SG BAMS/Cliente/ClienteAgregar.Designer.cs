@@ -40,8 +40,8 @@
             label10 = new Label();
             kryptonGroupBox3 = new Krypton.Toolkit.KryptonGroupBox();
             btnAgregar = new Krypton.Toolkit.KryptonButton();
-            btnExistente = new Krypton.Toolkit.KryptonButton();
-            btnSalir = new Krypton.Toolkit.KryptonButton();
+            BtnExistente = new Krypton.Toolkit.KryptonButton();
+            BtnSalir = new Krypton.Toolkit.KryptonButton();
             txtNombre = new Krypton.Toolkit.KryptonTextBox();
             txtApellido = new Krypton.Toolkit.KryptonTextBox();
             txtTelefono = new Krypton.Toolkit.KryptonTextBox();
@@ -187,49 +187,51 @@
             btnAgregar.Values.Text = "Agregar";
             btnAgregar.Click += btnAgregar_Click;
             // 
-            // btnExistente
+            // BtnExistente
             // 
-            btnExistente.Location = new Point(239, 384);
-            btnExistente.Name = "btnExistente";
-            btnExistente.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnExistente.OverrideDefault.Back.Color2 = Color.White;
-            btnExistente.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnExistente.OverrideFocus.Back.Color2 = Color.White;
-            btnExistente.Size = new Size(151, 60);
-            btnExistente.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnExistente.StateCommon.Back.Color2 = Color.White;
-            btnExistente.StateCommon.Border.Rounding = 30F;
-            btnExistente.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnExistente.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnExistente.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnExistente.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            btnExistente.StatePressed.Back.Color1 = Color.Transparent;
-            btnExistente.StatePressed.Back.Color2 = Color.Transparent;
-            btnExistente.TabIndex = 319;
-            btnExistente.Values.DropDownArrowColor = Color.Empty;
-            btnExistente.Values.Text = "Existente";
+            BtnExistente.Location = new Point(239, 384);
+            BtnExistente.Name = "BtnExistente";
+            BtnExistente.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            BtnExistente.OverrideDefault.Back.Color2 = Color.White;
+            BtnExistente.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            BtnExistente.OverrideFocus.Back.Color2 = Color.White;
+            BtnExistente.Size = new Size(151, 60);
+            BtnExistente.StateCommon.Back.Color1 = Color.SkyBlue;
+            BtnExistente.StateCommon.Back.Color2 = Color.White;
+            BtnExistente.StateCommon.Border.Rounding = 30F;
+            BtnExistente.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            BtnExistente.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BtnExistente.StateNormal.Back.Color1 = Color.SkyBlue;
+            BtnExistente.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            BtnExistente.StatePressed.Back.Color1 = Color.Transparent;
+            BtnExistente.StatePressed.Back.Color2 = Color.Transparent;
+            BtnExistente.TabIndex = 319;
+            BtnExistente.Values.DropDownArrowColor = Color.Empty;
+            BtnExistente.Values.Text = "Existente";
+            BtnExistente.Click += BtnExistente_Click;
             // 
-            // btnSalir
+            // BtnSalir
             // 
-            btnSalir.Location = new Point(396, 384);
-            btnSalir.Name = "btnSalir";
-            btnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnSalir.OverrideDefault.Back.Color2 = Color.White;
-            btnSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnSalir.OverrideFocus.Back.Color2 = Color.White;
-            btnSalir.Size = new Size(102, 60);
-            btnSalir.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnSalir.StateCommon.Back.Color2 = Color.White;
-            btnSalir.StateCommon.Border.Rounding = 30F;
-            btnSalir.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnSalir.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSalir.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnSalir.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            btnSalir.StatePressed.Back.Color1 = Color.Transparent;
-            btnSalir.StatePressed.Back.Color2 = Color.Transparent;
-            btnSalir.TabIndex = 319;
-            btnSalir.Values.DropDownArrowColor = Color.Empty;
-            btnSalir.Values.Text = "Salir";
+            BtnSalir.Location = new Point(396, 384);
+            BtnSalir.Name = "BtnSalir";
+            BtnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            BtnSalir.OverrideDefault.Back.Color2 = Color.White;
+            BtnSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            BtnSalir.OverrideFocus.Back.Color2 = Color.White;
+            BtnSalir.Size = new Size(102, 60);
+            BtnSalir.StateCommon.Back.Color1 = Color.SkyBlue;
+            BtnSalir.StateCommon.Back.Color2 = Color.White;
+            BtnSalir.StateCommon.Border.Rounding = 30F;
+            BtnSalir.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            BtnSalir.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BtnSalir.StateNormal.Back.Color1 = Color.SkyBlue;
+            BtnSalir.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            BtnSalir.StatePressed.Back.Color1 = Color.Transparent;
+            BtnSalir.StatePressed.Back.Color2 = Color.Transparent;
+            BtnSalir.TabIndex = 319;
+            BtnSalir.Values.DropDownArrowColor = Color.Empty;
+            BtnSalir.Values.Text = "Salir";
+            BtnSalir.Click += BtnSalir_Click;
             // 
             // txtNombre
             // 
@@ -281,8 +283,8 @@
             Controls.Add(txtTelefono);
             Controls.Add(txtApellido);
             Controls.Add(txtNombre);
-            Controls.Add(btnSalir);
-            Controls.Add(btnExistente);
+            Controls.Add(BtnSalir);
+            Controls.Add(BtnExistente);
             Controls.Add(btnAgregar);
             Controls.Add(label5);
             Controls.Add(label10);
@@ -319,8 +321,8 @@
         private Label label10;
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox3;
         private Krypton.Toolkit.KryptonButton btnAgregar;
-        private Krypton.Toolkit.KryptonButton btnExistente;
-        private Krypton.Toolkit.KryptonButton btnSalir;
+        private Krypton.Toolkit.KryptonButton BtnExistente;
+        private Krypton.Toolkit.KryptonButton BtnSalir;
         private Krypton.Toolkit.KryptonTextBox txtNombre;
         private Krypton.Toolkit.KryptonTextBox txtApellido;
         private Krypton.Toolkit.KryptonTextBox txtTelefono;

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using SG_BAMS.Cliente;
+using SG_BAMS.Facturas;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +16,7 @@ namespace SG_BAMS
 {
     public partial class ClienteAgregar : Form
     {
-        
+
 
         public ClienteAgregar()
         {
@@ -25,31 +26,41 @@ namespace SG_BAMS
         private async void btnAgregar_Click(object sender, EventArgs e)
         {
             ClsAgregarClientes objAC = new ClsAgregarClientes();
-            int filasInsertadas = await objAC.AgregarClientes(txtNombre.Text, txtApellido.Text, txtTelefono.Text, txtRTN.Text);
+            int idNuevoCliente = await objAC.AgregarClientes(txtNombre.Text, txtApellido.Text, txtTelefono.Text, txtRTN.Text);
 
-            if (filasInsertadas > 0)
+            MessageBox.Show("ID generado: " + idNuevoCliente);
+
+            if (idNuevoCliente > 0)
             {
                 MessageBox.Show("Cliente agregado correctamente.");
 
+                FacturaAgregarDatos frmFA = new FacturaAgregarDatos(txtNombre.Text + " " + txtApellido.Text, idNuevoCliente);
 
-                txtNombre.Clear();
-                txtApellido.Clear();
-                txtTelefono.Clear();
-                txtRTN.Clear();
+                frmFA.ShowDialog();
                 this.Close();
             }
             else
             {
                 MessageBox.Show("No se pudo agregar el cliente.");
             }
-
         }
 
         private void ClienteAgregar_Load(object sender, EventArgs e)
         {
-             
+
         }
 
-       
+        private void BtnExistente_Click(object sender, EventArgs e)
+        {
+            ClienteExistente frmCE = new ClienteExistente();
+            frmCE.ShowDialog();
+
+            this.Close();
+        }
+
+        private void BtnSalir_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
     }
 }

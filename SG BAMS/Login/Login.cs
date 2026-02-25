@@ -16,6 +16,7 @@ namespace SG_BAMS.Login
 {
     public partial class Login : Form
     {
+        public static int idUsuario;
         public Login()
         {
             InitializeComponent();
@@ -29,10 +30,12 @@ namespace SG_BAMS.Login
 
         private void btninicioSesion_Click(object sender, EventArgs e)
         {
+            
             ClsLogin login = new ClsLogin();
             try
             {
                 int rol = login.ValidarUsuario(txtUsu.Text, txtCon.Text);
+               
 
                 if (rol == 1)
                 {

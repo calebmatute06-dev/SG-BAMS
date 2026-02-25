@@ -39,6 +39,10 @@ namespace SG_BAMS
 
         }
 
-        
+        private void BtnFacturas_Click(object sender, EventArgs e)
+        {
+            FacturasAdm frmFM = new FacturasAdm();
+            frmFM.ShowDialog();
+        }
     }
 }
