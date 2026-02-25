@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SG_BAMS.Administracion_de_BAMS.Estado;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -33,6 +34,45 @@ namespace SG_BAMS
             verEstado.Show();
             this.Close();
 
+        }
+
+        private async void btnAgregar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtDescri.Text))
+            {
+                MessageBox.Show("Por favor, escriba una descripción para el estado.",
+                                "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                this.Cursor = Cursors.WaitCursor;
+                btnAgregar.Enabled = false;
+
+                clsEstado objetoEstado = new clsEstado();
+
+                // Ejecutamos la inserción asíncrona
+                bool insertado = await objetoEstado.InsertarEstadoAsync(txtDescri.Text.Trim());
+
+                if (insertado)
+                {
+                    MessageBox.Show("Estado agregado exitosamente.", "SG-BAMS",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    this.DialogResult = DialogResult.OK; // Para que el form principal sepa que debe refrescar
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+                btnAgregar.Enabled = true;
+            }
         }
     }
 }

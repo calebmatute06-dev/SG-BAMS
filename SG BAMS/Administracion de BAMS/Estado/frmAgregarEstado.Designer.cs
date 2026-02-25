@@ -36,11 +36,11 @@ namespace SG_BAMS
             panel2 = new Panel();
             label9 = new Label();
             label1 = new Label();
-            kryptonButton6 = new Krypton.Toolkit.KryptonButton();
             kryptonButton1 = new Krypton.Toolkit.KryptonButton();
             pictureBox16 = new PictureBox();
-            kryptonTextBox1 = new Krypton.Toolkit.KryptonTextBox();
+            txtDescri = new Krypton.Toolkit.KryptonTextBox();
             label2 = new Label();
+            btnAgregar = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
@@ -105,29 +105,6 @@ namespace SG_BAMS
             label1.TextAlign = ContentAlignment.MiddleCenter;
             label1.Click += label1_Click;
             // 
-            // kryptonButton6
-            // 
-            kryptonButton6.Location = new Point(199, 245);
-            kryptonButton6.Name = "kryptonButton6";
-            kryptonButton6.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            kryptonButton6.OverrideDefault.Back.Color2 = Color.White;
-            kryptonButton6.OverrideDefault.Border.Rounding = 40F;
-            kryptonButton6.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            kryptonButton6.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton6.Size = new Size(118, 65);
-            kryptonButton6.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonButton6.StateCommon.Back.Color2 = Color.White;
-            kryptonButton6.StateCommon.Border.Rounding = 40F;
-            kryptonButton6.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton6.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton6.StateNormal.Back.Color1 = Color.SkyBlue;
-            kryptonButton6.StateNormal.Back.Color2 = Color.White;
-            kryptonButton6.StateNormal.Border.Rounding = 40F;
-            kryptonButton6.StateTracking.Border.Rounding = 40F;
-            kryptonButton6.TabIndex = 124;
-            kryptonButton6.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton6.Values.Text = "Agregar";
-            // 
             // kryptonButton1
             // 
             kryptonButton1.Location = new Point(384, 245);
@@ -162,18 +139,18 @@ namespace SG_BAMS
             pictureBox16.TabIndex = 126;
             pictureBox16.TabStop = false;
             // 
-            // kryptonTextBox1
+            // txtDescri
             // 
-            kryptonTextBox1.Location = new Point(290, 105);
-            kryptonTextBox1.Margin = new Padding(3, 4, 3, 4);
-            kryptonTextBox1.Multiline = true;
-            kryptonTextBox1.Name = "kryptonTextBox1";
-            kryptonTextBox1.Size = new Size(302, 48);
-            kryptonTextBox1.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonTextBox1.StateCommon.Border.Rounding = 15F;
-            kryptonTextBox1.StateCommon.Content.Color1 = Color.Navy;
-            kryptonTextBox1.StateCommon.Content.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonTextBox1.TabIndex = 141;
+            txtDescri.Location = new Point(290, 105);
+            txtDescri.Margin = new Padding(3, 4, 3, 4);
+            txtDescri.Multiline = true;
+            txtDescri.Name = "txtDescri";
+            txtDescri.Size = new Size(302, 48);
+            txtDescri.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtDescri.StateCommon.Border.Rounding = 15F;
+            txtDescri.StateCommon.Content.Color1 = Color.Navy;
+            txtDescri.StateCommon.Content.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtDescri.TabIndex = 141;
             // 
             // label2
             // 
@@ -187,17 +164,41 @@ namespace SG_BAMS
             label2.TabIndex = 140;
             label2.Text = "Ingrese el estado:";
             // 
+            // btnAgregar
+            // 
+            btnAgregar.Location = new Point(199, 245);
+            btnAgregar.Name = "btnAgregar";
+            btnAgregar.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnAgregar.OverrideDefault.Back.Color2 = Color.White;
+            btnAgregar.OverrideDefault.Border.Rounding = 40F;
+            btnAgregar.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnAgregar.OverrideFocus.Back.Color2 = Color.White;
+            btnAgregar.Size = new Size(118, 65);
+            btnAgregar.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnAgregar.StateCommon.Back.Color2 = Color.White;
+            btnAgregar.StateCommon.Border.Rounding = 40F;
+            btnAgregar.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnAgregar.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnAgregar.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnAgregar.StateNormal.Back.Color2 = Color.White;
+            btnAgregar.StateNormal.Border.Rounding = 40F;
+            btnAgregar.StateTracking.Border.Rounding = 40F;
+            btnAgregar.TabIndex = 142;
+            btnAgregar.Values.DropDownArrowColor = Color.Empty;
+            btnAgregar.Values.Text = "Agregar";
+            btnAgregar.Click += btnAgregar_Click;
+            // 
             // frmAgregarEstado
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(691, 381);
-            Controls.Add(kryptonTextBox1);
+            Controls.Add(btnAgregar);
+            Controls.Add(txtDescri);
             Controls.Add(label2);
             Controls.Add(pictureBox16);
             Controls.Add(kryptonButton1);
-            Controls.Add(kryptonButton6);
             Controls.Add(panel1);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
@@ -206,6 +207,7 @@ namespace SG_BAMS
             Controls.Add(label1);
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmAgregarEstado";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmAgregarEstado";
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -227,10 +229,10 @@ namespace SG_BAMS
         private Panel panel2;
         private Label label9;
         private Label label1;
-        private Krypton.Toolkit.KryptonButton kryptonButton6;
         private Krypton.Toolkit.KryptonButton kryptonButton1;
         private PictureBox pictureBox16;
-        private Krypton.Toolkit.KryptonTextBox kryptonTextBox1;
+        private Krypton.Toolkit.KryptonTextBox txtDescri;
         private Label label2;
+        private Krypton.Toolkit.KryptonButton btnAgregar;
     }
 }

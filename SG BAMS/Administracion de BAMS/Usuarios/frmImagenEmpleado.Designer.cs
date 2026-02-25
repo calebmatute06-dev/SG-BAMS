@@ -172,6 +172,7 @@
             Controls.Add(label1);
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmImagenEmpleado";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "fmrImagenEmpleado";
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();

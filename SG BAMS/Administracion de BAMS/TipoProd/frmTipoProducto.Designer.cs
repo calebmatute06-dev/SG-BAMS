@@ -35,15 +35,15 @@
             panel1 = new Panel();
             pictureBox2 = new PictureBox();
             panel2 = new Panel();
-            kryptonDataGridView1 = new Krypton.Toolkit.KryptonDataGridView();
+            dgvTipoProducto = new Krypton.Toolkit.KryptonDataGridView();
             label1 = new Label();
-            kryptonButton3 = new Krypton.Toolkit.KryptonButton();
-            kryptonButton6 = new Krypton.Toolkit.KryptonButton();
-            kryptonButton1 = new Krypton.Toolkit.KryptonButton();
+            btmAgregar = new Krypton.Toolkit.KryptonButton();
+            btmModificar = new Krypton.Toolkit.KryptonButton();
+            btmSalir = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonDataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvTipoProducto).BeginInit();
             SuspendLayout();
             // 
             // pictureBox16
@@ -101,22 +101,23 @@
             panel2.Size = new Size(683, 24);
             panel2.TabIndex = 117;
             // 
-            // kryptonDataGridView1
+            // dgvTipoProducto
             // 
-            kryptonDataGridView1.AllowUserToAddRows = false;
-            kryptonDataGridView1.AllowUserToDeleteRows = false;
-            kryptonDataGridView1.BorderStyle = BorderStyle.None;
-            kryptonDataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            kryptonDataGridView1.Location = new Point(74, 119);
-            kryptonDataGridView1.Margin = new Padding(3, 4, 3, 4);
-            kryptonDataGridView1.Name = "kryptonDataGridView1";
-            kryptonDataGridView1.ReadOnly = true;
-            kryptonDataGridView1.RowHeadersWidth = 51;
-            kryptonDataGridView1.Size = new Size(512, 232);
-            kryptonDataGridView1.StateCommon.Background.Color1 = Color.SkyBlue;
-            kryptonDataGridView1.StateCommon.Background.Color2 = Color.SkyBlue;
-            kryptonDataGridView1.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
-            kryptonDataGridView1.TabIndex = 116;
+            dgvTipoProducto.AllowUserToAddRows = false;
+            dgvTipoProducto.AllowUserToDeleteRows = false;
+            dgvTipoProducto.BorderStyle = BorderStyle.None;
+            dgvTipoProducto.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvTipoProducto.Location = new Point(74, 119);
+            dgvTipoProducto.Margin = new Padding(3, 4, 3, 4);
+            dgvTipoProducto.Name = "dgvTipoProducto";
+            dgvTipoProducto.ReadOnly = true;
+            dgvTipoProducto.RowHeadersWidth = 51;
+            dgvTipoProducto.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvTipoProducto.Size = new Size(512, 232);
+            dgvTipoProducto.StateCommon.Background.Color1 = Color.SkyBlue;
+            dgvTipoProducto.StateCommon.Background.Color2 = Color.SkyBlue;
+            dgvTipoProducto.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
+            dgvTipoProducto.TabIndex = 116;
             // 
             // label1
             // 
@@ -130,77 +131,77 @@
             label1.Text = "Tipo de Producto";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // kryptonButton3
+            // btmAgregar
             // 
-            kryptonButton3.Location = new Point(369, 361);
-            kryptonButton3.Name = "kryptonButton3";
-            kryptonButton3.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            kryptonButton3.OverrideDefault.Back.Color2 = Color.White;
-            kryptonButton3.OverrideDefault.Border.Rounding = 40F;
-            kryptonButton3.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            kryptonButton3.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton3.Size = new Size(118, 65);
-            kryptonButton3.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonButton3.StateCommon.Back.Color2 = Color.White;
-            kryptonButton3.StateCommon.Border.Rounding = 40F;
-            kryptonButton3.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton3.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton3.StateNormal.Back.Color1 = Color.SkyBlue;
-            kryptonButton3.StateNormal.Back.Color2 = Color.White;
-            kryptonButton3.StateNormal.Border.Rounding = 40F;
-            kryptonButton3.StateTracking.Border.Rounding = 40F;
-            kryptonButton3.TabIndex = 144;
-            kryptonButton3.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton3.Values.Text = "Modificar";
-            kryptonButton3.Click += kryptonButton3_Click;
+            btmAgregar.Location = new Point(190, 368);
+            btmAgregar.Name = "btmAgregar";
+            btmAgregar.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btmAgregar.OverrideDefault.Back.Color2 = Color.White;
+            btmAgregar.OverrideDefault.Border.Rounding = 40F;
+            btmAgregar.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btmAgregar.OverrideFocus.Back.Color2 = Color.White;
+            btmAgregar.Size = new Size(118, 65);
+            btmAgregar.StateCommon.Back.Color1 = Color.SkyBlue;
+            btmAgregar.StateCommon.Back.Color2 = Color.White;
+            btmAgregar.StateCommon.Border.Rounding = 40F;
+            btmAgregar.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btmAgregar.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btmAgregar.StateNormal.Back.Color1 = Color.SkyBlue;
+            btmAgregar.StateNormal.Back.Color2 = Color.White;
+            btmAgregar.StateNormal.Border.Rounding = 40F;
+            btmAgregar.StateTracking.Border.Rounding = 40F;
+            btmAgregar.TabIndex = 149;
+            btmAgregar.Values.DropDownArrowColor = Color.Empty;
+            btmAgregar.Values.Text = "Agregar";
+            btmAgregar.Click += btmAgregar_Click;
             // 
-            // kryptonButton6
+            // btmModificar
             // 
-            kryptonButton6.Location = new Point(185, 361);
-            kryptonButton6.Name = "kryptonButton6";
-            kryptonButton6.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            kryptonButton6.OverrideDefault.Back.Color2 = Color.White;
-            kryptonButton6.OverrideDefault.Border.Rounding = 40F;
-            kryptonButton6.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            kryptonButton6.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton6.Size = new Size(118, 65);
-            kryptonButton6.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonButton6.StateCommon.Back.Color2 = Color.White;
-            kryptonButton6.StateCommon.Border.Rounding = 40F;
-            kryptonButton6.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton6.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton6.StateNormal.Back.Color1 = Color.SkyBlue;
-            kryptonButton6.StateNormal.Back.Color2 = Color.White;
-            kryptonButton6.StateNormal.Border.Rounding = 40F;
-            kryptonButton6.StateTracking.Border.Rounding = 40F;
-            kryptonButton6.TabIndex = 143;
-            kryptonButton6.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton6.Values.Text = "Agregar";
-            kryptonButton6.Click += kryptonButton6_Click;
+            btmModificar.Location = new Point(347, 369);
+            btmModificar.Name = "btmModificar";
+            btmModificar.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btmModificar.OverrideDefault.Back.Color2 = Color.White;
+            btmModificar.OverrideDefault.Border.Rounding = 40F;
+            btmModificar.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btmModificar.OverrideFocus.Back.Color2 = Color.White;
+            btmModificar.Size = new Size(118, 65);
+            btmModificar.StateCommon.Back.Color1 = Color.SkyBlue;
+            btmModificar.StateCommon.Back.Color2 = Color.White;
+            btmModificar.StateCommon.Border.Rounding = 40F;
+            btmModificar.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btmModificar.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btmModificar.StateNormal.Back.Color1 = Color.SkyBlue;
+            btmModificar.StateNormal.Back.Color2 = Color.White;
+            btmModificar.StateNormal.Border.Rounding = 40F;
+            btmModificar.StateTracking.Border.Rounding = 40F;
+            btmModificar.TabIndex = 150;
+            btmModificar.Values.DropDownArrowColor = Color.Empty;
+            btmModificar.Values.Text = "Modificar";
+            btmModificar.Click += btmModificar_Click;
             // 
-            // kryptonButton1
+            // btmSalir
             // 
-            kryptonButton1.Location = new Point(471, 432);
-            kryptonButton1.Name = "kryptonButton1";
-            kryptonButton1.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            kryptonButton1.OverrideDefault.Back.Color2 = Color.White;
-            kryptonButton1.OverrideDefault.Border.Rounding = 40F;
-            kryptonButton1.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            kryptonButton1.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton1.Size = new Size(115, 52);
-            kryptonButton1.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonButton1.StateCommon.Back.Color2 = Color.White;
-            kryptonButton1.StateCommon.Border.Rounding = 40F;
-            kryptonButton1.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton1.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton1.StateNormal.Back.Color1 = Color.SkyBlue;
-            kryptonButton1.StateNormal.Back.Color2 = Color.White;
-            kryptonButton1.StateNormal.Border.Rounding = 40F;
-            kryptonButton1.StateTracking.Border.Rounding = 40F;
-            kryptonButton1.TabIndex = 147;
-            kryptonButton1.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton1.Values.Text = "Salir";
-            kryptonButton1.Click += kryptonButton1_Click;
+            btmSalir.Location = new Point(465, 426);
+            btmSalir.Name = "btmSalir";
+            btmSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btmSalir.OverrideDefault.Back.Color2 = Color.White;
+            btmSalir.OverrideDefault.Border.Rounding = 40F;
+            btmSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btmSalir.OverrideFocus.Back.Color2 = Color.White;
+            btmSalir.Size = new Size(115, 52);
+            btmSalir.StateCommon.Back.Color1 = Color.SkyBlue;
+            btmSalir.StateCommon.Back.Color2 = Color.White;
+            btmSalir.StateCommon.Border.Rounding = 40F;
+            btmSalir.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btmSalir.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btmSalir.StateNormal.Back.Color1 = Color.SkyBlue;
+            btmSalir.StateNormal.Back.Color2 = Color.White;
+            btmSalir.StateNormal.Border.Rounding = 40F;
+            btmSalir.StateTracking.Border.Rounding = 40F;
+            btmSalir.TabIndex = 151;
+            btmSalir.Values.DropDownArrowColor = Color.Empty;
+            btmSalir.Values.Text = "Salir";
+            btmSalir.Click += btmSalir_Click;
             // 
             // frmTipoProducto
             // 
@@ -208,24 +209,25 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(683, 512);
-            Controls.Add(kryptonButton1);
-            Controls.Add(kryptonButton3);
-            Controls.Add(kryptonButton6);
+            Controls.Add(btmSalir);
+            Controls.Add(btmModificar);
+            Controls.Add(btmAgregar);
             Controls.Add(pictureBox16);
             Controls.Add(label7);
             Controls.Add(pictureBox1);
             Controls.Add(panel1);
             Controls.Add(pictureBox2);
             Controls.Add(panel2);
-            Controls.Add(kryptonDataGridView1);
+            Controls.Add(dgvTipoProducto);
             Controls.Add(label1);
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmTipoProducto";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmTipoProducto";
             ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonDataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvTipoProducto).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -238,10 +240,10 @@
         private Panel panel1;
         private PictureBox pictureBox2;
         private Panel panel2;
-        private Krypton.Toolkit.KryptonDataGridView kryptonDataGridView1;
+        private Krypton.Toolkit.KryptonDataGridView dgvTipoProducto;
         private Label label1;
-        private Krypton.Toolkit.KryptonButton kryptonButton3;
-        private Krypton.Toolkit.KryptonButton kryptonButton6;
-        private Krypton.Toolkit.KryptonButton kryptonButton1;
+        private Krypton.Toolkit.KryptonButton btmAgregar;
+        private Krypton.Toolkit.KryptonButton btmModificar;
+        private Krypton.Toolkit.KryptonButton btmSalir;
     }
 }

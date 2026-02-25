@@ -131,7 +131,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial Narrow", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(183, 29);
+            label1.Location = new Point(182, 31);
             label1.Name = "label1";
             label1.Size = new Size(280, 39);
             label1.TabIndex = 90;
@@ -204,6 +204,7 @@
             Controls.Add(label1);
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmModificarModelos";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmModificarModelos";
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

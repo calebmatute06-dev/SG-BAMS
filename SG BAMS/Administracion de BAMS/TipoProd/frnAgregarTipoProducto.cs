@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SG_BAMS.Administracion_de_BAMS.TipoProd;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,16 +18,53 @@ namespace SG_BAMS
             InitializeComponent();
         }
 
-        private void kryptonButton3_Click(object sender, EventArgs e)
+
+        private async void btnAgregar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtDescri.Text))
+            {
+                MessageBox.Show("Debe ingresar una descripción para el tipo de producto.",
+                                "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                this.Cursor = Cursors.WaitCursor;
+                btnAgregar.Enabled = false;
+
+                clsTipoProducto objetoTipo = new clsTipoProducto();
+
+                // Ejecutamos la inserción
+                bool exito = await objetoTipo.InsertarTipoProductoAsync(txtDescri.Text.Trim());
+
+                if (exito)
+                {
+                    MessageBox.Show("Tipo de producto registrado con éxito.", "SG-BAMS",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    this.DialogResult = DialogResult.OK; // Cerramos devolviendo éxito para refrescar el Grid
+                    frnAgregarTipoProducto verTproducto = new frnAgregarTipoProducto();
+                    verTproducto.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+                btnAgregar.Enabled = true;
+            }
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
         {
             frmTipoProducto verTproductos = new frmTipoProducto();
             verTproductos.Show();
             this.Close();
-        }
-
-        private void kryptonButton6_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

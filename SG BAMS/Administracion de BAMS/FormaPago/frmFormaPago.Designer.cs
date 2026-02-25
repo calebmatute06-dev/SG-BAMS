@@ -34,14 +34,14 @@
             panel1 = new Panel();
             pictureBox2 = new PictureBox();
             panel2 = new Panel();
-            kryptonDataGridView1 = new Krypton.Toolkit.KryptonDataGridView();
+            dgvFormasPago = new Krypton.Toolkit.KryptonDataGridView();
             label1 = new Label();
-            kryptonButton1 = new Krypton.Toolkit.KryptonButton();
-            kryptonButton6 = new Krypton.Toolkit.KryptonButton();
             pictureBox16 = new PictureBox();
+            btmSalir = new Krypton.Toolkit.KryptonButton();
+            btnAgregar = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonDataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvFormasPago).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             SuspendLayout();
             // 
@@ -90,22 +90,22 @@
             panel2.Size = new Size(683, 24);
             panel2.TabIndex = 117;
             // 
-            // kryptonDataGridView1
+            // dgvFormasPago
             // 
-            kryptonDataGridView1.AllowUserToAddRows = false;
-            kryptonDataGridView1.AllowUserToDeleteRows = false;
-            kryptonDataGridView1.BorderStyle = BorderStyle.None;
-            kryptonDataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            kryptonDataGridView1.Location = new Point(80, 119);
-            kryptonDataGridView1.Margin = new Padding(3, 4, 3, 4);
-            kryptonDataGridView1.Name = "kryptonDataGridView1";
-            kryptonDataGridView1.ReadOnly = true;
-            kryptonDataGridView1.RowHeadersWidth = 51;
-            kryptonDataGridView1.Size = new Size(512, 232);
-            kryptonDataGridView1.StateCommon.Background.Color1 = Color.SkyBlue;
-            kryptonDataGridView1.StateCommon.Background.Color2 = Color.SkyBlue;
-            kryptonDataGridView1.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
-            kryptonDataGridView1.TabIndex = 116;
+            dgvFormasPago.AllowUserToAddRows = false;
+            dgvFormasPago.AllowUserToDeleteRows = false;
+            dgvFormasPago.BorderStyle = BorderStyle.None;
+            dgvFormasPago.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvFormasPago.Location = new Point(80, 119);
+            dgvFormasPago.Margin = new Padding(3, 4, 3, 4);
+            dgvFormasPago.Name = "dgvFormasPago";
+            dgvFormasPago.ReadOnly = true;
+            dgvFormasPago.RowHeadersWidth = 51;
+            dgvFormasPago.Size = new Size(512, 232);
+            dgvFormasPago.StateCommon.Background.Color1 = Color.SkyBlue;
+            dgvFormasPago.StateCommon.Background.Color2 = Color.SkyBlue;
+            dgvFormasPago.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
+            dgvFormasPago.TabIndex = 116;
             // 
             // label1
             // 
@@ -119,54 +119,6 @@
             label1.Text = "Tipo de Forma de Pago";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // kryptonButton1
-            // 
-            kryptonButton1.Location = new Point(374, 372);
-            kryptonButton1.Name = "kryptonButton1";
-            kryptonButton1.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            kryptonButton1.OverrideDefault.Back.Color2 = Color.White;
-            kryptonButton1.OverrideDefault.Border.Rounding = 40F;
-            kryptonButton1.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            kryptonButton1.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton1.Size = new Size(118, 65);
-            kryptonButton1.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonButton1.StateCommon.Back.Color2 = Color.White;
-            kryptonButton1.StateCommon.Border.Rounding = 40F;
-            kryptonButton1.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton1.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton1.StateNormal.Back.Color1 = Color.SkyBlue;
-            kryptonButton1.StateNormal.Back.Color2 = Color.White;
-            kryptonButton1.StateNormal.Border.Rounding = 40F;
-            kryptonButton1.StateTracking.Border.Rounding = 40F;
-            kryptonButton1.TabIndex = 134;
-            kryptonButton1.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton1.Values.Text = "Salir";
-            kryptonButton1.Click += kryptonButton1_Click;
-            // 
-            // kryptonButton6
-            // 
-            kryptonButton6.Location = new Point(211, 372);
-            kryptonButton6.Name = "kryptonButton6";
-            kryptonButton6.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            kryptonButton6.OverrideDefault.Back.Color2 = Color.White;
-            kryptonButton6.OverrideDefault.Border.Rounding = 40F;
-            kryptonButton6.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            kryptonButton6.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton6.Size = new Size(118, 65);
-            kryptonButton6.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonButton6.StateCommon.Back.Color2 = Color.White;
-            kryptonButton6.StateCommon.Border.Rounding = 40F;
-            kryptonButton6.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton6.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton6.StateNormal.Back.Color1 = Color.SkyBlue;
-            kryptonButton6.StateNormal.Back.Color2 = Color.White;
-            kryptonButton6.StateNormal.Border.Rounding = 40F;
-            kryptonButton6.StateTracking.Border.Rounding = 40F;
-            kryptonButton6.TabIndex = 133;
-            kryptonButton6.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton6.Values.Text = "Agregar";
-            kryptonButton6.Click += kryptonButton6_Click;
-            // 
             // pictureBox16
             // 
             pictureBox16.BackgroundImage = (Image)resources.GetObject("pictureBox16.BackgroundImage");
@@ -177,28 +129,77 @@
             pictureBox16.TabIndex = 135;
             pictureBox16.TabStop = false;
             // 
+            // btmSalir
+            // 
+            btmSalir.Location = new Point(375, 372);
+            btmSalir.Name = "btmSalir";
+            btmSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btmSalir.OverrideDefault.Back.Color2 = Color.White;
+            btmSalir.OverrideDefault.Border.Rounding = 40F;
+            btmSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btmSalir.OverrideFocus.Back.Color2 = Color.White;
+            btmSalir.Size = new Size(118, 65);
+            btmSalir.StateCommon.Back.Color1 = Color.SkyBlue;
+            btmSalir.StateCommon.Back.Color2 = Color.White;
+            btmSalir.StateCommon.Border.Rounding = 40F;
+            btmSalir.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btmSalir.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btmSalir.StateNormal.Back.Color1 = Color.SkyBlue;
+            btmSalir.StateNormal.Back.Color2 = Color.White;
+            btmSalir.StateNormal.Border.Rounding = 40F;
+            btmSalir.StateTracking.Border.Rounding = 40F;
+            btmSalir.TabIndex = 137;
+            btmSalir.Values.DropDownArrowColor = Color.Empty;
+            btmSalir.Values.Text = "Salir";
+            btmSalir.Click += btmSalir_Click;
+            // 
+            // btnAgregar
+            // 
+            btnAgregar.Location = new Point(210, 372);
+            btnAgregar.Name = "btnAgregar";
+            btnAgregar.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnAgregar.OverrideDefault.Back.Color2 = Color.White;
+            btnAgregar.OverrideDefault.Border.Rounding = 40F;
+            btnAgregar.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnAgregar.OverrideFocus.Back.Color2 = Color.White;
+            btnAgregar.Size = new Size(118, 65);
+            btnAgregar.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnAgregar.StateCommon.Back.Color2 = Color.White;
+            btnAgregar.StateCommon.Border.Rounding = 40F;
+            btnAgregar.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnAgregar.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnAgregar.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnAgregar.StateNormal.Back.Color2 = Color.White;
+            btnAgregar.StateNormal.Border.Rounding = 40F;
+            btnAgregar.StateTracking.Border.Rounding = 40F;
+            btnAgregar.TabIndex = 138;
+            btnAgregar.Values.DropDownArrowColor = Color.Empty;
+            btnAgregar.Values.Text = "Agregar";
+            btnAgregar.Click += btnAgregar_Click;
+            // 
             // frmFormaPago
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(693, 515);
+            Controls.Add(btnAgregar);
+            Controls.Add(btmSalir);
             Controls.Add(pictureBox16);
-            Controls.Add(kryptonButton1);
-            Controls.Add(kryptonButton6);
             Controls.Add(label7);
             Controls.Add(pictureBox1);
             Controls.Add(panel1);
             Controls.Add(pictureBox2);
             Controls.Add(panel2);
-            Controls.Add(kryptonDataGridView1);
+            Controls.Add(dgvFormasPago);
             Controls.Add(label1);
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmFormaPago";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmFormaPago";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonDataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvFormasPago).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -210,10 +211,10 @@
         private Panel panel1;
         private PictureBox pictureBox2;
         private Panel panel2;
-        private Krypton.Toolkit.KryptonDataGridView kryptonDataGridView1;
+        private Krypton.Toolkit.KryptonDataGridView dgvFormasPago;
         private Label label1;
-        private Krypton.Toolkit.KryptonButton kryptonButton1;
-        private Krypton.Toolkit.KryptonButton kryptonButton6;
         private PictureBox pictureBox16;
+        private Krypton.Toolkit.KryptonButton btmSalir;
+        private Krypton.Toolkit.KryptonButton btnAgregar;
     }
 }
