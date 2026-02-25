@@ -31,7 +31,7 @@ namespace SG_BAMS
 
 
 
-        public  Deudores()
+        public Deudores()
         {
             InitializeComponent();
 
@@ -142,6 +142,12 @@ namespace SG_BAMS
         private void kryptonDataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void kryptonButton15_Click(object sender, EventArgs e)
+        {
+            Pago_Deuda PagDe = new Pago_Deuda();
+            PagDe.Show();
         }
     }
 }

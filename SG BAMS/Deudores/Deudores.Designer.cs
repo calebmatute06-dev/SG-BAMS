@@ -860,6 +860,7 @@
             kryptonButton15.TabIndex = 154;
             kryptonButton15.Values.DropDownArrowColor = Color.Empty;
             kryptonButton15.Values.Text = "Pago Deuda";
+            kryptonButton15.Click += kryptonButton15_Click;
             // 
             // kryptonButton13
             // 
