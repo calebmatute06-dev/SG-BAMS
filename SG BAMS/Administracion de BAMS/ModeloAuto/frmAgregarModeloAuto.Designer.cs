@@ -35,7 +35,7 @@ namespace SG_BAMS
             pictureBox1 = new PictureBox();
             panel2 = new Panel();
             pictureBox16 = new PictureBox();
-            kryptonTextBox1 = new Krypton.Toolkit.KryptonTextBox();
+            txtDescri = new Krypton.Toolkit.KryptonTextBox();
             label9 = new Label();
             label2 = new Label();
             label1 = new Label();
@@ -90,18 +90,18 @@ namespace SG_BAMS
             pictureBox16.TabIndex = 86;
             pictureBox16.TabStop = false;
             // 
-            // kryptonTextBox1
+            // txtDescri
             // 
-            kryptonTextBox1.Location = new Point(326, 92);
-            kryptonTextBox1.Margin = new Padding(3, 4, 3, 4);
-            kryptonTextBox1.Multiline = true;
-            kryptonTextBox1.Name = "kryptonTextBox1";
-            kryptonTextBox1.Size = new Size(302, 53);
-            kryptonTextBox1.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonTextBox1.StateCommon.Border.Rounding = 15F;
-            kryptonTextBox1.StateCommon.Content.Color1 = Color.Navy;
-            kryptonTextBox1.StateCommon.Content.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonTextBox1.TabIndex = 83;
+            txtDescri.Location = new Point(326, 92);
+            txtDescri.Margin = new Padding(3, 4, 3, 4);
+            txtDescri.Multiline = true;
+            txtDescri.Name = "txtDescri";
+            txtDescri.Size = new Size(302, 53);
+            txtDescri.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtDescri.StateCommon.Border.Rounding = 15F;
+            txtDescri.StateCommon.Content.Color1 = Color.Navy;
+            txtDescri.StateCommon.Content.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtDescri.TabIndex = 83;
             // 
             // label9
             // 
@@ -121,7 +121,7 @@ namespace SG_BAMS
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(64, 101);
+            label2.Location = new Point(60, 101);
             label2.Name = "label2";
             label2.Size = new Size(270, 31);
             label2.TabIndex = 80;
@@ -200,7 +200,7 @@ namespace SG_BAMS
             Controls.Add(pictureBox1);
             Controls.Add(panel2);
             Controls.Add(pictureBox16);
-            Controls.Add(kryptonTextBox1);
+            Controls.Add(txtDescri);
             Controls.Add(label9);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -227,7 +227,7 @@ namespace SG_BAMS
         private PictureBox pictureBox1;
         private Panel panel2;
         private PictureBox pictureBox16;
-        private Krypton.Toolkit.KryptonTextBox kryptonTextBox1;
+        private Krypton.Toolkit.KryptonTextBox txtDescri;
         private Label label9;
         private Label label2;
         private Label label1;
