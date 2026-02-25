@@ -21,13 +21,30 @@ namespace SG_BAMS
         }
         private void FrameProcess(object sender, EventArgs e)
         {
+            // 1. Verificamos que la cámara esté instanciada y encendida
             if (camara != null && camaraEnEncendida)
             {
-                var frame = camara.QueryFrame();
-                if (frame != null)
+                try
                 {
-                    // "picCara" sería el nombre de tu PictureBox punteado
-                    pctCamara.Image = frame.ToBitmap();
+                    // 2. Capturamos el cuadro (frame)
+                    using (Mat frameMat = camara.QueryFrame())
+                    {
+                        if (frameMat != null && !frameMat.IsEmpty)
+                        {
+                            // 3. Convertimos a Bitmap y asignamos
+                            // El método .ToBitmap() es la forma más segura de pasarlo al PictureBox
+                            pctCamara.Image = frameMat.ToBitmap();
+
+                            // 4. ¡ESTO ES CLAVE!: Forzamos al control a pintarse de nuevo
+                            pctCamara.Invalidate();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Si hay un error de acceso a la cámara, lo detenemos para no bloquear el programa
+                    DetenerCamara();
+                    Console.WriteLine("Error en video: " + ex.Message);
                 }
             }
         }
