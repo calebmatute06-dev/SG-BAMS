@@ -256,6 +256,7 @@ namespace SG_BAMS
                             running = false;
                             TurnOffCamera();
                             MessageBox.Show("Entrenamiento completado (30 fotos).");
+                            return; // <-- IMPORTANTÍSIMO: corta Spotface de inmediato
                         }
                     }
                 }
