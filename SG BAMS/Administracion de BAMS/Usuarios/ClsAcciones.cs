@@ -13,17 +13,31 @@ namespace SG_BAMS
                                         "Password = w6et2uoghs;" +
                                         "TrustServerCertificate=True;";
 
-        private SqlConnection sc;
+        protected SqlConnection Conectar = new SqlConnection();
 
-        private void Abrir()
+
+        public void AbrirConexion()
         {
-            if (sc == null) sc = new SqlConnection(CadenaConexion);
-            if (sc.State != ConnectionState.Open) sc.Open();
+            try
+            {
+                Conectar.ConnectionString = CadenaConexion;
+                if (Conectar.State == ConnectionState.Closed)
+                {
+                    Conectar.Open();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error de conexion a la base de datos: " + ex.Message);
+            }
         }
 
-        private void Cerrar()
+        public void Cerrar()
         {
-            if (sc != null && sc.State == ConnectionState.Open) sc.Close();
+            if (Conectar.State == ConnectionState.Open)
+            {
+                Conectar.Close();
+            }
         }
 
         // 1) SP_CargarUsuarios
@@ -33,9 +47,9 @@ namespace SG_BAMS
 
             try
             {
-                Abrir();
+                AbrirConexion();
 
-                using (SqlCommand cmd = new SqlCommand("SP_CargarUsuarios", sc))
+                using (SqlCommand cmd = new SqlCommand("SP_CargarUsuarios", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -70,9 +84,9 @@ namespace SG_BAMS
 
             try
             {
-                Abrir();
+                AbrirConexion();
 
-                using (SqlCommand cmd = new SqlCommand("SP_ContarFotosUsuario", sc))
+                using (SqlCommand cmd = new SqlCommand("SP_ContarFotosUsuario", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Usuario_id", usuario_id);
@@ -102,9 +116,9 @@ namespace SG_BAMS
 
             try
             {
-                Abrir();
+                AbrirConexion();
 
-                using (SqlCommand command = new SqlCommand("SP_GuardarFotos", sc))
+                using (SqlCommand command = new SqlCommand("SP_GuardarFotos", Conectar))
                 {
                     command.CommandType = CommandType.StoredProcedure;
 
@@ -136,9 +150,9 @@ namespace SG_BAMS
 
             try
             {
-                Abrir();
+                AbrirConexion();
 
-                using (SqlCommand cmd = new SqlCommand("SP_ObtenerRostrosPorUsuario", sc))
+                using (SqlCommand cmd = new SqlCommand("SP_ObtenerRostrosPorUsuario", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Usuario_id", usuario_id);
@@ -169,9 +183,9 @@ namespace SG_BAMS
         {
             try
             {
-                Abrir();
+                AbrirConexion();
 
-                using (SqlCommand cmd = new SqlCommand("SP_BorrarFotosUsuario", sc))
+                using (SqlCommand cmd = new SqlCommand("SP_BorrarFotosUsuario", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Usuario_id", usuario_id);
