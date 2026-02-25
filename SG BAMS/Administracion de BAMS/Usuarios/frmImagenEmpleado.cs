@@ -254,15 +254,26 @@ namespace SG_BAMS
                         else
                         {
                             running = false;
-                            TurnOffCamera();
-                            MessageBox.Show("Entrenamiento completado (30 fotos).");
-                            return; // <-- IMPORTANTÍSIMO: corta Spotface de inmediato
+
+                            this.BeginInvoke(new Action(() =>
+                            {
+                                TurnOffCamera();
+                                MessageBox.Show("Entrenamiento completado (30 fotos).");
+                                btnEntrenar.PerformClick(); // si quieres que entrene automáticamente
+                            }));
+
+                            return;
                         }
                     }
                 }
             }
 
-            pctCamara.Image = BitmapConverter.ToBitmap(frame);
+            var bmp = BitmapConverter.ToBitmap(frame);
+            this.BeginInvoke(new Action(() =>
+            {
+                pctCamara.Image?.Dispose();
+                pctCamara.Image = bmp;
+            }));
         }
         private void TurnOnCamera()
         {
