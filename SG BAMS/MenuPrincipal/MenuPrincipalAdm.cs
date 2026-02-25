@@ -338,7 +338,10 @@ namespace SG_BAMS
             Deudores deu = new Deudores();
             deu.ShowDialog();
             this.Close();
-           await ActualizarLabelDeudores();
+            await ActualizarLabel();
+            await ActualizarLabelDeudores();
+            await ActualizarLabelProductos();
+            
 
         }
 

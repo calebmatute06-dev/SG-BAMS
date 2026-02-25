@@ -12,6 +12,21 @@ namespace SG_BAMS
 {
     public partial class Deudores_Emp : Form
     {
+        public void CargarGridDeudores()
+        {
+            try
+            {
+                ClsDeuda objetoDeuda = new ClsDeuda();
+                dgvDeudores.DataSource = objetoDeuda.ListarDeudores();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
         public Deudores_Emp()
         {
             InitializeComponent();
