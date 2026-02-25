@@ -269,12 +269,15 @@ namespace SG_BAMS
             this.Close();
         }
 
-        private void kryptonButton2_Click(object sender, EventArgs e)
+        private async void kryptonButton2_Click(object sender, EventArgs e)
         {
             Deudores_Emp deud = new Deudores_Emp();
 
-            deud.Show();
-            this.Close();
+            deud.ShowDialog();
+            this.Hide();
+            await ActualizarLabel();
+            await ActualizarLabelDeudores();
+            await ActualizarLabelProductos();
         }
 
         private void kryptonButton11_Click(object sender, EventArgs e)

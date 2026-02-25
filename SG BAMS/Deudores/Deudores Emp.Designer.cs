@@ -136,10 +136,13 @@
             // 
             // dgvDeudores
             // 
+            dgvDeudores.AllowUserToAddRows = false;
+            dgvDeudores.AllowUserToDeleteRows = false;
             dgvDeudores.BorderStyle = BorderStyle.None;
             dgvDeudores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvDeudores.Location = new Point(372, 249);
             dgvDeudores.Name = "dgvDeudores";
+            dgvDeudores.ReadOnly = true;
             dgvDeudores.RowHeadersWidth = 51;
             dgvDeudores.Size = new Size(631, 503);
             dgvDeudores.TabIndex = 100;

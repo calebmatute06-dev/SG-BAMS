@@ -30,6 +30,7 @@ namespace SG_BAMS
         public Deudores_Emp()
         {
             InitializeComponent();
+            CargarGridDeudores();
         }
 
         private void kryptonButton11_Click(object sender, EventArgs e)
@@ -80,7 +81,9 @@ namespace SG_BAMS
 
         private void kryptonButton15_Click(object sender, EventArgs e)
         {
-
+            Pago_Deuda PagDe = new Pago_Deuda();
+            PagDe.ShowDialog();
+            CargarGridDeudores();
         }
     }
 }
