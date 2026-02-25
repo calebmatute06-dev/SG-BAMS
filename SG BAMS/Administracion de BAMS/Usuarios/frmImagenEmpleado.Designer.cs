@@ -35,7 +35,7 @@
             pictureBox3 = new PictureBox();
             panel1 = new Panel();
             pictureBox7 = new PictureBox();
-            btnEntrenar = new Krypton.Toolkit.KryptonButton();
+            btnCapturar = new Krypton.Toolkit.KryptonButton();
             btnSalir = new Krypton.Toolkit.KryptonButton();
             btnBorrar = new Krypton.Toolkit.KryptonButton();
             btnEncender = new Krypton.Toolkit.KryptonButton();
@@ -111,30 +111,30 @@
             pictureBox7.TabIndex = 92;
             pictureBox7.TabStop = false;
             // 
-            // btnEntrenar
+            // btnCapturar
             // 
-            btnEntrenar.Location = new Point(29, 107);
-            btnEntrenar.Margin = new Padding(3, 2, 3, 2);
-            btnEntrenar.Name = "btnEntrenar";
-            btnEntrenar.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnEntrenar.OverrideDefault.Back.Color2 = SystemColors.Window;
-            btnEntrenar.OverrideDefault.Border.Rounding = 40F;
-            btnEntrenar.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnEntrenar.OverrideFocus.Back.Color2 = Color.White;
-            btnEntrenar.Size = new Size(227, 49);
-            btnEntrenar.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnEntrenar.StateCommon.Back.Color2 = Color.SkyBlue;
-            btnEntrenar.StateCommon.Border.Rounding = 40F;
-            btnEntrenar.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnEntrenar.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnEntrenar.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnEntrenar.StateNormal.Back.Color2 = Color.White;
-            btnEntrenar.StateNormal.Border.Rounding = 40F;
-            btnEntrenar.StateTracking.Border.Rounding = 40F;
-            btnEntrenar.TabIndex = 134;
-            btnEntrenar.Values.DropDownArrowColor = Color.Empty;
-            btnEntrenar.Values.Text = "Entrenar";
-            btnEntrenar.Click += btnEntrenar_Click;
+            btnCapturar.Location = new Point(29, 107);
+            btnCapturar.Margin = new Padding(3, 2, 3, 2);
+            btnCapturar.Name = "btnCapturar";
+            btnCapturar.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnCapturar.OverrideDefault.Back.Color2 = SystemColors.Window;
+            btnCapturar.OverrideDefault.Border.Rounding = 40F;
+            btnCapturar.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnCapturar.OverrideFocus.Back.Color2 = Color.White;
+            btnCapturar.Size = new Size(227, 49);
+            btnCapturar.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnCapturar.StateCommon.Back.Color2 = Color.SkyBlue;
+            btnCapturar.StateCommon.Border.Rounding = 40F;
+            btnCapturar.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnCapturar.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnCapturar.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnCapturar.StateNormal.Back.Color2 = Color.White;
+            btnCapturar.StateNormal.Border.Rounding = 40F;
+            btnCapturar.StateTracking.Border.Rounding = 40F;
+            btnCapturar.TabIndex = 134;
+            btnCapturar.Values.DropDownArrowColor = Color.Empty;
+            btnCapturar.Values.Text = "Capturar";
+            btnCapturar.Click += btnCapturar_Click;
             // 
             // btnSalir
             // 
@@ -253,20 +253,16 @@
             pctCamara.Location = new Point(273, 65);
             pctCamara.Name = "pctCamara";
             pctCamara.Size = new Size(496, 301);
+            pctCamara.SizeMode = PictureBoxSizeMode.StretchImage;
             pctCamara.TabIndex = 148;
             pctCamara.TabStop = false;
-            //pctCamara.Click += pctCamara_Click;
             // 
-            // timer1
-            // 
-            timer1.Tick += timer1_Tick;
-            // 
-            // cmbUsuarios
+            // cmbUsuarios2
             // 
             cmbUsuarios2.DropDownWidth = 300;
             cmbUsuarios2.Location = new Point(29, 63);
             cmbUsuarios2.Margin = new Padding(3, 2, 3, 2);
-            cmbUsuarios2.Name = "cmbUsuarios";
+            cmbUsuarios2.Name = "cmbUsuarios2";
             cmbUsuarios2.Size = new Size(227, 40);
             cmbUsuarios2.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
             cmbUsuarios2.StateCommon.ComboBox.Border.Rounding = 20F;
@@ -291,7 +287,7 @@
             Controls.Add(btnEncender);
             Controls.Add(btnBorrar);
             Controls.Add(btnSalir);
-            Controls.Add(btnEntrenar);
+            Controls.Add(btnCapturar);
             Controls.Add(pictureBox7);
             Controls.Add(panel1);
             Controls.Add(pictureBox3);
@@ -317,7 +313,7 @@
         private PictureBox pictureBox3;
         private Panel panel1;
         private PictureBox pictureBox7;
-        private Krypton.Toolkit.KryptonButton btnEntrenar;
+        private Krypton.Toolkit.KryptonButton btnCapturar;
         private Krypton.Toolkit.KryptonButton btnSalir;
         private Krypton.Toolkit.KryptonButton btnBorrar;
         private Krypton.Toolkit.KryptonButton btnEncender;
