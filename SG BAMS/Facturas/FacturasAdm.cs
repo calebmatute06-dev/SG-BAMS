@@ -39,7 +39,7 @@ namespace SG_BAMS
                 dgvFacturas.Columns["Cliente"].HeaderText = "Cliente";
                 dgvFacturas.Columns["RTN Cliente"].HeaderText = "RTN Cliente";
                 dgvFacturas.Columns["Método de Pago"].HeaderText = "Metodo de pago";
-                dgvFacturas.Columns["ID Método de Pago"].HeaderText = "ID Metodo de pago";
+                dgvFacturas.Columns["ID Método de Pago"].Visible = false;
                 dgvFacturas.Columns["Fecha"].HeaderText = "Fecha";
                 dgvFacturas.Columns["Detalle Venta"].HeaderText = "Detalle Venta";
                 dgvFacturas.Columns["Batería Vieja"].HeaderText = "Batería Vieja";

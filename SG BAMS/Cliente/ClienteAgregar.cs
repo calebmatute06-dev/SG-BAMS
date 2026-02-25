@@ -28,7 +28,7 @@ namespace SG_BAMS
             ClsAgregarClientes objAC = new ClsAgregarClientes();
             int idNuevoCliente = await objAC.AgregarClientes(txtNombre.Text, txtApellido.Text, txtTelefono.Text, txtRTN.Text);
 
-            MessageBox.Show("ID generado: " + idNuevoCliente);
+
 
             if (idNuevoCliente > 0)
             {
