@@ -255,7 +255,7 @@
             pctCamara.Size = new Size(496, 301);
             pctCamara.TabIndex = 148;
             pctCamara.TabStop = false;
-            pctCamara.Click += pctCamara_Click;
+            //pctCamara.Click += pctCamara_Click;
             // 
             // timer1
             // 

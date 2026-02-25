@@ -3,89 +3,87 @@ using OpenCvSharp.Extensions;
 using OpenCvSharp.Face;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.IO;
 
 namespace SG_BAMS
 {
     public partial class frmImagenEmpleado : Form
     {
-        enum RecordingType
-        {
-            training = 0,
-            recognition = 1
-        }
-
+        enum RecordingType { training = 0, recognition = 1 }
         RecordingType recording_type;
 
-        // Tamaño para redimensionar rostros
         int model_width = 100;
         int model_height = 100;
 
-        // Rutas de guardado
         string path_saved_faces = Path.Combine(Application.StartupPath, "Faces");
-        string path_trained_face_model = $"{Application.StartupPath}\\Faces\\stateModel.yaml";
+        string path_trained_face_model = Path.Combine(Application.StartupPath, "Faces", "stateModel.yaml");
+        string path_reconzier_facesModel = Path.Combine(Application.StartupPath, "haarcascade_frontalface_default.xml");
 
-        // HaarCascade (OpenCvSharp) - DETECTOR DE ROSTROS EN IMAGENES XML
-        string path_reconzier_facesModel = $"{Application.StartupPath}\\haarcascade_frontalface_default.xml";
-
-        // Cámara y detector
         VideoCapture cam;
         Mat frame;
         CascadeClassifier face_detector;
-        bool running = false;
+
+        volatile bool running = false;
+        Task captureTask;
 
         List<Mat> trainedImages = new List<Mat>();
-        List<string> labels = new List<string>();
 
         EigenFaceRecognizer eigen_face_recognizer;
-        //Indexar cada rostro empezando desde el 1
+
         int face_id = 1;
         string face_name = "";
-        //Detectar si es una cara
         bool is_anew_face = false;
-        //componentes
+
         int eigen_face_recognizer_componentes = 80;
-        //margen de error o de fallo = 5000
         int threshold = 3000;
+
+        DateTime lastSave = DateTime.MinValue;
 
         public frmImagenEmpleado()
         {
             InitializeComponent();
+
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            // Asegurar carpeta Faces
+            Directory.CreateDirectory(path_saved_faces);
+
             frame = new Mat();
 
-            //MessageBox.Show("StartupPath: " + Application.StartupPath);
-
-            // Verificación del XML
+            // Verificar XML
             if (!File.Exists(path_reconzier_facesModel))
             {
-                MessageBox.Show("No se encontró el archivo haarcascade_frontalface_default.xml");
+                MessageBox.Show("No se encontró el archivo haarcascade_frontalface_default.xml\n" + path_reconzier_facesModel);
+                // Deshabilitar controles que dependen de cámara/detector
+                btnEncender.Enabled = false;
+                btnDetener.Enabled = false;
+                btnEntrenar.Enabled = false;
+                btnBorrar.Enabled = false;
+                return;
             }
-            else
+            face_detector = new CascadeClassifier(path_reconzier_facesModel);
+
+            // Crear recognizer
+            eigen_face_recognizer = EigenFaceRecognizer.Create(eigen_face_recognizer_componentes, threshold);
+
+            // Cargar modelo si existe
+            if (File.Exists(path_trained_face_model))
             {
-                face_detector = new CascadeClassifier(path_reconzier_facesModel);
+                try { eigen_face_recognizer.Read(path_trained_face_model); }
+                catch { /* si el modelo está corrupto, luego reentrenas */ }
             }
 
-            TurnOffCamera();
+            // Importante: NO usar Timer + Task a la vez
+            if (timer1 != null) timer1.Enabled = false;
 
             CargarUsuariosCombo();
+        }
 
-            //inicializamos el objeto que ejecutara el algoritmo EIGEN
-            //Pero primero necesitamos especificar el numero de componentes y el margen de error
-            eigen_face_recognizer = EigenFaceRecognizer.Create(eigen_face_recognizer_componentes, threshold);
-        }
-        private void ResetInitValues()
-        {
-            is_anew_face = true;
-        }
         public void CargarUsuariosCombo()
         {
             ClsAcciones objacciones = new ClsAcciones();
@@ -95,211 +93,79 @@ namespace SG_BAMS
             cmbUsuarios2.ValueMember = "Usuario_id";
             cmbUsuarios2.DataSource = usuarios;
         }
+
         private string GetLocalUserFolder(int usuarioId)
         {
             string folder = Path.Combine(Application.StartupPath, "Faces", usuarioId.ToString());
-
-            if (!Directory.Exists(folder))
-                Directory.CreateDirectory(folder);
-
+            Directory.CreateDirectory(folder);
             return folder;
         }
-        void RecognizeFace()
+
+        private async Task TurnOffCameraAsync()
         {
-            string name = "unknown";
+            running = false;
 
-            // Capturar frame
-            Mat image_frame = new Mat();
-            cam.Read(image_frame);
-
-            if (image_frame.Empty())
-                return;
-
-            // Convertir a gris
-            Mat gray_frame = new Mat();
-            Cv2.CvtColor(image_frame, gray_frame, ColorConversionCodes.BGR2GRAY);
-
-            // Detectar rostros
-            Rect[] faces = face_detector.DetectMultiScale(
-                gray_frame,
-                1.4,
-                4,
-                OpenCvSharp.HaarDetectionTypes.ScaleImage,
-                new OpenCvSharp.Size(image_frame.Width / 8, image_frame.Height / 8)
-            );
-
-            foreach (var face in faces)
+            // Esperar a que el loop termine (si existe)
+            if (captureTask != null)
             {
-                // Recorte del rostro
-                Mat face_region = new Mat(gray_frame, face);
-
-                // Redimensionar
-                Mat image_to_compare = new Mat();
-                Cv2.Resize(face_region, image_to_compare,
-                    new OpenCvSharp.Size(model_width, model_height),
-                    0, 0, InterpolationFlags.Cubic);
-
-                // PROTECCIÓN CONTRA CRASH EN PREDICT()
-                try
-                {
-                    eigen_face_recognizer.Predict(image_to_compare,
-                        out int predicted_label,
-                        out double confidence);
-
-                    if (predicted_label > 0 && confidence < threshold)
-                        name = GetFacesName(predicted_label);
-                    else
-                        name = "unknown";
-                }
-                catch (Exception ex)
-                {
-                    // EVITAR QUE LA APLICACIÓN SE CIERRE
-                    Console.WriteLine("Error en Predict(): " + ex.Message);
-                    name = "unknown";
-                }
-
-                // Dibujar contorno
-                Cv2.Rectangle(image_frame, face, Scalar.BurlyWood, 3);
-                Cv2.PutText(image_frame, name, new OpenCvSharp.Point(face.X, face.Y - 10),
-                    HersheyFonts.HersheyComplexSmall, 1, Scalar.BurlyWood);
+                try { await captureTask; }
+                catch { /* ignorar si terminó con excepción */ }
+                captureTask = null;
             }
 
-            // Mostrar imagen
-            pctCamara.Image = BitmapConverter.ToBitmap(image_frame);
-        }
-        private int GetNextFaceId()
-        {
-            int face_id = 0;
-            var paths = GetAllFacesPath();
-            foreach (var p in paths)
+            try
             {
-                int cId = int.Parse(GetfaceIdFromPath(p));
-                if (cId > face_id)
+                // Liberar imagen
+                if (pctCamara.Image != null)
                 {
-                    face_id = cId;
+                    pctCamara.Image.Dispose();
+                    pctCamara.Image = null;
+                }
+
+                // Liberar cámara
+                if (cam != null)
+                {
+                    try { if (cam.IsOpened()) cam.Release(); } catch { }
+                    try { cam.Dispose(); } catch { }
+                    cam = null;
                 }
             }
-            return Math.Max(face_id, 1) + 1;
-        }
-        private KeyValuePair<string, int> GetItemListFace(string path)
-        {
-            var slices = path.Split('\\');
-            var name_and_index = slices[slices.Length - 1].Replace(".bmp", "");
-
-            var parts = name_and_index.Split('_');
-
-            // si el archivo NO cumple el formato ID_Nombre_Indice → evitar crash
-            if (parts.Length < 3)
-                return new KeyValuePair<string, int>("INVALID", -1);
-
-            // VALIDACIÓN: si el ID NO es un número → evitar crash
-            if (!int.TryParse(parts[0], out int id))
-                return new KeyValuePair<string, int>("INVALID", -1);
-
-            string name = parts[1];
-
-            return new KeyValuePair<string, int>(name, id);
-        }
-        private DateTime lastSave = DateTime.MinValue;
-
-        private async void FinalizarCapturaEntrenamiento()
-        {
-            await TurnOffCamera(); // Apaga la cámara físicamente
-            MessageBox.Show($"Se han capturado las 30 fotos para {face_name}. Procediendo a entrenar el modelo...");
-
-            // Ejecutar el entrenamiento automáticamente
-            btnEntrenar.PerformClick();
-        }
-        private void Spotface()
-        {
-            if (!running || cam == null || !cam.IsOpened())
-                return;
-
-            cam.Read(frame);
-            if (frame.Empty()) return;
-
-            using (var gray = new Mat())
+            catch (Exception ex)
             {
-                Cv2.CvtColor(frame, gray, ColorConversionCodes.BGR2GRAY);
-                // Detección de rostros
-                var faces = face_detector.DetectMultiScale(gray, 1.3, 5);
-
-                foreach (var face in faces)
-                {
-                    Cv2.Rectangle(frame, face, Scalar.Red, 2);
-
-                    // Capturar y redimensionar
-                    Mat face_crop = new Mat(gray, face);
-                    Cv2.Resize(face_crop, face_crop, new OpenCvSharp.Size(model_width, model_height));
-
-                    // Lógica de guardado cada 500ms
-                    if ((DateTime.Now - lastSave).TotalMilliseconds >= 500)
-                    {
-                        ClsAcciones db = new ClsAcciones();
-                        int fotos_actuales = db.ContarFotosUsuario(face_id);
-
-                        if (fotos_actuales < 30)
-                        {
-                            try
-                            {
-                                byte[] data = MatToByteArray(face_crop);
-                                // Guardar en BD
-                                int new_photo_id = db.GuardarFotoRostro(face_id, data);
-
-                                // Guardar en Carpeta Local (Formato: ID_Nombre_Indice.bmp)
-                                string folder = path_saved_faces; // Usar la carpeta raíz de rostros
-                                string file_path = Path.Combine(folder, $"{face_id}_{face_name}_{fotos_actuales}.bmp");
-                                File.WriteAllBytes(file_path, data);
-
-                                lastSave = DateTime.Now;
-                                Console.WriteLine($"Foto {fotos_actuales + 1} guardada.");
-                            }
-                            catch (Exception ex) { Console.WriteLine("Error: " + ex.Message); }
-                        }
-                        else
-                        {
-                            // LLEGAMOS A LAS 30 FOTOS
-                            running = false; // Detiene el loop del Task.Run
-
-                            // Usar Invoke para interactuar con la UI desde el hilo de la cámara
-                            this.BeginInvoke(new Action(() => {
-                                FinalizarCapturaEntrenamiento();
-                            }));
-                            return;
-                        }
-                    }
-                }
+                MessageBox.Show("Error al apagar cámara: " + ex.Message);
             }
-
-            // Actualizar la UI
-            var bmp = BitmapConverter.ToBitmap(frame);
-            this.BeginInvoke(new Action(() =>
-            {
-                pctCamara.Image?.Dispose();
-                pctCamara.Image = bmp;
-            }));
         }
+
         private void TurnOnCamera()
         {
+            if (face_detector == null)
+            {
+                MessageBox.Show("Detector de rostros no inicializado (XML faltante).");
+                return;
+            }
+
+            if (running) return;
+
             try
             {
                 cam = new VideoCapture(0);
-
                 if (!cam.IsOpened())
                 {
                     MessageBox.Show("No se pudo abrir la cámara.");
+                    cam?.Dispose();
+                    cam = null;
                     return;
                 }
 
                 running = true;
 
-                Task.Run(() =>
+                captureTask = Task.Run(() =>
                 {
                     while (running)
                     {
                         if (recording_type == RecordingType.training)
                             Spotface();
-                        else if (recording_type == RecordingType.recognition)
+                        else
                             RecognizeFace();
                     }
                 });
@@ -309,135 +175,239 @@ namespace SG_BAMS
                 MessageBox.Show("Error al iniciar cámara: " + ex.Message);
             }
         }
-        private async Task TurnOffCamera()
+
+        private void Spotface()
         {
-            running = false;
+            if (!running || cam == null || !cam.IsOpened() || face_detector == null)
+                return;
 
-            // Esperar un poco para que el loop se detenga
-            await Task.Delay(120);
+            cam.Read(frame);
+            if (frame.Empty()) return;
 
-            try
+            using (var gray = new Mat())
             {
-                if (pctCamara.Image != null)
+                Cv2.CvtColor(frame, gray, ColorConversionCodes.BGR2GRAY);
+
+                var faces = face_detector.DetectMultiScale(gray, 1.3, 4);
+
+                foreach (var face in faces)
                 {
-                    pctCamara.Image.Dispose();
-                    pctCamara.Image = null;
-                }
+                    Cv2.Rectangle(frame, face, Scalar.Red, 2);
 
-                if (cam != null)
+                    using var face_crop = new Mat(gray, face);
+                    Cv2.Resize(face_crop, face_crop, new OpenCvSharp.Size(model_width, model_height));
+
+                    // Buffer local para entrenamiento (opcional)
+                    trainedImages.Add(face_crop.Clone());
+
+                    // Guardar cada 500ms
+                    if ((DateTime.Now - lastSave).TotalMilliseconds >= 500)
+                    {
+                        ClsAcciones db = new ClsAcciones();
+                        int fotos_sql = db.ContarFotosUsuario(face_id);
+
+                        if (fotos_sql < 30)
+                        {
+                            try
+                            {
+                                byte[] data = MatToByteArray(face_crop);
+                                int new_photo_id = db.GuardarFotoRostro(face_id, data);
+
+                                // Guardar también en carpeta por usuario
+                                string folder = GetLocalUserFolder(face_id);
+                                string file_path = Path.Combine(folder, $"{new_photo_id}.bmp");
+                                File.WriteAllBytes(file_path, data);
+
+                                lastSave = DateTime.Now;
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine("Error guardando foto: " + ex.Message);
+                            }
+                        }
+                        else
+                        {
+                            running = false;
+
+                            this.BeginInvoke(new Action(async () =>
+                            {
+                                await TurnOffCameraAsync();
+                                MessageBox.Show("Entrenamiento completado (30 fotos).");
+                                btnEntrenar.PerformClick(); // entrenar automáticamente
+                            }));
+
+                            return;
+                        }
+                    }
+                }
+            }
+
+            var bmp = BitmapConverter.ToBitmap(frame);
+            this.BeginInvoke(new Action(() =>
+            {
+                pctCamara.Image?.Dispose();
+                pctCamara.Image = bmp;
+            }));
+        }
+
+        private void RecognizeFace()
+        {
+            if (!running || cam == null || !cam.IsOpened() || face_detector == null)
+                return;
+
+            Mat image_frame = new Mat();
+            cam.Read(image_frame);
+
+            if (image_frame.Empty())
+            {
+                image_frame.Dispose();
+                return;
+            }
+
+            string name = "unknown";
+
+            using (var gray_frame = new Mat())
+            {
+                Cv2.CvtColor(image_frame, gray_frame, ColorConversionCodes.BGR2GRAY);
+
+                Rect[] faces = face_detector.DetectMultiScale(
+                    gray_frame,
+                    1.4,
+                    4,
+                    HaarDetectionTypes.ScaleImage,
+                    new OpenCvSharp.Size(image_frame.Width / 8, image_frame.Height / 8)
+                );
+
+                foreach (var face in faces)
                 {
-                    if (cam.IsOpened())
-                        cam.Release();
+                    using var face_region = new Mat(gray_frame, face);
+                    using var image_to_compare = new Mat();
 
-                    cam.Dispose();
-                    cam = null;
+                    Cv2.Resize(face_region, image_to_compare,
+                        new OpenCvSharp.Size(model_width, model_height),
+                        0, 0, InterpolationFlags.Cubic);
+
+                    try
+                    {
+                        eigen_face_recognizer.Predict(image_to_compare,
+                            out int predicted_label,
+                            out double confidence);
+
+                        // EigenFaces: confidence suele ser distancia, menor = mejor
+                        if (predicted_label != -1 && confidence < threshold)
+                            name = predicted_label.ToString(); // o GetFacesName(predicted_label);
+                        else
+                            name = "unknown";
+                    }
+                    catch
+                    {
+                        name = "unknown";
+                    }
+
+                    Cv2.Rectangle(image_frame, face, Scalar.BurlyWood, 3);
+                    Cv2.PutText(image_frame, name, new OpenCvSharp.Point(face.X, face.Y - 10),
+                        HersheyFonts.HersheyComplexSmall, 1, Scalar.BurlyWood);
                 }
             }
-            catch (Exception ex)
+
+            var bmp = BitmapConverter.ToBitmap(image_frame);
+            image_frame.Dispose();
+
+            this.BeginInvoke(new Action(() =>
             {
-                MessageBox.Show("Error al apagar cámara: " + ex.Message);
-            }
+                pctCamara.Image?.Dispose();
+                pctCamara.Image = bmp;
+            }));
         }
-        private string[] GetAllFacesPath()
+
+        private bool TrainDataSetWithEigenFaceRecognizer()
         {
-            return Directory.GetFiles(path_saved_faces, "*.bmp");
-        }
-        private string GetfaceIdFromPath(string path)
-        {
-            // Extraer solo el nombre del archivo sin extensión
-            var slices = path.Split("\\");
-            var name_and_index = slices[slices.Length - 1].Replace(".bmp", "");
-
-            // Separar por "_"
-            var parts = name_and_index.Split('_');
-
-            //si el archivo NO cumple el formato ID_Nombre_Indice
-            // evitar crashear y devolver "-1" (así se ignora en el entrenamiento)
-            if (parts.Length < 3)
-                return "-1";
-
-            //si el ID NO es un número, evitar crash
-            if (!int.TryParse(parts[0], out int id))
-                return "-1";
-
-            return id.ToString();
-        }
-        private string GetAIndexFaceFromPath(string path)
-        {
-            var slices = path.Split("\\");
-            var name_and_index = slices[slices.Length - 1].Replace(".bmp", "");
-            if (face_id == int.Parse(name_and_index.Split("_")[0]))
-                return name_and_index.Split("_")[2];
-            return "";
-        }
-        //se guardaran cuando la camara deje de grabar
-        private void SaveFaces(string faces_name)
-        {
-            if (trainedImages.Any() && !string.IsNullOrEmpty(faces_name))
-            {
-                faces_name = faces_name.Replace("_", "");
-            }
-
-            int current_count = CountFacesOfId(face_id);
-
-            int indx = GetNextIndexFace();
-            var faces_to_save = trainedImages.ToList();
-
-            foreach (var face in faces_to_save)
-            {
-                if (current_count >= 30)
-                    break;
-
-                face.SaveImage($"{path_saved_faces}/{face_id}_{faces_name}_{indx}.bmp");
-
-                indx++;
-                current_count++;
-            }
-        }
-        private int NextIndexFromAnExistingFace()
-        {
-            int index = -1;
-            var all_faces = GetAllFacesPath();
-            foreach (var p in all_faces)
-            {
-                var face_index = GetAIndexFaceFromPath(p);
-                if (!string.IsNullOrEmpty(face_index))
-                    if (int.Parse(face_index) > index)
-                        index = int.Parse(face_index);
-            }
-            return index + 1;
-        }
-        int GetNextIndexFace()
-        {
-            if (!is_anew_face)
-            {
-                return NextIndexFromAnExistingFace();
-            }
-            else
-            {
-                return 1;
-            }
-        }
-        private void TrainingFace()
-        {
-            //revisamos si el archivo que guarda el resultado del entrenamiento y se borra porque se
-            //tiene que actualizar el resultado
-
+            // Borrar modelo anterior
             if (File.Exists(path_trained_face_model))
             {
-                File.Delete(path_trained_face_model);
+                try { File.Delete(path_trained_face_model); } catch { }
+            }
+
+            ClsAcciones db = new ClsAcciones();
+            List<Usuario> usuarios = db.ObtenerUsuarios();
+
+            List<Mat> images = new List<Mat>();
+            List<int> labels = new List<int>();
+
+            foreach (var usuario in usuarios)
+            {
+                List<byte[]> fotos = db.ObtenerRostrosPorUsuario(usuario.Usuario_id);
+
+                foreach (byte[] foto in fotos)
+                {
+                    Mat face_image = Mat.FromImageData(foto, ImreadModes.Grayscale);
+                    Cv2.Resize(face_image, face_image, new OpenCvSharp.Size(model_width, model_height),
+                               0, 0, InterpolationFlags.Cubic);
+
+                    images.Add(face_image);
+                    labels.Add(usuario.Usuario_id);
+                }
+            }
+
+            if (images.Count == 0)
+                return false;
+
+            eigen_face_recognizer.Train(images, labels);
+            eigen_face_recognizer.Write(path_trained_face_model);
+
+            // liberar Mats del entrenamiento
+            foreach (var m in images) m.Dispose();
+
+            return true;
+        }
+
+        private byte[] MatToByteArray(Mat img)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                using (Bitmap bitmap = BitmapConverter.ToBitmap(img))
+                {
+                    bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
+                    return ms.ToArray();
+                }
             }
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void BorrarFotosLocales(int usuario_id)
         {
-            if (recording_type == RecordingType.training)
+            // Borra subcarpeta del usuario
+            string userFolder = Path.Combine(Application.StartupPath, "Faces", usuario_id.ToString());
+            if (Directory.Exists(userFolder))
             {
-                Spotface();
+                try { Directory.Delete(userFolder, true); }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("No se pudo borrar carpeta de usuario:\n" + ex.Message);
+                }
             }
-            if (recording_type == RecordingType.recognition)
+
+            // (Opcional) también borrar archivos root con patrón usuario_id_*.bmp si existieran
+            string root = Path.Combine(Application.StartupPath, "Faces");
+            if (!Directory.Exists(root)) return;
+
+            foreach (var archivo in Directory.GetFiles(root, $"{usuario_id}_*.bmp"))
             {
-                RecognizeFace();
+                try { File.Delete(archivo); } catch { }
+            }
+        }
+
+        private void frmImagenEmpleado_Load(object sender, EventArgs e)
+        {
+            this.CenterToScreen();
+        }
+
+        private void cmbUsuarios_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbUsuarios2.SelectedItem is Usuario seleccionado)
+            {
+                face_id = seleccionado.Usuario_id;
+                face_name = seleccionado.NombreCompleto;
+                is_anew_face = false;
             }
         }
 
@@ -448,255 +418,51 @@ namespace SG_BAMS
                 face_id = seleccionado.Usuario_id;
                 face_name = seleccionado.NombreCompleto;
 
-                // Limpiar para nueva sesión
-                lastSave = DateTime.MinValue;
-                recording_type = RecordingType.training;
+                trainedImages.Clear();
+                is_anew_face = false;
 
+                recording_type = RecordingType.training;
                 TurnOnCamera();
             }
             else
             {
-                MessageBox.Show("Seleccione un usuario.");
+                MessageBox.Show("Debe seleccionar un usuario antes de iniciar el entrenamiento.");
             }
         }
 
-        private void btnDetener_Click(object sender, EventArgs e)
+        private async void btnDetener_Click(object sender, EventArgs e)
         {
-            TurnOffCamera();
-            try
-            {
-                if (cam != null)
-                {
-                    if (cam.IsOpened())
-                    {
-                        cam.Release();   // Se libera solo si está abierta
-                    }
+            await TurnOffCameraAsync();
 
-                    cam.Dispose();        // Se libera memoria (solo si no está ya disposed)
-                    cam = null;           // Evita llamar Release() dos veces
-                }
-
-                running = false;
-                pctCamara.Image = null;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al apagar cámara: " + ex.Message);
-            }
-            //salvamos las imagenes
-            //etiquetar las caras por las que no preguntamos nombres.
-
-            SaveFaces(face_name);
-
-            cmbUsuarios2.SelectedIndex = cmbUsuarios2.Items.Count - 1;
-
-            is_anew_face = false;
-            face_id = GetNextFaceId();
-        }
-        private bool TrainDataSetWithEigenFaceRecognizer()
-        {
-            //En caso de que exista un archivo de entrenamiento removerlo
-            if (File.Exists(path_trained_face_model))
-            {
-                File.Delete(path_trained_face_model);
-            }
-
-            // Obtener TODAS las fotos desde SQL
-            ClsAcciones db = new ClsAcciones();
-            List<Usuario> usuarios = db.ObtenerUsuarios();
-
-            List<Mat> images = new List<Mat>();
-            List<int> labels = new List<int>();
-
-            //si existe alguna
-            foreach (var usuario in usuarios)
-            {
-                //obtener fotos del usuario directamente desde BD ***
-                List<byte[]> fotos = db.ObtenerRostrosPorUsuario(usuario.Usuario_id);
-
-                foreach (byte[] foto in fotos)
-                {
-                    // obtenemos el rostro en el mismo tamaño que hemos estado guardandolo
-                    Mat face_image = Mat.FromImageData(foto, ImreadModes.Grayscale);
-
-                    // Redimensionar igual que en EmguCV
-                    Cv2.Resize(face_image, face_image, new OpenCvSharp.Size(model_width, model_height),
-                               0, 0, InterpolationFlags.Cubic);
-
-                    //guardamos el rostro
-                    images.Add(face_image);
-
-                    // Obtener ID desde la BD
-                    labels.Add(usuario.Usuario_id);
-                }
-            }
-
-            // listas que OpenCvSharp sí acepta
-            if (images.Count == 0)
-                return false;
-
-            // entrenar
-            eigen_face_recognizer.Train(images, labels);
-
-            // guardar
-            eigen_face_recognizer.Write(path_trained_face_model);
-
-            return true;
-        }
-
-        private void frmImagenEmpleado_Load(object sender, EventArgs e)
-        {
-            this.CenterToScreen();
-        }
-
-        private void pctCamara_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cmbUsuarios_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Usuario seleccionado = cmbUsuarios2.SelectedItem as Usuario;
-
-            if (seleccionado != null)
-            {
-                face_id = seleccionado.Usuario_id;
-                face_name = seleccionado.NombreCompleto;
-
-                // esto indica que NO es una nueva cara
-                is_anew_face = false;
-            }
-        }
-        private string GetFacesName(int label)
-        {
-            string[] files = Directory.GetFiles(path_saved_faces, "*.bmp");
-
-            foreach (string f in files)
-            {
-                string file = Path.GetFileNameWithoutExtension(f);
-                string[] parts = file.Split('_');
-
-                if (parts.Length >= 2)
-                {
-                    int id = int.Parse(parts[0]);
-                    string name = parts[1];
-
-                    if (id == label)
-                        return name;
-                }
-            }
-
-            return "unknown";
+            // Limpieza de buffer
+            foreach (var m in trainedImages) m.Dispose();
+            trainedImages.Clear();
         }
 
         private void btnEntrenar_Click(object sender, EventArgs e)
         {
             bool was_trained = TrainDataSetWithEigenFaceRecognizer();
-            if (was_trained)
-            {
-                MessageBox.Show("Entrenamiendo exitoso");
-            }
-            else
-            {
-                MessageBox.Show("Entrenamiento fallido");
-            }
-        }
-        private int CountFacesOfId(int id)
-        {
-            int count = 0;
-            var files = Directory.GetFiles(path_saved_faces, "*.bmp");
-
-            foreach (var f in files)
-            {
-                var file = Path.GetFileNameWithoutExtension(f);
-                var parts = file.Split('_');
-
-                if (parts.Length >= 3 && int.TryParse(parts[0], out int fileId))
-                {
-                    if (fileId == id)
-                        count++;
-                }
-            }
-
-            return count;
-        }
-        private byte[] MatToByteArray(Mat img)
-        {
-            using (MemoryStream ms = new MemoryStream())
-            {
-                Bitmap bitmap = BitmapConverter.ToBitmap(img);
-                bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
-                return ms.ToArray();
-            }
-        }
-        private void BorrarFotosLocales(int usuario_id)
-        {
-            string folder = Path.Combine(Application.StartupPath, "Faces");
-
-            if (!Directory.Exists(folder))
-                return;
-
-            // Buscar archivos del usuario (2_*.bmp)
-            string patron = $"{usuario_id}_*.bmp";
-
-            string[] archivos = Directory.GetFiles(folder, patron);
-
-            foreach (var archivo in archivos)
-            {
-                try
-                {
-                    File.Delete(archivo);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("No se pudo borrar: " + archivo + "\n" + ex.Message);
-                }
-            }
+            MessageBox.Show(was_trained ? "Entrenamiento exitoso" : "Entrenamiento fallido");
         }
 
-        private void btnBorrar_Click(object sender, EventArgs e)
+        private async void btnBorrar_Click(object sender, EventArgs e)
         {
             try
             {
-                // 1. Detener cualquier reconocimiento o captura
-                running = false;
+                await TurnOffCameraAsync();
 
-                // 2. Apagar cámara si está en uso
-                if (cam != null)
-                {
-                    try { cam.Release(); } catch { }
-                    try { cam.Dispose(); } catch { }
-                    cam = null;
-                }
-
-                // 3. Liberar imagen del PictureBox
-                if (pctCamara.Image != null)
-                {
-                    pctCamara.Image.Dispose();
-                    pctCamara.Image = null;
-                }
-
-                // 4. Forzar liberación de archivos bloqueados
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
-                GC.Collect();
-
-                // 5. Eliminar archivos locales
+                // 1) borrar local
                 BorrarFotosLocales(face_id);
 
-                // 6. Eliminar fotos en BD
+                // 2) borrar BD
                 ClsAcciones db = new ClsAcciones();
                 db.BorrarFotosUsuario(face_id);
 
-                // 7. REENTRENAR el sistema para eliminar el modelo del usuario
+                // 3) reentrenar
                 if (TrainDataSetWithEigenFaceRecognizer())
-                {
                     MessageBox.Show("Fotos eliminadas y modelo actualizado.");
-                }
                 else
-                {
                     MessageBox.Show("Fotos eliminadas, pero no se pudo regenerar el modelo.");
-                }
             }
             catch (Exception ex)
             {
@@ -704,10 +470,16 @@ namespace SG_BAMS
             }
         }
 
-        private void btnSalir_Click(object sender, EventArgs e)
+        private async void btnSalir_Click(object sender, EventArgs e)
         {
+            await TurnOffCameraAsync();
             this.Close();
         }
-        //------------------------------------------------Fin
+
+        // Si todavía tienes el timer en el diseñador, déjalo apagado
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            // NO USAR (evita doble loop)
+        }
     }
 }
