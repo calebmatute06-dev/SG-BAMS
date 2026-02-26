@@ -8,7 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SG_BAMS
+namespace SG_BAMS.Bitacora
+
 {
     public partial class BitacoraExportar : Form
     {

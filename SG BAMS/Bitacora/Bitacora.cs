@@ -8,10 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SG_BAMS
+namespace SG_BAMS.Bitacora
 {
     public partial class Bitacora : Form
     {
+        ClsBitacora bitacora = new ClsBitacora();
+
         public Bitacora()
         {
             InitializeComponent();
@@ -28,6 +30,26 @@ namespace SG_BAMS
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pictureBox18_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnExportar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Bitacora_Load(object sender, EventArgs e)
+        {
+            bitacora.cargarDatos(dgvBitacora);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
         {
 
         }

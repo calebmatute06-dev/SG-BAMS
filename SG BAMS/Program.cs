@@ -1,3 +1,5 @@
+using SG_BAMS.Login;
+
 namespace SG_BAMS
 {
     internal static class Program
@@ -11,7 +13,7 @@ namespace SG_BAMS
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new frmAdministracion());
+            Application.Run(new Bitacora.Bitacora());
         }
     }
 }

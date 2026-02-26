@@ -1,4 +1,4 @@
-﻿namespace SG_BAMS
+﻿namespace SG_BAMS.Proveedor
 {
     partial class AgregarProveedores
     {

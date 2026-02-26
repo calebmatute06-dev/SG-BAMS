@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SG_BAMS
+namespace SG_BAMS.Proveedor
 {
     public partial class ModificarProveedor : Form
     {
