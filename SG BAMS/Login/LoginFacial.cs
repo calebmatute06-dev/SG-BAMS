@@ -42,24 +42,37 @@ namespace SG_BAMS.Login
         }
         private void ProcesoValidacion(object sender, EventArgs e)
         {
-            // Protección contra el NullReferenceException de tu imagen
+            // Protección contra nulos
             if (camara == null) return;
 
             try
             {
                 Mat m = new Mat();
-                camara.Retrieve(m); // Forma más segura de obtener el frame
 
+                // CORRECCIÓN AQUÍ: Usar Read() en lugar de Retrieve()
+                // Read() captura el frame de la cámara de forma segura
+                camara.Read(m);
+
+                // Si la cámara aún está calentando o falló el frame, salimos y esperamos al siguiente ciclo
                 if (m.IsEmpty) return;
 
                 using (var frame = m.ToImage<Bgr, byte>())
                 {
+                    // Opcional pero recomendado: Liberar la imagen anterior del PictureBox para no llenar la RAM
+                    if (picValidar.Image != null)
+                    {
+                        picValidar.Image.Dispose();
+                    }
+
+                    // Mostramos la imagen en pantalla
                     picValidar.Image = frame.ToBitmap();
+
+                    // Detectamos el rostro
                     var rostroActual = clsSoporte.DetectarRostro(frame);
 
                     if (rostroActual != null && rostroReferencia != null)
                     {
-                        // Llamamos al método que causaba el error CS0103
+                        // Llamamos a la comparación
                         CompararRostros(rostroActual);
                     }
                 }
