@@ -145,6 +145,8 @@
             listBox1.Name = "listBox1";
             listBox1.Size = new Size(477, 404);
             listBox1.TabIndex = 105;
+            listBox1.MouseClick += listBox1_MouseClick;
+            listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
             // NotificacionesAdmin
             // 
@@ -163,6 +165,7 @@
             Name = "NotificacionesAdmin";
             Text = "NotificacionesAdmin";
             Load += NotificacionesAdmin_Load;
+            Shown += NotificacionesAdmin_Shown;
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
