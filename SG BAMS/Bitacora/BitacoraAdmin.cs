@@ -7,14 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SG_BAMS.Proveedor;
 
 namespace SG_BAMS.Bitacora
 {
-    public partial class Bitacora : Form
+    public partial class BitacoraAdmin : Form
     {
         ClsBitacora bitacora = new ClsBitacora();
 
-        public Bitacora()
+        public BitacoraAdmin()
         {
             InitializeComponent();
         }
@@ -49,9 +50,27 @@ namespace SG_BAMS.Bitacora
             bitacora.cargarDatos(dgvBitacora);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
+            Application.Exit();
+        }
 
+        private void txtBuscar_KeyUp(object sender, KeyEventArgs e)
+        {
+            bitacora.BuscarBitacora(txtBuscar, dgvBitacora);
+        }
+
+        private void btnProveedores_Click(object sender, EventArgs e)
+        {
+            ProveedoresAdmin proveedores = new ProveedoresAdmin();
+            proveedores.Show();
+            this.Hide();
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            txtBuscar.Clear();
+            bitacora.cargarDatos(dgvBitacora);
         }
     }
 }

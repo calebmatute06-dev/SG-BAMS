@@ -16,5 +16,17 @@ namespace SG_BAMS.Proveedor
         {
             InitializeComponent();
         }
+
+        private void AgregarProveedores_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnsalir_Click(object sender, EventArgs e)
+        {
+            ProveedoresAdmin proveedor = new ProveedoresAdmin();
+            proveedor.Show();
+            this.Close();
+        }
     }
 }

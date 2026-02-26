@@ -5,29 +5,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
+using static System.Net.Mime.MediaTypeNames;
 
-namespace SG_BAMS.Bitacora
+namespace SG_BAMS.Proveedor
 {
-    internal class ClsBitacora : ClsConexion
+    internal class ClsProveedor : ClsConexion
     {
-        /*
-        private string nombre;
-        public void setNombre(string valor)
-        {
-            nombre = valor;
-        }
-        */
-
-        public void cargarDatos(Krypton.Toolkit.KryptonDataGridView dgvBitacora)
+        public void cargarDatos(Krypton.Toolkit.KryptonDataGridView dgvProveedor)
         {
             try
             {
                 AbrirConexion(); // Abrir la conexión
-                string consulta = "SELECT * FROM vista_bitacora"; // Consulta SQL
+                string consulta = "SELECT * FROM vista_proveedor"; // Consulta SQL
                 SqlDataAdapter adapter = new SqlDataAdapter(consulta, Conectar);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt); // Llenar el DataTable
-                dgvBitacora.DataSource = dt; // Asignar al DataGridView
+                dgvProveedor.DataSource = dt; // Asignar al DataGridView
 
             }
             catch (Exception ex)
@@ -40,7 +33,41 @@ namespace SG_BAMS.Bitacora
             }
         }
 
-        public void BuscarBitacora(Krypton.Toolkit.KryptonTextBox txt, Krypton.Toolkit.KryptonDataGridView dgvBitacora)
+        public void CargarComboEstado(Krypton.Toolkit.KryptonComboBox cmb)
+        {
+            try
+            {
+                AbrirConexion();
+                string consulta = "SELECT * FROM vista_estado";
+                SqlDataAdapter adapter = new SqlDataAdapter(consulta, Conectar);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+
+
+                cmb.DataSource = dt;
+                cmb.DisplayMember = "descripcion_estado";
+                cmb.ValueMember = "id_estado";
+                cmb.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar ComboBox: " + ex.Message);
+            }
+            finally
+            {
+               Cerrar();
+            }
+        }
+
+        /*
+        public void CargarComboClasificacion()
+        {
+
+        }
+        */
+
+
+        public void BuscarProveedor(Krypton.Toolkit.KryptonTextBox txt, Krypton.Toolkit.KryptonDataGridView dgvBitacora)
         {
             try
             {
@@ -54,7 +81,7 @@ namespace SG_BAMS.Bitacora
                 AbrirConexion();
 
                 // Prepara el comando SQL y agrega el parámetro con comodín %
-                string consulta = "select * from vista_bitacora where Nombre like @nombre";
+                string consulta = "select * from vista_proveedor where Nombre like @nombre";
                 SqlCommand cmd = new SqlCommand(consulta, Conectar);
                 cmd.Parameters.AddWithValue("@nombre", nombre);
 
@@ -72,7 +99,6 @@ namespace SG_BAMS.Bitacora
                 Cerrar();
                 MessageBox.Show("Error al buscar: " + ex.Message);
             }
-
         }
     }
 }
