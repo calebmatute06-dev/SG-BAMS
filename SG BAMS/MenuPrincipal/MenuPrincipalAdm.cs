@@ -340,7 +340,7 @@ namespace SG_BAMS
             await ActualizarLabel();
             await ActualizarLabelDeudores();
             await ActualizarLabelProductos();
-            
+
 
         }
 
@@ -377,7 +377,18 @@ namespace SG_BAMS
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-          
+
+        }
+
+        private void BtnFacturas_Click(object sender, EventArgs e)
+        {
+            FacturasAdm frmFA = new FacturasAdm();
+            frmFA.ShowDialog();
+        }
+
+        private void BtnCerrarSesión_Click(object sender, EventArgs e)
+        {
+            this.Hide();
         }
     }
 }
