@@ -88,8 +88,9 @@ namespace SG_BAMS
 
         private void CalcularTotal()
         {
+            int bateriaVieja = Convert.ToInt32(TxtBateria.Text);
 
-            double acumulador = 0;
+            double acumulador = 0, rebaja = 0;
 
 
             for (int i = 0; i < dgvProductos.Rows.Count; i++)
@@ -101,7 +102,18 @@ namespace SG_BAMS
                 }
             }
 
-            TxtTotal.Text = acumulador.ToString();
+            if (bateriaVieja == 1)
+            {
+                rebaja = 500;
+            }
+            else if (bateriaVieja > 1)
+            {
+                rebaja = 500 + (bateriaVieja - 1) * 300;    
+            }
+
+            double total = acumulador - rebaja;
+
+                TxtTotal.Text = total.ToString();
         }
 
         private async void BtnAceptar_Click(object sender, EventArgs e)
@@ -127,7 +139,11 @@ namespace SG_BAMS
                 }
 
                 MessageBox.Show("Factura y productos agregados correctamente.");
-                this.Hide();
+
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+
+
             }
             else
             {
@@ -137,25 +153,25 @@ namespace SG_BAMS
 
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
             dgvProductos.Columns.Clear();
         }
 
         private async void BtnAgregar_Click(object sender, EventArgs e)
         {
-            FacturaProducto frmProd = new FacturaProducto();
-            frmProd.FormularioFactura = this; 
-            frmProd.ShowDialog(); 
+            using (FacturaProducto frmProd = new FacturaProducto())
+            {
+                frmProd.FormularioFactura = this;
 
-            ClsAgregarProductos objAP = new ClsAgregarProductos();
+                if (frmProd.ShowDialog() == DialogResult.OK)
+                {
+                    ClsAgregarProductos objAP = new ClsAgregarProductos();
+                    double precio = await objAP.ObtenerPrecioProducto(idProducto);
 
-
-            
-            double precio = await objAP.ObtenerPrecioProducto(idProducto);
-            
-            dgvProductos.Rows.Add(idProducto, nombresProductos, cantidades, precio, cantidades * precio);
-
-            CalcularTotal();
+                    dgvProductos.Rows.Add(idProducto, nombresProductos, cantidades, precio, cantidades * precio);
+                    CalcularTotal();
+                }
+            }
         }
 
        

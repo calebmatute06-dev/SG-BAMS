@@ -65,10 +65,15 @@ namespace SG_BAMS
                 {
 
                     int idCliente = Convert.ToInt32(cmbClientes.SelectedValue);
+                    using (FacturaAgregarDatos frmFA = new FacturaAgregarDatos(cmbClientes.Text, idCliente))
+                    {
+                        if (frmFA.ShowDialog() == DialogResult.OK)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                            this.Close();
+                        }
+                    }
 
-                    FacturaAgregarDatos frmFA = new FacturaAgregarDatos(cmbClientes.Text, idCliente);
-                    frmFA.ShowDialog();
-                    this.Close();
                 }
                 catch
                 {
@@ -84,7 +89,7 @@ namespace SG_BAMS
 
         private void BtnSalir_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
         }
     }
 

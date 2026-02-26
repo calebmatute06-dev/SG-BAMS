@@ -19,12 +19,12 @@ namespace SG_BAMS
         DataTable datosCli;
         int idPagoSele;
         
-        public FacturaVer(int idF, string nomFac, DateTime fec, string bateriaVij, int idPago)
+        public FacturaVer(int idF, string nomFac, DateTime fec, int bateriaVij, int idPago)
         {
             InitializeComponent();
 
             txtCliente.Text = nomFac;
-            txtBateriaVieja.Text = bateriaVij;
+            txtBateriaVieja.Text = bateriaVij.ToString();
             idPagoSele = idPago;
             idFac = idF;
             fechaDT.SelectionStart = fec;
@@ -57,20 +57,32 @@ namespace SG_BAMS
 
         private void CalcularTotal()
         {
-           
-            double acumulador = 0;
+            int bateriaVieja = Convert.ToInt32(txtBateriaVieja.Text);
 
-            
+            double acumulador = 0, rebaja = 0;
+
+
             for (int i = 0; i < dgvFacturas.Rows.Count; i++)
             {
-                
+
                 if (dgvFacturas.Rows[i].Cells["Subtotal"].Value != null)
                 {
                     acumulador += Convert.ToDouble(dgvFacturas.Rows[i].Cells["Subtotal"].Value);
                 }
             }
 
-            txtTotal.Text = acumulador.ToString();
+            if (bateriaVieja == 1)
+            {
+                rebaja = 500;
+            }
+            else if (bateriaVieja > 1)
+            {
+                rebaja = 500 + (bateriaVieja - 1) * 300;
+            }
+
+            double total = acumulador - rebaja;
+
+            txtTotal.Text = total.ToString();
         }
 
         private async void FacturaVer_Load(object sender, EventArgs e)
@@ -116,7 +128,7 @@ namespace SG_BAMS
 
         private void BtnSalir_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
         }
     }
 }

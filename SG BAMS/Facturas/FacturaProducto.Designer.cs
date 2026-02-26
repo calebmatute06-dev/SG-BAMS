@@ -42,10 +42,15 @@
             BtnSalir = new Krypton.Toolkit.KryptonButton();
             cmbProductos = new Krypton.Toolkit.KryptonComboBox();
             txtCantidad = new Krypton.Toolkit.KryptonTextBox();
+            lblStock = new Label();
+            kryptonGroup1 = new Krypton.Toolkit.KryptonGroup();
+            lblNumero = new Label();
             panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cmbProductos).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
             SuspendLayout();
             // 
             // label5
@@ -54,7 +59,7 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(507, 277);
+            label5.Location = new Point(504, 277);
             label5.Name = "label5";
             label5.Size = new Size(113, 42);
             label5.TabIndex = 261;
@@ -86,7 +91,7 @@
             panel1.BackColor = Color.Navy;
             panel1.Location = new Point(22, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(600, 24);
+            panel1.Size = new Size(622, 24);
             panel1.TabIndex = 255;
             // 
             // panel2
@@ -122,9 +127,9 @@
             Nombre.ForeColor = Color.Navy;
             Nombre.Location = new Point(81, 127);
             Nombre.Name = "Nombre";
-            Nombre.Size = new Size(84, 24);
+            Nombre.Size = new Size(91, 24);
             Nombre.TabIndex = 264;
-            Nombre.Text = "Nombre";
+            Nombre.Text = "Nombre:";
             // 
             // label1
             // 
@@ -207,6 +212,7 @@
             cmbProductos.StateCommon.Item.Content.ShortText.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbProductos.StateNormal.ComboBox.Border.Rounding = 40F;
             cmbProductos.TabIndex = 334;
+            cmbProductos.SelectedIndexChanged += cmbProductos_SelectedIndexChanged;
             // 
             // txtCantidad
             // 
@@ -218,12 +224,47 @@
             txtCantidad.StateCommon.Border.Rounding = 10F;
             txtCantidad.TabIndex = 335;
             // 
+            // lblStock
+            // 
+            lblStock.AutoSize = true;
+            lblStock.BackColor = Color.Transparent;
+            lblStock.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblStock.ForeColor = Color.Navy;
+            lblStock.Location = new Point(403, 127);
+            lblStock.Name = "lblStock";
+            lblStock.Size = new Size(71, 24);
+            lblStock.TabIndex = 338;
+            lblStock.Text = "Stock:";
+            // 
+            // kryptonGroup1
+            // 
+            kryptonGroup1.Location = new Point(475, 118);
+            kryptonGroup1.Size = new Size(71, 44);
+            kryptonGroup1.StateCommon.Border.Rounding = 40F;
+            kryptonGroup1.StateNormal.Back.Color1 = Color.SkyBlue;
+            kryptonGroup1.TabIndex = 339;
+            // 
+            // lblNumero
+            // 
+            lblNumero.AutoSize = true;
+            lblNumero.BackColor = Color.SkyBlue;
+            lblNumero.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblNumero.ForeColor = Color.Navy;
+            lblNumero.Location = new Point(500, 128);
+            lblNumero.Name = "lblNumero";
+            lblNumero.Size = new Size(21, 24);
+            lblNumero.TabIndex = 340;
+            lblNumero.Text = "0";
+            // 
             // FacturaProducto
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(647, 352);
+            Controls.Add(lblNumero);
+            Controls.Add(kryptonGroup1);
+            Controls.Add(lblStock);
             Controls.Add(txtCantidad);
             Controls.Add(cmbProductos);
             Controls.Add(BtnSalir);
@@ -239,12 +280,14 @@
             Controls.Add(kryptonGroupBox3);
             Margin = new Padding(3, 4, 3, 4);
             Name = "FacturaProducto";
-            Text = "FacturaProducto";
+            Text = "D";
             Load += FacturaProducto_Load;
             panel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)cmbProductos).EndInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).EndInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroup1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -264,5 +307,8 @@
         private Krypton.Toolkit.KryptonButton BtnSalir;
         private Krypton.Toolkit.KryptonComboBox cmbProductos;
         private Krypton.Toolkit.KryptonTextBox txtCantidad;
+        private Label lblStock;
+        private Krypton.Toolkit.KryptonGroup kryptonGroup1;
+        private Label lblNumero;
     }
 }

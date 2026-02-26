@@ -66,15 +66,20 @@
             pictureBox8 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel5 = new Panel();
-            label4 = new Label();
             kryptonGroupBox1 = new Krypton.Toolkit.KryptonGroupBox();
             kryptonGroupBox2 = new Krypton.Toolkit.KryptonGroupBox();
             kryptonGroupBox3 = new Krypton.Toolkit.KryptonGroupBox();
             BtnVer = new Krypton.Toolkit.KryptonButton();
             BtnNueva = new Krypton.Toolkit.KryptonButton();
-            dateTimePicker1 = new DateTimePicker();
-            dateTimePicker2 = new DateTimePicker();
+            dtpInicio = new DateTimePicker();
+            dtpFin = new DateTimePicker();
             dgvFacturas = new DataGridView();
+            txtBusqueda = new Krypton.Toolkit.KryptonTextBox();
+            label3 = new Label();
+            label4 = new Label();
+            label5 = new Label();
+            label6 = new Label();
+            BtnRefrescar = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
             panel1.SuspendLayout();
@@ -291,6 +296,7 @@
             btnCerrarSesion.TabIndex = 35;
             btnCerrarSesion.Values.DropDownArrowColor = Color.Empty;
             btnCerrarSesion.Values.Text = "Cerrar Sesión";
+            btnCerrarSesion.Click += btnCerrarSesion_Click;
             // 
             // button12
             // 
@@ -687,19 +693,6 @@
             panel5.Size = new Size(24, 904);
             panel5.TabIndex = 109;
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.BackColor = Color.SkyBlue;
-            label4.Font = new Font("Arial Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.Navy;
-            label4.Location = new Point(374, 109);
-            label4.Name = "label4";
-            label4.Size = new Size(116, 42);
-            label4.TabIndex = 133;
-            label4.Text = "Fecha";
-            label4.TextAlign = ContentAlignment.TopCenter;
-            // 
             // kryptonGroupBox1
             // 
             kryptonGroupBox1.CaptionVisible = false;
@@ -725,7 +718,7 @@
             kryptonGroupBox3.CaptionVisible = false;
             kryptonGroupBox3.Location = new Point(331, 97);
             kryptonGroupBox3.Margin = new Padding(3, 4, 3, 4);
-            kryptonGroupBox3.Size = new Size(193, 65);
+            kryptonGroupBox3.Size = new Size(159, 39);
             kryptonGroupBox3.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroupBox3.StateCommon.Border.Rounding = 50F;
             kryptonGroupBox3.TabIndex = 141;
@@ -776,21 +769,24 @@
             BtnNueva.Values.Text = "Nueva Factura";
             BtnNueva.Click += BtnNueva_Click;
             // 
-            // dateTimePicker1
+            // dtpInicio
             // 
-            dateTimePicker1.Location = new Point(342, 188);
-            dateTimePicker1.Margin = new Padding(3, 4, 3, 4);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(114, 27);
-            dateTimePicker1.TabIndex = 143;
+            dtpInicio.Location = new Point(315, 169);
+            dtpInicio.Margin = new Padding(3, 4, 3, 4);
+            dtpInicio.Name = "dtpInicio";
+            dtpInicio.Size = new Size(114, 27);
+            dtpInicio.TabIndex = 143;
+            dtpInicio.ValueChanged += dtpInicio_ValueChanged;
             // 
-            // dateTimePicker2
+            // dtpFin
             // 
-            dateTimePicker2.Location = new Point(481, 188);
-            dateTimePicker2.Margin = new Padding(3, 4, 3, 4);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(116, 27);
-            dateTimePicker2.TabIndex = 143;
+            dtpFin.CalendarForeColor = Color.Navy;
+            dtpFin.Enabled = false;
+            dtpFin.Location = new Point(460, 169);
+            dtpFin.Margin = new Padding(3, 4, 3, 4);
+            dtpFin.Name = "dtpFin";
+            dtpFin.Size = new Size(116, 27);
+            dtpFin.TabIndex = 143;
             // 
             // dgvFacturas
             // 
@@ -801,8 +797,75 @@
             dgvFacturas.RowHeadersWidth = 51;
             dgvFacturas.Size = new Size(725, 361);
             dgvFacturas.TabIndex = 37;
-            
             dgvFacturas.CellContentClick += dgvFacturas_CellContentClick;
+            // 
+            // txtBusqueda
+            // 
+            txtBusqueda.Location = new Point(606, 197);
+            txtBusqueda.Margin = new Padding(3, 4, 3, 4);
+            txtBusqueda.Name = "txtBusqueda";
+            txtBusqueda.Size = new Size(404, 33);
+            txtBusqueda.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtBusqueda.StateCommon.Border.Rounding = 10F;
+            txtBusqueda.TabIndex = 323;
+            txtBusqueda.TextChanged += txtBusqueda_TextChanged;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.SkyBlue;
+            label3.Font = new Font("Arial Narrow", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.Navy;
+            label3.Location = new Point(371, 102);
+            label3.Name = "label3";
+            label3.Size = new Size(82, 33);
+            label3.TabIndex = 324;
+            label3.Text = "Fecha";
+            label3.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.Navy;
+            label4.Location = new Point(485, 199);
+            label4.Name = "label4";
+            label4.Size = new Size(115, 31);
+            label4.TabIndex = 328;
+            label4.Text = "Busqueda";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.Navy;
+            label5.Location = new Point(342, 142);
+            label5.Name = "label5";
+            label5.Size = new Size(54, 23);
+            label5.TabIndex = 329;
+            label5.Text = "Inicial";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.ForeColor = Color.Navy;
+            label6.Location = new Point(489, 142);
+            label6.Name = "label6";
+            label6.Size = new Size(45, 23);
+            label6.TabIndex = 330;
+            label6.Text = "Final";
+            // 
+            // BtnRefrescar
+            // 
+            BtnRefrescar.BackgroundImage = Properties.Resources.refresh;
+            BtnRefrescar.BackgroundImageLayout = ImageLayout.Stretch;
+            BtnRefrescar.Location = new Point(1016, 188);
+            BtnRefrescar.Name = "BtnRefrescar";
+            BtnRefrescar.Size = new Size(65, 44);
+            BtnRefrescar.TabIndex = 331;
+            BtnRefrescar.UseVisualStyleBackColor = true;
+            BtnRefrescar.Click += BtnRefrescar_Click;
             // 
             // FacturasAdm
             // 
@@ -810,12 +873,17 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1184, 908);
+            Controls.Add(BtnRefrescar);
+            Controls.Add(label6);
+            Controls.Add(label5);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(txtBusqueda);
             Controls.Add(dgvFacturas);
-            Controls.Add(dateTimePicker2);
-            Controls.Add(dateTimePicker1);
+            Controls.Add(dtpFin);
+            Controls.Add(dtpInicio);
             Controls.Add(BtnNueva);
             Controls.Add(BtnVer);
-            Controls.Add(label4);
             Controls.Add(panel5);
             Controls.Add(panel6);
             Controls.Add(panel2);
@@ -902,14 +970,19 @@
         private PictureBox pictureBox8;
         private PictureBox pictureBox1;
         private Panel panel5;
-        private Label label4;
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox1;
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox2;
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox3;
         private Krypton.Toolkit.KryptonButton BtnVer;
         private Krypton.Toolkit.KryptonButton BtnNueva;
-        private DateTimePicker dateTimePicker1;
-        private DateTimePicker dateTimePicker2;
+        private DateTimePicker dtpInicio;
+        private DateTimePicker dtpFin;
         private DataGridView dgvFacturas;
+        private Krypton.Toolkit.KryptonTextBox txtBusqueda;
+        private Label label3;
+        private Label label4;
+        private Label label5;
+        private Label label6;
+        private Button BtnRefrescar;
     }
 }

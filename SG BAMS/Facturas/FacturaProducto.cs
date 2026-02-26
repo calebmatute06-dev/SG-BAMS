@@ -38,7 +38,7 @@ namespace SG_BAMS
             {
                 objCl.AbrirConexion();
 
-                string query = "SELECT * FROM vista_productos";
+                string query = "SELECT * FROM vista_stock_productos";
 
 
                 using (SqlCommand cmd = new SqlCommand(query, objCl.Conectar))
@@ -51,6 +51,9 @@ namespace SG_BAMS
                     cmbProductos.DisplayMember = "Nombre Producto";
                     cmbProductos.ValueMember = "ID";
                     cmbProductos.DataSource = dt;
+
+                    lblNumero.DataBindings.Clear(); 
+                    lblNumero.DataBindings.Add("Text", dt, "Stock");
                 }
             }
             catch (Exception ex)
@@ -76,14 +79,23 @@ namespace SG_BAMS
 
             FormularioFactura.SetProducto(idProd, nombreProd, cantidadProd);
 
+            this.DialogResult = DialogResult.OK;
 
-            this.Close();
+            this.Hide();
+
 
         }
 
         private void BtnSalir_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
         }
+
+        private void cmbProductos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+
     }
 }

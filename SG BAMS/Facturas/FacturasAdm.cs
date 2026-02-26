@@ -42,7 +42,7 @@ namespace SG_BAMS
                 dgvFacturas.Columns["ID Método de Pago"].Visible = false;
                 dgvFacturas.Columns["Fecha"].HeaderText = "Fecha";
                 dgvFacturas.Columns["Detalle Venta"].HeaderText = "Detalle Venta";
-                dgvFacturas.Columns["Batería Vieja"].HeaderText = "Batería Vieja";
+                dgvFacturas.Columns["Cant. Baterías Dejadas"].HeaderText = "Batería Vieja";
                 dgvFacturas.Columns["Total Unidades"].HeaderText = "Total Unidades";
             }
         }
@@ -52,16 +52,25 @@ namespace SG_BAMS
             await CargarFactura();
         }
 
-        private void BtnNueva_Click(object sender, EventArgs e)
+        private async void BtnNueva_Click(object sender, EventArgs e)
         {
-            ClienteAgregar frmCA = new ClienteAgregar();
-            frmCA.ShowDialog();
+            
+            using (ClienteAgregar frmCA = new ClienteAgregar())
+            {
+                
+                if (frmCA.ShowDialog() == DialogResult.OK)
+                {
+                    await CargarFactura();
+                }
+            }
 
-            this.Close();
+            
+
+
         }
 
-        
-        
+
+
 
         private void BtnVer_Click(object sender, EventArgs e)
         {
@@ -69,12 +78,15 @@ namespace SG_BAMS
             {
                 dgvFacturas_CellContentClick(null, null);
             }
+            
         }
+
+
 
         private void dgvFacturas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            int idFacturas, idPago;
-            string nombre_Cliente, bateriaVieja;
+            int idFacturas, idPago, bateriaVieja;
+            string nombre_Cliente;
             DateTime fecha;
 
             if (dgvFacturas.CurrentRow != null)
@@ -83,13 +95,78 @@ namespace SG_BAMS
                 idFacturas = Convert.ToInt32(dgvFacturas.CurrentRow.Cells[0].Value);
                 nombre_Cliente = dgvFacturas.CurrentRow.Cells[2].Value.ToString();
                 fecha = Convert.ToDateTime(dgvFacturas.CurrentRow.Cells[6].Value);
-                bateriaVieja = dgvFacturas.CurrentRow.Cells[8].Value.ToString();
-                idPago = Convert.ToInt32(dgvFacturas.CurrentRow.Cells[9].Value);
+                bateriaVieja = Convert.ToInt32(dgvFacturas.CurrentRow.Cells[8].Value);
+                idPago = Convert.ToInt32(dgvFacturas.CurrentRow.Cells[4].Value);
 
                 FacturaVer frmFV = new FacturaVer(idFacturas, nombre_Cliente, fecha, bateriaVieja, idPago);
                 frmFV.ShowDialog();
+
+               
+
                 CargarFactura();
             }
         }
+
+        private void txtBusqueda_TextChanged(object sender, EventArgs e)
+        {
+            if (datosFac != null)
+            {
+                DataView dv = datosFac.DefaultView;
+
+                dv.RowFilter = string.Format("Convert([Factura],'System.String') LIKE '%{0}%' OR [Vendedor] LIKE '%{0}%' OR [Cliente] LIKE '%{0}%' OR [Método de Pago] LIKE '%{0}%' ", txtBusqueda.Text);
+
+                dgvFacturas.DataSource = dv;
+
+            }
+        }
+
+        private void dtpInicio_ValueChanged(object sender, EventArgs e)
+        {
+            dtpFin.Value = dtpInicio.Value.AddDays(7);
+            FiltrarPorFecha();
+
+        }
+        private void FiltrarPorFecha()
+        {
+            if (datosFac != null)
+            {
+                DataView dv = datosFac.DefaultView;
+
+                DateTime fechaInicio = dtpInicio.Value.Date;
+                DateTime fechaFin = dtpFin.Value.Date;
+
+                dv.RowFilter = string.Format(
+                    "[Fecha] >= #{0}# AND [Fecha] <= #{1}#",
+                    fechaInicio.ToString("MM/dd/yyyy"),
+                    fechaFin.ToString("MM/dd/yyyy")
+                );
+
+                dgvFacturas.DataSource = dv;
+            }
+        }
+
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void BtnRefrescar_Click(object sender, EventArgs e)
+        {
+            if (datosFac != null)
+            {
+                DataView dv = datosFac.DefaultView;
+                dtpInicio.Value = DateTime.Today;
+                dtpFin.Value = DateTime.Today;
+
+
+
+                dv.RowFilter = string.Empty;
+                txtBusqueda.Text = "";
+
+
+                dgvFacturas.DataSource = dv;
+            }
+        }
     }
+
 }

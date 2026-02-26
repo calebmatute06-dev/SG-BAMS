@@ -25,6 +25,7 @@ namespace SG_BAMS
 
         private async void btnAgregar_Click(object sender, EventArgs e)
         {
+            
             ClsAgregarClientes objAC = new ClsAgregarClientes();
             int idNuevoCliente = await objAC.AgregarClientes(txtNombre.Text, txtApellido.Text, txtTelefono.Text, txtRTN.Text);
 
@@ -34,15 +35,24 @@ namespace SG_BAMS
             {
                 MessageBox.Show("Cliente agregado correctamente.");
 
-                FacturaAgregarDatos frmFA = new FacturaAgregarDatos(txtNombre.Text + " " + txtApellido.Text, idNuevoCliente);
+                using (FacturaAgregarDatos frmFA = new FacturaAgregarDatos(txtNombre.Text + " " + txtApellido.Text, idNuevoCliente))
+                {
+                   
+                    if (frmFA.ShowDialog() == DialogResult.OK)
+                    {
+                        
+                        this.DialogResult = DialogResult.OK;
+                        this.Close();
+                    }
+                    
+                }
 
-                frmFA.ShowDialog();
-                this.Close();
             }
             else
             {
                 MessageBox.Show("No se pudo agregar el cliente.");
             }
+            
         }
 
         private void ClienteAgregar_Load(object sender, EventArgs e)
@@ -52,15 +62,24 @@ namespace SG_BAMS
 
         private void BtnExistente_Click(object sender, EventArgs e)
         {
-            ClienteExistente frmCE = new ClienteExistente();
-            frmCE.ShowDialog();
+           
+            using (ClienteExistente frmCE = new ClienteExistente())
+            {
+                if (frmCE.ShowDialog() == DialogResult.OK)
+                {
+                    this.DialogResult = DialogResult.OK; 
+                    
+                }
+            }
 
-            this.Close();
+
         }
 
         private void BtnSalir_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
+
+
         }
     }
 }

@@ -65,7 +65,6 @@
             pictureBox7 = new PictureBox();
             pictureBox8 = new PictureBox();
             pictureBox1 = new PictureBox();
-            kryptonButton10 = new Krypton.Toolkit.KryptonButton();
             pictureBox17 = new PictureBox();
             label4 = new Label();
             txtBusqueda = new Krypton.Toolkit.KryptonTextBox();
@@ -73,6 +72,8 @@
             BtnModificar = new Krypton.Toolkit.KryptonButton();
             dgvClientes = new DataGridView();
             chkActivo = new Krypton.Toolkit.KryptonCheckBox();
+            label3 = new Label();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).BeginInit();
@@ -669,31 +670,6 @@
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
             // 
-            // kryptonButton10
-            // 
-            kryptonButton10.Location = new Point(379, 47);
-            kryptonButton10.Name = "kryptonButton10";
-            kryptonButton10.OverrideDefault.Back.Color1 = Color.Transparent;
-            kryptonButton10.OverrideDefault.Back.Color2 = Color.Transparent;
-            kryptonButton10.OverrideDefault.Border.Rounding = 40F;
-            kryptonButton10.OverrideFocus.Back.Color1 = Color.White;
-            kryptonButton10.OverrideFocus.Back.Color2 = Color.SkyBlue;
-            kryptonButton10.Size = new Size(93, 41);
-            kryptonButton10.StateCommon.Back.Color1 = Color.White;
-            kryptonButton10.StateCommon.Back.Color2 = Color.SkyBlue;
-            kryptonButton10.StateCommon.Border.Rounding = 40F;
-            kryptonButton10.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton10.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton10.StateNormal.Back.Color1 = Color.Transparent;
-            kryptonButton10.StateNormal.Back.Color2 = Color.Transparent;
-            kryptonButton10.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
-            kryptonButton10.StatePressed.Back.Color1 = Color.Transparent;
-            kryptonButton10.StatePressed.Back.Color2 = Color.Transparent;
-            kryptonButton10.StateTracking.Border.Rounding = 40F;
-            kryptonButton10.TabIndex = 135;
-            kryptonButton10.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton10.Values.Text = "Clientes";
-            // 
             // pictureBox17
             // 
             pictureBox17.BackgroundImage = Properties.Resources.clientes;
@@ -718,7 +694,7 @@
             // 
             // txtBusqueda
             // 
-            txtBusqueda.Location = new Point(357, 157);
+            txtBusqueda.Location = new Point(494, 191);
             txtBusqueda.Margin = new Padding(3, 4, 3, 4);
             txtBusqueda.Name = "txtBusqueda";
             txtBusqueda.Size = new Size(570, 33);
@@ -773,7 +749,7 @@
             // 
             // chkActivo
             // 
-            chkActivo.Location = new Point(959, 157);
+            chkActivo.Location = new Point(999, 247);
             chkActivo.Name = "chkActivo";
             chkActivo.Size = new Size(104, 31);
             chkActivo.StateCommon.ShortText.Color1 = Color.Navy;
@@ -782,18 +758,41 @@
             chkActivo.Values.Text = "Activos";
             chkActivo.CheckedChanged += chkActivo_CheckedChanged;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.Navy;
+            label3.Location = new Point(371, 195);
+            label3.Name = "label3";
+            label3.Size = new Size(115, 31);
+            label3.TabIndex = 327;
+            label3.Text = "Busqueda";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.Navy;
+            label5.Location = new Point(386, 42);
+            label5.Name = "label5";
+            label5.Size = new Size(138, 46);
+            label5.TabIndex = 328;
+            label5.Text = "Clientes";
+            // 
             // ClientesAdm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1184, 908);
+            Controls.Add(label5);
+            Controls.Add(label3);
             Controls.Add(chkActivo);
             Controls.Add(dgvClientes);
             Controls.Add(BtnModificar);
             Controls.Add(txtBusqueda);
             Controls.Add(label4);
-            Controls.Add(kryptonButton10);
             Controls.Add(pictureBox17);
             Controls.Add(panel6);
             Controls.Add(panel2);
@@ -875,7 +874,6 @@
         private PictureBox pictureBox7;
         private PictureBox pictureBox8;
         private PictureBox pictureBox1;
-        private Krypton.Toolkit.KryptonButton kryptonButton10;
         private PictureBox pictureBox17;
         private Label label4;
         private Krypton.Toolkit.KryptonTextBox txtBusqueda;
@@ -883,5 +881,7 @@
         private Krypton.Toolkit.KryptonButton BtnModificar;
         private DataGridView dgvClientes;
         private Krypton.Toolkit.KryptonCheckBox chkActivo;
+        private Label label3;
+        private Label label5;
     }
 }
