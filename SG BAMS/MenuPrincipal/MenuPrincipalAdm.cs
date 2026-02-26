@@ -29,20 +29,13 @@ namespace SG_BAMS
 
         }
 
-        private void btnCerrarSesion_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
-        private void BtnFacturas_Click(object sender, EventArgs e)
-        {
-            FacturasAdm frmFM = new FacturasAdm();
-            frmFM.ShowDialog();
-        }
+        
     }
 }

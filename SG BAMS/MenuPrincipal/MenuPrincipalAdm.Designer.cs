@@ -29,10 +29,9 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            kryptonButton8 = new Krypton.Toolkit.KryptonButton();
             kryptonButton1 = new Krypton.Toolkit.KryptonButton();
-            btnCerrarSesion = new Krypton.Toolkit.KryptonButton();
             kryptonButton9 = new Krypton.Toolkit.KryptonButton();
-            BtnFacturas = new Krypton.Toolkit.KryptonButton();
             kryptonButton7 = new Krypton.Toolkit.KryptonButton();
             kryptonButton6 = new Krypton.Toolkit.KryptonButton();
             kryptonButton5 = new Krypton.Toolkit.KryptonButton();
@@ -86,6 +85,7 @@
             pictureBox19 = new PictureBox();
             pictureBox20 = new PictureBox();
             pictureBox21 = new PictureBox();
+            kryptonButton18 = new Krypton.Toolkit.KryptonButton();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).BeginInit();
@@ -116,10 +116,10 @@
             // panel1
             // 
             panel1.BackColor = Color.SkyBlue;
+            panel1.Controls.Add(kryptonButton18);
+            panel1.Controls.Add(kryptonButton8);
             panel1.Controls.Add(kryptonButton1);
-            panel1.Controls.Add(btnCerrarSesion);
             panel1.Controls.Add(kryptonButton9);
-            panel1.Controls.Add(BtnFacturas);
             panel1.Controls.Add(kryptonButton7);
             panel1.Controls.Add(kryptonButton6);
             panel1.Controls.Add(kryptonButton5);
@@ -146,6 +146,31 @@
             panel1.TabIndex = 1;
             panel1.Paint += panel1_Paint;
             // 
+            // kryptonButton8
+            // 
+            kryptonButton8.Location = new Point(130, 284);
+            kryptonButton8.Name = "kryptonButton8";
+            kryptonButton8.OverrideDefault.Back.Color1 = Color.Transparent;
+            kryptonButton8.OverrideDefault.Back.Color2 = Color.Transparent;
+            kryptonButton8.OverrideDefault.Border.Rounding = 40F;
+            kryptonButton8.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            kryptonButton8.OverrideFocus.Back.Color2 = Color.White;
+            kryptonButton8.Size = new Size(104, 36);
+            kryptonButton8.StateCommon.Back.Color1 = Color.SkyBlue;
+            kryptonButton8.StateCommon.Back.Color2 = Color.White;
+            kryptonButton8.StateCommon.Border.Rounding = 40F;
+            kryptonButton8.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            kryptonButton8.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            kryptonButton8.StateNormal.Back.Color1 = Color.Transparent;
+            kryptonButton8.StateNormal.Back.Color2 = Color.Transparent;
+            kryptonButton8.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
+            kryptonButton8.StatePressed.Back.Color1 = Color.Transparent;
+            kryptonButton8.StatePressed.Back.Color2 = Color.Transparent;
+            kryptonButton8.StateTracking.Border.Rounding = 40F;
+            kryptonButton8.TabIndex = 37;
+            kryptonButton8.Values.DropDownArrowColor = Color.Empty;
+            kryptonButton8.Values.Text = "Facturas";
+            // 
             // kryptonButton1
             // 
             kryptonButton1.Location = new Point(122, 834);
@@ -171,32 +196,6 @@
             kryptonButton1.Values.DropDownArrowColor = Color.Empty;
             kryptonButton1.Values.Text = "Administrador";
             // 
-            // btnCerrarSesion
-            // 
-            btnCerrarSesion.Location = new Point(118, 792);
-            btnCerrarSesion.Name = "btnCerrarSesion";
-            btnCerrarSesion.OverrideDefault.Back.Color1 = Color.Transparent;
-            btnCerrarSesion.OverrideDefault.Back.Color2 = Color.Transparent;
-            btnCerrarSesion.OverrideDefault.Border.Rounding = 40F;
-            btnCerrarSesion.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnCerrarSesion.OverrideFocus.Back.Color2 = Color.White;
-            btnCerrarSesion.Size = new Size(139, 36);
-            btnCerrarSesion.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnCerrarSesion.StateCommon.Back.Color2 = Color.White;
-            btnCerrarSesion.StateCommon.Border.Rounding = 40F;
-            btnCerrarSesion.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnCerrarSesion.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnCerrarSesion.StateNormal.Back.Color1 = Color.Transparent;
-            btnCerrarSesion.StateNormal.Back.Color2 = Color.Transparent;
-            btnCerrarSesion.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
-            btnCerrarSesion.StatePressed.Back.Color1 = Color.Transparent;
-            btnCerrarSesion.StatePressed.Back.Color2 = Color.Transparent;
-            btnCerrarSesion.StateTracking.Border.Rounding = 40F;
-            btnCerrarSesion.TabIndex = 35;
-            btnCerrarSesion.Values.DropDownArrowColor = Color.Empty;
-            btnCerrarSesion.Values.Text = "Cerrar Sesión";
-            btnCerrarSesion.Click += btnCerrarSesion_Click;
-            // 
             // kryptonButton9
             // 
             kryptonButton9.Location = new Point(118, 225);
@@ -221,32 +220,6 @@
             kryptonButton9.TabIndex = 34;
             kryptonButton9.Values.DropDownArrowColor = Color.Empty;
             kryptonButton9.Values.Text = "Menu Principal";
-            // 
-            // BtnFacturas
-            // 
-            BtnFacturas.Location = new Point(130, 284);
-            BtnFacturas.Name = "BtnFacturas";
-            BtnFacturas.OverrideDefault.Back.Color1 = Color.Transparent;
-            BtnFacturas.OverrideDefault.Back.Color2 = Color.Transparent;
-            BtnFacturas.OverrideDefault.Border.Rounding = 40F;
-            BtnFacturas.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            BtnFacturas.OverrideFocus.Back.Color2 = Color.White;
-            BtnFacturas.Size = new Size(104, 36);
-            BtnFacturas.StateCommon.Back.Color1 = Color.SkyBlue;
-            BtnFacturas.StateCommon.Back.Color2 = Color.White;
-            BtnFacturas.StateCommon.Border.Rounding = 40F;
-            BtnFacturas.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            BtnFacturas.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BtnFacturas.StateNormal.Back.Color1 = Color.Transparent;
-            BtnFacturas.StateNormal.Back.Color2 = Color.Transparent;
-            BtnFacturas.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
-            BtnFacturas.StatePressed.Back.Color1 = Color.Transparent;
-            BtnFacturas.StatePressed.Back.Color2 = Color.Transparent;
-            BtnFacturas.StateTracking.Border.Rounding = 40F;
-            BtnFacturas.TabIndex = 33;
-            BtnFacturas.Values.DropDownArrowColor = Color.Empty;
-            BtnFacturas.Values.Text = "Facturas";
-            BtnFacturas.Click += BtnFacturas_Click;
             // 
             // kryptonButton7
             // 
@@ -985,6 +958,31 @@
             pictureBox21.TabIndex = 62;
             pictureBox21.TabStop = false;
             // 
+            // kryptonButton18
+            // 
+            kryptonButton18.Location = new Point(114, 794);
+            kryptonButton18.Name = "kryptonButton18";
+            kryptonButton18.OverrideDefault.Back.Color1 = Color.Transparent;
+            kryptonButton18.OverrideDefault.Back.Color2 = Color.Transparent;
+            kryptonButton18.OverrideDefault.Border.Rounding = 40F;
+            kryptonButton18.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            kryptonButton18.OverrideFocus.Back.Color2 = Color.White;
+            kryptonButton18.Size = new Size(139, 36);
+            kryptonButton18.StateCommon.Back.Color1 = Color.SkyBlue;
+            kryptonButton18.StateCommon.Back.Color2 = Color.White;
+            kryptonButton18.StateCommon.Border.Rounding = 40F;
+            kryptonButton18.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            kryptonButton18.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            kryptonButton18.StateNormal.Back.Color1 = Color.Transparent;
+            kryptonButton18.StateNormal.Back.Color2 = Color.Transparent;
+            kryptonButton18.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
+            kryptonButton18.StatePressed.Back.Color1 = Color.Transparent;
+            kryptonButton18.StatePressed.Back.Color2 = Color.Transparent;
+            kryptonButton18.StateTracking.Border.Rounding = 40F;
+            kryptonButton18.TabIndex = 38;
+            kryptonButton18.Values.DropDownArrowColor = Color.Empty;
+            kryptonButton18.Values.Text = "Cerrar Sesión";
+            // 
             // MenuPrincipalAdm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -1085,14 +1083,12 @@
         private PictureBox pictureBox18;
         private Krypton.Toolkit.KryptonButton btnReporte;
         private Krypton.Toolkit.KryptonButton kryptonButton9;
-        private Krypton.Toolkit.KryptonButton BtnFacturas;
         private Krypton.Toolkit.KryptonButton kryptonButton7;
         private Krypton.Toolkit.KryptonButton kryptonButton6;
         private Krypton.Toolkit.KryptonButton kryptonButton5;
         private Krypton.Toolkit.KryptonButton kryptonButton4;
         private Krypton.Toolkit.KryptonButton kryptonButton3;
         private Krypton.Toolkit.KryptonButton kryptonButton2;
-        private Krypton.Toolkit.KryptonButton btnCerrarSesion;
         private Krypton.Toolkit.KryptonButton kryptonButton1;
         private Krypton.Toolkit.KryptonButton kryptonButton10;
         private Krypton.Toolkit.KryptonButton kryptonButton11;
@@ -1114,5 +1110,7 @@
         private PictureBox pictureBox19;
         private PictureBox pictureBox20;
         private PictureBox pictureBox21;
+        private Krypton.Toolkit.KryptonButton kryptonButton8;
+        private Krypton.Toolkit.KryptonButton kryptonButton18;
     }
 }
