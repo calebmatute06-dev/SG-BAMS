@@ -36,7 +36,6 @@
             btnCancelar = new Krypton.Toolkit.KryptonButton();
             btnReintentar = new Krypton.Toolkit.KryptonButton();
             label7 = new Label();
-            btnSalir = new Krypton.Toolkit.KryptonButton();
             lblEstado = new Label();
             ((System.ComponentModel.ISupportInitialize)picValidar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
@@ -154,30 +153,6 @@
             label7.TabIndex = 148;
             label7.Text = "BAMS";
             // 
-            // btnSalir
-            // 
-            btnSalir.Location = new Point(27, 401);
-            btnSalir.Margin = new Padding(3, 2, 3, 2);
-            btnSalir.Name = "btnSalir";
-            btnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnSalir.OverrideDefault.Back.Color2 = Color.White;
-            btnSalir.OverrideDefault.Border.Rounding = 40F;
-            btnSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnSalir.OverrideFocus.Back.Color2 = Color.White;
-            btnSalir.Size = new Size(103, 49);
-            btnSalir.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnSalir.StateCommon.Back.Color2 = Color.White;
-            btnSalir.StateCommon.Border.Rounding = 40F;
-            btnSalir.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnSalir.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnSalir.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnSalir.StateNormal.Back.Color2 = Color.White;
-            btnSalir.StateNormal.Border.Rounding = 40F;
-            btnSalir.StateTracking.Border.Rounding = 40F;
-            btnSalir.TabIndex = 149;
-            btnSalir.Values.DropDownArrowColor = Color.Empty;
-            btnSalir.Values.Text = "Salir";
-            // 
             // lblEstado
             // 
             lblEstado.AutoSize = true;
@@ -194,7 +169,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(817, 469);
             Controls.Add(lblEstado);
-            Controls.Add(btnSalir);
             Controls.Add(label7);
             Controls.Add(btnReintentar);
             Controls.Add(btnCancelar);
@@ -225,7 +199,6 @@
         private Krypton.Toolkit.KryptonButton btnCancelar;
         private Krypton.Toolkit.KryptonButton btnReintentar;
         private Label label7;
-        private Krypton.Toolkit.KryptonButton btnSalir;
         private Label lblEstado;
     }
 }

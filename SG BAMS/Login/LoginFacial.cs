@@ -18,7 +18,6 @@ namespace SG_BAMS.Login
     {
         // Propiedad para recibir el usuario desde el Login
         public string UsuarioAValidar { get; set; }
-
         private VideoCapture camara;
         private Image<Gray, byte> rostroReferencia;
         public LoginFacial()
@@ -32,109 +31,97 @@ namespace SG_BAMS.Login
 
             if (!File.Exists(rutaFoto))
             {
-                MessageBox.Show("No tienes un registro facial. Contacta al administrador.", "Error de Biometría");
-                this.DialogResult = DialogResult.Abort;
-                this.Close();
+                MessageBox.Show("No tienes un registro facial.", "Error");
+                Finalizar(DialogResult.Abort);
                 return;
             }
 
             rostroReferencia = new Image<Gray, byte>(rutaFoto);
-
-            // 2. Iniciamos la cámara
             camara = new VideoCapture(0);
             Application.Idle += ProcesoValidacion;
         }
         private void ProcesoValidacion(object sender, EventArgs e)
         {
+            // Protección contra el NullReferenceException de tu imagen
             if (camara == null) return;
 
-            using (var frame = camara.QueryFrame().ToImage<Bgr, byte>())
+            try
             {
-                if (frame != null)
+                Mat m = new Mat();
+                camara.Retrieve(m); // Forma más segura de obtener el frame
+
+                if (m.IsEmpty) return;
+
+                using (var frame = m.ToImage<Bgr, byte>())
                 {
                     picValidar.Image = frame.ToBitmap();
                     var rostroActual = clsSoporte.DetectarRostro(frame);
 
-                    if (rostroActual != null)
+                    if (rostroActual != null && rostroReferencia != null)
                     {
-                        try
-                        {
-                            // 1. Creamos los objetos para los histogramas
-                            Mat histActual = new Mat();
-                            Mat histReferencia = new Mat();
-
-                            // Definimos rangos y dimensiones (estándar para escala de grises)
-                            float[] range = { 0, 256 };
-                            int[] histSize = { 256 };
-                            int[] channels = { 0 };
-
-                            // 2. Calculamos el Histograma para el rostro de la cámara
-                            using (VectorOfMat vMat = new VectorOfMat(rostroActual.Mat))
-                            {
-                                CvInvoke.CalcHist(vMat, channels, null, histActual, histSize, range, false);
-                            }
-
-                            // 3. Calculamos el Histograma para la foto guardada
-                            using (VectorOfMat vRef = new VectorOfMat(rostroReferencia.Mat))
-                            {
-                                CvInvoke.CalcHist(vRef, channels, null, histReferencia, histSize, range, false);
-                            }
-
-                            // 4. NORMALIZACIÓN (Vital para que el tipo sea CV_32F y evitar tu error)
-                            CvInvoke.Normalize(histActual, histActual, 0, 1, Emgu.CV.CvEnum.NormType.MinMax, Emgu.CV.CvEnum.DepthType.Cv32F);
-                            CvInvoke.Normalize(histReferencia, histReferencia, 0, 1, Emgu.CV.CvEnum.NormType.MinMax, Emgu.CV.CvEnum.DepthType.Cv32F);
-
-                            // 5. Ahora sí, comparamos
-                            double similitud = CvInvoke.CompareHist(histActual, histReferencia, Emgu.CV.CvEnum.HistogramCompMethod.Correl);
-
-                            // Debug opcional: ver el valor en consola para ajustar el 0.8
-                            Console.WriteLine("Similitud detectada: " + similitud);
-
-                            if (similitud > 0.8)
-                            {
-                                Finalizar(DialogResult.OK);
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            // Esto evitará que el programa se cierre si hay un error de procesamiento
-                            Console.WriteLine("Error en comparación: " + ex.Message);
-                        }
+                        // Llamamos al método que causaba el error CS0103
+                        CompararRostros(rostroActual);
                     }
                 }
             }
+            catch (Exception) { /* Ignorar errores temporales de lectura */ }
         }
+
+        // ESTE ES EL MÉTODO QUE FALTABA (Solución al error CS0103)
+        private void CompararRostros(Image<Gray, byte> rostroActual)
+        {
+            try
+            {
+                Mat histActual = new Mat();
+                Mat histReferencia = new Mat();
+                float[] range = { 0, 256 };
+                int[] histSize = { 256 };
+                int[] channels = { 0 };
+
+                using (VectorOfMat v1 = new VectorOfMat(rostroActual.Mat))
+                    CvInvoke.CalcHist(v1, channels, null, histActual, histSize, range, false);
+
+                using (VectorOfMat v2 = new VectorOfMat(rostroReferencia.Mat))
+                    CvInvoke.CalcHist(v2, channels, null, histReferencia, histSize, range, false);
+
+                CvInvoke.Normalize(histActual, histActual, 0, 1, Emgu.CV.CvEnum.NormType.MinMax, Emgu.CV.CvEnum.DepthType.Cv32F);
+                CvInvoke.Normalize(histReferencia, histReferencia, 0, 1, Emgu.CV.CvEnum.NormType.MinMax, Emgu.CV.CvEnum.DepthType.Cv32F);
+
+                double similitud = CvInvoke.CompareHist(histActual, histReferencia, Emgu.CV.CvEnum.HistogramCompMethod.Correl);
+
+                if (similitud > 0.8) // Umbral de éxito
+                {
+                    Finalizar(DialogResult.OK);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error comp: " + ex.Message);
+            }
+        }
+
         private void Finalizar(DialogResult resultado)
         {
-            // Detenemos el evento Idle para que no siga procesando frames
             Application.Idle -= ProcesoValidacion;
-
             if (camara != null)
             {
-                camara.Dispose();
-                camara = null; // IMPORTANTE: Esto rompe el bucle infinito
-            }
-
-            this.DialogResult = resultado;
-
-            // Solo llamamos a Close si el formulario aún no se está cerrando
-            // Esto evita que vuelva a disparar OnFormClosing innecesariamente
-            if (this.Visible)
-            {
-                this.Close();
-            }
-        }
-        protected override void OnFormClosing(FormClosingEventArgs e)
-        {
-            // Si la cámara aún existe, significa que el usuario cerró la ventana manualmente (con la X)
-            // En ese caso, limpiamos recursos pero no volvemos a llamar a Close()
-            if (camara != null)
-            {
-                Application.Idle -= ProcesoValidacion;
                 camara.Dispose();
                 camara = null;
             }
+            this.DialogResult = resultado;
 
+            // Solo cerramos si el formulario no se está cerrando ya
+            if (this.Visible) this.Close();
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            Application.Idle -= ProcesoValidacion;
+            if (camara != null)
+            {
+                camara.Dispose();
+                camara = null;
+            }
             base.OnFormClosing(e);
         }
 
