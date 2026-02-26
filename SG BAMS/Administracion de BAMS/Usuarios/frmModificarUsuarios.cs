@@ -25,10 +25,9 @@ namespace SG_BAMS
 
             txtNombre.Text = nombre;
 
-            // IMPORTANTE: Para que SelectedValue funcione, los combos ya deben tener datos
-            // Es recomendable llamar a los métodos de cargar combos en el evento Load
-            this.Load += async (s, e) => {
-                await CargarCombos(); // Método que rellena cmbRol y cmbEstado
+            this.Load += async (s, e) =>
+            {
+                await CargarCombos();
                 cmbRol.SelectedValue = rol;
                 cmbEstado.SelectedValue = estado;
             };
@@ -62,14 +61,6 @@ namespace SG_BAMS
         }
 
 
-        private void kryptonButton6_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            frmUsuarios verUsuario = new frmUsuarios();
-            verUsuario.Show();
-
-        }
-
         private void kryptonButton3_Click(object sender, EventArgs e)
         {
             frmImagenEmpleado agregarImagen = new frmImagenEmpleado();
@@ -85,7 +76,7 @@ namespace SG_BAMS
                 // Obtenemos los valores de los controles
                 int idRol = (int)cmbRol.SelectedValue;
                 int idEstado = (int)cmbEstado.SelectedValue;
-                byte[] imagenByte = null; // Lógica de imagen similar a la de agregar
+                byte[] imagenByte = null;
 
                 bool exito = await objetoUsuario.ModificarUsuarioAsync(
                     idUsuarioSeleccionado,
@@ -101,13 +92,20 @@ namespace SG_BAMS
                     MessageBox.Show("Usuario actualizado correctamente.");
                     frmUsuarios verUsuarios = new frmUsuarios();
                     verUsuarios.Show();
-                    this.Close(); // Regresa al listado
+                    this.Close();
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            frmUsuarios verUsuario = new frmUsuarios();
+            verUsuario.Show();
+            this.Close();
         }
     }
 }

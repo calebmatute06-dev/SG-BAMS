@@ -49,9 +49,9 @@ namespace SG_BAMS
 
         private void btmSalir_Click(object sender, EventArgs e)
         {
-            frmRoles verRoles = new frmRoles();
-            verRoles.Show();
             this.Close();
+
+           
         }
     }
 }

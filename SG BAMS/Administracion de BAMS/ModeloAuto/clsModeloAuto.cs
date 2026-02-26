@@ -66,5 +66,33 @@ namespace SG_BAMS.Administracion_de_BAMS.ModeloAuto
             }
         }
 
+
+        public async Task<bool> ModificarModeloAutoAsync(int id, string nuevoNombre)
+        {
+            try
+            {
+                AbrirConexion();
+                // Usamos el nombre de columna 'nombre_modelo_auto' de tu base de datos
+                string query = "UPDATE Modelo_de_auto SET nombre_modelo_auto = @nombre WHERE id_modelo_auto = @id";
+
+                using (SqlCommand cmd = new SqlCommand(query, Conectar))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@nombre", nuevoNombre);
+
+                    int filasAfectadas = await cmd.ExecuteNonQueryAsync();
+                    return filasAfectadas > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al modificar el modelo de auto: " + ex.Message);
+            }
+            finally
+            {
+                Cerrar();
+            }
+        }
+
     }
 }
