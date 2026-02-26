@@ -49,7 +49,6 @@ namespace SG_BAMS
                 return;
             }
 
-            // Obtenemos el texto visible (el nombre)
             string nombreArchivo = cmbUsuarios2.Text;
 
             using (var frame = camara.QueryFrame().ToImage<Bgr, byte>())
@@ -57,9 +56,16 @@ namespace SG_BAMS
                 var rostro = clsSoporte.DetectarRostro(frame);
                 if (rostro != null)
                 {
-                    string path = Path.Combine(clsSoporte.DirectorioRostros, nombreArchivo + ".jpg");
+                    // Agregamos un número único (Ticks) para permitir múltiples fotos del mismo usuario
+                    string nombreFoto = $"{nombreArchivo}_{DateTime.Now.Ticks}.jpg";
+                    string path = Path.Combine(clsSoporte.DirectorioRostros, nombreFoto);
+
                     rostro.Save(path);
-                    MessageBox.Show("Rostro guardado para " + nombreArchivo);
+                    MessageBox.Show("Rostro guardado. Puedes tomar más fotos cambiando tu expresión o usando lentes para mejorar el reconocimiento.", "Éxito");
+                }
+                else
+                {
+                    MessageBox.Show("No se detectó ningún rostro. Intenta de nuevo.");
                 }
             }
         }
@@ -142,51 +148,47 @@ namespace SG_BAMS
 
         private void btnBorrar_Click(object sender, EventArgs e)
         {
-            // 1. Validamos que haya un usuario seleccionado en el ComboBox
             if (cmbUsuarios2.SelectedItem == null)
             {
-                MessageBox.Show("Por favor, selecciona un usuario de la lista para borrar su registro facial.",
-                                "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor, selecciona un usuario.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             string nombreUsuario = cmbUsuarios2.Text;
 
-            // 2. Construimos la ruta del archivo usando tu clase clsSoporte
-            string path = Path.Combine(clsSoporte.DirectorioRostros, nombreUsuario + ".jpg");
-
             try
             {
-                // 3. Verificamos si el archivo existe antes de intentar borrarlo
-                if (File.Exists(path))
+                // Buscamos todas las fotos que pertenezcan a este usuario
+                // Filtramos para evitar borrar "Juanito" si seleccionamos "Juan"
+                var archivos = Directory.GetFiles(clsSoporte.DirectorioRostros, "*.jpg")
+                    .Where(f => Path.GetFileNameWithoutExtension(f) == nombreUsuario ||
+                                Path.GetFileNameWithoutExtension(f).StartsWith(nombreUsuario + "_"))
+                    .ToList();
+
+                if (archivos.Count > 0)
                 {
-                    // Preguntar confirmación al usuario
-                    DialogResult result = MessageBox.Show($"¿Estás seguro de que deseas eliminar el registro biométrico de {nombreUsuario}?",
+                    DialogResult result = MessageBox.Show($"¿Deseas eliminar las {archivos.Count} fotos biométricas de {nombreUsuario}?",
                                                           "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (result == DialogResult.Yes)
                     {
-                        // Importante: Si la cámara está encendida y mostrando esa imagen, 
-                        // a veces el archivo puede estar "bloqueado". Por seguridad, liberamos recursos.
-                        File.Delete(path);
+                        foreach (var archivo in archivos)
+                        {
+                            File.Delete(archivo);
+                        }
 
-                        MessageBox.Show($"El registro facial de {nombreUsuario} ha sido eliminado.",
-                                        "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        // Opcional: Limpiar el PictureBox si se estaba mostrando la cara borrada
+                        MessageBox.Show($"Se han eliminado los registros faciales de {nombreUsuario}.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         pctCamara.Image = null;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("No existe un registro facial guardado para este usuario.",
-                                    "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("No existen registros faciales para este usuario.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al intentar borrar el archivo: " + ex.Message,
-                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al intentar borrar archivos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         //--------------------------------------------------------------Final

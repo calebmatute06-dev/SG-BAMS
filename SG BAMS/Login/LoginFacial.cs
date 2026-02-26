@@ -19,7 +19,7 @@ namespace SG_BAMS.Login
         // Propiedad para recibir el usuario desde el Login
         public string UsuarioAValidar { get; set; }
         private VideoCapture camara;
-        private Image<Gray, byte> rostroReferencia;
+        private List<Image<Gray, byte>> rostrosReferencia = new List<Image<Gray, byte>>();
         public LoginFacial()
         {
             InitializeComponent();
@@ -27,16 +27,25 @@ namespace SG_BAMS.Login
 
         private void LoginFacial_Load(object sender, EventArgs e)
         {
-            string rutaFoto = Path.Combine(clsSoporte.DirectorioRostros, UsuarioAValidar + ".jpg");
+            // Buscamos todas las fotos del usuario (la original .jpg y las nuevas _ticks.jpg)
+            var archivos = Directory.GetFiles(clsSoporte.DirectorioRostros, "*.jpg")
+                .Where(f => Path.GetFileNameWithoutExtension(f) == UsuarioAValidar ||
+                            Path.GetFileNameWithoutExtension(f).StartsWith(UsuarioAValidar + "_"))
+                .ToList();
 
-            if (!File.Exists(rutaFoto))
+            if (archivos.Count == 0)
             {
                 MessageBox.Show("No tienes un registro facial.", "Error");
                 Finalizar(DialogResult.Abort);
                 return;
             }
 
-            rostroReferencia = new Image<Gray, byte>(rutaFoto);
+            // Cargamos todas las fotos a la lista en memoria
+            foreach (var archivo in archivos)
+            {
+                rostrosReferencia.Add(new Image<Gray, byte>(archivo));
+            }
+
             camara = new VideoCapture(0);
             Application.Idle += ProcesoValidacion;
         }
@@ -70,7 +79,7 @@ namespace SG_BAMS.Login
                     // Detectamos el rostro
                     var rostroActual = clsSoporte.DetectarRostro(frame);
 
-                    if (rostroActual != null && rostroReferencia != null)
+                    if (rostroActual != null && rostrosReferencia != null)
                     {
                         // Llamamos a la comparación
                         CompararRostros(rostroActual);
@@ -85,24 +94,22 @@ namespace SG_BAMS.Login
         {
             try
             {
-                // Creamos una matriz para almacenar el resultado de la comparación
-                Mat resultado = new Mat();
-
-                // MatchTemplate compara la estructura y los patrones de los píxeles, no solo los colores.
-                // CcoeffNormed devuelve un valor entre -1.0 y 1.0 (1.0 es una coincidencia perfecta).
-                CvInvoke.MatchTemplate(rostroActual, rostroReferencia, resultado, Emgu.CV.CvEnum.TemplateMatchingType.CcoeffNormed);
-
-                double minVal = 0, maxVal = 0;
-                Point minLoc = new Point(), maxLoc = new Point();
-
-                // Extraemos el valor máximo de coincidencia
-                CvInvoke.MinMaxLoc(resultado, ref minVal, ref maxVal, ref minLoc, ref maxLoc);
-
-                // maxVal es nuestro porcentaje de similitud real.
-                // 0.70 (70%) es un buen punto de partida para rostros. Puedes subirlo a 0.75 o 0.80 si es muy permisivo.
-                if (maxVal > 0.70)
+                // Comparamos el rostro de la cámara con CADA UNA de las fotos guardadas
+                foreach (var referencia in rostrosReferencia)
                 {
-                    Finalizar(DialogResult.OK);
+                    Mat resultado = new Mat();
+                    CvInvoke.MatchTemplate(rostroActual, referencia, resultado, Emgu.CV.CvEnum.TemplateMatchingType.CcoeffNormed);
+
+                    double minVal = 0, maxVal = 0;
+                    Point minLoc = new Point(), maxLoc = new Point();
+                    CvInvoke.MinMaxLoc(resultado, ref minVal, ref maxVal, ref minLoc, ref maxLoc);
+
+                    // Si AL MENOS UNA foto coincide con más del 70%, damos acceso y salimos del ciclo
+                    if (maxVal > 0.70)
+                    {
+                        Finalizar(DialogResult.OK);
+                        return;
+                    }
                 }
             }
             catch (Exception ex)
@@ -120,7 +127,8 @@ namespace SG_BAMS.Login
                 camara = null;
             }
             this.DialogResult = resultado;
-
+            foreach (var img in rostrosReferencia) { img.Dispose(); }
+            rostrosReferencia.Clear();
             // Solo cerramos si el formulario no se está cerrando ya
             if (this.Visible) this.Close();
         }
