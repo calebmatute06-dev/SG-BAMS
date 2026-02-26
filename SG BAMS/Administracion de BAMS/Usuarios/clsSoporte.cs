@@ -40,14 +40,11 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
             DataTable dt = new DataTable();
             try
             {
-                // 1. Llamamos al método de tu clase base para configurar e iniciar la conexión
                 AbrirConexion();
-
-                // 2. Usamos 'Conectar' (que es el nombre en tu ClsConexion)
+                // Al ejecutar este SP, ya vendrán filtrados desde SQL
                 using (SqlCommand cmd = new SqlCommand("PA_CargarUsuarios", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dt);
@@ -56,11 +53,10 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
             }
             catch (Exception ex)
             {
-                throw new Exception("Error en clsSoporte: " + ex.Message);
+                throw new Exception("Error en clsSoporte al filtrar activos: " + ex.Message);
             }
             finally
             {
-                // 3. Usamos tu método Cerrar() para liberar la base de datos
                 Cerrar();
             }
             return dt;
