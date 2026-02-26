@@ -72,7 +72,14 @@ namespace SG_BAMS
             }
         }
 
-        private async void kryptonButton1_Click(object sender, EventArgs e)
+        
+
+        private void Perfil_Shown(object sender, EventArgs e)
+        {
+            Ayudante_UI.AplicarZoomGlobal(this);
+        }
+
+        private async void btncambiarfoto_Click(object sender, EventArgs e)
         {
             OpenFileDialog selectorImagen = new OpenFileDialog();
             selectorImagen.Filter = "Archivos de imagen|*.jpg;*.jpeg;*.png";
@@ -103,11 +110,6 @@ namespace SG_BAMS
                     MessageBox.Show("Error al procesar la imagen: " + ex.Message);
                 }
             }
-        }
-
-        private void Perfil_Shown(object sender, EventArgs e)
-        {
-            Ayudante_UI.AplicarZoomGlobal(this);
         }
     }
 }

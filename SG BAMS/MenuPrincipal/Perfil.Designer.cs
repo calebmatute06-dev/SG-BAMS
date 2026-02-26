@@ -40,7 +40,7 @@
             pictureBox5 = new PictureBox();
             btnsalir = new Krypton.Toolkit.KryptonButton();
             label6 = new Label();
-            kryptonButton1 = new Krypton.Toolkit.KryptonButton();
+            btncambiarfoto = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)pbFotoPerfil).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -183,36 +183,36 @@
             label6.TabIndex = 84;
             label6.Text = "BAMS";
             // 
-            // kryptonButton1
+            // btncambiarfoto
             // 
-            kryptonButton1.Location = new Point(184, 331);
-            kryptonButton1.Name = "kryptonButton1";
-            kryptonButton1.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            kryptonButton1.OverrideDefault.Back.Color2 = Color.White;
-            kryptonButton1.OverrideDefault.Border.Rounding = 40F;
-            kryptonButton1.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            kryptonButton1.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton1.Size = new Size(220, 53);
-            kryptonButton1.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonButton1.StateCommon.Back.Color2 = Color.White;
-            kryptonButton1.StateCommon.Border.Rounding = 40F;
-            kryptonButton1.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton1.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton1.StateNormal.Back.Color1 = Color.SkyBlue;
-            kryptonButton1.StateNormal.Back.Color2 = Color.White;
-            kryptonButton1.StateNormal.Border.Rounding = 40F;
-            kryptonButton1.StateTracking.Border.Rounding = 40F;
-            kryptonButton1.TabIndex = 85;
-            kryptonButton1.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton1.Values.Text = "Cambiar foto";
-            kryptonButton1.Click += kryptonButton1_Click;
+            btncambiarfoto.Location = new Point(188, 331);
+            btncambiarfoto.Name = "btncambiarfoto";
+            btncambiarfoto.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btncambiarfoto.OverrideDefault.Back.Color2 = Color.White;
+            btncambiarfoto.OverrideDefault.Border.Rounding = 40F;
+            btncambiarfoto.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btncambiarfoto.OverrideFocus.Back.Color2 = Color.White;
+            btncambiarfoto.Size = new Size(220, 53);
+            btncambiarfoto.StateCommon.Back.Color1 = Color.SkyBlue;
+            btncambiarfoto.StateCommon.Back.Color2 = Color.White;
+            btncambiarfoto.StateCommon.Border.Rounding = 40F;
+            btncambiarfoto.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btncambiarfoto.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btncambiarfoto.StateNormal.Back.Color1 = Color.SkyBlue;
+            btncambiarfoto.StateNormal.Back.Color2 = Color.White;
+            btncambiarfoto.StateNormal.Border.Rounding = 40F;
+            btncambiarfoto.StateTracking.Border.Rounding = 40F;
+            btncambiarfoto.TabIndex = 86;
+            btncambiarfoto.Values.DropDownArrowColor = Color.Empty;
+            btncambiarfoto.Values.Text = "Cambiar foto";
+            btncambiarfoto.Click += btncambiarfoto_Click;
             // 
             // Perfil
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(606, 541);
-            Controls.Add(kryptonButton1);
+            Controls.Add(btncambiarfoto);
             Controls.Add(label6);
             Controls.Add(btnsalir);
             Controls.Add(pictureBox4);
@@ -252,6 +252,6 @@
         private PictureBox pictureBox5;
         private Krypton.Toolkit.KryptonButton btnsalir;
         private Label label6;
-        private Krypton.Toolkit.KryptonButton kryptonButton1;
+        private Krypton.Toolkit.KryptonButton btncambiarfoto;
     }
 }
