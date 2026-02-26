@@ -1,6 +1,7 @@
 ﻿using Emgu.CV;
 using Emgu.CV.Structure;
 using SG_BAMS.Administracion_de_BAMS.Usuarios;
+using Emgu.CV.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -51,42 +52,89 @@ namespace SG_BAMS.Login
             {
                 if (frame != null)
                 {
-                    // Mostramos el video en un PictureBox llamado 'picValidar'
                     picValidar.Image = frame.ToBitmap();
-
-                    // 3. Detectamos el rostro en vivo
                     var rostroActual = clsSoporte.DetectarRostro(frame);
 
                     if (rostroActual != null)
                     {
-                        // 4. Comparamos Histogramas (Similitud)
-                        // CvInvoke.CompareHist requiere que ambos tengan el mismo tamaño
-                        double similitud = CvInvoke.CompareHist(rostroActual, rostroReferencia, Emgu.CV.CvEnum.HistogramCompMethod.Correl);
-
-                        // Si la coincidencia es mayor al 80%
-                        if (similitud > 0.8)
+                        try
                         {
-                            Finalizar(DialogResult.OK);
+                            // 1. Creamos los objetos para los histogramas
+                            Mat histActual = new Mat();
+                            Mat histReferencia = new Mat();
+
+                            // Definimos rangos y dimensiones (estándar para escala de grises)
+                            float[] range = { 0, 256 };
+                            int[] histSize = { 256 };
+                            int[] channels = { 0 };
+
+                            // 2. Calculamos el Histograma para el rostro de la cámara
+                            using (VectorOfMat vMat = new VectorOfMat(rostroActual.Mat))
+                            {
+                                CvInvoke.CalcHist(vMat, channels, null, histActual, histSize, range, false);
+                            }
+
+                            // 3. Calculamos el Histograma para la foto guardada
+                            using (VectorOfMat vRef = new VectorOfMat(rostroReferencia.Mat))
+                            {
+                                CvInvoke.CalcHist(vRef, channels, null, histReferencia, histSize, range, false);
+                            }
+
+                            // 4. NORMALIZACIÓN (Vital para que el tipo sea CV_32F y evitar tu error)
+                            CvInvoke.Normalize(histActual, histActual, 0, 1, Emgu.CV.CvEnum.NormType.MinMax, Emgu.CV.CvEnum.DepthType.Cv32F);
+                            CvInvoke.Normalize(histReferencia, histReferencia, 0, 1, Emgu.CV.CvEnum.NormType.MinMax, Emgu.CV.CvEnum.DepthType.Cv32F);
+
+                            // 5. Ahora sí, comparamos
+                            double similitud = CvInvoke.CompareHist(histActual, histReferencia, Emgu.CV.CvEnum.HistogramCompMethod.Correl);
+
+                            // Debug opcional: ver el valor en consola para ajustar el 0.8
+                            Console.WriteLine("Similitud detectada: " + similitud);
+
+                            if (similitud > 0.8)
+                            {
+                                Finalizar(DialogResult.OK);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            // Esto evitará que el programa se cierre si hay un error de procesamiento
+                            Console.WriteLine("Error en comparación: " + ex.Message);
                         }
                     }
                 }
             }
-
         }
         private void Finalizar(DialogResult resultado)
         {
+            // Detenemos el evento Idle para que no siga procesando frames
             Application.Idle -= ProcesoValidacion;
+
             if (camara != null)
             {
                 camara.Dispose();
-                camara = null;
+                camara = null; // IMPORTANTE: Esto rompe el bucle infinito
             }
+
             this.DialogResult = resultado;
-            this.Close();
+
+            // Solo llamamos a Close si el formulario aún no se está cerrando
+            // Esto evita que vuelva a disparar OnFormClosing innecesariamente
+            if (this.Visible)
+            {
+                this.Close();
+            }
         }
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            Finalizar(this.DialogResult);
+            // Si la cámara aún existe, significa que el usuario cerró la ventana manualmente (con la X)
+            // En ese caso, limpiamos recursos pero no volvemos a llamar a Close()
+            if (camara != null)
+            {
+                Application.Idle -= ProcesoValidacion;
+                camara.Dispose();
+                camara = null;
+            }
+
             base.OnFormClosing(e);
         }
 
