@@ -57,9 +57,48 @@ namespace SG_BAMS.Proveedor
             this.Hide();
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
+        private void txtBuscar_KeyUp(object sender, KeyEventArgs e)
         {
             proveedor.BuscarProveedor(txtBuscar, dgvProveedor);
+        }
+
+        private void btnAgregar_Click_1(object sender, EventArgs e)
+        {
+            AgregarProveedores agregar = new AgregarProveedores();
+            agregar.Show();
+            this.Hide();
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            if (dgvProveedor.CurrentRow == null)
+            {
+                MessageBox.Show("Seleccione un proveedor.");
+                return;
+            }
+
+            int idProveedor = Convert.ToInt32(dgvProveedor.CurrentRow.Cells["ID"].Value);
+            string nombre = dgvProveedor.CurrentRow.Cells["Nombre"].Value.ToString();
+            string contacto = dgvProveedor.CurrentRow.Cells["Contacto"].Value.ToString();
+            string direccion = dgvProveedor.CurrentRow.Cells["Dirección"].Value.ToString();
+            string rtn = dgvProveedor.CurrentRow.Cells["RTN"].Value.ToString();
+            int idEstado = Convert.ToInt32(dgvProveedor.CurrentRow.Cells["idEstado"].Value);
+            int idClasificacion = Convert.ToInt32(dgvProveedor.CurrentRow.Cells["idClasificacion"].Value);
+
+            ModificarProveedor frm = new ModificarProveedor(idProveedor, nombre, contacto, direccion, rtn, idEstado, idClasificacion);
+            frm.Show();
+            this.Hide();
+        }
+
+        private void dtpHasta_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            txtBuscar.Clear();
+            proveedor.cargarDatos(dgvProveedor);
         }
     }
 }

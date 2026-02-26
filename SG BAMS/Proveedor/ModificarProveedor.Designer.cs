@@ -37,13 +37,13 @@
             btnsalir = new Krypton.Toolkit.KryptonButton();
             pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
-            txtDiccionario = new Krypton.Toolkit.KryptonTextBox();
+            txtDireccion = new Krypton.Toolkit.KryptonTextBox();
             label2 = new Label();
             txtRTN = new Krypton.Toolkit.KryptonTextBox();
             label1 = new Label();
             txtTelefono = new Krypton.Toolkit.KryptonTextBox();
             txtNombre = new Krypton.Toolkit.KryptonTextBox();
-            txtUsuario = new Krypton.Toolkit.KryptonTextBox();
+            txtID = new Krypton.Toolkit.KryptonTextBox();
             label15 = new Label();
             label7 = new Label();
             label4 = new Label();
@@ -77,14 +77,14 @@
             pictureBox4.Location = new Point(-1, 0);
             pictureBox4.Margin = new Padding(3, 2, 3, 2);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(13, 418);
+            pictureBox4.Size = new Size(13, 427);
             pictureBox4.TabIndex = 187;
             pictureBox4.TabStop = false;
             // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Navy;
-            pictureBox1.Location = new Point(-1, 416);
+            pictureBox1.Location = new Point(-1, 427);
             pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(451, 11);
@@ -93,7 +93,7 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(236, 379);
+            btnCancelar.Location = new Point(236, 387);
             btnCancelar.Margin = new Padding(3, 2, 3, 2);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -117,7 +117,7 @@
             // 
             // btnAceptar
             // 
-            btnAceptar.Location = new Point(342, 379);
+            btnAceptar.Location = new Point(342, 387);
             btnAceptar.Margin = new Padding(3, 2, 3, 2);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -138,6 +138,7 @@
             btnAceptar.TabIndex = 184;
             btnAceptar.Values.DropDownArrowColor = Color.Empty;
             btnAceptar.Values.Text = "Aceptar";
+            btnAceptar.Click += btnAceptar_Click;
             // 
             // label8
             // 
@@ -152,7 +153,7 @@
             // 
             // btnsalir
             // 
-            btnsalir.Location = new Point(18, 379);
+            btnsalir.Location = new Point(18, 387);
             btnsalir.Margin = new Padding(3, 2, 3, 2);
             btnsalir.Name = "btnsalir";
             btnsalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -181,7 +182,7 @@
             pictureBox3.Location = new Point(438, 0);
             pictureBox3.Margin = new Padding(3, 2, 3, 2);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(13, 418);
+            pictureBox3.Size = new Size(13, 438);
             pictureBox3.TabIndex = 165;
             pictureBox3.TabStop = false;
             // 
@@ -195,16 +196,16 @@
             pictureBox2.TabIndex = 164;
             pictureBox2.TabStop = false;
             // 
-            // txtDiccionario
+            // txtDireccion
             // 
-            txtDiccionario.Location = new Point(175, 194);
-            txtDiccionario.Margin = new Padding(3, 2, 3, 2);
-            txtDiccionario.Name = "txtDiccionario";
-            txtDiccionario.Size = new Size(219, 35);
-            txtDiccionario.StateCommon.Back.Color1 = Color.SkyBlue;
-            txtDiccionario.StateCommon.Border.Rounding = 20F;
-            txtDiccionario.StateCommon.Content.Color1 = Color.Navy;
-            txtDiccionario.TabIndex = 202;
+            txtDireccion.Location = new Point(175, 194);
+            txtDireccion.Margin = new Padding(3, 2, 3, 2);
+            txtDireccion.Name = "txtDireccion";
+            txtDireccion.Size = new Size(219, 35);
+            txtDireccion.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtDireccion.StateCommon.Border.Rounding = 20F;
+            txtDireccion.StateCommon.Content.Color1 = Color.Navy;
+            txtDireccion.TabIndex = 202;
             // 
             // label2
             // 
@@ -235,7 +236,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(57, 324);
+            label1.Location = new Point(57, 334);
             label1.Name = "label1";
             label1.Size = new Size(118, 26);
             label1.TabIndex = 198;
@@ -263,16 +264,16 @@
             txtNombre.StateCommon.Content.Color1 = Color.Navy;
             txtNombre.TabIndex = 196;
             // 
-            // txtUsuario
+            // txtID
             // 
-            txtUsuario.Location = new Point(175, 75);
-            txtUsuario.Margin = new Padding(3, 2, 3, 2);
-            txtUsuario.Name = "txtUsuario";
-            txtUsuario.Size = new Size(219, 35);
-            txtUsuario.StateCommon.Back.Color1 = Color.SkyBlue;
-            txtUsuario.StateCommon.Border.Rounding = 20F;
-            txtUsuario.StateCommon.Content.Color1 = Color.Navy;
-            txtUsuario.TabIndex = 195;
+            txtID.Location = new Point(175, 75);
+            txtID.Margin = new Padding(3, 2, 3, 2);
+            txtID.Name = "txtID";
+            txtID.Size = new Size(219, 35);
+            txtID.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtID.StateCommon.Border.Rounding = 20F;
+            txtID.StateCommon.Content.Color1 = Color.Navy;
+            txtID.TabIndex = 195;
             // 
             // label15
             // 
@@ -325,7 +326,7 @@
             // cmbClasificacion
             // 
             cmbClasificacion.DropDownWidth = 300;
-            cmbClasificacion.Location = new Point(175, 316);
+            cmbClasificacion.Location = new Point(175, 326);
             cmbClasificacion.Margin = new Padding(3, 2, 3, 2);
             cmbClasificacion.Name = "cmbClasificacion";
             cmbClasificacion.Size = new Size(219, 48);
@@ -373,17 +374,17 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(451, 428);
+            ClientSize = new Size(451, 438);
             Controls.Add(cmbEstado);
             Controls.Add(label5);
             Controls.Add(cmbClasificacion);
-            Controls.Add(txtDiccionario);
+            Controls.Add(txtDireccion);
             Controls.Add(label2);
             Controls.Add(txtRTN);
             Controls.Add(label1);
             Controls.Add(txtTelefono);
             Controls.Add(txtNombre);
-            Controls.Add(txtUsuario);
+            Controls.Add(txtID);
             Controls.Add(label15);
             Controls.Add(label7);
             Controls.Add(label4);
@@ -423,13 +424,13 @@
         private Krypton.Toolkit.KryptonButton btnsalir;
         private PictureBox pictureBox3;
         private PictureBox pictureBox2;
-        private Krypton.Toolkit.KryptonTextBox txtDiccionario;
+        private Krypton.Toolkit.KryptonTextBox txtDireccion;
         private Label label2;
         private Krypton.Toolkit.KryptonTextBox txtRTN;
         private Label label1;
         private Krypton.Toolkit.KryptonTextBox txtTelefono;
         private Krypton.Toolkit.KryptonTextBox txtNombre;
-        private Krypton.Toolkit.KryptonTextBox txtUsuario;
+        private Krypton.Toolkit.KryptonTextBox txtID;
         private Label label15;
         private Label label7;
         private Label label4;

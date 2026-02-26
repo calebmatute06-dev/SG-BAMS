@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SG_BAMS.Administracion_de_BAMS.Estado;
 
 namespace SG_BAMS.Proveedor
 {
     public partial class AgregarProveedores : Form
     {
+        ClsProveedor proveedor = new ClsProveedor();
+
         public AgregarProveedores()
         {
             InitializeComponent();
@@ -19,13 +22,40 @@ namespace SG_BAMS.Proveedor
 
         private void AgregarProveedores_Load(object sender, EventArgs e)
         {
-
+            proveedor.CargarComboClasificacion(cmbClasificacion);
         }
 
         private void btnsalir_Click(object sender, EventArgs e)
         {
             ProveedoresAdmin proveedor = new ProveedoresAdmin();
             proveedor.Show();
+            this.Close();
+        }
+
+        private void cmbClasificacion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbClasificacion.SelectedIndex != -1 && cmbClasificacion.SelectedItem is DataRowView)
+            {
+                DataRowView drv = (DataRowView)cmbClasificacion.SelectedItem;
+                int idClasificacion = Convert.ToInt32(drv["id_clasificacion_proveedor"]);
+                string nombreClasificacion = drv["clasificacion_proveedor"].ToString();
+            }
+        }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            int idClasificacion = Convert.ToInt32(cmbClasificacion.SelectedValue);
+
+            proveedor.AgregarProveedor(
+                txtNombre.Text.Trim(),
+                txtTelefono.Text.Trim(),
+                txtDireccion.Text.Trim(),
+                txtRTN.Text.Trim(),
+                idClasificacion
+            );
+
+            ProveedoresAdmin proveedorAdmin = new ProveedoresAdmin();
+            proveedorAdmin.Show();
             this.Close();
         }
     }

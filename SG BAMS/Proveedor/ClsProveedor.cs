@@ -59,22 +59,43 @@ namespace SG_BAMS.Proveedor
             }
         }
 
-        /*
-        public void CargarComboClasificacion()
+        
+        public void CargarComboClasificacion(Krypton.Toolkit.KryptonComboBox cmb)
         {
+            try
+            {
+                AbrirConexion();
+                string consulta = "SELECT * FROM vista_clasificacion";
+                SqlDataAdapter adapter = new SqlDataAdapter(consulta, Conectar);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
 
+
+                cmb.DataSource = dt;
+                cmb.DisplayMember = "clasificacion_proveedor";
+                cmb.ValueMember = "id_clasificacion_proveedor";
+                cmb.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar ComboBox: " + ex.Message);
+            }
+            finally
+            {
+                Cerrar();
+            }
         }
-        */
+        
 
 
-        public void BuscarProveedor(Krypton.Toolkit.KryptonTextBox txt, Krypton.Toolkit.KryptonDataGridView dgvBitacora)
+        public void BuscarProveedor(Krypton.Toolkit.KryptonTextBox txt, Krypton.Toolkit.KryptonDataGridView dgvProveedor)
         {
             try
             {
                 string nombre = txt.Text.Trim();
                 if (string.IsNullOrWhiteSpace(nombre))
                 {
-                    cargarDatos(dgvBitacora);
+                    cargarDatos(dgvProveedor);
                     Cerrar();
                     return;
                 }
@@ -90,7 +111,7 @@ namespace SG_BAMS.Proveedor
                 DataTable resultado = new DataTable();
                 adapter.Fill(resultado);
 
-                dgvBitacora.DataSource = resultado;
+                dgvProveedor.DataSource = resultado;
 
                 Cerrar();
             }
@@ -98,6 +119,72 @@ namespace SG_BAMS.Proveedor
             {
                 Cerrar();
                 MessageBox.Show("Error al buscar: " + ex.Message);
+            }
+        }
+
+        public void AgregarProveedor(string nombre, string contacto, string direccion, string rtn,
+            int idClasificacion)
+        {
+            try
+            {
+                AbrirConexion();
+
+                using (SqlCommand cmd = new SqlCommand("sp_proveedor_insertar", Conectar))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@nombre_proveedor", nombre);
+                    cmd.Parameters.AddWithValue("@contacto_proveedor", contacto);
+                    cmd.Parameters.AddWithValue("@direccion_proveedor", direccion);
+                    cmd.Parameters.AddWithValue("@rtn_proveedor", rtn);
+                    cmd.Parameters.AddWithValue("@id_clasificacion_proveedor", idClasificacion);
+
+                    cmd.ExecuteNonQuery();
+                }
+
+                MessageBox.Show("Proveedor agregado correctamente.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al insertar proveedor: " + ex.Message);
+            }
+            finally
+            {
+                Cerrar();
+            }
+        }
+
+        public void ModificarProveedor(int idProveedor, string nombre, string contacto, string direccion,
+            string rtn, int idEstado, int idClasificacion)
+        {
+            try
+            {
+                AbrirConexion();
+
+                using (SqlCommand cmd = new SqlCommand("sp_proveedor_actualizar", Conectar))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@id_proveedor", idProveedor);
+                    cmd.Parameters.AddWithValue("@nombre_proveedor", nombre);
+                    cmd.Parameters.AddWithValue("@contacto_proveedor", contacto);
+                    cmd.Parameters.AddWithValue("@direccion_proveedor", direccion);
+                    cmd.Parameters.AddWithValue("@rtn_proveedor", rtn);
+                    cmd.Parameters.AddWithValue("@id_estado", idEstado);
+                    cmd.Parameters.AddWithValue("@id_clasificacion_proveedor", idClasificacion);
+
+                    cmd.ExecuteNonQuery();
+                }
+
+                MessageBox.Show("Proveedor modificado correctamente.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al modificar proveedor: " + ex.Message);
+            }
+            finally
+            {
+                Cerrar();
             }
         }
     }

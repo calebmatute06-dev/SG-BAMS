@@ -67,14 +67,12 @@
             panel2 = new Panel();
             dgvBitacora = new Krypton.Toolkit.KryptonDataGridView();
             pictureBox2 = new PictureBox();
-            pictureBox3 = new PictureBox();
-            pictureBox4 = new PictureBox();
             kryptonGroupBox1 = new Krypton.Toolkit.KryptonGroupBox();
-            btnImprimir = new Krypton.Toolkit.KryptonButton();
             kryptonGroupBox2 = new Krypton.Toolkit.KryptonGroupBox();
-            btnCompartir = new Krypton.Toolkit.KryptonButton();
             txtBuscar = new Krypton.Toolkit.KryptonTextBox();
             btnRefresh = new Button();
+            dtpHasta = new DateTimePicker();
+            dtpDesde = new DateTimePicker();
             button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
@@ -92,8 +90,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvBitacora).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).BeginInit();
@@ -138,7 +134,7 @@
             // 
             // btnExportar
             // 
-            btnExportar.Location = new Point(332, 243);
+            btnExportar.Location = new Point(542, 565);
             btnExportar.Margin = new Padding(3, 2, 3, 2);
             btnExportar.Name = "btnExportar";
             btnExportar.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -715,9 +711,9 @@
             // 
             dgvBitacora.BorderStyle = BorderStyle.None;
             dgvBitacora.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvBitacora.Location = new Point(542, 273);
+            dgvBitacora.Location = new Point(332, 238);
             dgvBitacora.Name = "dgvBitacora";
-            dgvBitacora.Size = new Size(448, 150);
+            dgvBitacora.Size = new Size(589, 242);
             dgvBitacora.TabIndex = 98;
             // 
             // pictureBox2
@@ -725,68 +721,21 @@
             pictureBox2.BackColor = Color.Transparent;
             pictureBox2.BackgroundImage = Properties.Resources.pdf;
             pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox2.Location = new Point(271, 250);
+            pictureBox2.Location = new Point(481, 572);
             pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(55, 45);
             pictureBox2.TabIndex = 37;
             pictureBox2.TabStop = false;
             // 
-            // pictureBox3
-            // 
-            pictureBox3.BackColor = Color.Transparent;
-            pictureBox3.BackgroundImage = Properties.Resources.impresora;
-            pictureBox3.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox3.Location = new Point(271, 346);
-            pictureBox3.Margin = new Padding(3, 2, 3, 2);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(55, 45);
-            pictureBox3.TabIndex = 103;
-            pictureBox3.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            pictureBox4.BackColor = Color.Transparent;
-            pictureBox4.BackgroundImage = Properties.Resources.share;
-            pictureBox4.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox4.Location = new Point(271, 444);
-            pictureBox4.Margin = new Padding(3, 2, 3, 2);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(55, 45);
-            pictureBox4.TabIndex = 104;
-            pictureBox4.TabStop = false;
-            // 
             // kryptonGroupBox1
             // 
             kryptonGroupBox1.CaptionVisible = false;
-            kryptonGroupBox1.Location = new Point(517, 199);
-            kryptonGroupBox1.Size = new Size(492, 315);
+            kryptonGroupBox1.Location = new Point(287, 199);
+            kryptonGroupBox1.Size = new Size(676, 315);
             kryptonGroupBox1.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroupBox1.StateCommon.Border.Rounding = 50F;
             kryptonGroupBox1.TabIndex = 105;
-            // 
-            // btnImprimir
-            // 
-            btnImprimir.Location = new Point(332, 342);
-            btnImprimir.Margin = new Padding(3, 2, 3, 2);
-            btnImprimir.Name = "btnImprimir";
-            btnImprimir.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnImprimir.OverrideDefault.Back.Color2 = Color.White;
-            btnImprimir.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnImprimir.OverrideFocus.Back.Color2 = Color.White;
-            btnImprimir.Size = new Size(170, 57);
-            btnImprimir.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnImprimir.StateCommon.Back.Color2 = Color.White;
-            btnImprimir.StateCommon.Border.Rounding = 100F;
-            btnImprimir.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnImprimir.StateCommon.Content.ShortText.Font = new Font("Arial", 15.75F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
-            btnImprimir.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnImprimir.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            btnImprimir.StatePressed.Back.Color1 = Color.Transparent;
-            btnImprimir.StatePressed.Back.Color2 = Color.Transparent;
-            btnImprimir.TabIndex = 106;
-            btnImprimir.Values.DropDownArrowColor = Color.Empty;
-            btnImprimir.Values.Text = "Imprimir";
             // 
             // kryptonGroupBox2
             // 
@@ -797,34 +746,11 @@
             kryptonGroupBox2.StateCommon.Border.Rounding = 50F;
             kryptonGroupBox2.TabIndex = 107;
             // 
-            // btnCompartir
-            // 
-            btnCompartir.Location = new Point(332, 442);
-            btnCompartir.Margin = new Padding(3, 2, 3, 2);
-            btnCompartir.Name = "btnCompartir";
-            btnCompartir.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnCompartir.OverrideDefault.Back.Color2 = Color.White;
-            btnCompartir.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnCompartir.OverrideFocus.Back.Color2 = Color.White;
-            btnCompartir.Size = new Size(170, 57);
-            btnCompartir.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnCompartir.StateCommon.Back.Color2 = Color.White;
-            btnCompartir.StateCommon.Border.Rounding = 70F;
-            btnCompartir.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnCompartir.StateCommon.Content.ShortText.Font = new Font("Arial", 15.75F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
-            btnCompartir.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnCompartir.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            btnCompartir.StatePressed.Back.Color1 = Color.Transparent;
-            btnCompartir.StatePressed.Back.Color2 = Color.Transparent;
-            btnCompartir.TabIndex = 106;
-            btnCompartir.Values.DropDownArrowColor = Color.Empty;
-            btnCompartir.Values.Text = "Compartir";
-            // 
             // txtBuscar
             // 
             txtBuscar.Location = new Point(287, 143);
             txtBuscar.Name = "txtBuscar";
-            txtBuscar.Size = new Size(548, 29);
+            txtBuscar.Size = new Size(340, 29);
             txtBuscar.StateCommon.Back.Color1 = Color.SkyBlue;
             txtBuscar.StateCommon.Border.Rounding = 10F;
             txtBuscar.TabIndex = 325;
@@ -840,6 +766,20 @@
             btnRefresh.TabIndex = 323;
             btnRefresh.UseVisualStyleBackColor = true;
             btnRefresh.Click += btnRefresh_Click;
+            // 
+            // dtpHasta
+            // 
+            dtpHasta.Location = new Point(635, 160);
+            dtpHasta.Name = "dtpHasta";
+            dtpHasta.Size = new Size(200, 23);
+            dtpHasta.TabIndex = 327;
+            // 
+            // dtpDesde
+            // 
+            dtpDesde.Location = new Point(635, 127);
+            dtpDesde.Name = "dtpDesde";
+            dtpDesde.Size = new Size(200, 23);
+            dtpDesde.TabIndex = 326;
             // 
             // button1
             // 
@@ -857,13 +797,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1047, 682);
+            Controls.Add(dtpHasta);
+            Controls.Add(dtpDesde);
             Controls.Add(txtBuscar);
             Controls.Add(btnRefresh);
             Controls.Add(button1);
-            Controls.Add(btnCompartir);
-            Controls.Add(btnImprimir);
-            Controls.Add(pictureBox4);
-            Controls.Add(pictureBox3);
             Controls.Add(pictureBox2);
             Controls.Add(dgvBitacora);
             Controls.Add(label10);
@@ -902,8 +840,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvBitacora).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).EndInit();
@@ -953,14 +889,12 @@
         private Panel panel2;
         private Krypton.Toolkit.KryptonDataGridView dgvBitacora;
         private PictureBox pictureBox2;
-        private PictureBox pictureBox3;
-        private PictureBox pictureBox4;
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox1;
-        private Krypton.Toolkit.KryptonButton btnImprimir;
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox2;
-        private Krypton.Toolkit.KryptonButton btnCompartir;
         private Krypton.Toolkit.KryptonTextBox txtBuscar;
         private Button btnRefresh;
+        private DateTimePicker dtpHasta;
+        private DateTimePicker dtpDesde;
         private Button button1;
     }
 }
