@@ -230,119 +230,33 @@ namespace SG_BAMS
 
         }
 
-        private void kryptonButton13_Click(object sender, EventArgs e)
-        {
-            InventarioAdmin invam = new InventarioAdmin();
 
-            invam.Show();
 
-            this.Hide();
 
-        }
 
-        private void kryptonButton12_Click(object sender, EventArgs e)
-        {
-            FacturasAdm fact = new FacturasAdm();
 
-            fact.Show();
-            this.Hide();
-        }
 
-        private async void kryptonButton17_Click(object sender, EventArgs e)
-        {
-            ClientesAdm Client = new ClientesAdm();
-            Client.Show();
-            await ActualizarLabel();
 
-            this.Hide();
-        }
 
-        private async void kryptonButton16_Click(object sender, EventArgs e)
-        {
-            Deudores deu = new Deudores();
-            deu.Show();
-            await ActualizarLabel();
+        
 
-            this.Hide();
-        }
 
-        private async void kryptonButton15_Click(object sender, EventArgs e)
-        {
-            InventarioAdmin invam = new InventarioAdmin();
 
-            invam.Show();
 
-            await ActualizarLabel();
 
-            this.Hide();
-        }
+        
 
-        private void kryptonButton11_Click(object sender, EventArgs e)
-        {
-            Ajustes ajus = new Ajustes();
-            ajus.Show();
-        }
 
-        private void button12_Click(object sender, EventArgs e)
-        {
-            NotificacionesAdmin notifam = new NotificacionesAdmin();
-            notifam.Show();
-        }
 
-        private void kryptonButton9_Click(object sender, EventArgs e)
-        {
-            this.Show();
+       
 
-        }
 
-        private void kryptonButton8_Click(object sender, EventArgs e)
-        {
-            FacturasAdm fact = new FacturasAdm();
 
-            fact.Show();
-            this.Hide();
-        }
 
-        private void kryptonButton7_Click(object sender, EventArgs e)
-        {
-            Compras compr = new Compras();
-            compr.Show();
-            this.Hide();
-        }
 
-        private void kryptonButton6_Click(object sender, EventArgs e)
-        {
-            ClientesAdm clientesAdm = new ClientesAdm();
-            clientesAdm.Show();
-            this.Hide();
-        }
 
-        private void kryptonButton5_Click(object sender, EventArgs e)
-        {
-            InventarioAdmin invam = new InventarioAdmin();
 
-            invam.Show();
-            this.Hide();
-        }
 
-        private void kryptonButton4_Click(object sender, EventArgs e)
-        {
-            ProveedoresAdmin proadm = new ProveedoresAdmin();
-            proadm.Show();
-            this.Hide();
-        }
-
-        private async void kryptonButton2_Click(object sender, EventArgs e)
-        {
-            Deudores deu = new Deudores();
-            deu.ShowDialog();
-            this.Hide();
-            await ActualizarLabel();
-            await ActualizarLabelDeudores();
-            await ActualizarLabelProductos();
-            
-
-        }
 
         private void btnReporte_Click(object sender, EventArgs e)
         {
@@ -351,33 +265,146 @@ namespace SG_BAMS
             this.Hide();
         }
 
-        private void kryptonButton3_Click(object sender, EventArgs e)
-        {
-            Bitacora bit = new Bitacora();
-            bit.Show();
-            this.Hide();
-        }
 
-        private void kryptonButton10_Click(object sender, EventArgs e)
-        {
-            frmAdministracion administracion = new frmAdministracion();
-            administracion.Show();
-        }
 
-        private void kryptonButton1_Click(object sender, EventArgs e)
-        {
-            Perfil perfil = new Perfil();
-            perfil.Show();
-        }
+      
+
+
 
         private void MenuPrincipalAdm_Shown(object sender, EventArgs e)
         {
             Ayudante_UI.AplicarZoomGlobal(this);
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+       
+
+        private void btnprincipal_Click(object sender, EventArgs e)
         {
-          
+            this.Show();
+        }
+
+        private void btnfacturas_Click(object sender, EventArgs e)
+        {
+            FacturasAdm fact = new FacturasAdm();
+
+            fact.Show();
+            this.Hide();
+        }
+
+        private void btncompras_Click(object sender, EventArgs e)
+        {
+            Compras compr = new Compras();
+            compr.Show();
+            this.Hide();
+        }
+
+        private void btnclientes_Click(object sender, EventArgs e)
+        {
+            ClientesAdm clientesAdm = new ClientesAdm();
+            clientesAdm.Show();
+            this.Hide();
+        }
+
+        private void btninventario_Click(object sender, EventArgs e)
+        {
+            InventarioAdmin invam = new InventarioAdmin();
+
+            invam.Show();
+            this.Hide();
+        }
+
+        private void btnproveedores_Click(object sender, EventArgs e)
+        {
+            ProveedoresAdmin proadm = new ProveedoresAdmin();
+            proadm.Show();
+            this.Hide();
+        }
+
+        private async void btndeudores_Click(object sender, EventArgs e)
+        {
+            Deudores deu = new Deudores();
+            deu.ShowDialog();
+            this.Hide();
+            await ActualizarLabel();
+            await ActualizarLabelDeudores();
+            await ActualizarLabelProductos();
+        }
+
+        private void btnbitacora_Click(object sender, EventArgs e)
+        {
+            Bitacora bit = new Bitacora();
+            bit.Show();
+            this.Hide();
+        }
+
+        private void btnadministrador_Click(object sender, EventArgs e)
+        {
+            Perfil perfil = new Perfil();
+            perfil.Show();
+        }
+
+        private void btninventarioadmin_Click(object sender, EventArgs e)
+        {
+            InventarioAdmin invam = new InventarioAdmin();
+
+            invam.Show();
+
+            this.Hide();
+        }
+
+        private void btnfacturaadmin_Click(object sender, EventArgs e)
+        {
+            FacturasAdm fact = new FacturasAdm();
+
+            fact.Show();
+            this.Hide();
+        }
+
+        private async void btnclientesadmin_Click(object sender, EventArgs e)
+        {
+            ClientesAdm Client = new ClientesAdm();
+            Client.Show();
+            await ActualizarLabel();
+
+            this.Hide();
+        }
+
+        private async void btndeudoresadmin_Click(object sender, EventArgs e)
+        {
+            Deudores deu = new Deudores();
+            deu.Show();
+            await ActualizarLabel();
+
+            this.Hide();
+        }
+
+        private async void btninventarioadmin2_Click(object sender, EventArgs e)
+        {
+            InventarioAdmin invam = new InventarioAdmin();
+
+            invam.Show();
+
+            await ActualizarLabel();
+
+            this.Hide();
+        }
+
+        private void btnajustesadmin_Click(object sender, EventArgs e)
+        {
+            Ajustes ajus = new Ajustes();
+            ajus.Show();
+        }
+
+        private void btnnotificaciones_Click(object sender, EventArgs e)
+        {
+            NotificacionesAdmin notifam = new NotificacionesAdmin();
+            notifam.Show();
+        }
+
+        private void btnadministracion_Click(object sender, EventArgs e)
+        {
+            frmAdministracion administracion = new frmAdministracion();
+            administracion.Show();
         }
     }
 }
