@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -177,7 +178,7 @@ namespace SG_BAMS
             ClsTemas.AplicarTema(this);
 
 
-            
+
         }
 
 
@@ -190,19 +191,10 @@ namespace SG_BAMS
 
         private void kryptonButton12_Click(object sender, EventArgs e)
         {
-            InventarioEmp invemp = new InventarioEmp();
 
-            invemp.Show();
-            this.Close();
         }
 
-        private void kryptonButton13_Click(object sender, EventArgs e)
-        {
-            FacturasEmp fact = new FacturasEmp();
 
-            fact.Show();
-            this.Close();
-        }
 
         private void kryptonButton15_Click(object sender, EventArgs e)
         {
@@ -211,88 +203,30 @@ namespace SG_BAMS
 
         private void kryptonButton15_Click_1(object sender, EventArgs e)
         {
-            InventarioEmp invemp = new InventarioEmp();
 
-            invemp.Show();
-
-            this.Close();
         }
 
-        private async void kryptonButton16_Click(object sender, EventArgs e)
-        {
-            Deudores_Emp deudoresForm = new Deudores_Emp();
-            deudoresForm.ShowDialog();
-            await ActualizarLabelDeudores();
-            this.Close();
-        }
+
 
         private void kryptonButton9_Click(object sender, EventArgs e)
         {
             this.Show();
         }
 
-        private async void kryptonButton17_Click(object sender, EventArgs e)
-        {
-            ClientesEmp clienemp = new ClientesEmp();
-            clienemp.ShowDialog();
-            await ActualizarLabel();
-            this.Close();
-        }
 
-        private void kryptonButton1_Click(object sender, EventArgs e)
-        {
-            Perfil per = new Perfil();
 
-            per.Show();
-        }
 
-        private void kryptonButton8_Click(object sender, EventArgs e)
-        {
-            FacturasEmp fact = new FacturasEmp();
 
-            fact.Show();
-            this.Close();
-        }
 
-        private async void kryptonButton6_Click(object sender, EventArgs e)
-        {
-            ClientesEmp clienemp = new ClientesEmp();
-            clienemp.ShowDialog();
-            await ActualizarLabel();
-            this.Close();
-        }
 
-        private async void kryptonButton5_Click(object sender, EventArgs e)
-        {
-            InventarioEmp inventarioForm = new InventarioEmp();
-            inventarioForm.ShowDialog();
-            await ActualizarLabelProductos();
-            this.Close();
-        }
 
-        private async void kryptonButton2_Click(object sender, EventArgs e)
-        {
-            Deudores_Emp deud = new Deudores_Emp();
 
-            deud.ShowDialog();
-            this.Hide();
-            await ActualizarLabel();
-            await ActualizarLabelDeudores();
-            await ActualizarLabelProductos();
-        }
 
-        private void kryptonButton11_Click(object sender, EventArgs e)
-        {
-            Ajustes aju = new Ajustes();
 
-            aju.Show();
-        }
 
-        private void button12_Click(object sender, EventArgs e)
-        {
-            NotificacionesEmp notif = new NotificacionesEmp();
-            notif.Show();
-        }
+
+
+      
 
 
 
@@ -306,6 +240,107 @@ namespace SG_BAMS
         private void MenuPrincipalEmp_Shown(object sender, EventArgs e)
         {
             Ayudante_UI.AplicarZoomGlobal(this);
+        }
+
+
+
+        private void btnprincipalemp_Click(object sender, EventArgs e)
+        {
+            this.Show();
+        }
+
+        private void btnfacturas_Click(object sender, EventArgs e)
+        {
+            FacturasEmp fact = new FacturasEmp();
+
+            fact.Show();
+            this.Close();
+        }
+
+        private async void btnclientes_Click(object sender, EventArgs e)
+        {
+            ClientesEmp client = new ClientesEmp();
+            client.Show();
+            this.Hide();
+        }
+
+        private void btninventario_Click(object sender, EventArgs e)
+        {
+            InventarioEmp inventario = new InventarioEmp();
+            inventario.Show();
+            this.Hide();
+        }
+
+        private async void btndeudores_Click(object sender, EventArgs e)
+        {
+            Deudores_Emp deud = new Deudores_Emp();
+
+            deud.ShowDialog();
+            this.Hide();
+            await ActualizarLabel();
+            await ActualizarLabelDeudores();
+            await ActualizarLabelProductos();
+        }
+
+        private void btnempleado_Click(object sender, EventArgs e)
+        {
+            Perfil per = new Perfil();
+
+            per.Show();
+        }
+
+        private void btnfacturas2_Click(object sender, EventArgs e)
+        {
+            FacturasEmp fact = new FacturasEmp();
+
+            fact.Show();
+            this.Close();
+        }
+
+        private void btninventario2_Click(object sender, EventArgs e)
+        {
+            InventarioEmp invemp = new InventarioEmp();
+
+            invemp.Show();
+            this.Close();
+        }
+
+        private async void btnclientes2_Click(object sender, EventArgs e)
+        {
+            ClientesEmp clienemp = new ClientesEmp();
+            clienemp.ShowDialog();
+            await ActualizarLabel();
+            this.Close();
+        }
+
+        private async void btndeudores2_Click(object sender, EventArgs e)
+        {
+            Deudores_Emp deudoresForm = new Deudores_Emp();
+            deudoresForm.ShowDialog();
+            await ActualizarLabelDeudores();
+            this.Close();
+        }
+
+        private void btninventario3_Click(object sender, EventArgs e)
+        {
+            InventarioEmp invemp = new InventarioEmp();
+
+            invemp.Show();
+
+            this.Close();
+        }
+
+        private void btnajustes_Click(object sender, EventArgs e)
+        {
+            Ajustes aju = new Ajustes();
+
+            aju.Show();
+        }
+
+        private void btnnotificaciones_Click(object sender, EventArgs e)
+        {
+            NotificacionesEmp notif = new NotificacionesEmp();
+            notif.Show();
         }
     }
 }
