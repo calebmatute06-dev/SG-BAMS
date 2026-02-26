@@ -34,25 +34,42 @@ namespace SG_BAMS.Login
             {
                 int rol = login.ValidarUsuario(txtUsu.Text, txtCon.Text);
 
-                if (rol == 1)
+                // Si las credenciales son correctas (Rol 1 o 2), procedemos al 2FA Facial
+                if (rol == 1 || rol == 2)
                 {
-                    MessageBox.Show("Login correcto. ¡Bienvenido Administrador!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MenuPrincipalAdm MenAdm = new MenuPrincipalAdm();
-                    MenAdm.Show();
-                    txtUsu.Clear();
-                    txtCon.Clear();
-                    this.Hide();
+                    // 1. Instanciamos el formulario de validación facial
+                    LoginFacial validacionFacial = new LoginFacial();
 
-                }
-                else if (rol == 2)
-                {
-                    MessageBox.Show("Login correcto. ¡Bienvenido Empleado!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MenuPrincipalEmp MenEmp = new MenuPrincipalEmp();
-                    MenEmp.Show();
-                    txtUsu.Clear();
-                    txtCon.Clear();
-                    this.Hide();
+                    // 2. Le pasamos el nombre del usuario que intenta loguearse
+                    validacionFacial.UsuarioAValidar = txtUsu.Text;
 
+                    // 3. Lo abrimos como ShowDialog para detener el flujo aquí hasta que se valide
+                    if (validacionFacial.ShowDialog() == DialogResult.OK)
+                    {
+                        // SI EL ROSTRO COINCIDIÓ:
+                        if (rol == 1)
+                        {
+                            MessageBox.Show("Login correcto. ¡Bienvenido Administrador!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MenuPrincipalAdm MenAdm = new MenuPrincipalAdm();
+                            MenAdm.Show();
+                        }
+                        else if (rol == 2)
+                        {
+                            MessageBox.Show("Login correcto. ¡Bienvenido Empleado!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MenuPrincipalEmp MenEmp = new MenuPrincipalEmp();
+                            MenEmp.Show();
+                        }
+
+                        txtUsu.Clear();
+                        txtCon.Clear();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        // SI EL ROSTRO NO COINCIDIÓ O CERRÓ LA CÁMARA:
+                        MessageBox.Show("Validación facial fallida. Acceso denegado.", "Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        // No limpiamos los campos por si quiere reintentar
+                    }
                 }
                 else if (rol == -1)
                 {
