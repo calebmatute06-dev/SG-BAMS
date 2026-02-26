@@ -102,6 +102,7 @@ namespace SG_BAMS
 
         private async Task CargarGraficoStock()
         {
+            // Obtenemos los datos desde la vista que ya tiene las cabeceras nuevas
             DataTable tablaStock = await clsGraficoStock.ObtenerDatosGrafico();
 
             if (tablaStock != null && tablaStock.Rows.Count > 0)
@@ -109,7 +110,6 @@ namespace SG_BAMS
                 chartStock.Series.Clear();
                 chartStock.Legends.Clear();
                 chartStock.ChartAreas[0].Position.Auto = true;
-
 
                 Legend leyendaEstandar = chartStock.Legends.Add("Default");
                 leyendaEstandar.BackColor = Color.Transparent;
@@ -122,14 +122,15 @@ namespace SG_BAMS
 
                 foreach (DataRow filaDatos in tablaStock.Rows)
                 {
-                    string nombreArticulo = filaDatos["producto"].ToString();
-                    int cantidadReal = Convert.ToInt32(filaDatos["cantidad"]);
+                    // --- CAMBIO DE CABECERAS AQUÍ ---
+                    // "Nombre Producto" y "STOCK" deben coincidir con tu CREATE VIEW
+                    string nombreArticulo = filaDatos["Nombre Producto"].ToString();
+                    int cantidadReal = Convert.ToInt32(filaDatos["STOCK"]);
 
                     double valorVisual = (cantidadReal == 0) ? 0.6 : cantidadReal;
 
                     int puntoIndice = serieInventario.Points.AddXY(nombreArticulo, valorVisual);
                     var puntoActual = serieInventario.Points[puntoIndice];
-
 
                     if (cantidadReal == 0)
                     {

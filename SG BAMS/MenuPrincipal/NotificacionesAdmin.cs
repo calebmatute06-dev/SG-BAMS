@@ -68,10 +68,21 @@ namespace SG_BAMS
             this.Close();
         }
 
-      
+
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+           
+        }
+
+        private void NotificacionesAdmin_Shown(object sender, EventArgs e)
+        {
+            Ayudante_UI.AplicarZoomGlobal(this);
+        }
+
+        private void listBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+            // Verificamos que se haya hecho click sobre un ítem real
             if (listBox1.SelectedIndex != -1 && listBox1.SelectedItem != null)
             {
                 DataRowView fila = (DataRowView)listBox1.SelectedItem;
@@ -80,11 +91,6 @@ namespace SG_BAMS
 
                 MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-        }
-
-        private void NotificacionesAdmin_Shown(object sender, EventArgs e)
-        {
-            Ayudante_UI.AplicarZoomGlobal(this);
         }
     }
 }

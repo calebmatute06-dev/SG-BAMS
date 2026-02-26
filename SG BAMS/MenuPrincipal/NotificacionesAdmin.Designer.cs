@@ -145,6 +145,7 @@
             listBox1.Name = "listBox1";
             listBox1.Size = new Size(477, 404);
             listBox1.TabIndex = 105;
+            listBox1.MouseClick += listBox1_MouseClick;
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
             // NotificacionesAdmin

@@ -90,7 +90,6 @@ namespace SG_BAMS
                 chartStock.Legends.Clear();
                 chartStock.ChartAreas[0].Position.Auto = true;
 
-
                 Legend leyendaEstandar = chartStock.Legends.Add("Default");
                 leyendaEstandar.BackColor = Color.Transparent;
                 leyendaEstandar.IsTextAutoFit = true;
@@ -102,14 +101,14 @@ namespace SG_BAMS
 
                 foreach (DataRow filaDatos in tablaStock.Rows)
                 {
-                    string nombreArticulo = filaDatos["producto"].ToString();
-                    int cantidadReal = Convert.ToInt32(filaDatos["cantidad"]);
+                    // --- CORRECCIÓN DE NOMBRES DE COLUMNA SEGÚN LA VISTA NUEVA ---
+                    string nombreArticulo = filaDatos["Nombre Producto"].ToString(); // Antes "producto"
+                    int cantidadReal = Convert.ToInt32(filaDatos["STOCK"]);           // Antes "cantidad"
 
                     double valorVisual = (cantidadReal == 0) ? 0.6 : cantidadReal;
 
                     int puntoIndice = serieInventario.Points.AddXY(nombreArticulo, valorVisual);
                     var puntoActual = serieInventario.Points[puntoIndice];
-
 
                     if (cantidadReal == 0)
                     {
