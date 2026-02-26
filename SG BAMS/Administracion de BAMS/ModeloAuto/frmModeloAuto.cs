@@ -85,9 +85,25 @@ namespace SG_BAMS
 
         private void btmModificar_Click(object sender, EventArgs e)
         {
-            frmModificarModelos modificarMauto = new frmModificarModelos();
-            modificarMauto.Show();
-            this.Close();
+            if (dgvModelos.SelectedRows.Count > 0)
+            {
+                // 2. Extraemos los valores de las celdas (deben coincidir con tu Vista SQL)
+                int id = Convert.ToInt32(dgvModelos.CurrentRow.Cells["id_modelo_auto"].Value);
+                string nombre = dgvModelos.CurrentRow.Cells["nombre_modelo_auto"].Value.ToString();
+
+                // 3. Abrimos el formulario de modificación pasando los datos
+                frmModificarModelos frmMod = new frmModificarModelos(id, nombre);
+
+                if (frmMod.ShowDialog() == DialogResult.OK)
+                {
+                    // 4. Si se guardó con éxito, recargamos el DataGrid
+                    _ = CargarGridModelos();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione un modelo de la lista.");
+            }
         }
     }
 }

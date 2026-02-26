@@ -28,19 +28,11 @@ namespace SG_BAMS
             this.Close();
         }
 
-        private void kryptonButton1_Click(object sender, EventArgs e)
-        {
-            frmEstado verEstado = new frmEstado();
-            verEstado.Show();
-            this.Close();
-
-        }
-
         private async void btnAgregar_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtDescri.Text))
             {
-                MessageBox.Show("Por favor, escriba una descripción para el estado.",
+                MessageBox.Show("Por favor, ingrese una descripción para el estado.",
                                 "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -52,15 +44,16 @@ namespace SG_BAMS
 
                 clsEstado objetoEstado = new clsEstado();
 
-                // Ejecutamos la inserción asíncrona
-                bool insertado = await objetoEstado.InsertarEstadoAsync(txtDescri.Text.Trim());
+                // 2. Ejecutar la inserción
+                bool exito = await objetoEstado.InsertarEstadoAsync(txtDescri.Text.Trim());
 
-                if (insertado)
+                if (exito)
                 {
-                    MessageBox.Show("Estado agregado exitosamente.", "SG-BAMS",
+                    MessageBox.Show("Estado registrado correctamente.", "SG-BAMS",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    this.DialogResult = DialogResult.OK; // Para que el form principal sepa que debe refrescar
+                    // 3. Notificar al formulario padre para refrescar el Grid
+                    this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
             }

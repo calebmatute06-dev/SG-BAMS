@@ -200,6 +200,7 @@
             btnAgregar.TabIndex = 134;
             btnAgregar.Values.DropDownArrowColor = Color.Empty;
             btnAgregar.Values.Text = "Agregar";
+            btnAgregar.Click += btnAgregar_Click;
             // 
             // frmEstado
             // 

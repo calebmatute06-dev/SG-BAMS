@@ -42,10 +42,10 @@
             panel1 = new Panel();
             panel2 = new Panel();
             btmModificar = new Krypton.Toolkit.KryptonButton();
-            kryptonButton6 = new Krypton.Toolkit.KryptonButton();
             kryptonButton3 = new Krypton.Toolkit.KryptonButton();
             cmbRol = new Krypton.Toolkit.KryptonComboBox();
             cmbEstado = new Krypton.Toolkit.KryptonComboBox();
+            btnSalir = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -197,7 +197,7 @@
             // 
             // btmModificar
             // 
-            btmModificar.Location = new Point(232, 460);
+            btmModificar.Location = new Point(232, 442);
             btmModificar.Name = "btmModificar";
             btmModificar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btmModificar.OverrideDefault.Back.Color2 = Color.White;
@@ -218,30 +218,6 @@
             btmModificar.Values.DropDownArrowColor = Color.Empty;
             btmModificar.Values.Text = "Modificar";
             btmModificar.Click += btmModificar_Click;
-            // 
-            // kryptonButton6
-            // 
-            kryptonButton6.Location = new Point(382, 460);
-            kryptonButton6.Name = "kryptonButton6";
-            kryptonButton6.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            kryptonButton6.OverrideDefault.Back.Color2 = Color.White;
-            kryptonButton6.OverrideDefault.Border.Rounding = 40F;
-            kryptonButton6.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            kryptonButton6.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton6.Size = new Size(118, 65);
-            kryptonButton6.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonButton6.StateCommon.Back.Color2 = Color.White;
-            kryptonButton6.StateCommon.Border.Rounding = 40F;
-            kryptonButton6.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton6.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton6.StateNormal.Back.Color1 = Color.SkyBlue;
-            kryptonButton6.StateNormal.Back.Color2 = Color.White;
-            kryptonButton6.StateNormal.Border.Rounding = 40F;
-            kryptonButton6.StateTracking.Border.Rounding = 40F;
-            kryptonButton6.TabIndex = 141;
-            kryptonButton6.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton6.Values.Text = "Salir";
-            kryptonButton6.Click += kryptonButton6_Click;
             // 
             // kryptonButton3
             // 
@@ -299,17 +275,41 @@
             cmbEstado.StateNormal.ComboBox.Border.Rounding = 40F;
             cmbEstado.TabIndex = 146;
             // 
+            // btnSalir
+            // 
+            btnSalir.Location = new Point(382, 442);
+            btnSalir.Name = "btnSalir";
+            btnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnSalir.OverrideDefault.Back.Color2 = Color.White;
+            btnSalir.OverrideDefault.Border.Rounding = 40F;
+            btnSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnSalir.OverrideFocus.Back.Color2 = Color.White;
+            btnSalir.Size = new Size(118, 65);
+            btnSalir.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnSalir.StateCommon.Back.Color2 = Color.White;
+            btnSalir.StateCommon.Border.Rounding = 40F;
+            btnSalir.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnSalir.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnSalir.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnSalir.StateNormal.Back.Color2 = Color.White;
+            btnSalir.StateNormal.Border.Rounding = 40F;
+            btnSalir.StateTracking.Border.Rounding = 40F;
+            btnSalir.TabIndex = 147;
+            btnSalir.Values.DropDownArrowColor = Color.Empty;
+            btnSalir.Values.Text = "Salir";
+            btnSalir.Click += btnSalir_Click;
+            // 
             // frmModificarUsuarios
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(760, 563);
+            Controls.Add(btnSalir);
             Controls.Add(cmbEstado);
             Controls.Add(cmbRol);
             Controls.Add(kryptonButton3);
             Controls.Add(btmModificar);
-            Controls.Add(kryptonButton6);
             Controls.Add(panel1);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
@@ -353,9 +353,9 @@
         private Panel panel1;
         private Panel panel2;
         private Krypton.Toolkit.KryptonButton btmModificar;
-        private Krypton.Toolkit.KryptonButton kryptonButton6;
         private Krypton.Toolkit.KryptonButton kryptonButton3;
         private Krypton.Toolkit.KryptonComboBox cmbRol;
         private Krypton.Toolkit.KryptonComboBox cmbEstado;
+        private Krypton.Toolkit.KryptonButton btnSalir;
     }
 }

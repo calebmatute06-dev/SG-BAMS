@@ -22,31 +22,32 @@ namespace SG_BAMS
 
         private async void FormUsuarios_Load(object sender, EventArgs e)
         {
-            await CargarDatosUsuarios();
+            await CargarGridUsuarios();
         }
 
-        private async Task CargarDatosUsuarios()
+        private async Task CargarGridUsuarios()
         {
             try
             {
-                this.Cursor = Cursors.WaitCursor;
-
                 clsUsuario objetoUsuario = new clsUsuario();
 
-                DataTable dt = await objetoUsuario.LeerUsuariosAsync();
+                dgvUsuarios.DataSource = await objetoUsuario.LeerUsuariosAsync();
 
-                dgvUsuarios.DataSource = dt;
+                // Ocultamos los IDs técnicos
+                if (dgvUsuarios.Columns.Contains("id_rol_usuario"))
+                    dgvUsuarios.Columns["id_rol_usuario"].Visible = false;
 
-                ConfigurarGrid();
+                if (dgvUsuarios.Columns.Contains("id_estado"))
+                    dgvUsuarios.Columns["id_estado"].Visible = false;
+
+                if (dgvUsuarios.Columns.Contains("id_usuario"))
+                    dgvUsuarios.Columns["id_usuario"].Visible = false;
+
+                ConfigurarGrid(); // Otros ajustes de diseño
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al cargar usuarios: {ex.Message}", "Error de Sistema",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                this.Cursor = Cursors.Default;
+                MessageBox.Show("Error al cargar: " + ex.Message);
             }
         }
 
@@ -70,16 +71,16 @@ namespace SG_BAMS
                 int id = Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["id_usuario"].Value);
                 string nombre = dgvUsuarios.CurrentRow.Cells["nombre_usuario"].Value.ToString();
 
-       
-                int idRol = 1; // Valor temporal o dgvUsuarios.CurrentRow.Cells["id_rol"].Value
-                int idEstado = 1;
+
+                int idRol = Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["id_rol_usuario"].Value);
+                int idEstado = Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["id_estado"].Value);
 
                 frmModificarUsuarios frmMod = new frmModificarUsuarios(id, nombre, idRol, idEstado);
                 this.Close();
 
                 if (frmMod.ShowDialog() == DialogResult.OK)
                 {
-                    _ = CargarDatosUsuarios();
+                    _ = CargarGridUsuarios();
                     
                 }
             }
@@ -94,7 +95,7 @@ namespace SG_BAMS
         {
             frmAgregarUsuarios agregarUsuario = new frmAgregarUsuarios();
             agregarUsuario.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void BtmSalir_Click(object sender, EventArgs e)

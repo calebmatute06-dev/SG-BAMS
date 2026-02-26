@@ -68,23 +68,44 @@ namespace SG_BAMS
             dgvEstados.ReadOnly = true;
         }
 
-        private void btmAgregarEstado_Click(object sender, EventArgs e)
-        {
-            frmAgregarEstado agregarEstado = new frmAgregarEstado();
-            agregarEstado.Show();
-            this.Close();
-        }
-
         private void btmModificar_Click(object sender, EventArgs e)
         {
-            frmModificarEstado modificarEstado = new frmModificarEstado();
-            modificarEstado.Show();
-            this.Close();
+            if (dgvEstados.SelectedRows.Count > 0)
+            {
+                // 2. Extraemos el ID y la Descripción (asegúrate que coincidan con tu Vista SQL)
+                int id = Convert.ToInt32(dgvEstados.CurrentRow.Cells["id_estado"].Value);
+                string descripcion = dgvEstados.CurrentRow.Cells["descripcion_estado"].Value.ToString();
+
+                // 3. Abrimos el formulario de modificación pasando los datos
+                frmModificarEstado frmMod = new frmModificarEstado(id, descripcion);
+
+                // 4. Si se cerró con DialogResult.OK, refrescamos la lista
+                if (frmMod.ShowDialog() == DialogResult.OK)
+                {
+                    _ = CargarGridEstados();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione un estado de la lista para modificar.");
+            }
         }
 
         private void btmSalir_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            frmAgregarEstado frm = new frmAgregarEstado();
+
+            // Si el formulario se cierra con éxito (DialogResult.OK), recargamos el grid
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                // Llamamos al método que carga v_DetalleEstados
+                _ = CargarGridEstados();
+            }
         }
     }
 }
