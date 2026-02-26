@@ -85,24 +85,22 @@ namespace SG_BAMS.Login
         {
             try
             {
-                Mat histActual = new Mat();
-                Mat histReferencia = new Mat();
-                float[] range = { 0, 256 };
-                int[] histSize = { 256 };
-                int[] channels = { 0 };
+                // Creamos una matriz para almacenar el resultado de la comparación
+                Mat resultado = new Mat();
 
-                using (VectorOfMat v1 = new VectorOfMat(rostroActual.Mat))
-                    CvInvoke.CalcHist(v1, channels, null, histActual, histSize, range, false);
+                // MatchTemplate compara la estructura y los patrones de los píxeles, no solo los colores.
+                // CcoeffNormed devuelve un valor entre -1.0 y 1.0 (1.0 es una coincidencia perfecta).
+                CvInvoke.MatchTemplate(rostroActual, rostroReferencia, resultado, Emgu.CV.CvEnum.TemplateMatchingType.CcoeffNormed);
 
-                using (VectorOfMat v2 = new VectorOfMat(rostroReferencia.Mat))
-                    CvInvoke.CalcHist(v2, channels, null, histReferencia, histSize, range, false);
+                double minVal = 0, maxVal = 0;
+                Point minLoc = new Point(), maxLoc = new Point();
 
-                CvInvoke.Normalize(histActual, histActual, 0, 1, Emgu.CV.CvEnum.NormType.MinMax, Emgu.CV.CvEnum.DepthType.Cv32F);
-                CvInvoke.Normalize(histReferencia, histReferencia, 0, 1, Emgu.CV.CvEnum.NormType.MinMax, Emgu.CV.CvEnum.DepthType.Cv32F);
+                // Extraemos el valor máximo de coincidencia
+                CvInvoke.MinMaxLoc(resultado, ref minVal, ref maxVal, ref minLoc, ref maxLoc);
 
-                double similitud = CvInvoke.CompareHist(histActual, histReferencia, Emgu.CV.CvEnum.HistogramCompMethod.Correl);
-
-                if (similitud > 0.8) // Umbral de éxito
+                // maxVal es nuestro porcentaje de similitud real.
+                // 0.70 (70%) es un buen punto de partida para rostros. Puedes subirlo a 0.75 o 0.80 si es muy permisivo.
+                if (maxVal > 0.70)
                 {
                     Finalizar(DialogResult.OK);
                 }
