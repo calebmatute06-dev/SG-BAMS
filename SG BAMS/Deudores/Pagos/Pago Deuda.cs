@@ -72,17 +72,21 @@ namespace SG_BAMS
 
         private void Pago_Deuda_Load(object sender, EventArgs e)
         {
-            // Ya no llamamos a CargarComboDeudores porque ConfigurarFormulario() hace ese trabajo
-
-            // Si recibimos un nombre, intentamos seleccionarlo en el combo
+            // Si recibimos un nombre desde la Factura...
             if (!string.IsNullOrEmpty(nombreRecibido))
             {
-                // FindString busca coincidencias parciales (ej. "Juan" encuentra "Juan Pérez")
-                int index = cmbDeudores.FindString(nombreRecibido);
+                // Buscamos el índice exacto o parcial en el ComboBox
+                int index = cmbDeudores.FindStringExact(nombreRecibido);
+
+                // Si no lo encuentra exacto, buscamos parcial
+                if (index == -1) index = cmbDeudores.FindString(nombreRecibido);
 
                 if (index != -1)
                 {
                     cmbDeudores.SelectedIndex = index;
+                    // Opcional: Bloqueamos el combo para que no lo cambien por error 
+                    // si vienes directamente de la factura
+                    // cmbDeudores.Enabled = false; 
                 }
             }
         }

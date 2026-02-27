@@ -29,7 +29,7 @@ namespace SG_BAMS
             InitializeComponent();
             CargarGridDeudores();
 
-            
+
         }
 
 
@@ -213,6 +213,22 @@ namespace SG_BAMS
             {
                 // Esto nos dirá si el problema es de conversión o de nombres de columna
                 Console.WriteLine("Error en Doble Clic: " + ex.Message);
+            }
+        }
+
+        private void txtBuscarNombre_TextChanged(object sender, EventArgs e)
+        {
+           
+            if (dtDeudores != null)
+            {
+                string filtro = txtBuscarNombre.Text.Trim();
+                DataView dv = dtDeudores.DefaultView;
+
+                
+                dv.RowFilter = string.Format("Cliente LIKE '%{0}%'", filtro);
+
+               
+                dgvDeudores.DataSource = dv;
             }
         }
     }

@@ -48,7 +48,6 @@ namespace SG_BAMS
             label1 = new Label();
             kryptonButton11 = new Krypton.Toolkit.KryptonButton();
             pictureBox18 = new PictureBox();
-            button12 = new Button();
             panel6 = new Panel();
             panel8 = new Panel();
             panel5 = new Panel();
@@ -81,6 +80,7 @@ namespace SG_BAMS
             btninventario3 = new Krypton.Toolkit.KryptonButton();
             btndeudores2 = new Krypton.Toolkit.KryptonButton();
             btnclientes2 = new Krypton.Toolkit.KryptonButton();
+            btnnotificaciones = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox21).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox20).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox19).BeginInit();
@@ -312,22 +312,6 @@ namespace SG_BAMS
             pictureBox18.Size = new Size(53, 49);
             pictureBox18.TabIndex = 73;
             pictureBox18.TabStop = false;
-            // 
-            // button12
-            // 
-            button12.BackColor = Color.Transparent;
-            button12.BackgroundImage = Properties.Resources.campana;
-            button12.BackgroundImageLayout = ImageLayout.Stretch;
-            button12.FlatAppearance.BorderColor = Color.White;
-            button12.FlatAppearance.BorderSize = 0;
-            button12.FlatStyle = FlatStyle.Flat;
-            button12.ForeColor = Color.Navy;
-            button12.Location = new Point(859, 28);
-            button12.Name = "button12";
-            button12.Size = new Size(59, 44);
-            button12.TabIndex = 71;
-            button12.UseVisualStyleBackColor = false;
-            button12.Click += button12_Click;
             // 
             // panel6
             // 
@@ -829,11 +813,28 @@ namespace SG_BAMS
             btnclientes2.Values.Text = "";
             btnclientes2.Click += btnclientes2_Click;
             // 
+            // btnnotificaciones
+            // 
+            btnnotificaciones.BackColor = Color.Transparent;
+            btnnotificaciones.BackgroundImage = Properties.Resources.campana;
+            btnnotificaciones.BackgroundImageLayout = ImageLayout.Stretch;
+            btnnotificaciones.FlatAppearance.BorderColor = Color.White;
+            btnnotificaciones.FlatAppearance.BorderSize = 0;
+            btnnotificaciones.FlatStyle = FlatStyle.Flat;
+            btnnotificaciones.ForeColor = Color.Navy;
+            btnnotificaciones.Location = new Point(850, 33);
+            btnnotificaciones.Name = "btnnotificaciones";
+            btnnotificaciones.Size = new Size(59, 44);
+            btnnotificaciones.TabIndex = 100;
+            btnnotificaciones.UseVisualStyleBackColor = false;
+            btnnotificaciones.Click += btnnotificaciones_Click;
+            // 
             // MenuPrincipalEmp
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1105, 907);
+            Controls.Add(btnnotificaciones);
             Controls.Add(chartStock);
             Controls.Add(dgvVentas);
             Controls.Add(pictureBox21);
@@ -852,7 +853,6 @@ namespace SG_BAMS
             Controls.Add(label1);
             Controls.Add(kryptonButton11);
             Controls.Add(pictureBox18);
-            Controls.Add(button12);
             Controls.Add(panel6);
             Controls.Add(panel8);
             Controls.Add(panel5);
@@ -917,7 +917,6 @@ namespace SG_BAMS
         private Label label1;
         private Krypton.Toolkit.KryptonButton kryptonButton11;
         private PictureBox pictureBox18;
-        private Button button12;
         private Panel panel6;
         private Panel panel8;
         private Panel panel5;
@@ -950,5 +949,6 @@ namespace SG_BAMS
         private Krypton.Toolkit.KryptonButton btninventario3;
         private Krypton.Toolkit.KryptonButton btndeudores2;
         private Krypton.Toolkit.KryptonButton btnclientes2;
+        private Button btnnotificaciones;
     }
 }

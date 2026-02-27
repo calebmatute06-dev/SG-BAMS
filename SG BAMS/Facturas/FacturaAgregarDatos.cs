@@ -118,36 +118,80 @@ namespace SG_BAMS
 
         private async void BtnAceptar_Click(object sender, EventArgs e)
         {
-            ClsPasarUsuario objPU = new ClsPasarUsuario();
-            ClsAgregarFactura objAF = new ClsAgregarFactura();
-            ClsAgregarProductos objAP = new ClsAgregarProductos();
-            int idUsuario = objPU.IdUsuario();
-
-            int idFactura = await objAF.AgregarFacturas(idUsuario, idCliente, Convert.ToInt32(cmbPago.SelectedValue), DateTFecha.SelectionStart, Convert.ToInt32(TxtBateria.Text.Trim()));
-
-            if (idFactura > 0)
+            // 1. Validaciones de seguridad
+            if (dgvProductos.Rows.Count == 0)
             {
-
-                foreach (DataGridViewRow fila in dgvProductos.Rows)
-                {
-                    if (fila.IsNewRow) continue;
-
-                    int idProd = Convert.ToInt32(fila.Cells[0].Value);
-                    int cantidad = Convert.ToInt32(fila.Cells[2].Value);
-
-                    await objAP.GuardarProductoFactura(idFactura, idProd, cantidad);
-                }
-
-                MessageBox.Show("Factura y productos agregados correctamente.");
-
-                this.DialogResult = DialogResult.OK;
-                this.Close();
-
-
+                MessageBox.Show("Debe agregar al menos un producto antes de facturar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else
+
+            if (cmbPago.SelectedValue == null)
             {
-                MessageBox.Show("No se pudo agregar la factura.");
+                MessageBox.Show("Por favor seleccione una forma de pago.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                ClsPasarUsuario objPU = new ClsPasarUsuario();
+                ClsAgregarFactura objAF = new ClsAgregarFactura();
+                ClsAgregarProductos objAP = new ClsAgregarProductos();
+
+                int idUsuario = objPU.IdUsuario();
+                int idFormaPago = Convert.ToInt32(cmbPago.SelectedValue);
+
+                // Manejo de baterías viejas para evitar el FormatException
+                int.TryParse(TxtBateria.Text.Trim(), out int numBaterias);
+
+                // 2. GUARDAR CABECERA DE FACTURA
+                // Esto asigna el ID y permite que el Trigger en SQL se prepare
+                int idFactura = await objAF.AgregarFacturas(idUsuario, idCliente, idFormaPago, DateTFecha.SelectionStart, numBaterias);
+
+                if (idFactura > 0)
+                {
+                    // 3. GUARDAR DETALLE DE PRODUCTOS
+                    // Al insertar el primer producto, el Trigger de SQL creará la deuda automáticamente
+                    foreach (DataGridViewRow fila in dgvProductos.Rows)
+                    {
+                        if (fila.IsNewRow) continue;
+
+                        int idProd = Convert.ToInt32(fila.Cells[0].Value);
+                        int cantidad = Convert.ToInt32(fila.Cells[2].Value);
+
+                        await objAP.GuardarProductoFactura(idFactura, idProd, cantidad);
+                    }
+
+                    MessageBox.Show("Factura guardada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // 4. LÓGICA DE APERTURA DE PAGO (SOLO CRÉDITO)
+                    // Verificamos si el texto del combo contiene "Crédito"
+                    string formaPagoTexto = cmbPago.Text.ToLower();
+
+                    if (formaPagoTexto.Contains("crédito") || formaPagoTexto.Contains("credito"))
+                    {
+                        // Obtenemos el nombre directamente del TextBox del cliente
+                        string nombreCliente = TxtCliente.Text.Trim();
+
+                        // Abrimos el formulario pasando el nombre al constructor que configuramos
+                        using (Pago_Deuda frmPago = new Pago_Deuda(nombreCliente))
+                        {
+                            // Lo mostramos como diálogo para que el proceso sea lineal
+                            frmPago.ShowDialog();
+                        }
+                    }
+
+                    // 5. Finalizar y cerrar formulario de factura
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Hubo un error al intentar generar la factura en la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error inesperado: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

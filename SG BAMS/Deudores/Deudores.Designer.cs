@@ -824,6 +824,7 @@
             txtBuscarNombre.Name = "txtBuscarNombre";
             txtBuscarNombre.Size = new Size(309, 27);
             txtBuscarNombre.TabIndex = 153;
+            txtBuscarNombre.TextChanged += txtBuscarNombre_TextChanged;
             // 
             // pictureBox22
             // 

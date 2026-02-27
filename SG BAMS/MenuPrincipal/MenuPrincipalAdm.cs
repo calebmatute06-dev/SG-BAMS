@@ -383,7 +383,7 @@ namespace SG_BAMS
         private void BtnFacturas_Click(object sender, EventArgs e)
         {
             FacturasAdm frmFA = new FacturasAdm();
-            frmFA.ShowDialog();
+            frmFA.Show();
         }
 
         private void BtnCerrarSesión_Click(object sender, EventArgs e)

@@ -236,11 +236,7 @@ namespace SG_BAMS
             aju.Show();
         }
 
-        private void button12_Click(object sender, EventArgs e)
-        {
-            NotificacionesEmp notif = new NotificacionesEmp();
-            notif.Show();
-        }
+        
 
 
 
@@ -285,7 +281,7 @@ namespace SG_BAMS
             Deudores_Emp deud = new Deudores_Emp();
 
             deud.ShowDialog();
-            this.Hide();
+            this.Close();
             await ActualizarLabel();
             await ActualizarLabelDeudores();
             await ActualizarLabelProductos();
@@ -323,12 +319,19 @@ namespace SG_BAMS
             this.Close();
         }
 
-        private async  void btnclientes2_Click(object sender, EventArgs e)
+        private async void btnclientes2_Click(object sender, EventArgs e)
         {
             ClientesEmp clienemp = new ClientesEmp();
             clienemp.ShowDialog();
             await ActualizarLabel();
             this.Close();
+        }
+
+        private void btnnotificaciones_Click(object sender, EventArgs e)
+        {
+
+            NotificacionesEmp notif = new NotificacionesEmp();
+            notif.Show();
         }
     }
 }
