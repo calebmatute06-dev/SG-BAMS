@@ -126,11 +126,13 @@ namespace SG_BAMS.Proveedor
         }
 
         public void AgregarProveedor(string nombre, string contacto, string direccion, string rtn,
-            int idClasificacion)
+            int idClasificacion, int idUsuario)
         {
             try
             {
                 AbrirConexion();
+
+                SetUsuarioEnSesion(idUsuario);
 
                 using (SqlCommand cmd = new SqlCommand("sp_proveedor_insertar", Conectar))
                 {
@@ -158,11 +160,13 @@ namespace SG_BAMS.Proveedor
         }
 
         public void ModificarProveedor(string nombre, string contacto, string direccion,
-            string rtn, int idEstado, int idClasificacion)
+            string rtn, int idEstado, int idClasificacion, int idUsuario)
         {
             try
             {
                 AbrirConexion();
+
+                SetUsuarioEnSesion(idUsuario);
 
                 using (SqlCommand cmd = new SqlCommand("sp_proveedor_actualizar", Conectar))
                 {
@@ -187,6 +191,17 @@ namespace SG_BAMS.Proveedor
             finally
             {
                 Cerrar();
+            }
+        }
+
+        private void SetUsuarioEnSesion(int idUsuario)
+        {
+            using (SqlCommand cmdSession = new SqlCommand(
+                "EXEC sp_set_session_context @key=N'id_usuario', @value=@id;",
+                Conectar))
+            {
+                cmdSession.Parameters.AddWithValue("@id", idUsuario);
+                cmdSession.ExecuteNonQuery();
             }
         }
     }

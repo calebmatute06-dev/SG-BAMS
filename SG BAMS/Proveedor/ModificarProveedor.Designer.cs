@@ -31,7 +31,6 @@
             pictureBox9 = new PictureBox();
             pictureBox4 = new PictureBox();
             pictureBox1 = new PictureBox();
-            btnCancelar = new Krypton.Toolkit.KryptonButton();
             btnAceptar = new Krypton.Toolkit.KryptonButton();
             label8 = new Label();
             btnsalir = new Krypton.Toolkit.KryptonButton();
@@ -88,30 +87,6 @@
             pictureBox1.Size = new Size(451, 11);
             pictureBox1.TabIndex = 186;
             pictureBox1.TabStop = false;
-            // 
-            // btnCancelar
-            // 
-            btnCancelar.Location = new Point(236, 387);
-            btnCancelar.Margin = new Padding(3, 2, 3, 2);
-            btnCancelar.Name = "btnCancelar";
-            btnCancelar.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnCancelar.OverrideDefault.Back.Color2 = Color.White;
-            btnCancelar.OverrideDefault.Border.Rounding = 40F;
-            btnCancelar.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnCancelar.OverrideFocus.Back.Color2 = Color.White;
-            btnCancelar.Size = new Size(90, 33);
-            btnCancelar.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnCancelar.StateCommon.Back.Color2 = Color.White;
-            btnCancelar.StateCommon.Border.Rounding = 40F;
-            btnCancelar.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnCancelar.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnCancelar.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnCancelar.StateNormal.Back.Color2 = Color.White;
-            btnCancelar.StateNormal.Border.Rounding = 40F;
-            btnCancelar.StateTracking.Border.Rounding = 40F;
-            btnCancelar.TabIndex = 185;
-            btnCancelar.Values.DropDownArrowColor = Color.Empty;
-            btnCancelar.Values.Text = "Cancelar";
             // 
             // btnAceptar
             // 
@@ -365,7 +340,6 @@
             Controls.Add(pictureBox9);
             Controls.Add(pictureBox4);
             Controls.Add(pictureBox1);
-            Controls.Add(btnCancelar);
             Controls.Add(btnAceptar);
             Controls.Add(label8);
             Controls.Add(btnsalir);
@@ -391,7 +365,6 @@
         private PictureBox pictureBox9;
         private PictureBox pictureBox4;
         private PictureBox pictureBox1;
-        private Krypton.Toolkit.KryptonButton btnCancelar;
         private Krypton.Toolkit.KryptonButton btnAceptar;
         private Label label8;
         private Krypton.Toolkit.KryptonButton btnsalir;
