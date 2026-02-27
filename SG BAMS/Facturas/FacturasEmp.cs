@@ -160,8 +160,7 @@ namespace SG_BAMS
 
         private void BtnFacturas_Click(object sender, EventArgs e)
         {
-            FacturasAdm FA = new FacturasAdm();
-            FA.Show();
+            
         }
 
         private void BtnClientes_Click(object sender, EventArgs e)
