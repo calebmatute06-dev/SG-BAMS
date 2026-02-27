@@ -60,6 +60,15 @@ namespace SG_BAMS.Login
 
                 using (var frame = m.ToImage<Bgr, byte>())
                 {
+                    using (var grayFrame = frame.Convert<Gray, byte>())
+                    {
+                        Rectangle[] rostros = faceDetector.DetectMultiScale(grayFrame, 1.2, 5);
+                        foreach (Rectangle rostro in rostros)
+                        {
+                            frame.Draw(rostro, new Bgr(Color.Cyan), 2);
+                        }
+                    }
+
                     if (picValidar.Image != null)
                     {
                         picValidar.Image.Dispose();
@@ -75,7 +84,7 @@ namespace SG_BAMS.Login
                     }
                 }
             }
-            catch (Exception) {}
+            catch (Exception) { }
         }
 
         private void CompararRostros(Image<Gray, byte> rostroActual)

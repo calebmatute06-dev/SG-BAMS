@@ -12,6 +12,7 @@ namespace SG_BAMS
     public partial class frmImagenEmpleado : Form
     {
         private VideoCapture camara;
+        private bool camaraEnEncendida = false;
         private CascadeClassifier faceDetector = new CascadeClassifier("haarcascade_frontalface_default.xml");
         public frmImagenEmpleado()
         {
@@ -24,17 +25,34 @@ namespace SG_BAMS
             {
                 try
                 {
-                    using (var frame = camara.QueryFrame())
+                    using (var frameMat = camara.QueryFrame())
                     {
-                        if (frame != null)
+                        if (frameMat != null)
                         {
-                            pctCamara.Image = frame.ToBitmap();
+                            using (var frame = frameMat.ToImage<Bgr, byte>())
+                            {
+                                using (var grayFrame = frame.Convert<Gray, byte>())
+                                {
+                                    Rectangle[] rostros = faceDetector.DetectMultiScale(grayFrame, 1.2, 5);
+
+                                    foreach (Rectangle rostro in rostros)
+                                    {
+                                        frame.Draw(rostro, new Bgr(Color.LimeGreen), 2);
+                                    }
+                                }
+                                if (pctCamara.Image != null)
+                                {
+                                    pctCamara.Image.Dispose();
+                                }
+                                pctCamara.Image = frame.ToBitmap();
+                            }
                         }
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
                     DetenerCamara();
+                    MessageBox.Show("Error en la cámara: " + ex.Message);
                 }
             }
         }
@@ -146,14 +164,6 @@ namespace SG_BAMS
             string nombreUsuario = cmbUsuarios.Text;
 
             try
-            {
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
             {
                 var archivos = Directory.GetFiles(clsSoporte.DirectorioRostros, "*.jpg")
                     .Where(f => Path.GetFileNameWithoutExtension(f) == nombreUsuario ||
