@@ -43,20 +43,21 @@ namespace SG_BAMS.Administracion_de_BAMS.Rol
             try
             {
                 AbrirConexion();
-                // Según tu script, la columna es 'descripcion_rol'
-                string query = "INSERT INTO Rol (descripcion_rol) VALUES (@desc)";
-
-                using (SqlCommand cmd = new SqlCommand(query, Conectar))
+                using (SqlCommand cmd = new SqlCommand("PA_insertar_rol", Conectar))
                 {
-                    cmd.Parameters.AddWithValue("@desc", descripcion);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
+                    cmd.Parameters.AddWithValue("@descripcion_rol", descripcion);
+
+                    // Ejecutamos de forma asíncrona
                     int filasAfectadas = await cmd.ExecuteNonQueryAsync();
+
                     return filasAfectadas > 0;
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al guardar el rol: " + ex.Message);
+                throw new Exception("Error al registrar el rol: " + ex.Message);
             }
             finally
             {
@@ -69,13 +70,12 @@ namespace SG_BAMS.Administracion_de_BAMS.Rol
             try
             {
                 AbrirConexion();
-                // Usamos el nombre de columna 'descripcion_rol' de tu script original
-                string query = "UPDATE Rol SET descripcion_rol = @desc WHERE id_rol_usuario = @id";
 
-                using (SqlCommand cmd = new SqlCommand(query, Conectar))
+                using (SqlCommand cmd = new SqlCommand("PA_actualizar_rol", Conectar))
                 {
-                    cmd.Parameters.AddWithValue("@id", id);
-                    cmd.Parameters.AddWithValue("@desc", nuevaDescripcion);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@id_rol_usuario", id);
+                    cmd.Parameters.AddWithValue("@descripcion_rol", nuevaDescripcion);
 
                     int filasAfectadas = await cmd.ExecuteNonQueryAsync();
                     return filasAfectadas > 0;

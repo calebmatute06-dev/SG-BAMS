@@ -44,7 +44,7 @@ namespace SG_BAMS
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     this.DialogResult = DialogResult.OK; // Cerramos devolviendo éxito para refrescar el Grid
-                    frnAgregarTipoProducto verTproducto = new frnAgregarTipoProducto();
+                    frmTipoProducto verTproducto = new frmTipoProducto();
                     verTproducto.Show();
                     this.Close();
                 }

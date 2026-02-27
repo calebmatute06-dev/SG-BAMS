@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Deudores_Emp));
             pictureBox17 = new PictureBox();
             kryptonButton10 = new Krypton.Toolkit.KryptonButton();
-            kryptonDataGridView1 = new Krypton.Toolkit.KryptonDataGridView();
+            dgvDeudores = new Krypton.Toolkit.KryptonDataGridView();
             kryptonGroup1 = new Krypton.Toolkit.KryptonGroup();
             label1 = new Label();
             kryptonButton11 = new Krypton.Toolkit.KryptonButton();
@@ -73,7 +73,7 @@
             pictureBox20 = new PictureBox();
             pictureBox19 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox17).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonDataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvDeudores).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
@@ -102,7 +102,6 @@
             // 
             // pictureBox17
             // 
-            pictureBox17.Image = Properties.Resources.Logo1_Deudor;
             pictureBox17.Location = new Point(311, 34);
             pictureBox17.Name = "pictureBox17";
             pictureBox17.Size = new Size(104, 97);
@@ -135,15 +134,18 @@
             kryptonButton10.Values.DropDownArrowColor = Color.Empty;
             kryptonButton10.Values.Text = "Deudores";
             // 
-            // kryptonDataGridView1
+            // dgvDeudores
             // 
-            kryptonDataGridView1.BorderStyle = BorderStyle.None;
-            kryptonDataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            kryptonDataGridView1.Location = new Point(372, 249);
-            kryptonDataGridView1.Name = "kryptonDataGridView1";
-            kryptonDataGridView1.RowHeadersWidth = 51;
-            kryptonDataGridView1.Size = new Size(631, 503);
-            kryptonDataGridView1.TabIndex = 100;
+            dgvDeudores.AllowUserToAddRows = false;
+            dgvDeudores.AllowUserToDeleteRows = false;
+            dgvDeudores.BorderStyle = BorderStyle.None;
+            dgvDeudores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvDeudores.Location = new Point(372, 249);
+            dgvDeudores.Name = "dgvDeudores";
+            dgvDeudores.ReadOnly = true;
+            dgvDeudores.RowHeadersWidth = 51;
+            dgvDeudores.Size = new Size(631, 503);
+            dgvDeudores.TabIndex = 100;
             // 
             // kryptonGroup1
             // 
@@ -185,6 +187,7 @@
             kryptonButton11.TabIndex = 94;
             kryptonButton11.Values.DropDownArrowColor = Color.Empty;
             kryptonButton11.Values.Text = "Ajustes";
+            kryptonButton11.Click += kryptonButton11_Click;
             // 
             // pictureBox18
             // 
@@ -210,6 +213,7 @@
             button12.Size = new Size(59, 44);
             button12.TabIndex = 91;
             button12.UseVisualStyleBackColor = false;
+            button12.Click += button12_Click;
             // 
             // panel6
             // 
@@ -346,6 +350,7 @@
             kryptonButton1.TabIndex = 36;
             kryptonButton1.Values.DropDownArrowColor = Color.Empty;
             kryptonButton1.Values.Text = "Empleado";
+            kryptonButton1.Click += kryptonButton1_Click;
             // 
             // btnCerrarSesion
             // 
@@ -371,6 +376,7 @@
             btnCerrarSesion.TabIndex = 35;
             btnCerrarSesion.Values.DropDownArrowColor = Color.Empty;
             btnCerrarSesion.Values.Text = "Cerrar Sesión";
+            btnCerrarSesion.Click += btnCerrarSesion_Click;
             // 
             // kryptonButton9
             // 
@@ -396,6 +402,7 @@
             kryptonButton9.TabIndex = 34;
             kryptonButton9.Values.DropDownArrowColor = Color.Empty;
             kryptonButton9.Values.Text = "Menu Principal";
+            kryptonButton9.Click += kryptonButton9_Click;
             // 
             // kryptonButton8
             // 
@@ -421,6 +428,7 @@
             kryptonButton8.TabIndex = 33;
             kryptonButton8.Values.DropDownArrowColor = Color.Empty;
             kryptonButton8.Values.Text = "Facturas";
+            kryptonButton8.Click += kryptonButton8_Click;
             // 
             // kryptonButton6
             // 
@@ -446,6 +454,7 @@
             kryptonButton6.TabIndex = 31;
             kryptonButton6.Values.DropDownArrowColor = Color.Empty;
             kryptonButton6.Values.Text = "Clientes";
+            kryptonButton6.Click += kryptonButton6_Click;
             // 
             // kryptonButton5
             // 
@@ -683,6 +692,7 @@
             kryptonButton15.TabIndex = 158;
             kryptonButton15.Values.DropDownArrowColor = Color.Empty;
             kryptonButton15.Values.Text = "Pago Deuda";
+            kryptonButton15.Click += kryptonButton15_Click;
             // 
             // pictureBox20
             // 
@@ -719,7 +729,7 @@
             Controls.Add(kryptonGroup6);
             Controls.Add(pictureBox17);
             Controls.Add(kryptonButton10);
-            Controls.Add(kryptonDataGridView1);
+            Controls.Add(dgvDeudores);
             Controls.Add(kryptonGroup1);
             Controls.Add(label1);
             Controls.Add(kryptonButton11);
@@ -736,7 +746,7 @@
             Name = "Deudores_Emp";
             Text = "Deudores_Emp";
             ((System.ComponentModel.ISupportInitialize)pictureBox17).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonDataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvDeudores).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox18).EndInit();
@@ -769,7 +779,7 @@
         #endregion
         private PictureBox pictureBox17;
         private Krypton.Toolkit.KryptonButton kryptonButton10;
-        private Krypton.Toolkit.KryptonDataGridView kryptonDataGridView1;
+        private Krypton.Toolkit.KryptonDataGridView dgvDeudores;
         private Krypton.Toolkit.KryptonGroup kryptonGroup1;
         private Label label1;
         private Krypton.Toolkit.KryptonButton kryptonButton11;

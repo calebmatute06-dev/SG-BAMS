@@ -15,7 +15,6 @@ namespace SG_BAMS.Administracion_de_BAMS.MarcaProd
             DataTable tabla = new DataTable();
             try
             {
-                // Usamos tu método AbrirCConexion de ClsConexion
                 AbrirConexion();
                 string query = "SELECT * FROM v_DetalleMarcas";
 
@@ -42,14 +41,15 @@ namespace SG_BAMS.Administracion_de_BAMS.MarcaProd
         {
             try
             {
-                // Usamos tu método de apertura de conexión
+
                 AbrirConexion();
 
-                string query = "INSERT INTO Marca_producto (nombre_marca) VALUES (@nombre)";
-
-                using (SqlCommand cmd = new SqlCommand(query, Conectar))
+                using (SqlCommand cmd = new SqlCommand("PA_insertar_marca_producto", Conectar))
                 {
-                    cmd.Parameters.AddWithValue("@nombre", nombreMarca);
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@nombre_marca", nombreMarca);
 
                     int filasAfectadas = await cmd.ExecuteNonQueryAsync();
                     return filasAfectadas > 0;
@@ -57,7 +57,7 @@ namespace SG_BAMS.Administracion_de_BAMS.MarcaProd
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al registrar la marca: " + ex.Message);
+                throw new Exception("Error al insertar la marca: " + ex.Message);
             }
             finally
             {
@@ -69,13 +69,17 @@ namespace SG_BAMS.Administracion_de_BAMS.MarcaProd
         {
             try
             {
-                AbrirConexion();
-                string query = "UPDATE Marca_producto SET nombre_marca = @nombre WHERE id_marca_producto = @id";
 
-                using (SqlCommand cmd = new SqlCommand(query, Conectar))
+                AbrirConexion();
+
+                using (SqlCommand cmd = new SqlCommand("PA_actualizar_marca_producto", Conectar))
                 {
-                    cmd.Parameters.AddWithValue("@id", id);
-                    cmd.Parameters.AddWithValue("@nombre", nuevoNombre);
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+
+                    cmd.Parameters.AddWithValue("@id_marca_producto", id);
+                    cmd.Parameters.AddWithValue("@nombre_marca", nuevoNombre);
 
                     int filasAfectadas = await cmd.ExecuteNonQueryAsync();
                     return filasAfectadas > 0;
@@ -83,7 +87,7 @@ namespace SG_BAMS.Administracion_de_BAMS.MarcaProd
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al actualizar la marca: " + ex.Message);
+                throw new Exception("Error al modificar la marca: " + ex.Message);
             }
             finally
             {

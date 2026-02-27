@@ -15,7 +15,6 @@ namespace SG_BAMS.Administracion_de_BAMS.Estado
             DataTable tabla = new DataTable();
             try
             {
-                // Usamos el método de apertura de tu clase ClsConexion
                 AbrirConexion();
 
                 string query = "SELECT * FROM v_DetalleEstados";
@@ -43,23 +42,24 @@ namespace SG_BAMS.Administracion_de_BAMS.Estado
         {
             try
             {
-                // Usamos tu método de apertura de ClsConexion
+
                 AbrirConexion();
 
-                string query = "INSERT INTO Estado (descripcion_estado) VALUES (@desc)";
-
-                using (SqlCommand cmd = new SqlCommand(query, Conectar))
+                using (SqlCommand cmd = new SqlCommand("PA_insertar_estado", Conectar))
                 {
-                    cmd.Parameters.AddWithValue("@desc", descripcion);
 
-                    // Ejecución asíncrona para evitar que la UI se congele
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+
+                    cmd.Parameters.AddWithValue("@descripcion_estado", descripcion);
+
                     int filasAfectadas = await cmd.ExecuteNonQueryAsync();
                     return filasAfectadas > 0;
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al guardar el estado: " + ex.Message);
+                throw new Exception("Error al insertar el estado: " + ex.Message);
             }
             finally
             {
@@ -71,14 +71,17 @@ namespace SG_BAMS.Administracion_de_BAMS.Estado
         {
             try
             {
-                AbrirConexion();
-                // El nombre del campo en tu BD es descripcion_estado
-                string query = "UPDATE Estado SET descripcion_estado = @desc WHERE id_estado = @id";
 
-                using (SqlCommand cmd = new SqlCommand(query, Conectar))
+                AbrirConexion();
+
+                using (SqlCommand cmd = new SqlCommand("PA_actualizar_estado", Conectar))
                 {
-                    cmd.Parameters.AddWithValue("@id", id);
-                    cmd.Parameters.AddWithValue("@desc", nuevaDescripcion);
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+
+                    cmd.Parameters.AddWithValue("@id_estado", id);
+                    cmd.Parameters.AddWithValue("@descripcion_estado", nuevaDescripcion);
 
                     int filasAfectadas = await cmd.ExecuteNonQueryAsync();
                     return filasAfectadas > 0;

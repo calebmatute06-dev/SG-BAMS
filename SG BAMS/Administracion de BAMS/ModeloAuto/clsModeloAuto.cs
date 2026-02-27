@@ -15,7 +15,6 @@ namespace SG_BAMS.Administracion_de_BAMS.ModeloAuto
             DataTable tabla = new DataTable();
             try
             {
-                // Usamos AbrirCConexion definido en tu ClsConexion
                 AbrirConexion();
                 string query = "SELECT * FROM v_DetalleModelosAuto";
 
@@ -42,15 +41,16 @@ namespace SG_BAMS.Administracion_de_BAMS.ModeloAuto
         {
             try
             {
-                // Usamos el método de apertura de tu clase base ClsConexion
+
                 AbrirConexion();
 
-                string query = "INSERT INTO Modelo_de_auto (nombre_modelo_auto) VALUES (@nombre)";
-
-                using (SqlCommand cmd = new SqlCommand(query, Conectar))
+                using (SqlCommand cmd = new SqlCommand("PA_insertar_modelo_auto", Conectar))
                 {
-                    // Evitamos inyección SQL usando parámetros
-                    cmd.Parameters.AddWithValue("@nombre", nombreModelo);
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+
+                    cmd.Parameters.AddWithValue("@nombre_modelo_auto", nombreModelo);
 
                     int filasAfectadas = await cmd.ExecuteNonQueryAsync();
                     return filasAfectadas > 0;
@@ -58,7 +58,7 @@ namespace SG_BAMS.Administracion_de_BAMS.ModeloAuto
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al registrar el modelo de auto: " + ex.Message);
+                throw new Exception("Error al insertar el modelo de auto: " + ex.Message);
             }
             finally
             {
@@ -72,13 +72,14 @@ namespace SG_BAMS.Administracion_de_BAMS.ModeloAuto
             try
             {
                 AbrirConexion();
-                // Usamos el nombre de columna 'nombre_modelo_auto' de tu base de datos
-                string query = "UPDATE Modelo_de_auto SET nombre_modelo_auto = @nombre WHERE id_modelo_auto = @id";
 
-                using (SqlCommand cmd = new SqlCommand(query, Conectar))
+                using (SqlCommand cmd = new SqlCommand("PA_actualizar_modelo_de_auto", Conectar))
                 {
-                    cmd.Parameters.AddWithValue("@id", id);
-                    cmd.Parameters.AddWithValue("@nombre", nuevoNombre);
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@id_modelo_auto", id);
+                    cmd.Parameters.AddWithValue("@nombre_modelo_auto", nuevoNombre);
 
                     int filasAfectadas = await cmd.ExecuteNonQueryAsync();
                     return filasAfectadas > 0;
