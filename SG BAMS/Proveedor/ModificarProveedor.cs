@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SG_BAMS.Administracion_de_BAMS.FormaPago;
+using SG_BAMS.Login;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SG_BAMS.Proveedor
@@ -76,13 +77,16 @@ namespace SG_BAMS.Proveedor
             int idEstado = Convert.ToInt32(cmbEstado.SelectedValue);
             int idClasificacion = Convert.ToInt32(cmbClasificacion.SelectedValue);
 
+            int idUsuario = new ClsPasarUsuario().IdUsuario();
+
             proveedor.ModificarProveedor(
                 txtNombre.Text.Trim(),
                 txtTelefono.Text.Trim(),
                 txtDireccion.Text.Trim(),
                 txtRTN.Text.Trim(),
                 idEstado,
-                idClasificacion
+                idClasificacion,
+                idUsuario
             );
 
             ProveedoresAdmin frm = new ProveedoresAdmin();

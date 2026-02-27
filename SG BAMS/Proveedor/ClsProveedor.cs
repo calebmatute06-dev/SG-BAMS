@@ -33,6 +33,16 @@ namespace SG_BAMS.Proveedor
             }
         }
 
+        private void SetUsuarioEnSesion(int idUsuario)
+        {
+            using (SqlCommand cmdSession = new SqlCommand(
+                "EXEC sp_set_session_context @key=N'id_usuario', @value=@id;",
+                Conectar))
+            {
+                cmdSession.Parameters.AddWithValue("@id", idUsuario);
+                cmdSession.ExecuteNonQuery();
+            }
+        }
         public void CargarComboEstado(Krypton.Toolkit.KryptonComboBox cmb)
         {
             try
@@ -191,17 +201,6 @@ namespace SG_BAMS.Proveedor
             finally
             {
                 Cerrar();
-            }
-        }
-
-        private void SetUsuarioEnSesion(int idUsuario)
-        {
-            using (SqlCommand cmdSession = new SqlCommand(
-                "EXEC sp_set_session_context @key=N'id_usuario', @value=@id;",
-                Conectar))
-            {
-                cmdSession.Parameters.AddWithValue("@id", idUsuario);
-                cmdSession.ExecuteNonQuery();
             }
         }
     }

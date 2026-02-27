@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SG_BAMS.Administracion_de_BAMS.Estado;
+using SG_BAMS.Login;
 using static System.Collections.Specialized.BitVector32;
 
 namespace SG_BAMS.Proveedor
@@ -47,7 +48,7 @@ namespace SG_BAMS.Proveedor
         {
             int idClasificacion = Convert.ToInt32(cmbClasificacion.SelectedValue);
 
-            int idUsuario = Sesion.IdUsuario;
+            int idUsuario = new ClsPasarUsuario().IdUsuario();
 
             proveedor.AgregarProveedor(
                 txtNombre.Text.Trim(),
