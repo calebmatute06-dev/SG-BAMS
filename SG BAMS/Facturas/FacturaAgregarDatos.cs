@@ -42,10 +42,10 @@ namespace SG_BAMS
 
             try
             {
-               
+
                 DataTable dt = await AF.ObtenerFormasPago();
 
-               
+
                 cmbPago.DisplayMember = "descripcion_forma_pago";
                 cmbPago.ValueMember = "id_tipo_forma_pago";
                 cmbPago.DataSource = dt;
@@ -56,7 +56,7 @@ namespace SG_BAMS
             }
             finally
             {
-           
+
                 dgvProductos.Rows.Clear();
             }
         }
@@ -189,6 +189,11 @@ namespace SG_BAMS
 
         private void DateTFecha_DateChanged(object sender, DateRangeEventArgs e)
         {
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

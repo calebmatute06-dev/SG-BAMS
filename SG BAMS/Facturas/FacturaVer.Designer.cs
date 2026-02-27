@@ -49,6 +49,8 @@
             panel4 = new Panel();
             panel8 = new Panel();
             dgvFacturas = new DataGridView();
+            label6 = new Label();
+            lblFactura = new Label();
             ((System.ComponentModel.ISupportInitialize)cmbPago).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1.Panel).BeginInit();
@@ -77,9 +79,11 @@
             txtBateriaVieja.Location = new Point(194, 165);
             txtBateriaVieja.Margin = new Padding(3, 4, 3, 4);
             txtBateriaVieja.Name = "txtBateriaVieja";
-            txtBateriaVieja.Size = new Size(197, 33);
+            txtBateriaVieja.Size = new Size(197, 28);
             txtBateriaVieja.StateCommon.Back.Color1 = Color.SkyBlue;
             txtBateriaVieja.StateCommon.Border.Rounding = 10F;
+            txtBateriaVieja.StateCommon.Content.Color1 = Color.Navy;
+            txtBateriaVieja.StateCommon.Content.Font = new Font("Arial Narrow", 7.8F);
             txtBateriaVieja.TabIndex = 343;
             // 
             // txtCliente
@@ -87,14 +91,16 @@
             txtCliente.Location = new Point(194, 120);
             txtCliente.Margin = new Padding(3, 4, 3, 4);
             txtCliente.Name = "txtCliente";
-            txtCliente.Size = new Size(197, 33);
+            txtCliente.Size = new Size(197, 28);
             txtCliente.StateCommon.Back.Color1 = Color.SkyBlue;
             txtCliente.StateCommon.Border.Rounding = 10F;
+            txtCliente.StateCommon.Content.Color1 = Color.Navy;
+            txtCliente.StateCommon.Content.Font = new Font("Arial Narrow", 7.8F);
             txtCliente.TabIndex = 341;
             // 
             // fechaDT
             // 
-            fechaDT.Location = new Point(720, 225);
+            fechaDT.Location = new Point(737, 225);
             fechaDT.Margin = new Padding(10, 12, 10, 12);
             fechaDT.MaxSelectionCount = 1;
             fechaDT.Name = "fechaDT";
@@ -103,9 +109,9 @@
             // kryptonGroupBox1
             // 
             kryptonGroupBox1.CaptionVisible = false;
-            kryptonGroupBox1.Location = new Point(669, 187);
+            kryptonGroupBox1.Location = new Point(704, 187);
             kryptonGroupBox1.Margin = new Padding(3, 4, 3, 4);
-            kryptonGroupBox1.Size = new Size(311, 288);
+            kryptonGroupBox1.Size = new Size(276, 288);
             kryptonGroupBox1.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroupBox1.StateCommon.Border.Rounding = 50F;
             kryptonGroupBox1.TabIndex = 339;
@@ -146,9 +152,11 @@
             txtTotal.Location = new Point(531, 440);
             txtTotal.Margin = new Padding(3, 4, 3, 4);
             txtTotal.Name = "txtTotal";
-            txtTotal.Size = new Size(110, 33);
+            txtTotal.Size = new Size(110, 28);
             txtTotal.StateCommon.Back.Color1 = Color.SkyBlue;
             txtTotal.StateCommon.Border.Rounding = 10F;
+            txtTotal.StateCommon.Content.Color1 = Color.Navy;
+            txtTotal.StateCommon.Content.Font = new Font("Arial Narrow", 7.8F);
             txtTotal.TabIndex = 342;
             // 
             // panel1
@@ -199,7 +207,7 @@
             label7.BackColor = Color.Transparent;
             label7.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Navy;
-            label7.Location = new Point(790, 157);
+            label7.Location = new Point(811, 159);
             label7.Name = "label7";
             label7.Size = new Size(67, 24);
             label7.TabIndex = 333;
@@ -247,11 +255,11 @@
             label4.BackColor = Color.SkyBlue;
             label4.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(41, 57);
+            label4.Location = new Point(58, 57);
             label4.Name = "label4";
-            label4.Size = new Size(223, 35);
+            label4.Size = new Size(179, 35);
             label4.TabIndex = 327;
-            label4.Text = "Nueva Factura";
+            label4.Text = "Ver Factura";
             // 
             // panel3
             // 
@@ -285,8 +293,32 @@
             dgvFacturas.Location = new Point(48, 225);
             dgvFacturas.Name = "dgvFacturas";
             dgvFacturas.RowHeadersWidth = 51;
-            dgvFacturas.Size = new Size(593, 188);
+            dgvFacturas.Size = new Size(639, 188);
             dgvFacturas.TabIndex = 345;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.BackColor = Color.Transparent;
+            label6.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.ForeColor = Color.Navy;
+            label6.Location = new Point(401, 57);
+            label6.Name = "label6";
+            label6.Size = new Size(124, 35);
+            label6.TabIndex = 346;
+            label6.Text = "Factura";
+            // 
+            // lblFactura
+            // 
+            lblFactura.AutoSize = true;
+            lblFactura.BackColor = Color.Transparent;
+            lblFactura.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblFactura.ForeColor = Color.Navy;
+            lblFactura.Location = new Point(531, 57);
+            lblFactura.Name = "lblFactura";
+            lblFactura.Size = new Size(23, 35);
+            lblFactura.TabIndex = 347;
+            lblFactura.Text = ".";
             // 
             // FacturaVer
             // 
@@ -294,6 +326,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1003, 600);
+            Controls.Add(lblFactura);
+            Controls.Add(label6);
             Controls.Add(dgvFacturas);
             Controls.Add(cmbPago);
             Controls.Add(txtBateriaVieja);
@@ -352,5 +386,7 @@
         private Panel panel4;
         private Panel panel8;
         private DataGridView dgvFacturas;
+        private Label label6;
+        private Label lblFactura;
     }
 }

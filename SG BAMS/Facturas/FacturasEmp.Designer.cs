@@ -113,13 +113,13 @@
             panel3.BackColor = Color.Navy;
             panel3.Location = new Point(0, 883);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1183, 24);
+            panel3.Size = new Size(1520, 24);
             panel3.TabIndex = 149;
             // 
             // panel4
             // 
             panel4.BackColor = Color.Navy;
-            panel4.Location = new Point(1159, 3);
+            panel4.Location = new Point(1496, 1);
             panel4.Name = "panel4";
             panel4.Size = new Size(24, 895);
             panel4.TabIndex = 146;
@@ -449,14 +449,14 @@
             panel2.BackColor = Color.Navy;
             panel2.Location = new Point(6, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1177, 24);
+            panel2.Size = new Size(1511, 24);
             panel2.TabIndex = 145;
             // 
             // BtnRefrescar
             // 
             BtnRefrescar.BackgroundImage = Properties.Resources.refresh;
             BtnRefrescar.BackgroundImageLayout = ImageLayout.Stretch;
-            BtnRefrescar.Location = new Point(1019, 187);
+            BtnRefrescar.Location = new Point(1172, 198);
             BtnRefrescar.Name = "BtnRefrescar";
             BtnRefrescar.Size = new Size(65, 44);
             BtnRefrescar.TabIndex = 351;
@@ -468,7 +468,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(492, 141);
+            label6.Location = new Point(645, 152);
             label6.Name = "label6";
             label6.Size = new Size(45, 23);
             label6.TabIndex = 350;
@@ -479,7 +479,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(345, 141);
+            label5.Location = new Point(498, 152);
             label5.Name = "label5";
             label5.Size = new Size(54, 23);
             label5.TabIndex = 349;
@@ -490,7 +490,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(488, 198);
+            label4.Location = new Point(641, 209);
             label4.Name = "label4";
             label4.Size = new Size(115, 31);
             label4.TabIndex = 348;
@@ -502,7 +502,7 @@
             label3.BackColor = Color.SkyBlue;
             label3.Font = new Font("Arial Narrow", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(374, 101);
+            label3.Location = new Point(527, 112);
             label3.Name = "label3";
             label3.Size = new Size(82, 33);
             label3.TabIndex = 347;
@@ -511,12 +511,14 @@
             // 
             // txtBusqueda
             // 
-            txtBusqueda.Location = new Point(609, 196);
+            txtBusqueda.Location = new Point(762, 207);
             txtBusqueda.Margin = new Padding(3, 4, 3, 4);
             txtBusqueda.Name = "txtBusqueda";
-            txtBusqueda.Size = new Size(404, 33);
+            txtBusqueda.Size = new Size(404, 28);
             txtBusqueda.StateCommon.Back.Color1 = Color.SkyBlue;
             txtBusqueda.StateCommon.Border.Rounding = 10F;
+            txtBusqueda.StateCommon.Content.Color1 = Color.Navy;
+            txtBusqueda.StateCommon.Content.Font = new Font("Arial Narrow", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtBusqueda.TabIndex = 346;
             txtBusqueda.TextChanged += txtBusqueda_TextChanged;
             // 
@@ -524,10 +526,10 @@
             // 
             dgvFacturas.BackgroundColor = Color.SkyBlue;
             dgvFacturas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvFacturas.Location = new Point(372, 268);
+            dgvFacturas.Location = new Point(371, 279);
             dgvFacturas.Name = "dgvFacturas";
             dgvFacturas.RowHeadersWidth = 51;
-            dgvFacturas.Size = new Size(725, 444);
+            dgvFacturas.Size = new Size(1075, 444);
             dgvFacturas.TabIndex = 332;
             dgvFacturas.CellContentClick += dgvFacturas_CellContentClick;
             // 
@@ -535,7 +537,7 @@
             // 
             dtpFin.CalendarForeColor = Color.Navy;
             dtpFin.Enabled = false;
-            dtpFin.Location = new Point(463, 168);
+            dtpFin.Location = new Point(616, 179);
             dtpFin.Margin = new Padding(3, 4, 3, 4);
             dtpFin.Name = "dtpFin";
             dtpFin.Size = new Size(116, 27);
@@ -543,7 +545,7 @@
             // 
             // dtpInicio
             // 
-            dtpInicio.Location = new Point(318, 168);
+            dtpInicio.Location = new Point(471, 179);
             dtpInicio.Margin = new Padding(3, 4, 3, 4);
             dtpInicio.Name = "dtpInicio";
             dtpInicio.Size = new Size(114, 27);
@@ -552,7 +554,7 @@
             // 
             // BtnNueva
             // 
-            BtnNueva.Location = new Point(535, 789);
+            BtnNueva.Location = new Point(690, 794);
             BtnNueva.Name = "BtnNueva";
             BtnNueva.OverrideDefault.Back.Color1 = Color.SkyBlue;
             BtnNueva.OverrideDefault.Back.Color2 = Color.White;
@@ -575,7 +577,7 @@
             // 
             // BtnVer
             // 
-            BtnVer.Location = new Point(835, 784);
+            BtnVer.Location = new Point(987, 794);
             BtnVer.Name = "BtnVer";
             BtnVer.OverrideDefault.Back.Color1 = Color.SkyBlue;
             BtnVer.OverrideDefault.Back.Color2 = Color.White;
@@ -602,7 +604,7 @@
             label10.BackColor = Color.SkyBlue;
             label10.Font = new Font("Arial Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Navy;
-            label10.Location = new Point(644, 47);
+            label10.Location = new Point(797, 58);
             label10.Name = "label10";
             label10.Size = new Size(162, 42);
             label10.TabIndex = 338;
@@ -610,7 +612,7 @@
             // 
             // kryptonButton14
             // 
-            kryptonButton14.Location = new Point(330, 276);
+            kryptonButton14.Location = new Point(483, 287);
             kryptonButton14.Name = "kryptonButton14";
             kryptonButton14.Size = new Size(0, 0);
             kryptonButton14.StateCommon.Border.Rounding = 100F;
@@ -630,7 +632,7 @@
             // 
             // kryptonButton11
             // 
-            kryptonButton11.Location = new Point(1057, 28);
+            kryptonButton11.Location = new Point(1389, 31);
             kryptonButton11.Name = "kryptonButton11";
             kryptonButton11.OverrideDefault.Back.Color1 = Color.Transparent;
             kryptonButton11.OverrideDefault.Back.Color2 = Color.Transparent;
@@ -657,7 +659,7 @@
             // 
             pictureBox18.BackgroundImage = Properties.Resources.ajus;
             pictureBox18.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox18.Location = new Point(1002, 27);
+            pictureBox18.Location = new Point(1334, 30);
             pictureBox18.Name = "pictureBox18";
             pictureBox18.Size = new Size(53, 49);
             pictureBox18.TabIndex = 334;
@@ -672,7 +674,7 @@
             button12.FlatAppearance.BorderSize = 0;
             button12.FlatStyle = FlatStyle.Flat;
             button12.ForeColor = Color.Navy;
-            button12.Location = new Point(937, 27);
+            button12.Location = new Point(1269, 30);
             button12.Name = "button12";
             button12.Size = new Size(59, 44);
             button12.TabIndex = 333;
@@ -681,7 +683,7 @@
             // kryptonGroupBox2
             // 
             kryptonGroupBox2.CaptionVisible = false;
-            kryptonGroupBox2.Location = new Point(549, 35);
+            kryptonGroupBox2.Location = new Point(702, 46);
             kryptonGroupBox2.Margin = new Padding(3, 4, 3, 4);
             kryptonGroupBox2.Size = new Size(344, 65);
             kryptonGroupBox2.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -691,7 +693,7 @@
             // kryptonGroupBox3
             // 
             kryptonGroupBox3.CaptionVisible = false;
-            kryptonGroupBox3.Location = new Point(334, 96);
+            kryptonGroupBox3.Location = new Point(487, 107);
             kryptonGroupBox3.Margin = new Padding(3, 4, 3, 4);
             kryptonGroupBox3.Size = new Size(159, 39);
             kryptonGroupBox3.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -701,9 +703,9 @@
             // kryptonGroupBox1
             // 
             kryptonGroupBox1.CaptionVisible = false;
-            kryptonGroupBox1.Location = new Point(331, 243);
+            kryptonGroupBox1.Location = new Point(336, 254);
             kryptonGroupBox1.Margin = new Padding(3, 4, 3, 4);
-            kryptonGroupBox1.Size = new Size(810, 501);
+            kryptonGroupBox1.Size = new Size(1130, 501);
             kryptonGroupBox1.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroupBox1.StateCommon.Border.Rounding = 50F;
             kryptonGroupBox1.TabIndex = 339;
@@ -713,7 +715,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1181, 908);
+            ClientSize = new Size(1519, 908);
             Controls.Add(BtnRefrescar);
             Controls.Add(label6);
             Controls.Add(label5);
