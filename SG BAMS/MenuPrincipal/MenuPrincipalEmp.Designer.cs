@@ -683,25 +683,7 @@ namespace SG_BAMS
             
             // btnfacturas2
             // 
-            btnfacturas2.Location = new Point(322, 510);
-            btnfacturas2.Name = "btnfacturas2";
-            btnfacturas2.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnfacturas2.OverrideDefault.Back.Color2 = Color.White;
-            btnfacturas2.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnfacturas2.OverrideFocus.Back.Color2 = Color.White;
-            btnfacturas2.Size = new Size(456, 346);
-            btnfacturas2.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnfacturas2.StateCommon.Back.Color2 = Color.White;
-            btnfacturas2.StateCommon.Border.Rounding = 100F;
-            btnfacturas2.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnfacturas2.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            btnfacturas2.StatePressed.Back.Color1 = Color.Transparent;
-            btnfacturas2.StatePressed.Back.Color2 = Color.Transparent;
-            btnfacturas2.TabIndex = 96;
-            btnfacturas2.Values.DropDownArrowColor = Color.Empty;
-            btnfacturas2.Values.Text = "";
-            btnfacturas2.Click += btnfacturas2_Click;
-            // 
+           
             // btninventario2
             // 
             btninventario2.Location = new Point(325, 105);
@@ -808,7 +790,7 @@ namespace SG_BAMS
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1105, 907);
             Controls.Add(btnnotificaciones);
-            Controls.Add(btnajustes);
+          
           
             Controls.Add(dgvVentas);
             Controls.Add(pictureBox21);
