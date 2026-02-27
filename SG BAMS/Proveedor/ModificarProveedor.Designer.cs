@@ -48,6 +48,8 @@
             cmbClasificacion = new Krypton.Toolkit.KryptonComboBox();
             cmbEstado = new Krypton.Toolkit.KryptonComboBox();
             label5 = new Label();
+            label3 = new Label();
+            txtID = new Krypton.Toolkit.KryptonTextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -319,6 +321,30 @@
             label5.TabIndex = 239;
             label5.Text = "Estado:";
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.Navy;
+            label3.Location = new Point(57, 77);
+            label3.Name = "label3";
+            label3.Size = new Size(34, 26);
+            label3.TabIndex = 192;
+            label3.Text = "ID:";
+            // 
+            // txtID
+            // 
+            txtID.Enabled = false;
+            txtID.Location = new Point(175, 73);
+            txtID.Margin = new Padding(3, 2, 3, 2);
+            txtID.Name = "txtID";
+            txtID.Size = new Size(219, 35);
+            txtID.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtID.StateCommon.Border.Rounding = 20F;
+            txtID.StateCommon.Content.Color1 = Color.Navy;
+            txtID.TabIndex = 196;
+            // 
             // ModificarProveedor
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -333,8 +359,10 @@
             Controls.Add(txtRTN);
             Controls.Add(label1);
             Controls.Add(txtTelefono);
+            Controls.Add(txtID);
             Controls.Add(txtNombre);
             Controls.Add(label15);
+            Controls.Add(label3);
             Controls.Add(label7);
             Controls.Add(label4);
             Controls.Add(pictureBox9);
@@ -382,5 +410,7 @@
         private Krypton.Toolkit.KryptonComboBox cmbClasificacion;
         private Krypton.Toolkit.KryptonComboBox cmbEstado;
         private Label label5;
+        private Label label3;
+        private Krypton.Toolkit.KryptonTextBox txtID;
     }
 }

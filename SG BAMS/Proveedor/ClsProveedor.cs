@@ -169,7 +169,7 @@ namespace SG_BAMS.Proveedor
             }
         }
 
-        public void ModificarProveedor(string nombre, string contacto, string direccion,
+        public void ModificarProveedor(int idProveedor, string nombre, string contacto, string direccion,
             string rtn, int idEstado, int idClasificacion, int idUsuario)
         {
             try
@@ -182,6 +182,7 @@ namespace SG_BAMS.Proveedor
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
+                    cmd.Parameters.AddWithValue("@id_proveedor", idProveedor);
                     cmd.Parameters.AddWithValue("@nombre_proveedor", nombre);
                     cmd.Parameters.AddWithValue("@contacto_proveedor", contacto);
                     cmd.Parameters.AddWithValue("@direccion_proveedor", direccion);
