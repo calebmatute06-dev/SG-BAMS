@@ -40,7 +40,7 @@
             pictureBox5 = new PictureBox();
             btnsalir = new Krypton.Toolkit.KryptonButton();
             label6 = new Label();
-            
+            btnimagen = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)pbFotoPerfil).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -183,16 +183,36 @@
             label6.TabIndex = 84;
             label6.Text = "BAMS";
             // 
-            // btncambiarfoto
+            // btnimagen
             // 
-           
+            btnimagen.Location = new Point(188, 331);
+            btnimagen.Name = "btnimagen";
+            btnimagen.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnimagen.OverrideDefault.Back.Color2 = Color.White;
+            btnimagen.OverrideDefault.Border.Rounding = 40F;
+            btnimagen.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnimagen.OverrideFocus.Back.Color2 = Color.White;
+            btnimagen.Size = new Size(220, 53);
+            btnimagen.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnimagen.StateCommon.Back.Color2 = Color.White;
+            btnimagen.StateCommon.Border.Rounding = 40F;
+            btnimagen.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnimagen.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnimagen.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnimagen.StateNormal.Back.Color2 = Color.White;
+            btnimagen.StateNormal.Border.Rounding = 40F;
+            btnimagen.StateTracking.Border.Rounding = 40F;
+            btnimagen.TabIndex = 85;
+            btnimagen.Values.DropDownArrowColor = Color.Empty;
+            btnimagen.Values.Text = "Elegir imagen";
+            btnimagen.Click += btnimagen_Click;
             // 
             // Perfil
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(606, 541);
-            
+            Controls.Add(btnimagen);
             Controls.Add(label6);
             Controls.Add(btnsalir);
             Controls.Add(pictureBox4);
@@ -233,5 +253,6 @@
         private Krypton.Toolkit.KryptonButton btnsalir;
         private Label label6;
         private Krypton.Toolkit.KryptonButton kryptonButton1;
+        private Krypton.Toolkit.KryptonButton btnimagen;
     }
 }

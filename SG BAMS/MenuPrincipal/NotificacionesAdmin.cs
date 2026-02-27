@@ -13,15 +13,17 @@ namespace SG_BAMS
     public partial class NotificacionesAdmin : Form
     {
         private bool esAdministrador;
+        private HashSet<int> notificacionesLeidas = new HashSet<int>();
+        private int contadorNoLeidas = 0;
 
         public NotificacionesAdmin()
         {
             InitializeComponent();
             DeterminarPermisos();
 
-            
-            listBox1.DrawMode = DrawMode.OwnerDrawFixed;
-            listBox1.DrawItem += new DrawItemEventHandler(ListBox1_DrawItem);
+            notificaciones.DrawMode = DrawMode.OwnerDrawFixed;
+            notificaciones.DrawItem += new DrawItemEventHandler(Notificaciones_DrawItem);
+            notificaciones.DoubleClick += new EventHandler(Notificaciones_DoubleClick);
         }
 
         private void NotificacionesAdmin_Load(object sender, EventArgs e)
@@ -41,13 +43,17 @@ namespace SG_BAMS
             try
             {
                 ClsNotificaciones objNoti = new ClsNotificaciones();
-                DataTable dt = objNoti.ListarNotificaciones(esAdministrador);
+                DataTable dtNotificaciones = objNoti.ListarNotificaciones(esAdministrador);
 
-                if (dt != null)
+                if (dtNotificaciones != null)
                 {
-                    listBox1.DataSource = dt;
-                    listBox1.DisplayMember = "titulo";
-                    listBox1.ValueMember = "id_notificacion";
+                    notificaciones.DataSource = null;
+                    notificaciones.DisplayMember = "titulo";
+                    notificaciones.ValueMember = "id_notificacion";
+                    notificaciones.DataSource = dtNotificaciones;
+
+                    contadorNoLeidas = dtNotificaciones.Rows.Count;
+                    ActualizarLabelContador();
                 }
             }
             catch (Exception ex)
@@ -56,96 +62,88 @@ namespace SG_BAMS
             }
         }
 
-      
-        private void ListBox1_DrawItem(object sender, DrawItemEventArgs e)
+        private void ActualizarLabelContador()
+        {
+            cantidadnotificaciones.Text = contadorNoLeidas.ToString();
+            cantidadnotificaciones.ForeColor = (contadorNoLeidas > 0) ? Color.Red : Color.Gray;
+        }
+
+        // --- MODIFICADO: Ahora guarda en la Base de Datos ---
+        private async void Notificaciones_DoubleClick(object sender, EventArgs e)
+        {
+            if (notificaciones.SelectedIndex != -1 && notificaciones.SelectedItem != null)
+            {
+                DataRowView filaSeleccionada = (DataRowView)notificaciones.SelectedItem;
+                int idNotificacion = Convert.ToInt32(filaSeleccionada["id_notificacion"]);
+                string tituloNotif = filaSeleccionada["titulo"].ToString();
+                string mensajeNotif = filaSeleccionada["mensaje"].ToString();
+
+                MessageBox.Show(mensajeNotif, tituloNotif, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                if (!notificacionesLeidas.Contains(idNotificacion))
+                {
+                    // 1. Llamamos a la clase de lógica para actualizar SQL
+                    ClsNotificaciones objNoti = new ClsNotificaciones();
+                    bool exito = await objNoti.MarcarComoLeida(idNotificacion);
+
+                    if (exito)
+                    {
+                        // 2. Si se guardó en SQL, actualizamos la interfaz
+                        notificacionesLeidas.Add(idNotificacion);
+                        if (contadorNoLeidas > 0)
+                        {
+                            contadorNoLeidas--;
+                            ActualizarLabelContador();
+                            notificaciones.Invalidate();
+                        }
+                    }
+                }
+            }
+        }
+
+        private void Notificaciones_DrawItem(object sender, DrawItemEventArgs e)
         {
             if (e.Index < 0) return;
 
-            
-            DataRowView fila = (DataRowView)listBox1.Items[e.Index];
-
-           
-            string tituloBusqueda = fila["titulo"].ToString().ToLower().Trim();
+            DataRowView fila = (DataRowView)notificaciones.Items[e.Index];
+            string tituloTexto = fila["titulo"].ToString().ToLower();
+            int idActual = Convert.ToInt32(fila["id_notificacion"]);
 
             Color colorFondo = Color.White;
-            Color colorTexto = Color.Black;
 
-            
-            if (tituloBusqueda.Contains("agotado"))
-            {
-                colorFondo = Color.Firebrick;
-                colorTexto = Color.White;
-            }
-            
-            else if (tituloBusqueda.Contains("critic"))
-            {
-                colorFondo = Color.Gold;
-                colorTexto = Color.Black;
-            }
+            if (tituloTexto.Contains("acabado") || tituloTexto.Contains("agotado"))
+                colorFondo = Color.FromArgb(255, 210, 210);
+            else if (tituloTexto.Contains("critico") || tituloTexto.Contains("bajo"))
+                colorFondo = Color.FromArgb(255, 255, 210);
 
-            
+            if (notificacionesLeidas.Contains(idActual))
+                colorFondo = Color.FromArgb(245, 245, 245);
+
             if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+                colorFondo = SystemColors.Highlight;
+
+            using (SolidBrush pincelFondo = new SolidBrush(colorFondo))
             {
-                
-                e.Graphics.FillRectangle(Brushes.LightBlue, e.Bounds);
-                colorTexto = Color.Black;
-            }
-            else
-            {
-                using (SolidBrush brushFondo = new SolidBrush(colorFondo))
-                {
-                    e.Graphics.FillRectangle(brushFondo, e.Bounds);
-                }
+                e.Graphics.FillRectangle(pincelFondo, e.Bounds);
             }
 
-            
-            using (SolidBrush brushTexto = new SolidBrush(colorTexto))
+            Color colorTexto = (e.State & DrawItemState.Selected) == DrawItemState.Selected ? Color.White : Color.Black;
+
+            FontStyle estilo = notificacionesLeidas.Contains(idActual) ? FontStyle.Regular : FontStyle.Bold;
+            using (Font fuentePersonalizada = new Font(e.Font, estilo))
             {
-                
-                string textoMostrar = listBox1.GetItemText(listBox1.Items[e.Index]);
-                e.Graphics.DrawString(textoMostrar, e.Font, brushTexto, e.Bounds);
+                TextRenderer.DrawText(e.Graphics, fila["titulo"].ToString(), fuentePersonalizada, e.Bounds, colorTexto, TextFormatFlags.VerticalCenter | TextFormatFlags.Left);
             }
 
             e.DrawFocusRectangle();
         }
 
-  
+        private void btnsalir_Click(object sender, EventArgs e) => this.Close();
 
-        
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-           
-        }
+        private void NotificacionesAdmin_Shown(object sender, EventArgs e) => Ayudante_UI.AplicarZoomGlobal(this);
 
-        private void listBox1_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (listBox1.SelectedIndex != -1 && listBox1.SelectedItem != null)
-            {
-                DataRowView fila = (DataRowView)listBox1.SelectedItem;
-                string titulo = fila["titulo"].ToString();
-                string mensaje = fila["mensaje"].ToString();
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e) { }
 
-                MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
-
-
-
-        private void btnsalir_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-
-
-        
-
-        private void NotificacionesAdmin_Shown(object sender, EventArgs e)
-        {
-            Ayudante_UI.AplicarZoomGlobal(this);
-        }
-
-       
+        private void listBox1_MouseClick(object sender, MouseEventArgs e) { }
     }
 }

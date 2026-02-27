@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             btnsalir = new Krypton.Toolkit.KryptonButton();
-            label1 = new Label();
+            cantidadnotificaciones = new Label();
             label3 = new Label();
             pictureBox4 = new PictureBox();
             pictureBox3 = new PictureBox();
             pictureBox1 = new PictureBox();
             pictureBox2 = new PictureBox();
             label6 = new Label();
-            listBox1 = new ListBox();
+            notificaciones = new ListBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -67,17 +67,17 @@
             btnsalir.Values.Text = "Salir";
             btnsalir.Click += btnsalir_Click;
             // 
-            // label1
+            // cantidadnotificaciones
             // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Navy;
-            label1.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(299, 66);
-            label1.Name = "label1";
-            label1.Size = new Size(28, 33);
-            label1.TabIndex = 103;
-            label1.Text = "0";
+            cantidadnotificaciones.AutoSize = true;
+            cantidadnotificaciones.BackColor = Color.Navy;
+            cantidadnotificaciones.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cantidadnotificaciones.ForeColor = Color.White;
+            cantidadnotificaciones.Location = new Point(299, 66);
+            cantidadnotificaciones.Name = "cantidadnotificaciones";
+            cantidadnotificaciones.Size = new Size(28, 33);
+            cantidadnotificaciones.TabIndex = 103;
+            cantidadnotificaciones.Text = "0";
             // 
             // label3
             // 
@@ -138,25 +138,25 @@
             label6.TabIndex = 97;
             label6.Text = "BAMS";
             // 
-            // listBox1
+            // notificaciones
             // 
-            listBox1.DrawMode = DrawMode.OwnerDrawFixed;
-            listBox1.FormattingEnabled = true;
-            listBox1.Location = new Point(12, 122);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(477, 404);
-            listBox1.TabIndex = 105;
-            listBox1.MouseClick += listBox1_MouseClick;
-            listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
+            notificaciones.DrawMode = DrawMode.OwnerDrawFixed;
+            notificaciones.FormattingEnabled = true;
+            notificaciones.Location = new Point(12, 122);
+            notificaciones.Name = "notificaciones";
+            notificaciones.Size = new Size(477, 404);
+            notificaciones.TabIndex = 105;
+            notificaciones.MouseClick += listBox1_MouseClick;
+            notificaciones.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
             // NotificacionesAdmin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(508, 550);
-            Controls.Add(listBox1);
+            Controls.Add(notificaciones);
             Controls.Add(btnsalir);
-            Controls.Add(label1);
+            Controls.Add(cantidadnotificaciones);
             Controls.Add(label3);
             Controls.Add(pictureBox4);
             Controls.Add(pictureBox3);
@@ -178,13 +178,13 @@
         #endregion
 
         private Krypton.Toolkit.KryptonButton btnsalir;
-        private Label label1;
+        private Label cantidadnotificaciones;
         private Label label3;
         private PictureBox pictureBox4;
         private PictureBox pictureBox3;
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private Label label6;
-        private ListBox listBox1;
+        private ListBox notificaciones;
     }
 }

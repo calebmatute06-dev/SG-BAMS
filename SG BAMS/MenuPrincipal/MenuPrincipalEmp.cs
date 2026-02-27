@@ -302,7 +302,7 @@ namespace SG_BAMS
             InventarioEmp invemp = new InventarioEmp();
 
             invemp.Show();
-            this.Close();
+            this.Hide();
         }
 
         private void btninventario3_Click(object sender, EventArgs e)
@@ -311,7 +311,7 @@ namespace SG_BAMS
 
             invemp.Show();
 
-            this.Close();
+            this.Hide();
         }
 
         private async void btndeudores2_Click(object sender, EventArgs e)
@@ -319,7 +319,7 @@ namespace SG_BAMS
             Deudores_Emp deudoresForm = new Deudores_Emp();
             deudoresForm.ShowDialog();
             await ActualizarLabelDeudores();
-            this.Close();
+            this.Hide();
         }
 
         private async void btnclientes2_Click(object sender, EventArgs e)
@@ -327,13 +327,13 @@ namespace SG_BAMS
             ClientesEmp clienemp = new ClientesEmp();
             clienemp.ShowDialog();
             await ActualizarLabel();
-            this.Close();
+            this.Hide();
         }
 
         private void btnnotificaciones_Click(object sender, EventArgs e)
         {
 
-            NotificacionesEmp notif = new NotificacionesEmp();
+            NotificacionesAdmin notif = new NotificacionesAdmin();
             notif.Show();
         }
 

@@ -248,5 +248,65 @@ namespace SG_BAMS
             proveedores.Show();
             this.Hide();
         }
+
+
+
+        private void btnadmin_Click(object sender, EventArgs e)
+        {
+            NotificacionesAdmin admin = new NotificacionesAdmin();
+            admin.Show();
+        }
+
+        private void btnmenuprincipal_Click(object sender, EventArgs e)
+        {
+            this.Show();
+        }
+
+        private void btnajustes_Click(object sender, EventArgs e)
+        {
+            Ajustes Ajus = new Ajustes();
+            Ajus.Show();
+        }
+
+        private void btnperfil_Click(object sender, EventArgs e)
+        {
+            Perfil perfil = new Perfil();
+            perfil.Show();
+        }
+
+        private void BtnCerrarSesión_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            SG_BAMS.Login.Login Log = new Login.Login();
+            Log.Show();
+        }
+
+        private void btndeudores_Click(object sender, EventArgs e)
+        {
+            Deudores Deu = new Deudores();
+            Deu.Show();
+            this.Hide();
+        }
+
+        private void btninventario_Click(object sender, EventArgs e)
+        {
+            InventarioAdmin Intad = new InventarioAdmin();
+            Intad.Show();
+            this.Hide();
+        }
+
+        private void btncompra_Click(object sender, EventArgs e)
+        {
+            Compras Comp = new Compras();
+            Comp.Show();
+            this.Hide();
+        }
+
+        private void BtnFacturas_Click(object sender, EventArgs e)
+        {
+            FacturasAdm Fact = new FacturasAdm();
+            Fact.Show();
+            this.Hide();
+        }
     }
 }
