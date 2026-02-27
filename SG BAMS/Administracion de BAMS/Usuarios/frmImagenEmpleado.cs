@@ -12,7 +12,7 @@ namespace SG_BAMS
     public partial class frmImagenEmpleado : Form
     {
         private VideoCapture camara;
-        private bool camaraEnEncendida = false;
+        private CascadeClassifier faceDetector = new CascadeClassifier("haarcascade_frontalface_default.xml");
         public frmImagenEmpleado()
         {
             InitializeComponent();
@@ -146,6 +146,14 @@ namespace SG_BAMS
             string nombreUsuario = cmbUsuarios.Text;
 
             try
+            {
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
             {
                 var archivos = Directory.GetFiles(clsSoporte.DirectorioRostros, "*.jpg")
                     .Where(f => Path.GetFileNameWithoutExtension(f) == nombreUsuario ||

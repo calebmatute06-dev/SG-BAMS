@@ -19,6 +19,7 @@ namespace SG_BAMS.Login
         public string UsuarioAValidar { get; set; }
         private VideoCapture camara;
         private List<Image<Gray, byte>> rostrosReferencia = new List<Image<Gray, byte>>();
+        private CascadeClassifier faceDetector = new CascadeClassifier("haarcascade_frontalface_default.xml");
         public LoginFacial()
         {
             InitializeComponent();
