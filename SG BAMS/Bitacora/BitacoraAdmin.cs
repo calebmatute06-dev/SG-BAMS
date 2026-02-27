@@ -91,6 +91,7 @@ namespace SG_BAMS.Bitacora
         private void Bitacora_Load(object sender, EventArgs e)
         {
             bitacora.cargarDatos(dgvBitacora);
+            bitacora.BuscarBitacora(txtBuscar, dtpDesde.Value, dtpHasta.Value, dgvBitacora);
         }
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
@@ -116,6 +117,7 @@ namespace SG_BAMS.Bitacora
             dtpDesde.Value = DateTime.Today;
             dtpHasta.Value = DateTime.Today;
             bitacora.cargarDatos(dgvBitacora);
+            bitacora.BuscarBitacora(txtBuscar, dtpDesde.Value, dtpHasta.Value, dgvBitacora);
         }
 
         private void dtpDesde_ValueChanged(object sender, EventArgs e)
