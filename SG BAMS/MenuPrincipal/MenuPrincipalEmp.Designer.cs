@@ -29,9 +29,7 @@ namespace SG_BAMS
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            
             pictureBox21 = new PictureBox();
             pictureBox20 = new PictureBox();
             pictureBox19 = new PictureBox();
@@ -73,7 +71,7 @@ namespace SG_BAMS
             pictureBox8 = new PictureBox();
             pictureBox1 = new PictureBox();
             dgvVentas = new DataGridView();
-            chartStock = new System.Windows.Forms.DataVisualization.Charting.Chart();
+           
             btnfacturas2 = new Krypton.Toolkit.KryptonButton();
             btninventario2 = new Krypton.Toolkit.KryptonButton();
             btnclientes2 = new Krypton.Toolkit.KryptonButton();
@@ -101,7 +99,7 @@ namespace SG_BAMS
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvVentas).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)chartStock).BeginInit();
+         
             SuspendLayout();
             // 
             // pictureBox21
@@ -659,28 +657,7 @@ namespace SG_BAMS
             dgvVentas.TabIndex = 94;
             // 
             // chartStock
-            // 
-            chartStock.BackColor = Color.SkyBlue;
-            chartStock.BorderlineColor = Color.SkyBlue;
-            chartArea1.BackColor = Color.SkyBlue;
-            chartArea1.BackSecondaryColor = Color.White;
-            chartArea1.Name = "ChartArea1";
-            chartStock.ChartAreas.Add(chartArea1);
-            legend1.BackColor = Color.SkyBlue;
-            legend1.Name = "Legend1";
-            chartStock.Legends.Add(legend1);
-            chartStock.Location = new Point(341, 190);
-            chartStock.Name = "chartStock";
-            chartStock.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.EarthTones;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            chartStock.Series.Add(series1);
-            chartStock.Size = new Size(426, 215);
-            chartStock.TabIndex = 95;
-            chartStock.Text = "chartStock";
-            // 
+            
             // btnfacturas2
             // 
             btnfacturas2.Location = new Point(322, 510);
@@ -837,7 +814,7 @@ namespace SG_BAMS
             ClientSize = new Size(1105, 907);
             Controls.Add(btnnotificaciones);
             Controls.Add(btnajustes);
-            Controls.Add(chartStock);
+          
             Controls.Add(dgvVentas);
             Controls.Add(pictureBox21);
             Controls.Add(pictureBox20);
@@ -890,7 +867,7 @@ namespace SG_BAMS
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvVentas).EndInit();
-            ((System.ComponentModel.ISupportInitialize)chartStock).EndInit();
+        
             ResumeLayout(false);
             PerformLayout();
         }
@@ -937,7 +914,7 @@ namespace SG_BAMS
         private PictureBox pictureBox8;
         private PictureBox pictureBox1;
         private DataGridView dgvVentas;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chartStock;
+     
         private Krypton.Toolkit.KryptonButton btnprincipalemp;
         private Krypton.Toolkit.KryptonButton btnfacturas;
         private Krypton.Toolkit.KryptonButton btnclientes;

@@ -221,7 +221,7 @@
             btnMenu.TabIndex = 34;
             btnMenu.Values.DropDownArrowColor = Color.Empty;
             btnMenu.Values.Text = "Menu Principal";
-            btnMenu.Click += btnMenu_Click;
+    
             // 
             // btnFactura
             // 
@@ -247,7 +247,7 @@
             btnFactura.TabIndex = 33;
             btnFactura.Values.DropDownArrowColor = Color.Empty;
             btnFactura.Values.Text = "Facturas";
-            btnFactura.Click += btnFactura_Click;
+         
             // 
             // kryptonButton7
             // 
