@@ -43,11 +43,11 @@
             label2 = new Label();
             pctCamara = new PictureBox();
             timer1 = new System.Windows.Forms.Timer(components);
-            cmbUsuarios2 = new Krypton.Toolkit.KryptonComboBox();
+            cmbUsuarios = new Krypton.Toolkit.KryptonComboBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pctCamara).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)cmbUsuarios2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cmbUsuarios).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -256,22 +256,22 @@
             pctCamara.TabIndex = 148;
             pctCamara.TabStop = false;
             // 
-            // cmbUsuarios2
+            // cmbUsuarios
             // 
-            cmbUsuarios2.DropDownWidth = 300;
-            cmbUsuarios2.Location = new Point(29, 63);
-            cmbUsuarios2.Margin = new Padding(3, 2, 3, 2);
-            cmbUsuarios2.Name = "cmbUsuarios2";
-            cmbUsuarios2.Size = new Size(227, 40);
-            cmbUsuarios2.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
-            cmbUsuarios2.StateCommon.ComboBox.Border.Rounding = 20F;
-            cmbUsuarios2.StateCommon.ComboBox.Content.Color1 = Color.Navy;
-            cmbUsuarios2.StateCommon.ComboBox.Content.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cmbUsuarios2.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
-            cmbUsuarios2.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
-            cmbUsuarios2.StateCommon.Item.Content.ShortText.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cmbUsuarios2.StateNormal.ComboBox.Border.Rounding = 40F;
-            cmbUsuarios2.TabIndex = 149;
+            cmbUsuarios.DropDownWidth = 300;
+            cmbUsuarios.Location = new Point(29, 63);
+            cmbUsuarios.Margin = new Padding(3, 2, 3, 2);
+            cmbUsuarios.Name = "cmbUsuarios";
+            cmbUsuarios.Size = new Size(227, 40);
+            cmbUsuarios.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbUsuarios.StateCommon.ComboBox.Border.Rounding = 20F;
+            cmbUsuarios.StateCommon.ComboBox.Content.Color1 = Color.Navy;
+            cmbUsuarios.StateCommon.ComboBox.Content.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbUsuarios.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            cmbUsuarios.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
+            cmbUsuarios.StateCommon.Item.Content.ShortText.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbUsuarios.StateNormal.ComboBox.Border.Rounding = 40F;
+            cmbUsuarios.TabIndex = 149;
             // 
             // frmImagenEmpleado
             // 
@@ -279,7 +279,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(809, 411);
-            Controls.Add(cmbUsuarios2);
+            Controls.Add(cmbUsuarios);
             Controls.Add(pctCamara);
             Controls.Add(label2);
             Controls.Add(btnDetener);
@@ -299,7 +299,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             ((System.ComponentModel.ISupportInitialize)pctCamara).EndInit();
-            ((System.ComponentModel.ISupportInitialize)cmbUsuarios2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cmbUsuarios).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -320,6 +320,6 @@
         private Label label2;
         private PictureBox pctCamara;
         private System.Windows.Forms.Timer timer1;
-        private Krypton.Toolkit.KryptonComboBox cmbUsuarios2;
+        private Krypton.Toolkit.KryptonComboBox cmbUsuarios;
     }
 }

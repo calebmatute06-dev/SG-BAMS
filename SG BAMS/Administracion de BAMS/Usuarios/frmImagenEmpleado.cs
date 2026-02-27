@@ -41,13 +41,13 @@ namespace SG_BAMS
 
         private void btnCapturar_Click(object sender, EventArgs e)
         {
-            if (cmbUsuarios2.SelectedIndex == -1)
+            if (cmbUsuarios.SelectedIndex == -1)
             {
                 MessageBox.Show("Selecciona un usuario primero.");
                 return;
             }
 
-            string nombreArchivo = cmbUsuarios2.Text;
+            string nombreArchivo = cmbUsuarios.Text;
 
             using (var frame = camara.QueryFrame().ToImage<Bgr, byte>())
             {
@@ -87,11 +87,11 @@ namespace SG_BAMS
 
                 if (dt.Rows.Count > 0)
                 {
-                    cmbUsuarios2.DataSource = dt;
-                    cmbUsuarios2.DisplayMember = "nombre_usuario";
-                    cmbUsuarios2.ValueMember = "id_usuario";
+                    cmbUsuarios.DataSource = dt;
+                    cmbUsuarios.DisplayMember = "nombre_usuario";
+                    cmbUsuarios.ValueMember = "id_usuario";
 
-                    cmbUsuarios2.SelectedIndex = -1;
+                    cmbUsuarios.SelectedIndex = -1;
                 }
             }
             catch (Exception ex)
@@ -137,13 +137,13 @@ namespace SG_BAMS
 
         private void btnBorrar_Click(object sender, EventArgs e)
         {
-            if (cmbUsuarios2.SelectedItem == null)
+            if (cmbUsuarios.SelectedItem == null)
             {
                 MessageBox.Show("Por favor, selecciona un usuario.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            string nombreUsuario = cmbUsuarios2.Text;
+            string nombreUsuario = cmbUsuarios.Text;
 
             try
             {
