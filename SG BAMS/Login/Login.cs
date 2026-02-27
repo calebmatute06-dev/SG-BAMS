@@ -38,23 +38,34 @@ namespace SG_BAMS.Login
                
 
 
-                if (rol == 1)
+                if (rol == 1 || rol == 2)
                 {
-                    MessageBox.Show("Login correcto. ¡Bienvenido Administrador!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MenuPrincipalAdm MenAdm = new MenuPrincipalAdm();
-                    MenAdm.ShowDialog();
-                    txtUsu.Clear();
-                    txtCon.Clear();
-                    this.Hide();
-                }
-                else if (rol == 2)
-                {
-                    MessageBox.Show("Login correcto. ¡Bienvenido Empleado!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MenuPrincipalEmp MenEmp = new MenuPrincipalEmp();
-                    MenEmp.ShowDialog();
-                    txtUsu.Clear();
-                    txtCon.Clear();
-                    this.Hide();
+                    LoginFacial validacionFacial = new LoginFacial();
+                    validacionFacial.UsuarioAValidar = txtUsu.Text;
+
+                    if (validacionFacial.ShowDialog() == DialogResult.OK)
+                    {
+                        if (rol == 1)
+                        {
+                            MessageBox.Show("Login correcto. ¡Bienvenido Administrador!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MenuPrincipalAdm MenAdm = new MenuPrincipalAdm();
+                            MenAdm.Show();
+                        }
+                        else if (rol == 2)
+                        {
+                            MessageBox.Show("Login correcto. ¡Bienvenido Empleado!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MenuPrincipalEmp MenEmp = new MenuPrincipalEmp();
+                            MenEmp.Show();
+                        }
+
+                        txtUsu.Clear();
+                        txtCon.Clear();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Validación facial fallida. Acceso denegado.", "Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else if (rol == -1)
                 {
