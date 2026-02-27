@@ -34,10 +34,7 @@ namespace SG_BAMS
         public FacturaAgregarDatos()
         {
             InitializeComponent();
-
-
         }
-
 
         private async Task LlenarComboPago()
         {
@@ -67,27 +64,21 @@ namespace SG_BAMS
         private async void FacturaAgregarDatos_Load(object sender, EventArgs e)
         {
             await LlenarComboPago();
-            
-
 
             dgvProductos.Columns.Add("id_producto", "Código");
             dgvProductos.Columns.Add("nombre_producto", "Nombre");
             dgvProductos.Columns.Add("cantidad", "Cantidad");
             dgvProductos.Columns.Add("precio", "Precio");
             dgvProductos.Columns.Add("subtotal", "Subtotal");
-
         }
 
         private void CalcularTotal()
         {
             int bateriaVieja = Convert.ToInt32(TxtBateria.Text);
-
             double acumulador = 0, rebaja = 0;
-
 
             for (int i = 0; i < dgvProductos.Rows.Count; i++)
             {
-
                 if (dgvProductos.Rows[i].Cells["Subtotal"].Value != null)
                 {
                     acumulador += Convert.ToDouble(dgvProductos.Rows[i].Cells["Subtotal"].Value);
@@ -100,46 +91,78 @@ namespace SG_BAMS
             }
             else if (bateriaVieja > 1)
             {
-                rebaja = 500 + (bateriaVieja - 1) * 300;    
+                rebaja = 500 + (bateriaVieja - 1) * 300;
             }
 
             double total = acumulador - rebaja;
-
-                TxtTotal.Text = total.ToString();
+            TxtTotal.Text = total.ToString();
         }
 
         private async void BtnAceptar_Click(object sender, EventArgs e)
         {
-            ClsPasarUsuario objPU = new ClsPasarUsuario();
-            ClsAgregarFactura objAF = new ClsAgregarFactura();
-            ClsAgregarProductos objAP = new ClsAgregarProductos();
-            int idUsuario = objPU.IdUsuario();
-
-            int idFactura = await objAF.AgregarFacturas(idUsuario, idCliente, Convert.ToInt32(cmbPago.SelectedValue), DateTFecha.SelectionStart, Convert.ToInt32(TxtBateria.Text.Trim()));
-
-            if (idFactura > 0)
+            if (dgvProductos.Rows.Count == 0)
             {
-
-                foreach (DataGridViewRow fila in dgvProductos.Rows)
-                {
-                    if (fila.IsNewRow) continue;
-
-                    int idProd = Convert.ToInt32(fila.Cells[0].Value);
-                    int cantidad = Convert.ToInt32(fila.Cells[2].Value);
-
-                    await objAP.GuardarProductoFactura(idFactura, idProd, cantidad);
-                }
-
-                MessageBox.Show("Factura y productos agregados correctamente.");
-
-                this.DialogResult = DialogResult.OK;
-                this.Close();
-
-
+                MessageBox.Show("Debe agregar al menos un producto antes de facturar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else
+
+            if (cmbPago.SelectedValue == null)
             {
-                MessageBox.Show("No se pudo agregar la factura.");
+                MessageBox.Show("Por favor seleccione una forma de pago.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                ClsPasarUsuario objPU = new ClsPasarUsuario();
+                ClsAgregarFactura objAF = new ClsAgregarFactura();
+                ClsAgregarProductos objAP = new ClsAgregarProductos();
+
+                int idUsuario = objPU.IdUsuario();
+                int idFormaPago = Convert.ToInt32(cmbPago.SelectedValue);
+                int.TryParse(TxtBateria.Text.Trim(), out int numBaterias);
+
+                int idFactura = await objAF.AgregarFacturas(idUsuario, idCliente, idFormaPago, DateTFecha.SelectionStart, numBaterias);
+
+                if (idFactura > 0)
+                {
+                    foreach (DataGridViewRow fila in dgvProductos.Rows)
+                    {
+                        if (fila.IsNewRow) continue;
+                        int idProd = Convert.ToInt32(fila.Cells[0].Value);
+                        int cantidad = Convert.ToInt32(fila.Cells[2].Value);
+                        await objAP.GuardarProductoFactura(idFactura, idProd, cantidad);
+                    }
+
+                    MessageBox.Show("Factura guardada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // --- INTEGRACIÓN CON LA NUEVA INTERFAZ ---
+                    string formaPagoTexto = cmbPago.Text.ToLower();
+
+                    if (formaPagoTexto.Contains("crédito") || formaPagoTexto.Contains("credito"))
+                    {
+                        string nombreCliente = TxtCliente.Text.Trim();
+                        string montoTotal = TxtTotal.Text;
+                        DateTime fechaVenta = DateTFecha.SelectionStart;
+
+                        // Se usa el nombre de clase exacto que proporcionaste: Modificar_Datos__Deudor_
+                        using (Modificar_Datos__Deudor_ frmInfo = new Modificar_Datos__Deudor_(idFactura, nombreCliente, montoTotal, fechaVenta))
+                        {
+                            frmInfo.ShowDialog();
+                        }
+                    }
+
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Hubo un error al intentar generar la factura en la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error inesperado: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -154,18 +177,18 @@ namespace SG_BAMS
             using (FacturaProducto frmProd = new FacturaProducto())
             {
                 frmProd.FormularioFactura = this;
-
                 if (frmProd.ShowDialog() == DialogResult.OK)
                 {
                     ClsAgregarProductos objAP = new ClsAgregarProductos();
                     double precio = await objAP.ObtenerPrecioProducto(idProducto);
-
                     dgvProductos.Rows.Add(idProducto, nombresProductos, cantidades, precio, cantidades * precio);
                     CalcularTotal();
                 }
             }
         }
 
-       
+        private void DateTFecha_DateChanged(object sender, DateRangeEventArgs e)
+        {
+        }
     }
 }

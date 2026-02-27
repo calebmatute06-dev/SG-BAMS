@@ -144,6 +144,7 @@
             listBox1.Name = "listBox1";
             listBox1.Size = new Size(477, 404);
             listBox1.TabIndex = 106;
+            listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
             // NotificacionesEmp
             // 
@@ -161,6 +162,7 @@
             Controls.Add(label6);
             Name = "NotificacionesEmp";
             Text = "NotificacionesEmp";
+            Load += NotificacionesEmp_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

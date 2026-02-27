@@ -30,9 +30,9 @@
         {
             kryptonButton3 = new Krypton.Toolkit.KryptonButton();
             kryptonButton2 = new Krypton.Toolkit.KryptonButton();
-            kryptonTextBox2 = new Krypton.Toolkit.KryptonTextBox();
+            txtMonto = new Krypton.Toolkit.KryptonTextBox();
             label1 = new Label();
-            kryptonComboBox1 = new Krypton.Toolkit.KryptonComboBox();
+            cmbDeudores = new Krypton.Toolkit.KryptonComboBox();
             kryptonGroup1 = new Krypton.Toolkit.KryptonGroup();
             panel1 = new Panel();
             panel3 = new Panel();
@@ -41,7 +41,7 @@
             kryptonButton13 = new Krypton.Toolkit.KryptonButton();
             label2 = new Label();
             label3 = new Label();
-            ((System.ComponentModel.ISupportInitialize)kryptonComboBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cmbDeudores).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -69,6 +69,7 @@
             kryptonButton3.TabIndex = 174;
             kryptonButton3.Values.DropDownArrowColor = Color.Empty;
             kryptonButton3.Values.Text = "Aceptar";
+            kryptonButton3.Click += kryptonButton3_Click;
             // 
             // kryptonButton2
             // 
@@ -91,15 +92,16 @@
             kryptonButton2.TabIndex = 173;
             kryptonButton2.Values.DropDownArrowColor = Color.Empty;
             kryptonButton2.Values.Text = "Cancelar";
+            kryptonButton2.Click += kryptonButton2_Click;
             // 
-            // kryptonTextBox2
+            // txtMonto
             // 
-            kryptonTextBox2.Location = new Point(223, 182);
-            kryptonTextBox2.Name = "kryptonTextBox2";
-            kryptonTextBox2.Size = new Size(177, 33);
-            kryptonTextBox2.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonTextBox2.StateCommon.Border.Rounding = 10F;
-            kryptonTextBox2.TabIndex = 169;
+            txtMonto.Location = new Point(194, 182);
+            txtMonto.Name = "txtMonto";
+            txtMonto.Size = new Size(260, 33);
+            txtMonto.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtMonto.StateCommon.Border.Rounding = 10F;
+            txtMonto.TabIndex = 169;
             // 
             // label1
             // 
@@ -113,18 +115,18 @@
             label1.TabIndex = 168;
             label1.Text = "Agregar Pagos";
             // 
-            // kryptonComboBox1
+            // cmbDeudores
             // 
-            kryptonComboBox1.DropDownWidth = 178;
-            kryptonComboBox1.Location = new Point(222, 132);
-            kryptonComboBox1.Name = "kryptonComboBox1";
-            kryptonComboBox1.Size = new Size(178, 32);
-            kryptonComboBox1.StateActive.ComboBox.Border.Rounding = 10F;
-            kryptonComboBox1.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
-            kryptonComboBox1.StateCommon.ComboBox.Border.Rounding = 70F;
-            kryptonComboBox1.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
-            kryptonComboBox1.StateCommon.Item.Border.Rounding = 70F;
-            kryptonComboBox1.TabIndex = 166;
+            cmbDeudores.DropDownWidth = 178;
+            cmbDeudores.Location = new Point(194, 132);
+            cmbDeudores.Name = "cmbDeudores";
+            cmbDeudores.Size = new Size(260, 32);
+            cmbDeudores.StateActive.ComboBox.Border.Rounding = 10F;
+            cmbDeudores.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbDeudores.StateCommon.ComboBox.Border.Rounding = 70F;
+            cmbDeudores.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            cmbDeudores.StateCommon.Item.Border.Rounding = 70F;
+            cmbDeudores.TabIndex = 166;
             // 
             // kryptonGroup1
             // 
@@ -199,11 +201,12 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(60, 134);
+            label2.Location = new Point(30, 140);
             label2.Name = "label2";
             label2.Size = new Size(158, 24);
             label2.TabIndex = 193;
             label2.Text = "Nombre del Deudor:";
+            label2.Click += label2_Click;
             // 
             // label3
             // 
@@ -211,7 +214,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(63, 191);
+            label3.Location = new Point(30, 191);
             label3.Name = "label3";
             label3.Size = new Size(120, 24);
             label3.TabIndex = 194;
@@ -221,14 +224,14 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(490, 355);
+            ClientSize = new Size(496, 355);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(kryptonButton3);
             Controls.Add(kryptonButton2);
-            Controls.Add(kryptonTextBox2);
+            Controls.Add(txtMonto);
             Controls.Add(label1);
-            Controls.Add(kryptonComboBox1);
+            Controls.Add(cmbDeudores);
             Controls.Add(kryptonGroup1);
             Controls.Add(panel1);
             Controls.Add(panel3);
@@ -237,7 +240,8 @@
             Controls.Add(kryptonButton13);
             Name = "Pago_Deuda";
             Text = "Pago_Deuda";
-            ((System.ComponentModel.ISupportInitialize)kryptonComboBox1).EndInit();
+            Load += Pago_Deuda_Load;
+            ((System.ComponentModel.ISupportInitialize)cmbDeudores).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -250,9 +254,9 @@
 
         private Krypton.Toolkit.KryptonButton kryptonButton3;
         private Krypton.Toolkit.KryptonButton kryptonButton2;
-        private Krypton.Toolkit.KryptonTextBox kryptonTextBox2;
+        private Krypton.Toolkit.KryptonTextBox txtMonto;
         private Label label1;
-        private Krypton.Toolkit.KryptonComboBox kryptonComboBox1;
+        private Krypton.Toolkit.KryptonComboBox cmbDeudores;
         private Krypton.Toolkit.KryptonGroup kryptonGroup1;
         private Panel panel1;
         private Panel panel3;

@@ -245,10 +245,11 @@
             // 
             // DateTFecha
             // 
-            DateTFecha.Location = new Point(725, 221);
+            DateTFecha.Location = new Point(704, 221);
             DateTFecha.Margin = new Padding(10, 12, 10, 12);
             DateTFecha.Name = "DateTFecha";
             DateTFecha.TabIndex = 315;
+            DateTFecha.DateChanged += DateTFecha_DateChanged;
             // 
             // kryptonGroupBox1
             // 
