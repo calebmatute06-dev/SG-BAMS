@@ -29,13 +29,22 @@ namespace SG_BAMS
 
         }
 
-        
+
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
-        
+        private void kryptonButton8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnFacturas_Click(object sender, EventArgs e)
+        {
+            FacturasAdm frmFA  = new FacturasAdm();
+            frmFA.Show();
+        }
     }
 }
