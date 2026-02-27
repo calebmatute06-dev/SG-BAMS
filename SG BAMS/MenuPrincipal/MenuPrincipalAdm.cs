@@ -1,6 +1,9 @@
 ﻿using Krypton.Toolkit;
+using Krypton.Toolkit;
+using SG_BAMS.Bitacora;
 using SG_BAMS.Bitacora;
 using SG_BAMS.MenuPrincipal;
+using SG_BAMS.Proveedor;
 using SG_BAMS.Proveedor;
 using System;
 using System.Collections.Generic;
@@ -11,9 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Krypton.Toolkit;
-using SG_BAMS.Bitacora;
-using SG_BAMS.Proveedor;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace SG_BAMS
 {

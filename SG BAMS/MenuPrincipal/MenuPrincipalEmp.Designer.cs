@@ -29,7 +29,9 @@ namespace SG_BAMS
         /// </summary>
         private void InitializeComponent()
         {
-            
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             pictureBox21 = new PictureBox();
             pictureBox20 = new PictureBox();
             pictureBox19 = new PictureBox();
@@ -78,6 +80,7 @@ namespace SG_BAMS
             btndeudores2 = new Krypton.Toolkit.KryptonButton();
             btnclientes2 = new Krypton.Toolkit.KryptonButton();
             btnnotificaciones = new Button();
+            chartStock1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)pictureBox21).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox20).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox19).BeginInit();
@@ -98,7 +101,8 @@ namespace SG_BAMS
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvVentas).BeginInit();
-         
+            ((System.ComponentModel.ISupportInitialize)chartStock).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)chartStock1).BeginInit();
             SuspendLayout();
             // 
             // pictureBox21
@@ -271,10 +275,6 @@ namespace SG_BAMS
             label1.Name = "label1";
             label1.Size = new Size(0, 20);
             label1.TabIndex = 76;
-            // 
-            // kryptonButton11
-            // 
-            
             // 
             // pictureBox18
             // 
@@ -680,10 +680,12 @@ namespace SG_BAMS
             dgvVentas.TabIndex = 94;
             // 
             // chartStock
-            
-            // btnfacturas2
             // 
-           
+            chartStock.Location = new Point(0, 0);
+            chartStock.Name = "chartStock";
+            chartStock.Size = new Size(300, 300);
+            chartStock.TabIndex = 0;
+            // 
             // btninventario2
             // 
             btninventario2.Location = new Point(325, 105);
@@ -784,14 +786,36 @@ namespace SG_BAMS
             btnnotificaciones.UseVisualStyleBackColor = false;
             btnnotificaciones.Click += btnnotificaciones_Click;
             // 
+            // chartStock1
+            // 
+            chartStock1.BackColor = Color.SkyBlue;
+            chartStock1.BorderlineColor = Color.SkyBlue;
+            chartArea2.BackColor = Color.SkyBlue;
+            chartArea2.BackSecondaryColor = Color.White;
+            chartArea2.Name = "ChartArea1";
+            chartStock1.ChartAreas.Add(chartArea2);
+            legend2.BackColor = Color.SkyBlue;
+            legend2.Name = "Legend1";
+            chartStock1.Legends.Add(legend2);
+            chartStock1.Location = new Point(341, 182);
+            chartStock1.Name = "chartStock1";
+            chartStock1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.EarthTones;
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            chartStock1.Series.Add(series2);
+            chartStock1.Size = new Size(426, 215);
+            chartStock1.TabIndex = 101;
+            chartStock1.Text = "chart1";
+            // 
             // MenuPrincipalEmp
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1105, 907);
+            Controls.Add(chartStock1);
             Controls.Add(btnnotificaciones);
-          
-          
             Controls.Add(dgvVentas);
             Controls.Add(pictureBox21);
             Controls.Add(pictureBox20);
@@ -844,7 +868,8 @@ namespace SG_BAMS
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvVentas).EndInit();
-        
+            ((System.ComponentModel.ISupportInitialize)chartStock).EndInit();
+            ((System.ComponentModel.ISupportInitialize)chartStock1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -904,5 +929,6 @@ namespace SG_BAMS
         private Krypton.Toolkit.KryptonButton btndeudores2;
         private Krypton.Toolkit.KryptonButton btnclientes2;
         private Button btnnotificaciones;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartStock1;
     }
 }

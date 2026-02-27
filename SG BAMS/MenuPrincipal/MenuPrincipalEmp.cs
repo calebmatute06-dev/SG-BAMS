@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 
 namespace SG_BAMS
@@ -91,18 +92,78 @@ namespace SG_BAMS
 
                 dgvVentas.DataSource = datosVentas;
 
+                // FIX: Validación de existencia de columnas para evitar ArgumentOutOfRangeException
+                if (dgvVentas.Columns.Contains("factura_id"))
+                    dgvVentas.Columns["factura_id"].HeaderText = "N° Factura";
 
-                dgvVentas.Columns["factura_id"].HeaderText = "N° Factura";
-                dgvVentas.Columns["nombre_completo_cliente"].HeaderText = "Cliente";
-                dgvVentas.Columns["fecha_registro"].HeaderText = "Fecha";
-                dgvVentas.Columns["metodo_pago"].HeaderText = "Pago";
+                if (dgvVentas.Columns.Contains("nombre_completo_cliente"))
+                    dgvVentas.Columns["nombre_completo_cliente"].HeaderText = "Cliente";
+
+                if (dgvVentas.Columns.Contains("fecha_registro"))
+                    dgvVentas.Columns["fecha_registro"].HeaderText = "Fecha";
+
+                if (dgvVentas.Columns.Contains("metodo_pago"))
+                    dgvVentas.Columns["metodo_pago"].HeaderText = "Pago";
 
                 dgvVentas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
         }
 
-       
 
+        private async Task CargarGraficoStock()
+        {
+            DataTable tablaStock = await clsGraficoStock.ObtenerDatosGrafico();
+
+            if (tablaStock != null && tablaStock.Rows.Count > 0)
+            {
+                chartStock1.Series.Clear();
+                chartStock1.Legends.Clear();
+                chartStock1.ChartAreas[0].Position.Auto = true;
+
+                Legend leyendaEstandar = chartStock1.Legends.Add("Default");
+                leyendaEstandar.BackColor = Color.Transparent;
+                leyendaEstandar.IsTextAutoFit = true;
+                leyendaEstandar.LegendStyle = LegendStyle.Table;
+                leyendaEstandar.Docking = Docking.Right;
+
+                var serieInventario = chartStock1.Series.Add("StockSeries");
+                serieInventario.ChartType = SeriesChartType.Pie;
+
+                foreach (DataRow filaDatos in tablaStock.Rows)
+                {
+                    // --- CORRECCIÓN DE NOMBRES DE COLUMNA SEGÚN LA VISTA NUEVA ---
+                    string nombreArticulo = filaDatos["Nombre Producto"].ToString(); // Antes "producto"
+                    int cantidadReal = Convert.ToInt32(filaDatos["STOCK"]);           // Antes "cantidad"
+
+                    double valorVisual = (cantidadReal == 0) ? 0.6 : cantidadReal;
+
+                    int puntoIndice = serieInventario.Points.AddXY(nombreArticulo, valorVisual);
+                    var puntoActual = serieInventario.Points[puntoIndice];
+
+                    if (cantidadReal == 0)
+                    {
+                        puntoActual.Color = Color.Red;
+                        puntoActual.LegendText = nombreArticulo + " - Agotado";
+                        puntoActual.Label = "0";
+                    }
+                    else if (cantidadReal < 5)
+                    {
+                        puntoActual.Color = Color.Yellow;
+                        puntoActual.LegendText = nombreArticulo + " - A punto de agotarse";
+                        puntoActual.Label = cantidadReal.ToString();
+                    }
+                    else
+                    {
+                        puntoActual.Color = Color.Green;
+                        puntoActual.LegendText = nombreArticulo + " (" + cantidadReal + ")";
+                        puntoActual.Label = cantidadReal.ToString();
+                    }
+                }
+
+                chartStock1.BackColor = Color.SkyBlue;
+                chartStock1.ChartAreas[0].BackColor = Color.Transparent;
+            }
+        }
 
 
 
@@ -114,7 +175,7 @@ namespace SG_BAMS
             await ActualizarLabelDeudores();
             await ActualizarLabelProductos();
             await CargarVentasRecientes();
-       
+            await CargarGraficoStock();
 
             ClsTemas.CargarPreferencia();
 
@@ -180,9 +241,6 @@ namespace SG_BAMS
 
             aju.Show();
         }
-
-        
-
 
 
 
