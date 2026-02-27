@@ -12,10 +12,8 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
 {
     internal class clsSoporte: ClsConexion
     {
-        // Ruta donde se guardarán las fotos de los rostros
         public static string DirectorioRostros = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Rostros");
 
-        // Clasificador para detectar rostros (debes tener el archivo haarcascade_frontalface_default.xml)
         private static CascadeClassifier faceCascaide = new CascadeClassifier(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "haarcascade_frontalface_default.xml"));
 
         public static void InicializarDirectorio()
@@ -30,7 +28,6 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
 
             if (faces.Length > 0)
             {
-                // Retornamos solo el primer rostro detectado, redimensionado para consistencia
                 return grayFrame.Copy(faces[0]).Resize(200, 200, Emgu.CV.CvEnum.Inter.Cubic);
             }
             return null;
@@ -41,7 +38,6 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
             try
             {
                 AbrirConexion();
-                // Al ejecutar este SP, ya vendrán filtrados desde SQL
                 using (SqlCommand cmd = new SqlCommand("PA_CargarUsuarios", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;

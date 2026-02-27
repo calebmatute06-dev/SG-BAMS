@@ -11,7 +11,6 @@ namespace SG_BAMS
 {
     public partial class frmImagenEmpleado : Form
     {
-        // Propiedad pública para recibir el nombre del usuario sin usar el constructor
         private VideoCapture camara;
         private bool camaraEnEncendida = false;
         public frmImagenEmpleado()
@@ -42,7 +41,6 @@ namespace SG_BAMS
 
         private void btnCapturar_Click(object sender, EventArgs e)
         {
-            // Validamos que se haya seleccionado un usuario del ComboBox
             if (cmbUsuarios2.SelectedIndex == -1)
             {
                 MessageBox.Show("Selecciona un usuario primero.");
@@ -56,7 +54,6 @@ namespace SG_BAMS
                 var rostro = clsSoporte.DetectarRostro(frame);
                 if (rostro != null)
                 {
-                    // Agregamos un número único (Ticks) para permitir múltiples fotos del mismo usuario
                     string nombreFoto = $"{nombreArchivo}_{DateTime.Now.Ticks}.jpg";
                     string path = Path.Combine(clsSoporte.DirectorioRostros, nombreFoto);
 
@@ -78,7 +75,6 @@ namespace SG_BAMS
 
         private void frmImagenEmpleado_Load(object sender, EventArgs e)
         {
-            // Inicializamos la carpeta y la cámara al cargar el formulario
             clsSoporte.InicializarDirectorio();
             LlenarUsuarios();
         }
@@ -92,9 +88,7 @@ namespace SG_BAMS
                 if (dt.Rows.Count > 0)
                 {
                     cmbUsuarios2.DataSource = dt;
-                    // 'nombre_usuario' es el nombre exacto en tu tabla/SP
                     cmbUsuarios2.DisplayMember = "nombre_usuario";
-                    // 'id_usuario' es la llave primaria de tu tabla
                     cmbUsuarios2.ValueMember = "id_usuario";
 
                     cmbUsuarios2.SelectedIndex = -1;
@@ -102,7 +96,6 @@ namespace SG_BAMS
             }
             catch (Exception ex)
             {
-                // Esto atrapará el error de ConnectionString si aún persiste
                 MessageBox.Show("Error al cargar ComboBox: " + ex.Message);
             }
         }
@@ -121,15 +114,12 @@ namespace SG_BAMS
         {
             if (camara != null)
             {
-                // 1. Primero dejamos de procesar frames
                 Application.Idle -= FrameProcess;
                 camaraEnEncendida = false;
 
-                // 2. Liberamos el hardware
                 camara.Dispose();
                 camara = null;
 
-                // 3. Limpiamos la interfaz
                 pctCamara.Image = null;
                 pctCamara.Invalidate();
             }
@@ -140,7 +130,6 @@ namespace SG_BAMS
             if (camara == null)
             {
                 camara = new VideoCapture(0);
-                // Suscribimos el proceso de dibujo
                 Application.Idle += FrameProcess;
                 camaraEnEncendida = true;
             }
@@ -158,8 +147,6 @@ namespace SG_BAMS
 
             try
             {
-                // Buscamos todas las fotos que pertenezcan a este usuario
-                // Filtramos para evitar borrar "Juanito" si seleccionamos "Juan"
                 var archivos = Directory.GetFiles(clsSoporte.DirectorioRostros, "*.jpg")
                     .Where(f => Path.GetFileNameWithoutExtension(f) == nombreUsuario ||
                                 Path.GetFileNameWithoutExtension(f).StartsWith(nombreUsuario + "_"))
@@ -191,7 +178,6 @@ namespace SG_BAMS
                 MessageBox.Show("Error al intentar borrar archivos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        //--------------------------------------------------------------Final
 
     }
 }
