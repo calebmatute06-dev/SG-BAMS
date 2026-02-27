@@ -1,5 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
+using SG_BAMS.Bitacora;
 using SG_BAMS.Cliente;
+using SG_BAMS.Proveedor;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -177,7 +179,7 @@ namespace SG_BAMS
 
         private void BtnBitacora_Click(object sender, EventArgs e)
         {
-            Bitacora BT = new Bitacora();
+            BitacoraAdmin BT = new BitacoraAdmin();
             BT.Show();
         }
     }

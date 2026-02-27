@@ -112,9 +112,6 @@ namespace SG_BAMS
             }
         }
 
-        private void Perfil_Shown(object sender, EventArgs e)
-        {
-            Ayudante_UI.AplicarZoomGlobal(this);
-        }
+        
     }
 }

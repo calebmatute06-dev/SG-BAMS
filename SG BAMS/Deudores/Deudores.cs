@@ -1,4 +1,5 @@
 ﻿using SG_BAMS.Bitacora;
+using SG_BAMS.Proveedor;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -82,7 +83,7 @@ namespace SG_BAMS
 
         private void kryptonButton3_Click(object sender, EventArgs e)
         {
-            Bitacora Bit = new Bitacora();
+            BitacoraAdmin Bit = new BitacoraAdmin();
             Bit.Show();
             this.Close();
         }
