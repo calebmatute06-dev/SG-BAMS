@@ -28,15 +28,21 @@ namespace SG_BAMS
         {
             try
             {
-                // Cambiamos el cursor a modo espera
                 this.Cursor = Cursors.WaitCursor;
 
                 clsTipoProducto objetoTipo = new clsTipoProducto();
 
-                // Asignamos el resultado de la vista al DataGridView
                 dgvTipoProducto.DataSource = await objetoTipo.LeerTiposProductoAsync();
 
-                // Configuración visual rápida
+                if (dgvTipoProducto.Columns.Contains("nombre_tipo_producto"))
+                    dgvTipoProducto.Columns["nombre_tipo_producto"].HeaderText = "Nombre del Tipo de Producto";
+
+                if (dgvTipoProducto.Columns.Contains("id_tipo_producto"))
+                    dgvTipoProducto.Columns["id_tipo_producto"].HeaderText = "ID";
+
+                if (dgvTipoProducto.Columns.Contains("cantidad_productos_asociados"))
+                    dgvTipoProducto.Columns["cantidad_productos_asociados"].HeaderText = "Cantidad de productos";
+
                 dgvTipoProducto.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dgvTipoProducto.AllowUserToAddRows = false;
                 dgvTipoProducto.ReadOnly = true;
@@ -47,27 +53,21 @@ namespace SG_BAMS
             }
             finally
             {
-                // Restauramos el cursor
                 this.Cursor = Cursors.Default;
             }
         }
         private void btmModificar_Click(object sender, EventArgs e)
         {
-            // 1. Verificamos que haya una fila seleccionada en el grid de tipos de producto
             if (dgvTipoProducto.SelectedRows.Count > 0)
             {
-                // 2. Obtenemos el ID y la Descripción de la fila actual
-                // Asegúrate de que los nombres "id_tipo_producto" y "nombre_tipo_producto" coincidan con tu Vista SQL
                 int id = Convert.ToInt32(dgvTipoProducto.CurrentRow.Cells["id_tipo_producto"].Value);
                 string descripcion = dgvTipoProducto.CurrentRow.Cells["nombre_tipo_producto"].Value.ToString();
 
-                // 3. Pasamos los datos al constructor del formulario de modificación
                 frmModificarTipoProducto ModificarTProducto = new frmModificarTipoProducto(id, descripcion);
 
-                // Usamos ShowDialog para que el usuario termine de editar antes de seguir
+
                 if (ModificarTProducto.ShowDialog() == DialogResult.OK)
                 {
-                    // Opcional: Recargar el grid para ver el cambio reflejado
                     _ = CargarGridTipos();
                 }
             }

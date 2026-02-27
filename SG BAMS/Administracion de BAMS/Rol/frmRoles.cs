@@ -49,18 +49,16 @@ namespace SG_BAMS
 
         private void ConfigurarDisenoGrid()
         {
-            // Ocultamos el ID
             if (dgvRoles.Columns.Contains("id_rol_usuario"))
                 dgvRoles.Columns["id_rol_usuario"].Visible = false;
 
-            // Renombrar encabezados
             if (dgvRoles.Columns.Contains("descripcion_rol"))
                 dgvRoles.Columns["descripcion_rol"].HeaderText = "Nombre del Rol";
 
             if (dgvRoles.Columns.Contains("total_usuarios_asignados"))
                 dgvRoles.Columns["total_usuarios_asignados"].HeaderText = "Usuarios Activos";
 
-            // Estética profesional
+
             dgvRoles.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvRoles.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvRoles.AllowUserToAddRows = false;

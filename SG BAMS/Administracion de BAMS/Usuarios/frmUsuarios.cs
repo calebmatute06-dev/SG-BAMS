@@ -33,7 +33,6 @@ namespace SG_BAMS
 
                 dgvUsuarios.DataSource = await objetoUsuario.LeerUsuariosAsync();
 
-                // Ocultamos los IDs técnicos
                 if (dgvUsuarios.Columns.Contains("id_rol_usuario"))
                     dgvUsuarios.Columns["id_rol_usuario"].Visible = false;
 
@@ -43,7 +42,12 @@ namespace SG_BAMS
                 if (dgvUsuarios.Columns.Contains("id_usuario"))
                     dgvUsuarios.Columns["id_usuario"].Visible = false;
 
-                ConfigurarGrid(); // Otros ajustes de diseño
+                if (dgvUsuarios.Columns.Contains("nombre_usuario"))
+                    dgvUsuarios.Columns["nombre_usuario"].HeaderText = "Nombres de Usuarios";
+
+                
+
+                ConfigurarGrid(); 
             }
             catch (Exception ex)
             {
@@ -60,7 +64,8 @@ namespace SG_BAMS
 
             dgvUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvUsuarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvUsuarios.AllowUserToAddRows = false; // Evita la fila vacía al final
+            dgvUsuarios.AllowUserToAddRows = false;
+            dgvUsuarios.ReadOnly = true;
         }
 
 

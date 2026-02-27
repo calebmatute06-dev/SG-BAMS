@@ -79,14 +79,12 @@ namespace SG_BAMS
     try
     {
         clsUsuario objetoUsuario = new clsUsuario();
-        
-        // Asumiendo que obtienes los IDs de ComboBoxes (CmbRol y CmbEstado)
+
         int idRol = (int)cmbRol.SelectedValue;
                 int idEstado = 1;
         
-        // Si tienes una imagen en un PictureBox, convertirla a byte[]
         byte[] imagenByte = null; 
-        // Lógica de conversión de imagen omitida por brevedad
+
 
         bool exito = await objetoUsuario.InsertarUsuarioAsync(
             txtNombre.Text, 
@@ -99,8 +97,7 @@ namespace SG_BAMS
         if (exito)
         {
             MessageBox.Show("Usuario guardado exitosamente.");
-            
-            // Regresar al formulario principal
+
             frmUsuarios principal = new frmUsuarios();
             principal.Show();
             this.Close();

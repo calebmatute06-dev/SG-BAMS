@@ -29,13 +29,10 @@ namespace SG_BAMS
         {
             try
             {
-                // Cambiamos el cursor para indicar que el sistema está trabajando
                 this.Cursor = Cursors.WaitCursor;
 
-                // Llamada asíncrona a la base de datos
                 DataTable dt = await objetoEstado.LeerEstadosAsync();
 
-                // Asignación al Grid (verifica que el nombre sea dgvEstados)
                 dgvEstados.DataSource = dt;
 
                 PersonalizarGrid();
@@ -53,15 +50,22 @@ namespace SG_BAMS
 
         private void PersonalizarGrid()
         {
-            // Ocultamos el ID si no es necesario que el usuario lo vea
             if (dgvEstados.Columns.Contains("id_estado"))
                 dgvEstados.Columns["id_estado"].Visible = false;
 
-            // Cambiamos los encabezados para que se vean más limpios
             if (dgvEstados.Columns.Contains("descripcion_estado"))
                 dgvEstados.Columns["descripcion_estado"].HeaderText = "Nombre del Estado";
 
-            // Estética general
+            if (dgvEstados.Columns.Contains("total_usuarios"))
+                dgvEstados.Columns["total_usuarios"].HeaderText = "Total de Usuarios";
+
+            if (dgvEstados.Columns.Contains("total_productos"))
+                dgvEstados.Columns["total_productos"].HeaderText = "Total de Productos";
+
+            if (dgvEstados.Columns.Contains("total_proveedores"))
+                dgvEstados.Columns["total_proveedores"].HeaderText = "Total de Proveedores";
+
+
             dgvEstados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvEstados.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvEstados.AllowUserToAddRows = false;
@@ -72,14 +76,12 @@ namespace SG_BAMS
         {
             if (dgvEstados.SelectedRows.Count > 0)
             {
-                // 2. Extraemos el ID y la Descripción (asegúrate que coincidan con tu Vista SQL)
+
                 int id = Convert.ToInt32(dgvEstados.CurrentRow.Cells["id_estado"].Value);
                 string descripcion = dgvEstados.CurrentRow.Cells["descripcion_estado"].Value.ToString();
 
-                // 3. Abrimos el formulario de modificación pasando los datos
                 frmModificarEstado frmMod = new frmModificarEstado(id, descripcion);
 
-                // 4. Si se cerró con DialogResult.OK, refrescamos la lista
                 if (frmMod.ShowDialog() == DialogResult.OK)
                 {
                     _ = CargarGridEstados();
@@ -100,10 +102,8 @@ namespace SG_BAMS
         {
             frmAgregarEstado frm = new frmAgregarEstado();
 
-            // Si el formulario se cierra con éxito (DialogResult.OK), recargamos el grid
             if (frm.ShowDialog() == DialogResult.OK)
             {
-                // Llamamos al método que carga v_DetalleEstados
                 _ = CargarGridEstados();
             }
         }

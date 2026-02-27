@@ -40,12 +40,11 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
 
         }
 
-        // Agrega este método dentro de la clase clsUsuario
         public async Task<bool> InsertarUsuarioAsync(string nombre, string password, int idRol, int idEstado, byte[] imagen)
         {
             try
             {
-                // Usamos el nombre del método de apertura que definiste en ClsConexion
+
                 AbrirConexion();
 
                 string query = @"INSERT INTO Usuario (nombre_usuario, contraseña_login, id_rol_usuario, id_estado, imagen_usuario) 
@@ -108,7 +107,6 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
             try
             {
                 AbrirConexion();
-                // Usamos UPDATE en lugar de INSERT
                 string query = @"UPDATE Usuario 
                          SET nombre_usuario = @nombre, 
                              contraseña_login = @pass, 
