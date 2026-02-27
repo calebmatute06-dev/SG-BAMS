@@ -782,7 +782,7 @@
             // 
             // dtpHasta
             // 
-            dtpHasta.Location = new Point(703, 142);
+            dtpHasta.Location = new Point(707, 142);
             dtpHasta.Margin = new Padding(3, 2, 3, 2);
             dtpHasta.Name = "dtpHasta";
             dtpHasta.Size = new Size(200, 23);
@@ -791,7 +791,7 @@
             // 
             // dtpDesde
             // 
-            dtpDesde.Location = new Point(703, 117);
+            dtpDesde.Location = new Point(707, 117);
             dtpDesde.Margin = new Padding(3, 2, 3, 2);
             dtpDesde.Name = "dtpDesde";
             dtpDesde.Size = new Size(200, 23);
