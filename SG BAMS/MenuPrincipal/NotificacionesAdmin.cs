@@ -17,8 +17,11 @@ namespace SG_BAMS
         public NotificacionesAdmin()
         {
             InitializeComponent();
-            // Determinamos el rol usando la variable estática que ya tienes en Login
             DeterminarPermisos();
+
+            
+            listBox1.DrawMode = DrawMode.OwnerDrawFixed;
+            listBox1.DrawItem += new DrawItemEventHandler(ListBox1_DrawItem);
         }
 
         private void NotificacionesAdmin_Load(object sender, EventArgs e)
@@ -29,14 +32,8 @@ namespace SG_BAMS
 
         private void DeterminarPermisos()
         {
-            // Obtenemos el nombre que guardaste en el Login
             string usuarioActivo = SG_BAMS.Login.Login.UsuarioLogueado;
-
-            // Aquí puedes hacer una consulta rápida o, si lo prefieres, 
-            // pasar el rol desde el login también como estático.
-            // Por ahora, asumiremos que el sistema cargará según el usuario.
-            // Si quieres que el form sepa si es Admin, podrías comparar el nombre o rol.
-            this.esAdministrador = true; // Por defecto true para que veas todo ahora
+            this.esAdministrador = true;
         }
 
         private void CargarListBox()
@@ -44,7 +41,6 @@ namespace SG_BAMS
             try
             {
                 ClsNotificaciones objNoti = new ClsNotificaciones();
-                // Usamos la variable que definimos arriba
                 DataTable dt = objNoti.ListarNotificaciones(esAdministrador);
 
                 if (dt != null)
@@ -60,6 +56,79 @@ namespace SG_BAMS
             }
         }
 
+      
+        private void ListBox1_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0) return;
+
+            
+            DataRowView fila = (DataRowView)listBox1.Items[e.Index];
+
+           
+            string tituloBusqueda = fila["titulo"].ToString().ToLower().Trim();
+
+            Color colorFondo = Color.White;
+            Color colorTexto = Color.Black;
+
+            
+            if (tituloBusqueda.Contains("agotado"))
+            {
+                colorFondo = Color.Firebrick;
+                colorTexto = Color.White;
+            }
+            
+            else if (tituloBusqueda.Contains("critic"))
+            {
+                colorFondo = Color.Gold;
+                colorTexto = Color.Black;
+            }
+
+            
+            if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+            {
+                
+                e.Graphics.FillRectangle(Brushes.LightBlue, e.Bounds);
+                colorTexto = Color.Black;
+            }
+            else
+            {
+                using (SolidBrush brushFondo = new SolidBrush(colorFondo))
+                {
+                    e.Graphics.FillRectangle(brushFondo, e.Bounds);
+                }
+            }
+
+            
+            using (SolidBrush brushTexto = new SolidBrush(colorTexto))
+            {
+                
+                string textoMostrar = listBox1.GetItemText(listBox1.Items[e.Index]);
+                e.Graphics.DrawString(textoMostrar, e.Font, brushTexto, e.Bounds);
+            }
+
+            e.DrawFocusRectangle();
+        }
+
+  
+
+        
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void listBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (listBox1.SelectedIndex != -1 && listBox1.SelectedItem != null)
+            {
+                DataRowView fila = (DataRowView)listBox1.SelectedItem;
+                string titulo = fila["titulo"].ToString();
+                string mensaje = fila["mensaje"].ToString();
+
+                MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
 
 
 
@@ -70,27 +139,13 @@ namespace SG_BAMS
 
 
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-           
-        }
+        
 
         private void NotificacionesAdmin_Shown(object sender, EventArgs e)
         {
             Ayudante_UI.AplicarZoomGlobal(this);
         }
 
-        private void listBox1_MouseClick(object sender, MouseEventArgs e)
-        {
-            // Verificamos que se haya hecho click sobre un ítem real
-            if (listBox1.SelectedIndex != -1 && listBox1.SelectedItem != null)
-            {
-                DataRowView fila = (DataRowView)listBox1.SelectedItem;
-                string titulo = fila["titulo"].ToString();
-                string mensaje = fila["mensaje"].ToString();
-
-                MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
+       
     }
 }

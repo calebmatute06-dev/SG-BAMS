@@ -133,22 +133,21 @@ namespace SG_BAMS
             log.Show();
         }
 
-        private void kryptonButton12_Click(object sender, EventArgs e)
+
+        private void kryptonButton13_Click(object sender, EventArgs e)
         {
+            FacturasEmp fact = new FacturasEmp();
 
+            fact.Show();
+            this.Close();
         }
-
-
 
         private void kryptonButton15_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void kryptonButton15_Click_1(object sender, EventArgs e)
-        {
 
-        }
 
 
 
@@ -157,6 +156,15 @@ namespace SG_BAMS
             this.Show();
         }
 
+        private async void kryptonButton17_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void kryptonButton1_Click(object sender, EventArgs e)
+        {
+
+        }
 
 
 
@@ -166,11 +174,14 @@ namespace SG_BAMS
 
 
 
+        private void kryptonButton11_Click(object sender, EventArgs e)
+        {
+            Ajustes aju = new Ajustes();
 
+            aju.Show();
+        }
 
-
-
-      
+        
 
 
 
@@ -186,13 +197,6 @@ namespace SG_BAMS
             Ayudante_UI.AplicarZoomGlobal(this);
         }
 
-
-
-        private void btnprincipalemp_Click(object sender, EventArgs e)
-        {
-            this.Show();
-        }
-
         private void btnfacturas_Click(object sender, EventArgs e)
         {
             FacturasEmp fact = new FacturasEmp();
@@ -203,16 +207,18 @@ namespace SG_BAMS
 
         private async void btnclientes_Click(object sender, EventArgs e)
         {
-            ClientesEmp client = new ClientesEmp();
-            client.Show();
-            this.Hide();
+            ClientesEmp clienemp = new ClientesEmp();
+            clienemp.ShowDialog();
+            await ActualizarLabel();
+            this.Close();
         }
 
-        private void btninventario_Click(object sender, EventArgs e)
+        private async void btninventario_Click(object sender, EventArgs e)
         {
-            InventarioEmp inventario = new InventarioEmp();
-            inventario.Show();
-            this.Hide();
+            InventarioEmp inventarioForm = new InventarioEmp();
+            inventarioForm.ShowDialog();
+            await ActualizarLabelProductos();
+            this.Close();
         }
 
         private async void btndeudores_Click(object sender, EventArgs e)
@@ -220,7 +226,7 @@ namespace SG_BAMS
             Deudores_Emp deud = new Deudores_Emp();
 
             deud.ShowDialog();
-            this.Hide();
+            this.Close();
             await ActualizarLabel();
             await ActualizarLabelDeudores();
             await ActualizarLabelProductos();
@@ -233,35 +239,11 @@ namespace SG_BAMS
             per.Show();
         }
 
-        private void btnfacturas2_Click(object sender, EventArgs e)
-        {
-            FacturasEmp fact = new FacturasEmp();
-
-            fact.Show();
-            this.Close();
-        }
-
         private void btninventario2_Click(object sender, EventArgs e)
         {
             InventarioEmp invemp = new InventarioEmp();
 
             invemp.Show();
-            this.Close();
-        }
-
-        private async void btnclientes2_Click(object sender, EventArgs e)
-        {
-            ClientesEmp clienemp = new ClientesEmp();
-            clienemp.ShowDialog();
-            await ActualizarLabel();
-            this.Close();
-        }
-
-        private async void btndeudores2_Click(object sender, EventArgs e)
-        {
-            Deudores_Emp deudoresForm = new Deudores_Emp();
-            deudoresForm.ShowDialog();
-            await ActualizarLabelDeudores();
             this.Close();
         }
 
@@ -274,17 +256,39 @@ namespace SG_BAMS
             this.Close();
         }
 
-        private void btnajustes_Click(object sender, EventArgs e)
+        private async void btndeudores2_Click(object sender, EventArgs e)
         {
-            Ajustes aju = new Ajustes();
+            Deudores_Emp deudoresForm = new Deudores_Emp();
+            deudoresForm.ShowDialog();
+            await ActualizarLabelDeudores();
+            this.Close();
+        }
 
-            aju.Show();
+        private async void btnclientes2_Click(object sender, EventArgs e)
+        {
+            ClientesEmp clienemp = new ClientesEmp();
+            clienemp.ShowDialog();
+            await ActualizarLabel();
+            this.Close();
         }
 
         private void btnnotificaciones_Click(object sender, EventArgs e)
         {
+
             NotificacionesEmp notif = new NotificacionesEmp();
             notif.Show();
+        }
+
+        private void BtnClientes_Click(object sender, EventArgs e)
+        {
+            ClientesAdm frmCA = new ClientesAdm();
+            frmCA.Show();
+        }
+
+        private void BtnFacturas_Click(object sender, EventArgs e)
+        {
+            FacturasAdm frmFA = new FacturasAdm();
+            frmFA.Show();
         }
     }
 }

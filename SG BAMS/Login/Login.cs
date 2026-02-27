@@ -27,7 +27,7 @@ namespace SG_BAMS.Login
 
         private void btninicioSesion_Click(object sender, EventArgs e)
         {
-
+            
             ClsLogin login = new ClsLogin();
             try
             {
@@ -35,13 +35,14 @@ namespace SG_BAMS.Login
                 UsuarioLogueado = txtUsu.Text;
 
                 int rol = login.ValidarUsuario(txtUsu.Text, txtCon.Text);
+               
 
 
                 if (rol == 1)
                 {
                     MessageBox.Show("Login correcto. ¡Bienvenido Administrador!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     MenuPrincipalAdm MenAdm = new MenuPrincipalAdm();
-                    MenAdm.Show();
+                    MenAdm.ShowDialog();
                     txtUsu.Clear();
                     txtCon.Clear();
                     this.Hide();
@@ -50,7 +51,7 @@ namespace SG_BAMS.Login
                 {
                     MessageBox.Show("Login correcto. ¡Bienvenido Empleado!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     MenuPrincipalEmp MenEmp = new MenuPrincipalEmp();
-                    MenEmp.Show();
+                    MenEmp.ShowDialog();
                     txtUsu.Clear();
                     txtCon.Clear();
                     this.Hide();

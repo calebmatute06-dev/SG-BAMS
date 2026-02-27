@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SG_BAMS.Login
 {
-    internal class ClsPasarUsuario : ClsLogin
+    internal class ClsPasarUsuario:ClsLogin
     {
 
         public int IdUsuario()

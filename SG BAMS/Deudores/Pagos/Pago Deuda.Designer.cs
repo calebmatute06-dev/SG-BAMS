@@ -96,9 +96,9 @@
             // 
             // txtMonto
             // 
-            txtMonto.Location = new Point(223, 182);
+            txtMonto.Location = new Point(194, 182);
             txtMonto.Name = "txtMonto";
-            txtMonto.Size = new Size(177, 33);
+            txtMonto.Size = new Size(260, 33);
             txtMonto.StateCommon.Back.Color1 = Color.SkyBlue;
             txtMonto.StateCommon.Border.Rounding = 10F;
             txtMonto.TabIndex = 169;
@@ -118,9 +118,9 @@
             // cmbDeudores
             // 
             cmbDeudores.DropDownWidth = 178;
-            cmbDeudores.Location = new Point(222, 132);
+            cmbDeudores.Location = new Point(194, 132);
             cmbDeudores.Name = "cmbDeudores";
-            cmbDeudores.Size = new Size(178, 32);
+            cmbDeudores.Size = new Size(260, 32);
             cmbDeudores.StateActive.ComboBox.Border.Rounding = 10F;
             cmbDeudores.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
             cmbDeudores.StateCommon.ComboBox.Border.Rounding = 70F;
@@ -201,11 +201,12 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(60, 134);
+            label2.Location = new Point(30, 140);
             label2.Name = "label2";
             label2.Size = new Size(158, 24);
             label2.TabIndex = 193;
             label2.Text = "Nombre del Deudor:";
+            label2.Click += label2_Click;
             // 
             // label3
             // 
@@ -213,7 +214,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(63, 191);
+            label3.Location = new Point(30, 191);
             label3.Name = "label3";
             label3.Size = new Size(120, 24);
             label3.TabIndex = 194;
@@ -223,7 +224,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(490, 355);
+            ClientSize = new Size(496, 355);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(kryptonButton3);

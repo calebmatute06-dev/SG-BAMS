@@ -46,7 +46,7 @@ namespace SG_BAMS
                 if (exito)
                 {
                     MessageBox.Show("Estado actualizado con éxito.", "SG-BAMS");
-                    this.DialogResult = DialogResult.OK; // Indica éxito al formulario principal
+                    this.DialogResult = DialogResult.OK; 
                     this.Close();
                 }
             }

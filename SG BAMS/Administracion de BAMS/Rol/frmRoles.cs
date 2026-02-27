@@ -31,7 +31,6 @@ namespace SG_BAMS
             {
                 this.Cursor = Cursors.WaitCursor;
 
-                // Llamada asíncrona a la base de datos
                 dgvRoles.DataSource = await objetoRol.LeerRolesAsync();
 
                 ConfigurarDisenoGrid();
@@ -70,10 +69,7 @@ namespace SG_BAMS
         {
 
         }
-        private void kryptonButton6_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+
 
         private void btmAgregar_Click(object sender, EventArgs e)
         {
@@ -101,6 +97,11 @@ namespace SG_BAMS
             {
                 MessageBox.Show("Por favor, seleccione un rol de la lista para modificar.");
             }
+        }
+
+        private void btmSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
