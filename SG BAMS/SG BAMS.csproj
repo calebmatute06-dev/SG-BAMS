@@ -13,6 +13,7 @@
     <PackageReference Include="Krypton.Toolkit" Version="100.26.1.19" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.4" />
     <PackageReference Include="WinForms.DataVisualization" Version="1.10.0" />
+    <PackageReference Include="QuestPDF" Version="2026.2.2" />
   </ItemGroup>
 
   <ItemGroup>

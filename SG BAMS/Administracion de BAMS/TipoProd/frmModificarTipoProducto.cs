@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SG_BAMS.Administracion_de_BAMS.TipoProd;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,46 @@ namespace SG_BAMS
 {
     public partial class frmModificarTipoProducto : Form
     {
-        public frmModificarTipoProducto()
+        int idSeleccionado;
+        public frmModificarTipoProducto(int id, string descripcionActual)
         {
             InitializeComponent();
+            idSeleccionado = id;
+            txtDescri.Text = descripcionActual;
+        }
+
+
+
+        private void frmModificarTipoProducto_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            frmTipoProducto verproducto = new frmTipoProducto();
+            verproducto.Show();
+            this.Close();
+        }
+
+        private async void btnModificar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtDescri.Text)) return;
+
+            try
+            {
+                clsTipoProducto objetoTipo = new clsTipoProducto();
+                bool exito = await objetoTipo.ModificarTipoProductoAsync(idSeleccionado, txtDescri.Text.Trim());
+
+                if (exito)
+                {
+                    MessageBox.Show("Actualizado correctamente");
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
     }
-}
+    }
+

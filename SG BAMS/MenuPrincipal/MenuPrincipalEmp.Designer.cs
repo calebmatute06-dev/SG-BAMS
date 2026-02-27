@@ -46,7 +46,6 @@ namespace SG_BAMS
             kryptonButton14 = new Krypton.Toolkit.KryptonButton();
             kryptonButton13 = new Krypton.Toolkit.KryptonButton();
             label1 = new Label();
-            kryptonButton11 = new Krypton.Toolkit.KryptonButton();
             pictureBox18 = new PictureBox();
             panel6 = new Panel();
             panel8 = new Panel();
@@ -851,7 +850,6 @@ namespace SG_BAMS
             Controls.Add(kryptonButton14);
             Controls.Add(kryptonButton13);
             Controls.Add(label1);
-            Controls.Add(kryptonButton11);
             Controls.Add(pictureBox18);
             Controls.Add(panel6);
             Controls.Add(panel8);
@@ -915,7 +913,6 @@ namespace SG_BAMS
         private Krypton.Toolkit.KryptonButton kryptonButton14;
         private Krypton.Toolkit.KryptonButton kryptonButton13;
         private Label label1;
-        private Krypton.Toolkit.KryptonButton kryptonButton11;
         private PictureBox pictureBox18;
         private Panel panel6;
         private Panel panel8;

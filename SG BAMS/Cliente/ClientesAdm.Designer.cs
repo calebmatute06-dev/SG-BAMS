@@ -409,31 +409,85 @@
             pictureBox15.TabIndex = 12;
             pictureBox15.TabStop = false;
             // 
-            // BtnReporte
+            // btnReporte
             // 
-            BtnReporte.Location = new Point(127, 648);
-            BtnReporte.Name = "BtnReporte";
-            BtnReporte.OverrideDefault.Back.Color1 = Color.Transparent;
-            BtnReporte.OverrideDefault.Back.Color2 = Color.Transparent;
-            BtnReporte.OverrideDefault.Border.Rounding = 40F;
-            BtnReporte.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            BtnReporte.OverrideFocus.Back.Color2 = Color.White;
-            BtnReporte.Size = new Size(104, 36);
-            BtnReporte.StateCommon.Back.Color1 = Color.SkyBlue;
-            BtnReporte.StateCommon.Back.Color2 = Color.White;
-            BtnReporte.StateCommon.Border.Rounding = 40F;
-            BtnReporte.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            BtnReporte.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BtnReporte.StateNormal.Back.Color1 = Color.Transparent;
-            BtnReporte.StateNormal.Back.Color2 = Color.Transparent;
-            BtnReporte.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
-            BtnReporte.StatePressed.Back.Color1 = Color.Transparent;
-            BtnReporte.StatePressed.Back.Color2 = Color.Transparent;
-            BtnReporte.StateTracking.Border.Rounding = 40F;
-            BtnReporte.TabIndex = 26;
-            BtnReporte.Values.DropDownArrowColor = Color.Empty;
-            BtnReporte.Values.Text = "Reporte";
-            BtnReporte.Click += BtnReporte_Click;
+            btnReporte.Location = new Point(127, 648);
+            btnReporte.Name = "btnReporte";
+            btnReporte.OverrideDefault.Back.Color1 = Color.Transparent;
+            btnReporte.OverrideDefault.Back.Color2 = Color.Transparent;
+            btnReporte.OverrideDefault.Border.Rounding = 40F;
+            btnReporte.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnReporte.OverrideFocus.Back.Color2 = Color.White;
+            btnReporte.Size = new Size(104, 36);
+            btnReporte.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnReporte.StateCommon.Back.Color2 = Color.White;
+            btnReporte.StateCommon.Border.Rounding = 40F;
+            btnReporte.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnReporte.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnReporte.StateNormal.Back.Color1 = Color.Transparent;
+            btnReporte.StateNormal.Back.Color2 = Color.Transparent;
+            btnReporte.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
+            btnReporte.StatePressed.Back.Color1 = Color.Transparent;
+            btnReporte.StatePressed.Back.Color2 = Color.Transparent;
+            btnReporte.StateTracking.Border.Rounding = 40F;
+            btnReporte.TabIndex = 26;
+            btnReporte.Values.DropDownArrowColor = Color.Empty;
+            btnReporte.Values.Text = "Reporte";
+            btnReporte.Click += btnReporte_Click;
+            // 
+            // kryptonDataGridView1
+            // 
+            kryptonDataGridView1.BorderStyle = BorderStyle.None;
+            kryptonDataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            kryptonDataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, Column5, Column6 });
+            kryptonDataGridView1.Location = new Point(357, 360);
+            kryptonDataGridView1.Margin = new Padding(3, 4, 3, 4);
+            kryptonDataGridView1.Name = "kryptonDataGridView1";
+            kryptonDataGridView1.RowHeadersWidth = 51;
+            kryptonDataGridView1.Size = new Size(734, 200);
+            kryptonDataGridView1.TabIndex = 129;
+            // 
+            // Column1
+            // 
+            Column1.HeaderText = "ID_Cliente";
+            Column1.MinimumWidth = 6;
+            Column1.Name = "Column1";
+            Column1.Width = 125;
+            // 
+            // Column2
+            // 
+            Column2.HeaderText = "Nombre";
+            Column2.MinimumWidth = 6;
+            Column2.Name = "Column2";
+            Column2.Width = 125;
+            // 
+            // Column3
+            // 
+            Column3.HeaderText = "Apellido";
+            Column3.MinimumWidth = 6;
+            Column3.Name = "Column3";
+            Column3.Width = 125;
+            // 
+            // Column4
+            // 
+            Column4.HeaderText = "Teléfono";
+            Column4.MinimumWidth = 6;
+            Column4.Name = "Column4";
+            Column4.Width = 125;
+            // 
+            // Column5
+            // 
+            Column5.HeaderText = "RTN";
+            Column5.MinimumWidth = 6;
+            Column5.Name = "Column5";
+            Column5.Width = 125;
+            // 
+            // Column6
+            // 
+            Column6.HeaderText = "Estado";
+            Column6.MinimumWidth = 6;
+            Column6.Name = "Column6";
+            Column6.Width = 125;
             // 
             // label2
             // 

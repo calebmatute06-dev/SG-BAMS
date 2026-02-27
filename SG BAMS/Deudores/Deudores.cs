@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SG_BAMS.Bitacora;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;

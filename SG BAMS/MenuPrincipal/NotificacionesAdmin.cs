@@ -129,14 +129,37 @@ namespace SG_BAMS
             }
         }
 
+
+
+
         private void btnsalir_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+        }
+
         private void NotificacionesAdmin_Shown(object sender, EventArgs e)
         {
             Ayudante_UI.AplicarZoomGlobal(this);
+        }
+
+        private void listBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+            // Verificamos que se haya hecho click sobre un ítem real
+            if (listBox1.SelectedIndex != -1 && listBox1.SelectedItem != null)
+            {
+                DataRowView fila = (DataRowView)listBox1.SelectedItem;
+                string titulo = fila["titulo"].ToString();
+                string mensaje = fila["mensaje"].ToString();
+
+                MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }
