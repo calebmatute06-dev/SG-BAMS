@@ -23,6 +23,8 @@ namespace SG_BAMS.Proveedor
         private void ProveedoresAdmin_Load(object sender, EventArgs e)
         {
             proveedor.cargarDatos(dgvProveedor);
+            dgvProveedor.Columns["idClasificacion"].Visible = false;
+            dgvProveedor.Columns["idEstado"].Visible = false;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -77,7 +79,6 @@ namespace SG_BAMS.Proveedor
                 return;
             }
 
-            int idProveedor = Convert.ToInt32(dgvProveedor.CurrentRow.Cells["ID"].Value);
             string nombre = dgvProveedor.CurrentRow.Cells["Nombre"].Value.ToString();
             string contacto = dgvProveedor.CurrentRow.Cells["Contacto"].Value.ToString();
             string direccion = dgvProveedor.CurrentRow.Cells["Dirección"].Value.ToString();
@@ -85,7 +86,7 @@ namespace SG_BAMS.Proveedor
             int idEstado = Convert.ToInt32(dgvProveedor.CurrentRow.Cells["idEstado"].Value);
             int idClasificacion = Convert.ToInt32(dgvProveedor.CurrentRow.Cells["idClasificacion"].Value);
 
-            ModificarProveedor frm = new ModificarProveedor(idProveedor, nombre, contacto, direccion, rtn, idEstado, idClasificacion);
+            ModificarProveedor frm = new ModificarProveedor(nombre, contacto, direccion, rtn, idEstado, idClasificacion);
             frm.Show();
             this.Hide();
         }

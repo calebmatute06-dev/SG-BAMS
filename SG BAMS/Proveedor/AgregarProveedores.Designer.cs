@@ -50,11 +50,9 @@
             label1 = new Label();
             txtTelefono = new Krypton.Toolkit.KryptonTextBox();
             txtNombre = new Krypton.Toolkit.KryptonTextBox();
-            txtID = new Krypton.Toolkit.KryptonTextBox();
             label15 = new Label();
             label7 = new Label();
             label4 = new Label();
-            label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -351,17 +349,6 @@
             txtNombre.StateCommon.Content.Color1 = Color.Navy;
             txtNombre.TabIndex = 292;
             // 
-            // txtID
-            // 
-            txtID.Location = new Point(175, 84);
-            txtID.Margin = new Padding(3, 2, 3, 2);
-            txtID.Name = "txtID";
-            txtID.Size = new Size(219, 35);
-            txtID.StateCommon.Back.Color1 = Color.SkyBlue;
-            txtID.StateCommon.Border.Rounding = 20F;
-            txtID.StateCommon.Content.Color1 = Color.Navy;
-            txtID.TabIndex = 291;
-            // 
             // label15
             // 
             label15.AutoSize = true;
@@ -398,18 +385,6 @@
             label4.TabIndex = 288;
             label4.Text = "Nombre: ";
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.BackColor = Color.Transparent;
-            label3.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.Navy;
-            label3.Location = new Point(57, 88);
-            label3.Name = "label3";
-            label3.Size = new Size(39, 26);
-            label3.TabIndex = 287;
-            label3.Text = "ID: ";
-            // 
             // AgregarProveedores
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -423,11 +398,9 @@
             Controls.Add(label1);
             Controls.Add(txtTelefono);
             Controls.Add(txtNombre);
-            Controls.Add(txtID);
             Controls.Add(label15);
             Controls.Add(label7);
             Controls.Add(label4);
-            Controls.Add(label3);
             Controls.Add(btnCancelar);
             Controls.Add(btnAceptar);
             Controls.Add(btnsalir);
@@ -485,10 +458,8 @@
         private Label label1;
         private Krypton.Toolkit.KryptonTextBox txtTelefono;
         private Krypton.Toolkit.KryptonTextBox txtNombre;
-        private Krypton.Toolkit.KryptonTextBox txtID;
         private Label label15;
         private Label label7;
         private Label label4;
-        private Label label3;
     }
 }

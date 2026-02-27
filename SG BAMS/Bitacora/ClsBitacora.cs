@@ -10,14 +10,6 @@ namespace SG_BAMS.Bitacora
 {
     internal class ClsBitacora : ClsConexion
     {
-        /*
-        private string nombre;
-        public void setNombre(string valor)
-        {
-            nombre = valor;
-        }
-        */
-
         public void cargarDatos(Krypton.Toolkit.KryptonDataGridView dgvBitacora)
         {
             try
@@ -40,39 +32,48 @@ namespace SG_BAMS.Bitacora
             }
         }
 
-        public void BuscarBitacora(Krypton.Toolkit.KryptonTextBox txt, Krypton.Toolkit.KryptonDataGridView dgvBitacora)
+        public void BuscarBitacora(Krypton.Toolkit.KryptonTextBox txt,
+            DateTime desde,
+            DateTime hasta,
+            Krypton.Toolkit.KryptonDataGridView dgvBitacora)
         {
             try
             {
-                string nombre = txt.Text.Trim();
-                if (string.IsNullOrWhiteSpace(nombre))
-                {
-                    cargarDatos(dgvBitacora);
-                    Cerrar();
-                    return;
-                }
                 AbrirConexion();
 
-                // Prepara el comando SQL y agrega el parámetro con comodín %
-                string consulta = "select * from vista_bitacora where Nombre like @nombre";
-                SqlCommand cmd = new SqlCommand(consulta, Conectar);
-                cmd.Parameters.AddWithValue("@nombre", nombre);
+                string filtro = txt.Text.Trim();
 
-                // Ejecuta la consulta y llena un DataTable con los resultados
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                DataTable resultado = new DataTable();
-                adapter.Fill(resultado);
+                string consulta = "SELECT * FROM vista_bitacora " +
+                    "WHERE Fecha >= @desde AND Fecha < @hasta " +
+                    "AND ( " +
+                    "@filtro = '' " +
+                    "OR Nombre LIKE @like " +
+                    "OR Acción LIKE @like " +
+                    "OR Modulo LIKE @like " +
+                    ")";
 
-                dgvBitacora.DataSource = resultado;
+                using (SqlCommand cmd = new SqlCommand(consulta, Conectar))
+                {
+                    cmd.Parameters.AddWithValue("@desde", desde.Date);
+                    cmd.Parameters.AddWithValue("@hasta", hasta.Date.AddDays(1)); // incluye todo el día "hasta"
+                    cmd.Parameters.AddWithValue("@filtro", filtro);
+                    cmd.Parameters.AddWithValue("@like", "%" + filtro + "%");
 
-                Cerrar();
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    dgvBitacora.DataSource = dt;
+                }
             }
             catch (Exception ex)
             {
-                Cerrar();
-                MessageBox.Show("Error al buscar: " + ex.Message);
+                MessageBox.Show("Error al filtrar: " + ex.Message);
             }
-
+            finally
+            {
+                Cerrar();
+            }
         }
     }
 }

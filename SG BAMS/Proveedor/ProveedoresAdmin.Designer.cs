@@ -70,7 +70,6 @@
             btnModificar = new Krypton.Toolkit.KryptonButton();
             btnAgregar = new Krypton.Toolkit.KryptonButton();
             btnRefresh = new Button();
-            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
             panel5.SuspendLayout();
@@ -773,23 +772,12 @@
             btnRefresh.UseVisualStyleBackColor = true;
             btnRefresh.Click += btnRefresh_Click;
             // 
-            // button1
-            // 
-            button1.BackgroundImage = Properties.Resources.filtros;
-            button1.BackgroundImageLayout = ImageLayout.Stretch;
-            button1.Location = new Point(778, 76);
-            button1.Name = "button1";
-            button1.Size = new Size(58, 50);
-            button1.TabIndex = 328;
-            button1.UseVisualStyleBackColor = true;
-            // 
             // ProveedoresAdmin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(967, 677);
-            Controls.Add(button1);
             Controls.Add(btnRefresh);
             Controls.Add(btnModificar);
             Controls.Add(btnAgregar);
@@ -881,6 +869,5 @@
         private Krypton.Toolkit.KryptonButton btnModificar;
         private Krypton.Toolkit.KryptonButton btnAgregar;
         private Button btnRefresh;
-        private Button button1;
     }
 }

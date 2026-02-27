@@ -73,7 +73,6 @@
             btnRefresh = new Button();
             dtpHasta = new DateTimePicker();
             dtpDesde = new DateTimePicker();
-            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
             panel1.SuspendLayout();
@@ -760,7 +759,7 @@
             // 
             btnRefresh.BackgroundImage = Properties.Resources.refresh;
             btnRefresh.BackgroundImageLayout = ImageLayout.Stretch;
-            btnRefresh.Location = new Point(905, 131);
+            btnRefresh.Location = new Point(885, 127);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.Size = new Size(58, 50);
             btnRefresh.TabIndex = 323;
@@ -773,6 +772,7 @@
             dtpHasta.Name = "dtpHasta";
             dtpHasta.Size = new Size(200, 23);
             dtpHasta.TabIndex = 327;
+            dtpHasta.ValueChanged += dtpHasta_ValueChanged;
             // 
             // dtpDesde
             // 
@@ -780,16 +780,7 @@
             dtpDesde.Name = "dtpDesde";
             dtpDesde.Size = new Size(200, 23);
             dtpDesde.TabIndex = 326;
-            // 
-            // button1
-            // 
-            button1.BackgroundImage = Properties.Resources.filtros;
-            button1.BackgroundImageLayout = ImageLayout.Stretch;
-            button1.Location = new Point(841, 131);
-            button1.Name = "button1";
-            button1.Size = new Size(58, 50);
-            button1.TabIndex = 324;
-            button1.UseVisualStyleBackColor = true;
+            dtpDesde.ValueChanged += dtpDesde_ValueChanged;
             // 
             // BitacoraAdmin
             // 
@@ -801,7 +792,6 @@
             Controls.Add(dtpDesde);
             Controls.Add(txtBuscar);
             Controls.Add(btnRefresh);
-            Controls.Add(button1);
             Controls.Add(pictureBox2);
             Controls.Add(dgvBitacora);
             Controls.Add(label10);
@@ -895,6 +885,5 @@
         private Button btnRefresh;
         private DateTimePicker dtpHasta;
         private DateTimePicker dtpDesde;
-        private Button button1;
     }
 }

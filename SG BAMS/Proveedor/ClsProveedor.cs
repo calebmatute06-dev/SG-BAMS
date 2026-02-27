@@ -92,8 +92,8 @@ namespace SG_BAMS.Proveedor
         {
             try
             {
-                string nombre = txt.Text.Trim();
-                if (string.IsNullOrWhiteSpace(nombre))
+                string texto = txt.Text.Trim();
+                if (string.IsNullOrWhiteSpace(texto))
                 {
                     cargarDatos(dgvProveedor);
                     Cerrar();
@@ -102,9 +102,12 @@ namespace SG_BAMS.Proveedor
                 AbrirConexion();
 
                 // Prepara el comando SQL y agrega el parámetro con comodín %
-                string consulta = "select * from vista_proveedor where Nombre like @nombre";
+                string consulta = "select * from vista_proveedor where Nombre like @filtro " +
+                    "OR Contacto LIKE @filtro " +
+                    "OR RTN LIKE @filtro " +
+                    "OR Dirección LIKE @filtro ";
                 SqlCommand cmd = new SqlCommand(consulta, Conectar);
-                cmd.Parameters.AddWithValue("@nombre", nombre);
+                cmd.Parameters.AddWithValue("@filtro", "%" + texto + "%");
 
                 // Ejecuta la consulta y llena un DataTable con los resultados
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
@@ -154,7 +157,7 @@ namespace SG_BAMS.Proveedor
             }
         }
 
-        public void ModificarProveedor(int idProveedor, string nombre, string contacto, string direccion,
+        public void ModificarProveedor(string nombre, string contacto, string direccion,
             string rtn, int idEstado, int idClasificacion)
         {
             try
@@ -165,7 +168,6 @@ namespace SG_BAMS.Proveedor
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("@id_proveedor", idProveedor);
                     cmd.Parameters.AddWithValue("@nombre_proveedor", nombre);
                     cmd.Parameters.AddWithValue("@contacto_proveedor", contacto);
                     cmd.Parameters.AddWithValue("@direccion_proveedor", direccion);

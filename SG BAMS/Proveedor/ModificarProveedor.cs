@@ -20,12 +20,11 @@ namespace SG_BAMS.Proveedor
         private int _idEstado;
         private int _idClasificacion;
 
-        public ModificarProveedor(int idProveedor, string nombre, string contacto,
+        public ModificarProveedor(string nombre, string contacto,
             string direccion, string rtn, int idEstado, int idClasificacion)
         {
             InitializeComponent();
 
-            txtID.Text = idProveedor.ToString();
             txtNombre.Text = nombre;
             txtTelefono.Text = contacto;
             txtDireccion.Text = direccion;
@@ -74,12 +73,10 @@ namespace SG_BAMS.Proveedor
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            int idProveedor = Convert.ToInt32(txtID.Text.Trim());
             int idEstado = Convert.ToInt32(cmbEstado.SelectedValue);
             int idClasificacion = Convert.ToInt32(cmbClasificacion.SelectedValue);
 
             proveedor.ModificarProveedor(
-                idProveedor,
                 txtNombre.Text.Trim(),
                 txtTelefono.Text.Trim(),
                 txtDireccion.Text.Trim(),
