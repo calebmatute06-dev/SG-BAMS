@@ -19,10 +19,8 @@ namespace SG_BAMS
 
         public void CargarGridDeudores()
         {
-            ClsDeuda objetoDeuda = new ClsDeuda();
-            // Es vital que se asigne a la variable global para que el buscador trabaje con datos frescos
-            dtDeudores = objetoDeuda.ListarDeudores();
-            dgvDeudores.DataSource = dtDeudores;
+            
+            
         }
 
         public Deudores()
@@ -74,9 +72,7 @@ namespace SG_BAMS
 
         private void kryptonButton4_Click(object sender, EventArgs e)
         {
-            ProveedoresAdmin Proad = new ProveedoresAdmin();
-            Proad.Show();
-            this.Close();
+            
         }
 
         private void kryptonButton2_Click(object sender, EventArgs e)
@@ -266,18 +262,8 @@ namespace SG_BAMS
             this.Hide();
         }
 
-        private void btnReporte_Click(object sender, EventArgs e)
-        {
-            ReporteAdmin reporteAdmin = new ReporteAdmin();
-            reporteAdmin.Show();
-            this.Hide();
-        }
+        
 
-        private void kryptonButton3_Click(object sender, EventArgs e)
-        {
-            BitacoraAdmin bitacoraAdmin = new BitacoraAdmin();
-            bitacoraAdmin.Show();
-            this.Hide();
-        }
+        
     }
 }
