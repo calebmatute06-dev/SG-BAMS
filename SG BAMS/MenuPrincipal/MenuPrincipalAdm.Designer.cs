@@ -160,19 +160,19 @@
             // 
             // BtnCerrarSesión
             // 
-            BtnCerrarSesión.Location = new Point(130, 792);
+            BtnCerrarSesión.Location = new Point(122, 794);
             BtnCerrarSesión.Name = "BtnCerrarSesión";
             BtnCerrarSesión.OverrideDefault.Back.Color1 = Color.Transparent;
             BtnCerrarSesión.OverrideDefault.Back.Color2 = Color.Transparent;
             BtnCerrarSesión.OverrideDefault.Border.Rounding = 40F;
             BtnCerrarSesión.OverrideFocus.Back.Color1 = Color.SkyBlue;
             BtnCerrarSesión.OverrideFocus.Back.Color2 = Color.White;
-            BtnCerrarSesión.Size = new Size(104, 36);
+            BtnCerrarSesión.Size = new Size(142, 36);
             BtnCerrarSesión.StateCommon.Back.Color1 = Color.SkyBlue;
             BtnCerrarSesión.StateCommon.Back.Color2 = Color.White;
             BtnCerrarSesión.StateCommon.Border.Rounding = 40F;
             BtnCerrarSesión.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            BtnCerrarSesión.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            BtnCerrarSesión.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             BtnCerrarSesión.StateNormal.Back.Color1 = Color.Transparent;
             BtnCerrarSesión.StateNormal.Back.Color2 = Color.Transparent;
             BtnCerrarSesión.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
@@ -1031,6 +1031,7 @@
             chartMasVendidos.Size = new Size(411, 219);
             chartMasVendidos.TabIndex = 63;
             chartMasVendidos.Text = "chart1";
+            chartMasVendidos.Click += chartMasVendidos_Click;
             // 
             // chartStock
             // 

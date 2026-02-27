@@ -389,6 +389,14 @@ namespace SG_BAMS
         private void BtnCerrarSesión_Click(object sender, EventArgs e)
         {
             this.Close();
+            SG_BAMS.Login.Login Log = new Login.Login();
+
+            Log.Show();
+        }
+
+        private void chartMasVendidos_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

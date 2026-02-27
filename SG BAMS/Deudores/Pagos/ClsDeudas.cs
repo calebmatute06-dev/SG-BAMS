@@ -7,7 +7,7 @@ namespace SG_BAMS
 {
     public class ClsDeudas : ClsConexion
     {
-        // 1. Método para registrar el pago (Llama a tu PA)
+        
         public async Task<bool> InsertarPago(int idDeuda, decimal montoPago, DateTime fechaPago)
         {
             try
@@ -34,15 +34,18 @@ namespace SG_BAMS
             }
         }
 
-        // 2. Método para llenar el ComboBox (Usa tu nueva vista_lista_deudores o similar)
+        
         public DataTable ObtenerDeudoresActivos()
         {
             DataTable tablaDeudores = new DataTable();
             try
             {
                 AbrirConexion();
-                // Seleccionamos solo los que tienen estado 'Activo' o similar según tu vista
-                string consultaSql = "SELECT [ID Deuda] AS ID, Cliente FROM vista_lista_deudores WHERE [Estado Deuda] = 'Activo'";
+                // Usamos la vista especializada que creaste y asignamos alias simples (ID, ClienteDetalle)
+                string consultaSql = @"SELECT 
+                                ID, 
+                                [Nombre completo] + ' (Saldo: L.' + CAST([Saldo Real] AS VARCHAR) + ')' AS ClienteDetalle 
+                               FROM vista_deudores_pendientes";
 
                 using (SqlCommand comando = new SqlCommand(consultaSql, Conectar))
                 {
@@ -52,12 +55,15 @@ namespace SG_BAMS
                     }
                 }
             }
-            catch (Exception) { /* Manejo de error */ }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show("Error al cargar deudores: " + ex.Message);
+            }
             finally { Cerrar(); }
             return tablaDeudores;
         }
 
-        // 3. Método para el DataGridView de últimas ventas (Menu Principal)
+        
         public DataTable ObtenerUltimasVentas()
         {
             DataTable tablaVentas = new DataTable();
