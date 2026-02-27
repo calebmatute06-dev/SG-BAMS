@@ -244,6 +244,8 @@ namespace SG_BAMS
             Ajustes Aju = new Ajustes();
             Aju.Show();
         }
+
+      
     }
 
 }

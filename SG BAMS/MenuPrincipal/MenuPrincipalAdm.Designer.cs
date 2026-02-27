@@ -312,7 +312,7 @@
             BtnClientes.TabIndex = 31;
             BtnClientes.Values.DropDownArrowColor = Color.Empty;
             BtnClientes.Values.Text = "Clientes";
-            BtnClientes.Click += BtnClientes_Click;
+         
             // 
             // kryptonButton5
             // 
