@@ -41,7 +41,7 @@
             kryptonButton1 = new Krypton.Toolkit.KryptonButton();
             kryptonButton9 = new Krypton.Toolkit.KryptonButton();
             kryptonButton7 = new Krypton.Toolkit.KryptonButton();
-            kryptonButton6 = new Krypton.Toolkit.KryptonButton();
+            BtnClientes = new Krypton.Toolkit.KryptonButton();
             kryptonButton5 = new Krypton.Toolkit.KryptonButton();
             kryptonButton4 = new Krypton.Toolkit.KryptonButton();
             kryptonButton3 = new Krypton.Toolkit.KryptonButton();
@@ -133,7 +133,7 @@
             panel1.Controls.Add(kryptonButton1);
             panel1.Controls.Add(kryptonButton9);
             panel1.Controls.Add(kryptonButton7);
-            panel1.Controls.Add(kryptonButton6);
+            panel1.Controls.Add(BtnClientes);
             panel1.Controls.Add(kryptonButton5);
             panel1.Controls.Add(kryptonButton4);
             panel1.Controls.Add(kryptonButton3);
@@ -288,31 +288,31 @@
             kryptonButton7.Values.Text = "Compras";
             kryptonButton7.Click += kryptonButton7_Click;
             // 
-            // kryptonButton6
+            // BtnClientes
             // 
-            kryptonButton6.Location = new Point(130, 399);
-            kryptonButton6.Name = "kryptonButton6";
-            kryptonButton6.OverrideDefault.Back.Color1 = Color.Transparent;
-            kryptonButton6.OverrideDefault.Back.Color2 = Color.Transparent;
-            kryptonButton6.OverrideDefault.Border.Rounding = 40F;
-            kryptonButton6.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            kryptonButton6.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton6.Size = new Size(104, 36);
-            kryptonButton6.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonButton6.StateCommon.Back.Color2 = Color.White;
-            kryptonButton6.StateCommon.Border.Rounding = 40F;
-            kryptonButton6.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton6.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton6.StateNormal.Back.Color1 = Color.Transparent;
-            kryptonButton6.StateNormal.Back.Color2 = Color.Transparent;
-            kryptonButton6.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
-            kryptonButton6.StatePressed.Back.Color1 = Color.Transparent;
-            kryptonButton6.StatePressed.Back.Color2 = Color.Transparent;
-            kryptonButton6.StateTracking.Border.Rounding = 40F;
-            kryptonButton6.TabIndex = 31;
-            kryptonButton6.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton6.Values.Text = "Clientes";
-            kryptonButton6.Click += kryptonButton6_Click;
+            BtnClientes.Location = new Point(130, 399);
+            BtnClientes.Name = "BtnClientes";
+            BtnClientes.OverrideDefault.Back.Color1 = Color.Transparent;
+            BtnClientes.OverrideDefault.Back.Color2 = Color.Transparent;
+            BtnClientes.OverrideDefault.Border.Rounding = 40F;
+            BtnClientes.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            BtnClientes.OverrideFocus.Back.Color2 = Color.White;
+            BtnClientes.Size = new Size(104, 36);
+            BtnClientes.StateCommon.Back.Color1 = Color.SkyBlue;
+            BtnClientes.StateCommon.Back.Color2 = Color.White;
+            BtnClientes.StateCommon.Border.Rounding = 40F;
+            BtnClientes.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            BtnClientes.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            BtnClientes.StateNormal.Back.Color1 = Color.Transparent;
+            BtnClientes.StateNormal.Back.Color2 = Color.Transparent;
+            BtnClientes.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
+            BtnClientes.StatePressed.Back.Color1 = Color.Transparent;
+            BtnClientes.StatePressed.Back.Color2 = Color.Transparent;
+            BtnClientes.StateTracking.Border.Rounding = 40F;
+            BtnClientes.TabIndex = 31;
+            BtnClientes.Values.DropDownArrowColor = Color.Empty;
+            BtnClientes.Values.Text = "Clientes";
+            BtnClientes.Click += BtnClientes_Click;
             // 
             // kryptonButton5
             // 
@@ -1167,7 +1167,7 @@
         private Krypton.Toolkit.KryptonButton btnReporte;
         private Krypton.Toolkit.KryptonButton kryptonButton9;
         private Krypton.Toolkit.KryptonButton kryptonButton7;
-        private Krypton.Toolkit.KryptonButton kryptonButton6;
+        private Krypton.Toolkit.KryptonButton BtnClientes;
         private Krypton.Toolkit.KryptonButton kryptonButton5;
         private Krypton.Toolkit.KryptonButton kryptonButton4;
         private Krypton.Toolkit.KryptonButton kryptonButton3;

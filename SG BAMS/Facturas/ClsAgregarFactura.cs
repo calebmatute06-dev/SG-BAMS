@@ -49,7 +49,34 @@ namespace SG_BAMS.Facturas
 
         }
 
-       
+        public async Task<DataTable> ObtenerFormasPago()
+        {
+            
+            DataTable dt = new DataTable();
+
+            try
+            {
+                AbrirConexion();
+                string query = "SELECT * FROM Tipo_Forma_de_pago";
+
+                using (SqlCommand cmd = new SqlCommand(query, Conectar))
+                using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                {
+                    dt.Load(reader);
+                }
+                return dt;
+            }
+            catch (Exception)
+            {
+                throw; 
+            }
+            finally
+            {
+                Cerrar();
+            }
+        }
+
+
 
 
 

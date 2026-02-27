@@ -33,37 +33,27 @@ namespace SG_BAMS
 
         private async Task LlenarComboProductos()
         {
-            ClsConexion objCl = new ClsConexion();
+            ClsAgregarProductos AP = new ClsAgregarProductos();
+
             try
             {
-                objCl.AbrirConexion();
+                
+                DataTable dt = await AP.ObtenerStockProductos();
 
-                string query = "SELECT * FROM vista_stock_productos";
+               
+                cmbProductos.DisplayMember = "Nombre Producto";
+                cmbProductos.ValueMember = "ID";
+                cmbProductos.DataSource = dt;
 
-
-                using (SqlCommand cmd = new SqlCommand(query, objCl.Conectar))
-                using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
-                {
-                    DataTable dt = new DataTable();
-                    dt.Load(reader);
-
-
-                    cmbProductos.DisplayMember = "Nombre Producto";
-                    cmbProductos.ValueMember = "ID";
-                    cmbProductos.DataSource = dt;
-
-                    lblNumero.DataBindings.Clear(); 
-                    lblNumero.DataBindings.Add("Text", dt, "Stock");
-                }
+                
+                lblNumero.DataBindings.Clear();
+                lblNumero.DataBindings.Add("Text", dt, "Stock");
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al llenar ComboBox: " + ex.Message);
             }
-            finally
-            {
-                objCl.Cerrar();
-            }
+
         }
 
         private async void FacturaProducto_Load(object sender, EventArgs e)

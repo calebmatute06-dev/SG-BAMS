@@ -31,13 +31,14 @@
             panel6 = new Panel();
             panel2 = new Panel();
             pictureBox6 = new PictureBox();
+            BtnMenu = new Krypton.Toolkit.KryptonButton();
             label10 = new Label();
             kryptonButton14 = new Krypton.Toolkit.KryptonButton();
             label1 = new Label();
-            btnajustes = new Krypton.Toolkit.KryptonButton();
-            btncompras = new Krypton.Toolkit.KryptonButton();
+            kryptonButton11 = new Krypton.Toolkit.KryptonButton();
+            BtnCompras = new Krypton.Toolkit.KryptonButton();
             pictureBox18 = new PictureBox();
-            btnadmin = new Krypton.Toolkit.KryptonButton();
+            BtnPerfil = new Krypton.Toolkit.KryptonButton();
             btnCerrarSesion = new Krypton.Toolkit.KryptonButton();
             btnnotificaciones = new Button();
             panel8 = new Panel();
@@ -54,7 +55,7 @@
             pictureBox16 = new PictureBox();
             pictureBox13 = new PictureBox();
             pictureBox15 = new PictureBox();
-            btnReporte = new Krypton.Toolkit.KryptonButton();
+            BtnReporte = new Krypton.Toolkit.KryptonButton();
             label2 = new Label();
             pictureBox9 = new PictureBox();
             pictureBox14 = new PictureBox();
@@ -128,6 +129,32 @@
             pictureBox6.Size = new Size(275, 24);
             pictureBox6.TabIndex = 7;
             pictureBox6.TabStop = false;
+            // 
+            // BtnMenu
+            // 
+            BtnMenu.Location = new Point(118, 225);
+            BtnMenu.Name = "BtnMenu";
+            BtnMenu.OverrideDefault.Back.Color1 = Color.Transparent;
+            BtnMenu.OverrideDefault.Back.Color2 = Color.Transparent;
+            BtnMenu.OverrideDefault.Border.Rounding = 40F;
+            BtnMenu.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            BtnMenu.OverrideFocus.Back.Color2 = Color.White;
+            BtnMenu.Size = new Size(139, 47);
+            BtnMenu.StateCommon.Back.Color1 = Color.SkyBlue;
+            BtnMenu.StateCommon.Back.Color2 = Color.White;
+            BtnMenu.StateCommon.Border.Rounding = 40F;
+            BtnMenu.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            BtnMenu.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            BtnMenu.StateNormal.Back.Color1 = Color.Transparent;
+            BtnMenu.StateNormal.Back.Color2 = Color.Transparent;
+            BtnMenu.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
+            BtnMenu.StatePressed.Back.Color1 = Color.Transparent;
+            BtnMenu.StatePressed.Back.Color2 = Color.Transparent;
+            BtnMenu.StateTracking.Border.Rounding = 40F;
+            BtnMenu.TabIndex = 34;
+            BtnMenu.Values.DropDownArrowColor = Color.Empty;
+            BtnMenu.Values.Text = "Menu Principal";
+            BtnMenu.Click += BtnMenu_Click;
             // 
             // label10
             // 
@@ -333,7 +360,7 @@
             panel1.Controls.Add(pictureBox16);
             panel1.Controls.Add(pictureBox13);
             panel1.Controls.Add(pictureBox15);
-            panel1.Controls.Add(btnReporte);
+            panel1.Controls.Add(BtnReporte);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(pictureBox9);
             panel1.Controls.Add(pictureBox14);
@@ -968,7 +995,7 @@
         private PictureBox pictureBox16;
         private PictureBox pictureBox13;
         private PictureBox pictureBox15;
-        private Krypton.Toolkit.KryptonButton btnReporte;
+        private Krypton.Toolkit.KryptonButton BtnReporte;
         private Label label2;
         private PictureBox pictureBox9;
         private PictureBox pictureBox14;

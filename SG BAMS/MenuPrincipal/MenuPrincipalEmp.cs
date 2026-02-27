@@ -333,5 +333,17 @@ namespace SG_BAMS
             NotificacionesEmp notif = new NotificacionesEmp();
             notif.Show();
         }
+
+        private void BtnClientes_Click(object sender, EventArgs e)
+        {
+            ClientesAdm frmCA = new ClientesAdm();
+            frmCA.Show();
+        }
+
+        private void BtnFacturas_Click(object sender, EventArgs e)
+        {
+            FacturasAdm frmFA = new FacturasAdm();
+            frmFA.Show();
+        }
     }
 }

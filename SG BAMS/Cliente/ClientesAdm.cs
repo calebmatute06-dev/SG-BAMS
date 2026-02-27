@@ -77,7 +77,7 @@ namespace SG_BAMS
                 TablaClientes();
             }
         }
-       
+
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
@@ -120,6 +120,65 @@ namespace SG_BAMS
 
             }
 
+        }
+
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void BtnPerfil_Click(object sender, EventArgs e)
+        {
+            Perfil PF = new Perfil();
+            PF.Show();
+        }
+
+        private void BtnMenu_Click(object sender, EventArgs e)
+        {
+            MenuPrincipalAdm MPA = new MenuPrincipalAdm();
+            MPA.Show();
+        }
+
+        private void BtnFacturas_Click(object sender, EventArgs e)
+        {
+            FacturasAdm FA = new FacturasAdm();
+            FA.Show();
+        }
+
+        private void BtnCompras_Click(object sender, EventArgs e)
+        {
+            Compras CP = new Compras();
+            CP.Show();
+        }
+
+        private void BtnInventario_Click(object sender, EventArgs e)
+        {
+            InventarioAdmin IA = new InventarioAdmin();
+            IA.Show();
+        }
+
+        private void BtnProveedores_Click(object sender, EventArgs e)
+        {
+            ProveedoresAdmin PA = new ProveedoresAdmin();
+            PA.Show();
+        }
+
+        private void BtnDeudores_Click(object sender, EventArgs e)
+        {
+            Deudores DU = new Deudores();
+            DU.Show();
+        }
+
+        private void BtnReporte_Click(object sender, EventArgs e)
+        {
+            ReporteAdmin RA = new ReporteAdmin();
+            RA.Show();
+        }
+
+        private void BtnBitacora_Click(object sender, EventArgs e)
+        {
+            Bitacora BT = new Bitacora();
+            BT.Show();
         }
     }
 }

@@ -67,31 +67,20 @@ namespace SG_BAMS
 
         private async Task LlenarComboEstado()
         {
+            ClsModificarCliente MC = new ClsModificarCliente();
+           
             try
             {
-                objCl.AbrirConexion();
+                
+                DataTable dt = await MC.ObtenerEstados();
 
-                string query = "SELECT id_estado, descripcion_estado  FROM Estado";
-
-
-                using (SqlCommand cmd = new SqlCommand(query, objCl.Conectar))
-                using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
-                {
-                    DataTable dt = new DataTable();
-                    dt.Load(reader);
-
-                    cmbEstado.DisplayMember = "descripcion_estado";
-                    cmbEstado.ValueMember = "id_estado";
-                    cmbEstado.DataSource = dt;
-                }
+                cmbEstado.DisplayMember = "descripcion_estado";
+                cmbEstado.ValueMember = "id_estado";
+                cmbEstado.DataSource = dt;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al llenar ComboBox: " + ex.Message);
-            }
-            finally
-            {
-                objCl.Cerrar();
+                MessageBox.Show("Error al llenar Estados: " + ex.Message);
             }
         }
 
