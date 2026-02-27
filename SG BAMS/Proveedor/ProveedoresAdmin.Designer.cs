@@ -700,7 +700,7 @@
             // 
             dgvProveedor.BorderStyle = BorderStyle.None;
             dgvProveedor.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProveedor.Location = new Point(285, 174);
+            dgvProveedor.Location = new Point(285, 182);
             dgvProveedor.Margin = new Padding(3, 2, 3, 2);
             dgvProveedor.Name = "dgvProveedor";
             dgvProveedor.RowHeadersWidth = 51;
