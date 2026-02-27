@@ -54,17 +54,17 @@ namespace SG_BAMS
 
         private async void BtnNueva_Click(object sender, EventArgs e)
         {
-            
+
             using (ClienteAgregar frmCA = new ClienteAgregar())
             {
-                
+
                 if (frmCA.ShowDialog() == DialogResult.OK)
                 {
                     await CargarFactura();
                 }
             }
 
-            
+
 
 
         }
@@ -78,7 +78,7 @@ namespace SG_BAMS
             {
                 dgvFacturas_CellContentClick(null, null);
             }
-            
+
         }
 
 
@@ -101,7 +101,7 @@ namespace SG_BAMS
                 FacturaVer frmFV = new FacturaVer(idFacturas, nombre_Cliente, fecha, bateriaVieja, idPago);
                 frmFV.ShowDialog();
 
-               
+
 
                 CargarFactura();
             }
@@ -148,6 +148,8 @@ namespace SG_BAMS
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
             this.Close();
+            SG_BAMS.Login.Login log = new SG_BAMS.Login.Login();
+            log.Show();
         }
 
         private void BtnRefrescar_Click(object sender, EventArgs e)
@@ -166,6 +168,82 @@ namespace SG_BAMS
 
                 dgvFacturas.DataSource = dv;
             }
+        }
+
+        private void btnmenuprincipal_Click(object sender, EventArgs e)
+        {
+            MenuPrincipalAdm Menuad = new MenuPrincipalAdm();
+            Menuad.Show();
+            this.Hide();
+        }
+
+        private void btndeudores_Click(object sender, EventArgs e)
+        {
+            Deudores Deu = new Deudores();
+            Deu.Show();
+            this.Hide();
+        }
+
+        private void btncompras_Click(object sender, EventArgs e)
+        {
+            Compras Comp = new Compras();
+            Comp.Show();
+            this.Hide();
+        }
+
+        private void btnclientes_Click(object sender, EventArgs e)
+        {
+            ClientesAdm Clien = new ClientesAdm();
+            Clien.Show();
+            this.Hide();
+        }
+
+        private void btninventario_Click(object sender, EventArgs e)
+        {
+            InventarioAdmin inventarioAdmin = new InventarioAdmin();
+            inventarioAdmin.Show();
+            this.Hide();
+        }
+
+        private void btnproveedores_Click(object sender, EventArgs e)
+        {
+            ProveedoresAdmin Pro = new ProveedoresAdmin();
+            Pro.Show();
+            this.Hide();
+        }
+
+        private void btnReporte_Click(object sender, EventArgs e)
+        {
+            ReporteAdmin Rep = new ReporteAdmin();
+            Rep.Show();
+            this.Hide();
+        }
+
+        private void btnbitacora_Click(object sender, EventArgs e)
+        {
+            Bitacora bitacora = new Bitacora();
+            bitacora.Show();
+            this.Hide();
+        }
+
+        private void btnadmin_Click(object sender, EventArgs e)
+        {
+            Perfil Per = new Perfil();
+            Per.Show();
+            this.Hide();
+        }
+
+        private void btnnotificaciones_Click(object sender, EventArgs e)
+        {
+            NotificacionesAdmin Noti = new NotificacionesAdmin();
+            Noti.Show();
+
+        }
+
+        private void btnajustes_Click(object sender, EventArgs e)
+        {
+            Ajustes Aju = new Ajustes();
+            Aju.Show();
         }
     }
 

@@ -219,7 +219,7 @@ namespace SG_BAMS
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
 
             SG_BAMS.Login.Login log = new SG_BAMS.Login.Login();
             log.Show();
@@ -236,7 +236,7 @@ namespace SG_BAMS
 
             invam.Show();
 
-            this.Hide();
+            this.Close();
 
         }
 
@@ -245,7 +245,7 @@ namespace SG_BAMS
             FacturasAdm fact = new FacturasAdm();
 
             fact.Show();
-            this.Hide();
+            this.Close();
         }
 
         private async void kryptonButton17_Click(object sender, EventArgs e)
@@ -254,7 +254,7 @@ namespace SG_BAMS
             Client.Show();
             await ActualizarLabel();
 
-            this.Hide();
+            this.Close();
         }
 
         private async void kryptonButton16_Click(object sender, EventArgs e)
@@ -263,7 +263,7 @@ namespace SG_BAMS
             deu.Show();
             await ActualizarLabel();
 
-            this.Hide();
+            this.Close();
         }
 
         private async void kryptonButton15_Click(object sender, EventArgs e)
@@ -274,7 +274,7 @@ namespace SG_BAMS
 
             await ActualizarLabel();
 
-            this.Hide();
+            this.Close();
         }
 
         private void kryptonButton11_Click(object sender, EventArgs e)
@@ -300,21 +300,21 @@ namespace SG_BAMS
             FacturasAdm fact = new FacturasAdm();
 
             fact.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void kryptonButton7_Click(object sender, EventArgs e)
         {
             Compras compr = new Compras();
             compr.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void kryptonButton6_Click(object sender, EventArgs e)
         {
             ClientesAdm clientesAdm = new ClientesAdm();
             clientesAdm.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void kryptonButton5_Click(object sender, EventArgs e)
@@ -322,21 +322,21 @@ namespace SG_BAMS
             InventarioAdmin invam = new InventarioAdmin();
 
             invam.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void kryptonButton4_Click(object sender, EventArgs e)
         {
             ProveedoresAdmin proadm = new ProveedoresAdmin();
             proadm.Show();
-            this.Hide();
+            this.Close();
         }
 
         private async void kryptonButton2_Click(object sender, EventArgs e)
         {
             Deudores deu = new Deudores();
             deu.ShowDialog();
-            this.Hide();
+            this.Close();
             await ActualizarLabel();
             await ActualizarLabelDeudores();
             await ActualizarLabelProductos();
@@ -348,14 +348,14 @@ namespace SG_BAMS
         {
             ReporteAdmin reporte = new ReporteAdmin();
             reporte.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void kryptonButton3_Click(object sender, EventArgs e)
         {
             Bitacora bit = new Bitacora();
             bit.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void kryptonButton10_Click(object sender, EventArgs e)
@@ -388,7 +388,7 @@ namespace SG_BAMS
 
         private void BtnCerrarSesión_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
         }
     }
 }
