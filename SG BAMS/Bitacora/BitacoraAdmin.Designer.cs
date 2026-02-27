@@ -366,6 +366,7 @@
             btnMenu.TabIndex = 34;
             btnMenu.Values.DropDownArrowColor = Color.Empty;
             btnMenu.Values.Text = "Menu Principal";
+            btnMenu.Click += btnMenu_Click;
             // 
             // btnFacturas
             // 
@@ -392,6 +393,7 @@
             btnFacturas.TabIndex = 33;
             btnFacturas.Values.DropDownArrowColor = Color.Empty;
             btnFacturas.Values.Text = "Facturas";
+            btnFacturas.Click += btnFacturas_Click;
             // 
             // btnCompras
             // 
@@ -418,6 +420,7 @@
             btnCompras.TabIndex = 32;
             btnCompras.Values.DropDownArrowColor = Color.Empty;
             btnCompras.Values.Text = "Compras";
+            btnCompras.Click += btnCompras_Click;
             // 
             // btnClientes
             // 
@@ -444,6 +447,7 @@
             btnClientes.TabIndex = 31;
             btnClientes.Values.DropDownArrowColor = Color.Empty;
             btnClientes.Values.Text = "Clientes";
+            btnClientes.Click += btnClientes_Click;
             // 
             // btnInventario
             // 
@@ -470,6 +474,7 @@
             btnInventario.TabIndex = 30;
             btnInventario.Values.DropDownArrowColor = Color.Empty;
             btnInventario.Values.Text = "Inventario";
+            btnInventario.Click += btnInventario_Click;
             // 
             // btnProveedores
             // 
@@ -523,6 +528,7 @@
             btnDeudores.TabIndex = 27;
             btnDeudores.Values.DropDownArrowColor = Color.Empty;
             btnDeudores.Values.Text = "Deudores";
+            btnDeudores.Click += btnDeudores_Click;
             // 
             // pictureBox16
             // 
@@ -582,6 +588,7 @@
             btnReporte.TabIndex = 26;
             btnReporte.Values.DropDownArrowColor = Color.Empty;
             btnReporte.Values.Text = "Reporte";
+            btnReporte.Click += btnReporte_Click;
             // 
             // label2
             // 
