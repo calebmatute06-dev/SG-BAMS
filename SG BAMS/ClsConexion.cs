@@ -17,7 +17,7 @@ namespace SG_BAMS
                                         "Password = w6et2uoghs;" +
                                         "TrustServerCertificate=True;";
 
-        protected SqlConnection Conectar = new SqlConnection();
+        public SqlConnection Conectar = new SqlConnection();
 
 
         public void AbrirConexion()

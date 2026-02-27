@@ -140,6 +140,7 @@
             // 
             // listBox1
             // 
+            listBox1.DrawMode = DrawMode.OwnerDrawFixed;
             listBox1.FormattingEnabled = true;
             listBox1.Location = new Point(12, 122);
             listBox1.Name = "listBox1";

@@ -252,6 +252,6 @@
         private PictureBox pictureBox5;
         private Krypton.Toolkit.KryptonButton btnsalir;
         private Label label6;
-        private Krypton.Toolkit.KryptonButton btncambiarfoto;
+        private Krypton.Toolkit.KryptonButton kryptonButton1;
     }
 }

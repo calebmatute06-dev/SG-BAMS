@@ -13,33 +13,29 @@ namespace SG_BAMS
 {
     public partial class Deudores : Form
     {
-
-        // Variable global para manejar el filtrado (PascalCase por ser campo de clase)
+        // Variable global para manejar el filtrado
         private DataTable dtDeudores;
-
-        public void CargarGridDeudores()
-        {
-            
-            
-        }
 
         public Deudores()
         {
             InitializeComponent();
             CargarGridDeudores();
-
-            
         }
 
+        public void CargarGridDeudores()
+        {
+            ClsDeuda objetoDeuda = new ClsDeuda();
+            dtDeudores = objetoDeuda.ListarDeudores();
+            dgvDeudores.DataSource = dtDeudores;
+        }
 
-
+        // --- NAVEGACIÓN DEL MENÚ (Respetando tus nombres exactos) ---
 
         private void kryptonButton9_Click(object sender, EventArgs e)
         {
             MenuPrincipalAdm Menad = new MenuPrincipalAdm();
             Menad.Show();
             this.Close();
-
         }
 
         private void kryptonButton8_Click(object sender, EventArgs e)
@@ -72,13 +68,9 @@ namespace SG_BAMS
 
         private void kryptonButton4_Click(object sender, EventArgs e)
         {
-            
-        }
-
-        private void kryptonButton2_Click(object sender, EventArgs e)
-        {
-            this.Show();
-
+            ProveedoresAdmin Proad = new ProveedoresAdmin();
+            Proad.Show();
+            this.Close();
         }
 
         private void btnReporte_Click(object sender, EventArgs e)
@@ -100,15 +92,12 @@ namespace SG_BAMS
             SG_BAMS.Login.Login log = new SG_BAMS.Login.Login();
             log.Show();
             this.Close();
-
-
         }
 
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
             Perfil Per = new Perfil();
             Per.Show();
-
         }
 
         private void button12_Click(object sender, EventArgs e)
@@ -122,8 +111,92 @@ namespace SG_BAMS
         {
             Ajustes Ajus = new Ajustes();
             Ajus.Show();
+        }
 
+        private void kryptonButton2_Click(object sender, EventArgs e)
+        {
+            this.Show();
+        }
 
+        // --- LÓGICA DE BÚSQUEDA Y PAGOS ---
+
+        // El botón de la lupa / buscar
+        private void kryptonButton12_Click(object sender, EventArgs e)
+        {
+            FiltrarDeudores();
+        }
+
+        private void txtBuscarNombre_TextChanged(object sender, EventArgs e)
+        {
+            FiltrarDeudores();
+        }
+
+        private void FiltrarDeudores()
+        {
+            if (dtDeudores != null)
+            {
+                string filtro = txtBuscarNombre.Text.Trim();
+                DataView dv = dtDeudores.DefaultView;
+                dv.RowFilter = string.Format("Cliente LIKE '%{0}%'", filtro);
+                dgvDeudores.DataSource = dv;
+            }
+        }
+
+        // BOTÓN PAGAR (kryptonButton15): Aquí pasamos los dos argumentos
+        private void kryptonButton15_Click(object sender, EventArgs e)
+        {
+            // Usamos "" y 0 para indicar que no hay selección previa desde el grid
+            Pago_Deuda PagDe = new Pago_Deuda("", 0);
+            PagDe.ShowDialog();
+            CargarGridDeudores();
+        }
+
+        // DOBLE CLIC EN EL GRID: Aquí es donde forzamos la exactitud por ID
+        private void dgvDeudores_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Evitar clics en el encabezado
+            if (e.RowIndex < 0) return;
+
+            try
+            {
+                // Obtenemos la fila vinculada
+                DataRowView filaSeleccionada = (DataRowView)dgvDeudores.Rows[e.RowIndex].DataBoundItem;
+
+                if (filaSeleccionada != null)
+                {
+                    // --- CAMBIO IMPORTANTE AQUÍ ---
+                    // Si te da error, verifica si es "ID Deuda", "ID_Deuda" o "id"
+                    int idDeuda = Convert.ToInt32(filaSeleccionada["ID Deuda"]);
+
+                    string nombreCliente = filaSeleccionada["Cliente"].ToString().Trim();
+                    string estadoDeuda = filaSeleccionada["Estado Deuda"].ToString().Trim();
+
+                    if (estadoDeuda.Equals("Activo", StringComparison.OrdinalIgnoreCase))
+                    {
+                        // Ahora pasamos los dos argumentos correctamente
+                        Pago_Deuda pagDe = new Pago_Deuda(nombreCliente, idDeuda);
+
+                        if (pagDe.ShowDialog() == DialogResult.OK)
+                        {
+                            CargarGridDeudores();
+                            txtBuscarNombre.Clear();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show($"La deuda de {nombreCliente} ya no está activa.", "Información");
+                    }
+                }
+            }
+            catch (ArgumentException ex)
+            {
+                // Este mensaje te dirá exactamente cómo se llaman tus columnas si fallas de nuevo
+                MessageBox.Show("Error: No se encuentra la columna. Verifica si el nombre es 'ID Deuda'. \nDetalle: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al abrir el pago: " + ex.Message);
+            }
         }
 
         private void Deudores_Shown(object sender, EventArgs e)
@@ -131,139 +204,9 @@ namespace SG_BAMS
             Ayudante_UI.AplicarZoomGlobal(this);
         }
 
-        private void kryptonDataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void kryptonButton15_Click(object sender, EventArgs e)
-        {
-            Pago_Deuda PagDe = new Pago_Deuda();
-            PagDe.ShowDialog();
-            CargarGridDeudores();
-
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void kryptonButton12_Click(object sender, EventArgs e)
-        {
-            if (dtDeudores != null)
-            {
-                string filtro = txtBuscarNombre.Text.Trim();
-                DataView dv = dtDeudores.DefaultView;
-
-                // Filtramos por la columna "Cliente" (Asegúrate que se llame así en tu Vista SQL)
-                dv.RowFilter = string.Format("Cliente LIKE '%{0}%'", filtro);
-                dgvDeudores.DataSource = dv;
-            }
-        }
-
-        private void dgvDeudores_DoubleClick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dgvDeudores_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            // 1. Evitar clics en encabezados y evitar disparos múltiples rápidos
-            if (e.RowIndex < 0) return;
-
-            try
-            {
-                // 2. Obtener el objeto de datos real vinculado a esa fila específica
-                // Esto evita que se confunda de deudor si la lista está filtrada
-                DataRowView filaSeleccionada = (DataRowView)dgvDeudores.Rows[e.RowIndex].DataBoundItem;
-
-                if (filaSeleccionada != null)
-                {
-                    // Usamos los nombres de las columnas de tu DataTable/Vista
-                    string nombreCliente = filaSeleccionada["Cliente"].ToString().Trim();
-                    string estadoDeuda = filaSeleccionada["Estado Deuda"].ToString().Trim();
-
-                    // 3. Validación de estado
-                    if (estadoDeuda.Equals("Activo", StringComparison.OrdinalIgnoreCase))
-                    {
-                        Pago_Deuda pagDe = new Pago_Deuda(nombreCliente);
-
-                        if (pagDe.ShowDialog() == DialogResult.OK)
-                        {
-                            // Al regresar, refrescamos los datos de la DB
-                            CargarGridDeudores();
-
-                            // Limpiamos el buscador para evitar que el índice se pierda
-                            txtBuscarNombre.Clear();
-                        }
-                    }
-                    else
-                    {
-                        // Mensaje informativo si no está activo
-                        MessageBox.Show($"El cliente {nombreCliente} no tiene deudas pendientes (Estado: {estadoDeuda}).",
-                                        "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                // Esto nos dirá si el problema es de conversión o de nombres de columna
-                Console.WriteLine("Error en Doble Clic: " + ex.Message);
-            }
-        }
-
-        private void btnMenu_Click(object sender, EventArgs e)
-        {
-            MenuPrincipalAdm menuPrincipalAdm = new MenuPrincipalAdm();
-            menuPrincipalAdm.Show(this);
-            this.Hide();
-        }
-
-        private void btnFactura_Click(object sender, EventArgs e)
-        {
-            FacturasAdm facturasAdm = new FacturasAdm();
-            facturasAdm.Show();
-            this.Hide();
-        }
-
-        private void btnCompras_Click(object sender, EventArgs e)
-        {
-            Compras compras = new Compras();
-            compras.Show();
-            this.Hide();
-        }
-
-        private void btnClientes_Click(object sender, EventArgs e)
-        {
-            ClientesAdm clientesAdm = new ClientesAdm();
-            clientesAdm.Show();
-            this.Hide();
-        }
-
-        private void btnInve_Click(object sender, EventArgs e)
-        {
-            InventarioAdmin inventarioAdmin = new InventarioAdmin();
-            inventarioAdmin.Show();
-            this.Hide();
-        }
-
-        private void btnProvee_Click(object sender, EventArgs e)
-        {
-            Proveedor.ProveedoresAdmin proveedoresAdmin = new Proveedor.ProveedoresAdmin();
-            proveedoresAdmin.Show();
-            this.Hide();
-        }
-
-        private void btnDeudores_Click(object sender, EventArgs e)
-        {
-            Deudores deudores = new Deudores();
-            deudores.Show();
-            this.Hide();
-        }
-
-        
-
-        
+        // Eventos vacíos para evitar errores de referencia si existen en el designer
+        private void kryptonDataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
+        private void timer1_Tick(object sender, EventArgs e) { }
+        private void dgvDeudores_DoubleClick(object sender, EventArgs e) { }
     }
 }
