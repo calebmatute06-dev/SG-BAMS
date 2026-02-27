@@ -35,10 +35,10 @@
             label9 = new Label();
             label2 = new Label();
             label1 = new Label();
-            kryptonButton2 = new Krypton.Toolkit.KryptonButton();
-            kryptonButton6 = new Krypton.Toolkit.KryptonButton();
-            kryptonTextBox1 = new Krypton.Toolkit.KryptonTextBox();
+            btmModificar = new Krypton.Toolkit.KryptonButton();
+            txtDescri = new Krypton.Toolkit.KryptonTextBox();
             pictureBox4 = new PictureBox();
+            btmSalir = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
@@ -107,71 +107,49 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial Narrow", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(193, 33);
+            label1.Location = new Point(193, 37);
             label1.Name = "label1";
             label1.Size = new Size(280, 39);
             label1.TabIndex = 123;
             label1.Text = "Modificar Rol Usuario";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // kryptonButton2
+            // btmModificar
             // 
-            kryptonButton2.Location = new Point(219, 220);
-            kryptonButton2.Name = "kryptonButton2";
-            kryptonButton2.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            kryptonButton2.OverrideDefault.Back.Color2 = Color.White;
-            kryptonButton2.OverrideDefault.Border.Rounding = 40F;
-            kryptonButton2.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            kryptonButton2.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton2.Size = new Size(118, 65);
-            kryptonButton2.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonButton2.StateCommon.Back.Color2 = Color.White;
-            kryptonButton2.StateCommon.Border.Rounding = 40F;
-            kryptonButton2.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton2.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton2.StateNormal.Back.Color1 = Color.SkyBlue;
-            kryptonButton2.StateNormal.Back.Color2 = Color.White;
-            kryptonButton2.StateNormal.Border.Rounding = 40F;
-            kryptonButton2.StateTracking.Border.Rounding = 40F;
-            kryptonButton2.TabIndex = 142;
-            kryptonButton2.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton2.Values.Text = "Modificar";
+            btmModificar.Location = new Point(219, 220);
+            btmModificar.Name = "btmModificar";
+            btmModificar.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btmModificar.OverrideDefault.Back.Color2 = Color.White;
+            btmModificar.OverrideDefault.Border.Rounding = 40F;
+            btmModificar.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btmModificar.OverrideFocus.Back.Color2 = Color.White;
+            btmModificar.Size = new Size(118, 65);
+            btmModificar.StateCommon.Back.Color1 = Color.SkyBlue;
+            btmModificar.StateCommon.Back.Color2 = Color.White;
+            btmModificar.StateCommon.Border.Rounding = 40F;
+            btmModificar.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btmModificar.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btmModificar.StateNormal.Back.Color1 = Color.SkyBlue;
+            btmModificar.StateNormal.Back.Color2 = Color.White;
+            btmModificar.StateNormal.Border.Rounding = 40F;
+            btmModificar.StateTracking.Border.Rounding = 40F;
+            btmModificar.TabIndex = 142;
+            btmModificar.Values.DropDownArrowColor = Color.Empty;
+            btmModificar.Values.Text = "Modificar";
+            btmModificar.Click += btmModificar_Click;
             // 
-            // kryptonButton6
+            // txtDescri
             // 
-            kryptonButton6.Location = new Point(366, 220);
-            kryptonButton6.Name = "kryptonButton6";
-            kryptonButton6.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            kryptonButton6.OverrideDefault.Back.Color2 = Color.White;
-            kryptonButton6.OverrideDefault.Border.Rounding = 40F;
-            kryptonButton6.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            kryptonButton6.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton6.Size = new Size(118, 65);
-            kryptonButton6.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonButton6.StateCommon.Back.Color2 = Color.White;
-            kryptonButton6.StateCommon.Border.Rounding = 40F;
-            kryptonButton6.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton6.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton6.StateNormal.Back.Color1 = Color.SkyBlue;
-            kryptonButton6.StateNormal.Back.Color2 = Color.White;
-            kryptonButton6.StateNormal.Border.Rounding = 40F;
-            kryptonButton6.StateTracking.Border.Rounding = 40F;
-            kryptonButton6.TabIndex = 141;
-            kryptonButton6.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton6.Values.Text = "Salir";
-            // 
-            // kryptonTextBox1
-            // 
-            kryptonTextBox1.Location = new Point(322, 93);
-            kryptonTextBox1.Margin = new Padding(3, 4, 3, 4);
-            kryptonTextBox1.Multiline = true;
-            kryptonTextBox1.Name = "kryptonTextBox1";
-            kryptonTextBox1.Size = new Size(302, 55);
-            kryptonTextBox1.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonTextBox1.StateCommon.Border.Rounding = 15F;
-            kryptonTextBox1.StateCommon.Content.Color1 = Color.Navy;
-            kryptonTextBox1.StateCommon.Content.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonTextBox1.TabIndex = 143;
+            txtDescri.Location = new Point(322, 93);
+            txtDescri.Margin = new Padding(3, 4, 3, 4);
+            txtDescri.Multiline = true;
+            txtDescri.Name = "txtDescri";
+            txtDescri.Size = new Size(302, 55);
+            txtDescri.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtDescri.StateCommon.Border.Rounding = 15F;
+            txtDescri.StateCommon.Content.Color1 = Color.Navy;
+            txtDescri.StateCommon.Content.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtDescri.TabIndex = 143;
             // 
             // pictureBox4
             // 
@@ -184,16 +162,40 @@
             pictureBox4.TabIndex = 0;
             pictureBox4.TabStop = false;
             // 
+            // btmSalir
+            // 
+            btmSalir.Location = new Point(376, 220);
+            btmSalir.Name = "btmSalir";
+            btmSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btmSalir.OverrideDefault.Back.Color2 = Color.White;
+            btmSalir.OverrideDefault.Border.Rounding = 40F;
+            btmSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btmSalir.OverrideFocus.Back.Color2 = Color.White;
+            btmSalir.Size = new Size(118, 65);
+            btmSalir.StateCommon.Back.Color1 = Color.SkyBlue;
+            btmSalir.StateCommon.Back.Color2 = Color.White;
+            btmSalir.StateCommon.Border.Rounding = 40F;
+            btmSalir.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btmSalir.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btmSalir.StateNormal.Back.Color1 = Color.SkyBlue;
+            btmSalir.StateNormal.Back.Color2 = Color.White;
+            btmSalir.StateNormal.Border.Rounding = 40F;
+            btmSalir.StateTracking.Border.Rounding = 40F;
+            btmSalir.TabIndex = 144;
+            btmSalir.Values.DropDownArrowColor = Color.Empty;
+            btmSalir.Values.Text = "Salir";
+            btmSalir.Click += btmSalir_Click;
+            // 
             // frmModificarRol
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(688, 380);
+            Controls.Add(btmSalir);
             Controls.Add(pictureBox4);
-            Controls.Add(kryptonTextBox1);
-            Controls.Add(kryptonButton2);
-            Controls.Add(kryptonButton6);
+            Controls.Add(txtDescri);
+            Controls.Add(btmModificar);
             Controls.Add(panel1);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
@@ -203,6 +205,7 @@
             Controls.Add(label1);
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmModificarRol";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmModificarRol";
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -220,9 +223,9 @@
         private Label label9;
         private Label label2;
         private Label label1;
-        private Krypton.Toolkit.KryptonButton kryptonButton2;
-        private Krypton.Toolkit.KryptonButton kryptonButton6;
-        private Krypton.Toolkit.KryptonTextBox kryptonTextBox1;
+        private Krypton.Toolkit.KryptonButton btmModificar;
+        private Krypton.Toolkit.KryptonTextBox txtDescri;
         private PictureBox pictureBox4;
+        private Krypton.Toolkit.KryptonButton btmSalir;
     }
 }

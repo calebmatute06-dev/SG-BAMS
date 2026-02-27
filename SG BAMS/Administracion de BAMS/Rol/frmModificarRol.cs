@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SG_BAMS.Administracion_de_BAMS.Rol;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,45 @@ namespace SG_BAMS
 {
     public partial class frmModificarRol : Form
     {
-        public frmModificarRol()
+        int idRolSeleccionado;
+        public frmModificarRol(int id, string nombreActual)
         {
             InitializeComponent();
+            this.idRolSeleccionado = id;
+            txtDescri.Text = nombreActual;
+        }
+
+        private async void btmModificar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtDescri.Text))
+            {
+                MessageBox.Show("El nombre del rol no puede estar vacío.");
+                return;
+            }
+
+            try
+            {
+                this.Cursor = Cursors.WaitCursor;
+                clsRol objetoRol = new clsRol();
+
+                bool exito = await objetoRol.ModificarRolAsync(idRolSeleccionado, txtDescri.Text.Trim());
+
+                if (exito)
+                {
+                    MessageBox.Show("Rol actualizado con éxito.", "SG-BAMS");
+                    this.DialogResult = DialogResult.OK; 
+                    this.Close();
+                }
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            finally { this.Cursor = Cursors.Default; }
+        }
+
+        private void btmSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+
+           
         }
     }
 }

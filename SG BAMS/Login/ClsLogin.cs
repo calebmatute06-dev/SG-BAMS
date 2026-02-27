@@ -9,7 +9,7 @@ namespace SG_BAMS.Login
 {
     internal class ClsLogin : ClsConexion
     {
-
+        public static int idusuario;
         public int ValidarUsuario(string usuario, string contra)
         {
 
@@ -21,8 +21,8 @@ namespace SG_BAMS.Login
                 AbrirConexion();
 
                 string query = @"
-                    SELECT id_rol_usuario, id_estado
-                    FROM credenciales_usuario
+                    SELECT id_rol_usuario, id_estado, id_usuario
+                    FROM credenciales_usuarios
                     WHERE nombre_usuario = @usuario
                       AND contraseña_login = @contra";
 
@@ -38,6 +38,7 @@ namespace SG_BAMS.Login
                         if (estado == 1)
                         {
                             rol = Convert.ToInt32(reader["id_rol_usuario"]);
+                            idusuario = Convert.ToInt32(reader["id_usuario"]);
                         }
                         else
                         {
@@ -66,6 +67,8 @@ namespace SG_BAMS.Login
 
 
         }
+
+        
 
 
 

@@ -20,6 +20,8 @@
     <PackageReference Include="OpenCvSharp4.Extensions" Version="4.13.0.20260222" />
     <PackageReference Include="OpenCvSharp4.runtime.win" Version="4.13.0.20260222" />
     <PackageReference Include="OpenCvSharp4.Windows" Version="4.13.0.20260222" />
+    <PackageReference Include="WinForms.DataVisualization" Version="1.10.0" />
+    <PackageReference Include="QuestPDF" Version="2026.2.2" />
   </ItemGroup>
 
   <ItemGroup>

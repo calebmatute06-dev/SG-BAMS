@@ -14,6 +14,7 @@ namespace SG_BAMS.Login
 {
     public partial class Login : Form
     {
+        public static string UsuarioLogueado;
         public Login()
         {
             InitializeComponent();
@@ -26,10 +27,16 @@ namespace SG_BAMS.Login
 
         private void btninicioSesion_Click(object sender, EventArgs e)
         {
+            
             ClsLogin login = new ClsLogin();
             try
             {
+                // --- ÚNICA ADICIÓN: Guardamos el nombre antes de validar y limpiar ---
+                UsuarioLogueado = txtUsu.Text;
+
                 int rol = login.ValidarUsuario(txtUsu.Text, txtCon.Text);
+               
+
 
                 if (rol == 1 || rol == 2)
                 {
@@ -82,6 +89,11 @@ namespace SG_BAMS.Login
         private void btnsalirLogin_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

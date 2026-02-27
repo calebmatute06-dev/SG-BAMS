@@ -57,7 +57,7 @@
             label1.ForeColor = Color.Navy;
             label1.Location = new Point(306, 19);
             label1.Name = "label1";
-            label1.Size = new Size(245, 29);
+            label1.Size = new Size(280, 39);
             label1.TabIndex = 74;
             label1.Text = "Imagen del Usuario";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -69,7 +69,7 @@
             label7.ForeColor = Color.Navy;
             label7.Location = new Point(723, 369);
             label7.Name = "label7";
-            label7.Size = new Size(60, 25);
+            label7.Size = new Size(77, 31);
             label7.TabIndex = 83;
             label7.Text = "BAMS";
             // 
@@ -96,7 +96,6 @@
             // 
             panel1.BackColor = Color.Navy;
             panel1.Location = new Point(2, -1);
-            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
             panel1.Size = new Size(808, 18);
             panel1.TabIndex = 91;
@@ -105,7 +104,6 @@
             // 
             pictureBox7.BackColor = Color.Navy;
             pictureBox7.Location = new Point(2, 1);
-            pictureBox7.Margin = new Padding(3, 2, 3, 2);
             pictureBox7.Name = "pictureBox7";
             pictureBox7.Size = new Size(21, 411);
             pictureBox7.TabIndex = 92;
@@ -275,7 +273,7 @@
             // 
             // frmImagenEmpleado
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(809, 411);
@@ -293,7 +291,9 @@
             Controls.Add(panel2);
             Controls.Add(label7);
             Controls.Add(label1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "frmImagenEmpleado";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "fmrImagenEmpleado";
             Load += frmImagenEmpleado_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();

@@ -9,7 +9,7 @@ using Microsoft.Data.SqlClient;
 
 namespace SG_BAMS
 {
-    internal class ClsConexion
+    public class ClsConexion
     {
         private String CadenaConexion = "Data Source = AutoBattDB.mssql.somee.com; " +
                                         "Initial catalog = AutoBattDB; " +
@@ -17,7 +17,7 @@ namespace SG_BAMS
                                         "Password = w6et2uoghs;" +
                                         "TrustServerCertificate=True;";
 
-        protected SqlConnection Conectar = new SqlConnection();
+        public SqlConnection Conectar = new SqlConnection();
 
 
         public void AbrirConexion()

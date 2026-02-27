@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SG_BAMS.Administracion_de_BAMS.Estado;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,14 +13,51 @@ namespace SG_BAMS
 {
     public partial class frmModificarEstado : Form
     {
-        public frmModificarEstado()
+        int idEstado;
+        public frmModificarEstado(int id, string descripcionActual)
         {
             InitializeComponent();
+            this.idEstado = id;
+            txtDescri.Text = descripcionActual;
         }
 
-        private void kryptonButton2_Click(object sender, EventArgs e)
+        private void btnSalir_Click(object sender, EventArgs e)
         {
+            frmEstado verEstados = new frmEstado();
+            verEstados.ShowDialog();
+            this.Close();
+        }
 
+        private async void btnModificar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtDescri.Text))
+            {
+                MessageBox.Show("La descripción no puede estar vacía.");
+                return;
+            }
+
+            try
+            {
+                this.Cursor = Cursors.WaitCursor;
+                clsEstado objetoEstado = new clsEstado();
+
+                bool exito = await objetoEstado.ModificarEstadoAsync(idEstado, txtDescri.Text.Trim());
+
+                if (exito)
+                {
+                    MessageBox.Show("Estado actualizado con éxito.", "SG-BAMS");
+                    this.DialogResult = DialogResult.OK; 
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
         }
     }
 }

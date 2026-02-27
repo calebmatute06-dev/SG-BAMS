@@ -1,4 +1,5 @@
 ﻿using Krypton.Toolkit;
+using SG_BAMS.Administracion_de_BAMS.Usuarios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,20 +14,98 @@ namespace SG_BAMS
 {
     public partial class frmModificarUsuarios : Form
     {
-        public frmModificarUsuarios()
+
+        private int idUsuarioSeleccionado;
+
+        public frmModificarUsuarios(int id, string nombre, int rol, int estado)
         {
             InitializeComponent();
-            kryptonComboBox2.AutoSize = false;
+
+            this.idUsuarioSeleccionado = id;
+
+            txtNombre.Text = nombre;
+
+            this.Load += async (s, e) =>
+            {
+                await CargarCombos();
+                cmbRol.SelectedValue = rol;
+                cmbEstado.SelectedValue = estado;
+            };
         }
 
+        private async Task CargarCombos()
+        {
+            try
+            {
+                clsUsuario objetoUsuario = new clsUsuario();
+
+                // Cargar Roles
+                DataTable dtRoles = await objetoUsuario.ListarRolesAsync();
+                cmbRol.DataSource = dtRoles;
+                cmbRol.DisplayMember = "descripcion_rol";
+                cmbRol.ValueMember = "id_rol_usuario";
+
+                DataTable dtEstados = await objetoUsuario.ListarEstadosAsync();
+                cmbEstado.DataSource = dtEstados;
+                cmbEstado.DisplayMember = "descripcion_estado";
+                cmbEstado.ValueMember = "id_estado";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar listas: " + ex.Message);
+            }
+        }
         private void fmrModificarUsuarios_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void kryptonComboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
+        private async void btmModificar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                clsUsuario objetoUsuario = new clsUsuario();
+
+                // Obtenemos los valores de los controles
+                int idRol = (int)cmbRol.SelectedValue;
+                int idEstado = (int)cmbEstado.SelectedValue;
+                byte[] imagenByte = null;
+
+                bool exito = await objetoUsuario.ModificarUsuarioAsync(
+                    idUsuarioSeleccionado,
+                    txtNombre.Text,
+                    txtContra.Text,
+                    idRol,
+                    idEstado,
+                    imagenByte
+                );
+
+                if (exito)
+                {
+                    MessageBox.Show("Usuario actualizado correctamente.");
+                    frmUsuarios verUsuarios = new frmUsuarios();
+                    verUsuarios.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            frmUsuarios verUsuario = new frmUsuarios();
+            verUsuario.Show();
+            this.Close();
+        }
+
+        private void btnImagen_Click(object sender, EventArgs e)
+        {
+            frmImagenEmpleado agregarImagen = new frmImagenEmpleado();
+            agregarImagen.Show();
         }
     }
 }
