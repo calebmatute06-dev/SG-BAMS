@@ -23,6 +23,7 @@ namespace SG_BAMS.Proveedor
         private void ProveedoresAdmin_Load(object sender, EventArgs e)
         {
             proveedor.cargarDatos(dgvProveedor);
+            dgvProveedor.Columns["idProveedor"].Visible = false;
             dgvProveedor.Columns["idClasificacion"].Visible = false;
             dgvProveedor.Columns["idEstado"].Visible = false;
         }
@@ -101,6 +102,7 @@ namespace SG_BAMS.Proveedor
         {
             txtBuscar.Clear();
             proveedor.cargarDatos(dgvProveedor);
+
         }
     }
 }

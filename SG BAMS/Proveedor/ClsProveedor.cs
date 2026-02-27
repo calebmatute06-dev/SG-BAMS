@@ -114,7 +114,9 @@ namespace SG_BAMS.Proveedor
                 string consulta = "select * from vista_proveedor where Nombre like @filtro " +
                     "OR Contacto LIKE @filtro " +
                     "OR RTN LIKE @filtro " +
-                    "OR Dirección LIKE @filtro ";
+                    "OR Dirección LIKE @filtro " +
+                    "OR Clasificación LIKE @filtro " +
+                    "OR Estado LIKE @filtro ";
                 SqlCommand cmd = new SqlCommand(consulta, Conectar);
                 cmd.Parameters.AddWithValue("@filtro", "%" + texto + "%");
 
