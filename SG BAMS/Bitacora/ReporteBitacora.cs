@@ -5,7 +5,7 @@ using QuestPDF.Infrastructure;
 
 namespace SG_BAMS.Bitacora
 {
-    // DTO interno (puedes moverlo a otro archivo si quieres)
+    // DTO interno
     public class BitacoraDTO
     {
         public string Nombre { get; set; }
