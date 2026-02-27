@@ -1,3 +1,4 @@
+using SG_BAMS.Bitacora;
 using SG_BAMS.Login;
 using SG_BAMS.Proveedor;
 
@@ -14,7 +15,7 @@ namespace SG_BAMS
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Login.Login());
+            Application.Run(new ProveedoresAdmin());
         }
     }
 }

@@ -113,9 +113,9 @@ namespace SG_BAMS.Bitacora
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             txtBuscar.Clear();
-            bitacora.cargarDatos(dgvBitacora);
             dtpDesde.Value = DateTime.Today;
             dtpHasta.Value = DateTime.Today;
+            bitacora.cargarDatos(dgvBitacora);
         }
 
         private void dtpDesde_ValueChanged(object sender, EventArgs e)

@@ -73,6 +73,8 @@
             btnRefresh = new Button();
             dtpHasta = new DateTimePicker();
             dtpDesde = new DateTimePicker();
+            label4 = new Label();
+            label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
             panel1.SuspendLayout();
@@ -111,7 +113,7 @@
             label10.BackColor = Color.SkyBlue;
             label10.Font = new Font("Arial Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Navy;
-            label10.Location = new Point(543, 76);
+            label10.Location = new Point(560, 46);
             label10.Name = "label10";
             label10.Size = new Size(128, 33);
             label10.TabIndex = 90;
@@ -133,7 +135,7 @@
             // 
             // btnExportar
             // 
-            btnExportar.Location = new Point(542, 565);
+            btnExportar.Location = new Point(575, 593);
             btnExportar.Margin = new Padding(3, 2, 3, 2);
             btnExportar.Name = "btnExportar";
             btnExportar.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -710,9 +712,9 @@
             // 
             dgvBitacora.BorderStyle = BorderStyle.None;
             dgvBitacora.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvBitacora.Location = new Point(332, 238);
+            dgvBitacora.Location = new Point(411, 196);
             dgvBitacora.Name = "dgvBitacora";
-            dgvBitacora.Size = new Size(589, 242);
+            dgvBitacora.Size = new Size(459, 364);
             dgvBitacora.TabIndex = 98;
             // 
             // pictureBox2
@@ -720,7 +722,7 @@
             pictureBox2.BackColor = Color.Transparent;
             pictureBox2.BackgroundImage = Properties.Resources.pdf;
             pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox2.Location = new Point(481, 572);
+            pictureBox2.Location = new Point(514, 600);
             pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(55, 45);
@@ -730,8 +732,8 @@
             // kryptonGroupBox1
             // 
             kryptonGroupBox1.CaptionVisible = false;
-            kryptonGroupBox1.Location = new Point(287, 199);
-            kryptonGroupBox1.Size = new Size(676, 315);
+            kryptonGroupBox1.Location = new Point(391, 165);
+            kryptonGroupBox1.Size = new Size(500, 423);
             kryptonGroupBox1.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroupBox1.StateCommon.Border.Rounding = 50F;
             kryptonGroupBox1.TabIndex = 105;
@@ -739,7 +741,7 @@
             // kryptonGroupBox2
             // 
             kryptonGroupBox2.CaptionVisible = false;
-            kryptonGroupBox2.Location = new Point(450, 67);
+            kryptonGroupBox2.Location = new Point(471, 37);
             kryptonGroupBox2.Size = new Size(301, 49);
             kryptonGroupBox2.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroupBox2.StateCommon.Border.Rounding = 50F;
@@ -747,7 +749,7 @@
             // 
             // txtBuscar
             // 
-            txtBuscar.Location = new Point(287, 143);
+            txtBuscar.Location = new Point(287, 113);
             txtBuscar.Name = "txtBuscar";
             txtBuscar.Size = new Size(340, 29);
             txtBuscar.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -759,7 +761,7 @@
             // 
             btnRefresh.BackgroundImage = Properties.Resources.refresh;
             btnRefresh.BackgroundImageLayout = ImageLayout.Stretch;
-            btnRefresh.Location = new Point(885, 127);
+            btnRefresh.Location = new Point(922, 97);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.Size = new Size(58, 50);
             btnRefresh.TabIndex = 323;
@@ -768,7 +770,7 @@
             // 
             // dtpHasta
             // 
-            dtpHasta.Location = new Point(635, 160);
+            dtpHasta.Location = new Point(716, 130);
             dtpHasta.Name = "dtpHasta";
             dtpHasta.Size = new Size(200, 23);
             dtpHasta.TabIndex = 327;
@@ -776,11 +778,35 @@
             // 
             // dtpDesde
             // 
-            dtpDesde.Location = new Point(635, 127);
+            dtpDesde.Location = new Point(716, 97);
             dtpDesde.Name = "dtpDesde";
             dtpDesde.Size = new Size(200, 23);
             dtpDesde.TabIndex = 326;
             dtpDesde.ValueChanged += dtpDesde_ValueChanged;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.BackColor = Color.Transparent;
+            label4.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.Navy;
+            label4.Location = new Point(650, 96);
+            label4.Name = "label4";
+            label4.Size = new Size(60, 23);
+            label4.TabIndex = 328;
+            label4.Text = "Desde:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.Navy;
+            label3.Location = new Point(656, 130);
+            label3.Name = "label3";
+            label3.Size = new Size(54, 23);
+            label3.TabIndex = 328;
+            label3.Text = "Hasta:";
             // 
             // BitacoraAdmin
             // 
@@ -788,6 +814,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1047, 682);
+            Controls.Add(label3);
+            Controls.Add(label4);
             Controls.Add(dtpHasta);
             Controls.Add(dtpDesde);
             Controls.Add(txtBuscar);
@@ -885,5 +913,7 @@
         private Button btnRefresh;
         private DateTimePicker dtpHasta;
         private DateTimePicker dtpDesde;
+        private Label label4;
+        private Label label3;
     }
 }

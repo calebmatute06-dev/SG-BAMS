@@ -105,10 +105,10 @@
             // 
             // txtBuscar
             // 
-            txtBuscar.Location = new Point(283, 91);
+            txtBuscar.Location = new Point(283, 88);
             txtBuscar.Margin = new Padding(3, 2, 3, 2);
             txtBuscar.Name = "txtBuscar";
-            txtBuscar.Size = new Size(477, 35);
+            txtBuscar.Size = new Size(537, 35);
             txtBuscar.StateCommon.Back.Color1 = Color.SkyBlue;
             txtBuscar.StateCommon.Border.Rounding = 20F;
             txtBuscar.TabIndex = 113;
@@ -695,11 +695,11 @@
             // 
             dgvProveedor.BorderStyle = BorderStyle.None;
             dgvProveedor.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProveedor.Location = new Point(304, 171);
+            dgvProveedor.Location = new Point(285, 174);
             dgvProveedor.Margin = new Padding(3, 2, 3, 2);
             dgvProveedor.Name = "dgvProveedor";
             dgvProveedor.RowHeadersWidth = 51;
-            dgvProveedor.Size = new Size(596, 339);
+            dgvProveedor.Size = new Size(634, 339);
             dgvProveedor.StateCommon.Background.Color1 = Color.LightBlue;
             dgvProveedor.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
             dgvProveedor.TabIndex = 196;
@@ -710,7 +710,7 @@
             kryptonGroup1.Margin = new Padding(3, 2, 3, 2);
             kryptonGroup1.Size = new Size(668, 395);
             kryptonGroup1.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroup1.StateCommon.Border.Rounding = 70F;
+            kryptonGroup1.StateCommon.Border.Rounding = 30F;
             kryptonGroup1.TabIndex = 195;
             // 
             // btnModificar
@@ -765,7 +765,7 @@
             // 
             btnRefresh.BackgroundImage = Properties.Resources.refresh;
             btnRefresh.BackgroundImageLayout = ImageLayout.Stretch;
-            btnRefresh.Location = new Point(842, 76);
+            btnRefresh.Location = new Point(842, 80);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.Size = new Size(58, 50);
             btnRefresh.TabIndex = 324;
