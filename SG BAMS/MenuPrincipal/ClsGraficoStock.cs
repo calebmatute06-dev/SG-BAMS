@@ -2,7 +2,7 @@
 using System.Data;
 using Microsoft.Data.SqlClient;
 using System.Threading.Tasks;
-using System.Windows.Forms.DataVisualization.Charting;
+
 
 namespace SG_BAMS.MenuPrincipal
 {
