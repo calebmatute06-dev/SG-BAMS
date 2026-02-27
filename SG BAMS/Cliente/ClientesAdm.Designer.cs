@@ -715,7 +715,7 @@
             // 
             // BtnModificar
             // 
-            BtnModificar.Location = new Point(677, 744);
+            BtnModificar.Location = new Point(664, 744);
             BtnModificar.Name = "BtnModificar";
             BtnModificar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             BtnModificar.OverrideDefault.Back.Color2 = Color.White;

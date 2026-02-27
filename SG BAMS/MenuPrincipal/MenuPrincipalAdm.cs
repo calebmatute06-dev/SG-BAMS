@@ -43,8 +43,14 @@ namespace SG_BAMS
 
         private void BtnFacturas_Click(object sender, EventArgs e)
         {
-            FacturasAdm frmFA  = new FacturasAdm();
+            FacturasAdm frmFA = new FacturasAdm();
             frmFA.Show();
+        }
+
+        private void BtnClientes_Click(object sender, EventArgs e)
+        {
+            ClientesAdm frmCA = new ClientesAdm();
+            frmCA.Show();
         }
     }
 }
