@@ -135,7 +135,7 @@
             // 
             // btnExportar
             // 
-            btnExportar.Location = new Point(583, 575);
+            btnExportar.Location = new Point(569, 575);
             btnExportar.Margin = new Padding(3, 2, 3, 2);
             btnExportar.Name = "btnExportar";
             btnExportar.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -719,10 +719,10 @@
             // 
             dgvBitacora.BorderStyle = BorderStyle.None;
             dgvBitacora.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvBitacora.Location = new Point(437, 214);
+            dgvBitacora.Location = new Point(399, 214);
             dgvBitacora.Margin = new Padding(3, 2, 3, 2);
             dgvBitacora.Name = "dgvBitacora";
-            dgvBitacora.Size = new Size(402, 319);
+            dgvBitacora.Size = new Size(458, 319);
             dgvBitacora.TabIndex = 98;
             // 
             // pictureBox2
@@ -730,7 +730,7 @@
             pictureBox2.BackColor = Color.Transparent;
             pictureBox2.BackgroundImage = Properties.Resources.pdf;
             pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox2.Location = new Point(522, 582);
+            pictureBox2.Location = new Point(508, 582);
             pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(55, 45);
@@ -740,9 +740,9 @@
             // kryptonGroupBox1
             // 
             kryptonGroupBox1.CaptionVisible = false;
-            kryptonGroupBox1.Location = new Point(419, 191);
+            kryptonGroupBox1.Location = new Point(374, 191);
             kryptonGroupBox1.Margin = new Padding(3, 2, 3, 2);
-            kryptonGroupBox1.Size = new Size(438, 361);
+            kryptonGroupBox1.Size = new Size(506, 361);
             kryptonGroupBox1.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroupBox1.StateCommon.Border.Rounding = 30F;
             kryptonGroupBox1.TabIndex = 105;
