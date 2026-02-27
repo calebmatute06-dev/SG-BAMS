@@ -35,12 +35,11 @@ namespace SG_BAMS.Proveedor
 
         private void SetUsuarioEnSesion(int idUsuario)
         {
-            using (SqlCommand cmdSession = new SqlCommand(
-                "EXEC sp_set_session_context @key=N'id_usuario', @value=@id;",
-                Conectar))
+            using (SqlCommand ctx = new SqlCommand(
+            "EXEC sp_set_session_context @key=N'id_usuario', @value=@id;", Conectar))
             {
-                cmdSession.Parameters.AddWithValue("@id", idUsuario);
-                cmdSession.ExecuteNonQuery();
+                ctx.Parameters.AddWithValue("@id", idUsuario);
+                ctx.ExecuteNonQuery();
             }
         }
         public void CargarComboEstado(Krypton.Toolkit.KryptonComboBox cmb)

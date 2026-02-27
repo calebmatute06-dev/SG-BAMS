@@ -1,5 +1,4 @@
-﻿using Krypton.Toolkit;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Krypton.Toolkit;
+using SG_BAMS.Bitacora;
+using SG_BAMS.Proveedor;
 
 namespace SG_BAMS
 {
@@ -39,6 +41,18 @@ namespace SG_BAMS
 
         }
 
-        
+        private void btnBitacora_Click(object sender, EventArgs e)
+        {
+            BitacoraAdmin bitacora = new BitacoraAdmin();
+            bitacora.Show();
+            this.Hide();
+        }
+
+        private void btnProveedores_Click(object sender, EventArgs e)
+        {
+            ProveedoresAdmin proveedores = new ProveedoresAdmin();
+            proveedores.Show();
+            this.Hide();
+        }
     }
 }
