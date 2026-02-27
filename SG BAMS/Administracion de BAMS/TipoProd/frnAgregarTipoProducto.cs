@@ -35,7 +35,6 @@ namespace SG_BAMS
 
                 clsTipoProducto objetoTipo = new clsTipoProducto();
 
-                // Ejecutamos la inserción
                 bool exito = await objetoTipo.InsertarTipoProductoAsync(txtDescri.Text.Trim());
 
                 if (exito)
@@ -43,7 +42,7 @@ namespace SG_BAMS
                     MessageBox.Show("Tipo de producto registrado con éxito.", "SG-BAMS",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    this.DialogResult = DialogResult.OK; // Cerramos devolviendo éxito para refrescar el Grid
+                    this.DialogResult = DialogResult.OK; 
                     frmTipoProducto verTproducto = new frmTipoProducto();
                     verTproducto.Show();
                     this.Close();

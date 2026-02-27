@@ -27,13 +27,10 @@ namespace SG_BAMS
         {
             try
             {
-                // Ponemos el cursor en modo espera (relojito)
                 this.Cursor = Cursors.WaitCursor;
 
-                // Llamamos al método asíncrono de la clase de datos
                 DataTable dt = await objetoMarca.LeerMarcasAsync();
 
-                // Asignamos los datos al DataGrid
                 dgvMarcas.DataSource = dt;
 
                 ConfigurarDisenoGrid();
@@ -45,25 +42,21 @@ namespace SG_BAMS
             }
             finally
             {
-                // Devolvemos el cursor a la normalidad
                 this.Cursor = Cursors.Default;
             }
         }
 
         private void ConfigurarDisenoGrid()
         {
-            // Ocultamos el ID numérico para que el usuario no lo vea
             if (dgvMarcas.Columns.Contains("id_marca_producto"))
                 dgvMarcas.Columns["id_marca_producto"].Visible = false;
 
-            // Mejoramos los títulos de las columnas
             if (dgvMarcas.Columns.Contains("nombre_marca"))
                 dgvMarcas.Columns["nombre_marca"].HeaderText = "Marca";
 
             if (dgvMarcas.Columns.Contains("cantidad_productos"))
                 dgvMarcas.Columns["cantidad_productos"].HeaderText = "Productos Asociados";
 
-            // Ajustes visuales automáticos
             dgvMarcas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvMarcas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvMarcas.AllowUserToAddRows = false;
@@ -82,16 +75,13 @@ namespace SG_BAMS
 
             if (dgvMarcas.SelectedRows.Count > 0)
             {
-                // Extraemos los datos (Asegúrate que los nombres coincidan con tu vista SQL)
                 int id = Convert.ToInt32(dgvMarcas.CurrentRow.Cells["id_marca_producto"].Value);
                 string nombre = dgvMarcas.CurrentRow.Cells["nombre_marca"].Value.ToString();
 
-                // Abrimos el form pasando los datos
                 frmModificarMarcaProducto frm = new frmModificarMarcaProducto(id, nombre);
 
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
-                    // Recargamos el grid para mostrar el cambio
                     _ = CargarGridMarcas();
                 }
             }

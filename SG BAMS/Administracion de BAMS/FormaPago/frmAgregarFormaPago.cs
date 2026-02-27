@@ -47,11 +47,10 @@ namespace SG_BAMS
             try
             {
                 this.Cursor = Cursors.WaitCursor;
-                btnAgregar.Enabled = false; // Evitar múltiples clics
+                btnAgregar.Enabled = false; 
 
                 clsFormaPago objetoFP = new clsFormaPago();
 
-                // 2. Llamar al método de inserción
                 bool insertado = await objetoFP.InsertarFormaPagoAsync(txtdescri.Text.Trim());
 
                 if (insertado)
@@ -59,7 +58,7 @@ namespace SG_BAMS
                     MessageBox.Show("Forma de pago agregada correctamente.", "Éxito",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    this.DialogResult = DialogResult.OK; // Indica al form principal que debe refrescar el grid
+                    this.DialogResult = DialogResult.OK; 
                     frmFormaPago verFpago = new frmFormaPago();
                     verFpago.Show();
                     this.Close();

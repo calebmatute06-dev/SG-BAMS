@@ -39,7 +39,7 @@ namespace SG_BAMS
                 if (exito)
                 {
                     MessageBox.Show("Rol actualizado con éxito.", "SG-BAMS");
-                    this.DialogResult = DialogResult.OK; // Indica éxito para recargar el Grid
+                    this.DialogResult = DialogResult.OK; 
                     this.Close();
                 }
             }

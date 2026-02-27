@@ -44,7 +44,6 @@ namespace SG_BAMS
 
                 clsEstado objetoEstado = new clsEstado();
 
-                // 2. Ejecutar la inserción
                 bool exito = await objetoEstado.InsertarEstadoAsync(txtDescri.Text.Trim());
 
                 if (exito)
@@ -52,7 +51,6 @@ namespace SG_BAMS
                     MessageBox.Show("Estado registrado correctamente.", "SG-BAMS",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // 3. Notificar al formulario padre para refrescar el Grid
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }

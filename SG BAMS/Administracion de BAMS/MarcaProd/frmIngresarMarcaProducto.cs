@@ -39,7 +39,6 @@ namespace SG_BAMS
 
                 clsMarca objetoMarca = new clsMarca();
 
-                // Llamada asíncrona al método de inserción
                 bool exito = await objetoMarca.InsertarMarcaAsync(txtDescri.Text.Trim());
 
                 if (exito)
@@ -47,7 +46,7 @@ namespace SG_BAMS
                     MessageBox.Show("Marca agregada con éxito.", "SG-BAMS",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    this.DialogResult = DialogResult.OK; // Cerramos devolviendo éxito para recargar el Grid
+                    this.DialogResult = DialogResult.OK; 
                     frmMarcaProductos verMproductos = new frmMarcaProductos();
                     verMproductos.Show();
                     this.Close();

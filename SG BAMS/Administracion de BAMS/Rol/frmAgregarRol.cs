@@ -52,7 +52,7 @@ namespace SG_BAMS
                     MessageBox.Show("Rol registrado correctamente.", "SG-BAMS",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    this.DialogResult = DialogResult.OK; // Indica éxito para refrescar el Grid
+                    this.DialogResult = DialogResult.OK;
                     frmRoles verRoles = new frmRoles();
                     verRoles.Show();
                     this.Close();

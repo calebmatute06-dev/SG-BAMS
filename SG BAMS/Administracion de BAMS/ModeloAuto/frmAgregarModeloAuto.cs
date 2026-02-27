@@ -31,13 +31,11 @@ namespace SG_BAMS
 
             try
             {
-                // 2. Feedback visual al usuario
                 this.Cursor = Cursors.WaitCursor;
                 btnAgregar.Enabled = false;
 
                 clsModeloAuto objetoModelo = new clsModeloAuto();
 
-                // 3. Ejecución de la lógica
                 bool exito = await objetoModelo.InsertarModeloAutoAsync(txtDescri.Text.Trim());
 
                 if (exito)
@@ -45,7 +43,6 @@ namespace SG_BAMS
                     MessageBox.Show("Modelo de auto agregado con éxito.", "SG-BAMS",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // 4. Cerrar con éxito para que el padre refresque el Grid
                     this.DialogResult = DialogResult.OK;
                     frmModeloAuto verMAuto = new frmModeloAuto();
                     verMAuto.Show();

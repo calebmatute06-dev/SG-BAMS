@@ -15,7 +15,6 @@ namespace SG_BAMS.Administracion_de_BAMS.Rol
             DataTable tabla = new DataTable();
             try
             {
-                // Usamos el método de apertura de tu clase base
                 AbrirConexion();
                 string query = "SELECT * FROM v_DetalleRoles";
 

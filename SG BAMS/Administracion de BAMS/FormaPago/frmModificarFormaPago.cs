@@ -39,13 +39,12 @@ namespace SG_BAMS
                 this.Cursor = Cursors.WaitCursor;
                 clsFormaPago objetoFP = new clsFormaPago();
 
-                // Llamamos a la clase de datos
                 bool exito = await objetoFP.ModificarFormaPagoAsync(_idFormaPago, txtDescri.Text.Trim());
 
                 if (exito)
                 {
                     MessageBox.Show("Actualizado correctamente.");
-                    this.DialogResult = DialogResult.OK; // <-- CRUCIAL para avisar al padre
+                    this.DialogResult = DialogResult.OK; 
                     this.Close();
                 }
             }
