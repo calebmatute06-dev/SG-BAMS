@@ -10,17 +10,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-
-
 namespace SG_BAMS.Login
 {
     public partial class Login : Form
     {
+        public static string UsuarioLogueado;
         public Login()
         {
             InitializeComponent();
         }
-
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
@@ -29,10 +27,15 @@ namespace SG_BAMS.Login
 
         private void btninicioSesion_Click(object sender, EventArgs e)
         {
+
             ClsLogin login = new ClsLogin();
             try
             {
+                // --- ÚNICA ADICIÓN: Guardamos el nombre antes de validar y limpiar ---
+                UsuarioLogueado = txtUsu.Text;
+
                 int rol = login.ValidarUsuario(txtUsu.Text, txtCon.Text);
+
 
                 if (rol == 1)
                 {
@@ -42,7 +45,6 @@ namespace SG_BAMS.Login
                     txtUsu.Clear();
                     txtCon.Clear();
                     this.Hide();
-
                 }
                 else if (rol == 2)
                 {
@@ -52,7 +54,6 @@ namespace SG_BAMS.Login
                     txtUsu.Clear();
                     txtCon.Clear();
                     this.Hide();
-
                 }
                 else if (rol == -1)
                 {
@@ -71,13 +72,16 @@ namespace SG_BAMS.Login
             {
                 MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-
         }
 
         private void btnsalirLogin_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
