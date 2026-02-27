@@ -172,6 +172,60 @@ namespace SG_BAMS
             Perfil PF = new Perfil();
             PF.ShowDialog();
         }
+
+        private void BtnMenu_Click(object sender, EventArgs e)
+        {
+            MenuPrincipalAdm MPA = new MenuPrincipalAdm();
+            MPA.ShowDialog();
+        }
+
+        private void BtnFacturas_Click(object sender, EventArgs e)
+        {
+            FacturasAdm FA = new FacturasAdm();
+            FA.ShowDialog();
+        }
+
+        private void BtnCompras_Click(object sender, EventArgs e)
+        {
+            Compras CP = new Compras();
+            CP.ShowDialog();
+        }
+
+        private void BtnClientes_Click(object sender, EventArgs e)
+        {
+            ClientesAdm CA = new ClientesAdm();
+            CA.ShowDialog();
+        }
+
+        private void BtnInventario_Click(object sender, EventArgs e)
+        {
+            InventarioAdmin IA = new InventarioAdmin();
+            IA.ShowDialog();
+        }
+
+        private void BtnProveedores_Click(object sender, EventArgs e)
+        {
+            ProveedoresAdmin PA = new ProveedoresAdmin();
+            PA.ShowDialog();
+        }
+
+        private void BtnDeudores_Click(object sender, EventArgs e)
+        {
+            Deudores DU = new Deudores();
+            DU.ShowDialog();
+        }
+
+        private void BtnReporte_Click(object sender, EventArgs e)
+        {
+            ReporteAdmin RA = new ReporteAdmin();
+            RA.ShowDialog();
+        }
+
+        private void BtnBitacora_Click(object sender, EventArgs e)
+        {
+            Bitacora BT = new Bitacora();
+            BT.ShowDialog();
+        }
     }
 
 }
