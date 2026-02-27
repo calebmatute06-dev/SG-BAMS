@@ -46,7 +46,7 @@ namespace SG_BAMS
                 if (exito)
                 {
                     MessageBox.Show("Modelo actualizado con éxito.", "SG-BAMS");
-                    this.DialogResult = DialogResult.OK; // Para refrescar el Grid en el form principal
+                    this.DialogResult = DialogResult.OK; 
                     this.Close();
                 }
             }

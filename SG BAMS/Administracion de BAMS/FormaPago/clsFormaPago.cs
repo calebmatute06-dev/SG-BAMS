@@ -15,7 +15,7 @@ namespace SG_BAMS.Administracion_de_BAMS.FormaPago
             DataTable tabla = new DataTable();
             try
             {
-                // Usamos el nombre exacto de tu método en ClsConexion
+
                 AbrirConexion();
 
                 string query = "SELECT * FROM v_DetalleFormasPago";
@@ -43,12 +43,15 @@ namespace SG_BAMS.Administracion_de_BAMS.FormaPago
         {
             try
             {
-                AbrirConexion(); // Usando tu método de ClsConexion
-                string query = "INSERT INTO Tipo_Forma_de_pago (descripcion_forma_pago) VALUES (@desc)";
+                AbrirConexion();
 
-                using (SqlCommand cmd = new SqlCommand(query, Conectar))
+                using (SqlCommand cmd = new SqlCommand("PA_insertar_tipo_forma_pago", Conectar))
                 {
-                    cmd.Parameters.AddWithValue("@desc", descripcion);
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+
+                    cmd.Parameters.AddWithValue("@descripcion_forma_pago", descripcion);
 
                     int filasAfectadas = await cmd.ExecuteNonQueryAsync();
                     return filasAfectadas > 0;
@@ -56,7 +59,34 @@ namespace SG_BAMS.Administracion_de_BAMS.FormaPago
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al guardar la forma de pago: " + ex.Message);
+                throw new Exception("Error al insertar la forma de pago: " + ex.Message);
+            }
+            finally
+            {
+                Cerrar();
+            }
+
+
+        }
+
+        public async Task<bool> ModificarFormaPagoAsync(int id, string nuevaDescripcion)
+        {
+            try
+            {
+                AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("PA_actualizar_tipo_forma_pago", Conectar))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@id_tipo_forma_pago", id);
+                    cmd.Parameters.AddWithValue("@descripcion_forma_pago", nuevaDescripcion);
+
+                    int filasAfectadas = await cmd.ExecuteNonQueryAsync();
+                    return filasAfectadas > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en la base de datos: " + ex.Message);
             }
             finally
             {

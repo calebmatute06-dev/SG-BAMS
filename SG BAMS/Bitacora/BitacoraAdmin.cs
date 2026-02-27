@@ -125,5 +125,54 @@ namespace SG_BAMS.Bitacora
         {
             bitacora.BuscarBitacora(txtBuscar, dtpDesde.Value, dtpHasta.Value, dgvBitacora);
         }
+
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            MenuPrincipalAdm menuPrincipalAdm = new MenuPrincipalAdm();
+            menuPrincipalAdm.Show();
+            this.Hide();
+        }
+
+        private void btnFacturas_Click(object sender, EventArgs e)
+        {
+            FacturasAdm facturasAdm = new FacturasAdm();
+            facturasAdm.Show();
+            this.Hide();
+        }
+
+        private void btnCompras_Click(object sender, EventArgs e)
+        {
+            Compras compras = new Compras();
+            compras.Show();
+            this.Hide();
+        }
+
+        private void btnClientes_Click(object sender, EventArgs e)
+        {
+            ClientesAdm clientesAdm = new ClientesAdm();
+            clientesAdm.Show();
+            this.Hide();
+        }
+
+        private void btnInventario_Click(object sender, EventArgs e)
+        {
+            InventarioAdmin inventarioAdmin = new InventarioAdmin();
+            inventarioAdmin.Show();
+            this.Hide();
+        }
+
+        private void btnDeudores_Click(object sender, EventArgs e)
+        {
+            Deudores deudores = new Deudores();
+            deudores.Show();
+            this.Hide();
+        }
+
+        private void btnReporte_Click(object sender, EventArgs e)
+        {
+            ReporteAdmin reporteAdmin = new ReporteAdmin();
+            reporteAdmin.Show();
+            this.Hide();
+        }
     }
 }

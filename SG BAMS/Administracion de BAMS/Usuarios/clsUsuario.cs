@@ -20,10 +20,10 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
 
                 using (SqlCommand cmd = new SqlCommand(query, Conectar))
                 {
-                    // Ejecutamos de forma asíncrona mediante un Reader
+
                     using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                     {
-                        // Cargamos los resultados en el DataTable
+
                         tabla.Load(reader);
                     }
                 }
@@ -40,25 +40,26 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
 
         }
 
-        public async Task<bool> InsertarUsuarioAsync(string nombre, string password, int idRol, int idEstado, byte[] imagen)
+        public async Task<bool> InsertarUsuarioAsync(string nombre, string password, int idRol, byte[] imagen)
         {
             try
             {
-
+                // Usamos tu método de apertura de conexión
                 AbrirConexion();
 
-                string query = @"INSERT INTO Usuario (nombre_usuario, contraseña_login, id_rol_usuario, id_estado, imagen_usuario) 
-                         VALUES (@nombre, @pass, @rol, @estado, @img)";
-
-                using (SqlCommand cmd = new SqlCommand(query, Conectar))
+                // 1. Nombre del Procedimiento Almacenado en lugar de la consulta SQL
+                using (SqlCommand cmd = new SqlCommand("PA_insertar_usuario", Conectar))
                 {
-                    cmd.Parameters.AddWithValue("@nombre", nombre);
-                    cmd.Parameters.AddWithValue("@pass", password);
-                    cmd.Parameters.AddWithValue("@rol", idRol);
-                    cmd.Parameters.AddWithValue("@estado", idEstado);
+                    // 2. IMPORTANTE: Definir el tipo de comando como StoredProcedure
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                    // Manejo de imagen nula
-                    SqlParameter paramImg = new SqlParameter("@img", SqlDbType.VarBinary);
+                    // 3. Los parámetros deben llamarse IGUAL que en el PROCEDURE de SQL
+                    cmd.Parameters.AddWithValue("@nombre_usuario", nombre);
+                    cmd.Parameters.AddWithValue("@contraseña_login", password);
+                    cmd.Parameters.AddWithValue("@id_rol_usuario", idRol);
+
+                    // Manejo de imagen (Usando VarBinary para que coincida con el tipo image/blob)
+                    SqlParameter paramImg = new SqlParameter("@imagen_usuario", SqlDbType.Image);
                     paramImg.Value = (object)imagen ?? DBNull.Value;
                     cmd.Parameters.Add(paramImg);
 
@@ -68,7 +69,7 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al insertar: " + ex.Message);
+                throw new Exception("Error al insertar mediante procedimiento: " + ex.Message);
             }
             finally
             {
@@ -106,24 +107,23 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
         {
             try
             {
-                AbrirConexion();
-                string query = @"UPDATE Usuario 
-                         SET nombre_usuario = @nombre, 
-                             contraseña_login = @pass, 
-                             id_rol_usuario = @rol, 
-                             id_estado = @estado, 
-                             imagen_usuario = @img 
-                         WHERE id_usuario = @id";
-
-                using (SqlCommand cmd = new SqlCommand(query, Conectar))
+                AbrirConexion(); // Usando tu método corregido
+                using (SqlCommand cmd = new SqlCommand("PA_actualizar_usuario", Conectar))
                 {
-                    cmd.Parameters.AddWithValue("@id", id);
-                    cmd.Parameters.AddWithValue("@nombre", nombre);
-                    cmd.Parameters.AddWithValue("@pass", password);
-                    cmd.Parameters.AddWithValue("@rol", idRol);
-                    cmd.Parameters.AddWithValue("@estado", idEstado);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                    SqlParameter paramImg = new SqlParameter("@img", SqlDbType.Image);
+                    cmd.Parameters.AddWithValue("@id_usuario", id);
+                    cmd.Parameters.AddWithValue("@nombre_usuario", nombre);
+
+                    // Si el txt de la contraseña está vacío, AddWithValue enviará una cadena vacía ""
+                    // Y el CASE de SQL que pusimos arriba dirá: "Ah, está vacío, dejo la contra vieja".
+                    cmd.Parameters.AddWithValue("@contraseña_login", password.Trim());
+
+                    cmd.Parameters.AddWithValue("@id_rol_usuario", idRol);
+                    cmd.Parameters.AddWithValue("@id_estado", idEstado);
+
+                    // Para la imagen (si es nula enviamos DBNull)
+                    SqlParameter paramImg = new SqlParameter("@imagen_usuario", SqlDbType.Image);
                     paramImg.Value = (object)imagen ?? DBNull.Value;
                     cmd.Parameters.Add(paramImg);
 
@@ -133,7 +133,7 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al modificar usuario: " + ex.Message);
+                throw new Exception("Error: " + ex.Message);
             }
             finally
             {

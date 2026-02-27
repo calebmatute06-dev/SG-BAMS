@@ -16,15 +16,12 @@ namespace SG_BAMS.Administracion_de_BAMS.TipoProd
             DataTable tabla = new DataTable();
             try
             {
-                // Importante: Usar el nombre exacto de tu método en ClsConexion
                 AbrirConexion();
 
-                // Llamamos a la vista que creamos en SQL
                 string query = "SELECT * FROM v_DetalleTipoProducto";
 
                 using (SqlCommand cmd = new SqlCommand(query, Conectar))
                 {
-                    // Ejecución asíncrona para no bloquear la interfaz
                     using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                     {
                         tabla.Load(reader);
@@ -47,12 +44,12 @@ namespace SG_BAMS.Administracion_de_BAMS.TipoProd
             try
             {
                 AbrirConexion();
-                // Nota: Usamos el nombre de columna 'descripcion_forma_pago' según tu script de BD
-                string query = "INSERT INTO Tipo_producto (descripcion_forma_pago) VALUES (@desc)";
 
-                using (SqlCommand cmd = new SqlCommand(query, Conectar))
+                using (SqlCommand cmd = new SqlCommand("PA_insertar_tipo_producto", Conectar))
                 {
-                    cmd.Parameters.AddWithValue("@desc", descripcion);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@descripcion_forma_pago", descripcion);
 
                     int filasAfectadas = await cmd.ExecuteNonQueryAsync();
                     return filasAfectadas > 0;
@@ -60,7 +57,7 @@ namespace SG_BAMS.Administracion_de_BAMS.TipoProd
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al guardar el tipo de producto: " + ex.Message);
+                throw new Exception("Error al insertar tipo de producto: " + ex.Message);
             }
             finally
             {
@@ -73,12 +70,13 @@ namespace SG_BAMS.Administracion_de_BAMS.TipoProd
             try
             {
                 AbrirConexion();
-                string query = "UPDATE Tipo_producto SET descripcion_forma_pago = @desc WHERE id_tipo_producto = @id";
 
-                using (SqlCommand cmd = new SqlCommand(query, Conectar))
+                using (SqlCommand cmd = new SqlCommand("PA_actualizar_tipo_producto", Conectar))
                 {
-                    cmd.Parameters.AddWithValue("@id", id);
-                    cmd.Parameters.AddWithValue("@desc", nuevaDescripcion);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@id_tipo_producto", id);
+                    cmd.Parameters.AddWithValue("@descripcion_forma_pago", nuevaDescripcion);
 
                     int filasAfectadas = await cmd.ExecuteNonQueryAsync();
                     return filasAfectadas > 0;
@@ -86,7 +84,7 @@ namespace SG_BAMS.Administracion_de_BAMS.TipoProd
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al modificar el tipo de producto: " + ex.Message);
+                throw new Exception("Error al actualizar el tipo de producto: " + ex.Message);
             }
             finally
             {

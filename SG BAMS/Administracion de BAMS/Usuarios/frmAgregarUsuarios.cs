@@ -32,16 +32,12 @@ namespace SG_BAMS
                 clsUsuario objetoUsuario = new clsUsuario();
                 DataTable dt = await objetoUsuario.ListarRolesAsync();
 
-                // Configuración del ComboBox de Krypton
                 cmbRol.DataSource = dt;
 
-                // Lo que el usuario ve (Descripción)
                 cmbRol.DisplayMember = "descripcion_rol";
 
-                // Lo que el programa guarda internamente (ID)
                 cmbRol.ValueMember = "id_rol_usuario";
 
-                // Opcional: Que no aparezca nada seleccionado al inicio
                 cmbRol.SelectedIndex = -1;
             }
             catch (Exception ex)
@@ -55,58 +51,57 @@ namespace SG_BAMS
 
         }
 
-        private void kryptonButton1_Click(object sender, EventArgs e)
+        private async void btmAgregar_Click(object sender, EventArgs e)
         {
-            this.Close();
-            frmUsuarios verUsuario = new frmUsuarios();
-            verUsuario.Show();
+            if (string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrEmpty(txtContra.Text))
+            {
+                MessageBox.Show("Por favor complete los campos obligatorios.");
+                return;
+            }
+
+            try
+            {
+                clsUsuario objetoUsuario = new clsUsuario();
+
+                int idRol = (int)cmbRol.SelectedValue;
+                int idEstado = 1;
+
+                byte[] imagenByte = null;
+
+
+                bool exito = await objetoUsuario.InsertarUsuarioAsync(
+                    txtNombre.Text,
+                    txtContra.Text,
+                    idRol,
+                    imagenByte
+                );
+
+                if (exito)
+                {
+                    MessageBox.Show("Usuario guardado exitosamente.");
+
+                    frmUsuarios principal = new frmUsuarios();
+                    principal.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error: " + ex.Message);
+            }
         }
 
-        private void kryptonButton2_Click(object sender, EventArgs e)
+        private void btnImagen_Click(object sender, EventArgs e)
         {
             frmImagenEmpleado agregarImagen = new frmImagenEmpleado();
             agregarImagen.Show();
         }
 
-        private async void btmAgregar_Click(object sender, EventArgs e)
+        private void btnSalir_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrEmpty(txtContra.Text))
-    {
-        MessageBox.Show("Por favor complete los campos obligatorios.");
-        return;
-    }
-
-    try
-    {
-        clsUsuario objetoUsuario = new clsUsuario();
-
-        int idRol = (int)cmbRol.SelectedValue;
-                int idEstado = 1;
-        
-        byte[] imagenByte = null; 
-
-
-        bool exito = await objetoUsuario.InsertarUsuarioAsync(
-            txtNombre.Text, 
-            txtContra.Text, 
-            idRol, 
-            idEstado, 
-            imagenByte
-        );
-
-        if (exito)
-        {
-            MessageBox.Show("Usuario guardado exitosamente.");
-
-            frmUsuarios principal = new frmUsuarios();
-            principal.Show();
             this.Close();
-        }
-    }
-    catch (Exception ex)
-    {
-        MessageBox.Show("Ocurrió un error: " + ex.Message);
-    }
+            frmUsuarios verUsuario = new frmUsuarios();
+            verUsuario.Show();
         }
     }
 }

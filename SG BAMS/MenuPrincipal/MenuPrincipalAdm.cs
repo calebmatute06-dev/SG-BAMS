@@ -39,6 +39,18 @@ namespace SG_BAMS
 
         }
 
-        
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            MenuPrincipalAdm menuPrincipalAdm = new MenuPrincipalAdm();
+            menuPrincipalAdm.Show(this);
+            this.Hide();
+        }
+
+        private void btnFactura_Click(object sender, EventArgs e)
+        {
+            FacturasAdm facturasAdm = new FacturasAdm();
+            facturasAdm.Show();
+            this.Hide();
+        }
     }
 }

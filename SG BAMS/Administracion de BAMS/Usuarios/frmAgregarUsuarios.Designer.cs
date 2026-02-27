@@ -40,10 +40,10 @@
             pictureBox1 = new PictureBox();
             pictureBox2 = new PictureBox();
             panel1 = new Panel();
-            btmSalir = new Krypton.Toolkit.KryptonButton();
-            kryptonButton2 = new Krypton.Toolkit.KryptonButton();
             cmbRol = new Krypton.Toolkit.KryptonComboBox();
             btmAgregar = new Krypton.Toolkit.KryptonButton();
+            btnImagen = new Krypton.Toolkit.KryptonButton();
+            btnSalir = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -181,54 +181,6 @@
             panel1.Size = new Size(714, 24);
             panel1.TabIndex = 78;
             // 
-            // btmSalir
-            // 
-            btmSalir.Location = new Point(345, 379);
-            btmSalir.Name = "btmSalir";
-            btmSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btmSalir.OverrideDefault.Back.Color2 = Color.White;
-            btmSalir.OverrideDefault.Border.Rounding = 40F;
-            btmSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btmSalir.OverrideFocus.Back.Color2 = Color.White;
-            btmSalir.Size = new Size(118, 65);
-            btmSalir.StateCommon.Back.Color1 = Color.SkyBlue;
-            btmSalir.StateCommon.Back.Color2 = Color.White;
-            btmSalir.StateCommon.Border.Rounding = 40F;
-            btmSalir.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btmSalir.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btmSalir.StateNormal.Back.Color1 = Color.SkyBlue;
-            btmSalir.StateNormal.Back.Color2 = Color.White;
-            btmSalir.StateNormal.Border.Rounding = 40F;
-            btmSalir.StateTracking.Border.Rounding = 40F;
-            btmSalir.TabIndex = 127;
-            btmSalir.Values.DropDownArrowColor = Color.Empty;
-            btmSalir.Values.Text = "Salir";
-            btmSalir.Click += kryptonButton1_Click;
-            // 
-            // kryptonButton2
-            // 
-            kryptonButton2.Location = new Point(450, 308);
-            kryptonButton2.Name = "kryptonButton2";
-            kryptonButton2.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            kryptonButton2.OverrideDefault.Back.Color2 = Color.White;
-            kryptonButton2.OverrideDefault.Border.Rounding = 40F;
-            kryptonButton2.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            kryptonButton2.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton2.Size = new Size(234, 65);
-            kryptonButton2.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonButton2.StateCommon.Back.Color2 = Color.White;
-            kryptonButton2.StateCommon.Border.Rounding = 40F;
-            kryptonButton2.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton2.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton2.StateNormal.Back.Color1 = Color.SkyBlue;
-            kryptonButton2.StateNormal.Back.Color2 = Color.White;
-            kryptonButton2.StateNormal.Border.Rounding = 40F;
-            kryptonButton2.StateTracking.Border.Rounding = 40F;
-            kryptonButton2.TabIndex = 128;
-            kryptonButton2.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton2.Values.Text = "Imagen de Empleado";
-            kryptonButton2.Click += kryptonButton2_Click;
-            // 
             // cmbRol
             // 
             cmbRol.DropDownWidth = 300;
@@ -269,16 +221,64 @@
             btmAgregar.Values.Text = "Agregar";
             btmAgregar.Click += btmAgregar_Click;
             // 
+            // btnImagen
+            // 
+            btnImagen.Location = new Point(451, 308);
+            btnImagen.Name = "btnImagen";
+            btnImagen.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnImagen.OverrideDefault.Back.Color2 = Color.White;
+            btnImagen.OverrideDefault.Border.Rounding = 40F;
+            btnImagen.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnImagen.OverrideFocus.Back.Color2 = Color.White;
+            btnImagen.Size = new Size(234, 65);
+            btnImagen.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnImagen.StateCommon.Back.Color2 = Color.White;
+            btnImagen.StateCommon.Border.Rounding = 40F;
+            btnImagen.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnImagen.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnImagen.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnImagen.StateNormal.Back.Color2 = Color.White;
+            btnImagen.StateNormal.Border.Rounding = 40F;
+            btnImagen.StateTracking.Border.Rounding = 40F;
+            btnImagen.TabIndex = 132;
+            btnImagen.Values.DropDownArrowColor = Color.Empty;
+            btnImagen.Values.Text = "Imagen de Empleado";
+            btnImagen.Click += btnImagen_Click;
+            // 
+            // btnSalir
+            // 
+            btnSalir.Location = new Point(345, 375);
+            btnSalir.Name = "btnSalir";
+            btnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnSalir.OverrideDefault.Back.Color2 = Color.White;
+            btnSalir.OverrideDefault.Border.Rounding = 40F;
+            btnSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnSalir.OverrideFocus.Back.Color2 = Color.White;
+            btnSalir.Size = new Size(118, 65);
+            btnSalir.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnSalir.StateCommon.Back.Color2 = Color.White;
+            btnSalir.StateCommon.Border.Rounding = 40F;
+            btnSalir.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnSalir.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnSalir.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnSalir.StateNormal.Back.Color2 = Color.White;
+            btnSalir.StateNormal.Border.Rounding = 40F;
+            btnSalir.StateTracking.Border.Rounding = 40F;
+            btnSalir.TabIndex = 133;
+            btnSalir.Values.DropDownArrowColor = Color.Empty;
+            btnSalir.Values.Text = "Salir";
+            btnSalir.Click += btnSalir_Click;
+            // 
             // frmAgregarUsuarios
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(718, 499);
+            Controls.Add(btnSalir);
+            Controls.Add(btnImagen);
             Controls.Add(btmAgregar);
             Controls.Add(cmbRol);
-            Controls.Add(kryptonButton2);
-            Controls.Add(btmSalir);
             Controls.Add(panel1);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
@@ -317,9 +317,9 @@
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private Panel panel1;
-        private Krypton.Toolkit.KryptonButton btmSalir;
-        private Krypton.Toolkit.KryptonButton kryptonButton2;
         private Krypton.Toolkit.KryptonComboBox cmbRol;
         private Krypton.Toolkit.KryptonButton btmAgregar;
+        private Krypton.Toolkit.KryptonButton btnImagen;
+        private Krypton.Toolkit.KryptonButton btnSalir;
     }
 }

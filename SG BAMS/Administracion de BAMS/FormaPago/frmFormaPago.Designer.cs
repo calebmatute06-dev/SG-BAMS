@@ -39,6 +39,7 @@
             pictureBox16 = new PictureBox();
             btmSalir = new Krypton.Toolkit.KryptonButton();
             btnAgregar = new Krypton.Toolkit.KryptonButton();
+            btmModificar = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvFormasPago).BeginInit();
@@ -131,7 +132,7 @@
             // 
             // btmSalir
             // 
-            btmSalir.Location = new Point(375, 372);
+            btmSalir.Location = new Point(474, 416);
             btmSalir.Name = "btmSalir";
             btmSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btmSalir.OverrideDefault.Back.Color2 = Color.White;
@@ -177,12 +178,37 @@
             btnAgregar.Values.Text = "Agregar";
             btnAgregar.Click += btnAgregar_Click;
             // 
+            // btmModificar
+            // 
+            btmModificar.Location = new Point(350, 372);
+            btmModificar.Name = "btmModificar";
+            btmModificar.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btmModificar.OverrideDefault.Back.Color2 = Color.White;
+            btmModificar.OverrideDefault.Border.Rounding = 40F;
+            btmModificar.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btmModificar.OverrideFocus.Back.Color2 = Color.White;
+            btmModificar.Size = new Size(118, 65);
+            btmModificar.StateCommon.Back.Color1 = Color.SkyBlue;
+            btmModificar.StateCommon.Back.Color2 = Color.White;
+            btmModificar.StateCommon.Border.Rounding = 40F;
+            btmModificar.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btmModificar.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btmModificar.StateNormal.Back.Color1 = Color.SkyBlue;
+            btmModificar.StateNormal.Back.Color2 = Color.White;
+            btmModificar.StateNormal.Border.Rounding = 40F;
+            btmModificar.StateTracking.Border.Rounding = 40F;
+            btmModificar.TabIndex = 140;
+            btmModificar.Values.DropDownArrowColor = Color.Empty;
+            btmModificar.Values.Text = "Modificar";
+            btmModificar.Click += btmModificar_Click;
+            // 
             // frmFormaPago
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(693, 515);
+            Controls.Add(btmModificar);
             Controls.Add(btnAgregar);
             Controls.Add(btmSalir);
             Controls.Add(pictureBox16);
@@ -216,5 +242,6 @@
         private PictureBox pictureBox16;
         private Krypton.Toolkit.KryptonButton btmSalir;
         private Krypton.Toolkit.KryptonButton btnAgregar;
+        private Krypton.Toolkit.KryptonButton btmModificar;
     }
 }

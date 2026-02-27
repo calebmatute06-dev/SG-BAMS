@@ -86,17 +86,14 @@ namespace SG_BAMS
         {
             if (dgvRoles.SelectedRows.Count > 0)
             {
-                // 2. Extraer ID y Descripción del DataGrid
-                // Los nombres deben coincidir con tu vista v_DetalleRoles
+
                 int id = Convert.ToInt32(dgvRoles.CurrentRow.Cells["id_rol_usuario"].Value);
                 string nombre = dgvRoles.CurrentRow.Cells["descripcion_rol"].Value.ToString();
 
-                // 3. Abrir el formulario de edición pasando los datos
                 frmModificarRol frmMod = new frmModificarRol(id, nombre);
 
                 if (frmMod.ShowDialog() == DialogResult.OK)
                 {
-                    // 4. Refrescar el Grid automáticamente
                     _ = CargarGridRoles();
                 }
             }

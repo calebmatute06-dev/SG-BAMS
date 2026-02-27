@@ -61,12 +61,6 @@ namespace SG_BAMS
         }
 
 
-        private void kryptonButton3_Click(object sender, EventArgs e)
-        {
-            frmImagenEmpleado agregarImagen = new frmImagenEmpleado();
-            agregarImagen.Show();
-        }
-
         private async void btmModificar_Click(object sender, EventArgs e)
         {
             try
@@ -106,6 +100,12 @@ namespace SG_BAMS
             frmUsuarios verUsuario = new frmUsuarios();
             verUsuario.Show();
             this.Close();
+        }
+
+        private void btnImagen_Click(object sender, EventArgs e)
+        {
+            frmImagenEmpleado agregarImagen = new frmImagenEmpleado();
+            agregarImagen.Show();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SG_BAMS.Bitacora;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,69 @@ namespace SG_BAMS
         public Deudores()
         {
             InitializeComponent();
+        }
+
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            MenuPrincipalAdm menuPrincipalAdm = new MenuPrincipalAdm();
+            menuPrincipalAdm.Show(this);
+            this.Hide();
+        }
+
+        private void btnFactura_Click(object sender, EventArgs e)
+        {
+            FacturasAdm facturasAdm = new FacturasAdm();
+            facturasAdm.Show();
+            this.Hide();
+        }
+
+        private void btnCompras_Click(object sender, EventArgs e)
+        {
+            Compras compras = new Compras();
+            compras.Show();
+            this.Hide();
+        }
+
+        private void btnClientes_Click(object sender, EventArgs e)
+        {
+            ClientesAdm clientesAdm = new ClientesAdm();
+            clientesAdm.Show();
+            this.Hide();
+        }
+
+        private void btnInve_Click(object sender, EventArgs e)
+        {
+            InventarioAdmin inventarioAdmin = new InventarioAdmin();
+            inventarioAdmin.Show();
+            this.Hide();
+        }
+
+        private void btnProvee_Click(object sender, EventArgs e)
+        {
+            Proveedor.ProveedoresAdmin proveedoresAdmin = new Proveedor.ProveedoresAdmin();
+            proveedoresAdmin.Show();
+            this.Hide();
+        }
+
+        private void btnDeudores_Click(object sender, EventArgs e)
+        {
+            Deudores deudores = new Deudores();
+            deudores.Show();
+            this.Hide();
+        }
+
+        private void btnReporte_Click(object sender, EventArgs e)
+        {
+            ReporteAdmin reporteAdmin = new ReporteAdmin();
+            reporteAdmin.Show();
+            this.Hide();
+        }
+
+        private void kryptonButton3_Click(object sender, EventArgs e)
+        {
+            BitacoraAdmin bitacoraAdmin = new BitacoraAdmin();
+            bitacoraAdmin.Show();
+            this.Hide();
         }
     }
 }

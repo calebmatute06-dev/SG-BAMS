@@ -42,10 +42,10 @@
             panel1 = new Panel();
             panel2 = new Panel();
             btmModificar = new Krypton.Toolkit.KryptonButton();
-            kryptonButton3 = new Krypton.Toolkit.KryptonButton();
             cmbRol = new Krypton.Toolkit.KryptonComboBox();
             cmbEstado = new Krypton.Toolkit.KryptonComboBox();
             btnSalir = new Krypton.Toolkit.KryptonButton();
+            btnImagen = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -219,30 +219,6 @@
             btmModificar.Values.Text = "Modificar";
             btmModificar.Click += btmModificar_Click;
             // 
-            // kryptonButton3
-            // 
-            kryptonButton3.Location = new Point(497, 389);
-            kryptonButton3.Name = "kryptonButton3";
-            kryptonButton3.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            kryptonButton3.OverrideDefault.Back.Color2 = Color.White;
-            kryptonButton3.OverrideDefault.Border.Rounding = 40F;
-            kryptonButton3.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            kryptonButton3.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton3.Size = new Size(232, 65);
-            kryptonButton3.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonButton3.StateCommon.Back.Color2 = Color.White;
-            kryptonButton3.StateCommon.Border.Rounding = 40F;
-            kryptonButton3.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton3.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton3.StateNormal.Back.Color1 = Color.SkyBlue;
-            kryptonButton3.StateNormal.Back.Color2 = Color.White;
-            kryptonButton3.StateNormal.Border.Rounding = 40F;
-            kryptonButton3.StateTracking.Border.Rounding = 40F;
-            kryptonButton3.TabIndex = 144;
-            kryptonButton3.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton3.Values.Text = "Imagen del usuario";
-            kryptonButton3.Click += kryptonButton3_Click;
-            // 
             // cmbRol
             // 
             cmbRol.DropDownWidth = 300;
@@ -299,16 +275,40 @@
             btnSalir.Values.Text = "Salir";
             btnSalir.Click += btnSalir_Click;
             // 
+            // btnImagen
+            // 
+            btnImagen.Location = new Point(498, 388);
+            btnImagen.Name = "btnImagen";
+            btnImagen.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnImagen.OverrideDefault.Back.Color2 = Color.White;
+            btnImagen.OverrideDefault.Border.Rounding = 40F;
+            btnImagen.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnImagen.OverrideFocus.Back.Color2 = Color.White;
+            btnImagen.Size = new Size(232, 65);
+            btnImagen.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnImagen.StateCommon.Back.Color2 = Color.White;
+            btnImagen.StateCommon.Border.Rounding = 40F;
+            btnImagen.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnImagen.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnImagen.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnImagen.StateNormal.Back.Color2 = Color.White;
+            btnImagen.StateNormal.Border.Rounding = 40F;
+            btnImagen.StateTracking.Border.Rounding = 40F;
+            btnImagen.TabIndex = 148;
+            btnImagen.Values.DropDownArrowColor = Color.Empty;
+            btnImagen.Values.Text = "Imagen del usuario";
+            btnImagen.Click += btnImagen_Click;
+            // 
             // frmModificarUsuarios
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(760, 563);
+            Controls.Add(btnImagen);
             Controls.Add(btnSalir);
             Controls.Add(cmbEstado);
             Controls.Add(cmbRol);
-            Controls.Add(kryptonButton3);
             Controls.Add(btmModificar);
             Controls.Add(panel1);
             Controls.Add(pictureBox2);
@@ -353,9 +353,9 @@
         private Panel panel1;
         private Panel panel2;
         private Krypton.Toolkit.KryptonButton btmModificar;
-        private Krypton.Toolkit.KryptonButton kryptonButton3;
         private Krypton.Toolkit.KryptonComboBox cmbRol;
         private Krypton.Toolkit.KryptonComboBox cmbEstado;
         private Krypton.Toolkit.KryptonButton btnSalir;
+        private Krypton.Toolkit.KryptonButton btnImagen;
     }
 }
