@@ -151,5 +151,35 @@ namespace SG_BAMS
         {
             this.Close();
         }
+
+        private void BtnMenu_Click(object sender, EventArgs e)
+        {
+            MenuPrincipalEmp MPE = new MenuPrincipalEmp();
+            MPE.Show();
+        }
+
+        private void BtnFacturas_Click(object sender, EventArgs e)
+        {
+            FacturasAdm FA = new FacturasAdm();
+            FA.Show();
+        }
+
+        private void BtnClientes_Click(object sender, EventArgs e)
+        {
+            ClientesEmp CE = new ClientesEmp();
+            CE.Show();
+        }
+
+        private void BtnInventario_Click(object sender, EventArgs e)
+        {
+            InventarioEmp IE = new InventarioEmp();
+            IE.Show();
+        }
+
+        private void BtnDeudores_Click(object sender, EventArgs e)
+        {
+            Deudores_Emp DE = new Deudores_Emp();
+            DE.Show();
+        }
     }
 }

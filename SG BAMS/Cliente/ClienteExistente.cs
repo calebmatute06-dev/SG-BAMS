@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using SG_BAMS.Cliente;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,33 +22,19 @@ namespace SG_BAMS
 
         private async Task LlenarComboCliente()
         {
-            ClsConexion objCl = new ClsConexion();
+            ClsAgregarClientes objAC = new ClsAgregarClientes();
             try
             {
-                objCl.AbrirConexion();
+                
+                DataTable dt = await objAC.ObtenerClientes();
 
-                string query = "SELECT * FROM vista_nombres_clientes";
-
-
-                using (SqlCommand cmd = new SqlCommand(query, objCl.Conectar))
-                using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
-                {
-                    DataTable dt = new DataTable();
-                    dt.Load(reader);
-
-
-                    cmbClientes.DisplayMember = "Nombre Completo";
-                    cmbClientes.ValueMember = "ID";
-                    cmbClientes.DataSource = dt;
-                }
+                cmbClientes.DisplayMember = "Nombre Completo";
+                cmbClientes.ValueMember = "ID";
+                cmbClientes.DataSource = dt;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al llenar ComboBox: " + ex.Message);
-            }
-            finally
-            {
-                objCl.Cerrar();
+                MessageBox.Show("Error al obtener datos: " + ex.Message);
             }
         }
 

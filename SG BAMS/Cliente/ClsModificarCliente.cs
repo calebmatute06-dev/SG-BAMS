@@ -50,11 +50,33 @@ namespace SG_BAMS.Cliente
 
             }
         
-        
-        
-        
-        
-        
+        }
+
+        public async Task<DataTable> ObtenerEstados()
+        {
+            
+            DataTable dt = new DataTable();
+
+            try
+            {
+                AbrirConexion();
+                string query = "SELECT id_estado, descripcion_estado FROM Estado";
+
+                using (SqlCommand cmd = new SqlCommand(query, Conectar))
+                using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                {
+                    dt.Load(reader);
+                }
+                return dt;
+            }
+            catch (Exception)
+            {
+                throw; 
+            }
+            finally
+            {
+                Cerrar();
+            }
         }
     }
 }

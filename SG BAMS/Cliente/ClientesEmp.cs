@@ -110,5 +110,36 @@ namespace SG_BAMS
         {
             await TablaClientes();
         }
+
+        private void BtnMenu_Click(object sender, EventArgs e)
+        {
+            MenuPrincipalEmp MPE = new MenuPrincipalEmp();
+            MPE.Show();
+        }
+
+        private void BtnFacturas_Click(object sender, EventArgs e)
+        {
+            FacturasEmp FE = new FacturasEmp();
+            FE.Show();
+        }
+
+
+
+        private void BtnDeudores_Click(object sender, EventArgs e)
+        {
+            Deudores_Emp DE = new Deudores_Emp();
+            DE.Show();
+        }
+
+        private void BtnInventario_Click(object sender, EventArgs e)
+        {
+            InventarioEmp IE = new InventarioEmp();
+            IE.Show();
+        }
+
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

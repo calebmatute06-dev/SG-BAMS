@@ -61,5 +61,32 @@ namespace SG_BAMS.Facturas
 
             return precio;
         }
+
+        public async Task<DataTable> ObtenerStockProductos()
+        {
+           
+            DataTable dt = new DataTable();
+
+            try
+            {
+                AbrirConexion();
+                string query = "SELECT * FROM vista_stock_productos";
+
+                using (SqlCommand cmd = new SqlCommand(query, Conectar))
+                using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                {
+                    dt.Load(reader);
+                }
+                return dt;
+            }
+            catch (Exception)
+            {
+                throw; 
+            }
+            finally
+            {
+                Cerrar();
+            }
+        }
     }
 }

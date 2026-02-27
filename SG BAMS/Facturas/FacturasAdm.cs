@@ -54,17 +54,17 @@ namespace SG_BAMS
 
         private async void BtnNueva_Click(object sender, EventArgs e)
         {
-            
+
             using (ClienteAgregar frmCA = new ClienteAgregar())
             {
-                
+
                 if (frmCA.ShowDialog() == DialogResult.OK)
                 {
                     await CargarFactura();
                 }
             }
 
-            
+
 
         }
 
@@ -77,7 +77,7 @@ namespace SG_BAMS
             {
                 dgvFacturas_CellContentClick(null, null);
             }
-            
+
         }
 
 
@@ -100,7 +100,7 @@ namespace SG_BAMS
                 FacturaVer frmFV = new FacturaVer(idFacturas, nombre_Cliente, fecha, bateriaVieja, idPago);
                 frmFV.ShowDialog();
 
-               
+
 
                 CargarFactura();
             }
@@ -165,6 +165,12 @@ namespace SG_BAMS
 
                 dgvFacturas.DataSource = dv;
             }
+        }
+
+        private void BtnPerfil_Click(object sender, EventArgs e)
+        {
+            Perfil PF = new Perfil();
+            PF.ShowDialog();
         }
     }
 

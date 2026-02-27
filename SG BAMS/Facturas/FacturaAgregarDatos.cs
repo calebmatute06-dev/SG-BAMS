@@ -41,33 +41,25 @@ namespace SG_BAMS
 
         private async Task LlenarComboPago()
         {
-            ClsConexion objCl = new ClsConexion();
+            ClsAgregarFactura AF = new ClsAgregarFactura();
+
             try
             {
-                objCl.AbrirConexion();
+               
+                DataTable dt = await AF.ObtenerFormasPago();
 
-                string query = "SELECT *  FROM Tipo_Forma_de_pago";
-
-
-                using (SqlCommand cmd = new SqlCommand(query, objCl.Conectar))
-                using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
-                {
-                    DataTable dt = new DataTable();
-                    dt.Load(reader);
-
-
-                    cmbPago.DisplayMember = "descripcion_forma_pago";
-                    cmbPago.ValueMember = "id_tipo_forma_pago";
-                    cmbPago.DataSource = dt;
-                }
+               
+                cmbPago.DisplayMember = "descripcion_forma_pago";
+                cmbPago.ValueMember = "id_tipo_forma_pago";
+                cmbPago.DataSource = dt;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al llenar ComboBox: " + ex.Message);
+                MessageBox.Show("Error al llenar ComboBox de pagos: " + ex.Message);
             }
             finally
             {
-                objCl.Cerrar();
+           
                 dgvProductos.Rows.Clear();
             }
         }

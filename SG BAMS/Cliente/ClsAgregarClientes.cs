@@ -54,6 +54,33 @@ namespace SG_BAMS.Cliente
         
         }
 
+        public async Task<DataTable> ObtenerClientes()
+        {
+            
+            DataTable dt = new DataTable();
+
+            try
+            {
+                AbrirConexion();
+                string query = "SELECT * FROM vista_nombres_clientes";
+
+                using (SqlCommand cmd = new SqlCommand(query, Conectar))
+                using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                {
+                    dt.Load(reader);
+                }
+                return dt;
+            }
+            catch (Exception)
+            {
+                throw; 
+            }
+            finally
+            {
+                Cerrar();
+            }
+        }
+
 
     }
 }
