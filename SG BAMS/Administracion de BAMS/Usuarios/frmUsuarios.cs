@@ -100,7 +100,7 @@ namespace SG_BAMS
         {
             frmAgregarUsuarios agregarUsuario = new frmAgregarUsuarios();
             agregarUsuario.Show();
-            this.Close();
+            
         }
 
         private void BtmSalir_Click(object sender, EventArgs e)

@@ -91,6 +91,7 @@ namespace SG_BAMS.Bitacora
         private void Bitacora_Load(object sender, EventArgs e)
         {
             bitacora.cargarDatos(dgvBitacora);
+            bitacora.BuscarBitacora(txtBuscar, dtpDesde.Value, dtpHasta.Value, dgvBitacora);
         }
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
@@ -113,7 +114,10 @@ namespace SG_BAMS.Bitacora
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             txtBuscar.Clear();
+            dtpDesde.Value = DateTime.Today;
+            dtpHasta.Value = DateTime.Today;
             bitacora.cargarDatos(dgvBitacora);
+            bitacora.BuscarBitacora(txtBuscar, dtpDesde.Value, dtpHasta.Value, dgvBitacora);
         }
 
         private void dtpDesde_ValueChanged(object sender, EventArgs e)
@@ -128,15 +132,15 @@ namespace SG_BAMS.Bitacora
 
         private void btnMenu_Click(object sender, EventArgs e)
         {
-            MenuPrincipalAdm menuPrincipalAdm = new MenuPrincipalAdm();
-            menuPrincipalAdm.Show();
+            MenuPrincipalAdm menu = new MenuPrincipalAdm();
+            menu.Show();
             this.Hide();
         }
 
         private void btnFacturas_Click(object sender, EventArgs e)
         {
-            FacturasAdm facturasAdm = new FacturasAdm();
-            facturasAdm.Show();
+            FacturasAdm facturas = new FacturasAdm();
+            facturas.Show();
             this.Hide();
         }
 
@@ -149,15 +153,15 @@ namespace SG_BAMS.Bitacora
 
         private void btnClientes_Click(object sender, EventArgs e)
         {
-            ClientesAdm clientesAdm = new ClientesAdm();
-            clientesAdm.Show();
+            ClientesAdm clientes = new ClientesAdm();
+            clientes.Show();
             this.Hide();
         }
 
         private void btnInventario_Click(object sender, EventArgs e)
         {
-            InventarioAdmin inventarioAdmin = new InventarioAdmin();
-            inventarioAdmin.Show();
+            InventarioAdmin inventario = new InventarioAdmin();
+            inventario.Show();
             this.Hide();
         }
 
@@ -170,8 +174,8 @@ namespace SG_BAMS.Bitacora
 
         private void btnReporte_Click(object sender, EventArgs e)
         {
-            ReporteAdmin reporteAdmin = new ReporteAdmin();
-            reporteAdmin.Show();
+            ReporteAdmin reporte = new ReporteAdmin();
+            reporte.Show();
             this.Hide();
         }
     }

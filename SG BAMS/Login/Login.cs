@@ -37,6 +37,7 @@ namespace SG_BAMS.Login
                 int rol = login.ValidarUsuario(txtUsu.Text, txtCon.Text);
                
 
+
                 if (rol == 1)
                 {
                     MessageBox.Show("Login correcto. ¡Bienvenido Administrador!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);

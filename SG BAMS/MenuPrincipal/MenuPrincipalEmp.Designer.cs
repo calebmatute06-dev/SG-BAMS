@@ -29,9 +29,7 @@ namespace SG_BAMS
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            
             pictureBox21 = new PictureBox();
             pictureBox20 = new PictureBox();
             pictureBox19 = new PictureBox();
@@ -100,7 +98,7 @@ namespace SG_BAMS
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvVentas).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)chartStock).BeginInit();
+         
             SuspendLayout();
             // 
             // pictureBox21
@@ -682,27 +680,27 @@ namespace SG_BAMS
             dgvVentas.TabIndex = 94;
             // 
             // chartStock
+            
+            // btnfacturas2
             // 
-            chartStock.BackColor = Color.SkyBlue;
-            chartStock.BorderlineColor = Color.SkyBlue;
-            chartArea1.BackColor = Color.SkyBlue;
-            chartArea1.BackSecondaryColor = Color.White;
-            chartArea1.Name = "ChartArea1";
-            chartStock.ChartAreas.Add(chartArea1);
-            legend1.BackColor = Color.SkyBlue;
-            legend1.Name = "Legend1";
-            chartStock.Legends.Add(legend1);
-            chartStock.Location = new Point(341, 190);
-            chartStock.Name = "chartStock";
-            chartStock.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.EarthTones;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            chartStock.Series.Add(series1);
-            chartStock.Size = new Size(426, 215);
-            chartStock.TabIndex = 95;
-            chartStock.Text = "chartStock";
+            btnfacturas2.Location = new Point(322, 510);
+            btnfacturas2.Name = "btnfacturas2";
+            btnfacturas2.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnfacturas2.OverrideDefault.Back.Color2 = Color.White;
+            btnfacturas2.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnfacturas2.OverrideFocus.Back.Color2 = Color.White;
+            btnfacturas2.Size = new Size(456, 346);
+            btnfacturas2.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnfacturas2.StateCommon.Back.Color2 = Color.White;
+            btnfacturas2.StateCommon.Border.Rounding = 100F;
+            btnfacturas2.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnfacturas2.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnfacturas2.StatePressed.Back.Color1 = Color.Transparent;
+            btnfacturas2.StatePressed.Back.Color2 = Color.Transparent;
+            btnfacturas2.TabIndex = 96;
+            btnfacturas2.Values.DropDownArrowColor = Color.Empty;
+            btnfacturas2.Values.Text = "";
+            btnfacturas2.Click += btnfacturas2_Click;
             // 
             // btninventario2
             // 
@@ -810,7 +808,8 @@ namespace SG_BAMS
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1105, 907);
             Controls.Add(btnnotificaciones);
-            Controls.Add(chartStock);
+            Controls.Add(btnajustes);
+          
             Controls.Add(dgvVentas);
             Controls.Add(pictureBox21);
             Controls.Add(pictureBox20);
@@ -863,7 +862,7 @@ namespace SG_BAMS
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvVentas).EndInit();
-            ((System.ComponentModel.ISupportInitialize)chartStock).EndInit();
+        
             ResumeLayout(false);
             PerformLayout();
         }

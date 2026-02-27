@@ -73,6 +73,8 @@
             btnRefresh = new Button();
             dtpHasta = new DateTimePicker();
             dtpDesde = new DateTimePicker();
+            label4 = new Label();
+            label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
             panel1.SuspendLayout();
@@ -110,7 +112,7 @@
             label10.BackColor = Color.SkyBlue;
             label10.Font = new Font("Arial Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Navy;
-            label10.Location = new Point(621, 101);
+            label10.Location = new Point(638, 76);
             label10.Name = "label10";
             label10.Size = new Size(158, 42);
             label10.TabIndex = 90;
@@ -131,7 +133,7 @@
             // 
             // btnExportar
             // 
-            btnExportar.Location = new Point(619, 753);
+            btnExportar.Location = new Point(650, 767);
             btnExportar.Name = "btnExportar";
             btnExportar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnExportar.OverrideDefault.Back.Color2 = Color.White;
@@ -683,11 +685,10 @@
             // 
             dgvBitacora.BorderStyle = BorderStyle.None;
             dgvBitacora.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvBitacora.Location = new Point(379, 317);
-            dgvBitacora.Margin = new Padding(3, 4, 3, 4);
+            dgvBitacora.Location = new Point(456, 269);
             dgvBitacora.Name = "dgvBitacora";
             dgvBitacora.RowHeadersWidth = 51;
-            dgvBitacora.Size = new Size(673, 323);
+            dgvBitacora.Size = new Size(523, 453);
             dgvBitacora.TabIndex = 98;
             // 
             // pictureBox2
@@ -695,7 +696,7 @@
             pictureBox2.BackColor = Color.Transparent;
             pictureBox2.BackgroundImage = Properties.Resources.pdf;
             pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox2.Location = new Point(550, 763);
+            pictureBox2.Location = new Point(581, 776);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(63, 60);
             pictureBox2.TabIndex = 37;
@@ -704,29 +705,26 @@
             // kryptonGroupBox1
             // 
             kryptonGroupBox1.CaptionVisible = false;
-            kryptonGroupBox1.Location = new Point(328, 265);
-            kryptonGroupBox1.Margin = new Padding(3, 4, 3, 4);
-            kryptonGroupBox1.Size = new Size(773, 420);
+            kryptonGroupBox1.Location = new Point(427, 255);
+            kryptonGroupBox1.Size = new Size(578, 481);
             kryptonGroupBox1.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroupBox1.StateCommon.Border.Rounding = 50F;
+            kryptonGroupBox1.StateCommon.Border.Rounding = 30F;
             kryptonGroupBox1.TabIndex = 105;
             // 
             // kryptonGroupBox2
             // 
             kryptonGroupBox2.CaptionVisible = false;
-            kryptonGroupBox2.Location = new Point(514, 89);
-            kryptonGroupBox2.Margin = new Padding(3, 4, 3, 4);
-            kryptonGroupBox2.Size = new Size(344, 65);
+            kryptonGroupBox2.Location = new Point(560, 61);
+            kryptonGroupBox2.Size = new Size(301, 72);
             kryptonGroupBox2.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroupBox2.StateCommon.Border.Rounding = 50F;
             kryptonGroupBox2.TabIndex = 107;
             // 
             // txtBuscar
             // 
-            txtBuscar.Location = new Point(328, 191);
-            txtBuscar.Margin = new Padding(3, 4, 3, 4);
+            txtBuscar.Location = new Point(314, 169);
             txtBuscar.Name = "txtBuscar";
-            txtBuscar.Size = new Size(389, 33);
+            txtBuscar.Size = new Size(417, 33);
             txtBuscar.StateCommon.Back.Color1 = Color.SkyBlue;
             txtBuscar.StateCommon.Border.Rounding = 10F;
             txtBuscar.TabIndex = 325;
@@ -736,8 +734,7 @@
             // 
             btnRefresh.BackgroundImage = Properties.Resources.refresh;
             btnRefresh.BackgroundImageLayout = ImageLayout.Stretch;
-            btnRefresh.Location = new Point(1011, 169);
-            btnRefresh.Margin = new Padding(3, 4, 3, 4);
+            btnRefresh.Location = new Point(1049, 153);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.Size = new Size(66, 67);
             btnRefresh.TabIndex = 323;
@@ -746,8 +743,7 @@
             // 
             // dtpHasta
             // 
-            dtpHasta.Location = new Point(726, 213);
-            dtpHasta.Margin = new Padding(3, 4, 3, 4);
+            dtpHasta.Location = new Point(808, 189);
             dtpHasta.Name = "dtpHasta";
             dtpHasta.Size = new Size(228, 27);
             dtpHasta.TabIndex = 327;
@@ -755,19 +751,44 @@
             // 
             // dtpDesde
             // 
-            dtpDesde.Location = new Point(726, 169);
-            dtpDesde.Margin = new Padding(3, 4, 3, 4);
+            dtpDesde.Location = new Point(808, 156);
             dtpDesde.Name = "dtpDesde";
             dtpDesde.Size = new Size(228, 27);
             dtpDesde.TabIndex = 326;
             dtpDesde.ValueChanged += dtpDesde_ValueChanged;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.BackColor = Color.Transparent;
+            label4.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.Navy;
+            label4.Location = new Point(738, 155);
+            label4.Name = "label4";
+            label4.Size = new Size(75, 29);
+            label4.TabIndex = 328;
+            label4.Text = "Desde:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.Navy;
+            label3.Location = new Point(744, 189);
+            label3.Name = "label3";
+            label3.Size = new Size(69, 29);
+            label3.TabIndex = 328;
+            label3.Text = "Hasta:";
             // 
             // BitacoraAdmin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1197, 909);
+            ClientSize = new Size(1185, 907);
+            Controls.Add(label3);
+            Controls.Add(label4);
             Controls.Add(dtpHasta);
             Controls.Add(dtpDesde);
             Controls.Add(txtBuscar);
@@ -866,5 +887,7 @@
         private Button btnRefresh;
         private DateTimePicker dtpHasta;
         private DateTimePicker dtpDesde;
+        private Label label4;
+        private Label label3;
     }
 }

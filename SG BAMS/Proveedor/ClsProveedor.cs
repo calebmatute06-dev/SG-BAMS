@@ -33,6 +33,15 @@ namespace SG_BAMS.Proveedor
             }
         }
 
+        private void SetUsuarioEnSesion(int idUsuario)
+        {
+            using (SqlCommand ctx = new SqlCommand(
+            "EXEC sp_set_session_context @key=N'id_usuario', @value=@id;", Conectar))
+            {
+                ctx.Parameters.AddWithValue("@id", idUsuario);
+                ctx.ExecuteNonQuery();
+            }
+        }
         public void CargarComboEstado(Krypton.Toolkit.KryptonComboBox cmb)
         {
             try
@@ -105,7 +114,9 @@ namespace SG_BAMS.Proveedor
                 string consulta = "select * from vista_proveedor where Nombre like @filtro " +
                     "OR Contacto LIKE @filtro " +
                     "OR RTN LIKE @filtro " +
-                    "OR Dirección LIKE @filtro ";
+                    "OR Dirección LIKE @filtro " +
+                    "OR Clasificación LIKE @filtro " +
+                    "OR Estado LIKE @filtro ";
                 SqlCommand cmd = new SqlCommand(consulta, Conectar);
                 cmd.Parameters.AddWithValue("@filtro", "%" + texto + "%");
 
@@ -126,11 +137,13 @@ namespace SG_BAMS.Proveedor
         }
 
         public void AgregarProveedor(string nombre, string contacto, string direccion, string rtn,
-            int idClasificacion)
+            int idClasificacion, int idUsuario)
         {
             try
             {
                 AbrirConexion();
+
+                SetUsuarioEnSesion(idUsuario);
 
                 using (SqlCommand cmd = new SqlCommand("sp_proveedor_insertar", Conectar))
                 {
@@ -157,17 +170,20 @@ namespace SG_BAMS.Proveedor
             }
         }
 
-        public void ModificarProveedor(string nombre, string contacto, string direccion,
-            string rtn, int idEstado, int idClasificacion)
+        public void ModificarProveedor(int idProveedor, string nombre, string contacto, string direccion,
+            string rtn, int idEstado, int idClasificacion, int idUsuario)
         {
             try
             {
                 AbrirConexion();
 
+                SetUsuarioEnSesion(idUsuario);
+
                 using (SqlCommand cmd = new SqlCommand("sp_proveedor_actualizar", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
+                    cmd.Parameters.AddWithValue("@id_proveedor", idProveedor);
                     cmd.Parameters.AddWithValue("@nombre_proveedor", nombre);
                     cmd.Parameters.AddWithValue("@contacto_proveedor", contacto);
                     cmd.Parameters.AddWithValue("@direccion_proveedor", direccion);

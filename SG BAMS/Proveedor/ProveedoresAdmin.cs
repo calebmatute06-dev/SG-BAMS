@@ -23,6 +23,7 @@ namespace SG_BAMS.Proveedor
         private void ProveedoresAdmin_Load(object sender, EventArgs e)
         {
             proveedor.cargarDatos(dgvProveedor);
+            dgvProveedor.Columns["idProveedor"].Visible = false;
             dgvProveedor.Columns["idClasificacion"].Visible = false;
             dgvProveedor.Columns["idEstado"].Visible = false;
         }
@@ -45,11 +46,16 @@ namespace SG_BAMS.Proveedor
 
         private void btnMenu_Click(object sender, EventArgs e)
         {
+            MenuPrincipalAdm menu = new MenuPrincipalAdm();
+            menu.Show();
+            this.Hide();
         }
 
         private void btnFacturas_Click(object sender, EventArgs e)
         {
-
+            FacturasAdm facturas = new FacturasAdm();
+            facturas.Show();
+            this.Hide();
         }
 
         private void btnBitacora_Click(object sender, EventArgs e)
@@ -79,6 +85,7 @@ namespace SG_BAMS.Proveedor
                 return;
             }
 
+            int idProveedor = Convert.ToInt32(dgvProveedor.CurrentRow.Cells["idProveedor"].Value);
             string nombre = dgvProveedor.CurrentRow.Cells["Nombre"].Value.ToString();
             string contacto = dgvProveedor.CurrentRow.Cells["Contacto"].Value.ToString();
             string direccion = dgvProveedor.CurrentRow.Cells["Dirección"].Value.ToString();
@@ -86,20 +93,51 @@ namespace SG_BAMS.Proveedor
             int idEstado = Convert.ToInt32(dgvProveedor.CurrentRow.Cells["idEstado"].Value);
             int idClasificacion = Convert.ToInt32(dgvProveedor.CurrentRow.Cells["idClasificacion"].Value);
 
-            ModificarProveedor frm = new ModificarProveedor(nombre, contacto, direccion, rtn, idEstado, idClasificacion);
+            ModificarProveedor frm = new ModificarProveedor(idProveedor, nombre, contacto, direccion, rtn, idEstado, idClasificacion);
             frm.Show();
             this.Hide();
-        }
-
-        private void dtpHasta_ValueChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             txtBuscar.Clear();
             proveedor.cargarDatos(dgvProveedor);
+
+        }
+
+        private void btnCompras_Click(object sender, EventArgs e)
+        {
+            Compras compras = new Compras();
+            compras.Show();
+            this.Hide();
+        }
+
+        private void btnClientes_Click(object sender, EventArgs e)
+        {
+            ClientesAdm clientes = new ClientesAdm();
+            clientes.Show();
+            this.Hide();
+        }
+
+        private void btnInventario_Click(object sender, EventArgs e)
+        {
+            InventarioAdmin inventario = new InventarioAdmin();
+            inventario.Show();
+            this.Hide();
+        }
+
+        private void btnDeudores_Click(object sender, EventArgs e)
+        {
+            Deudores deudores = new Deudores();
+            deudores.Show();
+            this.Hide();
+        }
+
+        private void btnReporte_Click(object sender, EventArgs e)
+        {
+            ReporteAdmin reporte = new ReporteAdmin();
+            reporte.Show();
+            this.Hide();
         }
     }
 }

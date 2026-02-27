@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
+
 
 namespace SG_BAMS
 {
@@ -101,62 +101,7 @@ namespace SG_BAMS
             }
         }
 
-        private async Task CargarGraficoStock()
-        {
-            // Obtenemos los datos desde la vista que ya tiene las cabeceras nuevas
-            DataTable tablaStock = await clsGraficoStock.ObtenerDatosGrafico();
-
-            if (tablaStock != null && tablaStock.Rows.Count > 0)
-            {
-                chartStock.Series.Clear();
-                chartStock.Legends.Clear();
-                chartStock.ChartAreas[0].Position.Auto = true;
-
-                Legend leyendaEstandar = chartStock.Legends.Add("Default");
-                leyendaEstandar.BackColor = Color.Transparent;
-                leyendaEstandar.IsTextAutoFit = true;
-                leyendaEstandar.LegendStyle = LegendStyle.Table;
-                leyendaEstandar.Docking = Docking.Right;
-
-                var serieInventario = chartStock.Series.Add("StockSeries");
-                serieInventario.ChartType = SeriesChartType.Pie;
-
-                foreach (DataRow filaDatos in tablaStock.Rows)
-                {
-                    // --- CAMBIO DE CABECERAS AQUÍ ---
-                    // "Nombre Producto" y "STOCK" deben coincidir con tu CREATE VIEW
-                    string nombreArticulo = filaDatos["Nombre Producto"].ToString();
-                    int cantidadReal = Convert.ToInt32(filaDatos["STOCK"]);
-
-                    double valorVisual = (cantidadReal == 0) ? 0.6 : cantidadReal;
-
-                    int puntoIndice = serieInventario.Points.AddXY(nombreArticulo, valorVisual);
-                    var puntoActual = serieInventario.Points[puntoIndice];
-
-                    if (cantidadReal == 0)
-                    {
-                        puntoActual.Color = Color.Red;
-                        puntoActual.LegendText = nombreArticulo + " - Agotado";
-                        puntoActual.Label = "0";
-                    }
-                    else if (cantidadReal < 5)
-                    {
-                        puntoActual.Color = Color.Yellow;
-                        puntoActual.LegendText = nombreArticulo + " - A punto de agotarse";
-                        puntoActual.Label = cantidadReal.ToString();
-                    }
-                    else
-                    {
-                        puntoActual.Color = Color.Green;
-                        puntoActual.LegendText = nombreArticulo + " (" + cantidadReal + ")";
-                        puntoActual.Label = cantidadReal.ToString();
-                    }
-                }
-
-                chartStock.BackColor = Color.SkyBlue;
-                chartStock.ChartAreas[0].BackColor = Color.Transparent;
-            }
-        }
+       
 
 
 
@@ -169,8 +114,7 @@ namespace SG_BAMS
             await ActualizarLabelDeudores();
             await ActualizarLabelProductos();
             await CargarVentasRecientes();
-            await CargarGraficoStock();
-
+       
 
             ClsTemas.CargarPreferencia();
 

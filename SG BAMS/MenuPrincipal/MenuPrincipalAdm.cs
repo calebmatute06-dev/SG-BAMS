@@ -11,7 +11,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
+using Krypton.Toolkit;
+using SG_BAMS.Bitacora;
+using SG_BAMS.Proveedor;
 
 namespace SG_BAMS
 {
@@ -232,173 +234,18 @@ namespace SG_BAMS
 
         }
 
-        private void kryptonButton13_Click(object sender, EventArgs e)
+        private void btnBitacora_Click(object sender, EventArgs e)
         {
-            InventarioAdmin invam = new InventarioAdmin();
-
-            invam.Show();
-
-            this.Close();
-
+            BitacoraAdmin bitacora = new BitacoraAdmin();
+            bitacora.Show();
+            this.Hide();
         }
 
-        private void kryptonButton12_Click(object sender, EventArgs e)
+        private void btnProveedores_Click(object sender, EventArgs e)
         {
-            FacturasAdm fact = new FacturasAdm();
-
-            fact.Show();
-            this.Close();
-        }
-
-        private async void kryptonButton17_Click(object sender, EventArgs e)
-        {
-            ClientesAdm Client = new ClientesAdm();
-            Client.Show();
-            await ActualizarLabel();
-
-            this.Close();
-        }
-
-        private async void kryptonButton16_Click(object sender, EventArgs e)
-        {
-            Deudores deu = new Deudores();
-            deu.Show();
-            await ActualizarLabel();
-
-            this.Close();
-        }
-
-        private async void kryptonButton15_Click(object sender, EventArgs e)
-        {
-            InventarioAdmin invam = new InventarioAdmin();
-
-            invam.Show();
-
-            await ActualizarLabel();
-
-            this.Close();
-        }
-
-        private void kryptonButton11_Click(object sender, EventArgs e)
-        {
-            Ajustes ajus = new Ajustes();
-            ajus.Show();
-        }
-
-        private void button12_Click(object sender, EventArgs e)
-        {
-            NotificacionesAdmin notifam = new NotificacionesAdmin();
-            notifam.Show();
-        }
-
-        private void kryptonButton9_Click(object sender, EventArgs e)
-        {
-            this.Show();
-
-        }
-
-        private void kryptonButton8_Click(object sender, EventArgs e)
-        {
-            FacturasAdm fact = new FacturasAdm();
-
-            fact.Show();
-            this.Close();
-        }
-
-        private void kryptonButton7_Click(object sender, EventArgs e)
-        {
-            Compras compr = new Compras();
-            compr.Show();
-            this.Close();
-        }
-
-        private void kryptonButton6_Click(object sender, EventArgs e)
-        {
-            ClientesAdm clientesAdm = new ClientesAdm();
-            clientesAdm.Show();
-            this.Close();
-        }
-
-        private void kryptonButton5_Click(object sender, EventArgs e)
-        {
-            InventarioAdmin invam = new InventarioAdmin();
-
-            invam.Show();
-            this.Close();
-        }
-
-        private void kryptonButton4_Click(object sender, EventArgs e)
-        {
-            ProveedoresAdmin proadm = new ProveedoresAdmin();
-            proadm.Show();
-            this.Close();
-        }
-
-        private async void kryptonButton2_Click(object sender, EventArgs e)
-        {
-            Deudores deu = new Deudores();
-            deu.ShowDialog();
-            this.Close();
-            await ActualizarLabel();
-            await ActualizarLabelDeudores();
-            await ActualizarLabelProductos();
-
-
-        }
-
-        private void btnReporte_Click(object sender, EventArgs e)
-        {
-            ReporteAdmin reporte = new ReporteAdmin();
-            reporte.Show();
-            this.Close();
-        }
-
-        private void kryptonButton3_Click(object sender, EventArgs e)
-        {
-            BitacoraAdmin bit = new BitacoraAdmin();
-            bit.Show();
-            this.Close();
-        }
-
-        private void kryptonButton10_Click(object sender, EventArgs e)
-        {
-            frmAdministracion administracion = new frmAdministracion();
-            administracion.Show();
-        }
-
-        private void kryptonButton1_Click(object sender, EventArgs e)
-        {
-            Perfil perfil = new Perfil();
-            perfil.Show();
-        }
-
-        private void MenuPrincipalAdm_Shown(object sender, EventArgs e)
-        {
-            Ayudante_UI.AplicarZoomGlobal(this);
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BtnFacturas_Click(object sender, EventArgs e)
-        {
-            FacturasAdm frmFA = new FacturasAdm();
-            frmFA.Show();
-        }
-
-        private void BtnCerrarSesión_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            SG_BAMS.Login.Login Log = new Login.Login();
-
-            Log.Show();
-        }
-
-        private void chartMasVendidos_Click(object sender, EventArgs e)
-        {
-
+            ProveedoresAdmin proveedores = new ProveedoresAdmin();
+            proveedores.Show();
+            this.Hide();
         }
     }
 }
