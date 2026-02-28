@@ -35,7 +35,9 @@ namespace SG_BAMS
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Hide();
+            SG_BAMS.Login.Login log = new SG_BAMS.Login.Login();
+            log.Show();
         }
 
         private void kryptonButton3_Click(object sender, EventArgs e)

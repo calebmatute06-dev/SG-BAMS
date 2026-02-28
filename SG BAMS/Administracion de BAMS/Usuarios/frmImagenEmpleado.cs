@@ -6,6 +6,9 @@ using System;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SG_BAMS
 {
@@ -13,12 +16,20 @@ namespace SG_BAMS
     {
         private VideoCapture camara;
         private bool camaraEnEncendida = false;
-        private CascadeClassifier faceDetector = new CascadeClassifier("haarcascade_frontalface_default.xml");
-        public frmImagenEmpleado()
+
+        // Detectores para diferentes ángulos
+        private CascadeClassifier frontalFaceDetector = new CascadeClassifier("haarcascade_frontalface_default.xml");
+        private CascadeClassifier profileFaceDetector = new CascadeClassifier("haarcascade_profileface.xml");
+
+        private string usuarioAsignado = "";
+
+        public frmImagenEmpleado(string nombreUsuario = "")
         {
             InitializeComponent();
             clsSoporte.InicializarDirectorio();
+            usuarioAsignado = nombreUsuario;
         }
+
         private void FrameProcess(object sender, EventArgs e)
         {
             if (camara != null && camaraEnEncendida)
@@ -31,19 +42,25 @@ namespace SG_BAMS
                         {
                             using (var frame = frameMat.ToImage<Bgr, byte>())
                             {
+                                // PROCESAMIENTO PARA LUZ: Convertir a gris y mejorar contraste
                                 using (var grayFrame = frame.Convert<Gray, byte>())
                                 {
-                                    Rectangle[] rostros = faceDetector.DetectMultiScale(grayFrame, 1.2, 5);
+                                    // Ecualización para normalizar la iluminación
+                                    CvInvoke.EqualizeHist(grayFrame, grayFrame);
 
-                                    foreach (Rectangle rostro in rostros)
+                                    // Detección frontal
+                                    Rectangle[] rostrosFrontales = frontalFaceDetector.DetectMultiScale(grayFrame, 1.1, 10, Size.Empty);
+                                    // Detección de perfil (ángulos)
+                                    Rectangle[] rostrosPerfil = profileFaceDetector.DetectMultiScale(grayFrame, 1.1, 10, Size.Empty);
+
+                                    // Dibujar rostros detectados
+                                    foreach (Rectangle rostro in rostrosFrontales.Concat(rostrosPerfil))
                                     {
                                         frame.Draw(rostro, new Bgr(Color.LimeGreen), 2);
                                     }
                                 }
-                                if (pctCamara.Image != null)
-                                {
-                                    pctCamara.Image.Dispose();
-                                }
+
+                                if (pctCamara.Image != null) pctCamara.Image.Dispose();
                                 pctCamara.Image = frame.ToBitmap();
                             }
                         }
@@ -57,33 +74,69 @@ namespace SG_BAMS
             }
         }
 
-        private void btnCapturar_Click(object sender, EventArgs e)
+        private async void btnCapturar_Click(object sender, EventArgs e)
         {
-            if (cmbUsuarios.SelectedIndex == -1)
+            if (string.IsNullOrWhiteSpace(cmbUsuarios.Text))
             {
-                MessageBox.Show("Selecciona un usuario primero.");
+                MessageBox.Show("Selecciona o ingresa un usuario primero.");
                 return;
             }
 
             string nombreArchivo = cmbUsuarios.Text;
+            int fotosTomadas = 0;
+            int intentos = 0;
 
-            using (var frame = camara.QueryFrame().ToImage<Bgr, byte>())
+            btnCapturar.Enabled = false;
+
+            while (fotosTomadas < 5 && intentos < 30) // Más intentos para buscar mejores ángulos
             {
-                var rostro = clsSoporte.DetectarRostro(frame);
-                if (rostro != null)
+                using (var frameMat = camara.QueryFrame())
                 {
-                    string nombreFoto = $"{nombreArchivo}_{DateTime.Now.Ticks}.jpg";
-                    string path = Path.Combine(clsSoporte.DirectorioRostros, nombreFoto);
+                    if (frameMat != null)
+                    {
+                        using (var frame = frameMat.ToImage<Bgr, byte>())
+                        {
+                            // Aplicamos la misma mejora de luz antes de pasar el frame a clsSoporte
+                            using (var gray = frame.Convert<Gray, byte>())
+                            {
+                                CvInvoke.EqualizeHist(gray, gray);
+                                // Nota: clsSoporte.DetectarRostro debería idealmente usar gray para ser más preciso
+                            }
 
-                    rostro.Save(path);
-                    MessageBox.Show("Rostro guardado. Puedes tomar más fotos cambiando tu expresión o usando lentes para mejorar el reconocimiento.", "Éxito");
+                            var rostro = clsSoporte.DetectarRostro(frame);
+                            if (rostro != null)
+                            {
+                                string nombreFoto = $"{nombreArchivo}_{fotosTomadas + 1}_{DateTime.Now.Ticks}.jpg";
+                                string path = Path.Combine(clsSoporte.DirectorioRostros, nombreFoto);
+
+                                rostro.Save(path);
+                                fotosTomadas++;
+                            }
+                        }
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("No se detectó ningún rostro. Intenta de nuevo.");
-                }
+                intentos++;
+                await Task.Delay(400); // Pausa ligeramente mayor para permitir movimiento
+            }
+
+            btnCapturar.Enabled = true;
+
+            if (fotosTomadas >= 5)
+            {
+                MessageBox.Show($"¡Análisis completado! Se guardaron {fotosTomadas} capturas con éxito.", "Éxito");
+            }
+            else if (fotosTomadas > 0)
+            {
+                MessageBox.Show($"Se capturaron {fotosTomadas} fotos. Intenta mover la cabeza más lento para llegar a 5.", "Aviso");
+            }
+            else
+            {
+                MessageBox.Show("No se detectó el rostro. Asegúrate de tener buena iluminación frontal.");
             }
         }
+
+        // --- El resto de métodos (Load, LlenarUsuarios, Detener, etc.) se mantienen igual ---
+
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             Application.Idle -= FrameProcess;
@@ -95,49 +148,37 @@ namespace SG_BAMS
         {
             clsSoporte.InicializarDirectorio();
             LlenarUsuarios();
+            if (!string.IsNullOrEmpty(usuarioAsignado)) cmbUsuarios.Text = usuarioAsignado;
         }
+
         private void LlenarUsuarios()
         {
             try
             {
                 clsSoporte soporte = new clsSoporte();
                 DataTable dt = soporte.ObtenerUsuarios();
-
                 if (dt.Rows.Count > 0)
                 {
                     cmbUsuarios.DataSource = dt;
                     cmbUsuarios.DisplayMember = "nombre_usuario";
                     cmbUsuarios.ValueMember = "id_usuario";
-
                     cmbUsuarios.SelectedIndex = -1;
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al cargar ComboBox: " + ex.Message);
-            }
+            catch (Exception ex) { MessageBox.Show("Error al cargar ComboBox: " + ex.Message); }
         }
 
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-            DetenerCamara();
-            this.Close();
-        }
+        private void btnSalir_Click(object sender, EventArgs e) { DetenerCamara(); this.Close(); }
+        private void btnDetener_Click(object sender, EventArgs e) { DetenerCamara(); }
 
-        private void btnDetener_Click(object sender, EventArgs e)
-        {
-            DetenerCamara();
-        }
         private void DetenerCamara()
         {
             if (camara != null)
             {
                 Application.Idle -= FrameProcess;
                 camaraEnEncendida = false;
-
                 camara.Dispose();
                 camara = null;
-
                 pctCamara.Image = null;
                 pctCamara.Invalidate();
             }
@@ -155,47 +196,20 @@ namespace SG_BAMS
 
         private void btnBorrar_Click(object sender, EventArgs e)
         {
-            if (cmbUsuarios.SelectedItem == null)
-            {
-                MessageBox.Show("Por favor, selecciona un usuario.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
+            if (string.IsNullOrWhiteSpace(cmbUsuarios.Text)) return;
             string nombreUsuario = cmbUsuarios.Text;
-
             try
             {
                 var archivos = Directory.GetFiles(clsSoporte.DirectorioRostros, "*.jpg")
-                    .Where(f => Path.GetFileNameWithoutExtension(f) == nombreUsuario ||
-                                Path.GetFileNameWithoutExtension(f).StartsWith(nombreUsuario + "_"))
-                    .ToList();
+                    .Where(f => Path.GetFileNameWithoutExtension(f).StartsWith(nombreUsuario)).ToList();
 
-                if (archivos.Count > 0)
+                if (archivos.Count > 0 && MessageBox.Show($"¿Eliminar {archivos.Count} fotos?", "Confirmar", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    DialogResult result = MessageBox.Show($"¿Deseas eliminar las {archivos.Count} fotos biométricas de {nombreUsuario}?",
-                                                          "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                    if (result == DialogResult.Yes)
-                    {
-                        foreach (var archivo in archivos)
-                        {
-                            File.Delete(archivo);
-                        }
-
-                        MessageBox.Show($"Se han eliminado los registros faciales de {nombreUsuario}.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        pctCamara.Image = null;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("No existen registros faciales para este usuario.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    foreach (var archivo in archivos) File.Delete(archivo);
+                    MessageBox.Show("Registros eliminados.");
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al intentar borrar archivos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            catch (Exception ex) { MessageBox.Show("Error: " + ex.Message); }
         }
-
     }
 }

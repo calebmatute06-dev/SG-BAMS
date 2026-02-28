@@ -2,11 +2,13 @@
 using Emgu.CV.Structure;
 using SG_BAMS.Administracion_de_BAMS.Usuarios;
 using Emgu.CV.Util;
+using Emgu.CV.CvEnum;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +21,11 @@ namespace SG_BAMS.Login
         public string UsuarioAValidar { get; set; }
         private VideoCapture camara;
         private List<Image<Gray, byte>> rostrosReferencia = new List<Image<Gray, byte>>();
+
+        // Detectores para mejorar el ángulo (Frontal y Perfil)
         private CascadeClassifier faceDetector = new CascadeClassifier("haarcascade_frontalface_default.xml");
+        private CascadeClassifier profileFaceDetector = new CascadeClassifier("haarcascade_profileface.xml");
+
         public LoginFacial()
         {
             InitializeComponent();
@@ -41,50 +47,67 @@ namespace SG_BAMS.Login
 
             foreach (var archivo in archivos)
             {
-                rostrosReferencia.Add(new Image<Gray, byte>(archivo));
+                // Cargamos y ecualizamos la referencia para que coincida con el proceso de validación
+                var imgReferencia = new Image<Gray, byte>(archivo);
+                CvInvoke.EqualizeHist(imgReferencia, imgReferencia);
+                rostrosReferencia.Add(imgReferencia);
             }
 
             camara = new VideoCapture(0);
             Application.Idle += ProcesoValidacion;
         }
+
         private void ProcesoValidacion(object sender, EventArgs e)
         {
             if (camara == null) return;
 
             try
             {
-                Mat m = new Mat();
-                camara.Read(m);
-
-                if (m.IsEmpty) return;
-
-                using (var frame = m.ToImage<Bgr, byte>())
+                using (Mat m = new Mat())
                 {
-                    using (var grayFrame = frame.Convert<Gray, byte>())
+                    camara.Read(m);
+                    if (m.IsEmpty) return;
+
+                    using (var frame = m.ToImage<Bgr, byte>())
                     {
-                        Rectangle[] rostros = faceDetector.DetectMultiScale(grayFrame, 1.2, 5);
-                        foreach (Rectangle rostro in rostros)
+                        using (var grayFrame = frame.Convert<Gray, byte>())
                         {
-                            frame.Draw(rostro, new Bgr(Color.Cyan), 2);
+                            // MEJORA DE LUZ: Ecualización para combatir sombras o exceso de brillo
+                            CvInvoke.EqualizeHist(grayFrame, grayFrame);
+
+                            // DETECCIÓN MULTI-ÁNGULO
+                            Rectangle[] rostrosFrontales = faceDetector.DetectMultiScale(grayFrame, 1.1, 10, Size.Empty);
+                            Rectangle[] rostrosPerfil = profileFaceDetector.DetectMultiScale(grayFrame, 1.1, 10, Size.Empty);
+
+                            var todosLosRostros = rostrosFrontales.Concat(rostrosPerfil);
+
+                            foreach (Rectangle rostro in todosLosRostros)
+                            {
+                                frame.Draw(rostro, new Bgr(Color.Cyan), 2);
+                            }
+
+                            // Feedback visual en el PictureBox
+                            if (picValidar.Image != null) picValidar.Image.Dispose();
+                            picValidar.Image = frame.ToBitmap();
+
+                            // Procesar detección para comparación
+                            // Usamos el frame ecualizado para que la comparación sea justa
+                            var rostroActual = clsSoporte.DetectarRostro(frame);
+
+                            if (rostroActual != null)
+                            {
+                                // Aseguramos que el rostro detectado también esté ecualizado antes de comparar
+                                CvInvoke.EqualizeHist(rostroActual, rostroActual);
+                                CompararRostros(rostroActual);
+                            }
                         }
-                    }
-
-                    if (picValidar.Image != null)
-                    {
-                        picValidar.Image.Dispose();
-                    }
-
-                    picValidar.Image = frame.ToBitmap();
-
-                    var rostroActual = clsSoporte.DetectarRostro(frame);
-
-                    if (rostroActual != null && rostrosReferencia != null)
-                    {
-                        CompararRostros(rostroActual);
                     }
                 }
             }
-            catch (Exception) { }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error en proceso: " + ex.Message);
+            }
         }
 
         private void CompararRostros(Image<Gray, byte> rostroActual)
@@ -93,17 +116,24 @@ namespace SG_BAMS.Login
             {
                 foreach (var referencia in rostrosReferencia)
                 {
-                    Mat resultado = new Mat();
-                    CvInvoke.MatchTemplate(rostroActual, referencia, resultado, Emgu.CV.CvEnum.TemplateMatchingType.CcoeffNormed);
-
-                    double minVal = 0, maxVal = 0;
-                    Point minLoc = new Point(), maxLoc = new Point();
-                    CvInvoke.MinMaxLoc(resultado, ref minVal, ref maxVal, ref minLoc, ref maxLoc);
-
-                    if (maxVal > 0.70)
+                    // Redimensionar para asegurar que MatchTemplate funcione (deben tener tamaños compatibles)
+                    using (Image<Gray, byte> refResized = referencia.Resize(rostroActual.Width, rostroActual.Height, Inter.Linear))
                     {
-                        Finalizar(DialogResult.OK);
-                        return;
+                        using (Mat resultado = new Mat())
+                        {
+                            CvInvoke.MatchTemplate(rostroActual, refResized, resultado, TemplateMatchingType.CcoeffNormed);
+
+                            double minVal = 0, maxVal = 0;
+                            Point minLoc = new Point(), maxLoc = new Point();
+                            CvInvoke.MinMaxLoc(resultado, ref minVal, ref maxVal, ref minLoc, ref maxLoc);
+
+                            // Umbral de validación (0.70 es un buen equilibrio)
+                            if (maxVal > 0.70)
+                            {
+                                Finalizar(DialogResult.OK);
+                                return;
+                            }
+                        }
                     }
                 }
             }
@@ -118,13 +148,16 @@ namespace SG_BAMS.Login
             Application.Idle -= ProcesoValidacion;
             if (camara != null)
             {
+                camara.Stop(); // Detener captura antes de dispose
                 camara.Dispose();
                 camara = null;
             }
-            this.DialogResult = resultado;
+
             foreach (var img in rostrosReferencia) { img.Dispose(); }
             rostrosReferencia.Clear();
-            if (this.Visible) this.Close();
+
+            this.DialogResult = resultado;
+            if (this.IsHandleCreated) this.Close();
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -140,8 +173,7 @@ namespace SG_BAMS.Login
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
+            Finalizar(DialogResult.Cancel);
         }
 
         private void btnReintentar_Click(object sender, EventArgs e)

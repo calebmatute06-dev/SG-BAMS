@@ -29,7 +29,6 @@ namespace SG_BAMS
             cmbRol.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             cmbRol.AutoCompleteSource = AutoCompleteSource.ListItems;
             ConfigurarFiltroRoles();
-
         }
 
         private async Task CargarComboRoles()
@@ -41,14 +40,11 @@ namespace SG_BAMS
                 cmbRol.SelectedIndexChanged -= cmbRol_SelectedIndexChanged;
 
                 cmbRol.DataSource = dt;
-
                 cmbRol.DisplayMember = "descripcion_rol";
-
                 cmbRol.ValueMember = "id_rol_usuario";
-
                 cmbRol.SelectedIndex = -1;
 
-                cmbRol.SelectedIndexChanged += cmbRol_SelectedIndexChanged; 
+                cmbRol.SelectedIndexChanged += cmbRol_SelectedIndexChanged;
             }
             catch (Exception ex)
             {
@@ -75,9 +71,7 @@ namespace SG_BAMS
 
                 int idRol = (int)cmbRol.SelectedValue;
                 int idEstado = 1;
-
                 byte[] imagenByte = null;
-
 
                 bool exito = await objetoUsuario.InsertarUsuarioAsync(
                     txtNombre.Text,
@@ -103,7 +97,8 @@ namespace SG_BAMS
 
         private void btnImagen_Click(object sender, EventArgs e)
         {
-            frmImagenEmpleado agregarImagen = new frmImagenEmpleado();
+            // Se manda el nombre de usuario escrito en la caja de texto al formulario de la cámara
+            frmImagenEmpleado agregarImagen = new frmImagenEmpleado(txtNombre.Text);
             agregarImagen.Show();
         }
 
@@ -145,7 +140,6 @@ namespace SG_BAMS
                     Cursor.Current = Cursors.Default;
                 }
             };
-
         }
 
         private void cmbRol_SelectedIndexChanged(object sender, EventArgs e)
@@ -172,4 +166,3 @@ namespace SG_BAMS
         }
     }
 }
-
