@@ -100,7 +100,12 @@ namespace SG_BAMS
 
         private void btnImagen_Click(object sender, EventArgs e)
         {
-            frmImagenEmpleado agregarImagen = new frmImagenEmpleado();
+            // Obtenemos el nombre del cuadro de texto para pasarlo al siguiente formulario
+            string nombreParaEnviar = txtNombre.Text;
+
+            // Pasamos el nombre como argumento al constructor
+            frmImagenEmpleado agregarImagen = new frmImagenEmpleado(nombreParaEnviar);
+
             agregarImagen.Show();
         }
     }
