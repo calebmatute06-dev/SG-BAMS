@@ -185,6 +185,7 @@
             btnSalir.TabIndex = 144;
             btnSalir.Values.DropDownArrowColor = Color.Empty;
             btnSalir.Values.Text = "Salir";
+            btnSalir.Click += btnSalir_Click;
             // 
             // frmModificarMarcaProducto
             // 

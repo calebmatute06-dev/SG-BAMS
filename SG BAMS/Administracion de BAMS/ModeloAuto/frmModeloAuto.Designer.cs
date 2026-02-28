@@ -29,21 +29,22 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmModeloAuto));
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             label7 = new Label();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
             pictureBox2 = new PictureBox();
             panel2 = new Panel();
-            dgvModelos = new Krypton.Toolkit.KryptonDataGridView();
             pictureBox16 = new PictureBox();
             label1 = new Label();
             kryptonButton2 = new Krypton.Toolkit.KryptonButton();
             btmAgregar = new Krypton.Toolkit.KryptonButton();
             btmModificar = new Krypton.Toolkit.KryptonButton();
+            dgvModelos = new Krypton.Toolkit.KryptonDataGridView();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dgvModelos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvModelos).BeginInit();
             SuspendLayout();
             // 
             // label7
@@ -90,23 +91,6 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(683, 24);
             panel2.TabIndex = 98;
-            // 
-            // dgvModelos
-            // 
-            dgvModelos.AllowUserToAddRows = false;
-            dgvModelos.AllowUserToDeleteRows = false;
-            dgvModelos.BorderStyle = BorderStyle.None;
-            dgvModelos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvModelos.Location = new Point(79, 121);
-            dgvModelos.Margin = new Padding(3, 4, 3, 4);
-            dgvModelos.Name = "dgvModelos";
-            dgvModelos.ReadOnly = true;
-            dgvModelos.RowHeadersWidth = 51;
-            dgvModelos.Size = new Size(512, 232);
-            dgvModelos.StateCommon.Background.Color1 = Color.SkyBlue;
-            dgvModelos.StateCommon.Background.Color2 = Color.SkyBlue;
-            dgvModelos.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
-            dgvModelos.TabIndex = 97;
             // 
             // pictureBox16
             // 
@@ -202,12 +186,38 @@
             btmModificar.Values.Text = "Modificar";
             btmModificar.Click += btmModificar_Click;
             // 
+            // dgvModelos
+            // 
+            dgvModelos.AllowUserToAddRows = false;
+            dgvModelos.AllowUserToDeleteRows = false;
+            dgvModelos.BorderStyle = BorderStyle.None;
+            dgvModelos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvModelos.Location = new Point(79, 121);
+            dgvModelos.Margin = new Padding(3, 4, 3, 4);
+            dgvModelos.Name = "dgvModelos";
+            dgvModelos.ReadOnly = true;
+            dgvModelos.RowHeadersWidth = 51;
+            dataGridViewCellStyle1.BackColor = Color.White;
+            dataGridViewCellStyle1.Font = new Font("Arial Narrow", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Navy;
+            dataGridViewCellStyle1.SelectionBackColor = Color.SkyBlue;
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            dgvModelos.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvModelos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvModelos.Size = new Size(512, 232);
+            dgvModelos.StateCommon.Background.Color1 = Color.SkyBlue;
+            dgvModelos.StateCommon.Background.Color2 = Color.SkyBlue;
+            dgvModelos.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
+            dgvModelos.TabIndex = 156;
+            dgvModelos.CellContentClick += dgvModelos_CellContentClick;
+            // 
             // frmModeloAuto
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(688, 517);
+            Controls.Add(dgvModelos);
             Controls.Add(btmModificar);
             Controls.Add(btmAgregar);
             Controls.Add(kryptonButton2);
@@ -216,7 +226,6 @@
             Controls.Add(panel1);
             Controls.Add(pictureBox2);
             Controls.Add(panel2);
-            Controls.Add(dgvModelos);
             Controls.Add(pictureBox16);
             Controls.Add(label1);
             Margin = new Padding(3, 4, 3, 4);
@@ -225,8 +234,8 @@
             Text = "fmrModeloAuto";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dgvModelos).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvModelos).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -238,11 +247,11 @@
         private Panel panel1;
         private PictureBox pictureBox2;
         private Panel panel2;
-        private Krypton.Toolkit.KryptonDataGridView dgvModelos;
         private PictureBox pictureBox16;
         private Label label1;
         private Krypton.Toolkit.KryptonButton kryptonButton2;
         private Krypton.Toolkit.KryptonButton btmAgregar;
         private Krypton.Toolkit.KryptonButton btmModificar;
+        private Krypton.Toolkit.KryptonDataGridView dgvModelos;
     }
 }

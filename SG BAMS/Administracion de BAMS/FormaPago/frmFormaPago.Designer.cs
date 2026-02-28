@@ -29,21 +29,22 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmFormaPago));
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             label7 = new Label();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
             pictureBox2 = new PictureBox();
             panel2 = new Panel();
-            dgvFormasPago = new Krypton.Toolkit.KryptonDataGridView();
             label1 = new Label();
             pictureBox16 = new PictureBox();
             btmSalir = new Krypton.Toolkit.KryptonButton();
             btnAgregar = new Krypton.Toolkit.KryptonButton();
             btmModificar = new Krypton.Toolkit.KryptonButton();
+            dgvFormasPago = new Krypton.Toolkit.KryptonDataGridView();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dgvFormasPago).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvFormasPago).BeginInit();
             SuspendLayout();
             // 
             // label7
@@ -90,23 +91,6 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(683, 24);
             panel2.TabIndex = 117;
-            // 
-            // dgvFormasPago
-            // 
-            dgvFormasPago.AllowUserToAddRows = false;
-            dgvFormasPago.AllowUserToDeleteRows = false;
-            dgvFormasPago.BorderStyle = BorderStyle.None;
-            dgvFormasPago.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvFormasPago.Location = new Point(80, 119);
-            dgvFormasPago.Margin = new Padding(3, 4, 3, 4);
-            dgvFormasPago.Name = "dgvFormasPago";
-            dgvFormasPago.ReadOnly = true;
-            dgvFormasPago.RowHeadersWidth = 51;
-            dgvFormasPago.Size = new Size(512, 232);
-            dgvFormasPago.StateCommon.Background.Color1 = Color.SkyBlue;
-            dgvFormasPago.StateCommon.Background.Color2 = Color.SkyBlue;
-            dgvFormasPago.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
-            dgvFormasPago.TabIndex = 116;
             // 
             // label1
             // 
@@ -202,12 +186,38 @@
             btmModificar.Values.Text = "Modificar";
             btmModificar.Click += btmModificar_Click;
             // 
+            // dgvFormasPago
+            // 
+            dgvFormasPago.AllowUserToAddRows = false;
+            dgvFormasPago.AllowUserToDeleteRows = false;
+            dgvFormasPago.BorderStyle = BorderStyle.None;
+            dgvFormasPago.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvFormasPago.Location = new Point(92, 120);
+            dgvFormasPago.Margin = new Padding(3, 4, 3, 4);
+            dgvFormasPago.Name = "dgvFormasPago";
+            dgvFormasPago.ReadOnly = true;
+            dgvFormasPago.RowHeadersWidth = 51;
+            dataGridViewCellStyle1.BackColor = Color.White;
+            dataGridViewCellStyle1.Font = new Font("Arial Narrow", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Navy;
+            dataGridViewCellStyle1.SelectionBackColor = Color.SkyBlue;
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            dgvFormasPago.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvFormasPago.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvFormasPago.Size = new Size(512, 232);
+            dgvFormasPago.StateCommon.Background.Color1 = Color.SkyBlue;
+            dgvFormasPago.StateCommon.Background.Color2 = Color.SkyBlue;
+            dgvFormasPago.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
+            dgvFormasPago.TabIndex = 156;
+            dgvFormasPago.CellContentClick += dgvFormasPago_CellContentClick;
+            // 
             // frmFormaPago
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(693, 515);
+            Controls.Add(dgvFormasPago);
             Controls.Add(btmModificar);
             Controls.Add(btnAgregar);
             Controls.Add(btmSalir);
@@ -217,7 +227,6 @@
             Controls.Add(panel1);
             Controls.Add(pictureBox2);
             Controls.Add(panel2);
-            Controls.Add(dgvFormasPago);
             Controls.Add(label1);
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmFormaPago";
@@ -225,8 +234,8 @@
             Text = "frmFormaPago";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dgvFormasPago).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvFormasPago).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -237,11 +246,11 @@
         private Panel panel1;
         private PictureBox pictureBox2;
         private Panel panel2;
-        private Krypton.Toolkit.KryptonDataGridView dgvFormasPago;
         private Label label1;
         private PictureBox pictureBox16;
         private Krypton.Toolkit.KryptonButton btmSalir;
         private Krypton.Toolkit.KryptonButton btnAgregar;
         private Krypton.Toolkit.KryptonButton btmModificar;
+        private Krypton.Toolkit.KryptonDataGridView dgvFormasPago;
     }
 }

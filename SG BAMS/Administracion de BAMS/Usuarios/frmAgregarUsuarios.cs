@@ -8,21 +8,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Azure.Core.HttpHeader;
 
 namespace SG_BAMS
 {
     public partial class frmAgregarUsuarios : Form
     {
-
+        private DataTable dtRoles;
         public frmAgregarUsuarios()
         {
             InitializeComponent();
             CargarComboRoles();
+            
         }
 
         private async void fmrAgregarUsuarios_Load(object sender, EventArgs e)
         {
             await CargarComboRoles();
+            cmbRol.DropDownStyle = ComboBoxStyle.DropDown;
+            cmbRol.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cmbRol.AutoCompleteSource = AutoCompleteSource.ListItems;
+            ConfigurarFiltroRoles();
+
         }
 
         private async Task CargarComboRoles()
@@ -100,8 +107,43 @@ namespace SG_BAMS
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
-            frmUsuarios verUsuario = new frmUsuarios();
-            verUsuario.Show();
+        }
+
+        // Variable para guardar la lista original de roles y no perderla al filtrar
+        private List<string> listaOriginalRoles = new List<string>();
+
+        private  void ConfigurarFiltroRoles()
+        {
+            cmbRol.DropDownStyle = ComboBoxStyle.DropDown;
+
+            cmbRol.TextUpdate += (s, e) =>
+            {
+                string filtro = cmbRol.Text;
+
+                if (dtRoles != null)
+                {
+                    // Creamos una vista filtrada del DataTable
+                    DataView dv = dtRoles.DefaultView;
+
+                    // Filtramos por la columna de texto (descripcion_rol)
+                    dv.RowFilter = $"descripcion_rol LIKE '%{filtro}%'";
+
+                    // Actualizamos el origen de datos
+                    cmbRol.DataSource = dv;
+
+                    // Mantenemos el desplegable abierto y el texto que el usuario escribe
+                    cmbRol.DroppedDown = true;
+                    cmbRol.Text = filtro;
+
+                    // Ponemos el cursor al final del texto
+                    cmbRol.SelectionStart = filtro.Length;
+
+                    // Evitamos que el cursor cambie de forma
+                    Cursor.Current = Cursors.Default;
+                }
+            };
+
         }
     }
 }
+

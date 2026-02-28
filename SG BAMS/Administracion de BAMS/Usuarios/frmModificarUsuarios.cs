@@ -63,6 +63,7 @@ namespace SG_BAMS
 
         private async void btmModificar_Click(object sender, EventArgs e)
         {
+
             try
             {
                 clsUsuario objetoUsuario = new clsUsuario();
@@ -83,22 +84,17 @@ namespace SG_BAMS
 
                 if (exito)
                 {
-                    MessageBox.Show("Usuario actualizado correctamente.");
-                    frmUsuarios verUsuarios = new frmUsuarios();
-                    verUsuarios.Show();
+                    MessageBox.Show("Rol actualizado con éxito.", "SG-BAMS");
+                    this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            finally { this.Cursor = Cursors.Default; }
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            frmUsuarios verUsuario = new frmUsuarios();
-            verUsuario.Show();
             this.Close();
         }
 

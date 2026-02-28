@@ -44,7 +44,7 @@ namespace SG_BAMS
                 if (exito)
                 {
                     MessageBox.Show("Actualizado correctamente.");
-                    this.DialogResult = DialogResult.OK; 
+                    this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
             }
@@ -57,6 +57,11 @@ namespace SG_BAMS
                 this.Cursor = Cursors.Default;
             }
         }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
-    }
+}
 

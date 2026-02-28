@@ -17,7 +17,7 @@ namespace SG_BAMS
         int idMarca;
         public frmModificarMarcaProducto(int id, string nombreActual)
         {
-           
+
             InitializeComponent();
             this.idMarca = id;
             txtDescri.Text = nombreActual;
@@ -52,7 +52,12 @@ namespace SG_BAMS
             catch (Exception ex) { MessageBox.Show(ex.Message); }
             finally { this.Cursor = Cursors.Default; }
         }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
-    }
+}
     
 

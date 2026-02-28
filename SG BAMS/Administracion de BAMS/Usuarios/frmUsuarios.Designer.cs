@@ -29,6 +29,7 @@ namespace SG_BAMS
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             label1 = new Label();
             panel2 = new Panel();
             pictureBox2 = new PictureBox();
@@ -38,12 +39,12 @@ namespace SG_BAMS
             btmModificar = new Krypton.Toolkit.KryptonButton();
             btmAgregar = new Krypton.Toolkit.KryptonButton();
             BtmSalir = new Krypton.Toolkit.KryptonButton();
-            dgvUsuarios = new DataGridView();
             pictureBox3 = new PictureBox();
+            dgvUsuarios = new Krypton.Toolkit.KryptonDataGridView();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dgvUsuarios).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvUsuarios).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -176,16 +177,6 @@ namespace SG_BAMS
             BtmSalir.Values.Text = "Salir";
             BtmSalir.Click += BtmSalir_Click;
             // 
-            // dgvUsuarios
-            // 
-            dgvUsuarios.BackgroundColor = Color.SkyBlue;
-            dgvUsuarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvUsuarios.Location = new Point(84, 114);
-            dgvUsuarios.Name = "dgvUsuarios";
-            dgvUsuarios.RowHeadersWidth = 51;
-            dgvUsuarios.Size = new Size(511, 238);
-            dgvUsuarios.TabIndex = 152;
-            // 
             // pictureBox3
             // 
             pictureBox3.BackgroundImage = Properties.Resources.perfiles;
@@ -196,14 +187,39 @@ namespace SG_BAMS
             pictureBox3.TabIndex = 153;
             pictureBox3.TabStop = false;
             // 
+            // dgvUsuarios
+            // 
+            dgvUsuarios.AllowUserToAddRows = false;
+            dgvUsuarios.AllowUserToDeleteRows = false;
+            dgvUsuarios.BorderStyle = BorderStyle.None;
+            dgvUsuarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvUsuarios.Location = new Point(79, 108);
+            dgvUsuarios.Margin = new Padding(3, 4, 3, 4);
+            dgvUsuarios.Name = "dgvUsuarios";
+            dgvUsuarios.ReadOnly = true;
+            dgvUsuarios.RowHeadersWidth = 51;
+            dataGridViewCellStyle1.BackColor = Color.White;
+            dataGridViewCellStyle1.Font = new Font("Arial Narrow", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Navy;
+            dataGridViewCellStyle1.SelectionBackColor = Color.SkyBlue;
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            dgvUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvUsuarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvUsuarios.Size = new Size(512, 232);
+            dgvUsuarios.StateCommon.Background.Color1 = Color.SkyBlue;
+            dgvUsuarios.StateCommon.Background.Color2 = Color.SkyBlue;
+            dgvUsuarios.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
+            dgvUsuarios.TabIndex = 154;
+            dgvUsuarios.CellContentClick += dgvUsuarios_CellContentClick;
+            // 
             // frmUsuarios
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(689, 512);
-            Controls.Add(pictureBox3);
             Controls.Add(dgvUsuarios);
+            Controls.Add(pictureBox3);
             Controls.Add(BtmSalir);
             Controls.Add(btmAgregar);
             Controls.Add(btmModificar);
@@ -219,8 +235,8 @@ namespace SG_BAMS
             Text = "x";
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dgvUsuarios).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvUsuarios).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -240,7 +256,8 @@ namespace SG_BAMS
         private Krypton.Toolkit.KryptonButton btmModificar;
         private Krypton.Toolkit.KryptonButton btmAgregar;
         private Krypton.Toolkit.KryptonButton BtmSalir;
-        private DataGridView dgvUsuarios;
+        private DataGridView dd;
         private PictureBox pictureBox3;
+        private Krypton.Toolkit.KryptonDataGridView dgvUsuarios;
     }
 }

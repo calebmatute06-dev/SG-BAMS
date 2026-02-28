@@ -68,8 +68,13 @@ namespace SG_BAMS
 
             dgvEstados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvEstados.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            dgvEstados.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
+            dgvEstados.AllowUserToAddRows = false;
+
             dgvEstados.AllowUserToAddRows = false;
             dgvEstados.ReadOnly = true;
+            dgvEstados.ClearSelection();
         }
 
         private void btmModificar_Click(object sender, EventArgs e)
@@ -105,6 +110,27 @@ namespace SG_BAMS
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 _ = CargarGridEstados();
+            }
+        }
+
+        private void dgvEstados_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvEstados.SelectedRows.Count > 0)
+            {
+
+                int id = Convert.ToInt32(dgvEstados.CurrentRow.Cells["id_estado"].Value);
+                string descripcion = dgvEstados.CurrentRow.Cells["descripcion_estado"].Value.ToString();
+
+                frmModificarEstado frmMod = new frmModificarEstado(id, descripcion);
+
+                if (frmMod.ShowDialog() == DialogResult.OK)
+                {
+                    _ = CargarGridEstados();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione un estado de la lista para modificar.");
             }
         }
     }

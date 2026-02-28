@@ -29,21 +29,22 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMarcaProductos));
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             label7 = new Label();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
             pictureBox2 = new PictureBox();
             panel2 = new Panel();
-            dgvMarcas = new Krypton.Toolkit.KryptonDataGridView();
             pictureBox16 = new PictureBox();
             label1 = new Label();
             btmAgregar = new Krypton.Toolkit.KryptonButton();
             btmModificar = new Krypton.Toolkit.KryptonButton();
             btmSalir = new Krypton.Toolkit.KryptonButton();
+            dgvMarcas = new Krypton.Toolkit.KryptonDataGridView();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dgvMarcas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvMarcas).BeginInit();
             SuspendLayout();
             // 
             // label7
@@ -90,23 +91,6 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(683, 24);
             panel2.TabIndex = 108;
-            // 
-            // dgvMarcas
-            // 
-            dgvMarcas.AllowUserToAddRows = false;
-            dgvMarcas.AllowUserToDeleteRows = false;
-            dgvMarcas.BorderStyle = BorderStyle.None;
-            dgvMarcas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvMarcas.Location = new Point(79, 121);
-            dgvMarcas.Margin = new Padding(3, 4, 3, 4);
-            dgvMarcas.Name = "dgvMarcas";
-            dgvMarcas.ReadOnly = true;
-            dgvMarcas.RowHeadersWidth = 51;
-            dgvMarcas.Size = new Size(512, 232);
-            dgvMarcas.StateCommon.Background.Color1 = Color.SkyBlue;
-            dgvMarcas.StateCommon.Background.Color2 = Color.SkyBlue;
-            dgvMarcas.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
-            dgvMarcas.TabIndex = 107;
             // 
             // pictureBox16
             // 
@@ -203,12 +187,38 @@
             btmSalir.Values.Text = "Salir";
             btmSalir.Click += btmSalir_Click;
             // 
+            // dgvMarcas
+            // 
+            dgvMarcas.AllowUserToAddRows = false;
+            dgvMarcas.AllowUserToDeleteRows = false;
+            dgvMarcas.BorderStyle = BorderStyle.None;
+            dgvMarcas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvMarcas.Location = new Point(79, 117);
+            dgvMarcas.Margin = new Padding(3, 4, 3, 4);
+            dgvMarcas.Name = "dgvMarcas";
+            dgvMarcas.ReadOnly = true;
+            dgvMarcas.RowHeadersWidth = 51;
+            dataGridViewCellStyle1.BackColor = Color.White;
+            dataGridViewCellStyle1.Font = new Font("Arial Narrow", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Navy;
+            dataGridViewCellStyle1.SelectionBackColor = Color.SkyBlue;
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            dgvMarcas.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvMarcas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvMarcas.Size = new Size(512, 232);
+            dgvMarcas.StateCommon.Background.Color1 = Color.SkyBlue;
+            dgvMarcas.StateCommon.Background.Color2 = Color.SkyBlue;
+            dgvMarcas.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
+            dgvMarcas.TabIndex = 155;
+            dgvMarcas.CellContentClick += dgvMarcas_CellContentClick;
+            // 
             // frmMarcaProductos
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(690, 520);
+            Controls.Add(dgvMarcas);
             Controls.Add(btmSalir);
             Controls.Add(btmModificar);
             Controls.Add(btmAgregar);
@@ -217,7 +227,6 @@
             Controls.Add(panel1);
             Controls.Add(pictureBox2);
             Controls.Add(panel2);
-            Controls.Add(dgvMarcas);
             Controls.Add(pictureBox16);
             Controls.Add(label1);
             Margin = new Padding(3, 4, 3, 4);
@@ -226,8 +235,8 @@
             Text = "fmrMarcaProductos";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dgvMarcas).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvMarcas).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -239,11 +248,11 @@
         private Panel panel1;
         private PictureBox pictureBox2;
         private Panel panel2;
-        private Krypton.Toolkit.KryptonDataGridView dgvMarcas;
         private PictureBox pictureBox16;
         private Label label1;
         private Krypton.Toolkit.KryptonButton btmAgregar;
         private Krypton.Toolkit.KryptonButton btmModificar;
         private Krypton.Toolkit.KryptonButton btmSalir;
+        private Krypton.Toolkit.KryptonDataGridView dgvMarcas;
     }
 }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTipoProducto));
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             pictureBox16 = new PictureBox();
             label7 = new Label();
             pictureBox1 = new PictureBox();
@@ -112,12 +113,19 @@
             dgvTipoProducto.Name = "dgvTipoProducto";
             dgvTipoProducto.ReadOnly = true;
             dgvTipoProducto.RowHeadersWidth = 51;
+            dataGridViewCellStyle1.BackColor = Color.White;
+            dataGridViewCellStyle1.Font = new Font("Arial Narrow", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Navy;
+            dataGridViewCellStyle1.SelectionBackColor = Color.SkyBlue;
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            dgvTipoProducto.RowsDefaultCellStyle = dataGridViewCellStyle1;
             dgvTipoProducto.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvTipoProducto.Size = new Size(512, 232);
             dgvTipoProducto.StateCommon.Background.Color1 = Color.SkyBlue;
             dgvTipoProducto.StateCommon.Background.Color2 = Color.SkyBlue;
             dgvTipoProducto.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
             dgvTipoProducto.TabIndex = 116;
+            dgvTipoProducto.CellContentClick += dgvTipoProducto_CellContentClick;
             // 
             // label1
             // 

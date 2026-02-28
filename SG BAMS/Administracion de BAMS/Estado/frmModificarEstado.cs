@@ -23,8 +23,6 @@ namespace SG_BAMS
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            frmEstado verEstados = new frmEstado();
-            verEstados.ShowDialog();
             this.Close();
         }
 

@@ -30,8 +30,7 @@ namespace SG_BAMS
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            frmTipoProducto verproducto = new frmTipoProducto();
-            verproducto.Show();
+
             this.Close();
         }
 

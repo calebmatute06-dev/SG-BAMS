@@ -29,21 +29,22 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEstado));
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             label7 = new Label();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
             pictureBox2 = new PictureBox();
             panel2 = new Panel();
-            dgvEstados = new Krypton.Toolkit.KryptonDataGridView();
             label1 = new Label();
             pictureBox16 = new PictureBox();
             btmModificar = new Krypton.Toolkit.KryptonButton();
             btmSalir = new Krypton.Toolkit.KryptonButton();
             btnAgregar = new Krypton.Toolkit.KryptonButton();
+            dgvEstados = new Krypton.Toolkit.KryptonDataGridView();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dgvEstados).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvEstados).BeginInit();
             SuspendLayout();
             // 
             // label7
@@ -90,23 +91,6 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(683, 24);
             panel2.TabIndex = 107;
-            // 
-            // dgvEstados
-            // 
-            dgvEstados.AllowUserToAddRows = false;
-            dgvEstados.AllowUserToDeleteRows = false;
-            dgvEstados.BorderStyle = BorderStyle.None;
-            dgvEstados.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvEstados.Location = new Point(78, 119);
-            dgvEstados.Margin = new Padding(3, 4, 3, 4);
-            dgvEstados.Name = "dgvEstados";
-            dgvEstados.ReadOnly = true;
-            dgvEstados.RowHeadersWidth = 51;
-            dgvEstados.Size = new Size(512, 232);
-            dgvEstados.StateCommon.Background.Color1 = Color.SkyBlue;
-            dgvEstados.StateCommon.Background.Color2 = Color.SkyBlue;
-            dgvEstados.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
-            dgvEstados.TabIndex = 106;
             // 
             // label1
             // 
@@ -202,12 +186,38 @@
             btnAgregar.Values.Text = "Agregar";
             btnAgregar.Click += btnAgregar_Click;
             // 
+            // dgvEstados
+            // 
+            dgvEstados.AllowUserToAddRows = false;
+            dgvEstados.AllowUserToDeleteRows = false;
+            dgvEstados.BorderStyle = BorderStyle.None;
+            dgvEstados.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvEstados.Location = new Point(78, 125);
+            dgvEstados.Margin = new Padding(3, 4, 3, 4);
+            dgvEstados.Name = "dgvEstados";
+            dgvEstados.ReadOnly = true;
+            dgvEstados.RowHeadersWidth = 51;
+            dataGridViewCellStyle1.BackColor = Color.White;
+            dataGridViewCellStyle1.Font = new Font("Arial Narrow", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Navy;
+            dataGridViewCellStyle1.SelectionBackColor = Color.SkyBlue;
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            dgvEstados.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvEstados.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvEstados.Size = new Size(512, 232);
+            dgvEstados.StateCommon.Background.Color1 = Color.SkyBlue;
+            dgvEstados.StateCommon.Background.Color2 = Color.SkyBlue;
+            dgvEstados.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
+            dgvEstados.TabIndex = 158;
+            dgvEstados.CellContentClick += dgvEstados_CellContentClick;
+            // 
             // frmEstado
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(686, 515);
+            Controls.Add(dgvEstados);
             Controls.Add(btnAgregar);
             Controls.Add(btmSalir);
             Controls.Add(btmModificar);
@@ -217,7 +227,6 @@
             Controls.Add(panel1);
             Controls.Add(pictureBox2);
             Controls.Add(panel2);
-            Controls.Add(dgvEstados);
             Controls.Add(label1);
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmEstado";
@@ -225,8 +234,8 @@
             Text = "frmEstado";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dgvEstados).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvEstados).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -238,11 +247,11 @@
         private Panel panel1;
         private PictureBox pictureBox2;
         private Panel panel2;
-        private Krypton.Toolkit.KryptonDataGridView dgvEstados;
         private Label label1;
         private PictureBox pictureBox16;
         private Krypton.Toolkit.KryptonButton btmModificar;
         private Krypton.Toolkit.KryptonButton btmSalir;
         private Krypton.Toolkit.KryptonButton btnAgregar;
+        private Krypton.Toolkit.KryptonDataGridView dgvEstados;
     }
 }

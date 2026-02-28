@@ -23,8 +23,6 @@ namespace SG_BAMS
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            frmModeloAuto verMauto = new frmModeloAuto();
-            verMauto.Show();
             this.Close();
         }
 

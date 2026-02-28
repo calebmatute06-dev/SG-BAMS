@@ -28,21 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             label7 = new Label();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
             pictureBox2 = new PictureBox();
             panel2 = new Panel();
-            dgvRoles = new Krypton.Toolkit.KryptonDataGridView();
             label1 = new Label();
             pictureBox3 = new PictureBox();
             btmAgregar = new Krypton.Toolkit.KryptonButton();
             btmModificar = new Krypton.Toolkit.KryptonButton();
             btmSalir = new Krypton.Toolkit.KryptonButton();
+            dgvRoles = new Krypton.Toolkit.KryptonDataGridView();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dgvRoles).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvRoles).BeginInit();
             SuspendLayout();
             // 
             // label7
@@ -89,23 +90,6 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(683, 24);
             panel2.TabIndex = 117;
-            // 
-            // dgvRoles
-            // 
-            dgvRoles.AllowUserToAddRows = false;
-            dgvRoles.AllowUserToDeleteRows = false;
-            dgvRoles.BorderStyle = BorderStyle.None;
-            dgvRoles.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvRoles.Location = new Point(85, 123);
-            dgvRoles.Margin = new Padding(3, 4, 3, 4);
-            dgvRoles.Name = "dgvRoles";
-            dgvRoles.ReadOnly = true;
-            dgvRoles.RowHeadersWidth = 51;
-            dgvRoles.Size = new Size(512, 232);
-            dgvRoles.StateCommon.Background.Color1 = Color.SkyBlue;
-            dgvRoles.StateCommon.Background.Color2 = Color.SkyBlue;
-            dgvRoles.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
-            dgvRoles.TabIndex = 116;
             // 
             // label1
             // 
@@ -203,12 +187,38 @@
             btmSalir.Values.Text = "Salir";
             btmSalir.Click += btmSalir_Click;
             // 
+            // dgvRoles
+            // 
+            dgvRoles.AllowUserToAddRows = false;
+            dgvRoles.AllowUserToDeleteRows = false;
+            dgvRoles.BorderStyle = BorderStyle.None;
+            dgvRoles.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvRoles.Location = new Point(82, 121);
+            dgvRoles.Margin = new Padding(3, 4, 3, 4);
+            dgvRoles.Name = "dgvRoles";
+            dgvRoles.ReadOnly = true;
+            dgvRoles.RowHeadersWidth = 51;
+            dataGridViewCellStyle1.BackColor = Color.White;
+            dataGridViewCellStyle1.Font = new Font("Arial Narrow", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Navy;
+            dataGridViewCellStyle1.SelectionBackColor = Color.SkyBlue;
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            dgvRoles.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvRoles.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvRoles.Size = new Size(512, 232);
+            dgvRoles.StateCommon.Background.Color1 = Color.SkyBlue;
+            dgvRoles.StateCommon.Background.Color2 = Color.SkyBlue;
+            dgvRoles.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
+            dgvRoles.TabIndex = 155;
+            dgvRoles.CellContentClick += dgvRoles_CellContentClick;
+            // 
             // frmRoles
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(686, 519);
+            Controls.Add(dgvRoles);
             Controls.Add(btmSalir);
             Controls.Add(btmModificar);
             Controls.Add(btmAgregar);
@@ -218,7 +228,6 @@
             Controls.Add(panel1);
             Controls.Add(pictureBox2);
             Controls.Add(panel2);
-            Controls.Add(dgvRoles);
             Controls.Add(label1);
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmRoles";
@@ -226,8 +235,8 @@
             Text = "frmRoles";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dgvRoles).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvRoles).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -238,11 +247,12 @@
         private Panel panel1;
         private PictureBox pictureBox2;
         private Panel panel2;
-        private Krypton.Toolkit.KryptonDataGridView dgvRoles;
+        private Krypton.Toolkit.KryptonDataGridView adzed;
         private Label label1;
         private PictureBox pictureBox3;
         private Krypton.Toolkit.KryptonButton btmAgregar;
         private Krypton.Toolkit.KryptonButton btmModificar;
         private Krypton.Toolkit.KryptonButton btmSalir;
+        private Krypton.Toolkit.KryptonDataGridView dgvRoles;
     }
 }
