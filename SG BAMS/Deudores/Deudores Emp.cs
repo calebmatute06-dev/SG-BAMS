@@ -47,9 +47,10 @@ namespace SG_BAMS
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
+            this.Hide();
             SG_BAMS.Login.Login log = new SG_BAMS.Login.Login();
             log.Show();
-            this.Close();
+            
         }
 
         private void kryptonButton1_Click(object sender, EventArgs e)
@@ -62,7 +63,7 @@ namespace SG_BAMS
         {
             MenuPrincipalEmp Menemp = new MenuPrincipalEmp();
             Menemp.Show();
-            this.Close();
+            this.Hide();
         }
 
         private void kryptonButton8_Click(object sender, EventArgs e)

@@ -189,7 +189,7 @@ namespace SG_BAMS
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Hide();
             SG_BAMS.Login.Login log = new SG_BAMS.Login.Login();
             log.Show();
         }
@@ -257,10 +257,12 @@ namespace SG_BAMS
 
         private void btnfacturas_Click(object sender, EventArgs e)
         {
+
+            this.Hide();
             FacturasEmp fact = new FacturasEmp();
 
             fact.Show();
-            this.Close();
+            
         }
 
         private async void btnclientes_Click(object sender, EventArgs e)
@@ -347,6 +349,11 @@ namespace SG_BAMS
         {
             FacturasAdm frmFA = new FacturasAdm();
             frmFA.Show();
+        }
+
+        private void btnmenuprincipal_Click(object sender, EventArgs e)
+        {
+            this.Refresh();
         }
     }
 }

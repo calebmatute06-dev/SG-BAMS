@@ -259,7 +259,7 @@ namespace SG_BAMS
 
         private void btnmenuprincipal_Click(object sender, EventArgs e)
         {
-            this.Show();
+            this.Refresh();
         }
 
         private void btnajustes_Click(object sender, EventArgs e)
@@ -276,9 +276,9 @@ namespace SG_BAMS
 
         private void BtnCerrarSesión_Click(object sender, EventArgs e)
         {
-            this.Close();
-            SG_BAMS.Login.Login Log = new Login.Login();
-            Log.Show();
+            this.Hide();
+            SG_BAMS.Login.Login log = new SG_BAMS.Login.Login();
+            log.Show();
         }
 
         private void btndeudores_Click(object sender, EventArgs e)
@@ -306,6 +306,35 @@ namespace SG_BAMS
         {
             FacturasAdm Fact = new FacturasAdm();
             Fact.Show();
+            this.Hide();
+        }
+
+        private void btninventario2_Click(object sender, EventArgs e)
+        {
+            InventarioAdmin Invad = new InventarioAdmin();
+            Invad.Show();
+            this.Hide();
+        }
+
+        private void btninventario3_Click(object sender, EventArgs e)
+        {
+
+            InventarioAdmin Invad = new InventarioAdmin();
+            Invad.Show();
+            this.Hide();
+        }
+
+        private void btndeudores2_Click(object sender, EventArgs e)
+        {
+            Deudores Deu = new Deudores();
+            Deu.Show();
+            this.Hide();
+        }
+
+        private void btnclientes2_Click(object sender, EventArgs e)
+        {
+            ClientesAdm Client = new ClientesAdm();
+            Client.Show();
             this.Hide();
         }
     }

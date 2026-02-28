@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Deudores_Emp));
-            pictureBox17 = new PictureBox();
             kryptonButton10 = new Krypton.Toolkit.KryptonButton();
             dgvDeudores = new Krypton.Toolkit.KryptonDataGridView();
             kryptonGroup1 = new Krypton.Toolkit.KryptonGroup();
@@ -68,11 +67,9 @@
             pictureBox22 = new PictureBox();
             kryptonButton3 = new Krypton.Toolkit.KryptonButton();
             kryptonGroup6 = new Krypton.Toolkit.KryptonGroup();
-            kryptonButton13 = new Krypton.Toolkit.KryptonButton();
             kryptonButton15 = new Krypton.Toolkit.KryptonButton();
-            pictureBox20 = new PictureBox();
             pictureBox19 = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)pictureBox17).BeginInit();
+            pictureBox10 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)dgvDeudores).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
@@ -96,18 +93,9 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox22).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup6.Panel).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox20).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox19).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox10).BeginInit();
             SuspendLayout();
-            // 
-            // pictureBox17
-            // 
-            pictureBox17.Location = new Point(311, 34);
-            pictureBox17.Name = "pictureBox17";
-            pictureBox17.Size = new Size(104, 97);
-            pictureBox17.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox17.TabIndex = 105;
-            pictureBox17.TabStop = false;
             // 
             // kryptonButton10
             // 
@@ -144,13 +132,13 @@
             dgvDeudores.Name = "dgvDeudores";
             dgvDeudores.ReadOnly = true;
             dgvDeudores.RowHeadersWidth = 51;
-            dgvDeudores.Size = new Size(631, 503);
+            dgvDeudores.Size = new Size(1108, 503);
             dgvDeudores.TabIndex = 100;
             // 
             // kryptonGroup1
             // 
             kryptonGroup1.Location = new Point(329, 223);
-            kryptonGroup1.Size = new Size(714, 555);
+            kryptonGroup1.Size = new Size(1177, 555);
             kryptonGroup1.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroup1.StateCommon.Border.Rounding = 70F;
             kryptonGroup1.TabIndex = 99;
@@ -165,7 +153,7 @@
             // 
             // kryptonButton11
             // 
-            kryptonButton11.Location = new Point(973, 28);
+            kryptonButton11.Location = new Point(1433, 34);
             kryptonButton11.Name = "kryptonButton11";
             kryptonButton11.OverrideDefault.Back.Color1 = Color.Transparent;
             kryptonButton11.OverrideDefault.Back.Color2 = Color.Transparent;
@@ -193,7 +181,7 @@
             // 
             pictureBox18.BackgroundImage = Properties.Resources.ajus;
             pictureBox18.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox18.Location = new Point(918, 27);
+            pictureBox18.Location = new Point(1362, 29);
             pictureBox18.Name = "pictureBox18";
             pictureBox18.Size = new Size(53, 49);
             pictureBox18.TabIndex = 92;
@@ -208,7 +196,7 @@
             button12.FlatAppearance.BorderSize = 0;
             button12.FlatStyle = FlatStyle.Flat;
             button12.ForeColor = Color.Navy;
-            button12.Location = new Point(853, 27);
+            button12.Location = new Point(1279, 34);
             button12.Name = "button12";
             button12.Size = new Size(59, 44);
             button12.TabIndex = 91;
@@ -254,7 +242,7 @@
             panel3.BackColor = Color.Navy;
             panel3.Location = new Point(-2, 881);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1102, 24);
+            panel3.Size = new Size(1563, 24);
             panel3.TabIndex = 89;
             // 
             // pictureBox3
@@ -270,9 +258,9 @@
             // 
             panel4.BackColor = Color.Navy;
             panel4.Controls.Add(pictureBox2);
-            panel4.Location = new Point(1076, 21);
+            panel4.Location = new Point(1537, 9);
             panel4.Name = "panel4";
-            panel4.Size = new Size(24, 869);
+            panel4.Size = new Size(24, 893);
             panel4.TabIndex = 85;
             // 
             // pictureBox2
@@ -290,7 +278,7 @@
             panel2.Controls.Add(pictureBox4);
             panel2.Location = new Point(-2, -2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1102, 24);
+            panel2.Size = new Size(1563, 24);
             panel2.TabIndex = 84;
             // 
             // pictureBox4
@@ -607,13 +595,13 @@
             // 
             textBox1.Location = new Point(578, 177);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(309, 27);
+            textBox1.Size = new Size(821, 27);
             textBox1.TabIndex = 154;
             // 
             // pictureBox22
             // 
             pictureBox22.BackColor = Color.SkyBlue;
-            pictureBox22.Location = new Point(893, 170);
+            pictureBox22.Location = new Point(1405, 170);
             pictureBox22.Name = "pictureBox22";
             pictureBox22.Size = new Size(49, 39);
             pictureBox22.TabIndex = 153;
@@ -644,36 +632,14 @@
             // kryptonGroup6
             // 
             kryptonGroup6.Location = new Point(552, 165);
-            kryptonGroup6.Size = new Size(416, 52);
+            kryptonGroup6.Size = new Size(928, 52);
             kryptonGroup6.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroup6.StateCommon.Border.Rounding = 70F;
             kryptonGroup6.TabIndex = 151;
             // 
-            // kryptonButton13
-            // 
-            kryptonButton13.Location = new Point(791, 802);
-            kryptonButton13.Name = "kryptonButton13";
-            kryptonButton13.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            kryptonButton13.OverrideDefault.Back.Color2 = Color.White;
-            kryptonButton13.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            kryptonButton13.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton13.Size = new Size(151, 50);
-            kryptonButton13.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonButton13.StateCommon.Back.Color2 = Color.White;
-            kryptonButton13.StateCommon.Border.Rounding = 40F;
-            kryptonButton13.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton13.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton13.StateNormal.Back.Color1 = Color.SkyBlue;
-            kryptonButton13.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            kryptonButton13.StatePressed.Back.Color1 = Color.Transparent;
-            kryptonButton13.StatePressed.Back.Color2 = Color.Transparent;
-            kryptonButton13.TabIndex = 159;
-            kryptonButton13.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton13.Values.Text = "Modificar";
-            // 
             // kryptonButton15
             // 
-            kryptonButton15.Location = new Point(507, 802);
+            kryptonButton15.Location = new Point(893, 802);
             kryptonButton15.Name = "kryptonButton15";
             kryptonButton15.OverrideDefault.Back.Color1 = Color.SkyBlue;
             kryptonButton15.OverrideDefault.Back.Color2 = Color.White;
@@ -694,40 +660,38 @@
             kryptonButton15.Values.Text = "Pago Deuda";
             kryptonButton15.Click += kryptonButton15_Click;
             // 
-            // pictureBox20
-            // 
-            pictureBox20.Image = (Image)resources.GetObject("pictureBox20.Image");
-            pictureBox20.Location = new Point(711, 794);
-            pictureBox20.Name = "pictureBox20";
-            pictureBox20.Size = new Size(75, 72);
-            pictureBox20.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox20.TabIndex = 157;
-            pictureBox20.TabStop = false;
-            // 
             // pictureBox19
             // 
             pictureBox19.Image = (Image)resources.GetObject("pictureBox19.Image");
-            pictureBox19.Location = new Point(427, 790);
+            pictureBox19.Location = new Point(775, 790);
             pictureBox19.Name = "pictureBox19";
             pictureBox19.Size = new Size(75, 72);
             pictureBox19.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox19.TabIndex = 156;
             pictureBox19.TabStop = false;
             // 
+            // pictureBox10
+            // 
+            pictureBox10.Image = (Image)resources.GetObject("pictureBox10.Image");
+            pictureBox10.Location = new Point(329, 43);
+            pictureBox10.Name = "pictureBox10";
+            pictureBox10.Size = new Size(75, 72);
+            pictureBox10.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox10.TabIndex = 159;
+            pictureBox10.TabStop = false;
+            // 
             // Deudores_Emp
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1102, 899);
-            Controls.Add(kryptonButton13);
+            ClientSize = new Size(1559, 899);
+            Controls.Add(pictureBox10);
             Controls.Add(kryptonButton15);
-            Controls.Add(pictureBox20);
             Controls.Add(pictureBox19);
             Controls.Add(textBox1);
             Controls.Add(pictureBox22);
             Controls.Add(kryptonButton3);
             Controls.Add(kryptonGroup6);
-            Controls.Add(pictureBox17);
             Controls.Add(kryptonButton10);
             Controls.Add(dgvDeudores);
             Controls.Add(kryptonGroup1);
@@ -745,7 +709,6 @@
             Controls.Add(panel1);
             Name = "Deudores_Emp";
             Text = "Deudores_Emp";
-            ((System.ComponentModel.ISupportInitialize)pictureBox17).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvDeudores).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).EndInit();
@@ -770,14 +733,13 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox22).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup6.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup6).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox20).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox19).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox10).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-        private PictureBox pictureBox17;
         private Krypton.Toolkit.KryptonButton kryptonButton10;
         private Krypton.Toolkit.KryptonDataGridView dgvDeudores;
         private Krypton.Toolkit.KryptonGroup kryptonGroup1;
@@ -816,9 +778,8 @@
         private PictureBox pictureBox22;
         private Krypton.Toolkit.KryptonButton kryptonButton3;
         private Krypton.Toolkit.KryptonGroup kryptonGroup6;
-        private Krypton.Toolkit.KryptonButton kryptonButton13;
         private Krypton.Toolkit.KryptonButton kryptonButton15;
-        private PictureBox pictureBox20;
         private PictureBox pictureBox19;
+        private PictureBox pictureBox10;
     }
 }
