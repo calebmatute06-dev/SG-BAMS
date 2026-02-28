@@ -338,9 +338,11 @@ namespace SG_BAMS
             this.Hide();
         }
 
-        private void kryptonButton10_Click(object sender, EventArgs e)
+        private void btnAdministracion_Click(object sender, EventArgs e)
         {
-
+            frmAdministracion Admin = new frmAdministracion();
+            Admin.Show();
+            this.Hide();
         }
     }
 }
