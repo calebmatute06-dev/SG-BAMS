@@ -132,13 +132,13 @@
             dgvDeudores.Name = "dgvDeudores";
             dgvDeudores.ReadOnly = true;
             dgvDeudores.RowHeadersWidth = 51;
-            dgvDeudores.Size = new Size(1108, 503);
+            dgvDeudores.Size = new Size(1179, 503);
             dgvDeudores.TabIndex = 100;
             // 
             // kryptonGroup1
             // 
             kryptonGroup1.Location = new Point(329, 223);
-            kryptonGroup1.Size = new Size(1177, 555);
+            kryptonGroup1.Size = new Size(1248, 555);
             kryptonGroup1.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroup1.StateCommon.Border.Rounding = 70F;
             kryptonGroup1.TabIndex = 99;
@@ -242,7 +242,7 @@
             panel3.BackColor = Color.Navy;
             panel3.Location = new Point(-2, 881);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1563, 24);
+            panel3.Size = new Size(1648, 24);
             panel3.TabIndex = 89;
             // 
             // pictureBox3
@@ -258,9 +258,9 @@
             // 
             panel4.BackColor = Color.Navy;
             panel4.Controls.Add(pictureBox2);
-            panel4.Location = new Point(1537, 9);
+            panel4.Location = new Point(1622, 20);
             panel4.Name = "panel4";
-            panel4.Size = new Size(24, 893);
+            panel4.Size = new Size(24, 885);
             panel4.TabIndex = 85;
             // 
             // pictureBox2
@@ -278,7 +278,7 @@
             panel2.Controls.Add(pictureBox4);
             panel2.Location = new Point(-2, -2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1563, 24);
+            panel2.Size = new Size(1648, 24);
             panel2.TabIndex = 84;
             // 
             // pictureBox4
@@ -595,13 +595,13 @@
             // 
             textBox1.Location = new Point(578, 177);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(821, 27);
+            textBox1.Size = new Size(859, 27);
             textBox1.TabIndex = 154;
             // 
             // pictureBox22
             // 
             pictureBox22.BackColor = Color.SkyBlue;
-            pictureBox22.Location = new Point(1405, 170);
+            pictureBox22.Location = new Point(1443, 170);
             pictureBox22.Name = "pictureBox22";
             pictureBox22.Size = new Size(49, 39);
             pictureBox22.TabIndex = 153;
@@ -632,7 +632,7 @@
             // kryptonGroup6
             // 
             kryptonGroup6.Location = new Point(552, 165);
-            kryptonGroup6.Size = new Size(928, 52);
+            kryptonGroup6.Size = new Size(966, 52);
             kryptonGroup6.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroup6.StateCommon.Border.Rounding = 70F;
             kryptonGroup6.TabIndex = 151;
@@ -684,8 +684,9 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1559, 899);
+            ClientSize = new Size(1648, 899);
             Controls.Add(pictureBox10);
+            Controls.Add(panel4);
             Controls.Add(kryptonButton15);
             Controls.Add(pictureBox19);
             Controls.Add(textBox1);
@@ -704,7 +705,6 @@
             Controls.Add(panel5);
             Controls.Add(panel3);
             Controls.Add(pictureBox3);
-            Controls.Add(panel4);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "Deudores_Emp";

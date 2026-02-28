@@ -34,19 +34,14 @@
             pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
             label3 = new Label();
-            label2 = new Label();
             label4 = new Label();
-            label5 = new Label();
             cmbZoom = new Krypton.Toolkit.KryptonComboBox();
-            kryptonComboBox3 = new Krypton.Toolkit.KryptonComboBox();
-            chkModoOscuro = new Krypton.Toolkit.KryptonCheckBox();
             btnsalir = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cmbZoom).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonComboBox3).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -108,18 +103,6 @@
             label3.TabIndex = 74;
             label3.Text = "Ajustes";
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.Transparent;
-            label2.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.Navy;
-            label2.Location = new Point(101, 140);
-            label2.Name = "label2";
-            label2.Size = new Size(153, 33);
-            label2.TabIndex = 75;
-            label2.Text = "Modo Oscuro";
-            // 
             // label4
             // 
             label4.AutoSize = true;
@@ -131,18 +114,6 @@
             label4.Size = new Size(189, 33);
             label4.TabIndex = 76;
             label4.Text = "Zoom de pantalla";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.BackColor = Color.Transparent;
-            label5.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.Navy;
-            label5.Location = new Point(101, 340);
-            label5.Name = "label5";
-            label5.Size = new Size(83, 33);
-            label5.TabIndex = 77;
-            label5.Text = "Idioma";
             // 
             // cmbZoom
             // 
@@ -159,31 +130,6 @@
             cmbZoom.StateNormal.ComboBox.Border.Rounding = 40F;
             cmbZoom.TabIndex = 79;
             cmbZoom.SelectedIndexChanged += kryptonComboBox2_SelectedIndexChanged;
-            // 
-            // kryptonComboBox3
-            // 
-            kryptonComboBox3.DropDownWidth = 300;
-            kryptonComboBox3.Location = new Point(315, 321);
-            kryptonComboBox3.Name = "kryptonComboBox3";
-            kryptonComboBox3.Size = new Size(300, 52);
-            kryptonComboBox3.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
-            kryptonComboBox3.StateCommon.ComboBox.Border.Rounding = 40F;
-            kryptonComboBox3.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
-            kryptonComboBox3.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
-            kryptonComboBox3.StateCommon.Item.Content.ShortText.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonComboBox3.StateNormal.ComboBox.Border.Rounding = 40F;
-            kryptonComboBox3.TabIndex = 80;
-            // 
-            // chkModoOscuro
-            // 
-            chkModoOscuro.Location = new Point(326, 140);
-            chkModoOscuro.Name = "chkModoOscuro";
-            chkModoOscuro.Size = new Size(194, 31);
-            chkModoOscuro.StateCommon.ShortText.Color1 = Color.Navy;
-            chkModoOscuro.StateCommon.ShortText.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            chkModoOscuro.TabIndex = 81;
-            chkModoOscuro.Values.Text = "Activo";
-            chkModoOscuro.CheckedChanged += kryptonCheckBox1_CheckedChanged;
             // 
             // btnsalir
             // 
@@ -215,12 +161,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 547);
             Controls.Add(btnsalir);
-            Controls.Add(chkModoOscuro);
-            Controls.Add(kryptonComboBox3);
             Controls.Add(cmbZoom);
-            Controls.Add(label5);
             Controls.Add(label4);
-            Controls.Add(label2);
             Controls.Add(label3);
             Controls.Add(pictureBox4);
             Controls.Add(pictureBox1);
@@ -235,7 +177,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)cmbZoom).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonComboBox3).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -248,12 +189,8 @@
         private PictureBox pictureBox3;
         private PictureBox pictureBox2;
         private Label label3;
-        private Label label2;
         private Label label4;
-        private Label label5;
         private Krypton.Toolkit.KryptonComboBox cmbZoom;
-        private Krypton.Toolkit.KryptonComboBox kryptonComboBox3;
-        private Krypton.Toolkit.KryptonCheckBox chkModoOscuro;
         private Krypton.Toolkit.KryptonButton btnsalir;
     }
 }

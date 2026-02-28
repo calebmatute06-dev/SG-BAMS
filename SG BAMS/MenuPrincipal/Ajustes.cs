@@ -19,9 +19,7 @@ namespace SG_BAMS
         {
             InitializeComponent();
 
-            // Configuración de Tema
-            chkModoOscuro.Checked = ClsTemas.modoOscuroEnabled;
-            ClsTemas.AplicarTema(this);
+            
 
             // Sincronizar ComboBox con el factor actual (progresivo)
             // Esto asegura que si el zoom es 1.1f, el combo marque "110%"
@@ -71,10 +69,6 @@ namespace SG_BAMS
             this.Close();
         }
 
-        private void kryptonCheckBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            ClsTemas.GuardarPreferencia(chkModoOscuro.Checked);
-            ClsTemas.AplicarTema(this);
-        }
+        
     }
 }
