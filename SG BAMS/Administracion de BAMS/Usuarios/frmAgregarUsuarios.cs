@@ -19,7 +19,7 @@ namespace SG_BAMS
         {
             InitializeComponent();
             CargarComboRoles();
-            
+            btnImagen.Enabled = false;
         }
 
         private async void fmrAgregarUsuarios_Load(object sender, EventArgs e)
@@ -38,6 +38,7 @@ namespace SG_BAMS
             {
                 clsUsuario objetoUsuario = new clsUsuario();
                 DataTable dt = await objetoUsuario.ListarRolesAsync();
+                cmbRol.SelectedIndexChanged -= cmbRol_SelectedIndexChanged;
 
                 cmbRol.DataSource = dt;
 
@@ -46,6 +47,8 @@ namespace SG_BAMS
                 cmbRol.ValueMember = "id_rol_usuario";
 
                 cmbRol.SelectedIndex = -1;
+
+                cmbRol.SelectedIndexChanged += cmbRol_SelectedIndexChanged; 
             }
             catch (Exception ex)
             {
@@ -112,7 +115,7 @@ namespace SG_BAMS
         // Variable para guardar la lista original de roles y no perderla al filtrar
         private List<string> listaOriginalRoles = new List<string>();
 
-        private  void ConfigurarFiltroRoles()
+        private void ConfigurarFiltroRoles()
         {
             cmbRol.DropDownStyle = ComboBoxStyle.DropDown;
 
@@ -143,6 +146,29 @@ namespace SG_BAMS
                 }
             };
 
+        }
+
+        private void cmbRol_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbRol.SelectedIndex != -1)
+            {
+                // Obtenemos el texto del rol seleccionado
+                string rolSeleccionado = cmbRol.Text;
+
+                // Activamos si es Administrador o Empleado (ajusta las strings si varían en tu BD)
+                if (rolSeleccionado == "Administrador" || rolSeleccionado == "Empleado")
+                {
+                    btnImagen.Enabled = true;
+                }
+                else
+                {
+                    btnImagen.Enabled = false;
+                }
+            }
+            else
+            {
+                btnImagen.Enabled = false;
+            }
         }
     }
 }
