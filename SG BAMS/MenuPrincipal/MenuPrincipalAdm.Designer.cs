@@ -96,7 +96,7 @@
             chartStock = new System.Windows.Forms.DataVisualization.Charting.Chart();
             timer1 = new System.Windows.Forms.Timer(components);
             btnadmin = new Button();
-            kryptonButton1 = new Krypton.Toolkit.KryptonButton();
+            btnAdministracion = new Krypton.Toolkit.KryptonButton();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).BeginInit();
@@ -1089,31 +1089,31 @@
             btnadmin.UseVisualStyleBackColor = false;
             btnadmin.Click += btnadmin_Click;
             // 
-            // kryptonButton1
+            // btnAdministracion
             // 
-            kryptonButton1.Location = new Point(335, 28);
-            kryptonButton1.Margin = new Padding(3, 2, 3, 2);
-            kryptonButton1.Name = "kryptonButton1";
-            kryptonButton1.OverrideDefault.Back.Color1 = Color.Transparent;
-            kryptonButton1.OverrideDefault.Back.Color2 = Color.Transparent;
-            kryptonButton1.OverrideDefault.Border.Rounding = 40F;
-            kryptonButton1.OverrideFocus.Back.Color1 = Color.White;
-            kryptonButton1.OverrideFocus.Back.Color2 = Color.SkyBlue;
-            kryptonButton1.Size = new Size(196, 31);
-            kryptonButton1.StateCommon.Back.Color1 = Color.White;
-            kryptonButton1.StateCommon.Back.Color2 = Color.SkyBlue;
-            kryptonButton1.StateCommon.Border.Rounding = 40F;
-            kryptonButton1.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton1.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton1.StateNormal.Back.Color1 = Color.Transparent;
-            kryptonButton1.StateNormal.Back.Color2 = Color.Transparent;
-            kryptonButton1.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
-            kryptonButton1.StatePressed.Back.Color1 = Color.Transparent;
-            kryptonButton1.StatePressed.Back.Color2 = Color.Transparent;
-            kryptonButton1.StateTracking.Border.Rounding = 40F;
-            kryptonButton1.TabIndex = 98;
-            kryptonButton1.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton1.Values.Text = "Administración de BAMS";
+            btnAdministracion.Location = new Point(335, 28);
+            btnAdministracion.Margin = new Padding(3, 2, 3, 2);
+            btnAdministracion.Name = "btnAdministracion";
+            btnAdministracion.OverrideDefault.Back.Color1 = Color.Transparent;
+            btnAdministracion.OverrideDefault.Back.Color2 = Color.Transparent;
+            btnAdministracion.OverrideDefault.Border.Rounding = 40F;
+            btnAdministracion.OverrideFocus.Back.Color1 = Color.White;
+            btnAdministracion.OverrideFocus.Back.Color2 = Color.SkyBlue;
+            btnAdministracion.Size = new Size(196, 31);
+            btnAdministracion.StateCommon.Back.Color1 = Color.White;
+            btnAdministracion.StateCommon.Back.Color2 = Color.SkyBlue;
+            btnAdministracion.StateCommon.Border.Rounding = 40F;
+            btnAdministracion.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnAdministracion.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnAdministracion.StateNormal.Back.Color1 = Color.Transparent;
+            btnAdministracion.StateNormal.Back.Color2 = Color.Transparent;
+            btnAdministracion.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
+            btnAdministracion.StatePressed.Back.Color1 = Color.Transparent;
+            btnAdministracion.StatePressed.Back.Color2 = Color.Transparent;
+            btnAdministracion.StateTracking.Border.Rounding = 40F;
+            btnAdministracion.TabIndex = 98;
+            btnAdministracion.Values.DropDownArrowColor = Color.Empty;
+            btnAdministracion.Values.Text = "Administración de BAMS";
             // 
             // MenuPrincipalAdm
             // 
@@ -1121,7 +1121,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(967, 679);
-            Controls.Add(kryptonButton1);
+            Controls.Add(btnAdministracion);
             Controls.Add(btnadmin);
             Controls.Add(chartStock);
             Controls.Add(chartMasVendidos);
@@ -1252,6 +1252,6 @@
         private Krypton.Toolkit.KryptonButton BtnFacturas;
         private Button btnadmin;
         private Krypton.Toolkit.KryptonButton btnmenuprincipal;
-        private Krypton.Toolkit.KryptonButton kryptonButton1;
+        private Krypton.Toolkit.KryptonButton btnAdministracion;
     }
 }
