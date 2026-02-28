@@ -221,10 +221,10 @@
             // 
             // pctCamara
             // 
-            pctCamara.Location = new Point(299, 88);
+            pctCamara.Location = new Point(266, 54);
             pctCamara.Margin = new Padding(3, 2, 3, 2);
             pctCamara.Name = "pctCamara";
-            pctCamara.Size = new Size(434, 226);
+            pctCamara.Size = new Size(486, 298);
             pctCamara.TabIndex = 148;
             pctCamara.TabStop = false;
             // 

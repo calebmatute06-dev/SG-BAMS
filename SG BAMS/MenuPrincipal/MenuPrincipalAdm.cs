@@ -337,5 +337,10 @@ namespace SG_BAMS
             Client.Show();
             this.Hide();
         }
+
+        private void kryptonButton10_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
