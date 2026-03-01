@@ -15,12 +15,12 @@ namespace SG_BAMS.Proveedor
         {
             try
             {
-                AbrirConexion(); // Abrir la conexión
-                string consulta = "SELECT * FROM vista_proveedor"; // Consulta SQL
+                AbrirConexion();
+                string consulta = "SELECT * FROM vista_proveedor";
                 SqlDataAdapter adapter = new SqlDataAdapter(consulta, Conectar);
                 DataTable dt = new DataTable();
-                adapter.Fill(dt); // Llenar el DataTable
-                dgvProveedor.DataSource = dt; // Asignar al DataGridView
+                adapter.Fill(dt);
+                dgvProveedor.DataSource = dt;
 
             }
             catch (Exception ex)
@@ -29,7 +29,7 @@ namespace SG_BAMS.Proveedor
             }
             finally
             {
-                Cerrar(); // Siempre cerrar la conexión
+                Cerrar();
             }
         }
 
@@ -110,7 +110,7 @@ namespace SG_BAMS.Proveedor
                 }
                 AbrirConexion();
 
-                // Prepara el comando SQL y agrega el parámetro con comodín %
+                
                 string consulta = "select * from vista_proveedor where Nombre like @filtro " +
                     "OR Contacto LIKE @filtro " +
                     "OR RTN LIKE @filtro " +
@@ -120,7 +120,7 @@ namespace SG_BAMS.Proveedor
                 SqlCommand cmd = new SqlCommand(consulta, Conectar);
                 cmd.Parameters.AddWithValue("@filtro", "%" + texto + "%");
 
-                // Ejecuta la consulta y llena un DataTable con los resultados
+                
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataTable resultado = new DataTable();
                 adapter.Fill(resultado);

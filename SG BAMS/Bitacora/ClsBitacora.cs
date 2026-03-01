@@ -14,12 +14,12 @@ namespace SG_BAMS.Bitacora
         {
             try
             {
-                AbrirConexion(); // Abrir la conexión
-                string consulta = "SELECT * FROM vista_bitacora"; // Consulta SQL
+                AbrirConexion();
+                string consulta = "SELECT * FROM vista_bitacora";
                 SqlDataAdapter adapter = new SqlDataAdapter(consulta, Conectar);
                 DataTable dt = new DataTable();
-                adapter.Fill(dt); // Llenar el DataTable
-                dgvBitacora.DataSource = dt; // Asignar al DataGridView
+                adapter.Fill(dt);
+                dgvBitacora.DataSource = dt;
 
             }
             catch (Exception ex)
@@ -28,7 +28,7 @@ namespace SG_BAMS.Bitacora
             }
             finally
             {
-                Cerrar(); // Siempre cerrar la conexión
+                Cerrar();
             }
         }
 
@@ -55,7 +55,7 @@ namespace SG_BAMS.Bitacora
                 using (SqlCommand cmd = new SqlCommand(consulta, Conectar))
                 {
                     cmd.Parameters.AddWithValue("@desde", desde.Date);
-                    cmd.Parameters.AddWithValue("@hasta", hasta.Date.AddDays(1)); // incluye todo el día "hasta"
+                    cmd.Parameters.AddWithValue("@hasta", hasta.Date.AddDays(1));
                     cmd.Parameters.AddWithValue("@filtro", filtro);
                     cmd.Parameters.AddWithValue("@like", "%" + filtro + "%");
 

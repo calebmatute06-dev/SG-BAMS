@@ -821,6 +821,7 @@
             btnExportar.TabIndex = 329;
             btnExportar.Values.DropDownArrowColor = Color.Empty;
             btnExportar.Values.Text = "Exportar";
+            btnExportar.Click += btnExportar_Click;
             // 
             // BitacoraAdmin
             // 
