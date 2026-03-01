@@ -97,42 +97,34 @@ namespace SG_BAMS.Proveedor
         
 
 
-        public void BuscarProveedor(Krypton.Toolkit.KryptonTextBox txt, Krypton.Toolkit.KryptonDataGridView dgvProveedor)
+        public void BuscarProveedor(Krypton.Toolkit.KryptonTextBox txt,
+            Krypton.Toolkit.KryptonDataGridView dgvProveedor)
         {
             try
             {
-                string texto = txt.Text.Trim();
-                if (string.IsNullOrWhiteSpace(texto))
-                {
-                    cargarDatos(dgvProveedor);
-                    Cerrar();
-                    return;
-                }
                 AbrirConexion();
 
-                
-                string consulta = "select * from vista_proveedor where Nombre like @filtro " +
-                    "OR Contacto LIKE @filtro " +
-                    "OR RTN LIKE @filtro " +
-                    "OR Dirección LIKE @filtro " +
-                    "OR Clasificación LIKE @filtro " +
-                    "OR Estado LIKE @filtro ";
-                SqlCommand cmd = new SqlCommand(consulta, Conectar);
-                cmd.Parameters.AddWithValue("@filtro", "%" + texto + "%");
+                string texto = txt.Text.Trim();
 
-                
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                DataTable resultado = new DataTable();
-                adapter.Fill(resultado);
+                using (SqlCommand cmd = new SqlCommand("sp_proveedor_buscar", Conectar))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@filtro", SqlDbType.NVarChar, 200).Value = texto;
 
-                dgvProveedor.DataSource = resultado;
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable resultado = new DataTable();
+                    adapter.Fill(resultado);
 
-                Cerrar();
+                    dgvProveedor.DataSource = resultado;
+                }
             }
             catch (Exception ex)
             {
-                Cerrar();
                 MessageBox.Show("Error al buscar: " + ex.Message);
+            }
+            finally
+            {
+                Cerrar();
             }
         }
 

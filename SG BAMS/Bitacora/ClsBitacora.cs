@@ -43,21 +43,13 @@ namespace SG_BAMS.Bitacora
 
                 string filtro = txt.Text.Trim();
 
-                string consulta = "SELECT * FROM vista_bitacora " +
-                    "WHERE Fecha >= @desde AND Fecha < @hasta " +
-                    "AND ( " +
-                    "@filtro = '' " +
-                    "OR Nombre LIKE @like " +
-                    "OR Acción LIKE @like " +
-                    "OR Modulo LIKE @like " +
-                    ")";
-
-                using (SqlCommand cmd = new SqlCommand(consulta, Conectar))
+                using (SqlCommand cmd = new SqlCommand("sp_bitacora_buscar", Conectar))
                 {
-                    cmd.Parameters.AddWithValue("@desde", desde.Date);
-                    cmd.Parameters.AddWithValue("@hasta", hasta.Date.AddDays(1));
-                    cmd.Parameters.AddWithValue("@filtro", filtro);
-                    cmd.Parameters.AddWithValue("@like", "%" + filtro + "%");
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@desde", SqlDbType.Date).Value = desde.Date;
+                    cmd.Parameters.Add("@hasta", SqlDbType.Date).Value = hasta.Date.AddDays(1); // hasta exclusivo
+                    cmd.Parameters.Add("@filtro", SqlDbType.NVarChar, 200).Value = filtro;
 
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
