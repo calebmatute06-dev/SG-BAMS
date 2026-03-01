@@ -70,7 +70,7 @@
             cmbPago.StateCommon.ComboBox.Border.Rounding = 20F;
             cmbPago.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbPago.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
-            cmbPago.StateCommon.Item.Content.ShortText.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbPago.StateCommon.Item.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbPago.StateNormal.ComboBox.Border.Rounding = 40F;
             cmbPago.TabIndex = 344;
             // 
@@ -79,11 +79,11 @@
             txtBateriaVieja.Location = new Point(194, 165);
             txtBateriaVieja.Margin = new Padding(3, 4, 3, 4);
             txtBateriaVieja.Name = "txtBateriaVieja";
-            txtBateriaVieja.Size = new Size(197, 28);
+            txtBateriaVieja.Size = new Size(197, 36);
             txtBateriaVieja.StateCommon.Back.Color1 = Color.SkyBlue;
             txtBateriaVieja.StateCommon.Border.Rounding = 10F;
             txtBateriaVieja.StateCommon.Content.Color1 = Color.Navy;
-            txtBateriaVieja.StateCommon.Content.Font = new Font("Arial Narrow", 7.8F);
+            txtBateriaVieja.StateCommon.Content.Font = new Font("Arial Narrow", 12F);
             txtBateriaVieja.TabIndex = 343;
             // 
             // txtCliente
@@ -91,11 +91,11 @@
             txtCliente.Location = new Point(194, 120);
             txtCliente.Margin = new Padding(3, 4, 3, 4);
             txtCliente.Name = "txtCliente";
-            txtCliente.Size = new Size(197, 28);
+            txtCliente.Size = new Size(197, 36);
             txtCliente.StateCommon.Back.Color1 = Color.SkyBlue;
             txtCliente.StateCommon.Border.Rounding = 10F;
             txtCliente.StateCommon.Content.Color1 = Color.Navy;
-            txtCliente.StateCommon.Content.Font = new Font("Arial Narrow", 7.8F);
+            txtCliente.StateCommon.Content.Font = new Font("Arial Narrow", 12F);
             txtCliente.TabIndex = 341;
             // 
             // fechaDT
@@ -152,11 +152,11 @@
             txtTotal.Location = new Point(531, 440);
             txtTotal.Margin = new Padding(3, 4, 3, 4);
             txtTotal.Name = "txtTotal";
-            txtTotal.Size = new Size(110, 28);
+            txtTotal.Size = new Size(110, 36);
             txtTotal.StateCommon.Back.Color1 = Color.SkyBlue;
             txtTotal.StateCommon.Border.Rounding = 10F;
             txtTotal.StateCommon.Content.Color1 = Color.Navy;
-            txtTotal.StateCommon.Content.Font = new Font("Arial Narrow", 7.8F);
+            txtTotal.StateCommon.Content.Font = new Font("Arial Narrow", 12F);
             txtTotal.TabIndex = 342;
             // 
             // panel1

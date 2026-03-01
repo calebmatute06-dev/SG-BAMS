@@ -70,6 +70,9 @@ namespace SG_BAMS
             dgvProductos.Columns.Add("cantidad", "Cantidad");
             dgvProductos.Columns.Add("precio", "Precio");
             dgvProductos.Columns.Add("subtotal", "Subtotal");
+
+            TxtCliente.ReadOnly = true;
+            TxtTotal.ReadOnly = true;
         }
 
         private void CalcularTotal()
@@ -192,6 +195,11 @@ namespace SG_BAMS
         }
 
         private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
         {
 
         }

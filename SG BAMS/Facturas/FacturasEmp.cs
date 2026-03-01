@@ -143,7 +143,7 @@ namespace SG_BAMS
 
         private void dtpInicio_ValueChanged(object sender, EventArgs e)
         {
-            dtpFin.Value = dtpInicio.Value.AddDays(7);
+
             FiltrarPorFecha();
         }
 
@@ -160,7 +160,7 @@ namespace SG_BAMS
 
         private void BtnFacturas_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void BtnClientes_Click(object sender, EventArgs e)
@@ -179,6 +179,30 @@ namespace SG_BAMS
         {
             Deudores_Emp DE = new Deudores_Emp();
             DE.Show();
+        }
+
+        private void chkHoy_CheckedChanged(object sender, EventArgs e)
+        {
+            if (datosFac != null)
+            {
+                DataView dv = datosFac.DefaultView;
+
+                if (chkHoy.Checked)
+                {
+
+                    string hoy = DateTime.Today.ToString("MM/dd/yyyy");
+
+
+                    dv.RowFilter = string.Format("[Fecha] >= #{0}# AND [Fecha] < #{1}#", hoy, DateTime.Today.AddDays(1).ToString("MM/dd/yyyy"));
+                }
+                else
+                {
+
+                    dv.RowFilter = string.Empty;
+                }
+
+                dgvFacturas.DataSource = dv;
+            }
         }
     }
 }

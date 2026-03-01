@@ -28,7 +28,7 @@ namespace SG_BAMS
             idPagoSele = idPago;
             idFac = idF;
             fechaDT.SelectionStart = fec;
-            lblFactura.Text = "No."+idF.ToString();
+            lblFactura.Text = "No." + idF.ToString();
 
         }
         public FacturaVer()
@@ -47,7 +47,7 @@ namespace SG_BAMS
                 dgvFacturas.DataSource = datosCli;
                 CalcularTotal();
 
-                dgvFacturas.Columns["Factura"].Visible = false;
+                dgvFacturas.Columns["ID_Factura"].Visible = false;
                 dgvFacturas.Columns["ID"].HeaderText = "ID Producto";
                 dgvFacturas.Columns["Nombre"].HeaderText = "Nombre";
                 dgvFacturas.Columns["Cantidad"].HeaderText = "Cantidad";
@@ -92,7 +92,12 @@ namespace SG_BAMS
             await LlenarComboPago();
             cmbPago.SelectedValue = idPagoSele;
             await VerFacturasProductos();
+            txtBateriaVieja.ReadOnly = true;
+            txtCliente.ReadOnly = true;
+            txtTotal.ReadOnly = true;
             
+          
+
         }
 
         private async Task LlenarComboPago()

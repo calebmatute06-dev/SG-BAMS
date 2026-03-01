@@ -209,7 +209,7 @@
             cmbProductos.StateCommon.ComboBox.Border.Rounding = 20F;
             cmbProductos.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbProductos.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
-            cmbProductos.StateCommon.Item.Content.ShortText.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbProductos.StateCommon.Item.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbProductos.StateNormal.ComboBox.Border.Rounding = 40F;
             cmbProductos.TabIndex = 334;
             cmbProductos.SelectedIndexChanged += cmbProductos_SelectedIndexChanged;
@@ -219,11 +219,11 @@
             txtCantidad.Location = new Point(200, 173);
             txtCantidad.Margin = new Padding(3, 4, 3, 4);
             txtCantidad.Name = "txtCantidad";
-            txtCantidad.Size = new Size(197, 28);
+            txtCantidad.Size = new Size(197, 36);
             txtCantidad.StateCommon.Back.Color1 = Color.SkyBlue;
             txtCantidad.StateCommon.Border.Rounding = 10F;
             txtCantidad.StateCommon.Content.Color1 = Color.Navy;
-            txtCantidad.StateCommon.Content.Font = new Font("Arial Narrow", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtCantidad.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtCantidad.TabIndex = 335;
             // 
             // lblStock
