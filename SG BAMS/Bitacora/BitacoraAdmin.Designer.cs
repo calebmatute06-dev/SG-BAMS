@@ -31,7 +31,6 @@
             pictureBox6 = new PictureBox();
             label10 = new Label();
             kryptonButton14 = new Krypton.Toolkit.KryptonButton();
-            btnExportar = new Krypton.Toolkit.KryptonButton();
             label1 = new Label();
             kryptonButton11 = new Krypton.Toolkit.KryptonButton();
             pictureBox18 = new PictureBox();
@@ -75,6 +74,7 @@
             dtpDesde = new DateTimePicker();
             label4 = new Label();
             label3 = new Label();
+            btnExportar = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
             panel1.SuspendLayout();
@@ -132,30 +132,6 @@
             kryptonButton14.TabIndex = 79;
             kryptonButton14.Values.DropDownArrowColor = Color.Empty;
             kryptonButton14.Values.Text = "";
-            // 
-            // btnExportar
-            // 
-            btnExportar.Location = new Point(568, 591);
-            btnExportar.Margin = new Padding(3, 2, 3, 2);
-            btnExportar.Name = "btnExportar";
-            btnExportar.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnExportar.OverrideDefault.Back.Color2 = Color.White;
-            btnExportar.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnExportar.OverrideFocus.Back.Color2 = Color.White;
-            btnExportar.Size = new Size(170, 57);
-            btnExportar.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnExportar.StateCommon.Back.Color2 = Color.White;
-            btnExportar.StateCommon.Border.Rounding = 100F;
-            btnExportar.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnExportar.StateCommon.Content.ShortText.Font = new Font("Arial", 15.75F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
-            btnExportar.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnExportar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            btnExportar.StatePressed.Back.Color1 = Color.Transparent;
-            btnExportar.StatePressed.Back.Color2 = Color.Transparent;
-            btnExportar.TabIndex = 78;
-            btnExportar.Values.DropDownArrowColor = Color.Empty;
-            btnExportar.Values.Text = "Exportar";
-            btnExportar.Click += btnExportar_Click;
             // 
             // label1
             // 
@@ -719,7 +695,7 @@
             // 
             dgvBitacora.BorderStyle = BorderStyle.None;
             dgvBitacora.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvBitacora.Location = new Point(377, 209);
+            dgvBitacora.Location = new Point(387, 210);
             dgvBitacora.Margin = new Padding(3, 2, 3, 2);
             dgvBitacora.Name = "dgvBitacora";
             dgvBitacora.RowHeadersWidth = 51;
@@ -741,11 +717,11 @@
             // kryptonGroupBox1
             // 
             kryptonGroupBox1.CaptionVisible = false;
-            kryptonGroupBox1.Location = new Point(350, 190);
+            kryptonGroupBox1.Location = new Point(360, 189);
             kryptonGroupBox1.Margin = new Padding(3, 2, 3, 2);
-            kryptonGroupBox1.Size = new Size(547, 380);
+            kryptonGroupBox1.Size = new Size(525, 384);
             kryptonGroupBox1.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroupBox1.StateCommon.Border.Rounding = 30F;
+            kryptonGroupBox1.StateCommon.Border.Rounding = 20F;
             kryptonGroupBox1.TabIndex = 105;
             // 
             // kryptonGroupBox2
@@ -823,12 +799,36 @@
             label3.TabIndex = 328;
             label3.Text = "Hasta:";
             // 
+            // btnExportar
+            // 
+            btnExportar.Location = new Point(585, 595);
+            btnExportar.Margin = new Padding(3, 2, 3, 2);
+            btnExportar.Name = "btnExportar";
+            btnExportar.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnExportar.OverrideDefault.Back.Color2 = Color.White;
+            btnExportar.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnExportar.OverrideFocus.Back.Color2 = Color.White;
+            btnExportar.Size = new Size(121, 52);
+            btnExportar.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnExportar.StateCommon.Back.Color2 = Color.White;
+            btnExportar.StateCommon.Border.Rounding = 30F;
+            btnExportar.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnExportar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnExportar.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnExportar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnExportar.StatePressed.Back.Color1 = Color.Transparent;
+            btnExportar.StatePressed.Back.Color2 = Color.Transparent;
+            btnExportar.TabIndex = 329;
+            btnExportar.Values.DropDownArrowColor = Color.Empty;
+            btnExportar.Values.Text = "Exportar";
+            // 
             // BitacoraAdmin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1037, 681);
+            Controls.Add(btnExportar);
             Controls.Add(label3);
             Controls.Add(label4);
             Controls.Add(dtpHasta);
@@ -839,7 +839,6 @@
             Controls.Add(dgvBitacora);
             Controls.Add(label10);
             Controls.Add(kryptonButton14);
-            Controls.Add(btnExportar);
             Controls.Add(label1);
             Controls.Add(kryptonButton11);
             Controls.Add(pictureBox18);
@@ -886,7 +885,6 @@
         private PictureBox pictureBox6;
         private Label label10;
         private Krypton.Toolkit.KryptonButton kryptonButton14;
-        private Krypton.Toolkit.KryptonButton btnExportar;
         private Label label1;
         private Krypton.Toolkit.KryptonButton kryptonButton11;
         private PictureBox pictureBox18;
@@ -930,5 +928,6 @@
         private DateTimePicker dtpDesde;
         private Label label4;
         private Label label3;
+        private Krypton.Toolkit.KryptonButton btnExportar;
     }
 }

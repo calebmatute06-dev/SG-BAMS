@@ -85,17 +85,7 @@ namespace SG_BAMS.Proveedor
                 return;
             }
 
-            int idProveedor = Convert.ToInt32(dgvProveedor.CurrentRow.Cells["idProveedor"].Value);
-            string nombre = dgvProveedor.CurrentRow.Cells["Nombre"].Value.ToString();
-            string contacto = dgvProveedor.CurrentRow.Cells["Contacto"].Value.ToString();
-            string direccion = dgvProveedor.CurrentRow.Cells["Dirección"].Value.ToString();
-            string rtn = dgvProveedor.CurrentRow.Cells["RTN"].Value.ToString();
-            int idEstado = Convert.ToInt32(dgvProveedor.CurrentRow.Cells["idEstado"].Value);
-            int idClasificacion = Convert.ToInt32(dgvProveedor.CurrentRow.Cells["idClasificacion"].Value);
-
-            ModificarProveedor frm = new ModificarProveedor(idProveedor, nombre, contacto, direccion, rtn, idEstado, idClasificacion);
-            frm.Show();
-            this.Hide();
+            ModificarProveedor(dgvProveedor.CurrentRow);
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -137,6 +127,36 @@ namespace SG_BAMS.Proveedor
         {
             ReporteAdmin reporte = new ReporteAdmin();
             reporte.Show();
+            this.Hide();
+        }
+
+        private void dgvProveedor_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow fila = dgvProveedor.Rows[e.RowIndex];
+                ModificarProveedor(fila);
+            }
+        }
+
+        private void ModificarProveedor(DataGridViewRow fila)
+        {
+            if (dgvProveedor.CurrentRow == null)
+            {
+                MessageBox.Show("Seleccione un proveedor.");
+                return;
+            }
+
+            int idProveedor = Convert.ToInt32(dgvProveedor.CurrentRow.Cells["idProveedor"].Value);
+            string nombre = dgvProveedor.CurrentRow.Cells["Nombre"].Value.ToString();
+            string contacto = dgvProveedor.CurrentRow.Cells["Contacto"].Value.ToString();
+            string direccion = dgvProveedor.CurrentRow.Cells["Dirección"].Value.ToString();
+            string rtn = dgvProveedor.CurrentRow.Cells["RTN"].Value.ToString();
+            int idEstado = Convert.ToInt32(dgvProveedor.CurrentRow.Cells["idEstado"].Value);
+            int idClasificacion = Convert.ToInt32(dgvProveedor.CurrentRow.Cells["idClasificacion"].Value);
+
+            ModificarProveedor frm = new ModificarProveedor(idProveedor, nombre, contacto, direccion, rtn, idEstado, idClasificacion);
+            frm.Show();
             this.Hide();
         }
     }
