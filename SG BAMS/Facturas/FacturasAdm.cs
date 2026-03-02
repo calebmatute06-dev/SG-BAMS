@@ -15,6 +15,8 @@ namespace SG_BAMS
         public FacturasAdm()
         {
             InitializeComponent();
+            dgvFacturas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvFacturas.MultiSelect = false;
         }
 
         private void label10_Click(object sender, EventArgs e)
@@ -77,14 +79,14 @@ namespace SG_BAMS
         {
             if (dgvFacturas.CurrentRow != null)
             {
-                dgvFacturas_CellContentClick(null, null);
+                dgvFacturas_CellDoubleClick(null, null);
             }
 
         }
 
 
 
-        private void dgvFacturas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvFacturas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             int idFacturas, idPago, bateriaVieja;
             string nombre_Cliente;
@@ -134,13 +136,14 @@ namespace SG_BAMS
                 DataView dv = datosFac.DefaultView;
 
                 DateTime fechaInicio = dtpInicio.Value.Date;
-                DateTime fechaFin = dtpFin.Value.Date;
 
-                dv.RowFilter = string.Format(
-                    "[Fecha] >= #{0}# AND [Fecha] <= #{1}#",
+                
+                DateTime fechaFin = dtpFin.Value.Date.AddDays(1);
+
+                dv.RowFilter = string.Format(System.Globalization.CultureInfo.InvariantCulture,
+                    "[Fecha] >= #{0}# AND [Fecha] < #{1}#",
                     fechaInicio.ToString("MM/dd/yyyy"),
-                    fechaFin.ToString("MM/dd/yyyy")
-                );
+                    fechaFin.ToString("MM/dd/yyyy"));
 
                 dgvFacturas.DataSource = dv;
             }

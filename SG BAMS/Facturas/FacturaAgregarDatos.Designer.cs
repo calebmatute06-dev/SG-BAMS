@@ -64,11 +64,11 @@
             // 
             label7.AutoSize = true;
             label7.BackColor = Color.Transparent;
-            label7.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Navy;
-            label7.Location = new Point(894, 179);
+            label7.Location = new Point(891, 185);
             label7.Name = "label7";
-            label7.Size = new Size(67, 24);
+            label7.Size = new Size(80, 27);
             label7.TabIndex = 307;
             label7.Text = "Fecha";
             label7.Click += label7_Click;
@@ -89,7 +89,7 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Arial", 13.8F, FontStyle.Bold);
+            label1.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
             label1.Location = new Point(168, 176);
             label1.Name = "label1";
@@ -115,7 +115,7 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(1012, 608);
+            label5.Location = new Point(988, 608);
             label5.Name = "label5";
             label5.Size = new Size(113, 42);
             label5.TabIndex = 299;
@@ -147,7 +147,7 @@
             panel1.BackColor = Color.Navy;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1161, 24);
+            panel1.Size = new Size(1134, 24);
             panel1.TabIndex = 293;
             // 
             // panel4
@@ -155,7 +155,7 @@
             panel4.BackColor = Color.Navy;
             panel4.Location = new Point(0, 653);
             panel4.Name = "panel4";
-            panel4.Size = new Size(1161, 24);
+            panel4.Size = new Size(1134, 24);
             panel4.TabIndex = 295;
             // 
             // panel2
@@ -245,7 +245,7 @@
             // 
             // DateTFecha
             // 
-            DateTFecha.Location = new Point(823, 249);
+            DateTFecha.Location = new Point(820, 255);
             DateTFecha.Margin = new Padding(10, 12, 10, 12);
             DateTFecha.Name = "DateTFecha";
             DateTFecha.TabIndex = 315;
@@ -254,7 +254,7 @@
             // kryptonGroupBox1
             // 
             kryptonGroupBox1.CaptionVisible = false;
-            kryptonGroupBox1.Location = new Point(777, 207);
+            kryptonGroupBox1.Location = new Point(774, 213);
             kryptonGroupBox1.Margin = new Padding(3, 4, 3, 4);
             kryptonGroupBox1.Size = new Size(311, 288);
             kryptonGroupBox1.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -339,16 +339,16 @@
             // 
             dgvProductos.BackgroundColor = Color.SkyBlue;
             dgvProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProductos.Location = new Point(61, 221);
+            dgvProductos.Location = new Point(55, 221);
             dgvProductos.Name = "dgvProductos";
             dgvProductos.RowHeadersWidth = 51;
-            dgvProductos.Size = new Size(676, 266);
+            dgvProductos.Size = new Size(678, 266);
             dgvProductos.TabIndex = 323;
             // 
             // panel5
             // 
             panel5.BackColor = Color.Navy;
-            panel5.Location = new Point(1131, 0);
+            panel5.Location = new Point(1107, 0);
             panel5.Name = "panel5";
             panel5.Size = new Size(30, 674);
             panel5.TabIndex = 295;
@@ -358,7 +358,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1163, 676);
+            ClientSize = new Size(1136, 676);
             Controls.Add(panel4);
             Controls.Add(panel5);
             Controls.Add(dgvProductos);

@@ -17,6 +17,10 @@ namespace SG_BAMS
         public ClientesEmp()
         {
             InitializeComponent();
+            dgvClientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+
+            dgvClientes.MultiSelect = false;
         }
 
         private void panel6_Paint(object sender, PaintEventArgs e)
@@ -57,7 +61,7 @@ namespace SG_BAMS
             }
         }
 
-        private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             int idCliente, idEstado;
             string nombreCliente, apellidoCliente, telefonoCliente, rtnCliente;
@@ -102,7 +106,7 @@ namespace SG_BAMS
         {
             if (dgvClientes.CurrentRow != null)
             {
-                dgvClientes_CellContentClick(null, null);
+                dgvClientes_CellDoubleClick(null, null);
             }
         }
 

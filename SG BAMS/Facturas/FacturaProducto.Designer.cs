@@ -59,7 +59,7 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(504, 277);
+            label5.Location = new Point(546, 331);
             label5.Name = "label5";
             label5.Size = new Size(113, 42);
             label5.TabIndex = 261;
@@ -81,9 +81,9 @@
             // panel3
             // 
             panel3.BackColor = Color.Navy;
-            panel3.Location = new Point(622, 0);
+            panel3.Location = new Point(665, 0);
             panel3.Name = "panel3";
-            panel3.Size = new Size(25, 339);
+            panel3.Size = new Size(25, 400);
             panel3.TabIndex = 256;
             // 
             // panel1
@@ -91,7 +91,7 @@
             panel1.BackColor = Color.Navy;
             panel1.Location = new Point(22, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(622, 24);
+            panel1.Size = new Size(665, 24);
             panel1.TabIndex = 255;
             // 
             // panel2
@@ -105,9 +105,9 @@
             // panel4
             // 
             panel4.BackColor = Color.Navy;
-            panel4.Location = new Point(2, 324);
+            panel4.Location = new Point(2, 376);
             panel4.Name = "panel4";
-            panel4.Size = new Size(645, 24);
+            panel4.Size = new Size(688, 24);
             panel4.TabIndex = 257;
             // 
             // panel8
@@ -116,18 +116,18 @@
             panel8.Controls.Add(panel2);
             panel8.Location = new Point(-2, -1);
             panel8.Name = "panel8";
-            panel8.Size = new Size(25, 349);
+            panel8.Size = new Size(25, 401);
             panel8.TabIndex = 251;
             // 
             // Nombre
             // 
             Nombre.AutoSize = true;
             Nombre.BackColor = Color.Transparent;
-            Nombre.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Nombre.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             Nombre.ForeColor = Color.Navy;
-            Nombre.Location = new Point(81, 127);
+            Nombre.Location = new Point(74, 137);
             Nombre.Name = "Nombre";
-            Nombre.Size = new Size(91, 24);
+            Nombre.Size = new Size(105, 27);
             Nombre.TabIndex = 264;
             Nombre.Text = "Nombre:";
             // 
@@ -135,11 +135,11 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(81, 173);
+            label1.Location = new Point(74, 215);
             label1.Name = "label1";
-            label1.Size = new Size(101, 24);
+            label1.Size = new Size(120, 27);
             label1.TabIndex = 264;
             label1.Text = "Cantidad:";
             // 
@@ -155,7 +155,7 @@
             // 
             // BtnAceptar
             // 
-            BtnAceptar.Location = new Point(54, 249);
+            BtnAceptar.Location = new Point(151, 299);
             BtnAceptar.Name = "BtnAceptar";
             BtnAceptar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             BtnAceptar.OverrideDefault.Back.Color2 = Color.White;
@@ -178,7 +178,7 @@
             // 
             // BtnSalir
             // 
-            BtnSalir.Location = new Point(200, 249);
+            BtnSalir.Location = new Point(297, 299);
             BtnSalir.Name = "BtnSalir";
             BtnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             BtnSalir.OverrideDefault.Back.Color2 = Color.White;
@@ -202,7 +202,7 @@
             // cmbProductos
             // 
             cmbProductos.DropDownWidth = 300;
-            cmbProductos.Location = new Point(200, 123);
+            cmbProductos.Location = new Point(200, 132);
             cmbProductos.Name = "cmbProductos";
             cmbProductos.Size = new Size(197, 38);
             cmbProductos.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
@@ -216,7 +216,7 @@
             // 
             // txtCantidad
             // 
-            txtCantidad.Location = new Point(200, 173);
+            txtCantidad.Location = new Point(200, 206);
             txtCantidad.Margin = new Padding(3, 4, 3, 4);
             txtCantidad.Name = "txtCantidad";
             txtCantidad.Size = new Size(197, 36);
@@ -230,17 +230,17 @@
             // 
             lblStock.AutoSize = true;
             lblStock.BackColor = Color.Transparent;
-            lblStock.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblStock.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             lblStock.ForeColor = Color.Navy;
-            lblStock.Location = new Point(403, 127);
+            lblStock.Location = new Point(436, 138);
             lblStock.Name = "lblStock";
-            lblStock.Size = new Size(71, 24);
+            lblStock.Size = new Size(82, 27);
             lblStock.TabIndex = 338;
             lblStock.Text = "Stock:";
             // 
             // kryptonGroup1
             // 
-            kryptonGroup1.Location = new Point(475, 118);
+            kryptonGroup1.Location = new Point(524, 127);
             kryptonGroup1.Size = new Size(71, 44);
             kryptonGroup1.StateCommon.Border.Rounding = 40F;
             kryptonGroup1.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -250,11 +250,11 @@
             // 
             lblNumero.AutoSize = true;
             lblNumero.BackColor = Color.SkyBlue;
-            lblNumero.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblNumero.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblNumero.ForeColor = Color.Navy;
-            lblNumero.Location = new Point(500, 128);
+            lblNumero.Location = new Point(546, 137);
             lblNumero.Name = "lblNumero";
-            lblNumero.Size = new Size(21, 24);
+            lblNumero.Size = new Size(25, 27);
             lblNumero.TabIndex = 340;
             lblNumero.Text = "0";
             // 
@@ -263,7 +263,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(647, 352);
+            ClientSize = new Size(686, 400);
             Controls.Add(lblNumero);
             Controls.Add(kryptonGroup1);
             Controls.Add(lblStock);

@@ -36,7 +36,7 @@
             BtnMenu = new Krypton.Toolkit.KryptonButton();
             pictureBox6 = new PictureBox();
             BtnFacturas = new Krypton.Toolkit.KryptonButton();
-            kryptonButton1 = new Krypton.Toolkit.KryptonButton();
+            btnPerfil = new Krypton.Toolkit.KryptonButton();
             BtnClientes = new Krypton.Toolkit.KryptonButton();
             btnCerrarSesion = new Krypton.Toolkit.KryptonButton();
             BtnInventario = new Krypton.Toolkit.KryptonButton();
@@ -131,7 +131,7 @@
             panel1.Controls.Add(BtnMenu);
             panel1.Controls.Add(pictureBox6);
             panel1.Controls.Add(BtnFacturas);
-            panel1.Controls.Add(kryptonButton1);
+            panel1.Controls.Add(btnPerfil);
             panel1.Controls.Add(BtnClientes);
             panel1.Controls.Add(btnCerrarSesion);
             panel1.Controls.Add(BtnInventario);
@@ -211,30 +211,30 @@
             BtnFacturas.Values.Text = "Facturas";
             BtnFacturas.Click += BtnFacturas_Click;
             // 
-            // kryptonButton1
+            // btnPerfil
             // 
-            kryptonButton1.Location = new Point(109, 832);
-            kryptonButton1.Name = "kryptonButton1";
-            kryptonButton1.OverrideDefault.Back.Color1 = Color.Transparent;
-            kryptonButton1.OverrideDefault.Back.Color2 = Color.Transparent;
-            kryptonButton1.OverrideDefault.Border.Rounding = 40F;
-            kryptonButton1.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            kryptonButton1.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton1.Size = new Size(135, 36);
-            kryptonButton1.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonButton1.StateCommon.Back.Color2 = Color.White;
-            kryptonButton1.StateCommon.Border.Rounding = 40F;
-            kryptonButton1.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton1.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton1.StateNormal.Back.Color1 = Color.Transparent;
-            kryptonButton1.StateNormal.Back.Color2 = Color.Transparent;
-            kryptonButton1.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
-            kryptonButton1.StatePressed.Back.Color1 = Color.Transparent;
-            kryptonButton1.StatePressed.Back.Color2 = Color.Transparent;
-            kryptonButton1.StateTracking.Border.Rounding = 40F;
-            kryptonButton1.TabIndex = 36;
-            kryptonButton1.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton1.Values.Text = "Empleado";
+            btnPerfil.Location = new Point(109, 832);
+            btnPerfil.Name = "btnPerfil";
+            btnPerfil.OverrideDefault.Back.Color1 = Color.Transparent;
+            btnPerfil.OverrideDefault.Back.Color2 = Color.Transparent;
+            btnPerfil.OverrideDefault.Border.Rounding = 40F;
+            btnPerfil.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnPerfil.OverrideFocus.Back.Color2 = Color.White;
+            btnPerfil.Size = new Size(135, 36);
+            btnPerfil.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnPerfil.StateCommon.Back.Color2 = Color.White;
+            btnPerfil.StateCommon.Border.Rounding = 40F;
+            btnPerfil.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnPerfil.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnPerfil.StateNormal.Back.Color1 = Color.Transparent;
+            btnPerfil.StateNormal.Back.Color2 = Color.Transparent;
+            btnPerfil.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
+            btnPerfil.StatePressed.Back.Color1 = Color.Transparent;
+            btnPerfil.StatePressed.Back.Color2 = Color.Transparent;
+            btnPerfil.StateTracking.Border.Rounding = 40F;
+            btnPerfil.TabIndex = 36;
+            btnPerfil.Values.DropDownArrowColor = Color.Empty;
+            btnPerfil.Values.Text = "Empleado";
             // 
             // BtnClientes
             // 
@@ -471,9 +471,9 @@
             label6.ForeColor = Color.Navy;
             label6.Location = new Point(559, 138);
             label6.Name = "label6";
-            label6.Size = new Size(45, 23);
+            label6.Size = new Size(49, 23);
             label6.TabIndex = 350;
-            label6.Text = "Final";
+            label6.Text = "Final:";
             // 
             // label5
             // 
@@ -482,9 +482,9 @@
             label5.ForeColor = Color.Navy;
             label5.Location = new Point(412, 138);
             label5.Name = "label5";
-            label5.Size = new Size(54, 23);
+            label5.Size = new Size(58, 23);
             label5.TabIndex = 349;
-            label5.Text = "Inicial";
+            label5.Text = "Inicial:";
             // 
             // label4
             // 
@@ -493,9 +493,9 @@
             label4.ForeColor = Color.Navy;
             label4.Location = new Point(587, 214);
             label4.Name = "label4";
-            label4.Size = new Size(115, 31);
+            label4.Size = new Size(120, 31);
             label4.TabIndex = 348;
-            label4.Text = "Busqueda";
+            label4.Text = "Busqueda:";
             // 
             // label3
             // 
@@ -532,7 +532,7 @@
             dgvFacturas.RowHeadersWidth = 51;
             dgvFacturas.Size = new Size(1200, 444);
             dgvFacturas.TabIndex = 332;
-            dgvFacturas.CellContentClick += dgvFacturas_CellContentClick;
+            dgvFacturas.CellDoubleClick += dgvFacturas_CellDoubleClick;
             // 
             // dtpFin
             // 
@@ -791,7 +791,7 @@
         private Panel panel4;
         private Panel panel1;
         private PictureBox pictureBox6;
-        private Krypton.Toolkit.KryptonButton kryptonButton1;
+        private Krypton.Toolkit.KryptonButton btnPerfil;
         private Krypton.Toolkit.KryptonButton btnCerrarSesion;
         private PictureBox pictureBox16;
         private PictureBox pictureBox15;

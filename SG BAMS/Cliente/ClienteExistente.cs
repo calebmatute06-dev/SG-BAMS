@@ -31,6 +31,9 @@ namespace SG_BAMS
                 cmbClientes.DisplayMember = "Nombre Completo";
                 cmbClientes.ValueMember = "ID";
                 cmbClientes.DataSource = dt;
+
+                cmbClientes.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                cmbClientes.AutoCompleteSource = AutoCompleteSource.ListItems;
             }
             catch (Exception ex)
             {
@@ -41,7 +44,7 @@ namespace SG_BAMS
         private async void ClienteExistente_Load(object sender, EventArgs e)
         {
             await LlenarComboCliente();
-            cmbClientes.SelectedIndex = 0;
+            cmbClientes.SelectedIndex = -1;
         }
 
         private void BtnAsignar_Click(object sender, EventArgs e)

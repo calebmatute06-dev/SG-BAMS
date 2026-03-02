@@ -97,15 +97,15 @@
             panel3.BackColor = Color.Navy;
             panel3.Location = new Point(1, 883);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1403, 24);
+            panel3.Size = new Size(1294, 24);
             panel3.TabIndex = 147;
             // 
             // panel4
             // 
             panel4.BackColor = Color.Navy;
-            panel4.Location = new Point(1380, 1);
+            panel4.Location = new Point(1271, 0);
             panel4.Name = "panel4";
-            panel4.Size = new Size(24, 895);
+            panel4.Size = new Size(24, 904);
             panel4.TabIndex = 144;
             // 
             // panel1
@@ -431,7 +431,7 @@
             panel2.BackColor = Color.Navy;
             panel2.Location = new Point(7, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1394, 24);
+            panel2.Size = new Size(1285, 24);
             panel2.TabIndex = 143;
             // 
             // panel6
@@ -448,7 +448,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(494, 58);
+            label5.Location = new Point(436, 80);
             label5.Name = "label5";
             label5.Size = new Size(138, 46);
             label5.TabIndex = 342;
@@ -459,7 +459,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(479, 211);
+            label3.Location = new Point(362, 275);
             label3.Name = "label3";
             label3.Size = new Size(115, 31);
             label3.TabIndex = 341;
@@ -467,7 +467,7 @@
             // 
             // chkActivo
             // 
-            chkActivo.Location = new Point(1107, 263);
+            chkActivo.Location = new Point(1077, 271);
             chkActivo.Name = "chkActivo";
             chkActivo.Size = new Size(104, 31);
             chkActivo.StateCommon.ShortText.Color1 = Color.Navy;
@@ -483,13 +483,13 @@
             dgvClientes.Location = new Point(356, 333);
             dgvClientes.Name = "dgvClientes";
             dgvClientes.RowHeadersWidth = 51;
-            dgvClientes.Size = new Size(952, 330);
+            dgvClientes.Size = new Size(825, 379);
             dgvClientes.TabIndex = 339;
-            dgvClientes.CellContentClick += dgvClientes_CellContentClick;
+            dgvClientes.CellDoubleClick += dgvClientes_CellDoubleClick;
             // 
             // BtnModificar
             // 
-            BtnModificar.Location = new Point(761, 756);
+            BtnModificar.Location = new Point(718, 792);
             BtnModificar.Name = "BtnModificar";
             BtnModificar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             BtnModificar.OverrideDefault.Back.Color2 = Color.White;
@@ -512,7 +512,7 @@
             // 
             // txtBusqueda
             // 
-            txtBusqueda.Location = new Point(602, 207);
+            txtBusqueda.Location = new Point(485, 271);
             txtBusqueda.Margin = new Padding(3, 4, 3, 4);
             txtBusqueda.Name = "txtBusqueda";
             txtBusqueda.Size = new Size(570, 33);
@@ -527,7 +527,7 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(465, 263);
+            label4.Location = new Point(362, 225);
             label4.Name = "label4";
             label4.Size = new Size(167, 24);
             label4.TabIndex = 335;
@@ -537,7 +537,7 @@
             // 
             pictureBox17.BackgroundImage = Properties.Resources.clientes;
             pictureBox17.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox17.Location = new Point(412, 59);
+            pictureBox17.Location = new Point(354, 81);
             pictureBox17.Name = "pictureBox17";
             pictureBox17.Size = new Size(69, 45);
             pictureBox17.TabIndex = 334;
@@ -565,7 +565,7 @@
             // 
             // kryptonButton11
             // 
-            kryptonButton11.Location = new Point(1276, 30);
+            kryptonButton11.Location = new Point(1167, 30);
             kryptonButton11.Name = "kryptonButton11";
             kryptonButton11.OverrideDefault.Back.Color1 = Color.Transparent;
             kryptonButton11.OverrideDefault.Back.Color2 = Color.Transparent;
@@ -592,7 +592,7 @@
             // 
             pictureBox18.BackgroundImage = Properties.Resources.ajus;
             pictureBox18.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox18.Location = new Point(1221, 29);
+            pictureBox18.Location = new Point(1112, 29);
             pictureBox18.Name = "pictureBox18";
             pictureBox18.Size = new Size(53, 49);
             pictureBox18.TabIndex = 330;
@@ -607,7 +607,7 @@
             button12.FlatAppearance.BorderSize = 0;
             button12.FlatStyle = FlatStyle.Flat;
             button12.ForeColor = Color.Navy;
-            button12.Location = new Point(1156, 29);
+            button12.Location = new Point(1047, 29);
             button12.Name = "button12";
             button12.Size = new Size(59, 44);
             button12.TabIndex = 329;
@@ -616,9 +616,9 @@
             // kryptonGroupBox1
             // 
             kryptonGroupBox1.CaptionVisible = false;
-            kryptonGroupBox1.Location = new Point(321, 312);
+            kryptonGroupBox1.Location = new Point(329, 312);
             kryptonGroupBox1.Margin = new Padding(3, 4, 3, 4);
-            kryptonGroupBox1.Size = new Size(1021, 371);
+            kryptonGroupBox1.Size = new Size(886, 420);
             kryptonGroupBox1.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroupBox1.StateCommon.Border.Rounding = 50F;
             kryptonGroupBox1.TabIndex = 337;
@@ -628,7 +628,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1403, 908);
+            ClientSize = new Size(1297, 908);
             Controls.Add(label5);
             Controls.Add(label3);
             Controls.Add(chkActivo);

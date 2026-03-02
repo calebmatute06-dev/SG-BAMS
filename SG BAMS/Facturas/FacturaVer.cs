@@ -84,7 +84,7 @@ namespace SG_BAMS
 
             double total = acumulador - rebaja;
 
-            txtTotal.Text = total.ToString();
+            txtTotal.Text = total.ToString()+",00";
         }
 
         private async void FacturaVer_Load(object sender, EventArgs e)

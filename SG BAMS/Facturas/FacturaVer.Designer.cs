@@ -63,7 +63,7 @@
             // cmbPago
             // 
             cmbPago.DropDownWidth = 300;
-            cmbPago.Location = new Point(202, 429);
+            cmbPago.Location = new Point(235, 486);
             cmbPago.Name = "cmbPago";
             cmbPago.Size = new Size(146, 38);
             cmbPago.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
@@ -76,7 +76,7 @@
             // 
             // txtBateriaVieja
             // 
-            txtBateriaVieja.Location = new Point(194, 165);
+            txtBateriaVieja.Location = new Point(347, 219);
             txtBateriaVieja.Margin = new Padding(3, 4, 3, 4);
             txtBateriaVieja.Name = "txtBateriaVieja";
             txtBateriaVieja.Size = new Size(197, 36);
@@ -88,7 +88,7 @@
             // 
             // txtCliente
             // 
-            txtCliente.Location = new Point(194, 120);
+            txtCliente.Location = new Point(347, 163);
             txtCliente.Margin = new Padding(3, 4, 3, 4);
             txtCliente.Name = "txtCliente";
             txtCliente.Size = new Size(197, 36);
@@ -100,7 +100,7 @@
             // 
             // fechaDT
             // 
-            fechaDT.Location = new Point(737, 225);
+            fechaDT.Location = new Point(783, 245);
             fechaDT.Margin = new Padding(10, 12, 10, 12);
             fechaDT.MaxSelectionCount = 1;
             fechaDT.Name = "fechaDT";
@@ -109,7 +109,7 @@
             // kryptonGroupBox1
             // 
             kryptonGroupBox1.CaptionVisible = false;
-            kryptonGroupBox1.Location = new Point(704, 187);
+            kryptonGroupBox1.Location = new Point(753, 205);
             kryptonGroupBox1.Margin = new Padding(3, 4, 3, 4);
             kryptonGroupBox1.Size = new Size(276, 288);
             kryptonGroupBox1.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -118,7 +118,7 @@
             // 
             // BtnSalir
             // 
-            BtnSalir.Location = new Point(299, 494);
+            BtnSalir.Location = new Point(386, 549);
             BtnSalir.Name = "BtnSalir";
             BtnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             BtnSalir.OverrideDefault.Back.Color2 = Color.White;
@@ -149,7 +149,7 @@
             // 
             // txtTotal
             // 
-            txtTotal.Location = new Point(531, 440);
+            txtTotal.Location = new Point(578, 488);
             txtTotal.Margin = new Padding(3, 4, 3, 4);
             txtTotal.Name = "txtTotal";
             txtTotal.Size = new Size(110, 36);
@@ -164,18 +164,18 @@
             panel1.BackColor = Color.Navy;
             panel1.Location = new Point(16, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(981, 24);
+            panel1.Size = new Size(1071, 24);
             panel1.TabIndex = 324;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
-            label2.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(472, 444);
+            label2.Location = new Point(505, 497);
             label2.Name = "label2";
-            label2.Size = new Size(57, 24);
+            label2.Size = new Size(67, 27);
             label2.TabIndex = 329;
             label2.Text = "Total";
             // 
@@ -195,7 +195,7 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(873, 529);
+            label5.Location = new Point(946, 589);
             label5.Name = "label5";
             label5.Size = new Size(113, 42);
             label5.TabIndex = 328;
@@ -205,11 +205,11 @@
             // 
             label7.AutoSize = true;
             label7.BackColor = Color.Transparent;
-            label7.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Navy;
-            label7.Location = new Point(811, 159);
+            label7.Location = new Point(858, 172);
             label7.Name = "label7";
-            label7.Size = new Size(67, 24);
+            label7.Size = new Size(80, 27);
             label7.TabIndex = 333;
             label7.Text = "Fecha";
             // 
@@ -217,11 +217,11 @@
             // 
             label9.AutoSize = true;
             label9.BackColor = Color.Transparent;
-            label9.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label9.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label9.ForeColor = Color.Navy;
-            label9.Location = new Point(53, 440);
+            label9.Location = new Point(53, 497);
             label9.Name = "label9";
-            label9.Size = new Size(153, 24);
+            label9.Size = new Size(176, 27);
             label9.TabIndex = 332;
             label9.Text = "Forma de Pago";
             // 
@@ -229,11 +229,11 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(53, 172);
+            label1.Location = new Point(166, 228);
             label1.Name = "label1";
-            label1.Size = new Size(128, 24);
+            label1.Size = new Size(153, 27);
             label1.TabIndex = 331;
             label1.Text = "Bateria Vieja";
             // 
@@ -241,11 +241,11 @@
             // 
             label3.AutoSize = true;
             label3.BackColor = Color.Transparent;
-            label3.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(53, 128);
+            label3.Location = new Point(166, 172);
             label3.Name = "label3";
-            label3.Size = new Size(75, 24);
+            label3.Size = new Size(92, 27);
             label3.TabIndex = 330;
             label3.Text = "Cliente";
             // 
@@ -264,17 +264,17 @@
             // panel3
             // 
             panel3.BackColor = Color.Navy;
-            panel3.Location = new Point(986, 0);
+            panel3.Location = new Point(1065, 0);
             panel3.Name = "panel3";
-            panel3.Size = new Size(25, 600);
+            panel3.Size = new Size(25, 655);
             panel3.TabIndex = 325;
             // 
             // panel4
             // 
             panel4.BackColor = Color.Navy;
-            panel4.Location = new Point(-5, 576);
+            panel4.Location = new Point(-1, 634);
             panel4.Name = "panel4";
-            panel4.Size = new Size(1001, 24);
+            panel4.Size = new Size(1091, 24);
             panel4.TabIndex = 326;
             // 
             // panel8
@@ -283,17 +283,17 @@
             panel8.Controls.Add(panel2);
             panel8.Location = new Point(-8, 0);
             panel8.Name = "panel8";
-            panel8.Size = new Size(25, 600);
+            panel8.Size = new Size(25, 647);
             panel8.TabIndex = 323;
             // 
             // dgvFacturas
             // 
             dgvFacturas.BackgroundColor = Color.SkyBlue;
             dgvFacturas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvFacturas.Location = new Point(48, 225);
+            dgvFacturas.Location = new Point(42, 275);
             dgvFacturas.Name = "dgvFacturas";
             dgvFacturas.RowHeadersWidth = 51;
-            dgvFacturas.Size = new Size(639, 188);
+            dgvFacturas.Size = new Size(680, 188);
             dgvFacturas.TabIndex = 345;
             // 
             // label6
@@ -302,7 +302,7 @@
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(401, 57);
+            label6.Location = new Point(379, 71);
             label6.Name = "label6";
             label6.Size = new Size(124, 35);
             label6.TabIndex = 346;
@@ -314,7 +314,7 @@
             lblFactura.BackColor = Color.Transparent;
             lblFactura.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblFactura.ForeColor = Color.Navy;
-            lblFactura.Location = new Point(531, 57);
+            lblFactura.Location = new Point(509, 71);
             lblFactura.Name = "lblFactura";
             lblFactura.Size = new Size(23, 35);
             lblFactura.TabIndex = 347;
@@ -325,7 +325,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1003, 600);
+            ClientSize = new Size(1092, 659);
             Controls.Add(lblFactura);
             Controls.Add(label6);
             Controls.Add(dgvFacturas);

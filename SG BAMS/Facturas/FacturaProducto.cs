@@ -45,7 +45,10 @@ namespace SG_BAMS
                 cmbProductos.ValueMember = "ID";
                 cmbProductos.DataSource = dt;
 
-                
+                cmbProductos.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                cmbProductos.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+
                 lblNumero.DataBindings.Clear();
                 lblNumero.DataBindings.Add("Text", dt, "Stock");
             }
@@ -59,6 +62,7 @@ namespace SG_BAMS
         private async void FacturaProducto_Load(object sender, EventArgs e)
         {
             await LlenarComboProductos();
+            cmbProductos.SelectedIndex = -1;
         }
 
         private void BtnAceptar_Click(object sender, EventArgs e)

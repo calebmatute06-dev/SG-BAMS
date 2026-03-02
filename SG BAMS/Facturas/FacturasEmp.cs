@@ -17,9 +17,11 @@ namespace SG_BAMS
         public FacturasEmp()
         {
             InitializeComponent();
+            dgvFacturas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvFacturas.MultiSelect = false;
         }
 
-        private void dgvFacturas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvFacturas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             int idFacturas, idPago, bateriaVieja;
             string nombre_Cliente;
@@ -59,7 +61,7 @@ namespace SG_BAMS
         {
             if (dgvFacturas.CurrentRow != null)
             {
-                dgvFacturas_CellContentClick(null, null);
+                dgvFacturas_CellDoubleClick(null, null);
             }
 
         }

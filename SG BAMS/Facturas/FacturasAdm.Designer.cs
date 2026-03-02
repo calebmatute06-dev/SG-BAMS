@@ -41,7 +41,7 @@
             panel3 = new Panel();
             panel4 = new Panel();
             panel1 = new Panel();
-            btnperfil = new Krypton.Toolkit.KryptonButton();
+            btnPerfil = new Krypton.Toolkit.KryptonButton();
             btnreportes = new Krypton.Toolkit.KryptonButton();
             btncompra = new Krypton.Toolkit.KryptonButton();
             btnmenuprincipal = new Krypton.Toolkit.KryptonButton();
@@ -243,7 +243,7 @@
             // panel1
             // 
             panel1.BackColor = Color.SkyBlue;
-            panel1.Controls.Add(btnperfil);
+            panel1.Controls.Add(btnPerfil);
             panel1.Controls.Add(btnreportes);
             panel1.Controls.Add(btncompra);
             panel1.Controls.Add(btnmenuprincipal);
@@ -274,30 +274,30 @@
             panel1.Size = new Size(286, 892);
             panel1.TabIndex = 106;
             // 
-            // btnperfil
+            // btnPerfil
             // 
-            btnperfil.Location = new Point(114, 838);
-            btnperfil.Name = "btnperfil";
-            btnperfil.OverrideDefault.Back.Color1 = Color.Transparent;
-            btnperfil.OverrideDefault.Back.Color2 = Color.Transparent;
-            btnperfil.OverrideDefault.Border.Rounding = 40F;
-            btnperfil.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnperfil.OverrideFocus.Back.Color2 = Color.White;
-            btnperfil.Size = new Size(139, 36);
-            btnperfil.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnperfil.StateCommon.Back.Color2 = Color.White;
-            btnperfil.StateCommon.Border.Rounding = 40F;
-            btnperfil.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnperfil.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnperfil.StateNormal.Back.Color1 = Color.Transparent;
-            btnperfil.StateNormal.Back.Color2 = Color.Transparent;
-            btnperfil.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
-            btnperfil.StatePressed.Back.Color1 = Color.Transparent;
-            btnperfil.StatePressed.Back.Color2 = Color.Transparent;
-            btnperfil.StateTracking.Border.Rounding = 40F;
-            btnperfil.TabIndex = 41;
-            btnperfil.Values.DropDownArrowColor = Color.Empty;
-            btnperfil.Values.Text = "Administrador";
+            btnPerfil.Location = new Point(114, 838);
+            btnPerfil.Name = "btnPerfil";
+            btnPerfil.OverrideDefault.Back.Color1 = Color.Transparent;
+            btnPerfil.OverrideDefault.Back.Color2 = Color.Transparent;
+            btnPerfil.OverrideDefault.Border.Rounding = 40F;
+            btnPerfil.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnPerfil.OverrideFocus.Back.Color2 = Color.White;
+            btnPerfil.Size = new Size(139, 36);
+            btnPerfil.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnPerfil.StateCommon.Back.Color2 = Color.White;
+            btnPerfil.StateCommon.Border.Rounding = 40F;
+            btnPerfil.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnPerfil.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnPerfil.StateNormal.Back.Color1 = Color.Transparent;
+            btnPerfil.StateNormal.Back.Color2 = Color.Transparent;
+            btnPerfil.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
+            btnPerfil.StatePressed.Back.Color1 = Color.Transparent;
+            btnPerfil.StatePressed.Back.Color2 = Color.Transparent;
+            btnPerfil.StateTracking.Border.Rounding = 40F;
+            btnPerfil.TabIndex = 41;
+            btnPerfil.Values.DropDownArrowColor = Color.Empty;
+            btnPerfil.Values.Text = "Administrador";
             // 
             // btnreportes
             // 
@@ -788,7 +788,7 @@
             dgvFacturas.RowHeadersWidth = 51;
             dgvFacturas.Size = new Size(1199, 407);
             dgvFacturas.TabIndex = 37;
-            dgvFacturas.CellContentClick += dgvFacturas_CellContentClick;
+            dgvFacturas.CellDoubleClick += dgvFacturas_CellDoubleClick;
             // 
             // txtBusqueda
             // 
@@ -819,13 +819,13 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
             label4.Location = new Point(508, 260);
             label4.Name = "label4";
-            label4.Size = new Size(115, 31);
+            label4.Size = new Size(99, 27);
             label4.TabIndex = 328;
-            label4.Text = "Busqueda";
+            label4.Text = "Busqueda:";
             // 
             // label5
             // 
@@ -834,9 +834,9 @@
             label5.ForeColor = Color.Navy;
             label5.Location = new Point(397, 160);
             label5.Name = "label5";
-            label5.Size = new Size(54, 23);
+            label5.Size = new Size(58, 23);
             label5.TabIndex = 329;
-            label5.Text = "Inicial";
+            label5.Text = "Inicial:";
             // 
             // label6
             // 
@@ -845,9 +845,9 @@
             label6.ForeColor = Color.Navy;
             label6.Location = new Point(544, 160);
             label6.Name = "label6";
-            label6.Size = new Size(45, 23);
+            label6.Size = new Size(49, 23);
             label6.TabIndex = 330;
-            label6.Text = "Final";
+            label6.Text = "Final:";
             // 
             // BtnRefrescar
             // 
@@ -1018,7 +1018,7 @@
         private Krypton.Toolkit.KryptonButton btnmenuprincipal;
         private Krypton.Toolkit.KryptonButton btnreportes;
         private Krypton.Toolkit.KryptonButton btncompra;
-        private Krypton.Toolkit.KryptonButton btnperfil;
+        private Krypton.Toolkit.KryptonButton btnPerfil;
         private Krypton.Toolkit.KryptonButton kryptonButton11;
         private CheckBox chkHoy;
     }

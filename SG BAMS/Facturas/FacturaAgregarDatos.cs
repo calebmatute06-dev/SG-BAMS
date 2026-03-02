@@ -98,7 +98,7 @@ namespace SG_BAMS
             }
 
             double total = acumulador - rebaja;
-            TxtTotal.Text = total.ToString();
+            TxtTotal.Text = total.ToString() + ",00";
         }
 
         private async void BtnAceptar_Click(object sender, EventArgs e)

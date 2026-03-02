@@ -88,6 +88,7 @@ namespace SG_BAMS
         {
             await LlenarComboEstado();
             cmbEstado.SelectedValue = idEstadoSelec;
+            txtID.ReadOnly = true;
         }
 
         private void BtnSalir_Click(object sender, EventArgs e)
