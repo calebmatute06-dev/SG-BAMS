@@ -122,6 +122,7 @@ namespace SG_BAMS
         private async void FacturasEmp_Load(object sender, EventArgs e)
         {
             await CargarFactura();
+            dtpFin.ValueChanged += dtpInicio_ValueChanged;
         }
 
         private void FiltrarPorFecha()

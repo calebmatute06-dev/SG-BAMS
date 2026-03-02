@@ -54,6 +54,7 @@ namespace SG_BAMS
         private async void FacturasAdm_Load(object sender, EventArgs e)
         {
             await CargarFactura();
+            dtpFin.ValueChanged += dtpInicio_ValueChanged;
         }
 
         private async void BtnNueva_Click(object sender, EventArgs e)
