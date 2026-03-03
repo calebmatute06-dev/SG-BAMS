@@ -51,44 +51,48 @@
             label7.AutoSize = true;
             label7.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Navy;
-            label7.Location = new Point(583, 455);
+            label7.Location = new Point(510, 338);
             label7.Name = "label7";
-            label7.Size = new Size(77, 31);
+            label7.Size = new Size(60, 25);
             label7.TabIndex = 121;
             label7.Text = "BAMS";
             // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Navy;
-            pictureBox1.Location = new Point(-1, 7);
+            pictureBox1.Location = new Point(-1, 2);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(24, 508);
+            pictureBox1.Size = new Size(21, 381);
             pictureBox1.TabIndex = 120;
             pictureBox1.TabStop = false;
             // 
             // panel1
             // 
             panel1.BackColor = Color.Navy;
-            panel1.Location = new Point(-1, 4);
+            panel1.Location = new Point(-1, 0);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(683, 24);
+            panel1.Size = new Size(598, 18);
             panel1.TabIndex = 118;
             // 
             // pictureBox2
             // 
             pictureBox2.BackColor = Color.Navy;
-            pictureBox2.Location = new Point(658, 4);
+            pictureBox2.Location = new Point(576, 0);
+            pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(24, 511);
+            pictureBox2.Size = new Size(21, 383);
             pictureBox2.TabIndex = 119;
             pictureBox2.TabStop = false;
             // 
             // panel2
             // 
             panel2.BackColor = Color.Navy;
-            panel2.Location = new Point(-1, 491);
+            panel2.Location = new Point(-1, 365);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(683, 24);
+            panel2.Size = new Size(598, 18);
             panel2.TabIndex = 117;
             // 
             // label1
@@ -96,9 +100,9 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial Narrow", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(186, 52);
+            label1.Location = new Point(163, 36);
             label1.Name = "label1";
-            label1.Size = new Size(280, 39);
+            label1.Size = new Size(245, 29);
             label1.TabIndex = 115;
             label1.Text = "Roles de Usuario";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -107,24 +111,24 @@
             // 
             pictureBox3.BackgroundImage = Properties.Resources.roles;
             pictureBox3.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox3.Location = new Point(433, 35);
-            pictureBox3.Margin = new Padding(3, 4, 3, 4);
+            pictureBox3.Location = new Point(379, 23);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(85, 67);
+            pictureBox3.Size = new Size(74, 50);
             pictureBox3.TabIndex = 146;
             pictureBox3.TabStop = false;
             pictureBox3.Click += pictureBox3_Click;
             // 
             // btmAgregar
             // 
-            btmAgregar.Location = new Point(186, 370);
+            btmAgregar.Location = new Point(163, 275);
+            btmAgregar.Margin = new Padding(3, 2, 3, 2);
             btmAgregar.Name = "btmAgregar";
             btmAgregar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btmAgregar.OverrideDefault.Back.Color2 = Color.White;
             btmAgregar.OverrideDefault.Border.Rounding = 40F;
             btmAgregar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btmAgregar.OverrideFocus.Back.Color2 = Color.White;
-            btmAgregar.Size = new Size(118, 65);
+            btmAgregar.Size = new Size(103, 49);
             btmAgregar.StateCommon.Back.Color1 = Color.SkyBlue;
             btmAgregar.StateCommon.Back.Color2 = Color.White;
             btmAgregar.StateCommon.Border.Rounding = 40F;
@@ -141,14 +145,15 @@
             // 
             // btmModificar
             // 
-            btmModificar.Location = new Point(336, 370);
+            btmModificar.Location = new Point(294, 275);
+            btmModificar.Margin = new Padding(3, 2, 3, 2);
             btmModificar.Name = "btmModificar";
             btmModificar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btmModificar.OverrideDefault.Back.Color2 = Color.White;
             btmModificar.OverrideDefault.Border.Rounding = 40F;
             btmModificar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btmModificar.OverrideFocus.Back.Color2 = Color.White;
-            btmModificar.Size = new Size(118, 65);
+            btmModificar.Size = new Size(103, 49);
             btmModificar.StateCommon.Back.Color1 = Color.SkyBlue;
             btmModificar.StateCommon.Back.Color2 = Color.White;
             btmModificar.StateCommon.Border.Rounding = 40F;
@@ -165,14 +170,15 @@
             // 
             // btmSalir
             // 
-            btmSalir.Location = new Point(461, 420);
+            btmSalir.Location = new Point(403, 312);
+            btmSalir.Margin = new Padding(3, 2, 3, 2);
             btmSalir.Name = "btmSalir";
             btmSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btmSalir.OverrideDefault.Back.Color2 = Color.White;
             btmSalir.OverrideDefault.Border.Rounding = 40F;
             btmSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btmSalir.OverrideFocus.Back.Color2 = Color.White;
-            btmSalir.Size = new Size(118, 65);
+            btmSalir.Size = new Size(103, 49);
             btmSalir.StateCommon.Back.Color1 = Color.SkyBlue;
             btmSalir.StateCommon.Back.Color2 = Color.White;
             btmSalir.StateCommon.Border.Rounding = 40F;
@@ -193,8 +199,7 @@
             dgvRoles.AllowUserToDeleteRows = false;
             dgvRoles.BorderStyle = BorderStyle.None;
             dgvRoles.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvRoles.Location = new Point(82, 121);
-            dgvRoles.Margin = new Padding(3, 4, 3, 4);
+            dgvRoles.Location = new Point(72, 88);
             dgvRoles.Name = "dgvRoles";
             dgvRoles.ReadOnly = true;
             dgvRoles.RowHeadersWidth = 51;
@@ -205,7 +210,7 @@
             dataGridViewCellStyle1.SelectionForeColor = Color.White;
             dgvRoles.RowsDefaultCellStyle = dataGridViewCellStyle1;
             dgvRoles.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvRoles.Size = new Size(512, 232);
+            dgvRoles.Size = new Size(448, 174);
             dgvRoles.StateCommon.Background.Color1 = Color.SkyBlue;
             dgvRoles.StateCommon.Background.Color2 = Color.SkyBlue;
             dgvRoles.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
@@ -214,10 +219,10 @@
             // 
             // frmRoles
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(686, 519);
+            ClientSize = new Size(597, 383);
             Controls.Add(dgvRoles);
             Controls.Add(btmSalir);
             Controls.Add(btmModificar);
@@ -229,7 +234,6 @@
             Controls.Add(pictureBox2);
             Controls.Add(panel2);
             Controls.Add(label1);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "frmRoles";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmRoles";

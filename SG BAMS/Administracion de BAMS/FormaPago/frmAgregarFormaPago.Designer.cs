@@ -49,44 +49,47 @@ namespace SG_BAMS
             // panel1
             // 
             panel1.BackColor = Color.Navy;
-            panel1.Location = new Point(2, 4);
+            panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(683, 24);
+            panel1.Size = new Size(598, 18);
             panel1.TabIndex = 120;
             // 
             // pictureBox2
             // 
             pictureBox2.BackColor = Color.Navy;
-            pictureBox2.Location = new Point(2, 4);
+            pictureBox2.Location = new Point(0, 0);
+            pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(24, 360);
+            pictureBox2.Size = new Size(21, 270);
             pictureBox2.TabIndex = 121;
             pictureBox2.TabStop = false;
             // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Navy;
-            pictureBox1.Location = new Point(662, 4);
+            pictureBox1.Location = new Point(577, 0);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(24, 375);
+            pictureBox1.Size = new Size(21, 281);
             pictureBox1.TabIndex = 114;
             pictureBox1.TabStop = false;
             // 
             // panel2
             // 
             panel2.BackColor = Color.Navy;
-            panel2.Location = new Point(2, 355);
+            panel2.Location = new Point(0, 263);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(683, 24);
+            panel2.Size = new Size(598, 18);
             panel2.TabIndex = 119;
             // 
             // txtdescri
             // 
-            txtdescri.Location = new Point(353, 103);
-            txtdescri.Margin = new Padding(3, 4, 3, 4);
+            txtdescri.Location = new Point(307, 74);
             txtdescri.Multiline = true;
             txtdescri.Name = "txtdescri";
-            txtdescri.Size = new Size(302, 48);
+            txtdescri.Size = new Size(264, 36);
             txtdescri.StateCommon.Back.Color1 = Color.SkyBlue;
             txtdescri.StateCommon.Border.Rounding = 15F;
             txtdescri.StateCommon.Content.Color1 = Color.Navy;
@@ -99,9 +102,9 @@ namespace SG_BAMS
             label9.BackColor = Color.Transparent;
             label9.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label9.ForeColor = Color.Navy;
-            label9.Location = new Point(589, 320);
+            label9.Location = new Point(513, 237);
             label9.Name = "label9";
-            label9.Size = new Size(70, 30);
+            label9.Size = new Size(58, 24);
             label9.TabIndex = 115;
             label9.Text = "BAMS";
             // 
@@ -111,9 +114,9 @@ namespace SG_BAMS
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(33, 109);
+            label2.Location = new Point(27, 79);
             label2.Name = "label2";
-            label2.Size = new Size(331, 31);
+            label2.Size = new Size(274, 25);
             label2.TabIndex = 113;
             label2.Text = "Ingrese el tipo de forma de pago:";
             label2.Click += label2_Click;
@@ -123,9 +126,9 @@ namespace SG_BAMS
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial Narrow", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(154, 36);
+            label1.Location = new Point(133, 24);
             label1.Name = "label1";
-            label1.Size = new Size(358, 39);
+            label1.Size = new Size(313, 29);
             label1.TabIndex = 112;
             label1.Text = "Agregar el tipo de forma de pago";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -135,22 +138,24 @@ namespace SG_BAMS
             // 
             pictureBox16.BackgroundImage = (Image)resources.GetObject("pictureBox16.BackgroundImage");
             pictureBox16.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox16.Location = new Point(501, 33);
+            pictureBox16.Location = new Point(436, 22);
+            pictureBox16.Margin = new Padding(3, 2, 3, 2);
             pictureBox16.Name = "pictureBox16";
-            pictureBox16.Size = new Size(47, 48);
+            pictureBox16.Size = new Size(41, 36);
             pictureBox16.TabIndex = 131;
             pictureBox16.TabStop = false;
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(215, 224);
+            btnAgregar.Location = new Point(186, 165);
+            btnAgregar.Margin = new Padding(3, 2, 3, 2);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnAgregar.OverrideDefault.Back.Color2 = Color.White;
             btnAgregar.OverrideDefault.Border.Rounding = 40F;
             btnAgregar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnAgregar.OverrideFocus.Back.Color2 = Color.White;
-            btnAgregar.Size = new Size(118, 65);
+            btnAgregar.Size = new Size(103, 49);
             btnAgregar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnAgregar.StateCommon.Back.Color2 = Color.White;
             btnAgregar.StateCommon.Border.Rounding = 40F;
@@ -167,14 +172,15 @@ namespace SG_BAMS
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(380, 224);
+            btnSalir.Location = new Point(330, 165);
+            btnSalir.Margin = new Padding(3, 2, 3, 2);
             btnSalir.Name = "btnSalir";
             btnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnSalir.OverrideDefault.Back.Color2 = Color.White;
             btnSalir.OverrideDefault.Border.Rounding = 40F;
             btnSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnSalir.OverrideFocus.Back.Color2 = Color.White;
-            btnSalir.Size = new Size(118, 65);
+            btnSalir.Size = new Size(103, 49);
             btnSalir.StateCommon.Back.Color1 = Color.SkyBlue;
             btnSalir.StateCommon.Back.Color2 = Color.White;
             btnSalir.StateCommon.Border.Rounding = 40F;
@@ -191,10 +197,10 @@ namespace SG_BAMS
             // 
             // frmAgregarFormaPago
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(691, 385);
+            ClientSize = new Size(598, 281);
             Controls.Add(btnSalir);
             Controls.Add(btnAgregar);
             Controls.Add(pictureBox16);
@@ -206,7 +212,6 @@ namespace SG_BAMS
             Controls.Add(label9);
             Controls.Add(label2);
             Controls.Add(label1);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "frmAgregarFormaPago";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmAgregarFormaPago";

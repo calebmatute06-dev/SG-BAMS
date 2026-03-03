@@ -55,7 +55,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial Narrow", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(299, 23);
+            label1.Location = new Point(298, 23);
             label1.Name = "label1";
             label1.Size = new Size(245, 29);
             label1.TabIndex = 74;
@@ -67,7 +67,7 @@
             label7.AutoSize = true;
             label7.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Navy;
-            label7.Location = new Point(719, 361);
+            label7.Location = new Point(718, 361);
             label7.Name = "label7";
             label7.Size = new Size(60, 25);
             label7.TabIndex = 83;
@@ -76,7 +76,7 @@
             // panel2
             // 
             panel2.BackColor = Color.Navy;
-            panel2.Location = new Point(1, 388);
+            panel2.Location = new Point(0, 388);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
             panel2.Size = new Size(809, 22);
@@ -84,7 +84,7 @@
             // 
             // btnCapturar
             // 
-            btnCapturar.Location = new Point(43, 107);
+            btnCapturar.Location = new Point(42, 107);
             btnCapturar.Margin = new Padding(3, 2, 3, 2);
             btnCapturar.Name = "btnCapturar";
             btnCapturar.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -109,7 +109,7 @@
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(32, 339);
+            btnSalir.Location = new Point(31, 339);
             btnSalir.Margin = new Padding(3, 2, 3, 2);
             btnSalir.Name = "btnSalir";
             btnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -134,7 +134,7 @@
             // 
             // btnBorrar
             // 
-            btnBorrar.Location = new Point(43, 162);
+            btnBorrar.Location = new Point(42, 162);
             btnBorrar.Margin = new Padding(3, 2, 3, 2);
             btnBorrar.Name = "btnBorrar";
             btnBorrar.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -159,7 +159,7 @@
             // 
             // btnEncender
             // 
-            btnEncender.Location = new Point(43, 217);
+            btnEncender.Location = new Point(42, 217);
             btnEncender.Margin = new Padding(3, 2, 3, 2);
             btnEncender.Name = "btnEncender";
             btnEncender.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -184,7 +184,7 @@
             // 
             // btnDetener
             // 
-            btnDetener.Location = new Point(43, 272);
+            btnDetener.Location = new Point(42, 272);
             btnDetener.Margin = new Padding(3, 2, 3, 2);
             btnDetener.Name = "btnDetener";
             btnDetener.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -212,7 +212,7 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(43, 23);
+            label2.Location = new Point(42, 23);
             label2.Name = "label2";
             label2.Size = new Size(99, 33);
             label2.TabIndex = 147;
@@ -221,7 +221,7 @@
             // 
             // pctCamara
             // 
-            pctCamara.Location = new Point(266, 54);
+            pctCamara.Location = new Point(265, 54);
             pctCamara.Margin = new Padding(3, 2, 3, 2);
             pctCamara.Name = "pctCamara";
             pctCamara.Size = new Size(486, 298);
@@ -231,7 +231,7 @@
             // cmbUsuarios
             // 
             cmbUsuarios.DropDownWidth = 300;
-            cmbUsuarios.Location = new Point(43, 61);
+            cmbUsuarios.Location = new Point(42, 61);
             cmbUsuarios.Margin = new Padding(3, 2, 3, 2);
             cmbUsuarios.Name = "cmbUsuarios";
             cmbUsuarios.Size = new Size(199, 40);
@@ -248,7 +248,7 @@
             // pictureBox2
             // 
             pictureBox2.BackColor = Color.Navy;
-            pictureBox2.Location = new Point(785, -1);
+            pictureBox2.Location = new Point(784, -1);
             pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(25, 411);
@@ -258,7 +258,7 @@
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Navy;
-            pictureBox1.Location = new Point(1, -1);
+            pictureBox1.Location = new Point(0, -1);
             pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(25, 411);
@@ -268,7 +268,7 @@
             // panel1
             // 
             panel1.BackColor = Color.Navy;
-            panel1.Location = new Point(1, -1);
+            panel1.Location = new Point(0, -1);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
             panel1.Size = new Size(809, 22);
@@ -279,7 +279,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(809, 411);
+            ClientSize = new Size(809, 410);
             Controls.Add(panel1);
             Controls.Add(pictureBox1);
             Controls.Add(pictureBox2);

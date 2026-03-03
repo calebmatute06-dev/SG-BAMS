@@ -55,7 +55,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial Narrow", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(160, 21);
+            label1.Location = new Point(159, 21);
             label1.Name = "label1";
             label1.Size = new Size(245, 29);
             label1.TabIndex = 1;
@@ -68,7 +68,7 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(77, 73);
+            label2.Location = new Point(76, 73);
             label2.Name = "label2";
             label2.Size = new Size(145, 25);
             label2.TabIndex = 2;
@@ -81,7 +81,7 @@
             label9.BackColor = Color.Transparent;
             label9.Font = new Font("Segoe UI", 15F);
             label9.ForeColor = Color.Navy;
-            label9.Location = new Point(534, 327);
+            label9.Location = new Point(533, 327);
             label9.Name = "label9";
             label9.Size = new Size(65, 28);
             label9.TabIndex = 17;
@@ -89,7 +89,7 @@
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(228, 65);
+            txtNombre.Location = new Point(227, 65);
             txtNombre.Multiline = true;
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(193, 40);
@@ -101,7 +101,7 @@
             // 
             // txtContra
             // 
-            txtContra.Location = new Point(228, 120);
+            txtContra.Location = new Point(227, 120);
             txtContra.Multiline = true;
             txtContra.Name = "txtContra";
             txtContra.Size = new Size(193, 40);
@@ -117,7 +117,7 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(77, 128);
+            label4.Location = new Point(76, 128);
             label4.Name = "label4";
             label4.Size = new Size(109, 25);
             label4.TabIndex = 19;
@@ -129,7 +129,7 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(77, 184);
+            label5.Location = new Point(76, 184);
             label5.Name = "label5";
             label5.Size = new Size(134, 25);
             label5.TabIndex = 21;
@@ -139,7 +139,7 @@
             // 
             pictureBox16.BackgroundImage = Properties.Resources.perfiles;
             pictureBox16.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox16.Location = new Point(370, 23);
+            pictureBox16.Location = new Point(369, 23);
             pictureBox16.Margin = new Padding(3, 2, 3, 2);
             pictureBox16.Name = "pictureBox16";
             pictureBox16.Size = new Size(35, 29);
@@ -149,7 +149,7 @@
             // panel2
             // 
             panel2.BackColor = Color.Navy;
-            panel2.Location = new Point(1, 357);
+            panel2.Location = new Point(0, 357);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
             panel2.Size = new Size(625, 18);
@@ -158,7 +158,7 @@
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Navy;
-            pictureBox1.Location = new Point(605, -1);
+            pictureBox1.Location = new Point(604, -1);
             pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(21, 376);
@@ -168,7 +168,7 @@
             // pictureBox2
             // 
             pictureBox2.BackColor = Color.Navy;
-            pictureBox2.Location = new Point(1, -1);
+            pictureBox2.Location = new Point(0, -1);
             pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(21, 374);
@@ -178,7 +178,7 @@
             // panel1
             // 
             panel1.BackColor = Color.Navy;
-            panel1.Location = new Point(1, -1);
+            panel1.Location = new Point(0, -1);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
             panel1.Size = new Size(625, 18);
@@ -187,7 +187,7 @@
             // cmbRol
             // 
             cmbRol.DropDownWidth = 300;
-            cmbRol.Location = new Point(228, 176);
+            cmbRol.Location = new Point(227, 176);
             cmbRol.Margin = new Padding(3, 2, 3, 2);
             cmbRol.Name = "cmbRol";
             cmbRol.Size = new Size(193, 40);
@@ -204,7 +204,7 @@
             // 
             // btmAgregar
             // 
-            btmAgregar.Location = new Point(177, 281);
+            btmAgregar.Location = new Point(176, 281);
             btmAgregar.Margin = new Padding(3, 2, 3, 2);
             btmAgregar.Name = "btmAgregar";
             btmAgregar.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -229,7 +229,7 @@
             // 
             // btnImagen
             // 
-            btnImagen.Location = new Point(395, 231);
+            btnImagen.Location = new Point(394, 231);
             btnImagen.Margin = new Padding(3, 2, 3, 2);
             btnImagen.Name = "btnImagen";
             btnImagen.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -254,7 +254,7 @@
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(302, 281);
+            btnSalir.Location = new Point(301, 281);
             btnSalir.Margin = new Padding(3, 2, 3, 2);
             btnSalir.Name = "btnSalir";
             btnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -282,7 +282,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(628, 374);
+            ClientSize = new Size(625, 374);
             Controls.Add(btnSalir);
             Controls.Add(btnImagen);
             Controls.Add(btmAgregar);

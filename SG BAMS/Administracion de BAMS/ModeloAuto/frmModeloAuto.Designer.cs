@@ -52,53 +52,58 @@
             label7.AutoSize = true;
             label7.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Navy;
-            label7.Location = new Point(586, 453);
+            label7.Location = new Point(511, 338);
             label7.Name = "label7";
-            label7.Size = new Size(77, 31);
+            label7.Size = new Size(60, 25);
             label7.TabIndex = 102;
             label7.Text = "BAMS";
             // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Navy;
-            pictureBox1.Location = new Point(2, 5);
+            pictureBox1.Location = new Point(0, 2);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(24, 508);
+            pictureBox1.Size = new Size(21, 381);
             pictureBox1.TabIndex = 101;
             pictureBox1.TabStop = false;
             // 
             // panel1
             // 
             panel1.BackColor = Color.Navy;
-            panel1.Location = new Point(2, 3);
+            panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(683, 24);
+            panel1.Size = new Size(598, 18);
             panel1.TabIndex = 99;
             // 
             // pictureBox2
             // 
             pictureBox2.BackColor = Color.Navy;
-            pictureBox2.Location = new Point(662, 3);
+            pictureBox2.Location = new Point(577, 0);
+            pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(24, 511);
+            pictureBox2.Size = new Size(21, 383);
             pictureBox2.TabIndex = 100;
             pictureBox2.TabStop = false;
             // 
             // panel2
             // 
             panel2.BackColor = Color.Navy;
-            panel2.Location = new Point(2, 489);
+            panel2.Location = new Point(0, 365);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(683, 24);
+            panel2.Size = new Size(598, 18);
             panel2.TabIndex = 98;
             // 
             // pictureBox16
             // 
             pictureBox16.BackgroundImage = (Image)resources.GetObject("pictureBox16.BackgroundImage");
             pictureBox16.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox16.Location = new Point(414, 39);
+            pictureBox16.Location = new Point(360, 27);
+            pictureBox16.Margin = new Padding(3, 2, 3, 2);
             pictureBox16.Name = "pictureBox16";
-            pictureBox16.Size = new Size(57, 64);
+            pictureBox16.Size = new Size(50, 48);
             pictureBox16.TabIndex = 96;
             pictureBox16.TabStop = false;
             // 
@@ -107,23 +112,24 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial Narrow", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(179, 51);
+            label1.Location = new Point(155, 36);
             label1.Name = "label1";
-            label1.Size = new Size(280, 39);
+            label1.Size = new Size(245, 29);
             label1.TabIndex = 95;
             label1.Text = "Modelo de autos";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // kryptonButton2
             // 
-            kryptonButton2.Location = new Point(473, 407);
+            kryptonButton2.Location = new Point(412, 303);
+            kryptonButton2.Margin = new Padding(3, 2, 3, 2);
             kryptonButton2.Name = "kryptonButton2";
             kryptonButton2.OverrideDefault.Back.Color1 = Color.SkyBlue;
             kryptonButton2.OverrideDefault.Back.Color2 = Color.White;
             kryptonButton2.OverrideDefault.Border.Rounding = 40F;
             kryptonButton2.OverrideFocus.Back.Color1 = Color.SkyBlue;
             kryptonButton2.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton2.Size = new Size(118, 65);
+            kryptonButton2.Size = new Size(103, 49);
             kryptonButton2.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonButton2.StateCommon.Back.Color2 = Color.White;
             kryptonButton2.StateCommon.Border.Rounding = 40F;
@@ -140,14 +146,15 @@
             // 
             // btmAgregar
             // 
-            btmAgregar.Location = new Point(186, 360);
+            btmAgregar.Location = new Point(161, 268);
+            btmAgregar.Margin = new Padding(3, 2, 3, 2);
             btmAgregar.Name = "btmAgregar";
             btmAgregar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btmAgregar.OverrideDefault.Back.Color2 = Color.White;
             btmAgregar.OverrideDefault.Border.Rounding = 40F;
             btmAgregar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btmAgregar.OverrideFocus.Back.Color2 = Color.White;
-            btmAgregar.Size = new Size(118, 65);
+            btmAgregar.Size = new Size(103, 49);
             btmAgregar.StateCommon.Back.Color1 = Color.SkyBlue;
             btmAgregar.StateCommon.Back.Color2 = Color.White;
             btmAgregar.StateCommon.Border.Rounding = 40F;
@@ -164,14 +171,15 @@
             // 
             // btmModificar
             // 
-            btmModificar.Location = new Point(349, 360);
+            btmModificar.Location = new Point(303, 268);
+            btmModificar.Margin = new Padding(3, 2, 3, 2);
             btmModificar.Name = "btmModificar";
             btmModificar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btmModificar.OverrideDefault.Back.Color2 = Color.White;
             btmModificar.OverrideDefault.Border.Rounding = 40F;
             btmModificar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btmModificar.OverrideFocus.Back.Color2 = Color.White;
-            btmModificar.Size = new Size(118, 65);
+            btmModificar.Size = new Size(103, 49);
             btmModificar.StateCommon.Back.Color1 = Color.SkyBlue;
             btmModificar.StateCommon.Back.Color2 = Color.White;
             btmModificar.StateCommon.Border.Rounding = 40F;
@@ -192,8 +200,7 @@
             dgvModelos.AllowUserToDeleteRows = false;
             dgvModelos.BorderStyle = BorderStyle.None;
             dgvModelos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvModelos.Location = new Point(79, 121);
-            dgvModelos.Margin = new Padding(3, 4, 3, 4);
+            dgvModelos.Location = new Point(67, 89);
             dgvModelos.Name = "dgvModelos";
             dgvModelos.ReadOnly = true;
             dgvModelos.RowHeadersWidth = 51;
@@ -204,7 +211,7 @@
             dataGridViewCellStyle1.SelectionForeColor = Color.White;
             dgvModelos.RowsDefaultCellStyle = dataGridViewCellStyle1;
             dgvModelos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvModelos.Size = new Size(512, 232);
+            dgvModelos.Size = new Size(448, 174);
             dgvModelos.StateCommon.Background.Color1 = Color.SkyBlue;
             dgvModelos.StateCommon.Background.Color2 = Color.SkyBlue;
             dgvModelos.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
@@ -213,10 +220,10 @@
             // 
             // frmModeloAuto
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(688, 517);
+            ClientSize = new Size(598, 382);
             Controls.Add(dgvModelos);
             Controls.Add(btmModificar);
             Controls.Add(btmAgregar);
@@ -228,7 +235,6 @@
             Controls.Add(panel2);
             Controls.Add(pictureBox16);
             Controls.Add(label1);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "frmModeloAuto";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "fmrModeloAuto";
