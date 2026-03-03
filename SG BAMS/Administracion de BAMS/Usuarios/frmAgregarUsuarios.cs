@@ -59,9 +59,16 @@ namespace SG_BAMS
 
         private async void btmAgregar_Click(object sender, EventArgs e)
         {
+
             if (string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrEmpty(txtContra.Text))
             {
                 MessageBox.Show("Por favor complete los campos obligatorios.");
+                return;
+            }
+
+            if (cmbRol.SelectedIndex == -1)
+            {
+                MessageBox.Show("Debe seleccionar un Rol.");
                 return;
             }
 

@@ -36,7 +36,11 @@ namespace SG_BAMS
 
         private async void btnModificar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtDescri.Text)) return;
+            if (string.IsNullOrWhiteSpace(txtDescri.Text))
+            {
+                MessageBox.Show("Por favor complete los campos obligatorios.");
+                return;
+            }
 
             try
             {
