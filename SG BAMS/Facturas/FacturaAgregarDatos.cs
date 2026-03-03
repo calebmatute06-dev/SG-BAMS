@@ -1,8 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
-using SG_BAMS.Cliente;
-using SG_BAMS.Facturas;
-using SG_BAMS.Login;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,6 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Data.SqlClient;
+using SG_BAMS.Administracion_de_BAMS.FormaPago;
+using SG_BAMS.Cliente;
+using SG_BAMS.Facturas;
+using SG_BAMS.Login;
 
 namespace SG_BAMS
 {
@@ -100,14 +101,43 @@ namespace SG_BAMS
             double total = acumulador - rebaja;
             TxtTotal.Text = total.ToString() + ",00";
         }
+        private bool FacturaTieneProductos()
+        {
+            return dgvProductos.Rows
+                .Cast<DataGridViewRow>()
+                .Any(row => !row.IsNewRow);
+        }
 
         private async void BtnAceptar_Click(object sender, EventArgs e)
         {
-            if (dgvProductos.Rows.Count == 0)
+            if (!FacturaTieneProductos())
             {
-                MessageBox.Show("Debe agregar al menos un producto antes de facturar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Debe agregar al menos un producto a la factura.",
+                                "Factura vacía",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
                 return;
             }
+
+            if (Convert.ToDecimal(TxtTotal.Text) <= 0)
+            {
+                MessageBox.Show("El total no puede ser 0.",
+                                "Total inválido",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (cmbPago.SelectedIndex == -1)
+            {
+                MessageBox.Show("Seleccione una forma de pago.",
+                                "Forma de pago requerida",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Si pasa todas las validaciones se guarda factura
 
             if (cmbPago.SelectedValue == null)
             {

@@ -67,6 +67,40 @@ namespace SG_BAMS
 
         private void BtnAceptar_Click(object sender, EventArgs e)
         {
+            //validacion de numero en cantidad
+            if (!int.TryParse(txtCantidad.Text.Trim(), out int cantidad))
+            {
+                MessageBox.Show("Ingrese una cantidad válida (solo números).",
+                                "Cantidad inválida",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                txtCantidad.Focus();
+                return;
+            }
+
+            if (cantidad <= 0)
+            {
+                MessageBox.Show("La cantidad debe ser mayor que 0.",
+                                "Cantidad inválida",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                txtCantidad.Focus();
+                return;
+            }
+
+            int stock = int.Parse(lblNumero.Text);
+
+            //validacion de stock
+            if (cantidad > stock)
+            {
+                MessageBox.Show($"No puede vender más del stock disponible ({stock}).",
+                                "Stock insuficiente",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                txtCantidad.Focus();
+                return;
+            }
+
             int idProd = Convert.ToInt32(cmbProductos.SelectedValue);
             string nombreProd = cmbProductos.Text;
             int cantidadProd = Convert.ToInt32(txtCantidad.Text);

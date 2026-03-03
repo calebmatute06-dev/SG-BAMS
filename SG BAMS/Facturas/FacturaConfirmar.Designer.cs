@@ -46,9 +46,9 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(503, 278);
+            label5.Location = new Point(440, 208);
             label5.Name = "label5";
-            label5.Size = new Size(113, 42);
+            label5.Size = new Size(93, 33);
             label5.TabIndex = 248;
             label5.Text = "BAMS";
             // 
@@ -58,9 +58,9 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(59, 112);
+            label4.Location = new Point(52, 84);
             label4.Name = "label4";
-            label4.Size = new Size(442, 35);
+            label4.Size = new Size(353, 29);
             label4.TabIndex = 239;
             label4.Text = "¿Desea Confirmar la Factura?";
             label4.Click += label4_Click;
@@ -68,53 +68,59 @@
             // panel3
             // 
             panel3.BackColor = Color.Navy;
-            panel3.Location = new Point(622, -1);
+            panel3.Location = new Point(544, -1);
+            panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(25, 339);
+            panel3.Size = new Size(22, 254);
             panel3.TabIndex = 238;
             // 
             // panel1
             // 
             panel1.BackColor = Color.Navy;
-            panel1.Location = new Point(22, -1);
+            panel1.Location = new Point(19, -1);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(600, 24);
+            panel1.Size = new Size(525, 18);
             panel1.TabIndex = 237;
             // 
             // panel2
             // 
             panel2.BackColor = Color.Navy;
-            panel2.Location = new Point(7, 316);
+            panel2.Location = new Point(6, 237);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(642, 24);
+            panel2.Size = new Size(562, 18);
             panel2.TabIndex = 236;
             // 
             // panel8
             // 
             panel8.BackColor = Color.Navy;
             panel8.Controls.Add(panel2);
-            panel8.Location = new Point(-2, -3);
+            panel8.Location = new Point(-2, -2);
+            panel8.Margin = new Padding(3, 2, 3, 2);
             panel8.Name = "panel8";
-            panel8.Size = new Size(25, 349);
+            panel8.Size = new Size(22, 262);
             panel8.TabIndex = 232;
             // 
             // panel4
             // 
             panel4.BackColor = Color.Navy;
-            panel4.Location = new Point(2, 323);
+            panel4.Location = new Point(2, 242);
+            panel4.Margin = new Padding(3, 2, 3, 2);
             panel4.Name = "panel4";
-            panel4.Size = new Size(645, 24);
+            panel4.Size = new Size(564, 18);
             panel4.TabIndex = 238;
             // 
             // kryptonButton1
             // 
-            kryptonButton1.Location = new Point(230, 229);
+            kryptonButton1.Location = new Point(201, 172);
+            kryptonButton1.Margin = new Padding(3, 2, 3, 2);
             kryptonButton1.Name = "kryptonButton1";
             kryptonButton1.OverrideDefault.Back.Color1 = Color.SkyBlue;
             kryptonButton1.OverrideDefault.Back.Color2 = Color.White;
             kryptonButton1.OverrideFocus.Back.Color1 = Color.SkyBlue;
             kryptonButton1.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton1.Size = new Size(146, 60);
+            kryptonButton1.Size = new Size(128, 45);
             kryptonButton1.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonButton1.StateCommon.Back.Color2 = Color.White;
             kryptonButton1.StateCommon.Border.Rounding = 30F;
@@ -130,13 +136,14 @@
             // 
             // kryptonButton12
             // 
-            kryptonButton12.Location = new Point(77, 229);
+            kryptonButton12.Location = new Point(67, 172);
+            kryptonButton12.Margin = new Padding(3, 2, 3, 2);
             kryptonButton12.Name = "kryptonButton12";
             kryptonButton12.OverrideDefault.Back.Color1 = Color.SkyBlue;
             kryptonButton12.OverrideDefault.Back.Color2 = Color.White;
             kryptonButton12.OverrideFocus.Back.Color1 = Color.SkyBlue;
             kryptonButton12.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton12.Size = new Size(146, 60);
+            kryptonButton12.Size = new Size(128, 45);
             kryptonButton12.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonButton12.StateCommon.Back.Color2 = Color.White;
             kryptonButton12.StateCommon.Border.Rounding = 30F;
@@ -149,13 +156,14 @@
             kryptonButton12.TabIndex = 316;
             kryptonButton12.Values.DropDownArrowColor = Color.Empty;
             kryptonButton12.Values.Text = "Si";
+            kryptonButton12.Click += kryptonButton12_Click;
             // 
             // FacturaConfirmar
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(648, 349);
+            ClientSize = new Size(567, 262);
             Controls.Add(kryptonButton1);
             Controls.Add(kryptonButton12);
             Controls.Add(panel4);
@@ -164,7 +172,6 @@
             Controls.Add(panel3);
             Controls.Add(panel1);
             Controls.Add(panel8);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "FacturaConfirmar";
             Text = "FacturaConfirmar";
             Load += FacturaConfirmar_Load;

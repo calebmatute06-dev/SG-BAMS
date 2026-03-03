@@ -505,7 +505,7 @@
             // 
             dgvFacturas.BackgroundColor = Color.SkyBlue;
             dgvFacturas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvFacturas.Location = new Point(325, 209);
+            dgvFacturas.Location = new Point(298, 209);
             dgvFacturas.Margin = new Padding(3, 2, 3, 2);
             dgvFacturas.Name = "dgvFacturas";
             dgvFacturas.RowHeadersWidth = 51;
@@ -684,10 +684,10 @@
             // kryptonGroupBox1
             // 
             kryptonGroupBox1.CaptionVisible = false;
-            kryptonGroupBox1.Location = new Point(294, 190);
+            kryptonGroupBox1.Location = new Point(276, 190);
             kryptonGroupBox1.Size = new Size(1098, 376);
             kryptonGroupBox1.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroupBox1.StateCommon.Border.Rounding = 50F;
+            kryptonGroupBox1.StateCommon.Border.Rounding = 20F;
             kryptonGroupBox1.TabIndex = 339;
             // 
             // chkHoy
@@ -709,7 +709,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1199, 679);
+            ClientSize = new Size(1370, 679);
             Controls.Add(chkHoy);
             Controls.Add(BtnRefrescar);
             Controls.Add(label6);
