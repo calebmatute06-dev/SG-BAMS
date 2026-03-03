@@ -50,6 +50,7 @@
             panel8 = new Panel();
             dgvFacturas = new DataGridView();
             label6 = new Label();
+            lblFactura = new Label();
             ((System.ComponentModel.ISupportInitialize)cmbPago).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1.Panel).BeginInit();
@@ -98,7 +99,7 @@
             // 
             // fechaDT
             // 
-            fechaDT.Location = new Point(685, 184);
+            fechaDT.Location = new Point(676, 182);
             fechaDT.MaxSelectionCount = 1;
             fechaDT.Name = "fechaDT";
             fechaDT.TabIndex = 338;
@@ -106,10 +107,10 @@
             // kryptonGroupBox1
             // 
             kryptonGroupBox1.CaptionVisible = false;
-            kryptonGroupBox1.Location = new Point(659, 154);
-            kryptonGroupBox1.Size = new Size(242, 216);
+            kryptonGroupBox1.Location = new Point(654, 154);
+            kryptonGroupBox1.Size = new Size(267, 216);
             kryptonGroupBox1.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroupBox1.StateCommon.Border.Rounding = 50F;
+            kryptonGroupBox1.StateCommon.Border.Rounding = 20F;
             kryptonGroupBox1.TabIndex = 339;
             // 
             // BtnSalir
@@ -309,12 +310,25 @@
             label6.TabIndex = 346;
             label6.Text = "Factura";
             // 
+            // lblFactura
+            // 
+            lblFactura.AutoSize = true;
+            lblFactura.BackColor = Color.Transparent;
+            lblFactura.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblFactura.ForeColor = Color.Navy;
+            lblFactura.Location = new Point(437, 53);
+            lblFactura.Name = "lblFactura";
+            lblFactura.Size = new Size(20, 29);
+            lblFactura.TabIndex = 347;
+            lblFactura.Text = ".";
+            // 
             // FacturaVer
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(956, 494);
+            Controls.Add(lblFactura);
             Controls.Add(label6);
             Controls.Add(dgvFacturas);
             Controls.Add(cmbPago);
@@ -374,5 +388,6 @@
         private Panel panel8;
         private DataGridView dgvFacturas;
         private Label label6;
+        private Label lblFactura;
     }
 }
