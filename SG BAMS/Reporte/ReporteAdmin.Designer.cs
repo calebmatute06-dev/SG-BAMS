@@ -67,7 +67,7 @@ namespace SG_BAMS
             pictureBox18 = new PictureBox();
             button12 = new Button();
             pictureBox3 = new PictureBox();
-            btnsalirLogin = new Krypton.Toolkit.KryptonButton();
+            btnImprimir = new Krypton.Toolkit.KryptonButton();
             btninicioSesion = new Krypton.Toolkit.KryptonButton();
             btnLimpiar = new Krypton.Toolkit.KryptonButton();
             dtpDesde = new Krypton.Toolkit.KryptonDateTimePicker();
@@ -696,28 +696,28 @@ namespace SG_BAMS
             pictureBox3.TabIndex = 37;
             pictureBox3.TabStop = false;
             // 
-            // btnsalirLogin
+            // btnImprimir
             // 
-            btnsalirLogin.Location = new Point(387, 695);
-            btnsalirLogin.Name = "btnsalirLogin";
-            btnsalirLogin.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnsalirLogin.OverrideDefault.Back.Color2 = Color.White;
-            btnsalirLogin.OverrideDefault.Border.Rounding = 40F;
-            btnsalirLogin.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnsalirLogin.OverrideFocus.Back.Color2 = Color.White;
-            btnsalirLogin.Size = new Size(206, 41);
-            btnsalirLogin.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnsalirLogin.StateCommon.Back.Color2 = Color.White;
-            btnsalirLogin.StateCommon.Border.Rounding = 40F;
-            btnsalirLogin.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnsalirLogin.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnsalirLogin.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnsalirLogin.StateNormal.Back.Color2 = Color.White;
-            btnsalirLogin.StateNormal.Border.Rounding = 40F;
-            btnsalirLogin.StateTracking.Border.Rounding = 40F;
-            btnsalirLogin.TabIndex = 182;
-            btnsalirLogin.Values.DropDownArrowColor = Color.Empty;
-            btnsalirLogin.Values.Text = "Imprimir";
+            btnImprimir.Location = new Point(387, 695);
+            btnImprimir.Name = "btnImprimir";
+            btnImprimir.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnImprimir.OverrideDefault.Back.Color2 = Color.White;
+            btnImprimir.OverrideDefault.Border.Rounding = 40F;
+            btnImprimir.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnImprimir.OverrideFocus.Back.Color2 = Color.White;
+            btnImprimir.Size = new Size(206, 41);
+            btnImprimir.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnImprimir.StateCommon.Back.Color2 = Color.White;
+            btnImprimir.StateCommon.Border.Rounding = 40F;
+            btnImprimir.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnImprimir.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnImprimir.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnImprimir.StateNormal.Back.Color2 = Color.White;
+            btnImprimir.StateNormal.Border.Rounding = 40F;
+            btnImprimir.StateTracking.Border.Rounding = 40F;
+            btnImprimir.TabIndex = 182;
+            btnImprimir.Values.DropDownArrowColor = Color.Empty;
+            btnImprimir.Values.Text = "Imprimir";
             // 
             // btninicioSesion
             // 
@@ -920,7 +920,7 @@ namespace SG_BAMS
             Controls.Add(dtpHasta);
             Controls.Add(dtpDesde);
             Controls.Add(btnLimpiar);
-            Controls.Add(btnsalirLogin);
+            Controls.Add(btnImprimir);
             Controls.Add(btninicioSesion);
             Controls.Add(pictureBox3);
             Controls.Add(kryptonButton11);
@@ -1014,7 +1014,7 @@ namespace SG_BAMS
         private PictureBox pictureBox18;
         private Button button12;
         private PictureBox pictureBox3;
-        private Krypton.Toolkit.KryptonButton btnsalirLogin;
+        private Krypton.Toolkit.KryptonButton btnImprimir;
         private Krypton.Toolkit.KryptonButton btninicioSesion;
         private Krypton.Toolkit.KryptonButton btnLimpiar;
         private Krypton.Toolkit.KryptonDateTimePicker dtpDesde;
