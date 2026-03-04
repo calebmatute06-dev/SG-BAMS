@@ -187,7 +187,8 @@ namespace SG_BAMS
         private void btnVer_Click(object sender, EventArgs e)
         {
             {
-               
+
             }
+        }
     }
 }
