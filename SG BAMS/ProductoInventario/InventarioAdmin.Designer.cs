@@ -61,7 +61,6 @@
             txtBuscar = new Krypton.Toolkit.KryptonTextBox();
             kryptonLabel1 = new Krypton.Toolkit.KryptonLabel();
             btnAgregar = new Krypton.Toolkit.KryptonButton();
-            btnFiltro = new Krypton.Toolkit.KryptonButton();
             pictureBox3 = new PictureBox();
             kryptonButton11 = new Krypton.Toolkit.KryptonButton();
             pictureBox18 = new PictureBox();
@@ -72,6 +71,7 @@
             dgvProductosAdmin = new Krypton.Toolkit.KryptonDataGridView();
             kryptonGroup1 = new Krypton.Toolkit.KryptonGroup();
             kryptonButton10 = new Krypton.Toolkit.KryptonButton();
+            kryptonLabel2 = new Krypton.Toolkit.KryptonLabel();
             panel1.SuspendLayout();
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
@@ -588,7 +588,7 @@
             // 
             // txtBuscar
             // 
-            txtBuscar.Location = new Point(348, 132);
+            txtBuscar.Location = new Point(346, 125);
             txtBuscar.Name = "txtBuscar";
             txtBuscar.Size = new Size(656, 39);
             txtBuscar.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -631,31 +631,6 @@
             btnAgregar.Values.DropDownArrowColor = Color.Empty;
             btnAgregar.Values.Text = "+";
             btnAgregar.Click += btnAgregar_Click;
-            // 
-            // btnFiltro
-            // 
-            btnFiltro.Location = new Point(1041, 119);
-            btnFiltro.Name = "btnFiltro";
-            btnFiltro.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnFiltro.OverrideDefault.Back.Color2 = Color.White;
-            btnFiltro.OverrideDefault.Border.Rounding = 40F;
-            btnFiltro.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnFiltro.OverrideFocus.Back.Color2 = Color.White;
-            btnFiltro.Size = new Size(64, 63);
-            btnFiltro.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnFiltro.StateCommon.Back.Color2 = Color.White;
-            btnFiltro.StateCommon.Border.Rounding = 40F;
-            btnFiltro.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnFiltro.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnFiltro.StateCommon.Content.ShortText.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
-            btnFiltro.StateCommon.Content.ShortText.TextV = Krypton.Toolkit.PaletteRelativeAlign.Center;
-            btnFiltro.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnFiltro.StateNormal.Back.Color2 = Color.White;
-            btnFiltro.StateNormal.Border.Rounding = 40F;
-            btnFiltro.StateTracking.Border.Rounding = 40F;
-            btnFiltro.TabIndex = 188;
-            btnFiltro.Values.DropDownArrowColor = Color.Empty;
-            btnFiltro.Values.Text = "☷";
             // 
             // pictureBox3
             // 
@@ -790,12 +765,22 @@
             kryptonButton10.Values.Text = "✏️";
             kryptonButton10.Click += kryptonButton10_Click;
             // 
+            // kryptonLabel2
+            // 
+            kryptonLabel2.Location = new Point(365, 90);
+            kryptonLabel2.Name = "kryptonLabel2";
+            kryptonLabel2.Size = new Size(136, 31);
+            kryptonLabel2.StateCommon.ShortText.Color1 = Color.Navy;
+            kryptonLabel2.TabIndex = 196;
+            kryptonLabel2.Values.Text = "Buscar:";
+            // 
             // InventarioAdmin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1445, 905);
+            Controls.Add(kryptonLabel2);
             Controls.Add(kryptonButton10);
             Controls.Add(dgvProductosAdmin);
             Controls.Add(kryptonGroup1);
@@ -807,7 +792,6 @@
             Controls.Add(txtBuscar);
             Controls.Add(kryptonLabel1);
             Controls.Add(btnAgregar);
-            Controls.Add(btnFiltro);
             Controls.Add(pictureBox3);
             Controls.Add(kryptonButton11);
             Controls.Add(pictureBox18);
@@ -878,7 +862,6 @@
         private Krypton.Toolkit.KryptonTextBox txtBuscar;
         private Krypton.Toolkit.KryptonLabel kryptonLabel1;
         private Krypton.Toolkit.KryptonButton btnAgregar;
-        private Krypton.Toolkit.KryptonButton btnFiltro;
         private PictureBox pictureBox3;
         private Krypton.Toolkit.KryptonButton kryptonButton11;
         private PictureBox pictureBox18;
@@ -889,5 +872,6 @@
         private Krypton.Toolkit.KryptonDataGridView dgvProductosAdmin;
         private Krypton.Toolkit.KryptonGroup kryptonGroup1;
         private Krypton.Toolkit.KryptonButton kryptonButton10;
+        private Krypton.Toolkit.KryptonLabel kryptonLabel2;
     }
 }
