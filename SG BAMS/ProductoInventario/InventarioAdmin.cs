@@ -56,7 +56,7 @@ namespace SG_BAMS
                 ClsLLenarCombo helper = new ClsLLenarCombo();
 
                 // 1. Configurar Combo Marcas
-                cmbMarca.DataSource = helper.LlenarMarca();
+                cmbMarca.DataSource = helper.LlenarMarca()
                 cmbMarca.DisplayMember = "nombre_marca";
                 cmbMarca.ValueMember = "id_marca_producto";
 
