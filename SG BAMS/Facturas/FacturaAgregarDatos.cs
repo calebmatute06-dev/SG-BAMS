@@ -169,7 +169,6 @@ namespace SG_BAMS
 
                     MessageBox.Show("Factura guardada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // --- INTEGRACIÓN CON LA NUEVA INTERFAZ ---
                     string formaPagoTexto = cmbPago.Text.ToLower();
 
                     if (formaPagoTexto.Contains("crédito") || formaPagoTexto.Contains("credito"))
@@ -178,7 +177,6 @@ namespace SG_BAMS
                         string montoTotal = TxtTotal.Text;
                         DateTime fechaVenta = DateTFecha.SelectionStart;
 
-                        // Se usa el nombre de clase exacto que proporcionaste: Modificar_Datos__Deudor_
                         using (Modificar_Datos__Deudor_ frmInfo = new Modificar_Datos__Deudor_(idFactura, nombreCliente, montoTotal, fechaVenta))
                         {
                             frmInfo.ShowDialog();
