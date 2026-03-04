@@ -105,7 +105,6 @@ namespace SG_BAMS
             {
                 conexion.AbrirConexion();
 
-                // Consulta directa uniendo las tablas para traer los nombres
                 string query = @"SELECT 
                             p.id_producto AS ID, 
                             p.nombre_producto AS Producto, 
@@ -131,12 +130,10 @@ namespace SG_BAMS
                     da.Fill(dt);
                 }
 
-                // Refrescamos el DataGridView con los resultados
                 dgvProductosAdmin.DataSource = dt;
             }
             catch (Exception ex)
             {
-                // Esto te dirá exactamente qué nombre de columna o tabla está mal
                 Console.WriteLine("Error en búsqueda: " + ex.Message);
             }
             finally
