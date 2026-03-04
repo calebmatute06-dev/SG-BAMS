@@ -8,31 +8,42 @@ namespace SG_BAMS.ProductoInventario
     {
         private ClsConexion conexion = new ClsConexion();
 
-        private DataTable Consultar(string sql)
+        // Método privado para evitar repetir código de llenado
+        private DataTable Consultar(string query)
         {
             DataTable dt = new DataTable();
             try
             {
-                // Usamos el objeto Conectar de tu ClsConexion
-                using (SqlDataAdapter da = new SqlDataAdapter(sql, conexion.Conectar))
+                // Usamos SqlDataAdapter que es el más robusto para llenar ComboBox
+                using (SqlDataAdapter da = new SqlDataAdapter(query, conexion.Conectar))
                 {
                     da.Fill(dt);
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al consultar: " + ex.Message);
+                throw new Exception("Error al cargar datos desde SQL: " + ex.Message);
             }
             return dt;
         }
 
-        // 1. Tabla: Marca_producto | Columnas: id_marca_producto, nombre_marca
-        public DataTable GetMarcas() => Consultar("SELECT id_marca_producto, nombre_marca FROM Marca_producto");
+        // 1. Llenar Marca (Tabla: Marca_producto)
+        public DataTable LlenarMarca()
+        {
+            return Consultar("SELECT id_marca_producto, nombre_marca FROM Marca_producto");
+        }
 
-        // 2. Tabla: Tipo_producto | Columnas: id_tipo_producto, descripcion_forma_pago
-        public DataTable GetTipos() => Consultar("SELECT id_tipo_producto, descripcion_forma_pago FROM Tipo_producto");
+        // 2. Llenar Tipo (Tabla: Tipo_producto) 
+        // ¡OJO! En tu SQL pusiste 'descripcion_forma_pago' como columna de nombre aquí.
+        public DataTable LlenarTipo()
+        {
+            return Consultar("SELECT id_tipo_producto, descripcion_forma_pago FROM Tipo_producto");
+        }
 
-        // 3. Tabla: Modelo_de_auto | Columnas: id_modelo_auto, nombre_modelo_auto
-        public DataTable GetModelos() => Consultar("SELECT id_modelo_auto, nombre_modelo_auto FROM Modelo_de_auto");
+        // 3. Llenar Modelo (Tabla: Modelo_de_auto)
+        public DataTable LlenarModelo()
+        {
+            return Consultar("SELECT id_modelo_auto, nombre_modelo_auto FROM Modelo_de_auto");
+        }
     }
 }

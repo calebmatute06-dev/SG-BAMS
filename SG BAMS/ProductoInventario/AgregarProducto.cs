@@ -57,43 +57,35 @@ namespace SG_BAMS
 
         private void AgregarProducto_Load(object sender, EventArgs e)
         {
-            LlenarTodosLosCombos();
-        }
-
-        private void LlenarTodosLosCombos()
-        {
-            ClsLLenarCombo logica = new ClsLLenarCombo();
-
             try
             {
-                // LLENAR MARCAS
-                DataTable dtMarcas = logica.GetMarcas();
-                cmbMarca.ValueMember = "id_marca_producto";    // Nombre exacto en SQL
-                cmbMarca.DisplayMember = "nombre_marca";       // Nombre exacto en SQL
-                cmbMarca.DataSource = dtMarcas;
+                ClsLLenarCombo logica = new ClsLLenarCombo();
 
-                // LLENAR TIPOS
-                DataTable dtTipos = logica.GetTipos();
-                cmbTipo.ValueMember = "id_tipo_producto";      // Nombre exacto en SQL
-                cmbTipo.DisplayMember = "descripcion_forma_pago"; // Nombre exacto en SQL (según tu script)
-                cmbTipo.DataSource = dtTipos;
+                // --- CARGAR MARCAS ---
+                cmbMarca.DataSource = logica.LlenarMarca();
+                cmbMarca.DisplayMember = "nombre_marca";       // Lo que ve el usuario
+                cmbMarca.ValueMember = "id_marca_producto";    // El ID que se guarda
+                cmbMarca.SelectedIndex = -1;                   // Inicia vacío
 
-                // LLENAR MODELOS
-                DataTable dtModelos = logica.GetModelos();
-                cmbModelo.ValueMember = "id_modelo_auto";       // Nombre exacto en SQL
-                cmbModelo.DisplayMember = "nombre_modelo_auto"; // Nombre exacto en SQL
-                cmbModelo.DataSource = dtModelos;
-
-                // Resetear selección para que no aparezca el primero marcado por defecto
-                cmbMarca.SelectedIndex = -1;
+                // --- CARGAR TIPOS ---
+                cmbTipo.DataSource = logica.LlenarTipo();
+                cmbTipo.DisplayMember = "descripcion_forma_pago"; // Nombre exacto en tu SQL
+                cmbTipo.ValueMember = "id_tipo_producto";
                 cmbTipo.SelectedIndex = -1;
+
+                // --- CARGAR MODELOS ---
+                cmbModelo.DataSource = logica.LlenarModelo();
+                cmbModelo.DisplayMember = "nombre_modelo_auto";
+                cmbModelo.ValueMember = "id_modelo_auto";
                 cmbModelo.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("¡Ocurrió un error! Revisa esto: " + ex.Message, "Error de Carga");
+                MessageBox.Show("Error al inicializar el formulario: " + ex.Message, "Sistema BAMS");
             }
         }
+
+        
 
     }
 }
