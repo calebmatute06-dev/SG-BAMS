@@ -69,7 +69,7 @@
             pictureBox8 = new PictureBox();
             pictureBox1 = new PictureBox();
             pictureBox19 = new PictureBox();
-            kryptonDataGridView1 = new Krypton.Toolkit.KryptonDataGridView();
+            dgvComprasAdmin = new Krypton.Toolkit.KryptonDataGridView();
             kryptonGroup5 = new Krypton.Toolkit.KryptonGroup();
             kryptonGroup2 = new Krypton.Toolkit.KryptonGroup();
             pictureBox20 = new PictureBox();
@@ -102,7 +102,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox19).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonDataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvComprasAdmin).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup2).BeginInit();
@@ -123,7 +123,7 @@
             // 
             // kryptonButton11
             // 
-            kryptonButton11.Location = new Point(976, 31);
+            kryptonButton11.Location = new Point(1130, 33);
             kryptonButton11.Name = "kryptonButton11";
             kryptonButton11.OverrideDefault.Back.Color1 = Color.Transparent;
             kryptonButton11.OverrideDefault.Back.Color2 = Color.Transparent;
@@ -176,7 +176,7 @@
             // 
             pictureBox18.BackgroundImage = Properties.Resources.ajus;
             pictureBox18.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox18.Location = new Point(921, 30);
+            pictureBox18.Location = new Point(1075, 32);
             pictureBox18.Name = "pictureBox18";
             pictureBox18.Size = new Size(53, 49);
             pictureBox18.TabIndex = 56;
@@ -191,7 +191,7 @@
             button12.FlatAppearance.BorderSize = 0;
             button12.FlatStyle = FlatStyle.Flat;
             button12.ForeColor = Color.Navy;
-            button12.Location = new Point(856, 30);
+            button12.Location = new Point(1010, 32);
             button12.Name = "button12";
             button12.Size = new Size(59, 44);
             button12.TabIndex = 54;
@@ -236,7 +236,7 @@
             panel3.BackColor = Color.Navy;
             panel3.Location = new Point(1, 884);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1102, 24);
+            panel3.Size = new Size(1257, 24);
             panel3.TabIndex = 52;
             // 
             // pictureBox3
@@ -252,7 +252,7 @@
             // 
             panel4.BackColor = Color.Navy;
             panel4.Controls.Add(pictureBox2);
-            panel4.Location = new Point(1079, 24);
+            panel4.Location = new Point(1234, 24);
             panel4.Name = "panel4";
             panel4.Size = new Size(24, 869);
             panel4.TabIndex = 48;
@@ -272,7 +272,7 @@
             panel2.Controls.Add(pictureBox4);
             panel2.Location = new Point(1, 1);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1102, 24);
+            panel2.Size = new Size(1257, 24);
             panel2.TabIndex = 47;
             // 
             // pictureBox4
@@ -751,15 +751,15 @@
             pictureBox19.TabStop = false;
             pictureBox19.Click += pictureBox19_Click;
             // 
-            // kryptonDataGridView1
+            // dgvComprasAdmin
             // 
-            kryptonDataGridView1.BorderStyle = BorderStyle.None;
-            kryptonDataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            kryptonDataGridView1.Location = new Point(335, 544);
-            kryptonDataGridView1.Name = "kryptonDataGridView1";
-            kryptonDataGridView1.RowHeadersWidth = 51;
-            kryptonDataGridView1.Size = new Size(712, 292);
-            kryptonDataGridView1.TabIndex = 67;
+            dgvComprasAdmin.BorderStyle = BorderStyle.None;
+            dgvComprasAdmin.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvComprasAdmin.Location = new Point(335, 544);
+            dgvComprasAdmin.Name = "dgvComprasAdmin";
+            dgvComprasAdmin.RowHeadersWidth = 51;
+            dgvComprasAdmin.Size = new Size(849, 292);
+            dgvComprasAdmin.TabIndex = 67;
             // 
             // kryptonGroup5
             // 
@@ -772,7 +772,7 @@
             // kryptonGroup2
             // 
             kryptonGroup2.Location = new Point(309, 518);
-            kryptonGroup2.Size = new Size(764, 344);
+            kryptonGroup2.Size = new Size(901, 344);
             kryptonGroup2.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroup2.StateCommon.Border.Rounding = 70F;
             kryptonGroup2.TabIndex = 81;
@@ -781,7 +781,7 @@
             // 
             pictureBox20.BackColor = Color.White;
             pictureBox20.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox20.Location = new Point(779, 217);
+            pictureBox20.Location = new Point(886, 217);
             pictureBox20.Name = "pictureBox20";
             pictureBox20.Size = new Size(73, 62);
             pictureBox20.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -823,7 +823,7 @@
             // 
             // kryptonButton15
             // 
-            kryptonButton15.Location = new Point(869, 158);
+            kryptonButton15.Location = new Point(976, 158);
             kryptonButton15.Name = "kryptonButton15";
             kryptonButton15.OverrideDefault.Back.Color1 = Color.SkyBlue;
             kryptonButton15.OverrideDefault.Back.Color2 = Color.White;
@@ -845,7 +845,7 @@
             // 
             // kryptonButton12
             // 
-            kryptonButton12.Location = new Point(869, 226);
+            kryptonButton12.Location = new Point(976, 226);
             kryptonButton12.Name = "kryptonButton12";
             kryptonButton12.OverrideDefault.Back.Color1 = Color.SkyBlue;
             kryptonButton12.OverrideDefault.Back.Color2 = Color.White;
@@ -886,7 +886,7 @@
             pictureBox17.BackColor = Color.White;
             pictureBox17.BackgroundImage = Properties.Resources.compras;
             pictureBox17.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox17.Location = new Point(779, 149);
+            pictureBox17.Location = new Point(886, 149);
             pictureBox17.Name = "pictureBox17";
             pictureBox17.Size = new Size(73, 62);
             pictureBox17.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -898,7 +898,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1110, 916);
+            ClientSize = new Size(1257, 908);
             Controls.Add(pictureBox17);
             Controls.Add(textBox1);
             Controls.Add(pictureBox22);
@@ -908,7 +908,7 @@
             Controls.Add(pictureBox21);
             Controls.Add(pictureBox20);
             Controls.Add(kryptonGroup5);
-            Controls.Add(kryptonDataGridView1);
+            Controls.Add(dgvComprasAdmin);
             Controls.Add(label1);
             Controls.Add(kryptonButton11);
             Controls.Add(kryptonButton10);
@@ -926,6 +926,7 @@
             Controls.Add(pictureBox19);
             Name = "Compras";
             Text = "Compras";
+            Load += Compras_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox18).EndInit();
             panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
@@ -949,7 +950,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox19).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonDataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvComprasAdmin).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup2.Panel).EndInit();
@@ -1003,7 +1004,7 @@
         private PictureBox pictureBox8;
         private PictureBox pictureBox1;
         private PictureBox pictureBox19;
-        private Krypton.Toolkit.KryptonDataGridView kryptonDataGridView1;
+        private Krypton.Toolkit.KryptonDataGridView dgvComprasAdmin;
         private Krypton.Toolkit.KryptonGroup kryptonGroup5;
         private Krypton.Toolkit.KryptonGroup kryptonGroup2;
         private PictureBox pictureBox20;

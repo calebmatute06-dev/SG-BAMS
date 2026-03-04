@@ -1,4 +1,6 @@
-﻿using SG_BAMS.Bitacora;
+﻿using Microsoft.Data.SqlClient;
+using SG_BAMS.Bitacora;
+using SG_BAMS.ProductoInventario;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -116,6 +118,56 @@ namespace SG_BAMS
             BitacoraAdmin bitacoraAdmin = new BitacoraAdmin();
             bitacoraAdmin.Show();
             this.Hide();
+        }
+
+        private void Compras_Load(object sender, EventArgs e)
+        {
+            CargarCompras();
+        }
+
+        public void CargarCompras()
+        {
+            ClsConexion conexion = new ClsConexion();
+            DataTable dt = new DataTable();
+
+            try
+            {
+                conexion.AbrirConexion();
+
+                // Esta consulta usa los nombres EXACTOS de tu script SQL
+                string query = @"SELECT 
+                            C.id_compra AS [ID],
+                            U.nombre_usuario AS [Usuario],
+                            C.fecha_pedido AS [Fecha],
+                            FP.descripcion_forma_pago AS [Forma Pago],
+                            P.nombre_proveedor AS [Proveedor],
+                            C.desc_compra AS [Descripción]
+                         FROM Compra C
+                         INNER JOIN Usuario U ON C.id_usuario = U.id_usuario
+                         INNER JOIN Tipo_Forma_de_pago FP ON C.id_tipo_forma_pago = FP.id_tipo_forma_pago
+                         INNER JOIN Proveedor P ON C.id_proveedor = P.id_proveedor";
+
+                using (SqlCommand cmd = new SqlCommand(query, conexion.Conectar))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                }
+
+                // Asignamos los datos al DataGridView
+                dgvComprasAdmin.DataSource = dt;
+
+                // Ajuste visual para que se vea profesional
+                dgvComprasAdmin.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            }
+            catch (Exception ex)
+            {
+                // Si sale error ahora, es porque falta algún dato en las tablas (como un ID que no existe)
+                MessageBox.Show("Error al cargar compras: " + ex.Message);
+            }
+            finally
+            {
+                conexion.Cerrar();
+            }
         }
     }
 }
