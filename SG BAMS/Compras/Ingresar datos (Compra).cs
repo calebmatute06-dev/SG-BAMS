@@ -20,16 +20,6 @@ namespace SG_BAMS
             InitializeComponent();
         }
 
-        private void kryptonLabel8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Ingresar_datos__Compra__Load(object sender, EventArgs e)
         {
             LlenarCombos();
@@ -45,7 +35,7 @@ namespace SG_BAMS
             {
                 conexion.AbrirConexion();
 
-                // 1. Cargar Formas de Pago (basado en tu tabla Tipo_Forma_de_pago)
+                // 1. Cargar Formas de Pago
                 string qPago = "SELECT id_tipo_forma_pago, descripcion_forma_pago FROM Tipo_Forma_de_pago";
                 SqlDataAdapter daPago = new SqlDataAdapter(qPago, conexion.Conectar);
                 DataTable dtPago = new DataTable();
@@ -55,7 +45,7 @@ namespace SG_BAMS
                 cmbFormaPago.DisplayMember = "descripcion_forma_pago";
                 cmbFormaPago.ValueMember = "id_tipo_forma_pago";
 
-                // 2. Cargar Proveedores (basado en tu tabla Proveedor)
+                // 2. Cargar Proveedores
                 string qProv = "SELECT id_proveedor, nombre_proveedor FROM Proveedor WHERE id_estado = 1";
                 SqlDataAdapter daProv = new SqlDataAdapter(qProv, conexion.Conectar);
                 DataTable dtProv = new DataTable();
@@ -78,12 +68,11 @@ namespace SG_BAMS
         private string ObtenerSiguienteID()
         {
             ClsConexion conexion = new ClsConexion();
-            string proximoID = "1"; // Por si la tabla está vacía
+            string proximoID = "1";
 
             try
             {
                 conexion.AbrirConexion();
-                // Buscamos el ID más alto actualmente en la tabla Compra
                 string query = "SELECT ISNULL(MAX(id_compra), 0) + 1 FROM Compra";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexion.Conectar))
@@ -99,13 +88,22 @@ namespace SG_BAMS
             {
                 conexion.Cerrar();
             }
-
             return proximoID;
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            // 1. Validaciones básicas
+            // --- 1. VALIDACIÓN POR TOTAL (LBLTOTAL) ---
+            decimal totalValidar = 0;
+            // Intentamos convertir el texto del label a número, si falla o es 0, bloqueamos
+            if (!decimal.TryParse(lblTotal.Text, out totalValidar) || totalValidar <= 0)
+            {
+                MessageBox.Show("No se puede guardar una compra con total L. 0.00. Agregue productos a la lista.",
+                                "Validación de Total", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Se detiene aquí, no guarda nada
+            }
+
+            // --- 2. VALIDACIONES DE COMBOS ---
             if (cmbProveedor.SelectedValue == null || cmbFormaPago.SelectedValue == null)
             {
                 MessageBox.Show("Por favor, seleccione un proveedor y una forma de pago.");
@@ -113,49 +111,104 @@ namespace SG_BAMS
             }
 
             ClsConexion conexion = new ClsConexion();
+            conexion.AbrirConexion();
+            SqlTransaction transaccion = conexion.Conectar.BeginTransaction();
+
             try
             {
-                conexion.AbrirConexion();
+                // 3. INSERTAR CABECERA
+                string queryCabecera = @"INSERT INTO Compra (id_usuario, fecha_pedido, id_tipo_forma_pago, id_proveedor, desc_compra) 
+                                         VALUES (@id_usuario, @fecha, @id_pago, @id_prov, @desc);
+                                         SELECT SCOPE_IDENTITY();";
 
-                // 2. La consulta SQL para insertar
-                // Nota: id_compra no se incluye porque es IDENTITY (automático)
-                string query = @"INSERT INTO Compra (id_usuario, fecha_pedido, id_tipo_forma_pago, id_proveedor, desc_compra) 
-                         VALUES (@id_usuario, @fecha, @id_pago, @id_prov, @desc)";
-
-                using (SqlCommand cmd = new SqlCommand(query, conexion.Conectar))
+                int idCompraRecienCreada;
+                using (SqlCommand cmd = new SqlCommand(queryCabecera, conexion.Conectar, transaccion))
                 {
-                    // Parámetros
-                    // Aquí deberías usar el ID del usuario que inició sesión. 
-                    // Si no lo tienes aún, usaremos el '1' por defecto para las pruebas.
                     cmd.Parameters.AddWithValue("@id_usuario", 1);
-
-                    // Tomamos la fecha del calendario de Krypton
                     cmd.Parameters.AddWithValue("@fecha", dtpFechaPedido.SelectionStart);
-
-                    // Tomamos los IDs de los ComboBox
                     cmd.Parameters.AddWithValue("@id_pago", cmbFormaPago.SelectedValue);
                     cmd.Parameters.AddWithValue("@id_prov", cmbProveedor.SelectedValue);
+                    cmd.Parameters.AddWithValue("@desc", txtPrecio.Text);
 
-                    // Descripción (si tienes un textbox para notas, úsalo aquí)
-                    cmd.Parameters.AddWithValue("@desc", txtDescripcion.Text);
-
-                    // 3. Ejecutar
-                    cmd.ExecuteNonQuery();
-
-                    MessageBox.Show("¡Compra guardada exitosamente!");
-
-                    // Cerramos el formulario para volver a la tabla general
-                    this.Close();
+                    idCompraRecienCreada = Convert.ToInt32(cmd.ExecuteScalar());
                 }
+
+                // 4. INSERTAR EL DETALLE (RECORRIENDO DGVPRODUCTOSCOMPRA)
+                string queryDetalle = @"INSERT INTO Compra_producto (id_compra, id_producto, cantidad, precio_costo_unitario) 
+                                        VALUES (@idC, @idP, @cant, @precio)";
+
+                foreach (DataGridViewRow fila in dgvProductosCompra.Rows)
+                {
+                    if (fila.Cells[0].Value != null)
+                    {
+                        using (SqlCommand cmdDetalle = new SqlCommand(queryDetalle, conexion.Conectar, transaccion))
+                        {
+                            cmdDetalle.Parameters.AddWithValue("@idC", idCompraRecienCreada);
+                            cmdDetalle.Parameters.AddWithValue("@idP", fila.Cells[0].Value);      // ID
+                            cmdDetalle.Parameters.AddWithValue("@cant", fila.Cells[2].Value);     // Cantidad
+                            cmdDetalle.Parameters.AddWithValue("@precio", fila.Cells[3].Value);   // Precio Unitario
+
+                            cmdDetalle.ExecuteNonQuery();
+                        }
+                    }
+                }
+
+                transaccion.Commit();
+                MessageBox.Show("¡Compra #" + idCompraRecienCreada + " guardada exitosamente!");
+                this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al guardar la compra: " + ex.Message);
+                transaccion.Rollback();
+                MessageBox.Show("Error al guardar la compra completa: " + ex.Message);
             }
             finally
             {
                 conexion.Cerrar();
             }
         }
+
+        private void kryptonButton5_Click(object sender, EventArgs e)
+        {
+            using (var formularioHijo = new Agregar_Producto__Compras_())
+            {
+                if (formularioHijo.ShowDialog() == DialogResult.OK)
+                {
+                    decimal subtotal = formularioHijo.CantidadSeleccionada * formularioHijo.PrecioSeleccionado;
+
+                    dgvProductosCompra.Rows.Add(
+                        formularioHijo.IdSeleccionado,
+                        formularioHijo.NombreSeleccionado,
+                        formularioHijo.CantidadSeleccionada,
+                        formularioHijo.PrecioSeleccionado,
+                        subtotal
+                    );
+
+                    ActualizarGranTotal();
+                }
+            }
+        }
+
+        private void ActualizarGranTotal()
+        {
+            decimal granTotal = 0;
+            foreach (DataGridViewRow fila in dgvProductosCompra.Rows)
+            {
+                if (fila.Cells[4].Value != null)
+                {
+                    granTotal += Convert.ToDecimal(fila.Cells[4].Value);
+                }
+            }
+            lblTotal.Text = granTotal.ToString("N2");
+        }
+
+        private void kryptonButton4_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
+
+        // Métodos vacíos por si acaso diste doble clic accidental en el diseño
+        private void kryptonLabel8_Click(object sender, EventArgs e) { }
+        private void label4_Click(object sender, EventArgs e) { }
     }
 }

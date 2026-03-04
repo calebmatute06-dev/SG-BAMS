@@ -35,7 +35,12 @@
             kryptonGroup1 = new Krypton.Toolkit.KryptonGroup();
             dtpFechaPedido = new Krypton.Toolkit.KryptonMonthCalendar();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
-            kryptonDataGridView1 = new Krypton.Toolkit.KryptonDataGridView();
+            dgvProductosCompra = new Krypton.Toolkit.KryptonDataGridView();
+            ID = new DataGridViewTextBoxColumn();
+            Producto = new DataGridViewTextBoxColumn();
+            Cantidad = new DataGridViewTextBoxColumn();
+            Precio = new DataGridViewTextBoxColumn();
+            Subtotal = new DataGridViewTextBoxColumn();
             lblIDCompra = new Krypton.Toolkit.KryptonLabel();
             label1 = new Label();
             label2 = new Label();
@@ -43,7 +48,7 @@
             label5 = new Label();
             label6 = new Label();
             label7 = new Label();
-            kryptonLabel1 = new Krypton.Toolkit.KryptonLabel();
+            lblTotal = new Krypton.Toolkit.KryptonLabel();
             label8 = new Label();
             btnAceptar = new Krypton.Toolkit.KryptonButton();
             kryptonButton4 = new Krypton.Toolkit.KryptonButton();
@@ -52,12 +57,12 @@
             cmbFormaPago = new Krypton.Toolkit.KryptonComboBox();
             cmbProveedor = new Krypton.Toolkit.KryptonComboBox();
             label4 = new Label();
-            txtDescripcion = new Krypton.Toolkit.KryptonTextBox();
+            txtPrecio = new Krypton.Toolkit.KryptonTextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonDataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvProductosCompra).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cmbFormaPago).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cmbProveedor).BeginInit();
             SuspendLayout();
@@ -116,15 +121,57 @@
             sqlCommand1.CommandTimeout = 30;
             sqlCommand1.EnableOptimizedParameterBinding = false;
             // 
-            // kryptonDataGridView1
+            // dgvProductosCompra
             // 
-            kryptonDataGridView1.BorderStyle = BorderStyle.None;
-            kryptonDataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            kryptonDataGridView1.Location = new Point(66, 301);
-            kryptonDataGridView1.Name = "kryptonDataGridView1";
-            kryptonDataGridView1.RowHeadersWidth = 51;
-            kryptonDataGridView1.Size = new Size(541, 183);
-            kryptonDataGridView1.TabIndex = 95;
+            dgvProductosCompra.BorderStyle = BorderStyle.None;
+            dgvProductosCompra.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvProductosCompra.Columns.AddRange(new DataGridViewColumn[] { ID, Producto, Cantidad, Precio, Subtotal });
+            dgvProductosCompra.Location = new Point(66, 301);
+            dgvProductosCompra.Name = "dgvProductosCompra";
+            dgvProductosCompra.ReadOnly = true;
+            dgvProductosCompra.RowHeadersWidth = 51;
+            dgvProductosCompra.Size = new Size(643, 183);
+            dgvProductosCompra.TabIndex = 95;
+            // 
+            // ID
+            // 
+            ID.HeaderText = "ID";
+            ID.MinimumWidth = 6;
+            ID.Name = "ID";
+            ID.ReadOnly = true;
+            ID.Width = 125;
+            // 
+            // Producto
+            // 
+            Producto.HeaderText = "Producto";
+            Producto.MinimumWidth = 6;
+            Producto.Name = "Producto";
+            Producto.ReadOnly = true;
+            Producto.Width = 125;
+            // 
+            // Cantidad
+            // 
+            Cantidad.HeaderText = "Cantidad";
+            Cantidad.MinimumWidth = 6;
+            Cantidad.Name = "Cantidad";
+            Cantidad.ReadOnly = true;
+            Cantidad.Width = 125;
+            // 
+            // Precio
+            // 
+            Precio.HeaderText = "Precio";
+            Precio.MinimumWidth = 6;
+            Precio.Name = "Precio";
+            Precio.ReadOnly = true;
+            Precio.Width = 125;
+            // 
+            // Subtotal
+            // 
+            Subtotal.HeaderText = "Subtotal";
+            Subtotal.MinimumWidth = 6;
+            Subtotal.Name = "Subtotal";
+            Subtotal.ReadOnly = true;
+            Subtotal.Width = 125;
             // 
             // lblIDCompra
             // 
@@ -202,21 +249,21 @@
             label7.BackColor = Color.Transparent;
             label7.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Navy;
-            label7.Location = new Point(614, 444);
+            label7.Location = new Point(713, 439);
             label7.Name = "label7";
             label7.Size = new Size(51, 24);
             label7.TabIndex = 176;
             label7.Text = "Total:";
             // 
-            // kryptonLabel1
+            // lblTotal
             // 
-            kryptonLabel1.Location = new Point(660, 442);
-            kryptonLabel1.Name = "kryptonLabel1";
-            kryptonLabel1.Size = new Size(136, 31);
-            kryptonLabel1.StateCommon.ShortText.Color1 = Color.Navy;
-            kryptonLabel1.StateCommon.ShortText.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonLabel1.TabIndex = 177;
-            kryptonLabel1.Values.Text = "L xx.xx";
+            lblTotal.Location = new Point(759, 437);
+            lblTotal.Name = "lblTotal";
+            lblTotal.Size = new Size(136, 31);
+            lblTotal.StateCommon.ShortText.Color1 = Color.Navy;
+            lblTotal.StateCommon.ShortText.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTotal.TabIndex = 177;
+            lblTotal.Values.Text = "L xx.xx";
             // 
             // label8
             // 
@@ -274,6 +321,7 @@
             kryptonButton4.TabIndex = 182;
             kryptonButton4.Values.DropDownArrowColor = Color.Empty;
             kryptonButton4.Values.Text = "Cancelar";
+            kryptonButton4.Click += kryptonButton4_Click;
             // 
             // kryptonButton5
             // 
@@ -296,6 +344,7 @@
             kryptonButton5.TabIndex = 181;
             kryptonButton5.Values.DropDownArrowColor = Color.Empty;
             kryptonButton5.Values.Text = "Agregar Producto";
+            kryptonButton5.Click += kryptonButton5_Click;
             // 
             // kryptonButton13
             // 
@@ -360,21 +409,21 @@
             label4.TabIndex = 189;
             label4.Text = "Proveedor:";
             // 
-            // txtDescripcion
+            // txtPrecio
             // 
-            txtDescripcion.Location = new Point(204, 227);
-            txtDescripcion.Name = "txtDescripcion";
-            txtDescripcion.Size = new Size(277, 33);
-            txtDescripcion.StateCommon.Back.Color1 = Color.SkyBlue;
-            txtDescripcion.StateCommon.Border.Rounding = 10F;
-            txtDescripcion.TabIndex = 211;
+            txtPrecio.Location = new Point(204, 227);
+            txtPrecio.Name = "txtPrecio";
+            txtPrecio.Size = new Size(277, 33);
+            txtPrecio.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtPrecio.StateCommon.Border.Rounding = 10F;
+            txtPrecio.TabIndex = 211;
             // 
             // Ingresar_datos__Compra_
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(925, 561);
-            Controls.Add(txtDescripcion);
+            Controls.Add(txtPrecio);
             Controls.Add(label4);
             Controls.Add(cmbProveedor);
             Controls.Add(cmbFormaPago);
@@ -382,7 +431,7 @@
             Controls.Add(kryptonButton4);
             Controls.Add(kryptonButton5);
             Controls.Add(label8);
-            Controls.Add(kryptonLabel1);
+            Controls.Add(lblTotal);
             Controls.Add(label7);
             Controls.Add(label6);
             Controls.Add(label5);
@@ -390,7 +439,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(lblIDCompra);
-            Controls.Add(kryptonDataGridView1);
+            Controls.Add(dgvProductosCompra);
             Controls.Add(dtpFechaPedido);
             Controls.Add(kryptonGroup1);
             Controls.Add(panel1);
@@ -405,7 +454,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonDataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvProductosCompra).EndInit();
             ((System.ComponentModel.ISupportInitialize)cmbFormaPago).EndInit();
             ((System.ComponentModel.ISupportInitialize)cmbProveedor).EndInit();
             ResumeLayout(false);
@@ -421,7 +470,7 @@
         private Krypton.Toolkit.KryptonGroup kryptonGroup1;
         private Krypton.Toolkit.KryptonMonthCalendar dtpFechaPedido;
         private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
-        private Krypton.Toolkit.KryptonDataGridView kryptonDataGridView1;
+        private Krypton.Toolkit.KryptonDataGridView dgvProductosCompra;
         private Krypton.Toolkit.KryptonLabel lblIDCompra;
         private Label label1;
         private Label label2;
@@ -429,7 +478,7 @@
         private Label label5;
         private Label label6;
         private Label label7;
-        private Krypton.Toolkit.KryptonLabel kryptonLabel1;
+        private Krypton.Toolkit.KryptonLabel lblTotal;
         private Label label8;
         private Krypton.Toolkit.KryptonButton btnAceptar;
         private Krypton.Toolkit.KryptonButton kryptonButton4;
@@ -438,6 +487,11 @@
         private Krypton.Toolkit.KryptonComboBox cmbFormaPago;
         private Krypton.Toolkit.KryptonComboBox cmbProveedor;
         private Label label4;
-        private Krypton.Toolkit.KryptonTextBox txtDescripcion;
+        private Krypton.Toolkit.KryptonTextBox txtPrecio;
+        private DataGridViewTextBoxColumn ID;
+        private DataGridViewTextBoxColumn Producto;
+        private DataGridViewTextBoxColumn Cantidad;
+        private DataGridViewTextBoxColumn Precio;
+        private DataGridViewTextBoxColumn Subtotal;
     }
 }
