@@ -49,6 +49,15 @@ namespace SG_BAMS
             CargarInventarioCompleto();
         }
 
-        
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            AgregarProducto frm = new AgregarProducto();
+            // Usamos ShowDialog para que el usuario no pueda clickear atrás hasta terminar
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                // Esto refrescará tu tabla principal automáticamente después de guardar
+                CargarInventarioCompleto();
+            }
+        }
     }
 }

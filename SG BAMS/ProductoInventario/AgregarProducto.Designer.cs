@@ -47,11 +47,11 @@
             cmbModelo = new Krypton.Toolkit.KryptonComboBox();
             txtNombre = new Krypton.Toolkit.KryptonTextBox();
             txtPrecio = new Krypton.Toolkit.KryptonTextBox();
-            txtTipoServicio = new Krypton.Toolkit.KryptonTextBox();
+            txtServicio = new Krypton.Toolkit.KryptonTextBox();
             cmbMarca = new Krypton.Toolkit.KryptonComboBox();
             cmbTipo = new Krypton.Toolkit.KryptonComboBox();
             txtID = new Krypton.Toolkit.KryptonTextBox();
-            txtCodBarra = new Krypton.Toolkit.KryptonTextBox();
+            txtCodigoBarra = new Krypton.Toolkit.KryptonTextBox();
             label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
@@ -313,16 +313,16 @@
             txtPrecio.StateNormal.Content.Color1 = Color.Navy;
             txtPrecio.TabIndex = 249;
             // 
-            // txtTipoServicio
+            // txtServicio
             // 
-            txtTipoServicio.Location = new Point(207, 434);
-            txtTipoServicio.Name = "txtTipoServicio";
-            txtTipoServicio.Size = new Size(250, 39);
-            txtTipoServicio.StateCommon.Back.Color1 = Color.SkyBlue;
-            txtTipoServicio.StateCommon.Border.Rounding = 20F;
-            txtTipoServicio.StateCommon.Content.Color1 = Color.Navy;
-            txtTipoServicio.StateNormal.Content.Color1 = Color.Navy;
-            txtTipoServicio.TabIndex = 251;
+            txtServicio.Location = new Point(207, 434);
+            txtServicio.Name = "txtServicio";
+            txtServicio.Size = new Size(250, 39);
+            txtServicio.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtServicio.StateCommon.Border.Rounding = 20F;
+            txtServicio.StateCommon.Content.Color1 = Color.Navy;
+            txtServicio.StateNormal.Content.Color1 = Color.Navy;
+            txtServicio.TabIndex = 251;
             // 
             // cmbMarca
             // 
@@ -365,16 +365,16 @@
             txtID.StateNormal.Content.Color1 = Color.Navy;
             txtID.TabIndex = 247;
             // 
-            // txtCodBarra
+            // txtCodigoBarra
             // 
-            txtCodBarra.Location = new Point(207, 480);
-            txtCodBarra.Name = "txtCodBarra";
-            txtCodBarra.Size = new Size(250, 39);
-            txtCodBarra.StateCommon.Back.Color1 = Color.SkyBlue;
-            txtCodBarra.StateCommon.Border.Rounding = 20F;
-            txtCodBarra.StateCommon.Content.Color1 = Color.Navy;
-            txtCodBarra.StateNormal.Content.Color1 = Color.Navy;
-            txtCodBarra.TabIndex = 260;
+            txtCodigoBarra.Location = new Point(207, 480);
+            txtCodigoBarra.Name = "txtCodigoBarra";
+            txtCodigoBarra.Size = new Size(250, 39);
+            txtCodigoBarra.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtCodigoBarra.StateCommon.Border.Rounding = 20F;
+            txtCodigoBarra.StateCommon.Content.Color1 = Color.Navy;
+            txtCodigoBarra.StateNormal.Content.Color1 = Color.Navy;
+            txtCodigoBarra.TabIndex = 260;
             // 
             // label1
             // 
@@ -395,7 +395,7 @@
             BackColor = Color.White;
             ClientSize = new Size(515, 629);
             Controls.Add(label1);
-            Controls.Add(txtCodBarra);
+            Controls.Add(txtCodigoBarra);
             Controls.Add(cmbModelo);
             Controls.Add(cmbTipo);
             Controls.Add(cmbMarca);
@@ -404,7 +404,7 @@
             Controls.Add(pictureBox1);
             Controls.Add(btnCancelar);
             Controls.Add(btnAceptar);
-            Controls.Add(txtTipoServicio);
+            Controls.Add(txtServicio);
             Controls.Add(txtPrecio);
             Controls.Add(txtNombre);
             Controls.Add(txtID);
@@ -454,11 +454,11 @@
         private Krypton.Toolkit.KryptonComboBox cmbModelo;
         private Krypton.Toolkit.KryptonTextBox txtNombre;
         private Krypton.Toolkit.KryptonTextBox txtPrecio;
-        private Krypton.Toolkit.KryptonTextBox txtTipoServicio;
+        private Krypton.Toolkit.KryptonTextBox txtServicio;
         private Krypton.Toolkit.KryptonComboBox cmbMarca;
         private Krypton.Toolkit.KryptonComboBox cmbTipo;
         private Krypton.Toolkit.KryptonTextBox txtID;
-        private Krypton.Toolkit.KryptonTextBox txtCodBarra;
+        private Krypton.Toolkit.KryptonTextBox txtCodigoBarra;
         private Label label1;
     }
 }

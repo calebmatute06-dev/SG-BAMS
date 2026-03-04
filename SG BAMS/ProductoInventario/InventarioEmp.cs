@@ -16,5 +16,10 @@ namespace SG_BAMS
         {
             InitializeComponent();
         }
+
+        private void InventarioEmp_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

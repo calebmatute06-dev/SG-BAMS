@@ -625,6 +625,7 @@
             Controls.Add(panel7);
             Name = "InventarioEmp";
             Text = "InventarioEmp";
+            Load += InventarioEmp_Load;
             ((System.ComponentModel.ISupportInitialize)kryptonDataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).EndInit();

@@ -21,71 +21,88 @@ namespace SG_BAMS
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+            // 1. Validaciones básicas
+            if (string.IsNullOrWhiteSpace(txtNombre.Text) || cmbMarca.SelectedValue == null)
+            {
+                MessageBox.Show("Por favor llene los campos obligatorios", "Advertencia");
+                return;
+            }
+
             try
             {
-                ClsAgregarProducto logica = new ClsAgregarProducto();
+                ClsAgregarProducto logicaInsertar = new ClsAgregarProducto();
 
-                logica.EjecutarInsercion(
-                    txtNombre.Text,
-                    Convert.ToInt32(cmbMarca.SelectedValue),
-                    Convert.ToInt32(cmbTipo.SelectedValue),
-                    Convert.ToInt32(cmbModelo.SelectedValue),
-                    Convert.ToDecimal(txtPrecio.Text),
-                    txtTipoServicio.Text,
-                    txtCodBarra.Text
-                );
+                // Convertimos los valores de los controles
+                string nombre = txtNombre.Text;
+                int idMarca = (int)cmbMarca.SelectedValue;
+                int idTipo = (int)cmbTipo.SelectedValue;
+                int idModelo = (int)cmbModelo.SelectedValue;
+                decimal precio = decimal.Parse(txtPrecio.Text);
+                string servicio = txtServicio.Text;
+                string codBarra = txtCodigoBarra.Text;
 
-                MessageBox.Show("Producto registrado con éxito.", "Sistema BAMS");
+                // 2. Ejecutamos la inserción
+                logicaInsertar.EjecutarInsercion(nombre, idMarca, idTipo, idModelo, precio, servicio, codBarra);
+
+                MessageBox.Show("Producto guardado exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Indicamos que todo salió bien para que el formulario principal se refresque
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Error al guardar: " + ex.Message);
             }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
         private void btnsalir_Click(object sender, EventArgs e)
         {
-
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
         }
 
         private void AgregarProducto_Load(object sender, EventArgs e)
         {
+            LlenarTodosLosCombos();
+        }
+
+        private void LlenarTodosLosCombos()
+        {
+            ClsLlenarCombo llenar = new ClsLlenarCombo();
+
             try
             {
-                ClsLLenarCombo logica = new ClsLLenarCombo();
+                // 1. Llenar Marcas
+                cmbMarca.DataSource = llenar.ObtenerDatosCombo("Marca");
+                cmbMarca.DisplayMember = "nombre_marca";
+                cmbMarca.ValueMember = "id_marca_producto";
 
-                // --- CARGAR MARCAS ---
-                cmbMarca.DataSource = logica.LlenarMarca();
-                cmbMarca.DisplayMember = "nombre_marca";       // Lo que ve el usuario
-                cmbMarca.ValueMember = "id_marca_producto";    // El ID que se guarda
-                cmbMarca.SelectedIndex = -1;                   // Inicia vacío
-
-                // --- CARGAR TIPOS ---
-                cmbTipo.DataSource = logica.LlenarTipo();
+                // 2. Llenar Tipos
+                cmbTipo.DataSource = llenar.ObtenerDatosCombo("Tipo");
                 cmbTipo.DisplayMember = "descripcion_forma_pago"; // Nombre exacto en tu SQL
                 cmbTipo.ValueMember = "id_tipo_producto";
-                cmbTipo.SelectedIndex = -1;
 
-                // --- CARGAR MODELOS ---
-                cmbModelo.DataSource = logica.LlenarModelo();
+                // 3. Llenar Modelos
+                cmbModelo.DataSource = llenar.ObtenerDatosCombo("Modelo");
                 cmbModelo.DisplayMember = "nombre_modelo_auto";
                 cmbModelo.ValueMember = "id_modelo_auto";
+
+                // Opcional: Que aparezcan vacíos al inicio
+                cmbMarca.SelectedIndex = -1;
+                cmbTipo.SelectedIndex = -1;
                 cmbModelo.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al inicializar el formulario: " + ex.Message, "Sistema BAMS");
+                MessageBox.Show(ex.Message);
             }
         }
-
-        
-
     }
 }

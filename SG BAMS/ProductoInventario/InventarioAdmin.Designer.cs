@@ -609,14 +609,14 @@
             // 
             btnAgregar.AutoSize = true;
             btnAgregar.DropDownPosition = Krypton.Toolkit.VisualOrientation.Bottom;
-            btnAgregar.Location = new Point(1269, 101);
+            btnAgregar.Location = new Point(1251, 101);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnAgregar.OverrideDefault.Back.Color2 = Color.White;
             btnAgregar.OverrideDefault.Border.Rounding = 40F;
             btnAgregar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnAgregar.OverrideFocus.Back.Color2 = Color.White;
-            btnAgregar.Size = new Size(81, 81);
+            btnAgregar.Size = new Size(99, 81);
             btnAgregar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnAgregar.StateCommon.Back.Color2 = Color.White;
             btnAgregar.StateCommon.Border.Rounding = 40F;
@@ -629,6 +629,7 @@
             btnAgregar.TabIndex = 189;
             btnAgregar.Values.DropDownArrowColor = Color.Empty;
             btnAgregar.Values.Text = "+";
+            btnAgregar.Click += btnAgregar_Click;
             // 
             // btnFiltro
             // 
@@ -766,14 +767,14 @@
             // 
             kryptonButton10.AutoSize = true;
             kryptonButton10.DropDownPosition = Krypton.Toolkit.VisualOrientation.Bottom;
-            kryptonButton10.Location = new Point(1182, 101);
+            kryptonButton10.Location = new Point(1146, 101);
             kryptonButton10.Name = "kryptonButton10";
             kryptonButton10.OverrideDefault.Back.Color1 = Color.SkyBlue;
             kryptonButton10.OverrideDefault.Back.Color2 = Color.White;
             kryptonButton10.OverrideDefault.Border.Rounding = 40F;
             kryptonButton10.OverrideFocus.Back.Color1 = Color.SkyBlue;
             kryptonButton10.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton10.Size = new Size(81, 81);
+            kryptonButton10.Size = new Size(99, 81);
             kryptonButton10.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonButton10.StateCommon.Back.Color2 = Color.White;
             kryptonButton10.StateCommon.Border.Rounding = 40F;
@@ -785,7 +786,7 @@
             kryptonButton10.StateTracking.Border.Rounding = 40F;
             kryptonButton10.TabIndex = 195;
             kryptonButton10.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton10.Values.Text = "+";
+            kryptonButton10.Values.Text = "✏️";
             // 
             // InventarioAdmin
             // 

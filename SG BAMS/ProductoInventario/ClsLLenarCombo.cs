@@ -4,46 +4,50 @@ using Microsoft.Data.SqlClient;
 
 namespace SG_BAMS.ProductoInventario
 {
-    internal class ClsLLenarCombo
+    public class ClsLlenarCombo
     {
         private ClsConexion conexion = new ClsConexion();
 
-        // Método privado para evitar repetir código de llenado
-        private DataTable Consultar(string query)
+        public DataTable ObtenerDatosCombo(string tabla)
         {
             DataTable dt = new DataTable();
+            string query = "";
+
+            // Definimos la consulta según la tabla que necesitemos
+            // Es vital que el primer campo sea el ID y el segundo el Nombre/Descripción
+            switch (tabla)
+            {
+                case "Marca":
+                    query = "SELECT id_marca_producto, nombre_marca FROM Marca_producto";
+                    break;
+                case "Tipo":
+                    query = "SELECT id_tipo_producto, descripcion_forma_pago FROM Tipo_producto";
+                    break;
+                case "Modelo":
+                    query = "SELECT id_modelo_auto, nombre_modelo_auto FROM Modelo_de_auto";
+                    break;
+            }
+
             try
             {
-                // Usamos SqlDataAdapter que es el más robusto para llenar ComboBox
-                using (SqlDataAdapter da = new SqlDataAdapter(query, conexion.Conectar))
+                conexion.AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand(query, conexion.Conectar))
                 {
-                    da.Fill(dt);
+                    using (SqlDataReader leer = cmd.ExecuteReader())
+                    {
+                        dt.Load(leer);
+                    }
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al cargar datos desde SQL: " + ex.Message);
+                throw new Exception("Error al llenar combo " + tabla + ": " + ex.Message);
+            }
+            finally
+            {
+                conexion.Cerrar();
             }
             return dt;
-        }
-
-        // 1. Llenar Marca (Tabla: Marca_producto)
-        public DataTable LlenarMarca()
-        {
-            return Consultar("SELECT id_marca_producto, nombre_marca FROM Marca_producto");
-        }
-
-        // 2. Llenar Tipo (Tabla: Tipo_producto) 
-        // ¡OJO! En tu SQL pusiste 'descripcion_forma_pago' como columna de nombre aquí.
-        public DataTable LlenarTipo()
-        {
-            return Consultar("SELECT id_tipo_producto, descripcion_forma_pago FROM Tipo_producto");
-        }
-
-        // 3. Llenar Modelo (Tabla: Modelo_de_auto)
-        public DataTable LlenarModelo()
-        {
-            return Consultar("SELECT id_modelo_auto, nombre_modelo_auto FROM Modelo_de_auto");
         }
     }
 }
