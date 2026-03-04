@@ -358,6 +358,7 @@
             // 
             txtID.Location = new Point(207, 105);
             txtID.Name = "txtID";
+            txtID.ReadOnly = true;
             txtID.Size = new Size(250, 39);
             txtID.StateCommon.Back.Color1 = Color.SkyBlue;
             txtID.StateCommon.Border.Rounding = 20F;

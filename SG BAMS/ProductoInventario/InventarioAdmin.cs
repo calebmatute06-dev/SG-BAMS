@@ -1,4 +1,5 @@
-﻿using SG_BAMS.Administracion_de_BAMS.MarcaProd;
+﻿using Microsoft.Data.SqlClient;
+using SG_BAMS.Administracion_de_BAMS.MarcaProd;
 using SG_BAMS.Login;
 using SG_BAMS.ProductoInventario;
 using System;
@@ -86,6 +87,61 @@ namespace SG_BAMS
             else
             {
                 MessageBox.Show("Por favor, selecciona una fila para modificar.");
+            }
+        }
+
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtBuscar.Text))
+            {
+                CargarInventarioCompleto();
+                return;
+            }
+
+            ClsConexion conexion = new ClsConexion();
+            DataTable dt = new DataTable();
+
+            try
+            {
+                conexion.AbrirConexion();
+
+                // Consulta directa uniendo las tablas para traer los nombres
+                string query = @"SELECT 
+                            p.id_producto AS ID, 
+                            p.nombre_producto AS Producto, 
+                            m.nombre_marca AS Marca, 
+                            t.descripcion_forma_pago AS Tipo, 
+                            mo.nombre_modelo_auto AS Modelo_Auto, 
+                            e.descripcion_estado AS Estado,
+                            p.precio_venta AS Precio_Venta,
+                            p.descripcion_tipo_servicio AS Servicio,
+                            p.codigo_barra AS Codigo_Barra
+                         FROM Producto p
+                         INNER JOIN Marca_producto m ON p.id_marca_producto = m.id_marca_producto
+                         INNER JOIN Tipo_producto t ON p.id_tipo_producto = t.id_tipo_producto
+                         INNER JOIN Modelo_de_auto mo ON p.id_modelo_auto = mo.id_modelo_auto
+                         INNER JOIN Estado e ON p.id_estado = e.id_estado
+                         WHERE p.nombre_producto LIKE '%' + @filtro + '%' 
+                         OR p.codigo_barra LIKE '%' + @filtro + '%'";
+
+                using (SqlCommand cmd = new SqlCommand(query, conexion.Conectar))
+                {
+                    cmd.Parameters.AddWithValue("@filtro", txtBuscar.Text.Trim());
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                }
+
+                // Refrescamos el DataGridView con los resultados
+                dgvProductosAdmin.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                // Esto te dirá exactamente qué nombre de columna o tabla está mal
+                Console.WriteLine("Error en búsqueda: " + ex.Message);
+            }
+            finally
+            {
+                conexion.Cerrar();
             }
         }
     }

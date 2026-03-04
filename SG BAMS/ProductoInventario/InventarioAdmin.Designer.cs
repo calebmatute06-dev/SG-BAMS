@@ -595,6 +595,7 @@
             txtBuscar.StateCommon.Border.Rounding = 20F;
             txtBuscar.StateCommon.Content.Color1 = Color.Navy;
             txtBuscar.TabIndex = 191;
+            txtBuscar.TextChanged += txtBuscar_TextChanged;
             // 
             // kryptonLabel1
             // 
