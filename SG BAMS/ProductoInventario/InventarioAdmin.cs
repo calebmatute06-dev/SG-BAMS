@@ -141,5 +141,10 @@ namespace SG_BAMS
                 conexion.Cerrar();
             }
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

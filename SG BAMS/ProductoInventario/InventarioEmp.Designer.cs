@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            kryptonDataGridView1 = new Krypton.Toolkit.KryptonDataGridView();
+            dgvInventarioEmp = new Krypton.Toolkit.KryptonDataGridView();
             kryptonGroup1 = new Krypton.Toolkit.KryptonGroup();
             panel6 = new Panel();
             panel4 = new Panel();
@@ -54,8 +54,6 @@
             pictureBox1 = new PictureBox();
             txtBuscar = new Krypton.Toolkit.KryptonTextBox();
             kryptonLabel1 = new Krypton.Toolkit.KryptonLabel();
-            btnFiltro = new Krypton.Toolkit.KryptonButton();
-            btnBuscar = new Krypton.Toolkit.KryptonButton();
             pictureBox3 = new PictureBox();
             kryptonButton11 = new Krypton.Toolkit.KryptonButton();
             pictureBox18 = new PictureBox();
@@ -63,7 +61,8 @@
             panel7 = new Panel();
             pictureBox2 = new PictureBox();
             panel2 = new Panel();
-            ((System.ComponentModel.ISupportInitialize)kryptonDataGridView1).BeginInit();
+            kryptonLabel2 = new Krypton.Toolkit.KryptonLabel();
+            ((System.ComponentModel.ISupportInitialize)dgvInventarioEmp).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
             panel1.SuspendLayout();
@@ -83,22 +82,23 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
-            // kryptonDataGridView1
+            // dgvInventarioEmp
             // 
-            kryptonDataGridView1.BorderStyle = BorderStyle.None;
-            kryptonDataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            kryptonDataGridView1.Location = new Point(346, 227);
-            kryptonDataGridView1.Name = "kryptonDataGridView1";
-            kryptonDataGridView1.RowHeadersWidth = 51;
-            kryptonDataGridView1.Size = new Size(681, 617);
-            kryptonDataGridView1.StateCommon.Background.Color1 = Color.LightBlue;
-            kryptonDataGridView1.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
-            kryptonDataGridView1.TabIndex = 210;
+            dgvInventarioEmp.BorderStyle = BorderStyle.None;
+            dgvInventarioEmp.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvInventarioEmp.Location = new Point(348, 227);
+            dgvInventarioEmp.Name = "dgvInventarioEmp";
+            dgvInventarioEmp.ReadOnly = true;
+            dgvInventarioEmp.RowHeadersWidth = 51;
+            dgvInventarioEmp.Size = new Size(1199, 617);
+            dgvInventarioEmp.StateCommon.Background.Color1 = Color.LightBlue;
+            dgvInventarioEmp.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
+            dgvInventarioEmp.TabIndex = 210;
             // 
             // kryptonGroup1
             // 
-            kryptonGroup1.Location = new Point(303, 201);
-            kryptonGroup1.Size = new Size(764, 669);
+            kryptonGroup1.Location = new Point(305, 201);
+            kryptonGroup1.Size = new Size(1282, 669);
             kryptonGroup1.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroup1.StateCommon.Border.Rounding = 70F;
             kryptonGroup1.TabIndex = 209;
@@ -116,7 +116,7 @@
             panel4.BackColor = Color.Navy;
             panel4.Location = new Point(1, 881);
             panel4.Name = "panel4";
-            panel4.Size = new Size(1102, 24);
+            panel4.Size = new Size(1633, 24);
             panel4.TabIndex = 197;
             // 
             // panel3
@@ -193,7 +193,7 @@
             kryptonButton1.StateTracking.Border.Rounding = 40F;
             kryptonButton1.TabIndex = 36;
             kryptonButton1.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton1.Values.Text = "Administrador";
+            kryptonButton1.Values.Text = "Empleado";
             // 
             // btnCerrarSesion
             // 
@@ -444,13 +444,14 @@
             // 
             // txtBuscar
             // 
-            txtBuscar.Location = new Point(348, 132);
+            txtBuscar.Location = new Point(348, 142);
             txtBuscar.Name = "txtBuscar";
-            txtBuscar.Size = new Size(539, 39);
+            txtBuscar.Size = new Size(679, 39);
             txtBuscar.StateCommon.Back.Color1 = Color.SkyBlue;
             txtBuscar.StateCommon.Border.Rounding = 20F;
             txtBuscar.StateCommon.Content.Color1 = Color.Navy;
             txtBuscar.TabIndex = 208;
+            txtBuscar.TextChanged += txtBuscar_TextChanged;
             // 
             // kryptonLabel1
             // 
@@ -460,59 +461,6 @@
             kryptonLabel1.StateCommon.ShortText.Color1 = Color.Navy;
             kryptonLabel1.TabIndex = 207;
             kryptonLabel1.Values.Text = "Inventario";
-            // 
-            // btnFiltro
-            // 
-            btnFiltro.Location = new Point(963, 118);
-            btnFiltro.Name = "btnFiltro";
-            btnFiltro.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnFiltro.OverrideDefault.Back.Color2 = Color.White;
-            btnFiltro.OverrideDefault.Border.Rounding = 40F;
-            btnFiltro.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnFiltro.OverrideFocus.Back.Color2 = Color.White;
-            btnFiltro.Size = new Size(64, 63);
-            btnFiltro.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnFiltro.StateCommon.Back.Color2 = Color.White;
-            btnFiltro.StateCommon.Border.Rounding = 40F;
-            btnFiltro.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnFiltro.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnFiltro.StateCommon.Content.ShortText.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
-            btnFiltro.StateCommon.Content.ShortText.TextV = Krypton.Toolkit.PaletteRelativeAlign.Center;
-            btnFiltro.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnFiltro.StateNormal.Back.Color2 = Color.White;
-            btnFiltro.StateNormal.Border.Rounding = 40F;
-            btnFiltro.StateTracking.Border.Rounding = 40F;
-            btnFiltro.TabIndex = 205;
-            btnFiltro.Values.DropDownArrowColor = Color.Empty;
-            btnFiltro.Values.Text = "☷";
-            // 
-            // btnBuscar
-            // 
-            btnBuscar.Location = new Point(893, 118);
-            btnBuscar.Name = "btnBuscar";
-            btnBuscar.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnBuscar.OverrideDefault.Back.Color2 = Color.White;
-            btnBuscar.OverrideDefault.Border.Rounding = 40F;
-            btnBuscar.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnBuscar.OverrideFocus.Back.Color2 = Color.White;
-            btnBuscar.Size = new Size(64, 63);
-            btnBuscar.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnBuscar.StateCommon.Back.Color2 = Color.White;
-            btnBuscar.StateCommon.Border.Rounding = 40F;
-            btnBuscar.StateCommon.Content.Image.ImageH = Krypton.Toolkit.PaletteRelativeAlign.Center;
-            btnBuscar.StateCommon.Content.Image.ImageV = Krypton.Toolkit.PaletteRelativeAlign.Center;
-            btnBuscar.StateCommon.Content.Padding = new Padding(0);
-            btnBuscar.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnBuscar.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnBuscar.StateCommon.Content.ShortText.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
-            btnBuscar.StateCommon.Content.ShortText.TextV = Krypton.Toolkit.PaletteRelativeAlign.Center;
-            btnBuscar.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnBuscar.StateNormal.Back.Color2 = Color.White;
-            btnBuscar.StateNormal.Border.Rounding = 40F;
-            btnBuscar.StateTracking.Border.Rounding = 40F;
-            btnBuscar.TabIndex = 204;
-            btnBuscar.Values.DropDownArrowColor = Color.Empty;
-            btnBuscar.Values.Text = "🔎";
             // 
             // pictureBox3
             // 
@@ -527,7 +475,7 @@
             // 
             // kryptonButton11
             // 
-            kryptonButton11.Location = new Point(976, 30);
+            kryptonButton11.Location = new Point(1500, 29);
             kryptonButton11.Name = "kryptonButton11";
             kryptonButton11.OverrideDefault.Back.Color1 = Color.Transparent;
             kryptonButton11.OverrideDefault.Back.Color2 = Color.Transparent;
@@ -554,7 +502,7 @@
             // 
             pictureBox18.BackgroundImage = Properties.Resources.ajus;
             pictureBox18.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox18.Location = new Point(921, 29);
+            pictureBox18.Location = new Point(1445, 28);
             pictureBox18.Name = "pictureBox18";
             pictureBox18.Size = new Size(53, 49);
             pictureBox18.TabIndex = 202;
@@ -569,7 +517,7 @@
             button12.FlatAppearance.BorderSize = 0;
             button12.FlatStyle = FlatStyle.Flat;
             button12.ForeColor = Color.Navy;
-            button12.Location = new Point(856, 29);
+            button12.Location = new Point(1380, 28);
             button12.Name = "button12";
             button12.Size = new Size(59, 44);
             button12.TabIndex = 201;
@@ -579,7 +527,7 @@
             // 
             panel7.BackColor = Color.Navy;
             panel7.Controls.Add(pictureBox2);
-            panel7.Location = new Point(1079, 17);
+            panel7.Location = new Point(1604, 17);
             panel7.Name = "panel7";
             panel7.Size = new Size(24, 869);
             panel7.TabIndex = 199;
@@ -598,17 +546,27 @@
             panel2.BackColor = Color.Navy;
             panel2.Location = new Point(1, -1);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1102, 24);
+            panel2.Size = new Size(1627, 24);
             panel2.TabIndex = 211;
+            // 
+            // kryptonLabel2
+            // 
+            kryptonLabel2.Location = new Point(368, 107);
+            kryptonLabel2.Name = "kryptonLabel2";
+            kryptonLabel2.Size = new Size(136, 31);
+            kryptonLabel2.StateCommon.ShortText.Color1 = Color.Navy;
+            kryptonLabel2.TabIndex = 212;
+            kryptonLabel2.Values.Text = "Buscar:";
             // 
             // InventarioEmp
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1105, 905);
+            ClientSize = new Size(1627, 905);
+            Controls.Add(kryptonLabel2);
             Controls.Add(panel2);
-            Controls.Add(kryptonDataGridView1);
+            Controls.Add(dgvInventarioEmp);
             Controls.Add(kryptonGroup1);
             Controls.Add(panel6);
             Controls.Add(panel4);
@@ -616,8 +574,6 @@
             Controls.Add(panel1);
             Controls.Add(txtBuscar);
             Controls.Add(kryptonLabel1);
-            Controls.Add(btnFiltro);
-            Controls.Add(btnBuscar);
             Controls.Add(pictureBox3);
             Controls.Add(kryptonButton11);
             Controls.Add(pictureBox18);
@@ -626,7 +582,7 @@
             Name = "InventarioEmp";
             Text = "InventarioEmp";
             Load += InventarioEmp_Load;
-            ((System.ComponentModel.ISupportInitialize)kryptonDataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvInventarioEmp).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).EndInit();
             panel1.ResumeLayout(false);
@@ -651,7 +607,7 @@
 
         #endregion
 
-        private Krypton.Toolkit.KryptonDataGridView kryptonDataGridView1;
+        private Krypton.Toolkit.KryptonDataGridView dgvInventarioEmp;
         private Krypton.Toolkit.KryptonGroup kryptonGroup1;
         private Panel panel6;
         private Panel panel4;
@@ -677,8 +633,6 @@
         private PictureBox pictureBox1;
         private Krypton.Toolkit.KryptonTextBox txtBuscar;
         private Krypton.Toolkit.KryptonLabel kryptonLabel1;
-        private Krypton.Toolkit.KryptonButton btnFiltro;
-        private Krypton.Toolkit.KryptonButton btnBuscar;
         private PictureBox pictureBox3;
         private Krypton.Toolkit.KryptonButton kryptonButton11;
         private PictureBox pictureBox18;
@@ -686,5 +640,6 @@
         private Panel panel7;
         private PictureBox pictureBox2;
         private Panel panel2;
+        private Krypton.Toolkit.KryptonLabel kryptonLabel2;
     }
 }

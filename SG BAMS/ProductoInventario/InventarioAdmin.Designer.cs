@@ -109,7 +109,7 @@
             panel4.BackColor = Color.Navy;
             panel4.Location = new Point(1, 881);
             panel4.Name = "panel4";
-            panel4.Size = new Size(1562, 24);
+            panel4.Size = new Size(1562, 22);
             panel4.TabIndex = 180;
             // 
             // panel3
@@ -152,6 +152,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(286, 892);
             panel1.TabIndex = 177;
+            panel1.Paint += panel1_Paint;
             // 
             // panel5
             // 
