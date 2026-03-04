@@ -46,9 +46,7 @@
             kryptonButton13 = new Krypton.Toolkit.KryptonButton();
             groupBox1 = new GroupBox();
             rbVertical = new RadioButton();
-            kryptonGroup3 = new Krypton.Toolkit.KryptonGroup();
             btnSalir = new Krypton.Toolkit.KryptonButton();
-            dgvReporteI = new Krypton.Toolkit.KryptonDataGridView();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             panel1.SuspendLayout();
@@ -60,9 +58,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cmbTipoHoja).BeginInit();
             groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup3.Panel).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dgvReporteI).BeginInit();
             SuspendLayout();
             // 
             // panel2
@@ -105,7 +100,7 @@
             // 
             panel4.BackColor = Color.Navy;
             panel4.Controls.Add(pictureBox2);
-            panel4.Location = new Point(928, -179);
+            panel4.Location = new Point(512, -179);
             panel4.Name = "panel4";
             panel4.Size = new Size(24, 869);
             panel4.TabIndex = 67;
@@ -141,7 +136,7 @@
             // 
             pictureBox9.BackgroundImage = Properties.Resources.bateria_2;
             pictureBox9.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox9.Location = new Point(842, 30);
+            pictureBox9.Location = new Point(426, 30);
             pictureBox9.Name = "pictureBox9";
             pictureBox9.Size = new Size(80, 59);
             pictureBox9.TabIndex = 190;
@@ -152,7 +147,7 @@
             label8.AutoSize = true;
             label8.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Navy;
-            label8.Location = new Point(239, 57);
+            label8.Location = new Point(154, 89);
             label8.Name = "label8";
             label8.Size = new Size(255, 35);
             label8.TabIndex = 189;
@@ -160,7 +155,7 @@
             // 
             // btnImprimir
             // 
-            btnImprimir.Location = new Point(239, 374);
+            btnImprimir.Location = new Point(336, 440);
             btnImprimir.Name = "btnImprimir";
             btnImprimir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnImprimir.OverrideDefault.Back.Color2 = Color.White;
@@ -183,7 +178,7 @@
             // 
             // btnImpresora
             // 
-            btnImpresora.Location = new Point(63, 305);
+            btnImpresora.Location = new Point(40, 371);
             btnImpresora.Name = "btnImpresora";
             btnImpresora.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnImpresora.OverrideDefault.Back.Color2 = Color.White;
@@ -204,7 +199,7 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(63, 374);
+            btnCancelar.Location = new Point(40, 440);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnCancelar.OverrideDefault.Back.Color2 = Color.White;
@@ -279,7 +274,7 @@
             groupBox1.Controls.Add(rbVertical);
             groupBox1.Controls.Add(rbHorizontal);
             groupBox1.ForeColor = Color.Navy;
-            groupBox1.Location = new Point(239, 221);
+            groupBox1.Location = new Point(184, 221);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(181, 125);
             groupBox1.TabIndex = 244;
@@ -297,14 +292,6 @@
             rbVertical.TabStop = true;
             rbVertical.Text = "Vertical";
             rbVertical.UseVisualStyleBackColor = true;
-            // 
-            // kryptonGroup3
-            // 
-            kryptonGroup3.Location = new Point(454, 103);
-            kryptonGroup3.Size = new Size(456, 358);
-            kryptonGroup3.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroup3.StateCommon.Border.Rounding = 30F;
-            kryptonGroup3.TabIndex = 251;
             // 
             // btnSalir
             // 
@@ -327,25 +314,13 @@
             btnSalir.Values.DropDownArrowColor = Color.Empty;
             btnSalir.Values.Text = "Salir";
             // 
-            // dgvReporteI
-            // 
-            dgvReporteI.BorderStyle = BorderStyle.None;
-            dgvReporteI.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvReporteI.Location = new Point(468, 117);
-            dgvReporteI.Name = "dgvReporteI";
-            dgvReporteI.RowHeadersWidth = 51;
-            dgvReporteI.Size = new Size(428, 330);
-            dgvReporteI.TabIndex = 254;
-            // 
             // ImprimirReporte
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(953, 508);
-            Controls.Add(dgvReporteI);
+            ClientSize = new Size(536, 508);
             Controls.Add(btnSalir);
-            Controls.Add(kryptonGroup3);
             Controls.Add(groupBox1);
             Controls.Add(kryptonButton13);
             Controls.Add(cmbTipoHoja);
@@ -373,9 +348,6 @@
             ((System.ComponentModel.ISupportInitialize)cmbTipoHoja).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup3.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dgvReporteI).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -402,8 +374,6 @@
         private Krypton.Toolkit.KryptonComboBox cmbTipoHoja;
         private Krypton.Toolkit.KryptonButton kryptonButton13;
         private GroupBox groupBox1;
-        private Krypton.Toolkit.KryptonGroup kryptonGroup3;
         private Krypton.Toolkit.KryptonButton btnSalir;
-        private Krypton.Toolkit.KryptonDataGridView dgvReporteI;
     }
 }

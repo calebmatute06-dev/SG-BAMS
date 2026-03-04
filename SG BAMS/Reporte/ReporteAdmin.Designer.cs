@@ -67,7 +67,6 @@ namespace SG_BAMS
             pictureBox18 = new PictureBox();
             button12 = new Button();
             pictureBox3 = new PictureBox();
-            btnImprimir = new Krypton.Toolkit.KryptonButton();
             btnExportaar = new Krypton.Toolkit.KryptonButton();
             btnLimpiar = new Krypton.Toolkit.KryptonButton();
             dtpDesde = new Krypton.Toolkit.KryptonDateTimePicker();
@@ -696,30 +695,6 @@ namespace SG_BAMS
             pictureBox3.TabIndex = 37;
             pictureBox3.TabStop = false;
             // 
-            // btnImprimir
-            // 
-            btnImprimir.Location = new Point(387, 695);
-            btnImprimir.Name = "btnImprimir";
-            btnImprimir.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnImprimir.OverrideDefault.Back.Color2 = Color.White;
-            btnImprimir.OverrideDefault.Border.Rounding = 40F;
-            btnImprimir.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnImprimir.OverrideFocus.Back.Color2 = Color.White;
-            btnImprimir.Size = new Size(206, 41);
-            btnImprimir.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnImprimir.StateCommon.Back.Color2 = Color.White;
-            btnImprimir.StateCommon.Border.Rounding = 40F;
-            btnImprimir.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnImprimir.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnImprimir.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnImprimir.StateNormal.Back.Color2 = Color.White;
-            btnImprimir.StateNormal.Border.Rounding = 40F;
-            btnImprimir.StateTracking.Border.Rounding = 40F;
-            btnImprimir.TabIndex = 182;
-            btnImprimir.Values.DropDownArrowColor = Color.Empty;
-            btnImprimir.Values.Text = "Imprimir";
-            btnImprimir.Click += btnImprimir_Click;
-            // 
             // btnExportaar
             // 
             btnExportaar.Location = new Point(387, 629);
@@ -921,7 +896,6 @@ namespace SG_BAMS
             Controls.Add(dtpHasta);
             Controls.Add(dtpDesde);
             Controls.Add(btnLimpiar);
-            Controls.Add(btnImprimir);
             Controls.Add(btnExportaar);
             Controls.Add(pictureBox3);
             Controls.Add(kryptonButton11);
@@ -1015,7 +989,6 @@ namespace SG_BAMS
         private PictureBox pictureBox18;
         private Button button12;
         private PictureBox pictureBox3;
-        private Krypton.Toolkit.KryptonButton btnImprimir;
         private Krypton.Toolkit.KryptonButton btnExportaar;
         private Krypton.Toolkit.KryptonButton btnLimpiar;
         private Krypton.Toolkit.KryptonDateTimePicker dtpDesde;
