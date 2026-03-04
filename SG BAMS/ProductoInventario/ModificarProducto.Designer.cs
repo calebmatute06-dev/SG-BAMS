@@ -37,11 +37,11 @@
             btnsalir = new Krypton.Toolkit.KryptonButton();
             pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
-            txtStock = new Krypton.Toolkit.KryptonTextBox();
+            txtServicio = new Krypton.Toolkit.KryptonTextBox();
             label1 = new Label();
             txtPrecio = new Krypton.Toolkit.KryptonTextBox();
             txtNombre = new Krypton.Toolkit.KryptonTextBox();
-            txtUsuario = new Krypton.Toolkit.KryptonTextBox();
+            txtID = new Krypton.Toolkit.KryptonTextBox();
             label15 = new Label();
             label10 = new Label();
             label12 = new Label();
@@ -53,6 +53,8 @@
             cmbTipo = new Krypton.Toolkit.KryptonComboBox();
             cmbModelo = new Krypton.Toolkit.KryptonComboBox();
             cmbEstado = new Krypton.Toolkit.KryptonComboBox();
+            txtCodigoBarra = new Krypton.Toolkit.KryptonTextBox();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -79,14 +81,14 @@
             pictureBox4.BackColor = Color.Navy;
             pictureBox4.Location = new Point(-1, 0);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(15, 597);
+            pictureBox4.Size = new Size(15, 661);
             pictureBox4.TabIndex = 210;
             pictureBox4.TabStop = false;
             // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Navy;
-            pictureBox1.Location = new Point(0, 594);
+            pictureBox1.Location = new Point(0, 660);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(515, 15);
             pictureBox1.TabIndex = 209;
@@ -94,7 +96,7 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(270, 544);
+            btnCancelar.Location = new Point(270, 610);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnCancelar.OverrideDefault.Back.Color2 = Color.White;
@@ -117,7 +119,7 @@
             // 
             // btnAceptar
             // 
-            btnAceptar.Location = new Point(391, 544);
+            btnAceptar.Location = new Point(391, 610);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnAceptar.OverrideDefault.Back.Color2 = Color.White;
@@ -152,7 +154,7 @@
             // 
             // btnsalir
             // 
-            btnsalir.Location = new Point(20, 544);
+            btnsalir.Location = new Point(20, 610);
             btnsalir.Name = "btnsalir";
             btnsalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnsalir.OverrideDefault.Back.Color2 = Color.White;
@@ -178,7 +180,7 @@
             pictureBox3.BackColor = Color.Navy;
             pictureBox3.Location = new Point(500, 0);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(15, 597);
+            pictureBox3.Size = new Size(15, 661);
             pictureBox3.TabIndex = 204;
             pictureBox3.TabStop = false;
             // 
@@ -191,16 +193,16 @@
             pictureBox2.TabIndex = 203;
             pictureBox2.TabStop = false;
             // 
-            // txtStock
+            // txtServicio
             // 
-            txtStock.Location = new Point(204, 468);
-            txtStock.Name = "txtStock";
-            txtStock.Size = new Size(250, 39);
-            txtStock.StateCommon.Back.Color1 = Color.SkyBlue;
-            txtStock.StateCommon.Border.Rounding = 20F;
-            txtStock.StateCommon.Content.Color1 = Color.Navy;
-            txtStock.TabIndex = 227;
-            txtStock.TextChanged += kryptonTextBox3_TextChanged;
+            txtServicio.Location = new Point(204, 468);
+            txtServicio.Name = "txtServicio";
+            txtServicio.Size = new Size(250, 39);
+            txtServicio.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtServicio.StateCommon.Border.Rounding = 20F;
+            txtServicio.StateCommon.Content.Color1 = Color.Navy;
+            txtServicio.TabIndex = 227;
+            txtServicio.TextChanged += kryptonTextBox3_TextChanged;
             // 
             // label1
             // 
@@ -235,15 +237,16 @@
             txtNombre.StateNormal.Content.Color1 = Color.Navy;
             txtNombre.TabIndex = 220;
             // 
-            // txtUsuario
+            // txtID
             // 
-            txtUsuario.Location = new Point(204, 88);
-            txtUsuario.Name = "txtUsuario";
-            txtUsuario.Size = new Size(250, 39);
-            txtUsuario.StateCommon.Back.Color1 = Color.SkyBlue;
-            txtUsuario.StateCommon.Border.Rounding = 20F;
-            txtUsuario.StateCommon.Content.Color1 = Color.Navy;
-            txtUsuario.TabIndex = 219;
+            txtID.Location = new Point(204, 88);
+            txtID.Name = "txtID";
+            txtID.ReadOnly = true;
+            txtID.Size = new Size(250, 39);
+            txtID.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtID.StateCommon.Border.Rounding = 20F;
+            txtID.StateCommon.Content.Color1 = Color.Navy;
+            txtID.TabIndex = 219;
             // 
             // label15
             // 
@@ -251,11 +254,11 @@
             label15.BackColor = Color.Transparent;
             label15.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label15.ForeColor = Color.Navy;
-            label15.Location = new Point(69, 474);
+            label15.Location = new Point(60, 474);
             label15.Name = "label15";
-            label15.Size = new Size(76, 33);
+            label15.Size = new Size(150, 33);
             label15.TabIndex = 218;
-            label15.Text = "Stock:";
+            label15.Text = "Tipo Servicio:";
             // 
             // label10
             // 
@@ -389,21 +392,45 @@
             cmbEstado.StateNormal.ComboBox.Border.Rounding = 40F;
             cmbEstado.TabIndex = 231;
             // 
+            // txtCodigoBarra
+            // 
+            txtCodigoBarra.Location = new Point(204, 516);
+            txtCodigoBarra.Name = "txtCodigoBarra";
+            txtCodigoBarra.Size = new Size(250, 39);
+            txtCodigoBarra.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtCodigoBarra.StateCommon.Border.Rounding = 20F;
+            txtCodigoBarra.StateCommon.Content.Color1 = Color.Navy;
+            txtCodigoBarra.TabIndex = 233;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.Navy;
+            label2.Location = new Point(69, 522);
+            label2.Name = "label2";
+            label2.Size = new Size(131, 33);
+            label2.TabIndex = 232;
+            label2.Text = "Cod. Barra:";
+            // 
             // ModificarProducto
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(515, 609);
+            ClientSize = new Size(515, 673);
+            Controls.Add(txtCodigoBarra);
+            Controls.Add(label2);
             Controls.Add(cmbEstado);
             Controls.Add(cmbModelo);
             Controls.Add(cmbTipo);
             Controls.Add(cmbMarca);
-            Controls.Add(txtStock);
+            Controls.Add(txtServicio);
             Controls.Add(label1);
             Controls.Add(txtPrecio);
             Controls.Add(txtNombre);
-            Controls.Add(txtUsuario);
+            Controls.Add(txtID);
             Controls.Add(label15);
             Controls.Add(label10);
             Controls.Add(label12);
@@ -422,6 +449,7 @@
             Controls.Add(pictureBox2);
             Name = "ModificarProducto";
             Text = "ModificarProducto";
+            Load += ModificarProducto_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -446,11 +474,7 @@
         private Krypton.Toolkit.KryptonButton btnsalir;
         private PictureBox pictureBox3;
         private PictureBox pictureBox2;
-        private Krypton.Toolkit.KryptonTextBox txtStock;
         private Label label1;
-        private Krypton.Toolkit.KryptonTextBox txtPrecio;
-        private Krypton.Toolkit.KryptonTextBox txtNombre;
-        private Krypton.Toolkit.KryptonTextBox txtUsuario;
         private Label label15;
         private Label label10;
         private Label label12;
@@ -458,9 +482,15 @@
         private Label label7;
         private Label label4;
         private Label label3;
-        private Krypton.Toolkit.KryptonComboBox cmbMarca;
-        private Krypton.Toolkit.KryptonComboBox cmbTipo;
-        private Krypton.Toolkit.KryptonComboBox cmbModelo;
-        private Krypton.Toolkit.KryptonComboBox cmbEstado;
+        private Label label2;
+        public Krypton.Toolkit.KryptonTextBox txtServicio;
+        public Krypton.Toolkit.KryptonTextBox txtPrecio;
+        public Krypton.Toolkit.KryptonTextBox txtNombre;
+        public Krypton.Toolkit.KryptonTextBox txtID;
+        public Krypton.Toolkit.KryptonComboBox cmbMarca;
+        public Krypton.Toolkit.KryptonComboBox cmbTipo;
+        public Krypton.Toolkit.KryptonComboBox cmbModelo;
+        public Krypton.Toolkit.KryptonComboBox cmbEstado;
+        public Krypton.Toolkit.KryptonTextBox txtCodigoBarra;
     }
 }

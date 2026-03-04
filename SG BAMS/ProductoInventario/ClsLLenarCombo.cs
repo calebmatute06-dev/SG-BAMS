@@ -26,6 +26,10 @@ namespace SG_BAMS.ProductoInventario
                 case "Modelo":
                     query = "SELECT id_modelo_auto, nombre_modelo_auto FROM Modelo_de_auto";
                     break;
+                // AGREGAR ESTE CASO:
+                case "Estado":
+                    query = "SELECT id_estado, descripcion_estado FROM Estado";
+                    break;
             }
 
             try

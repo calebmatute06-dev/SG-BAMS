@@ -787,6 +787,7 @@
             kryptonButton10.TabIndex = 195;
             kryptonButton10.Values.DropDownArrowColor = Color.Empty;
             kryptonButton10.Values.Text = "✏️";
+            kryptonButton10.Click += kryptonButton10_Click;
             // 
             // InventarioAdmin
             // 

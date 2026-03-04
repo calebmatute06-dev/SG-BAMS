@@ -52,11 +52,40 @@ namespace SG_BAMS
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             AgregarProducto frm = new AgregarProducto();
-            // Usamos ShowDialog para que el usuario no pueda clickear atrás hasta terminar
             if (frm.ShowDialog() == DialogResult.OK)
             {
-                // Esto refrescará tu tabla principal automáticamente después de guardar
                 CargarInventarioCompleto();
+            }
+        }
+
+        private void kryptonButton10_Click(object sender, EventArgs e)
+        {
+            if (dgvProductosAdmin.SelectedRows.Count > 0)
+            {
+                ModificarProducto frmMod = new ModificarProducto();
+
+                frmMod.LlenarCombosModificar();
+
+                frmMod.txtID.Text = dgvProductosAdmin.CurrentRow.Cells["ID"].Value.ToString();
+                frmMod.txtNombre.Text = dgvProductosAdmin.CurrentRow.Cells["Producto"].Value.ToString();
+                frmMod.txtPrecio.Text = dgvProductosAdmin.CurrentRow.Cells["Precio_Venta"].Value.ToString();
+                frmMod.txtServicio.Text = dgvProductosAdmin.CurrentRow.Cells["Servicio"].Value.ToString();
+                frmMod.txtCodigoBarra.Text = dgvProductosAdmin.CurrentRow.Cells["Codigo_Barra"].Value.ToString();
+
+                frmMod.cmbMarca.Text = dgvProductosAdmin.CurrentRow.Cells["Marca"].Value.ToString();
+                frmMod.cmbTipo.Text = dgvProductosAdmin.CurrentRow.Cells["Tipo"].Value.ToString();
+                frmMod.cmbModelo.Text = dgvProductosAdmin.CurrentRow.Cells["Modelo_Auto"].Value.ToString();
+                frmMod.cmbEstado.Text = dgvProductosAdmin.CurrentRow.Cells["Estado"].Value.ToString();
+
+                if (frmMod.ShowDialog() == DialogResult.OK)
+                {
+                    CargarInventarioCompleto();
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Por favor, selecciona una fila para modificar.");
             }
         }
     }
