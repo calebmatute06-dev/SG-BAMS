@@ -75,7 +75,7 @@
             pictureBox20 = new PictureBox();
             pictureBox21 = new PictureBox();
             kryptonButton13 = new Krypton.Toolkit.KryptonButton();
-            kryptonButton15 = new Krypton.Toolkit.KryptonButton();
+            btnComprar = new Krypton.Toolkit.KryptonButton();
             kryptonButton12 = new Krypton.Toolkit.KryptonButton();
             pictureBox22 = new PictureBox();
             textBox1 = new TextBox();
@@ -821,27 +821,28 @@
             kryptonButton13.Values.Text = "Buscar";
             kryptonButton13.Click += kryptonButton13_Click_1;
             // 
-            // kryptonButton15
+            // btnComprar
             // 
-            kryptonButton15.Location = new Point(976, 158);
-            kryptonButton15.Name = "kryptonButton15";
-            kryptonButton15.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            kryptonButton15.OverrideDefault.Back.Color2 = Color.White;
-            kryptonButton15.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            kryptonButton15.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton15.Size = new Size(178, 55);
-            kryptonButton15.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonButton15.StateCommon.Back.Color2 = Color.White;
-            kryptonButton15.StateCommon.Border.Rounding = 40F;
-            kryptonButton15.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton15.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton15.StateNormal.Back.Color1 = Color.SkyBlue;
-            kryptonButton15.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            kryptonButton15.StatePressed.Back.Color1 = Color.Transparent;
-            kryptonButton15.StatePressed.Back.Color2 = Color.Transparent;
-            kryptonButton15.TabIndex = 147;
-            kryptonButton15.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton15.Values.Text = "Hacer Compras";
+            btnComprar.Location = new Point(976, 158);
+            btnComprar.Name = "btnComprar";
+            btnComprar.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnComprar.OverrideDefault.Back.Color2 = Color.White;
+            btnComprar.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnComprar.OverrideFocus.Back.Color2 = Color.White;
+            btnComprar.Size = new Size(178, 55);
+            btnComprar.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnComprar.StateCommon.Back.Color2 = Color.White;
+            btnComprar.StateCommon.Border.Rounding = 40F;
+            btnComprar.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnComprar.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnComprar.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnComprar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnComprar.StatePressed.Back.Color1 = Color.Transparent;
+            btnComprar.StatePressed.Back.Color2 = Color.Transparent;
+            btnComprar.TabIndex = 147;
+            btnComprar.Values.DropDownArrowColor = Color.Empty;
+            btnComprar.Values.Text = "Hacer Compras";
+            btnComprar.Click += btnComprar_Click;
             // 
             // kryptonButton12
             // 
@@ -903,7 +904,7 @@
             Controls.Add(textBox1);
             Controls.Add(pictureBox22);
             Controls.Add(kryptonButton12);
-            Controls.Add(kryptonButton15);
+            Controls.Add(btnComprar);
             Controls.Add(kryptonButton13);
             Controls.Add(pictureBox21);
             Controls.Add(pictureBox20);
@@ -1010,7 +1011,7 @@
         private PictureBox pictureBox20;
         private PictureBox pictureBox21;
         private Krypton.Toolkit.KryptonButton kryptonButton13;
-        private Krypton.Toolkit.KryptonButton kryptonButton15;
+        private Krypton.Toolkit.KryptonButton btnComprar;
         private Krypton.Toolkit.KryptonButton kryptonButton12;
         private PictureBox pictureBox22;
         private TextBox textBox1;

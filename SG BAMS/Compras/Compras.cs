@@ -169,5 +169,14 @@ namespace SG_BAMS
                 conexion.Cerrar();
             }
         }
+
+        private void btnComprar_Click(object sender, EventArgs e)
+        {
+            Ingresar_datos__Compra_ frmNuevaCompra = new Ingresar_datos__Compra_();
+
+            frmNuevaCompra.ShowDialog();
+
+            CargarCompras();
+        }
     }
 }
