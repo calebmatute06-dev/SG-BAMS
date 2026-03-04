@@ -85,5 +85,45 @@ namespace SG_BAMS.Reportes // Cambié el namespace a Reportes
                 Cerrar();
             }
         }
+
+        // ESTO VA EN ClsReporte.cs
+        public void BuscarReporte(DateTime desde, DateTime hasta, Krypton.Toolkit.KryptonDataGridView dgvReporte)
+        {
+            try
+            {
+                AbrirConexion();
+                // Consulta SQL que usa solo las fechas
+                string sql = @"SELECT 
+                        R.id_reporte AS [ID], 
+                        U.nombre_usuario AS [Usuario], 
+                        TR.tipo_reporte_desc AS [Tipo], 
+                        R.desc_reporte AS [Descripción], 
+                        R.fecha_reporte AS [Fecha]
+                       FROM reporte R
+                       INNER JOIN Usuario U ON R.id_usuario = U.id_usuario
+                       INNER JOIN tipo_reporte TR ON R.id_tipo_reporte = TR.id_tipo_reporte
+                       WHERE R.fecha_reporte BETWEEN @desde AND @hasta
+                       ORDER BY R.fecha_reporte DESC";
+
+                using (SqlCommand cmd = new SqlCommand(sql, Conectar))
+                {
+                    cmd.Parameters.Add("@desde", SqlDbType.Date).Value = desde.Date;
+                    cmd.Parameters.Add("@hasta", SqlDbType.Date).Value = hasta.Date;
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    dgvReporte.DataSource = dt; // Refresca el Grid con el resultado
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show("Error al filtrar: " + ex.Message);
+            }
+            finally
+            {
+                Cerrar();
+            }
+        }
     }
 }
