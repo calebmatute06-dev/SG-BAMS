@@ -68,7 +68,6 @@ namespace SG_BAMS
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
-            // 1. Si el buscador está vacío, llamamos al método que carga todo
             if (string.IsNullOrWhiteSpace(txtBuscar.Text))
             {
                 MostrarInventarioEmpleado();
@@ -82,7 +81,6 @@ namespace SG_BAMS
             {
                 conexion.AbrirConexion();
 
-                // 2. Consulta idéntica a la del Admin para que se vea igual de bien
                 string query = @"SELECT 
                             p.id_producto AS ID, 
                             p.nombre_producto AS Producto, 
