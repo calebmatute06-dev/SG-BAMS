@@ -54,6 +54,15 @@ namespace SG_BAMS
                 dgvClientes.Columns["RTN"].HeaderText = "RTN";
                 dgvClientes.Columns["Estado"].HeaderText = "Estado";
                 dgvClientes.Columns["ID Estado"].Visible = false;
+                DataView dv = datosCli.DefaultView;
+                dv.RowFilter = "Estado = 'Activo'";
+
+                dgvClientes.DataSource = dv;
+                dgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dgvClientes.AllowUserToAddRows = false;
+                dgvClientes.ReadOnly = true;
+                dgvClientes.ClearSelection();
+
 
             }
         }
@@ -61,6 +70,7 @@ namespace SG_BAMS
         private async void ClientesAdm_Load(object sender, EventArgs e)
         {
             await TablaClientes();
+            dgvClientes.ClearSelection();
 
         }
 
@@ -103,76 +113,85 @@ namespace SG_BAMS
                 dv.RowFilter = string.Format("Nombre LIKE '%{0}%' OR Apellido LIKE '%{0}%' OR RTN LIKE '%{0}%' OR Teléfono LIKE '%{0}%' OR Estado LIKE '%{0}%'", txtBusqueda.Text);
 
                 dgvClientes.DataSource = dv;
+                dgvClientes.ClearSelection();
 
             }
         }
 
         private void chkActivo_CheckedChanged(object sender, EventArgs e)
         {
-            if (datosCli != null)
+            DataView dv = datosCli.DefaultView;
+            if (chkActivo.Checked)
             {
-                DataView dv = datosCli.DefaultView;
 
-                if (chkActivo.Checked)
-                {
-                    dv.RowFilter = "Estado = 'Activo'";
-                }
-                else
-                {
-                    dv.RowFilter = "";
-                }
-
-                dgvClientes.DataSource = dv;
-
+                dv.RowFilter = "";
+                dv.RowFilter = "Estado <> 'Activo'";
+                dgvClientes.ClearSelection();
             }
+
+            else
+            {
+                dv.RowFilter = "Estado = 'Activo'";
+                dgvClientes.ClearSelection();
+            }
+            dgvClientes.DataSource = dv;
 
         }
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Login.Login login = new Login.Login();
+            login.Show();
+            this.Hide();
         }
 
         private void BtnPerfil_Click(object sender, EventArgs e)
         {
             Perfil PF = new Perfil();
             PF.Show();
+            this.Hide();
         }
 
         private void BtnMenu_Click(object sender, EventArgs e)
         {
             MenuPrincipalAdm MPA = new MenuPrincipalAdm();
             MPA.Show();
+            this.Hide();
         }
 
         private void BtnFacturas_Click(object sender, EventArgs e)
         {
             FacturasAdm FA = new FacturasAdm();
             FA.Show();
+            this.Hide();
         }
 
         private void BtnCompras_Click(object sender, EventArgs e)
         {
             Compras CP = new Compras();
             CP.Show();
+            this.Hide();
         }
 
         private void BtnInventario_Click(object sender, EventArgs e)
         {
             InventarioAdmin IA = new InventarioAdmin();
             IA.Show();
+            this.Hide();
         }
 
         private void BtnProveedores_Click(object sender, EventArgs e)
         {
             ProveedoresAdmin PA = new ProveedoresAdmin();
             PA.Show();
+            this.Hide();
         }
 
         private void BtnDeudores_Click(object sender, EventArgs e)
         {
             Deudores DU = new Deudores();
             DU.Show();
+            this.Hide();
         }
 
         private void BtnReporte_Click(object sender, EventArgs e)
@@ -185,6 +204,25 @@ namespace SG_BAMS
         {
             BitacoraAdmin BT = new BitacoraAdmin();
             BT.Show();
+            this.Hide();
+        }
+
+        private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnAjustes_Click(object sender, EventArgs e)
+        {
+            Ajustes ajustes = new Ajustes();
+            ajustes.Show();
+        }
+
+        private void btnReportes_Click(object sender, EventArgs e)
+        {
+            ReporteAdmin reporteAdmin = new ReporteAdmin();
+            reporteAdmin.Show();
+            this.Hide();
         }
     }
 }

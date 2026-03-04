@@ -43,22 +43,19 @@ namespace SG_BAMS
 
         private void chkActivo_CheckedChanged(object sender, EventArgs e)
         {
-            if (datosCli != null)
+            DataView dv = datosCli.DefaultView;
+            if (chkActivo.Checked)
             {
-                DataView dv = datosCli.DefaultView;
 
-                if (chkActivo.Checked)
-                {
-                    dv.RowFilter = "Estado = 'Activo'";
-                }
-                else
-                {
-                    dv.RowFilter = "";
-                }
-
-                dgvClientes.DataSource = dv;
-
+                dv.RowFilter = "";
+                dv.RowFilter = "Estado <> 'Activo'";
             }
+
+            else
+            {
+                dv.RowFilter = "Estado = 'Activo'";
+            }
+            dgvClientes.DataSource = dv;
         }
 
         private void dgvClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -99,6 +96,16 @@ namespace SG_BAMS
                 dgvClientes.Columns["Estado"].HeaderText = "Estado";
                 dgvClientes.Columns["ID Estado"].Visible = false;
 
+                DataView dv = datosCli.DefaultView;
+
+                dv.RowFilter = "Estado = 'Activo'";
+
+                dgvClientes.DataSource = dv;
+                dgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dgvClientes.AllowUserToAddRows = false;
+                dgvClientes.ReadOnly = true;
+                dgvClientes.ClearSelection();
+
             }
         }
 
@@ -119,12 +126,14 @@ namespace SG_BAMS
         {
             MenuPrincipalEmp MPE = new MenuPrincipalEmp();
             MPE.Show();
+            this.Hide();
         }
 
         private void BtnFacturas_Click(object sender, EventArgs e)
         {
             FacturasEmp FE = new FacturasEmp();
             FE.Show();
+            this.Hide();
         }
 
 
@@ -133,17 +142,27 @@ namespace SG_BAMS
         {
             Deudores_Emp DE = new Deudores_Emp();
             DE.Show();
+            this.Hide();
         }
 
         private void BtnInventario_Click(object sender, EventArgs e)
         {
             InventarioEmp IE = new InventarioEmp();
             IE.Show();
+            this.Hide();
         }
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Login.Login login = new Login.Login();
+            login.Show();
+            this.Hide();
+        }
+
+        private void btnAjustes_Click(object sender, EventArgs e)
+        {
+            Ajustes ajustes = new Ajustes();
+            ajustes.Show();
         }
     }
 }

@@ -57,6 +57,7 @@ namespace SG_BAMS.Proveedor
                 cmb.DisplayMember = "descripcion_estado";
                 cmb.ValueMember = "id_estado";
                 cmb.SelectedIndex = -1;
+
             }
             catch (Exception ex)
             {

@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -43,24 +44,50 @@ namespace SG_BAMS
 
         private async void BtnModificar_Click(object sender, EventArgs e)
         {
-            ClsModificarCliente objMC = new ClsModificarCliente();
-            int filasInsertadas = await objMC.ModificarClientes(Convert.ToInt32(txtID.Text), txtNombre.Text, txtApellido.Text, txtTelefono.Text, txtRTN.Text, Convert.ToInt32(cmbEstado.SelectedValue));
-
-            if (filasInsertadas > 0)
+            if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
+                string.IsNullOrWhiteSpace(txtApellido.Text) ||
+                string.IsNullOrWhiteSpace(txtTelefono.Text) ||
+                cmbEstado.SelectedValue == null) 
             {
-                MessageBox.Show("Cliente actualizado correctamente");
-
-
-                txtNombre.Clear();
-                txtApellido.Clear();
-                txtTelefono.Clear();
-                txtRTN.Clear();
-                this.Close();
+                MessageBox.Show("Debe llenar todos los campos obligatorios antes de continuar.",
+                                "Campos Vacíos", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+
+            else if (!Regex.IsMatch(txtNombre.Text, @"^[a-zA-Z\sñÑ]+$") || !Regex.IsMatch(txtApellido.Text, @"^[a-zA-Z\sñÑ]+$"))
+            {
+                MessageBox.Show("Los campos 'Nombre' y 'Apellido' solo deben contener letras.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+            else if (!Regex.IsMatch(txtTelefono.Text, @"^[0-9]+$"))
+            {
+                MessageBox.Show("Los campos 'Teléfono' solo deben contener números.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
             else
             {
-                MessageBox.Show("No se pudo agregar el cliente");
+                ClsModificarCliente objMC = new ClsModificarCliente();
+                int filasInsertadas = await objMC.ModificarClientes(Convert.ToInt32(txtID.Text), txtNombre.Text, txtApellido.Text, txtTelefono.Text, txtRTN.Text, Convert.ToInt32(cmbEstado.SelectedValue));
+
+                if (filasInsertadas > 0)
+                {
+                    MessageBox.Show("Cliente actualizado correctamente");
+
+
+                    txtNombre.Clear();
+                    txtApellido.Clear();
+                    txtTelefono.Clear();
+                    txtRTN.Clear();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo agregar el cliente");
+                }
             }
+
+           
         }
 
 
@@ -77,6 +104,7 @@ namespace SG_BAMS
                 cmbEstado.DisplayMember = "descripcion_estado";
                 cmbEstado.ValueMember = "id_estado";
                 cmbEstado.DataSource = dt;
+
             }
             catch (Exception ex)
             {
@@ -89,6 +117,7 @@ namespace SG_BAMS
             await LlenarComboEstado();
             cmbEstado.SelectedValue = idEstadoSelec;
             txtID.ReadOnly = true;
+            cmbEstado.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void BtnSalir_Click(object sender, EventArgs e)

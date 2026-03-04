@@ -26,6 +26,11 @@ namespace SG_BAMS.Proveedor
             dgvProveedor.Columns["idProveedor"].Visible = false;
             dgvProveedor.Columns["idClasificacion"].Visible = false;
             dgvProveedor.Columns["idEstado"].Visible = false;
+            dgvProveedor.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvProveedor.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvProveedor.AllowUserToAddRows = false;
+            dgvProveedor.ReadOnly = true;
+            dgvProveedor.ClearSelection();
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
