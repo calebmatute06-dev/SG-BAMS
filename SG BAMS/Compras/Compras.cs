@@ -181,7 +181,13 @@ namespace SG_BAMS
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
+
+        private void btnVer_Click(object sender, EventArgs e)
+        {
+            {
+               
+            }
     }
 }
