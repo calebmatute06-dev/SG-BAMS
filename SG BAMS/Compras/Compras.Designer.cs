@@ -76,9 +76,9 @@
             pictureBox21 = new PictureBox();
             kryptonButton13 = new Krypton.Toolkit.KryptonButton();
             btnComprar = new Krypton.Toolkit.KryptonButton();
-            kryptonButton12 = new Krypton.Toolkit.KryptonButton();
+            btnVer = new Krypton.Toolkit.KryptonButton();
             pictureBox22 = new PictureBox();
-            textBox1 = new TextBox();
+            txtBuscar = new TextBox();
             pictureBox17 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
             panel5.SuspendLayout();
@@ -844,27 +844,27 @@
             btnComprar.Values.Text = "Hacer Compras";
             btnComprar.Click += btnComprar_Click;
             // 
-            // kryptonButton12
+            // btnVer
             // 
-            kryptonButton12.Location = new Point(976, 226);
-            kryptonButton12.Name = "kryptonButton12";
-            kryptonButton12.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            kryptonButton12.OverrideDefault.Back.Color2 = Color.White;
-            kryptonButton12.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            kryptonButton12.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton12.Size = new Size(178, 55);
-            kryptonButton12.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonButton12.StateCommon.Back.Color2 = Color.White;
-            kryptonButton12.StateCommon.Border.Rounding = 40F;
-            kryptonButton12.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton12.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton12.StateNormal.Back.Color1 = Color.SkyBlue;
-            kryptonButton12.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            kryptonButton12.StatePressed.Back.Color1 = Color.Transparent;
-            kryptonButton12.StatePressed.Back.Color2 = Color.Transparent;
-            kryptonButton12.TabIndex = 148;
-            kryptonButton12.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton12.Values.Text = "Modificar";
+            btnVer.Location = new Point(976, 226);
+            btnVer.Name = "btnVer";
+            btnVer.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnVer.OverrideDefault.Back.Color2 = Color.White;
+            btnVer.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnVer.OverrideFocus.Back.Color2 = Color.White;
+            btnVer.Size = new Size(178, 55);
+            btnVer.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnVer.StateCommon.Back.Color2 = Color.White;
+            btnVer.StateCommon.Border.Rounding = 40F;
+            btnVer.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnVer.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnVer.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnVer.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnVer.StatePressed.Back.Color1 = Color.Transparent;
+            btnVer.StatePressed.Back.Color2 = Color.Transparent;
+            btnVer.TabIndex = 148;
+            btnVer.Values.DropDownArrowColor = Color.Empty;
+            btnVer.Values.Text = "Ver";
             // 
             // pictureBox22
             // 
@@ -875,12 +875,13 @@
             pictureBox22.TabIndex = 149;
             pictureBox22.TabStop = false;
             // 
-            // textBox1
+            // txtBuscar
             // 
-            textBox1.Location = new Point(525, 447);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(309, 27);
-            textBox1.TabIndex = 150;
+            txtBuscar.Location = new Point(525, 447);
+            txtBuscar.Name = "txtBuscar";
+            txtBuscar.Size = new Size(309, 27);
+            txtBuscar.TabIndex = 150;
+            txtBuscar.TextChanged += txtBuscar_TextChanged;
             // 
             // pictureBox17
             // 
@@ -901,9 +902,9 @@
             BackColor = Color.White;
             ClientSize = new Size(1257, 908);
             Controls.Add(pictureBox17);
-            Controls.Add(textBox1);
+            Controls.Add(txtBuscar);
             Controls.Add(pictureBox22);
-            Controls.Add(kryptonButton12);
+            Controls.Add(btnVer);
             Controls.Add(btnComprar);
             Controls.Add(kryptonButton13);
             Controls.Add(pictureBox21);
@@ -1012,9 +1013,9 @@
         private PictureBox pictureBox21;
         private Krypton.Toolkit.KryptonButton kryptonButton13;
         private Krypton.Toolkit.KryptonButton btnComprar;
-        private Krypton.Toolkit.KryptonButton kryptonButton12;
+        private Krypton.Toolkit.KryptonButton btnVer;
         private PictureBox pictureBox22;
-        private TextBox textBox1;
+        private TextBox txtBuscar;
         private PictureBox pictureBox17;
         private Krypton.Toolkit.KryptonButton btnBitacora;
     }

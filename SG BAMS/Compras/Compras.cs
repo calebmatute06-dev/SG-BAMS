@@ -178,5 +178,10 @@ namespace SG_BAMS
 
             CargarCompras();
         }
+
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
