@@ -71,8 +71,8 @@ namespace SG_BAMS
             btninicioSesion = new Krypton.Toolkit.KryptonButton();
             btnLimpiar = new Krypton.Toolkit.KryptonButton();
             btnGenerar = new Krypton.Toolkit.KryptonButton();
-            dtInicio = new Krypton.Toolkit.KryptonDateTimePicker();
-            dtFin = new Krypton.Toolkit.KryptonDateTimePicker();
+            dtpDesde = new Krypton.Toolkit.KryptonDateTimePicker();
+            dtpHasta = new Krypton.Toolkit.KryptonDateTimePicker();
             kryptonButton13 = new Krypton.Toolkit.KryptonButton();
             lbl = new Krypton.Toolkit.KryptonButton();
             kryptonGroup1 = new Krypton.Toolkit.KryptonGroup();
@@ -80,7 +80,7 @@ namespace SG_BAMS
             kryptonGroup2 = new Krypton.Toolkit.KryptonGroup();
             label1 = new Label();
             kryptonGroup3 = new Krypton.Toolkit.KryptonGroup();
-            listBox1 = new ListBox();
+            dgvReporte = new Krypton.Toolkit.KryptonDataGridView();
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             panel4.SuspendLayout();
@@ -108,6 +108,7 @@ namespace SG_BAMS
             ((System.ComponentModel.ISupportInitialize)kryptonGroup2.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup3.Panel).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvReporte).BeginInit();
             SuspendLayout();
             // 
             // panel6
@@ -786,32 +787,32 @@ namespace SG_BAMS
             btnGenerar.Values.Text = "Generar";
             btnGenerar.Click += kryptonButton13_Click;
             // 
-            // dtInicio
+            // dtpDesde
             // 
-            dtInicio.Location = new Point(366, 339);
-            dtInicio.Name = "dtInicio";
-            dtInicio.Size = new Size(248, 49);
-            dtInicio.StateCommon.Back.Color1 = Color.SkyBlue;
-            dtInicio.StateCommon.Border.Color1 = Color.SkyBlue;
-            dtInicio.StateCommon.Border.Color2 = Color.SkyBlue;
-            dtInicio.StateCommon.Border.Rounding = 35F;
-            dtInicio.StateCommon.Content.Color1 = Color.Navy;
-            dtInicio.StateCommon.Content.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dtInicio.TabIndex = 240;
+            dtpDesde.Location = new Point(366, 339);
+            dtpDesde.Name = "dtpDesde";
+            dtpDesde.Size = new Size(248, 49);
+            dtpDesde.StateCommon.Back.Color1 = Color.SkyBlue;
+            dtpDesde.StateCommon.Border.Color1 = Color.SkyBlue;
+            dtpDesde.StateCommon.Border.Color2 = Color.SkyBlue;
+            dtpDesde.StateCommon.Border.Rounding = 35F;
+            dtpDesde.StateCommon.Content.Color1 = Color.Navy;
+            dtpDesde.StateCommon.Content.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtpDesde.TabIndex = 240;
             // 
-            // dtFin
+            // dtpHasta
             // 
-            dtFin.Location = new Point(366, 429);
-            dtFin.Name = "dtFin";
-            dtFin.Size = new Size(248, 49);
-            dtFin.StateCommon.Back.Color1 = Color.SkyBlue;
-            dtFin.StateCommon.Border.Color1 = Color.SkyBlue;
-            dtFin.StateCommon.Border.Color2 = Color.SkyBlue;
-            dtFin.StateCommon.Border.Rounding = 35F;
-            dtFin.StateCommon.Content.Color1 = Color.Navy;
-            dtFin.StateCommon.Content.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dtFin.StateDisabled.Content.Color1 = Color.Navy;
-            dtFin.TabIndex = 241;
+            dtpHasta.Location = new Point(366, 429);
+            dtpHasta.Name = "dtpHasta";
+            dtpHasta.Size = new Size(248, 49);
+            dtpHasta.StateCommon.Back.Color1 = Color.SkyBlue;
+            dtpHasta.StateCommon.Border.Color1 = Color.SkyBlue;
+            dtpHasta.StateCommon.Border.Color2 = Color.SkyBlue;
+            dtpHasta.StateCommon.Border.Rounding = 35F;
+            dtpHasta.StateCommon.Content.Color1 = Color.Navy;
+            dtpHasta.StateCommon.Content.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtpHasta.StateDisabled.Content.Color1 = Color.Navy;
+            dtpHasta.TabIndex = 241;
             // 
             // kryptonButton13
             // 
@@ -910,14 +911,17 @@ namespace SG_BAMS
             kryptonGroup3.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroup3.StateCommon.Border.Rounding = 30F;
             kryptonGroup3.TabIndex = 249;
+            kryptonGroup3.Paint += kryptonGroup3_Paint;
             // 
-            // listBox1
+            // dgvReporte
             // 
-            listBox1.FormattingEnabled = true;
-            listBox1.Location = new Point(663, 252);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(363, 504);
-            listBox1.TabIndex = 250;
+            dgvReporte.BorderStyle = BorderStyle.None;
+            dgvReporte.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvReporte.Location = new Point(654, 238);
+            dgvReporte.Name = "dgvReporte";
+            dgvReporte.RowHeadersWidth = 51;
+            dgvReporte.Size = new Size(379, 528);
+            dgvReporte.TabIndex = 250;
             // 
             // ReporteAdmin
             // 
@@ -925,7 +929,7 @@ namespace SG_BAMS
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1105, 905);
-            Controls.Add(listBox1);
+            Controls.Add(dgvReporte);
             Controls.Add(kryptonGroup3);
             Controls.Add(label1);
             Controls.Add(kryptonGroup2);
@@ -933,8 +937,8 @@ namespace SG_BAMS
             Controls.Add(kryptonGroup1);
             Controls.Add(lbl);
             Controls.Add(kryptonButton13);
-            Controls.Add(dtFin);
-            Controls.Add(dtInicio);
+            Controls.Add(dtpHasta);
+            Controls.Add(dtpDesde);
             Controls.Add(btnLimpiar);
             Controls.Add(btnGenerar);
             Controls.Add(btnsalirLogin);
@@ -952,6 +956,7 @@ namespace SG_BAMS
             Controls.Add(panel1);
             Name = "ReporteAdmin";
             Text = "ReporteAdmin";
+            Load += ReporteAdmin_Load;
             panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             panel4.ResumeLayout(false);
@@ -980,6 +985,7 @@ namespace SG_BAMS
             ((System.ComponentModel.ISupportInitialize)kryptonGroup2).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup3.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvReporte).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1033,8 +1039,8 @@ namespace SG_BAMS
         private Krypton.Toolkit.KryptonButton btninicioSesion;
         private Krypton.Toolkit.KryptonButton btnLimpiar;
         private Krypton.Toolkit.KryptonButton btnGenerar;
-        private Krypton.Toolkit.KryptonDateTimePicker dtInicio;
-        private Krypton.Toolkit.KryptonDateTimePicker dtFin;
+        private Krypton.Toolkit.KryptonDateTimePicker dtpDesde;
+        private Krypton.Toolkit.KryptonDateTimePicker dtpHasta;
         private Krypton.Toolkit.KryptonButton kryptonButton13;
         private Krypton.Toolkit.KryptonButton lbl;
         private Krypton.Toolkit.KryptonGroup kryptonGroup1;
@@ -1042,6 +1048,6 @@ namespace SG_BAMS
         private Krypton.Toolkit.KryptonGroup kryptonGroup2;
         private Label label1;
         private Krypton.Toolkit.KryptonGroup kryptonGroup3;
-        private ListBox listBox1;
+        private Krypton.Toolkit.KryptonDataGridView dgvReporte;
     }
 }

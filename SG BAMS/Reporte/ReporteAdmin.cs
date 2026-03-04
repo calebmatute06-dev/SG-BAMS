@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SG_BAMS.Reportes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,9 @@ namespace SG_BAMS
 {
     public partial class ReporteAdmin : Form
     {
+
+        ClsReporte objReporte = new ClsReporte();
+
         public ReporteAdmin()
         {
             InitializeComponent();
@@ -19,7 +23,22 @@ namespace SG_BAMS
 
         private void kryptonButton12_Click(object sender, EventArgs e)
         {
+            
+        }
 
+        private void kryptonGroup3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void ReporteAdmin_Load(object sender, EventArgs e)
+        {
+            CargarGridPrincipal();
+        }
+
+        private void CargarGridPrincipal()
+        {
+            objReporte.CargarDatosReporte(dgvReporte);
         }
     }
 }
