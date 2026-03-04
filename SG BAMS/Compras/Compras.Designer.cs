@@ -70,15 +70,11 @@
             pictureBox1 = new PictureBox();
             pictureBox19 = new PictureBox();
             dgvComprasAdmin = new Krypton.Toolkit.KryptonDataGridView();
-            kryptonGroup5 = new Krypton.Toolkit.KryptonGroup();
             kryptonGroup2 = new Krypton.Toolkit.KryptonGroup();
             pictureBox20 = new PictureBox();
             pictureBox21 = new PictureBox();
-            kryptonButton13 = new Krypton.Toolkit.KryptonButton();
             btnComprar = new Krypton.Toolkit.KryptonButton();
             btnVer = new Krypton.Toolkit.KryptonButton();
-            pictureBox22 = new PictureBox();
-            txtBuscar = new TextBox();
             pictureBox17 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
             panel5.SuspendLayout();
@@ -103,13 +99,10 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox19).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvComprasAdmin).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup5).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup5.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup2.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox20).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox21).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox22).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox17).BeginInit();
             SuspendLayout();
             // 
@@ -761,14 +754,6 @@
             dgvComprasAdmin.Size = new Size(849, 292);
             dgvComprasAdmin.TabIndex = 67;
             // 
-            // kryptonGroup5
-            // 
-            kryptonGroup5.Location = new Point(499, 435);
-            kryptonGroup5.Size = new Size(416, 52);
-            kryptonGroup5.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroup5.StateCommon.Border.Rounding = 70F;
-            kryptonGroup5.TabIndex = 78;
-            // 
             // kryptonGroup2
             // 
             kryptonGroup2.Location = new Point(309, 518);
@@ -781,7 +766,7 @@
             // 
             pictureBox20.BackColor = Color.White;
             pictureBox20.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox20.Location = new Point(886, 217);
+            pictureBox20.Location = new Point(878, 311);
             pictureBox20.Name = "pictureBox20";
             pictureBox20.Size = new Size(73, 62);
             pictureBox20.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -792,38 +777,15 @@
             // 
             pictureBox21.BackgroundImage = Properties.Resources.comprasnuevo;
             pictureBox21.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox21.Location = new Point(335, 149);
+            pictureBox21.Location = new Point(335, 192);
             pictureBox21.Name = "pictureBox21";
             pictureBox21.Size = new Size(365, 244);
             pictureBox21.TabIndex = 151;
             pictureBox21.TabStop = false;
             // 
-            // kryptonButton13
-            // 
-            kryptonButton13.Location = new Point(374, 437);
-            kryptonButton13.Name = "kryptonButton13";
-            kryptonButton13.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            kryptonButton13.OverrideDefault.Back.Color2 = Color.White;
-            kryptonButton13.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            kryptonButton13.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton13.Size = new Size(119, 50);
-            kryptonButton13.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonButton13.StateCommon.Back.Color2 = Color.White;
-            kryptonButton13.StateCommon.Border.Rounding = 40F;
-            kryptonButton13.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton13.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton13.StateNormal.Back.Color1 = Color.SkyBlue;
-            kryptonButton13.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            kryptonButton13.StatePressed.Back.Color1 = Color.Transparent;
-            kryptonButton13.StatePressed.Back.Color2 = Color.Transparent;
-            kryptonButton13.TabIndex = 145;
-            kryptonButton13.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton13.Values.Text = "Buscar";
-            kryptonButton13.Click += kryptonButton13_Click_1;
-            // 
             // btnComprar
             // 
-            btnComprar.Location = new Point(976, 158);
+            btnComprar.Location = new Point(968, 252);
             btnComprar.Name = "btnComprar";
             btnComprar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnComprar.OverrideDefault.Back.Color2 = Color.White;
@@ -846,7 +808,7 @@
             // 
             // btnVer
             // 
-            btnVer.Location = new Point(976, 226);
+            btnVer.Location = new Point(968, 320);
             btnVer.Name = "btnVer";
             btnVer.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnVer.OverrideDefault.Back.Color2 = Color.White;
@@ -866,29 +828,12 @@
             btnVer.Values.DropDownArrowColor = Color.Empty;
             btnVer.Values.Text = "Ver";
             // 
-            // pictureBox22
-            // 
-            pictureBox22.BackColor = Color.SkyBlue;
-            pictureBox22.Location = new Point(840, 440);
-            pictureBox22.Name = "pictureBox22";
-            pictureBox22.Size = new Size(49, 39);
-            pictureBox22.TabIndex = 149;
-            pictureBox22.TabStop = false;
-            // 
-            // txtBuscar
-            // 
-            txtBuscar.Location = new Point(525, 447);
-            txtBuscar.Name = "txtBuscar";
-            txtBuscar.Size = new Size(309, 27);
-            txtBuscar.TabIndex = 150;
-            txtBuscar.TextChanged += txtBuscar_TextChanged;
-            // 
             // pictureBox17
             // 
             pictureBox17.BackColor = Color.White;
             pictureBox17.BackgroundImage = Properties.Resources.compras;
             pictureBox17.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox17.Location = new Point(886, 149);
+            pictureBox17.Location = new Point(878, 243);
             pictureBox17.Name = "pictureBox17";
             pictureBox17.Size = new Size(73, 62);
             pictureBox17.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -902,14 +847,10 @@
             BackColor = Color.White;
             ClientSize = new Size(1257, 908);
             Controls.Add(pictureBox17);
-            Controls.Add(txtBuscar);
-            Controls.Add(pictureBox22);
             Controls.Add(btnVer);
             Controls.Add(btnComprar);
-            Controls.Add(kryptonButton13);
             Controls.Add(pictureBox21);
             Controls.Add(pictureBox20);
-            Controls.Add(kryptonGroup5);
             Controls.Add(dgvComprasAdmin);
             Controls.Add(label1);
             Controls.Add(kryptonButton11);
@@ -953,13 +894,10 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox19).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvComprasAdmin).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup5.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup5).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup2.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox20).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox21).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox22).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox17).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -1007,15 +945,11 @@
         private PictureBox pictureBox1;
         private PictureBox pictureBox19;
         private Krypton.Toolkit.KryptonDataGridView dgvComprasAdmin;
-        private Krypton.Toolkit.KryptonGroup kryptonGroup5;
         private Krypton.Toolkit.KryptonGroup kryptonGroup2;
         private PictureBox pictureBox20;
         private PictureBox pictureBox21;
-        private Krypton.Toolkit.KryptonButton kryptonButton13;
         private Krypton.Toolkit.KryptonButton btnComprar;
         private Krypton.Toolkit.KryptonButton btnVer;
-        private PictureBox pictureBox22;
-        private TextBox txtBuscar;
         private PictureBox pictureBox17;
         private Krypton.Toolkit.KryptonButton btnBitacora;
     }
