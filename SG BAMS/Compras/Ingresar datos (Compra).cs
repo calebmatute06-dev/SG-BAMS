@@ -93,14 +93,12 @@ namespace SG_BAMS
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            // --- 1. VALIDACIÓN POR TOTAL (LBLTOTAL) ---
+            // --- 1. VALIDACIÓN POR TOTAL ---
             decimal totalValidar = 0;
-            // Intentamos convertir el texto del label a número, si falla o es 0, bloqueamos
             if (!decimal.TryParse(lblTotal.Text, out totalValidar) || totalValidar <= 0)
             {
-                MessageBox.Show("No se puede guardar una compra con total L. 0.00. Agregue productos a la lista.",
-                                "Validación de Total", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return; // Se detiene aquí, no guarda nada
+                MessageBox.Show("No se puede guardar una compra con total L. 0.00.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
 
             // --- 2. VALIDACIONES DE COMBOS ---
@@ -116,10 +114,10 @@ namespace SG_BAMS
 
             try
             {
-                // 3. INSERTAR CABECERA
+                // 3. INSERTAR CABECERA (Tabla Compra)
                 string queryCabecera = @"INSERT INTO Compra (id_usuario, fecha_pedido, id_tipo_forma_pago, id_proveedor, desc_compra) 
-                                         VALUES (@id_usuario, @fecha, @id_pago, @id_prov, @desc);
-                                         SELECT SCOPE_IDENTITY();";
+                                 VALUES (@id_usuario, @fecha, @id_pago, @id_prov, @desc);
+                                 SELECT SCOPE_IDENTITY();";
 
                 int idCompraRecienCreada;
                 using (SqlCommand cmd = new SqlCommand(queryCabecera, conexion.Conectar, transaccion))
@@ -129,38 +127,60 @@ namespace SG_BAMS
                     cmd.Parameters.AddWithValue("@id_pago", cmbFormaPago.SelectedValue);
                     cmd.Parameters.AddWithValue("@id_prov", cmbProveedor.SelectedValue);
                     cmd.Parameters.AddWithValue("@desc", txtPrecio.Text);
-
                     idCompraRecienCreada = Convert.ToInt32(cmd.ExecuteScalar());
                 }
 
-                // 4. INSERTAR EL DETALLE (RECORRIENDO DGVPRODUCTOSCOMPRA)
+                // 4. INSERTAR DETALLE Y ACTUALIZAR TABLA INVENTARIO
                 string queryDetalle = @"INSERT INTO Compra_producto (id_compra, id_producto, cantidad, precio_costo_unitario) 
-                                        VALUES (@idC, @idP, @cant, @precio)";
+                                VALUES (@idC, @idP, @cant, @precio)";
+
+                // Lógica de Inventario: Si existe UPDATE, si no INSERT
+                string queryInventario = @"
+            IF EXISTS (SELECT 1 FROM Inventario WHERE id_producto = @idP)
+            BEGIN
+                UPDATE Inventario SET stock = stock + @cant WHERE id_producto = @idP
+            END
+            ELSE
+            BEGIN
+                INSERT INTO Inventario (id_producto, stock) VALUES (@idP, @cant)
+            END";
 
                 foreach (DataGridViewRow fila in dgvProductosCompra.Rows)
                 {
                     if (fila.Cells[0].Value != null)
                     {
+                        int idProd = Convert.ToInt32(fila.Cells[0].Value);
+                        int cant = Convert.ToInt32(fila.Cells[2].Value);
+                        decimal precio = Convert.ToDecimal(fila.Cells[3].Value);
+
+                        // A. Guardar en Detalle de Compra
                         using (SqlCommand cmdDetalle = new SqlCommand(queryDetalle, conexion.Conectar, transaccion))
                         {
                             cmdDetalle.Parameters.AddWithValue("@idC", idCompraRecienCreada);
-                            cmdDetalle.Parameters.AddWithValue("@idP", fila.Cells[0].Value);      // ID
-                            cmdDetalle.Parameters.AddWithValue("@cant", fila.Cells[2].Value);     // Cantidad
-                            cmdDetalle.Parameters.AddWithValue("@precio", fila.Cells[3].Value);   // Precio Unitario
-
+                            cmdDetalle.Parameters.AddWithValue("@idP", idProd);
+                            cmdDetalle.Parameters.AddWithValue("@cant", cant);
+                            cmdDetalle.Parameters.AddWithValue("@precio", precio);
                             cmdDetalle.ExecuteNonQuery();
+                        }
+
+                        // B. Actualizar Tabla Inventario (La tabla correcta según tu SQL)
+                        using (SqlCommand cmdInv = new SqlCommand(queryInventario, conexion.Conectar, transaccion))
+                        {
+                            cmdInv.Parameters.AddWithValue("@idP", idProd);
+                            cmdInv.Parameters.AddWithValue("@cant", cant);
+                            cmdInv.ExecuteNonQuery();
                         }
                     }
                 }
 
                 transaccion.Commit();
-                MessageBox.Show("¡Compra #" + idCompraRecienCreada + " guardada exitosamente!");
+                MessageBox.Show("Compra #" + idCompraRecienCreada + " guardada. Stock actualizado en tabla Inventario.", "Éxito");
                 this.Close();
             }
             catch (Exception ex)
             {
                 transaccion.Rollback();
-                MessageBox.Show("Error al guardar la compra completa: " + ex.Message);
+                MessageBox.Show("Error crítico: " + ex.Message);
             }
             finally
             {
