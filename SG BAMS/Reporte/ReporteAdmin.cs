@@ -142,5 +142,29 @@ namespace SG_BAMS
                 MessageBox.Show("Error al generar el PDF: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            // 1. Llenamos la lista (como ya lo hacíamos)
+            List<ReporteDTO> miLista = new List<ReporteDTO>();
+            foreach (DataGridViewRow row in dgvReporte.Rows)
+            {
+                if (!row.IsNewRow)
+                {
+                    miLista.Add(new ReporteDTO
+                    {
+                        ID = row.Cells["ID"].Value?.ToString(),
+                        Usuario = row.Cells["Usuario"].Value?.ToString(),
+                        Tipo = row.Cells["Tipo"].Value?.ToString(),
+                        Descripcion = row.Cells["Descripción"].Value?.ToString(),
+                        Fecha = Convert.ToDateTime(row.Cells["Fecha"].Value)
+                    });
+                }
+            }
+
+            // 2. Abrimos ImprimirReporte pasando la lista y las fechas
+            ImprimirReporte frm = new ImprimirReporte(miLista, dtpDesde.Value, dtpHasta.Value);
+            frm.ShowDialog();
+        }
     }
 }

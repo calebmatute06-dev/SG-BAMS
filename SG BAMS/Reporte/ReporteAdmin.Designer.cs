@@ -68,7 +68,7 @@ namespace SG_BAMS
             button12 = new Button();
             pictureBox3 = new PictureBox();
             btnImprimir = new Krypton.Toolkit.KryptonButton();
-            btninicioSesion = new Krypton.Toolkit.KryptonButton();
+            btnExportaar = new Krypton.Toolkit.KryptonButton();
             btnLimpiar = new Krypton.Toolkit.KryptonButton();
             dtpDesde = new Krypton.Toolkit.KryptonDateTimePicker();
             dtpHasta = new Krypton.Toolkit.KryptonDateTimePicker();
@@ -718,28 +718,29 @@ namespace SG_BAMS
             btnImprimir.TabIndex = 182;
             btnImprimir.Values.DropDownArrowColor = Color.Empty;
             btnImprimir.Values.Text = "Imprimir";
+            btnImprimir.Click += btnImprimir_Click;
             // 
-            // btninicioSesion
+            // btnExportaar
             // 
-            btninicioSesion.Location = new Point(387, 629);
-            btninicioSesion.Name = "btninicioSesion";
-            btninicioSesion.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btninicioSesion.OverrideDefault.Back.Color2 = Color.White;
-            btninicioSesion.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btninicioSesion.OverrideFocus.Back.Color2 = Color.White;
-            btninicioSesion.Size = new Size(206, 41);
-            btninicioSesion.StateCommon.Back.Color1 = Color.SkyBlue;
-            btninicioSesion.StateCommon.Back.Color2 = Color.White;
-            btninicioSesion.StateCommon.Border.Rounding = 40F;
-            btninicioSesion.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btninicioSesion.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btninicioSesion.StateNormal.Back.Color1 = Color.SkyBlue;
-            btninicioSesion.StateNormal.Back.Color2 = Color.Transparent;
-            btninicioSesion.StateNormal.Border.Rounding = 40F;
-            btninicioSesion.TabIndex = 181;
-            btninicioSesion.Values.DropDownArrowColor = Color.Empty;
-            btninicioSesion.Values.Text = "Exportar";
-            btninicioSesion.Click += btninicioSesion_Click;
+            btnExportaar.Location = new Point(387, 629);
+            btnExportaar.Name = "btnExportaar";
+            btnExportaar.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnExportaar.OverrideDefault.Back.Color2 = Color.White;
+            btnExportaar.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnExportaar.OverrideFocus.Back.Color2 = Color.White;
+            btnExportaar.Size = new Size(206, 41);
+            btnExportaar.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnExportaar.StateCommon.Back.Color2 = Color.White;
+            btnExportaar.StateCommon.Border.Rounding = 40F;
+            btnExportaar.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnExportaar.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnExportaar.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnExportaar.StateNormal.Back.Color2 = Color.Transparent;
+            btnExportaar.StateNormal.Border.Rounding = 40F;
+            btnExportaar.TabIndex = 181;
+            btnExportaar.Values.DropDownArrowColor = Color.Empty;
+            btnExportaar.Values.Text = "Exportar";
+            btnExportaar.Click += btninicioSesion_Click;
             // 
             // btnLimpiar
             // 
@@ -921,7 +922,7 @@ namespace SG_BAMS
             Controls.Add(dtpDesde);
             Controls.Add(btnLimpiar);
             Controls.Add(btnImprimir);
-            Controls.Add(btninicioSesion);
+            Controls.Add(btnExportaar);
             Controls.Add(pictureBox3);
             Controls.Add(kryptonButton11);
             Controls.Add(pictureBox18);
@@ -1015,7 +1016,7 @@ namespace SG_BAMS
         private Button button12;
         private PictureBox pictureBox3;
         private Krypton.Toolkit.KryptonButton btnImprimir;
-        private Krypton.Toolkit.KryptonButton btninicioSesion;
+        private Krypton.Toolkit.KryptonButton btnExportaar;
         private Krypton.Toolkit.KryptonButton btnLimpiar;
         private Krypton.Toolkit.KryptonDateTimePicker dtpDesde;
         private Krypton.Toolkit.KryptonDateTimePicker dtpHasta;
