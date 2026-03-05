@@ -116,8 +116,8 @@ namespace SG_BAMS
             {
                 // 3. INSERTAR CABECERA (Tabla Compra)
                 string queryCabecera = @"INSERT INTO Compra (id_usuario, fecha_pedido, id_tipo_forma_pago, id_proveedor, desc_compra) 
-                                 VALUES (@id_usuario, @fecha, @id_pago, @id_prov, @desc);
-                                 SELECT SCOPE_IDENTITY();";
+                         VALUES (@id_usuario, @fecha, @id_pago, @id_prov, @desc);
+                         SELECT SCOPE_IDENTITY();";
 
                 int idCompraRecienCreada;
                 using (SqlCommand cmd = new SqlCommand(queryCabecera, conexion.Conectar, transaccion))
@@ -130,20 +130,15 @@ namespace SG_BAMS
                     idCompraRecienCreada = Convert.ToInt32(cmd.ExecuteScalar());
                 }
 
-                // 4. INSERTAR DETALLE Y ACTUALIZAR TABLA INVENTARIO
+                // 4. CONSULTAS PARA DETALLE E INVENTARIO
                 string queryDetalle = @"INSERT INTO Compra_producto (id_compra, id_producto, cantidad, precio_costo_unitario) 
-                                VALUES (@idC, @idP, @cant, @precio)";
+                        VALUES (@idC, @idP, @cant, @precio)";
 
-                // Lógica de Inventario: Si existe UPDATE, si no INSERT
-                string queryInventario = @"
-            IF EXISTS (SELECT 1 FROM Inventario WHERE id_producto = @idP)
-            BEGIN
-                UPDATE Inventario SET stock = stock + @cant WHERE id_producto = @idP
-            END
-            ELSE
-            BEGIN
-                INSERT INTO Inventario (id_producto, stock) VALUES (@idP, @cant)
-            END";
+                // Esta consulta asegura que el producto EXISTA en la tabla Inventario para que el TRIGGER funcione
+                string queryAsegurarInventario = @"IF NOT EXISTS (SELECT 1 FROM Inventario WHERE id_producto = @idP)
+                                         BEGIN
+                                            INSERT INTO Inventario (id_producto, stock) VALUES (@idP, 0)
+                                         END";
 
                 foreach (DataGridViewRow fila in dgvProductosCompra.Rows)
                 {
@@ -153,7 +148,16 @@ namespace SG_BAMS
                         int cant = Convert.ToInt32(fila.Cells[2].Value);
                         decimal precio = Convert.ToDecimal(fila.Cells[3].Value);
 
-                        // A. Guardar en Detalle de Compra
+                        // PASO A: Asegurar que el registro exista en Inventario (sin sumar nada aún)
+                        using (SqlCommand cmdAsegurar = new SqlCommand(queryAsegurarInventario, conexion.Conectar, transaccion))
+                        {
+                            cmdAsegurar.Parameters.AddWithValue("@idP", idProd);
+                            cmdAsegurar.ExecuteNonQuery();
+                        }
+
+                        // PASO B: Insertar el detalle. 
+                        // Al existir ya el producto en Inventario, el Trigger 'tr_actualizar_stock_por_compra'
+                        // ahora sí podrá hacer el UPDATE correctamente.
                         using (SqlCommand cmdDetalle = new SqlCommand(queryDetalle, conexion.Conectar, transaccion))
                         {
                             cmdDetalle.Parameters.AddWithValue("@idC", idCompraRecienCreada);
@@ -162,19 +166,11 @@ namespace SG_BAMS
                             cmdDetalle.Parameters.AddWithValue("@precio", precio);
                             cmdDetalle.ExecuteNonQuery();
                         }
-
-                        // B. Actualizar Tabla Inventario (La tabla correcta según tu SQL)
-                        using (SqlCommand cmdInv = new SqlCommand(queryInventario, conexion.Conectar, transaccion))
-                        {
-                            cmdInv.Parameters.AddWithValue("@idP", idProd);
-                            cmdInv.Parameters.AddWithValue("@cant", cant);
-                            cmdInv.ExecuteNonQuery();
-                        }
                     }
                 }
 
                 transaccion.Commit();
-                MessageBox.Show("Compra #" + idCompraRecienCreada + " guardada. Stock actualizado en tabla Inventario.", "Éxito");
+                MessageBox.Show("Compra #" + idCompraRecienCreada + " guardada. El stock se ha actualizado exitosamente.", "Éxito");
                 this.Close();
             }
             catch (Exception ex)
