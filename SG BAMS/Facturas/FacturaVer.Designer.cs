@@ -62,7 +62,9 @@
             // 
             // cmbPago
             // 
+            cmbPago.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbPago.DropDownWidth = 300;
+            cmbPago.Enabled = false;
             cmbPago.Location = new Point(206, 364);
             cmbPago.Margin = new Padding(3, 2, 3, 2);
             cmbPago.Name = "cmbPago";
@@ -99,6 +101,7 @@
             // 
             // fechaDT
             // 
+            fechaDT.Enabled = false;
             fechaDT.Location = new Point(676, 182);
             fechaDT.MaxSelectionCount = 1;
             fechaDT.Name = "fechaDT";

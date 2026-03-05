@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
+using Microsoft.IdentityModel.Tokens;
 using SG_BAMS.Administracion_de_BAMS.FormaPago;
 using SG_BAMS.Cliente;
 using SG_BAMS.Facturas;
@@ -207,6 +208,25 @@ namespace SG_BAMS
 
         private async void BtnAgregar_Click(object sender, EventArgs e)
         {
+            
+            if(string.IsNullOrEmpty(TxtBateria.Text.Trim()))
+            {
+                MessageBox.Show("Debe ingresar un valor en Batería Vieja", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                TxtBateria.Focus();
+                return;
+            }
+
+            try
+            {
+                double.Parse(TxtBateria.Text.Trim());
+            }
+            catch
+            {
+                MessageBox.Show("El valor debe ser un número.");
+                TxtBateria.Focus();
+                return;
+            }
+            
             using (FacturaProducto frmProd = new FacturaProducto())
             {
                 frmProd.FormularioFactura = this;

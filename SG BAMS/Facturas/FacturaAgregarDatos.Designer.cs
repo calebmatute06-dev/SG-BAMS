@@ -253,6 +253,7 @@
             // 
             // DateTFecha
             // 
+            DateTFecha.Enabled = false;
             DateTFecha.Location = new Point(702, 187);
             DateTFecha.Name = "DateTFecha";
             DateTFecha.TabIndex = 315;
@@ -325,6 +326,7 @@
             // 
             // cmbPago
             // 
+            cmbPago.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbPago.DropDownWidth = 300;
             cmbPago.Location = new Point(292, 381);
             cmbPago.Margin = new Padding(3, 2, 3, 2);
