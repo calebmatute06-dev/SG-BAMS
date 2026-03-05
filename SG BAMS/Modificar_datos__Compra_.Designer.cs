@@ -262,7 +262,6 @@
             dgvProductosCompraMod.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvProductosCompraMod.Location = new Point(65, 303);
             dgvProductosCompraMod.Name = "dgvProductosCompraMod";
-            dgvProductosCompraMod.ReadOnly = true;
             dgvProductosCompraMod.RowHeadersWidth = 51;
             dgvProductosCompraMod.Size = new Size(643, 183);
             dgvProductosCompraMod.TabIndex = 218;

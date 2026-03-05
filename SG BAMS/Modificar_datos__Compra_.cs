@@ -1,7 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using SG_BAMS.ProductoInventario;
 using System;
-using System.Collections.Generic; // Necesario para List<>
+using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 
@@ -11,22 +11,83 @@ namespace SG_BAMS
     {
         private int idCompraAEditar;
         private ClsModificarCompras logic = new ClsModificarCompras();
-
-        // LISTA NEGRA: Para recordar qué productos borrar de la base de datos
         private List<int> listaEliminados = new List<int>();
 
         public Modificar_datos__Compra_(int id)
         {
             InitializeComponent();
             this.idCompraAEditar = id;
+
+            // SUSCRIPCIÓN MANUAL A EVENTOS (Si no lo hiciste en el diseñador)
+            dgvProductosCompraMod.CellValueChanged += dgvProductosCompraMod_CellValueChanged;
+            dgvProductosCompraMod.CurrentCellDirtyStateChanged += dgvProductosCompraMod_CurrentCellDirtyStateChanged;
         }
 
         private void Modificar_datos__Compra__Load(object sender, EventArgs e)
         {
             LlenarCombos();
+
             ClsDetalleCompra objetoDetalle = new ClsDetalleCompra();
             dgvProductosCompraMod.DataSource = objetoDetalle.ListarProductosDeCompra(idCompraAEditar);
+
+            ConfigurarEdicionGrid();
             CargarDatosCabecera();
+            ActualizarTotalGeneral();
+        }
+
+        // --- LÓGICA DE CÁLCULO AUTOMÁTICO ---
+
+        private void dgvProductosCompraMod_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            // Si la celda está en edición, confirmamos el valor de inmediato
+            if (dgvProductosCompraMod.IsCurrentCellDirty)
+            {
+                dgvProductosCompraMod.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
+
+        private void dgvProductosCompraMod_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            // Validamos que el cambio sea en las columnas de Cantidad o Precio
+            if (e.RowIndex >= 0 && (dgvProductosCompraMod.Columns[e.ColumnIndex].Name == "Cantidad" ||
+                                    dgvProductosCompraMod.Columns[e.ColumnIndex].Name == "Precio"))
+            {
+                try
+                {
+                    decimal cantidad = Convert.ToDecimal(dgvProductosCompraMod.Rows[e.RowIndex].Cells["Cantidad"].Value ?? 0);
+                    decimal precio = Convert.ToDecimal(dgvProductosCompraMod.Rows[e.RowIndex].Cells["Precio"].Value ?? 0);
+
+                    // Actualizamos el subtotal de la fila
+                    dgvProductosCompraMod.Rows[e.RowIndex].Cells["Subtotal"].Value = cantidad * precio;
+
+                    // Actualizamos el total de la etiqueta
+                    ActualizarTotalGeneral();
+                }
+                catch { /* Evita cierres por formatos inválidos mientras se escribe */ }
+            }
+        }
+
+        private void ActualizarTotalGeneral()
+        {
+            decimal total = 0;
+            foreach (DataGridViewRow fila in dgvProductosCompraMod.Rows)
+            {
+                if (fila.Cells["Subtotal"].Value != null)
+                    total += Convert.ToDecimal(fila.Cells["Subtotal"].Value);
+            }
+            lblTotal.Text = "Total: L " + total.ToString("N2");
+        }
+
+        // --- CONFIGURACIÓN Y CARGA ---
+
+        private void ConfigurarEdicionGrid()
+        {
+            if (dgvProductosCompraMod.Columns.Contains("ID")) dgvProductosCompraMod.Columns["ID"].ReadOnly = true;
+            if (dgvProductosCompraMod.Columns.Contains("Producto")) dgvProductosCompraMod.Columns["Producto"].ReadOnly = true;
+            if (dgvProductosCompraMod.Columns.Contains("Subtotal")) dgvProductosCompraMod.Columns["Subtotal"].ReadOnly = true;
+
+            if (dgvProductosCompraMod.Columns.Contains("Cantidad")) dgvProductosCompraMod.Columns["Cantidad"].ReadOnly = false;
+            if (dgvProductosCompraMod.Columns.Contains("Precio")) dgvProductosCompraMod.Columns["Precio"].ReadOnly = false;
         }
 
         private void LlenarCombos()
@@ -74,20 +135,21 @@ namespace SG_BAMS
             catch (Exception ex) { MessageBox.Show("Error al cargar datos: " + ex.Message); }
         }
 
+        // --- ACCIONES (ACEPTAR / ELIMINAR) ---
+
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             try
             {
-                // 1. ELIMINAR: Procesamos los productos que el usuario quitó de la tabla
+                // 1. ELIMINAR productos borrados visualmente
                 foreach (int idEliminado in listaEliminados)
                 {
                     logic.EliminarProductoDeBD(idCompraAEditar, idEliminado);
                 }
 
-                // 2. ACTUALIZAR/INSERTAR: Procesamos lo que quedó en el Grid
+                // 2. ACTUALIZAR O INSERTAR productos actuales
                 foreach (DataGridViewRow fila in dgvProductosCompraMod.Rows)
                 {
-                    // Verificamos que la fila tenga un ID (que no sea la fila vacía del final)
                     if (fila.Cells["ID"].Value != null && fila.Cells["ID"].Value != DBNull.Value)
                     {
                         int idProd = Convert.ToInt32(fila.Cells["ID"].Value);
@@ -98,35 +160,24 @@ namespace SG_BAMS
                     }
                 }
 
-                MessageBox.Show("¡Cambios guardados e Inventario sincronizado!");
+                MessageBox.Show("¡Compra e Inventario sincronizados!");
                 this.Close();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al guardar: " + ex.Message);
-            }
+            catch (Exception ex) { MessageBox.Show("Error al guardar: " + ex.Message); }
         }
 
         private void btnEliminarProducto_Click(object sender, EventArgs e)
         {
             if (dgvProductosCompraMod.CurrentRow != null && !dgvProductosCompraMod.CurrentRow.IsNewRow)
             {
-                DialogResult respuesta = MessageBox.Show("¿Está seguro de quitar este producto de la compra?",
-                    "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
+                DialogResult respuesta = MessageBox.Show("¿Quitar este producto de la compra?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (respuesta == DialogResult.Yes)
                 {
-                    // Guardamos el ID en la lista negra para borrarlo de SQL al dar 'Aceptar'
                     int idAEliminar = Convert.ToInt32(dgvProductosCompraMod.CurrentRow.Cells["ID"].Value);
                     listaEliminados.Add(idAEliminar);
-
-                    // Eliminación visual inmediata
                     dgvProductosCompraMod.Rows.RemoveAt(dgvProductosCompraMod.CurrentRow.Index);
+                    ActualizarTotalGeneral();
                 }
-            }
-            else
-            {
-                MessageBox.Show("Por favor, seleccione un producto de la tabla.");
             }
         }
     }
