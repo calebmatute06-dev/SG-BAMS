@@ -192,7 +192,7 @@
             dgvEstados.AllowUserToDeleteRows = false;
             dgvEstados.BorderStyle = BorderStyle.None;
             dgvEstados.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvEstados.Location = new Point(78, 125);
+            dgvEstados.Location = new Point(78, 102);
             dgvEstados.Margin = new Padding(3, 4, 3, 4);
             dgvEstados.Name = "dgvEstados";
             dgvEstados.ReadOnly = true;
@@ -204,7 +204,7 @@
             dataGridViewCellStyle1.SelectionForeColor = Color.White;
             dgvEstados.RowsDefaultCellStyle = dataGridViewCellStyle1;
             dgvEstados.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvEstados.Size = new Size(512, 232);
+            dgvEstados.Size = new Size(512, 255);
             dgvEstados.StateCommon.Background.Color1 = Color.SkyBlue;
             dgvEstados.StateCommon.Background.Color2 = Color.SkyBlue;
             dgvEstados.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
