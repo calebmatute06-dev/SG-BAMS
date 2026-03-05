@@ -73,7 +73,6 @@
             kryptonGroup2 = new Krypton.Toolkit.KryptonGroup();
             pictureBox21 = new PictureBox();
             btnComprar = new Krypton.Toolkit.KryptonButton();
-            pictureBox17 = new PictureBox();
             btnModificar = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
             panel5.SuspendLayout();
@@ -101,7 +100,6 @@
             ((System.ComponentModel.ISupportInitialize)kryptonGroup2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup2.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox21).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox17).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -764,7 +762,7 @@
             // 
             pictureBox21.BackgroundImage = Properties.Resources.comprasnuevo;
             pictureBox21.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox21.Location = new Point(335, 192);
+            pictureBox21.Location = new Point(566, 112);
             pictureBox21.Name = "pictureBox21";
             pictureBox21.Size = new Size(365, 244);
             pictureBox21.TabIndex = 151;
@@ -772,7 +770,7 @@
             // 
             // btnComprar
             // 
-            btnComprar.Location = new Point(968, 252);
+            btnComprar.Location = new Point(985, 385);
             btnComprar.Name = "btnComprar";
             btnComprar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnComprar.OverrideDefault.Back.Color2 = Color.White;
@@ -793,21 +791,9 @@
             btnComprar.Values.Text = "Hacer Compras";
             btnComprar.Click += btnComprar_Click;
             // 
-            // pictureBox17
-            // 
-            pictureBox17.BackColor = Color.White;
-            pictureBox17.BackgroundImage = Properties.Resources.compras;
-            pictureBox17.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox17.Location = new Point(878, 243);
-            pictureBox17.Name = "pictureBox17";
-            pictureBox17.Size = new Size(73, 62);
-            pictureBox17.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox17.TabIndex = 152;
-            pictureBox17.TabStop = false;
-            // 
             // btnModificar
             // 
-            btnModificar.Location = new Point(968, 313);
+            btnModificar.Location = new Point(985, 446);
             btnModificar.Name = "btnModificar";
             btnModificar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnModificar.OverrideDefault.Back.Color2 = Color.White;
@@ -825,7 +811,7 @@
             btnModificar.StatePressed.Back.Color2 = Color.Transparent;
             btnModificar.TabIndex = 153;
             btnModificar.Values.DropDownArrowColor = Color.Empty;
-            btnModificar.Values.Text = "Hacer Compras";
+            btnModificar.Values.Text = "Modificar";
             btnModificar.Click += btnModificar_Click;
             // 
             // Compras
@@ -835,7 +821,6 @@
             BackColor = Color.White;
             ClientSize = new Size(1257, 908);
             Controls.Add(btnModificar);
-            Controls.Add(pictureBox17);
             Controls.Add(btnComprar);
             Controls.Add(pictureBox21);
             Controls.Add(dgvComprasAdmin);
@@ -884,7 +869,6 @@
             ((System.ComponentModel.ISupportInitialize)kryptonGroup2.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox21).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox17).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -934,7 +918,6 @@
         private Krypton.Toolkit.KryptonGroup kryptonGroup2;
         private PictureBox pictureBox21;
         private Krypton.Toolkit.KryptonButton btnComprar;
-        private PictureBox pictureBox17;
         private Krypton.Toolkit.KryptonButton btnBitacora;
         private Krypton.Toolkit.KryptonButton btnModificar;
     }
