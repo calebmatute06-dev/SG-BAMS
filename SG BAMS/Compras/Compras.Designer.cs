@@ -744,16 +744,16 @@
             // 
             dgvComprasAdmin.BorderStyle = BorderStyle.None;
             dgvComprasAdmin.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvComprasAdmin.Location = new Point(335, 544);
+            dgvComprasAdmin.Location = new Point(335, 426);
             dgvComprasAdmin.Name = "dgvComprasAdmin";
             dgvComprasAdmin.RowHeadersWidth = 51;
-            dgvComprasAdmin.Size = new Size(849, 292);
+            dgvComprasAdmin.Size = new Size(849, 410);
             dgvComprasAdmin.TabIndex = 67;
             // 
             // kryptonGroup2
             // 
-            kryptonGroup2.Location = new Point(309, 518);
-            kryptonGroup2.Size = new Size(901, 344);
+            kryptonGroup2.Location = new Point(309, 400);
+            kryptonGroup2.Size = new Size(901, 462);
             kryptonGroup2.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroup2.StateCommon.Border.Rounding = 70F;
             kryptonGroup2.TabIndex = 81;
@@ -762,7 +762,7 @@
             // 
             pictureBox21.BackgroundImage = Properties.Resources.comprasnuevo;
             pictureBox21.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox21.Location = new Point(566, 112);
+            pictureBox21.Location = new Point(596, 131);
             pictureBox21.Name = "pictureBox21";
             pictureBox21.Size = new Size(365, 244);
             pictureBox21.TabIndex = 151;
@@ -770,7 +770,7 @@
             // 
             // btnComprar
             // 
-            btnComprar.Location = new Point(985, 385);
+            btnComprar.Location = new Point(985, 259);
             btnComprar.Name = "btnComprar";
             btnComprar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnComprar.OverrideDefault.Back.Color2 = Color.White;
@@ -793,7 +793,7 @@
             // 
             // btnModificar
             // 
-            btnModificar.Location = new Point(985, 446);
+            btnModificar.Location = new Point(985, 320);
             btnModificar.Name = "btnModificar";
             btnModificar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnModificar.OverrideDefault.Back.Color2 = Color.White;
