@@ -405,9 +405,9 @@
             label4.ForeColor = Color.Navy;
             label4.Location = new Point(73, 232);
             label4.Name = "label4";
-            label4.Size = new Size(50, 24);
+            label4.Size = new Size(105, 24);
             label4.TabIndex = 189;
-            label4.Text = "Nota:";
+            label4.Text = "Nota Detalle:";
             // 
             // txtPrecio
             // 
