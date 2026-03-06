@@ -186,5 +186,9 @@ namespace SG_BAMS
             log.Show();
             this.Close();
         }
+        private void btnDeudores_Click(object sender, EventArgs e)
+        {
+            this.Refresh();
+        }
     }
 }

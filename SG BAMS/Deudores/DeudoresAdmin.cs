@@ -34,45 +34,44 @@ namespace SG_BAMS
 
         // --- NAVEGACIÓN DEL MENÚ (Respetando tus nombres exactos) ---
 
-        private void kryptonButton9_Click(object sender, EventArgs e)
+        private void btnMenuAdmin_Click(object sender, EventArgs e)
         {
-            MenuPrincipalAdm Menad = new MenuPrincipalAdm();
-            Menad.Show();
+            MenuPrincipalAdm Men = new MenuPrincipalAdm();
+            Men.Show();
             this.Close();
         }
 
-        private void kryptonButton8_Click(object sender, EventArgs e)
+        private void btnfacturas_Click(object sender, EventArgs e)
         {
-            FacturasAdm factad = new FacturasAdm();
-            factad.Show();
+            FacturasAdm Fact = new FacturasAdm();
+            Fact.Show();
             this.Close();
         }
 
-        private void kryptonButton7_Click(object sender, EventArgs e)
+        private void btncompras2_Click(object sender, EventArgs e)
         {
             Compras Comp = new Compras();
             Comp.Show();
             this.Close();
         }
 
-        private void kryptonButton6_Click(object sender, EventArgs e)
+        private void btnclientes2_Click(object sender, EventArgs e)
         {
-            ClientesAdm Clientad = new ClientesAdm();
-            Clientad.Show();
+            ClientesAdm Clien = new ClientesAdm();
+            Clien.Show();
             this.Close();
         }
 
-        private void kryptonButton5_Click(object sender, EventArgs e)
+        private void btninventario2_Click(object sender, EventArgs e)
         {
-            InventarioAdmin Invad = new InventarioAdmin();
-            Invad.Show();
+            InventarioAdmin inventarioAdmin = new InventarioAdmin();
+            inventarioAdmin.Show();
             this.Close();
         }
-
-        private void kryptonButton4_Click(object sender, EventArgs e)
+        private void btnproveedores2_Click(object sender, EventArgs e)
         {
-            ProveedoresAdmin Proad = new ProveedoresAdmin();
-            Proad.Show();
+            ProveedoresAdmin Pro = new ProveedoresAdmin();
+            Pro.Show();
             this.Close();
         }
 
@@ -83,11 +82,15 @@ namespace SG_BAMS
             this.Close();
         }
 
-        private void kryptonButton3_Click(object sender, EventArgs e)
+        private void btnreporte2_Click(object sender, EventArgs e)
         {
             BitacoraAdmin Bit = new BitacoraAdmin();
             Bit.Show();
             this.Close();
+        }
+        private void btndeudores2_Click(object sender, EventArgs e)
+        {
+            this.Refresh();
         }
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
@@ -115,10 +118,7 @@ namespace SG_BAMS
             Ajus.Show();
         }
 
-        private void kryptonButton2_Click(object sender, EventArgs e)
-        {
-            this.Show();
-        }
+
 
         // --- LÓGICA DE BÚSQUEDA Y PAGOS ---
 
@@ -208,67 +208,7 @@ namespace SG_BAMS
 
         // Eventos vacíos para evitar errores de referencia si existen en el designer
         private void kryptonDataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
-        private void timer1_Tick(object sender, EventArgs e) { }
         private void dgvDeudores_DoubleClick(object sender, EventArgs e) { }
-
-        private void btnreporte2_Click(object sender, EventArgs e)
-        {
-            BitacoraAdmin Bit = new BitacoraAdmin();
-            Bit.Show();
-            this.Close();
-        }
-
-        private void btndeudores2_Click(object sender, EventArgs e)
-        {
-            this.Refresh();
-        }
-
-        private void btnproveedores2_Click(object sender, EventArgs e)
-        {
-            ProveedoresAdmin Pro = new ProveedoresAdmin();
-            Pro.Show();
-            this.Close();
-        }
-
-        private void btninventario2_Click(object sender, EventArgs e)
-        {
-            InventarioAdmin inventarioAdmin = new InventarioAdmin();
-            inventarioAdmin.Show();
-            this.Close();
-        }
-
-        private void btnclientes2_Click(object sender, EventArgs e)
-        {
-            ClientesAdm Clien = new ClientesAdm();
-            Clien.Show();
-            this.Close();
-        }
-
-        private void btncompras2_Click(object sender, EventArgs e)
-        {
-            Compras Comp = new Compras();
-            Comp.Show();
-            this.Close();
-        }
-
-        private void btnfacturas2_Click(object sender, EventArgs e)
-        {
-            FacturasAdm Fact = new FacturasAdm();
-            Fact.Show();
-            this.Close();
-        }
-
-        private void kryptonButton2_Click_1(object sender, EventArgs e)
-        {
-            MenuPrincipalAdm Men = new MenuPrincipalAdm();
-            Men.Show();
-            this.Close();
-        }
-
-        private void pictureBox22_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void txtBuscarNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -282,5 +222,6 @@ namespace SG_BAMS
                 // MessageBox.Show("Solo se permiten letras para el nombre del deudor.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
     }
 }
