@@ -40,6 +40,8 @@ namespace SG_BAMS
                 cmbDeudores.ValueMember = "ID";
                 cmbDeudores.DisplayMember = "ClienteDetalle";
 
+                cmbDeudores.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                cmbDeudores.AutoCompleteSource = AutoCompleteSource.ListItems;
                 // Asignamos la tabla
                 cmbDeudores.DataSource = dt;
                 cmbDeudores.SelectedIndex = -1;
@@ -48,19 +50,17 @@ namespace SG_BAMS
 
         private void Pago_Deuda_Load(object sender, EventArgs e)
         {
-            // SI RECIBIMOS UN ID: Buscamos la posición exacta en el DataTable
             if (idDeudaRecibido > 0 && cmbDeudores.DataSource != null)
             {
                 DataTable dt = (DataTable)cmbDeudores.DataSource;
 
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    // Comparamos el ID de la fila con el ID que recibimos del grid
                     if (Convert.ToInt32(dt.Rows[i]["ID"]) == idDeudaRecibido)
                     {
-                        cmbDeudores.SelectedIndex = i; // Forzamos la posición exacta
-                        cmbDeudores.Enabled = false;   // Bloqueamos para evitar errores
-                        return; // Ya lo encontramos, salimos del ciclo
+                        cmbDeudores.SelectedIndex = i; 
+                        cmbDeudores.Enabled = false;   
+                        return; 
                     }
                 }
             }
@@ -75,23 +75,33 @@ namespace SG_BAMS
 
         private async void kryptonButton3_Click(object sender, EventArgs e)
         {
-            // Verificamos que el SelectedValue sea el correcto
-            if (cmbDeudores.SelectedValue != null && decimal.TryParse(txtMonto.Text, out decimal montoPago))
-            {
-                int idDeudaFinal = Convert.ToInt32(cmbDeudores.SelectedValue);
-
-                bool ok = await objetoDeudas.InsertarPago(idDeudaFinal, montoPago, DateTime.Now);
-
-                if (ok)
-                {
-                    MessageBox.Show("¡Pago registrado correctamente!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
-                }
-            }
-            else
+            if (cmbDeudores.SelectedValue == null || !decimal.TryParse(txtMonto.Text, out decimal montoPago))
             {
                 MessageBox.Show("Por favor, selecciona un deudor y escribe un monto válido.");
+                return;
+            }
+
+            int idDeudaFinal = Convert.ToInt32(cmbDeudores.SelectedValue);
+
+            // 1. Obtener el saldo actual de la deuda (debes tener este método)
+            decimal saldoPendiente = await objetoDeudas.ObtenerSaldo(idDeudaFinal);
+
+            // 2. Validación: el pago no puede superar la deuda
+            if (montoPago > saldoPendiente)
+            {
+                MessageBox.Show($"El monto ingresado ({montoPago:C}) supera el saldo pendiente ({saldoPendiente:C}).",
+                                "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 3. Proceder con el pago
+            bool ok = await objetoDeudas.InsertarPago(idDeudaFinal, montoPago, DateTime.Now);
+
+            if (ok)
+            {
+                MessageBox.Show("¡Pago registrado correctamente!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
         }
 

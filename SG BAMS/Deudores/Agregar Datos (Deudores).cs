@@ -21,5 +21,15 @@ namespace SG_BAMS
         {
 
         }
+
+        private void kryptonMonthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
+        {
+
+        }
+
+        private void kryptonMonthCalendar1_MouseDown(object sender, MouseEventArgs e)
+        {
+            ((HandledMouseEventArgs)e).Handled = true;
+        }
     }
 }

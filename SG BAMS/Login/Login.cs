@@ -40,20 +40,21 @@ namespace SG_BAMS.Login
                 {
                     case 1:
                         {
-                            LoginFacial validacionFacial = new LoginFacial();
+                            MessageBox.Show("Login correcto. ¡Bienvenido Administrador!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            new MenuPrincipalAdm().Show();
+                            this.Hide();
+                            /*LoginFacial validacionFacial = new LoginFacial();
                             validacionFacial.UsuarioAValidar = txtUsu.Text;
 
                             
                             if (validacionFacial.ShowDialog() == DialogResult.OK)
                             {
-                                MessageBox.Show("Login correcto. ¡Bienvenido Administrador!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                new MenuPrincipalAdm().Show();
-                                this.Hide();
+                               
                             }
                             else
                             {
                                 MessageBox.Show("Validación facial fallida. Acceso denegado.", "Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
+                            }*/
                         }
                         break;
 

@@ -34,7 +34,42 @@ namespace SG_BAMS
             }
         }
 
-        
+        public async Task<decimal> ObtenerSaldo(int idDeuda)
+        {
+            decimal saldo = 0;
+            string query = @"
+            SELECT (d.monto_inicial - ISNULL((SELECT SUM(pd.monto_pago) 
+                                             FROM Pago_deuda pd 
+                                             WHERE pd.id_deuda = d.id_deuda), 0)) AS SaldoPendiente
+            FROM Deuda d
+            WHERE d.id_deuda = @id_deuda";
+
+            try
+            {
+                AbrirConexion(); // Usamos los métodos de ClsConexion
+                using (SqlCommand cmd = new SqlCommand(query, Conectar)) // Usamos la propiedad Conectar de la base
+                {
+                    cmd.Parameters.AddWithValue("@id_deuda", idDeuda);
+
+                    object result = await cmd.ExecuteScalarAsync();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        saldo = Convert.ToDecimal(result);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Puedes registrar el error aquí si lo deseas
+                System.Diagnostics.Debug.WriteLine("Error en ObtenerSaldo: " + ex.Message);
+            }
+            finally
+            {
+                Cerrar(); // Cerramos siempre la conexión
+            }
+
+            return saldo;
+        }
         public DataTable ObtenerDeudoresActivos()
         {
             DataTable tablaDeudores = new DataTable();

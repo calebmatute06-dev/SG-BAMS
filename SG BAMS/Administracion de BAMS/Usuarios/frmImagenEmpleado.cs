@@ -162,6 +162,8 @@ namespace SG_BAMS
                     cmbUsuarios.DataSource = dt;
                     cmbUsuarios.DisplayMember = "nombre_usuario";
                     cmbUsuarios.ValueMember = "id_usuario";
+                    cmbUsuarios.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    cmbUsuarios.AutoCompleteSource = AutoCompleteSource.ListItems;
                     cmbUsuarios.SelectedIndex = -1;
                 }
             }

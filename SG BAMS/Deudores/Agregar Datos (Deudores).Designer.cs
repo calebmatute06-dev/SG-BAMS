@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            kryptonButton11 = new Krypton.Toolkit.KryptonButton();
-            pictureBox18 = new PictureBox();
-            button12 = new Button();
             label6 = new Label();
             label4 = new Label();
             kryptonMonthCalendar2 = new Krypton.Toolkit.KryptonMonthCalendar();
@@ -49,64 +46,12 @@
             pictureBox4 = new PictureBox();
             kryptonButton13 = new Krypton.Toolkit.KryptonButton();
             kryptonButton3 = new Krypton.Toolkit.KryptonButton();
-            kryptonButton2 = new Krypton.Toolkit.KryptonButton();
             kryptonTextBox2 = new Krypton.Toolkit.KryptonTextBox();
-            ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             SuspendLayout();
-            // 
-            // kryptonButton11
-            // 
-            kryptonButton11.Location = new Point(899, 32);
-            kryptonButton11.Name = "kryptonButton11";
-            kryptonButton11.OverrideDefault.Back.Color1 = Color.Transparent;
-            kryptonButton11.OverrideDefault.Back.Color2 = Color.Transparent;
-            kryptonButton11.OverrideDefault.Border.Rounding = 40F;
-            kryptonButton11.OverrideFocus.Back.Color1 = Color.White;
-            kryptonButton11.OverrideFocus.Back.Color2 = Color.SkyBlue;
-            kryptonButton11.Size = new Size(98, 41);
-            kryptonButton11.StateCommon.Back.Color1 = Color.White;
-            kryptonButton11.StateCommon.Back.Color2 = Color.SkyBlue;
-            kryptonButton11.StateCommon.Border.Rounding = 40F;
-            kryptonButton11.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton11.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton11.StateNormal.Back.Color1 = Color.Transparent;
-            kryptonButton11.StateNormal.Back.Color2 = Color.Transparent;
-            kryptonButton11.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
-            kryptonButton11.StatePressed.Back.Color1 = Color.Transparent;
-            kryptonButton11.StatePressed.Back.Color2 = Color.Transparent;
-            kryptonButton11.StateTracking.Border.Rounding = 40F;
-            kryptonButton11.TabIndex = 203;
-            kryptonButton11.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton11.Values.Text = "Ajustes";
-            // 
-            // pictureBox18
-            // 
-            pictureBox18.BackgroundImage = Properties.Resources.ajus;
-            pictureBox18.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox18.Location = new Point(844, 31);
-            pictureBox18.Name = "pictureBox18";
-            pictureBox18.Size = new Size(53, 49);
-            pictureBox18.TabIndex = 202;
-            pictureBox18.TabStop = false;
-            // 
-            // button12
-            // 
-            button12.BackColor = Color.Transparent;
-            button12.BackgroundImage = Properties.Resources.campana;
-            button12.BackgroundImageLayout = ImageLayout.Stretch;
-            button12.FlatAppearance.BorderColor = Color.White;
-            button12.FlatAppearance.BorderSize = 0;
-            button12.FlatStyle = FlatStyle.Flat;
-            button12.ForeColor = Color.Navy;
-            button12.Location = new Point(779, 31);
-            button12.Name = "button12";
-            button12.Size = new Size(59, 44);
-            button12.TabIndex = 201;
-            button12.UseVisualStyleBackColor = false;
             // 
             // label6
             // 
@@ -114,9 +59,9 @@
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(790, 86);
+            label6.Location = new Point(691, 64);
             label6.Name = "label6";
-            label6.Size = new Size(94, 24);
+            label6.Size = new Size(78, 20);
             label6.TabIndex = 200;
             label6.Text = "Fecha Final";
             // 
@@ -126,34 +71,38 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(473, 86);
+            label4.Location = new Point(414, 64);
             label4.Name = "label4";
-            label4.Size = new Size(97, 24);
+            label4.Size = new Size(81, 20);
             label4.TabIndex = 199;
             label4.Text = "Fecha Inicio";
             // 
             // kryptonMonthCalendar2
             // 
-            kryptonMonthCalendar2.Location = new Point(687, 113);
+            kryptonMonthCalendar2.Enabled = false;
+            kryptonMonthCalendar2.Location = new Point(601, 85);
+            kryptonMonthCalendar2.Margin = new Padding(3, 2, 3, 2);
             kryptonMonthCalendar2.Name = "kryptonMonthCalendar2";
-            kryptonMonthCalendar2.Size = new Size(293, 218);
+            kryptonMonthCalendar2.Size = new Size(230, 182);
             kryptonMonthCalendar2.StateCheckedNormal.Day.Border.Rounding = 10F;
             kryptonMonthCalendar2.TabIndex = 198;
             // 
             // kryptonLabel10
             // 
-            kryptonLabel10.Location = new Point(182, 197);
+            kryptonLabel10.Location = new Point(159, 148);
+            kryptonLabel10.Margin = new Padding(3, 2, 3, 2);
             kryptonLabel10.Name = "kryptonLabel10";
-            kryptonLabel10.Size = new Size(136, 31);
+            kryptonLabel10.Size = new Size(119, 23);
             kryptonLabel10.StateCommon.ShortText.Color1 = Color.Navy;
             kryptonLabel10.TabIndex = 197;
             kryptonLabel10.Values.Text = "xxx-xxx";
             // 
             // kryptonLabel9
             // 
-            kryptonLabel9.Location = new Point(182, 150);
+            kryptonLabel9.Location = new Point(159, 112);
+            kryptonLabel9.Margin = new Padding(3, 2, 3, 2);
             kryptonLabel9.Name = "kryptonLabel9";
-            kryptonLabel9.Size = new Size(136, 31);
+            kryptonLabel9.Size = new Size(119, 23);
             kryptonLabel9.StateCommon.ShortText.Color1 = Color.Navy;
             kryptonLabel9.TabIndex = 196;
             kryptonLabel9.Values.Text = "xxx-xxx";
@@ -164,9 +113,9 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(58, 244);
+            label5.Location = new Point(51, 183);
             label5.Name = "label5";
-            label5.Size = new Size(112, 24);
+            label5.Size = new Size(91, 20);
             label5.TabIndex = 194;
             label5.Text = "Monto Inicial: ";
             // 
@@ -176,9 +125,9 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(55, 197);
+            label3.Location = new Point(48, 148);
             label3.Name = "label3";
-            label3.Size = new Size(87, 24);
+            label3.Size = new Size(70, 20);
             label3.TabIndex = 193;
             label3.Text = "ID Cliente:";
             // 
@@ -188,9 +137,9 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(54, 150);
+            label2.Location = new Point(47, 112);
             label2.Name = "label2";
-            label2.Size = new Size(85, 24);
+            label2.Size = new Size(68, 20);
             label2.TabIndex = 192;
             label2.Text = "ID Deuda:";
             // 
@@ -200,33 +149,39 @@
             label1.BackColor = Color.SkyBlue;
             label1.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(84, 68);
+            label1.Location = new Point(74, 51);
             label1.Name = "label1";
-            label1.Size = new Size(125, 24);
+            label1.Size = new Size(105, 20);
             label1.TabIndex = 191;
             label1.Text = "Agregar Deudor";
             label1.Click += label1_Click;
             // 
             // kryptonLabel8
             // 
-            kryptonLabel8.Location = new Point(56, 232);
+            kryptonLabel8.Location = new Point(49, 174);
+            kryptonLabel8.Margin = new Padding(3, 2, 3, 2);
             kryptonLabel8.Name = "kryptonLabel8";
-            kryptonLabel8.Size = new Size(136, 31);
+            kryptonLabel8.Size = new Size(119, 23);
             kryptonLabel8.TabIndex = 190;
             kryptonLabel8.Values.Text = "";
             // 
             // kryptonMonthCalendar1
             // 
-            kryptonMonthCalendar1.Location = new Point(373, 113);
+            kryptonMonthCalendar1.Enabled = false;
+            kryptonMonthCalendar1.Location = new Point(341, 85);
+            kryptonMonthCalendar1.Margin = new Padding(3, 2, 3, 2);
             kryptonMonthCalendar1.Name = "kryptonMonthCalendar1";
-            kryptonMonthCalendar1.Size = new Size(293, 218);
+            kryptonMonthCalendar1.Size = new Size(230, 182);
             kryptonMonthCalendar1.StateCheckedNormal.Day.Border.Rounding = 10F;
             kryptonMonthCalendar1.TabIndex = 187;
+            kryptonMonthCalendar1.DateChanged += kryptonMonthCalendar1_DateChanged;
+            kryptonMonthCalendar1.MouseDown += kryptonMonthCalendar1_MouseDown;
             // 
             // kryptonGroup1
             // 
-            kryptonGroup1.Location = new Point(64, 51);
-            kryptonGroup1.Size = new Size(165, 59);
+            kryptonGroup1.Location = new Point(56, 38);
+            kryptonGroup1.Margin = new Padding(3, 2, 3, 2);
+            kryptonGroup1.Size = new Size(144, 44);
             kryptonGroup1.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroup1.StateCommon.Border.Rounding = 70F;
             kryptonGroup1.TabIndex = 186;
@@ -235,46 +190,51 @@
             // 
             panel1.BackColor = Color.Navy;
             panel1.Location = new Point(-1, 0);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1016, 24);
+            panel1.Size = new Size(889, 18);
             panel1.TabIndex = 185;
             // 
             // panel3
             // 
             panel3.BackColor = Color.Navy;
-            panel3.Location = new Point(-1, 377);
+            panel3.Location = new Point(-1, 283);
+            panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1027, 24);
+            panel3.Size = new Size(899, 18);
             panel3.TabIndex = 184;
             // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Navy;
             pictureBox1.Location = new Point(-1, 0);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(24, 401);
+            pictureBox1.Size = new Size(21, 301);
             pictureBox1.TabIndex = 183;
             pictureBox1.TabStop = false;
             // 
             // pictureBox4
             // 
             pictureBox4.BackColor = Color.Navy;
-            pictureBox4.Location = new Point(1002, 0);
+            pictureBox4.Location = new Point(877, 0);
+            pictureBox4.Margin = new Padding(3, 2, 3, 2);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(24, 401);
+            pictureBox4.Size = new Size(21, 301);
             pictureBox4.TabIndex = 182;
             pictureBox4.TabStop = false;
             // 
             // kryptonButton13
             // 
-            kryptonButton13.Location = new Point(915, 341);
+            kryptonButton13.Location = new Point(801, 256);
+            kryptonButton13.Margin = new Padding(3, 2, 3, 2);
             kryptonButton13.Name = "kryptonButton13";
             kryptonButton13.OverrideDefault.Back.Color1 = Color.Transparent;
             kryptonButton13.OverrideDefault.Back.Color2 = Color.Transparent;
             kryptonButton13.OverrideDefault.Border.Rounding = 40F;
             kryptonButton13.OverrideFocus.Back.Color1 = Color.White;
             kryptonButton13.OverrideFocus.Back.Color2 = Color.SkyBlue;
-            kryptonButton13.Size = new Size(107, 41);
+            kryptonButton13.Size = new Size(94, 31);
             kryptonButton13.StateCommon.Back.Color1 = Color.White;
             kryptonButton13.StateCommon.Back.Color2 = Color.SkyBlue;
             kryptonButton13.StateCommon.Border.Rounding = 40F;
@@ -292,13 +252,14 @@
             // 
             // kryptonButton3
             // 
-            kryptonButton3.Location = new Point(64, 305);
+            kryptonButton3.Location = new Point(94, 228);
+            kryptonButton3.Margin = new Padding(3, 2, 3, 2);
             kryptonButton3.Name = "kryptonButton3";
             kryptonButton3.OverrideDefault.Back.Color1 = Color.SkyBlue;
             kryptonButton3.OverrideDefault.Back.Color2 = Color.White;
             kryptonButton3.OverrideFocus.Back.Color1 = Color.SkyBlue;
             kryptonButton3.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton3.Size = new Size(121, 39);
+            kryptonButton3.Size = new Size(106, 29);
             kryptonButton3.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonButton3.StateCommon.Back.Color2 = Color.White;
             kryptonButton3.StateCommon.Border.Rounding = 20F;
@@ -312,48 +273,23 @@
             kryptonButton3.Values.DropDownArrowColor = Color.Empty;
             kryptonButton3.Values.Text = "Aceptar";
             // 
-            // kryptonButton2
-            // 
-            kryptonButton2.Location = new Point(197, 305);
-            kryptonButton2.Name = "kryptonButton2";
-            kryptonButton2.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            kryptonButton2.OverrideDefault.Back.Color2 = Color.White;
-            kryptonButton2.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            kryptonButton2.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton2.Size = new Size(121, 39);
-            kryptonButton2.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonButton2.StateCommon.Back.Color2 = Color.White;
-            kryptonButton2.StateCommon.Border.Rounding = 20F;
-            kryptonButton2.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton2.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton2.StateNormal.Back.Color1 = Color.SkyBlue;
-            kryptonButton2.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            kryptonButton2.StatePressed.Back.Color1 = Color.Transparent;
-            kryptonButton2.StatePressed.Back.Color2 = Color.Transparent;
-            kryptonButton2.TabIndex = 207;
-            kryptonButton2.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton2.Values.Text = "Cancelar";
-            // 
             // kryptonTextBox2
             // 
-            kryptonTextBox2.Location = new Point(182, 235);
+            kryptonTextBox2.Location = new Point(159, 176);
+            kryptonTextBox2.Margin = new Padding(3, 2, 3, 2);
             kryptonTextBox2.Name = "kryptonTextBox2";
-            kryptonTextBox2.Size = new Size(177, 33);
+            kryptonTextBox2.Size = new Size(155, 29);
             kryptonTextBox2.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonTextBox2.StateCommon.Border.Rounding = 10F;
             kryptonTextBox2.TabIndex = 209;
             // 
             // Agregar_Datos__Deudores_
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1027, 402);
+            ClientSize = new Size(899, 302);
             Controls.Add(kryptonTextBox2);
             Controls.Add(kryptonButton3);
-            Controls.Add(kryptonButton2);
-            Controls.Add(kryptonButton11);
-            Controls.Add(pictureBox18);
-            Controls.Add(button12);
             Controls.Add(label6);
             Controls.Add(label4);
             Controls.Add(kryptonMonthCalendar2);
@@ -371,9 +307,9 @@
             Controls.Add(pictureBox1);
             Controls.Add(pictureBox4);
             Controls.Add(kryptonButton13);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Agregar_Datos__Deudores_";
             Text = "Agregar_Datos__Deudores_";
-            ((System.ComponentModel.ISupportInitialize)pictureBox18).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -383,10 +319,6 @@
         }
 
         #endregion
-
-        private Krypton.Toolkit.KryptonButton kryptonButton11;
-        private PictureBox pictureBox18;
-        private Button button12;
         private Label label6;
         private Label label4;
         private Krypton.Toolkit.KryptonMonthCalendar kryptonMonthCalendar2;

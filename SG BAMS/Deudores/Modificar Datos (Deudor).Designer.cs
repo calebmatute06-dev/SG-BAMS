@@ -44,18 +44,13 @@
             fechafinal = new Krypton.Toolkit.KryptonMonthCalendar();
             label4 = new Label();
             label6 = new Label();
-            btnajsutes = new Krypton.Toolkit.KryptonButton();
-            pictureBox18 = new PictureBox();
-            btnotifiaciones = new Button();
             btnaceptar = new Krypton.Toolkit.KryptonButton();
-            btncancelar = new Krypton.Toolkit.KryptonButton();
             kryptonButton13 = new Krypton.Toolkit.KryptonButton();
             lblmontoinicial = new Krypton.Toolkit.KryptonLabel();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -64,32 +59,36 @@
             label1.BackColor = Color.SkyBlue;
             label1.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(81, 67);
+            label1.Location = new Point(71, 50);
             label1.Name = "label1";
-            label1.Size = new Size(151, 24);
+            label1.Size = new Size(124, 20);
             label1.TabIndex = 167;
             label1.Text = "Informacion deudor";
             // 
             // kryptonLabel8
             // 
-            kryptonLabel8.Location = new Point(56, 232);
+            kryptonLabel8.Location = new Point(49, 174);
+            kryptonLabel8.Margin = new Padding(3, 2, 3, 2);
             kryptonLabel8.Name = "kryptonLabel8";
-            kryptonLabel8.Size = new Size(136, 31);
+            kryptonLabel8.Size = new Size(119, 23);
             kryptonLabel8.TabIndex = 166;
             kryptonLabel8.Values.Text = "";
             // 
             // fechainicio
             // 
-            fechainicio.Location = new Point(373, 113);
+            fechainicio.Enabled = false;
+            fechainicio.Location = new Point(326, 85);
+            fechainicio.Margin = new Padding(3, 2, 3, 2);
             fechainicio.Name = "fechainicio";
-            fechainicio.Size = new Size(293, 218);
+            fechainicio.Size = new Size(230, 182);
             fechainicio.StateCheckedNormal.Day.Border.Rounding = 10F;
             fechainicio.TabIndex = 158;
             // 
             // kryptonGroup1
             // 
-            kryptonGroup1.Location = new Point(64, 51);
-            kryptonGroup1.Size = new Size(179, 59);
+            kryptonGroup1.Location = new Point(56, 38);
+            kryptonGroup1.Margin = new Padding(3, 2, 3, 2);
+            kryptonGroup1.Size = new Size(157, 44);
             kryptonGroup1.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroup1.StateCommon.Border.Rounding = 70F;
             kryptonGroup1.TabIndex = 155;
@@ -98,33 +97,37 @@
             // 
             panel1.BackColor = Color.Navy;
             panel1.Location = new Point(-1, 0);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1016, 24);
+            panel1.Size = new Size(889, 18);
             panel1.TabIndex = 154;
             // 
             // panel3
             // 
             panel3.BackColor = Color.Navy;
-            panel3.Location = new Point(-1, 377);
+            panel3.Location = new Point(-1, 283);
+            panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1027, 24);
+            panel3.Size = new Size(899, 18);
             panel3.TabIndex = 153;
             // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Navy;
             pictureBox1.Location = new Point(-1, 0);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(24, 401);
+            pictureBox1.Size = new Size(21, 301);
             pictureBox1.TabIndex = 152;
             pictureBox1.TabStop = false;
             // 
             // pictureBox4
             // 
             pictureBox4.BackColor = Color.Navy;
-            pictureBox4.Location = new Point(1002, 0);
+            pictureBox4.Location = new Point(877, 0);
+            pictureBox4.Margin = new Padding(3, 2, 3, 2);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(24, 401);
+            pictureBox4.Size = new Size(21, 301);
             pictureBox4.TabIndex = 151;
             pictureBox4.TabStop = false;
             // 
@@ -134,9 +137,9 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(54, 150);
+            label2.Location = new Point(47, 112);
             label2.Name = "label2";
-            label2.Size = new Size(77, 24);
+            label2.Size = new Size(63, 20);
             label2.TabIndex = 168;
             label2.Text = "ID deuda";
             // 
@@ -146,9 +149,9 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(55, 197);
+            label3.Location = new Point(48, 148);
             label3.Name = "label3";
-            label3.Size = new Size(69, 24);
+            label3.Size = new Size(57, 20);
             label3.TabIndex = 169;
             label3.Text = "Nombre";
             label3.Click += label3_Click;
@@ -159,35 +162,39 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(59, 244);
+            label5.Location = new Point(52, 183);
             label5.Name = "label5";
-            label5.Size = new Size(100, 24);
+            label5.Size = new Size(83, 20);
             label5.TabIndex = 171;
             label5.Text = "Monto inicial";
             // 
             // lblnombre
             // 
-            lblnombre.Location = new Point(184, 197);
+            lblnombre.Location = new Point(161, 148);
+            lblnombre.Margin = new Padding(3, 2, 3, 2);
             lblnombre.Name = "lblnombre";
-            lblnombre.Size = new Size(136, 31);
+            lblnombre.Size = new Size(119, 23);
             lblnombre.StateCommon.ShortText.Color1 = Color.Navy;
             lblnombre.TabIndex = 174;
             lblnombre.Values.Text = "xxx-xxx";
             // 
             // lbliddeuda
             // 
-            lbliddeuda.Location = new Point(185, 150);
+            lbliddeuda.Location = new Point(162, 112);
+            lbliddeuda.Margin = new Padding(3, 2, 3, 2);
             lbliddeuda.Name = "lbliddeuda";
-            lbliddeuda.Size = new Size(136, 31);
+            lbliddeuda.Size = new Size(119, 23);
             lbliddeuda.StateCommon.ShortText.Color1 = Color.Navy;
             lbliddeuda.TabIndex = 173;
             lbliddeuda.Values.Text = "xxx-xxx";
             // 
             // fechafinal
             // 
-            fechafinal.Location = new Point(687, 113);
+            fechafinal.Enabled = false;
+            fechafinal.Location = new Point(601, 85);
+            fechafinal.Margin = new Padding(3, 2, 3, 2);
             fechafinal.Name = "fechafinal";
-            fechafinal.Size = new Size(293, 218);
+            fechafinal.Size = new Size(230, 182);
             fechafinal.StateCheckedNormal.Day.Border.Rounding = 10F;
             fechafinal.TabIndex = 175;
             // 
@@ -197,9 +204,9 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(473, 86);
+            label4.Location = new Point(414, 64);
             label4.Name = "label4";
-            label4.Size = new Size(97, 24);
+            label4.Size = new Size(81, 20);
             label4.TabIndex = 177;
             label4.Text = "Fecha Inicio";
             // 
@@ -209,71 +216,22 @@
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(790, 86);
+            label6.Location = new Point(691, 64);
             label6.Name = "label6";
-            label6.Size = new Size(94, 24);
+            label6.Size = new Size(78, 20);
             label6.TabIndex = 178;
             label6.Text = "Fecha Final";
             // 
-            // btnajsutes
-            // 
-            btnajsutes.Location = new Point(899, 32);
-            btnajsutes.Name = "btnajsutes";
-            btnajsutes.OverrideDefault.Back.Color1 = Color.Transparent;
-            btnajsutes.OverrideDefault.Back.Color2 = Color.Transparent;
-            btnajsutes.OverrideDefault.Border.Rounding = 40F;
-            btnajsutes.OverrideFocus.Back.Color1 = Color.White;
-            btnajsutes.OverrideFocus.Back.Color2 = Color.SkyBlue;
-            btnajsutes.Size = new Size(98, 41);
-            btnajsutes.StateCommon.Back.Color1 = Color.White;
-            btnajsutes.StateCommon.Back.Color2 = Color.SkyBlue;
-            btnajsutes.StateCommon.Border.Rounding = 40F;
-            btnajsutes.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnajsutes.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnajsutes.StateNormal.Back.Color1 = Color.Transparent;
-            btnajsutes.StateNormal.Back.Color2 = Color.Transparent;
-            btnajsutes.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
-            btnajsutes.StatePressed.Back.Color1 = Color.Transparent;
-            btnajsutes.StatePressed.Back.Color2 = Color.Transparent;
-            btnajsutes.StateTracking.Border.Rounding = 40F;
-            btnajsutes.TabIndex = 181;
-            btnajsutes.Values.DropDownArrowColor = Color.Empty;
-            btnajsutes.Values.Text = "Ajustes";
-            // 
-            // pictureBox18
-            // 
-            pictureBox18.BackgroundImage = Properties.Resources.ajus;
-            pictureBox18.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox18.Location = new Point(844, 31);
-            pictureBox18.Name = "pictureBox18";
-            pictureBox18.Size = new Size(53, 49);
-            pictureBox18.TabIndex = 180;
-            pictureBox18.TabStop = false;
-            // 
-            // btnotifiaciones
-            // 
-            btnotifiaciones.BackColor = Color.Transparent;
-            btnotifiaciones.BackgroundImage = Properties.Resources.campana;
-            btnotifiaciones.BackgroundImageLayout = ImageLayout.Stretch;
-            btnotifiaciones.FlatAppearance.BorderColor = Color.White;
-            btnotifiaciones.FlatAppearance.BorderSize = 0;
-            btnotifiaciones.FlatStyle = FlatStyle.Flat;
-            btnotifiaciones.ForeColor = Color.Navy;
-            btnotifiaciones.Location = new Point(779, 31);
-            btnotifiaciones.Name = "btnotifiaciones";
-            btnotifiaciones.Size = new Size(59, 44);
-            btnotifiaciones.TabIndex = 179;
-            btnotifiaciones.UseVisualStyleBackColor = false;
-            // 
             // btnaceptar
             // 
-            btnaceptar.Location = new Point(59, 304);
+            btnaceptar.Location = new Point(71, 238);
+            btnaceptar.Margin = new Padding(3, 2, 3, 2);
             btnaceptar.Name = "btnaceptar";
             btnaceptar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnaceptar.OverrideDefault.Back.Color2 = Color.White;
             btnaceptar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnaceptar.OverrideFocus.Back.Color2 = Color.White;
-            btnaceptar.Size = new Size(121, 39);
+            btnaceptar.Size = new Size(106, 29);
             btnaceptar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnaceptar.StateCommon.Back.Color2 = Color.White;
             btnaceptar.StateCommon.Border.Rounding = 20F;
@@ -288,38 +246,17 @@
             btnaceptar.Values.Text = "Aceptar";
             btnaceptar.Click += btnaceptar_Click;
             // 
-            // btncancelar
-            // 
-            btncancelar.Location = new Point(192, 304);
-            btncancelar.Name = "btncancelar";
-            btncancelar.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btncancelar.OverrideDefault.Back.Color2 = Color.White;
-            btncancelar.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btncancelar.OverrideFocus.Back.Color2 = Color.White;
-            btncancelar.Size = new Size(121, 39);
-            btncancelar.StateCommon.Back.Color1 = Color.SkyBlue;
-            btncancelar.StateCommon.Back.Color2 = Color.White;
-            btncancelar.StateCommon.Border.Rounding = 20F;
-            btncancelar.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btncancelar.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btncancelar.StateNormal.Back.Color1 = Color.SkyBlue;
-            btncancelar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            btncancelar.StatePressed.Back.Color1 = Color.Transparent;
-            btncancelar.StatePressed.Back.Color2 = Color.Transparent;
-            btncancelar.TabIndex = 182;
-            btncancelar.Values.DropDownArrowColor = Color.Empty;
-            btncancelar.Values.Text = "Cancelar";
-            // 
             // kryptonButton13
             // 
-            kryptonButton13.Location = new Point(914, 341);
+            kryptonButton13.Location = new Point(800, 256);
+            kryptonButton13.Margin = new Padding(3, 2, 3, 2);
             kryptonButton13.Name = "kryptonButton13";
             kryptonButton13.OverrideDefault.Back.Color1 = Color.Transparent;
             kryptonButton13.OverrideDefault.Back.Color2 = Color.Transparent;
             kryptonButton13.OverrideDefault.Border.Rounding = 40F;
             kryptonButton13.OverrideFocus.Back.Color1 = Color.White;
             kryptonButton13.OverrideFocus.Back.Color2 = Color.SkyBlue;
-            kryptonButton13.Size = new Size(107, 41);
+            kryptonButton13.Size = new Size(94, 31);
             kryptonButton13.StateCommon.Back.Color1 = Color.White;
             kryptonButton13.StateCommon.Back.Color2 = Color.SkyBlue;
             kryptonButton13.StateCommon.Border.Rounding = 40F;
@@ -337,24 +274,21 @@
             // 
             // lblmontoinicial
             // 
-            lblmontoinicial.Location = new Point(184, 244);
+            lblmontoinicial.Location = new Point(161, 183);
+            lblmontoinicial.Margin = new Padding(3, 2, 3, 2);
             lblmontoinicial.Name = "lblmontoinicial";
-            lblmontoinicial.Size = new Size(136, 31);
+            lblmontoinicial.Size = new Size(119, 23);
             lblmontoinicial.StateCommon.ShortText.Color1 = Color.Navy;
             lblmontoinicial.TabIndex = 185;
             lblmontoinicial.Values.Text = "xxx-xxx";
             // 
             // Modificar_Datos__Deudor_
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1027, 398);
+            ClientSize = new Size(899, 298);
             Controls.Add(lblmontoinicial);
             Controls.Add(btnaceptar);
-            Controls.Add(btncancelar);
-            Controls.Add(btnajsutes);
-            Controls.Add(pictureBox18);
-            Controls.Add(btnotifiaciones);
             Controls.Add(label6);
             Controls.Add(label4);
             Controls.Add(fechafinal);
@@ -372,6 +306,7 @@
             Controls.Add(pictureBox1);
             Controls.Add(pictureBox4);
             Controls.Add(kryptonButton13);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Modificar_Datos__Deudor_";
             Text = "Modificar_Datos__Deudor_";
             Load += Modificar_Datos__Deudor__Load;
@@ -379,7 +314,6 @@
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox18).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -402,9 +336,6 @@
         private Krypton.Toolkit.KryptonMonthCalendar fechafinal;
         private Label label4;
         private Label label6;
-        private Krypton.Toolkit.KryptonButton btnajsutes;
-        private PictureBox pictureBox18;
-        private Button btnotifiaciones;
         private Krypton.Toolkit.KryptonButton btnaceptar;
         private Krypton.Toolkit.KryptonButton btncancelar;
         private Krypton.Toolkit.KryptonButton kryptonButton13;
