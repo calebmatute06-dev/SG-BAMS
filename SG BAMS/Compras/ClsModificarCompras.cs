@@ -107,5 +107,27 @@ namespace SG_BAMS.ProductoInventario
             }
             finally { conexion.Cerrar(); }
         }
+
+        //
+        public void ActualizarCabeceraCompra(int idCompra, int idProv, int idPago, DateTime fecha, string nota)
+        {
+            try
+            {
+                conexion.AbrirConexion();
+                string query = @"UPDATE Compra SET id_proveedor = @idProv, id_tipo_forma_pago = @idPago, 
+                         fecha_pedido = @fecha, desc_compra = @nota WHERE id_compra = @idC";
+
+                using (SqlCommand cmd = new SqlCommand(query, conexion.Conectar))
+                {
+                    cmd.Parameters.AddWithValue("@idProv", idProv);
+                    cmd.Parameters.AddWithValue("@idPago", idPago);
+                    cmd.Parameters.AddWithValue("@fecha", fecha);
+                    cmd.Parameters.AddWithValue("@nota", nota);
+                    cmd.Parameters.AddWithValue("@idC", idCompra);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            finally { conexion.Cerrar(); }
+        }
     }
 }

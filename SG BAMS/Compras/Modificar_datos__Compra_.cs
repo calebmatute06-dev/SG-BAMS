@@ -141,6 +141,14 @@ namespace SG_BAMS
         {
             try
             {
+                // 0. ACTUALIZAR CABECERA (Proveedor, Pago, Fecha, Nota)
+                int idProv = Convert.ToInt32(cmbProveedor.SelectedValue);
+                int idPago = Convert.ToInt32(cmbFormaPago.SelectedValue);
+                DateTime fecha = dtpFechaPedido.SelectionStart; // Captura la fecha del MonthCalendar
+                string nota = txtNotaDetalle.Text;
+
+                logic.ActualizarCabeceraCompra(idCompraAEditar, idProv, idPago, fecha, nota);
+
                 // 1. ELIMINAR productos borrados visualmente
                 foreach (int idEliminado in listaEliminados)
                 {
@@ -156,15 +164,19 @@ namespace SG_BAMS
                         int cant = Convert.ToInt32(fila.Cells["Cantidad"].Value);
                         decimal precio = Convert.ToDecimal(fila.Cells["Precio"].Value);
 
+                        // Esto ahora también disparará el stock con el nuevo Procedure
                         logic.GuardarCambiosDetalle(idCompraAEditar, idProd, cant, precio);
                     }
                 }
 
-                MessageBox.Show("¡Compra e Inventario sincronizados!");
+                MessageBox.Show("¡Datos de compra, productos e inventario actualizados con éxito!");
                 this.Close();
             }
-            catch (Exception ex) { MessageBox.Show("Error al guardar: " + ex.Message); }
+            catch 
+            (Exception ex) { MessageBox.Show("Error al guardar cambios: " + ex.Message); 
+            }
         }
+
 
         private void btnEliminarProducto_Click(object sender, EventArgs e)
         {

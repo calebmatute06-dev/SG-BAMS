@@ -37,7 +37,6 @@
             kryptonButton5 = new Krypton.Toolkit.KryptonButton();
             label8 = new Label();
             lblTotal = new Krypton.Toolkit.KryptonLabel();
-            label7 = new Label();
             label6 = new Label();
             label5 = new Label();
             label3 = new Label();
@@ -189,25 +188,13 @@
             // 
             // lblTotal
             // 
-            lblTotal.Location = new Point(758, 439);
+            lblTotal.Location = new Point(714, 455);
             lblTotal.Name = "lblTotal";
             lblTotal.Size = new Size(136, 31);
             lblTotal.StateCommon.ShortText.Color1 = Color.Navy;
             lblTotal.StateCommon.ShortText.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblTotal.TabIndex = 226;
             lblTotal.Values.Text = "L xx.xx";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.BackColor = Color.Transparent;
-            label7.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.ForeColor = Color.Navy;
-            label7.Location = new Point(712, 441);
-            label7.Name = "label7";
-            label7.Size = new Size(51, 24);
-            label7.TabIndex = 225;
-            label7.Text = "Total:";
             // 
             // label6
             // 
@@ -379,7 +366,6 @@
             Controls.Add(kryptonButton5);
             Controls.Add(label8);
             Controls.Add(lblTotal);
-            Controls.Add(label7);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label3);
@@ -417,7 +403,6 @@
         private Krypton.Toolkit.KryptonButton kryptonButton5;
         private Label label8;
         private Krypton.Toolkit.KryptonLabel lblTotal;
-        private Label label7;
         private Label label6;
         private Label label5;
         private Label label3;
