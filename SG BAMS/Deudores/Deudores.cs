@@ -21,6 +21,8 @@ namespace SG_BAMS
         {
             InitializeComponent();
             CargarGridDeudores();
+
+            this.txtBuscarNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscarNombre_KeyPress);
         }
 
         public void CargarGridDeudores()
@@ -105,7 +107,6 @@ namespace SG_BAMS
         {
             NotificacionesAdmin Notad = new NotificacionesAdmin();
             Notad.Show();
-            this.Close();
         }
 
         private void kryptonButton11_Click(object sender, EventArgs e)
@@ -267,6 +268,19 @@ namespace SG_BAMS
         private void pictureBox22_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtBuscarNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo permite letras, espacios y teclas de control (como Borrar)
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                // "Handled = true" cancela el evento (no escribe el carácter en el cuadro)
+                e.Handled = true;
+
+                // Opcional: Avisar al usuario por qué no se escribió el número
+                // MessageBox.Show("Solo se permiten letras para el nombre del deudor.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

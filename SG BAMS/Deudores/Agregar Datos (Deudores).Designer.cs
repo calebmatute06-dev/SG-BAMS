@@ -92,7 +92,7 @@
             kryptonLabel10.Location = new Point(159, 148);
             kryptonLabel10.Margin = new Padding(3, 2, 3, 2);
             kryptonLabel10.Name = "kryptonLabel10";
-            kryptonLabel10.Size = new Size(119, 23);
+            kryptonLabel10.Size = new Size(119, 26);
             kryptonLabel10.StateCommon.ShortText.Color1 = Color.Navy;
             kryptonLabel10.TabIndex = 197;
             kryptonLabel10.Values.Text = "xxx-xxx";
@@ -102,7 +102,7 @@
             kryptonLabel9.Location = new Point(159, 112);
             kryptonLabel9.Margin = new Padding(3, 2, 3, 2);
             kryptonLabel9.Name = "kryptonLabel9";
-            kryptonLabel9.Size = new Size(119, 23);
+            kryptonLabel9.Size = new Size(119, 26);
             kryptonLabel9.StateCommon.ShortText.Color1 = Color.Navy;
             kryptonLabel9.TabIndex = 196;
             kryptonLabel9.Values.Text = "xxx-xxx";
@@ -278,7 +278,7 @@
             kryptonTextBox2.Location = new Point(159, 176);
             kryptonTextBox2.Margin = new Padding(3, 2, 3, 2);
             kryptonTextBox2.Name = "kryptonTextBox2";
-            kryptonTextBox2.Size = new Size(155, 29);
+            kryptonTextBox2.Size = new Size(155, 35);
             kryptonTextBox2.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonTextBox2.StateCommon.Border.Rounding = 10F;
             kryptonTextBox2.TabIndex = 209;

@@ -60,7 +60,7 @@ namespace SG_BAMS.Login
 
                     case 2:
                         {
-                            LoginFacial validacionFacial = new LoginFacial();
+                            /*LoginFacial validacionFacial = new LoginFacial();
                             validacionFacial.UsuarioAValidar = txtUsu.Text;
 
                            
@@ -73,7 +73,7 @@ namespace SG_BAMS.Login
                             else
                             {
                                 MessageBox.Show("Validación facial fallida. Acceso denegado.", "Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
+                            }*/
                         }
                         break;
 
