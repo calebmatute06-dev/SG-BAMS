@@ -29,111 +29,12 @@ namespace SG_BAMS
         {
             ClsDeuda objetoDeuda = new ClsDeuda();
             dtDeudores = objetoDeuda.ListarDeudores();
-
-            if (dtDeudores == null || dtDeudores.Rows.Count == 0)
-            {
-                MessageBox.Show("La base de datos no devolvió registros.");
-            }
-
             dgvDeudores.DataSource = dtDeudores;
-        }
-
-        // --- NAVEGACIÓN DEL MENÚ (Respetando tus nombres exactos) ---
-
-        private void kryptonButton9_Click(object sender, EventArgs e)
-        {
-            MenuPrincipalAdm Menad = new MenuPrincipalAdm();
-            Menad.Show();
-            this.Close();
-        }
-
-        private void kryptonButton8_Click(object sender, EventArgs e)
-        {
-            FacturasAdm factad = new FacturasAdm();
-            factad.Show();
-            this.Close();
-        }
-
-        private void kryptonButton7_Click(object sender, EventArgs e)
-        {
-            Compras Comp = new Compras();
-            Comp.Show();
-            this.Close();
-        }
-
-        private void kryptonButton6_Click(object sender, EventArgs e)
-        {
-            ClientesAdm Clientad = new ClientesAdm();
-            Clientad.Show();
-            this.Close();
-        }
-
-        private void kryptonButton5_Click(object sender, EventArgs e)
-        {
-            InventarioAdmin Invad = new InventarioAdmin();
-            Invad.Show();
-            this.Close();
-        }
-
-        private void kryptonButton4_Click(object sender, EventArgs e)
-        {
-            ProveedoresAdmin Proad = new ProveedoresAdmin();
-            Proad.Show();
-            this.Close();
-        }
-
-        private void btnReporte_Click(object sender, EventArgs e)
-        {
-            ReporteAdmin Repoad = new ReporteAdmin();
-            Repoad.Show();
-            this.Close();
-        }
-
-        private void kryptonButton3_Click(object sender, EventArgs e)
-        {
-            BitacoraAdmin Bit = new BitacoraAdmin();
-            Bit.Show();
-            this.Close();
-        }
-
-        private void btnCerrarSesion_Click(object sender, EventArgs e)
-        {
-            SG_BAMS.Login.Login log = new SG_BAMS.Login.Login();
-            log.Show();
-            this.Close();
-        }
-
-        private void kryptonButton1_Click(object sender, EventArgs e)
-        {
-            Perfil Per = new Perfil();
-            Per.Show();
-        }
-
-        private void button12_Click(object sender, EventArgs e)
-        {
-            NotificacionesAdmin Notad = new NotificacionesAdmin();
-            Notad.Show();
-        }
-
-        private void kryptonButton11_Click(object sender, EventArgs e)
-        {
-            Ajustes Ajus = new Ajustes();
-            Ajus.Show();
-        }
-
-        private void kryptonButton2_Click(object sender, EventArgs e)
-        {
-            this.Show();
         }
 
         // --- LÓGICA DE BÚSQUEDA Y PAGOS ---
 
         // El botón de la lupa / buscar
-        private void kryptonButton12_Click(object sender, EventArgs e)
-        {
-            FiltrarDeudores();
-        }
-
         private void txtBuscarNombre_TextChanged(object sender, EventArgs e)
         {
             FiltrarDeudores();
@@ -221,65 +122,6 @@ namespace SG_BAMS
         private void timer1_Tick(object sender, EventArgs e) { }
         private void dgvDeudores_DoubleClick(object sender, EventArgs e) { }
 
-        private void btnreporte2_Click(object sender, EventArgs e)
-        {
-            BitacoraAdmin Bit = new BitacoraAdmin();
-            Bit.Show();
-            this.Close();
-        }
-
-        private void btndeudores2_Click(object sender, EventArgs e)
-        {
-            this.Refresh();
-        }
-
-        private void btnproveedores2_Click(object sender, EventArgs e)
-        {
-            ProveedoresAdmin Pro = new ProveedoresAdmin();
-            Pro.Show();
-            this.Close();
-        }
-
-        private void btninventario2_Click(object sender, EventArgs e)
-        {
-            InventarioAdmin inventarioAdmin = new InventarioAdmin();
-            inventarioAdmin.Show();
-            this.Close();
-        }
-
-        private void btnclientes2_Click(object sender, EventArgs e)
-        {
-            ClientesAdm Clien = new ClientesAdm();
-            Clien.Show();
-            this.Close();
-        }
-
-        private void btncompras2_Click(object sender, EventArgs e)
-        {
-            Compras Comp = new Compras();
-            Comp.Show();
-            this.Close();
-        }
-
-        private void btnfacturas2_Click(object sender, EventArgs e)
-        {
-            FacturasAdm Fact = new FacturasAdm();
-            Fact.Show();
-            this.Close();
-        }
-
-        private void kryptonButton2_Click_1(object sender, EventArgs e)
-        {
-            MenuPrincipalAdm Men = new MenuPrincipalAdm();
-            Men.Show();
-            this.Close();
-        }
-
-        private void pictureBox22_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void txtBuscarNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Solo permite letras, espacios y teclas de control (como Borrar)
@@ -291,6 +133,58 @@ namespace SG_BAMS
                 // Opcional: Avisar al usuario por qué no se escribió el número
                 // MessageBox.Show("Solo se permiten letras para el nombre del deudor.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+        // --- NAVEGACIÓN DEL MENÚ (Respetando tus nombres exactos) ---
+        private void btnAjustes_Click(object sender, EventArgs e)
+        {
+            Ajustes aju = new Ajustes();
+            aju.Show();
+        }
+
+        private void btnNoti(object sender, EventArgs e)
+        {
+            NotificacionesEmp Noti = new NotificacionesEmp();
+            Noti.Show();
+        }
+
+        private void btnMenuEmp_Click(object sender, EventArgs e)
+        {
+            MenuPrincipalEmp Menad = new MenuPrincipalEmp();
+            Menad.Show();
+            this.Close();
+        }
+
+        private void btnFacturasEmp_Click(object sender, EventArgs e)
+        {
+            FacturasEmp factad = new FacturasEmp();
+            factad.Show();
+            this.Close();
+        }
+
+        private void btnClientesEmp_Click(object sender, EventArgs e)
+        {
+            ClientesEmp clientesEmp = new ClientesEmp();
+            clientesEmp.Show();
+            this.Close();
+        }
+
+        private void btnInventarioEmp_Click(object sender, EventArgs e)
+        {
+            InventarioEmp inventarioEmp = new InventarioEmp();
+            inventarioEmp.Show();
+            this.Close();
+        }
+
+        private void btnPerfil_Click(object sender, EventArgs e)
+        {
+            Perfil Per = new Perfil();
+            Per.Show();
+        }
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            SG_BAMS.Login.Login log = new SG_BAMS.Login.Login();
+            log.Show();
+            this.Close();
         }
     }
 }
