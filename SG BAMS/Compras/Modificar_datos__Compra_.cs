@@ -172,8 +172,10 @@ namespace SG_BAMS
                 MessageBox.Show("¡Datos de compra, productos e inventario actualizados con éxito!");
                 this.Close();
             }
-            catch 
-            (Exception ex) { MessageBox.Show("Error al guardar cambios: " + ex.Message); 
+            catch
+            (Exception ex)
+            {
+                MessageBox.Show("Error al guardar cambios: " + ex.Message);
             }
         }
 
@@ -220,6 +222,11 @@ namespace SG_BAMS
                     }
                 }
             }
+        }
+
+        private void kryptonButton4_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
         }
     }
 }

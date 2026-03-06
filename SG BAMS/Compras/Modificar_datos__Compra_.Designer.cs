@@ -150,6 +150,7 @@
             kryptonButton4.TabIndex = 229;
             kryptonButton4.Values.DropDownArrowColor = Color.Empty;
             kryptonButton4.Values.Text = "Cancelar";
+            kryptonButton4.Click += kryptonButton4_Click;
             // 
             // kryptonButton5
             // 
