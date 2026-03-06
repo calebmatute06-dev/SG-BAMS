@@ -75,7 +75,7 @@ namespace SG_BAMS
             else
             {
                 
-                Deudores deudores = new Deudores();
+                DeudoresAdmin deudores = new DeudoresAdmin();
                 deudores.Show();
             }
 

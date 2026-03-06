@@ -60,15 +60,16 @@ namespace SG_BAMS.Login
 
                     case 2:
                         {
+                            MessageBox.Show("Login correcto. ¡Bienvenido Empleado!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            new MenuPrincipalEmp().Show();
+                            this.Hide();
                             /*LoginFacial validacionFacial = new LoginFacial();
                             validacionFacial.UsuarioAValidar = txtUsu.Text;
 
                            
                             if (validacionFacial.ShowDialog() == DialogResult.OK)
                             {
-                                MessageBox.Show("Login correcto. ¡Bienvenido Empleado!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                new MenuPrincipalEmp().Show();
-                                this.Hide();
+                                
                             }
                             else
                             {

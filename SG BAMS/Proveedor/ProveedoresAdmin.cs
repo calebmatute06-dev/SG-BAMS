@@ -123,7 +123,7 @@ namespace SG_BAMS.Proveedor
 
         private void btnDeudores_Click(object sender, EventArgs e)
         {
-            Deudores deudores = new Deudores();
+            DeudoresAdmin deudores = new DeudoresAdmin();
             deudores.Show();
             this.Hide();
         }

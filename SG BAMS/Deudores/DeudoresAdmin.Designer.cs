@@ -1,6 +1,6 @@
 ﻿namespace SG_BAMS
 {
-    partial class Deudores
+    partial class DeudoresAdmin
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Deudores));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DeudoresAdmin));
             label1 = new Label();
             kryptonButton11 = new Krypton.Toolkit.KryptonButton();
             pictureBox18 = new PictureBox();
@@ -80,7 +80,6 @@
             dgvDeudores = new Krypton.Toolkit.KryptonDataGridView();
             pictureBox19 = new PictureBox();
             txtBuscarNombre = new TextBox();
-            pictureBox22 = new PictureBox();
             kryptonGroup5 = new Krypton.Toolkit.KryptonGroup();
             kryptonButton15 = new Krypton.Toolkit.KryptonButton();
             pictureBox17 = new PictureBox();
@@ -112,7 +111,6 @@
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvDeudores).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox19).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox22).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox17).BeginInit();
@@ -873,24 +871,15 @@
             // 
             // txtBuscarNombre
             // 
-            txtBuscarNombre.Location = new Point(510, 129);
+            txtBuscarNombre.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtBuscarNombre.ForeColor = Color.Navy;
+            txtBuscarNombre.Location = new Point(509, 126);
             txtBuscarNombre.Margin = new Padding(3, 2, 3, 2);
             txtBuscarNombre.Name = "txtBuscarNombre";
-            txtBuscarNombre.Size = new Size(796, 23);
+            txtBuscarNombre.Size = new Size(851, 29);
             txtBuscarNombre.TabIndex = 153;
             txtBuscarNombre.TextChanged += txtBuscarNombre_TextChanged;
             txtBuscarNombre.KeyPress += txtBuscarNombre_KeyPress;
-            // 
-            // pictureBox22
-            // 
-            pictureBox22.BackColor = Color.SkyBlue;
-            pictureBox22.Location = new Point(1311, 124);
-            pictureBox22.Margin = new Padding(3, 2, 3, 2);
-            pictureBox22.Name = "pictureBox22";
-            pictureBox22.Size = new Size(43, 29);
-            pictureBox22.TabIndex = 152;
-            pictureBox22.TabStop = false;
-            pictureBox22.Click += pictureBox22_Click;
             // 
             // kryptonGroup5
             // 
@@ -979,7 +968,6 @@
             Controls.Add(pictureBox17);
             Controls.Add(kryptonButton15);
             Controls.Add(txtBuscarNombre);
-            Controls.Add(pictureBox22);
             Controls.Add(kryptonGroup5);
             Controls.Add(pictureBox19);
             Controls.Add(dgvDeudores);
@@ -1026,7 +1014,6 @@
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvDeudores).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox19).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox22).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox17).EndInit();
@@ -1080,7 +1067,6 @@
         private Krypton.Toolkit.KryptonDataGridView dgvDeudores;
         private PictureBox pictureBox19;
         private TextBox txtBuscarNombre;
-        private PictureBox pictureBox22;
         private Krypton.Toolkit.KryptonGroup kryptonGroup5;
         private Krypton.Toolkit.KryptonButton kryptonButton15;
         private Krypton.Toolkit.KryptonButton btnreporte2;

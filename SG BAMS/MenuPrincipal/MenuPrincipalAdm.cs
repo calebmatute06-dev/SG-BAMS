@@ -283,7 +283,7 @@ namespace SG_BAMS
 
         private void btndeudores_Click(object sender, EventArgs e)
         {
-            Deudores Deu = new Deudores();
+            DeudoresAdmin Deu = new DeudoresAdmin();
             Deu.Show();
             this.Hide();
         }
@@ -326,7 +326,7 @@ namespace SG_BAMS
 
         private void btndeudores2_Click(object sender, EventArgs e)
         {
-            Deudores Deu = new Deudores();
+            DeudoresAdmin Deu = new DeudoresAdmin();
             Deu.Show();
             this.Hide();
         }

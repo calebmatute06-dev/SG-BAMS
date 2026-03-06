@@ -12,12 +12,12 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
-    public partial class Deudores : Form
+    public partial class DeudoresAdmin : Form
     {
         // Variable global para manejar el filtrado
         private DataTable dtDeudores;
 
-        public Deudores()
+        public DeudoresAdmin()
         {
             InitializeComponent();
             CargarGridDeudores();

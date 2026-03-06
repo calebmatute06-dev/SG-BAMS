@@ -189,7 +189,7 @@ namespace SG_BAMS
 
         private void BtnDeudores_Click(object sender, EventArgs e)
         {
-            Deudores DU = new Deudores();
+            DeudoresAdmin DU = new DeudoresAdmin();
             DU.Show();
             this.Hide();
         }
