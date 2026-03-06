@@ -180,5 +180,34 @@ namespace SG_BAMS
                 }
             }
         }
+
+        private void kryptonButton5_Click(object sender, EventArgs e)
+        {
+            using (Agregar_Producto_Mod frm = new Agregar_Producto_Mod())
+            {
+                // Le pasamos el ID al formulario para que pueda hacer el INSERT directo
+                frm.IdCompraActual = idCompraAEditar.ToString();
+
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        // RECARGA DE DATOS: Usamos tu clase 'logic' y el ID actual
+                        // Esto actualiza el DataGridView con el nuevo producto guardado
+                        dgvProductosCompraMod.DataSource = logic.ObtenerDetalleCompra(idCompraAEditar);
+
+                        // Volvemos a aplicar los permisos de edición (Cantidad y Precio)
+                        ConfigurarEdicionGrid();
+
+                        // Actualizamos el total general en la etiqueta L. xx.xx
+                        ActualizarTotalGeneral();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al actualizar la lista: " + ex.Message);
+                    }
+                }
+            }
+        }
     }
 }

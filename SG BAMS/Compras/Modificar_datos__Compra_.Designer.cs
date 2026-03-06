@@ -173,6 +173,7 @@
             kryptonButton5.TabIndex = 228;
             kryptonButton5.Values.DropDownArrowColor = Color.Empty;
             kryptonButton5.Values.Text = "Agregar Producto";
+            kryptonButton5.Click += kryptonButton5_Click;
             // 
             // label8
             // 
