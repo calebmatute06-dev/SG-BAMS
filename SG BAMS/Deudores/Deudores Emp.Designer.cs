@@ -573,6 +573,7 @@
             kryptonButton15.TabIndex = 167;
             kryptonButton15.Values.DropDownArrowColor = Color.Empty;
             kryptonButton15.Values.Text = "Pago Deuda";
+            kryptonButton15.Click += kryptonButton15_Click;
             // 
             // txtBuscarNombre
             // 
@@ -583,6 +584,7 @@
             txtBuscarNombre.Name = "txtBuscarNombre";
             txtBuscarNombre.Size = new Size(851, 29);
             txtBuscarNombre.TabIndex = 166;
+            txtBuscarNombre.KeyPress += txtBuscarNombre_KeyPress;
             // 
             // kryptonGroup5
             // 
@@ -617,6 +619,9 @@
             dgvDeudores.RowHeadersWidth = 51;
             dgvDeudores.Size = new Size(1032, 377);
             dgvDeudores.TabIndex = 163;
+            dgvDeudores.CellContentClick += kryptonDataGridView1_CellContentClick;
+            dgvDeudores.CellDoubleClick += dgvDeudores_CellDoubleClick;
+            dgvDeudores.DoubleClick += dgvDeudores_DoubleClick;
             // 
             // kryptonGroup1
             // 
