@@ -77,9 +77,7 @@ namespace SG_BAMS
 
         private void btnReporte_Click(object sender, EventArgs e)
         {
-            ReporteAdmin Repoad = new ReporteAdmin();
-            Repoad.Show();
-            this.Close();
+           
         }
 
         private void btnreporte2_Click(object sender, EventArgs e)

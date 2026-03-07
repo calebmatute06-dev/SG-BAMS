@@ -108,9 +108,7 @@ namespace SG_BAMS
 
         private void btnReporte_Click(object sender, EventArgs e)
         {
-            ReporteAdmin reporteAdmin = new ReporteAdmin();
-            reporteAdmin.Show();
-            this.Hide();
+            
         }
 
         private void btnBitacora_Click(object sender, EventArgs e)

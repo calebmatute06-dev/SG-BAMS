@@ -130,9 +130,7 @@ namespace SG_BAMS.Proveedor
 
         private void btnReporte_Click(object sender, EventArgs e)
         {
-            ReporteAdmin reporte = new ReporteAdmin();
-            reporte.Show();
-            this.Hide();
+            
         }
 
         private void dgvProveedor_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

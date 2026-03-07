@@ -196,8 +196,7 @@ namespace SG_BAMS
 
         private void BtnReporte_Click(object sender, EventArgs e)
         {
-            ReporteAdmin RA = new ReporteAdmin();
-            RA.Show();
+            
         }
 
         private void BtnBitacora_Click(object sender, EventArgs e)
@@ -220,9 +219,7 @@ namespace SG_BAMS
 
         private void btnReportes_Click(object sender, EventArgs e)
         {
-            ReporteAdmin reporteAdmin = new ReporteAdmin();
-            reporteAdmin.Show();
-            this.Hide();
+            
         }
     }
 }

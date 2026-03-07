@@ -129,9 +129,7 @@ namespace SG_BAMS.Bitacora
 
         private void btnReporte_Click(object sender, EventArgs e)
         {
-            ReporteAdmin reporte = new ReporteAdmin();
-            reporte.Show();
-            this.Hide();
+            
         }
 
         private void btnExportar_Click(object sender, EventArgs e)

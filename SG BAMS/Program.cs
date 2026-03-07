@@ -1,6 +1,7 @@
 using SG_BAMS.Bitacora;
 using SG_BAMS.Login;
 using SG_BAMS.Proveedor;
+using SG_BAMS.Reporte;
 
 namespace SG_BAMS
 {
@@ -15,7 +16,7 @@ namespace SG_BAMS
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new ReporteAdmin());
+            Application.Run(new ReportesAdmin());
         }
     }
 } 
