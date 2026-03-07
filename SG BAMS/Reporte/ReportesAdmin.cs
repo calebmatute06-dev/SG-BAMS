@@ -23,21 +23,19 @@ namespace SG_BAMS.Reporte
 
         private void ReportesAdmin_Load(object sender, EventArgs e)
         {
-
+            dtpHasta.Value = DateTime.Now;
+            dtpDesde.Value = DateTime.Now.AddDays(-30);
         }
 
         private void btnVentas_Click(object sender, EventArgs e)
         {
             try
             {
-                // Llamamos al método de ventas pasando las fechas de los controles DateTimePicker
-                // Asumo que tus controles se llaman dtpDesde y dtpHasta
+
                 DataTable datos = objReporte.ReporteVentas(dtpDesde.Value, dtpHasta.Value);
 
-                // Asignamos el resultado al DataGridView
                 dgvReporte.DataSource = datos;
 
-                // Opcional: Ajustar el ancho de las columnas automáticamente al contenido
                 dgvReporte.AutoResizeColumns();
             }
             catch (Exception ex)
@@ -50,7 +48,6 @@ namespace SG_BAMS.Reporte
         {
             try
             {
-                // Llamamos al método de compras pasando los valores de tus DateTimePicker
                 DataTable datos = objReporte.ReporteCompras(dtpDesde.Value, dtpHasta.Value);
 
                 dgvReporte.DataSource = datos;
@@ -69,7 +66,6 @@ namespace SG_BAMS.Reporte
                 DataTable datos = objReporte.ReporteDeudores();
                 dgvReporte.DataSource = datos;
 
-                // 2. Quitamos los guiones bajos de las etiquetas (HeaderText)
                 if (dgvReporte.Columns.Contains("Fecha_Inicio"))
                     dgvReporte.Columns["Fecha_Inicio"].HeaderText = "Fecha de Inicio";
 
@@ -79,7 +75,6 @@ namespace SG_BAMS.Reporte
                 if (dgvReporte.Columns.Contains("Saldo_Pendiente"))
                     dgvReporte.Columns["Saldo_Pendiente"].HeaderText = "Saldo a Cobrar";
 
-                // 3. Ordenamos automáticamente de mayor a menor deuda
                 if (dgvReporte.Columns.Contains("Saldo_Pendiente"))
                 {
                     dgvReporte.Sort(dgvReporte.Columns["Saldo_Pendiente"], System.ComponentModel.ListSortDirection.Descending);
@@ -126,20 +121,19 @@ namespace SG_BAMS.Reporte
         {
             if (dgvReporte.Columns[e.ColumnIndex].Name == "Stock_Actual" && e.Value != null)
             {
-                // Convertimos el valor de la celda a número entero
                 if (int.TryParse(e.Value.ToString(), out int stock))
                 {
-                    if (stock == 0) // ROJO: Sin existencias
+                    if (stock == 0)
                     {
                         e.CellStyle.BackColor = Color.FromArgb(255, 192, 192);
                         e.CellStyle.ForeColor = Color.DarkRed;
                     }
-                    else if (stock <= 10) // NARANJA: Stock bajo
+                    else if (stock <= 10) 
                     {
                         e.CellStyle.BackColor = Color.FromArgb(255, 224, 192);
                         e.CellStyle.ForeColor = Color.Brown;
                     }
-                    else // VERDE: Stock suficiente
+                    else
                     {
                         e.CellStyle.BackColor = Color.FromArgb(192, 255, 192);
                         e.CellStyle.ForeColor = Color.DarkGreen;

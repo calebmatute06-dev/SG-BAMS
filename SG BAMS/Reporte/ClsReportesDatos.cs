@@ -27,7 +27,6 @@ namespace SG_BAMS.Reporte
 
         public DataTable ReporteDeudores()
         {
-            // Eliminamos los parámetros y el WHERE para traer la lista completa
             string query = "SELECT * FROM Vista_Reporte_Deudores_Final";
             return EjecutarConsulta(query);
         }
@@ -49,7 +48,6 @@ namespace SG_BAMS.Reporte
             }
             catch (Exception ex)
             {
-                // Lanza el error para que puedas capturarlo en el Formulario con un MessageBox
                 throw new Exception("Error al consultar la base de datos: " + ex.Message);
             }
             finally
