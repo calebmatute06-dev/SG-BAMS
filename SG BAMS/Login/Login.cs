@@ -40,7 +40,10 @@ namespace SG_BAMS.Login
                 {
                     case 1:
                         {
-                            LoginFacial validacionFacial = new LoginFacial();
+                            MessageBox.Show("Login correcto. ¡Bienvenido Administrador!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            new MenuPrincipalAdm().Show();
+                            this.Hide();
+                            /*LoginFacial validacionFacial = new LoginFacial();
                             validacionFacial.UsuarioAValidar = txtUsu.Text;
 
                             
@@ -53,13 +56,17 @@ namespace SG_BAMS.Login
                             else
                             {
                                 MessageBox.Show("Validación facial fallida. Acceso denegado.", "Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
+                            }*/
                         }
                         break;
 
                     case 2:
                         {
-                            LoginFacial validacionFacial = new LoginFacial();
+                            MessageBox.Show("Login correcto. ¡Bienvenido Empleado!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            new MenuPrincipalEmp().Show();
+                            this.Hide();
+
+                            /*LoginFacial validacionFacial = new LoginFacial();
                             validacionFacial.UsuarioAValidar = txtUsu.Text;
 
                            
@@ -72,7 +79,7 @@ namespace SG_BAMS.Login
                             else
                             {
                                 MessageBox.Show("Validación facial fallida. Acceso denegado.", "Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
+                            }*/
                         }
                         break;
 

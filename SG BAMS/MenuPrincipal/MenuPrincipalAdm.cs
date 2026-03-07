@@ -344,5 +344,12 @@ namespace SG_BAMS
             Admin.Show();
             this.Hide();
         }
+
+        private void BtnClientes_Click(object sender, EventArgs e)
+        {
+            ClientesAdm clientes = new ClientesAdm();
+            clientes.Show();
+            this.Hide();
+        }
     }
 }

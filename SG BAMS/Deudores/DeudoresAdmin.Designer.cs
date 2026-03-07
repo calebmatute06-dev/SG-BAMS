@@ -86,6 +86,7 @@
             label3 = new Label();
             kryptonGroup2 = new Krypton.Toolkit.KryptonGroup();
             label4 = new Label();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
@@ -957,11 +958,23 @@
             label4.TabIndex = 158;
             label4.Text = "Buscar";
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.Navy;
+            label5.Location = new Point(1338, 629);
+            label5.Name = "label5";
+            label5.Size = new Size(78, 32);
+            label5.TabIndex = 53;
+            label5.Text = "BAMS";
+            // 
             // DeudoresAdmin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1443, 685);
+            Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(kryptonGroup2);
             Controls.Add(label3);
@@ -1081,5 +1094,6 @@
         private Label label3;
         private Krypton.Toolkit.KryptonGroup kryptonGroup2;
         private Label label4;
+        private Label label5;
     }
 }

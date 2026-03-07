@@ -69,6 +69,7 @@
             btnAjustes = new Krypton.Toolkit.KryptonButton();
             pictureBox18 = new PictureBox();
             button12 = new Button();
+            label5 = new Label();
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -690,11 +691,23 @@
             button12.UseVisualStyleBackColor = false;
             button12.Click += btnNoti;
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.Navy;
+            label5.Location = new Point(1335, 624);
+            label5.Name = "label5";
+            label5.Size = new Size(78, 32);
+            label5.TabIndex = 37;
+            label5.Text = "BAMS";
+            // 
             // Deudores_Emp
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1442, 674);
+            Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(pictureBox17);
@@ -789,5 +802,6 @@
         private Krypton.Toolkit.KryptonButton btnAjustes;
         private PictureBox pictureBox18;
         private Button button12;
+        private Label label5;
     }
 }

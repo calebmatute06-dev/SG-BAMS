@@ -38,9 +38,9 @@
             panel3 = new Panel();
             pictureBox1 = new PictureBox();
             pictureBox4 = new PictureBox();
-            kryptonButton13 = new Krypton.Toolkit.KryptonButton();
             label2 = new Label();
             label3 = new Label();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)cmbDeudores).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
@@ -126,16 +126,28 @@
             cmbDeudores.Location = new Point(170, 99);
             cmbDeudores.Margin = new Padding(3, 2, 3, 2);
             cmbDeudores.Name = "cmbDeudores";
-            cmbDeudores.Size = new Size(228, 28);
+            cmbDeudores.Size = new Size(228, 27);
+            cmbDeudores.StateActive.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbDeudores.StateActive.ComboBox.Border.Color1 = Color.SkyBlue;
+            cmbDeudores.StateActive.ComboBox.Border.Color2 = Color.SkyBlue;
             cmbDeudores.StateActive.ComboBox.Border.Rounding = 10F;
             cmbDeudores.StateActive.ComboBox.Content.Color1 = Color.Navy;
             cmbDeudores.StateActive.ComboBox.Content.Font = new Font("Arial Narrow", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbDeudores.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbDeudores.StateCommon.ComboBox.Border.Color1 = Color.SkyBlue;
+            cmbDeudores.StateCommon.ComboBox.Border.Color2 = Color.SkyBlue;
             cmbDeudores.StateCommon.ComboBox.Border.Rounding = 70F;
             cmbDeudores.StateCommon.ComboBox.Content.Color1 = Color.Navy;
             cmbDeudores.StateCommon.ComboBox.Content.Font = new Font("Arial Narrow", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbDeudores.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            cmbDeudores.StateCommon.DropBack.Color1 = Color.SkyBlue;
+            cmbDeudores.StateCommon.DropBack.Color2 = Color.SkyBlue;
+            cmbDeudores.StateCommon.Item.Back.Color1 = Color.SkyBlue;
+            cmbDeudores.StateCommon.Item.Back.Color2 = Color.SkyBlue;
+            cmbDeudores.StateCommon.Item.Border.Color1 = Color.SkyBlue;
+            cmbDeudores.StateCommon.Item.Border.Color2 = Color.SkyBlue;
             cmbDeudores.StateCommon.Item.Border.Rounding = 70F;
+            cmbDeudores.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
             cmbDeudores.TabIndex = 166;
             // 
             // kryptonGroup1
@@ -185,32 +197,6 @@
             pictureBox4.TabIndex = 160;
             pictureBox4.TabStop = false;
             // 
-            // kryptonButton13
-            // 
-            kryptonButton13.Location = new Point(340, 224);
-            kryptonButton13.Margin = new Padding(3, 2, 3, 2);
-            kryptonButton13.Name = "kryptonButton13";
-            kryptonButton13.OverrideDefault.Back.Color1 = Color.Transparent;
-            kryptonButton13.OverrideDefault.Back.Color2 = Color.Transparent;
-            kryptonButton13.OverrideDefault.Border.Rounding = 40F;
-            kryptonButton13.OverrideFocus.Back.Color1 = Color.White;
-            kryptonButton13.OverrideFocus.Back.Color2 = Color.SkyBlue;
-            kryptonButton13.Size = new Size(94, 31);
-            kryptonButton13.StateCommon.Back.Color1 = Color.White;
-            kryptonButton13.StateCommon.Back.Color2 = Color.SkyBlue;
-            kryptonButton13.StateCommon.Border.Rounding = 40F;
-            kryptonButton13.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton13.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton13.StateNormal.Back.Color1 = Color.Transparent;
-            kryptonButton13.StateNormal.Back.Color2 = Color.Transparent;
-            kryptonButton13.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
-            kryptonButton13.StatePressed.Back.Color1 = Color.Transparent;
-            kryptonButton13.StatePressed.Back.Color2 = Color.Transparent;
-            kryptonButton13.StateTracking.Border.Rounding = 40F;
-            kryptonButton13.TabIndex = 175;
-            kryptonButton13.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton13.Values.Text = "BAMS";
-            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -236,11 +222,23 @@
             label3.TabIndex = 194;
             label3.Text = "Pago a Deuda:";
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.Navy;
+            label5.Location = new Point(330, 216);
+            label5.Name = "label5";
+            label5.Size = new Size(78, 32);
+            label5.TabIndex = 195;
+            label5.Text = "BAMS";
+            // 
             // Pago_Deuda
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(434, 266);
+            Controls.Add(label5);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(kryptonButton3);
@@ -253,7 +251,6 @@
             Controls.Add(panel3);
             Controls.Add(pictureBox1);
             Controls.Add(pictureBox4);
-            Controls.Add(kryptonButton13);
             Margin = new Padding(3, 2, 3, 2);
             Name = "Pago_Deuda";
             Text = "Pago_Deuda";
@@ -279,8 +276,8 @@
         private Panel panel3;
         private PictureBox pictureBox1;
         private PictureBox pictureBox4;
-        private Krypton.Toolkit.KryptonButton kryptonButton13;
         private Label label2;
         private Label label3;
+        private Label label5;
     }
 }
