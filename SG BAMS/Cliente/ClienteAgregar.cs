@@ -36,48 +36,56 @@ namespace SG_BAMS
             }
 
 
-            else if (!Regex.IsMatch(txtNombre.Text, @"^[a-zA-Z\s]+$") || !Regex.IsMatch(txtApellido.Text, @"^[a-zA-Z\s]+$"))
+           if (!Regex.IsMatch(txtNombre.Text, @"^[a-zA-Z\sñÑáéíóúÁÉÍÓÚ]+$") ||
+                !Regex.IsMatch(txtApellido.Text, @"^[a-zA-Z\sñÑáéíóúÁÉÍÓÚ]+$"))
             {
-                MessageBox.Show("Los campos 'Nombre' y 'Apellido' solo deben contener letras.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Nombre y Apellido solo deben contener letras.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
 
-            else if (!Regex.IsMatch(txtTelefono.Text, @"^[0-9]+$")  /*|| !Regex.IsMatch(txtRTN.Text, @"^[0-9]+$")*/)
+
+            if (!Regex.IsMatch(txtTelefono.Text, @"^[0-9]+$"))
             {
-                MessageBox.Show("Los campos 'Teléfono' solo deben contener números.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("El teléfono solo permite números.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
-            
+             if (!string.IsNullOrWhiteSpace(txtRTN.Text))
+            {
+                if (!Regex.IsMatch(txtRTN.Text, @"^([0-9]+|Sin RTN)$"))
+                {
+                    MessageBox.Show("El RTN solo debe contener números", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
 
-            else
+
+
+            try
             {
                 ClsAgregarClientes objAC = new ClsAgregarClientes();
-                int idNuevoCliente = await objAC.AgregarClientes(txtNombre.Text, txtApellido.Text, txtTelefono.Text, txtRTN.Text);
 
-                if (idNuevoCliente > 0)
+                int filasInsertadas = await objAC.AgregarClientes(
+                    txtNombre.Text.Trim(),
+                    txtApellido.Text.Trim(),
+                    txtTelefono.Text.Trim(),
+                    txtRTN.Text.Trim()
+                );
+
+                if (filasInsertadas > 0)
                 {
-                    MessageBox.Show("Cliente agregado correctamente.");
-
-                    using (FacturaAgregarDatos frmFA = new FacturaAgregarDatos(txtNombre.Text + " " + txtApellido.Text, idNuevoCliente))
-                    {
-
-                        if (frmFA.ShowDialog() == DialogResult.OK)
-                        {
-
-                            this.DialogResult = DialogResult.OK;
-                            this.Close();
-                        }
-
-                    }
-
-                }
-                else
-                {
-                    MessageBox.Show("No se pudo agregar el cliente.");
+                    MessageBox.Show("Cliente agregado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
                 }
             }
-            
-            
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al agregar cliente: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
         }
 
         private void ClienteAgregar_Load(object sender, EventArgs e)

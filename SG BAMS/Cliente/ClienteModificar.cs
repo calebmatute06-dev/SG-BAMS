@@ -54,40 +54,61 @@ namespace SG_BAMS
             }
 
 
-            else if (!Regex.IsMatch(txtNombre.Text, @"^[a-zA-Z\sñÑ]+$") || !Regex.IsMatch(txtApellido.Text, @"^[a-zA-Z\sñÑ]+$"))
+            if (!Regex.IsMatch(txtNombre.Text, @"^[a-zA-Z\sñÑáéíóúÁÉÍÓÚ]+$") ||
+                !Regex.IsMatch(txtApellido.Text, @"^[a-zA-Z\sñÑáéíóúÁÉÍÓÚ]+$"))
             {
-                MessageBox.Show("Los campos 'Nombre' y 'Apellido' solo deben contener letras.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Nombre y Apellido solo deben contener letras.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
 
-            else if (!Regex.IsMatch(txtTelefono.Text, @"^[0-9]+$"))
+
+            if (!Regex.IsMatch(txtTelefono.Text, @"^[0-9]+$"))
             {
-                MessageBox.Show("Los campos 'Teléfono' solo deben contener números.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("El teléfono solo permite números.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
-            else
+             if (!string.IsNullOrWhiteSpace(txtRTN.Text))
+            {
+                if (!Regex.IsMatch(txtRTN.Text, @"^([0-9]+|Sin RTN)$"))
+                {
+                    MessageBox.Show("El RTN solo debe contener números", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
+            try
             {
                 ClsModificarCliente objMC = new ClsModificarCliente();
-                int filasInsertadas = await objMC.ModificarClientes(Convert.ToInt32(txtID.Text), txtNombre.Text, txtApellido.Text, txtTelefono.Text, txtRTN.Text, Convert.ToInt32(cmbEstado.SelectedValue));
+
+                
+                int filasInsertadas = await objMC.ModificarClientes(
+                    Convert.ToInt32(txtID.Text),
+                    txtNombre.Text.Trim(),
+                    txtApellido.Text.Trim(),
+                    txtTelefono.Text.Trim(),
+                    txtRTN.Text.Trim(),
+                    Convert.ToInt32(cmbEstado.SelectedValue)
+                );
 
                 if (filasInsertadas > 0)
                 {
                     MessageBox.Show("Cliente actualizado correctamente");
-
-
-                    txtNombre.Clear();
-                    txtApellido.Clear();
-                    txtTelefono.Clear();
-                    txtRTN.Clear();
+                    this.DialogResult = DialogResult.OK; 
                     this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo agregar el cliente");
+                    MessageBox.Show("No se realizaron cambios en el cliente.");
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al procesar la modificación: " + ex.Message);
+            }
 
-           
+
         }
 
 

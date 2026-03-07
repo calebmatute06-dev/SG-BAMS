@@ -51,10 +51,9 @@ namespace SG_BAMS.Proveedor
 
             cmbEstado.SelectedValue = _idEstado;
             cmbEstado.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbClasificacion.DropDownStyle = ComboBoxStyle.DropDownList;
 
             cmbClasificacion.SelectedValue = _idClasificacion;
-            cmbClasificacion.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            cmbClasificacion.AutoCompleteSource = AutoCompleteSource.ListItems;
         }
 
         private void cmbEstado_SelectedIndexChanged(object sender, EventArgs e)

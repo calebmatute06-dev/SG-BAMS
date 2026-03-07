@@ -21,11 +21,13 @@ namespace SG_BAMS.Proveedor
         public AgregarProveedores()
         {
             InitializeComponent();
+
         }
 
         private void AgregarProveedores_Load(object sender, EventArgs e)
         {
             proveedor.CargarComboClasificacion(cmbClasificacion);
+            cmbClasificacion.DropDownStyle = ComboBoxStyle.DropDownList;
 
         }
 
@@ -44,8 +46,6 @@ namespace SG_BAMS.Proveedor
                 int idClasificacion = Convert.ToInt32(drv["id_clasificacion_proveedor"]);
                 string nombreClasificacion = drv["clasificacion_proveedor"].ToString();
 
-                cmbClasificacion.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                cmbClasificacion.AutoCompleteSource = AutoCompleteSource.ListItems;
             }
         }
 
