@@ -30,6 +30,10 @@ namespace SG_BAMS
                 cmbProductos.DataSource = dtProductos;
                 cmbProductos.DisplayMember = "nombre_producto";
                 cmbProductos.ValueMember = "id_producto";
+
+                cmbProductos.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                cmbProductos.AutoCompleteSource = AutoCompleteSource.ListItems;
+                cmbProductos.DropDownStyle = ComboBoxStyle.DropDown;
                 cmbProductos.SelectedIndex = -1;
             }
             catch (Exception ex)
@@ -64,20 +68,39 @@ namespace SG_BAMS
             return dt;
         }
 
-        // BOTÓN ACEPTAR: Guarda directamente en la BD y cierra
         private void kryptonButton3_Click(object sender, EventArgs e)
         {
-            if (cmbProductos.SelectedIndex == -1 || numCantidad.Value <= 0 || string.IsNullOrWhiteSpace(txtPrecio.Text))
+            if (cmbProductos.SelectedValue == null || cmbProductos.SelectedIndex == -1)
             {
-                MessageBox.Show("Por favor complete todos los campos.");
+                MessageBox.Show("Por favor, seleccione un producto válido de la lista.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (numCantidad.Value <= 0)
+            {
+                MessageBox.Show("La cantidad debe ser mayor a cero.", "Cantidad Inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                numCantidad.Focus();
+                return;
+            }
+
+            // Normalizamos el texto: reemplazamos comas por puntos y quitamos espacios
+            string precioTexto = txtPrecio.Text.Trim().Replace(",", ".");
+
+            // Validamos usando InvariantCulture para que el punto siempre sea decimal
+            if (!double.TryParse(precioTexto, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out _) || string.IsNullOrWhiteSpace(precioTexto))
+            {
+                MessageBox.Show("El precio debe ser un valor numérico válido (ejemplo: 15.50).", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtPrecio.Focus();
                 return;
             }
 
             try
             {
-                // Realizamos el INSERT directo para que actue el TRIGGER de inventario
                 string sql = "INSERT INTO Compra_producto (id_compra, id_producto, cantidad, precio_costo_unitario) " +
                              "VALUES (@idC, @idP, @cant, @prec)";
+
+                // Convertimos el string a decimal usando la misma cultura invariable
+                decimal precioFinal = decimal.Parse(precioTexto, System.Globalization.CultureInfo.InvariantCulture);
 
                 conexion.AbrirConexion();
                 using (SqlCommand cmd = new SqlCommand(sql, conexion.Conectar))
@@ -85,24 +108,23 @@ namespace SG_BAMS
                     cmd.Parameters.AddWithValue("@idC", IdCompraActual);
                     cmd.Parameters.AddWithValue("@idP", cmbProductos.SelectedValue);
                     cmd.Parameters.AddWithValue("@cant", (int)numCantidad.Value);
-                    cmd.Parameters.AddWithValue("@prec", Convert.ToDecimal(txtPrecio.Text));
+                    cmd.Parameters.AddWithValue("@prec", precioFinal);
 
                     cmd.ExecuteNonQuery();
                 }
 
-                // Guardamos los datos en las propiedades por si el form principal los necesita
                 IdSeleccionado = cmbProductos.SelectedValue.ToString();
                 NombreSeleccionado = cmbProductos.Text;
                 CantidadSeleccionada = (int)numCantidad.Value;
-                PrecioSeleccionado = Convert.ToDecimal(txtPrecio.Text);
+                PrecioSeleccionado = precioFinal;
 
-                MessageBox.Show("Producto agregado y stock actualizado con éxito.");
+                MessageBox.Show("Producto agregado y stock actualizado con éxito.", "BAMS", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al guardar producto: " + ex.Message);
+                MessageBox.Show("Error al guardar producto: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally { conexion.Cerrar(); }
         }

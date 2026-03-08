@@ -742,11 +742,17 @@
             // 
             // dgvComprasAdmin
             // 
+            dgvComprasAdmin.AllowUserToAddRows = false;
+            dgvComprasAdmin.AllowUserToDeleteRows = false;
+            dgvComprasAdmin.AllowUserToResizeColumns = false;
+            dgvComprasAdmin.AllowUserToResizeRows = false;
             dgvComprasAdmin.BorderStyle = BorderStyle.None;
             dgvComprasAdmin.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvComprasAdmin.Location = new Point(335, 426);
             dgvComprasAdmin.Name = "dgvComprasAdmin";
+            dgvComprasAdmin.ReadOnly = true;
             dgvComprasAdmin.RowHeadersWidth = 51;
+            dgvComprasAdmin.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvComprasAdmin.Size = new Size(849, 410);
             dgvComprasAdmin.TabIndex = 67;
             // 
