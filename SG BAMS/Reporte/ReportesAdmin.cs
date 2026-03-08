@@ -1,7 +1,10 @@
-﻿using System;
+﻿using QuestPDF.Fluent;
+using QuestPDF.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -195,20 +198,51 @@ namespace SG_BAMS.Reporte
                 {
                     if (stock == 0)
                     {
-                        e.CellStyle.BackColor = Color.FromArgb(255, 192, 192);
-                        e.CellStyle.ForeColor = Color.DarkRed;
+                        // Especificamos la ruta completa del color
+                        e.CellStyle.BackColor = System.Drawing.Color.FromArgb(255, 192, 192);
+                        e.CellStyle.ForeColor = System.Drawing.Color.DarkRed;
                     }
-                    else if (stock <= 10) 
+                    else if (stock <= 10)
                     {
-                        e.CellStyle.BackColor = Color.FromArgb(255, 224, 192);
-                        e.CellStyle.ForeColor = Color.Brown;
+                        e.CellStyle.BackColor = System.Drawing.Color.FromArgb(255, 224, 192);
+                        e.CellStyle.ForeColor = System.Drawing.Color.Brown;
                     }
                     else
                     {
-                        e.CellStyle.BackColor = Color.FromArgb(192, 255, 192);
-                        e.CellStyle.ForeColor = Color.DarkGreen;
+                        e.CellStyle.BackColor = System.Drawing.Color.FromArgb(192, 255, 192);
+                        e.CellStyle.ForeColor = System.Drawing.Color.DarkGreen;
                     }
                 }
+            }
+        }
+
+        private void btnExportaar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                QuestPDF.Settings.License = LicenseType.Community;
+
+                if (dgvReporte.Rows.Count == 0)
+                {
+                    MessageBox.Show("No hay datos para exportar.", "BAMS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                string nombreArchivo = $"Reporte_BAMS_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
+                string rutaTemp = Path.Combine(Path.GetTempPath(), nombreArchivo);
+
+                var documento = new DocumentoDinamico(dgvReporte);
+                documento.GeneratePdf(rutaTemp);
+
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = rutaTemp,
+                    UseShellExecute = true
+                });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al generar el reporte PDF: " + ex.Message, "Error BAMS", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

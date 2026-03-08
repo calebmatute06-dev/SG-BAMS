@@ -367,6 +367,7 @@
             btnExportaar.TabIndex = 262;
             btnExportaar.Values.DropDownArrowColor = Color.Empty;
             btnExportaar.Values.Text = "Exportar";
+            btnExportaar.Click += btnExportaar_Click;
             // 
             // pictureBox3
             // 
