@@ -21,38 +21,39 @@ namespace SG_BAMS
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            // 1. Validaciones básicas
-            if (string.IsNullOrWhiteSpace(txtNombre.Text) || cmbMarca.SelectedValue == null)
-            {
-                MessageBox.Show("Por favor llene los campos obligatorios", "Advertencia");
-                return;
-            }
+
+            if (!ClsValidacion.ValidarNombre(txtNombre.Text)) return;
+            if (!ClsValidacion.ValidarPrecio(txtPrecio.Text)) return;
+            if (!ClsValidacion.ValidarSeleccion(cmbMarca, "la Marca")) return;
+            if (!ClsValidacion.ValidarSeleccion(cmbTipo, "el Tipo de Producto")) return;
+            if (!ClsValidacion.ValidarSeleccion(cmbModelo, "el Modelo de Auto")) return;
+            if (!ClsValidacion.ValidarCodigoBarra(txtCodigoBarra.Text)) return;
+            if (!ClsValidacion.ValidarServicio(txtServicio.Text)) return;
 
             try
             {
                 ClsAgregarProducto logicaInsertar = new ClsAgregarProducto();
 
-                // Convertimos los valores de los controles
                 string nombre = txtNombre.Text;
                 int idMarca = (int)cmbMarca.SelectedValue;
                 int idTipo = (int)cmbTipo.SelectedValue;
                 int idModelo = (int)cmbModelo.SelectedValue;
+
                 decimal precio = decimal.Parse(txtPrecio.Text);
-                string servicio = txtServicio.Text;
+
+                string servicio = txtServicio.Text; 
                 string codBarra = txtCodigoBarra.Text;
 
-                // 2. Ejecutamos la inserción
                 logicaInsertar.EjecutarInsercion(nombre, idMarca, idTipo, idModelo, precio, servicio, codBarra);
 
                 MessageBox.Show("Producto guardado exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Indicamos que todo salió bien para que el formulario principal se refresque
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al guardar: " + ex.Message);
+                MessageBox.Show("Error al guardar en el sistema: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -79,22 +80,18 @@ namespace SG_BAMS
 
             try
             {
-                // 1. Llenar Marcas
                 cmbMarca.DataSource = llenar.ObtenerDatosCombo("Marca");
                 cmbMarca.DisplayMember = "nombre_marca";
                 cmbMarca.ValueMember = "id_marca_producto";
 
-                // 2. Llenar Tipos
                 cmbTipo.DataSource = llenar.ObtenerDatosCombo("Tipo");
-                cmbTipo.DisplayMember = "descripcion_forma_pago"; // Nombre exacto en tu SQL
+                cmbTipo.DisplayMember = "descripcion_forma_pago"; 
                 cmbTipo.ValueMember = "id_tipo_producto";
 
-                // 3. Llenar Modelos
                 cmbModelo.DataSource = llenar.ObtenerDatosCombo("Modelo");
                 cmbModelo.DisplayMember = "nombre_modelo_auto";
                 cmbModelo.ValueMember = "id_modelo_auto";
 
-                // Opcional: Que aparezcan vacíos al inicio
                 cmbMarca.SelectedIndex = -1;
                 cmbTipo.SelectedIndex = -1;
                 cmbModelo.SelectedIndex = -1;

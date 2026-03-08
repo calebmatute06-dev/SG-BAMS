@@ -356,6 +356,7 @@
             // 
             // txtID
             // 
+            txtID.Enabled = false;
             txtID.Location = new Point(207, 105);
             txtID.Name = "txtID";
             txtID.ReadOnly = true;

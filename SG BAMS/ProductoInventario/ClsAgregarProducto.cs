@@ -17,7 +17,6 @@ namespace SG_BAMS.ProductoInventario
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    // Agregamos los 7 parámetros que pide el PA actualizado
                     cmd.Parameters.AddWithValue("@nombre_producto", nombre);
                     cmd.Parameters.AddWithValue("@id_marca_producto", idMarca);
                     cmd.Parameters.AddWithValue("@id_tipo_producto", idTipo);
