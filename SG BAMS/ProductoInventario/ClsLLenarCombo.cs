@@ -13,8 +13,6 @@ namespace SG_BAMS.ProductoInventario
             DataTable dt = new DataTable();
             string query = "";
 
-            // Definimos la consulta según la tabla que necesitemos
-            // Es vital que el primer campo sea el ID y el segundo el Nombre/Descripción
             switch (tabla)
             {
                 case "Marca":
@@ -26,7 +24,6 @@ namespace SG_BAMS.ProductoInventario
                 case "Modelo":
                     query = "SELECT id_modelo_auto, nombre_modelo_auto FROM Modelo_de_auto";
                     break;
-                // AGREGAR ESTE CASO:
                 case "Estado":
                     query = "SELECT id_estado, descripcion_estado FROM Estado";
                     break;

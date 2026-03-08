@@ -8,7 +8,6 @@ namespace SG_BAMS.ProductoInventario
     {
         private ClsConexion conexion = new ClsConexion();
 
-        // 1. MÉTODO PARA MOSTRAR TODO
         public DataTable MostrarProductosCompleto()
         {
             DataTable tabla = new DataTable();

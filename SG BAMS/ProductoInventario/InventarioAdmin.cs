@@ -65,21 +65,17 @@ namespace SG_BAMS
             {
                 ModificarProducto frmMod = new ModificarProducto();
 
-                // 1. Pasamos los datos directos a los TextBox
                 frmMod.txtID.Text = dgvProductosAdmin.CurrentRow.Cells["ID"].Value.ToString();
                 frmMod.txtNombre.Text = dgvProductosAdmin.CurrentRow.Cells["Producto"].Value.ToString();
                 frmMod.txtPrecio.Text = dgvProductosAdmin.CurrentRow.Cells["Precio_Venta"].Value.ToString();
                 frmMod.txtServicio.Text = dgvProductosAdmin.CurrentRow.Cells["Servicio"].Value.ToString();
                 frmMod.txtCodigoBarra.Text = dgvProductosAdmin.CurrentRow.Cells["Codigo_Barra"].Value.ToString();
 
-                // 2. IMPORTANTE: Pasamos los nombres a las variables públicas
-                // No los asignes al .Text aquí, deja que el Load del frmMod lo haga
                 frmMod.marcaActual = dgvProductosAdmin.CurrentRow.Cells["Marca"].Value.ToString();
                 frmMod.tipoActual = dgvProductosAdmin.CurrentRow.Cells["Tipo"].Value.ToString();
                 frmMod.modeloActual = dgvProductosAdmin.CurrentRow.Cells["Modelo_Auto"].Value.ToString();
                 frmMod.estadoActual = dgvProductosAdmin.CurrentRow.Cells["Estado"].Value.ToString();
 
-                // 3. Abrimos el formulario y refrescamos solo si hubo éxito
                 if (frmMod.ShowDialog() == DialogResult.OK)
                 {
                     CargarInventarioCompleto();

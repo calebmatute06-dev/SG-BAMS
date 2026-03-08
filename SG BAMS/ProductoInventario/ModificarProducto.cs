@@ -78,22 +78,18 @@ namespace SG_BAMS
         {
             ClsLlenarCombo llenar = new ClsLlenarCombo();
 
-            // Llenar Marcas
             cmbMarca.DataSource = llenar.ObtenerDatosCombo("Marca");
             cmbMarca.DisplayMember = "nombre_marca";
             cmbMarca.ValueMember = "id_marca_producto";
 
-            // Llenar Tipos
             cmbTipo.DataSource = llenar.ObtenerDatosCombo("Tipo");
             cmbTipo.DisplayMember = "descripcion_forma_pago";
             cmbTipo.ValueMember = "id_tipo_producto";
 
-            // Llenar Modelos
             cmbModelo.DataSource = llenar.ObtenerDatosCombo("Modelo");
             cmbModelo.DisplayMember = "nombre_modelo_auto";
             cmbModelo.ValueMember = "id_modelo_auto";
 
-            // Llenar el nuevo de Estado
             cmbEstado.DataSource = llenar.ObtenerDatosCombo("Estado");
             cmbEstado.DisplayMember = "descripcion_estado";
             cmbEstado.ValueMember = "id_estado";

@@ -39,7 +39,6 @@ namespace SG_BAMS.ProductoInventario
             return true;
         }
 
-        // Validación para ComboBox
         public static bool ValidarSeleccion(KryptonComboBox cb, string nombreCampo)
         {
             if (cb.SelectedIndex == -1 || string.IsNullOrWhiteSpace(cb.Text))

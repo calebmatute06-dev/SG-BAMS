@@ -101,19 +101,16 @@ namespace SG_BAMS
 
                 using (SqlCommand cmd = new SqlCommand(query, conexion.Conectar))
                 {
-                    // El Trim() quita espacios accidentales al inicio o final
                     cmd.Parameters.AddWithValue("@filtro", txtBuscar.Text.Trim());
 
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     da.Fill(dt);
                 }
 
-                // 3. Refrescamos el DataGridView del Empleado
                 dgvInventarioEmp.DataSource = dt;
             }
             catch (Exception ex)
             {
-                // En búsqueda dinámica es mejor no usar MessageBox para no interrumpir al usuario
                 Console.WriteLine("Error en búsqueda empleado: " + ex.Message);
             }
             finally
