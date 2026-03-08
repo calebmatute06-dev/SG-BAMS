@@ -116,6 +116,7 @@
             btnCancelar.TabIndex = 208;
             btnCancelar.Values.DropDownArrowColor = Color.Empty;
             btnCancelar.Values.Text = "Cancelar";
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // btnAceptar
             // 
@@ -174,6 +175,7 @@
             btnsalir.TabIndex = 205;
             btnsalir.Values.DropDownArrowColor = Color.Empty;
             btnsalir.Values.Text = "Salir";
+            btnsalir.Click += btnsalir_Click;
             // 
             // pictureBox3
             // 
@@ -239,6 +241,7 @@
             // 
             // txtID
             // 
+            txtID.Enabled = false;
             txtID.Location = new Point(204, 88);
             txtID.Name = "txtID";
             txtID.ReadOnly = true;
@@ -334,6 +337,7 @@
             // 
             // cmbMarca
             // 
+            cmbMarca.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbMarca.DropDownWidth = 300;
             cmbMarca.Location = new Point(204, 235);
             cmbMarca.Name = "cmbMarca";
@@ -349,6 +353,7 @@
             // 
             // cmbTipo
             // 
+            cmbTipo.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbTipo.DropDownWidth = 300;
             cmbTipo.Location = new Point(204, 293);
             cmbTipo.Name = "cmbTipo";
@@ -364,6 +369,7 @@
             // 
             // cmbModelo
             // 
+            cmbModelo.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbModelo.DropDownWidth = 300;
             cmbModelo.Location = new Point(204, 351);
             cmbModelo.Name = "cmbModelo";
@@ -379,6 +385,7 @@
             // 
             // cmbEstado
             // 
+            cmbEstado.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbEstado.DropDownWidth = 300;
             cmbEstado.Location = new Point(204, 409);
             cmbEstado.Name = "cmbEstado";

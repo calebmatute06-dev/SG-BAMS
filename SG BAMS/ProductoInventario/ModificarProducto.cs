@@ -13,6 +13,9 @@ namespace SG_BAMS
 {
     public partial class ModificarProducto : Form
     {
+
+        public string marcaActual, tipoActual, modeloActual, estadoActual;
+
         public ModificarProducto()
         {
             InitializeComponent();
@@ -27,13 +30,17 @@ namespace SG_BAMS
         {
             try
             {
-                // 1. Instanciamos la clase
+                if (!ClsValidacion.ValidarNombre(txtNombre.Text)) return;
+                string precioLimpio = txtPrecio.Text.Replace("Lps", "").Replace("$", "").Trim();
+                if (!ClsValidacion.ValidarPrecio(precioLimpio)) return;
+                if (!ClsValidacion.ValidarServicio(txtServicio.Text)) return;
+                if (!ClsValidacion.ValidarCodigoBarra(txtCodigoBarra.Text)) return;
+                if (!ClsValidacion.ValidarSeleccion(cmbMarca, "Marca")) return;
+                if (!ClsValidacion.ValidarSeleccion(cmbTipo, "Tipo")) return;
+                if (!ClsValidacion.ValidarSeleccion(cmbModelo, "Modelo")) return;
+                if (!ClsValidacion.ValidarSeleccion(cmbEstado, "Estado")) return;
                 SG_BAMS.ProductoInventario.ClsActualizarProducto logica = new SG_BAMS.ProductoInventario.ClsActualizarProducto();
 
-                // 2. Limpieza rápida del precio (por si acaso tiene espacios o símbolos)
-                string precioLimpio = txtPrecio.Text.Replace("Lps", "").Replace("$", "").Trim();
-
-                // 3. Ejecutamos la actualización
                 logica.EjecutarActualizacion(
                     Convert.ToInt32(txtID.Text),
                     txtNombre.Text,
@@ -46,10 +53,8 @@ namespace SG_BAMS
                     txtCodigoBarra.Text
                 );
 
-                // 4. Mensaje de éxito
                 MessageBox.Show("¡Producto actualizado correctamente!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // 5. ASIGNACIÓN CLAVE: Esto dispara el refresco en el formulario principal
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
@@ -62,6 +67,11 @@ namespace SG_BAMS
         private void ModificarProducto_Load(object sender, EventArgs e)
         {
             LlenarCombosModificar();
+
+            cmbMarca.SelectedIndex = cmbMarca.FindStringExact(marcaActual);
+            cmbTipo.SelectedIndex = cmbTipo.FindStringExact(tipoActual);
+            cmbModelo.SelectedIndex = cmbModelo.FindStringExact(modeloActual);
+            cmbEstado.SelectedIndex = cmbEstado.FindStringExact(estadoActual);
         }
 
         public void LlenarCombosModificar()
@@ -87,6 +97,16 @@ namespace SG_BAMS
             cmbEstado.DataSource = llenar.ObtenerDatosCombo("Estado");
             cmbEstado.DisplayMember = "descripcion_estado";
             cmbEstado.ValueMember = "id_estado";
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void btnsalir_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

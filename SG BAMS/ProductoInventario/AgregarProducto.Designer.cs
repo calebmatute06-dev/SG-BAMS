@@ -278,6 +278,7 @@
             // 
             // cmbModelo
             // 
+            cmbModelo.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbModelo.DropDownWidth = 300;
             cmbModelo.Location = new Point(207, 376);
             cmbModelo.Name = "cmbModelo";
@@ -326,6 +327,7 @@
             // 
             // cmbMarca
             // 
+            cmbMarca.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbMarca.DropDownWidth = 300;
             cmbMarca.Location = new Point(207, 256);
             cmbMarca.Name = "cmbMarca";
@@ -341,6 +343,7 @@
             // 
             // cmbTipo
             // 
+            cmbTipo.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbTipo.DropDownWidth = 300;
             cmbTipo.Location = new Point(207, 315);
             cmbTipo.Name = "cmbTipo";
