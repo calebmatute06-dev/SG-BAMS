@@ -25,6 +25,43 @@ namespace SG_BAMS.Reporte
         {
             dtpHasta.Value = DateTime.Now;
             dtpDesde.Value = DateTime.Now.AddDays(-30);
+
+            CargarReporteVentas();
+        }
+
+        private void CargarReporteVentas()
+        {
+            try
+            {
+                DataTable datos = objReporte.ReporteVentas(dtpDesde.Value, dtpHasta.Value);
+                dgvReporte.DataSource = datos;
+
+                if (dgvReporte.Columns.Contains("Telefono"))
+                {
+                    dgvReporte.Columns["Telefono"].HeaderText = "Teléfono";
+                }
+
+                if (dgvReporte.Columns.Contains("Metodo_Pago"))
+                {
+                    dgvReporte.Columns["Metodo_Pago"].HeaderText = "Método de Pago";
+                }
+
+                if (dgvReporte.Columns.Contains("Total_Venta"))
+                {
+                    dgvReporte.Columns["Total_Venta"].HeaderText = "Total";
+                }
+
+                if (dgvReporte.Columns.Contains("Recibio_Chatarra"))
+                {
+                    dgvReporte.Columns["Recibio_Chatarra"].HeaderText = "Bateria Vieja";
+                }
+
+                dgvReporte.AutoResizeColumns();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar el reporte de ventas: " + ex.Message, "Error BAMS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnVentas_Click(object sender, EventArgs e)
@@ -34,7 +71,6 @@ namespace SG_BAMS.Reporte
                 DataTable datos = objReporte.ReporteVentas(dtpDesde.Value, dtpHasta.Value);
                 dgvReporte.DataSource = datos;
 
-                // Renombramos las columnas para eliminar los guiones bajos y mejorar la lectura
                 if (dgvReporte.Columns.Contains("Telefono"))
                 {
                     dgvReporte.Columns["Telefono"].HeaderText = "Teléfono";
