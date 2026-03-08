@@ -35,7 +35,6 @@ namespace SG_BAMS
             {
                 conexion.AbrirConexion();
 
-                // 1. Cargar Formas de Pago
                 string qPago = "SELECT id_tipo_forma_pago, descripcion_forma_pago FROM Tipo_Forma_de_pago";
                 SqlDataAdapter daPago = new SqlDataAdapter(qPago, conexion.Conectar);
                 DataTable dtPago = new DataTable();
@@ -45,7 +44,6 @@ namespace SG_BAMS
                 cmbFormaPago.DisplayMember = "descripcion_forma_pago";
                 cmbFormaPago.ValueMember = "id_tipo_forma_pago";
 
-                // 2. Cargar Proveedores
                 string qProv = "SELECT id_proveedor, nombre_proveedor FROM Proveedor WHERE id_estado = 1";
                 SqlDataAdapter daProv = new SqlDataAdapter(qProv, conexion.Conectar);
                 DataTable dtProv = new DataTable();
@@ -54,6 +52,12 @@ namespace SG_BAMS
                 cmbProveedor.DataSource = dtProv;
                 cmbProveedor.DisplayMember = "nombre_proveedor";
                 cmbProveedor.ValueMember = "id_proveedor";
+
+                cmbProveedor.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                cmbProveedor.AutoCompleteSource = AutoCompleteSource.ListItems;
+                cmbProveedor.DropDownStyle = ComboBoxStyle.DropDown;
+
+                cmbProveedor.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
@@ -104,7 +108,7 @@ namespace SG_BAMS
             // --- 2. VALIDACIONES DE COMBOS ---
             if (cmbProveedor.SelectedValue == null || cmbFormaPago.SelectedValue == null)
             {
-                MessageBox.Show("Por favor, seleccione un proveedor y una forma de pago.");
+                MessageBox.Show("Por favor, seleccione un proveedor valido de la lista");
                 return;
             }
 

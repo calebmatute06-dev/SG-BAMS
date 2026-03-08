@@ -47,8 +47,6 @@ namespace SG_BAMS
             {
                 conexion.AbrirConexion();
 
-                // Traemos el ID para guardar y el Nombre para mostrar
-                // Filtramos por estado = 1 para que solo salgan productos activos
                 string query = "SELECT id_producto, nombre_producto FROM Producto WHERE id_estado = 1";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexion.Conectar))
@@ -57,12 +55,14 @@ namespace SG_BAMS
                     da.Fill(dt);
                 }
 
-                // Configuración del ComboBox
                 cmbProductos.DataSource = dt;
-                cmbProductos.DisplayMember = "nombre_producto"; // Lo que el usuario ve
-                cmbProductos.ValueMember = "id_producto";       // El ID que usaremos para el INSERT
+                cmbProductos.DisplayMember = "nombre_producto";
+                cmbProductos.ValueMember = "id_producto";
 
-                // Opcional: Que empiece vacío para obligar a seleccionar
+                cmbProductos.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                cmbProductos.AutoCompleteSource = AutoCompleteSource.ListItems;
+                cmbProductos.DropDownStyle = ComboBoxStyle.DropDown;
+
                 cmbProductos.SelectedIndex = -1;
             }
             catch (Exception ex)
@@ -77,20 +77,31 @@ namespace SG_BAMS
 
         private void kryptonButton3_Click(object sender, EventArgs e)
         {
-            // Validar que seleccionó un producto y puso precio
-            if (cmbProductos.SelectedIndex == -1 || string.IsNullOrEmpty(txtPrecio.Text))
+            if (cmbProductos.SelectedValue == null || cmbProductos.SelectedIndex == -1)
             {
-                MessageBox.Show("Por favor llene todos los campos");
+                MessageBox.Show("Por favor, seleccione un producto válido de la lista.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Guardamos los datos en las propiedades públicas
+            if (numCantidad.Value <= 0)
+            {
+                MessageBox.Show("La cantidad debe ser mayor a cero.", "Cantidad Inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                numCantidad.Focus();
+                return;
+            }
+
+            if (!double.TryParse(txtPrecio.Text, out _) || string.IsNullOrWhiteSpace(txtPrecio.Text))
+            {
+                MessageBox.Show("El precio debe ser un valor numérico válido (ejemplo: 150 o 150.50).", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtPrecio.Focus();
+                return;
+            }
+
             IdSeleccionado = cmbProductos.SelectedValue.ToString();
             NombreSeleccionado = cmbProductos.Text;
-            CantidadSeleccionada = (int)numCantidad.Value; // Asumiendo que usas un NumericUpDown
+            CantidadSeleccionada = (int)numCantidad.Value;
             PrecioSeleccionado = Convert.ToDecimal(txtPrecio.Text);
 
-            // Indicamos que el usuario aceptó y cerramos
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
