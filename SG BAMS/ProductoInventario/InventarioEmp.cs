@@ -123,5 +123,10 @@ namespace SG_BAMS
         {
 
         }
+
+        private void dgvInventarioEmp_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

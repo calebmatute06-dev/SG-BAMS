@@ -731,6 +731,7 @@
             dgvProductosAdmin.StateCommon.Background.Color1 = Color.LightBlue;
             dgvProductosAdmin.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
             dgvProductosAdmin.TabIndex = 194;
+            dgvProductosAdmin.CellDoubleClick += dgvProductosAdmin_CellDoubleClick;
             // 
             // kryptonGroup1
             // 

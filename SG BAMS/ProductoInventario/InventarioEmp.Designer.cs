@@ -86,6 +86,8 @@
             // 
             dgvInventarioEmp.AllowUserToAddRows = false;
             dgvInventarioEmp.AllowUserToDeleteRows = false;
+            dgvInventarioEmp.AllowUserToResizeColumns = false;
+            dgvInventarioEmp.AllowUserToResizeRows = false;
             dgvInventarioEmp.BorderStyle = BorderStyle.None;
             dgvInventarioEmp.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvInventarioEmp.Location = new Point(348, 227);
@@ -97,6 +99,7 @@
             dgvInventarioEmp.StateCommon.Background.Color1 = Color.LightBlue;
             dgvInventarioEmp.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
             dgvInventarioEmp.TabIndex = 210;
+            dgvInventarioEmp.CellDoubleClick += dgvInventarioEmp_CellDoubleClick;
             // 
             // kryptonGroup1
             // 
