@@ -755,6 +755,7 @@
             dgvComprasAdmin.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvComprasAdmin.Size = new Size(849, 410);
             dgvComprasAdmin.TabIndex = 67;
+            dgvComprasAdmin.CellDoubleClick += dgvComprasAdmin_CellDoubleClick;
             // 
             // kryptonGroup2
             // 

@@ -130,6 +130,11 @@ namespace SG_BAMS
                     dtpFechaPedido.SelectionStart = fecha;
                     dtpFechaPedido.SelectionEnd = fecha;
                     txtNotaDetalle.Text = fila["desc_compra"].ToString();
+
+                    cmbProveedor.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    cmbProveedor.AutoCompleteSource = AutoCompleteSource.ListItems;
+                    cmbProveedor.DropDownStyle = ComboBoxStyle.DropDown;
+
                 }
             }
             catch (Exception ex) { MessageBox.Show("Error al cargar datos: " + ex.Message); }

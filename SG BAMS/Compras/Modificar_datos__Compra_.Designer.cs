@@ -95,6 +95,7 @@
             // 
             // cmbFormaPago
             // 
+            cmbFormaPago.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbFormaPago.DropDownWidth = 178;
             cmbFormaPago.Location = new Point(202, 153);
             cmbFormaPago.Name = "cmbFormaPago";
