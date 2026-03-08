@@ -97,7 +97,6 @@ namespace SG_BAMS
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            // --- 1. VALIDACIÓN POR TOTAL ---
             decimal totalValidar = 0;
             if (!decimal.TryParse(lblTotal.Text, out totalValidar) || totalValidar <= 0)
             {
@@ -105,7 +104,6 @@ namespace SG_BAMS
                 return;
             }
 
-            // --- 2. VALIDACIONES DE COMBOS ---
             if (cmbProveedor.SelectedValue == null || cmbFormaPago.SelectedValue == null)
             {
                 MessageBox.Show("Por favor, seleccione un proveedor valido de la lista");
@@ -118,7 +116,6 @@ namespace SG_BAMS
 
             try
             {
-                // 3. INSERTAR CABECERA (Tabla Compra)
                 string queryCabecera = @"INSERT INTO Compra (id_usuario, fecha_pedido, id_tipo_forma_pago, id_proveedor, desc_compra) 
                          VALUES (@id_usuario, @fecha, @id_pago, @id_prov, @desc);
                          SELECT SCOPE_IDENTITY();";
@@ -134,11 +131,9 @@ namespace SG_BAMS
                     idCompraRecienCreada = Convert.ToInt32(cmd.ExecuteScalar());
                 }
 
-                // 4. CONSULTAS PARA DETALLE E INVENTARIO
                 string queryDetalle = @"INSERT INTO Compra_producto (id_compra, id_producto, cantidad, precio_costo_unitario) 
                         VALUES (@idC, @idP, @cant, @precio)";
 
-                // Esta consulta asegura que el producto EXISTA en la tabla Inventario para que el TRIGGER funcione
                 string queryAsegurarInventario = @"IF NOT EXISTS (SELECT 1 FROM Inventario WHERE id_producto = @idP)
                                          BEGIN
                                             INSERT INTO Inventario (id_producto, stock) VALUES (@idP, 0)
@@ -152,16 +147,12 @@ namespace SG_BAMS
                         int cant = Convert.ToInt32(fila.Cells[2].Value);
                         decimal precio = Convert.ToDecimal(fila.Cells[3].Value);
 
-                        // PASO A: Asegurar que el registro exista en Inventario (sin sumar nada aún)
                         using (SqlCommand cmdAsegurar = new SqlCommand(queryAsegurarInventario, conexion.Conectar, transaccion))
                         {
                             cmdAsegurar.Parameters.AddWithValue("@idP", idProd);
                             cmdAsegurar.ExecuteNonQuery();
                         }
 
-                        // PASO B: Insertar el detalle. 
-                        // Al existir ya el producto en Inventario, el Trigger 'tr_actualizar_stock_por_compra'
-                        // ahora sí podrá hacer el UPDATE correctamente.
                         using (SqlCommand cmdDetalle = new SqlCommand(queryDetalle, conexion.Conectar, transaccion))
                         {
                             cmdDetalle.Parameters.AddWithValue("@idC", idCompraRecienCreada);
@@ -227,7 +218,6 @@ namespace SG_BAMS
             this.Dispose();
         }
 
-        // Métodos vacíos por si acaso diste doble clic accidental en el diseño
         private void kryptonLabel8_Click(object sender, EventArgs e) { }
         private void label4_Click(object sender, EventArgs e) { }
     }
