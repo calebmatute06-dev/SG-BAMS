@@ -83,10 +83,8 @@ namespace SG_BAMS
                 return;
             }
 
-            // Normalizamos el texto: reemplazamos comas por puntos y quitamos espacios
             string precioTexto = txtPrecio.Text.Trim().Replace(",", ".");
 
-            // Validamos usando InvariantCulture para que el punto siempre sea decimal
             if (!double.TryParse(precioTexto, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out _) || string.IsNullOrWhiteSpace(precioTexto))
             {
                 MessageBox.Show("El precio debe ser un valor numérico válido (ejemplo: 15.50).", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
