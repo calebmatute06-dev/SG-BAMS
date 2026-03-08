@@ -130,6 +130,7 @@
             dgvProductosCompra.Name = "dgvProductosCompra";
             dgvProductosCompra.ReadOnly = true;
             dgvProductosCompra.RowHeadersWidth = 51;
+            dgvProductosCompra.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvProductosCompra.Size = new Size(643, 183);
             dgvProductosCompra.TabIndex = 95;
             // 

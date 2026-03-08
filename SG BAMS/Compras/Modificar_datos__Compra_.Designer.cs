@@ -252,6 +252,7 @@
             dgvProductosCompraMod.Location = new Point(65, 303);
             dgvProductosCompraMod.Name = "dgvProductosCompraMod";
             dgvProductosCompraMod.RowHeadersWidth = 51;
+            dgvProductosCompraMod.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvProductosCompraMod.Size = new Size(643, 183);
             dgvProductosCompraMod.TabIndex = 218;
             // 
