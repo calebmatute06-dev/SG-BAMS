@@ -194,6 +194,7 @@
             dgvReporte.Name = "dgvReporte";
             dgvReporte.ReadOnly = true;
             dgvReporte.RowHeadersWidth = 51;
+            dgvReporte.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvReporte.Size = new Size(832, 604);
             dgvReporte.TabIndex = 273;
             dgvReporte.CellContentClick += dgvReporte_CellContentClick;
@@ -346,6 +347,7 @@
             btnLimpiar.TabIndex = 263;
             btnLimpiar.Values.DropDownArrowColor = Color.Empty;
             btnLimpiar.Values.Text = "Limpiar";
+            btnLimpiar.Click += btnLimpiar_Click;
             // 
             // btnExportaar
             // 

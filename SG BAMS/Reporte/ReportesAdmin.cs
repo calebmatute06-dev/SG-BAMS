@@ -245,5 +245,11 @@ namespace SG_BAMS.Reporte
                 MessageBox.Show("Error al generar el reporte PDF: " + ex.Message, "Error BAMS", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            dtpHasta.Value = DateTime.Now;
+            dtpDesde.Value = DateTime.Now.AddDays(-30);
+        }
     }
 }
