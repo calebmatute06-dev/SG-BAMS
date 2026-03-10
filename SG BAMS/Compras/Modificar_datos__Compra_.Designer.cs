@@ -30,8 +30,6 @@
         {
             txtNotaDetalle = new Krypton.Toolkit.KryptonTextBox();
             label4 = new Label();
-            cmbProveedor = new Krypton.Toolkit.KryptonComboBox();
-            cmbFormaPago = new Krypton.Toolkit.KryptonComboBox();
             btnAceptar = new Krypton.Toolkit.KryptonButton();
             kryptonButton4 = new Krypton.Toolkit.KryptonButton();
             kryptonButton5 = new Krypton.Toolkit.KryptonButton();
@@ -50,13 +48,15 @@
             pictureBox4 = new PictureBox();
             kryptonButton13 = new Krypton.Toolkit.KryptonButton();
             btnEliminarProducto = new Krypton.Toolkit.KryptonButton();
-            ((System.ComponentModel.ISupportInitialize)cmbProveedor).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)cmbFormaPago).BeginInit();
+            cmbFormaPago = new Krypton.Toolkit.KryptonComboBox();
+            cmbProveedor = new Krypton.Toolkit.KryptonComboBox();
             ((System.ComponentModel.ISupportInitialize)dgvProductosCompraMod).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cmbFormaPago).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cmbProveedor).BeginInit();
             SuspendLayout();
             // 
             // txtNotaDetalle
@@ -79,33 +79,6 @@
             label4.Size = new Size(105, 24);
             label4.TabIndex = 234;
             label4.Text = "Nota Detalle:";
-            // 
-            // cmbProveedor
-            // 
-            cmbProveedor.DropDownWidth = 178;
-            cmbProveedor.Location = new Point(202, 192);
-            cmbProveedor.Name = "cmbProveedor";
-            cmbProveedor.Size = new Size(278, 32);
-            cmbProveedor.StateActive.ComboBox.Border.Rounding = 10F;
-            cmbProveedor.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
-            cmbProveedor.StateCommon.ComboBox.Border.Rounding = 70F;
-            cmbProveedor.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
-            cmbProveedor.StateCommon.Item.Border.Rounding = 90F;
-            cmbProveedor.TabIndex = 233;
-            // 
-            // cmbFormaPago
-            // 
-            cmbFormaPago.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbFormaPago.DropDownWidth = 178;
-            cmbFormaPago.Location = new Point(202, 153);
-            cmbFormaPago.Name = "cmbFormaPago";
-            cmbFormaPago.Size = new Size(178, 32);
-            cmbFormaPago.StateActive.ComboBox.Border.Rounding = 10F;
-            cmbFormaPago.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
-            cmbFormaPago.StateCommon.ComboBox.Border.Rounding = 70F;
-            cmbFormaPago.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
-            cmbFormaPago.StateCommon.Item.Border.Rounding = 90F;
-            cmbFormaPago.TabIndex = 232;
             // 
             // btnAceptar
             // 
@@ -216,7 +189,7 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(72, 195);
+            label5.Location = new Point(72, 192);
             label5.Name = "label5";
             label5.Size = new Size(90, 24);
             label5.TabIndex = 223;
@@ -228,7 +201,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(69, 157);
+            label3.Location = new Point(69, 147);
             label3.Name = "label3";
             label3.Size = new Size(127, 24);
             label3.TabIndex = 222;
@@ -354,16 +327,44 @@
             btnEliminarProducto.Values.Text = "Eliminar Producto";
             btnEliminarProducto.Click += btnEliminarProducto_Click;
             // 
+            // cmbFormaPago
+            // 
+            cmbFormaPago.DropDownWidth = 300;
+            cmbFormaPago.Location = new Point(203, 141);
+            cmbFormaPago.Name = "cmbFormaPago";
+            cmbFormaPago.Size = new Size(196, 38);
+            cmbFormaPago.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbFormaPago.StateCommon.ComboBox.Border.Rounding = 20F;
+            cmbFormaPago.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            cmbFormaPago.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
+            cmbFormaPago.StateCommon.Item.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbFormaPago.StateNormal.ComboBox.Border.Rounding = 40F;
+            cmbFormaPago.TabIndex = 339;
+            // 
+            // cmbProveedor
+            // 
+            cmbProveedor.DropDownWidth = 300;
+            cmbProveedor.Location = new Point(203, 185);
+            cmbProveedor.Name = "cmbProveedor";
+            cmbProveedor.Size = new Size(312, 38);
+            cmbProveedor.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbProveedor.StateCommon.ComboBox.Border.Rounding = 20F;
+            cmbProveedor.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            cmbProveedor.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
+            cmbProveedor.StateCommon.Item.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbProveedor.StateNormal.ComboBox.Border.Rounding = 40F;
+            cmbProveedor.TabIndex = 338;
+            // 
             // Modificar_datos__Compra_
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(924, 560);
+            Controls.Add(cmbFormaPago);
+            Controls.Add(cmbProveedor);
             Controls.Add(btnEliminarProducto);
             Controls.Add(txtNotaDetalle);
             Controls.Add(label4);
-            Controls.Add(cmbProveedor);
-            Controls.Add(cmbFormaPago);
             Controls.Add(btnAceptar);
             Controls.Add(kryptonButton4);
             Controls.Add(kryptonButton5);
@@ -384,13 +385,13 @@
             Name = "Modificar_datos__Compra_";
             Text = "Modificar_datos__Compra_";
             Load += Modificar_datos__Compra__Load;
-            ((System.ComponentModel.ISupportInitialize)cmbProveedor).EndInit();
-            ((System.ComponentModel.ISupportInitialize)cmbFormaPago).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvProductosCompraMod).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cmbFormaPago).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cmbProveedor).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -399,8 +400,6 @@
 
         private Krypton.Toolkit.KryptonTextBox txtNotaDetalle;
         private Label label4;
-        private Krypton.Toolkit.KryptonComboBox cmbProveedor;
-        private Krypton.Toolkit.KryptonComboBox cmbFormaPago;
         private Krypton.Toolkit.KryptonButton btnAceptar;
         private Krypton.Toolkit.KryptonButton kryptonButton4;
         private Krypton.Toolkit.KryptonButton kryptonButton5;
@@ -419,5 +418,7 @@
         private PictureBox pictureBox4;
         private Krypton.Toolkit.KryptonButton kryptonButton13;
         private Krypton.Toolkit.KryptonButton btnEliminarProducto;
+        private Krypton.Toolkit.KryptonComboBox cmbFormaPago;
+        private Krypton.Toolkit.KryptonComboBox cmbProveedor;
     }
 }

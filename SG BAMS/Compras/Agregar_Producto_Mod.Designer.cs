@@ -30,7 +30,6 @@
         {
             txtPrecio = new Krypton.Toolkit.KryptonTextBox();
             numCantidad = new Krypton.Toolkit.KryptonNumericUpDown();
-            cmbProductos = new Krypton.Toolkit.KryptonComboBox();
             kryptonButton3 = new Krypton.Toolkit.KryptonButton();
             btnCancelar = new Krypton.Toolkit.KryptonButton();
             btnProductoNuevo = new Krypton.Toolkit.KryptonButton();
@@ -44,11 +43,12 @@
             pictureBox1 = new PictureBox();
             pictureBox4 = new PictureBox();
             kryptonButton13 = new Krypton.Toolkit.KryptonButton();
-            ((System.ComponentModel.ISupportInitialize)cmbProductos).BeginInit();
+            cmbProductos = new Krypton.Toolkit.KryptonComboBox();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cmbProductos).BeginInit();
             SuspendLayout();
             // 
             // txtPrecio
@@ -73,19 +73,6 @@
             numCantidad.StateCommon.Content.Color1 = Color.Navy;
             numCantidad.TabIndex = 227;
             numCantidad.Value = new decimal(new int[] { 0, 0, 0, 0 });
-            // 
-            // cmbProductos
-            // 
-            cmbProductos.DropDownWidth = 178;
-            cmbProductos.Location = new Point(184, 126);
-            cmbProductos.Name = "cmbProductos";
-            cmbProductos.Size = new Size(284, 32);
-            cmbProductos.StateActive.ComboBox.Border.Rounding = 10F;
-            cmbProductos.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
-            cmbProductos.StateCommon.ComboBox.Border.Rounding = 80F;
-            cmbProductos.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
-            cmbProductos.StateCommon.Item.Border.Rounding = 80F;
-            cmbProductos.TabIndex = 226;
             // 
             // kryptonButton3
             // 
@@ -260,14 +247,28 @@
             kryptonButton13.Values.DropDownArrowColor = Color.Empty;
             kryptonButton13.Values.Text = "BAMS";
             // 
+            // cmbProductos
+            // 
+            cmbProductos.DropDownWidth = 300;
+            cmbProductos.Location = new Point(157, 125);
+            cmbProductos.Name = "cmbProductos";
+            cmbProductos.Size = new Size(312, 38);
+            cmbProductos.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbProductos.StateCommon.ComboBox.Border.Rounding = 20F;
+            cmbProductos.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            cmbProductos.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
+            cmbProductos.StateCommon.Item.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbProductos.StateNormal.ComboBox.Border.Rounding = 40F;
+            cmbProductos.TabIndex = 336;
+            // 
             // Agregar_Producto_Mod
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(551, 373);
+            Controls.Add(cmbProductos);
             Controls.Add(txtPrecio);
             Controls.Add(numCantidad);
-            Controls.Add(cmbProductos);
             Controls.Add(kryptonButton3);
             Controls.Add(btnCancelar);
             Controls.Add(btnProductoNuevo);
@@ -284,11 +285,11 @@
             Name = "Agregar_Producto_Mod";
             Text = "Agregar_Producto_Mod";
             Load += Agregar_Producto_Mod_Load;
-            ((System.ComponentModel.ISupportInitialize)cmbProductos).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cmbProductos).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -297,7 +298,6 @@
 
         private Krypton.Toolkit.KryptonTextBox txtPrecio;
         private Krypton.Toolkit.KryptonNumericUpDown numCantidad;
-        private Krypton.Toolkit.KryptonComboBox cmbProductos;
         private Krypton.Toolkit.KryptonButton kryptonButton3;
         private Krypton.Toolkit.KryptonButton btnCancelar;
         private Krypton.Toolkit.KryptonButton btnProductoNuevo;
@@ -311,5 +311,6 @@
         private PictureBox pictureBox1;
         private PictureBox pictureBox4;
         private Krypton.Toolkit.KryptonButton kryptonButton13;
+        private Krypton.Toolkit.KryptonComboBox cmbProductos;
     }
 }
