@@ -95,7 +95,7 @@
             dgvInventarioEmp.ReadOnly = true;
             dgvInventarioEmp.RowHeadersWidth = 51;
             dgvInventarioEmp.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvInventarioEmp.Size = new Size(1199, 617);
+            dgvInventarioEmp.Size = new Size(1060, 617);
             dgvInventarioEmp.StateCommon.Background.Color1 = Color.LightBlue;
             dgvInventarioEmp.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
             dgvInventarioEmp.TabIndex = 210;
@@ -104,7 +104,7 @@
             // kryptonGroup1
             // 
             kryptonGroup1.Location = new Point(305, 201);
-            kryptonGroup1.Size = new Size(1282, 669);
+            kryptonGroup1.Size = new Size(1143, 669);
             kryptonGroup1.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroup1.StateCommon.Border.Rounding = 70F;
             kryptonGroup1.TabIndex = 209;
@@ -122,7 +122,7 @@
             panel4.BackColor = Color.Navy;
             panel4.Location = new Point(1, 881);
             panel4.Name = "panel4";
-            panel4.Size = new Size(1633, 24);
+            panel4.Size = new Size(1490, 24);
             panel4.TabIndex = 197;
             // 
             // panel3
@@ -481,7 +481,7 @@
             // 
             // kryptonButton11
             // 
-            kryptonButton11.Location = new Point(1500, 29);
+            kryptonButton11.Location = new Point(1372, 30);
             kryptonButton11.Name = "kryptonButton11";
             kryptonButton11.OverrideDefault.Back.Color1 = Color.Transparent;
             kryptonButton11.OverrideDefault.Back.Color2 = Color.Transparent;
@@ -508,7 +508,7 @@
             // 
             pictureBox18.BackgroundImage = Properties.Resources.ajus;
             pictureBox18.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox18.Location = new Point(1445, 28);
+            pictureBox18.Location = new Point(1317, 29);
             pictureBox18.Name = "pictureBox18";
             pictureBox18.Size = new Size(53, 49);
             pictureBox18.TabIndex = 202;
@@ -523,7 +523,7 @@
             button12.FlatAppearance.BorderSize = 0;
             button12.FlatStyle = FlatStyle.Flat;
             button12.ForeColor = Color.Navy;
-            button12.Location = new Point(1380, 28);
+            button12.Location = new Point(1252, 29);
             button12.Name = "button12";
             button12.Size = new Size(59, 44);
             button12.TabIndex = 201;
@@ -533,7 +533,7 @@
             // 
             panel7.BackColor = Color.Navy;
             panel7.Controls.Add(pictureBox2);
-            panel7.Location = new Point(1604, 17);
+            panel7.Location = new Point(1467, 22);
             panel7.Name = "panel7";
             panel7.Size = new Size(24, 869);
             panel7.TabIndex = 199;
@@ -552,7 +552,7 @@
             panel2.BackColor = Color.Navy;
             panel2.Location = new Point(1, -1);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1627, 24);
+            panel2.Size = new Size(1490, 24);
             panel2.TabIndex = 211;
             // 
             // kryptonLabel2
@@ -569,7 +569,8 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1627, 905);
+            ClientSize = new Size(1491, 905);
+            Controls.Add(panel7);
             Controls.Add(kryptonLabel2);
             Controls.Add(panel2);
             Controls.Add(dgvInventarioEmp);
@@ -584,7 +585,6 @@
             Controls.Add(kryptonButton11);
             Controls.Add(pictureBox18);
             Controls.Add(button12);
-            Controls.Add(panel7);
             Name = "InventarioEmp";
             Text = "InventarioEmp";
             Load += InventarioEmp_Load;
