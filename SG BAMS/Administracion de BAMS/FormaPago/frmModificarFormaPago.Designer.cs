@@ -50,38 +50,34 @@ namespace SG_BAMS
             // 
             panel1.BackColor = Color.Navy;
             panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(598, 18);
+            panel1.Size = new Size(683, 24);
             panel1.TabIndex = 132;
             // 
             // pictureBox2
             // 
             pictureBox2.BackColor = Color.Navy;
             pictureBox2.Location = new Point(0, 0);
-            pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(21, 270);
+            pictureBox2.Size = new Size(24, 360);
             pictureBox2.TabIndex = 133;
             pictureBox2.TabStop = false;
             // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Navy;
-            pictureBox1.Location = new Point(577, 0);
-            pictureBox1.Margin = new Padding(3, 2, 3, 2);
+            pictureBox1.Location = new Point(659, 0);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(21, 281);
+            pictureBox1.Size = new Size(24, 375);
             pictureBox1.TabIndex = 125;
             pictureBox1.TabStop = false;
             // 
             // panel2
             // 
             panel2.BackColor = Color.Navy;
-            panel2.Location = new Point(0, 263);
-            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Location = new Point(0, 351);
             panel2.Name = "panel2";
-            panel2.Size = new Size(598, 18);
+            panel2.Size = new Size(683, 24);
             panel2.TabIndex = 131;
             // 
             // label9
@@ -90,9 +86,9 @@ namespace SG_BAMS
             label9.BackColor = Color.Transparent;
             label9.Font = new Font("Segoe UI", 15F);
             label9.ForeColor = Color.Navy;
-            label9.Location = new Point(506, 233);
+            label9.Location = new Point(578, 311);
             label9.Name = "label9";
-            label9.Size = new Size(65, 28);
+            label9.Size = new Size(80, 35);
             label9.TabIndex = 126;
             label9.Text = "BAMS";
             // 
@@ -102,9 +98,9 @@ namespace SG_BAMS
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(22, 79);
+            label2.Location = new Point(25, 105);
             label2.Name = "label2";
-            label2.Size = new Size(274, 25);
+            label2.Size = new Size(331, 31);
             label2.TabIndex = 124;
             label2.Text = "Ingrese el tipo de forma de pago:";
             // 
@@ -113,9 +109,9 @@ namespace SG_BAMS
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial Narrow", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(144, 24);
+            label1.Location = new Point(165, 32);
             label1.Name = "label1";
-            label1.Size = new Size(318, 29);
+            label1.Size = new Size(363, 39);
             label1.TabIndex = 123;
             label1.Text = "Modificar el tipo de forma de pago";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -123,15 +119,14 @@ namespace SG_BAMS
             // 
             // btnModificar
             // 
-            btnModificar.Location = new Point(179, 158);
-            btnModificar.Margin = new Padding(3, 2, 3, 2);
+            btnModificar.Location = new Point(205, 211);
             btnModificar.Name = "btnModificar";
             btnModificar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnModificar.OverrideDefault.Back.Color2 = Color.White;
             btnModificar.OverrideDefault.Border.Rounding = 40F;
             btnModificar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnModificar.OverrideFocus.Back.Color2 = Color.White;
-            btnModificar.Size = new Size(103, 49);
+            btnModificar.Size = new Size(118, 65);
             btnModificar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnModificar.StateCommon.Back.Color2 = Color.White;
             btnModificar.StateCommon.Border.Rounding = 40F;
@@ -150,19 +145,20 @@ namespace SG_BAMS
             // 
             pictureBox16.BackgroundImage = (Image)resources.GetObject("pictureBox16.BackgroundImage");
             pictureBox16.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox16.Location = new Point(458, 22);
-            pictureBox16.Margin = new Padding(3, 2, 3, 2);
+            pictureBox16.Location = new Point(523, 29);
             pictureBox16.Name = "pictureBox16";
-            pictureBox16.Size = new Size(41, 36);
+            pictureBox16.Size = new Size(47, 48);
             pictureBox16.TabIndex = 141;
             pictureBox16.TabStop = false;
             // 
             // txtDescri
             // 
-            txtDescri.Location = new Point(307, 74);
+            txtDescri.Location = new Point(351, 99);
+            txtDescri.Margin = new Padding(3, 4, 3, 4);
+            txtDescri.MaxLength = 70;
             txtDescri.Multiline = true;
             txtDescri.Name = "txtDescri";
-            txtDescri.Size = new Size(264, 36);
+            txtDescri.Size = new Size(302, 48);
             txtDescri.StateCommon.Back.Color1 = Color.SkyBlue;
             txtDescri.StateCommon.Border.Rounding = 15F;
             txtDescri.StateCommon.Content.Color1 = Color.Navy;
@@ -171,15 +167,14 @@ namespace SG_BAMS
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(320, 158);
-            btnSalir.Margin = new Padding(3, 2, 3, 2);
+            btnSalir.Location = new Point(366, 211);
             btnSalir.Name = "btnSalir";
             btnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnSalir.OverrideDefault.Back.Color2 = Color.White;
             btnSalir.OverrideDefault.Border.Rounding = 40F;
             btnSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnSalir.OverrideFocus.Back.Color2 = Color.White;
-            btnSalir.Size = new Size(103, 49);
+            btnSalir.Size = new Size(118, 65);
             btnSalir.StateCommon.Back.Color1 = Color.SkyBlue;
             btnSalir.StateCommon.Back.Color2 = Color.White;
             btnSalir.StateCommon.Border.Rounding = 40F;
@@ -196,10 +191,10 @@ namespace SG_BAMS
             // 
             // frmModificarFormaPago
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(598, 281);
+            ClientSize = new Size(683, 375);
             Controls.Add(btnSalir);
             Controls.Add(txtDescri);
             Controls.Add(pictureBox16);
@@ -211,6 +206,7 @@ namespace SG_BAMS
             Controls.Add(label9);
             Controls.Add(label2);
             Controls.Add(label1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "frmModificarFormaPago";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmModificarFormaPago";

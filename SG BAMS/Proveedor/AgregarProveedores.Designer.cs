@@ -234,6 +234,7 @@
             // txtDireccion
             // 
             txtDireccion.Location = new Point(200, 269);
+            txtDireccion.MaxLength = 70;
             txtDireccion.Name = "txtDireccion";
             txtDireccion.Size = new Size(250, 39);
             txtDireccion.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -256,6 +257,7 @@
             // txtRTN
             // 
             txtRTN.Location = new Point(200, 324);
+            txtRTN.MaxLength = 14;
             txtRTN.Name = "txtRTN";
             txtRTN.Size = new Size(250, 39);
             txtRTN.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -278,6 +280,7 @@
             // txtTelefono
             // 
             txtTelefono.Location = new Point(200, 213);
+            txtTelefono.MaxLength = 8;
             txtTelefono.Name = "txtTelefono";
             txtTelefono.Size = new Size(250, 39);
             txtTelefono.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -288,6 +291,7 @@
             // txtNombre
             // 
             txtNombre.Location = new Point(200, 161);
+            txtNombre.MaxLength = 70;
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(250, 39);
             txtNombre.StateCommon.Back.Color1 = Color.SkyBlue;

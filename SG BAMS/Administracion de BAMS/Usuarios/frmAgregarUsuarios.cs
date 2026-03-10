@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Azure.Core.HttpHeader;
@@ -66,45 +67,73 @@ namespace SG_BAMS
                 return;
             }
 
-            if (cmbRol.SelectedIndex == -1)
+            if (txtContra.Text.Length < 3)
             {
-                MessageBox.Show("Debe seleccionar un Rol.");
+                MessageBox.Show("La direccion debe tener mas de 3 caracteres.", "Error de Longitud", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            try
+            if (txtNombre.Text.Contains("  "))
             {
-                clsUsuario objetoUsuario = new clsUsuario();
+                MessageBox.Show("El nombre no puede contener dos espacios seguidos.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-                int idRol = (int)cmbRol.SelectedValue;
-                int idEstado = 1;
-                byte[] imagenByte = null;
+            if (Regex.IsMatch(txtNombre.Text, @"(\w)\1{2,}"))
+            {
+                MessageBox.Show("No se permite repetir la misma letra más de dos veces seguidas.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-                bool exito = await objetoUsuario.InsertarUsuarioAsync(
-                    txtNombre.Text,
-                    txtContra.Text,
-                    idRol,
-                    imagenByte
-                );
-
-                if (exito)
+            if (txtNombre.Text.Length < 3)
                 {
-                    MessageBox.Show("Usuario guardado exitosamente.");
+                    MessageBox.Show("La direccion debe tener mas de 3 caracteres.", "Error de Longitud", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
-                    frmUsuarios principal = new frmUsuarios();
-                    principal.Show();
-                    this.Close();
+                if (!Regex.IsMatch(txtNombre.Text, @"^[a-zA-Z \s & ñ Ñ @,.;:<>]+$"))
+                {
+                    MessageBox.Show("El campos de Nombre solo deben contener caracteres validos.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (cmbRol.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Debe seleccionar un Rol.");
+                    return;
+                }
+
+                try
+                {
+                    clsUsuario objetoUsuario = new clsUsuario();
+
+                    int idRol = (int)cmbRol.SelectedValue;
+                    int idEstado = 1;
+                    byte[] imagenByte = null;
+
+                    bool exito = await objetoUsuario.InsertarUsuarioAsync(
+                        txtNombre.Text,
+                        txtContra.Text,
+                        idRol,
+                        imagenByte
+                    );
+
+                    if (exito)
+                    {
+                        MessageBox.Show("Usuario guardado exitosamente.");
+
+                        this.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ocurrió un error: " + ex.Message);
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ocurrió un error: " + ex.Message);
-            }
-        }
+        
 
         private void btnImagen_Click(object sender, EventArgs e)
         {
-            // Se manda el nombre de usuario escrito en la caja de texto al formulario de la cámara
             frmImagenEmpleado agregarImagen = new frmImagenEmpleado(txtNombre.Text);
             agregarImagen.Show();
         }
@@ -114,7 +143,6 @@ namespace SG_BAMS
             this.Close();
         }
 
-        // Variable para guardar la lista original de roles y no perderla al filtrar
         private List<string> listaOriginalRoles = new List<string>();
 
         private void ConfigurarFiltroRoles()
@@ -127,23 +155,17 @@ namespace SG_BAMS
 
                 if (dtRoles != null)
                 {
-                    // Creamos una vista filtrada del DataTable
                     DataView dv = dtRoles.DefaultView;
 
-                    // Filtramos por la columna de texto (descripcion_rol)
                     dv.RowFilter = $"descripcion_rol LIKE '%{filtro}%'";
 
-                    // Actualizamos el origen de datos
                     cmbRol.DataSource = dv;
 
-                    // Mantenemos el desplegable abierto y el texto que el usuario escribe
                     cmbRol.DroppedDown = true;
                     cmbRol.Text = filtro;
 
-                    // Ponemos el cursor al final del texto
                     cmbRol.SelectionStart = filtro.Length;
 
-                    // Evitamos que el cursor cambie de forma
                     Cursor.Current = Cursors.Default;
                 }
             };
@@ -153,10 +175,8 @@ namespace SG_BAMS
         {
             if (cmbRol.SelectedIndex != -1)
             {
-                // Obtenemos el texto del rol seleccionado
                 string rolSeleccionado = cmbRol.Text;
 
-                // Activamos si es Administrador o Empleado (ajusta las strings si varían en tu BD)
                 if (rolSeleccionado == "Administrador" || rolSeleccionado == "Empleado")
                 {
                     btnImagen.Enabled = true;
@@ -170,6 +190,11 @@ namespace SG_BAMS
             {
                 btnImagen.Enabled = false;
             }
+        }
+
+        private void txtNombre_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

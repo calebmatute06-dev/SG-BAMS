@@ -49,10 +49,9 @@
             // 
             pictureBox16.BackgroundImage = (Image)resources.GetObject("pictureBox16.BackgroundImage");
             pictureBox16.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox16.Location = new Point(427, 19);
-            pictureBox16.Margin = new Padding(3, 2, 3, 2);
+            pictureBox16.Location = new Point(488, 25);
             pictureBox16.Name = "pictureBox16";
-            pictureBox16.Size = new Size(47, 47);
+            pictureBox16.Size = new Size(54, 63);
             pictureBox16.TabIndex = 142;
             pictureBox16.TabStop = false;
             // 
@@ -60,46 +59,44 @@
             // 
             panel1.BackColor = Color.Navy;
             panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(598, 18);
+            panel1.Size = new Size(683, 24);
             panel1.TabIndex = 140;
             // 
             // pictureBox2
             // 
             pictureBox2.BackColor = Color.Navy;
             pictureBox2.Location = new Point(0, 0);
-            pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(21, 270);
+            pictureBox2.Size = new Size(24, 360);
             pictureBox2.TabIndex = 141;
             pictureBox2.TabStop = false;
             // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Navy;
-            pictureBox1.Location = new Point(577, 0);
-            pictureBox1.Margin = new Padding(3, 2, 3, 2);
+            pictureBox1.Location = new Point(659, 0);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(21, 281);
+            pictureBox1.Size = new Size(24, 375);
             pictureBox1.TabIndex = 134;
             pictureBox1.TabStop = false;
             // 
             // panel2
             // 
             panel2.BackColor = Color.Navy;
-            panel2.Location = new Point(0, 263);
-            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Location = new Point(0, 351);
             panel2.Name = "panel2";
-            panel2.Size = new Size(598, 18);
+            panel2.Size = new Size(683, 24);
             panel2.TabIndex = 139;
             // 
             // txtDescri
             // 
-            txtDescri.Location = new Point(293, 76);
+            txtDescri.Location = new Point(335, 101);
+            txtDescri.Margin = new Padding(3, 4, 3, 4);
+            txtDescri.MaxLength = 70;
             txtDescri.Multiline = true;
             txtDescri.Name = "txtDescri";
-            txtDescri.Size = new Size(264, 41);
+            txtDescri.Size = new Size(302, 55);
             txtDescri.StateCommon.Back.Color1 = Color.SkyBlue;
             txtDescri.StateCommon.Border.Rounding = 15F;
             txtDescri.StateCommon.Content.Color1 = Color.Navy;
@@ -112,9 +109,9 @@
             label9.BackColor = Color.Transparent;
             label9.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label9.ForeColor = Color.Navy;
-            label9.Location = new Point(513, 237);
+            label9.Location = new Point(586, 316);
             label9.Name = "label9";
-            label9.Size = new Size(58, 24);
+            label9.Size = new Size(70, 30);
             label9.TabIndex = 135;
             label9.Text = "BAMS";
             // 
@@ -124,9 +121,9 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(49, 84);
+            label2.Location = new Point(56, 112);
             label2.Name = "label2";
-            label2.Size = new Size(229, 25);
+            label2.Size = new Size(276, 31);
             label2.TabIndex = 133;
             label2.Text = "Ingrese el tipo de producto:";
             // 
@@ -135,24 +132,23 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial Narrow", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(141, 25);
+            label1.Location = new Point(161, 33);
             label1.Name = "label1";
-            label1.Size = new Size(313, 29);
+            label1.Size = new Size(358, 39);
             label1.TabIndex = 132;
             label1.Text = "Agregar Tipo de Producto";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(168, 176);
-            btnAgregar.Margin = new Padding(3, 2, 3, 2);
+            btnAgregar.Location = new Point(192, 235);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnAgregar.OverrideDefault.Back.Color2 = Color.White;
             btnAgregar.OverrideDefault.Border.Rounding = 40F;
             btnAgregar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnAgregar.OverrideFocus.Back.Color2 = Color.White;
-            btnAgregar.Size = new Size(103, 49);
+            btnAgregar.Size = new Size(118, 65);
             btnAgregar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnAgregar.StateCommon.Back.Color2 = Color.White;
             btnAgregar.StateCommon.Border.Rounding = 40F;
@@ -169,15 +165,14 @@
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(322, 176);
-            btnSalir.Margin = new Padding(3, 2, 3, 2);
+            btnSalir.Location = new Point(368, 235);
             btnSalir.Name = "btnSalir";
             btnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnSalir.OverrideDefault.Back.Color2 = Color.White;
             btnSalir.OverrideDefault.Border.Rounding = 40F;
             btnSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnSalir.OverrideFocus.Back.Color2 = Color.White;
-            btnSalir.Size = new Size(103, 49);
+            btnSalir.Size = new Size(118, 65);
             btnSalir.StateCommon.Back.Color1 = Color.SkyBlue;
             btnSalir.StateCommon.Back.Color2 = Color.White;
             btnSalir.StateCommon.Border.Rounding = 40F;
@@ -194,10 +189,10 @@
             // 
             // frnAgregarTipoProducto
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(597, 281);
+            ClientSize = new Size(682, 375);
             Controls.Add(btnSalir);
             Controls.Add(btnAgregar);
             Controls.Add(pictureBox16);
@@ -209,6 +204,7 @@
             Controls.Add(label9);
             Controls.Add(label2);
             Controls.Add(label1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "frnAgregarTipoProducto";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frnAgregarTipoProducto";

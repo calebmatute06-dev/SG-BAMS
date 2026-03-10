@@ -50,57 +50,54 @@ namespace SG_BAMS
             // 
             panel1.BackColor = Color.Navy;
             panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(598, 18);
+            panel1.Size = new Size(683, 24);
             panel1.TabIndex = 88;
             // 
             // pictureBox2
             // 
             pictureBox2.BackColor = Color.Navy;
             pictureBox2.Location = new Point(0, 0);
-            pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(21, 270);
+            pictureBox2.Size = new Size(24, 360);
             pictureBox2.TabIndex = 89;
             pictureBox2.TabStop = false;
             // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Navy;
-            pictureBox1.Location = new Point(577, 0);
-            pictureBox1.Margin = new Padding(3, 2, 3, 2);
+            pictureBox1.Location = new Point(659, 0);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(21, 281);
+            pictureBox1.Size = new Size(24, 375);
             pictureBox1.TabIndex = 81;
             pictureBox1.TabStop = false;
             // 
             // panel2
             // 
             panel2.BackColor = Color.Navy;
-            panel2.Location = new Point(0, 263);
-            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Location = new Point(0, 351);
             panel2.Name = "panel2";
-            panel2.Size = new Size(598, 18);
+            panel2.Size = new Size(683, 24);
             panel2.TabIndex = 87;
             // 
             // pictureBox16
             // 
             pictureBox16.BackgroundImage = (Image)resources.GetObject("pictureBox16.BackgroundImage");
             pictureBox16.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox16.Location = new Point(369, 14);
-            pictureBox16.Margin = new Padding(3, 2, 3, 2);
+            pictureBox16.Location = new Point(422, 19);
             pictureBox16.Name = "pictureBox16";
-            pictureBox16.Size = new Size(47, 45);
+            pictureBox16.Size = new Size(54, 60);
             pictureBox16.TabIndex = 86;
             pictureBox16.TabStop = false;
             // 
             // txtDescri
             // 
-            txtDescri.Location = new Point(282, 67);
+            txtDescri.Location = new Point(322, 89);
+            txtDescri.Margin = new Padding(3, 4, 3, 4);
+            txtDescri.MaxLength = 70;
             txtDescri.Multiline = true;
             txtDescri.Name = "txtDescri";
-            txtDescri.Size = new Size(264, 40);
+            txtDescri.Size = new Size(302, 53);
             txtDescri.StateCommon.Back.Color1 = Color.SkyBlue;
             txtDescri.StateCommon.Border.Rounding = 15F;
             txtDescri.StateCommon.Content.Color1 = Color.Navy;
@@ -113,9 +110,9 @@ namespace SG_BAMS
             label9.BackColor = Color.Transparent;
             label9.Font = new Font("Segoe UI", 15F);
             label9.ForeColor = Color.Navy;
-            label9.Location = new Point(506, 233);
+            label9.Location = new Point(578, 311);
             label9.Name = "label9";
-            label9.Size = new Size(65, 28);
+            label9.Size = new Size(80, 35);
             label9.TabIndex = 82;
             label9.Text = "BAMS";
             // 
@@ -125,9 +122,9 @@ namespace SG_BAMS
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(49, 74);
+            label2.Location = new Point(56, 99);
             label2.Name = "label2";
-            label2.Size = new Size(223, 25);
+            label2.Size = new Size(270, 31);
             label2.TabIndex = 80;
             label2.Text = "Ingrese el modelo de auto:";
             // 
@@ -136,24 +133,23 @@ namespace SG_BAMS
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial Narrow", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(159, 22);
+            label1.Location = new Point(182, 29);
             label1.Name = "label1";
-            label1.Size = new Size(245, 29);
+            label1.Size = new Size(280, 39);
             label1.TabIndex = 79;
             label1.Text = "Agregar Modelos";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(172, 164);
-            btnAgregar.Margin = new Padding(3, 2, 3, 2);
+            btnAgregar.Location = new Point(197, 219);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnAgregar.OverrideDefault.Back.Color2 = Color.White;
             btnAgregar.OverrideDefault.Border.Rounding = 40F;
             btnAgregar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnAgregar.OverrideFocus.Back.Color2 = Color.White;
-            btnAgregar.Size = new Size(103, 49);
+            btnAgregar.Size = new Size(118, 65);
             btnAgregar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnAgregar.StateCommon.Back.Color2 = Color.White;
             btnAgregar.StateCommon.Border.Rounding = 40F;
@@ -170,15 +166,14 @@ namespace SG_BAMS
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(339, 164);
-            btnSalir.Margin = new Padding(3, 2, 3, 2);
+            btnSalir.Location = new Point(387, 219);
             btnSalir.Name = "btnSalir";
             btnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnSalir.OverrideDefault.Back.Color2 = Color.White;
             btnSalir.OverrideDefault.Border.Rounding = 40F;
             btnSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnSalir.OverrideFocus.Back.Color2 = Color.White;
-            btnSalir.Size = new Size(103, 49);
+            btnSalir.Size = new Size(118, 65);
             btnSalir.StateCommon.Back.Color1 = Color.SkyBlue;
             btnSalir.StateCommon.Back.Color2 = Color.White;
             btnSalir.StateCommon.Border.Rounding = 40F;
@@ -195,10 +190,10 @@ namespace SG_BAMS
             // 
             // frmAgregarModeloAuto
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(597, 281);
+            ClientSize = new Size(682, 375);
             Controls.Add(btnSalir);
             Controls.Add(btnAgregar);
             Controls.Add(panel1);
@@ -210,6 +205,7 @@ namespace SG_BAMS
             Controls.Add(label9);
             Controls.Add(label2);
             Controls.Add(label1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "frmAgregarModeloAuto";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "fmrAgregarModeloAuto";
