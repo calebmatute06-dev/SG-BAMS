@@ -30,5 +30,31 @@ namespace SG_BAMS.ProductoInventario
             }
             finally { conexion.Cerrar(); }
         }
+
+        public bool ExisteNombreProducto(string nombre)
+        {
+            int conteo = 0;
+            string query = "SELECT COUNT(*) FROM Producto WHERE nombre_producto = @nombre";
+
+            try
+            {
+                conexion.AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand(query, conexion.Conectar))
+                {
+                    cmd.Parameters.AddWithValue("@nombre", nombre);
+                    conteo = Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al verificar duplicados: " + ex.Message);
+            }
+            finally
+            {
+                conexion.Cerrar();
+            }
+
+            return conteo > 0; // Si es mayor a 0, el nombre ya existe
+        }
     }
 }

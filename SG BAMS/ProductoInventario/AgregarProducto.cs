@@ -1,4 +1,5 @@
-﻿using SG_BAMS.Facturas;
+﻿using Microsoft.Data.SqlClient;
+using SG_BAMS.Facturas;
 using SG_BAMS.ProductoInventario;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace SG_BAMS
         private void btnAceptar_Click(object sender, EventArgs e)
         {
 
+            // 1. Validaciones de formato (Capa de Cliente)
             if (!ClsValidacion.ValidarNombre(txtNombre.Text)) return;
             if (!ClsValidacion.ValidarPrecio(txtPrecio.Text)) return;
             if (!ClsValidacion.ValidarSeleccion(cmbMarca, "la Marca")) return;
@@ -32,17 +34,34 @@ namespace SG_BAMS
 
             try
             {
+                // 2. Validación de existencia por NOMBRE
+                if (ExisteProductoPorNombre(txtNombre.Text.Trim()))
+                {
+                    MessageBox.Show("El nombre '" + txtNombre.Text + "' ya está registrado. Use uno diferente.",
+                                    "Nombre Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    txtNombre.Focus();
+                    return;
+                }
+
+                // 3. Validación de existencia por CÓDIGO DE BARRAS
+                if (ExisteProductoPorCodigo(txtCodigoBarra.Text.Trim()))
+                {
+                    MessageBox.Show("El código de barras '" + txtCodigoBarra.Text + "' ya pertenece a otro producto, Por favor Ingresar otro.",
+                                    "Código Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    txtCodigoBarra.Focus();
+                    return;
+                }
+
+                // 4. Proceso de inserción (Si pasó todas las pruebas)
                 ClsAgregarProducto logicaInsertar = new ClsAgregarProducto();
 
-                string nombre = txtNombre.Text;
+                string nombre = txtNombre.Text.Trim();
                 int idMarca = (int)cmbMarca.SelectedValue;
                 int idTipo = (int)cmbTipo.SelectedValue;
                 int idModelo = (int)cmbModelo.SelectedValue;
-
                 decimal precio = decimal.Parse(txtPrecio.Text);
-
-                string servicio = txtServicio.Text; 
-                string codBarra = txtCodigoBarra.Text;
+                string servicio = txtServicio.Text.Trim();
+                string codBarra = txtCodigoBarra.Text.Trim();
 
                 logicaInsertar.EjecutarInsercion(nombre, idMarca, idTipo, idModelo, precio, servicio, codBarra);
 
@@ -53,8 +72,72 @@ namespace SG_BAMS
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al guardar en el sistema: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al guardar: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private bool ExisteProducto(string nombre)
+        {
+            ClsConexion conexion = new ClsConexion();
+            int count = 0;
+            try
+            {
+                conexion.AbrirConexion();
+                string sql = "SELECT COUNT(*) FROM Producto WHERE nombre_producto = @nombre";
+                using (SqlCommand cmd = new SqlCommand(sql, conexion.Conectar))
+                {
+                    cmd.Parameters.AddWithValue("@nombre", nombre);
+                    count = (int)cmd.ExecuteScalar();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al verificar duplicados: " + ex.Message);
+            }
+            finally
+            {
+                conexion.Cerrar();
+            }
+            return count > 0;
+        }
+
+        private bool ExisteProductoPorNombre(string nombre)
+        {
+            ClsConexion conexion = new ClsConexion();
+            int count = 0;
+            try
+            {
+                conexion.AbrirConexion();
+                string sql = "SELECT COUNT(*) FROM Producto WHERE nombre_producto = @nombre";
+                using (SqlCommand cmd = new SqlCommand(sql, conexion.Conectar))
+                {
+                    cmd.Parameters.AddWithValue("@nombre", nombre);
+                    count = (int)cmd.ExecuteScalar();
+                }
+            }
+            catch { throw; }
+            finally { conexion.Cerrar(); }
+            return count > 0;
+        }
+
+        private bool ExisteProductoPorCodigo(string codigo)
+        {
+            ClsConexion conexion = new ClsConexion();
+            int count = 0;
+            try
+            {
+                conexion.AbrirConexion();
+                // Buscamos específicamente en la columna codigo_barra
+                string sql = "SELECT COUNT(*) FROM Producto WHERE codigo_barra = @codigo";
+                using (SqlCommand cmd = new SqlCommand(sql, conexion.Conectar))
+                {
+                    cmd.Parameters.AddWithValue("@codigo", codigo);
+                    count = (int)cmd.ExecuteScalar();
+                }
+            }
+            catch { throw; }
+            finally { conexion.Cerrar(); }
+            return count > 0;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
