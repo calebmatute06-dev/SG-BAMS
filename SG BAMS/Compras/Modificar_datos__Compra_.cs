@@ -88,6 +88,16 @@ namespace SG_BAMS
 
             if (dgvProductosCompraMod.Columns.Contains("Cantidad")) dgvProductosCompraMod.Columns["Cantidad"].ReadOnly = false;
             if (dgvProductosCompraMod.Columns.Contains("Precio")) dgvProductosCompraMod.Columns["Precio"].ReadOnly = false;
+
+            if (dgvProductosCompraMod.Columns.Contains("Precio"))
+            {
+                dgvProductosCompraMod.Columns["Precio"].DefaultCellStyle.Format = "N2";
+            }
+
+            if (dgvProductosCompraMod.Columns.Contains("Subtotal"))
+            {
+                dgvProductosCompraMod.Columns["Subtotal"].DefaultCellStyle.Format = "N2";
+            }
         }
 
         private void LlenarCombos()
