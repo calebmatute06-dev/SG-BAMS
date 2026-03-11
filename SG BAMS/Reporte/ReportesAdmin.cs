@@ -257,5 +257,61 @@ namespace SG_BAMS.Reporte
             ClsExportarExcel exportador = new ClsExportarExcel();
             exportador.ExportarDataGridView(dgvReporte);
         }
+
+        private void btnMenuPrincipal_Click(object sender, EventArgs e)
+        {
+            MenuPrincipalAdm menuPrincipalAdm = new MenuPrincipalAdm();
+            menuPrincipalAdm.Show();
+            this.Hide();
+        }
+
+        private void btnFactura_Click(object sender, EventArgs e)
+        {
+            FacturasAdm facturas = new FacturasAdm();
+            facturas.Show();
+            this.Hide();
+        }
+
+        private void btnCompra_Click(object sender, EventArgs e)
+        {
+            Compras vercompras = new Compras();
+            vercompras.Show();
+            this.Hide();
+        }
+
+        private void btnCliente_Click(object sender, EventArgs e)
+        {
+            ClientesAdm clientes = new ClientesAdm();
+            clientes.Show();
+            this.Hide();
+        }
+
+        private void btnInventarioAdmin_Click(object sender, EventArgs e)
+        {
+            InventarioAdmin inventario = new InventarioAdmin();
+            inventario.Show();
+            this.Hide();
+        }
+
+        private void btnProveedores_Click(object sender, EventArgs e)
+        {
+            Proveedor.ProveedoresAdmin proveedores = new Proveedor.ProveedoresAdmin();
+            proveedores.Show();
+            this.Hide();
+        }
+
+        private void btnDeudoresAdmin_Click(object sender, EventArgs e)
+        {
+            DeudoresAdmin deudoresAdm = new DeudoresAdmin();
+            deudoresAdm.Show();
+            this.Hide();
+        }
+
+        private void btnBitacora_Click(object sender, EventArgs e)
+        {
+            Bitacora.BitacoraAdmin bitacora = new Bitacora.BitacoraAdmin();
+            bitacora.Show();
+            this.Hide();
+        }
     }
 }
