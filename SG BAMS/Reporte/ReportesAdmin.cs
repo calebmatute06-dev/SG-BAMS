@@ -26,8 +26,11 @@ namespace SG_BAMS.Reporte
 
         private void ReportesAdmin_Load(object sender, EventArgs e)
         {
+            ControlarFiltroStock(false);
+
             dtpHasta.Value = DateTime.Now;
             dtpDesde.Value = DateTime.Now.AddDays(-30);
+
 
             CargarReporteVentas();
         }
@@ -69,6 +72,8 @@ namespace SG_BAMS.Reporte
 
         private void btnVentas_Click(object sender, EventArgs e)
         {
+            ControlarFiltroStock(false);
+
             try
             {
                 DataTable datos = objReporte.ReporteVentas(dtpDesde.Value, dtpHasta.Value);
@@ -104,6 +109,8 @@ namespace SG_BAMS.Reporte
 
         private void btnCompras_Click(object sender, EventArgs e)
         {
+            ControlarFiltroStock(false);
+
             try
             {
                 DataTable datos = objReporte.ReporteCompras(dtpDesde.Value, dtpHasta.Value);
@@ -134,6 +141,8 @@ namespace SG_BAMS.Reporte
 
         private void btnDeudores_Click(object sender, EventArgs e)
         {
+            ControlarFiltroStock(false);
+
             try
             {
                 DataTable datos = objReporte.ReporteDeudores();
@@ -163,6 +172,8 @@ namespace SG_BAMS.Reporte
 
         private void btnInventario_Click(object sender, EventArgs e)
         {
+            ControlarFiltroStock(true);
+
             try
             {
                 dgvReporte.DataSource = objReporte.ReporteInventario();
@@ -182,6 +193,27 @@ namespace SG_BAMS.Reporte
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void ControlarFiltroStock(bool estado)
+        {
+            Min.Enabled = estado;
+            Max.Enabled = estado;
+            btnFiltro.Enabled = estado;
+
+            if (estado)
+            {
+                Min.BackColor = System.Drawing.Color.White;
+                Max.BackColor = System.Drawing.Color.White;
+            }
+            else
+            {
+                // Limpiamos y "apagamos" visualmente
+                Min.Value = 0;
+                Max.Value = 0;
+                Min.BackColor = System.Drawing.Color.LightGray;
+                Max.BackColor = System.Drawing.Color.LightGray;
             }
         }
 
@@ -250,6 +282,12 @@ namespace SG_BAMS.Reporte
         {
             dtpHasta.Value = DateTime.Now;
             dtpDesde.Value = DateTime.Now.AddDays(-30);
+
+            Min.Value = 0;
+            Max.Value = 0;
+            ControlarFiltroStock(false);
+
+            CargarReporteVentas();
         }
 
         private void btnExportarEx_Click(object sender, EventArgs e)
@@ -312,6 +350,40 @@ namespace SG_BAMS.Reporte
             Bitacora.BitacoraAdmin bitacora = new Bitacora.BitacoraAdmin();
             bitacora.Show();
             this.Hide();
+        }
+
+        private void btnFiltro_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                if (dgvReporte.DataSource != null && dgvReporte.DataSource is DataTable dt)
+                {
+                    int valorMin = (int)Min.Value;
+                    int valorMax = (int)Max.Value;
+
+                    if (valorMin > valorMax)
+                    {
+                        MessageBox.Show("El valor mínimo no puede ser mayor al máximo.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    dt.DefaultView.RowFilter = string.Format("Stock_Actual >= {0} AND Stock_Actual <= {1}", valorMin, valorMax);
+
+                    if (dgvReporte.Rows.Count == 0)
+                    {
+                        MessageBox.Show("No hay productos con ese rango de stock.", "Sin resultados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Primero debe cargar el Inventario para aplicar un filtro de stock.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al filtrar: " + ex.Message);
+            }
         }
     }
 }

@@ -81,6 +81,12 @@
             btnExportarEx = new Krypton.Toolkit.KryptonButton();
             label4 = new Label();
             label3 = new Label();
+            Min = new Krypton.Toolkit.KryptonNumericUpDown();
+            label5 = new Label();
+            label6 = new Label();
+            label7 = new Label();
+            Max = new Krypton.Toolkit.KryptonNumericUpDown();
+            btnFiltro = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox15).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvReporte).BeginInit();
@@ -232,7 +238,7 @@
             label8.BackColor = Color.SkyBlue;
             label8.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Navy;
-            label8.Location = new Point(741, 94);
+            label8.Location = new Point(766, 59);
             label8.Name = "label8";
             label8.Size = new Size(241, 35);
             label8.TabIndex = 269;
@@ -240,7 +246,7 @@
             // 
             // kryptonGroup1
             // 
-            kryptonGroup1.Location = new Point(705, 86);
+            kryptonGroup1.Location = new Point(730, 51);
             kryptonGroup1.Size = new Size(315, 50);
             kryptonGroup1.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroup1.StateCommon.Border.Rounding = 30F;
@@ -939,11 +945,103 @@
             label3.TabIndex = 280;
             label3.Text = "Hasta aqui:";
             // 
+            // Min
+            // 
+            Min.Increment = new decimal(new int[] { 1, 0, 0, 0 });
+            Min.Location = new Point(841, 187);
+            Min.Maximum = new decimal(new int[] { 100, 0, 0, 0 });
+            Min.Minimum = new decimal(new int[] { 0, 0, 0, 0 });
+            Min.Name = "Min";
+            Min.Size = new Size(104, 32);
+            Min.StateCommon.Back.Color1 = Color.SkyBlue;
+            Min.StateCommon.Border.Rounding = 10F;
+            Min.StateCommon.Content.Color1 = Color.Navy;
+            Min.TabIndex = 281;
+            Min.Value = new decimal(new int[] { 0, 0, 0, 0 });
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.BackColor = Color.Transparent;
+            label5.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.Navy;
+            label5.Location = new Point(921, 152);
+            label5.Name = "label5";
+            label5.Size = new Size(97, 22);
+            label5.TabIndex = 283;
+            label5.Text = "Filtro de stock";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.BackColor = Color.Transparent;
+            label6.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.ForeColor = Color.Navy;
+            label6.Location = new Point(801, 193);
+            label6.Name = "label6";
+            label6.Size = new Size(34, 22);
+            label6.TabIndex = 284;
+            label6.Text = "Min";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.BackColor = Color.Transparent;
+            label7.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label7.ForeColor = Color.Navy;
+            label7.Location = new Point(971, 193);
+            label7.Name = "label7";
+            label7.Size = new Size(38, 22);
+            label7.TabIndex = 285;
+            label7.Text = "Max";
+            // 
+            // Max
+            // 
+            Max.Increment = new decimal(new int[] { 1, 0, 0, 0 });
+            Max.Location = new Point(1015, 187);
+            Max.Maximum = new decimal(new int[] { 100, 0, 0, 0 });
+            Max.Minimum = new decimal(new int[] { 0, 0, 0, 0 });
+            Max.Name = "Max";
+            Max.Size = new Size(104, 32);
+            Max.StateCommon.Back.Color1 = Color.SkyBlue;
+            Max.StateCommon.Border.Rounding = 10F;
+            Max.StateCommon.Content.Color1 = Color.Navy;
+            Max.TabIndex = 286;
+            Max.Value = new decimal(new int[] { 0, 0, 0, 0 });
+            // 
+            // btnFiltro
+            // 
+            btnFiltro.Location = new Point(1135, 190);
+            btnFiltro.Name = "btnFiltro";
+            btnFiltro.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnFiltro.OverrideDefault.Back.Color2 = Color.White;
+            btnFiltro.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnFiltro.OverrideFocus.Back.Color2 = Color.White;
+            btnFiltro.Size = new Size(91, 26);
+            btnFiltro.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnFiltro.StateCommon.Back.Color2 = Color.White;
+            btnFiltro.StateCommon.Border.Rounding = 40F;
+            btnFiltro.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnFiltro.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnFiltro.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnFiltro.StateNormal.Back.Color2 = Color.Transparent;
+            btnFiltro.StateNormal.Border.Rounding = 40F;
+            btnFiltro.TabIndex = 287;
+            btnFiltro.Values.DropDownArrowColor = Color.Empty;
+            btnFiltro.Values.Text = "Aplicar";
+            btnFiltro.Click += btnFiltro_Click;
+            // 
             // ReportesAdmin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1451, 903);
+            Controls.Add(btnFiltro);
+            Controls.Add(Max);
+            Controls.Add(label7);
+            Controls.Add(label6);
+            Controls.Add(label5);
+            Controls.Add(Min);
             Controls.Add(label3);
             Controls.Add(label4);
             Controls.Add(btnExportarEx);
@@ -1062,5 +1160,11 @@
         private Krypton.Toolkit.KryptonButton btnExportarEx;
         private Label label4;
         private Label label3;
+        private Krypton.Toolkit.KryptonNumericUpDown Min;
+        private Label label5;
+        private Label label6;
+        private Label label7;
+        private Krypton.Toolkit.KryptonNumericUpDown Max;
+        private Krypton.Toolkit.KryptonButton btnFiltro;
     }
 }
