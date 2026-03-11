@@ -22,6 +22,14 @@ namespace SG_BAMS.ProductoInventario
                 return false;
             }
 
+            string nombreLimpio = nombre.Trim();
+            if (nombreLimpio.Length < 3 || nombreLimpio.Length > 40)
+            {
+                MessageBox.Show("El nombre del producto debe tener entre 3 y 40 caracteres.",
+                                "Longitud Inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
             if (Regex.IsMatch(nombre, @"([a-zA-Z])\1{2,}"))
             {
                 MessageBox.Show("El nombre no permite que una letra se repita más de 2 veces consecutivamente.",
