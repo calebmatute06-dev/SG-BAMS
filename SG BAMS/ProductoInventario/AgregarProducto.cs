@@ -22,6 +22,8 @@ namespace SG_BAMS
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+            string nombreLimpio = txtNombre.Text.Trim();
+            if (!ClsValidacion.ValidarNombre(nombreLimpio)) return;
 
             // 1. Validaciones de formato (Capa de Cliente)
             if (!ClsValidacion.ValidarNombre(txtNombre.Text)) return;

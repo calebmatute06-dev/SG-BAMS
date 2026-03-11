@@ -54,7 +54,7 @@ namespace SG_BAMS.ProductoInventario
                 conexion.Cerrar();
             }
 
-            return conteo > 0; // Si es mayor a 0, el nombre ya existe
+            return conteo > 0;
         }
     }
 }

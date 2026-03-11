@@ -13,12 +13,26 @@ namespace SG_BAMS.ProductoInventario
     {
         public static bool ValidarNombre(string nombre)
         {
-            bool esValido = Regex.IsMatch(nombre, @"^[a-zA-Z0-9\s]+$");
+            bool formatoBasico = Regex.IsMatch(nombre, @"^[a-zA-Z0-9\s]+$");
 
-            if (!esValido || string.IsNullOrWhiteSpace(nombre))
+            if (!formatoBasico || string.IsNullOrWhiteSpace(nombre))
             {
                 MessageBox.Show("El nombre del producto solo puede contener letras y números, y no puede estar vacío.",
                                 "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (Regex.IsMatch(nombre, @"([a-zA-Z])\1{2,}"))
+            {
+                MessageBox.Show("El nombre no permite que una letra se repita más de 2 veces consecutivamente.",
+                                "Error de Escritura", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (nombre.Contains("  "))
+            {
+                MessageBox.Show("El nombre no puede contener dos o más espacios consecutivos.",
+                                "Error de Espaciado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 

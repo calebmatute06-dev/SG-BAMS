@@ -1,4 +1,5 @@
-﻿using SG_BAMS.ProductoInventario;
+﻿using Microsoft.Data.SqlClient;
+using SG_BAMS.ProductoInventario;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,31 +31,57 @@ namespace SG_BAMS
         {
             try
             {
+                // 1. Validaciones de Formato y Limpieza
                 if (!ClsValidacion.ValidarNombre(txtNombre.Text)) return;
                 string precioLimpio = txtPrecio.Text.Replace("Lps", "").Replace("$", "").Trim();
                 if (!ClsValidacion.ValidarPrecio(precioLimpio)) return;
                 if (!ClsValidacion.ValidarServicio(txtServicio.Text)) return;
                 if (!ClsValidacion.ValidarCodigoBarra(txtCodigoBarra.Text)) return;
+
+                // Datos necesarios para la validación
+                int idActual = Convert.ToInt32(txtID.Text);
+                string nombreNuevo = txtNombre.Text.Trim();
+                string codigoNuevo = txtCodigoBarra.Text.Trim();
+
+                // 2. VALIDACIÓN: Nombre repetido (pero que no sea el de este mismo producto)
+                if (ExisteDuplicadoEnOtros(idActual, "nombre_producto", nombreNuevo))
+                {
+                    MessageBox.Show("No se puede actualizar: El nombre '" + nombreNuevo + "' ya está asignado a otro producto.",
+                                    "Nombre Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    txtNombre.Focus();
+                    return;
+                }
+
+                // 3. VALIDACIÓN: Código de barras repetido (pero que no sea el de este mismo producto)
+                if (ExisteDuplicadoEnOtros(idActual, "codigo_barra", codigoNuevo))
+                {
+                    MessageBox.Show("No se puede actualizar: El código de barras '" + codigoNuevo + "' ya está asignado a otro producto.",
+                                    "Código Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    txtCodigoBarra.Focus();
+                    return;
+                }
+
+                // 4. Si pasó las validaciones, procedemos a actualizar
                 if (!ClsValidacion.ValidarSeleccion(cmbMarca, "Marca")) return;
                 if (!ClsValidacion.ValidarSeleccion(cmbTipo, "Tipo")) return;
                 if (!ClsValidacion.ValidarSeleccion(cmbModelo, "Modelo")) return;
                 if (!ClsValidacion.ValidarSeleccion(cmbEstado, "Estado")) return;
+
                 SG_BAMS.ProductoInventario.ClsActualizarProducto logica = new SG_BAMS.ProductoInventario.ClsActualizarProducto();
 
                 logica.EjecutarActualizacion(
-                    Convert.ToInt32(txtID.Text),
-                    txtNombre.Text,
+                    idActual,
+                    nombreNuevo,
                     Convert.ToInt32(cmbMarca.SelectedValue),
                     Convert.ToInt32(cmbTipo.SelectedValue),
                     Convert.ToInt32(cmbModelo.SelectedValue),
                     Convert.ToInt32(cmbEstado.SelectedValue),
                     Convert.ToDecimal(precioLimpio),
                     txtServicio.Text,
-                    txtCodigoBarra.Text
+                    codigoNuevo
                 );
 
                 MessageBox.Show("¡Producto actualizado correctamente!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
@@ -62,6 +89,29 @@ namespace SG_BAMS
             {
                 MessageBox.Show("Error al guardar cambios: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private bool ExisteDuplicadoEnOtros(int idActual, string columna, string valor)
+        {
+            ClsConexion conexion = new ClsConexion();
+            int total = 0;
+            try
+            {
+                conexion.AbrirConexion();
+                // Consultamos si el valor existe en OTRO ID diferente al que tengo abierto
+                string sql = $"SELECT COUNT(*) FROM Producto WHERE {columna} = @valor AND id_producto <> @id";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conexion.Conectar))
+                {
+                    cmd.Parameters.AddWithValue("@valor", valor);
+                    cmd.Parameters.AddWithValue("@id", idActual);
+                    total = (int)cmd.ExecuteScalar();
+                }
+            }
+            catch { throw; }
+            finally { conexion.Cerrar(); }
+
+            return total > 0;
         }
 
         private void ModificarProducto_Load(object sender, EventArgs e)
