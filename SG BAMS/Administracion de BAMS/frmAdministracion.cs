@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SG_BAMS.Reporte;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -151,7 +152,10 @@ namespace SG_BAMS
 
         private void btnReporte_Click(object sender, EventArgs e)
         {
-          
+            ReportesAdmin frmReportes = new ReportesAdmin();
+            frmReportes.Show();
+            this.Hide();
+
         }
 
         private void btnBitacora_Click(object sender, EventArgs e)
