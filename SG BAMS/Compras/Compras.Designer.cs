@@ -49,13 +49,11 @@
             btnCerrarSesion = new Krypton.Toolkit.KryptonButton();
             btnMenu = new Krypton.Toolkit.KryptonButton();
             btnFactura = new Krypton.Toolkit.KryptonButton();
-            btnCompra = new Krypton.Toolkit.KryptonButton();
             btnClientes = new Krypton.Toolkit.KryptonButton();
             btnInve = new Krypton.Toolkit.KryptonButton();
             btnProvee = new Krypton.Toolkit.KryptonButton();
             btnDeudores = new Krypton.Toolkit.KryptonButton();
             pictureBox16 = new PictureBox();
-            pictureBox13 = new PictureBox();
             pictureBox15 = new PictureBox();
             btnReporte = new Krypton.Toolkit.KryptonButton();
             label2 = new Label();
@@ -84,7 +82,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox13).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox15).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox14).BeginInit();
@@ -281,13 +278,11 @@
             panel1.Controls.Add(btnCerrarSesion);
             panel1.Controls.Add(btnMenu);
             panel1.Controls.Add(btnFactura);
-            panel1.Controls.Add(btnCompra);
             panel1.Controls.Add(btnClientes);
             panel1.Controls.Add(btnInve);
             panel1.Controls.Add(btnProvee);
             panel1.Controls.Add(btnDeudores);
             panel1.Controls.Add(pictureBox16);
-            panel1.Controls.Add(pictureBox13);
             panel1.Controls.Add(pictureBox15);
             panel1.Controls.Add(btnReporte);
             panel1.Controls.Add(label2);
@@ -307,7 +302,7 @@
             // 
             // btnBitacora
             // 
-            btnBitacora.Location = new Point(130, 703);
+            btnBitacora.Location = new Point(130, 653);
             btnBitacora.Name = "btnBitacora";
             btnBitacora.OverrideDefault.Back.Color1 = Color.Transparent;
             btnBitacora.OverrideDefault.Back.Color2 = Color.Transparent;
@@ -433,35 +428,9 @@
             btnFactura.Values.Text = "Facturas";
             btnFactura.Click += btnFactura_Click;
             // 
-            // btnCompra
-            // 
-            btnCompra.Location = new Point(130, 338);
-            btnCompra.Name = "btnCompra";
-            btnCompra.OverrideDefault.Back.Color1 = Color.Transparent;
-            btnCompra.OverrideDefault.Back.Color2 = Color.Transparent;
-            btnCompra.OverrideDefault.Border.Rounding = 40F;
-            btnCompra.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnCompra.OverrideFocus.Back.Color2 = Color.White;
-            btnCompra.Size = new Size(104, 36);
-            btnCompra.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnCompra.StateCommon.Back.Color2 = Color.White;
-            btnCompra.StateCommon.Border.Rounding = 40F;
-            btnCompra.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnCompra.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnCompra.StateNormal.Back.Color1 = Color.Transparent;
-            btnCompra.StateNormal.Back.Color2 = Color.Transparent;
-            btnCompra.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
-            btnCompra.StatePressed.Back.Color1 = Color.Transparent;
-            btnCompra.StatePressed.Back.Color2 = Color.Transparent;
-            btnCompra.StateTracking.Border.Rounding = 40F;
-            btnCompra.TabIndex = 32;
-            btnCompra.Values.DropDownArrowColor = Color.Empty;
-            btnCompra.Values.Text = "Compras";
-            btnCompra.Click += btnCompra_Click;
-            // 
             // btnClientes
             // 
-            btnClientes.Location = new Point(130, 399);
+            btnClientes.Location = new Point(130, 349);
             btnClientes.Name = "btnClientes";
             btnClientes.OverrideDefault.Back.Color1 = Color.Transparent;
             btnClientes.OverrideDefault.Back.Color2 = Color.Transparent;
@@ -487,7 +456,7 @@
             // 
             // btnInve
             // 
-            btnInve.Location = new Point(130, 455);
+            btnInve.Location = new Point(130, 405);
             btnInve.Name = "btnInve";
             btnInve.OverrideDefault.Back.Color1 = Color.Transparent;
             btnInve.OverrideDefault.Back.Color2 = Color.Transparent;
@@ -513,7 +482,7 @@
             // 
             // btnProvee
             // 
-            btnProvee.Location = new Point(114, 517);
+            btnProvee.Location = new Point(114, 467);
             btnProvee.Name = "btnProvee";
             btnProvee.OverrideDefault.Back.Color1 = Color.Transparent;
             btnProvee.OverrideDefault.Back.Color2 = Color.Transparent;
@@ -539,7 +508,7 @@
             // 
             // btnDeudores
             // 
-            btnDeudores.Location = new Point(130, 588);
+            btnDeudores.Location = new Point(130, 538);
             btnDeudores.Name = "btnDeudores";
             btnDeudores.OverrideDefault.Back.Color1 = Color.Transparent;
             btnDeudores.OverrideDefault.Back.Color2 = Color.Transparent;
@@ -573,16 +542,6 @@
             pictureBox16.TabIndex = 13;
             pictureBox16.TabStop = false;
             // 
-            // pictureBox13
-            // 
-            pictureBox13.BackgroundImage = Properties.Resources.compras;
-            pictureBox13.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox13.Location = new Point(46, 328);
-            pictureBox13.Name = "pictureBox13";
-            pictureBox13.Size = new Size(78, 64);
-            pictureBox13.TabIndex = 12;
-            pictureBox13.TabStop = false;
-            // 
             // pictureBox15
             // 
             pictureBox15.BackgroundImage = Properties.Resources.cerrar;
@@ -595,7 +554,7 @@
             // 
             // btnReporte
             // 
-            btnReporte.Location = new Point(130, 648);
+            btnReporte.Location = new Point(130, 598);
             btnReporte.Name = "btnReporte";
             btnReporte.OverrideDefault.Back.Color1 = Color.Transparent;
             btnReporte.OverrideDefault.Back.Color2 = Color.Transparent;
@@ -645,7 +604,7 @@
             pictureBox14.BackColor = Color.SkyBlue;
             pictureBox14.BackgroundImage = Properties.Resources.bitacora;
             pictureBox14.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox14.Location = new Point(50, 700);
+            pictureBox14.Location = new Point(50, 650);
             pictureBox14.Name = "pictureBox14";
             pictureBox14.Size = new Size(52, 40);
             pictureBox14.TabIndex = 18;
@@ -656,7 +615,7 @@
             pictureBox11.BackColor = Color.SkyBlue;
             pictureBox11.BackgroundImage = Properties.Resources.Reportes;
             pictureBox11.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox11.Location = new Point(49, 636);
+            pictureBox11.Location = new Point(49, 586);
             pictureBox11.Name = "pictureBox11";
             pictureBox11.Size = new Size(56, 51);
             pictureBox11.TabIndex = 15;
@@ -667,7 +626,7 @@
             pictureBox12.BackColor = Color.SkyBlue;
             pictureBox12.BackgroundImage = Properties.Resources.Deudores;
             pictureBox12.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox12.Location = new Point(46, 574);
+            pictureBox12.Location = new Point(46, 524);
             pictureBox12.Name = "pictureBox12";
             pictureBox12.Size = new Size(63, 53);
             pictureBox12.TabIndex = 16;
@@ -678,7 +637,7 @@
             pictureBox10.BackColor = Color.SkyBlue;
             pictureBox10.BackgroundImage = Properties.Resources.Proveedores;
             pictureBox10.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox10.Location = new Point(50, 507);
+            pictureBox10.Location = new Point(50, 457);
             pictureBox10.Name = "pictureBox10";
             pictureBox10.Size = new Size(58, 56);
             pictureBox10.TabIndex = 14;
@@ -689,7 +648,7 @@
             pictureBox5.BackColor = Color.SkyBlue;
             pictureBox5.BackgroundImage = Properties.Resources.Inventario;
             pictureBox5.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox5.Location = new Point(56, 445);
+            pictureBox5.Location = new Point(56, 395);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new Size(49, 49);
             pictureBox5.TabIndex = 11;
@@ -700,7 +659,7 @@
             pictureBox7.BackColor = Color.SkyBlue;
             pictureBox7.BackgroundImage = Properties.Resources.clientes;
             pictureBox7.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox7.Location = new Point(57, 383);
+            pictureBox7.Location = new Point(57, 333);
             pictureBox7.Name = "pictureBox7";
             pictureBox7.Size = new Size(52, 56);
             pictureBox7.TabIndex = 12;
@@ -860,7 +819,6 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox13).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox15).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox14).EndInit();
@@ -901,13 +859,11 @@
         private Krypton.Toolkit.KryptonButton btnCerrarSesion;
         private Krypton.Toolkit.KryptonButton btnMenu;
         private Krypton.Toolkit.KryptonButton btnFactura;
-        private Krypton.Toolkit.KryptonButton btnCompra;
         private Krypton.Toolkit.KryptonButton btnClientes;
         private Krypton.Toolkit.KryptonButton btnInve;
         private Krypton.Toolkit.KryptonButton btnProvee;
         private Krypton.Toolkit.KryptonButton btnDeudores;
         private PictureBox pictureBox16;
-        private PictureBox pictureBox13;
         private PictureBox pictureBox15;
         private Krypton.Toolkit.KryptonButton btnReporte;
         private Label label2;
