@@ -82,6 +82,7 @@
             btnCompras = new Krypton.Toolkit.KryptonButton();
             btnDeudores = new Krypton.Toolkit.KryptonButton();
             btnInventario = new Krypton.Toolkit.KryptonButton();
+            btnExportarEx = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox15).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvReporte).BeginInit();
@@ -214,7 +215,7 @@
             label1.BackColor = Color.SkyBlue;
             label1.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(352, 268);
+            label1.Location = new Point(351, 237);
             label1.Name = "label1";
             label1.Size = new Size(160, 24);
             label1.TabIndex = 271;
@@ -222,7 +223,7 @@
             // 
             // kryptonGroup2
             // 
-            kryptonGroup2.Location = new Point(339, 264);
+            kryptonGroup2.Location = new Point(338, 233);
             kryptonGroup2.Size = new Size(182, 33);
             kryptonGroup2.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroup2.StateCommon.Border.Rounding = 30F;
@@ -250,7 +251,7 @@
             // 
             // lbl
             // 
-            lbl.Location = new Point(362, 388);
+            lbl.Location = new Point(361, 357);
             lbl.Name = "lbl";
             lbl.OverrideDefault.Back.Color1 = Color.Transparent;
             lbl.OverrideDefault.Back.Color2 = Color.Transparent;
@@ -275,7 +276,7 @@
             // 
             // kryptonButton13
             // 
-            kryptonButton13.Location = new Point(362, 295);
+            kryptonButton13.Location = new Point(361, 264);
             kryptonButton13.Name = "kryptonButton13";
             kryptonButton13.OverrideDefault.Back.Color1 = Color.Transparent;
             kryptonButton13.OverrideDefault.Back.Color2 = Color.Transparent;
@@ -300,7 +301,7 @@
             // 
             // dtpHasta
             // 
-            dtpHasta.Location = new Point(303, 430);
+            dtpHasta.Location = new Point(302, 399);
             dtpHasta.Name = "dtpHasta";
             dtpHasta.Size = new Size(248, 49);
             dtpHasta.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -314,7 +315,7 @@
             // 
             // dtpDesde
             // 
-            dtpDesde.Location = new Point(303, 340);
+            dtpDesde.Location = new Point(302, 309);
             dtpDesde.Name = "dtpDesde";
             dtpDesde.Size = new Size(248, 49);
             dtpDesde.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -351,7 +352,7 @@
             // 
             // btnExportaar
             // 
-            btnExportaar.Location = new Point(324, 757);
+            btnExportaar.Location = new Point(320, 693);
             btnExportaar.Name = "btnExportaar";
             btnExportaar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnExportaar.OverrideDefault.Back.Color2 = Color.White;
@@ -368,7 +369,7 @@
             btnExportaar.StateNormal.Border.Rounding = 40F;
             btnExportaar.TabIndex = 262;
             btnExportaar.Values.DropDownArrowColor = Color.Empty;
-            btnExportaar.Values.Text = "Exportar";
+            btnExportaar.Values.Text = "Exportar PDF";
             btnExportaar.Click += btnExportaar_Click;
             // 
             // pictureBox3
@@ -889,7 +890,7 @@
             // 
             // btnVentas
             // 
-            btnVentas.Location = new Point(348, 512);
+            btnVentas.Location = new Point(347, 482);
             btnVentas.Name = "btnVentas";
             btnVentas.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnVentas.OverrideDefault.Back.Color2 = Color.White;
@@ -911,7 +912,7 @@
             // 
             // btnCompras
             // 
-            btnCompras.Location = new Point(348, 559);
+            btnCompras.Location = new Point(347, 529);
             btnCompras.Name = "btnCompras";
             btnCompras.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnCompras.OverrideDefault.Back.Color2 = Color.White;
@@ -933,7 +934,7 @@
             // 
             // btnDeudores
             // 
-            btnDeudores.Location = new Point(348, 606);
+            btnDeudores.Location = new Point(347, 576);
             btnDeudores.Name = "btnDeudores";
             btnDeudores.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnDeudores.OverrideDefault.Back.Color2 = Color.White;
@@ -955,7 +956,7 @@
             // 
             // btnInventario
             // 
-            btnInventario.Location = new Point(348, 653);
+            btnInventario.Location = new Point(347, 623);
             btnInventario.Name = "btnInventario";
             btnInventario.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnInventario.OverrideDefault.Back.Color2 = Color.White;
@@ -975,11 +976,34 @@
             btnInventario.Values.Text = "Inventario";
             btnInventario.Click += btnInventario_Click;
             // 
+            // btnExportarEx
+            // 
+            btnExportarEx.Location = new Point(320, 740);
+            btnExportarEx.Name = "btnExportarEx";
+            btnExportarEx.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnExportarEx.OverrideDefault.Back.Color2 = Color.White;
+            btnExportarEx.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnExportarEx.OverrideFocus.Back.Color2 = Color.White;
+            btnExportarEx.Size = new Size(206, 41);
+            btnExportarEx.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnExportarEx.StateCommon.Back.Color2 = Color.White;
+            btnExportarEx.StateCommon.Border.Rounding = 40F;
+            btnExportarEx.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnExportarEx.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnExportarEx.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnExportarEx.StateNormal.Back.Color2 = Color.Transparent;
+            btnExportarEx.StateNormal.Border.Rounding = 40F;
+            btnExportarEx.TabIndex = 278;
+            btnExportarEx.Values.DropDownArrowColor = Color.Empty;
+            btnExportarEx.Values.Text = "Exportar EXCEL";
+            btnExportarEx.Click += btnExportarEx_Click;
+            // 
             // ReportesAdmin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1451, 903);
+            Controls.Add(btnExportarEx);
             Controls.Add(btnInventario);
             Controls.Add(btnDeudores);
             Controls.Add(btnCompras);
@@ -1099,5 +1123,6 @@
         private Krypton.Toolkit.KryptonButton btnCompras;
         private Krypton.Toolkit.KryptonButton btnDeudores;
         private Krypton.Toolkit.KryptonButton btnInventario;
+        private Krypton.Toolkit.KryptonButton btnExportarEx;
     }
 }

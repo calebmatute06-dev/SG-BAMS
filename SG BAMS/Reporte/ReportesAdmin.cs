@@ -251,5 +251,11 @@ namespace SG_BAMS.Reporte
             dtpHasta.Value = DateTime.Now;
             dtpDesde.Value = DateTime.Now.AddDays(-30);
         }
+
+        private void btnExportarEx_Click(object sender, EventArgs e)
+        {
+            ClsExportarExcel exportador = new ClsExportarExcel();
+            exportador.ExportarDataGridView(dgvReporte);
+        }
     }
 }
