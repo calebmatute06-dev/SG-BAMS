@@ -38,8 +38,6 @@
             kryptonGroup2 = new Krypton.Toolkit.KryptonGroup();
             label8 = new Label();
             kryptonGroup1 = new Krypton.Toolkit.KryptonGroup();
-            lbl = new Krypton.Toolkit.KryptonButton();
-            kryptonButton13 = new Krypton.Toolkit.KryptonButton();
             dtpHasta = new Krypton.Toolkit.KryptonDateTimePicker();
             dtpDesde = new Krypton.Toolkit.KryptonDateTimePicker();
             btnLimpiar = new Krypton.Toolkit.KryptonButton();
@@ -83,6 +81,8 @@
             btnDeudores = new Krypton.Toolkit.KryptonButton();
             btnInventario = new Krypton.Toolkit.KryptonButton();
             btnExportarEx = new Krypton.Toolkit.KryptonButton();
+            label4 = new Label();
+            label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox15).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvReporte).BeginInit();
@@ -248,56 +248,6 @@
             kryptonGroup1.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroup1.StateCommon.Border.Rounding = 30F;
             kryptonGroup1.TabIndex = 268;
-            // 
-            // lbl
-            // 
-            lbl.Location = new Point(361, 357);
-            lbl.Name = "lbl";
-            lbl.OverrideDefault.Back.Color1 = Color.Transparent;
-            lbl.OverrideDefault.Back.Color2 = Color.Transparent;
-            lbl.OverrideDefault.Border.Rounding = 40F;
-            lbl.OverrideFocus.Back.Color1 = Color.White;
-            lbl.OverrideFocus.Back.Color2 = Color.SkyBlue;
-            lbl.Size = new Size(133, 41);
-            lbl.StateCommon.Back.Color1 = Color.Transparent;
-            lbl.StateCommon.Back.Color2 = Color.Transparent;
-            lbl.StateCommon.Border.Rounding = 40F;
-            lbl.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            lbl.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl.StateNormal.Back.Color1 = Color.Transparent;
-            lbl.StateNormal.Back.Color2 = Color.Transparent;
-            lbl.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
-            lbl.StatePressed.Back.Color1 = Color.Transparent;
-            lbl.StatePressed.Back.Color2 = Color.Transparent;
-            lbl.StateTracking.Border.Rounding = 40F;
-            lbl.TabIndex = 267;
-            lbl.Values.DropDownArrowColor = Color.Empty;
-            lbl.Values.Text = "Hasta aqui: ";
-            // 
-            // kryptonButton13
-            // 
-            kryptonButton13.Location = new Point(361, 264);
-            kryptonButton13.Name = "kryptonButton13";
-            kryptonButton13.OverrideDefault.Back.Color1 = Color.Transparent;
-            kryptonButton13.OverrideDefault.Back.Color2 = Color.Transparent;
-            kryptonButton13.OverrideDefault.Border.Rounding = 40F;
-            kryptonButton13.OverrideFocus.Back.Color1 = Color.White;
-            kryptonButton13.OverrideFocus.Back.Color2 = Color.SkyBlue;
-            kryptonButton13.Size = new Size(133, 41);
-            kryptonButton13.StateCommon.Back.Color1 = Color.Transparent;
-            kryptonButton13.StateCommon.Back.Color2 = Color.Transparent;
-            kryptonButton13.StateCommon.Border.Rounding = 40F;
-            kryptonButton13.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton13.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton13.StateNormal.Back.Color1 = Color.Transparent;
-            kryptonButton13.StateNormal.Back.Color2 = Color.Transparent;
-            kryptonButton13.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
-            kryptonButton13.StatePressed.Back.Color1 = Color.Transparent;
-            kryptonButton13.StatePressed.Back.Color2 = Color.Transparent;
-            kryptonButton13.StateTracking.Border.Rounding = 40F;
-            kryptonButton13.TabIndex = 266;
-            kryptonButton13.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton13.Values.Text = "Desde aqui:";
             // 
             // dtpHasta
             // 
@@ -998,11 +948,37 @@
             btnExportarEx.Values.Text = "Exportar EXCEL";
             btnExportarEx.Click += btnExportarEx_Click;
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.BackColor = Color.Transparent;
+            label4.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.Navy;
+            label4.Location = new Point(388, 278);
+            label4.Name = "label4";
+            label4.Size = new Size(86, 22);
+            label4.TabIndex = 279;
+            label4.Text = "Desde aqui:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.Navy;
+            label3.Location = new Point(388, 370);
+            label3.Name = "label3";
+            label3.Size = new Size(81, 22);
+            label3.TabIndex = 280;
+            label3.Text = "Hasta aqui:";
+            // 
             // ReportesAdmin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1451, 903);
+            Controls.Add(label3);
+            Controls.Add(label4);
             Controls.Add(btnExportarEx);
             Controls.Add(btnInventario);
             Controls.Add(btnDeudores);
@@ -1014,8 +990,6 @@
             Controls.Add(kryptonGroup2);
             Controls.Add(label8);
             Controls.Add(kryptonGroup1);
-            Controls.Add(lbl);
-            Controls.Add(kryptonButton13);
             Controls.Add(dtpHasta);
             Controls.Add(dtpDesde);
             Controls.Add(btnLimpiar);
@@ -1079,8 +1053,6 @@
         private Krypton.Toolkit.KryptonGroup kryptonGroup2;
         private Label label8;
         private Krypton.Toolkit.KryptonGroup kryptonGroup1;
-        private Krypton.Toolkit.KryptonButton lbl;
-        private Krypton.Toolkit.KryptonButton kryptonButton13;
         private Krypton.Toolkit.KryptonDateTimePicker dtpHasta;
         private Krypton.Toolkit.KryptonDateTimePicker dtpDesde;
         private Krypton.Toolkit.KryptonButton btnLimpiar;
@@ -1124,5 +1096,7 @@
         private Krypton.Toolkit.KryptonButton btnDeudores;
         private Krypton.Toolkit.KryptonButton btnInventario;
         private Krypton.Toolkit.KryptonButton btnExportarEx;
+        private Label label4;
+        private Label label3;
     }
 }
