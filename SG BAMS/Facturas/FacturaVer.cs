@@ -95,8 +95,10 @@ namespace SG_BAMS
             txtBateriaVieja.ReadOnly = true;
             txtCliente.ReadOnly = true;
             txtTotal.ReadOnly = true;
-            
-          
+            dgvFacturas.ReadOnly = true;
+            dgvFacturas.AllowUserToOrderColumns = false;
+
+
 
         }
 

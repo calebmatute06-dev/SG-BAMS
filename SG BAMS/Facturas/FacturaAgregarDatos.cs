@@ -77,6 +77,11 @@ namespace SG_BAMS
             TxtTotal.ReadOnly = true;
             dgvProductos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvProductos.ClearSelection();
+            dgvProductos.Columns["id_producto"].ReadOnly = true;
+            dgvProductos.Columns["nombre_producto"].ReadOnly = true;
+            dgvProductos.Columns["precio"].ReadOnly = true;
+            dgvProductos.Columns["subtotal"].ReadOnly = true;
+            
         }
 
         private void CalcularTotal()

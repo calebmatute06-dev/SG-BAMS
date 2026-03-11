@@ -59,6 +59,7 @@ namespace SG_BAMS
             dgvFacturas.ClearSelection();
             dgvFacturas.ReadOnly = true;
             dgvFacturas.AllowUserToOrderColumns = false;
+           
         }
 
         private async void BtnNueva_Click(object sender, EventArgs e)
@@ -82,6 +83,7 @@ namespace SG_BAMS
 
         private void BtnVer_Click(object sender, EventArgs e)
         {
+           
             if (dgvFacturas.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Debe seleccionar una fila",
@@ -101,10 +103,7 @@ namespace SG_BAMS
 
         private void dgvFacturas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0)
-            {
-                return; 
-            }
+            if (e != null && e.RowIndex < 0) return;
 
             int idFacturas, idPago, bateriaVieja;
             string nombre_Cliente;
@@ -189,6 +188,8 @@ namespace SG_BAMS
 
 
                 dgvFacturas.DataSource = dv;
+
+                dgvFacturas.ClearSelection();
             }
         }
 
