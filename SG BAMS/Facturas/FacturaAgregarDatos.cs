@@ -75,6 +75,8 @@ namespace SG_BAMS
 
             TxtCliente.ReadOnly = true;
             TxtTotal.ReadOnly = true;
+            dgvProductos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvProductos.ClearSelection();
         }
 
         private void CalcularTotal()
@@ -138,7 +140,7 @@ namespace SG_BAMS
                 return;
             }
 
-            // Si pasa todas las validaciones se guarda factura
+
 
             if (cmbPago.SelectedValue == null)
             {
@@ -170,7 +172,6 @@ namespace SG_BAMS
 
                     MessageBox.Show("Factura guardada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // --- INTEGRACIÓN CON LA NUEVA INTERFAZ ---
                     string formaPagoTexto = cmbPago.Text.ToLower();
 
                     if (formaPagoTexto.Contains("crédito") || formaPagoTexto.Contains("credito"))
@@ -179,7 +180,7 @@ namespace SG_BAMS
                         string montoTotal = TxtTotal.Text;
                         DateTime fechaVenta = DateTFecha.SelectionStart;
 
-                        // Se usa el nombre de clase exacto que proporcionaste: Modificar_Datos__Deudor_
+
                         using (Modificar_Datos__Deudor_ frmInfo = new Modificar_Datos__Deudor_(idFactura, nombreCliente, montoTotal, fechaVenta))
                         {
                             frmInfo.ShowDialog();
@@ -208,8 +209,8 @@ namespace SG_BAMS
 
         private async void BtnAgregar_Click(object sender, EventArgs e)
         {
-            
-            if(string.IsNullOrEmpty(TxtBateria.Text.Trim()))
+
+            if (string.IsNullOrEmpty(TxtBateria.Text.Trim()))
             {
                 MessageBox.Show("Debe ingresar un valor en Batería Vieja", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 TxtBateria.Focus();
@@ -226,7 +227,7 @@ namespace SG_BAMS
                 TxtBateria.Focus();
                 return;
             }
-            
+
             using (FacturaProducto frmProd = new FacturaProducto())
             {
                 frmProd.FormularioFactura = this;
@@ -250,6 +251,38 @@ namespace SG_BAMS
         }
 
         private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnEliminar_Click(object sender, EventArgs e)
+        {
+
+            if (dgvProductos.SelectedRows.Count > 0)
+            {
+
+                DialogResult result = MessageBox.Show("¿Desea quitar este producto de la lista?",
+                    "Eliminar Producto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+
+                    foreach (DataGridViewRow row in dgvProductos.SelectedRows)
+                    {
+
+                        if (!row.IsNewRow)
+                        {
+                            dgvProductos.Rows.Remove(row);
+                        }
+                    }
+
+                    CalcularTotal();
+                }
+            }
+
+        }
+
+        private void dgvProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

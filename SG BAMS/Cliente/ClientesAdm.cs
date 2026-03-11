@@ -2,6 +2,7 @@
 using SG_BAMS.Bitacora;
 using SG_BAMS.Cliente;
 using SG_BAMS.Proveedor;
+using SG_BAMS.Reporte;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -71,6 +72,9 @@ namespace SG_BAMS
         {
             await TablaClientes();
             dgvClientes.ClearSelection();
+            dgvClientes.ReadOnly = true;
+            dgvClientes.AllowUserToOrderColumns = false;
+
 
         }
 
@@ -97,6 +101,14 @@ namespace SG_BAMS
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
+            if (dgvClientes.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Debe seleccionar una fila",
+                                "Ninguna fila seleccionada",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                return;
+            }
             if (dgvClientes.CurrentRow != null)
             {
                 dgvClientes_CellDoubleClick(null, null);
@@ -219,7 +231,9 @@ namespace SG_BAMS
 
         private void btnReportes_Click(object sender, EventArgs e)
         {
-            
+            ReportesAdmin RA = new ReportesAdmin();
+            RA.Show();
+            this.Hide();
         }
     }
 }

@@ -2,6 +2,7 @@
 using SG_BAMS.Bitacora;
 using SG_BAMS.Facturas;
 using SG_BAMS.Proveedor;
+using SG_BAMS.Reporte;
 using System;
 using System.Data;
 using System.Threading.Tasks;
@@ -55,6 +56,9 @@ namespace SG_BAMS
         {
             await CargarFactura();
             dtpFin.ValueChanged += dtpInicio_ValueChanged;
+            dgvFacturas.ClearSelection();
+            dgvFacturas.ReadOnly = true;
+            dgvFacturas.AllowUserToOrderColumns = false;
         }
 
         private async void BtnNueva_Click(object sender, EventArgs e)
@@ -78,6 +82,14 @@ namespace SG_BAMS
 
         private void BtnVer_Click(object sender, EventArgs e)
         {
+            if (dgvFacturas.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Debe seleccionar una fila",
+                                "Ninguna fila seleccionada",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                return;
+            }
             if (dgvFacturas.CurrentRow != null)
             {
                 dgvFacturas_CellDoubleClick(null, null);
@@ -138,7 +150,7 @@ namespace SG_BAMS
 
                 DateTime fechaInicio = dtpInicio.Value.Date;
 
-                
+
                 DateTime fechaFin = dtpFin.Value.Date.AddDays(1);
 
                 dv.RowFilter = string.Format(System.Globalization.CultureInfo.InvariantCulture,
@@ -219,7 +231,9 @@ namespace SG_BAMS
 
         private void btnReporte_Click(object sender, EventArgs e)
         {
-            
+            ReportesAdmin RA = new ReportesAdmin();
+            RA.Show();
+            this.Hide();
         }
 
         private void btnbitacora_Click(object sender, EventArgs e)
@@ -257,20 +271,34 @@ namespace SG_BAMS
 
                 if (chkHoy.Checked)
                 {
-                   
+
                     string hoy = DateTime.Today.ToString("MM/dd/yyyy");
 
-                  
-                    dv.RowFilter = string.Format("[Fecha] >= #{0}# AND [Fecha] < #{1}#", hoy,DateTime.Today.AddDays(1).ToString("MM/dd/yyyy"));
+
+                    dv.RowFilter = string.Format("[Fecha] >= #{0}# AND [Fecha] < #{1}#", hoy, DateTime.Today.AddDays(1).ToString("MM/dd/yyyy"));
                 }
                 else
                 {
-                   
+
                     dv.RowFilter = string.Empty;
                 }
 
                 dgvFacturas.DataSource = dv;
             }
+        }
+
+        private void btncompra_Click(object sender, EventArgs e)
+        {
+            Compras CA = new Compras();
+            CA.Show();
+            this.Hide();
+        }
+
+        private void btnreportes_Click(object sender, EventArgs e)
+        {
+            ReportesAdmin RA = new ReportesAdmin();
+            RA.Show();
+            this.Hide();
         }
     }
 

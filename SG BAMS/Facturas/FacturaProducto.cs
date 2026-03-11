@@ -67,7 +67,7 @@ namespace SG_BAMS
 
         private void BtnAceptar_Click(object sender, EventArgs e)
         {
-            //validacion de numero en cantidad
+           
             if (!int.TryParse(txtCantidad.Text.Trim(), out int cantidad))
             {
                 MessageBox.Show("Ingrese una cantidad válida (solo números).",
@@ -88,9 +88,17 @@ namespace SG_BAMS
                 return;
             }
 
+            if(cmbProductos.SelectedIndex == -1)
+            {
+                MessageBox.Show("Por favor, seleccione un producto antes de continuar.","" ,MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                cmbProductos.Focus();
+                return;
+            }
+
             int stock = int.Parse(lblNumero.Text);
 
-            //validacion de stock
+           
             if (cantidad > stock)
             {
                 MessageBox.Show($"No puede vender más del stock disponible ({stock}).",
@@ -99,6 +107,20 @@ namespace SG_BAMS
                                 MessageBoxIcon.Warning);
                 txtCantidad.Focus();
                 return;
+            }
+
+            int idProdu = Convert.ToInt32(cmbProductos.SelectedValue);
+
+            foreach (DataGridViewRow fila in FormularioFactura.dgvProductos.Rows)
+            {
+                if (fila.IsNewRow) continue;
+
+                if (fila.Cells[0].Value != null && Convert.ToInt32(fila.Cells[0].Value) == idProdu)
+                {
+                    MessageBox.Show("Este producto ya está en la factura.",
+                                    "Producto ya existente en la factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
             }
 
             int idProd = Convert.ToInt32(cmbProductos.SelectedValue);

@@ -59,6 +59,14 @@ namespace SG_BAMS
 
         private void BtnVer_Click(object sender, EventArgs e)
         {
+            if (dgvFacturas.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Debe seleccionar una fila",
+                                "Ninguna fila seleccionada",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                return;
+            }
             if (dgvFacturas.CurrentRow != null)
             {
                 dgvFacturas_CellDoubleClick(null, null);
@@ -123,6 +131,9 @@ namespace SG_BAMS
         {
             await CargarFactura();
             dtpFin.ValueChanged += dtpInicio_ValueChanged;
+            dgvFacturas.ClearSelection();
+            dgvFacturas.ReadOnly = true;
+            dgvFacturas.AllowUserToOrderColumns = false;
         }
 
         private void FiltrarPorFecha()
@@ -206,6 +217,13 @@ namespace SG_BAMS
 
                 dgvFacturas.DataSource = dv;
             }
+        }
+
+        private void BtnNotificaciones_Click(object sender, EventArgs e)
+        {
+            NotificacionesAdmin NA = new NotificacionesAdmin();
+            NA.Show();
+            this.Hide();
         }
     }
 }

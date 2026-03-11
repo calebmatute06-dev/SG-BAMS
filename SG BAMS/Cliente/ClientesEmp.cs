@@ -76,6 +76,7 @@ namespace SG_BAMS
                 frmMo.ShowDialog();
                 TablaClientes();
             }
+
         }
 
         private async Task TablaClientes()
@@ -111,6 +112,14 @@ namespace SG_BAMS
 
         private void BtnModificar_Click(object sender, EventArgs e)
         {
+            if (dgvClientes.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Debe seleccionar una fila",
+                                "Ninguna fila seleccionada",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                return;
+            }
             if (dgvClientes.CurrentRow != null)
             {
                 dgvClientes_CellDoubleClick(null, null);
@@ -120,6 +129,9 @@ namespace SG_BAMS
         private async void ClientesEmp_Load(object sender, EventArgs e)
         {
             await TablaClientes();
+            dgvClientes.ClearSelection();
+            dgvClientes.ReadOnly = true;
+            dgvClientes.AllowUserToOrderColumns = false;
         }
 
         private void BtnMenu_Click(object sender, EventArgs e)
@@ -163,6 +175,11 @@ namespace SG_BAMS
         {
             Ajustes ajustes = new Ajustes();
             ajustes.Show();
+        }
+
+        private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

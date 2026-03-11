@@ -90,7 +90,7 @@ namespace SG_BAMS
 
             if (txtNombre.Text.Length < 3)
             {
-                MessageBox.Show("La direccion debe tener mas de 3 caracteres.", "Error de Longitud", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("El nombre debe tener mas de 3 caracteres.", "Error de Longitud", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
