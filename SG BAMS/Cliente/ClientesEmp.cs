@@ -60,6 +60,10 @@ namespace SG_BAMS
 
         private void dgvClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0)
+            {
+                return; 
+            }
             int idCliente, idEstado;
             string nombreCliente, apellidoCliente, telefonoCliente, rtnCliente;
 

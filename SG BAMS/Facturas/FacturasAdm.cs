@@ -101,6 +101,11 @@ namespace SG_BAMS
 
         private void dgvFacturas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0)
+            {
+                return; 
+            }
+
             int idFacturas, idPago, bateriaVieja;
             string nombre_Cliente;
             DateTime fecha;
