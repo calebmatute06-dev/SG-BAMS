@@ -246,14 +246,14 @@ namespace SG_BAMS
             if (string.IsNullOrEmpty(TxtBateria.Text.Trim()))
             {
                 MessageBox.Show("Debe ingresar un valor en Batería Vieja", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                TxtBateria.Focus();
+           
                 return;
             }
 
             if (!int.TryParse(TxtBateria.Text.Trim(), out int bateria))
             {
                 MessageBox.Show("El valor de Batería Vieja debe ser un número.");
-                TxtBateria.Focus();
+               
                 return;
             }
 
@@ -263,7 +263,7 @@ namespace SG_BAMS
                                 "Valor fuera de rango",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Warning);
-                TxtBateria.Focus();
+            
                 return;
             }
 
@@ -328,15 +328,15 @@ namespace SG_BAMS
 
         private void dgvProductos_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-          
+
             if (dgvProductos.Rows[e.RowIndex].IsNewRow) return;
 
-           
+
             if (dgvProductos.Columns[e.ColumnIndex].Name == "cantidad")
             {
                 string valorEntrada = e.FormattedValue.ToString().Trim();
 
-             
+
                 if (string.IsNullOrEmpty(valorEntrada))
                 {
                     MessageBox.Show("La cantidad no puede estar vacía.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -344,7 +344,7 @@ namespace SG_BAMS
                     return;
                 }
 
-              
+
                 if (!int.TryParse(valorEntrada, out int nuevaCantidad) || nuevaCantidad <= 0)
                 {
                     MessageBox.Show("Ingrese una cantidad válida mayor a 0", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -380,6 +380,13 @@ namespace SG_BAMS
 
                 CalcularTotal();
             }
+        }
+
+        private void btnBateria_Click(object sender, EventArgs e)
+        {
+            BateriaVieja BV = new BateriaVieja();
+            BV.ShowDialog();
+           
         }
     }
 }

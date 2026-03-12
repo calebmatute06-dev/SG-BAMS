@@ -372,13 +372,13 @@
             // 
             // btnBateria
             // 
-            btnBateria.Location = new Point(537, 159);
+            btnBateria.Location = new Point(537, 164);
             btnBateria.Name = "btnBateria";
             btnBateria.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnBateria.OverrideDefault.Back.Color2 = Color.White;
             btnBateria.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnBateria.OverrideFocus.Back.Color2 = Color.White;
-            btnBateria.Size = new Size(126, 45);
+            btnBateria.Size = new Size(145, 48);
             btnBateria.StateCommon.Back.Color1 = Color.SkyBlue;
             btnBateria.StateCommon.Back.Color2 = Color.White;
             btnBateria.StateCommon.Border.Rounding = 40F;
@@ -390,7 +390,8 @@
             btnBateria.StatePressed.Back.Color2 = Color.Transparent;
             btnBateria.TabIndex = 325;
             btnBateria.Values.DropDownArrowColor = Color.Empty;
-            btnBateria.Values.Text = "Verificar";
+            btnBateria.Values.Text = "Calcular";
+            btnBateria.Click += btnBateria_Click;
             // 
             // FacturaAgregarDatos
             // 

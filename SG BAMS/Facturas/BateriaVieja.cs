@@ -23,33 +23,54 @@ namespace SG_BAMS.Facturas
             dgvBateria.Columns.Clear();
 
             dgvBateria.Columns.Add("nombre", "Batería");
-            dgvBateria.Columns.Add("precio", "Precio de Recompra");
+            dgvBateria.Columns.Add("precio", "Precio");
+            dgvBateria.Columns.Add("cantidad", "Cantidad");
 
             cmbBaterias.Items.Add("Moto");
             cmbBaterias.Items.Add("Carro");
             cmbBaterias.Items.Add("Camión");
+
+
         }
 
         private void Agregar_Click(object sender, EventArgs e)
         {
-            if (cmbBaterias.SelectedIndex == -1 || string.IsNullOrWhiteSpace(txtPrecio.Text))
+            if (!int.TryParse(txtCantidad.Text, out int cant))
             {
-                MessageBox.Show("Por favor, seleccione una batería e ingrese el precio.",
+                MessageBox.Show("La cantidad debe ser un número válido.");
+                return;
+            }
+
+            if (cmbBaterias.SelectedIndex == -1 ||
+            string.IsNullOrWhiteSpace(txtPrecio.Text) ||
+            string.IsNullOrWhiteSpace(txtCantidad.Text))
+            {
+                MessageBox.Show("Por favor, llene todos los campos ",
                                 "Datos incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-    
             string nombreBateria = cmbBaterias.Text;
             string precioBateria = txtPrecio.Text;
+            string cantidadBateria = txtCantidad.Text;
 
-       
-            dgvBateria.Rows.Add(nombreBateria, precioBateria);
+            dgvBateria.Columns["nombre"].ReadOnly = true;
 
-         
+            dgvBateria.Columns["precio"].ReadOnly = false;
+            dgvBateria.Columns["cantidad"].ReadOnly = false;
+
+            dgvBateria.Rows.Add(nombreBateria, precioBateria, cantidadBateria);
+
             cmbBaterias.SelectedIndex = -1;
             txtPrecio.Clear();
+            txtCantidad.Clear();
             cmbBaterias.Focus();
+
+        }
+
+        private void kryptonButton1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
