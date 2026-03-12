@@ -67,13 +67,35 @@ namespace SG_BAMS
 
         private void BtnAceptar_Click(object sender, EventArgs e)
         {
-           
+            if (cmbProductos.SelectedIndex == -1)
+            {
+                MessageBox.Show("Por favor, seleccione un producto antes de continuar.",
+                                "Producto requerido",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+
+                cmbProductos.Focus();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtCantidad.Text))
+            {
+                MessageBox.Show("Debe ingresar una cantidad.",
+                                "Cantidad requerida",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+
+                txtCantidad.Focus();
+                return;
+            }
+
             if (!int.TryParse(txtCantidad.Text.Trim(), out int cantidad))
             {
                 MessageBox.Show("Ingrese una cantidad válida (solo números).",
                                 "Cantidad inválida",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Warning);
+
                 txtCantidad.Focus();
                 return;
             }
@@ -84,15 +106,8 @@ namespace SG_BAMS
                                 "Cantidad inválida",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Warning);
+
                 txtCantidad.Focus();
-                return;
-            }
-
-            if(cmbProductos.SelectedIndex == -1)
-            {
-                MessageBox.Show("Por favor, seleccione un producto antes de continuar.","" ,MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                cmbProductos.Focus();
                 return;
             }
 

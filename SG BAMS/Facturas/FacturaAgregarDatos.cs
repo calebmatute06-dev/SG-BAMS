@@ -118,6 +118,31 @@ namespace SG_BAMS
 
         private async void BtnAceptar_Click(object sender, EventArgs e)
         {
+            //Bateria Vieja (Por mientras)
+            if (string.IsNullOrEmpty(TxtBateria.Text.Trim()))
+            {
+                MessageBox.Show("Debe ingresar un valor en Batería Vieja", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                TxtBateria.Focus();
+                return;
+            }
+
+            if (!int.TryParse(TxtBateria.Text.Trim(), out int bateria))
+            {
+                MessageBox.Show("El valor de Batería Vieja debe ser un número.");
+                TxtBateria.Focus();
+                return;
+            }
+
+            if (bateria < 0 || bateria > 100)
+            {
+                MessageBox.Show("El valor de Batería Vieja debe estar entre 0 y 100.",
+                                "Valor fuera de rango",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                TxtBateria.Focus();
+                return;
+            }
+
             if (!FacturaTieneProductos())
             {
                 MessageBox.Show("Debe agregar al menos un producto a la factura.",
@@ -129,7 +154,7 @@ namespace SG_BAMS
 
             if (Convert.ToDecimal(TxtTotal.Text) <= 0)
             {
-                MessageBox.Show("El total no puede ser 0.",
+                MessageBox.Show("El total no puede ser menor o igual a 0.",
                                 "Total inválido",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Warning);
@@ -214,7 +239,6 @@ namespace SG_BAMS
 
         private async void BtnAgregar_Click(object sender, EventArgs e)
         {
-
             if (string.IsNullOrEmpty(TxtBateria.Text.Trim()))
             {
                 MessageBox.Show("Debe ingresar un valor en Batería Vieja", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -222,13 +246,19 @@ namespace SG_BAMS
                 return;
             }
 
-            try
+            if (!int.TryParse(TxtBateria.Text.Trim(), out int bateria))
             {
-                double.Parse(TxtBateria.Text.Trim());
+                MessageBox.Show("El valor de Batería Vieja debe ser un número.");
+                TxtBateria.Focus();
+                return;
             }
-            catch
+
+            if (bateria < 0 || bateria > 100)
             {
-                MessageBox.Show("El valor debe ser un número.");
+                MessageBox.Show("El valor de Batería Vieja debe estar entre 0 y 100.",
+                                "Valor fuera de rango",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
                 TxtBateria.Focus();
                 return;
             }
