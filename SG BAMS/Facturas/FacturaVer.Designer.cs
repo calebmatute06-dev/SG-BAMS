@@ -32,7 +32,6 @@
             txtBateriaVieja = new Krypton.Toolkit.KryptonTextBox();
             txtCliente = new Krypton.Toolkit.KryptonTextBox();
             fechaDT = new MonthCalendar();
-            kryptonGroupBox1 = new Krypton.Toolkit.KryptonGroupBox();
             BtnSalir = new Krypton.Toolkit.KryptonButton();
             panel2 = new Panel();
             txtTotal = new Krypton.Toolkit.KryptonTextBox();
@@ -52,8 +51,6 @@
             label6 = new Label();
             lblFactura = new Label();
             ((System.ComponentModel.ISupportInitialize)cmbPago).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3.Panel).BeginInit();
             panel8.SuspendLayout();
@@ -65,10 +62,9 @@
             cmbPago.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbPago.DropDownWidth = 300;
             cmbPago.Enabled = false;
-            cmbPago.Location = new Point(206, 364);
-            cmbPago.Margin = new Padding(3, 2, 3, 2);
+            cmbPago.Location = new Point(235, 485);
             cmbPago.Name = "cmbPago";
-            cmbPago.Size = new Size(128, 34);
+            cmbPago.Size = new Size(146, 38);
             cmbPago.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
             cmbPago.StateCommon.ComboBox.Border.Rounding = 20F;
             cmbPago.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
@@ -79,9 +75,10 @@
             // 
             // txtBateriaVieja
             // 
-            txtBateriaVieja.Location = new Point(304, 164);
+            txtBateriaVieja.Location = new Point(347, 219);
+            txtBateriaVieja.Margin = new Padding(3, 4, 3, 4);
             txtBateriaVieja.Name = "txtBateriaVieja";
-            txtBateriaVieja.Size = new Size(172, 32);
+            txtBateriaVieja.Size = new Size(197, 36);
             txtBateriaVieja.StateCommon.Back.Color1 = Color.SkyBlue;
             txtBateriaVieja.StateCommon.Border.Rounding = 10F;
             txtBateriaVieja.StateCommon.Content.Color1 = Color.Navy;
@@ -90,9 +87,10 @@
             // 
             // txtCliente
             // 
-            txtCliente.Location = new Point(304, 122);
+            txtCliente.Location = new Point(347, 163);
+            txtCliente.Margin = new Padding(3, 4, 3, 4);
             txtCliente.Name = "txtCliente";
-            txtCliente.Size = new Size(172, 32);
+            txtCliente.Size = new Size(197, 36);
             txtCliente.StateCommon.Back.Color1 = Color.SkyBlue;
             txtCliente.StateCommon.Border.Rounding = 10F;
             txtCliente.StateCommon.Content.Color1 = Color.Navy;
@@ -102,30 +100,21 @@
             // fechaDT
             // 
             fechaDT.Enabled = false;
-            fechaDT.Location = new Point(676, 182);
+            fechaDT.Location = new Point(789, 243);
+            fechaDT.Margin = new Padding(10, 12, 10, 12);
             fechaDT.MaxSelectionCount = 1;
             fechaDT.Name = "fechaDT";
             fechaDT.TabIndex = 338;
             // 
-            // kryptonGroupBox1
-            // 
-            kryptonGroupBox1.CaptionVisible = false;
-            kryptonGroupBox1.Location = new Point(654, 154);
-            kryptonGroupBox1.Size = new Size(267, 216);
-            kryptonGroupBox1.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroupBox1.StateCommon.Border.Rounding = 20F;
-            kryptonGroupBox1.TabIndex = 339;
-            // 
             // BtnSalir
             // 
-            BtnSalir.Location = new Point(338, 412);
-            BtnSalir.Margin = new Padding(3, 2, 3, 2);
+            BtnSalir.Location = new Point(386, 549);
             BtnSalir.Name = "BtnSalir";
             BtnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             BtnSalir.OverrideDefault.Back.Color2 = Color.White;
             BtnSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
             BtnSalir.OverrideFocus.Back.Color2 = Color.White;
-            BtnSalir.Size = new Size(128, 45);
+            BtnSalir.Size = new Size(146, 60);
             BtnSalir.StateCommon.Back.Color1 = Color.SkyBlue;
             BtnSalir.StateCommon.Back.Color2 = Color.White;
             BtnSalir.StateCommon.Border.Rounding = 30F;
@@ -143,17 +132,17 @@
             // panel2
             // 
             panel2.BackColor = Color.Navy;
-            panel2.Location = new Point(6, 237);
-            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Location = new Point(7, 316);
             panel2.Name = "panel2";
-            panel2.Size = new Size(562, 18);
+            panel2.Size = new Size(642, 24);
             panel2.TabIndex = 236;
             // 
             // txtTotal
             // 
-            txtTotal.Location = new Point(506, 366);
+            txtTotal.Location = new Point(578, 488);
+            txtTotal.Margin = new Padding(3, 4, 3, 4);
             txtTotal.Name = "txtTotal";
-            txtTotal.Size = new Size(96, 32);
+            txtTotal.Size = new Size(110, 36);
             txtTotal.StateCommon.Back.Color1 = Color.SkyBlue;
             txtTotal.StateCommon.Border.Rounding = 10F;
             txtTotal.StateCommon.Content.Color1 = Color.Navy;
@@ -163,10 +152,9 @@
             // panel1
             // 
             panel1.BackColor = Color.Navy;
-            panel1.Location = new Point(14, 0);
-            panel1.Margin = new Padding(3, 2, 3, 2);
+            panel1.Location = new Point(16, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(937, 18);
+            panel1.Size = new Size(1071, 24);
             panel1.TabIndex = 324;
             // 
             // label2
@@ -175,17 +163,18 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(442, 373);
+            label2.Location = new Point(505, 497);
             label2.Name = "label2";
-            label2.Size = new Size(56, 22);
+            label2.Size = new Size(67, 27);
             label2.TabIndex = 329;
             label2.Text = "Total";
             // 
             // kryptonGroupBox3
             // 
             kryptonGroupBox3.CaptionVisible = false;
-            kryptonGroupBox3.Location = new Point(21, 31);
-            kryptonGroupBox3.Size = new Size(223, 49);
+            kryptonGroupBox3.Location = new Point(24, 41);
+            kryptonGroupBox3.Margin = new Padding(3, 4, 3, 4);
+            kryptonGroupBox3.Size = new Size(255, 65);
             kryptonGroupBox3.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroupBox3.StateCommon.Border.Rounding = 50F;
             kryptonGroupBox3.TabIndex = 340;
@@ -196,9 +185,9 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(828, 442);
+            label5.Location = new Point(946, 589);
             label5.Name = "label5";
-            label5.Size = new Size(93, 33);
+            label5.Size = new Size(113, 42);
             label5.TabIndex = 328;
             label5.Text = "BAMS";
             // 
@@ -208,9 +197,9 @@
             label7.BackColor = Color.Transparent;
             label7.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Navy;
-            label7.Location = new Point(751, 129);
+            label7.Location = new Point(853, 204);
             label7.Name = "label7";
-            label7.Size = new Size(67, 22);
+            label7.Size = new Size(80, 27);
             label7.TabIndex = 333;
             label7.Text = "Fecha";
             // 
@@ -220,9 +209,9 @@
             label9.BackColor = Color.Transparent;
             label9.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label9.ForeColor = Color.Navy;
-            label9.Location = new Point(46, 373);
+            label9.Location = new Point(53, 497);
             label9.Name = "label9";
-            label9.Size = new Size(151, 22);
+            label9.Size = new Size(176, 27);
             label9.TabIndex = 332;
             label9.Text = "Forma de Pago";
             // 
@@ -232,9 +221,9 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(145, 171);
+            label1.Location = new Point(166, 228);
             label1.Name = "label1";
-            label1.Size = new Size(126, 22);
+            label1.Size = new Size(153, 27);
             label1.TabIndex = 331;
             label1.Text = "Bateria Vieja";
             // 
@@ -244,9 +233,9 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(145, 129);
+            label3.Location = new Point(166, 172);
             label3.Name = "label3";
-            label3.Size = new Size(74, 22);
+            label3.Size = new Size(92, 27);
             label3.TabIndex = 330;
             label3.Text = "Cliente";
             // 
@@ -256,49 +245,45 @@
             label4.BackColor = Color.SkyBlue;
             label4.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(51, 43);
+            label4.Location = new Point(58, 57);
             label4.Name = "label4";
-            label4.Size = new Size(143, 29);
+            label4.Size = new Size(179, 35);
             label4.TabIndex = 327;
             label4.Text = "Ver Factura";
             // 
             // panel3
             // 
             panel3.BackColor = Color.Navy;
-            panel3.Location = new Point(932, 0);
-            panel3.Margin = new Padding(3, 2, 3, 2);
+            panel3.Location = new Point(1065, 0);
             panel3.Name = "panel3";
-            panel3.Size = new Size(22, 491);
+            panel3.Size = new Size(25, 655);
             panel3.TabIndex = 325;
             // 
             // panel4
             // 
             panel4.BackColor = Color.Navy;
-            panel4.Location = new Point(-1, 476);
-            panel4.Margin = new Padding(3, 2, 3, 2);
+            panel4.Location = new Point(-1, 635);
             panel4.Name = "panel4";
-            panel4.Size = new Size(955, 18);
+            panel4.Size = new Size(1091, 24);
             panel4.TabIndex = 326;
             // 
             // panel8
             // 
             panel8.BackColor = Color.Navy;
             panel8.Controls.Add(panel2);
-            panel8.Location = new Point(-7, 0);
-            panel8.Margin = new Padding(3, 2, 3, 2);
+            panel8.Location = new Point(-8, 0);
             panel8.Name = "panel8";
-            panel8.Size = new Size(22, 485);
+            panel8.Size = new Size(25, 647);
             panel8.TabIndex = 323;
             // 
             // dgvFacturas
             // 
             dgvFacturas.BackgroundColor = Color.SkyBlue;
             dgvFacturas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvFacturas.Location = new Point(37, 206);
-            dgvFacturas.Margin = new Padding(3, 2, 3, 2);
+            dgvFacturas.Location = new Point(42, 275);
             dgvFacturas.Name = "dgvFacturas";
             dgvFacturas.RowHeadersWidth = 51;
-            dgvFacturas.Size = new Size(595, 141);
+            dgvFacturas.Size = new Size(680, 188);
             dgvFacturas.TabIndex = 345;
             // 
             // label6
@@ -307,9 +292,9 @@
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(332, 53);
+            label6.Location = new Point(379, 71);
             label6.Name = "label6";
-            label6.Size = new Size(99, 29);
+            label6.Size = new Size(124, 35);
             label6.TabIndex = 346;
             label6.Text = "Factura";
             // 
@@ -319,18 +304,18 @@
             lblFactura.BackColor = Color.Transparent;
             lblFactura.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblFactura.ForeColor = Color.Navy;
-            lblFactura.Location = new Point(437, 53);
+            lblFactura.Location = new Point(499, 71);
             lblFactura.Name = "lblFactura";
-            lblFactura.Size = new Size(20, 29);
+            lblFactura.Size = new Size(23, 35);
             lblFactura.TabIndex = 347;
             lblFactura.Text = ".";
             // 
             // FacturaVer
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(956, 494);
+            ClientSize = new Size(1093, 659);
             Controls.Add(lblFactura);
             Controls.Add(label6);
             Controls.Add(dgvFacturas);
@@ -338,7 +323,6 @@
             Controls.Add(txtBateriaVieja);
             Controls.Add(txtCliente);
             Controls.Add(fechaDT);
-            Controls.Add(kryptonGroupBox1);
             Controls.Add(BtnSalir);
             Controls.Add(txtTotal);
             Controls.Add(panel1);
@@ -353,12 +337,11 @@
             Controls.Add(panel4);
             Controls.Add(panel8);
             Controls.Add(kryptonGroupBox3);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "FacturaVer";
             Text = "FacturaVer";
             Load += FacturaVer_Load;
             ((System.ComponentModel.ISupportInitialize)cmbPago).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3).EndInit();
             panel8.ResumeLayout(false);
@@ -373,7 +356,6 @@
         private Krypton.Toolkit.KryptonTextBox txtBateriaVieja;
         private Krypton.Toolkit.KryptonTextBox txtCliente;
         private MonthCalendar fechaDT;
-        private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox1;
         private Krypton.Toolkit.KryptonButton BtnSalir;
         private Panel panel2;
         private Krypton.Toolkit.KryptonTextBox txtTotal;

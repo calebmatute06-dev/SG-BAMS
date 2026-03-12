@@ -75,13 +75,17 @@ namespace SG_BAMS
 
             TxtCliente.ReadOnly = true;
             TxtTotal.ReadOnly = true;
+            TxtBateria.ReadOnly = true;
             dgvProductos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvProductos.ClearSelection();
             dgvProductos.Columns["id_producto"].ReadOnly = true;
             dgvProductos.Columns["nombre_producto"].ReadOnly = true;
             dgvProductos.Columns["precio"].ReadOnly = true;
             dgvProductos.Columns["subtotal"].ReadOnly = true;
-            
+
+            dgvProductos.Columns.Add("stock_max", "StockMax");
+            dgvProductos.Columns["stock_max"].Visible = false;
+
         }
 
         private void CalcularTotal()
@@ -118,7 +122,7 @@ namespace SG_BAMS
 
         private async void BtnAceptar_Click(object sender, EventArgs e)
         {
-            //Bateria Vieja (Por mientras)
+
             if (string.IsNullOrEmpty(TxtBateria.Text.Trim()))
             {
                 MessageBox.Show("Debe ingresar un valor en Batería Vieja", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -270,7 +274,7 @@ namespace SG_BAMS
                 {
                     ClsAgregarProductos objAP = new ClsAgregarProductos();
                     double precio = await objAP.ObtenerPrecioProducto(idProducto);
-                    dgvProductos.Rows.Add(idProducto, nombresProductos, cantidades, precio, cantidades * precio);
+                    dgvProductos.Rows.Add(idProducto, nombresProductos, cantidades, precio, (cantidades * precio), frmProd.StockSeleccionado);
                     CalcularTotal();
                 }
             }
@@ -320,6 +324,62 @@ namespace SG_BAMS
         private void dgvProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void dgvProductos_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+          
+            if (dgvProductos.Rows[e.RowIndex].IsNewRow) return;
+
+           
+            if (dgvProductos.Columns[e.ColumnIndex].Name == "cantidad")
+            {
+                string valorEntrada = e.FormattedValue.ToString().Trim();
+
+             
+                if (string.IsNullOrEmpty(valorEntrada))
+                {
+                    MessageBox.Show("La cantidad no puede estar vacía.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    e.Cancel = true;
+                    return;
+                }
+
+              
+                if (!int.TryParse(valorEntrada, out int nuevaCantidad) || nuevaCantidad <= 0)
+                {
+                    MessageBox.Show("Ingrese una cantidad válida mayor a 0", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    e.Cancel = true;
+                    return;
+                }
+
+                if (dgvProductos.Columns.Contains("stock_max"))
+                {
+                    var celdaStock = dgvProductos.Rows[e.RowIndex].Cells["stock_max"].Value;
+                    if (celdaStock != null)
+                    {
+                        int stockDisponible = Convert.ToInt32(celdaStock);
+                        if (nuevaCantidad > stockDisponible)
+                        {
+                            MessageBox.Show($"No puedes vender {nuevaCantidad}. El stock disponible es {stockDisponible}.",
+                                            "Stock Insuficiente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            e.Cancel = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void dgvProductos_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && dgvProductos.Columns[e.ColumnIndex].Name == "cantidad")
+            {
+                int cant = Convert.ToInt32(dgvProductos.Rows[e.RowIndex].Cells["cantidad"].Value);
+                double precio = Convert.ToDouble(dgvProductos.Rows[e.RowIndex].Cells["precio"].Value);
+
+                dgvProductos.Rows[e.RowIndex].Cells["subtotal"].Value = cant * precio;
+
+                CalcularTotal();
+            }
         }
     }
 }

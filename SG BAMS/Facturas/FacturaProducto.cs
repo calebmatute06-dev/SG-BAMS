@@ -19,7 +19,7 @@ namespace SG_BAMS
         {
             InitializeComponent();
         }
-
+        public int StockSeleccionado { get; set; }
         public FacturaAgregarDatos FormularioFactura { get; set; }
         private void label4_Click(object sender, EventArgs e)
         {
@@ -102,7 +102,7 @@ namespace SG_BAMS
 
             if (cantidad <= 0)
             {
-                MessageBox.Show("La cantidad debe ser mayor que 0.",
+                MessageBox.Show("La cantidad debe ser mayor que 0",
                                 "Cantidad inválida",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Warning);
@@ -143,6 +143,8 @@ namespace SG_BAMS
             int cantidadProd = Convert.ToInt32(txtCantidad.Text);
 
             FormularioFactura.SetProducto(idProd, nombreProd, cantidadProd);
+
+            this.StockSeleccionado = int.Parse(lblNumero.Text);
 
             this.DialogResult = DialogResult.OK;
 
