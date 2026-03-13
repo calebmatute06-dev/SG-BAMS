@@ -953,6 +953,8 @@
             cmbReporte.Location = new Point(330, 260);
             cmbReporte.Name = "cmbReporte";
             cmbReporte.Size = new Size(206, 38);
+            cmbReporte.StateActive.ComboBox.Content.Color1 = Color.Navy;
+            cmbReporte.StateActive.ComboBox.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbReporte.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
             cmbReporte.StateCommon.ComboBox.Border.Rounding = 20F;
             cmbReporte.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;

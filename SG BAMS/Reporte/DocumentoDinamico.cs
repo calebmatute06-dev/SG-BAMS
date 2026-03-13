@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
@@ -11,10 +9,17 @@ using QuestPDF.Infrastructure;
 public class DocumentoDinamico : IDocument
 {
     private DataGridView _dgv;
+    private string _tituloCabecera;
+    private DateTime _desde;
+    private DateTime _hasta;
 
-    public DocumentoDinamico(DataGridView dgv)
+    // Constructor que recibe el DGV, el título y el rango de fechas
+    public DocumentoDinamico(DataGridView dgv, string tituloCabecera, DateTime desde, DateTime hasta)
     {
         _dgv = dgv;
+        _tituloCabecera = tituloCabecera;
+        _desde = desde;
+        _hasta = hasta;
     }
 
     public void Compose(IDocumentContainer container)
@@ -25,7 +30,20 @@ public class DocumentoDinamico : IDocument
             page.PageColor(Colors.White);
             page.Size(PageSizes.A4.Landscape());
 
-            page.Header().Text("SISTEMA BAMS - REPORTE").FontSize(20).SemiBold().FontColor(Colors.Blue.Medium);
+            // Cabecera optimizada con Rango de Fechas
+            page.Header().Column(col =>
+            {
+                col.Item().Text($"SISTEMA BAMS - {_tituloCabecera.ToUpper()}").FontSize(20).SemiBold().FontColor(Colors.Blue.Medium);
+
+                // Mostramos el rango solo para Ventas y Compras
+                if (_tituloCabecera.ToUpper().Contains("VENTAS") || _tituloCabecera.ToUpper().Contains("COMPRAS"))
+                {
+                    col.Item().Text($"Rango del reporte: {_desde:dd/MM/yyyy} al {_hasta:dd/MM/yyyy}")
+                        .FontSize(12)
+                        .Italic()
+                        .FontColor(Colors.Grey.Darken2);
+                }
+            });
 
             page.Content().PaddingVertical(10).Table(table =>
             {
@@ -38,7 +56,7 @@ public class DocumentoDinamico : IDocument
                 {
                     foreach (DataGridViewColumn col in _dgv.Columns)
                     {
-                        header.Cell().Background(Colors.Grey.Lighten3).Padding(5).Text(col.HeaderText).SemiBold();
+                        header.Cell().Background(Colors.Grey.Lighten3).Padding(5).Text(col.HeaderText).SemiBold().FontSize(10);
                     }
                 });
 
@@ -48,31 +66,23 @@ public class DocumentoDinamico : IDocument
                     {
                         foreach (DataGridViewCell cell in row.Cells)
                         {
-                            string valorTexto = "";
-                            if (cell.Value is DateTime fecha)
-                            {
-                                valorTexto = fecha.ToString("dd/MM/yyyy");
-                            }
-                            else
-                            {
-                                valorTexto = cell.Value?.ToString() ?? "";
-                            }
+                            string valorTexto = cell.Value is DateTime fecha
+                                ? fecha.ToString("dd/MM/yyyy")
+                                : cell.Value?.ToString() ?? "";
 
                             string nombreColumna = _dgv.Columns[cell.ColumnIndex].Name;
                             var celda = table.Cell().BorderBottom(1).BorderColor(Colors.Grey.Lighten4).Padding(5);
 
+                            // Lógica de Semáforo de Stock
                             if (nombreColumna == "Stock_Actual" && int.TryParse(valorTexto, out int stock))
                             {
-                                if (stock == 0)
-                                    celda.Background("#FFC0C0").Text(valorTexto).FontColor("#8B0000").Bold();
-                                else if (stock <= 10)
-                                    celda.Background("#FFE0C0").Text(valorTexto).FontColor("#A52A2A");
-                                else
-                                    celda.Background("#C0FFC0").Text(valorTexto).FontColor("#006400");
+                                if (stock == 0) celda.Background("#FFC0C0").Text(valorTexto).FontColor("#8B0000").Bold();
+                                else if (stock <= 10) celda.Background("#FFE0C0").Text(valorTexto).FontColor("#A52A2A");
+                                else celda.Background("#C0FFC0").Text(valorTexto).FontColor("#006400");
                             }
                             else
                             {
-                                celda.Text(valorTexto);
+                                celda.Text(valorTexto).FontSize(9);
                             }
                         }
                     }
@@ -81,17 +91,11 @@ public class DocumentoDinamico : IDocument
 
             page.Footer().PaddingTop(5).Row(row =>
             {
-                row.RelativeItem().Column(col =>
+                row.RelativeItem().Column(c =>
                 {
-                    col.Item().Text($"Generado el: {DateTime.Now:dd/MM/yyyy}").FontSize(9).FontColor(Colors.Grey.Medium);
-                    col.Item().Text($"Hora: {DateTime.Now:hh:mm:ss tt}").FontSize(9).FontColor(Colors.Grey.Medium);
+                    c.Item().Text($"Generado el: {DateTime.Now:dd/MM/yyyy} - {DateTime.Now:hh:mm:ss tt}").FontSize(8).FontColor(Colors.Grey.Medium);
                 });
-
-                row.RelativeItem().AlignRight().Text(x =>
-                {
-                    x.Span("Pág ").FontSize(9);
-                    x.CurrentPageNumber().FontSize(9);
-                });
+                row.RelativeItem().AlignRight().Text(x => { x.Span("Pág ").FontSize(8); x.CurrentPageNumber().FontSize(8); });
             });
         });
     }

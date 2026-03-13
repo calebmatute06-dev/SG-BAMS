@@ -22,7 +22,20 @@ namespace SG_BAMS.Reporte
         public ReportesAdmin()
         {
             InitializeComponent();
+
+            this.dtpDesde.ValueChanged += new System.EventHandler(this.FiltroFecha_ValueChanged);
+            this.dtpHasta.ValueChanged += new System.EventHandler(this.FiltroFecha_ValueChanged);
         }
+        private void FiltroFecha_ValueChanged(object sender, EventArgs e)
+        {
+            string reporte = cmbReporte.SelectedItem?.ToString();
+
+            if (reporte == "Ventas" || reporte == "Compras")
+            {
+                cmbReporte_SelectedIndexChanged(null, null);
+            }
+        }
+
 
         private void ReportesAdmin_Load(object sender, EventArgs e)
         {
@@ -68,27 +81,7 @@ namespace SG_BAMS.Reporte
                 MessageBox.Show("Error al cargar el reporte de ventas: " + ex.Message, "Error BAMS", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void btnVentas_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnCompras_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnDeudores_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnInventario_Click(object sender, EventArgs e)
-        {
-
-        }
-
+       
         private void ControlarFiltroStock(bool estado)
         {
             Min.Enabled = estado;
@@ -146,29 +139,20 @@ namespace SG_BAMS.Reporte
             try
             {
                 QuestPDF.Settings.License = LicenseType.Community;
-
                 if (dgvReporte.Rows.Count == 0)
                 {
-                    MessageBox.Show("No hay datos para exportar.", "BAMS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    MessageBox.Show("No hay datos.", "BAMS"); return; 
                 }
 
-                string nombreArchivo = $"Reporte_BAMS_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
-                string rutaTemp = Path.Combine(Path.GetTempPath(), nombreArchivo);
+                string seleccion = cmbReporte.SelectedItem?.ToString() ?? "REPORTE";
+                string rutaTemp = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"Reporte_{seleccion}_{DateTime.Now:yyyyMMdd}.pdf");
 
-                var documento = new DocumentoDinamico(dgvReporte);
+                var documento = new DocumentoDinamico(dgvReporte, $"REPORTE DE {seleccion}", dtpDesde.Value, dtpHasta.Value);
                 documento.GeneratePdf(rutaTemp);
 
-                Process.Start(new ProcessStartInfo
-                {
-                    FileName = rutaTemp,
-                    UseShellExecute = true
-                });
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo { FileName = rutaTemp, UseShellExecute = true });
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al generar el reporte PDF: " + ex.Message, "Error BAMS", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+    catch (Exception ex) { MessageBox.Show("Error: " + ex.Message); }
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
@@ -281,9 +265,16 @@ namespace SG_BAMS.Reporte
 
         private void cmbReporte_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cmbReporte.SelectedItem == null) return;
             string reporteSeleccionado = cmbReporte.SelectedItem.ToString();
 
-            // Solo activamos el filtro de stock si es Inventario
+            // NUEVA LÓGICA: Control de activación de Fechas
+            // Solo se habilitan si es Ventas o Compras
+            bool usaFechas = (reporteSeleccionado == "Ventas" || reporteSeleccionado == "Compras");
+            dtpDesde.Enabled = usaFechas;
+            dtpHasta.Enabled = usaFechas;
+
+            // Mantenemos tu control de Stock original
             ControlarFiltroStock(reporteSeleccionado == "Inventario");
 
             try
@@ -340,5 +331,6 @@ namespace SG_BAMS.Reporte
                 MessageBox.Show("Error al cargar el reporte: " + ex.Message, "Error BAMS", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
     }
 }
