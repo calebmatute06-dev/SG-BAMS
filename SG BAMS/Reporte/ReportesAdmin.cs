@@ -169,8 +169,12 @@ namespace SG_BAMS.Reporte
 
         private void btnExportarEx_Click(object sender, EventArgs e)
         {
+            if (dgvReporte.Rows.Count == 0) return;
+
+            string seleccion = cmbReporte.SelectedItem?.ToString() ?? "GENERAL";
+
             ClsExportarExcel exportador = new ClsExportarExcel();
-            exportador.ExportarDataGridView(dgvReporte);
+            exportador.ExportarDataGridView(dgvReporte, seleccion, dtpDesde.Value, dtpHasta.Value);
         }
 
         private void btnMenuPrincipal_Click(object sender, EventArgs e)
