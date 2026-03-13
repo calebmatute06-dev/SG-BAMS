@@ -53,7 +53,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(197, 229);
+            label1.Location = new Point(197, 227);
             label1.Name = "label1";
             label1.Size = new Size(68, 23);
             label1.TabIndex = 3;
@@ -94,19 +94,19 @@
             // 
             // btninicioSesion
             // 
-            btninicioSesion.Location = new Point(161, 338);
+            btninicioSesion.Location = new Point(161, 330);
             btninicioSesion.Margin = new Padding(3, 2, 3, 2);
             btninicioSesion.Name = "btninicioSesion";
             btninicioSesion.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btninicioSesion.OverrideDefault.Back.Color2 = Color.White;
             btninicioSesion.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btninicioSesion.OverrideFocus.Back.Color2 = Color.White;
-            btninicioSesion.Size = new Size(196, 31);
+            btninicioSesion.Size = new Size(196, 46);
             btninicioSesion.StateCommon.Back.Color1 = Color.SkyBlue;
             btninicioSesion.StateCommon.Back.Color2 = Color.White;
             btninicioSesion.StateCommon.Border.Rounding = 40F;
             btninicioSesion.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btninicioSesion.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btninicioSesion.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btninicioSesion.StateNormal.Back.Color1 = Color.SkyBlue;
             btninicioSesion.StateNormal.Back.Color2 = Color.Transparent;
             btninicioSesion.StateNormal.Border.Rounding = 40F;
@@ -117,7 +117,7 @@
             // 
             // btnsalirLogin
             // 
-            btnsalirLogin.Location = new Point(377, 338);
+            btnsalirLogin.Location = new Point(377, 330);
             btnsalirLogin.Margin = new Padding(3, 2, 3, 2);
             btnsalirLogin.Name = "btnsalirLogin";
             btnsalirLogin.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -125,12 +125,12 @@
             btnsalirLogin.OverrideDefault.Border.Rounding = 40F;
             btnsalirLogin.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnsalirLogin.OverrideFocus.Back.Color2 = Color.White;
-            btnsalirLogin.Size = new Size(196, 31);
+            btnsalirLogin.Size = new Size(196, 46);
             btnsalirLogin.StateCommon.Back.Color1 = Color.SkyBlue;
             btnsalirLogin.StateCommon.Back.Color2 = Color.White;
             btnsalirLogin.StateCommon.Border.Rounding = 40F;
             btnsalirLogin.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnsalirLogin.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnsalirLogin.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnsalirLogin.StateNormal.Back.Color1 = Color.SkyBlue;
             btnsalirLogin.StateNormal.Back.Color2 = Color.White;
             btnsalirLogin.StateNormal.Border.Rounding = 40F;
@@ -142,24 +142,27 @@
             // 
             // txtUsu
             // 
-            txtUsu.Location = new Point(269, 223);
+            txtUsu.Location = new Point(269, 218);
             txtUsu.Margin = new Padding(3, 2, 3, 2);
             txtUsu.Name = "txtUsu";
-            txtUsu.Size = new Size(192, 35);
+            txtUsu.Size = new Size(192, 39);
             txtUsu.StateCommon.Back.Color1 = Color.SkyBlue;
             txtUsu.StateCommon.Border.Rounding = 20F;
             txtUsu.StateCommon.Content.Color1 = Color.Navy;
+            txtUsu.StateCommon.Content.Font = new Font("Arial Narrow", 12.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtUsu.TabIndex = 40;
             // 
             // txtCon
             // 
-            txtCon.Location = new Point(269, 278);
+            txtCon.Location = new Point(269, 273);
             txtCon.Margin = new Padding(3, 2, 3, 2);
             txtCon.Name = "txtCon";
-            txtCon.Size = new Size(192, 35);
+            txtCon.PasswordChar = '•';
+            txtCon.Size = new Size(192, 39);
             txtCon.StateCommon.Back.Color1 = Color.SkyBlue;
             txtCon.StateCommon.Border.Rounding = 20F;
             txtCon.StateCommon.Content.Color1 = Color.Navy;
+            txtCon.StateCommon.Content.Font = new Font("Arial Narrow", 12.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtCon.TabIndex = 41;
             // 
             // panel2

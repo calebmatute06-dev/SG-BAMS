@@ -268,16 +268,14 @@ namespace SG_BAMS
         private async void btnclientes_Click(object sender, EventArgs e)
         {
             ClientesEmp clienemp = new ClientesEmp();
-            clienemp.ShowDialog();
-            await ActualizarLabel();
+            clienemp.Show();
             this.Close();
         }
 
         private async void btninventario_Click(object sender, EventArgs e)
         {
             InventarioEmp inventarioForm = new InventarioEmp();
-            inventarioForm.ShowDialog();
-            await ActualizarLabelProductos();
+            inventarioForm.Show();
             this.Close();
         }
 

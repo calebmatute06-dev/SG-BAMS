@@ -109,5 +109,12 @@ namespace SG_BAMS
         {
 
         }
+
+        private void btnClientes_Click(object sender, EventArgs e)
+        {
+            ClientesEmp CE = new ClientesEmp();
+            CE.Show();
+            this.Close();
+        }
     }
 }

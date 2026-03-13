@@ -148,6 +148,33 @@
             cmbDeudores.StateCommon.Item.Border.Color2 = Color.SkyBlue;
             cmbDeudores.StateCommon.Item.Border.Rounding = 70F;
             cmbDeudores.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
+            cmbDeudores.StateCommon.Item.Content.ShortText.Color2 = Color.Navy;
+            cmbDeudores.StateDisabled.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbDeudores.StateDisabled.ComboBox.Border.Color1 = Color.SkyBlue;
+            cmbDeudores.StateDisabled.ComboBox.Border.Color2 = Color.SkyBlue;
+            cmbDeudores.StateDisabled.ComboBox.Content.Color1 = Color.Navy;
+            cmbDeudores.StateDisabled.Item.Back.Color1 = Color.SkyBlue;
+            cmbDeudores.StateDisabled.Item.Back.Color2 = Color.SkyBlue;
+            cmbDeudores.StateDisabled.Item.Border.Color1 = Color.SkyBlue;
+            cmbDeudores.StateDisabled.Item.Border.Color2 = Color.SkyBlue;
+            cmbDeudores.StateDisabled.Item.Content.ShortText.Color1 = Color.Navy;
+            cmbDeudores.StateDisabled.Item.Content.ShortText.Color2 = Color.Navy;
+            cmbDeudores.StateNormal.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbDeudores.StateNormal.ComboBox.Border.Color1 = Color.SkyBlue;
+            cmbDeudores.StateNormal.ComboBox.Border.Color2 = Color.SkyBlue;
+            cmbDeudores.StateNormal.ComboBox.Content.Color1 = Color.Navy;
+            cmbDeudores.StateNormal.Item.Back.Color1 = Color.SkyBlue;
+            cmbDeudores.StateNormal.Item.Back.Color2 = Color.SkyBlue;
+            cmbDeudores.StateNormal.Item.Border.Color1 = Color.SkyBlue;
+            cmbDeudores.StateNormal.Item.Border.Color2 = Color.SkyBlue;
+            cmbDeudores.StateNormal.Item.Content.ShortText.Color1 = Color.Navy;
+            cmbDeudores.StateNormal.Item.Content.ShortText.Color2 = Color.Navy;
+            cmbDeudores.StateTracking.Item.Back.Color1 = Color.SkyBlue;
+            cmbDeudores.StateTracking.Item.Back.Color2 = Color.SkyBlue;
+            cmbDeudores.StateTracking.Item.Border.Color1 = Color.SkyBlue;
+            cmbDeudores.StateTracking.Item.Border.Color2 = Color.SkyBlue;
+            cmbDeudores.StateTracking.Item.Content.ShortText.Color1 = Color.Navy;
+            cmbDeudores.StateTracking.Item.Content.ShortText.Color2 = Color.Navy;
             cmbDeudores.TabIndex = 166;
             // 
             // kryptonGroup1

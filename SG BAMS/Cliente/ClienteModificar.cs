@@ -35,7 +35,46 @@ namespace SG_BAMS
             InitializeComponent();
         }
 
+        private bool ValidarFormatoTexto(string texto, string nombreCampo)
+        {
+            string textoLimpio = texto.Trim();
 
+            if (textoLimpio.Length < 3 || textoLimpio.Length > 70)
+            {
+                MessageBox.Show($"{nombreCampo} debe tener entre 3 y 70 caracteres.", "Error de Largo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            string[] palabras = textoLimpio.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (string palabra in palabras)
+            {
+                if (palabra.Length < 2)
+                {
+                    MessageBox.Show($"{nombreCampo} contiene una palabra demasiado corta ('{palabra}').", "Formato Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+            }
+
+            if (!Regex.IsMatch(textoLimpio, @"^[a-zA-Z\sñÑáéíóúÁÉÍÓÚ]+$"))
+            {
+                MessageBox.Show($"{nombreCampo} solo debe contener letras.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (Regex.IsMatch(textoLimpio, @"\s{2,}"))
+            {
+                MessageBox.Show($"{nombreCampo} no puede contener dobles espacios.", "Error de Espacios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (Regex.IsMatch(textoLimpio, @"([a-zA-ZñÑáéíóúÁÉÍÓÚ])\1{2,}", RegexOptions.IgnoreCase))
+            {
+                MessageBox.Show($"{nombreCampo} tiene demasiadas letras repetidas seguidas.", "Error de Escritura", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
+        }
 
         private void kryptonButton2_Click(object sender, EventArgs e)
         {
@@ -47,33 +86,29 @@ namespace SG_BAMS
             if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
                 string.IsNullOrWhiteSpace(txtApellido.Text) ||
                 string.IsNullOrWhiteSpace(txtTelefono.Text) ||
-                cmbEstado.SelectedValue == null) 
+                cmbEstado.SelectedValue == null)
             {
-                MessageBox.Show("Debe llenar todos los campos obligatorios antes de continuar.",
-                                "Campos Vacíos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-
-            if (!Regex.IsMatch(txtNombre.Text, @"^[a-zA-Z\sñÑáéíóúÁÉÍÓÚ]+$") ||
-                !Regex.IsMatch(txtApellido.Text, @"^[a-zA-Z\sñÑáéíóúÁÉÍÓÚ]+$"))
-            {
-                MessageBox.Show("Nombre y Apellido solo deben contener letras.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe llenar todos los campos obligatorios.", "Campos Vacíos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-
-
-            if (!Regex.IsMatch(txtTelefono.Text, @"^[0-9]+$"))
+            if (!ValidarFormatoTexto(txtNombre.Text, "El Nombre") ||
+                !ValidarFormatoTexto(txtApellido.Text, "El Apellido"))
             {
-                MessageBox.Show("El teléfono solo permite números.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-             if (!string.IsNullOrWhiteSpace(txtRTN.Text))
+            if (!Regex.IsMatch(txtTelefono.Text, @"^[0-9]+$") || txtTelefono.Text.Length < 8)
+            {
+                MessageBox.Show("El teléfono debe contener solo números (mínimo 8).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!string.IsNullOrWhiteSpace(txtRTN.Text))
             {
                 if (!Regex.IsMatch(txtRTN.Text, @"^([0-9]+|Sin RTN)$"))
                 {
-                    MessageBox.Show("El RTN solo debe contener números", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("El RTN solo debe contener números o 'Sin RTN'.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }
@@ -82,8 +117,7 @@ namespace SG_BAMS
             {
                 ClsModificarCliente objMC = new ClsModificarCliente();
 
-                
-                int filasInsertadas = await objMC.ModificarClientes(
+                int filasActualizadas = await objMC.ModificarClientes(
                     Convert.ToInt32(txtID.Text),
                     txtNombre.Text.Trim(),
                     txtApellido.Text.Trim(),
@@ -92,20 +126,20 @@ namespace SG_BAMS
                     Convert.ToInt32(cmbEstado.SelectedValue)
                 );
 
-                if (filasInsertadas > 0)
+                if (filasActualizadas > 0)
                 {
-                    MessageBox.Show("Cliente actualizado correctamente");
-                    this.DialogResult = DialogResult.OK; 
+                    MessageBox.Show("Cliente actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("No se realizaron cambios en el cliente.");
+                    MessageBox.Show("No se realizaron cambios.");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al procesar la modificación: " + ex.Message);
+                MessageBox.Show("Error al modificar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
 
@@ -143,7 +177,7 @@ namespace SG_BAMS
 
         private void BtnSalir_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
         }
     }
 }

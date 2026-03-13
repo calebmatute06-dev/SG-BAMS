@@ -1,5 +1,6 @@
 ﻿using SG_BAMS.Bitacora;
 using SG_BAMS.Proveedor;
+using SG_BAMS.Reporte;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -77,7 +78,9 @@ namespace SG_BAMS
 
         private void btnReporte_Click(object sender, EventArgs e)
         {
-           
+            ReportesAdmin reportesAdmin = new ReportesAdmin();
+            reportesAdmin.Show();
+            this.Close();
         }
 
         private void btnreporte2_Click(object sender, EventArgs e)
@@ -98,11 +101,6 @@ namespace SG_BAMS
             this.Close();
         }
 
-        private void kryptonButton1_Click(object sender, EventArgs e)
-        {
-            Perfil Per = new Perfil();
-            Per.Show();
-        }
 
         private void button12_Click(object sender, EventArgs e)
         {
@@ -221,5 +219,10 @@ namespace SG_BAMS
             }
         }
 
+        private void btnAdmin_Click(object sender, EventArgs e)
+        {
+            Perfil Per = new Perfil();
+            Per.Show();
+        }
     }
 }

@@ -174,6 +174,7 @@ namespace SG_BAMS
         {
             MenuPrincipalEmp MPE = new MenuPrincipalEmp();
             MPE.Show();
+            this.Close();
         }
 
         private void BtnFacturas_Click(object sender, EventArgs e)
@@ -185,18 +186,21 @@ namespace SG_BAMS
         {
             ClientesEmp CE = new ClientesEmp();
             CE.Show();
+            this.Close();
         }
 
         private void BtnInventario_Click(object sender, EventArgs e)
         {
             InventarioEmp IE = new InventarioEmp();
             IE.Show();
+            this.Close();
         }
 
         private void BtnDeudores_Click(object sender, EventArgs e)
         {
             Deudores_Emp DE = new Deudores_Emp();
             DE.Show();
+            this.Close();
         }
 
         private void chkHoy_CheckedChanged(object sender, EventArgs e)

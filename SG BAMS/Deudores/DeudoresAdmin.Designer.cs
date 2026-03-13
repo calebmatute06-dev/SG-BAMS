@@ -52,7 +52,7 @@
             btnproveedores2 = new Krypton.Toolkit.KryptonButton();
             btndeudores2 = new Krypton.Toolkit.KryptonButton();
             btnreporte2 = new Krypton.Toolkit.KryptonButton();
-            kryptonButton1 = new Krypton.Toolkit.KryptonButton();
+            btnAdmin = new Krypton.Toolkit.KryptonButton();
             btnCerrarSesion = new Krypton.Toolkit.KryptonButton();
             btnMenu = new Krypton.Toolkit.KryptonButton();
             btnFactura = new Krypton.Toolkit.KryptonButton();
@@ -290,7 +290,7 @@
             panel1.Controls.Add(btnproveedores2);
             panel1.Controls.Add(btndeudores2);
             panel1.Controls.Add(btnreporte2);
-            panel1.Controls.Add(kryptonButton1);
+            panel1.Controls.Add(btnAdmin);
             panel1.Controls.Add(btnCerrarSesion);
             panel1.Controls.Add(btnMenu);
             panel1.Controls.Add(btnFactura);
@@ -536,32 +536,32 @@
             btnreporte2.Values.Text = "Bitacora";
             btnreporte2.Click += btnreporte2_Click;
             // 
-            // kryptonButton1
+            // btnAdmin
             // 
-            kryptonButton1.Location = new Point(107, 626);
-            kryptonButton1.Margin = new Padding(3, 2, 3, 2);
-            kryptonButton1.Name = "kryptonButton1";
-            kryptonButton1.OverrideDefault.Back.Color1 = Color.Transparent;
-            kryptonButton1.OverrideDefault.Back.Color2 = Color.Transparent;
-            kryptonButton1.OverrideDefault.Border.Rounding = 40F;
-            kryptonButton1.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            kryptonButton1.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton1.Size = new Size(118, 27);
-            kryptonButton1.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonButton1.StateCommon.Back.Color2 = Color.White;
-            kryptonButton1.StateCommon.Border.Rounding = 40F;
-            kryptonButton1.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton1.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton1.StateNormal.Back.Color1 = Color.Transparent;
-            kryptonButton1.StateNormal.Back.Color2 = Color.Transparent;
-            kryptonButton1.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
-            kryptonButton1.StatePressed.Back.Color1 = Color.Transparent;
-            kryptonButton1.StatePressed.Back.Color2 = Color.Transparent;
-            kryptonButton1.StateTracking.Border.Rounding = 40F;
-            kryptonButton1.TabIndex = 36;
-            kryptonButton1.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton1.Values.Text = "Administrador";
-            kryptonButton1.Click += kryptonButton1_Click;
+            btnAdmin.Location = new Point(107, 626);
+            btnAdmin.Margin = new Padding(3, 2, 3, 2);
+            btnAdmin.Name = "btnAdmin";
+            btnAdmin.OverrideDefault.Back.Color1 = Color.Transparent;
+            btnAdmin.OverrideDefault.Back.Color2 = Color.Transparent;
+            btnAdmin.OverrideDefault.Border.Rounding = 40F;
+            btnAdmin.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnAdmin.OverrideFocus.Back.Color2 = Color.White;
+            btnAdmin.Size = new Size(118, 27);
+            btnAdmin.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnAdmin.StateCommon.Back.Color2 = Color.White;
+            btnAdmin.StateCommon.Border.Rounding = 40F;
+            btnAdmin.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnAdmin.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnAdmin.StateNormal.Back.Color1 = Color.Transparent;
+            btnAdmin.StateNormal.Back.Color2 = Color.Transparent;
+            btnAdmin.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
+            btnAdmin.StatePressed.Back.Color1 = Color.Transparent;
+            btnAdmin.StatePressed.Back.Color2 = Color.Transparent;
+            btnAdmin.StateTracking.Border.Rounding = 40F;
+            btnAdmin.TabIndex = 36;
+            btnAdmin.Values.DropDownArrowColor = Color.Empty;
+            btnAdmin.Values.Text = "Administrador";
+            btnAdmin.Click += btnAdmin_Click;
             // 
             // btnCerrarSesion
             // 
@@ -1052,7 +1052,7 @@
         private Panel panel2;
         private PictureBox pictureBox4;
         private Panel panel1;
-        private Krypton.Toolkit.KryptonButton kryptonButton1;
+        private Krypton.Toolkit.KryptonButton btnAdmin;
         private Krypton.Toolkit.KryptonButton btnCerrarSesion;
         private Krypton.Toolkit.KryptonButton btnMenu;
         private Krypton.Toolkit.KryptonButton btnFactura;

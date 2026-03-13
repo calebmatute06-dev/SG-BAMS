@@ -118,16 +118,41 @@ namespace SG_BAMS
 
         private void txtBusqueda_TextChanged(object sender, EventArgs e)
         {
-
             if (datosCli != null)
             {
                 DataView dv = datosCli.DefaultView;
 
-                dv.RowFilter = string.Format("Nombre LIKE '%{0}%' OR Apellido LIKE '%{0}%' OR RTN LIKE '%{0}%' OR Teléfono LIKE '%{0}%' OR Estado LIKE '%{0}%'", txtBusqueda.Text);
+                if (string.IsNullOrWhiteSpace(txtBusqueda.Text))
+                {
+                    if (chkActivo.Checked)
+                        dv.RowFilter = "Estado <> 'Activo'";
+                    else
+                        dv.RowFilter = "Estado = 'Activo'";
+                }
+                else
+                {
+                    string textoSeguro = txtBusqueda.Text
+                        .Replace("'", "''")
+                        .Replace("[", "[[]")
+                        .Replace("]", "[]]")
+                        .Replace("*", "[*]")
+                        .Replace("%", "[%]");
 
+                    string filtroEstado = chkActivo.Checked ? "Estado <> 'Activo'" : "Estado = 'Activo'";
+
+                    try
+                    {
+                        dv.RowFilter = string.Format(
+                            "({0}) AND (Nombre LIKE '%{1}%' OR Apellido LIKE '%{1}%' OR RTN LIKE '%{1}%' OR Teléfono LIKE '%{1}%' OR Estado LIKE '%{1}%')",
+                            filtroEstado, textoSeguro);
+                    }
+                    catch (Exception)
+                    {
+                        dv.RowFilter = filtroEstado; 
+                    }
+                }
                 dgvClientes.DataSource = dv;
                 dgvClientes.ClearSelection();
-
             }
         }
 
@@ -155,68 +180,67 @@ namespace SG_BAMS
         {
             Login.Login login = new Login.Login();
             login.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void BtnPerfil_Click(object sender, EventArgs e)
         {
             Perfil PF = new Perfil();
             PF.Show();
-            this.Hide();
         }
 
         private void BtnMenu_Click(object sender, EventArgs e)
         {
             MenuPrincipalAdm MPA = new MenuPrincipalAdm();
             MPA.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void BtnFacturas_Click(object sender, EventArgs e)
         {
             FacturasAdm FA = new FacturasAdm();
             FA.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void BtnCompras_Click(object sender, EventArgs e)
         {
             Compras CP = new Compras();
             CP.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void BtnInventario_Click(object sender, EventArgs e)
         {
             InventarioAdmin IA = new InventarioAdmin();
             IA.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void BtnProveedores_Click(object sender, EventArgs e)
         {
             ProveedoresAdmin PA = new ProveedoresAdmin();
             PA.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void BtnDeudores_Click(object sender, EventArgs e)
         {
             DeudoresAdmin DU = new DeudoresAdmin();
             DU.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void BtnReporte_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void BtnBitacora_Click(object sender, EventArgs e)
         {
             BitacoraAdmin BT = new BitacoraAdmin();
             BT.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -234,7 +258,13 @@ namespace SG_BAMS
         {
             ReportesAdmin RA = new ReportesAdmin();
             RA.Show();
-            this.Hide();
+            this.Close();
+        }
+
+        private void btnNoti_Click(object sender, EventArgs e)
+        {
+            NotificacionesAdmin NA = new NotificacionesAdmin();
+            NA.Show();
         }
     }
 }

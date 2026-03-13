@@ -34,10 +34,37 @@ namespace SG_BAMS
             {
                 DataView dv = datosCli.DefaultView;
 
-                dv.RowFilter = string.Format("Nombre LIKE '%{0}%' OR Apellido LIKE '%{0}%' OR RTN LIKE '%{0}%' OR Teléfono LIKE '%{0}%' OR Estado LIKE '%{0}%'", txtBusqueda.Text);
+                if (string.IsNullOrWhiteSpace(txtBusqueda.Text))
+                {
+                    if (chkActivo.Checked)
+                        dv.RowFilter = "Estado <> 'Activo'";
+                    else
+                        dv.RowFilter = "Estado = 'Activo'";
+                }
+                else
+                {
+                    string textoSeguro = txtBusqueda.Text
+                        .Replace("'", "''")
+                        .Replace("[", "[[]")
+                        .Replace("]", "[]]")
+                        .Replace("*", "[*]")
+                        .Replace("%", "[%]");
 
+                    string filtroEstado = chkActivo.Checked ? "Estado <> 'Activo'" : "Estado = 'Activo'";
+
+                    try
+                    {
+                        dv.RowFilter = string.Format(
+                            "({0}) AND (Nombre LIKE '%{1}%' OR Apellido LIKE '%{1}%' OR RTN LIKE '%{1}%' OR Teléfono LIKE '%{1}%' OR Estado LIKE '%{1}%')",
+                            filtroEstado, textoSeguro);
+                    }
+                    catch (Exception)
+                    {
+                        dv.RowFilter = filtroEstado;
+                    }
+                }
                 dgvClientes.DataSource = dv;
-
+                dgvClientes.ClearSelection();
             }
         }
 
@@ -139,14 +166,14 @@ namespace SG_BAMS
         {
             MenuPrincipalEmp MPE = new MenuPrincipalEmp();
             MPE.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void BtnFacturas_Click(object sender, EventArgs e)
         {
             FacturasEmp FE = new FacturasEmp();
             FE.Show();
-            this.Hide();
+            this.Close();
         }
 
 
@@ -155,21 +182,21 @@ namespace SG_BAMS
         {
             Deudores_Emp DE = new Deudores_Emp();
             DE.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void BtnInventario_Click(object sender, EventArgs e)
         {
             InventarioEmp IE = new InventarioEmp();
             IE.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
             Login.Login login = new Login.Login();
             login.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void btnAjustes_Click(object sender, EventArgs e)
@@ -181,6 +208,18 @@ namespace SG_BAMS
         private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void btnNoti_Click(object sender, EventArgs e)
+        {
+            NotificacionesAdmin NE = new NotificacionesAdmin();
+            NE.Show();
+        }
+
+        private void btnEmp_Click(object sender, EventArgs e)
+        {
+            Perfil Per = new Perfil();
+            Per.Show();
         }
     }
 }
