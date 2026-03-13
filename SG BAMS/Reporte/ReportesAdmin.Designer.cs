@@ -74,10 +74,6 @@
             pictureBox7 = new PictureBox();
             pictureBox8 = new PictureBox();
             pictureBox1 = new PictureBox();
-            btnVentas = new Krypton.Toolkit.KryptonButton();
-            btnCompras = new Krypton.Toolkit.KryptonButton();
-            btnDeudores = new Krypton.Toolkit.KryptonButton();
-            btnInventario = new Krypton.Toolkit.KryptonButton();
             btnExportarEx = new Krypton.Toolkit.KryptonButton();
             label4 = new Label();
             label3 = new Label();
@@ -87,6 +83,9 @@
             label7 = new Label();
             Max = new Krypton.Toolkit.KryptonNumericUpDown();
             btnFiltro = new Krypton.Toolkit.KryptonButton();
+            cmbReporte = new Krypton.Toolkit.KryptonComboBox();
+            label9 = new Label();
+            kryptonGroup4 = new Krypton.Toolkit.KryptonGroup();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox15).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvReporte).BeginInit();
@@ -114,6 +113,9 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cmbReporte).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroup4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroup4.Panel).BeginInit();
             SuspendLayout();
             // 
             // kryptonButton1
@@ -218,7 +220,7 @@
             label1.BackColor = Color.SkyBlue;
             label1.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(351, 237);
+            label1.Location = new Point(347, 384);
             label1.Name = "label1";
             label1.Size = new Size(160, 24);
             label1.TabIndex = 271;
@@ -226,7 +228,7 @@
             // 
             // kryptonGroup2
             // 
-            kryptonGroup2.Location = new Point(338, 233);
+            kryptonGroup2.Location = new Point(334, 380);
             kryptonGroup2.Size = new Size(182, 33);
             kryptonGroup2.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroup2.StateCommon.Border.Rounding = 30F;
@@ -254,7 +256,7 @@
             // 
             // dtpHasta
             // 
-            dtpHasta.Location = new Point(302, 399);
+            dtpHasta.Location = new Point(298, 546);
             dtpHasta.Name = "dtpHasta";
             dtpHasta.Size = new Size(248, 49);
             dtpHasta.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -268,7 +270,7 @@
             // 
             // dtpDesde
             // 
-            dtpDesde.Location = new Point(302, 309);
+            dtpDesde.Location = new Point(298, 456);
             dtpDesde.Name = "dtpDesde";
             dtpDesde.Size = new Size(248, 49);
             dtpDesde.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -811,94 +813,6 @@
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
             // 
-            // btnVentas
-            // 
-            btnVentas.Location = new Point(347, 482);
-            btnVentas.Name = "btnVentas";
-            btnVentas.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnVentas.OverrideDefault.Back.Color2 = Color.White;
-            btnVentas.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnVentas.OverrideFocus.Back.Color2 = Color.White;
-            btnVentas.Size = new Size(147, 41);
-            btnVentas.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnVentas.StateCommon.Back.Color2 = Color.White;
-            btnVentas.StateCommon.Border.Rounding = 40F;
-            btnVentas.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnVentas.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnVentas.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnVentas.StateNormal.Back.Color2 = Color.Transparent;
-            btnVentas.StateNormal.Border.Rounding = 40F;
-            btnVentas.TabIndex = 274;
-            btnVentas.Values.DropDownArrowColor = Color.Empty;
-            btnVentas.Values.Text = "Ventas";
-            btnVentas.Click += btnVentas_Click;
-            // 
-            // btnCompras
-            // 
-            btnCompras.Location = new Point(347, 529);
-            btnCompras.Name = "btnCompras";
-            btnCompras.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnCompras.OverrideDefault.Back.Color2 = Color.White;
-            btnCompras.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnCompras.OverrideFocus.Back.Color2 = Color.White;
-            btnCompras.Size = new Size(147, 41);
-            btnCompras.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnCompras.StateCommon.Back.Color2 = Color.White;
-            btnCompras.StateCommon.Border.Rounding = 40F;
-            btnCompras.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnCompras.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnCompras.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnCompras.StateNormal.Back.Color2 = Color.Transparent;
-            btnCompras.StateNormal.Border.Rounding = 40F;
-            btnCompras.TabIndex = 275;
-            btnCompras.Values.DropDownArrowColor = Color.Empty;
-            btnCompras.Values.Text = "Compras";
-            btnCompras.Click += btnCompras_Click;
-            // 
-            // btnDeudores
-            // 
-            btnDeudores.Location = new Point(347, 576);
-            btnDeudores.Name = "btnDeudores";
-            btnDeudores.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnDeudores.OverrideDefault.Back.Color2 = Color.White;
-            btnDeudores.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnDeudores.OverrideFocus.Back.Color2 = Color.White;
-            btnDeudores.Size = new Size(147, 41);
-            btnDeudores.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnDeudores.StateCommon.Back.Color2 = Color.White;
-            btnDeudores.StateCommon.Border.Rounding = 40F;
-            btnDeudores.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnDeudores.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnDeudores.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnDeudores.StateNormal.Back.Color2 = Color.Transparent;
-            btnDeudores.StateNormal.Border.Rounding = 40F;
-            btnDeudores.TabIndex = 276;
-            btnDeudores.Values.DropDownArrowColor = Color.Empty;
-            btnDeudores.Values.Text = "Deudores";
-            btnDeudores.Click += btnDeudores_Click;
-            // 
-            // btnInventario
-            // 
-            btnInventario.Location = new Point(347, 623);
-            btnInventario.Name = "btnInventario";
-            btnInventario.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnInventario.OverrideDefault.Back.Color2 = Color.White;
-            btnInventario.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnInventario.OverrideFocus.Back.Color2 = Color.White;
-            btnInventario.Size = new Size(147, 41);
-            btnInventario.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnInventario.StateCommon.Back.Color2 = Color.White;
-            btnInventario.StateCommon.Border.Rounding = 40F;
-            btnInventario.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnInventario.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnInventario.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnInventario.StateNormal.Back.Color2 = Color.Transparent;
-            btnInventario.StateNormal.Border.Rounding = 40F;
-            btnInventario.TabIndex = 277;
-            btnInventario.Values.DropDownArrowColor = Color.Empty;
-            btnInventario.Values.Text = "Inventario";
-            btnInventario.Click += btnInventario_Click;
-            // 
             // btnExportarEx
             // 
             btnExportarEx.Location = new Point(320, 740);
@@ -927,7 +841,7 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(388, 278);
+            label4.Location = new Point(384, 425);
             label4.Name = "label4";
             label4.Size = new Size(86, 22);
             label4.TabIndex = 279;
@@ -939,7 +853,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(388, 370);
+            label3.Location = new Point(384, 517);
             label3.Name = "label3";
             label3.Size = new Size(81, 22);
             label3.TabIndex = 280;
@@ -1031,11 +945,51 @@
             btnFiltro.Values.Text = "Aplicar";
             btnFiltro.Click += btnFiltro_Click;
             // 
+            // cmbReporte
+            // 
+            cmbReporte.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbReporte.DropDownWidth = 300;
+            cmbReporte.Items.AddRange(new object[] { "Ventas", "Compras", "Deudores", "Inventario" });
+            cmbReporte.Location = new Point(330, 260);
+            cmbReporte.Name = "cmbReporte";
+            cmbReporte.Size = new Size(206, 38);
+            cmbReporte.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbReporte.StateCommon.ComboBox.Border.Rounding = 20F;
+            cmbReporte.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            cmbReporte.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
+            cmbReporte.StateCommon.Item.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbReporte.StateNormal.ComboBox.Border.Rounding = 40F;
+            cmbReporte.TabIndex = 337;
+            cmbReporte.SelectedIndexChanged += cmbReporte_SelectedIndexChanged;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.BackColor = Color.SkyBlue;
+            label9.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label9.ForeColor = Color.Navy;
+            label9.Location = new Point(378, 225);
+            label9.Name = "label9";
+            label9.Size = new Size(107, 24);
+            label9.TabIndex = 339;
+            label9.Text = "CATEGORIA";
+            // 
+            // kryptonGroup4
+            // 
+            kryptonGroup4.Location = new Point(343, 221);
+            kryptonGroup4.Size = new Size(182, 33);
+            kryptonGroup4.StateCommon.Back.Color1 = Color.SkyBlue;
+            kryptonGroup4.StateCommon.Border.Rounding = 30F;
+            kryptonGroup4.TabIndex = 338;
+            // 
             // ReportesAdmin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1451, 903);
+            Controls.Add(label9);
+            Controls.Add(kryptonGroup4);
+            Controls.Add(cmbReporte);
             Controls.Add(btnFiltro);
             Controls.Add(Max);
             Controls.Add(label7);
@@ -1045,10 +999,6 @@
             Controls.Add(label3);
             Controls.Add(label4);
             Controls.Add(btnExportarEx);
-            Controls.Add(btnInventario);
-            Controls.Add(btnDeudores);
-            Controls.Add(btnCompras);
-            Controls.Add(btnVentas);
             Controls.Add(dgvReporte);
             Controls.Add(kryptonGroup3);
             Controls.Add(label1);
@@ -1101,6 +1051,9 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cmbReporte).EndInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroup4.Panel).EndInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroup4).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1153,10 +1106,6 @@
         private PictureBox pictureBox7;
         private PictureBox pictureBox8;
         private PictureBox pictureBox1;
-        private Krypton.Toolkit.KryptonButton btnVentas;
-        private Krypton.Toolkit.KryptonButton btnCompras;
-        private Krypton.Toolkit.KryptonButton btnDeudores;
-        private Krypton.Toolkit.KryptonButton btnInventario;
         private Krypton.Toolkit.KryptonButton btnExportarEx;
         private Label label4;
         private Label label3;
@@ -1166,5 +1115,8 @@
         private Label label7;
         private Krypton.Toolkit.KryptonNumericUpDown Max;
         private Krypton.Toolkit.KryptonButton btnFiltro;
+        private Krypton.Toolkit.KryptonComboBox cmbReporte;
+        private Label label9;
+        private Krypton.Toolkit.KryptonGroup kryptonGroup4;
     }
 }
