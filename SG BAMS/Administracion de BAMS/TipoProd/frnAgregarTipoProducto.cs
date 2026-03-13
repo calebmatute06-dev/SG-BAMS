@@ -22,6 +22,7 @@ namespace SG_BAMS
 
         private async void btnAgregar_Click(object sender, EventArgs e)
         {
+            string nombreLimpio = txtDescri.Text.Trim();
             if (string.IsNullOrWhiteSpace(txtDescri.Text))
             {
                 MessageBox.Show("Debe ingresar una descripción para el tipo de producto.",
@@ -29,28 +30,27 @@ namespace SG_BAMS
                 return;
             }
 
-            if (txtDescri.Text.Length < 3)
-            {
-                MessageBox.Show("El nombre debe tener mas de 3 caracteres.", "Error de Longitud", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (txtDescri.Text.Contains("  "))
+            if (nombreLimpio.Contains("  "))
             {
                 MessageBox.Show("El nombre no puede contener dos espacios seguidos.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (Regex.IsMatch(txtDescri.Text, @"(\w)\1{2,}"))
+            if (Regex.IsMatch(nombreLimpio, @"(\w)\1{2,}"))
             {
                 MessageBox.Show("No se permite repetir la misma letra más de dos veces seguidas.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-
-            if (!Regex.IsMatch(txtDescri.Text, @"^[a-zA-Z \s & ñ Ñ @,.;:<>]+$"))
+            if (nombreLimpio.Length < 3)
             {
-                MessageBox.Show("El nombre solo debe contener caracteres validos.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("El nombre debe tener mas de 3 caracteres.", "Error de Longitud", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!Regex.IsMatch(nombreLimpio, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ,.]{3,}(\s[a-zA-ZñÑáéíóúÁÉÍÓÚ.,]{3,})*$"))
+            {
+                MessageBox.Show("El campos de Nombre solo deben contener caracteres validos.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 

@@ -21,6 +21,8 @@ namespace SG_BAMS
         public frmModificarUsuarios(int id, string nombre, int rol, int estado)
         {
             InitializeComponent();
+            cmbRol.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbEstado.DropDownStyle = ComboBoxStyle.DropDownList;
 
             this.idUsuarioSeleccionado = id;
 
@@ -40,7 +42,6 @@ namespace SG_BAMS
             {
                 clsUsuario objetoUsuario = new clsUsuario();
 
-                // Cargar Roles
                 DataTable dtRoles = await objetoUsuario.ListarRolesAsync();
                 cmbRol.DataSource = dtRoles;
                 cmbRol.DisplayMember = "descripcion_rol";
@@ -64,37 +65,48 @@ namespace SG_BAMS
 
         private async void btmModificar_Click(object sender, EventArgs e)
         {
+
+            string nombreLimpio = txtNombre.Text.Trim();
+            string contraLimpia = txtNombre.Text.Trim();
+
             if (string.IsNullOrEmpty(txtNombre.Text))
             {
                 MessageBox.Show("Por favor complete los campos obligatorios.");
                 return;
             }
 
-            if (txtContra.Text.Length > 0 && txtContra.Text.Length < 3 )
+            if (contraLimpia.Contains(" "))
             {
-                MessageBox.Show("La Contraseña debe tener mas de 3 caracteres.", "Error de Longitud", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("La contraseña no puede contener espacios.",
+                                "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (txtNombre.Text.Contains("  "))
+            if (contraLimpia.Length >0 && contraLimpia.Length < 6)
+            {
+                MessageBox.Show("La contraseña debe tener al menos 6 caracteres.", "Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (nombreLimpio.Contains("  "))
             {
                 MessageBox.Show("El nombre no puede contener dos espacios seguidos.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (Regex.IsMatch(txtNombre.Text, @"(\w)\1{2,}"))
+            if (Regex.IsMatch(nombreLimpio, @"(\w)\1{2,}"))
             {
                 MessageBox.Show("No se permite repetir la misma letra más de dos veces seguidas.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (txtNombre.Text.Length < 3)
+            if (nombreLimpio.Length < 3)
             {
                 MessageBox.Show("El nombre debe tener mas de 3 caracteres.", "Error de Longitud", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (!Regex.IsMatch(txtNombre.Text, @"^[a-zA-Z \s & ñ Ñ @,.;:<>]+$"))
+            if (!Regex.IsMatch(nombreLimpio, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ]{3,}(\s[a-zA-ZñÑáéíóúÁÉÍÓÚ]{3,})*$"))
             {
                 MessageBox.Show("El campos de Nombre solo deben contener caracteres validos.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;

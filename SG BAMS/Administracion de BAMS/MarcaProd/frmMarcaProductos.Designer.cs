@@ -210,7 +210,7 @@
             dgvMarcas.StateCommon.Background.Color2 = Color.SkyBlue;
             dgvMarcas.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
             dgvMarcas.TabIndex = 155;
-            dgvMarcas.CellContentClick += dgvMarcas_CellContentClick;
+            dgvMarcas.CellContentDoubleClick += dgvMarcas_CellContentDoubleClick;
             // 
             // frmMarcaProductos
             // 

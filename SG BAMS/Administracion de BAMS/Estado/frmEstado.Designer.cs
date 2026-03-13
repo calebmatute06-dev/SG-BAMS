@@ -209,7 +209,7 @@
             dgvEstados.StateCommon.Background.Color2 = Color.SkyBlue;
             dgvEstados.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
             dgvEstados.TabIndex = 158;
-            dgvEstados.CellContentClick += dgvEstados_CellContentClick;
+            dgvEstados.CellContentDoubleClick += dgvEstados_CellContentDoubleClick;
             // 
             // frmEstado
             // 

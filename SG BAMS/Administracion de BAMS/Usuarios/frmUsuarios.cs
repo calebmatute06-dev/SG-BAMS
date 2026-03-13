@@ -25,7 +25,7 @@ namespace SG_BAMS
         private async void FormUsuarios_Load(object sender, EventArgs e)
         {
             await CargarGridUsuarios();
-            
+
         }
 
         private async Task CargarGridUsuarios()
@@ -47,7 +47,7 @@ namespace SG_BAMS
         {
             if (dgvUsuarios.Columns.Contains("imagen_usuario"))
                 dgvUsuarios.Columns["imagen_usuario"].Visible = false;
-            
+
             if (dgvUsuarios.Columns.Contains("id_rol_usuario"))
                 dgvUsuarios.Columns["id_rol_usuario"].Visible = false;
 
@@ -109,7 +109,7 @@ namespace SG_BAMS
             this.Close();
         }
 
-        private void dgvUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvUsuarios_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvUsuarios.SelectedRows.Count > 0)
             {

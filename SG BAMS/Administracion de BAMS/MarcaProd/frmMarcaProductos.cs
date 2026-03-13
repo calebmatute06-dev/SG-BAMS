@@ -101,7 +101,8 @@ namespace SG_BAMS
             this.Close();
         }
 
-        private void dgvMarcas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+
+        private void dgvMarcas_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             int id = Convert.ToInt32(dgvMarcas.CurrentRow.Cells["id_marca_producto"].Value);
             string nombre = dgvMarcas.CurrentRow.Cells["nombre_marca"].Value.ToString();

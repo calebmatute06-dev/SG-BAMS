@@ -113,7 +113,8 @@ namespace SG_BAMS
             }
         }
 
-        private void dgvEstados_CellContentClick(object sender, DataGridViewCellEventArgs e)
+
+        private void dgvEstados_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvEstados.SelectedRows.Count > 0)
             {

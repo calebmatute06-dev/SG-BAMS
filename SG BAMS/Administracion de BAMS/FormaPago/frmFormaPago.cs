@@ -108,7 +108,8 @@ namespace SG_BAMS
             }
         }
 
-        private void dgvFormasPago_CellContentClick(object sender, DataGridViewCellEventArgs e)
+
+        private void dgvFormasPago_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvFormasPago.SelectedRows.Count > 0)
             {

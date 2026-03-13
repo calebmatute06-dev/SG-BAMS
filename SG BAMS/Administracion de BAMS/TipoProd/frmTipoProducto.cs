@@ -95,7 +95,7 @@ namespace SG_BAMS
             this.Close();
         }
 
-        private void dgvTipoProducto_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvTipoProducto_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvTipoProducto.SelectedRows.Count > 0)
             {

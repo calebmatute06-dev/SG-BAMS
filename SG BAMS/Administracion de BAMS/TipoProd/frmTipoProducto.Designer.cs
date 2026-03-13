@@ -125,7 +125,7 @@
             dgvTipoProducto.StateCommon.Background.Color2 = Color.SkyBlue;
             dgvTipoProducto.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
             dgvTipoProducto.TabIndex = 116;
-            dgvTipoProducto.CellContentClick += dgvTipoProducto_CellContentClick;
+            dgvTipoProducto.CellContentDoubleClick += dgvTipoProducto_CellContentDoubleClick;
             // 
             // label1
             // 

@@ -209,7 +209,7 @@
             dgvModelos.StateCommon.Background.Color2 = Color.SkyBlue;
             dgvModelos.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
             dgvModelos.TabIndex = 156;
-            dgvModelos.CellContentClick += dgvModelos_CellContentClick;
+            dgvModelos.CellContentDoubleClick += dgvModelos_CellContentDoubleClick;
             // 
             // frmModeloAuto
             // 

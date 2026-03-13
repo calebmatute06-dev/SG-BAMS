@@ -210,7 +210,7 @@ namespace SG_BAMS
             dgvUsuarios.StateCommon.Background.Color2 = Color.SkyBlue;
             dgvUsuarios.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
             dgvUsuarios.TabIndex = 154;
-            dgvUsuarios.CellContentClick += dgvUsuarios_CellContentClick;
+            dgvUsuarios.CellContentDoubleClick += dgvUsuarios_CellContentDoubleClick;
             // 
             // frmUsuarios
             // 

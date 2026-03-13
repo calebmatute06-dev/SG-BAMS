@@ -210,7 +210,7 @@
             dgvRoles.StateCommon.Background.Color2 = Color.SkyBlue;
             dgvRoles.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
             dgvRoles.TabIndex = 155;
-            dgvRoles.CellContentClick += dgvRoles_CellContentClick;
+            dgvRoles.CellContentDoubleClick += dgvRoles_CellContentDoubleClick;
             // 
             // frmRoles
             // 

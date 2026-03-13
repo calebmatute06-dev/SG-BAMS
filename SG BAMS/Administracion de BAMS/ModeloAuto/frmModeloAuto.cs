@@ -86,7 +86,7 @@ namespace SG_BAMS
         private void btmModificar_Click(object sender, EventArgs e)
         {
             if (dgvModelos.SelectedRows.Count > 0)
-            {    
+            {
                 int id = Convert.ToInt32(dgvModelos.CurrentRow.Cells["id_modelo_auto"].Value);
                 string nombre = dgvModelos.CurrentRow.Cells["nombre_modelo_auto"].Value.ToString();
 
@@ -103,7 +103,8 @@ namespace SG_BAMS
             }
         }
 
-        private void dgvModelos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+
+        private void dgvModelos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             int id = Convert.ToInt32(dgvModelos.CurrentRow.Cells["id_modelo_auto"].Value);
             string nombre = dgvModelos.CurrentRow.Cells["nombre_modelo_auto"].Value.ToString();

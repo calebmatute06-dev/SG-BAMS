@@ -51,7 +51,8 @@ namespace SG_BAMS.Proveedor
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-
+            string nombreLimpio = txtNombre.Text.Trim();
+            string direLimpio = txtDireccion.Text.Trim();
             if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
                 string.IsNullOrWhiteSpace(txtTelefono.Text) ||
                 string.IsNullOrWhiteSpace(txtDireccion.Text) ||
@@ -62,41 +63,47 @@ namespace SG_BAMS.Proveedor
                                 "Campos Vacíos", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            if (txtDireccion.Text.Length < 3)
+            if (direLimpio.Length < 3)
             {
                 MessageBox.Show("La direccion debe tener mas de 3 caracteres.", "Error de Longitud", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (txtNombre.Text.Contains("  "))
+            if (nombreLimpio.Contains("  "))
             {
                 MessageBox.Show("El nombre no puede contener dos espacios seguidos.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
+            if (txtTelefono.Text.Contains(" ") || txtRTN.Text.Contains(" "))
+            {
+                MessageBox.Show("El Numero o RTN no puede contener espacios.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            if (txtNombre.Text.Length < 3)
+
+            if (nombreLimpio.Length < 3)
             {
                 MessageBox.Show("El nombre debe tener tener mas 3 caracteres.", "Error de Longitud", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (Regex.IsMatch(txtNombre.Text, @"(\w)\1{2,}"))
+            if (Regex.IsMatch(nombreLimpio, @"(\w)\1{2,}"))
             {
                 MessageBox.Show("No se permite repetir la misma letra más de dos veces seguidas.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (!Regex.IsMatch(txtNombre.Text, @"^[a-zA-Z \s & ñ Ñ @,.;:<>]+$"))
+            if (!Regex.IsMatch(nombreLimpio, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ&]{3,}(\s[a-zA-ZñÑáéíóúÁÉÍÓÚ&]{3,})*$"))
             {
-                MessageBox.Show("El campos de Nombre solo deben contener letras.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("El campos de Nombre solo deben contener caracteres validos.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
 
             if (!Regex.IsMatch(txtTelefono.Text, @"^([0-9]{8})$") || !Regex.IsMatch(txtRTN.Text, @"^([0-9]{14})$"))
             {
-                MessageBox.Show("Los campos de Telefono o RTN solo deben contener números.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Los campos de Telefono o RTN solo deben contener números o El numero esta incompleto.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 

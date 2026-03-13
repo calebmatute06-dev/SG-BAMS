@@ -112,21 +112,19 @@ namespace SG_BAMS
             this.Close();
         }
 
-        private void dgvRoles_CellContentClick(object sender, DataGridViewCellEventArgs e)
+
+        private void dgvRoles_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            
-            
-                int id = Convert.ToInt32(dgvRoles.CurrentRow.Cells["id_rol_usuario"].Value);
-                string nombre = dgvRoles.CurrentRow.Cells["descripcion_rol"].Value.ToString();
+            int id = Convert.ToInt32(dgvRoles.CurrentRow.Cells["id_rol_usuario"].Value);
+            string nombre = dgvRoles.CurrentRow.Cells["descripcion_rol"].Value.ToString();
 
-                frmModificarRol frmMod = new frmModificarRol(id, nombre);
+            frmModificarRol frmMod = new frmModificarRol(id, nombre);
 
-                if (frmMod.ShowDialog() == DialogResult.OK)
-                {
-                    _ = CargarGridRoles();
-                }
+            if (frmMod.ShowDialog() == DialogResult.OK)
+            {
+                _ = CargarGridRoles();
             }
-            
         }
     }
+}
 

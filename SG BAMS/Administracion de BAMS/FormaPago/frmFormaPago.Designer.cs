@@ -209,7 +209,7 @@
             dgvFormasPago.StateCommon.Background.Color2 = Color.SkyBlue;
             dgvFormasPago.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
             dgvFormasPago.TabIndex = 156;
-            dgvFormasPago.CellContentClick += dgvFormasPago_CellContentClick;
+            dgvFormasPago.CellContentDoubleClick += dgvFormasPago_CellContentDoubleClick;
             // 
             // frmFormaPago
             // 

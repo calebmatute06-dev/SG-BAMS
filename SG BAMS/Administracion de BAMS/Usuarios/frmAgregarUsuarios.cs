@@ -21,15 +21,12 @@ namespace SG_BAMS
             InitializeComponent();
             CargarComboRoles();
             btnImagen.Enabled = false;
+            cmbRol.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private async void fmrAgregarUsuarios_Load(object sender, EventArgs e)
         {
             await CargarComboRoles();
-            cmbRol.DropDownStyle = ComboBoxStyle.DropDown;
-            cmbRol.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            cmbRol.AutoCompleteSource = AutoCompleteSource.ListItems;
-            ConfigurarFiltroRoles();
         }
 
         private async Task CargarComboRoles()
@@ -61,49 +58,59 @@ namespace SG_BAMS
         private async void btmAgregar_Click(object sender, EventArgs e)
         {
 
-            if (string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrEmpty(txtContra.Text))
+            string nombreLimpio = txtNombre.Text.Trim();
+            string contraLimpia = txtNombre.Text.Trim();
+
+            if (string.IsNullOrEmpty(txtNombre.Text))
             {
                 MessageBox.Show("Por favor complete los campos obligatorios.");
                 return;
             }
 
-            if (txtContra.Text.Length < 3)
+            if (contraLimpia.Contains(" "))
             {
-                MessageBox.Show("La direccion debe tener mas de 3 caracteres.", "Error de Longitud", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("La contraseña no puede contener espacios.",
+                                "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (txtNombre.Text.Contains("  "))
+            if (contraLimpia.Length > 0 && contraLimpia.Length < 6)
+            {
+                MessageBox.Show("La contraseña debe tener al menos 6 caracteres.", "Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (nombreLimpio.Contains("  "))
             {
                 MessageBox.Show("El nombre no puede contener dos espacios seguidos.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (Regex.IsMatch(txtNombre.Text, @"(\w)\1{2,}"))
+            if (Regex.IsMatch(nombreLimpio, @"(\w)\1{2,}"))
             {
                 MessageBox.Show("No se permite repetir la misma letra más de dos veces seguidas.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (txtNombre.Text.Length < 3)
-                {
-                    MessageBox.Show("El nombre debe tener mas de 3 caracteres.", "Error de Longitud", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+            if (nombreLimpio.Length < 3)
+            {
+                MessageBox.Show("El nombre debe tener mas de 3 caracteres.", "Error de Longitud", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-                if (!Regex.IsMatch(txtNombre.Text, @"^[a-zA-Z \s & ñ Ñ @,.;:<>]+$"))
-                {
-                    MessageBox.Show("El campos de Nombre solo deben contener caracteres validos.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+            if (!Regex.IsMatch(nombreLimpio, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ]{3,}(\s[a-zA-ZñÑáéíóúÁÉÍÓÚ]{3,})*$"))
+            {
+                MessageBox.Show("El campos de Nombre solo deben contener caracteres validos.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-                if (cmbRol.SelectedIndex == -1)
-                {
-                    MessageBox.Show("Debe seleccionar un Rol.");
-                    return;
-                }
+            if (cmbRol.SelectedIndex == -1)
+            {
+                MessageBox.Show("Debe seleccionar un Rol.");
+                return;
+            }
 
-                try
+            try
                 {
                     clsUsuario objetoUsuario = new clsUsuario();
 
@@ -145,31 +152,7 @@ namespace SG_BAMS
 
         private List<string> listaOriginalRoles = new List<string>();
 
-        private void ConfigurarFiltroRoles()
-        {
-            cmbRol.DropDownStyle = ComboBoxStyle.DropDown;
-
-            cmbRol.TextUpdate += (s, e) =>
-            {
-                string filtro = cmbRol.Text;
-
-                if (dtRoles != null)
-                {
-                    DataView dv = dtRoles.DefaultView;
-
-                    dv.RowFilter = $"descripcion_rol LIKE '%{filtro}%'";
-
-                    cmbRol.DataSource = dv;
-
-                    cmbRol.DroppedDown = true;
-                    cmbRol.Text = filtro;
-
-                    cmbRol.SelectionStart = filtro.Length;
-
-                    Cursor.Current = Cursors.Default;
-                }
-            };
-        }
+        
 
         private void cmbRol_SelectedIndexChanged(object sender, EventArgs e)
         {
