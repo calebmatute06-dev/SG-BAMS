@@ -229,6 +229,8 @@
             dgvProductosCompraMod.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvProductosCompraMod.Size = new Size(643, 183);
             dgvProductosCompraMod.TabIndex = 218;
+            dgvProductosCompraMod.CellBeginEdit += dgvProductosCompraMod_CellBeginEdit;
+            dgvProductosCompraMod.CellValueChanged += dgvProductosCompraMod_CellValueChanged_1;
             // 
             // dtpFechaPedido
             // 
@@ -329,6 +331,7 @@
             // 
             // cmbFormaPago
             // 
+            cmbFormaPago.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbFormaPago.DropDownWidth = 300;
             cmbFormaPago.Location = new Point(203, 141);
             cmbFormaPago.Name = "cmbFormaPago";

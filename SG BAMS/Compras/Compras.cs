@@ -16,6 +16,8 @@ namespace SG_BAMS
 {
     public partial class Compras : Form
     {
+        private ClsModificarCompras logic = new ClsModificarCompras();
+
         public Compras()
         {
             InitializeComponent();
@@ -231,5 +233,46 @@ namespace SG_BAMS
                 MessageBox.Show("Por favor, seleccione una compra de la lista.");
             }
         }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            // 1. Verificamos que haya una fila seleccionada
+            if (dgvComprasAdmin.CurrentRow != null)
+            {
+                // 2. Obtenemos el ID de la compra (Asegúrate que la columna se llame "ID" o el índice correcto)
+                int idCompra = Convert.ToInt32(dgvComprasAdmin.CurrentRow.Cells["ID"].Value);
+
+                // 3. Mostramos el mensaje de confirmación
+                DialogResult resultado = MessageBox.Show("¿Está seguro de que desea eliminar permanentemente esta compra?",
+                                                        "Confirmar Eliminación - BAMS",
+                                                        MessageBoxButtons.YesNo,
+                                                        MessageBoxIcon.Warning);
+
+                if (resultado == DialogResult.Yes)
+                {
+                    try
+                    {
+                        // 4. Llamamos a la lógica para eliminar de la BD
+                        // Puedes usar un método en tu clase logic o una consulta directa
+                        if (logic.EliminarCompraCompleta(idCompra))
+                        {
+                            MessageBox.Show("Compra eliminada correctamente.", "BAMS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            // 5. Refrescamos el grid para mostrar los datos actualizados
+                            CargarCompras();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("No se pudo eliminar la compra: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione una compra de la lista para eliminar.", "BAMS", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
     }
 }

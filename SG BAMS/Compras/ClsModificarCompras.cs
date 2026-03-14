@@ -129,5 +129,49 @@ namespace SG_BAMS.ProductoInventario
             }
             finally { conexion.Cerrar(); }
         }
+
+        public bool EliminarCompraCompleta(int idCompra)
+        {
+            ClsConexion conexion = new ClsConexion();
+            try
+            {
+                conexion.AbrirConexion();
+
+                // 1. Restamos el stock en la tabla Inventario antes de borrar los detalles
+                // 2. Borramos los productos de la compra (Compra_producto)
+                // 3. Borramos la cabecera de la compra (Compra)
+                string sql = @"
+            -- Ajuste de Inventario
+            UPDATE I
+            SET I.stock = I.stock - CP.cantidad
+            FROM Inventario I
+            INNER JOIN Compra_producto CP ON I.id_producto = CP.id_producto
+            WHERE CP.id_compra = @id;
+
+            -- Eliminación de Detalles
+            DELETE FROM Compra_producto WHERE id_compra = @id;
+
+            -- Eliminación de Cabecera
+            DELETE FROM Compra WHERE id_compra = @id;";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conexion.Conectar))
+                {
+                    cmd.Parameters.AddWithValue("@id", idCompra);
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+
+                    // Si se ejecutó correctamente, devolvemos true
+                    return filasAfectadas > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Esto atrapará cualquier error y lo enviará al MessageBox de tu formulario
+                throw new Exception("Error al eliminar la compra y ajustar stock: " + ex.Message);
+            }
+            finally
+            {
+                conexion.Cerrar();
+            }
+        }
     }
 }

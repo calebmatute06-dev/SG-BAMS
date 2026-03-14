@@ -9,6 +9,9 @@ namespace SG_BAMS
 {
     public partial class Modificar_datos__Compra_ : Form
     {
+
+        private object valorAntesDeCambio;
+
         private int idCompraAEditar;
         private ClsModificarCompras logic = new ClsModificarCompras();
         private List<int> listaEliminados = new List<int>();
@@ -21,6 +24,7 @@ namespace SG_BAMS
             // SUSCRIPCIÓN MANUAL A EVENTOS (Si no lo hiciste en el diseñador)
             dgvProductosCompraMod.CellValueChanged += dgvProductosCompraMod_CellValueChanged;
             dgvProductosCompraMod.CurrentCellDirtyStateChanged += dgvProductosCompraMod_CurrentCellDirtyStateChanged;
+            dgvProductosCompraMod.CellBeginEdit += dgvProductosCompraMod_CellBeginEdit;
         }
 
         private void Modificar_datos__Compra__Load(object sender, EventArgs e)
@@ -154,6 +158,14 @@ namespace SG_BAMS
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+            if (cmbProveedor.SelectedValue == null || cmbProveedor.SelectedIndex == -1)
+            {
+                MessageBox.Show("Por favor, seleccione un proveedor válido de la lista",
+                                "BAMS - Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cmbProveedor.Focus();
+                return; // Detiene la ejecución antes de tocar la base de datos
+            }
+
             try
             {
                 // 0. ACTUALIZAR CABECERA (Proveedor, Pago, Fecha, Nota)
@@ -242,6 +254,52 @@ namespace SG_BAMS
         private void kryptonButton4_Click(object sender, EventArgs e)
         {
             this.Dispose();
+        }
+
+        private void dgvProductosCompraMod_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                // Guardamos el valor justo antes de que el usuario lo toque
+                valorAntesDeCambio = dgvProductosCompraMod.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+            }
+        }
+
+        private void dgvProductosCompraMod_CellValueChanged_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && (dgvProductosCompraMod.Columns[e.ColumnIndex].Name == "Cantidad" ||
+                            dgvProductosCompraMod.Columns[e.ColumnIndex].Name == "Precio"))
+            {
+                var fila = dgvProductosCompraMod.Rows[e.RowIndex];
+                string nombreCol = dgvProductosCompraMod.Columns[e.ColumnIndex].Name;
+
+                // Intentamos validar el nuevo valor
+                decimal nuevoValor;
+                bool esValido = decimal.TryParse(fila.Cells[e.ColumnIndex].Value?.ToString(), out nuevoValor);
+
+                if (!esValido || nuevoValor <= 0)
+                {
+                    MessageBox.Show($"El valor en '{nombreCol}' debe ser un número mayor a cero.",
+                                    "BAMS - Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    // Restauramos el valor anterior sin disparar este evento otra vez
+                    dgvProductosCompraMod.CellValueChanged -= dgvProductosCompraMod_CellValueChanged;
+                    fila.Cells[e.ColumnIndex].Value = valorAntesDeCambio;
+                    dgvProductosCompraMod.CellValueChanged += dgvProductosCompraMod_CellValueChanged;
+                    return;
+                }
+
+                // Si la validación pasa, recalculamos subtotal y total (Tu código original)
+                try
+                {
+                    decimal cantidad = Convert.ToDecimal(fila.Cells["Cantidad"].Value ?? 0);
+                    decimal precio = Convert.ToDecimal(fila.Cells["Precio"].Value ?? 0);
+
+                    fila.Cells["Subtotal"].Value = cantidad * precio;
+                    ActualizarTotalGeneral();
+                }
+                catch { }
+            }
         }
     }
 }
