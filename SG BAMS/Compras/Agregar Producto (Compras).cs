@@ -90,9 +90,9 @@ namespace SG_BAMS
                 return;
             }
 
-            if (!double.TryParse(txtPrecio.Text, out _) || string.IsNullOrWhiteSpace(txtPrecio.Text))
+            if (!decimal.TryParse(txtPrecio.Text, out decimal precioAux) || precioAux <= 0)
             {
-                MessageBox.Show("El precio debe ser un valor numérico válido (ejemplo: 150 o 150.50).", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("El precio debe ser un valor numérico mayor a cero.", "Precio Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtPrecio.Focus();
                 return;
             }
@@ -100,7 +100,7 @@ namespace SG_BAMS
             IdSeleccionado = cmbProductos.SelectedValue.ToString();
             NombreSeleccionado = cmbProductos.Text;
             CantidadSeleccionada = (int)numCantidad.Value;
-            PrecioSeleccionado = Convert.ToDecimal(txtPrecio.Text);
+            PrecioSeleccionado = precioAux; // Usamos la variable ya convertida
 
             this.DialogResult = DialogResult.OK;
             this.Close();

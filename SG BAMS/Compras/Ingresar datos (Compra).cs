@@ -110,9 +110,15 @@ namespace SG_BAMS
                 return;
             }
 
-            if (cmbProveedor.SelectedValue == null || cmbFormaPago.SelectedValue == null)
+            if (cmbProveedor.SelectedValue == null)
             {
-                MessageBox.Show("Por favor, seleccione un proveedor valido de la lista");
+                MessageBox.Show("Por favor, seleccione un proveedor válido de la lista.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (cmbFormaPago.SelectedValue == null)
+            {
+                MessageBox.Show("Por favor, seleccione una forma de pago válida.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
