@@ -22,6 +22,12 @@ namespace SG_BAMS
 
         private void Ingresar_datos__Compra__Load(object sender, EventArgs e)
         {
+            dgvProductosCompra.Columns[0].ReadOnly = true;
+            dgvProductosCompra.Columns[1].ReadOnly = true;
+            dgvProductosCompra.Columns[4].ReadOnly = true;
+            dgvProductosCompra.Columns[2].ReadOnly = false;
+            dgvProductosCompra.Columns[3].ReadOnly = false;
+
             LlenarCombos();
             dtpFechaPedido.SelectionStart = DateTime.Now;
             dtpFechaPedido.SelectionEnd = DateTime.Now;
@@ -220,5 +226,78 @@ namespace SG_BAMS
 
         private void kryptonLabel8_Click(object sender, EventArgs e) { }
         private void label4_Click(object sender, EventArgs e) { }
+
+        private void btnEliminarProducto_Click(object sender, EventArgs e)
+        {
+            if (dgvProductosCompra.CurrentRow != null && dgvProductosCompra.CurrentRow.Index >= 0)
+            {
+                DialogResult respuesta = MessageBox.Show("¿Está seguro de que desea quitar este producto de la lista?",
+                    "Eliminar Producto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (respuesta == DialogResult.Yes)
+                {
+                    dgvProductosCompra.Rows.RemoveAt(dgvProductosCompra.CurrentRow.Index);
+
+                    ActualizarGranTotal();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione el producto que desea eliminar de la tabla.",
+                    "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        // Variable a nivel de clase para el respaldo
+        private object valorOriginal;
+
+        private void dgvProductosCompra_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            // SOLO guardamos el valor actual antes de que cambie
+            if (e.RowIndex >= 0 && (e.ColumnIndex == 2 || e.ColumnIndex == 3))
+            {
+                valorOriginal = dgvProductosCompra.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+            }
+        }
+
+        private void dgvProductosCompra_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            // Validamos solo cuando el cambio ocurre en Cantidad (2) o Precio (3)
+            if (e.RowIndex >= 0 && (e.ColumnIndex == 2 || e.ColumnIndex == 3))
+            {
+                var fila = dgvProductosCompra.Rows[e.RowIndex];
+
+                // Intentamos obtener el nuevo valor ingresado
+                decimal valorNuevo;
+                bool esNumerico = decimal.TryParse(fila.Cells[e.ColumnIndex].Value?.ToString(), out valorNuevo);
+
+                if (!esNumerico || valorNuevo <= 0)
+                {
+                    string campo = (e.ColumnIndex == 2) ? "La cantidad" : "El precio";
+                    MessageBox.Show($"{campo} no puede ser cero o menor.",
+                                    "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    // Desconectamos el evento para evitar recursividad infinita al restaurar
+                    dgvProductosCompra.CellValueChanged -= dgvProductosCompra_CellValueChanged;
+                    fila.Cells[e.ColumnIndex].Value = valorOriginal;
+                    dgvProductosCompra.CellValueChanged += dgvProductosCompra_CellValueChanged;
+                    return;
+                }
+
+                // Si el valor es válido, procedemos al cálculo normal
+                try
+                {
+                    decimal cant = Convert.ToDecimal(fila.Cells[2].Value ?? 0);
+                    decimal prec = Convert.ToDecimal(fila.Cells[3].Value ?? 0);
+
+                    fila.Cells[4].Value = cant * prec;
+                    ActualizarGranTotal();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al calcular el subtotal: " + ex.Message);
+                }
+            }
+        }
     }
 }

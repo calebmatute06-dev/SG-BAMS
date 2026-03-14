@@ -58,6 +58,7 @@
             txtPrecio = new Krypton.Toolkit.KryptonTextBox();
             cmbProveedor = new Krypton.Toolkit.KryptonComboBox();
             cmbFormaPago = new Krypton.Toolkit.KryptonComboBox();
+            btnEliminarProducto = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
@@ -123,23 +124,24 @@
             // 
             // dgvProductosCompra
             // 
+            dgvProductosCompra.AllowUserToAddRows = false;
             dgvProductosCompra.BorderStyle = BorderStyle.None;
             dgvProductosCompra.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvProductosCompra.Columns.AddRange(new DataGridViewColumn[] { ID, Producto, Cantidad, Precio, Subtotal });
             dgvProductosCompra.Location = new Point(66, 301);
             dgvProductosCompra.Name = "dgvProductosCompra";
-            dgvProductosCompra.ReadOnly = true;
             dgvProductosCompra.RowHeadersWidth = 51;
             dgvProductosCompra.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvProductosCompra.Size = new Size(643, 183);
             dgvProductosCompra.TabIndex = 95;
+            dgvProductosCompra.CellBeginEdit += dgvProductosCompra_CellBeginEdit;
+            dgvProductosCompra.CellValueChanged += dgvProductosCompra_CellValueChanged;
             // 
             // ID
             // 
             ID.HeaderText = "ID";
             ID.MinimumWidth = 6;
             ID.Name = "ID";
-            ID.ReadOnly = true;
             ID.Width = 125;
             // 
             // Producto
@@ -147,7 +149,6 @@
             Producto.HeaderText = "Producto";
             Producto.MinimumWidth = 6;
             Producto.Name = "Producto";
-            Producto.ReadOnly = true;
             Producto.Width = 125;
             // 
             // Cantidad
@@ -155,7 +156,6 @@
             Cantidad.HeaderText = "Cantidad";
             Cantidad.MinimumWidth = 6;
             Cantidad.Name = "Cantidad";
-            Cantidad.ReadOnly = true;
             Cantidad.Width = 125;
             // 
             // Precio
@@ -163,7 +163,6 @@
             Precio.HeaderText = "Precio";
             Precio.MinimumWidth = 6;
             Precio.Name = "Precio";
-            Precio.ReadOnly = true;
             Precio.Width = 125;
             // 
             // Subtotal
@@ -171,7 +170,6 @@
             Subtotal.HeaderText = "Subtotal";
             Subtotal.MinimumWidth = 6;
             Subtotal.Name = "Subtotal";
-            Subtotal.ReadOnly = true;
             Subtotal.Width = 125;
             // 
             // lblIDCompra
@@ -421,11 +419,35 @@
             cmbFormaPago.StateNormal.ComboBox.Border.Rounding = 40F;
             cmbFormaPago.TabIndex = 337;
             // 
+            // btnEliminarProducto
+            // 
+            btnEliminarProducto.Location = new Point(472, 490);
+            btnEliminarProducto.Name = "btnEliminarProducto";
+            btnEliminarProducto.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnEliminarProducto.OverrideDefault.Back.Color2 = Color.White;
+            btnEliminarProducto.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnEliminarProducto.OverrideFocus.Back.Color2 = Color.White;
+            btnEliminarProducto.Size = new Size(159, 39);
+            btnEliminarProducto.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnEliminarProducto.StateCommon.Back.Color2 = Color.White;
+            btnEliminarProducto.StateCommon.Border.Rounding = 20F;
+            btnEliminarProducto.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnEliminarProducto.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnEliminarProducto.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnEliminarProducto.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnEliminarProducto.StatePressed.Back.Color1 = Color.Transparent;
+            btnEliminarProducto.StatePressed.Back.Color2 = Color.Transparent;
+            btnEliminarProducto.TabIndex = 338;
+            btnEliminarProducto.Values.DropDownArrowColor = Color.Empty;
+            btnEliminarProducto.Values.Text = "Eliminar Producto";
+            btnEliminarProducto.Click += btnEliminarProducto_Click;
+            // 
             // Ingresar_datos__Compra_
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(925, 561);
+            Controls.Add(btnEliminarProducto);
             Controls.Add(cmbFormaPago);
             Controls.Add(cmbProveedor);
             Controls.Add(txtPrecio);
@@ -496,5 +518,6 @@
         private DataGridViewTextBoxColumn Subtotal;
         private Krypton.Toolkit.KryptonComboBox cmbProveedor;
         private Krypton.Toolkit.KryptonComboBox cmbFormaPago;
+        private Krypton.Toolkit.KryptonButton btnEliminarProducto;
     }
 }
