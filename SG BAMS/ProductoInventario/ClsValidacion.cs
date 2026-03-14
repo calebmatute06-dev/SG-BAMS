@@ -69,12 +69,19 @@ namespace SG_BAMS.ProductoInventario
 
         public static bool ValidarPrecio(string precio)
         {
-            bool esValido = double.TryParse(precio, out _) && !string.IsNullOrWhiteSpace(precio);
-
-            if (!esValido)
+            // 1. Validar que no esté vacío y que sea un formato numérico válido
+            if (string.IsNullOrWhiteSpace(precio) || !double.TryParse(precio, out double valor))
             {
-                MessageBox.Show("El precio solo puede tener números y decimales. Por favor, corríjalo.",
+                MessageBox.Show("El precio solo puede contener números y decimales válidos.",
                                 "Error de Precio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // 2. NUEVA VALIDACIÓN: El precio debe ser mayor a 0
+            if (valor <= 0)
+            {
+                MessageBox.Show("El precio debe ser un valor mayor a cero.",
+                                "Precio Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
