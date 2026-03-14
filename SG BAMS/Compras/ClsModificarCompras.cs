@@ -137,9 +137,6 @@ namespace SG_BAMS.ProductoInventario
             {
                 conexion.AbrirConexion();
 
-                // 1. Restamos el stock en la tabla Inventario antes de borrar los detalles
-                // 2. Borramos los productos de la compra (Compra_producto)
-                // 3. Borramos la cabecera de la compra (Compra)
                 string sql = @"
             -- Ajuste de Inventario
             UPDATE I
