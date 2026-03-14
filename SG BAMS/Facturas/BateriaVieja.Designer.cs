@@ -43,6 +43,7 @@
             label5 = new Label();
             txtTotal = new Krypton.Toolkit.KryptonTextBox();
             txtCantidadTotal = new Krypton.Toolkit.KryptonTextBox();
+            BtnEliminar = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)cmbBaterias).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvBateria).BeginInit();
             SuspendLayout();
@@ -193,7 +194,6 @@
             txtCantidad.StateCommon.Content.Color1 = Color.Navy;
             txtCantidad.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtCantidad.TabIndex = 345;
-      
             // 
             // BtnSalir
             // 
@@ -247,7 +247,7 @@
             txtTotal.Location = new Point(699, 342);
             txtTotal.Margin = new Padding(3, 4, 3, 4);
             txtTotal.Name = "txtTotal";
-            txtTotal.Size = new Size(119, 36);
+            txtTotal.Size = new Size(119, 37);
             txtTotal.StateCommon.Back.Color1 = Color.SkyBlue;
             txtTotal.StateCommon.Border.Rounding = 10F;
             txtTotal.StateCommon.Content.Color1 = Color.Navy;
@@ -255,14 +255,13 @@
             txtTotal.StateNormal.Content.Color1 = Color.Navy;
             txtTotal.TabIndex = 350;
             txtTotal.Text = "0";
-      
             // 
             // txtCantidadTotal
             // 
             txtCantidadTotal.Location = new Point(795, 396);
             txtCantidadTotal.Margin = new Padding(3, 4, 3, 4);
             txtCantidadTotal.Name = "txtCantidadTotal";
-            txtCantidadTotal.Size = new Size(79, 36);
+            txtCantidadTotal.Size = new Size(79, 37);
             txtCantidadTotal.StateCommon.Back.Color1 = Color.SkyBlue;
             txtCantidadTotal.StateCommon.Border.Rounding = 10F;
             txtCantidadTotal.StateCommon.Content.Color1 = Color.Navy;
@@ -270,13 +269,37 @@
             txtCantidadTotal.StateNormal.Content.Color1 = Color.Navy;
             txtCantidadTotal.TabIndex = 351;
             txtCantidadTotal.Text = "0";
-     
+            // 
+            // BtnEliminar
+            // 
+            BtnEliminar.Location = new Point(669, 236);
+            BtnEliminar.Name = "BtnEliminar";
+            BtnEliminar.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            BtnEliminar.OverrideDefault.Back.Color2 = Color.White;
+            BtnEliminar.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            BtnEliminar.OverrideFocus.Back.Color2 = Color.White;
+            BtnEliminar.Size = new Size(138, 45);
+            BtnEliminar.StateCommon.Back.Color1 = Color.SkyBlue;
+            BtnEliminar.StateCommon.Back.Color2 = Color.White;
+            BtnEliminar.StateCommon.Border.Rounding = 30F;
+            BtnEliminar.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            BtnEliminar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BtnEliminar.StateNormal.Back.Color1 = Color.SkyBlue;
+            BtnEliminar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            BtnEliminar.StateNormal.Content.ShortText.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BtnEliminar.StatePressed.Back.Color1 = Color.Transparent;
+            BtnEliminar.StatePressed.Back.Color2 = Color.Transparent;
+            BtnEliminar.TabIndex = 352;
+            BtnEliminar.Values.DropDownArrowColor = Color.Empty;
+            BtnEliminar.Values.Text = "Eliminar";
+            BtnEliminar.Click += BtnEliminar_Click;
             // 
             // BateriaVieja
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(912, 651);
+            Controls.Add(BtnEliminar);
             Controls.Add(txtCantidadTotal);
             Controls.Add(txtTotal);
             Controls.Add(label5);
@@ -317,5 +340,6 @@
         private Label label5;
         private Krypton.Toolkit.KryptonTextBox txtTotal;
         private Krypton.Toolkit.KryptonTextBox txtCantidadTotal;
+        private Krypton.Toolkit.KryptonButton BtnEliminar;
     }
 }

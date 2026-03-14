@@ -26,7 +26,7 @@ namespace SG_BAMS.Facturas
         public BateriaVieja(double montoFactura)
         {
             InitializeComponent();
-            this.limiteFactura = montoFactura; 
+            this.limiteFactura = montoFactura;
         }
 
         private void BateriaVieja_Load(object sender, EventArgs e)
@@ -110,7 +110,7 @@ namespace SG_BAMS.Facturas
                 dgvBateria.CommitEdit(DataGridViewDataErrorContexts.Commit);
             }
         }
-     
+
         private void dgvBateria_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
@@ -210,10 +210,10 @@ namespace SG_BAMS.Facturas
             {
                 MessageBox.Show($"La rebaja por baterías (L. {totalBateria:N2}) supera el total de la factura (L. {limiteFactura:N2}).\n\nNo se puede aplicar una rebaja mayor a la compra.",
                                 "Monto Excedido", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return; 
+                return;
             }
 
-           
+
             TotalDineroBateria = totalBateria;
             TotalCantidadBateria = txtCantidadTotal.Text;
 
@@ -228,20 +228,20 @@ namespace SG_BAMS.Facturas
 
             foreach (DataGridViewRow row in dgvBateria.Rows)
             {
-               
+
                 if (row.Cells["subtotal"].Value != null)
                 {
                     totalDinero += Convert.ToDouble(row.Cells["subtotal"].Value);
                 }
 
-           
+
                 if (row.Cells["cantidad"].Value != null)
                 {
                     totalProductos += Convert.ToInt32(row.Cells["cantidad"].Value);
                 }
             }
 
-           
+
             txtTotal.Text = totalDinero.ToString("N2");
             txtCantidadTotal.Text = totalProductos.ToString();
         }
@@ -249,6 +249,23 @@ namespace SG_BAMS.Facturas
         private void txtPrecio_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void BtnEliminar_Click(object sender, EventArgs e)
+        {
+            if (dgvBateria.CurrentRow != null && !dgvBateria.CurrentRow.IsNewRow)
+            {
+                
+                dgvBateria.Rows.RemoveAt(dgvBateria.CurrentRow.Index);
+
+                
+                CalcularTotales();
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione una fila válida para eliminar.",
+                                "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

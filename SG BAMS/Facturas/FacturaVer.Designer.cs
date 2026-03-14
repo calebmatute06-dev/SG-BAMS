@@ -100,7 +100,7 @@
             // fechaDT
             // 
             fechaDT.Enabled = false;
-            fechaDT.Location = new Point(789, 243);
+            fechaDT.Location = new Point(753, 256);
             fechaDT.Margin = new Padding(10, 12, 10, 12);
             fechaDT.MaxSelectionCount = 1;
             fechaDT.Name = "fechaDT";
