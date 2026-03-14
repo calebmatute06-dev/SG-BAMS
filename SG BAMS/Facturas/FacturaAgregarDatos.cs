@@ -19,7 +19,8 @@ namespace SG_BAMS
     public partial class FacturaAgregarDatos : Form
     {
         int idCliente, idProducto, cantidades;
-        string nombresProductos;
+        string nombresProductos, cantidadBateria;
+        double precioBateria;
         public FacturaAgregarDatos(string cliente, int idCli)
         {
             InitializeComponent();
@@ -33,9 +34,18 @@ namespace SG_BAMS
             nombresProductos = nombreProd;
             cantidades = cantidadProd;
         }
+        public FacturaAgregarDatos(double total, string cant)
+        {
+            InitializeComponent();
+            cantidadBateria = cant;
+            precioBateria = total;
+        }
+
         public FacturaAgregarDatos()
         {
             InitializeComponent();
+            cantidadBateria = "0";
+            precioBateria = 0;
         }
 
         private async Task LlenarComboPago()
@@ -86,12 +96,17 @@ namespace SG_BAMS
             dgvProductos.Columns.Add("stock_max", "StockMax");
             dgvProductos.Columns["stock_max"].Visible = false;
 
+            btnBateria.Enabled = false;
+            ActualizarEstadoBotonAceptar();
+
+         
+
         }
 
         private void CalcularTotal()
         {
-            int bateriaVieja = Convert.ToInt32(TxtBateria.Text);
-            double acumulador = 0, rebaja = 0;
+            
+            double acumulador = 0;
 
             for (int i = 0; i < dgvProductos.Rows.Count; i++)
             {
@@ -101,15 +116,8 @@ namespace SG_BAMS
                 }
             }
 
-            if (bateriaVieja == 1)
-            {
-                rebaja = 500;
-            }
-            else if (bateriaVieja > 1)
-            {
-                rebaja = 500 + (bateriaVieja - 1) * 300;
-            }
-
+            double rebaja = precioBateria;
+            
             double total = acumulador - rebaja;
             TxtTotal.Text = total.ToString() + ",00";
         }
@@ -276,6 +284,7 @@ namespace SG_BAMS
                     double precio = await objAP.ObtenerPrecioProducto(idProducto);
                     dgvProductos.Rows.Add(idProducto, nombresProductos, cantidades, precio, (cantidades * precio), frmProd.StockSeleccionado);
                     CalcularTotal();
+                    ActualizarEstadoBotonAceptar();
                 }
             }
         }
@@ -316,6 +325,7 @@ namespace SG_BAMS
                     }
 
                     CalcularTotal();
+                    ActualizarEstadoBotonAceptar();
                 }
             }
 
@@ -384,9 +394,30 @@ namespace SG_BAMS
 
         private void btnBateria_Click(object sender, EventArgs e)
         {
-            BateriaVieja BV = new BateriaVieja();
-            BV.ShowDialog();
-           
+            using (BateriaVieja BV = new BateriaVieja())
+            {
+               
+                if (BV.ShowDialog() == DialogResult.OK)
+                {
+                    
+                    this.precioBateria = BV.TotalDineroBateria;
+                    this.cantidadBateria = BV.TotalCantidadBateria;
+
+                   
+                    TxtBateria.Text = cantidadBateria;
+
+                    
+                    CalcularTotal();
+                }
+            }
+
+        }
+
+        private void ActualizarEstadoBotonAceptar()
+        {
+            bool tieneProductos = dgvProductos.Rows.Cast<DataGridViewRow>().Any(row => !row.IsNewRow);
+            BtnAceptar.Enabled = tieneProductos;
+            btnBateria.Enabled = tieneProductos;
         }
     }
 }

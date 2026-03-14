@@ -35,17 +35,21 @@
             label2 = new Label();
             dgvBateria = new DataGridView();
             BtnAceptar = new Krypton.Toolkit.KryptonButton();
-            Agregar = new Krypton.Toolkit.KryptonButton();
-            kryptonButton1 = new Krypton.Toolkit.KryptonButton();
+            BtnAgregar = new Krypton.Toolkit.KryptonButton();
             label3 = new Label();
             txtCantidad = new Krypton.Toolkit.KryptonTextBox();
+            BtnSalir = new Krypton.Toolkit.KryptonButton();
+            label4 = new Label();
+            label5 = new Label();
+            txtTotal = new Krypton.Toolkit.KryptonTextBox();
+            txtCantidadTotal = new Krypton.Toolkit.KryptonTextBox();
             ((System.ComponentModel.ISupportInitialize)cmbBaterias).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvBateria).BeginInit();
             SuspendLayout();
             // 
             // txtPrecio
             // 
-            txtPrecio.Location = new Point(188, 136);
+            txtPrecio.Location = new Point(282, 153);
             txtPrecio.Margin = new Padding(3, 4, 3, 4);
             txtPrecio.Name = "txtPrecio";
             txtPrecio.Size = new Size(197, 36);
@@ -54,11 +58,12 @@
             txtPrecio.StateCommon.Content.Color1 = Color.Navy;
             txtPrecio.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtPrecio.TabIndex = 336;
+            txtPrecio.TextChanged += txtPrecio_TextChanged;
             // 
             // cmbBaterias
             // 
             cmbBaterias.DropDownWidth = 300;
-            cmbBaterias.Location = new Point(188, 75);
+            cmbBaterias.Location = new Point(282, 92);
             cmbBaterias.Name = "cmbBaterias";
             cmbBaterias.Size = new Size(197, 38);
             cmbBaterias.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
@@ -75,7 +80,7 @@
             Nombre.BackColor = Color.Transparent;
             Nombre.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             Nombre.ForeColor = Color.Navy;
-            Nombre.Location = new Point(67, 86);
+            Nombre.Location = new Point(161, 103);
             Nombre.Name = "Nombre";
             Nombre.Size = new Size(105, 27);
             Nombre.TabIndex = 338;
@@ -87,7 +92,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial Narrow", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(176, 9);
+            label1.Location = new Point(232, 19);
             label1.Name = "label1";
             label1.Size = new Size(188, 40);
             label1.TabIndex = 339;
@@ -99,7 +104,7 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(67, 145);
+            label2.Location = new Point(161, 162);
             label2.Name = "label2";
             label2.Size = new Size(90, 27);
             label2.TabIndex = 340;
@@ -108,15 +113,19 @@
             // dgvBateria
             // 
             dgvBateria.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvBateria.Location = new Point(37, 302);
+            dgvBateria.Location = new Point(64, 296);
             dgvBateria.Name = "dgvBateria";
             dgvBateria.RowHeadersWidth = 51;
-            dgvBateria.Size = new Size(425, 246);
+            dgvBateria.Size = new Size(549, 246);
             dgvBateria.TabIndex = 341;
+            dgvBateria.CellValidating += dgvBateria_CellValidating;
+            dgvBateria.CellValueChanged += dgvBateria_CellValueChanged;
+            dgvBateria.CurrentCellDirtyStateChanged += dgvBateria_CurrentCellDirtyStateChanged;
+            dgvBateria.EditingControlShowing += dgvBateria_EditingControlShowing;
             // 
             // BtnAceptar
             // 
-            BtnAceptar.Location = new Point(95, 568);
+            BtnAceptar.Location = new Point(194, 563);
             BtnAceptar.Name = "BtnAceptar";
             BtnAceptar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             BtnAceptar.OverrideDefault.Back.Color2 = Color.White;
@@ -135,53 +144,31 @@
             BtnAceptar.TabIndex = 342;
             BtnAceptar.Values.DropDownArrowColor = Color.Empty;
             BtnAceptar.Values.Text = "Aceptar";
+            BtnAceptar.Click += BtnAceptar_Click;
             // 
-            // Agregar
+            // BtnAgregar
             // 
-            Agregar.Location = new Point(55, 251);
-            Agregar.Name = "Agregar";
-            Agregar.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            Agregar.OverrideDefault.Back.Color2 = Color.White;
-            Agregar.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            Agregar.OverrideFocus.Back.Color2 = Color.White;
-            Agregar.Size = new Size(138, 45);
-            Agregar.StateCommon.Back.Color1 = Color.SkyBlue;
-            Agregar.StateCommon.Back.Color2 = Color.White;
-            Agregar.StateCommon.Border.Rounding = 30F;
-            Agregar.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            Agregar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Agregar.StateNormal.Back.Color1 = Color.SkyBlue;
-            Agregar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            Agregar.StateNormal.Content.ShortText.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Agregar.StatePressed.Back.Color1 = Color.Transparent;
-            Agregar.StatePressed.Back.Color2 = Color.Transparent;
-            Agregar.TabIndex = 343;
-            Agregar.Values.DropDownArrowColor = Color.Empty;
-            Agregar.Values.Text = "Agregar";
-            Agregar.Click += Agregar_Click;
-            // 
-            // kryptonButton1
-            // 
-            kryptonButton1.Location = new Point(262, 568);
-            kryptonButton1.Name = "kryptonButton1";
-            kryptonButton1.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            kryptonButton1.OverrideDefault.Back.Color2 = Color.White;
-            kryptonButton1.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            kryptonButton1.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton1.Size = new Size(139, 60);
-            kryptonButton1.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonButton1.StateCommon.Back.Color2 = Color.White;
-            kryptonButton1.StateCommon.Border.Rounding = 30F;
-            kryptonButton1.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton1.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            kryptonButton1.StateNormal.Back.Color1 = Color.SkyBlue;
-            kryptonButton1.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            kryptonButton1.StatePressed.Back.Color1 = Color.Transparent;
-            kryptonButton1.StatePressed.Back.Color2 = Color.Transparent;
-            kryptonButton1.TabIndex = 344;
-            kryptonButton1.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton1.Values.Text = "Cancelar";
-            kryptonButton1.Click += kryptonButton1_Click;
+            BtnAgregar.Location = new Point(498, 236);
+            BtnAgregar.Name = "BtnAgregar";
+            BtnAgregar.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            BtnAgregar.OverrideDefault.Back.Color2 = Color.White;
+            BtnAgregar.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            BtnAgregar.OverrideFocus.Back.Color2 = Color.White;
+            BtnAgregar.Size = new Size(138, 45);
+            BtnAgregar.StateCommon.Back.Color1 = Color.SkyBlue;
+            BtnAgregar.StateCommon.Back.Color2 = Color.White;
+            BtnAgregar.StateCommon.Border.Rounding = 30F;
+            BtnAgregar.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            BtnAgregar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BtnAgregar.StateNormal.Back.Color1 = Color.SkyBlue;
+            BtnAgregar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            BtnAgregar.StateNormal.Content.ShortText.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BtnAgregar.StatePressed.Back.Color1 = Color.Transparent;
+            BtnAgregar.StatePressed.Back.Color2 = Color.Transparent;
+            BtnAgregar.TabIndex = 343;
+            BtnAgregar.Values.DropDownArrowColor = Color.Empty;
+            BtnAgregar.Values.Text = "Agregar";
+            BtnAgregar.Click += Agregar_Click;
             // 
             // label3
             // 
@@ -189,7 +176,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(67, 199);
+            label3.Location = new Point(161, 216);
             label3.Name = "label3";
             label3.Size = new Size(120, 27);
             label3.TabIndex = 346;
@@ -197,7 +184,7 @@
             // 
             // txtCantidad
             // 
-            txtCantidad.Location = new Point(188, 190);
+            txtCantidad.Location = new Point(282, 207);
             txtCantidad.Margin = new Padding(3, 4, 3, 4);
             txtCantidad.Name = "txtCantidad";
             txtCantidad.Size = new Size(197, 36);
@@ -206,16 +193,98 @@
             txtCantidad.StateCommon.Content.Color1 = Color.Navy;
             txtCantidad.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtCantidad.TabIndex = 345;
+      
+            // 
+            // BtnSalir
+            // 
+            BtnSalir.Location = new Point(365, 563);
+            BtnSalir.Name = "BtnSalir";
+            BtnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            BtnSalir.OverrideDefault.Back.Color2 = Color.White;
+            BtnSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            BtnSalir.OverrideFocus.Back.Color2 = Color.White;
+            BtnSalir.Size = new Size(123, 60);
+            BtnSalir.StateCommon.Back.Color1 = Color.SkyBlue;
+            BtnSalir.StateCommon.Back.Color2 = Color.White;
+            BtnSalir.StateCommon.Border.Rounding = 30F;
+            BtnSalir.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            BtnSalir.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BtnSalir.StateNormal.Back.Color1 = Color.SkyBlue;
+            BtnSalir.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            BtnSalir.StatePressed.Back.Color1 = Color.Transparent;
+            BtnSalir.StatePressed.Back.Color2 = Color.Transparent;
+            BtnSalir.TabIndex = 347;
+            BtnSalir.Values.DropDownArrowColor = Color.Empty;
+            BtnSalir.Values.Text = "Salir";
+            BtnSalir.Click += BtnSalir_Click;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.BackColor = Color.Transparent;
+            label4.Font = new Font("Arial", 13.8F, FontStyle.Bold);
+            label4.ForeColor = Color.Navy;
+            label4.Location = new Point(619, 351);
+            label4.Name = "label4";
+            label4.Size = new Size(74, 27);
+            label4.TabIndex = 348;
+            label4.Text = "Total:";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.BackColor = Color.Transparent;
+            label5.Font = new Font("Arial", 13.8F, FontStyle.Bold);
+            label5.ForeColor = Color.Navy;
+            label5.Location = new Point(617, 405);
+            label5.Name = "label5";
+            label5.Size = new Size(181, 27);
+            label5.TabIndex = 349;
+            label5.Text = "Cantidad Total:";
+            // 
+            // txtTotal
+            // 
+            txtTotal.Location = new Point(699, 342);
+            txtTotal.Margin = new Padding(3, 4, 3, 4);
+            txtTotal.Name = "txtTotal";
+            txtTotal.Size = new Size(119, 36);
+            txtTotal.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtTotal.StateCommon.Border.Rounding = 10F;
+            txtTotal.StateCommon.Content.Color1 = Color.Navy;
+            txtTotal.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtTotal.StateNormal.Content.Color1 = Color.Navy;
+            txtTotal.TabIndex = 350;
+            txtTotal.Text = "0";
+      
+            // 
+            // txtCantidadTotal
+            // 
+            txtCantidadTotal.Location = new Point(795, 396);
+            txtCantidadTotal.Margin = new Padding(3, 4, 3, 4);
+            txtCantidadTotal.Name = "txtCantidadTotal";
+            txtCantidadTotal.Size = new Size(79, 36);
+            txtCantidadTotal.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtCantidadTotal.StateCommon.Border.Rounding = 10F;
+            txtCantidadTotal.StateCommon.Content.Color1 = Color.Navy;
+            txtCantidadTotal.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtCantidadTotal.StateNormal.Content.Color1 = Color.Navy;
+            txtCantidadTotal.TabIndex = 351;
+            txtCantidadTotal.Text = "0";
+     
             // 
             // BateriaVieja
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(506, 651);
+            ClientSize = new Size(912, 651);
+            Controls.Add(txtCantidadTotal);
+            Controls.Add(txtTotal);
+            Controls.Add(label5);
+            Controls.Add(label4);
+            Controls.Add(BtnSalir);
             Controls.Add(label3);
             Controls.Add(txtCantidad);
-            Controls.Add(kryptonButton1);
-            Controls.Add(Agregar);
+            Controls.Add(BtnAgregar);
             Controls.Add(BtnAceptar);
             Controls.Add(dgvBateria);
             Controls.Add(label2);
@@ -240,9 +309,13 @@
         private Label label2;
         private DataGridView dgvBateria;
         private Krypton.Toolkit.KryptonButton BtnAceptar;
-        private Krypton.Toolkit.KryptonButton Agregar;
-        private Krypton.Toolkit.KryptonButton kryptonButton1;
+        private Krypton.Toolkit.KryptonButton BtnAgregar;
         private Label label3;
         private Krypton.Toolkit.KryptonTextBox txtCantidad;
+        private Krypton.Toolkit.KryptonButton BtnSalir;
+        private Label label4;
+        private Label label5;
+        private Krypton.Toolkit.KryptonTextBox txtTotal;
+        private Krypton.Toolkit.KryptonTextBox txtCantidadTotal;
     }
 }

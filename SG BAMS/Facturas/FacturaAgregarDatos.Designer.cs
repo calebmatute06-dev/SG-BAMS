@@ -65,7 +65,7 @@
             label7.BackColor = Color.Transparent;
             label7.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Navy;
-            label7.Location = new Point(891, 185);
+            label7.Location = new Point(882, 181);
             label7.Name = "label7";
             label7.Size = new Size(80, 27);
             label7.TabIndex = 307;
@@ -78,7 +78,7 @@
             label9.BackColor = Color.Transparent;
             label9.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label9.ForeColor = Color.Navy;
-            label9.Location = new Point(152, 519);
+            label9.Location = new Point(57, 582);
             label9.Name = "label9";
             label9.Size = new Size(176, 27);
             label9.TabIndex = 304;
@@ -90,7 +90,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(168, 176);
+            label1.Location = new Point(50, 490);
             label1.Name = "label1";
             label1.Size = new Size(152, 27);
             label1.TabIndex = 303;
@@ -102,7 +102,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(168, 131);
+            label3.Location = new Point(58, 131);
             label3.Name = "label3";
             label3.Size = new Size(92, 27);
             label3.TabIndex = 302;
@@ -114,7 +114,7 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(987, 608);
+            label5.Location = new Point(988, 689);
             label5.Name = "label5";
             label5.Size = new Size(113, 42);
             label5.TabIndex = 299;
@@ -137,7 +137,7 @@
             panel3.BackColor = Color.Navy;
             panel3.Location = new Point(0, 0);
             panel3.Name = "panel3";
-            panel3.Size = new Size(25, 675);
+            panel3.Size = new Size(25, 755);
             panel3.TabIndex = 294;
             panel3.Paint += panel3_Paint;
             // 
@@ -152,7 +152,7 @@
             // panel4
             // 
             panel4.BackColor = Color.Navy;
-            panel4.Location = new Point(0, 653);
+            panel4.Location = new Point(3, 734);
             panel4.Name = "panel4";
             panel4.Size = new Size(1134, 24);
             panel4.TabIndex = 295;
@@ -175,7 +175,7 @@
             // 
             // BtnAgregar
             // 
-            BtnAgregar.Location = new Point(50, 569);
+            BtnAgregar.Location = new Point(67, 649);
             BtnAgregar.Name = "BtnAgregar";
             BtnAgregar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             BtnAgregar.OverrideDefault.Back.Color2 = Color.White;
@@ -198,7 +198,7 @@
             // 
             // BtnAceptar
             // 
-            BtnAceptar.Location = new Point(615, 569);
+            BtnAceptar.Location = new Point(632, 649);
             BtnAceptar.Name = "BtnAceptar";
             BtnAceptar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             BtnAceptar.OverrideDefault.Back.Color2 = Color.White;
@@ -221,7 +221,7 @@
             // 
             // BtnCancelar
             // 
-            BtnCancelar.Location = new Point(774, 569);
+            BtnCancelar.Location = new Point(791, 649);
             BtnCancelar.Name = "BtnCancelar";
             BtnCancelar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             BtnCancelar.OverrideDefault.Back.Color2 = Color.White;
@@ -245,7 +245,7 @@
             // DateTFecha
             // 
             DateTFecha.Enabled = false;
-            DateTFecha.Location = new Point(820, 224);
+            DateTFecha.Location = new Point(811, 220);
             DateTFecha.Margin = new Padding(10, 12, 10, 12);
             DateTFecha.Name = "DateTFecha";
             DateTFecha.TabIndex = 315;
@@ -257,7 +257,7 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(575, 519);
+            label2.Location = new Point(602, 491);
             label2.Name = "label2";
             label2.Size = new Size(67, 27);
             label2.TabIndex = 302;
@@ -275,10 +275,10 @@
             // 
             // TxtCliente
             // 
-            TxtCliente.Location = new Point(334, 123);
+            TxtCliente.Location = new Point(182, 123);
             TxtCliente.Margin = new Padding(3, 4, 3, 4);
             TxtCliente.Name = "TxtCliente";
-            TxtCliente.Size = new Size(197, 36);
+            TxtCliente.Size = new Size(239, 36);
             TxtCliente.StateCommon.Back.Color1 = Color.SkyBlue;
             TxtCliente.StateCommon.Border.Rounding = 10F;
             TxtCliente.StateCommon.Content.Color1 = Color.Navy;
@@ -287,10 +287,10 @@
             // 
             // TxtBateria
             // 
-            TxtBateria.Location = new Point(334, 167);
+            TxtBateria.Location = new Point(216, 481);
             TxtBateria.Margin = new Padding(3, 4, 3, 4);
             TxtBateria.Name = "TxtBateria";
-            TxtBateria.Size = new Size(197, 37);
+            TxtBateria.Size = new Size(112, 37);
             TxtBateria.StateCommon.Back.Color1 = Color.SkyBlue;
             TxtBateria.StateCommon.Border.Rounding = 10F;
             TxtBateria.StateCommon.Content.Color1 = Color.Navy;
@@ -300,7 +300,7 @@
             // 
             // TxtTotal
             // 
-            TxtTotal.Location = new Point(651, 509);
+            TxtTotal.Location = new Point(678, 481);
             TxtTotal.Margin = new Padding(3, 4, 3, 4);
             TxtTotal.Name = "TxtTotal";
             TxtTotal.Size = new Size(110, 37);
@@ -315,7 +315,7 @@
             // 
             cmbPago.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbPago.DropDownWidth = 300;
-            cmbPago.Location = new Point(334, 508);
+            cmbPago.Location = new Point(239, 571);
             cmbPago.Name = "cmbPago";
             cmbPago.Size = new Size(146, 38);
             cmbPago.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
@@ -330,7 +330,7 @@
             // 
             dgvProductos.BackgroundColor = Color.SkyBlue;
             dgvProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProductos.Location = new Point(55, 221);
+            dgvProductos.Location = new Point(57, 187);
             dgvProductos.Name = "dgvProductos";
             dgvProductos.RowHeadersWidth = 51;
             dgvProductos.Size = new Size(678, 267);
@@ -344,12 +344,12 @@
             panel5.BackColor = Color.Navy;
             panel5.Location = new Point(1107, 0);
             panel5.Name = "panel5";
-            panel5.Size = new Size(30, 675);
+            panel5.Size = new Size(30, 758);
             panel5.TabIndex = 295;
             // 
             // BtnEliminar
             // 
-            BtnEliminar.Location = new Point(337, 569);
+            BtnEliminar.Location = new Point(354, 649);
             BtnEliminar.Name = "BtnEliminar";
             BtnEliminar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             BtnEliminar.OverrideDefault.Back.Color2 = Color.White;
@@ -372,13 +372,13 @@
             // 
             // btnBateria
             // 
-            btnBateria.Location = new Point(537, 164);
+            btnBateria.Location = new Point(343, 481);
             btnBateria.Name = "btnBateria";
             btnBateria.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnBateria.OverrideDefault.Back.Color2 = Color.White;
             btnBateria.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnBateria.OverrideFocus.Back.Color2 = Color.White;
-            btnBateria.Size = new Size(145, 48);
+            btnBateria.Size = new Size(145, 39);
             btnBateria.StateCommon.Back.Color1 = Color.SkyBlue;
             btnBateria.StateCommon.Back.Color2 = Color.White;
             btnBateria.StateCommon.Border.Rounding = 40F;
@@ -398,7 +398,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1136, 676);
+            ClientSize = new Size(1136, 756);
             Controls.Add(btnBateria);
             Controls.Add(BtnEliminar);
             Controls.Add(panel4);
