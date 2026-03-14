@@ -308,20 +308,23 @@ namespace SG_BAMS
 
             if (dgvProductos.SelectedRows.Count > 0)
             {
-
-                DialogResult result = MessageBox.Show("¿Desea quitar este producto de la lista?",
-                    "Eliminar Producto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
+                if (MessageBox.Show("¿Desea quitar el producto?", "Eliminar", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-
                     foreach (DataGridViewRow row in dgvProductos.SelectedRows)
                     {
+                        if (!row.IsNewRow) dgvProductos.Rows.Remove(row);
+                    }
 
-                        if (!row.IsNewRow)
-                        {
-                            dgvProductos.Rows.Remove(row);
-                        }
+                    double nuevoSubtotal = dgvProductos.Rows.Cast<DataGridViewRow>()
+                        .Where(r => !r.IsNewRow)
+                        .Sum(r => Convert.ToDouble(r.Cells["subtotal"].Value));
+
+             
+                    if (nuevoSubtotal == 0 || this.precioBateria > nuevoSubtotal)
+                    {
+                        this.precioBateria = 0;
+                        this.cantidadBateria = "0";
+                        TxtBateria.Text = "0";
                     }
 
                     CalcularTotal();
@@ -394,19 +397,22 @@ namespace SG_BAMS
 
         private void btnBateria_Click(object sender, EventArgs e)
         {
-            using (BateriaVieja BV = new BateriaVieja())
+            double subtotalProductos = 0;
+            foreach (DataGridViewRow row in dgvProductos.Rows)
             {
-               
+                if (row.Cells["subtotal"].Value != null)
+                {
+                    subtotalProductos += Convert.ToDouble(row.Cells["subtotal"].Value);
+                }
+            }
+
+            using (BateriaVieja BV = new BateriaVieja(subtotalProductos))
+            {
                 if (BV.ShowDialog() == DialogResult.OK)
                 {
-                    
                     this.precioBateria = BV.TotalDineroBateria;
                     this.cantidadBateria = BV.TotalCantidadBateria;
-
-                   
                     TxtBateria.Text = cantidadBateria;
-
-                    
                     CalcularTotal();
                 }
             }

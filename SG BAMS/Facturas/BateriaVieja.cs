@@ -21,6 +21,14 @@ namespace SG_BAMS.Facturas
         public double TotalDineroBateria { get; private set; }
         public string TotalCantidadBateria { get; private set; }
 
+        private double limiteFactura;
+
+        public BateriaVieja(double montoFactura)
+        {
+            InitializeComponent();
+            this.limiteFactura = montoFactura; 
+        }
+
         private void BateriaVieja_Load(object sender, EventArgs e)
         {
             dgvBateria.Columns.Clear();
@@ -189,16 +197,26 @@ namespace SG_BAMS.Facturas
 
         private void BtnAceptar_Click(object sender, EventArgs e)
         {
-            if (dgvBateria.Rows.Count == 0)
+            if (dgvBateria.Rows.Count == 0 || (dgvBateria.Rows.Count == 1 && dgvBateria.Rows[0].IsNewRow))
             {
-                MessageBox.Show("No hay baterías registradas...", "Lista vacía", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("No hay baterías registradas en la lista.", "Lista vacía", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            TotalDineroBateria = Convert.ToDouble(txtTotal.Text);
+            double totalBateria = 0;
+            if (!double.TryParse(txtTotal.Text, out totalBateria)) totalBateria = 0;
+
+            if (totalBateria > limiteFactura)
+            {
+                MessageBox.Show($"La rebaja por baterías (L. {totalBateria:N2}) supera el total de la factura (L. {limiteFactura:N2}).\n\nNo se puede aplicar una rebaja mayor a la compra.",
+                                "Monto Excedido", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; 
+            }
+
+           
+            TotalDineroBateria = totalBateria;
             TotalCantidadBateria = txtCantidadTotal.Text;
 
-    
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
