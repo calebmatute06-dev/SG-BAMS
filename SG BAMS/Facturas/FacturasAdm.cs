@@ -18,6 +18,7 @@ namespace SG_BAMS
             InitializeComponent();
             dgvFacturas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvFacturas.MultiSelect = false;
+            dgvFacturas.AllowUserToAddRows = false;
         }
 
         private void label10_Click(object sender, EventArgs e)

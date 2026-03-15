@@ -48,6 +48,7 @@ namespace SG_BAMS.Facturas
             cmbBaterias.DropDownStyle = ComboBoxStyle.DropDownList;
             txtTotal.ReadOnly = true;
             txtCantidadTotal.ReadOnly = true;
+            dgvBateria.AllowUserToAddRows = false;
 
 
 

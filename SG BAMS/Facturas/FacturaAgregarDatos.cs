@@ -26,6 +26,7 @@ namespace SG_BAMS
             InitializeComponent();
             txtCliente.Text = cliente;
             idCliente = idCli;
+
         }
 
         public void SetProducto(int idProd, string nombreProd, int cantidadProd)
@@ -89,6 +90,7 @@ namespace SG_BAMS
             txtRebaja.ReadOnly = true;
             txtSubtotal.ReadOnly = true;
             dgvProductos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvProductos.AllowUserToAddRows = false;
             dgvProductos.ClearSelection();
             dgvProductos.Columns["id_producto"].ReadOnly = true;
             dgvProductos.Columns["nombre_producto"].ReadOnly = true;

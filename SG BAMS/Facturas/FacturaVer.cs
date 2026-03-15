@@ -94,6 +94,7 @@ namespace SG_BAMS
             txtSubtotal.ReadOnly = true;
             dgvFacturas.ReadOnly = true;
             dgvFacturas.AllowUserToOrderColumns = false;
+            dgvFacturas.AllowUserToAddRows = false;
 
 
 
