@@ -18,8 +18,9 @@ namespace SG_BAMS
         int idFac;
         DataTable datosCli;
         int idPagoSele;
-        
-        public FacturaVer(int idF, string nomFac, DateTime fec, int bateriaVij, int idPago)
+        double monto_rebaja;
+
+        public FacturaVer(int idF, string nomFac, DateTime fec, int bateriaVij, int idPago, double reb)
         {
             InitializeComponent();
 
@@ -29,6 +30,7 @@ namespace SG_BAMS
             idFac = idF;
             fechaDT.SelectionStart = fec;
             lblFactura.Text = "No." + idF.ToString();
+            monto_rebaja = reb;
 
         }
         public FacturaVer()
@@ -59,32 +61,25 @@ namespace SG_BAMS
 
         private void CalcularTotal()
         {
-            int bateriaVieja = Convert.ToInt32(txtBateriaVieja.Text);
+            double acumulador = 0;
 
-            double acumulador = 0, rebaja = 0;
-
-
+            
             for (int i = 0; i < dgvFacturas.Rows.Count; i++)
             {
-
                 if (dgvFacturas.Rows[i].Cells["Subtotal"].Value != null)
                 {
                     acumulador += Convert.ToDouble(dgvFacturas.Rows[i].Cells["Subtotal"].Value);
                 }
             }
 
-            if (bateriaVieja == 1)
-            {
-                rebaja = 500;
-            }
-            else if (bateriaVieja > 1)
-            {
-                rebaja = 500 + (bateriaVieja - 1) * 300;
-            }
+           
+            double rebaja = monto_rebaja;
 
             double total = acumulador - rebaja;
 
-            txtTotal.Text = total.ToString()+",00";
+            txtSubtotal.Text = acumulador.ToString();
+            txtRebaja.Text = rebaja.ToString(); 
+            txtTotal.Text = total.ToString();
         }
 
         private async void FacturaVer_Load(object sender, EventArgs e)
@@ -95,8 +90,11 @@ namespace SG_BAMS
             txtBateriaVieja.ReadOnly = true;
             txtCliente.ReadOnly = true;
             txtTotal.ReadOnly = true;
+            txtRebaja.ReadOnly = true;
+            txtSubtotal.ReadOnly = true;
             dgvFacturas.ReadOnly = true;
             dgvFacturas.AllowUserToOrderColumns = false;
+            dgvFacturas.AllowUserToAddRows = false;
 
 
 

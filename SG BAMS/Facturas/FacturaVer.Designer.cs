@@ -50,6 +50,10 @@
             dgvFacturas = new DataGridView();
             label6 = new Label();
             lblFactura = new Label();
+            txtSubtotal = new Krypton.Toolkit.KryptonTextBox();
+            label8 = new Label();
+            txtRebaja = new Krypton.Toolkit.KryptonTextBox();
+            label10 = new Label();
             ((System.ComponentModel.ISupportInitialize)cmbPago).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3.Panel).BeginInit();
@@ -75,7 +79,7 @@
             // 
             // txtBateriaVieja
             // 
-            txtBateriaVieja.Location = new Point(347, 219);
+            txtBateriaVieja.Location = new Point(235, 442);
             txtBateriaVieja.Margin = new Padding(3, 4, 3, 4);
             txtBateriaVieja.Name = "txtBateriaVieja";
             txtBateriaVieja.Size = new Size(197, 36);
@@ -100,7 +104,7 @@
             // fechaDT
             // 
             fechaDT.Enabled = false;
-            fechaDT.Location = new Point(789, 243);
+            fechaDT.Location = new Point(775, 211);
             fechaDT.Margin = new Padding(10, 12, 10, 12);
             fechaDT.MaxSelectionCount = 1;
             fechaDT.Name = "fechaDT";
@@ -108,7 +112,7 @@
             // 
             // BtnSalir
             // 
-            BtnSalir.Location = new Point(386, 549);
+            BtnSalir.Location = new Point(398, 569);
             BtnSalir.Name = "BtnSalir";
             BtnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             BtnSalir.OverrideDefault.Back.Color2 = Color.White;
@@ -139,7 +143,7 @@
             // 
             // txtTotal
             // 
-            txtTotal.Location = new Point(578, 488);
+            txtTotal.Location = new Point(719, 524);
             txtTotal.Margin = new Padding(3, 4, 3, 4);
             txtTotal.Name = "txtTotal";
             txtTotal.Size = new Size(110, 36);
@@ -148,6 +152,7 @@
             txtTotal.StateCommon.Content.Color1 = Color.Navy;
             txtTotal.StateCommon.Content.Font = new Font("Arial Narrow", 12F);
             txtTotal.TabIndex = 342;
+            txtTotal.Text = "0";
             // 
             // panel1
             // 
@@ -163,11 +168,11 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(505, 497);
+            label2.Location = new Point(646, 533);
             label2.Name = "label2";
-            label2.Size = new Size(67, 27);
+            label2.Size = new Size(74, 27);
             label2.TabIndex = 329;
-            label2.Text = "Total";
+            label2.Text = "Total:";
             // 
             // kryptonGroupBox3
             // 
@@ -197,7 +202,7 @@
             label7.BackColor = Color.Transparent;
             label7.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Navy;
-            label7.Location = new Point(853, 204);
+            label7.Location = new Point(845, 172);
             label7.Name = "label7";
             label7.Size = new Size(80, 27);
             label7.TabIndex = 333;
@@ -221,7 +226,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(166, 228);
+            label1.Location = new Point(54, 451);
             label1.Name = "label1";
             label1.Size = new Size(153, 27);
             label1.TabIndex = 331;
@@ -280,7 +285,7 @@
             // 
             dgvFacturas.BackgroundColor = Color.SkyBlue;
             dgvFacturas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvFacturas.Location = new Point(42, 275);
+            dgvFacturas.Location = new Point(36, 217);
             dgvFacturas.Name = "dgvFacturas";
             dgvFacturas.RowHeadersWidth = 51;
             dgvFacturas.Size = new Size(680, 188);
@@ -310,12 +315,66 @@
             lblFactura.TabIndex = 347;
             lblFactura.Text = ".";
             // 
+            // txtSubtotal
+            // 
+            txtSubtotal.Location = new Point(719, 434);
+            txtSubtotal.Margin = new Padding(3, 4, 3, 4);
+            txtSubtotal.Name = "txtSubtotal";
+            txtSubtotal.Size = new Size(110, 37);
+            txtSubtotal.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtSubtotal.StateCommon.Border.Rounding = 10F;
+            txtSubtotal.StateCommon.Content.Color1 = Color.Navy;
+            txtSubtotal.StateCommon.Content.Font = new Font("Arial Narrow", 12F);
+            txtSubtotal.TabIndex = 351;
+            txtSubtotal.Text = "0";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.BackColor = Color.Transparent;
+            label8.Font = new Font("Arial", 13.8F, FontStyle.Bold);
+            label8.ForeColor = Color.Navy;
+            label8.Location = new Point(600, 448);
+            label8.Name = "label8";
+            label8.Size = new Size(113, 27);
+            label8.TabIndex = 350;
+            label8.Text = "Subtotal:";
+            // 
+            // txtRebaja
+            // 
+            txtRebaja.Location = new Point(719, 479);
+            txtRebaja.Margin = new Padding(3, 4, 3, 4);
+            txtRebaja.Name = "txtRebaja";
+            txtRebaja.Size = new Size(110, 37);
+            txtRebaja.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtRebaja.StateCommon.Border.Rounding = 10F;
+            txtRebaja.StateCommon.Content.Color1 = Color.Navy;
+            txtRebaja.StateCommon.Content.Font = new Font("Arial Narrow", 12F);
+            txtRebaja.TabIndex = 349;
+            txtRebaja.Text = "0";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.BackColor = Color.Transparent;
+            label10.Font = new Font("Arial", 13.8F, FontStyle.Bold);
+            label10.ForeColor = Color.Navy;
+            label10.Location = new Point(604, 489);
+            label10.Name = "label10";
+            label10.Size = new Size(109, 27);
+            label10.TabIndex = 348;
+            label10.Text = "Rebajas:";
+            // 
             // FacturaVer
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1093, 659);
+            Controls.Add(txtSubtotal);
+            Controls.Add(label8);
+            Controls.Add(txtRebaja);
+            Controls.Add(label10);
             Controls.Add(lblFactura);
             Controls.Add(label6);
             Controls.Add(dgvFacturas);
@@ -374,5 +433,9 @@
         private DataGridView dgvFacturas;
         private Label label6;
         private Label lblFactura;
+        private Krypton.Toolkit.KryptonTextBox txtSubtotal;
+        private Label label8;
+        private Krypton.Toolkit.KryptonTextBox txtRebaja;
+        private Label label10;
     }
 }

@@ -11,7 +11,7 @@ namespace SG_BAMS.Facturas
     internal class ClsAgregarFactura:ClsConexion
     {
 
-        public async Task<int> AgregarFacturas(int idusuario,int idcliente, int pago, DateTime fecha, int bateria)
+        public async Task<int> AgregarFacturas(int idusuario,int idcliente, int pago, DateTime fecha, int bateria, double rebaja)
         {
             try
             {
@@ -26,6 +26,7 @@ namespace SG_BAMS.Facturas
                     cmd.Parameters.AddWithValue("@id_tipo_forma_pago", pago);
                     cmd.Parameters.AddWithValue("@fecha_venta", fecha);
                     cmd.Parameters.AddWithValue("@bateria_vieja", bateria);
+                    cmd.Parameters.AddWithValue("@manejo_rebaja", rebaja);
 
                     int idFactura = Convert.ToInt32(await cmd.ExecuteScalarAsync());
 

@@ -18,6 +18,7 @@ namespace SG_BAMS
             InitializeComponent();
             dgvFacturas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvFacturas.MultiSelect = false;
+            dgvFacturas.AllowUserToAddRows = false;
         }
 
         private void label10_Click(object sender, EventArgs e)
@@ -38,6 +39,10 @@ namespace SG_BAMS
             if (datosFac != null)
             {
                 dgvFacturas.DataSource = datosFac;
+                dgvFacturas.Columns["Rebaja"].DisplayIndex = 8;
+                dgvFacturas.Columns["Batería Vieja"].DisplayIndex = 7;
+                dgvFacturas.Columns["Total Unidades"].DisplayIndex = 9;
+
 
                 dgvFacturas.Columns["Factura"].HeaderText = "N° Factura";
                 dgvFacturas.Columns["Vendedor"].HeaderText = "Vendedor";
@@ -47,8 +52,11 @@ namespace SG_BAMS
                 dgvFacturas.Columns["ID Método de Pago"].Visible = false;
                 dgvFacturas.Columns["Fecha"].HeaderText = "Fecha";
                 dgvFacturas.Columns["Detalle Venta"].HeaderText = "Detalle Venta";
-                dgvFacturas.Columns["Cant. Baterías Dejadas"].HeaderText = "Batería Vieja";
+                dgvFacturas.Columns["Batería Vieja"].HeaderText = "Batería Vieja";
+                dgvFacturas.Columns["Rebaja"].HeaderText = "Rebaja de Batería Vieja";
                 dgvFacturas.Columns["Total Unidades"].HeaderText = "Total Unidades";
+              
+
             }
         }
 
@@ -115,10 +123,12 @@ namespace SG_BAMS
                 idFacturas = Convert.ToInt32(dgvFacturas.CurrentRow.Cells[0].Value);
                 nombre_Cliente = dgvFacturas.CurrentRow.Cells[2].Value.ToString();
                 fecha = Convert.ToDateTime(dgvFacturas.CurrentRow.Cells[6].Value);
-                bateriaVieja = Convert.ToInt32(dgvFacturas.CurrentRow.Cells[8].Value);
-                idPago = Convert.ToInt32(dgvFacturas.CurrentRow.Cells[4].Value);
+                bateriaVieja = Convert.ToInt32(dgvFacturas.CurrentRow.Cells[7].Value);
+                idPago = Convert.ToInt32(dgvFacturas.CurrentRow.Cells[10].Value);
+                double rebaja = Convert.ToDouble(dgvFacturas.CurrentRow.Cells["Rebaja"].Value);
 
-                FacturaVer frmFV = new FacturaVer(idFacturas, nombre_Cliente, fecha, bateriaVieja, idPago);
+
+                FacturaVer frmFV = new FacturaVer(idFacturas, nombre_Cliente, fecha, bateriaVieja, idPago, rebaja);
                 frmFV.ShowDialog();
 
 
