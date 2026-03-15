@@ -84,7 +84,6 @@ namespace SG_BAMS
             }
 
             string precioTexto = txtPrecio.Text.Trim().Replace(",", ".");
-
             if (!double.TryParse(precioTexto, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out _) || string.IsNullOrWhiteSpace(precioTexto))
             {
                 MessageBox.Show("El precio debe ser un valor numérico válido (ejemplo: 15.50).", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -94,20 +93,38 @@ namespace SG_BAMS
 
             try
             {
+                conexion.AbrirConexion();
+
+                // --- NUEVA VALIDACIÓN PREVENTIVA ---
+                string sqlCheck = "SELECT COUNT(*) FROM Compra_producto WHERE id_compra = @idC AND id_producto = @idP";
+                using (SqlCommand cmdCheck = new SqlCommand(sqlCheck, conexion.Conectar))
+                {
+                    cmdCheck.Parameters.AddWithValue("@idC", IdCompraActual);
+                    cmdCheck.Parameters.AddWithValue("@idP", cmbProductos.SelectedValue);
+
+                    int existe = (int)cmdCheck.ExecuteScalar();
+                    if (existe > 0)
+                    {
+                        MessageBox.Show("Este producto ya está incluido en la compra.\n\n" +
+                                        "Se recomienda modificarlo dándole doble click a la celda " +
+                                        "correspondiente en la pantalla anterior para cambiar la cantidad o el precio.",
+                                        "Producto Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return; // Salimos sin insertar
+                    }
+                }
+                // --- FIN DE VALIDACIÓN ---
+
                 string sql = "INSERT INTO Compra_producto (id_compra, id_producto, cantidad, precio_costo_unitario) " +
                              "VALUES (@idC, @idP, @cant, @prec)";
 
-                // Convertimos el string a decimal usando la misma cultura invariable
                 decimal precioFinal = decimal.Parse(precioTexto, System.Globalization.CultureInfo.InvariantCulture);
 
-                conexion.AbrirConexion();
                 using (SqlCommand cmd = new SqlCommand(sql, conexion.Conectar))
                 {
                     cmd.Parameters.AddWithValue("@idC", IdCompraActual);
                     cmd.Parameters.AddWithValue("@idP", cmbProductos.SelectedValue);
                     cmd.Parameters.AddWithValue("@cant", (int)numCantidad.Value);
                     cmd.Parameters.AddWithValue("@prec", precioFinal);
-
                     cmd.ExecuteNonQuery();
                 }
 
@@ -116,7 +133,7 @@ namespace SG_BAMS
                 CantidadSeleccionada = (int)numCantidad.Value;
                 PrecioSeleccionado = precioFinal;
 
-                MessageBox.Show("Producto agregado y stock actualizado con éxito.", "BAMS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Producto agregado con éxito.", "BAMS", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }

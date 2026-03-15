@@ -9,6 +9,10 @@ namespace SG_BAMS
 {
     public partial class Modificar_datos__Compra_ : Form
     {
+        private void cmbProveedor_SelectedIndexChanged(object sender, EventArgs e) { huboCambios = true; }
+        private void cmbFormaPago_SelectedIndexChanged(object sender, EventArgs e) { huboCambios = true; }
+        private DataTable dtRespaldo;
+        private bool huboCambios = false;
 
         private object valorAntesDeCambio;
 
@@ -29,14 +33,26 @@ namespace SG_BAMS
 
         private void Modificar_datos__Compra__Load(object sender, EventArgs e)
         {
-            LlenarCombos();
+            cmbProveedor.SelectedIndexChanged -= cmbProveedor_SelectedIndexChanged;
+            cmbFormaPago.SelectedIndexChanged -= cmbFormaPago_SelectedIndexChanged;
 
+            LlenarCombos();
             ClsDetalleCompra objetoDetalle = new ClsDetalleCompra();
-            dgvProductosCompraMod.DataSource = objetoDetalle.ListarProductosDeCompra(idCompraAEditar);
+            DataTable dtOriginal = objetoDetalle.ListarProductosDeCompra(idCompraAEditar);
+            dgvProductosCompraMod.DataSource = dtOriginal;
+
+            if (dtOriginal != null)
+            {
+                dtRespaldo = dtOriginal.Copy();
+            }
 
             ConfigurarEdicionGrid();
             CargarDatosCabecera();
             ActualizarTotalGeneral();
+
+            huboCambios = false;
+            cmbProveedor.SelectedIndexChanged += cmbProveedor_SelectedIndexChanged;
+            cmbFormaPago.SelectedIndexChanged += cmbFormaPago_SelectedIndexChanged;
         }
 
         // --- LÓGICA DE CÁLCULO AUTOMÁTICO ---
@@ -226,21 +242,14 @@ namespace SG_BAMS
         {
             using (Agregar_Producto_Mod frm = new Agregar_Producto_Mod())
             {
-                // Le pasamos el ID al formulario para que pueda hacer el INSERT directo
                 frm.IdCompraActual = idCompraAEditar.ToString();
-
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     try
                     {
-                        // RECARGA DE DATOS: Usamos tu clase 'logic' y el ID actual
-                        // Esto actualiza el DataGridView con el nuevo producto guardado
+                        huboCambios = true; // Marcamos que hubo una inserción real en la BD
                         dgvProductosCompraMod.DataSource = logic.ObtenerDetalleCompra(idCompraAEditar);
-
-                        // Volvemos a aplicar los permisos de edición (Cantidad y Precio)
                         ConfigurarEdicionGrid();
-
-                        // Actualizamos el total general en la etiqueta L. xx.xx
                         ActualizarTotalGeneral();
                     }
                     catch (Exception ex)
@@ -253,7 +262,66 @@ namespace SG_BAMS
 
         private void kryptonButton4_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            if (!huboCambios)
+            {
+                this.Close();
+                return;
+            }
+
+            if (MessageBox.Show("¿Desea cancelar? Se eliminarán los cambios de esta sesion.",
+          "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                try
+                {
+                    ClsConexion con = new ClsConexion();
+                    con.AbrirConexion();
+
+                    foreach (DataGridViewRow fila in dgvProductosCompraMod.Rows)
+                    {
+                        if (fila.Cells["ID"].Value == null || fila.Cells["ID"].Value == DBNull.Value) continue;
+
+                        int idProd = Convert.ToInt32(fila.Cells["ID"].Value);
+                        int cantidadARestar = Convert.ToInt32(fila.Cells["Cantidad"].Value);
+
+                        // Comparamos con el respaldo para identificar solo lo NUEVO de esta sesión
+                        bool esNuevo = true;
+                        if (dtRespaldo != null)
+                        {
+                            foreach (DataRow filaRespaldo in dtRespaldo.Rows)
+                            {
+                                if (Convert.ToInt32(filaRespaldo["ID"]) == idProd) { esNuevo = false; break; }
+                            }
+                        }
+
+                        if (esNuevo)
+                        {
+                            // 1. RESTAR DEL INVENTARIO (Tabla Inventario, columna stock)
+                            string sqlStock = "UPDATE Inventario SET stock = stock - @cant WHERE id_producto = @idP";
+                            using (SqlCommand cmdStock = new SqlCommand(sqlStock, con.Conectar))
+                            {
+                                cmdStock.Parameters.AddWithValue("@cant", cantidadARestar);
+                                cmdStock.Parameters.AddWithValue("@idP", idProd);
+                                cmdStock.ExecuteNonQuery();
+                            }
+
+                            // 2. ELIMINAR EL REGISTRO DE LA TABLA COMPRA_PRODUCTO
+                            string sqlDel = "DELETE FROM Compra_producto WHERE id_compra = @idC AND id_producto = @idP";
+                            using (SqlCommand cmdDel = new SqlCommand(sqlDel, con.Conectar))
+                            {
+                                cmdDel.Parameters.AddWithValue("@idC", idCompraAEditar);
+                                cmdDel.Parameters.AddWithValue("@idP", idProd);
+                                cmdDel.ExecuteNonQuery();
+                            }
+                        }
+                    }
+                    con.Cerrar();
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al revertir stock: " + ex.Message, "Error de Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void dgvProductosCompraMod_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
@@ -267,38 +335,51 @@ namespace SG_BAMS
 
         private void dgvProductosCompraMod_CellValueChanged_1(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && (dgvProductosCompraMod.Columns[e.ColumnIndex].Name == "Cantidad" ||
-                            dgvProductosCompraMod.Columns[e.ColumnIndex].Name == "Precio"))
-            {
-                var fila = dgvProductosCompraMod.Rows[e.RowIndex];
-                string nombreCol = dgvProductosCompraMod.Columns[e.ColumnIndex].Name;
+            // 1. Validamos que no sea el encabezado y que sean las columnas editables
+            if (e.RowIndex < 0) return;
 
-                // Intentamos validar el nuevo valor
+            string nombreCol = dgvProductosCompraMod.Columns[e.ColumnIndex].Name;
+
+            if (nombreCol == "Cantidad" || nombreCol == "Precio")
+            {
+                // Activamos la bandera de que el usuario modificó datos
+                huboCambios = true;
+
+                var fila = dgvProductosCompraMod.Rows[e.RowIndex];
+
+                // 2. Intentamos validar el nuevo valor ingresado
                 decimal nuevoValor;
-                bool esValido = decimal.TryParse(fila.Cells[e.ColumnIndex].Value?.ToString(), out nuevoValor);
+                string valorCelda = fila.Cells[e.ColumnIndex].Value?.ToString();
+                bool esValido = decimal.TryParse(valorCelda, out nuevoValor);
 
                 if (!esValido || nuevoValor <= 0)
                 {
                     MessageBox.Show($"El valor en '{nombreCol}' debe ser un número mayor a cero.",
                                     "BAMS - Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-                    // Restauramos el valor anterior sin disparar este evento otra vez
+                    // 3. Restauramos el valor anterior (importante desvincular el evento para evitar bucle)
                     dgvProductosCompraMod.CellValueChanged -= dgvProductosCompraMod_CellValueChanged;
                     fila.Cells[e.ColumnIndex].Value = valorAntesDeCambio;
                     dgvProductosCompraMod.CellValueChanged += dgvProductosCompraMod_CellValueChanged;
                     return;
                 }
 
-                // Si la validación pasa, recalculamos subtotal y total (Tu código original)
+                // 4. Si el valor es correcto, recalculamos la fila y el total
                 try
                 {
                     decimal cantidad = Convert.ToDecimal(fila.Cells["Cantidad"].Value ?? 0);
                     decimal precio = Convert.ToDecimal(fila.Cells["Precio"].Value ?? 0);
 
+                    // Actualizamos el subtotal de la celda
                     fila.Cells["Subtotal"].Value = cantidad * precio;
+
+                    // Actualizamos el total general de la etiqueta L.
                     ActualizarTotalGeneral();
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error en cálculo: " + ex.Message);
+                }
             }
         }
     }
