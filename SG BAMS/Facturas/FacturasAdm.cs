@@ -143,10 +143,36 @@ namespace SG_BAMS
             {
                 DataView dv = datosFac.DefaultView;
 
-                dv.RowFilter = string.Format("Convert([Factura],'System.String') LIKE '%{0}%' OR [Vendedor] LIKE '%{0}%' OR [Cliente] LIKE '%{0}%' OR [Método de Pago] LIKE '%{0}%' ", txtBusqueda.Text);
+                if (string.IsNullOrWhiteSpace(txtBusqueda.Text))
+                {
+                    dv.RowFilter = string.Empty;
+                }
+                else
+                {
+                    string textoSeguro = txtBusqueda.Text
+                        .Replace("'", "''")
+                        .Replace("[", "[[]")
+                        .Replace("]", "[]]")
+                        .Replace("*", "[*]")
+                        .Replace("%", "[%]");
+
+                    try
+                    {
+                        dv.RowFilter = string.Format(
+                            "Convert([Factura], 'System.String') LIKE '%{0}%' OR " +
+                            "[Vendedor] LIKE '%{0}%' OR " +
+                            "[Cliente] LIKE '%{0}%' OR " +
+                            "[Método de Pago] LIKE '%{0}%'",
+                            textoSeguro);
+                    }
+                    catch (Exception)
+                    {
+                        dv.RowFilter = string.Empty;
+                    }
+                }
 
                 dgvFacturas.DataSource = dv;
-
+                dgvFacturas.ClearSelection();
             }
         }
 

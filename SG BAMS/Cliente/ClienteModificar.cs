@@ -27,7 +27,8 @@ namespace SG_BAMS
             txtTelefono.Text = telefonoCliente;
             txtRTN.Text = rtnCliente;
             idEstadoSelec = idEstado;
-
+            txtTelefono.MaxLength = 8;
+            txtRTN.MaxLength = 14;
         }
 
         public ClienteModificar()
@@ -84,33 +85,34 @@ namespace SG_BAMS
         private async void BtnModificar_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
-                string.IsNullOrWhiteSpace(txtApellido.Text) ||
-                string.IsNullOrWhiteSpace(txtTelefono.Text) ||
-                cmbEstado.SelectedValue == null)
+            string.IsNullOrWhiteSpace(txtApellido.Text) ||
+            string.IsNullOrWhiteSpace(txtTelefono.Text) ||
+            cmbEstado.SelectedValue == null)
             {
                 MessageBox.Show("Debe llenar todos los campos obligatorios.", "Campos Vacíos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (!ValidarFormatoTexto(txtNombre.Text, "El Nombre") ||
-                !ValidarFormatoTexto(txtApellido.Text, "El Apellido"))
+            if (!ValidarFormatoTexto(txtNombre.Text, "El Nombre") || !ValidarFormatoTexto(txtApellido.Text, "El Apellido")) return;
+
+            string tel = txtTelefono.Text.Trim();
+            if (tel.Length != 8 || Regex.IsMatch(tel, @"(\d)\1{3}"))
             {
+                MessageBox.Show("El teléfono debe tener 8 dígitos y no más de 3 números iguales consecutivos.", "Error de Teléfono", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (!Regex.IsMatch(txtTelefono.Text, @"^[0-9]+$") || txtTelefono.Text.Length < 8)
-            {
-                MessageBox.Show("El teléfono debe contener solo números (mínimo 8).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            string rtn = txtRTN.Text.Trim();
 
-            if (!string.IsNullOrWhiteSpace(txtRTN.Text))
+            if (!string.IsNullOrWhiteSpace(rtn) && rtn.Length < 14 && rtn.ToUpper() != "SIN RTN")
             {
-                if (!Regex.IsMatch(txtRTN.Text, @"^([0-9]+|Sin RTN)$"))
-                {
-                    MessageBox.Show("El RTN solo debe contener números o 'Sin RTN'.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                MessageBox.Show("Debe completar los 14 números del RTN o dejar el campo vacío.",
+                                "RTN Incompleto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; 
+            }
+            if (string.IsNullOrWhiteSpace(rtn))
+            {
+                rtn = "Sin RTN";
             }
 
             try
@@ -121,8 +123,8 @@ namespace SG_BAMS
                     Convert.ToInt32(txtID.Text),
                     txtNombre.Text.Trim(),
                     txtApellido.Text.Trim(),
-                    txtTelefono.Text.Trim(),
-                    txtRTN.Text.Trim(),
+                    tel,
+                    rtn, 
                     Convert.ToInt32(cmbEstado.SelectedValue)
                 );
 
@@ -134,7 +136,7 @@ namespace SG_BAMS
                 }
                 else
                 {
-                    MessageBox.Show("No se realizaron cambios.");
+                    MessageBox.Show("No se realizaron cambios en la base de datos.");
                 }
             }
             catch (Exception ex)
@@ -150,10 +152,10 @@ namespace SG_BAMS
         private async Task LlenarComboEstado()
         {
             ClsModificarCliente MC = new ClsModificarCliente();
-           
+
             try
             {
-                
+
                 DataTable dt = await MC.ObtenerEstados();
 
                 cmbEstado.DisplayMember = "descripcion_estado";
@@ -178,6 +180,36 @@ namespace SG_BAMS
         private void BtnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsControl(e.KeyChar)) return;
+            if (!char.IsDigit(e.KeyChar)) { e.Handled = true; return; }
+
+            if (txtTelefono.SelectionStart == 0)
+            {
+                char[] validos = { '2', '3', '8', '9' };
+                if (!validos.Contains(e.KeyChar)) { e.Handled = true; return; }
+            }
+
+            if (txtTelefono.Text.Length >= 3)
+            {
+                int pos = txtTelefono.SelectionStart;
+                string t = txtTelefono.Text;
+                if (pos >= 3 && t[pos - 1] == e.KeyChar && t[pos - 2] == e.KeyChar && t[pos - 3] == e.KeyChar)
+                {
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void txtRTN_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

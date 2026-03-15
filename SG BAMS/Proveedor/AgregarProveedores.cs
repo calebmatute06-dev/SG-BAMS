@@ -21,7 +21,10 @@ namespace SG_BAMS.Proveedor
         public AgregarProveedores()
         {
             InitializeComponent();
-
+            txtTelefono.MaxLength = 8;
+            txtRTN.MaxLength = 14;
+            this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
+            this.txtDireccion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDireccion_KeyPress);
         }
 
         private void AgregarProveedores_Load(object sender, EventArgs e)
@@ -29,6 +32,41 @@ namespace SG_BAMS.Proveedor
             proveedor.CargarComboClasificacion(cmbClasificacion);
             cmbClasificacion.DropDownStyle = ComboBoxStyle.DropDownList;
 
+        }
+
+        private bool ValidarFormatoTexto(string texto, string nombreCampo)
+        {
+            string textoLimpio = texto.Trim();
+
+            if (textoLimpio.Length < 3 || textoLimpio.Length > 200)
+            {
+                MessageBox.Show($"{nombreCampo} debe tener al menos 3 caracteres.", "Error de Largo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            string[] palabras = textoLimpio.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (string palabra in palabras)
+            {
+                if (palabra.Length < 2 && palabra != "&")
+                {
+                    MessageBox.Show($"{nombreCampo} contiene una palabra muy corta o inválida ('{palabra}').", "Formato Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+            }
+
+            if (Regex.IsMatch(textoLimpio, @"\s{2,}"))
+            {
+                MessageBox.Show($"{nombreCampo} no puede contener dobles espacios.", "Error de Espacios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (Regex.IsMatch(textoLimpio, @"([a-zA-ZñÑáéíóúÁÉÍÓÚ])\1{2,}", RegexOptions.IgnoreCase))
+            {
+                MessageBox.Show($"{nombreCampo} tiene demasiadas letras repetidas seguidas.", "Error de Escritura", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
         }
 
         private void btnsalir_Click(object sender, EventArgs e)
@@ -51,82 +89,102 @@ namespace SG_BAMS.Proveedor
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            string nombreLimpio = txtNombre.Text.Trim();
-            string direLimpio = txtDireccion.Text.Trim();
             if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
                 string.IsNullOrWhiteSpace(txtTelefono.Text) ||
                 string.IsNullOrWhiteSpace(txtDireccion.Text) ||
                 string.IsNullOrWhiteSpace(txtRTN.Text) ||
                 cmbClasificacion.SelectedValue == null)
             {
-                MessageBox.Show("Debe llenar todos los campos obligatorios antes de continuar.",
-                                "Campos Vacíos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            if (direLimpio.Length < 3)
-            {
-                MessageBox.Show("La direccion debe tener mas de 3 caracteres.", "Error de Longitud", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Todos los campos son obligatorios.", "Campos Vacíos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (nombreLimpio.Contains("  "))
+            if (!ValidarFormatoTexto(txtNombre.Text, "El Nombre") ||
+                !ValidarFormatoTexto(txtDireccion.Text, "La Dirección")) return;
+
+            string tel = txtTelefono.Text.Trim();
+            if (tel.Length != 8 || Regex.IsMatch(tel, @"(\d)\1{3}"))
             {
-                MessageBox.Show("El nombre no puede contener dos espacios seguidos.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Teléfono inválido. Debe tener 8 dígitos y no más de 3 números iguales consecutivos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (txtTelefono.Text.Contains(" ") || txtRTN.Text.Contains(" "))
+            string rtn = txtRTN.Text.Trim();
+            if (rtn.Length < 14)
             {
-                MessageBox.Show("El Numero o RTN no puede contener espacios.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("El RTN es obligatorio y debe tener exactamente 14 números.", "RTN Requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-
-            if (nombreLimpio.Length < 3)
-            {
-                MessageBox.Show("El nombre debe tener tener mas 3 caracteres.", "Error de Longitud", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (Regex.IsMatch(nombreLimpio, @"(\w)\1{2,}"))
-            {
-                MessageBox.Show("No se permite repetir la misma letra más de dos veces seguidas.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (!Regex.IsMatch(nombreLimpio, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ&]{3,}(\s[a-zA-ZñÑáéíóúÁÉÍÓÚ&]{3,})*$"))
-            {
-                MessageBox.Show("El campos de Nombre solo deben contener caracteres validos.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-
-            if (!Regex.IsMatch(txtTelefono.Text, @"^([0-9]{8})$") || !Regex.IsMatch(txtRTN.Text, @"^([0-9]{14})$"))
-            {
-                MessageBox.Show("Los campos de Telefono o RTN solo deben contener números o El numero esta incompleto.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            else
+            try
             {
                 int idClasificacion = Convert.ToInt32(cmbClasificacion.SelectedValue);
-
                 int idUsuario = new ClsPasarUsuario().IdUsuario();
 
                 proveedor.AgregarProveedor(
                     txtNombre.Text.Trim(),
-                    txtTelefono.Text.Trim(),
+                    tel,
                     txtDireccion.Text.Trim(),
-                    txtRTN.Text.Trim(),
+                    rtn,
                     idClasificacion,
                     idUsuario
                 );
 
+                MessageBox.Show("Proveedor agregado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ProveedoresAdmin proveedorAdmin = new ProveedoresAdmin();
                 proveedorAdmin.Show();
                 this.Close();
             }
-            
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al guardar: " + ex.Message);
+            }
+        }
+
+        private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsControl(e.KeyChar)) return;
+            if (!char.IsDigit(e.KeyChar)) { e.Handled = true; return; }
+
+            if (txtTelefono.SelectionStart == 0)
+            {
+                char[] validos = { '2', '3', '8', '9' };
+                if (!validos.Contains(e.KeyChar)) { e.Handled = true; return; }
+            }
+
+            if (txtTelefono.Text.Length >= 3)
+            {
+                int pos = txtTelefono.SelectionStart;
+                string t = txtTelefono.Text;
+                if (pos >= 3 && t[pos - 1] == e.KeyChar && t[pos - 2] == e.KeyChar && t[pos - 3] == e.KeyChar)
+                {
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void txtRTN_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != '&')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtDireccion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

@@ -27,33 +27,36 @@ namespace SG_BAMS
         private async void btmAgregar_Click(object sender, EventArgs e)
         {
             string nombreLimpio = txtDescri.Text.Trim();
-            if (string.IsNullOrWhiteSpace(txtDescri.Text))
+            if (string.IsNullOrWhiteSpace(nombreLimpio))
             {
-                MessageBox.Show("El nombre del modelo no puede estar vacío.");
-                return;
-            }
-
-            if (nombreLimpio.Contains("  "))
-            {
-                MessageBox.Show("El nombre no puede contener dos espacios seguidos.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (Regex.IsMatch(nombreLimpio, @"(\w)\1{2,}"))
-            {
-                MessageBox.Show("No se permite repetir la misma letra más de dos veces seguidas.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("El nombre de la marca no puede estar vacío.");
                 return;
             }
 
             if (nombreLimpio.Length < 3)
             {
-                MessageBox.Show("El nombre debe tener mas de 3 caracteres.", "Error de Longitud", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("El nombre debe tener al menos 3 caracteres.", "Error de Longitud");
                 return;
             }
 
-            if (!Regex.IsMatch(nombreLimpio, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]{2,}(\s[a-zA-ZñÑáéíóúÁÉÍÓÚ]{2,})*$"))
+            string[] partes = nombreLimpio.Split(' ');
+            if (partes.Any(p => p.Length < 2))
             {
-                MessageBox.Show("El campos de Nombre solo deben contener caracteres validos.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Cada palabra en el nombre debe tener al menos 2 caracteres.", "Error de Formato");
+                return;
+            }
+
+            string patron = @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+(\s[a-zA-ZñÑáéíóúÁÉÍÓÚ]+)*$";
+            if (!Regex.IsMatch(nombreLimpio, patron))
+            {
+                MessageBox.Show("Formato inválido. No se permiten números, símbolos ni espacios dobles.", "Error de Formato");
+                return;
+            }
+
+            string sinEspacios = nombreLimpio.Replace(" ", "");
+            if (Regex.IsMatch(sinEspacios, @"(.)\1{2,}"))
+            {
+                MessageBox.Show("No se permiten caracteres repetidos más de dos veces seguidas.", "Error de Formato");
                 return;
             }
 
@@ -63,15 +66,12 @@ namespace SG_BAMS
                 btmAgregar.Enabled = false;
 
                 clsMarca objetoMarca = new clsMarca();
-
-                bool exito = await objetoMarca.InsertarMarcaAsync(txtDescri.Text.Trim());
+                bool exito = await objetoMarca.InsertarMarcaAsync(nombreLimpio);
 
                 if (exito)
                 {
-                    MessageBox.Show("Marca agregada con éxito.", "SG-BAMS",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    this.DialogResult = DialogResult.OK; 
+                    MessageBox.Show("Marca agregada con éxito.", "SG-BAMS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = DialogResult.OK;
                     frmMarcaProductos verMproductos = new frmMarcaProductos();
                     verMproductos.Show();
                     this.Close();
@@ -79,7 +79,7 @@ namespace SG_BAMS
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: " + ex.Message, "Error de Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {

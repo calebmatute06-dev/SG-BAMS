@@ -14,18 +14,25 @@ namespace SG_BAMS
         public Pago_Deuda()
         {
             InitializeComponent();
+            RegistrarEventos();
             ConfigurarFormulario();
-
         }
 
         public Pago_Deuda(string nombre, int idDeuda)
         {
             InitializeComponent();
+            RegistrarEventos();
             this.nombreRecibido = nombre;
             this.idDeudaRecibido = idDeuda;
             ConfigurarFormulario();
         }
-
+        private void RegistrarEventos()
+        {
+            if (this.txtMonto != null)
+            {
+                this.txtMonto.KeyPress += new KeyPressEventHandler(this.txtMonto_KeyPress);
+            }
+        }
         private void ConfigurarFormulario()
         {
             DataTable dt = objetoDeudas.ObtenerDeudoresActivos();
@@ -55,9 +62,9 @@ namespace SG_BAMS
                 {
                     if (Convert.ToInt32(dt.Rows[i]["ID"]) == idDeudaRecibido)
                     {
-                        cmbDeudores.SelectedIndex = i; 
-                        cmbDeudores.Enabled = false;   
-                        return; 
+                        cmbDeudores.SelectedIndex = i;
+                        cmbDeudores.Enabled = false;
+                        return;
                     }
                 }
             }
@@ -71,14 +78,15 @@ namespace SG_BAMS
 
         private async void kryptonButton3_Click(object sender, EventArgs e)
         {
-            if (cmbDeudores.SelectedValue == null || !decimal.TryParse(txtMonto.Text, out decimal montoPago))
+            if (cmbDeudores.SelectedValue == null ||
+            !decimal.TryParse(txtMonto.Text, out decimal montoPago) ||
+            montoPago <= 0) 
             {
-                MessageBox.Show("Por favor, selecciona un deudor y escribe un monto válido.");
+                MessageBox.Show("Por favor, selecciona un deudor y escribe un monto positivo mayor a cero.");
                 return;
             }
 
             int idDeudaFinal = Convert.ToInt32(cmbDeudores.SelectedValue);
-
             decimal saldoPendiente = await objetoDeudas.ObtenerSaldo(idDeudaFinal);
 
             if (montoPago > saldoPendiente)
@@ -103,6 +111,26 @@ namespace SG_BAMS
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtMonto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+                return;
+            }
+
+            string textoActual = "";
+            if (sender is Control control)
+            {
+                textoActual = control.Text;
+            }
+
+            if (e.KeyChar == '.' && textoActual.Contains("."))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

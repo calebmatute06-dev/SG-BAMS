@@ -138,7 +138,6 @@ namespace SG_BAMS.Bitacora
             {
                 QuestPDF.Settings.License = LicenseType.Community;
 
-                // 1) Pasar el DataGridView a lista
                 List<BitacoraDTO> lista = new List<BitacoraDTO>();
 
                 foreach (DataGridViewRow row in dgvBitacora.Rows)
@@ -148,14 +147,13 @@ namespace SG_BAMS.Bitacora
                         lista.Add(new BitacoraDTO
                         {
                             Nombre = row.Cells["Nombre"].Value?.ToString(),
-                            Accion = row.Cells["Acción"].Value?.ToString(), // con tilde
+                            Accion = row.Cells["Acción"].Value?.ToString(), 
                             Modulo = row.Cells["Modulo"].Value?.ToString(),
                             Fecha = Convert.ToDateTime(row.Cells["Fecha"].Value)
                         });
                     }
                 }
 
-                // 2) Generar PDF en TEMP (no Documentos)
                 string rutaTemp = Path.Combine(
                     Path.GetTempPath(),
                     $"ReporteBitacora_{DateTime.Now:yyyyMMdd_HHmmss}.pdf"
@@ -164,7 +162,6 @@ namespace SG_BAMS.Bitacora
                 var documento = new SG_BAMS.Bitacora.ReporteBitacora(lista);
                 documento.GeneratePdf(rutaTemp);
 
-                // 3) Abrir con el programa predeterminado (normalmente navegador/visor PDF)
                 Process.Start(new ProcessStartInfo
                 {
                     FileName = rutaTemp,

@@ -107,6 +107,7 @@
             txtMonto.StateCommon.Content.Color1 = Color.Navy;
             txtMonto.StateCommon.Content.Font = new Font("Arial Narrow", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtMonto.TabIndex = 169;
+            txtMonto.KeyPress += txtMonto_KeyPress;
             // 
             // label1
             // 

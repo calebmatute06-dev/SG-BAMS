@@ -58,7 +58,6 @@ namespace SG_BAMS
             label1.TabIndex = 85;
             label1.Text = "Usuarios";
             label1.TextAlign = ContentAlignment.MiddleCenter;
-            label1.Click += label1_Click;
             // 
             // panel2
             // 
@@ -241,10 +240,7 @@ namespace SG_BAMS
             PerformLayout();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+
 
         #endregion
         private Label label1;

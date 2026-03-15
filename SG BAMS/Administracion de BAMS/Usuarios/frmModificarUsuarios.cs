@@ -67,7 +67,7 @@ namespace SG_BAMS
         {
 
             string nombreLimpio = txtNombre.Text.Trim();
-            string contraLimpia = txtNombre.Text.Trim();
+            string contraLimpia = txtContra.Text.Trim();
 
             if (string.IsNullOrEmpty(txtNombre.Text))
             {

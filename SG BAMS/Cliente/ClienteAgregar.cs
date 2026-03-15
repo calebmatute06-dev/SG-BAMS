@@ -21,6 +21,8 @@ namespace SG_BAMS
         public ClienteAgregar()
         {
             InitializeComponent();
+            txtTelefono.MaxLength = 8;
+            txtRTN.MaxLength = 14;
         }
         private bool ValidarFormatoTexto(string texto, string nombreCampo)
         {
@@ -68,42 +70,41 @@ namespace SG_BAMS
                 string.IsNullOrWhiteSpace(txtApellido.Text) ||
                 string.IsNullOrWhiteSpace(txtTelefono.Text))
             {
-                MessageBox.Show("Debe llenar todos los campos obligatorios antes de continuar.",
-                                "Campos Vacíos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe llenar los campos obligatorios.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (!ValidarFormatoTexto(txtNombre.Text, "El Nombre") ||
-                !ValidarFormatoTexto(txtApellido.Text, "El Apellido"))
+            if (!ValidarFormatoTexto(txtNombre.Text, "El Nombre") || !ValidarFormatoTexto(txtApellido.Text, "El Apellido")) return;
+
+            string tel = txtTelefono.Text.Trim();
+            if (tel.Length != 8 || Regex.IsMatch(tel, @"(\d)\1{3}"))
             {
+                MessageBox.Show("El teléfono debe tener 8 dígitos y no permite más de 3 números iguales consecutivos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (!Regex.IsMatch(txtTelefono.Text, @"^[0-9]+$") || txtTelefono.Text.Length < 8)
+            string rtn = txtRTN.Text.Trim();
+
+            if (!string.IsNullOrWhiteSpace(rtn) && rtn.Length < 14)
             {
-                MessageBox.Show("El teléfono debe contener solo números (mínimo 8 dígitos).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                MessageBox.Show("El RTN debe tener exactamente 14 números o dejarse vacío.",
+                                "RTN Incompleto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; 
             }
 
-            if (!string.IsNullOrWhiteSpace(txtRTN.Text))
+            if (string.IsNullOrWhiteSpace(rtn))
             {
-                if (!Regex.IsMatch(txtRTN.Text, @"^([0-9]+|Sin RTN)$"))
-                {
-                    MessageBox.Show("El RTN solo debe contener números o la frase 'Sin RTN'", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                rtn = "Sin RTN";
             }
 
             try
             {
                 ClsAgregarClientes objAC = new ClsAgregarClientes();
-
                 int filasInsertadas = await objAC.AgregarClientes(
                     txtNombre.Text.Trim(),
                     txtApellido.Text.Trim(),
-                    txtTelefono.Text.Trim(),
-                    txtRTN.Text.Trim()
-                );
+                    tel,
+                    rtn);
 
                 if (filasInsertadas > 0)
                 {
@@ -114,10 +115,8 @@ namespace SG_BAMS
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al agregar cliente: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-
         }
 
         private void ClienteAgregar_Load(object sender, EventArgs e)
@@ -127,13 +126,13 @@ namespace SG_BAMS
 
         private void BtnExistente_Click(object sender, EventArgs e)
         {
-           
+
             using (ClienteExistente frmCE = new ClienteExistente())
             {
                 if (frmCE.ShowDialog() == DialogResult.OK)
                 {
-                    this.DialogResult = DialogResult.OK; 
-                    
+                    this.DialogResult = DialogResult.OK;
+
                 }
             }
 
@@ -145,6 +144,46 @@ namespace SG_BAMS
             this.Close();
 
 
+        }
+
+        private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsControl(e.KeyChar)) return;
+
+            if (!char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+                return;
+            }
+
+            if (txtTelefono.SelectionStart == 0)
+            {
+                char[] validos = { '2', '3', '8', '9' };
+                if (!validos.Contains(e.KeyChar))
+                {
+                    e.Handled = true;
+                    return;
+                }
+            }
+
+            if (txtTelefono.Text.Length >= 3)
+            {
+                int pos = txtTelefono.SelectionStart;
+                string texto = txtTelefono.Text;
+
+                if (pos >= 3 && texto[pos - 1] == e.KeyChar && texto[pos - 2] == e.KeyChar && texto[pos - 3] == e.KeyChar)
+                {
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void txtRTN_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

@@ -5,7 +5,6 @@ using QuestPDF.Infrastructure;
 
 namespace SG_BAMS.Bitacora
 {
-    // DTO interno
     public class BitacoraDTO
     {
         public string Nombre { get; set; }
@@ -41,13 +40,12 @@ namespace SG_BAMS.Bitacora
                 {
                     table.ColumnsDefinition(columns =>
                     {
-                        columns.RelativeColumn(); // Nombre
-                        columns.RelativeColumn(); // Acción
-                        columns.RelativeColumn(); // Módulo
-                        columns.RelativeColumn(); // Fecha
+                        columns.RelativeColumn(); 
+                        columns.RelativeColumn(); 
+                        columns.RelativeColumn(); 
+                        columns.RelativeColumn(); 
                     });
 
-                    // Encabezado
                     table.Header(header =>
                     {
                         header.Cell().Element(Encabezado).Text("Nombre").Bold();
@@ -56,7 +54,6 @@ namespace SG_BAMS.Bitacora
                         header.Cell().Element(Encabezado).Text("Fecha").Bold();
                     });
 
-                    // Filas
                     foreach (var item in _datos)
                     {
                         table.Cell().Element(Celda).Text(item.Nombre ?? "");

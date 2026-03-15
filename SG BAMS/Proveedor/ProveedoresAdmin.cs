@@ -42,7 +42,9 @@ namespace SG_BAMS.Proveedor
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Login.Login login = new Login.Login();
+            login.Show();
+            this.Close();
         }
 
         private void btnAjustes_Click(object sender, EventArgs e)

@@ -34,12 +34,15 @@ namespace SG_BAMS
             {
                 this.Cursor = Cursors.WaitCursor;
                 dgvUsuarios.DataSource = await objetoUsuario.LeerUsuariosAsync();
-
                 ConfigurarGrid();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar: " + ex.Message);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
             }
         }
 
