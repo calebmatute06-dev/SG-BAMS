@@ -193,7 +193,7 @@
             btnnotificaciones.FlatAppearance.BorderSize = 0;
             btnnotificaciones.FlatStyle = FlatStyle.Flat;
             btnnotificaciones.ForeColor = Color.Navy;
-            btnnotificaciones.Location = new Point(1504, 29);
+            btnnotificaciones.Location = new Point(1619, 30);
             btnnotificaciones.Name = "btnnotificaciones";
             btnnotificaciones.Size = new Size(59, 44);
             btnnotificaciones.TabIndex = 113;
