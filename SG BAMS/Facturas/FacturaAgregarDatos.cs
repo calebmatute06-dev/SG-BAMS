@@ -24,7 +24,7 @@ namespace SG_BAMS
         public FacturaAgregarDatos(string cliente, int idCli)
         {
             InitializeComponent();
-            TxtCliente.Text = cliente;
+            txtCliente.Text = cliente;
             idCliente = idCli;
         }
 
@@ -83,9 +83,11 @@ namespace SG_BAMS
             dgvProductos.Columns.Add("precio", "Precio");
             dgvProductos.Columns.Add("subtotal", "Subtotal");
 
-            TxtCliente.ReadOnly = true;
-            TxtTotal.ReadOnly = true;
-            TxtBateria.ReadOnly = true;
+            txtCliente.ReadOnly = true;
+            txtTotal.ReadOnly = true;
+            txtBateria.ReadOnly = true;
+            txtRebaja.ReadOnly = true;
+            txtSubtotal.ReadOnly = true;
             dgvProductos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvProductos.ClearSelection();
             dgvProductos.Columns["id_producto"].ReadOnly = true;
@@ -119,7 +121,9 @@ namespace SG_BAMS
             double rebaja = precioBateria;
             
             double total = acumulador - rebaja;
-            TxtTotal.Text = total.ToString() + ",00";
+            txtSubtotal.Text = acumulador.ToString();
+            txtRebaja.Text = rebaja.ToString() ;
+            txtTotal.Text = total.ToString();
         }
         private bool FacturaTieneProductos()
         {
@@ -131,17 +135,17 @@ namespace SG_BAMS
         private async void BtnAceptar_Click(object sender, EventArgs e)
         {
 
-            if (string.IsNullOrEmpty(TxtBateria.Text.Trim()))
+            if (string.IsNullOrEmpty(txtBateria.Text.Trim()))
             {
                 MessageBox.Show("Debe ingresar un valor en Batería Vieja", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                TxtBateria.Focus();
+                txtBateria.Focus();
                 return;
             }
 
-            if (!int.TryParse(TxtBateria.Text.Trim(), out int bateria))
+            if (!int.TryParse(txtBateria.Text.Trim(), out int bateria))
             {
                 MessageBox.Show("El valor de Batería Vieja debe ser un número.");
-                TxtBateria.Focus();
+                txtBateria.Focus();
                 return;
             }
 
@@ -151,7 +155,7 @@ namespace SG_BAMS
                                 "Valor fuera de rango",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Warning);
-                TxtBateria.Focus();
+                txtBateria.Focus();
                 return;
             }
 
@@ -164,7 +168,7 @@ namespace SG_BAMS
                 return;
             }
 
-            if (Convert.ToDecimal(TxtTotal.Text) <= 0)
+            if (Convert.ToDecimal(txtTotal.Text) <= 0)
             {
                 MessageBox.Show("El total no puede ser menor o igual a 0.",
                                 "Total inválido",
@@ -198,9 +202,10 @@ namespace SG_BAMS
 
                 int idUsuario = objPU.IdUsuario();
                 int idFormaPago = Convert.ToInt32(cmbPago.SelectedValue);
-                int.TryParse(TxtBateria.Text.Trim(), out int numBaterias);
+                int.TryParse(txtBateria.Text.Trim(), out int numBaterias);
+                double rebaja = Convert.ToDouble(txtRebaja.Text);
 
-                int idFactura = await objAF.AgregarFacturas(idUsuario, idCliente, idFormaPago, DateTFecha.SelectionStart, numBaterias);
+                int idFactura = await objAF.AgregarFacturas(idUsuario, idCliente, idFormaPago, DateTFecha.SelectionStart, numBaterias, rebaja);
 
                 if (idFactura > 0)
                 {
@@ -218,8 +223,8 @@ namespace SG_BAMS
 
                     if (formaPagoTexto.Contains("crédito") || formaPagoTexto.Contains("credito"))
                     {
-                        string nombreCliente = TxtCliente.Text.Trim();
-                        string montoTotal = TxtTotal.Text;
+                        string nombreCliente = txtCliente.Text.Trim();
+                        string montoTotal = txtTotal.Text;
                         DateTime fechaVenta = DateTFecha.SelectionStart;
 
 
@@ -251,14 +256,14 @@ namespace SG_BAMS
 
         private async void BtnAgregar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(TxtBateria.Text.Trim()))
+            if (string.IsNullOrEmpty(txtBateria.Text.Trim()))
             {
                 MessageBox.Show("Debe ingresar un valor en Batería Vieja", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
            
                 return;
             }
 
-            if (!int.TryParse(TxtBateria.Text.Trim(), out int bateria))
+            if (!int.TryParse(txtBateria.Text.Trim(), out int bateria))
             {
                 MessageBox.Show("El valor de Batería Vieja debe ser un número.");
                
@@ -324,7 +329,7 @@ namespace SG_BAMS
                     {
                         this.precioBateria = 0;
                         this.cantidadBateria = "0";
-                        TxtBateria.Text = "0";
+                        txtBateria.Text = "0";
                     }
 
                     CalcularTotal();
@@ -412,7 +417,7 @@ namespace SG_BAMS
                 {
                     this.precioBateria = BV.TotalDineroBateria;
                     this.cantidadBateria = BV.TotalCantidadBateria;
-                    TxtBateria.Text = cantidadBateria;
+                    txtBateria.Text = cantidadBateria;
                     CalcularTotal();
                 }
             }

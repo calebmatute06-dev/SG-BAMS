@@ -35,7 +35,7 @@ namespace SG_BAMS.Facturas
 
             dgvBateria.Columns.Add("nombre", "Batería");
             dgvBateria.Columns.Add("precio", "Precio");
-            dgvBateria.Columns.Add("cantidad", "Cantidad");
+            dgvBateria.Columns.Add("cantidad", "Cantidad");  
             dgvBateria.Columns.Add("subtotal", "Subtotal");
 
             cmbBaterias.Items.Add("Moto");
@@ -44,6 +44,7 @@ namespace SG_BAMS.Facturas
 
             dgvBateria.Columns["nombre"].ReadOnly = true;
             dgvBateria.Columns["subtotal"].ReadOnly = true;
+            dgvBateria.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             cmbBaterias.DropDownStyle = ComboBoxStyle.DropDownList;
             txtTotal.ReadOnly = true;
             txtCantidadTotal.ReadOnly = true;
