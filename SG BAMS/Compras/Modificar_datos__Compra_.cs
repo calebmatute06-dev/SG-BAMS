@@ -227,8 +227,7 @@ namespace SG_BAMS
         {
             if (dgvProductosCompraMod.CurrentRow != null && !dgvProductosCompraMod.CurrentRow.IsNewRow)
             {
-                // RESTRICCIÓN: No permitir eliminar si es el último producto
-                // Consideramos 2 si AllowUserToAddRows está activo, o 1 si no lo está
+                // 1. RESTRICCIÓN: No permitir eliminar si es el último producto
                 int filasMinimas = dgvProductosCompraMod.AllowUserToAddRows ? 2 : 1;
 
                 if (dgvProductosCompraMod.Rows.Count <= filasMinimas)
@@ -238,14 +237,53 @@ namespace SG_BAMS
                     return;
                 }
 
-                DialogResult respuesta = MessageBox.Show("¿Quitar este producto de la compra?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                // 2. CONFIRMACIÓN DEL USUARIO
+                DialogResult respuesta = MessageBox.Show("¿Quitar este producto de la compra?", "Confirmar",
+                                         MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
                 if (respuesta == DialogResult.Yes)
                 {
-                    huboCambios = true;
-                    int idAEliminar = Convert.ToInt32(dgvProductosCompraMod.CurrentRow.Cells["ID"].Value);
-                    listaEliminados.Add(idAEliminar);
-                    dgvProductosCompraMod.Rows.RemoveAt(dgvProductosCompraMod.CurrentRow.Index);
-                    ActualizarTotalGeneral();
+                    try
+                    {
+                        int idAEliminar = Convert.ToInt32(dgvProductosCompraMod.CurrentRow.Cells["ID"].Value);
+                        int cantidadARestar = Convert.ToInt32(dgvProductosCompraMod.CurrentRow.Cells["Cantidad"].Value);
+
+                        // 3. IDENTIFICAR SI EL PRODUCTO ES NUEVO (No está en el respaldo original)
+                        bool esNuevoDeEstaSesion = true;
+                        if (dtRespaldo != null)
+                        {
+                            foreach (DataRow filaRespaldo in dtRespaldo.Rows)
+                            {
+                                if (Convert.ToInt32(filaRespaldo["ID"]) == idAEliminar)
+                                {
+                                    esNuevoDeEstaSesion = false;
+                                    break;
+                                }
+                            }
+                        }
+
+                        // 4. ACCIÓN SEGÚN EL TIPO DE PRODUCTO
+                        if (esNuevoDeEstaSesion)
+                        {
+                            // Es un producto recién metido: Borrar de BD y revertir stock YA
+                            logic.RevertirStockProductoNuevo(idCompraAEditar, idAEliminar, cantidadARestar);
+                        }
+                        else
+                        {
+                            // Ya existía en la compra: Solo marcar para eliminar al dar click en "Aceptar"
+                            listaEliminados.Add(idAEliminar);
+                        }
+
+                        // 5. ACTUALIZAR INTERFAZ
+                        huboCambios = true;
+                        dgvProductosCompraMod.Rows.RemoveAt(dgvProductosCompraMod.CurrentRow.Index);
+                        ActualizarTotalGeneral();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al procesar la eliminación y stock: " + ex.Message,
+                                        "Error BAMS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }

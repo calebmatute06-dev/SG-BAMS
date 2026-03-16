@@ -170,5 +170,30 @@ namespace SG_BAMS.ProductoInventario
                 conexion.Cerrar();
             }
         }
+
+        public void RevertirStockProductoNuevo(int idCompra, int idProd, int cant)
+        {
+            try
+            {
+                conexion.AbrirConexion();
+                // Usamos una pequeña transacción interna para asegurar que ambos cambios ocurran
+                string sql = @"
+            UPDATE Inventario SET stock = stock - @cant WHERE id_producto = @idP;
+            DELETE FROM Compra_producto WHERE id_compra = @idC AND id_producto = @idP;";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conexion.Conectar))
+                {
+                    cmd.Parameters.AddWithValue("@cant", cant);
+                    cmd.Parameters.AddWithValue("@idP", idProd);
+                    cmd.Parameters.AddWithValue("@idC", idCompra);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al revertir producto nuevo: " + ex.Message);
+            }
+            finally { conexion.Cerrar(); }
+        }
     }
 }
