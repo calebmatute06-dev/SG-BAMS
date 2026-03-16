@@ -11,7 +11,7 @@ namespace SG_BAMS.ProductoInventario
         public DataTable MostrarProductosCompleto()
         {
             DataTable tabla = new DataTable();
-            string query = "SELECT * FROM Vista_Productos_Detallada";
+            string query = "SELECT * FROM Vista_Productos_Detallada ORDER BY [Stock] DESC";
             try
             {
                 conexion.AbrirConexion();
