@@ -77,7 +77,6 @@
             label5 = new Label();
             label6 = new Label();
             BtnRefrescar = new Button();
-            chkHoy = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
@@ -807,19 +806,6 @@
             BtnRefrescar.UseVisualStyleBackColor = true;
             BtnRefrescar.Click += BtnRefrescar_Click;
             // 
-            // chkHoy
-            // 
-            chkHoy.AutoSize = true;
-            chkHoy.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            chkHoy.ForeColor = Color.Navy;
-            chkHoy.Location = new Point(386, 235);
-            chkHoy.Name = "chkHoy";
-            chkHoy.Size = new Size(62, 28);
-            chkHoy.TabIndex = 353;
-            chkHoy.Text = "Hoy";
-            chkHoy.UseVisualStyleBackColor = true;
-            chkHoy.CheckedChanged += chkHoy_CheckedChanged;
-            // 
             // FacturasAdm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -827,7 +813,6 @@
             BackColor = Color.White;
             ClientSize = new Size(1709, 907);
             Controls.Add(panel4);
-            Controls.Add(chkHoy);
             Controls.Add(BtnRefrescar);
             Controls.Add(label6);
             Controls.Add(label5);
@@ -934,6 +919,5 @@
         private Krypton.Toolkit.KryptonButton btnreportes;
         private Krypton.Toolkit.KryptonButton btncompra;
         private Krypton.Toolkit.KryptonButton btnPerfil;
-        private CheckBox chkHoy;
     }
 }

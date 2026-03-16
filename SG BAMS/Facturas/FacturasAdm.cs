@@ -63,11 +63,17 @@ namespace SG_BAMS
         private async void FacturasAdm_Load(object sender, EventArgs e)
         {
             await CargarFactura();
+
+            dtpInicio.Value = DateTime.Today;
+            dtpFin.Value = DateTime.Today;
+
+            FiltrarPorFecha(); 
+
             dtpFin.ValueChanged += dtpInicio_ValueChanged;
             dgvFacturas.ClearSelection();
             dgvFacturas.ReadOnly = true;
             dgvFacturas.AllowUserToOrderColumns = false;
-           
+
         }
 
         private async void BtnNueva_Click(object sender, EventArgs e)
@@ -211,22 +217,13 @@ namespace SG_BAMS
 
         private void BtnRefrescar_Click(object sender, EventArgs e)
         {
-            if (datosFac != null)
-            {
-                DataView dv = datosFac.DefaultView;
-                dtpInicio.Value = DateTime.Today;
-                dtpFin.Value = DateTime.Today;
+            dtpInicio.Value = DateTime.Today;
+            dtpFin.Value = DateTime.Today;
 
+            FiltrarPorFecha();
 
-
-                dv.RowFilter = string.Empty;
-                txtBusqueda.Text = "";
-
-
-                dgvFacturas.DataSource = dv;
-
-                dgvFacturas.ClearSelection();
-            }
+            txtBusqueda.Text = "";
+            dgvFacturas.ClearSelection();
         }
 
         private void btnmenuprincipal_Click(object sender, EventArgs e)
@@ -305,29 +302,7 @@ namespace SG_BAMS
             Aju.Show();
         }
 
-        private void chkHoy_CheckedChanged(object sender, EventArgs e)
-        {
-            if (datosFac != null)
-            {
-                DataView dv = datosFac.DefaultView;
-
-                if (chkHoy.Checked)
-                {
-
-                    string hoy = DateTime.Today.ToString("MM/dd/yyyy");
-
-
-                    dv.RowFilter = string.Format("[Fecha] >= #{0}# AND [Fecha] < #{1}#", hoy, DateTime.Today.AddDays(1).ToString("MM/dd/yyyy"));
-                }
-                else
-                {
-
-                    dv.RowFilter = string.Empty;
-                }
-
-                dgvFacturas.DataSource = dv;
-            }
-        }
+      
 
         private void btncompra_Click(object sender, EventArgs e)
         {
