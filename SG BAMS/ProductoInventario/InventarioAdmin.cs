@@ -147,6 +147,11 @@ namespace SG_BAMS
 
         private void dgvProductosAdmin_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0)
+            {
+                return; // Salimos del método sin hacer nada
+            }
+
             if (dgvProductosAdmin.SelectedRows.Count > 0)
             {
                 ModificarProducto frmMod = new ModificarProducto();

@@ -135,6 +135,7 @@
             dgvProductosCompra.Size = new Size(643, 183);
             dgvProductosCompra.TabIndex = 95;
             dgvProductosCompra.CellBeginEdit += dgvProductosCompra_CellBeginEdit;
+            dgvProductosCompra.CellDoubleClick += dgvProductosCompra_CellDoubleClick;
             dgvProductosCompra.CellValueChanged += dgvProductosCompra_CellValueChanged;
             // 
             // ID

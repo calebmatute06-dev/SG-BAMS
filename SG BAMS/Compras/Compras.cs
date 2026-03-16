@@ -216,6 +216,11 @@ namespace SG_BAMS
 
         private void dgvComprasAdmin_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0)
+            {
+                return; // Salimos del método sin hacer nada
+            }
+
             if (dgvComprasAdmin.SelectedRows.Count > 0)
             {
                 // 1. Capturar el ID de la fila seleccionada

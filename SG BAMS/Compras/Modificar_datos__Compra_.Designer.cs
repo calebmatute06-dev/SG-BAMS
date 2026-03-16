@@ -230,6 +230,7 @@
             dgvProductosCompraMod.Size = new Size(643, 183);
             dgvProductosCompraMod.TabIndex = 218;
             dgvProductosCompraMod.CellBeginEdit += dgvProductosCompraMod_CellBeginEdit;
+            dgvProductosCompraMod.CellDoubleClick += dgvProductosCompraMod_CellDoubleClick;
             dgvProductosCompraMod.CellValueChanged += dgvProductosCompraMod_CellValueChanged_1;
             // 
             // dtpFechaPedido
