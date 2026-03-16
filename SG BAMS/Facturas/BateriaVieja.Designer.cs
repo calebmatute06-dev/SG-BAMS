@@ -44,13 +44,18 @@
             txtTotal = new Krypton.Toolkit.KryptonTextBox();
             txtCantidadTotal = new Krypton.Toolkit.KryptonTextBox();
             BtnEliminar = new Krypton.Toolkit.KryptonButton();
+            panel1 = new Panel();
+            panel2 = new Panel();
+            panel3 = new Panel();
+            panel4 = new Panel();
+            label6 = new Label();
             ((System.ComponentModel.ISupportInitialize)cmbBaterias).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvBateria).BeginInit();
             SuspendLayout();
             // 
             // txtPrecio
             // 
-            txtPrecio.Location = new Point(282, 153);
+            txtPrecio.Location = new Point(251, 184);
             txtPrecio.Margin = new Padding(3, 4, 3, 4);
             txtPrecio.Name = "txtPrecio";
             txtPrecio.Size = new Size(197, 36);
@@ -60,11 +65,12 @@
             txtPrecio.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtPrecio.TabIndex = 336;
             txtPrecio.TextChanged += txtPrecio_TextChanged;
+            txtPrecio.KeyPress += txtPrecio_KeyPress;
             // 
             // cmbBaterias
             // 
             cmbBaterias.DropDownWidth = 300;
-            cmbBaterias.Location = new Point(282, 92);
+            cmbBaterias.Location = new Point(251, 123);
             cmbBaterias.Name = "cmbBaterias";
             cmbBaterias.Size = new Size(197, 38);
             cmbBaterias.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
@@ -81,7 +87,7 @@
             Nombre.BackColor = Color.Transparent;
             Nombre.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             Nombre.ForeColor = Color.Navy;
-            Nombre.Location = new Point(161, 103);
+            Nombre.Location = new Point(130, 134);
             Nombre.Name = "Nombre";
             Nombre.Size = new Size(105, 27);
             Nombre.TabIndex = 338;
@@ -91,11 +97,11 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Arial Narrow", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Arial Narrow", 25.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(232, 19);
+            label1.Location = new Point(364, 45);
             label1.Name = "label1";
-            label1.Size = new Size(188, 40);
+            label1.Size = new Size(238, 52);
             label1.TabIndex = 339;
             label1.Text = "Bateria Vieja";
             // 
@@ -105,7 +111,7 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(161, 162);
+            label2.Location = new Point(130, 193);
             label2.Name = "label2";
             label2.Size = new Size(90, 27);
             label2.TabIndex = 340;
@@ -126,7 +132,7 @@
             // 
             // BtnAceptar
             // 
-            BtnAceptar.Location = new Point(194, 563);
+            BtnAceptar.Location = new Point(319, 563);
             BtnAceptar.Name = "BtnAceptar";
             BtnAceptar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             BtnAceptar.OverrideDefault.Back.Color2 = Color.White;
@@ -177,7 +183,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(161, 216);
+            label3.Location = new Point(130, 247);
             label3.Name = "label3";
             label3.Size = new Size(120, 27);
             label3.TabIndex = 346;
@@ -185,7 +191,7 @@
             // 
             // txtCantidad
             // 
-            txtCantidad.Location = new Point(282, 207);
+            txtCantidad.Location = new Point(251, 238);
             txtCantidad.Margin = new Padding(3, 4, 3, 4);
             txtCantidad.Name = "txtCantidad";
             txtCantidad.Size = new Size(197, 36);
@@ -194,10 +200,11 @@
             txtCantidad.StateCommon.Content.Color1 = Color.Navy;
             txtCantidad.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtCantidad.TabIndex = 345;
+            txtCantidad.KeyPress += txtCantidad_KeyPress;
             // 
             // BtnSalir
             // 
-            BtnSalir.Location = new Point(365, 563);
+            BtnSalir.Location = new Point(490, 563);
             BtnSalir.Name = "BtnSalir";
             BtnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             BtnSalir.OverrideDefault.Back.Color2 = Color.White;
@@ -294,11 +301,59 @@
             BtnEliminar.Values.Text = "Eliminar";
             BtnEliminar.Click += BtnEliminar_Click;
             // 
+            // panel1
+            // 
+            panel1.BackColor = Color.Navy;
+            panel1.Location = new Point(1, 2);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(915, 21);
+            panel1.TabIndex = 353;
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.Navy;
+            panel2.Location = new Point(1, 629);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(915, 21);
+            panel2.TabIndex = 354;
+            // 
+            // panel3
+            // 
+            panel3.BackColor = Color.Navy;
+            panel3.Location = new Point(891, 2);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(25, 645);
+            panel3.TabIndex = 355;
+            // 
+            // panel4
+            // 
+            panel4.BackColor = Color.Navy;
+            panel4.Location = new Point(1, 10);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(25, 640);
+            panel4.TabIndex = 356;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.ForeColor = Color.Navy;
+            label6.Location = new Point(788, 585);
+            label6.Name = "label6";
+            label6.Size = new Size(97, 41);
+            label6.TabIndex = 357;
+            label6.Text = "BAMS";
+            // 
             // BateriaVieja
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(912, 651);
+            Controls.Add(label6);
+            Controls.Add(panel4);
+            Controls.Add(panel3);
+            Controls.Add(panel2);
+            Controls.Add(panel1);
             Controls.Add(BtnEliminar);
             Controls.Add(txtCantidadTotal);
             Controls.Add(txtTotal);
@@ -341,5 +396,10 @@
         private Krypton.Toolkit.KryptonTextBox txtTotal;
         private Krypton.Toolkit.KryptonTextBox txtCantidadTotal;
         private Krypton.Toolkit.KryptonButton BtnEliminar;
+        private Panel panel1;
+        private Panel panel2;
+        private Panel panel3;
+        private Panel panel4;
+        private Label label6;
     }
 }

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace SG_BAMS.Facturas
 {
@@ -25,17 +26,21 @@ namespace SG_BAMS.Facturas
 
         public BateriaVieja(double montoFactura)
         {
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
             InitializeComponent();
             this.limiteFactura = montoFactura;
         }
 
         private void BateriaVieja_Load(object sender, EventArgs e)
         {
+            txtPrecio.KeyPress += txtPrecio_KeyPress;
+            txtCantidad.KeyPress += txtCantidad_KeyPress;
             dgvBateria.Columns.Clear();
 
             dgvBateria.Columns.Add("nombre", "Batería");
             dgvBateria.Columns.Add("precio", "Precio");
-            dgvBateria.Columns.Add("cantidad", "Cantidad");  
+            dgvBateria.Columns.Add("cantidad", "Cantidad");
             dgvBateria.Columns.Add("subtotal", "Subtotal");
 
             cmbBaterias.Items.Add("Moto");
@@ -71,12 +76,17 @@ namespace SG_BAMS.Facturas
                 return;
             }
 
+            string precioTexto = txtPrecio.Text.Replace(",", "");
 
-            if (!double.TryParse(txtPrecio.Text, out double precio) || precio <= 0)
+            if (!double.TryParse(txtPrecio.Text, NumberStyles.Any, CultureInfo.CurrentCulture, out double precio) || precio <= 0)
             {
-                MessageBox.Show("El precio debe ser un número mayor a 0", "Valor inválido", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtPrecio.Focus();
-                return;
+               
+                if (!double.TryParse(txtPrecio.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out precio) || precio <= 0)
+                {
+                    MessageBox.Show("El precio debe ser un número mayor a 0", "Valor inválido", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtPrecio.Focus();
+                    return;
+                }
             }
 
             if (!int.TryParse(txtCantidad.Text, out int cant) || cant <= 0)
@@ -86,23 +96,16 @@ namespace SG_BAMS.Facturas
                 return;
             }
 
+            double subtotal = Math.Round(precio * cant, 2);
 
-            dgvBateria.Rows.Add(cmbBaterias.Text, precio, cant, (precio * cant));
+            dgvBateria.Rows.Add( cmbBaterias.Text, precio.ToString("N2", CultureInfo.InvariantCulture), cant, subtotal.ToString("N2", CultureInfo.InvariantCulture) );
 
             CalcularTotales();
-
-            dgvBateria.Columns["nombre"].ReadOnly = true;
-
-            dgvBateria.Columns["precio"].ReadOnly = false;
-            dgvBateria.Columns["cantidad"].ReadOnly = false;
-
-
 
             cmbBaterias.SelectedIndex = -1;
             txtPrecio.Clear();
             txtCantidad.Clear();
             txtPrecio.Focus();
-
         }
 
         private void dgvBateria_CurrentCellDirtyStateChanged(object sender, EventArgs e)
@@ -126,7 +129,7 @@ namespace SG_BAMS.Facturas
                 double precio = Convert.ToDouble(row.Cells["precio"].Value ?? 0);
                 double cantidad = Convert.ToDouble(row.Cells["cantidad"].Value ?? 0);
                 double subtotal = Math.Round(precio * cantidad, 2);
-                row.Cells["subtotal"].Value = precio * cantidad;
+                row.Cells["subtotal"].Value = subtotal;
 
                 CalcularTotales();
             }
@@ -173,21 +176,28 @@ namespace SG_BAMS.Facturas
         private void SoloNumeros_Handler(object sender, KeyPressEventArgs e)
         {
             TextBox tb = sender as TextBox;
+            if (tb == null) return;
+
             string name = dgvBateria.Columns[dgvBateria.CurrentCell.ColumnIndex].Name;
 
             if (char.IsControl(e.KeyChar)) return;
+
             if (char.IsDigit(e.KeyChar)) return;
 
-            if (name == "precio" && e.KeyChar == ',')
+            if (name == "precio" && e.KeyChar == '.')
             {
-
-                if (tb.Text.Contains(","))
+                if (tb.Text.Contains("."))
                 {
                     e.Handled = true;
                 }
                 return;
             }
 
+            if (name == "cantidad")
+            {
+                e.Handled = true;
+                return;
+            }
 
             e.Handled = true;
         }
@@ -230,12 +240,11 @@ namespace SG_BAMS.Facturas
 
             foreach (DataGridViewRow row in dgvBateria.Rows)
             {
-
                 if (row.Cells["subtotal"].Value != null)
                 {
-                    totalDinero += Convert.ToDouble(row.Cells["subtotal"].Value);
+                    
+                    totalDinero += Convert.ToDouble(row.Cells["subtotal"].Value, CultureInfo.InvariantCulture);
                 }
-
 
                 if (row.Cells["cantidad"].Value != null)
                 {
@@ -243,8 +252,8 @@ namespace SG_BAMS.Facturas
                 }
             }
 
-
-            txtTotal.Text = totalDinero.ToString("N2");
+          
+            txtTotal.Text = totalDinero.ToString("N2", CultureInfo.InvariantCulture);
             txtCantidadTotal.Text = totalProductos.ToString();
         }
 
@@ -257,16 +266,47 @@ namespace SG_BAMS.Facturas
         {
             if (dgvBateria.CurrentRow != null && !dgvBateria.CurrentRow.IsNewRow)
             {
-                
+
                 dgvBateria.Rows.RemoveAt(dgvBateria.CurrentRow.Index);
 
-                
+
                 CalcularTotales();
             }
             else
             {
                 MessageBox.Show("Por favor, seleccione una fila válida para eliminar.",
                                 "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            if (tb == null) return;
+
+            if (char.IsControl(e.KeyChar)) return;
+
+            if (char.IsDigit(e.KeyChar)) return;
+
+            if (e.KeyChar == '.')
+            {
+                if (tb.Text.Contains("."))
+                {
+                    e.Handled = true;
+                }
+                return;
+            }
+
+            e.Handled = true;
+        }
+
+        private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsControl(e.KeyChar)) return;
+
+            if (!char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
     }

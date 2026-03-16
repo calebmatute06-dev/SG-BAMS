@@ -199,7 +199,7 @@
             btnPerfil.StateTracking.Border.Rounding = 40F;
             btnPerfil.TabIndex = 36;
             btnPerfil.Values.DropDownArrowColor = Color.Empty;
-            btnPerfil.Values.Text = "Empleado";
+            btnPerfil.Values.Text = "Perfil";
             // 
             // BtnClientes
             // 

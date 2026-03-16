@@ -13,6 +13,7 @@ namespace SG_BAMS
     public partial class FacturasAdm : Form
     {
         DataTable datosFac;
+        private bool ProcesoFactura = false;
         public FacturasAdm()
         {
             InitializeComponent();
@@ -79,17 +80,14 @@ namespace SG_BAMS
         private async void BtnNueva_Click(object sender, EventArgs e)
         {
             using (ClienteAgregar frmCA = new ClienteAgregar())
+
             {
+
                 if (frmCA.ShowDialog() == DialogResult.OK)
                 {
-                    string nombre = frmCA.NombreDelCliente;
-                    int id = frmCA.IdClienteGenerado;
-
-                    FacturaAgregarDatos factura = new FacturaAgregarDatos(nombre, id);
-                    factura.Show(this);
-
                     await CargarFactura();
                 }
+
             }
         }
 

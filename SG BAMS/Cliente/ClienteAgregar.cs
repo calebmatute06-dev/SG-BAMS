@@ -103,7 +103,7 @@ namespace SG_BAMS
             try
             {
                 ClsAgregarClientes objAC = new ClsAgregarClientes();
-                // Asumiendo que tu método AgregarClientes devuelve el ID (int)
+               
                 int id = await objAC.AgregarClientes(txtNombre.Text.Trim(), txtApellido.Text.Trim(), tel, rtn);
 
                 if (id > 0)
@@ -111,9 +111,17 @@ namespace SG_BAMS
                     this.IdClienteGenerado = id;
                     this.NombreDelCliente = $"{txtNombre.Text.Trim()} {txtApellido.Text.Trim()}";
 
+                
+                    using (FacturaAgregarDatos frmFact = new FacturaAgregarDatos(this.NombreDelCliente, this.IdClienteGenerado))
+                    {
+                        this.Hide();
+                        frmFact.ShowDialog();
+                    }
+
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
+            
             }
             catch (Exception ex)
             {

@@ -411,7 +411,7 @@ namespace SG_BAMS
             btnempleado.StateTracking.Border.Rounding = 40F;
             btnempleado.TabIndex = 42;
             btnempleado.Values.DropDownArrowColor = Color.Empty;
-            btnempleado.Values.Text = "Empleado";
+            btnempleado.Values.Text = "Perfil";
             btnempleado.Click += btnempleado_Click;
             // 
             // btndeudores
