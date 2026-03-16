@@ -17,9 +17,7 @@ public class ClsExportarExcel
             {
                 var worksheet = workbook.Worksheets.Add("Reporte BAMS");
 
-                // --- 1. CABECERA DINÁMICA CENTRADA ---
-
-                // Título Principal
+                // --- 1. CABECERA DINÁMICA ---
                 var rangoTitulo = worksheet.Range(1, 1, 1, dgv.Columns.Count).Merge();
                 rangoTitulo.Value = "SISTEMA BAMS - REPORTE DE " + tituloReporte.ToUpper();
                 rangoTitulo.Style.Font.Bold = true;
@@ -27,8 +25,7 @@ public class ClsExportarExcel
                 rangoTitulo.Style.Font.FontColor = XLColor.FromHtml("#2F5597");
                 rangoTitulo.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
 
-                // Línea de Periodo (Fila 2) - Se mantiene centrada
-                if (tituloReporte.Contains("Ventas") || tituloReporte.Contains("Compras"))
+                if (tituloReporte.ToUpper().Contains("VENTAS") || tituloReporte.ToUpper().Contains("COMPRAS"))
                 {
                     var rangoFechas = worksheet.Range(2, 1, 2, dgv.Columns.Count).Merge();
                     rangoFechas.Value = $"Periodo: {desde:dd/MM/yyyy} al {hasta:dd/MM/yyyy}";
@@ -37,7 +34,6 @@ public class ClsExportarExcel
                     rangoFechas.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
                 }
 
-                // Fecha y Hora de Generación (Fila 3) - ¡AHORA CENTRADA TAMBIÉN!
                 var rangoInfo = worksheet.Range(3, 1, 3, dgv.Columns.Count).Merge();
                 rangoInfo.Value = $"Generado el: {DateTime.Now:dd/MM/yyyy} a las {DateTime.Now:hh:mm:ss tt}";
                 rangoInfo.Style.Font.FontSize = 10;
@@ -45,21 +41,27 @@ public class ClsExportarExcel
                 rangoInfo.Style.Font.FontColor = XLColor.Gray;
                 rangoInfo.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
 
-                // --- 2. ENCABEZADOS DE LA TABLA (Ahora en la fila 5 para dar espacio) ---
+                // --- 2. ENCABEZADOS ---
                 int filaInicioTabla = 5;
                 for (int i = 0; i < dgv.Columns.Count; i++)
                 {
                     var celda = worksheet.Cell(filaInicioTabla, i + 1);
                     celda.Value = dgv.Columns[i].HeaderText;
-
                     celda.Style.Fill.BackgroundColor = XLColor.FromHtml("#2F5597");
                     celda.Style.Font.FontColor = XLColor.White;
                     celda.Style.Font.Bold = true;
                     celda.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
-                    celda.Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
                 }
 
-                // --- 3. DATOS ---
+                // --- 3. DATOS Y CÁLCULO DE TOTAL ---
+                decimal totalGeneral = 0;
+                int indiceColumnaSumar = -1;
+
+                // Definir columna a sumar según reporte
+                if (tituloReporte.ToUpper().Contains("VENTAS")) indiceColumnaSumar = 5; // Columna 6 (Total)
+                else if (tituloReporte.ToUpper().Contains("COMPRAS")) indiceColumnaSumar = 6; // Columna 7 (Total)
+                else if (tituloReporte.ToUpper().Contains("DEUDORES")) indiceColumnaSumar = 6; // Columna 7 (Saldo a Cobrar)
+
                 for (int r = 0; r < dgv.Rows.Count; r++)
                 {
                     if (dgv.Rows[r].IsNewRow) continue;
@@ -83,6 +85,7 @@ public class ClsExportarExcel
                         else if (decimal.TryParse(celdaDgv.Value?.ToString(), out decimal num))
                         {
                             celdaExcel.Value = num;
+                            if (c == indiceColumnaSumar) totalGeneral += num;
                         }
                         else
                         {
@@ -91,7 +94,8 @@ public class ClsExportarExcel
 
                         celdaExcel.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
 
-                        if (dgv.Columns[c].Name == "Stock_Actual" && int.TryParse(celdaDgv.Value?.ToString(), out int stock))
+                        // Semáforo de Stock
+                        if (dgv.Columns[c].HeaderText.Contains("Stock Actual") && int.TryParse(celdaDgv.Value?.ToString(), out int stock))
                         {
                             if (stock == 0) celdaExcel.Style.Fill.BackgroundColor = XLColor.FromHtml("#FFC0C0");
                             else if (stock <= 10) celdaExcel.Style.Fill.BackgroundColor = XLColor.FromHtml("#FFE0C0");
@@ -100,9 +104,26 @@ public class ClsExportarExcel
                     }
                 }
 
-                // --- 4. BORDES Y FINALIZACIÓN ---
-                var ultimaFila = dgv.Rows.Count + filaInicioTabla;
-                var rangoTabla = worksheet.Range(filaInicioTabla, 1, ultimaFila, dgv.Columns.Count);
+                // --- 4. FILA DE TOTAL AL FINAL DE LA TABLA ---
+                int filaTotales = dgv.Rows.Count + filaInicioTabla + 1;
+                if (indiceColumnaSumar != -1)
+                {
+                    var rangoEtiqueta = worksheet.Range(filaTotales, 1, filaTotales, indiceColumnaSumar).Merge();
+                    rangoEtiqueta.Value = "TOTAL GENERAL:";
+                    rangoEtiqueta.Style.Font.Bold = true;
+                    rangoEtiqueta.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+
+                    var celdaMonto = worksheet.Cell(filaTotales, indiceColumnaSumar + 1);
+                    celdaMonto.Value = totalGeneral;
+                    celdaMonto.Style.Font.Bold = true;
+                    celdaMonto.Style.Fill.BackgroundColor = XLColor.LightGray; // Corregido: GrayLighter no existía
+                    celdaMonto.Style.NumberFormat.Format = "#,##0.00";
+                    celdaMonto.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                }
+
+                // --- 5. BORDES Y AJUSTES ---
+                var ultimaFilaFinal = (indiceColumnaSumar != -1) ? filaTotales : dgv.Rows.Count + filaInicioTabla;
+                var rangoTabla = worksheet.Range(filaInicioTabla, 1, ultimaFilaFinal, dgv.Columns.Count);
                 rangoTabla.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
                 rangoTabla.Style.Border.InsideBorder = XLBorderStyleValues.Thin;
 
