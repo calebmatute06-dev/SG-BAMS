@@ -221,6 +221,7 @@
             // 
             // dgvProductosCompraMod
             // 
+            dgvProductosCompraMod.AllowUserToAddRows = false;
             dgvProductosCompraMod.BorderStyle = BorderStyle.None;
             dgvProductosCompraMod.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvProductosCompraMod.Location = new Point(65, 303);
@@ -229,6 +230,7 @@
             dgvProductosCompraMod.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvProductosCompraMod.Size = new Size(643, 183);
             dgvProductosCompraMod.TabIndex = 218;
+            dgvProductosCompraMod.AllowUserToAddRowsChanged += dgvProductosCompraMod_AllowUserToAddRowsChanged;
             dgvProductosCompraMod.CellBeginEdit += dgvProductosCompraMod_CellBeginEdit;
             dgvProductosCompraMod.CellDoubleClick += dgvProductosCompraMod_CellDoubleClick;
             dgvProductosCompraMod.CellValueChanged += dgvProductosCompraMod_CellValueChanged_1;

@@ -440,5 +440,10 @@ namespace SG_BAMS
                 return; // Salimos del método sin hacer nada
             }
         }
+
+        private void dgvProductosCompraMod_AllowUserToAddRowsChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
