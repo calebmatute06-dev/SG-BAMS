@@ -344,6 +344,8 @@
             txtCodigoBarra.StateCommon.Border.Rounding = 20F;
             txtCodigoBarra.StateCommon.Content.Color1 = Color.Navy;
             txtCodigoBarra.TabIndex = 233;
+            txtCodigoBarra.TextChanged += txtCodigoBarra_TextChanged;
+            txtCodigoBarra.KeyPress += txtCodigoBarra_KeyPress;
             // 
             // label2
             // 

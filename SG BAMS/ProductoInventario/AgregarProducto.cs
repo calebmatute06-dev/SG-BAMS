@@ -170,7 +170,7 @@ namespace SG_BAMS
                 cmbMarca.ValueMember = "id_marca_producto";
 
                 cmbTipo.DataSource = llenar.ObtenerDatosCombo("Tipo");
-                cmbTipo.DisplayMember = "descripcion_forma_pago"; 
+                cmbTipo.DisplayMember = "descripcion_forma_pago";
                 cmbTipo.ValueMember = "id_tipo_producto";
 
                 cmbModelo.DataSource = llenar.ObtenerDatosCombo("Modelo");
@@ -184,6 +184,25 @@ namespace SG_BAMS
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void txtCodigoBarra_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCodigoBarra_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+                return;
+            }
+
+            if (txtCodigoBarra.Text.Length >= 13 && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
     }

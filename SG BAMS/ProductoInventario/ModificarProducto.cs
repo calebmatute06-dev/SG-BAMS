@@ -154,5 +154,24 @@ namespace SG_BAMS
         {
             Close();
         }
+
+        private void txtCodigoBarra_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCodigoBarra_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+                return;
+            }
+
+            if (txtCodigoBarra.Text.Length >= 13 && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }
