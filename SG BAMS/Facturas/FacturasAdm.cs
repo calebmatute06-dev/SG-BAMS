@@ -55,7 +55,7 @@ namespace SG_BAMS
                 dgvFacturas.Columns["Batería Vieja"].HeaderText = "Batería Vieja";
                 dgvFacturas.Columns["Rebaja"].HeaderText = "Rebaja de Batería Vieja";
                 dgvFacturas.Columns["Total Unidades"].HeaderText = "Total Unidades";
-              
+
 
             }
         }
@@ -67,7 +67,7 @@ namespace SG_BAMS
             dtpInicio.Value = DateTime.Today;
             dtpFin.Value = DateTime.Today;
 
-            FiltrarPorFecha(); 
+            FiltrarPorFecha();
 
             dtpFin.ValueChanged += dtpInicio_ValueChanged;
             dgvFacturas.ClearSelection();
@@ -78,18 +78,19 @@ namespace SG_BAMS
 
         private async void BtnNueva_Click(object sender, EventArgs e)
         {
-
             using (ClienteAgregar frmCA = new ClienteAgregar())
             {
-
                 if (frmCA.ShowDialog() == DialogResult.OK)
                 {
+                    string nombre = frmCA.NombreDelCliente;
+                    int id = frmCA.IdClienteGenerado;
+
+                    FacturaAgregarDatos factura = new FacturaAgregarDatos(nombre, id);
+                    factura.Show(this);
+
                     await CargarFactura();
                 }
             }
-
-
-
         }
 
 
@@ -97,7 +98,7 @@ namespace SG_BAMS
 
         private void BtnVer_Click(object sender, EventArgs e)
         {
-           
+
             if (dgvFacturas.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Debe seleccionar una fila",
@@ -302,7 +303,7 @@ namespace SG_BAMS
             Aju.Show();
         }
 
-      
+
 
         private void btncompra_Click(object sender, EventArgs e)
         {
@@ -316,6 +317,12 @@ namespace SG_BAMS
             ReportesAdmin RA = new ReportesAdmin();
             RA.Show();
             this.Hide();
+        }
+
+        private void btnPerfil_Click(object sender, EventArgs e)
+        {
+            Perfil Per = new Perfil();
+            Per.Show();
         }
     }
 

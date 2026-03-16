@@ -240,5 +240,24 @@ namespace SG_BAMS
             bitacora.Show();
             this.Hide();
         }
+
+        private void btnNoti_Click(object sender, EventArgs e)
+        {
+            NotificacionesAdmin notificaciones = new NotificacionesAdmin();
+            notificaciones.Show();
+        }
+
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            Login.Login login = new Login.Login();
+            login.Show();
+            this.Close();
+        }
+
+        private void btnPerfil_Click(object sender, EventArgs e)
+        {
+            Perfil perfil = new Perfil();
+            perfil.Show();
+        }
     }
 }

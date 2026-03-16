@@ -33,6 +33,7 @@ namespace SG_BAMS.Proveedor
             }
         }
 
+
         private void SetUsuarioEnSesion(int idUsuario)
         {
             using (SqlCommand ctx = new SqlCommand(
@@ -162,7 +163,35 @@ namespace SG_BAMS.Proveedor
                 Cerrar();
             }
         }
+        public bool ExisteNombreProveedor(string nombre)
+        {
+            bool existe = false;
+            try
+            {
+                AbrirConexion();
+                string consulta = "SELECT COUNT(*) FROM Proveedor WHERE nombre_proveedor = @nombre";
 
+                using (SqlCommand cmd = new SqlCommand(consulta, Conectar))
+                {
+                    cmd.Parameters.AddWithValue("@nombre", nombre);
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    if (count > 0)
+                    {
+                        existe = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al verificar duplicados: " + ex.Message);
+            }
+            finally
+            {
+                Cerrar();
+            }
+            return existe;
+        }
         public void ModificarProveedor(int idProveedor, string nombre, string contacto, string direccion,
             string rtn, int idEstado, int idClasificacion, int idUsuario)
         {

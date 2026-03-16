@@ -50,7 +50,7 @@ namespace SG_BAMS
             string[] partes = nombreLimpio.Split(' ');
             if (partes.Any(p => p.Length < 2))
             {
-                MessageBox.Show("Cada palabra en el nombre debe tener al menos 2 caracteres.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Cada palabra en el nombre debe tener al menos 2 caracteres y no se permiten espacios dobles.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 

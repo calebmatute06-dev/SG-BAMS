@@ -24,6 +24,7 @@ namespace SG_BAMS
             txtTelefono.MaxLength = 8;
             txtRTN.MaxLength = 14;
         }
+
         private bool ValidarFormatoTexto(string texto, string nombreCampo)
         {
             string textoLimpio = texto.Trim();
@@ -64,6 +65,8 @@ namespace SG_BAMS
 
             return true;
         }
+        public int IdClienteGenerado { get; private set; }
+        public string NombreDelCliente { get; private set; }
         private async void btnAgregar_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
@@ -100,15 +103,14 @@ namespace SG_BAMS
             try
             {
                 ClsAgregarClientes objAC = new ClsAgregarClientes();
-                int filasInsertadas = await objAC.AgregarClientes(
-                    txtNombre.Text.Trim(),
-                    txtApellido.Text.Trim(),
-                    tel,
-                    rtn);
+                // Asumiendo que tu método AgregarClientes devuelve el ID (int)
+                int id = await objAC.AgregarClientes(txtNombre.Text.Trim(), txtApellido.Text.Trim(), tel, rtn);
 
-                if (filasInsertadas > 0)
+                if (id > 0)
                 {
-                    MessageBox.Show("Cliente agregado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.IdClienteGenerado = id;
+                    this.NombreDelCliente = $"{txtNombre.Text.Trim()} {txtApellido.Text.Trim()}";
+
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
@@ -117,6 +119,7 @@ namespace SG_BAMS
             {
                 MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            
         }
 
         private void ClienteAgregar_Load(object sender, EventArgs e)

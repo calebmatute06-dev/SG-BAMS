@@ -164,5 +164,17 @@ namespace SG_BAMS
             bitacora.Show();
             this.Hide();
         }
+
+        private void btnNoti_Click(object sender, EventArgs e)
+        {
+            NotificacionesAdmin notificaciones = new NotificacionesAdmin();
+            notificaciones.Show();
+        }
+
+        private void btnPerfil_Click(object sender, EventArgs e)
+        {
+            Perfil perfil = new Perfil();
+            perfil.Show();
+        }
     }
 }

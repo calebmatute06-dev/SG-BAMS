@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SG_BAMS.Bitacora;
+using SG_BAMS.Reporte;
 
 namespace SG_BAMS.Proveedor
 {
@@ -132,7 +133,9 @@ namespace SG_BAMS.Proveedor
 
         private void btnReporte_Click(object sender, EventArgs e)
         {
-            
+            ReportesAdmin reportes = new ReportesAdmin();
+            reportes.Show();
+            this.Close();
         }
 
         private void dgvProveedor_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -163,6 +166,18 @@ namespace SG_BAMS.Proveedor
             ModificarProveedor frm = new ModificarProveedor(idProveedor, nombre, contacto, direccion, rtn, idEstado, idClasificacion);
             frm.Show();
             this.Hide();
+        }
+
+        private void btnNoti_Click(object sender, EventArgs e)
+        {
+            NotificacionesAdmin notificaciones = new NotificacionesAdmin();
+            notificaciones.Show();
+        }
+
+        private void btnPerfil_Click(object sender, EventArgs e)
+        {
+            Perfil perfil = new Perfil();
+            perfil.Show();
         }
     }
 }

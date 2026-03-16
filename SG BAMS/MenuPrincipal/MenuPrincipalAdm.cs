@@ -5,6 +5,7 @@ using SG_BAMS.Bitacora;
 using SG_BAMS.MenuPrincipal;
 using SG_BAMS.Proveedor;
 using SG_BAMS.Proveedor;
+using SG_BAMS.Reporte;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,12 +34,7 @@ namespace SG_BAMS
         Clscontador_cliente objetoContador = new Clscontador_cliente();
 
 
-        //Bloque de contadores 
-        //--------------------------------------------------------------------
-
-
-
-        // Método asíncrono para que no se congele la interfaz al conectar con Somee
+      
         private async Task ActualizarLabel()
         {
 
@@ -81,7 +77,6 @@ namespace SG_BAMS
             }
         }
 
-        //-----------------------------------------------------------------------------------------
 
 
 
@@ -106,9 +101,8 @@ namespace SG_BAMS
 
                 foreach (DataRow filaDatos in tablaStock.Rows)
                 {
-                    // --- CORRECCIÓN DE NOMBRES DE COLUMNA SEGÚN LA VISTA NUEVA ---
-                    string nombreArticulo = filaDatos["Nombre Producto"].ToString(); // Antes "producto"
-                    int cantidadReal = Convert.ToInt32(filaDatos["STOCK"]);           // Antes "cantidad"
+                    string nombreArticulo = filaDatos["Nombre Producto"].ToString(); 
+                    int cantidadReal = Convert.ToInt32(filaDatos["STOCK"]);           
 
                     double valorVisual = (cantidadReal == 0) ? 0.6 : cantidadReal;
 
@@ -350,6 +344,13 @@ namespace SG_BAMS
             ClientesAdm clientes = new ClientesAdm();
             clientes.Show();
             this.Hide();
+        }
+
+        private void btnReporte_Click(object sender, EventArgs e)
+        {
+            ReportesAdmin reportesAdmin = new ReportesAdmin();
+            reportesAdmin.Show();
+            this.Close();
         }
     }
 }

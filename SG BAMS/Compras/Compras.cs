@@ -279,5 +279,23 @@ namespace SG_BAMS
             }
         }
 
+        private void btnNoti_Click(object sender, EventArgs e)
+        {
+            NotificacionesAdmin notificacionesAdmin = new NotificacionesAdmin();
+            notificacionesAdmin.Show();
+        }
+
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            Login.Login login = new Login.Login();
+            login.Show();
+            this.Close();
+        }
+
+        private void btnPerfil_Click(object sender, EventArgs e)
+        {
+            Perfil perfil = new Perfil();
+            perfil.Show();
+        }
     }
 }

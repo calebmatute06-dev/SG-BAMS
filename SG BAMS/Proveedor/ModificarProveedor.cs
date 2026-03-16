@@ -132,6 +132,12 @@ namespace SG_BAMS.Proveedor
 
             if (!ValidarFormatoTexto(txtNombre.Text, "El Nombre") ||
                 !ValidarFormatoTexto(txtDireccion.Text, "La Dirección")) return;
+            string nombreNuevo = txtNombre.Text.Trim();
+            if (proveedor.ExisteNombreProveedor(nombreNuevo))
+            {
+                MessageBox.Show("El nombre del proveedor ya existe.", "Nombre Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             string tel = txtTelefono.Text.Trim();
             if (tel.Length != 8 || Regex.IsMatch(tel, @"(\d)\1{3}"))

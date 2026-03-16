@@ -81,7 +81,7 @@ namespace SG_BAMS.Reporte
                 MessageBox.Show("Error al cargar el reporte de ventas: " + ex.Message, "Error BAMS", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-       
+
         private void ControlarFiltroStock(bool estado)
         {
             Min.Enabled = estado;
@@ -141,7 +141,7 @@ namespace SG_BAMS.Reporte
                 QuestPDF.Settings.License = LicenseType.Community;
                 if (dgvReporte.Rows.Count == 0)
                 {
-                    MessageBox.Show("No hay datos.", "BAMS"); return; 
+                    MessageBox.Show("No hay datos.", "BAMS"); return;
                 }
 
                 string seleccion = cmbReporte.SelectedItem?.ToString() ?? "REPORTE";
@@ -152,7 +152,7 @@ namespace SG_BAMS.Reporte
 
                 System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo { FileName = rutaTemp, UseShellExecute = true });
             }
-    catch (Exception ex) { MessageBox.Show("Error: " + ex.Message); }
+            catch (Exception ex) { MessageBox.Show("Error: " + ex.Message); }
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
@@ -336,5 +336,23 @@ namespace SG_BAMS.Reporte
             }
         }
 
+        private void btnNoti_Click(object sender, EventArgs e)
+        {
+            NotificacionesAdmin notificaciones = new NotificacionesAdmin();
+            notificaciones.Show();
+        }
+
+        private void btnPerfil_Click(object sender, EventArgs e)
+        {
+            Perfil perfil = new Perfil();
+            perfil.Show();
+        }
+
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            Login.Login login = new Login.Login();
+            login.Show();
+            this.Close();
+        }
     }
 }

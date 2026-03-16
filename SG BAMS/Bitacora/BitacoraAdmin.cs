@@ -8,9 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DocumentFormat.OpenXml.InkML;
 using QuestPDF.Fluent;
 using QuestPDF.Infrastructure;
 using SG_BAMS.Proveedor;
+using SG_BAMS.Reporte;
 
 namespace SG_BAMS.Bitacora
 {
@@ -51,7 +53,9 @@ namespace SG_BAMS.Bitacora
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Login.Login login = new Login.Login();
+            login.Show();
+            this.Close();
         }
 
         private void txtBuscar_KeyUp(object sender, KeyEventArgs e)
@@ -129,7 +133,9 @@ namespace SG_BAMS.Bitacora
 
         private void btnReporte_Click(object sender, EventArgs e)
         {
-            
+            ReportesAdmin reportes = new ReportesAdmin();
+            reportes.Show();
+            this.Close();
         }
 
         private void btnExportar_Click(object sender, EventArgs e)
@@ -147,7 +153,7 @@ namespace SG_BAMS.Bitacora
                         lista.Add(new BitacoraDTO
                         {
                             Nombre = row.Cells["Nombre"].Value?.ToString(),
-                            Accion = row.Cells["Acción"].Value?.ToString(), 
+                            Accion = row.Cells["Acción"].Value?.ToString(),
                             Modulo = row.Cells["Modulo"].Value?.ToString(),
                             Fecha = Convert.ToDateTime(row.Cells["Fecha"].Value)
                         });
@@ -172,6 +178,18 @@ namespace SG_BAMS.Bitacora
             {
                 MessageBox.Show("Error al generar/abrir el PDF: " + ex.Message);
             }
+        }
+
+        private void btnNoti_Click(object sender, EventArgs e)
+        {
+            NotificacionesAdmin notificaciones = new NotificacionesAdmin();
+            notificaciones.Show();
+        }
+
+        private void btnPerfil_Click(object sender, EventArgs e)
+        {
+            Perfil perfil = new Perfil();
+            perfil.Show();
         }
     }
 }

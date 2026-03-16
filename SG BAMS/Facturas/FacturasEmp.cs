@@ -55,9 +55,14 @@ namespace SG_BAMS
         {
             using (ClienteAgregar frmCA = new ClienteAgregar())
             {
-
                 if (frmCA.ShowDialog() == DialogResult.OK)
                 {
+                    string nombre = frmCA.NombreDelCliente;
+                    int id = frmCA.IdClienteGenerado;
+
+                    FacturaAgregarDatos factura = new FacturaAgregarDatos(nombre, id);
+                    factura.Show(this);
+
                     await CargarFactura();
                 }
             }
@@ -202,6 +207,8 @@ namespace SG_BAMS
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
+            Login.Login login = new Login.Login();
+            login.Show();
             this.Close();
         }
 
