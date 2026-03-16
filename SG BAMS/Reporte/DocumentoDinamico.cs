@@ -24,17 +24,26 @@ public class DocumentoDinamico : IDocument
 
     public void Compose(IDocumentContainer container)
     {
-        // --- Lógica de cálculo por índice de columna ---
         decimal totalGeneral = 0;
         int indiceColumna = -1;
 
-        if (_tituloCabecera.ToUpper().Contains("VENTAS"))
-            indiceColumna = 5;
-        else if (_tituloCabecera.ToUpper().Contains("COMPRAS"))
-            indiceColumna = 6;
-        else if (_tituloCabecera.ToUpper().Contains("DEUDORES"))
-            indiceColumna = 6;
+        // Lógica extendida para incluir Inventario (Capital)
+        string titulo = _tituloCabecera.ToUpper();
 
+        if (titulo.Contains("VENTAS"))
+            indiceColumna = 5;
+        else if (titulo.Contains("COMPRAS"))
+            indiceColumna = 6;
+        else if (titulo.Contains("DEUDORES"))
+            indiceColumna = 6;
+        else if (titulo.Contains("INVENTARIO"))
+        {
+            // Buscamos la columna "Total_Venta_Esperada" o por su índice
+            // Si es la última columna agregada, podemos usar:
+            indiceColumna = _dgv.Columns.Count - 1;
+        }
+
+        // Proceso de suma idéntico para mantener consistencia
         if (indiceColumna != -1 && _dgv.Columns.Count > indiceColumna)
         {
             foreach (DataGridViewRow row in _dgv.Rows)
@@ -57,16 +66,21 @@ public class DocumentoDinamico : IDocument
             {
                 col.Item().Text($"SISTEMA BAMS - {_tituloCabecera.ToUpper()}").FontSize(20).SemiBold().FontColor(Colors.Blue.Medium);
 
-                if (_tituloCabecera.ToUpper().Contains("VENTAS") || _tituloCabecera.ToUpper().Contains("COMPRAS"))
+                if (titulo.Contains("VENTAS") || titulo.Contains("COMPRAS"))
                 {
                     col.Item().Text($"Rango del reporte: {_desde:dd/MM/yyyy} al {_hasta:dd/MM/yyyy}")
+                        .FontSize(12).Italic().FontColor(Colors.Grey.Darken2);
+                }
+                // Agregamos una nota para Inventario si lo deseas
+                else if (titulo.Contains("INVENTARIO"))
+                {
+                    col.Item().Text($"Estado actual del stock al: {DateTime.Now:dd/MM/yyyy}")
                         .FontSize(12).Italic().FontColor(Colors.Grey.Darken2);
                 }
             });
 
             page.Content().PaddingVertical(10).Column(col =>
             {
-                // La tabla se genera normalmente
                 col.Item().Table(table =>
                 {
                     table.ColumnsDefinition(columns =>
@@ -107,18 +121,32 @@ public class DocumentoDinamico : IDocument
                     }
                 });
 
-                // EL TOTAL SE AGREGA AQUÍ: Fuera de la tabla para que solo salga al final (Última Página)
+                // El cuadro de TOTAL GENERAL ahora también aparecerá en Inventario
                 if (indiceColumna != -1)
                 {
                     col.Item().PaddingTop(10).AlignRight().Table(tTotal =>
                     {
                         tTotal.ColumnsDefinition(c =>
                         {
-                            c.RelativeColumn(); // Espacio para el texto
-                            c.ConstantColumn(100); // Espacio para el monto
+                            c.RelativeColumn();
+                            c.ConstantColumn(160); // Ajustado para etiquetas más largas
                         });
 
-                        tTotal.Cell().Padding(5).AlignRight().Text("TOTAL GENERAL:").SemiBold().FontSize(12);
+                        // Lógica de etiquetas personalizadas
+                        string etiqueta = "TOTAL GENERAL:";
+                        string tituloUpper = _tituloCabecera.ToUpper();
+
+                        if (tituloUpper.Contains("VENTAS"))
+                            etiqueta = "TOTAL VENTAS:";
+                        else if (tituloUpper.Contains("COMPRAS"))
+                            etiqueta = "TOTAL EN COMPRAS:";
+                        else if (tituloUpper.Contains("DEUDORES"))
+                            etiqueta = "TOTAL SALDO PENDIENTE:";
+                        else if (tituloUpper.Contains("INVENTARIO"))
+                            etiqueta = "CAPITAL TOTAL EN STOCK:";
+
+                        tTotal.Cell().Padding(5).AlignRight().Text(etiqueta).SemiBold().FontSize(12);
+
                         tTotal.Cell().Background(Colors.Grey.Lighten4).Border(1).BorderColor(Colors.Grey.Lighten2)
                             .Padding(5).AlignCenter().Text($"{totalGeneral:N2}").SemiBold().FontSize(12).FontColor(Colors.Blue.Medium);
                     });

@@ -203,7 +203,7 @@
             dgvReporte.ReadOnly = true;
             dgvReporte.RowHeadersWidth = 51;
             dgvReporte.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvReporte.Size = new Size(832, 604);
+            dgvReporte.Size = new Size(853, 604);
             dgvReporte.TabIndex = 273;
             dgvReporte.CellContentClick += dgvReporte_CellContentClick;
             dgvReporte.CellFormatting += dgvReporte_CellFormatting;
@@ -211,7 +211,7 @@
             // kryptonGroup3
             // 
             kryptonGroup3.Location = new Point(555, 225);
-            kryptonGroup3.Size = new Size(859, 632);
+            kryptonGroup3.Size = new Size(880, 632);
             kryptonGroup3.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroup3.StateCommon.Border.Rounding = 30F;
             kryptonGroup3.TabIndex = 272;
@@ -430,14 +430,14 @@
             panel3.BackColor = Color.Navy;
             panel3.Location = new Point(5, 883);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1453, 24);
+            panel3.Size = new Size(1462, 24);
             panel3.TabIndex = 257;
             // 
             // panel4
             // 
             panel4.BackColor = Color.Navy;
             panel4.Controls.Add(pictureBox2);
-            panel4.Location = new Point(1427, 23);
+            panel4.Location = new Point(1438, 23);
             panel4.Name = "panel4";
             panel4.Size = new Size(24, 869);
             panel4.TabIndex = 254;
@@ -991,7 +991,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1451, 903);
+            ClientSize = new Size(1462, 903);
             Controls.Add(label9);
             Controls.Add(kryptonGroup4);
             Controls.Add(cmbReporte);

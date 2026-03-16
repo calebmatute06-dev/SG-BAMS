@@ -318,13 +318,30 @@ namespace SG_BAMS.Reporte
 
                     case "Inventario":
                         datos = objReporte.ReporteInventario();
+
+                        if (!datos.Columns.Contains("Total_Venta_Esperada"))
+                        {
+                            DataColumn colTotal = new DataColumn("Total_Venta_Esperada", typeof(decimal));
+                            colTotal.Expression = "Stock_Actual * Precio_Unitario";
+                            datos.Columns.Add(colTotal);
+                        }
+
                         dgvReporte.DataSource = datos;
+
                         if (dgvReporte.Columns.Contains("Stock_Actual"))
                         {
                             dgvReporte.Columns["Stock_Actual"].HeaderText = "Stock Actual";
                             dgvReporte.Sort(dgvReporte.Columns["Stock_Actual"], System.ComponentModel.ListSortDirection.Descending);
                         }
-                        if (dgvReporte.Columns.Contains("Precio_Unitario")) dgvReporte.Columns["Precio_Unitario"].HeaderText = "Precio Venta";
+
+                        if (dgvReporte.Columns.Contains("Precio_Unitario"))
+                            dgvReporte.Columns["Precio_Unitario"].HeaderText = "Precio Venta";
+
+                        if (dgvReporte.Columns.Contains("Total_Venta_Esperada"))
+                        {
+                            dgvReporte.Columns["Total_Venta_Esperada"].HeaderText = "Capital";
+                            dgvReporte.Columns["Total_Venta_Esperada"].DefaultCellStyle.Format = "N2";
+                        }
                         break;
                 }
 

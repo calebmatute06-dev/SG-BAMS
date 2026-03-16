@@ -56,11 +56,32 @@ public class ClsExportarExcel
                 // --- 3. DATOS Y CÁLCULO DE TOTAL ---
                 decimal totalGeneral = 0;
                 int indiceColumnaSumar = -1;
+                string tituloUpper = tituloReporte.ToUpper();
 
-                // Definir columna a sumar según reporte
-                if (tituloReporte.ToUpper().Contains("VENTAS")) indiceColumnaSumar = 5; // Columna 6 (Total)
-                else if (tituloReporte.ToUpper().Contains("COMPRAS")) indiceColumnaSumar = 6; // Columna 7 (Total)
-                else if (tituloReporte.ToUpper().Contains("DEUDORES")) indiceColumnaSumar = 6; // Columna 7 (Saldo a Cobrar)
+                // Definir columna a sumar y etiqueta personalizada
+                string etiquetaTotal = "TOTAL GENERAL:";
+
+                if (tituloUpper.Contains("VENTAS"))
+                {
+                    indiceColumnaSumar = 5;
+                    etiquetaTotal = "TOTAL VENTAS:";
+                }
+                else if (tituloUpper.Contains("COMPRAS"))
+                {
+                    indiceColumnaSumar = 6;
+                    etiquetaTotal = "TOTAL EN COMPRAS:";
+                }
+                else if (tituloUpper.Contains("DEUDORES"))
+                {
+                    indiceColumnaSumar = 6;
+                    etiquetaTotal = "TOTAL SALDO PENDIENTE:";
+                }
+                else if (tituloUpper.Contains("INVENTARIO"))
+                {
+                    // Sumamos la nueva columna de Capital (la última)
+                    indiceColumnaSumar = dgv.Columns.Count - 1;
+                    etiquetaTotal = "CAPITAL TOTAL EN STOCK:";
+                }
 
                 for (int r = 0; r < dgv.Rows.Count; r++)
                 {
@@ -85,38 +106,35 @@ public class ClsExportarExcel
                         else if (decimal.TryParse(celdaDgv.Value?.ToString(), out decimal num))
                         {
                             celdaExcel.Value = num;
+                            // Sumar si es la columna objetivo
                             if (c == indiceColumnaSumar) totalGeneral += num;
+
+                            // Aplicar formato de número/moneda a columnas de dinero
+                            if (header.Contains("PRECIO") || header.Contains("TOTAL") || header.Contains("SALDO") || header.Contains("CAPITAL"))
+                                celdaExcel.Style.NumberFormat.Format = "#,##0.00";
                         }
                         else
                         {
                             celdaExcel.Value = celdaDgv.Value?.ToString() ?? "";
                         }
-
                         celdaExcel.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
-
-                        // Semáforo de Stock
-                        if (dgv.Columns[c].HeaderText.Contains("Stock Actual") && int.TryParse(celdaDgv.Value?.ToString(), out int stock))
-                        {
-                            if (stock == 0) celdaExcel.Style.Fill.BackgroundColor = XLColor.FromHtml("#FFC0C0");
-                            else if (stock <= 10) celdaExcel.Style.Fill.BackgroundColor = XLColor.FromHtml("#FFE0C0");
-                            else celdaExcel.Style.Fill.BackgroundColor = XLColor.FromHtml("#C0FFC0");
-                        }
                     }
                 }
 
-                // --- 4. FILA DE TOTAL AL FINAL DE LA TABLA ---
+                // --- 4. FILA DE TOTAL PERSONALIZADA ---
                 int filaTotales = dgv.Rows.Count + filaInicioTabla + 1;
                 if (indiceColumnaSumar != -1)
                 {
+                    // Unimos las celdas previas para la etiqueta personalizada
                     var rangoEtiqueta = worksheet.Range(filaTotales, 1, filaTotales, indiceColumnaSumar).Merge();
-                    rangoEtiqueta.Value = "TOTAL GENERAL:";
+                    rangoEtiqueta.Value = etiquetaTotal;
                     rangoEtiqueta.Style.Font.Bold = true;
                     rangoEtiqueta.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
 
                     var celdaMonto = worksheet.Cell(filaTotales, indiceColumnaSumar + 1);
                     celdaMonto.Value = totalGeneral;
                     celdaMonto.Style.Font.Bold = true;
-                    celdaMonto.Style.Fill.BackgroundColor = XLColor.LightGray; // Corregido: GrayLighter no existía
+                    celdaMonto.Style.Fill.BackgroundColor = XLColor.LightGray;
                     celdaMonto.Style.NumberFormat.Format = "#,##0.00";
                     celdaMonto.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
                 }
