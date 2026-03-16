@@ -13,7 +13,6 @@ namespace SG_BAMS.ProductoInventario
     {
         public static bool ValidarNombre(string nombre)
         {
-            // 1. Limpieza inicial y validación de nulidad
             if (string.IsNullOrWhiteSpace(nombre))
             {
                 MessageBox.Show("El nombre no puede estar vacío.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -22,17 +21,14 @@ namespace SG_BAMS.ProductoInventario
 
             string nombreLimpio = nombre.Trim();
 
-            // 2. NUEVA VALIDACIÓN: Los primeros 3 caracteres DEBEN ser letras
-            // Explicación: ^[a-zA-ZñÑ]{3} obliga a que empiece con 3 letras exactamente
-            if (!Regex.IsMatch(nombreLimpio, @"^[a-zA-ZñÑ]{3}"))
+            if (!System.Text.RegularExpressions.Regex.IsMatch(nombreLimpio, @"^[a-zA-ZñÑ]{3}"))
             {
                 MessageBox.Show("Los primeros tres caracteres del nombre deben ser letras (sin espacios ni números).",
                                 "Formato de Inicio Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
-            // 3. Validación de caracteres permitidos generales
-            bool formatoBasico = Regex.IsMatch(nombreLimpio, @"^[a-zA-Z0-9\s&ñÑ@,.;:<>]+$");
+            bool formatoBasico = System.Text.RegularExpressions.Regex.IsMatch(nombreLimpio, @"^[a-zA-Z0-9\s&ñÑ@,.;:<>]+$");
             if (!formatoBasico)
             {
                 MessageBox.Show("El nombre contiene caracteres no permitidos.",
@@ -40,7 +36,6 @@ namespace SG_BAMS.ProductoInventario
                 return false;
             }
 
-            // 4. Validación de longitud
             if (nombreLimpio.Length < 3 || nombreLimpio.Length > 40)
             {
                 MessageBox.Show("El nombre del producto debe tener entre 3 y 40 caracteres.",
@@ -48,19 +43,24 @@ namespace SG_BAMS.ProductoInventario
                 return false;
             }
 
-            // 5. No más de 2 letras repetidas consecutivamente
-            if (Regex.IsMatch(nombreLimpio, @"([a-zA-ZñÑ])\1{2,}"))
+            if (System.Text.RegularExpressions.Regex.IsMatch(nombreLimpio, @"([a-zA-ZñÑ])\1{2,}"))
             {
                 MessageBox.Show("El nombre no permite que una letra se repita más de 2 veces consecutivamente.",
                                 "Error de Escritura", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
-            // 6. No espacios consecutivos
             if (nombreLimpio.Contains("  "))
             {
                 MessageBox.Show("El nombre no puede contener dos o más espacios consecutivos.",
                                 "Error de Espaciado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (System.Text.RegularExpressions.Regex.IsMatch(nombreLimpio, @"(^| )\w( |$)"))
+            {
+                MessageBox.Show("No se permiten letras aisladas. Cada palabra o sigla debe tener al menos 2 caracteres.",
+                                "Formato Incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
