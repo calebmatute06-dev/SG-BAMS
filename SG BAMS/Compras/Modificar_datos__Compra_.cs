@@ -227,9 +227,21 @@ namespace SG_BAMS
         {
             if (dgvProductosCompraMod.CurrentRow != null && !dgvProductosCompraMod.CurrentRow.IsNewRow)
             {
+                // RESTRICCIÓN: No permitir eliminar si es el último producto
+                // Consideramos 2 si AllowUserToAddRows está activo, o 1 si no lo está
+                int filasMinimas = dgvProductosCompraMod.AllowUserToAddRows ? 2 : 1;
+
+                if (dgvProductosCompraMod.Rows.Count <= filasMinimas)
+                {
+                    MessageBox.Show("Una compra no puede quedarse sin productos. Debe mantener al menos un artículo.",
+                                    "BAMS - Restricción", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 DialogResult respuesta = MessageBox.Show("¿Quitar este producto de la compra?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (respuesta == DialogResult.Yes)
                 {
+                    huboCambios = true;
                     int idAEliminar = Convert.ToInt32(dgvProductosCompraMod.CurrentRow.Cells["ID"].Value);
                     listaEliminados.Add(idAEliminar);
                     dgvProductosCompraMod.Rows.RemoveAt(dgvProductosCompraMod.CurrentRow.Index);
