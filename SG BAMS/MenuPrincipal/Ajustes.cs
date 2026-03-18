@@ -19,7 +19,7 @@ namespace SG_BAMS
         {
             InitializeComponent();
 
-            
+
 
             // Sincronizar ComboBox con el factor actual (progresivo)
             // Esto asegura que si el zoom es 1.1f, el combo marque "110%"
@@ -64,11 +64,9 @@ namespace SG_BAMS
             }
         }
 
-        private void btnsalirLogin_Click(object sender, EventArgs e)
+        private void btnsalir1_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
-        
     }
 }

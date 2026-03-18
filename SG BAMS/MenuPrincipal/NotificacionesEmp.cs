@@ -26,5 +26,15 @@ namespace SG_BAMS
         {
             Ayudante_UI.AplicarZoomGlobal(this);
         }
+
+        private void btnsalir_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnsalir1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -20,12 +20,6 @@ namespace SG_BAMS
             InitializeComponent();
         }
 
-        private void btnsalir_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-
         private async void Perfil_Load(object sender, EventArgs e)
         {
             await CargarDatosUsuario();
@@ -113,6 +107,11 @@ namespace SG_BAMS
                     MessageBox.Show("Error al procesar la imagen: " + ex.Message);
                 }
             }
+        }
+
+        private void btnsalir1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

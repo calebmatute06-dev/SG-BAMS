@@ -138,12 +138,12 @@ namespace SG_BAMS
             e.DrawFocusRectangle();
         }
 
-        private void btnsalir_Click(object sender, EventArgs e) => this.Close();
-
         private void NotificacionesAdmin_Shown(object sender, EventArgs e) => Ayudante_UI.AplicarZoomGlobal(this);
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e) { }
 
         private void listBox1_MouseClick(object sender, MouseEventArgs e) { }
+
+        private void btnsalir1_Click(object sender, EventArgs e) => this.Close();
     }
 }

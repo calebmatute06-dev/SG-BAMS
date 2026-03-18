@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnsalir = new Krypton.Toolkit.KryptonButton();
             cantidadnotificaciones = new Label();
             label3 = new Label();
             pictureBox4 = new PictureBox();
@@ -37,35 +36,12 @@
             pictureBox2 = new PictureBox();
             label6 = new Label();
             notificaciones = new ListBox();
+            btnsalir1 = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
-            // 
-            // btnsalir
-            // 
-            btnsalir.Location = new Point(413, 20);
-            btnsalir.Name = "btnsalir";
-            btnsalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnsalir.OverrideDefault.Back.Color2 = Color.White;
-            btnsalir.OverrideDefault.Border.Rounding = 40F;
-            btnsalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnsalir.OverrideFocus.Back.Color2 = Color.White;
-            btnsalir.Size = new Size(76, 44);
-            btnsalir.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnsalir.StateCommon.Back.Color2 = Color.White;
-            btnsalir.StateCommon.Border.Rounding = 40F;
-            btnsalir.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnsalir.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnsalir.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnsalir.StateNormal.Back.Color2 = Color.White;
-            btnsalir.StateNormal.Border.Rounding = 40F;
-            btnsalir.StateTracking.Border.Rounding = 40F;
-            btnsalir.TabIndex = 104;
-            btnsalir.Values.DropDownArrowColor = Color.Empty;
-            btnsalir.Values.Text = "Salir";
-            btnsalir.Click += btnsalir_Click;
             // 
             // cantidadnotificaciones
             // 
@@ -73,9 +49,9 @@
             cantidadnotificaciones.BackColor = Color.Navy;
             cantidadnotificaciones.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cantidadnotificaciones.ForeColor = Color.White;
-            cantidadnotificaciones.Location = new Point(299, 66);
+            cantidadnotificaciones.Location = new Point(262, 50);
             cantidadnotificaciones.Name = "cantidadnotificaciones";
-            cantidadnotificaciones.Size = new Size(28, 33);
+            cantidadnotificaciones.Size = new Size(22, 26);
             cantidadnotificaciones.TabIndex = 103;
             cantidadnotificaciones.Text = "0";
             // 
@@ -85,45 +61,49 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(140, 66);
+            label3.Location = new Point(122, 50);
             label3.Name = "label3";
-            label3.Size = new Size(153, 33);
+            label3.Size = new Size(124, 26);
             label3.TabIndex = 102;
             label3.Text = "Notificaciones";
             // 
             // pictureBox4
             // 
             pictureBox4.BackColor = Color.Navy;
-            pictureBox4.Location = new Point(-6, -5);
+            pictureBox4.Location = new Point(-5, -4);
+            pictureBox4.Margin = new Padding(3, 2, 3, 2);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(15, 557);
+            pictureBox4.Size = new Size(13, 418);
             pictureBox4.TabIndex = 101;
             pictureBox4.TabStop = false;
             // 
             // pictureBox3
             // 
             pictureBox3.BackColor = Color.Navy;
-            pictureBox3.Location = new Point(495, -5);
+            pictureBox3.Location = new Point(433, -4);
+            pictureBox3.Margin = new Padding(3, 2, 3, 2);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(15, 557);
+            pictureBox3.Size = new Size(13, 418);
             pictureBox3.TabIndex = 100;
             pictureBox3.TabStop = false;
             // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Navy;
-            pictureBox1.Location = new Point(-6, 536);
+            pictureBox1.Location = new Point(-5, 402);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(515, 15);
+            pictureBox1.Size = new Size(451, 11);
             pictureBox1.TabIndex = 99;
             pictureBox1.TabStop = false;
             // 
             // pictureBox2
             // 
             pictureBox2.BackColor = Color.Navy;
-            pictureBox2.Location = new Point(-6, -1);
+            pictureBox2.Location = new Point(-5, -1);
+            pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(515, 15);
+            pictureBox2.Size = new Size(451, 11);
             pictureBox2.TabIndex = 98;
             pictureBox2.TabStop = false;
             // 
@@ -132,9 +112,9 @@
             label6.AutoSize = true;
             label6.Font = new Font("Arial", 22.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(181, 22);
+            label6.Location = new Point(158, 16);
             label6.Name = "label6";
-            label6.Size = new Size(129, 44);
+            label6.Size = new Size(102, 35);
             label6.TabIndex = 97;
             label6.Text = "BAMS";
             // 
@@ -142,20 +122,45 @@
             // 
             notificaciones.DrawMode = DrawMode.OwnerDrawFixed;
             notificaciones.FormattingEnabled = true;
-            notificaciones.Location = new Point(12, 122);
+            notificaciones.Location = new Point(10, 92);
+            notificaciones.Margin = new Padding(3, 2, 3, 2);
             notificaciones.Name = "notificaciones";
-            notificaciones.Size = new Size(477, 404);
+            notificaciones.Size = new Size(418, 292);
             notificaciones.TabIndex = 105;
             notificaciones.MouseClick += listBox1_MouseClick;
             notificaciones.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
+            // btnsalir1
+            // 
+            btnsalir1.Location = new Point(347, 16);
+            btnsalir1.Margin = new Padding(3, 2, 3, 2);
+            btnsalir1.Name = "btnsalir1";
+            btnsalir1.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnsalir1.OverrideDefault.Back.Color2 = Color.White;
+            btnsalir1.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnsalir1.OverrideFocus.Back.Color2 = Color.White;
+            btnsalir1.Size = new Size(80, 44);
+            btnsalir1.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnsalir1.StateCommon.Back.Color2 = Color.White;
+            btnsalir1.StateCommon.Border.Rounding = 30F;
+            btnsalir1.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnsalir1.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnsalir1.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnsalir1.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnsalir1.StatePressed.Back.Color1 = Color.Transparent;
+            btnsalir1.StatePressed.Back.Color2 = Color.Transparent;
+            btnsalir1.TabIndex = 145;
+            btnsalir1.Values.DropDownArrowColor = Color.Empty;
+            btnsalir1.Values.Text = "Salir";
+            btnsalir1.Click += btnsalir1_Click;
+            // 
             // NotificacionesAdmin
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(508, 550);
+            ClientSize = new Size(444, 412);
+            Controls.Add(btnsalir1);
             Controls.Add(notificaciones);
-            Controls.Add(btnsalir);
             Controls.Add(cantidadnotificaciones);
             Controls.Add(label3);
             Controls.Add(pictureBox4);
@@ -163,6 +168,7 @@
             Controls.Add(pictureBox1);
             Controls.Add(pictureBox2);
             Controls.Add(label6);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "NotificacionesAdmin";
             Text = "NotificacionesAdmin";
             Load += NotificacionesAdmin_Load;
@@ -176,8 +182,6 @@
         }
 
         #endregion
-
-        private Krypton.Toolkit.KryptonButton btnsalir;
         private Label cantidadnotificaciones;
         private Label label3;
         private PictureBox pictureBox4;
@@ -186,5 +190,6 @@
         private PictureBox pictureBox2;
         private Label label6;
         private ListBox notificaciones;
+        private Krypton.Toolkit.KryptonButton btnsalir1;
     }
 }

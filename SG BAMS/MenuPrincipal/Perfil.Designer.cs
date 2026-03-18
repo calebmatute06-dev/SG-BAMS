@@ -38,9 +38,9 @@
             pictureBox3 = new PictureBox();
             pictureBox4 = new PictureBox();
             pictureBox5 = new PictureBox();
-            btnsalir = new Krypton.Toolkit.KryptonButton();
             label6 = new Label();
             btnimagen = new Krypton.Toolkit.KryptonButton();
+            btnsalir1 = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)pbFotoPerfil).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -53,9 +53,9 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(250, 31);
+            label1.Location = new Point(219, 23);
             label1.Name = "label1";
-            label1.Size = new Size(112, 54);
+            label1.Size = new Size(91, 45);
             label1.TabIndex = 0;
             label1.Text = "Perfil";
             // 
@@ -64,9 +64,9 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(65, 389);
+            label2.Location = new Point(57, 292);
             label2.Name = "label2";
-            label2.Size = new Size(88, 54);
+            label2.Size = new Size(72, 45);
             label2.TabIndex = 1;
             label2.Text = "Rol:";
             // 
@@ -75,9 +75,9 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(64, 452);
+            label3.Location = new Point(56, 339);
             label3.Name = "label3";
-            label3.Size = new Size(178, 54);
+            label3.Size = new Size(145, 45);
             label3.TabIndex = 2;
             label3.Text = "Nombre:";
             // 
@@ -86,9 +86,9 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(168, 387);
+            label5.Location = new Point(147, 290);
             label5.Name = "label5";
-            label5.Size = new Size(165, 54);
+            label5.Size = new Size(135, 45);
             label5.TabIndex = 5;
             label5.Text = "Ejemplo";
             // 
@@ -97,17 +97,18 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(239, 452);
+            label4.Location = new Point(209, 339);
             label4.Name = "label4";
-            label4.Size = new Size(165, 54);
+            label4.Size = new Size(135, 45);
             label4.TabIndex = 6;
             label4.Text = "Ejemplo";
             // 
             // pbFotoPerfil
             // 
-            pbFotoPerfil.Location = new Point(188, 100);
+            pbFotoPerfil.Location = new Point(164, 75);
+            pbFotoPerfil.Margin = new Padding(3, 2, 3, 2);
             pbFotoPerfil.Name = "pbFotoPerfil";
-            pbFotoPerfil.Size = new Size(220, 212);
+            pbFotoPerfil.Size = new Size(192, 159);
             pbFotoPerfil.SizeMode = PictureBoxSizeMode.Zoom;
             pbFotoPerfil.TabIndex = 7;
             pbFotoPerfil.TabStop = false;
@@ -116,26 +117,29 @@
             // 
             pictureBox2.BackColor = Color.Navy;
             pictureBox2.Location = new Point(-4, -2);
+            pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(614, 24);
+            pictureBox2.Size = new Size(537, 18);
             pictureBox2.TabIndex = 72;
             pictureBox2.TabStop = false;
             // 
             // pictureBox3
             // 
             pictureBox3.BackColor = Color.Navy;
-            pictureBox3.Location = new Point(-4, 519);
+            pictureBox3.Location = new Point(-4, 389);
+            pictureBox3.Margin = new Padding(3, 2, 3, 2);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(614, 24);
+            pictureBox3.Size = new Size(537, 18);
             pictureBox3.TabIndex = 73;
             pictureBox3.TabStop = false;
             // 
             // pictureBox4
             // 
             pictureBox4.BackColor = Color.Navy;
-            pictureBox4.Location = new Point(586, -2);
+            pictureBox4.Location = new Point(513, -2);
+            pictureBox4.Margin = new Padding(3, 2, 3, 2);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(24, 545);
+            pictureBox4.Size = new Size(21, 409);
             pictureBox4.TabIndex = 74;
             pictureBox4.TabStop = false;
             // 
@@ -143,78 +147,80 @@
             // 
             pictureBox5.BackColor = Color.Navy;
             pictureBox5.Location = new Point(-4, -2);
+            pictureBox5.Margin = new Padding(3, 2, 3, 2);
             pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(24, 545);
+            pictureBox5.Size = new Size(21, 409);
             pictureBox5.TabIndex = 75;
             pictureBox5.TabStop = false;
-            // 
-            // btnsalir
-            // 
-            btnsalir.Location = new Point(477, 460);
-            btnsalir.Name = "btnsalir";
-            btnsalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnsalir.OverrideDefault.Back.Color2 = Color.White;
-            btnsalir.OverrideDefault.Border.Rounding = 40F;
-            btnsalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnsalir.OverrideFocus.Back.Color2 = Color.White;
-            btnsalir.Size = new Size(103, 53);
-            btnsalir.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnsalir.StateCommon.Back.Color2 = Color.White;
-            btnsalir.StateCommon.Border.Rounding = 40F;
-            btnsalir.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnsalir.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnsalir.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnsalir.StateNormal.Back.Color2 = Color.White;
-            btnsalir.StateNormal.Border.Rounding = 40F;
-            btnsalir.StateTracking.Border.Rounding = 40F;
-            btnsalir.TabIndex = 83;
-            btnsalir.Values.DropDownArrowColor = Color.Empty;
-            btnsalir.Values.Text = "Salir";
-            btnsalir.Click += btnsalir_Click;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Arial", 22.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(24, 25);
+            label6.Location = new Point(21, 19);
             label6.Name = "label6";
-            label6.Size = new Size(129, 44);
+            label6.Size = new Size(102, 35);
             label6.TabIndex = 84;
             label6.Text = "BAMS";
             // 
             // btnimagen
             // 
-            btnimagen.Location = new Point(188, 331);
+            btnimagen.Location = new Point(164, 243);
+            btnimagen.Margin = new Padding(3, 2, 3, 2);
             btnimagen.Name = "btnimagen";
             btnimagen.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnimagen.OverrideDefault.Back.Color2 = Color.White;
-            btnimagen.OverrideDefault.Border.Rounding = 40F;
             btnimagen.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnimagen.OverrideFocus.Back.Color2 = Color.White;
-            btnimagen.Size = new Size(220, 53);
+            btnimagen.Size = new Size(196, 45);
             btnimagen.StateCommon.Back.Color1 = Color.SkyBlue;
             btnimagen.StateCommon.Back.Color2 = Color.White;
-            btnimagen.StateCommon.Border.Rounding = 40F;
+            btnimagen.StateCommon.Border.Rounding = 30F;
             btnimagen.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnimagen.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnimagen.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnimagen.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnimagen.StateNormal.Back.Color2 = Color.White;
-            btnimagen.StateNormal.Border.Rounding = 40F;
-            btnimagen.StateTracking.Border.Rounding = 40F;
-            btnimagen.TabIndex = 85;
+            btnimagen.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnimagen.StatePressed.Back.Color1 = Color.Transparent;
+            btnimagen.StatePressed.Back.Color2 = Color.Transparent;
+            btnimagen.TabIndex = 147;
             btnimagen.Values.DropDownArrowColor = Color.Empty;
             btnimagen.Values.Text = "Elegir imagen";
             btnimagen.Click += btnimagen_Click;
             // 
+            // btnsalir1
+            // 
+            btnsalir1.Location = new Point(427, 339);
+            btnsalir1.Margin = new Padding(3, 2, 3, 2);
+            btnsalir1.Name = "btnsalir1";
+            btnsalir1.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnsalir1.OverrideDefault.Back.Color2 = Color.White;
+            btnsalir1.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnsalir1.OverrideFocus.Back.Color2 = Color.White;
+            btnsalir1.Size = new Size(80, 44);
+            btnsalir1.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnsalir1.StateCommon.Back.Color2 = Color.White;
+            btnsalir1.StateCommon.Border.Rounding = 30F;
+            btnsalir1.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnsalir1.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnsalir1.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnsalir1.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnsalir1.StatePressed.Back.Color1 = Color.Transparent;
+            btnsalir1.StatePressed.Back.Color2 = Color.Transparent;
+            btnsalir1.TabIndex = 148;
+            btnsalir1.Values.DropDownArrowColor = Color.Empty;
+            btnsalir1.Values.Text = "Salir";
+            btnsalir1.Click += btnsalir1_Click;
+            // 
             // Perfil
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(606, 541);
+            BackColor = Color.White;
+            ClientSize = new Size(530, 406);
+            Controls.Add(btnsalir1);
             Controls.Add(btnimagen);
             Controls.Add(label6);
-            Controls.Add(btnsalir);
             Controls.Add(pictureBox4);
             Controls.Add(pictureBox5);
             Controls.Add(pictureBox3);
@@ -225,6 +231,7 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Perfil";
             Text = "Perfil";
             Load += Perfil_Load;
@@ -251,8 +258,9 @@
         private PictureBox pictureBox4;
         private PictureBox pictureBox5;
         private Krypton.Toolkit.KryptonButton btnsalir;
+        private Krypton.Toolkit.KryptonButton btnsalir1;
         private Label label6;
-        private Krypton.Toolkit.KryptonButton kryptonButton1;
         private Krypton.Toolkit.KryptonButton btnimagen;
+        private Krypton.Toolkit.KryptonButton btnsalir;
     }
 }
