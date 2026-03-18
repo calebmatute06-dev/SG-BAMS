@@ -135,7 +135,7 @@ namespace SG_BAMS.Bitacora
         {
             ReportesAdmin reportes = new ReportesAdmin();
             reportes.Show();
-            this.Close();
+            this.Hide();
         }
 
         private void btnExportar_Click(object sender, EventArgs e)
@@ -146,7 +146,7 @@ namespace SG_BAMS.Bitacora
 
                 List<BitacoraDTO> lista = new List<BitacoraDTO>();
 
-                foreach (DataGridViewRow row in dgvBitacora.Rows)
+                foreach (DataGridViewRow row in dgvBitacora1.Rows)
                 {
                     if (!row.IsNewRow)
                     {
@@ -191,5 +191,6 @@ namespace SG_BAMS.Bitacora
             Perfil perfil = new Perfil();
             perfil.Show();
         }
+
     }
 }

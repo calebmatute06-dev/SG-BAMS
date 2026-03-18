@@ -35,10 +35,10 @@
             txtDescri = new Krypton.Toolkit.KryptonTextBox();
             label9 = new Label();
             label2 = new Label();
-            label1 = new Label();
-            btmAgregar = new Krypton.Toolkit.KryptonButton();
             pictureBox4 = new PictureBox();
+            btmAgregar = new Krypton.Toolkit.KryptonButton();
             btmSalir = new Krypton.Toolkit.KryptonButton();
+            label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
@@ -116,78 +116,75 @@
             label2.TabIndex = 113;
             label2.Text = "Ingrese el rol de usuario:";
             // 
-            // label1
-            // 
-            label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Arial Narrow", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.Navy;
-            label1.Location = new Point(149, 35);
-            label1.Name = "label1";
-            label1.Size = new Size(280, 39);
-            label1.TabIndex = 112;
-            label1.Text = "Agregar Rol Usuario";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
-            label1.Click += label1_Click;
-            // 
-            // btmAgregar
-            // 
-            btmAgregar.Location = new Point(202, 216);
-            btmAgregar.Name = "btmAgregar";
-            btmAgregar.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btmAgregar.OverrideDefault.Back.Color2 = Color.White;
-            btmAgregar.OverrideDefault.Border.Rounding = 40F;
-            btmAgregar.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btmAgregar.OverrideFocus.Back.Color2 = Color.White;
-            btmAgregar.Size = new Size(118, 65);
-            btmAgregar.StateCommon.Back.Color1 = Color.SkyBlue;
-            btmAgregar.StateCommon.Back.Color2 = Color.White;
-            btmAgregar.StateCommon.Border.Rounding = 40F;
-            btmAgregar.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btmAgregar.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btmAgregar.StateNormal.Back.Color1 = Color.SkyBlue;
-            btmAgregar.StateNormal.Back.Color2 = Color.White;
-            btmAgregar.StateNormal.Border.Rounding = 40F;
-            btmAgregar.StateTracking.Border.Rounding = 40F;
-            btmAgregar.TabIndex = 126;
-            btmAgregar.Values.DropDownArrowColor = Color.Empty;
-            btmAgregar.Values.Text = "Agregar";
-            btmAgregar.Click += btmAgregar_Click;
-            // 
             // pictureBox4
             // 
             pictureBox4.BackgroundImage = Properties.Resources.roles1;
             pictureBox4.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox4.Image = Properties.Resources.roles;
-            pictureBox4.Location = new Point(416, 31);
+            pictureBox4.Location = new Point(498, 31);
             pictureBox4.Margin = new Padding(3, 4, 3, 4);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(71, 51);
             pictureBox4.TabIndex = 0;
             pictureBox4.TabStop = false;
             // 
+            // btmAgregar
+            // 
+            btmAgregar.Location = new Point(165, 216);
+            btmAgregar.Name = "btmAgregar";
+            btmAgregar.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btmAgregar.OverrideDefault.Back.Color2 = Color.White;
+            btmAgregar.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btmAgregar.OverrideFocus.Back.Color2 = Color.White;
+            btmAgregar.Size = new Size(143, 65);
+            btmAgregar.StateCommon.Back.Color1 = Color.SkyBlue;
+            btmAgregar.StateCommon.Back.Color2 = Color.White;
+            btmAgregar.StateCommon.Border.Rounding = 30F;
+            btmAgregar.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btmAgregar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btmAgregar.StateNormal.Back.Color1 = Color.SkyBlue;
+            btmAgregar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btmAgregar.StatePressed.Back.Color1 = Color.Transparent;
+            btmAgregar.StatePressed.Back.Color2 = Color.Transparent;
+            btmAgregar.TabIndex = 179;
+            btmAgregar.Values.DropDownArrowColor = Color.Empty;
+            btmAgregar.Values.Text = "Agregar";
+            btmAgregar.Click += btmAgregar_Click;
+            // 
             // btmSalir
             // 
-            btmSalir.Location = new Point(382, 216);
+            btmSalir.Location = new Point(362, 216);
             btmSalir.Name = "btmSalir";
             btmSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btmSalir.OverrideDefault.Back.Color2 = Color.White;
-            btmSalir.OverrideDefault.Border.Rounding = 40F;
             btmSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btmSalir.OverrideFocus.Back.Color2 = Color.White;
-            btmSalir.Size = new Size(118, 65);
+            btmSalir.Size = new Size(143, 65);
             btmSalir.StateCommon.Back.Color1 = Color.SkyBlue;
             btmSalir.StateCommon.Back.Color2 = Color.White;
-            btmSalir.StateCommon.Border.Rounding = 40F;
+            btmSalir.StateCommon.Border.Rounding = 30F;
             btmSalir.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btmSalir.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btmSalir.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btmSalir.StateNormal.Back.Color1 = Color.SkyBlue;
-            btmSalir.StateNormal.Back.Color2 = Color.White;
-            btmSalir.StateNormal.Border.Rounding = 40F;
-            btmSalir.StateTracking.Border.Rounding = 40F;
-            btmSalir.TabIndex = 128;
+            btmSalir.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btmSalir.StatePressed.Back.Color1 = Color.Transparent;
+            btmSalir.StatePressed.Back.Color2 = Color.Transparent;
+            btmSalir.TabIndex = 180;
             btmSalir.Values.DropDownArrowColor = Color.Empty;
             btmSalir.Values.Text = "Salir";
             btmSalir.Click += btmSalir_Click;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Arial Narrow", 21F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.Navy;
+            label3.Location = new Point(179, 39);
+            label3.Name = "label3";
+            label3.Size = new Size(300, 42);
+            label3.TabIndex = 341;
+            label3.Text = "Agregar Rol Usuario";
             // 
             // frmAgregarRol
             // 
@@ -195,9 +192,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(683, 373);
+            Controls.Add(label3);
             Controls.Add(btmSalir);
-            Controls.Add(pictureBox4);
             Controls.Add(btmAgregar);
+            Controls.Add(pictureBox4);
             Controls.Add(panel1);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
@@ -205,7 +203,6 @@
             Controls.Add(txtDescri);
             Controls.Add(label9);
             Controls.Add(label2);
-            Controls.Add(label1);
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmAgregarRol";
             StartPosition = FormStartPosition.CenterScreen;
@@ -226,9 +223,9 @@
         private Krypton.Toolkit.KryptonTextBox txtDescri;
         private Label label9;
         private Label label2;
-        private Label label1;
-        private Krypton.Toolkit.KryptonButton btmAgregar;
         private PictureBox pictureBox4;
+        private Krypton.Toolkit.KryptonButton btmAgregar;
         private Krypton.Toolkit.KryptonButton btmSalir;
+        private Label label3;
     }
 }

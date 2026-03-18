@@ -108,13 +108,6 @@ namespace SG_BAMS
             Notad.Show();
         }
 
-        private void kryptonButton11_Click(object sender, EventArgs e)
-        {
-            Ajustes Ajus = new Ajustes();
-            Ajus.Show();
-        }
-
-
 
         // --- LÓGICA DE BÚSQUEDA Y PAGOS ---
 

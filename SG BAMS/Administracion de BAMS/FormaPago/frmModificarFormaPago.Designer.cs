@@ -36,14 +36,14 @@ namespace SG_BAMS
             panel2 = new Panel();
             label9 = new Label();
             label2 = new Label();
-            label1 = new Label();
-            btnModificar = new Krypton.Toolkit.KryptonButton();
-            pictureBox16 = new PictureBox();
             txtDescri = new Krypton.Toolkit.KryptonTextBox();
+            label3 = new Label();
+            pictureBox3 = new PictureBox();
+            btnModificar = new Krypton.Toolkit.KryptonButton();
             btnSalir = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -66,7 +66,7 @@ namespace SG_BAMS
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Navy;
-            pictureBox1.Location = new Point(659, 0);
+            pictureBox1.Location = new Point(675, 0);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(24, 375);
             pictureBox1.TabIndex = 125;
@@ -98,62 +98,15 @@ namespace SG_BAMS
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(25, 105);
+            label2.Location = new Point(32, 116);
             label2.Name = "label2";
             label2.Size = new Size(331, 31);
             label2.TabIndex = 124;
             label2.Text = "Ingrese el tipo de forma de pago:";
             // 
-            // label1
-            // 
-            label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Arial Narrow", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.Navy;
-            label1.Location = new Point(165, 32);
-            label1.Name = "label1";
-            label1.Size = new Size(363, 39);
-            label1.TabIndex = 123;
-            label1.Text = "Modificar el tipo de forma de pago";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
-            label1.Click += label1_Click;
-            // 
-            // btnModificar
-            // 
-            btnModificar.Location = new Point(205, 211);
-            btnModificar.Name = "btnModificar";
-            btnModificar.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnModificar.OverrideDefault.Back.Color2 = Color.White;
-            btnModificar.OverrideDefault.Border.Rounding = 40F;
-            btnModificar.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnModificar.OverrideFocus.Back.Color2 = Color.White;
-            btnModificar.Size = new Size(118, 65);
-            btnModificar.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnModificar.StateCommon.Back.Color2 = Color.White;
-            btnModificar.StateCommon.Border.Rounding = 40F;
-            btnModificar.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnModificar.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnModificar.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnModificar.StateNormal.Back.Color2 = Color.White;
-            btnModificar.StateNormal.Border.Rounding = 40F;
-            btnModificar.StateTracking.Border.Rounding = 40F;
-            btnModificar.TabIndex = 140;
-            btnModificar.Values.DropDownArrowColor = Color.Empty;
-            btnModificar.Values.Text = "Modificar";
-            btnModificar.Click += btnModificar_Click;
-            // 
-            // pictureBox16
-            // 
-            pictureBox16.BackgroundImage = (Image)resources.GetObject("pictureBox16.BackgroundImage");
-            pictureBox16.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox16.Location = new Point(523, 29);
-            pictureBox16.Name = "pictureBox16";
-            pictureBox16.Size = new Size(47, 48);
-            pictureBox16.TabIndex = 141;
-            pictureBox16.TabStop = false;
-            // 
             // txtDescri
             // 
-            txtDescri.Location = new Point(351, 99);
+            txtDescri.Location = new Point(358, 110);
             txtDescri.Margin = new Padding(3, 4, 3, 4);
             txtDescri.MaxLength = 70;
             txtDescri.Multiline = true;
@@ -165,26 +118,70 @@ namespace SG_BAMS
             txtDescri.StateCommon.Content.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtDescri.TabIndex = 142;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Arial Narrow", 21F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.Navy;
+            label3.Location = new Point(70, 42);
+            label3.Name = "label3";
+            label3.Size = new Size(492, 42);
+            label3.TabIndex = 343;
+            label3.Text = "Modificar el tipo de forma de pago";
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.BackgroundImage = (Image)resources.GetObject("pictureBox3.BackgroundImage");
+            pictureBox3.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox3.Location = new Point(567, 42);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(47, 48);
+            pictureBox3.TabIndex = 344;
+            pictureBox3.TabStop = false;
+            // 
+            // btnModificar
+            // 
+            btnModificar.Location = new Point(158, 212);
+            btnModificar.Name = "btnModificar";
+            btnModificar.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnModificar.OverrideDefault.Back.Color2 = Color.White;
+            btnModificar.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnModificar.OverrideFocus.Back.Color2 = Color.White;
+            btnModificar.Size = new Size(143, 65);
+            btnModificar.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnModificar.StateCommon.Back.Color2 = Color.White;
+            btnModificar.StateCommon.Border.Rounding = 30F;
+            btnModificar.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnModificar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnModificar.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnModificar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnModificar.StatePressed.Back.Color1 = Color.Transparent;
+            btnModificar.StatePressed.Back.Color2 = Color.Transparent;
+            btnModificar.TabIndex = 345;
+            btnModificar.Values.DropDownArrowColor = Color.Empty;
+            btnModificar.Values.Text = "Modificar";
+            btnModificar.Click += btnModificar_Click;
+            // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(366, 211);
+            btnSalir.Location = new Point(379, 211);
             btnSalir.Name = "btnSalir";
             btnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnSalir.OverrideDefault.Back.Color2 = Color.White;
-            btnSalir.OverrideDefault.Border.Rounding = 40F;
             btnSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnSalir.OverrideFocus.Back.Color2 = Color.White;
-            btnSalir.Size = new Size(118, 65);
+            btnSalir.Size = new Size(143, 65);
             btnSalir.StateCommon.Back.Color1 = Color.SkyBlue;
             btnSalir.StateCommon.Back.Color2 = Color.White;
-            btnSalir.StateCommon.Border.Rounding = 40F;
+            btnSalir.StateCommon.Border.Rounding = 30F;
             btnSalir.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnSalir.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnSalir.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSalir.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnSalir.StateNormal.Back.Color2 = Color.White;
-            btnSalir.StateNormal.Border.Rounding = 40F;
-            btnSalir.StateTracking.Border.Rounding = 40F;
-            btnSalir.TabIndex = 143;
+            btnSalir.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnSalir.StatePressed.Back.Color1 = Color.Transparent;
+            btnSalir.StatePressed.Back.Color2 = Color.Transparent;
+            btnSalir.TabIndex = 346;
             btnSalir.Values.DropDownArrowColor = Color.Empty;
             btnSalir.Values.Text = "Salir";
             btnSalir.Click += btnSalir_Click;
@@ -194,25 +191,25 @@ namespace SG_BAMS
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(683, 375);
+            ClientSize = new Size(700, 375);
             Controls.Add(btnSalir);
-            Controls.Add(txtDescri);
-            Controls.Add(pictureBox16);
             Controls.Add(btnModificar);
+            Controls.Add(pictureBox3);
+            Controls.Add(label3);
+            Controls.Add(txtDescri);
             Controls.Add(panel1);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
             Controls.Add(panel2);
             Controls.Add(label9);
             Controls.Add(label2);
-            Controls.Add(label1);
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmModificarFormaPago";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmModificarFormaPago";
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -230,10 +227,10 @@ namespace SG_BAMS
         private Panel panel2;
         private Label label9;
         private Label label2;
-        private Label label1;
-        private Krypton.Toolkit.KryptonButton btnModificar;
-        private PictureBox pictureBox16;
         private Krypton.Toolkit.KryptonTextBox txtDescri;
+        private Label label3;
+        private PictureBox pictureBox3;
+        private Krypton.Toolkit.KryptonButton btnModificar;
         private Krypton.Toolkit.KryptonButton btnSalir;
     }
 }

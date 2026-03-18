@@ -29,13 +29,6 @@ namespace SG_BAMS
 
         }
 
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-            frmFormaPago frmFormaPago = new frmFormaPago();
-            frmFormaPago.Show();
-            this.Close();
-        }
-
         private async void btnAgregar_Click(object sender, EventArgs e)
         {
             string nombreLimpio = txtdescri.Text.Trim();
@@ -72,7 +65,7 @@ namespace SG_BAMS
             try
             {
                 this.Cursor = Cursors.WaitCursor;
-                btnAgregar.Enabled = false; 
+                btnAgregar.Enabled = false;
 
                 clsFormaPago objetoFP = new clsFormaPago();
 
@@ -83,7 +76,7 @@ namespace SG_BAMS
                     MessageBox.Show("Forma de pago agregada correctamente.", "Éxito",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    this.DialogResult = DialogResult.OK; 
+                    this.DialogResult = DialogResult.OK;
                     frmFormaPago verFpago = new frmFormaPago();
                     verFpago.Show();
                     this.Close();
@@ -98,6 +91,13 @@ namespace SG_BAMS
                 this.Cursor = Cursors.Default;
                 btnAgregar.Enabled = true;
             }
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            frmFormaPago frmFormaPago = new frmFormaPago();
+            frmFormaPago.Show();
+            this.Close();
         }
     }
 }

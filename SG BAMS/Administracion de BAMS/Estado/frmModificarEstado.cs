@@ -22,11 +22,6 @@ namespace SG_BAMS
             txtDescri.Text = descripcionActual;
         }
 
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private async void btnModificar_Click(object sender, EventArgs e)
         {
             string nombreLimpio = txtDescri.Text.Trim();
@@ -70,7 +65,7 @@ namespace SG_BAMS
                 if (exito)
                 {
                     MessageBox.Show("Estado actualizado con éxito.", "SG-BAMS");
-                    this.DialogResult = DialogResult.OK; 
+                    this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
             }
@@ -82,6 +77,11 @@ namespace SG_BAMS
             {
                 this.Cursor = Cursors.Default;
             }
+        }
+
+        private void kryptonButton1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

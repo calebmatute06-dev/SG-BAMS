@@ -45,13 +45,10 @@ namespace SG_BAMS
 
                 dgvTipoProducto.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dgvTipoProducto.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
-                dgvTipoProducto.EnableHeadersVisualStyles = false;
-                dgvTipoProducto.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
-
                 dgvTipoProducto.AllowUserToAddRows = false;
                 dgvTipoProducto.ReadOnly = true;
                 dgvTipoProducto.ClearSelection();
+
             }
             catch (Exception ex)
             {
@@ -61,38 +58,6 @@ namespace SG_BAMS
             {
                 this.Cursor = Cursors.Default;
             }
-        }
-        private void btmModificar_Click(object sender, EventArgs e)
-        {
-            if (dgvTipoProducto.SelectedRows.Count > 0)
-            {
-                int id = Convert.ToInt32(dgvTipoProducto.CurrentRow.Cells["id_tipo_producto"].Value);
-                string descripcion = dgvTipoProducto.CurrentRow.Cells["nombre_tipo_producto"].Value.ToString();
-
-                frmModificarTipoProducto ModificarTProducto = new frmModificarTipoProducto(id, descripcion);
-
-
-                if (ModificarTProducto.ShowDialog() == DialogResult.OK)
-                {
-                    _ = CargarGridTipos();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Por favor, seleccione un tipo de producto de la lista.");
-            }
-        }
-
-        private void btmSalir_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btmAgregar_Click(object sender, EventArgs e)
-        {
-            frnAgregarTipoProducto agregarTproducto = new frnAgregarTipoProducto();
-            agregarTproducto.Show();
-            this.Close();
         }
 
         private void dgvTipoProducto_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -114,6 +79,40 @@ namespace SG_BAMS
             {
                 MessageBox.Show("Por favor, seleccione un tipo de producto de la lista.");
             }
+        }
+
+        private void btmAgregar_Click(object sender, EventArgs e)
+        {
+            frnAgregarTipoProducto agregarTproducto = new frnAgregarTipoProducto();
+            agregarTproducto.Show();
+            this.Close();
+        }
+
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            if (dgvTipoProducto1.SelectedRows.Count > 0)
+            {
+                int id = Convert.ToInt32(dgvTipoProducto1.CurrentRow.Cells["id_tipo_producto"].Value);
+                string descripcion = dgvTipoProducto1.CurrentRow.Cells["nombre_tipo_producto"].Value.ToString();
+
+                frmModificarTipoProducto ModificarTProducto = new frmModificarTipoProducto(id, descripcion);
+
+
+                if (ModificarTProducto.ShowDialog() == DialogResult.OK)
+                {
+                    _ = CargarGridTipos();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione un tipo de producto de la lista.");
+            }
+        }
+
+        private void kryptonButton2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -63,53 +63,11 @@ namespace SG_BAMS
             if (dgvUsuarios.Columns.Contains("nombre_usuario"))
                 dgvUsuarios.Columns["nombre_usuario"].HeaderText = "Nombres de Usuarios";
 
-            dgvUsuarios.EnableHeadersVisualStyles = false;
-            dgvUsuarios.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
-
             dgvUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvUsuarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvUsuarios.AllowUserToAddRows = false;
             dgvUsuarios.ReadOnly = true;
             dgvUsuarios.ClearSelection();
-        }
-
-
-        private void btmModificar_Click(object sender, EventArgs e)
-        {
-            if (dgvUsuarios.SelectedRows.Count > 0)
-            {
-                int id = Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["id_usuario"].Value);
-                string nombre = dgvUsuarios.CurrentRow.Cells["nombre_usuario"].Value.ToString();
-
-                int idRol = Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["id_rol_usuario"].Value);
-                int idEstado = Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["id_estado"].Value);
-
-                frmModificarUsuarios frmMod = new frmModificarUsuarios(id, nombre, idRol, idEstado);
-
-
-                if (frmMod.ShowDialog() == DialogResult.OK)
-                {
-                    _ = CargarGridUsuarios();
-
-                }
-            }
-            else
-            {
-                MessageBox.Show("Por favor, seleccione un usuario de la lista.");
-            }
-
-        }
-
-        private void btmAgregar_Click(object sender, EventArgs e)
-        {
-            frmAgregarUsuarios agregarUsuario = new frmAgregarUsuarios();
-            agregarUsuario.Show();
-
-        }
-
-        private void BtmSalir_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void dgvUsuarios_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -135,6 +93,42 @@ namespace SG_BAMS
             {
                 MessageBox.Show("Por favor, seleccione un usuario de la lista.");
             }
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            frmAgregarUsuarios agregarUsuario = new frmAgregarUsuarios();
+            agregarUsuario.Show();
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            if (dgvUsuarios.SelectedRows.Count > 0)
+            {
+                int id = Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["id_usuario"].Value);
+                string nombre = dgvUsuarios.CurrentRow.Cells["nombre_usuario"].Value.ToString();
+
+                int idRol = Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["id_rol_usuario"].Value);
+                int idEstado = Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["id_estado"].Value);
+
+                frmModificarUsuarios frmMod = new frmModificarUsuarios(id, nombre, idRol, idEstado);
+
+
+                if (frmMod.ShowDialog() == DialogResult.OK)
+                {
+                    _ = CargarGridUsuarios();
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione un usuario de la lista.");
+            }
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

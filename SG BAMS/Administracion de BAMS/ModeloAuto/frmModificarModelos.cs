@@ -22,12 +22,7 @@ namespace SG_BAMS
             txtDescri.Text = nombreActual;
         }
 
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private async void btnModificar_Click(object sender, EventArgs e)
+        private async void btnModificar_Click_1(object sender, EventArgs e)
         {
             string nombreLimpio = txtDescri.Text.Trim();
             if (string.IsNullOrWhiteSpace(nombreLimpio))
@@ -87,6 +82,11 @@ namespace SG_BAMS
                 this.Cursor = Cursors.Default;
                 btnModificar.Enabled = true;
             }
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

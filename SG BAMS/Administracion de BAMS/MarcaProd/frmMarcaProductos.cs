@@ -59,25 +59,39 @@ namespace SG_BAMS
 
             dgvMarcas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvMarcas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
-            dgvMarcas.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
-            dgvMarcas.AllowUserToAddRows = false;
-
             dgvMarcas.AllowUserToAddRows = false;
             dgvMarcas.ReadOnly = true;
             dgvMarcas.ClearSelection();
         }
 
-        private void btmAgregar_Click(object sender, EventArgs e)
+
+        private void dgvMarcas_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int id = Convert.ToInt32(dgvMarcas.CurrentRow.Cells["id_marca_producto"].Value);
+            string nombre = dgvMarcas.CurrentRow.Cells["nombre_marca"].Value.ToString();
+
+            frmModificarMarcaProducto frm = new frmModificarMarcaProducto(id, nombre);
+
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                _ = CargarGridMarcas();
+            }
+        }
+
+        private void frmMarcaProductos_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmIngresarMarcaProducto agregarMproducto = new frmIngresarMarcaProducto();
             agregarMproducto.Show();
             this.Close();
         }
 
-        private void btmModificar_Click(object sender, EventArgs e)
+        private void btnModificar_Click(object sender, EventArgs e)
         {
-
             if (dgvMarcas.SelectedRows.Count > 0)
             {
                 int id = Convert.ToInt32(dgvMarcas.CurrentRow.Cells["id_marca_producto"].Value);
@@ -96,23 +110,9 @@ namespace SG_BAMS
             }
         }
 
-        private void btmSalir_Click(object sender, EventArgs e)
+        private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-
-        private void dgvMarcas_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            int id = Convert.ToInt32(dgvMarcas.CurrentRow.Cells["id_marca_producto"].Value);
-            string nombre = dgvMarcas.CurrentRow.Cells["nombre_marca"].Value.ToString();
-
-            frmModificarMarcaProducto frm = new frmModificarMarcaProducto(id, nombre);
-
-            if (frm.ShowDialog() == DialogResult.OK)
-            {
-                _ = CargarGridMarcas();
-            }
         }
     }
 }

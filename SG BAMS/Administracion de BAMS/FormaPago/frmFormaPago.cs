@@ -60,11 +60,8 @@ namespace SG_BAMS
 
             dgvFormasPago.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvFormasPago.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
-            dgvFormasPago.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
             dgvFormasPago.AllowUserToAddRows = false;
-
-            dgvFormasPago.AllowUserToAddRows = false;
+            dgvFormasPago.ReadOnly = true;
             dgvFormasPago.ClearSelection();
         }
 
@@ -74,40 +71,6 @@ namespace SG_BAMS
             AgregarFpago.Show();
             this.Close();
         }
-
-        private void btmSalir_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btnAgregar_Click(object sender, EventArgs e)
-        {
-            frmAgregarFormaPago agregarFpago = new frmAgregarFormaPago();
-            agregarFpago.Show();
-            this.Close();
-        }
-
-        private void btmModificar_Click(object sender, EventArgs e)
-        {
-            if (dgvFormasPago.SelectedRows.Count > 0)
-            {
-                int id = Convert.ToInt32(dgvFormasPago.CurrentRow.Cells["id_tipo_forma_pago"].Value);
-                string descripcion = dgvFormasPago.CurrentRow.Cells["descripcion_forma_pago"].Value.ToString();
-
-                using (frmModificarFormaPago frmModificar = new frmModificarFormaPago(id, descripcion))
-                {
-                    if (frmModificar.ShowDialog() == DialogResult.OK)
-                    {
-                        _ = CargarGridFormasPago();
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Por favor, seleccione una fila para editar.");
-            }
-        }
-
 
         private void dgvFormasPago_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -128,6 +91,39 @@ namespace SG_BAMS
             {
                 MessageBox.Show("Por favor, seleccione una fila para editar.");
             }
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            frmAgregarFormaPago agregarFpago = new frmAgregarFormaPago();
+            agregarFpago.Show();
+            this.Close();
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            if (dgvFormasPago.SelectedRows.Count > 0)
+            {
+                int id = Convert.ToInt32(dgvFormasPago.CurrentRow.Cells["id_tipo_forma_pago"].Value);
+                string descripcion = dgvFormasPago.CurrentRow.Cells["descripcion_forma_pago"].Value.ToString();
+
+                using (frmModificarFormaPago frmModificar = new frmModificarFormaPago(id, descripcion))
+                {
+                    if (frmModificar.ShowDialog() == DialogResult.OK)
+                    {
+                        _ = CargarGridFormasPago();
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione una fila para editar.");
+            }
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

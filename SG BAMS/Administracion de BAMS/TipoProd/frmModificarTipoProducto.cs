@@ -29,15 +29,8 @@ namespace SG_BAMS
 
         }
 
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-
-            this.Close();
-        }
-
         private async void btnModificar_Click(object sender, EventArgs e)
         {
-
             string nombreLimpio = txtDescri.Text.Trim();
             if (string.IsNullOrWhiteSpace(txtDescri.Text))
             {
@@ -85,6 +78,10 @@ namespace SG_BAMS
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
-    }
-    }
 
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+    }
+}

@@ -10,7 +10,7 @@ namespace SG_BAMS.Bitacora
 {
     internal class ClsBitacora : ClsConexion
     {
-        public void cargarDatos(Krypton.Toolkit.KryptonDataGridView dgvBitacora)
+        public void cargarDatos(System.Windows.Forms.DataGridView dgvBitacora)
         {
             try
             {
@@ -35,7 +35,7 @@ namespace SG_BAMS.Bitacora
         public void BuscarBitacora(Krypton.Toolkit.KryptonTextBox txt,
             DateTime desde,
             DateTime hasta,
-            Krypton.Toolkit.KryptonDataGridView dgvBitacora)
+            System.Windows.Forms.DataGridView dgvBitacora)
         {
             try
             {

@@ -68,51 +68,10 @@ namespace SG_BAMS
 
             dgvEstados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvEstados.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
-            dgvEstados.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
-            dgvEstados.AllowUserToAddRows = false;
-
             dgvEstados.AllowUserToAddRows = false;
             dgvEstados.ReadOnly = true;
             dgvEstados.ClearSelection();
         }
-
-        private void btmModificar_Click(object sender, EventArgs e)
-        {
-            if (dgvEstados.SelectedRows.Count > 0)
-            {
-
-                int id = Convert.ToInt32(dgvEstados.CurrentRow.Cells["id_estado"].Value);
-                string descripcion = dgvEstados.CurrentRow.Cells["descripcion_estado"].Value.ToString();
-
-                frmModificarEstado frmMod = new frmModificarEstado(id, descripcion);
-
-                if (frmMod.ShowDialog() == DialogResult.OK)
-                {
-                    _ = CargarGridEstados();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Por favor, seleccione un estado de la lista para modificar.");
-            }
-        }
-
-        private void btmSalir_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btnAgregar_Click(object sender, EventArgs e)
-        {
-            frmAgregarEstado frm = new frmAgregarEstado();
-
-            if (frm.ShowDialog() == DialogResult.OK)
-            {
-                _ = CargarGridEstados();
-            }
-        }
-
 
         private void dgvEstados_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -133,6 +92,42 @@ namespace SG_BAMS
             {
                 MessageBox.Show("Por favor, seleccione un estado de la lista para modificar.");
             }
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            frmAgregarEstado frm = new frmAgregarEstado();
+
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                _ = CargarGridEstados();
+            }
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            if (dgvEstados.SelectedRows.Count > 0)
+            {
+
+                int id = Convert.ToInt32(dgvEstados.CurrentRow.Cells["id_estado"].Value);
+                string descripcion = dgvEstados.CurrentRow.Cells["descripcion_estado"].Value.ToString();
+
+                frmModificarEstado frmMod = new frmModificarEstado(id, descripcion);
+
+                if (frmMod.ShowDialog() == DialogResult.OK)
+                {
+                    _ = CargarGridEstados();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione un estado de la lista para modificar.");
+            }
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -34,11 +34,11 @@
             panel2 = new Panel();
             label9 = new Label();
             label2 = new Label();
-            label1 = new Label();
-            btmModificar = new Krypton.Toolkit.KryptonButton();
             txtDescri = new Krypton.Toolkit.KryptonTextBox();
             pictureBox4 = new PictureBox();
+            btmModificar = new Krypton.Toolkit.KryptonButton();
             btmSalir = new Krypton.Toolkit.KryptonButton();
+            label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
@@ -96,51 +96,15 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(66, 99);
+            label2.Location = new Point(66, 106);
             label2.Name = "label2";
             label2.Size = new Size(252, 31);
             label2.TabIndex = 124;
             label2.Text = "Ingrese el rol de usuario:";
             // 
-            // label1
-            // 
-            label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Arial Narrow", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.Navy;
-            label1.Location = new Point(191, 33);
-            label1.Name = "label1";
-            label1.Size = new Size(280, 39);
-            label1.TabIndex = 123;
-            label1.Text = "Modificar Rol Usuario";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // btmModificar
-            // 
-            btmModificar.Location = new Point(217, 216);
-            btmModificar.Name = "btmModificar";
-            btmModificar.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btmModificar.OverrideDefault.Back.Color2 = Color.White;
-            btmModificar.OverrideDefault.Border.Rounding = 40F;
-            btmModificar.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btmModificar.OverrideFocus.Back.Color2 = Color.White;
-            btmModificar.Size = new Size(118, 65);
-            btmModificar.StateCommon.Back.Color1 = Color.SkyBlue;
-            btmModificar.StateCommon.Back.Color2 = Color.White;
-            btmModificar.StateCommon.Border.Rounding = 40F;
-            btmModificar.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btmModificar.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btmModificar.StateNormal.Back.Color1 = Color.SkyBlue;
-            btmModificar.StateNormal.Back.Color2 = Color.White;
-            btmModificar.StateNormal.Border.Rounding = 40F;
-            btmModificar.StateTracking.Border.Rounding = 40F;
-            btmModificar.TabIndex = 142;
-            btmModificar.Values.DropDownArrowColor = Color.Empty;
-            btmModificar.Values.Text = "Modificar";
-            btmModificar.Click += btmModificar_Click;
-            // 
             // txtDescri
             // 
-            txtDescri.Location = new Point(320, 89);
+            txtDescri.Location = new Point(320, 95);
             txtDescri.Margin = new Padding(3, 4, 3, 4);
             txtDescri.MaxLength = 70;
             txtDescri.Multiline = true;
@@ -156,36 +120,70 @@
             // 
             pictureBox4.BackgroundImage = Properties.Resources.roles;
             pictureBox4.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox4.Location = new Point(462, 27);
+            pictureBox4.Location = new Point(489, 28);
             pictureBox4.Margin = new Padding(3, 4, 3, 4);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(75, 53);
             pictureBox4.TabIndex = 0;
             pictureBox4.TabStop = false;
             // 
+            // btmModificar
+            // 
+            btmModificar.Location = new Point(162, 216);
+            btmModificar.Name = "btmModificar";
+            btmModificar.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btmModificar.OverrideDefault.Back.Color2 = Color.White;
+            btmModificar.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btmModificar.OverrideFocus.Back.Color2 = Color.White;
+            btmModificar.Size = new Size(143, 65);
+            btmModificar.StateCommon.Back.Color1 = Color.SkyBlue;
+            btmModificar.StateCommon.Back.Color2 = Color.White;
+            btmModificar.StateCommon.Border.Rounding = 30F;
+            btmModificar.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btmModificar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btmModificar.StateNormal.Back.Color1 = Color.SkyBlue;
+            btmModificar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btmModificar.StatePressed.Back.Color1 = Color.Transparent;
+            btmModificar.StatePressed.Back.Color2 = Color.Transparent;
+            btmModificar.TabIndex = 178;
+            btmModificar.Values.DropDownArrowColor = Color.Empty;
+            btmModificar.Values.Text = "Modificar";
+            btmModificar.Click += btmModificar_Click;
+            // 
             // btmSalir
             // 
-            btmSalir.Location = new Point(374, 216);
+            btmSalir.Location = new Point(361, 217);
             btmSalir.Name = "btmSalir";
             btmSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btmSalir.OverrideDefault.Back.Color2 = Color.White;
-            btmSalir.OverrideDefault.Border.Rounding = 40F;
             btmSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btmSalir.OverrideFocus.Back.Color2 = Color.White;
-            btmSalir.Size = new Size(118, 65);
+            btmSalir.Size = new Size(143, 65);
             btmSalir.StateCommon.Back.Color1 = Color.SkyBlue;
             btmSalir.StateCommon.Back.Color2 = Color.White;
-            btmSalir.StateCommon.Border.Rounding = 40F;
+            btmSalir.StateCommon.Border.Rounding = 30F;
             btmSalir.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btmSalir.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btmSalir.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btmSalir.StateNormal.Back.Color1 = Color.SkyBlue;
-            btmSalir.StateNormal.Back.Color2 = Color.White;
-            btmSalir.StateNormal.Border.Rounding = 40F;
-            btmSalir.StateTracking.Border.Rounding = 40F;
-            btmSalir.TabIndex = 144;
+            btmSalir.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btmSalir.StatePressed.Back.Color1 = Color.Transparent;
+            btmSalir.StatePressed.Back.Color2 = Color.Transparent;
+            btmSalir.TabIndex = 179;
             btmSalir.Values.DropDownArrowColor = Color.Empty;
             btmSalir.Values.Text = "Salir";
             btmSalir.Click += btmSalir_Click;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Arial Narrow", 22.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.Navy;
+            label3.Location = new Point(150, 38);
+            label3.Name = "label3";
+            label3.Size = new Size(333, 43);
+            label3.TabIndex = 342;
+            label3.Text = "Modificar Rol Usuario";
             // 
             // frmModificarRol
             // 
@@ -193,17 +191,17 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(683, 375);
+            Controls.Add(label3);
             Controls.Add(btmSalir);
+            Controls.Add(btmModificar);
             Controls.Add(pictureBox4);
             Controls.Add(txtDescri);
-            Controls.Add(btmModificar);
             Controls.Add(panel1);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
             Controls.Add(panel2);
             Controls.Add(label9);
             Controls.Add(label2);
-            Controls.Add(label1);
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmModificarRol";
             StartPosition = FormStartPosition.CenterScreen;
@@ -223,10 +221,10 @@
         private Panel panel2;
         private Label label9;
         private Label label2;
-        private Label label1;
-        private Krypton.Toolkit.KryptonButton btmModificar;
         private Krypton.Toolkit.KryptonTextBox txtDescri;
         private PictureBox pictureBox4;
+        private Krypton.Toolkit.KryptonButton btmModificar;
         private Krypton.Toolkit.KryptonButton btmSalir;
+        private Label label3;
     }
 }

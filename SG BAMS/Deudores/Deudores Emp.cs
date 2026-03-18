@@ -103,7 +103,6 @@ namespace SG_BAMS
             }
             catch (ArgumentException ex)
             {
-                // Este mensaje te dirá exactamente cómo se llaman tus columnas si fallas de nuevo
                 MessageBox.Show("Error: No se encuentra la columna. Verifica si el nombre es 'ID Deuda'. \nDetalle: " + ex.Message);
             }
             catch (Exception ex)
@@ -118,7 +117,6 @@ namespace SG_BAMS
         }
 
         // Eventos vacíos para evitar errores de referencia si existen en el designer
-        private void kryptonDataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
         private void timer1_Tick(object sender, EventArgs e) { }
         private void dgvDeudores_DoubleClick(object sender, EventArgs e) { }
 
@@ -129,16 +127,7 @@ namespace SG_BAMS
             {
                 // "Handled = true" cancela el evento (no escribe el carácter en el cuadro)
                 e.Handled = true;
-
-                // Opcional: Avisar al usuario por qué no se escribió el número
-                // MessageBox.Show("Solo se permiten letras para el nombre del deudor.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-        }
-        // --- NAVEGACIÓN DEL MENÚ (Respetando tus nombres exactos) ---
-        private void btnAjustes_Click(object sender, EventArgs e)
-        {
-            Ajustes aju = new Ajustes();
-            aju.Show();
         }
 
         private void btnNoti(object sender, EventArgs e)
@@ -151,28 +140,28 @@ namespace SG_BAMS
         {
             MenuPrincipalEmp Menad = new MenuPrincipalEmp();
             Menad.Show();
-            this.Close();
+            this.Hide();
         }
 
         private void btnFacturasEmp_Click(object sender, EventArgs e)
         {
             FacturasEmp factad = new FacturasEmp();
             factad.Show();
-            this.Close();
+            this.Hide();
         }
 
         private void btnClientesEmp_Click(object sender, EventArgs e)
         {
             ClientesEmp clientesEmp = new ClientesEmp();
             clientesEmp.Show();
-            this.Close();
+            this.Hide();
         }
 
         private void btnInventarioEmp_Click(object sender, EventArgs e)
         {
             InventarioEmp inventarioEmp = new InventarioEmp();
             inventarioEmp.Show();
-            this.Close();
+            this.Hide();
         }
 
         private void btnPerfil_Click(object sender, EventArgs e)
@@ -184,11 +173,8 @@ namespace SG_BAMS
         {
             SG_BAMS.Login.Login log = new SG_BAMS.Login.Login();
             log.Show();
-            this.Close();
+            this.Hide();
         }
-        private void btnDeudores_Click(object sender, EventArgs e)
-        {
-            this.Refresh();
-        }
+
     }
 }

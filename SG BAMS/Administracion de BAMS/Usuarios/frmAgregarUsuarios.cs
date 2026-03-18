@@ -55,9 +55,39 @@ namespace SG_BAMS
 
         }
 
-        private async void btmAgregar_Click(object sender, EventArgs e)
+
+        private List<string> listaOriginalRoles = new List<string>();
+
+
+
+        private void cmbRol_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbRol.SelectedIndex != -1)
+            {
+                string rolSeleccionado = cmbRol.Text;
+
+                if (rolSeleccionado == "Administrador" || rolSeleccionado == "Empleado")
+                {
+                    btnImagen.Enabled = true;
+                }
+                else
+                {
+                    btnImagen.Enabled = false;
+                }
+            }
+            else
+            {
+                btnImagen.Enabled = false;
+            }
+        }
+
+        private void txtNombre_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private async void btmModificar_Click(object sender, EventArgs e)
+        {
             string nombreLimpio = txtNombre.Text.Trim();
             string contraLimpia = txtContra.Text.Trim();
 
@@ -111,73 +141,42 @@ namespace SG_BAMS
             }
 
             try
+            {
+                clsUsuario objetoUsuario = new clsUsuario();
+
+                int idRol = (int)cmbRol.SelectedValue;
+                int idEstado = 1;
+                byte[] imagenByte = null;
+
+                bool exito = await objetoUsuario.InsertarUsuarioAsync(
+                    txtNombre.Text,
+                    txtContra.Text,
+                    idRol,
+                    imagenByte
+                );
+
+                if (exito)
                 {
-                    clsUsuario objetoUsuario = new clsUsuario();
+                    MessageBox.Show("Usuario guardado exitosamente.");
 
-                    int idRol = (int)cmbRol.SelectedValue;
-                    int idEstado = 1;
-                    byte[] imagenByte = null;
-
-                    bool exito = await objetoUsuario.InsertarUsuarioAsync(
-                        txtNombre.Text,
-                        txtContra.Text,
-                        idRol,
-                        imagenByte
-                    );
-
-                    if (exito)
-                    {
-                        MessageBox.Show("Usuario guardado exitosamente.");
-
-                        this.Close();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Ocurrió un error: " + ex.Message);
+                    this.Close();
                 }
             }
-        
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error: " + ex.Message);
+            }
+        }
+
+        private void kryptonButton1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
         private void btnImagen_Click(object sender, EventArgs e)
         {
             frmImagenEmpleado agregarImagen = new frmImagenEmpleado(txtNombre.Text);
             agregarImagen.Show();
-        }
-
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private List<string> listaOriginalRoles = new List<string>();
-
-        
-
-        private void cmbRol_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbRol.SelectedIndex != -1)
-            {
-                string rolSeleccionado = cmbRol.Text;
-
-                if (rolSeleccionado == "Administrador" || rolSeleccionado == "Empleado")
-                {
-                    btnImagen.Enabled = true;
-                }
-                else
-                {
-                    btnImagen.Enabled = false;
-                }
-            }
-            else
-            {
-                btnImagen.Enabled = false;
-            }
-        }
-
-        private void txtNombre_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

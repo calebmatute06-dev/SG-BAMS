@@ -31,5 +31,10 @@ namespace SG_BAMS
         {
             ((HandledMouseEventArgs)e).Handled = true;
         }
+
+        private void kryptonButton3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

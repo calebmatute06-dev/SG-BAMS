@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
-    public partial class frmAdministracion : Form
+    public partial class AdministracionBAMS : Form
     {
-        public frmAdministracion()
+        public AdministracionBAMS()
         {
             InitializeComponent();
         }
@@ -41,53 +41,6 @@ namespace SG_BAMS
             log.Show();
         }
 
-        private void kryptonButton3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void kryptonButton5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void kryptonButton6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-        private void btnVerUsuarios_Click(object sender, EventArgs e)
-        {
-            frmUsuarios verUsuario = new frmUsuarios();
-            verUsuario.Show();
-        }
-
-        private void btnRoles_Click(object sender, EventArgs e)
-        {
-            frmRoles verRoles = new frmRoles();
-            verRoles.Show();
-        }
-
-        private void btnTproducto_Click(object sender, EventArgs e)
-        {
-            frmTipoProducto verTproducto = new frmTipoProducto();
-            verTproducto.Show();
-        }
-
-        private void btnFPago_Click(object sender, EventArgs e)
-        {
-            frmFormaPago verFormaPago = new frmFormaPago();
-            verFormaPago.Show();
-        }
-
-        private void btnEstado_Click(object sender, EventArgs e)
-        {
-            frmEstado verEstado = new frmEstado();
-            verEstado.Show();
-        }
 
         private void btnMproducto_Click(object sender, EventArgs e)
         {
@@ -95,11 +48,6 @@ namespace SG_BAMS
             verMproducto.Show();
         }
 
-        private void btnMauto_Click(object sender, EventArgs e)
-        {
-            frmModeloAuto verMauto = new frmModeloAuto();
-            verMauto.Show();
-        }
 
         private void btnMenuP_Click(object sender, EventArgs e)
         {
@@ -175,6 +123,53 @@ namespace SG_BAMS
         {
             Perfil perfil = new Perfil();
             perfil.Show();
+        }
+
+        private void AdministracionBAMS_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnVerUsuarios_Click(object sender, EventArgs e)
+        {
+            frmUsuarios usuarios = new frmUsuarios();
+            usuarios.Show();
+        }
+
+        private void btnRoles_Click(object sender, EventArgs e)
+        {
+            frmRoles verRoles = new frmRoles();
+            verRoles.Show();
+        }
+
+        private void btnTproducto_Click_1(object sender, EventArgs e)
+        {
+            frmTipoProducto verTproducto = new frmTipoProducto();
+            verTproducto.Show();
+        }
+
+        private void kryptonButton1_Click(object sender, EventArgs e)
+        {
+            frmFormaPago verFormaPago = new frmFormaPago();
+            verFormaPago.Show();
+        }
+
+        private void btnEstado_Click(object sender, EventArgs e)
+        {
+            frmEstado verEstado = new frmEstado();
+            verEstado.Show();
+        }
+
+        private void btnMproducto_Click_1(object sender, EventArgs e)
+        {
+            frmMarcaProductos verMproducto = new frmMarcaProductos();
+            verMproducto.Show();
+        }
+
+        private void btnMauto_Click(object sender, EventArgs e)
+        {
+            frmModeloAuto verMauto = new frmModeloAuto();
+            verMauto.Show();
         }
     }
 }

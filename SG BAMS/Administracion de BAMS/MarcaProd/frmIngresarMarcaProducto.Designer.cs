@@ -36,11 +36,11 @@ namespace SG_BAMS
             panel2 = new Panel();
             label9 = new Label();
             label2 = new Label();
-            label1 = new Label();
-            btmAgregar = new Krypton.Toolkit.KryptonButton();
             pictureBox16 = new PictureBox();
             txtDescri = new Krypton.Toolkit.KryptonTextBox();
-            btmSalir = new Krypton.Toolkit.KryptonButton();
+            label3 = new Label();
+            btnAgregar = new Krypton.Toolkit.KryptonButton();
+            btnSalir = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
@@ -98,55 +98,19 @@ namespace SG_BAMS
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(39, 100);
+            label2.Location = new Point(39, 119);
             label2.Name = "label2";
             label2.Size = new Size(301, 31);
             label2.TabIndex = 91;
             label2.Text = "Ingrese la marca de producto:";
             label2.Click += label2_Click;
             // 
-            // label1
-            // 
-            label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Arial Narrow", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.Navy;
-            label1.Location = new Point(136, 29);
-            label1.Name = "label1";
-            label1.Size = new Size(361, 39);
-            label1.TabIndex = 90;
-            label1.Text = "Ingresar la marca de productos";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // btmAgregar
-            // 
-            btmAgregar.Location = new Point(202, 217);
-            btmAgregar.Name = "btmAgregar";
-            btmAgregar.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btmAgregar.OverrideDefault.Back.Color2 = Color.White;
-            btmAgregar.OverrideDefault.Border.Rounding = 40F;
-            btmAgregar.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btmAgregar.OverrideFocus.Back.Color2 = Color.White;
-            btmAgregar.Size = new Size(118, 65);
-            btmAgregar.StateCommon.Back.Color1 = Color.SkyBlue;
-            btmAgregar.StateCommon.Back.Color2 = Color.White;
-            btmAgregar.StateCommon.Border.Rounding = 40F;
-            btmAgregar.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btmAgregar.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btmAgregar.StateNormal.Back.Color1 = Color.SkyBlue;
-            btmAgregar.StateNormal.Back.Color2 = Color.White;
-            btmAgregar.StateNormal.Border.Rounding = 40F;
-            btmAgregar.StateTracking.Border.Rounding = 40F;
-            btmAgregar.TabIndex = 135;
-            btmAgregar.Values.DropDownArrowColor = Color.Empty;
-            btmAgregar.Values.Text = "Agregar";
-            btmAgregar.Click += btmAgregar_Click;
-            // 
             // pictureBox16
             // 
             pictureBox16.BackgroundImage = (Image)resources.GetObject("pictureBox16.BackgroundImage");
             pictureBox16.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox16.Image = (Image)resources.GetObject("pictureBox16.Image");
-            pictureBox16.Location = new Point(489, 27);
+            pictureBox16.Location = new Point(574, 34);
             pictureBox16.Name = "pictureBox16";
             pictureBox16.Size = new Size(49, 48);
             pictureBox16.TabIndex = 137;
@@ -154,7 +118,7 @@ namespace SG_BAMS
             // 
             // txtDescri
             // 
-            txtDescri.Location = new Point(335, 95);
+            txtDescri.Location = new Point(335, 114);
             txtDescri.Margin = new Padding(3, 4, 3, 4);
             txtDescri.MaxLength = 70;
             txtDescri.Multiline = true;
@@ -166,29 +130,63 @@ namespace SG_BAMS
             txtDescri.StateCommon.Content.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtDescri.TabIndex = 138;
             // 
-            // btmSalir
+            // label3
             // 
-            btmSalir.Location = new Point(369, 217);
-            btmSalir.Name = "btmSalir";
-            btmSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btmSalir.OverrideDefault.Back.Color2 = Color.White;
-            btmSalir.OverrideDefault.Border.Rounding = 40F;
-            btmSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btmSalir.OverrideFocus.Back.Color2 = Color.White;
-            btmSalir.Size = new Size(118, 65);
-            btmSalir.StateCommon.Back.Color1 = Color.SkyBlue;
-            btmSalir.StateCommon.Back.Color2 = Color.White;
-            btmSalir.StateCommon.Border.Rounding = 40F;
-            btmSalir.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btmSalir.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btmSalir.StateNormal.Back.Color1 = Color.SkyBlue;
-            btmSalir.StateNormal.Back.Color2 = Color.White;
-            btmSalir.StateNormal.Border.Rounding = 40F;
-            btmSalir.StateTracking.Border.Rounding = 40F;
-            btmSalir.TabIndex = 139;
-            btmSalir.Values.DropDownArrowColor = Color.Empty;
-            btmSalir.Values.Text = "Salir";
-            btmSalir.Click += btmSalir_Click;
+            label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Arial Narrow", 21F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.Navy;
+            label3.Location = new Point(116, 36);
+            label3.Name = "label3";
+            label3.Size = new Size(450, 42);
+            label3.TabIndex = 342;
+            label3.Text = "Ingresar la marca de productos";
+            // 
+            // btnAgregar
+            // 
+            btnAgregar.Location = new Point(169, 217);
+            btnAgregar.Name = "btnAgregar";
+            btnAgregar.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnAgregar.OverrideDefault.Back.Color2 = Color.White;
+            btnAgregar.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnAgregar.OverrideFocus.Back.Color2 = Color.White;
+            btnAgregar.Size = new Size(143, 65);
+            btnAgregar.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnAgregar.StateCommon.Back.Color2 = Color.White;
+            btnAgregar.StateCommon.Border.Rounding = 30F;
+            btnAgregar.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnAgregar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAgregar.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnAgregar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnAgregar.StatePressed.Back.Color1 = Color.Transparent;
+            btnAgregar.StatePressed.Back.Color2 = Color.Transparent;
+            btnAgregar.TabIndex = 343;
+            btnAgregar.Values.DropDownArrowColor = Color.Empty;
+            btnAgregar.Values.Text = "Agregar";
+            btnAgregar.Click += btnAgregar_Click;
+            // 
+            // btnSalir
+            // 
+            btnSalir.Location = new Point(365, 217);
+            btnSalir.Name = "btnSalir";
+            btnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnSalir.OverrideDefault.Back.Color2 = Color.White;
+            btnSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnSalir.OverrideFocus.Back.Color2 = Color.White;
+            btnSalir.Size = new Size(143, 65);
+            btnSalir.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnSalir.StateCommon.Back.Color2 = Color.White;
+            btnSalir.StateCommon.Border.Rounding = 30F;
+            btnSalir.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnSalir.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSalir.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnSalir.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnSalir.StatePressed.Back.Color1 = Color.Transparent;
+            btnSalir.StatePressed.Back.Color2 = Color.Transparent;
+            btnSalir.TabIndex = 345;
+            btnSalir.Values.DropDownArrowColor = Color.Empty;
+            btnSalir.Values.Text = "Salir";
+            btnSalir.Click += btnSalir_Click;
             // 
             // frmIngresarMarcaProducto
             // 
@@ -196,17 +194,17 @@ namespace SG_BAMS
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(683, 375);
-            Controls.Add(btmSalir);
+            Controls.Add(btnSalir);
+            Controls.Add(btnAgregar);
+            Controls.Add(label3);
             Controls.Add(txtDescri);
             Controls.Add(pictureBox16);
-            Controls.Add(btmAgregar);
             Controls.Add(panel1);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
             Controls.Add(panel2);
             Controls.Add(label9);
             Controls.Add(label2);
-            Controls.Add(label1);
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmIngresarMarcaProducto";
             StartPosition = FormStartPosition.CenterScreen;
@@ -231,11 +229,11 @@ namespace SG_BAMS
         private Panel panel2;
         private Label label9;
         private Label label2;
-        private Label label1;
         private Krypton.Toolkit.KryptonButton kryptonButton1;
-        private Krypton.Toolkit.KryptonButton btmAgregar;
         private PictureBox pictureBox16;
         private Krypton.Toolkit.KryptonTextBox txtDescri;
-        private Krypton.Toolkit.KryptonButton btmSalir;
+        private Label label3;
+        private Krypton.Toolkit.KryptonButton btnAgregar;
+        private Krypton.Toolkit.KryptonButton btnSalir;
     }
 }

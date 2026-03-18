@@ -36,9 +36,9 @@
             label9 = new Label();
             label2 = new Label();
             label1 = new Label();
-            btnModificar = new Krypton.Toolkit.KryptonButton();
             txtDescri = new Krypton.Toolkit.KryptonTextBox();
             pictureBox4 = new PictureBox();
+            btnModificar = new Krypton.Toolkit.KryptonButton();
             btnSalir = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -108,36 +108,12 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial Narrow", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(175, 29);
+            label1.Location = new Point(140, 38);
             label1.Name = "label1";
             label1.Size = new Size(358, 39);
             label1.TabIndex = 142;
             label1.Text = "Modificar Tipo de Producto";
             label1.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // btnModificar
-            // 
-            btnModificar.Location = new Point(193, 217);
-            btnModificar.Name = "btnModificar";
-            btnModificar.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnModificar.OverrideDefault.Back.Color2 = Color.White;
-            btnModificar.OverrideDefault.Border.Rounding = 40F;
-            btnModificar.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnModificar.OverrideFocus.Back.Color2 = Color.White;
-            btnModificar.Size = new Size(118, 65);
-            btnModificar.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnModificar.StateCommon.Back.Color2 = Color.White;
-            btnModificar.StateCommon.Border.Rounding = 40F;
-            btnModificar.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnModificar.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnModificar.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnModificar.StateNormal.Back.Color2 = Color.White;
-            btnModificar.StateNormal.Border.Rounding = 40F;
-            btnModificar.StateTracking.Border.Rounding = 40F;
-            btnModificar.TabIndex = 154;
-            btnModificar.Values.DropDownArrowColor = Color.Empty;
-            btnModificar.Values.Text = "Modificar";
-            btnModificar.Click += btnModificar_Click;
             // 
             // txtDescri
             // 
@@ -163,26 +139,48 @@
             pictureBox4.TabIndex = 156;
             pictureBox4.TabStop = false;
             // 
+            // btnModificar
+            // 
+            btnModificar.Location = new Point(157, 208);
+            btnModificar.Name = "btnModificar";
+            btnModificar.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnModificar.OverrideDefault.Back.Color2 = Color.White;
+            btnModificar.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnModificar.OverrideFocus.Back.Color2 = Color.White;
+            btnModificar.Size = new Size(142, 64);
+            btnModificar.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnModificar.StateCommon.Back.Color2 = Color.White;
+            btnModificar.StateCommon.Border.Rounding = 30F;
+            btnModificar.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnModificar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnModificar.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnModificar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnModificar.StatePressed.Back.Color1 = Color.Transparent;
+            btnModificar.StatePressed.Back.Color2 = Color.Transparent;
+            btnModificar.TabIndex = 181;
+            btnModificar.Values.DropDownArrowColor = Color.Empty;
+            btnModificar.Values.Text = "Modificar";
+            btnModificar.Click += btnModificar_Click;
+            // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(362, 217);
+            btnSalir.Location = new Point(373, 208);
             btnSalir.Name = "btnSalir";
             btnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnSalir.OverrideDefault.Back.Color2 = Color.White;
-            btnSalir.OverrideDefault.Border.Rounding = 40F;
             btnSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnSalir.OverrideFocus.Back.Color2 = Color.White;
-            btnSalir.Size = new Size(118, 65);
+            btnSalir.Size = new Size(142, 64);
             btnSalir.StateCommon.Back.Color1 = Color.SkyBlue;
             btnSalir.StateCommon.Back.Color2 = Color.White;
-            btnSalir.StateCommon.Border.Rounding = 40F;
+            btnSalir.StateCommon.Border.Rounding = 30F;
             btnSalir.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnSalir.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnSalir.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSalir.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnSalir.StateNormal.Back.Color2 = Color.White;
-            btnSalir.StateNormal.Border.Rounding = 40F;
-            btnSalir.StateTracking.Border.Rounding = 40F;
-            btnSalir.TabIndex = 157;
+            btnSalir.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnSalir.StatePressed.Back.Color1 = Color.Transparent;
+            btnSalir.StatePressed.Back.Color2 = Color.Transparent;
+            btnSalir.TabIndex = 183;
             btnSalir.Values.DropDownArrowColor = Color.Empty;
             btnSalir.Values.Text = "Salir";
             btnSalir.Click += btnSalir_Click;
@@ -194,9 +192,9 @@
             BackColor = Color.White;
             ClientSize = new Size(681, 375);
             Controls.Add(btnSalir);
+            Controls.Add(btnModificar);
             Controls.Add(pictureBox4);
             Controls.Add(txtDescri);
-            Controls.Add(btnModificar);
             Controls.Add(panel1);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
@@ -225,9 +223,9 @@
         private Label label9;
         private Label label2;
         private Label label1;
-        private Krypton.Toolkit.KryptonButton btnModificar;
         private Krypton.Toolkit.KryptonTextBox txtDescri;
         private PictureBox pictureBox4;
+        private Krypton.Toolkit.KryptonButton btnModificar;
         private Krypton.Toolkit.KryptonButton btnSalir;
     }
 }

@@ -60,11 +60,6 @@ namespace SG_BAMS
 
             dgvRoles.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvRoles.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvRoles.EnableHeadersVisualStyles = false;
-
-            dgvRoles.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
-            dgvRoles.AllowUserToAddRows = false;
-
             dgvRoles.ReadOnly = true;
             dgvRoles.ClearSelection();
         }
@@ -75,6 +70,19 @@ namespace SG_BAMS
 
         }
 
+
+        private void dgvRoles_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int id = Convert.ToInt32(dgvRoles.CurrentRow.Cells["id_rol_usuario"].Value);
+            string nombre = dgvRoles.CurrentRow.Cells["descripcion_rol"].Value.ToString();
+
+            frmModificarRol frmMod = new frmModificarRol(id, nombre);
+
+            if (frmMod.ShowDialog() == DialogResult.OK)
+            {
+                _ = CargarGridRoles();
+            }
+        }
 
         private void btmAgregar_Click(object sender, EventArgs e)
         {
@@ -107,23 +115,9 @@ namespace SG_BAMS
             }
         }
 
-        private void btmSalir_Click(object sender, EventArgs e)
+        private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-
-        private void dgvRoles_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            int id = Convert.ToInt32(dgvRoles.CurrentRow.Cells["id_rol_usuario"].Value);
-            string nombre = dgvRoles.CurrentRow.Cells["descripcion_rol"].Value.ToString();
-
-            frmModificarRol frmMod = new frmModificarRol(id, nombre);
-
-            if (frmMod.ShowDialog() == DialogResult.OK)
-            {
-                _ = CargarGridRoles();
-            }
         }
     }
 }

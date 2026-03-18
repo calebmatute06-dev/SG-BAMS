@@ -30,17 +30,21 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTipoProducto));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             pictureBox16 = new PictureBox();
             label7 = new Label();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
             pictureBox2 = new PictureBox();
             panel2 = new Panel();
-            dgvTipoProducto = new Krypton.Toolkit.KryptonDataGridView();
             label1 = new Label();
+            dgvTipoProducto = new DataGridView();
             btmAgregar = new Krypton.Toolkit.KryptonButton();
-            btmModificar = new Krypton.Toolkit.KryptonButton();
-            btmSalir = new Krypton.Toolkit.KryptonButton();
+            kryptonButton2 = new Krypton.Toolkit.KryptonButton();
+            btnModificar = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -102,31 +106,6 @@
             panel2.Size = new Size(683, 24);
             panel2.TabIndex = 117;
             // 
-            // dgvTipoProducto
-            // 
-            dgvTipoProducto.AllowUserToAddRows = false;
-            dgvTipoProducto.AllowUserToDeleteRows = false;
-            dgvTipoProducto.BorderStyle = BorderStyle.None;
-            dgvTipoProducto.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvTipoProducto.Location = new Point(79, 104);
-            dgvTipoProducto.Margin = new Padding(3, 4, 3, 4);
-            dgvTipoProducto.Name = "dgvTipoProducto";
-            dgvTipoProducto.ReadOnly = true;
-            dgvTipoProducto.RowHeadersWidth = 51;
-            dataGridViewCellStyle1.BackColor = Color.White;
-            dataGridViewCellStyle1.Font = new Font("Arial Narrow", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = Color.Navy;
-            dataGridViewCellStyle1.SelectionBackColor = Color.SkyBlue;
-            dataGridViewCellStyle1.SelectionForeColor = Color.White;
-            dgvTipoProducto.RowsDefaultCellStyle = dataGridViewCellStyle1;
-            dgvTipoProducto.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvTipoProducto.Size = new Size(512, 244);
-            dgvTipoProducto.StateCommon.Background.Color1 = Color.SkyBlue;
-            dgvTipoProducto.StateCommon.Background.Color2 = Color.SkyBlue;
-            dgvTipoProducto.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
-            dgvTipoProducto.TabIndex = 116;
-            dgvTipoProducto.CellContentDoubleClick += dgvTipoProducto_CellContentDoubleClick;
-            // 
             // label1
             // 
             label1.BackColor = Color.Transparent;
@@ -139,77 +118,115 @@
             label1.Text = "Tipo de Producto";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // dgvTipoProducto
+            // 
+            dataGridViewCellStyle1.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Navy;
+            dgvTipoProducto.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvTipoProducto.BackgroundColor = Color.SkyBlue;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.Navy;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvTipoProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dgvTipoProducto.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.SkyBlue;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvTipoProducto.DefaultCellStyle = dataGridViewCellStyle3;
+            dgvTipoProducto.Location = new Point(79, 103);
+            dgvTipoProducto.Name = "dgvTipoProducto";
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = Color.Navy;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvTipoProducto.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dgvTipoProducto.RowHeadersWidth = 51;
+            dataGridViewCellStyle5.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = Color.Navy;
+            dgvTipoProducto.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dgvTipoProducto.Size = new Size(512, 258);
+            dgvTipoProducto.TabIndex = 176;
+            dgvTipoProducto.CellContentDoubleClick += dgvTipoProducto_CellContentDoubleClick;
+            // 
             // btmAgregar
             // 
-            btmAgregar.Location = new Point(190, 368);
+            btmAgregar.Location = new Point(98, 379);
             btmAgregar.Name = "btmAgregar";
             btmAgregar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btmAgregar.OverrideDefault.Back.Color2 = Color.White;
-            btmAgregar.OverrideDefault.Border.Rounding = 40F;
             btmAgregar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btmAgregar.OverrideFocus.Back.Color2 = Color.White;
-            btmAgregar.Size = new Size(118, 65);
+            btmAgregar.Size = new Size(128, 64);
             btmAgregar.StateCommon.Back.Color1 = Color.SkyBlue;
             btmAgregar.StateCommon.Back.Color2 = Color.White;
-            btmAgregar.StateCommon.Border.Rounding = 40F;
+            btmAgregar.StateCommon.Border.Rounding = 30F;
             btmAgregar.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btmAgregar.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btmAgregar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btmAgregar.StateNormal.Back.Color1 = Color.SkyBlue;
-            btmAgregar.StateNormal.Back.Color2 = Color.White;
-            btmAgregar.StateNormal.Border.Rounding = 40F;
-            btmAgregar.StateTracking.Border.Rounding = 40F;
-            btmAgregar.TabIndex = 149;
+            btmAgregar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btmAgregar.StatePressed.Back.Color1 = Color.Transparent;
+            btmAgregar.StatePressed.Back.Color2 = Color.Transparent;
+            btmAgregar.TabIndex = 177;
             btmAgregar.Values.DropDownArrowColor = Color.Empty;
             btmAgregar.Values.Text = "Agregar";
             btmAgregar.Click += btmAgregar_Click;
             // 
-            // btmModificar
+            // kryptonButton2
             // 
-            btmModificar.Location = new Point(347, 369);
-            btmModificar.Name = "btmModificar";
-            btmModificar.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btmModificar.OverrideDefault.Back.Color2 = Color.White;
-            btmModificar.OverrideDefault.Border.Rounding = 40F;
-            btmModificar.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btmModificar.OverrideFocus.Back.Color2 = Color.White;
-            btmModificar.Size = new Size(118, 65);
-            btmModificar.StateCommon.Back.Color1 = Color.SkyBlue;
-            btmModificar.StateCommon.Back.Color2 = Color.White;
-            btmModificar.StateCommon.Border.Rounding = 40F;
-            btmModificar.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btmModificar.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btmModificar.StateNormal.Back.Color1 = Color.SkyBlue;
-            btmModificar.StateNormal.Back.Color2 = Color.White;
-            btmModificar.StateNormal.Border.Rounding = 40F;
-            btmModificar.StateTracking.Border.Rounding = 40F;
-            btmModificar.TabIndex = 150;
-            btmModificar.Values.DropDownArrowColor = Color.Empty;
-            btmModificar.Values.Text = "Modificar";
-            btmModificar.Click += btmModificar_Click;
+            kryptonButton2.Location = new Point(450, 379);
+            kryptonButton2.Name = "kryptonButton2";
+            kryptonButton2.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            kryptonButton2.OverrideDefault.Back.Color2 = Color.White;
+            kryptonButton2.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            kryptonButton2.OverrideFocus.Back.Color2 = Color.White;
+            kryptonButton2.Size = new Size(125, 64);
+            kryptonButton2.StateCommon.Back.Color1 = Color.SkyBlue;
+            kryptonButton2.StateCommon.Back.Color2 = Color.White;
+            kryptonButton2.StateCommon.Border.Rounding = 30F;
+            kryptonButton2.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            kryptonButton2.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            kryptonButton2.StateNormal.Back.Color1 = Color.SkyBlue;
+            kryptonButton2.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            kryptonButton2.StatePressed.Back.Color1 = Color.Transparent;
+            kryptonButton2.StatePressed.Back.Color2 = Color.Transparent;
+            kryptonButton2.TabIndex = 179;
+            kryptonButton2.Values.DropDownArrowColor = Color.Empty;
+            kryptonButton2.Values.Text = "Salir";
+            kryptonButton2.Click += kryptonButton2_Click;
             // 
-            // btmSalir
+            // btnModificar
             // 
-            btmSalir.Location = new Point(465, 427);
-            btmSalir.Name = "btmSalir";
-            btmSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btmSalir.OverrideDefault.Back.Color2 = Color.White;
-            btmSalir.OverrideDefault.Border.Rounding = 40F;
-            btmSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btmSalir.OverrideFocus.Back.Color2 = Color.White;
-            btmSalir.Size = new Size(115, 52);
-            btmSalir.StateCommon.Back.Color1 = Color.SkyBlue;
-            btmSalir.StateCommon.Back.Color2 = Color.White;
-            btmSalir.StateCommon.Border.Rounding = 40F;
-            btmSalir.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btmSalir.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btmSalir.StateNormal.Back.Color1 = Color.SkyBlue;
-            btmSalir.StateNormal.Back.Color2 = Color.White;
-            btmSalir.StateNormal.Border.Rounding = 40F;
-            btmSalir.StateTracking.Border.Rounding = 40F;
-            btmSalir.TabIndex = 151;
-            btmSalir.Values.DropDownArrowColor = Color.Empty;
-            btmSalir.Values.Text = "Salir";
-            btmSalir.Click += btmSalir_Click;
+            btnModificar.Location = new Point(265, 379);
+            btnModificar.Name = "btnModificar";
+            btnModificar.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnModificar.OverrideDefault.Back.Color2 = Color.White;
+            btnModificar.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnModificar.OverrideFocus.Back.Color2 = Color.White;
+            btnModificar.Size = new Size(142, 64);
+            btnModificar.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnModificar.StateCommon.Back.Color2 = Color.White;
+            btnModificar.StateCommon.Border.Rounding = 30F;
+            btnModificar.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnModificar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnModificar.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnModificar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnModificar.StatePressed.Back.Color1 = Color.Transparent;
+            btnModificar.StatePressed.Back.Color2 = Color.Transparent;
+            btnModificar.TabIndex = 180;
+            btnModificar.Values.DropDownArrowColor = Color.Empty;
+            btnModificar.Values.Text = "Modificar";
+            btnModificar.Click += btnModificar_Click;
             // 
             // frmTipoProducto
             // 
@@ -217,16 +234,16 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(681, 511);
-            Controls.Add(btmSalir);
-            Controls.Add(btmModificar);
+            Controls.Add(btnModificar);
+            Controls.Add(kryptonButton2);
             Controls.Add(btmAgregar);
+            Controls.Add(dgvTipoProducto);
             Controls.Add(pictureBox16);
             Controls.Add(label7);
             Controls.Add(pictureBox1);
             Controls.Add(panel1);
             Controls.Add(pictureBox2);
             Controls.Add(panel2);
-            Controls.Add(dgvTipoProducto);
             Controls.Add(label1);
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmTipoProducto";
@@ -248,10 +265,11 @@
         private Panel panel1;
         private PictureBox pictureBox2;
         private Panel panel2;
-        private Krypton.Toolkit.KryptonDataGridView dgvTipoProducto;
+        private Krypton.Toolkit.KryptonDataGridView dgvTipoProducto1;
         private Label label1;
+        private DataGridView dgvTipoProducto;
         private Krypton.Toolkit.KryptonButton btmAgregar;
-        private Krypton.Toolkit.KryptonButton btmModificar;
-        private Krypton.Toolkit.KryptonButton btmSalir;
+        private Krypton.Toolkit.KryptonButton kryptonButton2;
+        private Krypton.Toolkit.KryptonButton btnModificar;
     }
 }

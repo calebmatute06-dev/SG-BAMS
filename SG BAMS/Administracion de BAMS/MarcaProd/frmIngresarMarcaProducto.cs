@@ -24,7 +24,7 @@ namespace SG_BAMS
 
         }
 
-        private async void btmAgregar_Click(object sender, EventArgs e)
+        private async void btnAgregar_Click(object sender, EventArgs e)
         {
             string nombreLimpio = txtDescri.Text.Trim();
             if (string.IsNullOrWhiteSpace(nombreLimpio))
@@ -63,7 +63,7 @@ namespace SG_BAMS
             try
             {
                 this.Cursor = Cursors.WaitCursor;
-                btmAgregar.Enabled = false;
+                btnAgregar.Enabled = false;
 
                 clsMarca objetoMarca = new clsMarca();
                 bool exito = await objetoMarca.InsertarMarcaAsync(nombreLimpio);
@@ -84,11 +84,11 @@ namespace SG_BAMS
             finally
             {
                 this.Cursor = Cursors.Default;
-                btmAgregar.Enabled = true;
+                btnAgregar.Enabled = true;
             }
         }
 
-        private void btmSalir_Click(object sender, EventArgs e)
+        private void btnSalir_Click(object sender, EventArgs e)
         {
             frmMarcaProductos verMproducto = new frmMarcaProductos();
             verMproducto.Show();

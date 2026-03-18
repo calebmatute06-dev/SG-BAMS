@@ -134,47 +134,9 @@ namespace SG_BAMS.Reporte
             }
         }
 
-        private void btnExportaar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                QuestPDF.Settings.License = LicenseType.Community;
-                if (dgvReporte.Rows.Count == 0)
-                {
-                    MessageBox.Show("No hay datos.", "BAMS"); return;
-                }
-
-                string seleccion = cmbReporte.SelectedItem?.ToString() ?? "REPORTE";
-                string rutaTemp = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"Reporte_{seleccion}_{DateTime.Now:yyyyMMdd}.pdf");
-
-                var documento = new DocumentoDinamico(dgvReporte, $"REPORTE DE {seleccion}", dtpDesde.Value, dtpHasta.Value);
-                documento.GeneratePdf(rutaTemp);
-
-                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo { FileName = rutaTemp, UseShellExecute = true });
-            }
-            catch (Exception ex) { MessageBox.Show("Error: " + ex.Message); }
-        }
-
-        private void btnLimpiar_Click(object sender, EventArgs e)
-        {
-            dtpHasta.Value = DateTime.Now;
-            dtpDesde.Value = DateTime.Now.AddDays(-30);
-
-            Min.Value = 0;
-            Max.Value = 0;
-            ControlarFiltroStock(false);
-
-            CargarReporteVentas();
-        }
-
         private void btnExportarEx_Click(object sender, EventArgs e)
         {
-            if (dgvReporte.Rows.Count == 0) return;
 
-            string seleccion = cmbReporte.SelectedItem?.ToString() ?? "GENERAL";
-
-            ClsExportarExcel exportador = new ClsExportarExcel();
-            exportador.ExportarDataGridView(dgvReporte, seleccion, dtpDesde.Value, dtpHasta.Value);
         }
 
         private void btnMenuPrincipal_Click(object sender, EventArgs e)
@@ -231,40 +193,6 @@ namespace SG_BAMS.Reporte
             Bitacora.BitacoraAdmin bitacora = new Bitacora.BitacoraAdmin();
             bitacora.Show();
             this.Hide();
-        }
-
-        private void btnFiltro_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-                if (dgvReporte.DataSource != null && dgvReporte.DataSource is DataTable dt)
-                {
-                    int valorMin = (int)Min.Value;
-                    int valorMax = (int)Max.Value;
-
-                    if (valorMin > valorMax)
-                    {
-                        MessageBox.Show("El valor mínimo no puede ser mayor al máximo.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-
-                    dt.DefaultView.RowFilter = string.Format("Stock_Actual >= {0} AND Stock_Actual <= {1}", valorMin, valorMax);
-
-                    if (dgvReporte.Rows.Count == 0)
-                    {
-                        MessageBox.Show("No hay productos con ese rango de stock.", "Sin resultados", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Primero debe cargar el Inventario para aplicar un filtro de stock.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al filtrar: " + ex.Message);
-            }
         }
 
         private void cmbReporte_SelectedIndexChanged(object sender, EventArgs e)
@@ -370,6 +298,83 @@ namespace SG_BAMS.Reporte
             Login.Login login = new Login.Login();
             login.Show();
             this.Close();
+        }
+
+        private void btnExportaar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                QuestPDF.Settings.License = LicenseType.Community;
+                if (dgvReporte.Rows.Count == 0)
+                {
+                    MessageBox.Show("No hay datos.", "BAMS"); return;
+                }
+
+                string seleccion = cmbReporte.SelectedItem?.ToString() ?? "REPORTE";
+                string rutaTemp = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"Reporte_{seleccion}_{DateTime.Now:yyyyMMdd}.pdf");
+
+                var documento = new DocumentoDinamico(dgvReporte, $"REPORTE DE {seleccion}", dtpDesde.Value, dtpHasta.Value);
+                documento.GeneratePdf(rutaTemp);
+
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo { FileName = rutaTemp, UseShellExecute = true });
+            }
+            catch (Exception ex) { MessageBox.Show("Error: " + ex.Message); }
+        }
+
+        private void btnExportarEx_Click_1(object sender, EventArgs e)
+        {
+            if (dgvReporte.Rows.Count == 0) return;
+
+            string seleccion = cmbReporte.SelectedItem?.ToString() ?? "GENERAL";
+
+            ClsExportarExcel exportador = new ClsExportarExcel();
+            exportador.ExportarDataGridView(dgvReporte, seleccion, dtpDesde.Value, dtpHasta.Value);
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            dtpHasta.Value = DateTime.Now;
+            dtpDesde.Value = DateTime.Now.AddDays(-30);
+
+            Min.Value = 0;
+            Max.Value = 0;
+            ControlarFiltroStock(false);
+
+            CargarReporteVentas();
+        }
+
+        private void btnAplicar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                if (dgvReporte.DataSource != null && dgvReporte.DataSource is DataTable dt)
+                {
+                    int valorMin = (int)Min.Value;
+                    int valorMax = (int)Max.Value;
+
+                    if (valorMin > valorMax)
+                    {
+                        MessageBox.Show("El valor mínimo no puede ser mayor al máximo.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    dt.DefaultView.RowFilter = string.Format("Stock_Actual >= {0} AND Stock_Actual <= {1}", valorMin, valorMax);
+
+                    if (dgvReporte.Rows.Count == 0)
+                    {
+                        MessageBox.Show("No hay productos con ese rango de stock.", "Sin resultados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Primero debe cargar el Inventario para aplicar un filtro de stock.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al filtrar: " + ex.Message);
+            }
         }
     }
 }

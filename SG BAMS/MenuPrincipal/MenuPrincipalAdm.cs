@@ -334,7 +334,7 @@ namespace SG_BAMS
 
         private void btnAdministracion_Click(object sender, EventArgs e)
         {
-            frmAdministracion Admin = new frmAdministracion();
+            AdministracionBAMS Admin = new AdministracionBAMS();
             Admin.Show();
             this.Hide();
         }

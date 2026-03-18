@@ -22,6 +22,8 @@ namespace SG_BAMS
             txtDescri.Text = nombreActual;
         }
 
+
+
         private async void btmModificar_Click(object sender, EventArgs e)
         {
             string nombreLimpio = txtDescri.Text.Trim();
@@ -65,7 +67,7 @@ namespace SG_BAMS
                 if (exito)
                 {
                     MessageBox.Show("Rol actualizado con éxito.", "SG-BAMS");
-                    this.DialogResult = DialogResult.OK; 
+                    this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
             }
@@ -76,8 +78,6 @@ namespace SG_BAMS
         private void btmSalir_Click(object sender, EventArgs e)
         {
             this.Close();
-
-           
         }
     }
 }

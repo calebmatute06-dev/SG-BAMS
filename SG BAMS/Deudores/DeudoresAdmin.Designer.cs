@@ -29,9 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DeudoresAdmin));
+            DataGridViewCellStyle dataGridViewCellStyle21 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle22 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle23 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle24 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle25 = new DataGridViewCellStyle();
             label1 = new Label();
-            kryptonButton11 = new Krypton.Toolkit.KryptonButton();
-            pictureBox18 = new PictureBox();
             button12 = new Button();
             panel6 = new Panel();
             panel8 = new Panel();
@@ -74,17 +77,15 @@
             pictureBox8 = new PictureBox();
             pictureBox1 = new PictureBox();
             kryptonGroup1 = new Krypton.Toolkit.KryptonGroup();
-            dgvDeudores = new Krypton.Toolkit.KryptonDataGridView();
             pictureBox19 = new PictureBox();
             txtBuscarNombre = new TextBox();
             kryptonGroup5 = new Krypton.Toolkit.KryptonGroup();
             kryptonButton15 = new Krypton.Toolkit.KryptonButton();
-            pictureBox17 = new PictureBox();
-            label3 = new Label();
-            kryptonGroup2 = new Krypton.Toolkit.KryptonGroup();
-            label4 = new Label();
             label5 = new Label();
-            ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
+            dgvDeudores = new DataGridView();
+            label3 = new Label();
+            kryptonGroup3 = new Krypton.Toolkit.KryptonGroup();
+            label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -104,13 +105,12 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dgvDeudores).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox19).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5.Panel).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox17).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup2.Panel).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvDeudores).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroup3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroup3.Panel).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -121,42 +121,6 @@
             label1.Size = new Size(0, 20);
             label1.TabIndex = 60;
             // 
-            // kryptonButton11
-            // 
-            kryptonButton11.Location = new Point(1498, 31);
-            kryptonButton11.Name = "kryptonButton11";
-            kryptonButton11.OverrideDefault.Back.Color1 = Color.Transparent;
-            kryptonButton11.OverrideDefault.Back.Color2 = Color.Transparent;
-            kryptonButton11.OverrideDefault.Border.Rounding = 40F;
-            kryptonButton11.OverrideFocus.Back.Color1 = Color.White;
-            kryptonButton11.OverrideFocus.Back.Color2 = Color.SkyBlue;
-            kryptonButton11.Size = new Size(109, 41);
-            kryptonButton11.StateCommon.Back.Color1 = Color.White;
-            kryptonButton11.StateCommon.Back.Color2 = Color.SkyBlue;
-            kryptonButton11.StateCommon.Border.Rounding = 40F;
-            kryptonButton11.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton11.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton11.StateNormal.Back.Color1 = Color.Transparent;
-            kryptonButton11.StateNormal.Back.Color2 = Color.Transparent;
-            kryptonButton11.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
-            kryptonButton11.StatePressed.Back.Color1 = Color.Transparent;
-            kryptonButton11.StatePressed.Back.Color2 = Color.Transparent;
-            kryptonButton11.StateTracking.Border.Rounding = 40F;
-            kryptonButton11.TabIndex = 58;
-            kryptonButton11.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton11.Values.Text = "Ajustes";
-            kryptonButton11.Click += kryptonButton11_Click;
-            // 
-            // pictureBox18
-            // 
-            pictureBox18.BackgroundImage = Properties.Resources.ajus;
-            pictureBox18.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox18.Location = new Point(1429, 31);
-            pictureBox18.Name = "pictureBox18";
-            pictureBox18.Size = new Size(64, 49);
-            pictureBox18.TabIndex = 56;
-            pictureBox18.TabStop = false;
-            // 
             // button12
             // 
             button12.BackColor = Color.Transparent;
@@ -166,7 +130,7 @@
             button12.FlatAppearance.BorderSize = 0;
             button12.FlatStyle = FlatStyle.Flat;
             button12.ForeColor = Color.Navy;
-            button12.Location = new Point(1346, 36);
+            button12.Location = new Point(1522, 43);
             button12.Name = "button12";
             button12.Size = new Size(70, 44);
             button12.TabIndex = 54;
@@ -297,7 +261,7 @@
             btnMenuAdmin.OverrideDefault.Border.Rounding = 40F;
             btnMenuAdmin.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnMenuAdmin.OverrideFocus.Back.Color2 = Color.White;
-            btnMenuAdmin.Size = new Size(104, 36);
+            btnMenuAdmin.Size = new Size(115, 36);
             btnMenuAdmin.StateCommon.Back.Color1 = Color.SkyBlue;
             btnMenuAdmin.StateCommon.Back.Color2 = Color.White;
             btnMenuAdmin.StateCommon.Border.Rounding = 40F;
@@ -311,7 +275,7 @@
             btnMenuAdmin.StateTracking.Border.Rounding = 40F;
             btnMenuAdmin.TabIndex = 52;
             btnMenuAdmin.Values.DropDownArrowColor = Color.Empty;
-            btnMenuAdmin.Values.Text = "Menu principal";
+            btnMenuAdmin.Values.Text = "Menú principal";
             btnMenuAdmin.Click += btnMenuAdmin_Click;
             // 
             // btnfacturas
@@ -467,7 +431,7 @@
             btnreporte2.StateTracking.Border.Rounding = 40F;
             btnreporte2.TabIndex = 45;
             btnreporte2.Values.DropDownArrowColor = Color.Empty;
-            btnreporte2.Values.Text = "Bitacora";
+            btnreporte2.Values.Text = "Bitácora";
             btnreporte2.Click += btnreporte2_Click;
             // 
             // btnAdmin
@@ -741,22 +705,6 @@
             kryptonGroup1.StateCommon.Border.Rounding = 70F;
             kryptonGroup1.TabIndex = 71;
             // 
-            // dgvDeudores
-            // 
-            dgvDeudores.AllowUserToAddRows = false;
-            dgvDeudores.AllowUserToDeleteRows = false;
-            dgvDeudores.BorderStyle = BorderStyle.None;
-            dgvDeudores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDeudores.Location = new Point(375, 252);
-            dgvDeudores.Name = "dgvDeudores";
-            dgvDeudores.ReadOnly = true;
-            dgvDeudores.RowHeadersWidth = 51;
-            dgvDeudores.Size = new Size(1179, 503);
-            dgvDeudores.TabIndex = 72;
-            dgvDeudores.CellContentClick += kryptonDataGridView1_CellContentClick;
-            dgvDeudores.CellDoubleClick += dgvDeudores_CellDoubleClick;
-            dgvDeudores.DoubleClick += dgvDeudores_DoubleClick;
-            // 
             // pictureBox19
             // 
             pictureBox19.Image = (Image)resources.GetObject("pictureBox19.Image");
@@ -788,7 +736,7 @@
             // 
             // kryptonButton15
             // 
-            kryptonButton15.Location = new Point(901, 805);
+            kryptonButton15.Location = new Point(898, 805);
             kryptonButton15.Name = "kryptonButton15";
             kryptonButton15.OverrideDefault.Back.Color1 = Color.SkyBlue;
             kryptonButton15.OverrideDefault.Back.Color2 = Color.White;
@@ -799,7 +747,7 @@
             kryptonButton15.StateCommon.Back.Color2 = Color.White;
             kryptonButton15.StateCommon.Border.Rounding = 40F;
             kryptonButton15.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton15.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            kryptonButton15.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             kryptonButton15.StateNormal.Back.Color1 = Color.SkyBlue;
             kryptonButton15.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
             kryptonButton15.StatePressed.Back.Color1 = Color.Transparent;
@@ -808,47 +756,6 @@
             kryptonButton15.Values.DropDownArrowColor = Color.Empty;
             kryptonButton15.Values.Text = "Pago Deuda";
             kryptonButton15.Click += kryptonButton15_Click;
-            // 
-            // pictureBox17
-            // 
-            pictureBox17.Image = (Image)resources.GetObject("pictureBox17.Image");
-            pictureBox17.Location = new Point(331, 57);
-            pictureBox17.Name = "pictureBox17";
-            pictureBox17.Size = new Size(75, 72);
-            pictureBox17.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox17.TabIndex = 155;
-            pictureBox17.TabStop = false;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.Navy;
-            label3.Location = new Point(317, 132);
-            label3.Name = "label3";
-            label3.Size = new Size(108, 31);
-            label3.TabIndex = 156;
-            label3.Text = "Deudores";
-            // 
-            // kryptonGroup2
-            // 
-            kryptonGroup2.Location = new Point(429, 160);
-            kryptonGroup2.Size = new Size(121, 47);
-            kryptonGroup2.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroup2.StateCommon.Border.Rounding = 70F;
-            kryptonGroup2.TabIndex = 157;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.BackColor = Color.SkyBlue;
-            label4.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.Navy;
-            label4.Location = new Point(450, 167);
-            label4.Name = "label4";
-            label4.Size = new Size(82, 31);
-            label4.TabIndex = 158;
-            label4.Text = "Buscar";
             // 
             // label5
             // 
@@ -861,25 +768,96 @@
             label5.TabIndex = 53;
             label5.Text = "BAMS";
             // 
+            // dgvDeudores
+            // 
+            dataGridViewCellStyle21.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle21.ForeColor = Color.Navy;
+            dgvDeudores.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle21;
+            dgvDeudores.BackgroundColor = Color.SkyBlue;
+            dataGridViewCellStyle22.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle22.BackColor = SystemColors.Control;
+            dataGridViewCellStyle22.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle22.ForeColor = Color.Navy;
+            dataGridViewCellStyle22.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle22.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle22.WrapMode = DataGridViewTriState.True;
+            dgvDeudores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
+            dgvDeudores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle23.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle23.BackColor = SystemColors.Window;
+            dataGridViewCellStyle23.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle23.ForeColor = Color.SkyBlue;
+            dataGridViewCellStyle23.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle23.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle23.WrapMode = DataGridViewTriState.False;
+            dgvDeudores.DefaultCellStyle = dataGridViewCellStyle23;
+            dgvDeudores.Location = new Point(374, 262);
+            dgvDeudores.Name = "dgvDeudores";
+            dataGridViewCellStyle24.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle24.BackColor = SystemColors.Control;
+            dataGridViewCellStyle24.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle24.ForeColor = Color.Navy;
+            dataGridViewCellStyle24.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle24.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle24.WrapMode = DataGridViewTriState.True;
+            dgvDeudores.RowHeadersDefaultCellStyle = dataGridViewCellStyle24;
+            dgvDeudores.RowHeadersWidth = 51;
+            dataGridViewCellStyle25.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle25.ForeColor = Color.Navy;
+            dgvDeudores.RowsDefaultCellStyle = dataGridViewCellStyle25;
+            dgvDeudores.Size = new Size(1182, 496);
+            dgvDeudores.TabIndex = 173;
+            // 
+            // label3
+            // 
+            label3.BackColor = Color.SkyBlue;
+            label3.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.Navy;
+            label3.Location = new Point(858, 55);
+            label3.Name = "label3";
+            label3.Size = new Size(310, 68);
+            label3.TabIndex = 175;
+            label3.Text = "Deudores";
+            label3.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // kryptonGroup3
+            // 
+            kryptonGroup3.GroupBackStyle = Krypton.Toolkit.PaletteBackStyle.HeaderCalendar;
+            kryptonGroup3.Location = new Point(844, 46);
+            kryptonGroup3.Size = new Size(339, 92);
+            kryptonGroup3.StateCommon.Back.Color1 = Color.SkyBlue;
+            kryptonGroup3.StateCommon.Border.Rounding = 100F;
+            kryptonGroup3.TabIndex = 176;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.BackColor = Color.White;
+            label4.Font = new Font("Arial Narrow", 16.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.Navy;
+            label4.Location = new Point(455, 170);
+            label4.Name = "label4";
+            label4.Size = new Size(96, 33);
+            label4.TabIndex = 177;
+            label4.Text = "Buscar:";
+            // 
             // DeudoresAdmin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(1649, 913);
-            Controls.Add(label5);
             Controls.Add(label4);
-            Controls.Add(kryptonGroup2);
             Controls.Add(label3);
-            Controls.Add(pictureBox17);
+            Controls.Add(kryptonGroup3);
+            Controls.Add(dgvDeudores);
+            Controls.Add(label5);
             Controls.Add(kryptonButton15);
             Controls.Add(txtBuscarNombre);
             Controls.Add(kryptonGroup5);
             Controls.Add(pictureBox19);
-            Controls.Add(dgvDeudores);
             Controls.Add(kryptonGroup1);
             Controls.Add(label1);
-            Controls.Add(kryptonButton11);
-            Controls.Add(pictureBox18);
             Controls.Add(button12);
             Controls.Add(panel6);
             Controls.Add(panel8);
@@ -890,9 +868,9 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "DeudoresAdmin";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Deudores";
             Shown += Deudores_Shown;
-            ((System.ComponentModel.ISupportInitialize)pictureBox18).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
@@ -913,21 +891,18 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dgvDeudores).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox19).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox17).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup2.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvDeudores).EndInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroup3.Panel).EndInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroup3).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
         private Label label1;
-        private Krypton.Toolkit.KryptonButton kryptonButton11;
-        private PictureBox pictureBox18;
         private Button button12;
         private Panel panel6;
         private Panel panel8;
@@ -963,22 +938,21 @@
         private PictureBox pictureBox8;
         private PictureBox pictureBox1;
         private Krypton.Toolkit.KryptonGroup kryptonGroup1;
-        private Krypton.Toolkit.KryptonDataGridView dgvDeudores;
         private PictureBox pictureBox19;
         private TextBox txtBuscarNombre;
         private Krypton.Toolkit.KryptonGroup kryptonGroup5;
         private Krypton.Toolkit.KryptonButton kryptonButton15;
         private Krypton.Toolkit.KryptonButton btnreporte2;
-        private PictureBox pictureBox17;
         private Krypton.Toolkit.KryptonButton btnproveedores2;
         private Krypton.Toolkit.KryptonButton btninventario2;
         private Krypton.Toolkit.KryptonButton btnclientes2;
         private Krypton.Toolkit.KryptonButton btncompras2;
         private Krypton.Toolkit.KryptonButton btnfacturas;
         private Krypton.Toolkit.KryptonButton btnMenuAdmin;
-        private Label label3;
-        private Krypton.Toolkit.KryptonGroup kryptonGroup2;
-        private Label label4;
         private Label label5;
+        private DataGridView dgvDeudores;
+        private Label label3;
+        private Krypton.Toolkit.KryptonGroup kryptonGroup3;
+        private Label label4;
     }
 }

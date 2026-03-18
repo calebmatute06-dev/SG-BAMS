@@ -76,6 +76,62 @@ namespace SG_BAMS
 
         private async void btnCapturar_Click(object sender, EventArgs e)
         {
+
+        }
+
+        // --- El resto de métodos (Load, LlenarUsuarios, Detener, etc.) se mantienen igual ---
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            Application.Idle -= FrameProcess;
+            if (camara != null) camara.Dispose();
+            base.OnFormClosing(e);
+        }
+
+        private void frmImagenEmpleado_Load(object sender, EventArgs e)
+        {
+            clsSoporte.InicializarDirectorio();
+            LlenarUsuarios();
+            if (!string.IsNullOrEmpty(usuarioAsignado)) cmbUsuarios.Text = usuarioAsignado;
+        }
+
+        private void LlenarUsuarios()
+        {
+            try
+            {
+                clsSoporte soporte = new clsSoporte();
+                DataTable dt = soporte.ObtenerUsuarios();
+                if (dt.Rows.Count > 0)
+                {
+                    cmbUsuarios.DataSource = dt;
+                    cmbUsuarios.DisplayMember = "nombre_usuario";
+                    cmbUsuarios.ValueMember = "id_usuario";
+                    cmbUsuarios.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    cmbUsuarios.AutoCompleteSource = AutoCompleteSource.ListItems;
+                    cmbUsuarios.SelectedIndex = -1;
+                }
+            }
+            catch (Exception ex) { MessageBox.Show("Error al cargar ComboBox: " + ex.Message); }
+        }
+
+
+        private void DetenerCamara()
+        {
+            if (camara != null)
+            {
+                Application.Idle -= FrameProcess;
+                camaraEnEncendida = false;
+                camara.Dispose();
+                camara = null;
+                pctCamara.Image = null;
+                pctCamara.Invalidate();
+            }
+        }
+
+
+
+        private async void btnCapturar_Click_1(object sender, EventArgs e)
+        {
             if (string.IsNullOrWhiteSpace(cmbUsuarios.Text))
             {
                 MessageBox.Show("Selecciona o ingresa un usuario primero.");
@@ -135,67 +191,6 @@ namespace SG_BAMS
             }
         }
 
-        // --- El resto de métodos (Load, LlenarUsuarios, Detener, etc.) se mantienen igual ---
-
-        protected override void OnFormClosing(FormClosingEventArgs e)
-        {
-            Application.Idle -= FrameProcess;
-            if (camara != null) camara.Dispose();
-            base.OnFormClosing(e);
-        }
-
-        private void frmImagenEmpleado_Load(object sender, EventArgs e)
-        {
-            clsSoporte.InicializarDirectorio();
-            LlenarUsuarios();
-            if (!string.IsNullOrEmpty(usuarioAsignado)) cmbUsuarios.Text = usuarioAsignado;
-        }
-
-        private void LlenarUsuarios()
-        {
-            try
-            {
-                clsSoporte soporte = new clsSoporte();
-                DataTable dt = soporte.ObtenerUsuarios();
-                if (dt.Rows.Count > 0)
-                {
-                    cmbUsuarios.DataSource = dt;
-                    cmbUsuarios.DisplayMember = "nombre_usuario";
-                    cmbUsuarios.ValueMember = "id_usuario";
-                    cmbUsuarios.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                    cmbUsuarios.AutoCompleteSource = AutoCompleteSource.ListItems;
-                    cmbUsuarios.SelectedIndex = -1;
-                }
-            }
-            catch (Exception ex) { MessageBox.Show("Error al cargar ComboBox: " + ex.Message); }
-        }
-
-        private void btnSalir_Click(object sender, EventArgs e) { DetenerCamara(); this.Close(); }
-        private void btnDetener_Click(object sender, EventArgs e) { DetenerCamara(); }
-
-        private void DetenerCamara()
-        {
-            if (camara != null)
-            {
-                Application.Idle -= FrameProcess;
-                camaraEnEncendida = false;
-                camara.Dispose();
-                camara = null;
-                pctCamara.Image = null;
-                pctCamara.Invalidate();
-            }
-        }
-
-        private void btnEncender_Click(object sender, EventArgs e)
-        {
-            if (camara == null)
-            {
-                camara = new VideoCapture(0);
-                Application.Idle += FrameProcess;
-                camaraEnEncendida = true;
-            }
-        }
-
         private void btnBorrar_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(cmbUsuarios.Text)) return;
@@ -212,6 +207,26 @@ namespace SG_BAMS
                 }
             }
             catch (Exception ex) { MessageBox.Show("Error: " + ex.Message); }
+        }
+
+        private void btnEncender_Click(object sender, EventArgs e)
+        {
+            if (camara == null)
+            {
+                camara = new VideoCapture(0);
+                Application.Idle += FrameProcess;
+                camaraEnEncendida = true;
+            }
+        }
+
+        private void btnDetener_Click(object sender, EventArgs e)
+        {
+            DetenerCamara();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            DetenerCamara(); this.Close();
         }
     }
 }

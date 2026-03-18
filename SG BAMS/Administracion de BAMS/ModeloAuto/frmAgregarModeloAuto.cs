@@ -21,8 +21,7 @@ namespace SG_BAMS
         }
 
 
-
-        private async void btnAgregar_Click(object sender, EventArgs e)
+        private async void btnAgregar_Click_1(object sender, EventArgs e)
         {
             string nombreLimpio = txtDescri.Text.Trim();
             if (string.IsNullOrWhiteSpace(nombreLimpio))
@@ -61,7 +60,7 @@ namespace SG_BAMS
             try
             {
                 this.Cursor = Cursors.WaitCursor;
-                btnAgregar.Enabled = false;
+                btnAgregar1.Enabled = false;
 
                 clsModeloAuto objetoModelo = new clsModeloAuto();
 
@@ -85,11 +84,11 @@ namespace SG_BAMS
             finally
             {
                 this.Cursor = Cursors.Default;
-                btnAgregar.Enabled = true;
+                btnAgregar1.Enabled = true;
             }
         }
 
-        private void btnSalir_Click(object sender, EventArgs e)
+        private void btnSalir_Click_1(object sender, EventArgs e)
         {
             frmModeloAuto verMauto = new frmModeloAuto();
             verMauto.Show();

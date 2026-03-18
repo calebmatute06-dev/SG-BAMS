@@ -62,10 +62,6 @@ namespace SG_BAMS
 
             dgvModelos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvModelos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
-            dgvModelos.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
-            dgvModelos.AllowUserToAddRows = false;
-
             dgvModelos.AllowUserToAddRows = false;
             dgvModelos.ReadOnly = true;
             dgvModelos.ClearSelection();
@@ -73,17 +69,25 @@ namespace SG_BAMS
 
         private void kryptonButton2_Click(object sender, EventArgs e)
         {
-            this.Close();
+
         }
 
-        private void btmAgregar_Click(object sender, EventArgs e)
+
+
+        private void dgvModelos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            frmAgregarModeloAuto agregarMauto = new frmAgregarModeloAuto();
-            agregarMauto.Show();
-            this.Close();
+            int id = Convert.ToInt32(dgvModelos.CurrentRow.Cells["id_modelo_auto"].Value);
+            string nombre = dgvModelos.CurrentRow.Cells["nombre_modelo_auto"].Value.ToString();
+
+            frmModificarModelos frmMod = new frmModificarModelos(id, nombre);
+
+            if (frmMod.ShowDialog() == DialogResult.OK)
+            {
+                _ = CargarGridModelos();
+            }
         }
 
-        private void btmModificar_Click(object sender, EventArgs e)
+        private void btnModificar_Click(object sender, EventArgs e)
         {
             if (dgvModelos.SelectedRows.Count > 0)
             {
@@ -103,18 +107,16 @@ namespace SG_BAMS
             }
         }
 
-
-        private void dgvModelos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void btnAgregar_Click(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(dgvModelos.CurrentRow.Cells["id_modelo_auto"].Value);
-            string nombre = dgvModelos.CurrentRow.Cells["nombre_modelo_auto"].Value.ToString();
+            frmAgregarModeloAuto agregarMauto = new frmAgregarModeloAuto();
+            agregarMauto.Show();
+            this.Close();
+        }
 
-            frmModificarModelos frmMod = new frmModificarModelos(id, nombre);
-
-            if (frmMod.ShowDialog() == DialogResult.OK)
-            {
-                _ = CargarGridModelos();
-            }
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -19,8 +19,7 @@ namespace SG_BAMS
             InitializeComponent();
         }
 
-
-        private async void btnAgregar_Click(object sender, EventArgs e)
+        private async void btnAgregar_Click_1(object sender, EventArgs e)
         {
             string nombreLimpio = txtDescri.Text.Trim();
             if (string.IsNullOrWhiteSpace(txtDescri.Text))
@@ -68,7 +67,7 @@ namespace SG_BAMS
                     MessageBox.Show("Tipo de producto registrado con éxito.", "SG-BAMS",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    this.DialogResult = DialogResult.OK; 
+                    this.DialogResult = DialogResult.OK;
                     frmTipoProducto verTproducto = new frmTipoProducto();
                     verTproducto.Show();
                     this.Close();

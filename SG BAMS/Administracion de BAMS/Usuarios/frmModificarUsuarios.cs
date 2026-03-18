@@ -63,9 +63,9 @@ namespace SG_BAMS
         }
 
 
-        private async void btmModificar_Click(object sender, EventArgs e)
-        {
 
+        private async void btmModificar_Click_1(object sender, EventArgs e)
+        {
             string nombreLimpio = txtNombre.Text.Trim();
             string contraLimpia = txtContra.Text.Trim();
 
@@ -82,7 +82,7 @@ namespace SG_BAMS
                 return;
             }
 
-            if (contraLimpia.Length >0 && contraLimpia.Length < 6)
+            if (contraLimpia.Length > 0 && contraLimpia.Length < 6)
             {
                 MessageBox.Show("La contraseña debe tener al menos 6 caracteres.", "Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -150,7 +150,7 @@ namespace SG_BAMS
             this.Close();
         }
 
-        private void btnImagen_Click(object sender, EventArgs e)
+        private void btnImagen_Click_1(object sender, EventArgs e)
         {
             string nombreParaEnviar = txtNombre.Text;
 

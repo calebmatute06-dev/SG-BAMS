@@ -30,17 +30,21 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEstado));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             label7 = new Label();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
             pictureBox2 = new PictureBox();
             panel2 = new Panel();
-            label1 = new Label();
             pictureBox16 = new PictureBox();
-            btmModificar = new Krypton.Toolkit.KryptonButton();
-            btmSalir = new Krypton.Toolkit.KryptonButton();
+            dgvEstados = new DataGridView();
+            label2 = new Label();
             btnAgregar = new Krypton.Toolkit.KryptonButton();
-            dgvEstados = new Krypton.Toolkit.KryptonDataGridView();
+            btnModificar = new Krypton.Toolkit.KryptonButton();
+            btnSalir = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
@@ -92,124 +96,137 @@
             panel2.Size = new Size(683, 24);
             panel2.TabIndex = 107;
             // 
-            // label1
-            // 
-            label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Arial Narrow", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.Navy;
-            label1.Location = new Point(197, 48);
-            label1.Name = "label1";
-            label1.Size = new Size(280, 39);
-            label1.TabIndex = 105;
-            label1.Text = "Estado";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
-            // 
             // pictureBox16
             // 
             pictureBox16.BackgroundImage = (Image)resources.GetObject("pictureBox16.BackgroundImage");
             pictureBox16.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox16.Location = new Point(378, 44);
+            pictureBox16.Location = new Point(395, 44);
             pictureBox16.Name = "pictureBox16";
             pictureBox16.Size = new Size(50, 51);
             pictureBox16.TabIndex = 112;
             pictureBox16.TabStop = false;
             // 
-            // btmModificar
+            // dgvEstados
             // 
-            btmModificar.Location = new Point(348, 365);
-            btmModificar.Name = "btmModificar";
-            btmModificar.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btmModificar.OverrideDefault.Back.Color2 = Color.White;
-            btmModificar.OverrideDefault.Border.Rounding = 40F;
-            btmModificar.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btmModificar.OverrideFocus.Back.Color2 = Color.White;
-            btmModificar.Size = new Size(118, 65);
-            btmModificar.StateCommon.Back.Color1 = Color.SkyBlue;
-            btmModificar.StateCommon.Back.Color2 = Color.White;
-            btmModificar.StateCommon.Border.Rounding = 40F;
-            btmModificar.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btmModificar.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btmModificar.StateNormal.Back.Color1 = Color.SkyBlue;
-            btmModificar.StateNormal.Back.Color2 = Color.White;
-            btmModificar.StateNormal.Border.Rounding = 40F;
-            btmModificar.StateTracking.Border.Rounding = 40F;
-            btmModificar.TabIndex = 132;
-            btmModificar.Values.DropDownArrowColor = Color.Empty;
-            btmModificar.Values.Text = "Modificar";
-            btmModificar.Click += btmModificar_Click;
+            dataGridViewCellStyle1.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Navy;
+            dgvEstados.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvEstados.BackgroundColor = Color.SkyBlue;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.Navy;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvEstados.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dgvEstados.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.SkyBlue;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvEstados.DefaultCellStyle = dataGridViewCellStyle3;
+            dgvEstados.Location = new Point(78, 101);
+            dgvEstados.Name = "dgvEstados";
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = Color.Navy;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvEstados.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dgvEstados.RowHeadersWidth = 51;
+            dataGridViewCellStyle5.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = Color.Navy;
+            dgvEstados.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dgvEstados.Size = new Size(512, 256);
+            dgvEstados.TabIndex = 172;
+            dgvEstados.CellContentDoubleClick += dgvEstados_CellContentDoubleClick;
             // 
-            // btmSalir
+            // label2
             // 
-            btmSalir.Location = new Point(472, 397);
-            btmSalir.Name = "btmSalir";
-            btmSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btmSalir.OverrideDefault.Back.Color2 = Color.White;
-            btmSalir.OverrideDefault.Border.Rounding = 40F;
-            btmSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btmSalir.OverrideFocus.Back.Color2 = Color.White;
-            btmSalir.Size = new Size(118, 65);
-            btmSalir.StateCommon.Back.Color1 = Color.SkyBlue;
-            btmSalir.StateCommon.Back.Color2 = Color.White;
-            btmSalir.StateCommon.Border.Rounding = 40F;
-            btmSalir.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btmSalir.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btmSalir.StateNormal.Back.Color1 = Color.SkyBlue;
-            btmSalir.StateNormal.Back.Color2 = Color.White;
-            btmSalir.StateNormal.Border.Rounding = 40F;
-            btmSalir.StateTracking.Border.Rounding = 40F;
-            btmSalir.TabIndex = 133;
-            btmSalir.Values.DropDownArrowColor = Color.Empty;
-            btmSalir.Values.Text = "Salir";
-            btmSalir.Click += btmSalir_Click;
+            label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Arial Narrow", 21F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.Navy;
+            label2.Location = new Point(274, 48);
+            label2.Name = "label2";
+            label2.Size = new Size(115, 42);
+            label2.TabIndex = 343;
+            label2.Text = "Estado";
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(197, 364);
+            btnAgregar.Location = new Point(101, 373);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnAgregar.OverrideDefault.Back.Color2 = Color.White;
-            btnAgregar.OverrideDefault.Border.Rounding = 40F;
             btnAgregar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnAgregar.OverrideFocus.Back.Color2 = Color.White;
-            btnAgregar.Size = new Size(118, 65);
+            btnAgregar.Size = new Size(143, 65);
             btnAgregar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnAgregar.StateCommon.Back.Color2 = Color.White;
-            btnAgregar.StateCommon.Border.Rounding = 40F;
+            btnAgregar.StateCommon.Border.Rounding = 30F;
             btnAgregar.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnAgregar.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnAgregar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAgregar.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnAgregar.StateNormal.Back.Color2 = Color.White;
-            btnAgregar.StateNormal.Border.Rounding = 40F;
-            btnAgregar.StateTracking.Border.Rounding = 40F;
-            btnAgregar.TabIndex = 134;
+            btnAgregar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnAgregar.StatePressed.Back.Color1 = Color.Transparent;
+            btnAgregar.StatePressed.Back.Color2 = Color.Transparent;
+            btnAgregar.TabIndex = 344;
             btnAgregar.Values.DropDownArrowColor = Color.Empty;
             btnAgregar.Values.Text = "Agregar";
             btnAgregar.Click += btnAgregar_Click;
             // 
-            // dgvEstados
+            // btnModificar
             // 
-            dgvEstados.AllowUserToAddRows = false;
-            dgvEstados.AllowUserToDeleteRows = false;
-            dgvEstados.BorderStyle = BorderStyle.None;
-            dgvEstados.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvEstados.Location = new Point(78, 102);
-            dgvEstados.Margin = new Padding(3, 4, 3, 4);
-            dgvEstados.Name = "dgvEstados";
-            dgvEstados.ReadOnly = true;
-            dgvEstados.RowHeadersWidth = 51;
-            dataGridViewCellStyle1.BackColor = Color.White;
-            dataGridViewCellStyle1.Font = new Font("Arial Narrow", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = Color.Navy;
-            dataGridViewCellStyle1.SelectionBackColor = Color.SkyBlue;
-            dataGridViewCellStyle1.SelectionForeColor = Color.White;
-            dgvEstados.RowsDefaultCellStyle = dataGridViewCellStyle1;
-            dgvEstados.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvEstados.Size = new Size(512, 255);
-            dgvEstados.StateCommon.Background.Color1 = Color.SkyBlue;
-            dgvEstados.StateCommon.Background.Color2 = Color.SkyBlue;
-            dgvEstados.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
-            dgvEstados.TabIndex = 158;
-            dgvEstados.CellContentDoubleClick += dgvEstados_CellContentDoubleClick;
+            btnModificar.Location = new Point(271, 374);
+            btnModificar.Name = "btnModificar";
+            btnModificar.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnModificar.OverrideDefault.Back.Color2 = Color.White;
+            btnModificar.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnModificar.OverrideFocus.Back.Color2 = Color.White;
+            btnModificar.Size = new Size(143, 65);
+            btnModificar.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnModificar.StateCommon.Back.Color2 = Color.White;
+            btnModificar.StateCommon.Border.Rounding = 30F;
+            btnModificar.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnModificar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnModificar.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnModificar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnModificar.StatePressed.Back.Color1 = Color.Transparent;
+            btnModificar.StatePressed.Back.Color2 = Color.Transparent;
+            btnModificar.TabIndex = 345;
+            btnModificar.Values.DropDownArrowColor = Color.Empty;
+            btnModificar.Values.Text = "Modificar";
+            btnModificar.Click += btnModificar_Click;
+            // 
+            // btnSalir
+            // 
+            btnSalir.Location = new Point(436, 374);
+            btnSalir.Name = "btnSalir";
+            btnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnSalir.OverrideDefault.Back.Color2 = Color.White;
+            btnSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnSalir.OverrideFocus.Back.Color2 = Color.White;
+            btnSalir.Size = new Size(143, 65);
+            btnSalir.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnSalir.StateCommon.Back.Color2 = Color.White;
+            btnSalir.StateCommon.Border.Rounding = 30F;
+            btnSalir.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnSalir.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSalir.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnSalir.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnSalir.StatePressed.Back.Color1 = Color.Transparent;
+            btnSalir.StatePressed.Back.Color2 = Color.Transparent;
+            btnSalir.TabIndex = 346;
+            btnSalir.Values.DropDownArrowColor = Color.Empty;
+            btnSalir.Values.Text = "Salir";
+            btnSalir.Click += btnSalir_Click;
             // 
             // frmEstado
             // 
@@ -217,17 +234,17 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(686, 515);
-            Controls.Add(dgvEstados);
+            Controls.Add(btnSalir);
+            Controls.Add(btnModificar);
             Controls.Add(btnAgregar);
-            Controls.Add(btmSalir);
-            Controls.Add(btmModificar);
+            Controls.Add(label2);
+            Controls.Add(dgvEstados);
             Controls.Add(pictureBox16);
             Controls.Add(label7);
             Controls.Add(pictureBox1);
             Controls.Add(panel1);
             Controls.Add(pictureBox2);
             Controls.Add(panel2);
-            Controls.Add(label1);
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmEstado";
             StartPosition = FormStartPosition.CenterScreen;
@@ -247,11 +264,11 @@
         private Panel panel1;
         private PictureBox pictureBox2;
         private Panel panel2;
-        private Label label1;
         private PictureBox pictureBox16;
-        private Krypton.Toolkit.KryptonButton btmModificar;
-        private Krypton.Toolkit.KryptonButton btmSalir;
+        private DataGridView dgvEstados;
+        private Label label2;
         private Krypton.Toolkit.KryptonButton btnAgregar;
-        private Krypton.Toolkit.KryptonDataGridView dgvEstados;
+        private Krypton.Toolkit.KryptonButton btnModificar;
+        private Krypton.Toolkit.KryptonButton btnSalir;
     }
 }

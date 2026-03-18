@@ -28,11 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
             btnPerfil = new Krypton.Toolkit.KryptonButton();
             btnCerrarSesion = new Krypton.Toolkit.KryptonButton();
             pictureBox16 = new PictureBox();
             pictureBox15 = new PictureBox();
-            dgvReporte = new Krypton.Toolkit.KryptonDataGridView();
             kryptonGroup3 = new Krypton.Toolkit.KryptonGroup();
             label1 = new Label();
             kryptonGroup2 = new Krypton.Toolkit.KryptonGroup();
@@ -40,11 +44,7 @@
             kryptonGroup1 = new Krypton.Toolkit.KryptonGroup();
             dtpHasta = new Krypton.Toolkit.KryptonDateTimePicker();
             dtpDesde = new Krypton.Toolkit.KryptonDateTimePicker();
-            btnLimpiar = new Krypton.Toolkit.KryptonButton();
-            btnExportaar = new Krypton.Toolkit.KryptonButton();
             pictureBox3 = new PictureBox();
-            kryptonButton11 = new Krypton.Toolkit.KryptonButton();
-            pictureBox18 = new PictureBox();
             btnNoti = new Button();
             panel6 = new Panel();
             panel8 = new Panel();
@@ -74,7 +74,6 @@
             pictureBox7 = new PictureBox();
             pictureBox8 = new PictureBox();
             pictureBox1 = new PictureBox();
-            btnExportarEx = new Krypton.Toolkit.KryptonButton();
             label4 = new Label();
             label3 = new Label();
             Min = new Krypton.Toolkit.KryptonNumericUpDown();
@@ -82,13 +81,17 @@
             label6 = new Label();
             label7 = new Label();
             Max = new Krypton.Toolkit.KryptonNumericUpDown();
-            btnFiltro = new Krypton.Toolkit.KryptonButton();
             cmbReporte = new Krypton.Toolkit.KryptonComboBox();
             label9 = new Label();
             kryptonGroup4 = new Krypton.Toolkit.KryptonGroup();
+            dgvReporte = new DataGridView();
+            label10 = new Label();
+            btnExportaar = new Krypton.Toolkit.KryptonButton();
+            btnExportarEx = new Krypton.Toolkit.KryptonButton();
+            btnLimpiar = new Krypton.Toolkit.KryptonButton();
+            btnFiltro = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox15).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dgvReporte).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup3.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup2).BeginInit();
@@ -96,7 +99,6 @@
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             panel4.SuspendLayout();
@@ -116,6 +118,7 @@
             ((System.ComponentModel.ISupportInitialize)cmbReporte).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup4.Panel).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvReporte).BeginInit();
             SuspendLayout();
             // 
             // btnPerfil
@@ -190,28 +193,10 @@
             pictureBox15.TabIndex = 12;
             pictureBox15.TabStop = false;
             // 
-            // dgvReporte
-            // 
-            dgvReporte.AllowUserToAddRows = false;
-            dgvReporte.AllowUserToDeleteRows = false;
-            dgvReporte.AllowUserToResizeColumns = false;
-            dgvReporte.AllowUserToResizeRows = false;
-            dgvReporte.BorderStyle = BorderStyle.None;
-            dgvReporte.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvReporte.Location = new Point(570, 239);
-            dgvReporte.Name = "dgvReporte";
-            dgvReporte.ReadOnly = true;
-            dgvReporte.RowHeadersWidth = 51;
-            dgvReporte.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvReporte.Size = new Size(853, 604);
-            dgvReporte.TabIndex = 273;
-            dgvReporte.CellContentClick += dgvReporte_CellContentClick;
-            dgvReporte.CellFormatting += dgvReporte_CellFormatting;
-            // 
             // kryptonGroup3
             // 
             kryptonGroup3.Location = new Point(555, 225);
-            kryptonGroup3.Size = new Size(880, 632);
+            kryptonGroup3.Size = new Size(876, 632);
             kryptonGroup3.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroup3.StateCommon.Border.Rounding = 30F;
             kryptonGroup3.TabIndex = 272;
@@ -283,52 +268,6 @@
             dtpDesde.StateCommon.Content.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dtpDesde.TabIndex = 264;
             // 
-            // btnLimpiar
-            // 
-            btnLimpiar.Location = new Point(339, 816);
-            btnLimpiar.Name = "btnLimpiar";
-            btnLimpiar.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnLimpiar.OverrideDefault.Back.Color2 = Color.White;
-            btnLimpiar.OverrideDefault.Border.Rounding = 40F;
-            btnLimpiar.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnLimpiar.OverrideFocus.Back.Color2 = Color.White;
-            btnLimpiar.Size = new Size(170, 41);
-            btnLimpiar.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnLimpiar.StateCommon.Back.Color2 = Color.White;
-            btnLimpiar.StateCommon.Border.Rounding = 40F;
-            btnLimpiar.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnLimpiar.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnLimpiar.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnLimpiar.StateNormal.Back.Color2 = Color.White;
-            btnLimpiar.StateNormal.Border.Rounding = 40F;
-            btnLimpiar.StateTracking.Border.Rounding = 40F;
-            btnLimpiar.TabIndex = 263;
-            btnLimpiar.Values.DropDownArrowColor = Color.Empty;
-            btnLimpiar.Values.Text = "Limpiar";
-            btnLimpiar.Click += btnLimpiar_Click;
-            // 
-            // btnExportaar
-            // 
-            btnExportaar.Location = new Point(320, 693);
-            btnExportaar.Name = "btnExportaar";
-            btnExportaar.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnExportaar.OverrideDefault.Back.Color2 = Color.White;
-            btnExportaar.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnExportaar.OverrideFocus.Back.Color2 = Color.White;
-            btnExportaar.Size = new Size(206, 41);
-            btnExportaar.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnExportaar.StateCommon.Back.Color2 = Color.White;
-            btnExportaar.StateCommon.Border.Rounding = 40F;
-            btnExportaar.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnExportaar.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnExportaar.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnExportaar.StateNormal.Back.Color2 = Color.Transparent;
-            btnExportaar.StateNormal.Border.Rounding = 40F;
-            btnExportaar.TabIndex = 262;
-            btnExportaar.Values.DropDownArrowColor = Color.Empty;
-            btnExportaar.Values.Text = "Exportar PDF";
-            btnExportaar.Click += btnExportaar_Click;
-            // 
             // pictureBox3
             // 
             pictureBox3.BackColor = Color.White;
@@ -340,41 +279,6 @@
             pictureBox3.TabIndex = 251;
             pictureBox3.TabStop = false;
             // 
-            // kryptonButton11
-            // 
-            kryptonButton11.Location = new Point(1287, 31);
-            kryptonButton11.Name = "kryptonButton11";
-            kryptonButton11.OverrideDefault.Back.Color1 = Color.Transparent;
-            kryptonButton11.OverrideDefault.Back.Color2 = Color.Transparent;
-            kryptonButton11.OverrideDefault.Border.Rounding = 40F;
-            kryptonButton11.OverrideFocus.Back.Color1 = Color.White;
-            kryptonButton11.OverrideFocus.Back.Color2 = Color.SkyBlue;
-            kryptonButton11.Size = new Size(98, 41);
-            kryptonButton11.StateCommon.Back.Color1 = Color.White;
-            kryptonButton11.StateCommon.Back.Color2 = Color.SkyBlue;
-            kryptonButton11.StateCommon.Border.Rounding = 40F;
-            kryptonButton11.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton11.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton11.StateNormal.Back.Color1 = Color.Transparent;
-            kryptonButton11.StateNormal.Back.Color2 = Color.Transparent;
-            kryptonButton11.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
-            kryptonButton11.StatePressed.Back.Color1 = Color.Transparent;
-            kryptonButton11.StatePressed.Back.Color2 = Color.Transparent;
-            kryptonButton11.StateTracking.Border.Rounding = 40F;
-            kryptonButton11.TabIndex = 261;
-            kryptonButton11.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton11.Values.Text = "Ajustes";
-            // 
-            // pictureBox18
-            // 
-            pictureBox18.BackgroundImage = Properties.Resources.ajus;
-            pictureBox18.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox18.Location = new Point(1232, 29);
-            pictureBox18.Name = "pictureBox18";
-            pictureBox18.Size = new Size(53, 49);
-            pictureBox18.TabIndex = 260;
-            pictureBox18.TabStop = false;
-            // 
             // btnNoti
             // 
             btnNoti.BackColor = Color.Transparent;
@@ -384,7 +288,7 @@
             btnNoti.FlatAppearance.BorderSize = 0;
             btnNoti.FlatStyle = FlatStyle.Flat;
             btnNoti.ForeColor = Color.Navy;
-            btnNoti.Location = new Point(1167, 29);
+            btnNoti.Location = new Point(1364, 38);
             btnNoti.Name = "btnNoti";
             btnNoti.Size = new Size(59, 44);
             btnNoti.TabIndex = 259;
@@ -430,14 +334,14 @@
             panel3.BackColor = Color.Navy;
             panel3.Location = new Point(5, 883);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1462, 24);
+            panel3.Size = new Size(1472, 24);
             panel3.TabIndex = 257;
             // 
             // panel4
             // 
             panel4.BackColor = Color.Navy;
             panel4.Controls.Add(pictureBox2);
-            panel4.Location = new Point(1438, 23);
+            panel4.Location = new Point(1453, 23);
             panel4.Name = "panel4";
             panel4.Size = new Size(24, 869);
             panel4.TabIndex = 254;
@@ -457,7 +361,7 @@
             panel2.Controls.Add(pictureBox4);
             panel2.Location = new Point(5, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1462, 24);
+            panel2.Size = new Size(1472, 24);
             panel2.TabIndex = 253;
             // 
             // pictureBox4
@@ -522,7 +426,7 @@
             btnMenuPrincipal.StateTracking.Border.Rounding = 40F;
             btnMenuPrincipal.TabIndex = 34;
             btnMenuPrincipal.Values.DropDownArrowColor = Color.Empty;
-            btnMenuPrincipal.Values.Text = "Menu Principal";
+            btnMenuPrincipal.Values.Text = "Menú Principal";
             btnMenuPrincipal.Click += btnMenuPrincipal_Click;
             // 
             // btnFactura
@@ -678,7 +582,7 @@
             btnBitacora.StateTracking.Border.Rounding = 40F;
             btnBitacora.TabIndex = 28;
             btnBitacora.Values.DropDownArrowColor = Color.Empty;
-            btnBitacora.Values.Text = "Bitacora";
+            btnBitacora.Values.Text = "Bitácora";
             btnBitacora.Click += btnBitacora_Click;
             // 
             // btnDeudoresAdmin
@@ -816,28 +720,6 @@
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
             // 
-            // btnExportarEx
-            // 
-            btnExportarEx.Location = new Point(320, 740);
-            btnExportarEx.Name = "btnExportarEx";
-            btnExportarEx.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnExportarEx.OverrideDefault.Back.Color2 = Color.White;
-            btnExportarEx.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnExportarEx.OverrideFocus.Back.Color2 = Color.White;
-            btnExportarEx.Size = new Size(206, 41);
-            btnExportarEx.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnExportarEx.StateCommon.Back.Color2 = Color.White;
-            btnExportarEx.StateCommon.Border.Rounding = 40F;
-            btnExportarEx.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnExportarEx.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnExportarEx.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnExportarEx.StateNormal.Back.Color2 = Color.Transparent;
-            btnExportarEx.StateNormal.Border.Rounding = 40F;
-            btnExportarEx.TabIndex = 278;
-            btnExportarEx.Values.DropDownArrowColor = Color.Empty;
-            btnExportarEx.Values.Text = "Exportar EXCEL";
-            btnExportarEx.Click += btnExportarEx_Click;
-            // 
             // label4
             // 
             label4.AutoSize = true;
@@ -926,28 +808,6 @@
             Max.TabIndex = 286;
             Max.Value = new decimal(new int[] { 0, 0, 0, 0 });
             // 
-            // btnFiltro
-            // 
-            btnFiltro.Location = new Point(1135, 189);
-            btnFiltro.Name = "btnFiltro";
-            btnFiltro.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnFiltro.OverrideDefault.Back.Color2 = Color.White;
-            btnFiltro.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnFiltro.OverrideFocus.Back.Color2 = Color.White;
-            btnFiltro.Size = new Size(91, 27);
-            btnFiltro.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnFiltro.StateCommon.Back.Color2 = Color.White;
-            btnFiltro.StateCommon.Border.Rounding = 40F;
-            btnFiltro.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnFiltro.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnFiltro.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnFiltro.StateNormal.Back.Color2 = Color.Transparent;
-            btnFiltro.StateNormal.Border.Rounding = 40F;
-            btnFiltro.TabIndex = 287;
-            btnFiltro.Values.DropDownArrowColor = Color.Empty;
-            btnFiltro.Values.Text = "Aplicar";
-            btnFiltro.Click += btnFiltro_Click;
-            // 
             // cmbReporte
             // 
             cmbReporte.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -977,7 +837,7 @@
             label9.Name = "label9";
             label9.Size = new Size(107, 24);
             label9.TabIndex = 339;
-            label9.Text = "CATEGORIA";
+            label9.Text = "CATEGORÍA";
             // 
             // kryptonGroup4
             // 
@@ -987,15 +847,164 @@
             kryptonGroup4.StateCommon.Border.Rounding = 30F;
             kryptonGroup4.TabIndex = 338;
             // 
+            // dgvReporte
+            // 
+            dataGridViewCellStyle6.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle6.ForeColor = Color.Navy;
+            dgvReporte.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            dgvReporte.BackgroundColor = Color.SkyBlue;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = SystemColors.Control;
+            dataGridViewCellStyle7.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle7.ForeColor = Color.Navy;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dgvReporte.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dgvReporte.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = SystemColors.Window;
+            dataGridViewCellStyle8.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle8.ForeColor = Color.SkyBlue;
+            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
+            dgvReporte.DefaultCellStyle = dataGridViewCellStyle8;
+            dgvReporte.Location = new Point(569, 239);
+            dgvReporte.Name = "dgvReporte";
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = SystemColors.Control;
+            dataGridViewCellStyle9.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle9.ForeColor = Color.Navy;
+            dataGridViewCellStyle9.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
+            dgvReporte.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dgvReporte.RowHeadersWidth = 51;
+            dataGridViewCellStyle10.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle10.ForeColor = Color.Navy;
+            dgvReporte.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            dgvReporte.Size = new Size(848, 604);
+            dgvReporte.TabIndex = 174;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label10.ForeColor = Color.Navy;
+            label10.Location = new Point(384, 45);
+            label10.Name = "label10";
+            label10.Size = new Size(102, 31);
+            label10.TabIndex = 340;
+            label10.Text = "Reportes";
+            // 
+            // btnExportaar
+            // 
+            btnExportaar.Location = new Point(319, 669);
+            btnExportaar.Name = "btnExportaar";
+            btnExportaar.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnExportaar.OverrideDefault.Back.Color2 = Color.White;
+            btnExportaar.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnExportaar.OverrideFocus.Back.Color2 = Color.White;
+            btnExportaar.Size = new Size(206, 41);
+            btnExportaar.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnExportaar.StateCommon.Back.Color2 = Color.White;
+            btnExportaar.StateCommon.Border.Rounding = 20F;
+            btnExportaar.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnExportaar.StateCommon.Content.ShortText.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnExportaar.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnExportaar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnExportaar.StatePressed.Back.Color1 = Color.Transparent;
+            btnExportaar.StatePressed.Back.Color2 = Color.Transparent;
+            btnExportaar.TabIndex = 341;
+            btnExportaar.Values.DropDownArrowColor = Color.Empty;
+            btnExportaar.Values.Text = "Exportar PDF";
+            btnExportaar.Click += btnExportaar_Click;
+            // 
+            // btnExportarEx
+            // 
+            btnExportarEx.Location = new Point(319, 736);
+            btnExportarEx.Name = "btnExportarEx";
+            btnExportarEx.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnExportarEx.OverrideDefault.Back.Color2 = Color.White;
+            btnExportarEx.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnExportarEx.OverrideFocus.Back.Color2 = Color.White;
+            btnExportarEx.Size = new Size(206, 41);
+            btnExportarEx.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnExportarEx.StateCommon.Back.Color2 = Color.White;
+            btnExportarEx.StateCommon.Border.Rounding = 20F;
+            btnExportarEx.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnExportarEx.StateCommon.Content.ShortText.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnExportarEx.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnExportarEx.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnExportarEx.StatePressed.Back.Color1 = Color.Transparent;
+            btnExportarEx.StatePressed.Back.Color2 = Color.Transparent;
+            btnExportarEx.TabIndex = 342;
+            btnExportarEx.Values.DropDownArrowColor = Color.Empty;
+            btnExportarEx.Values.Text = "Exportar EXCEL";
+            btnExportarEx.Click += btnExportarEx_Click_1;
+            // 
+            // btnLimpiar
+            // 
+            btnLimpiar.Location = new Point(340, 802);
+            btnLimpiar.Name = "btnLimpiar";
+            btnLimpiar.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnLimpiar.OverrideDefault.Back.Color2 = Color.White;
+            btnLimpiar.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnLimpiar.OverrideFocus.Back.Color2 = Color.White;
+            btnLimpiar.Size = new Size(167, 41);
+            btnLimpiar.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnLimpiar.StateCommon.Back.Color2 = Color.White;
+            btnLimpiar.StateCommon.Border.Rounding = 20F;
+            btnLimpiar.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnLimpiar.StateCommon.Content.ShortText.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLimpiar.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnLimpiar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnLimpiar.StatePressed.Back.Color1 = Color.Transparent;
+            btnLimpiar.StatePressed.Back.Color2 = Color.Transparent;
+            btnLimpiar.TabIndex = 343;
+            btnLimpiar.Values.DropDownArrowColor = Color.Empty;
+            btnLimpiar.Values.Text = "Limpiar";
+            btnLimpiar.Click += btnLimpiar_Click;
+            // 
+            // btnFiltro
+            // 
+            btnFiltro.Location = new Point(1125, 185);
+            btnFiltro.Name = "btnFiltro";
+            btnFiltro.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnFiltro.OverrideDefault.Back.Color2 = Color.White;
+            btnFiltro.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnFiltro.OverrideFocus.Back.Color2 = Color.White;
+            btnFiltro.Size = new Size(91, 32);
+            btnFiltro.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnFiltro.StateCommon.Back.Color2 = Color.White;
+            btnFiltro.StateCommon.Border.Rounding = 20F;
+            btnFiltro.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnFiltro.StateCommon.Content.ShortText.Font = new Font("Arial", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnFiltro.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnFiltro.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnFiltro.StatePressed.Back.Color1 = Color.Transparent;
+            btnFiltro.StatePressed.Back.Color2 = Color.Transparent;
+            btnFiltro.TabIndex = 345;
+            btnFiltro.Values.DropDownArrowColor = Color.Empty;
+            btnFiltro.Values.Text = "Aplicar";
+            btnFiltro.Click += btnAplicar_Click;
+            // 
             // ReportesAdmin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1462, 903);
+            BackColor = Color.White;
+            ClientSize = new Size(1475, 903);
+            Controls.Add(btnFiltro);
+            Controls.Add(btnLimpiar);
+            Controls.Add(btnExportarEx);
+            Controls.Add(btnExportaar);
+            Controls.Add(label10);
+            Controls.Add(dgvReporte);
             Controls.Add(label9);
             Controls.Add(kryptonGroup4);
             Controls.Add(cmbReporte);
-            Controls.Add(btnFiltro);
             Controls.Add(Max);
             Controls.Add(label7);
             Controls.Add(label6);
@@ -1003,8 +1012,6 @@
             Controls.Add(Min);
             Controls.Add(label3);
             Controls.Add(label4);
-            Controls.Add(btnExportarEx);
-            Controls.Add(dgvReporte);
             Controls.Add(kryptonGroup3);
             Controls.Add(label1);
             Controls.Add(kryptonGroup2);
@@ -1012,11 +1019,7 @@
             Controls.Add(kryptonGroup1);
             Controls.Add(dtpHasta);
             Controls.Add(dtpDesde);
-            Controls.Add(btnLimpiar);
-            Controls.Add(btnExportaar);
             Controls.Add(pictureBox3);
-            Controls.Add(kryptonButton11);
-            Controls.Add(pictureBox18);
             Controls.Add(btnNoti);
             Controls.Add(panel6);
             Controls.Add(panel8);
@@ -1026,11 +1029,11 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "ReportesAdmin";
-            Text = "ReportesAdmin";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = " ";
             Load += ReportesAdmin_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox15).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dgvReporte).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup3.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup3).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup2.Panel).EndInit();
@@ -1038,7 +1041,6 @@
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox18).EndInit();
             panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             panel4.ResumeLayout(false);
@@ -1059,6 +1061,7 @@
             ((System.ComponentModel.ISupportInitialize)cmbReporte).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup4.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvReporte).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1069,7 +1072,6 @@
         private Krypton.Toolkit.KryptonButton btnCerrarSesion;
         private PictureBox pictureBox16;
         private PictureBox pictureBox15;
-        private Krypton.Toolkit.KryptonDataGridView dgvReporte;
         private Krypton.Toolkit.KryptonGroup kryptonGroup3;
         private Label label1;
         private Krypton.Toolkit.KryptonGroup kryptonGroup2;
@@ -1077,11 +1079,7 @@
         private Krypton.Toolkit.KryptonGroup kryptonGroup1;
         private Krypton.Toolkit.KryptonDateTimePicker dtpHasta;
         private Krypton.Toolkit.KryptonDateTimePicker dtpDesde;
-        private Krypton.Toolkit.KryptonButton btnLimpiar;
-        private Krypton.Toolkit.KryptonButton btnExportaar;
         private PictureBox pictureBox3;
-        private Krypton.Toolkit.KryptonButton kryptonButton11;
-        private PictureBox pictureBox18;
         private Button btnNoti;
         private Panel panel6;
         private Panel panel8;
@@ -1111,7 +1109,6 @@
         private PictureBox pictureBox7;
         private PictureBox pictureBox8;
         private PictureBox pictureBox1;
-        private Krypton.Toolkit.KryptonButton btnExportarEx;
         private Label label4;
         private Label label3;
         private Krypton.Toolkit.KryptonNumericUpDown Min;
@@ -1119,9 +1116,14 @@
         private Label label6;
         private Label label7;
         private Krypton.Toolkit.KryptonNumericUpDown Max;
-        private Krypton.Toolkit.KryptonButton btnFiltro;
         private Krypton.Toolkit.KryptonComboBox cmbReporte;
         private Label label9;
         private Krypton.Toolkit.KryptonGroup kryptonGroup4;
+        private DataGridView dgvReporte;
+        private Label label10;
+        private Krypton.Toolkit.KryptonButton btnExportaar;
+        private Krypton.Toolkit.KryptonButton btnExportarEx;
+        private Krypton.Toolkit.KryptonButton btnLimpiar;
+        private Krypton.Toolkit.KryptonButton btnFiltro;
     }
 }

@@ -32,6 +32,11 @@ namespace SG_BAMS
             this.Close();
         }
 
+        private void frmModificarMarcaProducto_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private async void btnModificar_Click(object sender, EventArgs e)
         {
             string nombreLimpio = txtDescri.Text.Trim();

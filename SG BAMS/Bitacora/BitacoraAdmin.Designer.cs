@@ -28,12 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             pictureBox6 = new PictureBox();
             label10 = new Label();
             kryptonButton14 = new Krypton.Toolkit.KryptonButton();
             label1 = new Label();
-            kryptonButton11 = new Krypton.Toolkit.KryptonButton();
-            pictureBox18 = new PictureBox();
             btnNoti = new Button();
             panel8 = new Panel();
             panel5 = new Panel();
@@ -64,7 +67,6 @@
             pictureBox1 = new PictureBox();
             panel6 = new Panel();
             panel2 = new Panel();
-            dgvBitacora = new Krypton.Toolkit.KryptonDataGridView();
             pictureBox2 = new PictureBox();
             kryptonGroupBox1 = new Krypton.Toolkit.KryptonGroupBox();
             kryptonGroupBox2 = new Krypton.Toolkit.KryptonGroupBox();
@@ -75,8 +77,9 @@
             label4 = new Label();
             label3 = new Label();
             btnExportar = new Krypton.Toolkit.KryptonButton();
+            dgvBitacora = new DataGridView();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).BeginInit();
@@ -89,12 +92,12 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dgvBitacora).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvBitacora).BeginInit();
             SuspendLayout();
             // 
             // pictureBox6
@@ -112,7 +115,7 @@
             label10.BackColor = Color.SkyBlue;
             label10.Font = new Font("Arial Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Navy;
-            label10.Location = new Point(638, 76);
+            label10.Location = new Point(720, 74);
             label10.Name = "label10";
             label10.Size = new Size(158, 42);
             label10.TabIndex = 90;
@@ -134,46 +137,10 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(1011, 767);
+            label1.Location = new Point(1110, 762);
             label1.Name = "label1";
             label1.Size = new Size(0, 20);
             label1.TabIndex = 76;
-            // 
-            // kryptonButton11
-            // 
-            kryptonButton11.Location = new Point(1055, 31);
-            kryptonButton11.Name = "kryptonButton11";
-            kryptonButton11.OverrideDefault.Back.Color1 = Color.Transparent;
-            kryptonButton11.OverrideDefault.Back.Color2 = Color.Transparent;
-            kryptonButton11.OverrideDefault.Border.Rounding = 40F;
-            kryptonButton11.OverrideFocus.Back.Color1 = Color.White;
-            kryptonButton11.OverrideFocus.Back.Color2 = Color.SkyBlue;
-            kryptonButton11.Size = new Size(98, 41);
-            kryptonButton11.StateCommon.Back.Color1 = Color.White;
-            kryptonButton11.StateCommon.Back.Color2 = Color.SkyBlue;
-            kryptonButton11.StateCommon.Border.Rounding = 40F;
-            kryptonButton11.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton11.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton11.StateNormal.Back.Color1 = Color.Transparent;
-            kryptonButton11.StateNormal.Back.Color2 = Color.Transparent;
-            kryptonButton11.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
-            kryptonButton11.StatePressed.Back.Color1 = Color.Transparent;
-            kryptonButton11.StatePressed.Back.Color2 = Color.Transparent;
-            kryptonButton11.StateTracking.Border.Rounding = 40F;
-            kryptonButton11.TabIndex = 75;
-            kryptonButton11.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton11.Values.Text = "Ajustes";
-            // 
-            // pictureBox18
-            // 
-            pictureBox18.BackgroundImage = Properties.Resources.ajus;
-            pictureBox18.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox18.Location = new Point(1000, 29);
-            pictureBox18.Name = "pictureBox18";
-            pictureBox18.Size = new Size(53, 49);
-            pictureBox18.TabIndex = 73;
-            pictureBox18.TabStop = false;
-            pictureBox18.Click += pictureBox18_Click;
             // 
             // btnNoti
             // 
@@ -184,7 +151,7 @@
             btnNoti.FlatAppearance.BorderSize = 0;
             btnNoti.FlatStyle = FlatStyle.Flat;
             btnNoti.ForeColor = Color.Navy;
-            btnNoti.Location = new Point(935, 29);
+            btnNoti.Location = new Point(1187, 36);
             btnNoti.Name = "btnNoti";
             btnNoti.Size = new Size(59, 44);
             btnNoti.TabIndex = 71;
@@ -212,13 +179,13 @@
             panel3.BackColor = Color.Navy;
             panel3.Location = new Point(1, 884);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1183, 24);
+            panel3.Size = new Size(1291, 24);
             panel3.TabIndex = 69;
             // 
             // panel4
             // 
             panel4.BackColor = Color.Navy;
-            panel4.Location = new Point(1160, 4);
+            panel4.Location = new Point(1268, 4);
             panel4.Name = "panel4";
             panel4.Size = new Size(24, 895);
             panel4.TabIndex = 65;
@@ -330,7 +297,7 @@
             btnMenu.StateTracking.Border.Rounding = 40F;
             btnMenu.TabIndex = 34;
             btnMenu.Values.DropDownArrowColor = Color.Empty;
-            btnMenu.Values.Text = "Menu Principal";
+            btnMenu.Values.Text = "Menú Principal";
             btnMenu.Click += btnMenu_Click;
             // 
             // btnFacturas
@@ -657,25 +624,15 @@
             panel2.BackColor = Color.Navy;
             panel2.Location = new Point(7, 1);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1177, 24);
+            panel2.Size = new Size(1285, 24);
             panel2.TabIndex = 64;
-            // 
-            // dgvBitacora
-            // 
-            dgvBitacora.BorderStyle = BorderStyle.None;
-            dgvBitacora.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvBitacora.Location = new Point(421, 261);
-            dgvBitacora.Name = "dgvBitacora";
-            dgvBitacora.RowHeadersWidth = 51;
-            dgvBitacora.Size = new Size(581, 492);
-            dgvBitacora.TabIndex = 98;
             // 
             // pictureBox2
             // 
             pictureBox2.BackColor = Color.Transparent;
             pictureBox2.BackgroundImage = Properties.Resources.pdf;
             pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox2.Location = new Point(579, 797);
+            pictureBox2.Location = new Point(678, 792);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(63, 60);
             pictureBox2.TabIndex = 37;
@@ -684,7 +641,7 @@
             // kryptonGroupBox1
             // 
             kryptonGroupBox1.CaptionVisible = false;
-            kryptonGroupBox1.Location = new Point(411, 252);
+            kryptonGroupBox1.Location = new Point(510, 247);
             kryptonGroupBox1.Size = new Size(600, 512);
             kryptonGroupBox1.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroupBox1.StateCommon.Border.Rounding = 20F;
@@ -693,7 +650,7 @@
             // kryptonGroupBox2
             // 
             kryptonGroupBox2.CaptionVisible = false;
-            kryptonGroupBox2.Location = new Point(560, 61);
+            kryptonGroupBox2.Location = new Point(642, 59);
             kryptonGroupBox2.Size = new Size(301, 72);
             kryptonGroupBox2.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroupBox2.StateCommon.Border.Rounding = 50F;
@@ -701,7 +658,7 @@
             // 
             // txtBuscar
             // 
-            txtBuscar.Location = new Point(314, 169);
+            txtBuscar.Location = new Point(397, 169);
             txtBuscar.Name = "txtBuscar";
             txtBuscar.Size = new Size(417, 33);
             txtBuscar.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -713,7 +670,7 @@
             // 
             btnRefresh.BackgroundImage = Properties.Resources.refresh;
             btnRefresh.BackgroundImageLayout = ImageLayout.Stretch;
-            btnRefresh.Location = new Point(1049, 153);
+            btnRefresh.Location = new Point(1186, 152);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.Size = new Size(66, 67);
             btnRefresh.TabIndex = 323;
@@ -722,18 +679,23 @@
             // 
             // dtpHasta
             // 
-            dtpHasta.Location = new Point(808, 189);
+            dtpHasta.Location = new Point(911, 189);
+            dtpHasta.MaxDate = new DateTime(2100, 12, 31, 0, 0, 0, 0);
+            dtpHasta.MinDate = new DateTime(2025, 1, 1, 0, 0, 0, 0);
             dtpHasta.Name = "dtpHasta";
-            dtpHasta.Size = new Size(228, 27);
+            dtpHasta.Size = new Size(269, 27);
             dtpHasta.TabIndex = 327;
             dtpHasta.ValueChanged += dtpHasta_ValueChanged;
             // 
             // dtpDesde
             // 
-            dtpDesde.Location = new Point(808, 156);
+            dtpDesde.Location = new Point(911, 156);
+            dtpDesde.MaxDate = new DateTime(2100, 12, 31, 0, 0, 0, 0);
+            dtpDesde.MinDate = new DateTime(2025, 1, 1, 0, 0, 0, 0);
             dtpDesde.Name = "dtpDesde";
-            dtpDesde.Size = new Size(228, 27);
+            dtpDesde.Size = new Size(269, 27);
             dtpDesde.TabIndex = 326;
+            dtpDesde.Value = new DateTime(2026, 1, 1, 0, 0, 0, 0);
             dtpDesde.ValueChanged += dtpDesde_ValueChanged;
             // 
             // label4
@@ -742,7 +704,7 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(738, 155);
+            label4.Location = new Point(833, 155);
             label4.Name = "label4";
             label4.Size = new Size(75, 29);
             label4.TabIndex = 328;
@@ -754,7 +716,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(744, 189);
+            label3.Location = new Point(835, 189);
             label3.Name = "label3";
             label3.Size = new Size(69, 29);
             label3.TabIndex = 328;
@@ -762,7 +724,7 @@
             // 
             // btnExportar
             // 
-            btnExportar.Location = new Point(669, 793);
+            btnExportar.Location = new Point(768, 788);
             btnExportar.Name = "btnExportar";
             btnExportar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnExportar.OverrideDefault.Back.Color2 = Color.White;
@@ -783,12 +745,67 @@
             btnExportar.Values.Text = "Exportar";
             btnExportar.Click += btnExportar_Click;
             // 
+            // dgvBitacora
+            // 
+            dgvBitacora.AccessibleDescription = "";
+            dataGridViewCellStyle1.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Navy;
+            dgvBitacora.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvBitacora.BackgroundColor = Color.SkyBlue;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.Navy;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvBitacora.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dgvBitacora.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.SkyBlue;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvBitacora.DefaultCellStyle = dataGridViewCellStyle3;
+            dgvBitacora.Location = new Point(521, 257);
+            dgvBitacora.Name = "dgvBitacora";
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = Color.Navy;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvBitacora.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dgvBitacora.RowHeadersWidth = 51;
+            dataGridViewCellStyle5.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = Color.Navy;
+            dgvBitacora.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dgvBitacora.Size = new Size(579, 491);
+            dgvBitacora.TabIndex = 330;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.BackColor = Color.White;
+            label5.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.Navy;
+            label5.Location = new Point(309, 171);
+            label5.Name = "label5";
+            label5.Size = new Size(88, 31);
+            label5.TabIndex = 331;
+            label5.Text = "Buscar:";
+            // 
             // BitacoraAdmin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1185, 908);
+            ClientSize = new Size(1294, 908);
+            Controls.Add(label5);
+            Controls.Add(dgvBitacora);
             Controls.Add(btnExportar);
             Controls.Add(label3);
             Controls.Add(label4);
@@ -797,12 +814,9 @@
             Controls.Add(txtBuscar);
             Controls.Add(btnRefresh);
             Controls.Add(pictureBox2);
-            Controls.Add(dgvBitacora);
             Controls.Add(label10);
             Controls.Add(kryptonButton14);
             Controls.Add(label1);
-            Controls.Add(kryptonButton11);
-            Controls.Add(pictureBox18);
             Controls.Add(btnNoti);
             Controls.Add(panel8);
             Controls.Add(panel5);
@@ -815,10 +829,10 @@
             Controls.Add(panel1);
             Margin = new Padding(3, 4, 3, 4);
             Name = "BitacoraAdmin";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Bitacora";
             Load += Bitacora_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox18).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
@@ -832,12 +846,12 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dgvBitacora).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvBitacora).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -848,8 +862,6 @@
         private Label label10;
         private Krypton.Toolkit.KryptonButton kryptonButton14;
         private Label label1;
-        private Krypton.Toolkit.KryptonButton kryptonButton11;
-        private PictureBox pictureBox18;
         private Button btnNoti;
         private Panel panel8;
         private Panel panel5;
@@ -880,7 +892,7 @@
         private PictureBox pictureBox1;
         private Panel panel6;
         private Panel panel2;
-        private Krypton.Toolkit.KryptonDataGridView dgvBitacora;
+        private Krypton.Toolkit.KryptonDataGridView dgvBitacora1;
         private PictureBox pictureBox2;
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox1;
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox2;
@@ -891,5 +903,7 @@
         private Label label4;
         private Label label3;
         private Krypton.Toolkit.KryptonButton btnExportar;
+        private DataGridView dgvBitacora;
+        private Label label5;
     }
 }
