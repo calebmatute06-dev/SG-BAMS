@@ -25,7 +25,12 @@ namespace SG_BAMS.Login
             this.Close();
         }
 
-        private void btninicioSesion_Click(object sender, EventArgs e)
+        private void Login_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btninicioSesion1_Click(object sender, EventArgs e)
         {
             ClsLogin login = new ClsLogin();
 
@@ -35,7 +40,7 @@ namespace SG_BAMS.Login
 
                 int rol = login.ValidarUsuario(txtUsu.Text, txtCon.Text);
 
-              
+
                 switch (rol)
                 {
                     case 1:
@@ -83,17 +88,17 @@ namespace SG_BAMS.Login
                         }
                         break;
 
-                    case -1: 
+                    case -1:
                         MessageBox.Show("El usuario está inactivo. No puede ingresar.", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         break;
 
-                    case 0: 
+                    case 0:
                     default:
                         MessageBox.Show("Error.....Usuario o contraseña incorrectos.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         break;
                 }
 
-                
+
                 txtUsu.Clear();
                 txtCon.Clear();
             }
@@ -103,14 +108,9 @@ namespace SG_BAMS.Login
             }
         }
 
-        private void btnsalirLogin_Click(object sender, EventArgs e)
+        private void btnsalirLogin1_Click(object sender, EventArgs e)
         {
             Application.Exit();
-        }
-
-        private void Login_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

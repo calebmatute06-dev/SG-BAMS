@@ -171,12 +171,12 @@ namespace SG_BAMS.Login
             base.OnFormClosing(e);
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void btnCancelar1_Click(object sender, EventArgs e)
         {
             Finalizar(DialogResult.Cancel);
         }
 
-        private void btnReintentar_Click(object sender, EventArgs e)
+        private void btnReintentar1_Click(object sender, EventArgs e)
         {
             lblEstado.Text = "Reintentando escaneo...";
             lblEstado.ForeColor = Color.Black;

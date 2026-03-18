@@ -33,10 +33,10 @@
             pictureBox1 = new PictureBox();
             pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
-            btnCancelar = new Krypton.Toolkit.KryptonButton();
-            btnReintentar = new Krypton.Toolkit.KryptonButton();
             label7 = new Label();
             lblEstado = new Label();
+            btnReintentar1 = new Krypton.Toolkit.KryptonButton();
+            btnCancelar1 = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)picValidar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -92,56 +92,6 @@
             pictureBox2.TabIndex = 48;
             pictureBox2.TabStop = false;
             // 
-            // btnCancelar
-            // 
-            btnCancelar.Location = new Point(478, 369);
-            btnCancelar.Margin = new Padding(3, 2, 3, 2);
-            btnCancelar.Name = "btnCancelar";
-            btnCancelar.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnCancelar.OverrideDefault.Back.Color2 = SystemColors.Window;
-            btnCancelar.OverrideDefault.Border.Rounding = 40F;
-            btnCancelar.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnCancelar.OverrideFocus.Back.Color2 = Color.White;
-            btnCancelar.Size = new Size(149, 49);
-            btnCancelar.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnCancelar.StateCommon.Back.Color2 = Color.SkyBlue;
-            btnCancelar.StateCommon.Border.Rounding = 40F;
-            btnCancelar.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnCancelar.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnCancelar.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnCancelar.StateNormal.Back.Color2 = Color.White;
-            btnCancelar.StateNormal.Border.Rounding = 40F;
-            btnCancelar.StateTracking.Border.Rounding = 40F;
-            btnCancelar.TabIndex = 146;
-            btnCancelar.Values.DropDownArrowColor = Color.Empty;
-            btnCancelar.Values.Text = "Cancelar";
-            btnCancelar.Click += btnCancelar_Click;
-            // 
-            // btnReintentar
-            // 
-            btnReintentar.Location = new Point(193, 369);
-            btnReintentar.Margin = new Padding(3, 2, 3, 2);
-            btnReintentar.Name = "btnReintentar";
-            btnReintentar.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnReintentar.OverrideDefault.Back.Color2 = SystemColors.Window;
-            btnReintentar.OverrideDefault.Border.Rounding = 40F;
-            btnReintentar.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnReintentar.OverrideFocus.Back.Color2 = Color.White;
-            btnReintentar.Size = new Size(149, 49);
-            btnReintentar.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnReintentar.StateCommon.Back.Color2 = Color.SkyBlue;
-            btnReintentar.StateCommon.Border.Rounding = 40F;
-            btnReintentar.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnReintentar.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnReintentar.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnReintentar.StateNormal.Back.Color2 = Color.White;
-            btnReintentar.StateNormal.Border.Rounding = 40F;
-            btnReintentar.StateTracking.Border.Rounding = 40F;
-            btnReintentar.TabIndex = 147;
-            btnReintentar.Values.DropDownArrowColor = Color.Empty;
-            btnReintentar.Values.Text = "Reintentar";
-            btnReintentar.Click += btnReintentar_Click;
-            // 
             // label7
             // 
             label7.AutoSize = true;
@@ -163,15 +113,63 @@
             lblEstado.Size = new Size(0, 20);
             lblEstado.TabIndex = 150;
             // 
+            // btnReintentar1
+            // 
+            btnReintentar1.Location = new Point(175, 385);
+            btnReintentar1.Margin = new Padding(3, 2, 3, 2);
+            btnReintentar1.Name = "btnReintentar1";
+            btnReintentar1.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnReintentar1.OverrideDefault.Back.Color2 = Color.White;
+            btnReintentar1.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnReintentar1.OverrideFocus.Back.Color2 = Color.White;
+            btnReintentar1.Size = new Size(196, 45);
+            btnReintentar1.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnReintentar1.StateCommon.Back.Color2 = Color.White;
+            btnReintentar1.StateCommon.Border.Rounding = 30F;
+            btnReintentar1.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnReintentar1.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnReintentar1.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnReintentar1.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnReintentar1.StatePressed.Back.Color1 = Color.Transparent;
+            btnReintentar1.StatePressed.Back.Color2 = Color.Transparent;
+            btnReintentar1.TabIndex = 151;
+            btnReintentar1.Values.DropDownArrowColor = Color.Empty;
+            btnReintentar1.Values.Text = "Reintentar";
+            btnReintentar1.Click += btnReintentar1_Click;
+            // 
+            // btnCancelar1
+            // 
+            btnCancelar1.Location = new Point(431, 385);
+            btnCancelar1.Margin = new Padding(3, 2, 3, 2);
+            btnCancelar1.Name = "btnCancelar1";
+            btnCancelar1.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnCancelar1.OverrideDefault.Back.Color2 = Color.White;
+            btnCancelar1.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnCancelar1.OverrideFocus.Back.Color2 = Color.White;
+            btnCancelar1.Size = new Size(196, 45);
+            btnCancelar1.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnCancelar1.StateCommon.Back.Color2 = Color.White;
+            btnCancelar1.StateCommon.Border.Rounding = 30F;
+            btnCancelar1.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnCancelar1.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCancelar1.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnCancelar1.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnCancelar1.StatePressed.Back.Color1 = Color.Transparent;
+            btnCancelar1.StatePressed.Back.Color2 = Color.Transparent;
+            btnCancelar1.TabIndex = 151;
+            btnCancelar1.Values.DropDownArrowColor = Color.Empty;
+            btnCancelar1.Values.Text = "Cancelar";
+            btnCancelar1.Click += btnCancelar1_Click;
+            // 
             // LoginFacial
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(817, 469);
+            Controls.Add(btnCancelar1);
+            Controls.Add(btnReintentar1);
             Controls.Add(lblEstado);
             Controls.Add(label7);
-            Controls.Add(btnReintentar);
-            Controls.Add(btnCancelar);
             Controls.Add(pictureBox4);
             Controls.Add(pictureBox1);
             Controls.Add(pictureBox3);
@@ -196,9 +194,9 @@
         private PictureBox pictureBox1;
         private PictureBox pictureBox3;
         private PictureBox pictureBox2;
-        private Krypton.Toolkit.KryptonButton btnCancelar;
-        private Krypton.Toolkit.KryptonButton btnReintentar;
         private Label label7;
         private Label lblEstado;
+        private Krypton.Toolkit.KryptonButton btnReintentar1;
+        private Krypton.Toolkit.KryptonButton btnCancelar1;
     }
 }

@@ -32,8 +32,6 @@
             label2 = new Label();
             label3 = new Label();
             picBa = new PictureBox();
-            btninicioSesion = new Krypton.Toolkit.KryptonButton();
-            btnsalirLogin = new Krypton.Toolkit.KryptonButton();
             txtUsu = new Krypton.Toolkit.KryptonTextBox();
             txtCon = new Krypton.Toolkit.KryptonTextBox();
             panel2 = new Panel();
@@ -41,6 +39,8 @@
             pictureBox1 = new PictureBox();
             pictureBox2 = new PictureBox();
             pictureBox3 = new PictureBox();
+            btninicioSesion1 = new Krypton.Toolkit.KryptonButton();
+            btnsalirLogin1 = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)picBa).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -91,54 +91,6 @@
             picBa.Size = new Size(177, 137);
             picBa.TabIndex = 8;
             picBa.TabStop = false;
-            // 
-            // btninicioSesion
-            // 
-            btninicioSesion.Location = new Point(161, 330);
-            btninicioSesion.Margin = new Padding(3, 2, 3, 2);
-            btninicioSesion.Name = "btninicioSesion";
-            btninicioSesion.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btninicioSesion.OverrideDefault.Back.Color2 = Color.White;
-            btninicioSesion.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btninicioSesion.OverrideFocus.Back.Color2 = Color.White;
-            btninicioSesion.Size = new Size(196, 46);
-            btninicioSesion.StateCommon.Back.Color1 = Color.SkyBlue;
-            btninicioSesion.StateCommon.Back.Color2 = Color.White;
-            btninicioSesion.StateCommon.Border.Rounding = 40F;
-            btninicioSesion.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btninicioSesion.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btninicioSesion.StateNormal.Back.Color1 = Color.SkyBlue;
-            btninicioSesion.StateNormal.Back.Color2 = Color.Transparent;
-            btninicioSesion.StateNormal.Border.Rounding = 40F;
-            btninicioSesion.TabIndex = 38;
-            btninicioSesion.Values.DropDownArrowColor = Color.Empty;
-            btninicioSesion.Values.Text = "Iniciar Sesión";
-            btninicioSesion.Click += btninicioSesion_Click;
-            // 
-            // btnsalirLogin
-            // 
-            btnsalirLogin.Location = new Point(377, 330);
-            btnsalirLogin.Margin = new Padding(3, 2, 3, 2);
-            btnsalirLogin.Name = "btnsalirLogin";
-            btnsalirLogin.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnsalirLogin.OverrideDefault.Back.Color2 = Color.White;
-            btnsalirLogin.OverrideDefault.Border.Rounding = 40F;
-            btnsalirLogin.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnsalirLogin.OverrideFocus.Back.Color2 = Color.White;
-            btnsalirLogin.Size = new Size(196, 46);
-            btnsalirLogin.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnsalirLogin.StateCommon.Back.Color2 = Color.White;
-            btnsalirLogin.StateCommon.Border.Rounding = 40F;
-            btnsalirLogin.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnsalirLogin.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnsalirLogin.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnsalirLogin.StateNormal.Back.Color2 = Color.White;
-            btnsalirLogin.StateNormal.Border.Rounding = 40F;
-            btnsalirLogin.StateTracking.Border.Rounding = 40F;
-            btnsalirLogin.TabIndex = 39;
-            btnsalirLogin.Values.DropDownArrowColor = Color.Empty;
-            btnsalirLogin.Values.Text = "Salir";
-            btnsalirLogin.Click += btnsalirLogin_Click;
             // 
             // txtUsu
             // 
@@ -214,12 +166,62 @@
             pictureBox3.TabIndex = 45;
             pictureBox3.TabStop = false;
             // 
+            // btninicioSesion1
+            // 
+            btninicioSesion1.Location = new Point(141, 330);
+            btninicioSesion1.Margin = new Padding(3, 2, 3, 2);
+            btninicioSesion1.Name = "btninicioSesion1";
+            btninicioSesion1.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btninicioSesion1.OverrideDefault.Back.Color2 = Color.White;
+            btninicioSesion1.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btninicioSesion1.OverrideFocus.Back.Color2 = Color.White;
+            btninicioSesion1.Size = new Size(196, 45);
+            btninicioSesion1.StateCommon.Back.Color1 = Color.SkyBlue;
+            btninicioSesion1.StateCommon.Back.Color2 = Color.White;
+            btninicioSesion1.StateCommon.Border.Rounding = 30F;
+            btninicioSesion1.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btninicioSesion1.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btninicioSesion1.StateNormal.Back.Color1 = Color.SkyBlue;
+            btninicioSesion1.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btninicioSesion1.StatePressed.Back.Color1 = Color.Transparent;
+            btninicioSesion1.StatePressed.Back.Color2 = Color.Transparent;
+            btninicioSesion1.TabIndex = 143;
+            btninicioSesion1.Values.DropDownArrowColor = Color.Empty;
+            btninicioSesion1.Values.Text = "Iniciar Sesión";
+            btninicioSesion1.Click += btninicioSesion1_Click;
+            // 
+            // btnsalirLogin1
+            // 
+            btnsalirLogin1.Location = new Point(358, 330);
+            btnsalirLogin1.Margin = new Padding(3, 2, 3, 2);
+            btnsalirLogin1.Name = "btnsalirLogin1";
+            btnsalirLogin1.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnsalirLogin1.OverrideDefault.Back.Color2 = Color.White;
+            btnsalirLogin1.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnsalirLogin1.OverrideFocus.Back.Color2 = Color.White;
+            btnsalirLogin1.Size = new Size(196, 45);
+            btnsalirLogin1.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnsalirLogin1.StateCommon.Back.Color2 = Color.White;
+            btnsalirLogin1.StateCommon.Border.Rounding = 30F;
+            btnsalirLogin1.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnsalirLogin1.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnsalirLogin1.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnsalirLogin1.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnsalirLogin1.StatePressed.Back.Color1 = Color.Transparent;
+            btnsalirLogin1.StatePressed.Back.Color2 = Color.Transparent;
+            btnsalirLogin1.TabIndex = 144;
+            btnsalirLogin1.Values.DropDownArrowColor = Color.Empty;
+            btnsalirLogin1.Values.Text = "Salir";
+            btnsalirLogin1.Click += btnsalirLogin1_Click;
+            // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(700, 403);
+            Controls.Add(btnsalirLogin1);
+            Controls.Add(btninicioSesion1);
             Controls.Add(pictureBox4);
             Controls.Add(pictureBox1);
             Controls.Add(pictureBox3);
@@ -227,8 +229,6 @@
             Controls.Add(panel2);
             Controls.Add(txtCon);
             Controls.Add(txtUsu);
-            Controls.Add(btnsalirLogin);
-            Controls.Add(btninicioSesion);
             Controls.Add(picBa);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -253,8 +253,6 @@
         private Label label2;
         private Label label3;
         private PictureBox picBa;
-        private Krypton.Toolkit.KryptonButton btninicioSesion;
-        private Krypton.Toolkit.KryptonButton btnsalirLogin;
         private Krypton.Toolkit.KryptonTextBox txtUsu;
         private Krypton.Toolkit.KryptonTextBox txtCon;
         private Panel panel2;
@@ -262,5 +260,7 @@
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private PictureBox pictureBox3;
+        private Krypton.Toolkit.KryptonButton btninicioSesion1;
+        private Krypton.Toolkit.KryptonButton btnsalirLogin1;
     }
 }
