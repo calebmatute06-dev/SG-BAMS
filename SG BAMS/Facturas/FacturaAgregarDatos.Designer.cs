@@ -108,9 +108,9 @@
             label3.ForeColor = Color.Navy;
             label3.Location = new Point(51, 98);
             label3.Name = "label3";
-            label3.Size = new Size(74, 22);
+            label3.Size = new Size(81, 22);
             label3.TabIndex = 302;
-            label3.Text = "Cliente";
+            label3.Text = "Cliente:";
             // 
             // label5
             // 

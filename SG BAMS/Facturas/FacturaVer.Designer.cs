@@ -215,9 +215,9 @@
             label9.ForeColor = Color.Navy;
             label9.Location = new Point(46, 373);
             label9.Name = "label9";
-            label9.Size = new Size(151, 22);
+            label9.Size = new Size(158, 22);
             label9.TabIndex = 332;
-            label9.Text = "Forma de Pago";
+            label9.Text = "Forma de Pago:";
             // 
             // label1
             // 
@@ -227,9 +227,9 @@
             label1.ForeColor = Color.Navy;
             label1.Location = new Point(47, 338);
             label1.Name = "label1";
-            label1.Size = new Size(126, 22);
+            label1.Size = new Size(133, 22);
             label1.TabIndex = 331;
-            label1.Text = "Batería Vieja";
+            label1.Text = "Batería Vieja:";
             // 
             // label3
             // 
@@ -239,9 +239,9 @@
             label3.ForeColor = Color.Navy;
             label3.Location = new Point(145, 129);
             label3.Name = "label3";
-            label3.Size = new Size(74, 22);
+            label3.Size = new Size(81, 22);
             label3.TabIndex = 330;
-            label3.Text = "Cliente";
+            label3.Text = "Cliente:";
             // 
             // label4
             // 
