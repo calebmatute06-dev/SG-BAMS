@@ -8,7 +8,6 @@ namespace SG_BAMS
 {
     public static class ClsValidaciones
     {
-        // --- VALIDACIONES DE FORMULARIO (Retornan bool) ---
 
         public static bool CampoVacio(Control control, string nombreCampo)
         {
@@ -37,7 +36,6 @@ namespace SG_BAMS
             return true;
         }
 
-        // --- RESTRICCIONES DE TECLADO (KeyPress) ---
 
         public static void ValidarDecimales(Control control, KeyPressEventArgs e)
         {
@@ -70,24 +68,20 @@ namespace SG_BAMS
 
         public static void ValidarBusquedaAlfanumerica(KeyPressEventArgs e)
         {
-            // Permitimos teclas de control (como borrar) y espacios
             if (char.IsControl(e.KeyChar) || char.IsWhiteSpace(e.KeyChar))
             {
                 return;
             }
 
-            // Usamos Regex para permitir solo letras y números específicos, bloqueando símbolos como !@#$%^&*()
             if (!Regex.IsMatch(e.KeyChar.ToString(), @"^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ]+$"))
             {
                 e.Handled = true;
             }
         }
 
-        // --- VALIDACIONES DE TEXTO Y SEGURIDAD ---
 
         public static bool EsNombrePersonalValido(Control control, string nombreCampo)
         {
-            // 1. Obtenemos el texto (sin espacios al inicio o final para la validación de vacíos)
             string texto = control.Text;
 
             if (string.IsNullOrWhiteSpace(texto))
@@ -97,8 +91,6 @@ namespace SG_BAMS
                 return false;
             }
 
-            // 2. VALIDACIÓN DE DOBLE ESPACIO (Implementación solicitada)
-            // Buscamos dos o más espacios seguidos en cualquier parte del texto
             if (Regex.IsMatch(texto, @"\s{2,}"))
             {
                 MessageBox.Show($"El campo '{nombreCampo}' no puede contener dobles espacios.", "Validación de Formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -106,7 +98,6 @@ namespace SG_BAMS
                 return false;
             }
 
-            // 3. No permitir que empiece con espacio (estética de base de datos)
             if (texto.StartsWith(" "))
             {
                 MessageBox.Show($"El campo '{nombreCampo}' no puede iniciar con un espacio.", "Validación de Formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -114,7 +105,6 @@ namespace SG_BAMS
                 return false;
             }
 
-            // 4. Solo letras y espacios permitidos
             if (!Regex.IsMatch(texto, @"^[a-zA-Z\sñÑáéíóúÁÉÍÓÚ]+$"))
             {
                 MessageBox.Show($"{nombreCampo} solo debe contener letras.", "Formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -128,7 +118,6 @@ namespace SG_BAMS
         public static bool ContieneCaracteresRepetidos(Control control, string nombreCampo)
         {
             string texto = control.Text.Trim();
-            // Verifica 3 o más caracteres idénticos seguidos (ej: "Juaaaan")
             if (Regex.IsMatch(texto, @"(.)\1{2,}"))
             {
                 MessageBox.Show($"El campo '{nombreCampo}' contiene demasiados caracteres repetidos seguidos.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
