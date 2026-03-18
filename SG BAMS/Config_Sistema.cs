@@ -6,7 +6,6 @@ namespace SG_BAMS
     public static class Config_Sistema
     {
         public static float FactorZoom = 1.0f;
-        // Guardamos el último zoom aplicado para evitar el efecto acumulativo
         public static float UltimoFactorAplicado = 1.0f;
 
         private static string rutaArchivo = AppDomain.CurrentDomain.BaseDirectory + "config_zoom.txt";
@@ -24,7 +23,7 @@ namespace SG_BAMS
                 if (float.TryParse(contenido, out float valorGuardado))
                 {
                     FactorZoom = valorGuardado;
-                    UltimoFactorAplicado = valorGuardado; // Sincronizamos al cargar
+                    UltimoFactorAplicado = valorGuardado; 
                 }
             }
         }
