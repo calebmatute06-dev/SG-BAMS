@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            label2 = new Label();
             label3 = new Label();
             picBa = new PictureBox();
             txtUsu = new Krypton.Toolkit.KryptonTextBox();
@@ -41,34 +39,14 @@
             pictureBox3 = new PictureBox();
             btninicioSesion1 = new Krypton.Toolkit.KryptonButton();
             btnsalirLogin1 = new Krypton.Toolkit.KryptonButton();
+            Nombre = new Label();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)picBa).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             SuspendLayout();
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.Navy;
-            label1.Location = new Point(197, 227);
-            label1.Name = "label1";
-            label1.Size = new Size(68, 23);
-            label1.TabIndex = 3;
-            label1.Text = "Usuario:";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.Navy;
-            label2.Location = new Point(172, 282);
-            label2.Name = "label2";
-            label2.Size = new Size(95, 23);
-            label2.TabIndex = 4;
-            label2.Text = "Contraseña:";
             // 
             // label3
             // 
@@ -214,12 +192,38 @@
             btnsalirLogin1.Values.Text = "Salir";
             btnsalirLogin1.Click += btnsalirLogin1_Click;
             // 
+            // Nombre
+            // 
+            Nombre.AutoSize = true;
+            Nombre.BackColor = Color.Transparent;
+            Nombre.Font = new Font("Arial", 13.8F, FontStyle.Bold);
+            Nombre.ForeColor = Color.Navy;
+            Nombre.Location = new Point(172, 225);
+            Nombre.Name = "Nombre";
+            Nombre.Size = new Size(89, 22);
+            Nombre.TabIndex = 339;
+            Nombre.Text = "Usuario:";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Arial", 13.8F, FontStyle.Bold);
+            label1.ForeColor = Color.Navy;
+            label1.Location = new Point(137, 279);
+            label1.Name = "label1";
+            label1.Size = new Size(125, 22);
+            label1.TabIndex = 339;
+            label1.Text = "Contraseña:";
+            // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(700, 403);
+            Controls.Add(label1);
+            Controls.Add(Nombre);
             Controls.Add(btnsalirLogin1);
             Controls.Add(btninicioSesion1);
             Controls.Add(pictureBox4);
@@ -231,8 +235,6 @@
             Controls.Add(txtUsu);
             Controls.Add(picBa);
             Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
             ForeColor = SystemColors.ActiveCaptionText;
             Margin = new Padding(3, 2, 3, 2);
             Name = "Login";
@@ -249,8 +251,6 @@
         }
 
         #endregion
-        private Label label1;
-        private Label label2;
         private Label label3;
         private PictureBox picBa;
         private Krypton.Toolkit.KryptonTextBox txtUsu;
@@ -262,5 +262,7 @@
         private PictureBox pictureBox3;
         private Krypton.Toolkit.KryptonButton btninicioSesion1;
         private Krypton.Toolkit.KryptonButton btnsalirLogin1;
+        private Label Nombre;
+        private Label label1;
     }
 }

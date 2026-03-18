@@ -39,6 +39,7 @@
             panel8 = new Panel();
             panel3 = new Panel();
             panel4 = new Panel();
+            Nombre = new Label();
             panel1 = new Panel();
             btnPerfil = new Krypton.Toolkit.KryptonButton();
             btnreportes = new Krypton.Toolkit.KryptonButton();
@@ -75,7 +76,6 @@
             label5 = new Label();
             label6 = new Label();
             BtnRefrescar = new Button();
-            Nombre = new Label();
             label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             panel4.SuspendLayout();
@@ -231,6 +231,18 @@
             panel4.Name = "panel4";
             panel4.Size = new Size(21, 680);
             panel4.TabIndex = 108;
+            // 
+            // Nombre
+            // 
+            Nombre.AutoSize = true;
+            Nombre.BackColor = Color.Transparent;
+            Nombre.Font = new Font("Arial", 13.8F, FontStyle.Bold);
+            Nombre.ForeColor = Color.Navy;
+            Nombre.Location = new Point(-46, 329);
+            Nombre.Name = "Nombre";
+            Nombre.Size = new Size(112, 22);
+            Nombre.TabIndex = 353;
+            Nombre.Text = "Búsqueda:";
             // 
             // panel1
             // 
@@ -677,7 +689,7 @@
             // 
             kryptonGroupBox3.CaptionVisible = false;
             kryptonGroupBox3.Location = new Point(338, 86);
-            kryptonGroupBox3.Size = new Size(139, 29);
+            kryptonGroupBox3.Size = new Size(139, 31);
             kryptonGroupBox3.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroupBox3.StateCommon.Border.Rounding = 50F;
             kryptonGroupBox3.TabIndex = 141;
@@ -776,7 +788,7 @@
             label3.BackColor = Color.SkyBlue;
             label3.Font = new Font("Arial Narrow", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(373, 90);
+            label3.Location = new Point(376, 89);
             label3.Name = "label3";
             label3.Size = new Size(64, 26);
             label3.TabIndex = 324;
@@ -816,18 +828,6 @@
             BtnRefrescar.TabIndex = 331;
             BtnRefrescar.UseVisualStyleBackColor = true;
             BtnRefrescar.Click += BtnRefrescar_Click;
-            // 
-            // Nombre
-            // 
-            Nombre.AutoSize = true;
-            Nombre.BackColor = Color.Transparent;
-            Nombre.Font = new Font("Arial", 13.8F, FontStyle.Bold);
-            Nombre.ForeColor = Color.Navy;
-            Nombre.Location = new Point(-46, 329);
-            Nombre.Name = "Nombre";
-            Nombre.Size = new Size(112, 22);
-            Nombre.TabIndex = 353;
-            Nombre.Text = "Búsqueda:";
             // 
             // label4
             // 

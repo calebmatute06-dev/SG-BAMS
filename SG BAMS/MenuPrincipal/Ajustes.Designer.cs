@@ -101,7 +101,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial Narrow", 25.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(267, 20);
+            label3.Location = new Point(291, 41);
             label3.Name = "label3";
             label3.Size = new Size(111, 42);
             label3.TabIndex = 74;
@@ -138,7 +138,7 @@
             // 
             // btnsalir1
             // 
-            btnsalir1.Location = new Point(231, 323);
+            btnsalir1.Location = new Point(255, 326);
             btnsalir1.Margin = new Padding(3, 2, 3, 2);
             btnsalir1.Name = "btnsalir1";
             btnsalir1.OverrideDefault.Back.Color1 = Color.SkyBlue;
