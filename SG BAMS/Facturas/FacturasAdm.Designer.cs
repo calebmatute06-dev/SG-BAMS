@@ -72,11 +72,13 @@
             dgvFacturas = new DataGridView();
             txtBusqueda = new Krypton.Toolkit.KryptonTextBox();
             label3 = new Label();
-            label4 = new Label();
             label5 = new Label();
             label6 = new Label();
             BtnRefrescar = new Button();
+            Nombre = new Label();
+            label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
+            panel4.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).BeginInit();
@@ -223,6 +225,7 @@
             // panel4
             // 
             panel4.BackColor = Color.Navy;
+            panel4.Controls.Add(Nombre);
             panel4.Location = new Point(1474, 0);
             panel4.Margin = new Padding(3, 2, 3, 2);
             panel4.Name = "panel4";
@@ -780,17 +783,6 @@
             label3.Text = "Fecha";
             label3.TextAlign = ContentAlignment.TopCenter;
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.Navy;
-            label4.Location = new Point(458, 198);
-            label4.Name = "label4";
-            label4.Size = new Size(86, 23);
-            label4.TabIndex = 328;
-            label4.Text = "Búsqueda:";
-            // 
             // label5
             // 
             label5.AutoSize = true;
@@ -825,17 +817,41 @@
             BtnRefrescar.UseVisualStyleBackColor = true;
             BtnRefrescar.Click += BtnRefrescar_Click;
             // 
+            // Nombre
+            // 
+            Nombre.AutoSize = true;
+            Nombre.BackColor = Color.Transparent;
+            Nombre.Font = new Font("Arial", 13.8F, FontStyle.Bold);
+            Nombre.ForeColor = Color.Navy;
+            Nombre.Location = new Point(-46, 329);
+            Nombre.Name = "Nombre";
+            Nombre.Size = new Size(112, 22);
+            Nombre.TabIndex = 353;
+            Nombre.Text = "Búsqueda:";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.BackColor = Color.Transparent;
+            label4.Font = new Font("Arial", 13.8F, FontStyle.Bold);
+            label4.ForeColor = Color.Navy;
+            label4.Location = new Point(432, 195);
+            label4.Name = "label4";
+            label4.Size = new Size(112, 22);
+            label4.TabIndex = 353;
+            label4.Text = "Búsqueda:";
+            // 
             // FacturasAdm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1370, 684);
+            Controls.Add(label4);
             Controls.Add(panel4);
             Controls.Add(BtnRefrescar);
             Controls.Add(label6);
             Controls.Add(label5);
-            Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(txtBusqueda);
             Controls.Add(dgvFacturas);
@@ -859,6 +875,8 @@
             Text = "FacturasAdm";
             Load += FacturasAdm_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
@@ -925,7 +943,6 @@
         private DataGridView dgvFacturas;
         private Krypton.Toolkit.KryptonTextBox txtBusqueda;
         private Label label3;
-        private Label label4;
         private Label label5;
         private Label label6;
         private Button BtnRefrescar;
@@ -933,5 +950,7 @@
         private Krypton.Toolkit.KryptonButton btnreportes;
         private Krypton.Toolkit.KryptonButton btncompra;
         private Krypton.Toolkit.KryptonButton btnPerfil;
+        private Label Nombre;
+        private Label label4;
     }
 }

@@ -53,7 +53,6 @@
             BtnRefrescar = new Button();
             label6 = new Label();
             label5 = new Label();
-            label4 = new Label();
             label3 = new Label();
             txtBusqueda = new Krypton.Toolkit.KryptonTextBox();
             dgvFacturas = new DataGridView();
@@ -67,6 +66,7 @@
             BtnNotificaciones = new Button();
             kryptonGroupBox2 = new Krypton.Toolkit.KryptonGroupBox();
             kryptonGroupBox3 = new Krypton.Toolkit.KryptonGroupBox();
+            Nombre = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
@@ -458,17 +458,6 @@
             label5.TabIndex = 349;
             label5.Text = "Inicial:";
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.Navy;
-            label4.Location = new Point(514, 160);
-            label4.Name = "label4";
-            label4.Size = new Size(99, 25);
-            label4.TabIndex = 348;
-            label4.Text = "Búsqueda:";
-            // 
             // label3
             // 
             label3.AutoSize = true;
@@ -638,16 +627,28 @@
             kryptonGroupBox3.StateCommon.Border.Rounding = 50F;
             kryptonGroupBox3.TabIndex = 341;
             // 
+            // Nombre
+            // 
+            Nombre.AutoSize = true;
+            Nombre.BackColor = Color.Transparent;
+            Nombre.Font = new Font("Arial", 13.8F, FontStyle.Bold);
+            Nombre.ForeColor = Color.Navy;
+            Nombre.Location = new Point(502, 162);
+            Nombre.Name = "Nombre";
+            Nombre.Size = new Size(112, 22);
+            Nombre.TabIndex = 352;
+            Nombre.Text = "Búsqueda:";
+            // 
             // FacturasEmp
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1370, 698);
+            ClientSize = new Size(1370, 679);
+            Controls.Add(Nombre);
             Controls.Add(BtnRefrescar);
             Controls.Add(label6);
             Controls.Add(label5);
-            Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(txtBusqueda);
             Controls.Add(dgvFacturas);
@@ -716,7 +717,6 @@
         private Button BtnRefrescar;
         private Label label6;
         private Label label5;
-        private Label label4;
         private Label label3;
         private Krypton.Toolkit.KryptonTextBox txtBusqueda;
         private DataGridView dgvFacturas;
@@ -732,5 +732,6 @@
         private Button BtnNotificaciones;
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox2;
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox3;
+        private Label Nombre;
     }
 }
