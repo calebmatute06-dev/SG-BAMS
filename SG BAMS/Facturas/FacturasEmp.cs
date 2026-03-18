@@ -20,6 +20,8 @@ namespace SG_BAMS
             dgvFacturas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvFacturas.MultiSelect = false;
             dgvFacturas.AllowUserToAddRows = false;
+
+            txtBusqueda.KeyPress += (s, e) => ClsValidaciones.ValidarBusquedaAlfanumerica(e);
         }
 
         private void dgvFacturas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

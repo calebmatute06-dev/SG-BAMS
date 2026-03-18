@@ -19,7 +19,8 @@ namespace SG_BAMS
             InitializeComponent();
             dgvClientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-
+            txtBusqueda.KeyPress += (s, e) => ClsValidaciones.ValidarBusquedaAlfanumerica(e);
+        
             dgvClientes.MultiSelect = false;
         }
 

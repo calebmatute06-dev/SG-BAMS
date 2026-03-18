@@ -17,39 +17,14 @@ namespace SG_BAMS
         public frnAgregarTipoProducto()
         {
             InitializeComponent();
+            txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
         }
 
         private async void btnAgregar_Click_1(object sender, EventArgs e)
         {
-            string nombreLimpio = txtDescri.Text.Trim();
-            if (string.IsNullOrWhiteSpace(txtDescri.Text))
+           
+            if (!ClsValidaciones.EsNombrePersonalValido(txtDescri.TextBox, "Tipo de Producto"))
             {
-                MessageBox.Show("Debe ingresar una descripción para el tipo de producto.",
-                                "Validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (nombreLimpio.Contains("  "))
-            {
-                MessageBox.Show("El nombre no puede contener dos espacios seguidos.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (Regex.IsMatch(nombreLimpio, @"(\w)\1{2,}"))
-            {
-                MessageBox.Show("No se permite repetir la misma letra más de dos veces seguidas.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (nombreLimpio.Length < 3)
-            {
-                MessageBox.Show("El nombre debe tener mas de 3 caracteres.", "Error de Longitud", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (!Regex.IsMatch(nombreLimpio, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ,.]{3,}(\s[a-zA-ZñÑáéíóúÁÉÍÓÚ.,]{3,})*$"))
-            {
-                MessageBox.Show("Escriba un nombre Valido.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -60,6 +35,7 @@ namespace SG_BAMS
 
                 clsTipoProducto objetoTipo = new clsTipoProducto();
 
+                
                 bool exito = await objetoTipo.InsertarTipoProductoAsync(txtDescri.Text.Trim());
 
                 if (exito)
@@ -68,14 +44,15 @@ namespace SG_BAMS
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     this.DialogResult = DialogResult.OK;
-                    frmTipoProducto verTproducto = new frmTipoProducto();
-                    verTproducto.Show();
+
+                   
                     this.Close();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al guardar: " + ex.Message, "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {

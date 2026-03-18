@@ -22,6 +22,8 @@ namespace SG_BAMS
             CargarComboRoles();
             btnImagen.Enabled = false;
             cmbRol.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
         }
 
         private async void fmrAgregarUsuarios_Load(object sender, EventArgs e)
@@ -88,83 +90,59 @@ namespace SG_BAMS
 
         private async void btmModificar_Click(object sender, EventArgs e)
         {
-            string nombreLimpio = txtNombre.Text.Trim();
-            string contraLimpia = txtContra.Text.Trim();
-
-            if (string.IsNullOrEmpty(txtNombre.Text))
+            
+            if (!ClsValidaciones.EsNombrePersonalValido(txtNombre.TextBox, "Nombre de Usuario"))
             {
-                MessageBox.Show("Por favor complete los campos obligatorios.");
                 return;
             }
 
-            if (contraLimpia.Contains(" "))
+            
+            if (!ClsValidaciones.EsPasswordValido(txtContra.TextBox, "Contraseña"))
             {
-                MessageBox.Show("La contraseña no puede contener espacios.",
-                                "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (contraLimpia.Length > 0 && contraLimpia.Length < 6)
-            {
-                MessageBox.Show("La contraseña debe tener al menos 6 caracteres.", "Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (nombreLimpio.Contains("  "))
-            {
-                MessageBox.Show("El nombre no puede contener dos espacios seguidos.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (Regex.IsMatch(nombreLimpio, @"(\w)\1{2,}"))
-            {
-                MessageBox.Show("No se permite repetir la misma letra más de dos veces seguidas.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (nombreLimpio.Length < 3)
-            {
-                MessageBox.Show("El nombre debe tener mas de 3 caracteres.", "Error de Longitud", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (!Regex.IsMatch(nombreLimpio, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ]{3,}(\s[a-zA-ZñÑáéíóúÁÉÍÓÚ]{3,})*$"))
-            {
-                MessageBox.Show("Escriba un nombre Valido.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
+            
             if (cmbRol.SelectedIndex == -1)
             {
-                MessageBox.Show("Debe seleccionar un Rol.");
+                MessageBox.Show("Debe seleccionar un Rol.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             try
             {
+                this.Cursor = Cursors.WaitCursor;
+                btmModificar.Enabled = false;
+
+                
                 clsUsuario objetoUsuario = new clsUsuario();
 
                 int idRol = (int)cmbRol.SelectedValue;
-                int idEstado = 1;
                 byte[] imagenByte = null;
 
                 bool exito = await objetoUsuario.InsertarUsuarioAsync(
-                    txtNombre.Text,
-                    txtContra.Text,
+                    txtNombre.Text.Trim(),
+                    txtContra.Text, 
                     idRol,
                     imagenByte
                 );
 
                 if (exito)
                 {
-                    MessageBox.Show("Usuario guardado exitosamente.");
+                    MessageBox.Show("Usuario guardado exitosamente.", "SG-BAMS", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                    this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocurrió un error: " + ex.Message);
+                MessageBox.Show("Ocurrió un error: " + ex.Message, "Error de Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+                btmModificar.Enabled = true;
             }
         }
 

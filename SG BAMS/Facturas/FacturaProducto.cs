@@ -67,46 +67,27 @@ namespace SG_BAMS
 
         private void BtnAceptar_Click(object sender, EventArgs e)
         {
+           
             if (cmbProductos.SelectedIndex == -1)
             {
                 MessageBox.Show("Por favor, seleccione un producto antes de continuar.",
                                 "Producto requerido",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Warning);
-
                 cmbProductos.Focus();
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(txtCantidad.Text))
-            {
-                MessageBox.Show("Debe ingresar una cantidad.",
-                                "Cantidad requerida",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Warning);
+            
+            if (ClsValidaciones.CampoVacio(txtCantidad, "Cantidad")) return;
 
-                txtCantidad.Focus();
-                return;
-            }
-
-            if (!int.TryParse(txtCantidad.Text.Trim(), out int cantidad))
+            
+            if (!int.TryParse(txtCantidad.Text.Trim(), out int cantidad) || cantidad <= 0)
             {
-                MessageBox.Show("Ingrese una cantidad válida (solo números).",
+                MessageBox.Show("Ingrese una cantidad válida mayor a 0 (solo números).",
                                 "Cantidad inválida",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Warning);
-
-                txtCantidad.Focus();
-                return;
-            }
-
-            if (cantidad <= 0)
-            {
-                MessageBox.Show("La cantidad debe ser mayor que 0",
-                                "Cantidad inválida",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Warning);
-
                 txtCantidad.Focus();
                 return;
             }
@@ -126,6 +107,7 @@ namespace SG_BAMS
 
             int idProdu = Convert.ToInt32(cmbProductos.SelectedValue);
 
+           
             foreach (DataGridViewRow fila in FormularioFactura.dgvProductos.Rows)
             {
                 if (fila.IsNewRow) continue;
@@ -133,21 +115,17 @@ namespace SG_BAMS
                 if (fila.Cells[0].Value != null && Convert.ToInt32(fila.Cells[0].Value) == idProdu)
                 {
                     MessageBox.Show("Este producto ya está en la factura.",
-                                    "Producto ya existente en la factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    "Producto ya existente", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
             }
 
-            int idProd = Convert.ToInt32(cmbProductos.SelectedValue);
             string nombreProd = cmbProductos.Text;
-            int cantidadProd = Convert.ToInt32(txtCantidad.Text);
 
-            FormularioFactura.SetProducto(idProd, nombreProd, cantidadProd);
-
-            this.StockSeleccionado = int.Parse(lblNumero.Text);
+            FormularioFactura.SetProducto(idProdu, nombreProd, cantidad);
+            this.StockSeleccionado = stock;
 
             this.DialogResult = DialogResult.OK;
-
             this.Hide();
 
 

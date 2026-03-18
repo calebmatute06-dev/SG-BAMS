@@ -23,6 +23,7 @@ namespace SG_BAMS.Bitacora
         public BitacoraAdmin()
         {
             InitializeComponent();
+            txtBuscar.KeyPress += (s, e) => ClsValidaciones.ValidarBusquedaAlfanumerica(e);
         }
 
         private void label10_Click(object sender, EventArgs e)

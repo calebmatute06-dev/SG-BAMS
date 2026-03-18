@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -21,6 +22,8 @@ namespace SG_BAMS
         public Agregar_Producto__Compras_()
         {
             InitializeComponent();
+
+            txtPrecio.KeyPress += (s, e) => ClsValidaciones.ValidarDecimales(txtPrecio, e);
         }
 
         private void kryptonLabel1_Click(object sender, EventArgs e)
@@ -77,12 +80,14 @@ namespace SG_BAMS
 
         private void kryptonButton3_Click(object sender, EventArgs e)
         {
+            
             if (cmbProductos.SelectedValue == null || cmbProductos.SelectedIndex == -1)
             {
-                MessageBox.Show("Por favor, seleccione un producto válido de la lista.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Debe seleccionar un producto de la lista.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
+            
             if (numCantidad.Value <= 0)
             {
                 MessageBox.Show("La cantidad debe ser mayor a cero.", "Cantidad Inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -90,17 +95,18 @@ namespace SG_BAMS
                 return;
             }
 
-            if (!decimal.TryParse(txtPrecio.Text, out decimal precioAux) || precioAux <= 0)
+            
+            if (!ClsValidaciones.EsNumeroDecimalValido(txtPrecio, "El precio", out decimal precioAux))
             {
-                MessageBox.Show("El precio debe ser un valor numérico mayor a cero.", "Precio Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtPrecio.Focus();
+                
                 return;
             }
 
+            
             IdSeleccionado = cmbProductos.SelectedValue.ToString();
             NombreSeleccionado = cmbProductos.Text;
             CantidadSeleccionada = (int)numCantidad.Value;
-            PrecioSeleccionado = precioAux; // Usamos la variable ya convertida
+            PrecioSeleccionado = precioAux;
 
             this.DialogResult = DialogResult.OK;
             this.Close();

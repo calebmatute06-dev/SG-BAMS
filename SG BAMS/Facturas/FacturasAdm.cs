@@ -20,6 +20,8 @@ namespace SG_BAMS
             dgvFacturas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvFacturas.MultiSelect = false;
             dgvFacturas.AllowUserToAddRows = false;
+
+            txtBusqueda.KeyPress += (s, e) => ClsValidaciones.ValidarBusquedaAlfanumerica(e);
         }
 
         private void label10_Click(object sender, EventArgs e)
@@ -321,6 +323,11 @@ namespace SG_BAMS
         {
             Perfil Per = new Perfil();
             Per.Show();
+        }
+        private void txtBusqueda_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+            ClsValidaciones.ValidarBusquedaAlfanumerica(e);
         }
     }
 
