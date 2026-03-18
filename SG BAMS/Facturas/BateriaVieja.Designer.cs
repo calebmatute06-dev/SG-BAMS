@@ -103,7 +103,7 @@
             label1.Name = "label1";
             label1.Size = new Size(191, 42);
             label1.TabIndex = 339;
-            label1.Text = "Bateria Vieja";
+            label1.Text = "Batería Vieja";
             // 
             // label2
             // 

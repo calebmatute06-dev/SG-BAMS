@@ -789,7 +789,7 @@
             label4.Name = "label4";
             label4.Size = new Size(86, 23);
             label4.TabIndex = 328;
-            label4.Text = "Busqueda:";
+            label4.Text = "Búsqueda:";
             // 
             // label5
             // 

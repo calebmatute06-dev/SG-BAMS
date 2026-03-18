@@ -390,7 +390,7 @@
             btnBateria.OverrideDefault.Back.Color2 = Color.White;
             btnBateria.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnBateria.OverrideFocus.Back.Color2 = Color.White;
-            btnBateria.Size = new Size(127, 29);
+            btnBateria.Size = new Size(164, 29);
             btnBateria.StateCommon.Back.Color1 = Color.SkyBlue;
             btnBateria.StateCommon.Back.Color2 = Color.White;
             btnBateria.StateCommon.Border.Rounding = 15F;
@@ -402,7 +402,7 @@
             btnBateria.StatePressed.Back.Color2 = Color.Transparent;
             btnBateria.TabIndex = 325;
             btnBateria.Values.DropDownArrowColor = Color.Empty;
-            btnBateria.Values.Text = "Calcular";
+            btnBateria.Values.Text = "Aplicar Descuento";
             btnBateria.Click += btnBateria_Click;
             // 
             // label6
@@ -411,11 +411,11 @@
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(506, 404);
+            label6.Location = new Point(478, 403);
             label6.Name = "label6";
-            label6.Size = new Size(91, 22);
+            label6.Size = new Size(128, 22);
             label6.TabIndex = 326;
-            label6.Text = "Rebajas:";
+            label6.Text = "Descuentos:";
             // 
             // txtRebaja
             // 

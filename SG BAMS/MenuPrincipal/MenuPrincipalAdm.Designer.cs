@@ -917,7 +917,7 @@
             label10.Name = "label10";
             label10.Size = new Size(227, 29);
             label10.TabIndex = 59;
-            label10.Text = "Productos mas vendidos";
+            label10.Text = "Productos más vendidos";
             // 
             // pictureBox19
             // 

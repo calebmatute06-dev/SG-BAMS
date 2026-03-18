@@ -151,7 +151,7 @@ namespace SG_BAMS
             label10.Name = "label10";
             label10.Size = new Size(143, 29);
             label10.TabIndex = 90;
-            label10.Text = "Ultimas Ventas";
+            label10.Text = "Últimas Ventas";
             // 
             // label9
             // 
