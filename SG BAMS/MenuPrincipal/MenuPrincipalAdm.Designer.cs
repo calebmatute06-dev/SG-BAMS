@@ -71,7 +71,6 @@
             panel8 = new Panel();
             pictureBox17 = new PictureBox();
             pictureBox18 = new PictureBox();
-            btnajustes = new Krypton.Toolkit.KryptonButton();
             label1 = new Label();
             btninventario2 = new Krypton.Toolkit.KryptonButton();
             kryptonButton13 = new Krypton.Toolkit.KryptonButton();
@@ -694,33 +693,6 @@
             pictureBox18.TabIndex = 25;
             pictureBox18.TabStop = false;
             // 
-            // btnajustes
-            // 
-            btnajustes.Location = new Point(856, 23);
-            btnajustes.Margin = new Padding(3, 2, 3, 2);
-            btnajustes.Name = "btnajustes";
-            btnajustes.OverrideDefault.Back.Color1 = Color.Transparent;
-            btnajustes.OverrideDefault.Back.Color2 = Color.Transparent;
-            btnajustes.OverrideDefault.Border.Rounding = 40F;
-            btnajustes.OverrideFocus.Back.Color1 = Color.White;
-            btnajustes.OverrideFocus.Back.Color2 = Color.SkyBlue;
-            btnajustes.Size = new Size(86, 31);
-            btnajustes.StateCommon.Back.Color1 = Color.White;
-            btnajustes.StateCommon.Back.Color2 = Color.SkyBlue;
-            btnajustes.StateCommon.Border.Rounding = 40F;
-            btnajustes.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnajustes.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnajustes.StateNormal.Back.Color1 = Color.Transparent;
-            btnajustes.StateNormal.Back.Color2 = Color.Transparent;
-            btnajustes.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
-            btnajustes.StatePressed.Back.Color1 = Color.Transparent;
-            btnajustes.StatePressed.Back.Color2 = Color.Transparent;
-            btnajustes.StateTracking.Border.Rounding = 40F;
-            btnajustes.TabIndex = 38;
-            btnajustes.Values.DropDownArrowColor = Color.Empty;
-            btnajustes.Values.Text = "Ajustes";
-            btnajustes.Click += btnajustes_Click;
-            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -1102,7 +1074,6 @@
             Controls.Add(kryptonButton13);
             Controls.Add(btninventario2);
             Controls.Add(label1);
-            Controls.Add(btnajustes);
             Controls.Add(pictureBox18);
             Controls.Add(pictureBox17);
             Controls.Add(panel6);
@@ -1183,7 +1154,6 @@
         private Krypton.Toolkit.KryptonButton btnBitacora;
         private Krypton.Toolkit.KryptonButton btndeudores;
         private Krypton.Toolkit.KryptonButton btnperfil;
-        private Krypton.Toolkit.KryptonButton btnajustes;
         private Label label1;
         private Krypton.Toolkit.KryptonButton btninventario2;
         private Krypton.Toolkit.KryptonButton kryptonButton13;

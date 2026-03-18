@@ -261,6 +261,5 @@
         private Krypton.Toolkit.KryptonButton btnsalir1;
         private Label label6;
         private Krypton.Toolkit.KryptonButton btnimagen;
-        private Krypton.Toolkit.KryptonButton btnsalir;
     }
 }

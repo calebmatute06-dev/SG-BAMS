@@ -393,7 +393,7 @@
             btnBateria.Size = new Size(127, 29);
             btnBateria.StateCommon.Back.Color1 = Color.SkyBlue;
             btnBateria.StateCommon.Back.Color2 = Color.White;
-            btnBateria.StateCommon.Border.Rounding = 40F;
+            btnBateria.StateCommon.Border.Rounding = 15F;
             btnBateria.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnBateria.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnBateria.StateNormal.Back.Color1 = Color.SkyBlue;

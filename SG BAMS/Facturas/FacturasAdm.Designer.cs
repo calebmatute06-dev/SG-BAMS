@@ -63,7 +63,6 @@
             pictureBox7 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel5 = new Panel();
-            kryptonGroupBox1 = new Krypton.Toolkit.KryptonGroupBox();
             kryptonGroupBox2 = new Krypton.Toolkit.KryptonGroupBox();
             kryptonGroupBox3 = new Krypton.Toolkit.KryptonGroupBox();
             BtnVer = new Krypton.Toolkit.KryptonButton();
@@ -90,8 +89,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3).BeginInit();
@@ -664,15 +661,6 @@
             panel5.Size = new Size(21, 678);
             panel5.TabIndex = 109;
             // 
-            // kryptonGroupBox1
-            // 
-            kryptonGroupBox1.CaptionVisible = false;
-            kryptonGroupBox1.Location = new Point(276, 235);
-            kryptonGroupBox1.Size = new Size(1179, 339);
-            kryptonGroupBox1.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroupBox1.StateCommon.Border.Rounding = 20F;
-            kryptonGroupBox1.TabIndex = 139;
-            // 
             // kryptonGroupBox2
             // 
             kryptonGroupBox2.CaptionVisible = false;
@@ -867,7 +855,6 @@
             Controls.Add(panel1);
             Controls.Add(kryptonGroupBox2);
             Controls.Add(kryptonGroupBox3);
-            Controls.Add(kryptonGroupBox1);
             Name = "FacturasAdm";
             Text = "FacturasAdm";
             Load += FacturasAdm_Load;
@@ -885,8 +872,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3.Panel).EndInit();
@@ -931,7 +916,6 @@
         private PictureBox pictureBox7;
         private PictureBox pictureBox1;
         private Panel panel5;
-        private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox1;
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox2;
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox3;
         private Krypton.Toolkit.KryptonButton BtnVer;

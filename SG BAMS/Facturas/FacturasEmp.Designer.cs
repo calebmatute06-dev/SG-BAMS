@@ -67,7 +67,6 @@
             BtnNotificaciones = new Button();
             kryptonGroupBox2 = new Krypton.Toolkit.KryptonGroupBox();
             kryptonGroupBox3 = new Krypton.Toolkit.KryptonGroupBox();
-            kryptonGroupBox1 = new Krypton.Toolkit.KryptonGroupBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
@@ -82,8 +81,6 @@
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3.Panel).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1.Panel).BeginInit();
             SuspendLayout();
             // 
             // panel5
@@ -641,15 +638,6 @@
             kryptonGroupBox3.StateCommon.Border.Rounding = 50F;
             kryptonGroupBox3.TabIndex = 341;
             // 
-            // kryptonGroupBox1
-            // 
-            kryptonGroupBox1.CaptionVisible = false;
-            kryptonGroupBox1.Location = new Point(276, 190);
-            kryptonGroupBox1.Size = new Size(1098, 376);
-            kryptonGroupBox1.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroupBox1.StateCommon.Border.Rounding = 20F;
-            kryptonGroupBox1.TabIndex = 339;
-            // 
             // FacturasEmp
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -673,7 +661,6 @@
             Controls.Add(BtnNotificaciones);
             Controls.Add(kryptonGroupBox2);
             Controls.Add(kryptonGroupBox3);
-            Controls.Add(kryptonGroupBox1);
             Controls.Add(panel5);
             Controls.Add(panel8);
             Controls.Add(panel3);
@@ -699,8 +686,6 @@
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -747,6 +732,5 @@
         private Button BtnNotificaciones;
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox2;
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox3;
-        private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox1;
     }
 }
