@@ -11,18 +11,13 @@ namespace SG_BAMS
             float factor = Config_Sistema.FactorZoom;
             if (factor <= 1.0f || formulario == null) return;
 
-            // ACTIVAR SCROLL: Esto permite que aparezcan barras si el contenido es muy grande
             formulario.AutoScroll = true;
 
             try
             {
-                // 1. Aplicamos el escalado de controles y fuentes
                 formulario.Scale(new SizeF(factor, factor));
                 EscalarFuentesRecurrente(formulario, factor);
 
-                // 2. Centrado básico
-                // Nota: No limitamos el tamaño del Form con la pantalla para que el 
-                // scroll pueda funcionar correctamente sobre el tamaño real escalado.
                 Rectangle areaTrabajo = Screen.FromControl(formulario).WorkingArea;
                 formulario.Left = Math.Max(0, (areaTrabajo.Width - formulario.Width) / 2);
                 formulario.Top = Math.Max(0, (areaTrabajo.Height - formulario.Height) / 2);
