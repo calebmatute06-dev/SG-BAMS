@@ -20,6 +20,8 @@ namespace SG_BAMS
             InitializeComponent();
             idSeleccionado = id;
             txtDescri.Text = descripcionActual;
+
+            txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
         }
 
 
@@ -31,52 +33,41 @@ namespace SG_BAMS
 
         private async void btnModificar_Click(object sender, EventArgs e)
         {
-            string nombreLimpio = txtDescri.Text.Trim();
-            if (string.IsNullOrWhiteSpace(txtDescri.Text))
+            
+            if (!ClsValidaciones.EsNombrePersonalValido(txtDescri.TextBox, "Tipo de Producto"))
             {
-                MessageBox.Show("Debe ingresar una descripción para el tipo de producto.",
-                                "Validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-            if (nombreLimpio.Contains("  "))
-            {
-                MessageBox.Show("El nombre no puede contener dos espacios seguidos.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (Regex.IsMatch(nombreLimpio, @"(\w)\1{2,}"))
-            {
-                MessageBox.Show("No se permite repetir la misma letra más de dos veces seguidas.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (nombreLimpio.Length < 3)
-            {
-                MessageBox.Show("El nombre debe tener mas de 3 caracteres.", "Error de Longitud", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (!Regex.IsMatch(nombreLimpio, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ]{2,}(\s[a-zA-ZñÑáéíóúÁÉÍÓÚ]{2,})*$"))
-            {
-                MessageBox.Show("Escriba un nombre Valido.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
 
             try
             {
+                this.Cursor = Cursors.WaitCursor;
+                btnModificar.Enabled = false;
+
                 clsTipoProducto objetoTipo = new clsTipoProducto();
+
+                
                 bool exito = await objetoTipo.ModificarTipoProductoAsync(idSeleccionado, txtDescri.Text.Trim());
 
                 if (exito)
                 {
-                    MessageBox.Show("Actualizado correctamente");
+                    MessageBox.Show("Tipo de producto actualizado correctamente.", "SG-BAMS",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar: " + ex.Message, "Error de Sistema",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+                btnModificar.Enabled = true;
+            }
         }
 
         private void btnSalir_Click(object sender, EventArgs e)

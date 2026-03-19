@@ -18,6 +18,9 @@ namespace SG_BAMS.Login
         public Login()
         {
             InitializeComponent();
+
+            txtUsu.KeyPress += new KeyPressEventHandler(txtUsu_KeyPress);
+            txtCon.KeyPress += new KeyPressEventHandler(txtCon_KeyPress);
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -27,88 +30,73 @@ namespace SG_BAMS.Login
 
         private void Login_Load(object sender, EventArgs e)
         {
+            
+            if (ClsValidaciones.CampoVacio(txtUsu, "Usuario")) return;
+            if (ClsValidaciones.CampoVacio(txtCon, "Contraseña")) return;
 
-        }
+            
+            if (!ClsValidaciones.EsPasswordValido(txtCon, "La contraseña")) return;
 
-        private void btninicioSesion1_Click(object sender, EventArgs e)
-        {
             ClsLogin login = new ClsLogin();
 
             try
             {
                 UsuarioLogueado = txtUsu.Text;
-
                 int rol = login.ValidarUsuario(txtUsu.Text, txtCon.Text);
-
 
                 switch (rol)
                 {
                     case 1:
-                        {
-                            MessageBox.Show("Login correcto. ¡Bienvenido Administrador!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            new MenuPrincipalAdm().Show();
-                            this.Hide();
-                            /*LoginFacial validacionFacial = new LoginFacial();
-                            validacionFacial.UsuarioAValidar = txtUsu.Text;
-
-                            
-                            if (validacionFacial.ShowDialog() == DialogResult.OK)
-                            {
-                               MessageBox.Show("Login correcto. ¡Bienvenido Administrador!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                               new MenuPrincipalAdm().Show();
-                               this.Hide();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Validación facial fallida. Acceso denegado.", "Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }*/
-                        }
+                        MessageBox.Show("Login correcto. ¡Bienvenido Administrador!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        new MenuPrincipalAdm().Show();
+                        this.Hide();
                         break;
 
                     case 2:
-                        {
-                            MessageBox.Show("Login correcto. ¡Bienvenido Empleado!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            new MenuPrincipalEmp().Show();
-                            this.Hide();
-
-                            /*LoginFacial validacionFacial = new LoginFacial();
-                            validacionFacial.UsuarioAValidar = txtUsu.Text;
-
-                           
-                            if (validacionFacial.ShowDialog() == DialogResult.OK)
-                            {
-                                MessageBox.Show("Login correcto. ¡Bienvenido Empleado!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                new MenuPrincipalEmp().Show();
-                                this.Hide();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Validación facial fallida. Acceso denegado.", "Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }*/
-                        }
+                        MessageBox.Show("Login correcto. ¡Bienvenido Empleado!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        new MenuPrincipalEmp().Show();
+                        this.Hide();
                         break;
 
                     case -1:
-                        MessageBox.Show("El usuario está inactivo. No puede ingresar.", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("El usuario está inactivo. No puede ingresar.", "Cuenta Inactiva", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         break;
 
                     case 0:
                     default:
-                        MessageBox.Show("Error.....Usuario o contraseña incorrectos.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Usuario o contraseña incorrectos.", "Error de Acceso", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         break;
                 }
 
-
-                txtUsu.Clear();
+                
                 txtCon.Clear();
+                txtCon.Focus();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error de conexión: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void btnsalirLogin1_Click(object sender, EventArgs e)
+        
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtUsu_KeyPress(object sender, KeyPressEventArgs e)
+        {
+           
+            ClsValidaciones.ValidarBusquedaAlfanumerica(e);
+        }
+
+        private void txtCon_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+        }
+
+        private void btnsalirLogin_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }

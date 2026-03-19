@@ -22,7 +22,7 @@ namespace SG_BAMS
             InitializeComponent();
             CargarGridDeudores();
 
-            this.txtBuscarNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscarNombre_KeyPress);
+            this.txtBuscarNombre.KeyPress += (s, e) => ClsValidaciones.ValidarBusquedaAlfanumerica(e);
         }
 
         public void CargarGridDeudores()
@@ -37,6 +37,11 @@ namespace SG_BAMS
         // El botón de la lupa / buscar
         private void txtBuscarNombre_TextChanged(object sender, EventArgs e)
         {
+            // Opcional: Convertir a Mayúsculas mientras escribe para estética
+            int cursor = txtBuscarNombre.SelectionStart;
+            txtBuscarNombre.Text = txtBuscarNombre.Text.ToUpper();
+            txtBuscarNombre.SelectionStart = cursor;
+
             FiltrarDeudores();
         }
 
@@ -122,12 +127,7 @@ namespace SG_BAMS
 
         private void txtBuscarNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Solo permite letras, espacios y teclas de control (como Borrar)
-            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
-            {
-                // "Handled = true" cancela el evento (no escribe el carácter en el cuadro)
-                e.Handled = true;
-            }
+            ClsValidaciones.PermitirSoloLetras(e);
         }
 
         private void btnNoti(object sender, EventArgs e)

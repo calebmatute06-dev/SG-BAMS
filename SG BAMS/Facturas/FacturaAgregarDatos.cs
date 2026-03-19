@@ -103,13 +103,13 @@ namespace SG_BAMS
             btnBateria.Enabled = false;
             ActualizarEstadoBotonAceptar();
 
-         
+
 
         }
 
         private void CalcularTotal()
         {
-            
+
             double acumulador = 0;
 
             for (int i = 0; i < dgvProductos.Rows.Count; i++)
@@ -121,10 +121,10 @@ namespace SG_BAMS
             }
 
             double rebaja = precioBateria;
-            
+
             double total = acumulador - rebaja;
             txtSubtotal.Text = acumulador.ToString();
-            txtRebaja.Text = rebaja.ToString() ;
+            txtRebaja.Text = rebaja.ToString();
             txtTotal.Text = total.ToString();
         }
         private bool FacturaTieneProductos()
@@ -258,17 +258,12 @@ namespace SG_BAMS
 
         private async void BtnAgregar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtBateria.Text.Trim()))
-            {
-                MessageBox.Show("Debe ingresar un valor en Batería Vieja", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
            
-                return;
-            }
+            if (ClsValidaciones.CampoVacio(txtBateria, "Batería Vieja")) return;
 
             if (!int.TryParse(txtBateria.Text.Trim(), out int bateria))
             {
                 MessageBox.Show("El valor de Batería Vieja debe ser un número.");
-               
                 return;
             }
 
@@ -278,7 +273,6 @@ namespace SG_BAMS
                                 "Valor fuera de rango",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Warning);
-            
                 return;
             }
 
@@ -326,7 +320,7 @@ namespace SG_BAMS
                         .Where(r => !r.IsNewRow)
                         .Sum(r => Convert.ToDouble(r.Cells["subtotal"].Value));
 
-             
+
                     if (nuevoSubtotal == 0 || this.precioBateria > nuevoSubtotal)
                     {
                         this.precioBateria = 0;
@@ -431,6 +425,11 @@ namespace SG_BAMS
             bool tieneProductos = dgvProductos.Rows.Cast<DataGridViewRow>().Any(row => !row.IsNewRow);
             BtnAceptar.Enabled = tieneProductos;
             btnBateria.Enabled = tieneProductos;
+        }
+
+        private void txtBateria_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ClsValidaciones.ValidarSoloNumeros(e);
         }
     }
 }

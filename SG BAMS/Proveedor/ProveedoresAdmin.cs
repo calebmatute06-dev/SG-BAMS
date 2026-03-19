@@ -19,6 +19,7 @@ namespace SG_BAMS.Proveedor
         public ProveedoresAdmin()
         {
             InitializeComponent();
+            txtBuscar.KeyPress += (s, e) => ClsValidaciones.ValidarBusquedaAlfanumerica(e);
         }
 
         private void ProveedoresAdmin_Load(object sender, EventArgs e)
@@ -44,8 +45,9 @@ namespace SG_BAMS.Proveedor
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
             Login.Login login = new Login.Login();
+            this.Hide();
             login.Show();
-            this.Close();
+            
         }
 
         private void btnAjustes_Click(object sender, EventArgs e)
@@ -82,7 +84,7 @@ namespace SG_BAMS.Proveedor
         {
             AgregarProveedores agregar = new AgregarProveedores();
             agregar.Show();
-            this.Hide();
+           
         }
 
         private void btnModificar_Click(object sender, EventArgs e)

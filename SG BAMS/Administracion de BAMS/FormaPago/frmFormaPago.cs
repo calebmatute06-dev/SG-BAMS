@@ -22,6 +22,7 @@ namespace SG_BAMS
         private async void frmFormasPago_Load(object sender, EventArgs e)
         {
             await CargarGridFormasPago();
+            this.Load += async (s, e) => await CargarGridFormasPago();
         }
 
         private async Task CargarGridFormasPago()

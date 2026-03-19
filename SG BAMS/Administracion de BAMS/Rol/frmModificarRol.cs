@@ -20,59 +20,50 @@ namespace SG_BAMS
             InitializeComponent();
             this.idRolSeleccionado = id;
             txtDescri.Text = nombreActual;
+
+            txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
+        
         }
 
 
 
         private async void btmModificar_Click(object sender, EventArgs e)
         {
-            string nombreLimpio = txtDescri.Text.Trim();
-            if (string.IsNullOrWhiteSpace(txtDescri.Text))
+            
+            if (!ClsValidaciones.EsNombrePersonalValido(txtDescri.TextBox, "Nombre del Rol"))
             {
-                MessageBox.Show("El nombre del rol no puede estar vacío.");
-                return;
-            }
-
-            if (nombreLimpio.Contains("  "))
-            {
-                MessageBox.Show("El nombre no puede contener dos espacios seguidos.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (Regex.IsMatch(nombreLimpio, @"(\w)\1{2,}"))
-            {
-                MessageBox.Show("No se permite repetir la misma letra más de dos veces seguidas.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (nombreLimpio.Length < 3)
-            {
-                MessageBox.Show("El nombre debe tener mas de 3 caracteres.", "Error de Longitud", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (!Regex.IsMatch(nombreLimpio, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ]{2,}(\s[a-zA-ZñÑáéíóúÁÉÍÓÚ]{2,})*$"))
-            {
-                MessageBox.Show("Escriba un nombre Valido.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             try
             {
                 this.Cursor = Cursors.WaitCursor;
+                btmModificar.Enabled = false;
+
                 clsRol objetoRol = new clsRol();
 
+                
                 bool exito = await objetoRol.ModificarRolAsync(idRolSeleccionado, txtDescri.Text.Trim());
 
                 if (exito)
                 {
-                    MessageBox.Show("Rol actualizado con éxito.", "SG-BAMS");
+                    MessageBox.Show("Rol actualizado con éxito.", "SG-BAMS",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
-            finally { this.Cursor = Cursors.Default; }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar: " + ex.Message, "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+                btmModificar.Enabled = true;
+            }
         }
 
         private void btmSalir_Click(object sender, EventArgs e)

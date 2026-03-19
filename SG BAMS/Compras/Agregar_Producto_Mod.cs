@@ -7,7 +7,7 @@ namespace SG_BAMS
 {
     public partial class Agregar_Producto_Mod : Form
     {
-        // Esta propiedad recibirá el ID de la compra desde el formulario Modificar_datos_Compra_
+        
         public string IdCompraActual { get; set; }
 
         public string IdSeleccionado { get; set; }
@@ -20,6 +20,7 @@ namespace SG_BAMS
         public Agregar_Producto_Mod()
         {
             InitializeComponent();
+            txtPrecio.KeyPress += (s, e) => ClsValidaciones.ValidarDecimales(txtPrecio, e);
         }
 
         private void Agregar_Producto_Mod_Load(object sender, EventArgs e)
@@ -48,11 +49,12 @@ namespace SG_BAMS
             string query = "";
             switch (tabla)
             {
+                case "Producto": query = "SELECT id_producto, nombre_producto FROM Producto WHERE id_estado = 1 ORDER BY nombre_producto ASC"; break;
+                
                 case "Marca": query = "SELECT id_marca_producto, nombre_marca FROM Marca_producto"; break;
                 case "Tipo": query = "SELECT id_tipo_producto, descripcion_forma_pago FROM Tipo_producto"; break;
                 case "Modelo": query = "SELECT id_modelo_auto, nombre_modelo_auto FROM Modelo_de_auto"; break;
                 case "Estado": query = "SELECT id_estado, descripcion_estado FROM Estado"; break;
-                case "Producto": query = "SELECT id_producto, nombre_producto FROM Producto WHERE id_estado = 1"; break;
             }
 
             try
@@ -68,26 +70,26 @@ namespace SG_BAMS
             return dt;
         }
 
-        private void kryptonButton3_Click(object sender, EventArgs e)
+        private void kryptonButton3_Click(object sender, EventArgs e) 
         {
+            
             if (cmbProductos.SelectedValue == null || cmbProductos.SelectedIndex == -1)
             {
-                MessageBox.Show("Por favor, seleccione un producto válido de la lista.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor, seleccione un producto válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
+            
             if (numCantidad.Value <= 0)
             {
-                MessageBox.Show("La cantidad debe ser mayor a cero.", "Cantidad Inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("La cantidad debe ser mayor a cero.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 numCantidad.Focus();
                 return;
             }
 
-            string precioTexto = txtPrecio.Text.Trim().Replace(",", ".");
-            if (!double.TryParse(precioTexto, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out _) || string.IsNullOrWhiteSpace(precioTexto))
+            
+            if (!ClsValidaciones.EsNumeroDecimalValido(txtPrecio, "El precio", out decimal precioFinal))
             {
-                MessageBox.Show("El precio debe ser un valor numérico válido (ejemplo: 15.50).", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtPrecio.Focus();
                 return;
             }
 
@@ -95,7 +97,7 @@ namespace SG_BAMS
             {
                 conexion.AbrirConexion();
 
-                // --- NUEVA VALIDACIÓN PREVENTIVA ---
+                
                 string sqlCheck = "SELECT COUNT(*) FROM Compra_producto WHERE id_compra = @idC AND id_producto = @idP";
                 using (SqlCommand cmdCheck = new SqlCommand(sqlCheck, conexion.Conectar))
                 {
@@ -105,19 +107,15 @@ namespace SG_BAMS
                     int existe = (int)cmdCheck.ExecuteScalar();
                     if (existe > 0)
                     {
-                        MessageBox.Show("Este producto ya está incluido en la compra.\n\n" +
-                                        "Se recomienda modificarlo dándole doble click a la celda " +
-                                        "correspondiente en la pantalla anterior para cambiar la cantidad o el precio.",
+                        MessageBox.Show("Este producto ya está incluido en la compra.\nModifique la cantidad en la pantalla anterior.",
                                         "Producto Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return; // Salimos sin insertar
+                        return;
                     }
                 }
-                // --- FIN DE VALIDACIÓN ---
 
+               
                 string sql = "INSERT INTO Compra_producto (id_compra, id_producto, cantidad, precio_costo_unitario) " +
                              "VALUES (@idC, @idP, @cant, @prec)";
-
-                decimal precioFinal = decimal.Parse(precioTexto, System.Globalization.CultureInfo.InvariantCulture);
 
                 using (SqlCommand cmd = new SqlCommand(sql, conexion.Conectar))
                 {
@@ -128,18 +126,19 @@ namespace SG_BAMS
                     cmd.ExecuteNonQuery();
                 }
 
+               
                 IdSeleccionado = cmbProductos.SelectedValue.ToString();
                 NombreSeleccionado = cmbProductos.Text;
                 CantidadSeleccionada = (int)numCantidad.Value;
                 PrecioSeleccionado = precioFinal;
 
-                MessageBox.Show("Producto agregado con éxito.", "BAMS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Producto añadido correctamente a la compra.", "SG-BAMS", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al guardar producto: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al guardar: " + ex.Message, "Error SQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally { conexion.Cerrar(); }
         }

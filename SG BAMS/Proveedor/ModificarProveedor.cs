@@ -21,6 +21,7 @@ namespace SG_BAMS.Proveedor
 
         private int _idEstado;
         private int _idClasificacion;
+        private string _nombreOriginal;
 
         public ModificarProveedor(int idProveedor, string nombre, string contacto,
             string direccion, string rtn, int idEstado, int idClasificacion)
@@ -33,15 +34,24 @@ namespace SG_BAMS.Proveedor
             txtDireccion.Text = direccion;
             txtRTN.Text = rtn;
 
+
             _idEstado = idEstado;
             _idClasificacion = idClasificacion;
             txtTelefono.MaxLength = 8;
             txtRTN.MaxLength = 14;
 
+
+           
+
             this.txtNombre.KeyPress += new KeyPressEventHandler(this.txtNombre_KeyPress);
             this.txtDireccion.KeyPress += new KeyPressEventHandler(this.txtDireccion_KeyPress);
             this.txtTelefono.KeyPress += new KeyPressEventHandler(this.txtTelefono_KeyPress);
             this.txtRTN.KeyPress += new KeyPressEventHandler(this.txtRTN_KeyPress);
+
+            txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
+            txtDireccion.KeyPress += (s, e) => ClsValidaciones.ValidarBusquedaAlfanumerica(e);
+            txtTelefono.KeyPress += (s, e) => ClsValidaciones.ValidarSoloNumeros(e);
+            txtRTN.KeyPress += (s, e) => ClsValidaciones.ValidarSoloNumeros(e);
         }
 
         private void btnsalir_Click(object sender, EventArgs e)
@@ -51,40 +61,7 @@ namespace SG_BAMS.Proveedor
             this.Close();
         }
 
-        private bool ValidarFormatoTexto(string texto, string nombreCampo)
-        {
-            string textoLimpio = texto.Trim();
-
-            if (textoLimpio.Length < 3 || textoLimpio.Length > 200)
-            {
-                MessageBox.Show($"{nombreCampo} debe tener al menos 3 caracteres.", "Error de Largo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            string[] palabras = textoLimpio.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-            foreach (string palabra in palabras)
-            {
-                if (palabra.Length < 2 && palabra != "&")
-                {
-                    MessageBox.Show($"{nombreCampo} contiene una palabra muy corta o inválida ('{palabra}').", "Formato Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return false;
-                }
-            }
-
-            if (Regex.IsMatch(textoLimpio, @"\s{2,}"))
-            {
-                MessageBox.Show($"{nombreCampo} no puede contener dobles espacios.", "Error de Espacios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            if (Regex.IsMatch(textoLimpio, @"([a-zA-ZñÑáéíóúÁÉÍÓÚ])\1{2,}", RegexOptions.IgnoreCase))
-            {
-                MessageBox.Show($"{nombreCampo} tiene demasiadas letras repetidas seguidas.", "Error de Escritura", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            return true;
-        }
+       
         private void ModificarProveedor_Load(object sender, EventArgs e)
         {
             proveedor.CargarComboEstado(cmbEstado);
@@ -120,36 +97,34 @@ namespace SG_BAMS.Proveedor
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
-                string.IsNullOrWhiteSpace(txtTelefono.Text) ||
-                string.IsNullOrWhiteSpace(txtDireccion.Text) ||
-                string.IsNullOrWhiteSpace(txtRTN.Text) ||
-                cmbEstado.SelectedValue == null || cmbClasificacion.SelectedValue == null)
+            
+            if (!ClsValidaciones.EsNombrePersonalValido(txtNombre, "Nombre del Proveedor")) return;
+            if (ClsValidaciones.CampoVacio(txtDireccion, "Dirección")) return;
+
+            
+            if (!ClsValidaciones.EsTelefonoHondurasValido(txtTelefono)) return;
+
+            
+            if (txtRTN.Text.Trim().Length != 14)
             {
-                MessageBox.Show("Todos los campos son obligatorios.", "Campos Vacíos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("El RTN debe tener exactamente 14 dígitos.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtRTN.Focus();
                 return;
             }
 
-            if (!ValidarFormatoTexto(txtNombre.Text, "El Nombre") ||
-                !ValidarFormatoTexto(txtDireccion.Text, "La Dirección")) return;
+            
+            if (cmbEstado.SelectedValue == null || cmbClasificacion.SelectedValue == null)
+            {
+                MessageBox.Show("Asegúrese de seleccionar el Estado y la Clasificación.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 5. VALIDACIÓN DE DUPLICADOS (Solo si el nombre cambió)
             string nombreNuevo = txtNombre.Text.Trim();
-            if (proveedor.ExisteNombreProveedor(nombreNuevo))
+            if (nombreNuevo != _nombreOriginal && proveedor.ExisteNombreProveedor(nombreNuevo))
             {
-                MessageBox.Show("El nombre del proveedor ya existe.", "Nombre Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            string tel = txtTelefono.Text.Trim();
-            if (tel.Length != 8 || Regex.IsMatch(tel, @"(\d)\1{3}"))
-            {
-                MessageBox.Show("Teléfono inválido. Debe tener 8 dígitos y no más de 3 repetidos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            string rtn = txtRTN.Text.Trim();
-            if (rtn.Length < 14)
-            {
-                MessageBox.Show("El RTN debe tener exactamente 14 números.", "RTN Incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("El nuevo nombre ya pertenece a otro proveedor.", "Nombre Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNombre.Focus();
                 return;
             }
 
@@ -162,21 +137,21 @@ namespace SG_BAMS.Proveedor
 
                 proveedor.ModificarProveedor(
                     idProveedor,
-                    txtNombre.Text.Trim(),
-                    tel,
+                    nombreNuevo,
+                    txtTelefono.Text.Trim(),
                     txtDireccion.Text.Trim(),
-                    rtn,
+                    txtRTN.Text.Trim(),
                     idEstado,
                     idClasificacion,
                     idUsuario
                 );
 
                 MessageBox.Show("Proveedor modificado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.btnsalir_Click(null, null);
+                
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al modificar: " + ex.Message);
+                MessageBox.Show("Error al modificar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

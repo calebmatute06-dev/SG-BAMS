@@ -23,6 +23,8 @@ namespace SG_BAMS
             this.idMarca = id;
             txtDescri.Text = nombreActual;
 
+            txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
+
         }
 
         private void kryptonButton6_Click(object sender, EventArgs e)
@@ -39,37 +41,9 @@ namespace SG_BAMS
 
         private async void btnModificar_Click(object sender, EventArgs e)
         {
-            string nombreLimpio = txtDescri.Text.Trim();
-            if (string.IsNullOrWhiteSpace(nombreLimpio))
+            
+            if (!ClsValidaciones.EsNombrePersonalValido(txtDescri.TextBox, "Nombre de la Marca"))
             {
-                MessageBox.Show("El nombre de la marca no puede estar vacío.");
-                return;
-            }
-
-            if (nombreLimpio.Length < 3)
-            {
-                MessageBox.Show("El nombre debe tener al menos 3 caracteres.", "Error de Longitud", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            string[] partes = nombreLimpio.Split(' ');
-            if (partes.Any(p => p.Length < 2))
-            {
-                MessageBox.Show("Cada palabra en el nombre debe tener al menos 2 caracteres y no se permiten espacios dobles.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            string patron = @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+(\s[a-zA-ZñÑáéíóúÁÉÍÓÚ]+)*$";
-            if (!Regex.IsMatch(nombreLimpio, patron))
-            {
-                MessageBox.Show("Formato inválido. No se permiten números, símbolos ni espacios dobles.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            string sinEspacios = nombreLimpio.Replace(" ", "");
-            if (Regex.IsMatch(sinEspacios, @"(.)\1{2,}"))
-            {
-                MessageBox.Show("No se permiten caracteres repetidos más de dos veces seguidas.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -79,18 +53,23 @@ namespace SG_BAMS
                 btnModificar.Enabled = false;
 
                 clsMarca objetoMarca = new clsMarca();
-                bool exito = await objetoMarca.ModificarMarcaAsync(idMarca, nombreLimpio);
+
+                
+                bool exito = await objetoMarca.ModificarMarcaAsync(idMarca, txtDescri.Text.Trim());
 
                 if (exito)
                 {
-                    MessageBox.Show("Marca actualizada correctamente.", "SG-BAMS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Marca actualizada correctamente.", "SG-BAMS",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al actualizar: " + ex.Message, "Error de Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al actualizar: " + ex.Message, "Error de Sistema",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {

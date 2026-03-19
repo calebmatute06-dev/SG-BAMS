@@ -15,7 +15,7 @@ namespace SG_BAMS
 {
     public partial class DeudoresAdmin : Form
     {
-        // Variable global para manejar el filtrado
+       
         private DataTable dtDeudores;
 
         public DeudoresAdmin()
@@ -23,7 +23,7 @@ namespace SG_BAMS
             InitializeComponent();
             CargarGridDeudores();
 
-            this.txtBuscarNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscarNombre_KeyPress);
+            txtBuscarNombre.KeyPress += (s, e) => ClsValidaciones.ValidarBusquedaAlfanumerica(e);
         }
 
         public void CargarGridDeudores()
@@ -33,7 +33,7 @@ namespace SG_BAMS
             dgvDeudores.DataSource = dtDeudores;
         }
 
-        // --- NAVEGACIÓN DEL MENÚ (Respetando tus nombres exactos) ---
+       
 
         private void btnMenuAdmin_Click(object sender, EventArgs e)
         {
@@ -109,9 +109,7 @@ namespace SG_BAMS
         }
 
 
-        // --- LÓGICA DE BÚSQUEDA Y PAGOS ---
-
-        // El botón de la lupa / buscar
+       
         private void kryptonButton12_Click(object sender, EventArgs e)
         {
             FiltrarDeudores();
@@ -133,30 +131,29 @@ namespace SG_BAMS
             }
         }
 
-        // BOTÓN PAGAR (kryptonButton15): Aquí pasamos los dos argumentos
+        
         private void kryptonButton15_Click(object sender, EventArgs e)
         {
-            // Usamos "" y 0 para indicar que no hay selección previa desde el grid
+            
             Pago_Deuda PagDe = new Pago_Deuda("", 0);
             PagDe.ShowDialog();
             CargarGridDeudores();
         }
 
-        // DOBLE CLIC EN EL GRID: Aquí es donde forzamos la exactitud por ID
+       
         private void dgvDeudores_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Evitar clics en el encabezado
+            
             if (e.RowIndex < 0) return;
 
             try
             {
-                // Obtenemos la fila vinculada
+                
                 DataRowView filaSeleccionada = (DataRowView)dgvDeudores.Rows[e.RowIndex].DataBoundItem;
 
                 if (filaSeleccionada != null)
                 {
-                    // --- CAMBIO IMPORTANTE AQUÍ ---
-                    // Si te da error, verifica si es "ID Deuda", "ID_Deuda" o "id"
+                    
                     int idDeuda = Convert.ToInt32(filaSeleccionada["ID Deuda"]);
 
                     string nombreCliente = filaSeleccionada["Cliente"].ToString().Trim();
@@ -164,7 +161,7 @@ namespace SG_BAMS
 
                     if (estadoDeuda.Equals("Activo", StringComparison.OrdinalIgnoreCase))
                     {
-                        // Ahora pasamos los dos argumentos correctamente
+                       
                         Pago_Deuda pagDe = new Pago_Deuda(nombreCliente, idDeuda);
 
                         if (pagDe.ShowDialog() == DialogResult.OK)
@@ -181,7 +178,7 @@ namespace SG_BAMS
             }
             catch (ArgumentException ex)
             {
-                // Este mensaje te dirá exactamente cómo se llaman tus columnas si fallas de nuevo
+                
                 MessageBox.Show("Error: No se encuentra la columna. Verifica si el nombre es 'ID Deuda'. \nDetalle: " + ex.Message);
             }
             catch (Exception ex)
@@ -195,21 +192,14 @@ namespace SG_BAMS
             Ayudante_UI.AplicarZoomGlobal(this);
         }
 
-        // Eventos vacíos para evitar errores de referencia si existen en el designer
+        
         private void kryptonDataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
         private void dgvDeudores_DoubleClick(object sender, EventArgs e) { }
 
         private void txtBuscarNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Solo permite letras, espacios y teclas de control (como Borrar)
-            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
-            {
-                // "Handled = true" cancela el evento (no escribe el carácter en el cuadro)
-                e.Handled = true;
 
-                // Opcional: Avisar al usuario por qué no se escribió el número
-                // MessageBox.Show("Solo se permiten letras para el nombre del deudor.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            ClsValidaciones.PermitirSoloLetras(e);
         }
 
         private void btnAdmin_Click(object sender, EventArgs e)

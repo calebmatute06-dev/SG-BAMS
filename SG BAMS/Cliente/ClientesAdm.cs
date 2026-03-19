@@ -27,6 +27,7 @@ namespace SG_BAMS
 
 
             dgvClientes.MultiSelect = false;
+            txtBusqueda.KeyPress += (s, e) => ClsValidaciones.ValidarBusquedaAlfanumerica(e);
         }
 
         private void label4_Click(object sender, EventArgs e)

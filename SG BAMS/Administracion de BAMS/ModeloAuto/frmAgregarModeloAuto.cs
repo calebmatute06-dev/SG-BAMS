@@ -18,42 +18,15 @@ namespace SG_BAMS
         public frmAgregarModeloAuto()
         {
             InitializeComponent();
+            txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
         }
 
 
         private async void btnAgregar_Click_1(object sender, EventArgs e)
         {
-            string nombreLimpio = txtDescri.Text.Trim();
-            if (string.IsNullOrWhiteSpace(nombreLimpio))
+            
+            if (!ClsValidaciones.EsNombrePersonalValido(txtDescri.TextBox, "Nombre del Modelo de Auto"))
             {
-                MessageBox.Show("El nombre del modelo no puede estar vacío.");
-                return;
-            }
-
-            if (nombreLimpio.Length < 3)
-            {
-                MessageBox.Show("El nombre debe tener al menos 3 caracteres.", "Error de Longitud", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            string[] partes = nombreLimpio.Split(' ');
-            if (partes.Any(p => p.Length < 2))
-            {
-                MessageBox.Show("Cada palabra en el nombre debe tener al menos 2 caracteres y no se permiten espacios dobles.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            string patron = @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+(\s[a-zA-ZñÑáéíóúÁÉÍÓÚ]+)*$";
-            if (!Regex.IsMatch(nombreLimpio, patron))
-            {
-                MessageBox.Show("El nombre solo debe contener letras. No se permiten números, símbolos ni espacios dobles.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            string sinEspacios = nombreLimpio.Replace(" ", "");
-            if (Regex.IsMatch(sinEspacios, @"(.)\1{2,}"))
-            {
-                MessageBox.Show("No se permiten caracteres repetidos más de dos veces seguidas.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -64,6 +37,7 @@ namespace SG_BAMS
 
                 clsModeloAuto objetoModelo = new clsModeloAuto();
 
+                
                 bool exito = await objetoModelo.InsertarModeloAutoAsync(txtDescri.Text.Trim());
 
                 if (exito)
@@ -72,14 +46,14 @@ namespace SG_BAMS
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     this.DialogResult = DialogResult.OK;
-                    frmModeloAuto verMAuto = new frmModeloAuto();
-                    verMAuto.Show();
+                    
                     this.Close();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error de Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error de sistema: " + ex.Message, "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {

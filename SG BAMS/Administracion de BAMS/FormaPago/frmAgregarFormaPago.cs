@@ -17,6 +17,7 @@ namespace SG_BAMS
         public frmAgregarFormaPago()
         {
             InitializeComponent();
+            txtdescri.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
         }
 
         private void label2_Click(object sender, EventArgs e)
