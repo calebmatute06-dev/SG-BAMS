@@ -28,13 +28,24 @@ namespace SG_BAMS.Login
             this.Close();
         }
 
-        private void Login_Load(object sender, EventArgs e)
+
+        private void txtUsu_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
+
+            ClsValidaciones.ValidarBusquedaAlfanumerica(e);
+        }
+
+        private void txtCon_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void btninicioSesion1_Click(object sender, EventArgs e)
+        {
             if (ClsValidaciones.CampoVacio(txtUsu, "Usuario")) return;
             if (ClsValidaciones.CampoVacio(txtCon, "Contraseña")) return;
 
-            
+
             if (!ClsValidaciones.EsPasswordValido(txtCon, "La contraseña")) return;
 
             ClsLogin login = new ClsLogin();
@@ -68,7 +79,7 @@ namespace SG_BAMS.Login
                         break;
                 }
 
-                
+
                 txtCon.Clear();
                 txtCon.Focus();
             }
@@ -78,25 +89,7 @@ namespace SG_BAMS.Login
             }
         }
 
-        
-
-        private void Login_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtUsu_KeyPress(object sender, KeyPressEventArgs e)
-        {
-           
-            ClsValidaciones.ValidarBusquedaAlfanumerica(e);
-        }
-
-        private void txtCon_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            
-        }
-
-        private void btnsalirLogin_Click(object sender, EventArgs e)
+        private void btnsalirLogin1_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
