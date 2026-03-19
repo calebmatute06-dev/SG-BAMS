@@ -8,13 +8,12 @@ namespace SG_BAMS.ProductoInventario
     {
         private ClsConexion conexion = new ClsConexion();
 
-        public void EjecutarActualizacion(int id, string nombre, int idMarca, int idTipo, int idModelo, int idEstado, decimal precio, string servicio, string codBarra)
+        public void EjecutarActualizacion(int id, string nombre, int idMarca, int idTipo, int idModelo, int idEstado, decimal precio, string codBarra)
         {
             try
             {
                 conexion.AbrirConexion();
 
- 
                 using (SqlCommand cmd = new SqlCommand("PA_actualizar_producto", conexion.Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -27,8 +26,6 @@ namespace SG_BAMS.ProductoInventario
                     cmd.Parameters.AddWithValue("@id_estado", idEstado);
 
                     cmd.Parameters.Add("@precio_venta", SqlDbType.Money).Value = precio;
-
-                    cmd.Parameters.AddWithValue("@descripcion_tipo_servicio", servicio);
                     cmd.Parameters.AddWithValue("@codigo_barra", codBarra);
 
                     cmd.ExecuteNonQuery();

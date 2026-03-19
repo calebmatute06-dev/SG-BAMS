@@ -8,7 +8,8 @@ namespace SG_BAMS.ProductoInventario
     {
         private ClsConexion conexion = new ClsConexion();
 
-        public void EjecutarInsercion(string nombre, int idMarca, int idTipo, int idModelo, decimal precio, string servicio, string codBarra)
+        // Se eliminó el parámetro 'string servicio' de la firma del método
+        public void EjecutarInsercion(string nombre, int idMarca, int idTipo, int idModelo, decimal precio, string codBarra)
         {
             try
             {
@@ -22,13 +23,15 @@ namespace SG_BAMS.ProductoInventario
                     cmd.Parameters.AddWithValue("@id_tipo_producto", idTipo);
                     cmd.Parameters.AddWithValue("@id_modelo_auto", idModelo);
                     cmd.Parameters.Add("@precio_venta", SqlDbType.Money).Value = precio;
-                    cmd.Parameters.AddWithValue("@descripcion_tipo_servicio", servicio);
                     cmd.Parameters.AddWithValue("@codigo_barra", codBarra);
 
                     cmd.ExecuteNonQuery();
                 }
             }
-            finally { conexion.Cerrar(); }
+            finally
+            {
+                conexion.Cerrar();
+            }
         }
 
         public bool ExisteNombreProducto(string nombre)

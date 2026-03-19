@@ -33,17 +33,18 @@ namespace SG_BAMS
             {
                 // 1. Validaciones de Formato y Limpieza
                 if (!ClsValidacion.ValidarNombre(txtNombre.Text)) return;
+
+                // Limpiamos el precio de símbolos de moneda para que la conversión no falle
                 string precioLimpio = txtPrecio.Text.Replace("Lps", "").Replace("$", "").Trim();
                 if (!ClsValidacion.ValidarPrecio(precioLimpio)) return;
-                if (!ClsValidacion.ValidarServicio(txtServicio.Text)) return;
                 if (!ClsValidacion.ValidarCodigoBarra(txtCodigoBarra.Text)) return;
 
-                // Datos necesarios para la validación
+                // Datos necesarios para la validación y actualización
                 int idActual = Convert.ToInt32(txtID.Text);
                 string nombreNuevo = txtNombre.Text.Trim();
                 string codigoNuevo = txtCodigoBarra.Text.Trim();
 
-                // 2. VALIDACIÓN: Nombre repetido (pero que no sea el de este mismo producto)
+                // 2. VALIDACIÓN: Nombre repetido en otros registros
                 if (ExisteDuplicadoEnOtros(idActual, "nombre_producto", nombreNuevo))
                 {
                     MessageBox.Show("No se puede actualizar: El nombre '" + nombreNuevo + "' ya está asignado a otro producto.",
@@ -52,7 +53,7 @@ namespace SG_BAMS
                     return;
                 }
 
-                // 3. VALIDACIÓN: Código de barras repetido (pero que no sea el de este mismo producto)
+                // 3. VALIDACIÓN: Código de barras repetido en otros registros
                 if (ExisteDuplicadoEnOtros(idActual, "codigo_barra", codigoNuevo))
                 {
                     MessageBox.Show("No se puede actualizar: El código de barras '" + codigoNuevo + "' ya está asignado a otro producto.",
@@ -61,14 +62,16 @@ namespace SG_BAMS
                     return;
                 }
 
-                // 4. Si pasó las validaciones, procedemos a actualizar
+                // 4. Validaciones de selección de ComboBoxes
                 if (!ClsValidacion.ValidarSeleccion(cmbMarca, "Marca")) return;
                 if (!ClsValidacion.ValidarSeleccion(cmbTipo, "Tipo")) return;
                 if (!ClsValidacion.ValidarSeleccion(cmbModelo, "Modelo")) return;
                 if (!ClsValidacion.ValidarSeleccion(cmbEstado, "Estado")) return;
 
+                // Instancia de la lógica (ClsActualizarProducto ya no requiere 'servicio')
                 SG_BAMS.ProductoInventario.ClsActualizarProducto logica = new SG_BAMS.ProductoInventario.ClsActualizarProducto();
 
+                // Ejecución con las variables correctas según la nueva firma
                 logica.EjecutarActualizacion(
                     idActual,
                     nombreNuevo,
@@ -77,7 +80,6 @@ namespace SG_BAMS
                     Convert.ToInt32(cmbModelo.SelectedValue),
                     Convert.ToInt32(cmbEstado.SelectedValue),
                     Convert.ToDecimal(precioLimpio),
-                    txtServicio.Text,
                     codigoNuevo
                 );
 
@@ -172,6 +174,11 @@ namespace SG_BAMS
             {
                 e.Handled = true;
             }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

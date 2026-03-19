@@ -22,24 +22,19 @@ namespace SG_BAMS
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            string nombreLimpio = txtNombre.Text.Trim();
-            if (!ClsValidacion.ValidarNombre(nombreLimpio)) return;
-
-            // 1. Validaciones de formato (Capa de Cliente)
             if (!ClsValidacion.ValidarNombre(txtNombre.Text)) return;
             if (!ClsValidacion.ValidarPrecio(txtPrecio.Text)) return;
             if (!ClsValidacion.ValidarSeleccion(cmbMarca, "la Marca")) return;
             if (!ClsValidacion.ValidarSeleccion(cmbTipo, "el Tipo de Producto")) return;
             if (!ClsValidacion.ValidarSeleccion(cmbModelo, "el Modelo de Auto")) return;
             if (!ClsValidacion.ValidarCodigoBarra(txtCodigoBarra.Text)) return;
-            if (!ClsValidacion.ValidarServicio(txtServicio.Text)) return;
 
             try
             {
-                // 2. Validación de existencia por NOMBRE
+                // 2. Validación de existencia por NOMBRE (Capa de Datos)
                 if (ExisteProductoPorNombre(txtNombre.Text.Trim()))
                 {
-                    MessageBox.Show("El nombre '" + txtNombre.Text + "' ya está registrado. Use uno diferente.",
+                    MessageBox.Show("El nombre '" + txtNombre.Text + "' ya está registrado.",
                                     "Nombre Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     txtNombre.Focus();
                     return;
@@ -48,13 +43,13 @@ namespace SG_BAMS
                 // 3. Validación de existencia por CÓDIGO DE BARRAS
                 if (ExisteProductoPorCodigo(txtCodigoBarra.Text.Trim()))
                 {
-                    MessageBox.Show("El código de barras '" + txtCodigoBarra.Text + "' ya pertenece a otro producto, Por favor Ingresar otro.",
+                    MessageBox.Show("El código de barras ya pertenece a otro producto.",
                                     "Código Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     txtCodigoBarra.Focus();
                     return;
                 }
 
-                // 4. Proceso de inserción (Si pasó todas las pruebas)
+                // 4. Instancia de la lógica e inserción
                 ClsAgregarProducto logicaInsertar = new ClsAgregarProducto();
 
                 string nombre = txtNombre.Text.Trim();
@@ -62,10 +57,10 @@ namespace SG_BAMS
                 int idTipo = (int)cmbTipo.SelectedValue;
                 int idModelo = (int)cmbModelo.SelectedValue;
                 decimal precio = decimal.Parse(txtPrecio.Text);
-                string servicio = txtServicio.Text.Trim();
                 string codBarra = txtCodigoBarra.Text.Trim();
 
-                logicaInsertar.EjecutarInsercion(nombre, idMarca, idTipo, idModelo, precio, servicio, codBarra);
+                // Ejecución (Recuerda que el PA pone el Estado = 1 por defecto)
+                logicaInsertar.EjecutarInsercion(nombre, idMarca, idTipo, idModelo, precio, codBarra);
 
                 MessageBox.Show("Producto guardado exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

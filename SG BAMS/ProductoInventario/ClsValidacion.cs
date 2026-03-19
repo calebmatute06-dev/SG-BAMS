@@ -113,19 +113,5 @@ namespace SG_BAMS.ProductoInventario
             return true;
         }
 
-        public static bool ValidarServicio(string servicio)
-        {
-            bool esValido = !string.IsNullOrWhiteSpace(servicio) && Regex.IsMatch(servicio, @"^[a-zA-Z\s]{1,12}$");
-
-            if (!esValido)
-            {
-                MessageBox.Show("El tipo de servicio es obligatorio. Solo se permiten letras y espacios (máximo 12 caracteres).",
-                                "Campo Requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            return true;
-        }
-
     }
 }
