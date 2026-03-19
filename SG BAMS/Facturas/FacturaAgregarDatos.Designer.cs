@@ -69,7 +69,7 @@
             label7.BackColor = Color.Transparent;
             label7.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Navy;
-            label7.Location = new Point(772, 136);
+            label7.Location = new Point(793, 134);
             label7.Name = "label7";
             label7.Size = new Size(67, 22);
             label7.TabIndex = 307;
@@ -130,7 +130,7 @@
             label4.BackColor = Color.SkyBlue;
             label4.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(53, 32);
+            label4.Location = new Point(430, 37);
             label4.Name = "label4";
             label4.Size = new Size(177, 29);
             label4.TabIndex = 296;
@@ -277,8 +277,8 @@
             // kryptonGroupBox3
             // 
             kryptonGroupBox3.CaptionVisible = false;
-            kryptonGroupBox3.Location = new Point(44, 23);
-            kryptonGroupBox3.Size = new Size(225, 49);
+            kryptonGroupBox3.Location = new Point(357, 28);
+            kryptonGroupBox3.Size = new Size(319, 49);
             kryptonGroupBox3.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroupBox3.StateCommon.Border.Rounding = 50F;
             kryptonGroupBox3.TabIndex = 317;

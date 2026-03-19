@@ -91,9 +91,9 @@
             // 
             // txtCliente
             // 
-            txtCliente.Location = new Point(304, 122);
+            txtCliente.Location = new Point(148, 119);
             txtCliente.Name = "txtCliente";
-            txtCliente.Size = new Size(172, 32);
+            txtCliente.Size = new Size(186, 32);
             txtCliente.StateCommon.Back.Color1 = Color.SkyBlue;
             txtCliente.StateCommon.Border.Rounding = 10F;
             txtCliente.StateCommon.Content.Color1 = Color.Navy;
@@ -177,8 +177,8 @@
             // kryptonGroupBox3
             // 
             kryptonGroupBox3.CaptionVisible = false;
-            kryptonGroupBox3.Location = new Point(21, 31);
-            kryptonGroupBox3.Size = new Size(223, 49);
+            kryptonGroupBox3.Location = new Point(338, 40);
+            kryptonGroupBox3.Size = new Size(281, 49);
             kryptonGroupBox3.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroupBox3.StateCommon.Border.Rounding = 50F;
             kryptonGroupBox3.TabIndex = 340;
@@ -201,7 +201,7 @@
             label7.BackColor = Color.Transparent;
             label7.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Navy;
-            label7.Location = new Point(739, 129);
+            label7.Location = new Point(754, 129);
             label7.Name = "label7";
             label7.Size = new Size(67, 22);
             label7.TabIndex = 333;
@@ -237,7 +237,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(145, 129);
+            label3.Location = new Point(41, 122);
             label3.Name = "label3";
             label3.Size = new Size(81, 22);
             label3.TabIndex = 330;
@@ -249,7 +249,7 @@
             label4.BackColor = Color.SkyBlue;
             label4.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(51, 43);
+            label4.Location = new Point(407, 50);
             label4.Name = "label4";
             label4.Size = new Size(143, 29);
             label4.TabIndex = 327;
@@ -300,7 +300,7 @@
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(332, 53);
+            label6.Location = new Point(787, 83);
             label6.Name = "label6";
             label6.Size = new Size(99, 29);
             label6.TabIndex = 346;
@@ -312,7 +312,7 @@
             lblFactura.BackColor = Color.Transparent;
             lblFactura.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblFactura.ForeColor = Color.Navy;
-            lblFactura.Location = new Point(437, 53);
+            lblFactura.Location = new Point(892, 83);
             lblFactura.Name = "lblFactura";
             lblFactura.Size = new Size(20, 29);
             lblFactura.TabIndex = 347;

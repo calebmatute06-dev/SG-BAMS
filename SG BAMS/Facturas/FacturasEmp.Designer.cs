@@ -464,7 +464,7 @@
             label3.BackColor = Color.SkyBlue;
             label3.Font = new Font("Arial Narrow", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(386, 74);
+            label3.Location = new Point(389, 73);
             label3.Name = "label3";
             label3.Size = new Size(64, 26);
             label3.TabIndex = 347;
@@ -612,7 +612,7 @@
             // kryptonGroupBox2
             // 
             kryptonGroupBox2.CaptionVisible = false;
-            kryptonGroupBox2.Location = new Point(662, 34);
+            kryptonGroupBox2.Location = new Point(658, 35);
             kryptonGroupBox2.Size = new Size(301, 49);
             kryptonGroupBox2.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroupBox2.StateCommon.Border.Rounding = 50F;
@@ -622,7 +622,7 @@
             // 
             kryptonGroupBox3.CaptionVisible = false;
             kryptonGroupBox3.Location = new Point(351, 70);
-            kryptonGroupBox3.Size = new Size(139, 29);
+            kryptonGroupBox3.Size = new Size(139, 31);
             kryptonGroupBox3.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroupBox3.StateCommon.Border.Rounding = 50F;
             kryptonGroupBox3.TabIndex = 341;
@@ -644,7 +644,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1436, 679);
+            ClientSize = new Size(1370, 679);
             Controls.Add(Nombre);
             Controls.Add(BtnRefrescar);
             Controls.Add(label6);

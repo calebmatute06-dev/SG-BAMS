@@ -679,7 +679,7 @@
             // kryptonGroupBox2
             // 
             kryptonGroupBox2.CaptionVisible = false;
-            kryptonGroupBox2.Location = new Point(688, 30);
+            kryptonGroupBox2.Location = new Point(686, 31);
             kryptonGroupBox2.Size = new Size(301, 49);
             kryptonGroupBox2.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroupBox2.StateCommon.Border.Rounding = 50F;
@@ -846,7 +846,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1496, 684);
+            ClientSize = new Size(1370, 684);
             Controls.Add(label4);
             Controls.Add(panel4);
             Controls.Add(BtnRefrescar);

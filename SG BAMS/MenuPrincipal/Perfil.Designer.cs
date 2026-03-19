@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
             label2 = new Label();
             label3 = new Label();
             label5 = new Label();
@@ -41,23 +40,16 @@
             label6 = new Label();
             btnimagen = new Krypton.Toolkit.KryptonButton();
             btnsalir1 = new Krypton.Toolkit.KryptonButton();
+            kryptonGroupBox3 = new Krypton.Toolkit.KryptonGroupBox();
+            label7 = new Label();
             ((System.ComponentModel.ISupportInitialize)pbFotoPerfil).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3.Panel).BeginInit();
             SuspendLayout();
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.Navy;
-            label1.Location = new Point(219, 23);
-            label1.Name = "label1";
-            label1.Size = new Size(91, 45);
-            label1.TabIndex = 0;
-            label1.Text = "Perfil";
             // 
             // label2
             // 
@@ -105,7 +97,7 @@
             // 
             // pbFotoPerfil
             // 
-            pbFotoPerfil.Location = new Point(164, 75);
+            pbFotoPerfil.Location = new Point(164, 79);
             pbFotoPerfil.Margin = new Padding(3, 2, 3, 2);
             pbFotoPerfil.Name = "pbFotoPerfil";
             pbFotoPerfil.Size = new Size(192, 159);
@@ -166,7 +158,7 @@
             // 
             // btnimagen
             // 
-            btnimagen.Location = new Point(164, 243);
+            btnimagen.Location = new Point(164, 247);
             btnimagen.Margin = new Padding(3, 2, 3, 2);
             btnimagen.Name = "btnimagen";
             btnimagen.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -212,12 +204,35 @@
             btnsalir1.Values.Text = "Salir";
             btnsalir1.Click += btnsalir1_Click;
             // 
+            // kryptonGroupBox3
+            // 
+            kryptonGroupBox3.CaptionVisible = false;
+            kryptonGroupBox3.Location = new Point(145, 24);
+            kryptonGroupBox3.Size = new Size(233, 47);
+            kryptonGroupBox3.StateCommon.Back.Color1 = Color.SkyBlue;
+            kryptonGroupBox3.StateCommon.Border.Rounding = 50F;
+            kryptonGroupBox3.TabIndex = 359;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.BackColor = Color.SkyBlue;
+            label7.Font = new Font("Arial Narrow", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.ForeColor = Color.Navy;
+            label7.Location = new Point(218, 29);
+            label7.Name = "label7";
+            label7.Size = new Size(83, 37);
+            label7.TabIndex = 360;
+            label7.Text = "Perfil";
+            // 
             // Perfil
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(530, 406);
+            Controls.Add(label7);
+            Controls.Add(kryptonGroupBox3);
             Controls.Add(btnsalir1);
             Controls.Add(btnimagen);
             Controls.Add(label6);
@@ -230,7 +245,6 @@
             Controls.Add(label5);
             Controls.Add(label3);
             Controls.Add(label2);
-            Controls.Add(label1);
             Margin = new Padding(3, 2, 3, 2);
             Name = "Perfil";
             Text = "Perfil";
@@ -241,13 +255,13 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3.Panel).EndInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Label label1;
         private Label label2;
         private Label label3;
         private Label label5;
@@ -261,5 +275,7 @@
         private Krypton.Toolkit.KryptonButton btnsalir1;
         private Label label6;
         private Krypton.Toolkit.KryptonButton btnimagen;
+        private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox3;
+        private Label label7;
     }
 }
