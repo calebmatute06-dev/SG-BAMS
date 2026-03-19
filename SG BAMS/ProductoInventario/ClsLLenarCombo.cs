@@ -27,6 +27,9 @@ namespace SG_BAMS.ProductoInventario
                 case "Estado":
                     query = "SELECT id_estado, descripcion_estado FROM Estado";
                     break;
+                case "Proveedor":
+                    query = "SELECT id_proveedor, nombre_proveedor FROM Proveedor";
+                    break;
             }
 
             try

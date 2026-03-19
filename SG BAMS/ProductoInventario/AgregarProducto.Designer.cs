@@ -51,6 +51,8 @@
             cmbMarca = new Krypton.Toolkit.KryptonComboBox();
             cmbTipo = new Krypton.Toolkit.KryptonComboBox();
             cmbModelo = new Krypton.Toolkit.KryptonComboBox();
+            cmbProveedor = new Krypton.Toolkit.KryptonComboBox();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -59,6 +61,7 @@
             ((System.ComponentModel.ISupportInitialize)cmbMarca).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cmbTipo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cmbModelo).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cmbProveedor).BeginInit();
             SuspendLayout();
             // 
             // pictureBox9
@@ -367,12 +370,41 @@
             cmbModelo.StateNormal.ComboBox.Border.Rounding = 40F;
             cmbModelo.TabIndex = 338;
             // 
+            // cmbProveedor
+            // 
+            cmbProveedor.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbProveedor.DropDownWidth = 300;
+            cmbProveedor.Location = new Point(207, 483);
+            cmbProveedor.Name = "cmbProveedor";
+            cmbProveedor.Size = new Size(250, 38);
+            cmbProveedor.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbProveedor.StateCommon.ComboBox.Border.Rounding = 20F;
+            cmbProveedor.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            cmbProveedor.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
+            cmbProveedor.StateCommon.Item.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbProveedor.StateNormal.ComboBox.Border.Rounding = 40F;
+            cmbProveedor.TabIndex = 340;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.Navy;
+            label2.Location = new Point(59, 488);
+            label2.Name = "label2";
+            label2.Size = new Size(128, 33);
+            label2.TabIndex = 339;
+            label2.Text = "Proveedor:";
+            // 
             // AgregarProducto
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(515, 629);
+            Controls.Add(cmbProveedor);
+            Controls.Add(label2);
             Controls.Add(cmbModelo);
             Controls.Add(cmbTipo);
             Controls.Add(cmbMarca);
@@ -407,6 +439,7 @@
             ((System.ComponentModel.ISupportInitialize)cmbMarca).EndInit();
             ((System.ComponentModel.ISupportInitialize)cmbTipo).EndInit();
             ((System.ComponentModel.ISupportInitialize)cmbModelo).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cmbProveedor).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -435,5 +468,7 @@
         private Krypton.Toolkit.KryptonComboBox cmbMarca;
         private Krypton.Toolkit.KryptonComboBox cmbTipo;
         private Krypton.Toolkit.KryptonComboBox cmbModelo;
+        private Krypton.Toolkit.KryptonComboBox cmbProveedor;
+        private Label label2;
     }
 }
