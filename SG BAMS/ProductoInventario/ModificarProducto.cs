@@ -14,7 +14,6 @@ namespace SG_BAMS
 {
     public partial class ModificarProducto : Form
     {
-
         public string marcaActual, tipoActual, modeloActual, estadoActual, proveedorActual;
 
         public ModificarProducto()
@@ -22,9 +21,9 @@ namespace SG_BAMS
             InitializeComponent();
         }
 
+        // Mantenido para evitar errores en el Designer
         private void kryptonTextBox3_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         private void kryptonButton20_Click(object sender, EventArgs e)
@@ -38,26 +37,28 @@ namespace SG_BAMS
                 if (!ClsValidacion.ValidarPrecio(precioLimpio)) return;
                 if (!ClsValidacion.ValidarCodigoBarra(txtCodigoBarra.Text)) return;
 
-                // 2. Validaciones de selección de ComboBoxes (Añadimos validación de Proveedor)
+                // 2. Validaciones de selección de ComboBoxes
                 if (!ClsValidacion.ValidarSeleccion(cmbMarca, "Marca")) return;
                 if (!ClsValidacion.ValidarSeleccion(cmbTipo, "Tipo")) return;
                 if (!ClsValidacion.ValidarSeleccion(cmbModelo, "Modelo")) return;
                 if (!ClsValidacion.ValidarSeleccion(cmbEstado, "Estado")) return;
-                if (!ClsValidacion.ValidarSeleccion(cmbProveedor, "Proveedor")) return; // Agregada
+                if (!ClsValidacion.ValidarSeleccion(cmbProveedor, "Proveedor")) return;
 
                 int idActual = Convert.ToInt32(txtID.Text);
                 string nombreNuevo = txtNombre.Text.Trim();
                 string codigoNuevo = txtCodigoBarra.Text.Trim();
+                int idMarca = Convert.ToInt32(cmbMarca.SelectedValue);
+                int idProveedor = Convert.ToInt32(cmbProveedor.SelectedValue);
 
-                // Validación de duplicados (Nombre)
-                if (ExisteDuplicadoEnOtros(idActual, "nombre_producto", nombreNuevo))
+                // --- NUEVA VALIDACIÓN ADAPTADA ---
+                // Reemplazamos la validación vieja de nombre por la del "Trío" (Nombre+Marca+Proveedor)
+                if (!ClsValidacion.ValidarExistencia(idActual, nombreNuevo, idMarca, idProveedor))
                 {
-                    MessageBox.Show("El nombre ya está asignado a otro producto.", "Nombre Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     txtNombre.Focus();
                     return;
                 }
 
-                // Validación de duplicados (Código)
+                // Validación de duplicados (Código) - Este se queda porque el código de barra es único siempre
                 if (ExisteDuplicadoEnOtros(idActual, "codigo_barra", codigoNuevo))
                 {
                     MessageBox.Show("El código de barras ya está asignado a otro producto.", "Código Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Stop);
@@ -68,17 +69,17 @@ namespace SG_BAMS
                 // Instancia de la lógica
                 SG_BAMS.ProductoInventario.ClsActualizarProducto logica = new SG_BAMS.ProductoInventario.ClsActualizarProducto();
 
-                // --- CAMBIO CLAVE: Ahora pasamos los 9 parámetros requeridos ---
+                // Ejecución con los 9 parámetros requeridos
                 logica.EjecutarActualizacion(
                     idActual,
                     nombreNuevo,
-                    Convert.ToInt32(cmbMarca.SelectedValue),
+                    idMarca,
                     Convert.ToInt32(cmbTipo.SelectedValue),
                     Convert.ToInt32(cmbModelo.SelectedValue),
                     Convert.ToInt32(cmbEstado.SelectedValue),
                     Convert.ToDecimal(precioLimpio),
                     codigoNuevo,
-                    Convert.ToInt32(cmbProveedor.SelectedValue) // <--- El parámetro que faltaba
+                    idProveedor
                 );
 
                 MessageBox.Show("¡Producto actualizado correctamente!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -98,7 +99,6 @@ namespace SG_BAMS
             try
             {
                 conexion.AbrirConexion();
-                // Consultamos si el valor existe en OTRO ID diferente al que tengo abierto
                 string sql = $"SELECT COUNT(*) FROM Producto WHERE {columna} = @valor AND id_producto <> @id";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conexion.Conectar))
@@ -118,11 +118,12 @@ namespace SG_BAMS
         {
             LlenarCombosModificar();
 
-            cmbMarca.SelectedIndex = cmbMarca.FindStringExact(marcaActual);
-            cmbTipo.SelectedIndex = cmbTipo.FindStringExact(tipoActual);
-            cmbModelo.SelectedIndex = cmbModelo.FindStringExact(modeloActual);
-            cmbEstado.SelectedIndex = cmbEstado.FindStringExact(estadoActual);
-            cmbProveedor.SelectedIndex = cmbProveedor.FindStringExact(proveedorActual);
+            // Usamos Trim() para asegurar que la coincidencia sea exacta
+            cmbMarca.SelectedIndex = cmbMarca.FindStringExact(marcaActual?.Trim());
+            cmbTipo.SelectedIndex = cmbTipo.FindStringExact(tipoActual?.Trim());
+            cmbModelo.SelectedIndex = cmbModelo.FindStringExact(modeloActual?.Trim());
+            cmbEstado.SelectedIndex = cmbEstado.FindStringExact(estadoActual?.Trim());
+            cmbProveedor.SelectedIndex = cmbProveedor.FindStringExact(proveedorActual?.Trim());
         }
 
         public void LlenarCombosModificar()
@@ -145,7 +146,6 @@ namespace SG_BAMS
             cmbEstado.DisplayMember = "descripcion_estado";
             cmbEstado.ValueMember = "id_estado";
 
-            // --- AGREGADO: Cargar el combo de proveedor ---
             cmbProveedor.DataSource = llenar.ObtenerDatosCombo("Proveedor");
             cmbProveedor.DisplayMember = "nombre_proveedor";
             cmbProveedor.ValueMember = "id_proveedor";
@@ -161,9 +161,9 @@ namespace SG_BAMS
             Close();
         }
 
+        // Mantenido para evitar errores en el Designer
         private void txtCodigoBarra_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         private void txtCodigoBarra_KeyPress(object sender, KeyPressEventArgs e)
@@ -180,9 +180,9 @@ namespace SG_BAMS
             }
         }
 
+        // Mantenido para evitar errores en el Designer
         private void label2_Click(object sender, EventArgs e)
         {
-
         }
     }
 }

@@ -71,7 +71,7 @@ namespace SG_BAMS
                 frmMod.txtPrecio.Text = dgvProductosAdmin.CurrentRow.Cells["Precio Venta"].Value.ToString();
 
                 frmMod.txtCodigoBarra.Text = dgvProductosAdmin.CurrentRow.Cells["Codigo Barra"].Value.ToString();
-
+                frmMod.proveedorActual = dgvProductosAdmin.CurrentRow.Cells["Proveedor"].Value.ToString();
                 frmMod.marcaActual = dgvProductosAdmin.CurrentRow.Cells["Marca"].Value.ToString();
                 frmMod.tipoActual = dgvProductosAdmin.CurrentRow.Cells["Tipo"].Value.ToString();
                 frmMod.modeloActual = dgvProductosAdmin.CurrentRow.Cells["Modelo Auto"].Value.ToString();
@@ -103,21 +103,24 @@ namespace SG_BAMS
             {
                 conexion.AbrirConexion();
 
+                // Usamos exactamente "Proveedor_Producto" como dice tu imagen de CREATE TABLE
                 string query = @"SELECT 
                             p.id_producto AS ID, 
                             p.nombre_producto AS Producto, 
                             m.nombre_marca AS Marca, 
                             t.descripcion_forma_pago AS Tipo, 
-                            mo.nombre_modelo_auto AS Modelo_Auto, 
-                            e.descripcion_estado AS Estado,
-                            p.precio_venta AS Precio_Venta,
-                            p.descripcion_tipo_servicio AS Servicio,
-                            p.codigo_barra AS Codigo_Barra
+                            mo.nombre_modelo_auto AS [Modelo Auto], 
+                            prov.nombre_proveedor AS Proveedor,
+                            p.precio_venta AS [Precio Venta],
+                            p.codigo_barra AS [Codigo Barra],
+                            e.descripcion_estado AS Estado
                          FROM Producto p
                          INNER JOIN Marca_producto m ON p.id_marca_producto = m.id_marca_producto
                          INNER JOIN Tipo_producto t ON p.id_tipo_producto = t.id_tipo_producto
                          INNER JOIN Modelo_de_auto mo ON p.id_modelo_auto = mo.id_modelo_auto
                          INNER JOIN Estado e ON p.id_estado = e.id_estado
+                         LEFT JOIN Proveedor_Producto pp ON p.id_producto = pp.id_producto
+                         LEFT JOIN Proveedor prov ON pp.id_proveedor = prov.id_proveedor
                          WHERE p.nombre_producto LIKE '%' + @filtro + '%' 
                          OR p.codigo_barra LIKE '%' + @filtro + '%'";
 
@@ -132,12 +135,9 @@ namespace SG_BAMS
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error en búsqueda: " + ex.Message);
+                MessageBox.Show("Error en búsqueda: " + ex.Message);
             }
-            finally
-            {
-                conexion.Cerrar();
-            }
+            finally { conexion.Cerrar(); }
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -163,6 +163,7 @@ namespace SG_BAMS
                 frmMod.marcaActual = dgvProductosAdmin.CurrentRow.Cells["Marca"].Value.ToString();
                 frmMod.tipoActual = dgvProductosAdmin.CurrentRow.Cells["Tipo"].Value.ToString();
                 frmMod.modeloActual = dgvProductosAdmin.CurrentRow.Cells["Modelo Auto"].Value.ToString();
+                frmMod.proveedorActual = dgvProductosAdmin.CurrentRow.Cells["Proveedor"].Value.ToString();
                 frmMod.estadoActual = dgvProductosAdmin.CurrentRow.Cells["Estado"].Value.ToString();
 
                 if (frmMod.ShowDialog() == DialogResult.OK)
