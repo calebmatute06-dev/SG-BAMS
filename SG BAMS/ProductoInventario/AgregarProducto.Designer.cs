@@ -199,7 +199,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(72, 149);
+            label3.Location = new Point(72, 140);
             label3.Name = "label3";
             label3.Size = new Size(50, 33);
             label3.TabIndex = 239;
@@ -211,7 +211,7 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(72, 198);
+            label4.Location = new Point(72, 189);
             label4.Name = "label4";
             label4.Size = new Size(111, 33);
             label4.TabIndex = 240;
@@ -223,7 +223,7 @@
             label7.BackColor = Color.Transparent;
             label7.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Navy;
-            label7.Location = new Point(72, 251);
+            label7.Location = new Point(72, 242);
             label7.Name = "label7";
             label7.Size = new Size(85, 33);
             label7.TabIndex = 241;
@@ -235,7 +235,7 @@
             label14.BackColor = Color.Transparent;
             label14.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label14.ForeColor = Color.Navy;
-            label14.Location = new Point(72, 301);
+            label14.Location = new Point(72, 292);
             label14.Name = "label14";
             label14.Size = new Size(89, 33);
             label14.TabIndex = 243;
@@ -247,7 +247,7 @@
             label12.BackColor = Color.Transparent;
             label12.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label12.ForeColor = Color.Navy;
-            label12.Location = new Point(72, 348);
+            label12.Location = new Point(72, 339);
             label12.Name = "label12";
             label12.Size = new Size(71, 33);
             label12.TabIndex = 244;
@@ -259,7 +259,7 @@
             label10.BackColor = Color.Transparent;
             label10.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Navy;
-            label10.Location = new Point(59, 399);
+            label10.Location = new Point(59, 390);
             label10.Name = "label10";
             label10.Size = new Size(149, 33);
             label10.TabIndex = 245;
@@ -267,7 +267,7 @@
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(207, 192);
+            txtNombre.Location = new Point(207, 183);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(250, 39);
             txtNombre.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -278,7 +278,7 @@
             // 
             // txtPrecio
             // 
-            txtPrecio.Location = new Point(207, 245);
+            txtPrecio.Location = new Point(207, 236);
             txtPrecio.Name = "txtPrecio";
             txtPrecio.Size = new Size(250, 39);
             txtPrecio.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -290,7 +290,7 @@
             // txtID
             // 
             txtID.Enabled = false;
-            txtID.Location = new Point(207, 143);
+            txtID.Location = new Point(207, 134);
             txtID.Name = "txtID";
             txtID.ReadOnly = true;
             txtID.Size = new Size(250, 39);
@@ -302,7 +302,7 @@
             // 
             // txtCodigoBarra
             // 
-            txtCodigoBarra.Location = new Point(207, 438);
+            txtCodigoBarra.Location = new Point(207, 429);
             txtCodigoBarra.Name = "txtCodigoBarra";
             txtCodigoBarra.Size = new Size(250, 39);
             txtCodigoBarra.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -319,7 +319,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(51, 444);
+            label1.Location = new Point(51, 435);
             label1.Name = "label1";
             label1.Size = new Size(131, 33);
             label1.TabIndex = 261;
@@ -329,7 +329,7 @@
             // 
             cmbMarca.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbMarca.DropDownWidth = 300;
-            cmbMarca.Location = new Point(207, 296);
+            cmbMarca.Location = new Point(207, 287);
             cmbMarca.Name = "cmbMarca";
             cmbMarca.Size = new Size(250, 38);
             cmbMarca.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
@@ -344,7 +344,7 @@
             // 
             cmbTipo.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbTipo.DropDownWidth = 300;
-            cmbTipo.Location = new Point(207, 347);
+            cmbTipo.Location = new Point(207, 338);
             cmbTipo.Name = "cmbTipo";
             cmbTipo.Size = new Size(250, 38);
             cmbTipo.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
@@ -359,7 +359,7 @@
             // 
             cmbModelo.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbModelo.DropDownWidth = 300;
-            cmbModelo.Location = new Point(207, 394);
+            cmbModelo.Location = new Point(207, 385);
             cmbModelo.Name = "cmbModelo";
             cmbModelo.Size = new Size(250, 38);
             cmbModelo.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
@@ -374,7 +374,7 @@
             // 
             cmbProveedor.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbProveedor.DropDownWidth = 300;
-            cmbProveedor.Location = new Point(207, 483);
+            cmbProveedor.Location = new Point(207, 474);
             cmbProveedor.Name = "cmbProveedor";
             cmbProveedor.Size = new Size(250, 38);
             cmbProveedor.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
@@ -391,7 +391,7 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(59, 488);
+            label2.Location = new Point(59, 479);
             label2.Name = "label2";
             label2.Size = new Size(128, 33);
             label2.TabIndex = 339;

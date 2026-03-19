@@ -22,48 +22,53 @@ namespace SG_BAMS
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            // 1. Validaciones (Agregamos la validación del Proveedor)
             if (!ClsValidacion.ValidarNombre(txtNombre.Text)) return;
             if (!ClsValidacion.ValidarPrecio(txtPrecio.Text)) return;
+
+            // Validaciones de Selección (Combos)
             if (!ClsValidacion.ValidarSeleccion(cmbMarca, "la Marca")) return;
             if (!ClsValidacion.ValidarSeleccion(cmbTipo, "el Tipo de Producto")) return;
             if (!ClsValidacion.ValidarSeleccion(cmbModelo, "el Modelo de Auto")) return;
-            if (!ClsValidacion.ValidarSeleccion(cmbProveedor, "el Proveedor")) return; // NUEVA
+            if (!ClsValidacion.ValidarSeleccion(cmbProveedor, "el Proveedor")) return; // OBLIGATORIO
+
             if (!ClsValidacion.ValidarCodigoBarra(txtCodigoBarra.Text)) return;
 
             try
             {
-                // 2. Validación de duplicados (Capa de Datos)
-                if (ExisteProductoPorNombre(txtNombre.Text.Trim()))
+                // 2. Captura de variables necesarias para la validación de regla de negocio
+                string nombre = txtNombre.Text.Trim();
+                int idMarca = (int)cmbMarca.SelectedValue;
+                int idProveedor = (int)cmbProveedor.SelectedValue;
+                string codBarra = txtCodigoBarra.Text.Trim();
+
+                // 3. NUEVA REGLA: Validar combinación Nombre + Marca + Proveedor
+                // Pasamos '0' porque al ser un producto nuevo no necesitamos excluir ningún ID
+                if (!ClsValidacion.ValidarExistencia(0, nombre, idMarca, idProveedor))
                 {
-                    MessageBox.Show("El nombre '" + txtNombre.Text + "' ya está registrado.", "Nombre Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     txtNombre.Focus();
                     return;
                 }
 
-                if (ExisteProductoPorCodigo(txtCodigoBarra.Text.Trim()))
+                // 4. VALIDACIÓN DE CÓDIGO DE BARRAS (Sigue siendo universalmente único)
+                if (ExisteProductoPorCodigo(codBarra))
                 {
-                    MessageBox.Show("El código de barras ya pertenece a otro producto.", "Código Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    MessageBox.Show("El código de barras ya pertenece a otro producto en el sistema.",
+                                    "Código Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     txtCodigoBarra.Focus();
                     return;
                 }
 
-                // 3. Instancia de la lógica
+                // 5. Instancia de la lógica e Inserción
                 ClsAgregarProducto logicaInsertar = new ClsAgregarProducto();
 
-                // 4. Captura de variables (Aquí incluimos el ID del Proveedor)
-                string nombre = txtNombre.Text.Trim();
-                int idMarca = (int)cmbMarca.SelectedValue;
                 int idTipo = (int)cmbTipo.SelectedValue;
                 int idModelo = (int)cmbModelo.SelectedValue;
-                int idProveedor = (int)cmbProveedor.SelectedValue; // <-- CAPTURAMOS EL PROVEEDOR
                 decimal precio = decimal.Parse(txtPrecio.Text);
-                string codBarra = txtCodigoBarra.Text.Trim();
 
-                // 5. Ejecución (Mandamos los 7 parámetros exactos)
+                // Ejecución con los 7 parámetros
                 logicaInsertar.EjecutarInsercion(nombre, idMarca, idTipo, idModelo, precio, codBarra, idProveedor);
 
-                MessageBox.Show("Producto guardado exitosamente con su proveedor", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("¡Producto guardado exitosamente con su proveedor!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 this.DialogResult = DialogResult.OK;
                 this.Close();

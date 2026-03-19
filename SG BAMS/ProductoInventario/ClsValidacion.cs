@@ -2,15 +2,66 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions; 
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Krypton.Toolkit;
+using Microsoft.Data.SqlClient; // Asegúrate de tener esta referencia
 
 namespace SG_BAMS.ProductoInventario
 {
     internal class ClsValidacion
     {
+        // --- NUEVA VALIDACIÓN DE REGLA DE NEGOCIO ---
+        // Verifica que no exista el mismo Nombre + Marca para el mismo Proveedor
+        public static bool ValidarExistencia(int idActual, string nombre, int idMarca, int idProveedor)
+        {
+            ClsConexion conexion = new ClsConexion();
+            int conteo = 0;
+
+            try
+            {
+                conexion.AbrirConexion();
+
+                string query = @"SELECT COUNT(*) 
+                               FROM Producto p
+                               INNER JOIN Proveedor_Producto pp ON p.id_producto = pp.id_producto
+                               WHERE p.nombre_producto = @nombre 
+                               AND p.id_marca_producto = @idMarca 
+                               AND pp.id_proveedor = @idProveedor
+                               AND p.id_producto <> @id";
+
+                using (SqlCommand cmd = new SqlCommand(query, conexion.Conectar))
+                {
+                    cmd.Parameters.AddWithValue("@nombre", nombre.Trim());
+                    cmd.Parameters.AddWithValue("@idMarca", idMarca);
+                    cmd.Parameters.AddWithValue("@idProveedor", idProveedor);
+                    cmd.Parameters.AddWithValue("@id", idActual);
+
+                    conteo = (int)cmd.ExecuteScalar();
+                }
+
+                if (conteo > 0)
+                {
+                    MessageBox.Show("Este producto con esta marca ya está registrado para el proveedor seleccionado.\n\n" +
+                                    "Si es un proveedor distinto, sí puede usar el mismo nombre.",
+                                    "Producto Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al validar duplicidad: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                conexion.Cerrar();
+            }
+
+            return true;
+        }
+
         public static bool ValidarNombre(string nombre)
         {
             if (string.IsNullOrWhiteSpace(nombre))
@@ -69,7 +120,6 @@ namespace SG_BAMS.ProductoInventario
 
         public static bool ValidarPrecio(string precio)
         {
-            // 1. Validar que no esté vacío y que sea un formato numérico válido
             if (string.IsNullOrWhiteSpace(precio) || !double.TryParse(precio, out double valor))
             {
                 MessageBox.Show("El precio solo puede contener números y decimales válidos.",
@@ -77,7 +127,6 @@ namespace SG_BAMS.ProductoInventario
                 return false;
             }
 
-            // 2. NUEVA VALIDACIÓN: El precio debe ser mayor a 0
             if (valor <= 0)
             {
                 MessageBox.Show("El precio debe ser un valor mayor a cero.",
@@ -112,6 +161,5 @@ namespace SG_BAMS.ProductoInventario
 
             return true;
         }
-
     }
 }
