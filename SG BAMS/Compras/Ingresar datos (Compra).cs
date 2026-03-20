@@ -303,7 +303,6 @@ namespace SG_BAMS
             }
         }
 
-        // Variable a nivel de clase para el respaldo
         private object valorOriginal;
 
         private void dgvProductosCompra_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
