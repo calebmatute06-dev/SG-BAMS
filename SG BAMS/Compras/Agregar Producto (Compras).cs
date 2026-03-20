@@ -21,23 +21,23 @@ namespace SG_BAMS
 
         private int _idProveedor;
 
-        public Agregar_Producto__Compras_()
+        // Adaptamos el constructor para recibir el ID sin borrar el InitializeComponent
+        public Agregar_Producto__Compras_(int idProv)
         {
             InitializeComponent();
-
-
+            this._idProveedor = idProv;
 
             txtPrecio.KeyPress += (s, e) => ClsValidaciones.ValidarDecimales(txtPrecio, e);
         }
 
         private void kryptonLabel1_Click(object sender, EventArgs e)
         {
-
+            // Se mantiene vacío como pediste
         }
 
         private void kryptonLabel4_Click(object sender, EventArgs e)
         {
-
+            // Se mantiene vacío como pediste
         }
 
         private void Agregar_Producto__Compras__Load(object sender, EventArgs e)
@@ -54,15 +54,17 @@ namespace SG_BAMS
             {
                 conexion.AbrirConexion();
 
-                // Usamos un JOIN para traer solo los productos vinculados a este proveedor en la tabla intermedia
+                // Adaptamos la consulta: Si la tabla intermedia aún no tiene datos, 
+                // usa esta línea comentada para ver todos los productos y que no te salga vacío:
+                // string query = "SELECT id_producto, nombre_producto FROM Producto WHERE id_estado = 1";
+
                 string query = @"SELECT p.id_producto, p.nombre_producto 
-                         FROM Producto p
-                         INNER JOIN Producto_proveedor pp ON p.id_producto = pp.id_producto
-                         WHERE p.id_estado = 1 AND pp.id_proveedor = @idProv";
+                 FROM Producto p
+                 INNER JOIN Proveedor_Producto pp ON p.id_producto = pp.id_producto
+                 WHERE p.id_estado = 1 AND pp.id_proveedor = @idProv";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexion.Conectar))
                 {
-                    // _idProveedor es la variable que recibiste en el constructor
                     cmd.Parameters.AddWithValue("@idProv", _idProveedor);
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     da.Fill(dt);
@@ -72,7 +74,7 @@ namespace SG_BAMS
                 cmbProductos.DisplayMember = "nombre_producto";
                 cmbProductos.ValueMember = "id_producto";
 
-                cmbProductos.SelectedIndex = -1; // Para que aparezca vacío al inicio
+                cmbProductos.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
@@ -86,14 +88,12 @@ namespace SG_BAMS
 
         private void kryptonButton3_Click(object sender, EventArgs e)
         {
-            
             if (cmbProductos.SelectedValue == null || cmbProductos.SelectedIndex == -1)
             {
                 MessageBox.Show("Debe seleccionar un producto de la lista.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            
             if (numCantidad.Value <= 0)
             {
                 MessageBox.Show("La cantidad debe ser mayor a cero.", "Cantidad Inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -101,14 +101,11 @@ namespace SG_BAMS
                 return;
             }
 
-            
             if (!ClsValidaciones.EsNumeroDecimalValido(txtPrecio, "El precio", out decimal precioAux))
             {
-                
                 return;
             }
 
-            
             IdSeleccionado = cmbProductos.SelectedValue.ToString();
             NombreSeleccionado = cmbProductos.Text;
             CantidadSeleccionada = (int)numCantidad.Value;
@@ -127,17 +124,13 @@ namespace SG_BAMS
         {
             using (AgregarProducto frmCrear = new AgregarProducto())
             {
-                // Lo mostramos como diálogo para esperar a que termine de crear
                 if (frmCrear.ShowDialog() == DialogResult.OK)
                 {
-                    // 2. Si se creó con éxito, refrescamos el combo de la ventana anterior
-                    // para que el nuevo producto ya aparezca disponible para comprar
                     LlenarComboProductos();
                     MessageBox.Show("¡Producto registrado! Ya puede seleccionarlo en la lista.");
                 }
                 else
                 {
-                    // Por si acaso cerró la ventana, refrescamos igual para ver cambios
                     LlenarComboProductos();
                 }
             }

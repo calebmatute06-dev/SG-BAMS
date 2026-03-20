@@ -110,15 +110,9 @@ namespace SG_BAMS
                 return;
             }
 
-            if (cmbProveedor.SelectedValue == null)
+            if (cmbProveedor.SelectedValue == null || cmbFormaPago.SelectedValue == null)
             {
-                MessageBox.Show("Por favor, seleccione un proveedor válido de la lista.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (cmbFormaPago.SelectedValue == null)
-            {
-                MessageBox.Show("Por favor, seleccione una forma de pago válida.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Asegúrese de seleccionar Proveedor y Forma de Pago.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -128,9 +122,10 @@ namespace SG_BAMS
 
             try
             {
+                // 1. INSERTAR CABECERA
                 string queryCabecera = @"INSERT INTO Compra (id_usuario, fecha_pedido, id_tipo_forma_pago, id_proveedor, desc_compra) 
-                         VALUES (@id_usuario, @fecha, @id_pago, @id_prov, @desc);
-                         SELECT SCOPE_IDENTITY();";
+                                 VALUES (@id_usuario, @fecha, @id_pago, @id_prov, @desc);
+                                 SELECT SCOPE_IDENTITY();";
 
                 int idCompraRecienCreada;
                 using (SqlCommand cmd = new SqlCommand(queryCabecera, conexion.Conectar, transaccion))
@@ -139,17 +134,25 @@ namespace SG_BAMS
                     cmd.Parameters.AddWithValue("@fecha", dtpFechaPedido.SelectionStart);
                     cmd.Parameters.AddWithValue("@id_pago", cmbFormaPago.SelectedValue);
                     cmd.Parameters.AddWithValue("@id_prov", cmbProveedor.SelectedValue);
-                    cmd.Parameters.AddWithValue("@desc", txtPrecio.Text);
+
+                    // CORRECCIÓN AQUÍ: Antes tenías txtPrecio.Text. 
+                    // Debe ser el cuadro de texto donde escribes la nota de la compra.
+                    cmd.Parameters.AddWithValue("@desc", txtNotaDetalle.Text);
+
                     idCompraRecienCreada = Convert.ToInt32(cmd.ExecuteScalar());
                 }
 
+                // 2. INSERTAR DETALLES Y ACTUALIZAR STOCK
                 string queryDetalle = @"INSERT INTO Compra_producto (id_compra, id_producto, cantidad, precio_costo_unitario) 
-                        VALUES (@idC, @idP, @cant, @precio)";
+                                VALUES (@idC, @idP, @cant, @precio)";
 
                 string queryAsegurarInventario = @"IF NOT EXISTS (SELECT 1 FROM Inventario WHERE id_producto = @idP)
-                                         BEGIN
-                                            INSERT INTO Inventario (id_producto, stock) VALUES (@idP, 0)
-                                         END";
+                                           BEGIN
+                                               INSERT INTO Inventario (id_producto, stock) VALUES (@idP, 0)
+                                           END";
+
+                // Nueva consulta para SUMAR el stock
+                string querySumarStock = "UPDATE Inventario SET stock = stock + @cant WHERE id_producto = @idP";
 
                 foreach (DataGridViewRow fila in dgvProductosCompra.Rows)
                 {
@@ -159,12 +162,14 @@ namespace SG_BAMS
                         int cant = Convert.ToInt32(fila.Cells[2].Value);
                         decimal precio = Convert.ToDecimal(fila.Cells[3].Value);
 
+                        // Asegurar que el producto existe en inventario
                         using (SqlCommand cmdAsegurar = new SqlCommand(queryAsegurarInventario, conexion.Conectar, transaccion))
                         {
                             cmdAsegurar.Parameters.AddWithValue("@idP", idProd);
                             cmdAsegurar.ExecuteNonQuery();
                         }
 
+                        // Insertar el detalle de la compra
                         using (SqlCommand cmdDetalle = new SqlCommand(queryDetalle, conexion.Conectar, transaccion))
                         {
                             cmdDetalle.Parameters.AddWithValue("@idC", idCompraRecienCreada);
@@ -173,17 +178,25 @@ namespace SG_BAMS
                             cmdDetalle.Parameters.AddWithValue("@precio", precio);
                             cmdDetalle.ExecuteNonQuery();
                         }
+
+                        // ACTUALIZAR EL STOCK (SUMAR)
+                        using (SqlCommand cmdStock = new SqlCommand(querySumarStock, conexion.Conectar, transaccion))
+                        {
+                            cmdStock.Parameters.AddWithValue("@idP", idProd);
+                            cmdStock.Parameters.AddWithValue("@cant", cant);
+                            cmdStock.ExecuteNonQuery();
+                        }
                     }
                 }
 
                 transaccion.Commit();
-                MessageBox.Show("Compra #" + idCompraRecienCreada + " guardada. El stock se ha actualizado exitosamente.", "Éxito");
+                MessageBox.Show("Compra #" + idCompraRecienCreada + " guardada y stock actualizado.", "Éxito");
                 this.Close();
             }
             catch (Exception ex)
             {
                 transaccion.Rollback();
-                MessageBox.Show("Error crítico: " + ex.Message);
+                MessageBox.Show("Error crítico al guardar: " + ex.Message);
             }
             finally
             {
@@ -193,7 +206,17 @@ namespace SG_BAMS
 
         private void kryptonButton5_Click(object sender, EventArgs e)
         {
-            using (var formularioHijo = new Agregar_Producto__Compras_())
+            // VALIDACIÓN: No dejar abrir si no han seleccionado proveedor
+            if (cmbProveedor.SelectedValue == null)
+            {
+                MessageBox.Show("Primero seleccione un proveedor para filtrar sus productos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            int idProv = Convert.ToInt32(cmbProveedor.SelectedValue);
+
+            // PASAMOS el idProv al constructor (como lo arreglamos antes)
+            using (var formularioHijo = new Agregar_Producto__Compras_(idProv))
             {
                 if (formularioHijo.ShowDialog() == DialogResult.OK)
                 {

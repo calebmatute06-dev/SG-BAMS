@@ -55,7 +55,7 @@
             kryptonButton5 = new Krypton.Toolkit.KryptonButton();
             kryptonButton13 = new Krypton.Toolkit.KryptonButton();
             label4 = new Label();
-            txtPrecio = new Krypton.Toolkit.KryptonTextBox();
+            txtNotaDetalle = new Krypton.Toolkit.KryptonTextBox();
             cmbProveedor = new Krypton.Toolkit.KryptonComboBox();
             cmbFormaPago = new Krypton.Toolkit.KryptonComboBox();
             btnEliminarProducto = new Krypton.Toolkit.KryptonButton();
@@ -383,14 +383,14 @@
             label4.TabIndex = 189;
             label4.Text = "Nota Detalle:";
             // 
-            // txtPrecio
+            // txtNotaDetalle
             // 
-            txtPrecio.Location = new Point(204, 229);
-            txtPrecio.Name = "txtPrecio";
-            txtPrecio.Size = new Size(277, 33);
-            txtPrecio.StateCommon.Back.Color1 = Color.SkyBlue;
-            txtPrecio.StateCommon.Border.Rounding = 10F;
-            txtPrecio.TabIndex = 211;
+            txtNotaDetalle.Location = new Point(204, 229);
+            txtNotaDetalle.Name = "txtNotaDetalle";
+            txtNotaDetalle.Size = new Size(277, 33);
+            txtNotaDetalle.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtNotaDetalle.StateCommon.Border.Rounding = 10F;
+            txtNotaDetalle.TabIndex = 211;
             // 
             // cmbProveedor
             // 
@@ -452,7 +452,7 @@
             Controls.Add(btnEliminarProducto);
             Controls.Add(cmbFormaPago);
             Controls.Add(cmbProveedor);
-            Controls.Add(txtPrecio);
+            Controls.Add(txtNotaDetalle);
             Controls.Add(label4);
             Controls.Add(btnAceptar);
             Controls.Add(kryptonButton4);
@@ -512,7 +512,7 @@
         private Krypton.Toolkit.KryptonButton kryptonButton5;
         private Krypton.Toolkit.KryptonButton kryptonButton13;
         private Label label4;
-        private Krypton.Toolkit.KryptonTextBox txtPrecio;
+        private Krypton.Toolkit.KryptonTextBox txtNotaDetalle;
         private DataGridViewTextBoxColumn ID;
         private DataGridViewTextBoxColumn Producto;
         private DataGridViewTextBoxColumn Cantidad;
