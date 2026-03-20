@@ -178,14 +178,6 @@ namespace SG_BAMS
                             cmdDetalle.Parameters.AddWithValue("@precio", precio);
                             cmdDetalle.ExecuteNonQuery();
                         }
-
-                        // ACTUALIZAR EL STOCK (SUMAR)
-                        using (SqlCommand cmdStock = new SqlCommand(querySumarStock, conexion.Conectar, transaccion))
-                        {
-                            cmdStock.Parameters.AddWithValue("@idP", idProd);
-                            cmdStock.Parameters.AddWithValue("@cant", cant);
-                            cmdStock.ExecuteNonQuery();
-                        }
                     }
                 }
 
