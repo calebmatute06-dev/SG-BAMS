@@ -93,5 +93,7 @@ namespace SG_BAMS.Login
         {
             Application.Exit();
         }
+
+       
     }
 }

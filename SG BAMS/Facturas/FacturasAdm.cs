@@ -14,6 +14,7 @@ namespace SG_BAMS
     {
         DataTable datosFac;
         private bool ProcesoFactura = false;
+
         public FacturasAdm()
         {
             InitializeComponent();
@@ -24,16 +25,6 @@ namespace SG_BAMS
             txtBusqueda.KeyPress += (s, e) => ClsValidaciones.ValidarBusquedaAlfanumerica(e);
         }
 
-        private void label10_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private async Task CargarFactura()
         {
             ClsVerFactura objFac = new ClsVerFactura();
@@ -42,10 +33,10 @@ namespace SG_BAMS
             if (datosFac != null)
             {
                 dgvFacturas.DataSource = datosFac;
+
                 dgvFacturas.Columns["Rebaja"].DisplayIndex = 8;
                 dgvFacturas.Columns["Batería Vieja"].DisplayIndex = 7;
                 dgvFacturas.Columns["Total Unidades"].DisplayIndex = 9;
-
 
                 dgvFacturas.Columns["Factura"].HeaderText = "N° Factura";
                 dgvFacturas.Columns["Vendedor"].HeaderText = "Vendedor";
@@ -59,7 +50,7 @@ namespace SG_BAMS
                 dgvFacturas.Columns["Rebaja"].HeaderText = "Rebaja de Batería Vieja";
                 dgvFacturas.Columns["Total Unidades"].HeaderText = "Total Unidades";
 
-
+                dgvFacturas.ClearSelection();
             }
         }
 
@@ -72,33 +63,27 @@ namespace SG_BAMS
 
             FiltrarPorFecha();
 
+            dtpInicio.ValueChanged += dtpInicio_ValueChanged;
             dtpFin.ValueChanged += dtpInicio_ValueChanged;
-            dgvFacturas.ClearSelection();
+
             dgvFacturas.ReadOnly = true;
             dgvFacturas.AllowUserToOrderColumns = false;
-
         }
 
         private async void BtnNueva_Click(object sender, EventArgs e)
         {
             using (ClienteAgregar frmCA = new ClienteAgregar())
-
             {
-
                 if (frmCA.ShowDialog() == DialogResult.OK)
                 {
                     await CargarFactura();
+                    FiltrarPorFecha();
                 }
-
             }
         }
 
-
-
-
         private void BtnVer_Click(object sender, EventArgs e)
         {
-
             if (dgvFacturas.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Debe seleccionar una fila",
@@ -107,106 +92,104 @@ namespace SG_BAMS
                                 MessageBoxIcon.Warning);
                 return;
             }
-            if (dgvFacturas.CurrentRow != null)
-            {
-                dgvFacturas_CellDoubleClick(null, null);
-            }
 
+            dgvFacturas_CellDoubleClick(null, null);
         }
 
-
-
-        private void dgvFacturas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private async void dgvFacturas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e != null && e.RowIndex < 0) return;
 
-            int idFacturas, idPago, bateriaVieja;
-            string nombre_Cliente;
-            DateTime fecha;
-
             if (dgvFacturas.CurrentRow != null)
             {
-
-                idFacturas = Convert.ToInt32(dgvFacturas.CurrentRow.Cells[0].Value);
-                nombre_Cliente = dgvFacturas.CurrentRow.Cells[2].Value.ToString();
-                fecha = Convert.ToDateTime(dgvFacturas.CurrentRow.Cells[6].Value);
-                bateriaVieja = Convert.ToInt32(dgvFacturas.CurrentRow.Cells[7].Value);
-                idPago = Convert.ToInt32(dgvFacturas.CurrentRow.Cells[10].Value);
+                int idFacturas = Convert.ToInt32(dgvFacturas.CurrentRow.Cells[0].Value);
+                string nombre_Cliente = dgvFacturas.CurrentRow.Cells[2].Value.ToString();
+                DateTime fecha = Convert.ToDateTime(dgvFacturas.CurrentRow.Cells[6].Value);
+                int bateriaVieja = Convert.ToInt32(dgvFacturas.CurrentRow.Cells[7].Value);
+                int idPago = Convert.ToInt32(dgvFacturas.CurrentRow.Cells[10].Value);
                 double rebaja = Convert.ToDouble(dgvFacturas.CurrentRow.Cells["Rebaja"].Value);
-
 
                 FacturaVer frmFV = new FacturaVer(idFacturas, nombre_Cliente, fecha, bateriaVieja, idPago, rebaja);
                 frmFV.ShowDialog();
 
-
-
-                CargarFactura();
+                await CargarFactura();
+                FiltrarPorFecha();
             }
         }
 
         private void txtBusqueda_TextChanged(object sender, EventArgs e)
         {
-            if (datosFac != null)
+            if (datosFac == null) return;
+
+            DataView dv = datosFac.DefaultView;
+
+            if (string.IsNullOrWhiteSpace(txtBusqueda.Text))
             {
-                DataView dv = datosFac.DefaultView;
-
-                if (string.IsNullOrWhiteSpace(txtBusqueda.Text))
-                {
-                    dv.RowFilter = string.Empty;
-                }
-                else
-                {
-                    string textoSeguro = txtBusqueda.Text
-                        .Replace("'", "''")
-                        .Replace("[", "[[]")
-                        .Replace("]", "[]]")
-                        .Replace("*", "[*]")
-                        .Replace("%", "[%]");
-
-                    try
-                    {
-                        dv.RowFilter = string.Format(
-                            "Convert([Factura], 'System.String') LIKE '%{0}%' OR " +
-                            "[Vendedor] LIKE '%{0}%' OR " +
-                            "[Cliente] LIKE '%{0}%' OR " +
-                            "[Método de Pago] LIKE '%{0}%'",
-                            textoSeguro);
-                    }
-                    catch (Exception)
-                    {
-                        dv.RowFilter = string.Empty;
-                    }
-                }
-
-                dgvFacturas.DataSource = dv;
-                dgvFacturas.ClearSelection();
+               
+                FiltrarPorFecha();
+                return;
             }
+
+            string textoSeguro = txtBusqueda.Text
+                .Replace("'", "''")
+                .Replace("[", "[[]")
+                .Replace("]", "[]]")
+                .Replace("*", "[*]")
+                .Replace("%", "[%]");
+
+            try
+            {
+                dv.RowFilter = string.Format(
+                    "Convert([Factura], 'System.String') LIKE '%{0}%' OR " +
+                    "[Vendedor] LIKE '%{0}%' OR " +
+                    "[Cliente] LIKE '%{0}%' OR " +
+                    "[Método de Pago] LIKE '%{0}%'",
+                    textoSeguro);
+            }
+            catch
+            {
+                dv.RowFilter = string.Empty;
+            }
+
+            dgvFacturas.DataSource = dv;
+            dgvFacturas.ClearSelection();
         }
 
         private void dtpInicio_ValueChanged(object sender, EventArgs e)
         {
+           
+            if (dtpFin.Value < dtpInicio.Value)
+                dtpFin.Value = dtpInicio.Value;
 
             FiltrarPorFecha();
-
         }
+
         private void FiltrarPorFecha()
         {
-            if (datosFac != null)
-            {
-                DataView dv = datosFac.DefaultView;
+            if (datosFac == null) return;
 
-                DateTime fechaInicio = dtpInicio.Value.Date;
+            DataView dv = datosFac.DefaultView;
 
+            DateTime fechaInicio = dtpInicio.Value.Date;
+            DateTime fechaFin = dtpFin.Value.Date.AddDays(1);
 
-                DateTime fechaFin = dtpFin.Value.Date.AddDays(1);
+            dv.RowFilter = string.Format(System.Globalization.CultureInfo.InvariantCulture,
+                "[Fecha] >= #{0}# AND [Fecha] < #{1}#",
+                fechaInicio.ToString("MM/dd/yyyy"),
+                fechaFin.ToString("MM/dd/yyyy"));
 
-                dv.RowFilter = string.Format(System.Globalization.CultureInfo.InvariantCulture,
-                    "[Fecha] >= #{0}# AND [Fecha] < #{1}#",
-                    fechaInicio.ToString("MM/dd/yyyy"),
-                    fechaFin.ToString("MM/dd/yyyy"));
+            dgvFacturas.DataSource = dv;
+            dgvFacturas.ClearSelection();
+        }
 
-                dgvFacturas.DataSource = dv;
-            }
+        private void BtnRefrescar_Click(object sender, EventArgs e)
+        {
+            dtpInicio.Value = DateTime.Today;
+            dtpFin.Value = DateTime.Today;
+
+            txtBusqueda.Text = "";
+
+            FiltrarPorFecha();
         }
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
@@ -216,16 +199,7 @@ namespace SG_BAMS
             log.Show();
         }
 
-        private void BtnRefrescar_Click(object sender, EventArgs e)
-        {
-            dtpInicio.Value = DateTime.Today;
-            dtpFin.Value = DateTime.Today;
 
-            FiltrarPorFecha();
-
-            txtBusqueda.Text = "";
-            dgvFacturas.ClearSelection();
-        }
 
         private void btnmenuprincipal_Click(object sender, EventArgs e)
         {
@@ -326,8 +300,19 @@ namespace SG_BAMS
         }
         private void txtBusqueda_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
+
             ClsValidaciones.ValidarBusquedaAlfanumerica(e);
+        }
+
+        private void BtnRefrescar_Click_1(object sender, EventArgs e)
+        {
+            dtpInicio.Value = DateTime.Today;
+            dtpFin.Value = DateTime.Today;
+
+            txtBusqueda.Text = "";
+
+            FiltrarPorFecha();
+
         }
     }
 

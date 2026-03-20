@@ -196,58 +196,57 @@ namespace SG_BAMS
                 return;
             }
 
+            DialogResult imprimir = MessageBox.Show("¿Desea imprimir la factura?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
             try
             {
                 ClsPasarUsuario objPU = new ClsPasarUsuario();
                 ClsAgregarFactura objAF = new ClsAgregarFactura();
                 ClsAgregarProductos objAP = new ClsAgregarProductos();
 
-                int idUsuario = objPU.IdUsuario();
-                int idFormaPago = Convert.ToInt32(cmbPago.SelectedValue);
-                int.TryParse(txtBateria.Text.Trim(), out int numBaterias);
-                double rebaja = Convert.ToDouble(txtRebaja.Text);
+                
+                int idUser = objPU.IdUsuario();
 
-                int idFactura = await objAF.AgregarFacturas(idUsuario, idCliente, idFormaPago, DateTFecha.SelectionStart, numBaterias, rebaja);
+                int idPago = Convert.ToInt32(cmbPago.SelectedValue);
+                int.TryParse(txtBateria.Text, out int bat);
+
+             
+                int idFactura = await objAF.AgregarFacturas(idUser, idCliente, idPago, DateTFecha.SelectionStart, bat, precioBateria);
 
                 if (idFactura > 0)
                 {
                     foreach (DataGridViewRow fila in dgvProductos.Rows)
                     {
                         if (fila.IsNewRow) continue;
-                        int idProd = Convert.ToInt32(fila.Cells[0].Value);
-                        int cantidad = Convert.ToInt32(fila.Cells[2].Value);
-                        await objAP.GuardarProductoFactura(idFactura, idProd, cantidad);
+                        int idPr = Convert.ToInt32(fila.Cells["id_producto"].Value);
+                        int cant = Convert.ToInt32(fila.Cells["cantidad"].Value);
+                        await objAP.GuardarProductoFactura(idFactura, idPr, cant);
                     }
 
-                    MessageBox.Show("Factura guardada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    string formaPagoTexto = cmbPago.Text.ToLower();
-
-                    if (formaPagoTexto.Contains("crédito") || formaPagoTexto.Contains("credito"))
+                    if (imprimir == DialogResult.Yes)
                     {
-                        string nombreCliente = txtCliente.Text.Trim();
-                        string montoTotal = txtTotal.Text;
-                        DateTime fechaVenta = DateTFecha.SelectionStart;
-
-
-                        using (Modificar_Datos__Deudor_ frmInfo = new Modificar_Datos__Deudor_(idFactura, nombreCliente, montoTotal, fechaVenta))
-                        {
-                            frmInfo.ShowDialog();
-                        }
+                        objAF.ImprimirFactura(
+                            idFactura,
+                            txtCliente.Text,
+                            DateTFecha.SelectionStart.ToShortDateString(),
+                            txtSubtotal.Text,
+                            txtRebaja.Text,
+                            txtTotal.Text,
+                            cmbPago.Text,
+                            dgvProductos,
+                            SG_BAMS.Login.Login.UsuarioLogueado
+                        );
                     }
 
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
-                else
-                {
-                    MessageBox.Show("Hubo un error al intentar generar la factura en la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error inesperado: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: " + ex.Message);
             }
+
         }
 
         private void BtnCancelar_Click(object sender, EventArgs e)

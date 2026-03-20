@@ -24,7 +24,7 @@ namespace SG_BAMS
             txtBusqueda.KeyPress += (s, e) => ClsValidaciones.ValidarBusquedaAlfanumerica(e);
         }
 
-        private void dgvFacturas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private async void dgvFacturas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e != null && e.RowIndex < 0) return;
 
@@ -49,7 +49,8 @@ namespace SG_BAMS
 
 
 
-                CargarFactura();
+                await CargarFactura();
+                FiltrarPorFecha();
             }
         }
 
@@ -59,13 +60,8 @@ namespace SG_BAMS
             {
                 if (frmCA.ShowDialog() == DialogResult.OK)
                 {
-                    string nombre = frmCA.NombreDelCliente;
-                    int id = frmCA.IdClienteGenerado;
-
-                    FacturaAgregarDatos factura = new FacturaAgregarDatos(nombre, id);
-                    factura.Show(this);
-
                     await CargarFactura();
+                    FiltrarPorFecha();
                 }
             }
         }
@@ -174,7 +170,7 @@ namespace SG_BAMS
             dtpInicio.Value = DateTime.Today;
             dtpFin.Value = DateTime.Today;
 
-            FiltrarPorFecha(); 
+            FiltrarPorFecha();
 
             dtpFin.ValueChanged += dtpInicio_ValueChanged;
             dgvFacturas.ClearSelection();
@@ -189,15 +185,17 @@ namespace SG_BAMS
                 DataView dv = datosFac.DefaultView;
 
                 DateTime fechaInicio = dtpInicio.Value.Date;
-                DateTime fechaFin = dtpFin.Value.Date;
 
-                dv.RowFilter = string.Format(
-                    "[Fecha] >= #{0}# AND [Fecha] <= #{1}#",
+
+                DateTime fechaFin = dtpFin.Value.Date.AddDays(1);
+
+                dv.RowFilter = string.Format(System.Globalization.CultureInfo.InvariantCulture,
+                    "[Fecha] >= #{0}# AND [Fecha] < #{1}#",
                     fechaInicio.ToString("MM/dd/yyyy"),
-                    fechaFin.ToString("MM/dd/yyyy")
-                );
+                    fechaFin.ToString("MM/dd/yyyy"));
 
                 dgvFacturas.DataSource = dv;
+                dgvFacturas.ClearSelection();
             }
         }
 

@@ -220,8 +220,15 @@ namespace SG_BAMS.Facturas
 
             if (totalBateria > limiteFactura)
             {
-                MessageBox.Show($"La rebaja por baterías (L. {totalBateria:N2}) supera el total de la factura (L. {limiteFactura:N2}).\n\nNo se puede aplicar una rebaja mayor a la compra.",
+                MessageBox.Show($"El descuento por baterías (L. {totalBateria:N2}) supera el total de la factura (L. {limiteFactura:N2}).\n\nNo se puede aplicar un descuento mayor a la compra.",
                                 "Monto Excedido", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (totalBateria == limiteFactura)
+            {
+                MessageBox.Show($"El descuento por baterías (L. {totalBateria:N2}) es igual al total de la factura (L. {limiteFactura:N2}).\n\nNo se puede aplicar el descuento",
+                                "Monto Igual", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
