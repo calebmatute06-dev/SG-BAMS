@@ -216,27 +216,7 @@ namespace SG_BAMS
 
         private void dgvComprasAdmin_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0)
-            {
-                return; // Salimos del método sin hacer nada
-            }
 
-            if (dgvComprasAdmin.SelectedRows.Count > 0)
-            {
-                // 1. Capturar el ID de la fila seleccionada
-                int idSeleccionado = Convert.ToInt32(dgvComprasAdmin.CurrentRow.Cells["ID"].Value);
-
-                // 2. Abrir el formulario pasando el ID al constructor
-                Modificar_datos__Compra_ frmModificar = new Modificar_datos__Compra_(idSeleccionado);
-                frmModificar.ShowDialog();
-
-                // 3. Refrescar la tabla al cerrar la edición
-                CargarCompras();
-            }
-            else
-            {
-                MessageBox.Show("Por favor, seleccione una compra de la lista.");
-            }
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -296,6 +276,36 @@ namespace SG_BAMS
         {
             Perfil perfil = new Perfil();
             perfil.Show();
+        }
+
+        private void dgvComprasAdmin_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dgvComprasAdmin_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+            {
+                return;
+            }
+
+            if (dgvComprasAdmin.SelectedRows.Count > 0)
+            {
+                // 1. Capturar el ID de la fila seleccionada
+                int idSeleccionado = Convert.ToInt32(dgvComprasAdmin.CurrentRow.Cells["ID"].Value);
+
+                // 2. Abrir el formulario pasando el ID al constructor
+                Modificar_datos__Compra_ frmModificar = new Modificar_datos__Compra_(idSeleccionado);
+                frmModificar.ShowDialog();
+
+                // 3. Refrescar la tabla al cerrar la edición
+                CargarCompras();
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione una compra de la lista.");
+            }
         }
     }
 }
