@@ -198,20 +198,43 @@ namespace SG_BAMS
 
         private void kryptonButton5_Click(object sender, EventArgs e)
         {
-            // VALIDACIÓN: No dejar abrir si no han seleccionado proveedor
-            if (cmbProveedor.SelectedValue == null)
+            if (cmbProveedor.SelectedValue == null || cmbProveedor.SelectedIndex == -1)
             {
-                MessageBox.Show("Primero seleccione un proveedor para filtrar sus productos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Debe seleccionar un proveedor primero para ver sus productos vinculados.",
+                                "Proveedor Requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             int idProv = Convert.ToInt32(cmbProveedor.SelectedValue);
 
-            // PASAMOS el idProv al constructor (como lo arreglamos antes)
+            // 2. Abrir el formulario hijo pasando el ID del proveedor
             using (var formularioHijo = new Agregar_Producto__Compras_(idProv))
             {
                 if (formularioHijo.ShowDialog() == DialogResult.OK)
                 {
+                    // --- INICIO DE LÓGICA PARA PRODUCTO REPETIDO ---
+                    string idNuevo = formularioHijo.IdSeleccionado;
+                    bool existe = false;
+
+                    foreach (DataGridViewRow fila in dgvProductosCompra.Rows)
+                    {
+                        // Revisamos si el ID que viene del hijo ya está en la columna 0 del Grid
+                        if (fila.Cells[0].Value != null && fila.Cells[0].Value.ToString() == idNuevo)
+                        {
+                            existe = true;
+                            break;
+                        }
+                    }
+
+                    if (existe)
+                    {
+                        MessageBox.Show("Este producto ya está incluido en la lista de compra. \nModifique la cantidad directamente en la tabla si lo desea.",
+                                        "Producto Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return; // Salimos para no agregar la fila repetida
+                    }
+                    // --- FIN DE LÓGICA PARA PRODUCTO REPETIDO ---
+
+                    // 3. Si el producto es nuevo en la lista, calcular subtotal y agregar
                     decimal subtotal = formularioHijo.CantidadSeleccionada * formularioHijo.PrecioSeleccionado;
 
                     dgvProductosCompra.Rows.Add(
