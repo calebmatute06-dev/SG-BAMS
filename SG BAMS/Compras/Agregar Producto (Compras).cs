@@ -19,9 +19,13 @@ namespace SG_BAMS
         public int CantidadSeleccionada { get; set; }
         public decimal PrecioSeleccionado { get; set; }
 
+        private int _idProveedor;
+
         public Agregar_Producto__Compras_()
         {
             InitializeComponent();
+
+
 
             txtPrecio.KeyPress += (s, e) => ClsValidaciones.ValidarDecimales(txtPrecio, e);
         }
@@ -50,10 +54,16 @@ namespace SG_BAMS
             {
                 conexion.AbrirConexion();
 
-                string query = "SELECT id_producto, nombre_producto FROM Producto WHERE id_estado = 1";
+                // Usamos un JOIN para traer solo los productos vinculados a este proveedor en la tabla intermedia
+                string query = @"SELECT p.id_producto, p.nombre_producto 
+                         FROM Producto p
+                         INNER JOIN Producto_proveedor pp ON p.id_producto = pp.id_producto
+                         WHERE p.id_estado = 1 AND pp.id_proveedor = @idProv";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexion.Conectar))
                 {
+                    // _idProveedor es la variable que recibiste en el constructor
+                    cmd.Parameters.AddWithValue("@idProv", _idProveedor);
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     da.Fill(dt);
                 }
@@ -62,15 +72,11 @@ namespace SG_BAMS
                 cmbProductos.DisplayMember = "nombre_producto";
                 cmbProductos.ValueMember = "id_producto";
 
-                cmbProductos.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                cmbProductos.AutoCompleteSource = AutoCompleteSource.ListItems;
-                cmbProductos.DropDownStyle = ComboBoxStyle.DropDown;
-
-                cmbProductos.SelectedIndex = -1;
+                cmbProductos.SelectedIndex = -1; // Para que aparezca vacío al inicio
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar productos: " + ex.Message);
+                MessageBox.Show("Error al filtrar productos por proveedor: " + ex.Message);
             }
             finally
             {
