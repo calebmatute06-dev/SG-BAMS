@@ -205,20 +205,21 @@ namespace SG_BAMS
                 return;
             }
 
+            // Obtenemos el ID del proveedor seleccionado
             int idProv = Convert.ToInt32(cmbProveedor.SelectedValue);
 
-            // 2. Abrir el formulario hijo pasando el ID del proveedor
+            // 2. Abrir el formulario hijo pasando el ID del proveedor al constructor
             using (var formularioHijo = new Agregar_Producto__Compras_(idProv))
             {
                 if (formularioHijo.ShowDialog() == DialogResult.OK)
                 {
                     // --- INICIO DE LÓGICA PARA PRODUCTO REPETIDO ---
-                    string idNuevo = formularioHijo.IdSeleccionado;
+                    // Usamos ToString() para asegurar que la comparación sea entre cadenas
+                    string idNuevo = formularioHijo.IdSeleccionado.ToString();
                     bool existe = false;
 
                     foreach (DataGridViewRow fila in dgvProductosCompra.Rows)
                     {
-                        // Revisamos si el ID que viene del hijo ya está en la columna 0 del Grid
                         if (fila.Cells[0].Value != null && fila.Cells[0].Value.ToString() == idNuevo)
                         {
                             existe = true;
@@ -230,11 +231,11 @@ namespace SG_BAMS
                     {
                         MessageBox.Show("Este producto ya está incluido en la lista de compra. \nModifique la cantidad directamente en la tabla si lo desea.",
                                         "Producto Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return; // Salimos para no agregar la fila repetida
+                        return;
                     }
                     // --- FIN DE LÓGICA PARA PRODUCTO REPETIDO ---
 
-                    // 3. Si el producto es nuevo en la lista, calcular subtotal y agregar
+                    // 3. Calcular subtotal y agregar a la tabla
                     decimal subtotal = formularioHijo.CantidadSeleccionada * formularioHijo.PrecioSeleccionado;
 
                     dgvProductosCompra.Rows.Add(
@@ -244,6 +245,12 @@ namespace SG_BAMS
                         formularioHijo.PrecioSeleccionado,
                         subtotal
                     );
+
+                    // 4. LÓGICA DE BLOQUEO: Al agregar el primer producto, congelamos el proveedor
+                    if (dgvProductosCompra.Rows.Count > 0)
+                    {
+                        cmbProveedor.Enabled = false;
+                    }
 
                     ActualizarGranTotal();
                 }
@@ -289,6 +296,10 @@ namespace SG_BAMS
             {
                 MessageBox.Show("Por favor, seleccione el producto que desea eliminar de la tabla.",
                     "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            if (dgvProductosCompra.Rows.Count == 0)
+            {
+                cmbProveedor.Enabled = true;
             }
         }
 
