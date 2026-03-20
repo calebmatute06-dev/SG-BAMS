@@ -17,9 +17,12 @@ namespace SG_BAMS
 
         private ClsConexion conexion = new ClsConexion();
 
-        public Agregar_Producto_Mod()
+        private int _idProveedor;
+
+        public Agregar_Producto_Mod(int idProv) 
         {
             InitializeComponent();
+            this._idProveedor = idProv;
             txtPrecio.KeyPress += (s, e) => ClsValidaciones.ValidarDecimales(txtPrecio, e);
         }
 
@@ -49,12 +52,17 @@ namespace SG_BAMS
             string query = "";
             switch (tabla)
             {
-                case "Producto": query = "SELECT id_producto, nombre_producto FROM Producto WHERE id_estado = 1 ORDER BY nombre_producto ASC"; break;
-                
+                case "Producto":
+                    // Filtramos por el proveedor que recibimos en el constructor
+                    query = @"SELECT p.id_producto, p.nombre_producto 
+                      FROM Producto p
+                      INNER JOIN Proveedor_Producto pp ON p.id_producto = pp.id_producto
+                      WHERE p.id_estado = 1 AND pp.id_proveedor = @idProv
+                      ORDER BY p.nombre_producto ASC";
+                    break;
+
                 case "Marca": query = "SELECT id_marca_producto, nombre_marca FROM Marca_producto"; break;
-                case "Tipo": query = "SELECT id_tipo_producto, descripcion_forma_pago FROM Tipo_producto"; break;
-                case "Modelo": query = "SELECT id_modelo_auto, nombre_modelo_auto FROM Modelo_de_auto"; break;
-                case "Estado": query = "SELECT id_estado, descripcion_estado FROM Estado"; break;
+                    // ... los demás casos se quedan igual
             }
 
             try
@@ -62,6 +70,12 @@ namespace SG_BAMS
                 conexion.AbrirConexion();
                 using (SqlCommand cmd = new SqlCommand(query, conexion.Conectar))
                 {
+                    // ¡IMPORTANTE! Agregamos el parámetro para el filtro
+                    if (tabla == "Producto")
+                    {
+                        cmd.Parameters.AddWithValue("@idProv", _idProveedor);
+                    }
+
                     using (SqlDataReader leer = cmd.ExecuteReader()) { dt.Load(leer); }
                 }
             }

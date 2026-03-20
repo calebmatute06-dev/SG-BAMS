@@ -33,6 +33,9 @@ namespace SG_BAMS
 
         private void Modificar_datos__Compra__Load(object sender, EventArgs e)
         {
+            cmbProveedor.Enabled = false;
+            cmbProveedor.BackColor = Color.LightGray;
+
             cmbProveedor.SelectedIndexChanged -= cmbProveedor_SelectedIndexChanged;
             cmbFormaPago.SelectedIndexChanged -= cmbFormaPago_SelectedIndexChanged;
 
@@ -290,15 +293,29 @@ namespace SG_BAMS
 
         private void kryptonButton5_Click(object sender, EventArgs e)
         {
-            using (Agregar_Producto_Mod frm = new Agregar_Producto_Mod())
+            if (cmbProveedor.SelectedValue == null)
+            {
+                MessageBox.Show("No se pudo detectar el proveedor de esta compra.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            int idProv = Convert.ToInt32(cmbProveedor.SelectedValue);
+
+            // 2. Pasamos el ID del Proveedor al formulario hijo
+            // Nota: Asegúrate de que el constructor de Agregar_Producto_Mod acepte el int idProv
+            using (Agregar_Producto_Mod frm = new Agregar_Producto_Mod(idProv))
             {
                 frm.IdCompraActual = idCompraAEditar.ToString();
+
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     try
                     {
                         huboCambios = true; // Marcamos que hubo una inserción real en la BD
+
+                        // Recargamos el Grid desde la base de datos
                         dgvProductosCompraMod.DataSource = logic.ObtenerDetalleCompra(idCompraAEditar);
+
                         ConfigurarEdicionGrid();
                         ActualizarTotalGeneral();
                     }
