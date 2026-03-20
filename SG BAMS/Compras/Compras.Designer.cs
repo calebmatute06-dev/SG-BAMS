@@ -70,6 +70,8 @@
             btnModificar = new Krypton.Toolkit.KryptonButton();
             btnEliminar = new Krypton.Toolkit.KryptonButton();
             dgvComprasAdmin = new DataGridView();
+            label10 = new Label();
+            kryptonGroupBox2 = new Krypton.Toolkit.KryptonGroupBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
@@ -92,6 +94,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox21).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvComprasAdmin).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -664,7 +668,7 @@
             // 
             pictureBox21.BackgroundImage = Properties.Resources.comprasnuevo;
             pictureBox21.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox21.Location = new Point(596, 184);
+            pictureBox21.Location = new Point(610, 181);
             pictureBox21.Name = "pictureBox21";
             pictureBox21.Size = new Size(270, 163);
             pictureBox21.TabIndex = 151;
@@ -754,12 +758,36 @@
             dgvComprasAdmin.CellContentDoubleClick += dgvComprasAdmin_CellContentDoubleClick;
             dgvComprasAdmin.CellDoubleClick += dgvComprasAdmin_CellDoubleClick_1;
             // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.BackColor = Color.SkyBlue;
+            label10.Font = new Font("Arial Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label10.ForeColor = Color.Navy;
+            label10.Location = new Point(663, 86);
+            label10.Name = "label10";
+            label10.Size = new Size(163, 42);
+            label10.TabIndex = 200;
+            label10.Text = "Compras";
+            // 
+            // kryptonGroupBox2
+            // 
+            kryptonGroupBox2.CaptionVisible = false;
+            kryptonGroupBox2.Location = new Point(566, 75);
+            kryptonGroupBox2.Margin = new Padding(3, 4, 3, 4);
+            kryptonGroupBox2.Size = new Size(344, 65);
+            kryptonGroupBox2.StateCommon.Back.Color1 = Color.SkyBlue;
+            kryptonGroupBox2.StateCommon.Border.Rounding = 50F;
+            kryptonGroupBox2.TabIndex = 201;
+            // 
             // Compras
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1257, 908);
+            Controls.Add(label10);
+            Controls.Add(kryptonGroupBox2);
             Controls.Add(dgvComprasAdmin);
             Controls.Add(btnEliminar);
             Controls.Add(btnModificar);
@@ -803,6 +831,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox21).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvComprasAdmin).EndInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).EndInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -850,5 +880,7 @@
         private Krypton.Toolkit.KryptonButton btnModificar;
         private Krypton.Toolkit.KryptonButton btnEliminar;
         private DataGridView dgvComprasAdmin;
+        private Label label10;
+        private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox2;
     }
 }
