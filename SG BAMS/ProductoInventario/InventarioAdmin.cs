@@ -147,34 +147,7 @@ namespace SG_BAMS
 
         private void dgvProductosAdmin_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0)
-            {
-                return; // Salimos del método sin hacer nada
-            }
 
-            if (dgvProductosAdmin.SelectedRows.Count > 0)
-            {
-                ModificarProducto frmMod = new ModificarProducto();
-
-                frmMod.txtID.Text = dgvProductosAdmin.CurrentRow.Cells["ID"].Value.ToString();
-                frmMod.txtNombre.Text = dgvProductosAdmin.CurrentRow.Cells["Producto"].Value.ToString();
-                frmMod.txtPrecio.Text = dgvProductosAdmin.CurrentRow.Cells["Precio Venta"].Value.ToString();
-                frmMod.txtCodigoBarra.Text = dgvProductosAdmin.CurrentRow.Cells["Codigo Barra"].Value.ToString();
-                frmMod.marcaActual = dgvProductosAdmin.CurrentRow.Cells["Marca"].Value.ToString();
-                frmMod.tipoActual = dgvProductosAdmin.CurrentRow.Cells["Tipo"].Value.ToString();
-                frmMod.modeloActual = dgvProductosAdmin.CurrentRow.Cells["Modelo Auto"].Value.ToString();
-                frmMod.proveedorActual = dgvProductosAdmin.CurrentRow.Cells["Proveedor"].Value.ToString();
-                frmMod.estadoActual = dgvProductosAdmin.CurrentRow.Cells["Estado"].Value.ToString();
-
-                if (frmMod.ShowDialog() == DialogResult.OK)
-                {
-                    CargarInventarioCompleto();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Por favor, selecciona una fila para modificar.", "BAMS");
-            }
         }
 
         private void kryptonButton9_Click(object sender, EventArgs e)
@@ -257,6 +230,38 @@ namespace SG_BAMS
         {
             Perfil perfil = new Perfil();
             perfil.Show();
+        }
+
+        private void dgvProductosAdmin_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+            {
+                return; // Salimos del método sin hacer nada
+            }
+
+            if (dgvProductosAdmin.SelectedRows.Count > 0)
+            {
+                ModificarProducto frmMod = new ModificarProducto();
+
+                frmMod.txtID.Text = dgvProductosAdmin.CurrentRow.Cells["ID"].Value.ToString();
+                frmMod.txtNombre.Text = dgvProductosAdmin.CurrentRow.Cells["Producto"].Value.ToString();
+                frmMod.txtPrecio.Text = dgvProductosAdmin.CurrentRow.Cells["Precio Venta"].Value.ToString();
+                frmMod.txtCodigoBarra.Text = dgvProductosAdmin.CurrentRow.Cells["Codigo Barra"].Value.ToString();
+                frmMod.marcaActual = dgvProductosAdmin.CurrentRow.Cells["Marca"].Value.ToString();
+                frmMod.tipoActual = dgvProductosAdmin.CurrentRow.Cells["Tipo"].Value.ToString();
+                frmMod.modeloActual = dgvProductosAdmin.CurrentRow.Cells["Modelo Auto"].Value.ToString();
+                frmMod.proveedorActual = dgvProductosAdmin.CurrentRow.Cells["Proveedor"].Value.ToString();
+                frmMod.estadoActual = dgvProductosAdmin.CurrentRow.Cells["Estado"].Value.ToString();
+
+                if (frmMod.ShowDialog() == DialogResult.OK)
+                {
+                    CargarInventarioCompleto();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, selecciona una fila para modificar.", "BAMS");
+            }
         }
     }
 }
