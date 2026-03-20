@@ -197,6 +197,29 @@ namespace SG_BAMS
             {
                 if (formularioHijo.ShowDialog() == DialogResult.OK)
                 {
+                    // 1. Obtener el ID del producto que el usuario eligió en la ventanita
+                    string idNuevo = formularioHijo.IdSeleccionado;
+                    bool existe = false;
+
+                    // 2. Revisar si ese ID ya está en el grid (la tabla)
+                    foreach (DataGridViewRow fila in dgvProductosCompra.Rows)
+                    {
+                        if (fila.Cells[0].Value != null && fila.Cells[0].Value.ToString() == idNuevo)
+                        {
+                            existe = true;
+                            break;
+                        }
+                    }
+
+                    // 3. Si ya existe, avisar y NO agregar nada
+                    if (existe)
+                    {
+                        MessageBox.Show("Este producto ya está incluido en la compra.\nModifique la cantidad en la pantalla anterior\n(dando doble click sobre la celda precio o cantidad).",
+                                        "Producto Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
+                    // 4. Si NO existe, procedemos a calcular y agregar la fila
                     decimal subtotal = formularioHijo.CantidadSeleccionada * formularioHijo.PrecioSeleccionado;
 
                     dgvProductosCompra.Rows.Add(

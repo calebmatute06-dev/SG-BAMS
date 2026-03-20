@@ -107,7 +107,7 @@ namespace SG_BAMS
                     int existe = (int)cmdCheck.ExecuteScalar();
                     if (existe > 0)
                     {
-                        MessageBox.Show("Este producto ya está incluido en la compra.\nModifique la cantidad en la pantalla anterior.",
+                        MessageBox.Show("Este producto ya está incluido en la compra.\nModifique la cantidad en la pantalla anterior\n(dando doble click sobre la celda precio o cantidad).",
                                         "Producto Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return;
                     }
