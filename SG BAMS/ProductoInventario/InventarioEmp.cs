@@ -115,5 +115,12 @@ namespace SG_BAMS
             CE.Show();
             this.Close();
         }
+
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            Login.Login login = new Login.Login();
+            login.Show();
+            this.Close();
+        }
     }
 }

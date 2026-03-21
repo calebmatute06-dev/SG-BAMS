@@ -60,8 +60,6 @@
             pictureBox17 = new PictureBox();
             kryptonButton14 = new Krypton.Toolkit.KryptonButton();
             label1 = new Label();
-            btnAjustes = new Krypton.Toolkit.KryptonButton();
-            pictureBox18 = new PictureBox();
             btnNoti = new Button();
             kryptonGroupBox1 = new Krypton.Toolkit.KryptonGroupBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
@@ -75,7 +73,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvClientes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox17).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1.Panel).BeginInit();
             SuspendLayout();
@@ -524,42 +521,6 @@
             label1.Size = new Size(0, 20);
             label1.TabIndex = 332;
             // 
-            // btnAjustes
-            // 
-            btnAjustes.Location = new Point(1167, 29);
-            btnAjustes.Name = "btnAjustes";
-            btnAjustes.OverrideDefault.Back.Color1 = Color.Transparent;
-            btnAjustes.OverrideDefault.Back.Color2 = Color.Transparent;
-            btnAjustes.OverrideDefault.Border.Rounding = 40F;
-            btnAjustes.OverrideFocus.Back.Color1 = Color.White;
-            btnAjustes.OverrideFocus.Back.Color2 = Color.SkyBlue;
-            btnAjustes.Size = new Size(98, 41);
-            btnAjustes.StateCommon.Back.Color1 = Color.White;
-            btnAjustes.StateCommon.Back.Color2 = Color.SkyBlue;
-            btnAjustes.StateCommon.Border.Rounding = 40F;
-            btnAjustes.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnAjustes.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnAjustes.StateNormal.Back.Color1 = Color.Transparent;
-            btnAjustes.StateNormal.Back.Color2 = Color.Transparent;
-            btnAjustes.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
-            btnAjustes.StatePressed.Back.Color1 = Color.Transparent;
-            btnAjustes.StatePressed.Back.Color2 = Color.Transparent;
-            btnAjustes.StateTracking.Border.Rounding = 40F;
-            btnAjustes.TabIndex = 331;
-            btnAjustes.Values.DropDownArrowColor = Color.Empty;
-            btnAjustes.Values.Text = "Ajustes";
-            btnAjustes.Click += btnAjustes_Click;
-            // 
-            // pictureBox18
-            // 
-            pictureBox18.BackgroundImage = Properties.Resources.ajus;
-            pictureBox18.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox18.Location = new Point(1112, 29);
-            pictureBox18.Name = "pictureBox18";
-            pictureBox18.Size = new Size(53, 49);
-            pictureBox18.TabIndex = 330;
-            pictureBox18.TabStop = false;
-            // 
             // btnNoti
             // 
             btnNoti.BackColor = Color.Transparent;
@@ -569,7 +530,7 @@
             btnNoti.FlatAppearance.BorderSize = 0;
             btnNoti.FlatStyle = FlatStyle.Flat;
             btnNoti.ForeColor = Color.Navy;
-            btnNoti.Location = new Point(1047, 29);
+            btnNoti.Location = new Point(1206, 30);
             btnNoti.Name = "btnNoti";
             btnNoti.Size = new Size(59, 44);
             btnNoti.TabIndex = 329;
@@ -602,8 +563,6 @@
             Controls.Add(pictureBox17);
             Controls.Add(kryptonButton14);
             Controls.Add(label1);
-            Controls.Add(btnAjustes);
-            Controls.Add(pictureBox18);
             Controls.Add(btnNoti);
             Controls.Add(kryptonGroupBox1);
             Controls.Add(panel6);
@@ -630,7 +589,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvClientes).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox17).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox18).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1).EndInit();
             ResumeLayout(false);
@@ -670,8 +628,6 @@
         private PictureBox pictureBox17;
         private Krypton.Toolkit.KryptonButton kryptonButton14;
         private Label label1;
-        private Krypton.Toolkit.KryptonButton btnAjustes;
-        private PictureBox pictureBox18;
         private Button btnNoti;
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox1;
     }

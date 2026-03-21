@@ -58,8 +58,6 @@
             pictureBox1 = new PictureBox();
             txtBuscar = new Krypton.Toolkit.KryptonTextBox();
             btnAgregar = new Krypton.Toolkit.KryptonButton();
-            kryptonButton11 = new Krypton.Toolkit.KryptonButton();
-            pictureBox18 = new PictureBox();
             btnNoti = new Button();
             panel7 = new Panel();
             pictureBox2 = new PictureBox();
@@ -83,7 +81,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
             panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvProductosAdmin).BeginInit();
@@ -591,41 +588,6 @@
             btnAgregar.Values.Text = "+";
             btnAgregar.Click += btnAgregar_Click;
             // 
-            // kryptonButton11
-            // 
-            kryptonButton11.Location = new Point(1365, 29);
-            kryptonButton11.Name = "kryptonButton11";
-            kryptonButton11.OverrideDefault.Back.Color1 = Color.Transparent;
-            kryptonButton11.OverrideDefault.Back.Color2 = Color.Transparent;
-            kryptonButton11.OverrideDefault.Border.Rounding = 40F;
-            kryptonButton11.OverrideFocus.Back.Color1 = Color.White;
-            kryptonButton11.OverrideFocus.Back.Color2 = Color.SkyBlue;
-            kryptonButton11.Size = new Size(98, 41);
-            kryptonButton11.StateCommon.Back.Color1 = Color.White;
-            kryptonButton11.StateCommon.Back.Color2 = Color.SkyBlue;
-            kryptonButton11.StateCommon.Border.Rounding = 40F;
-            kryptonButton11.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton11.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton11.StateNormal.Back.Color1 = Color.Transparent;
-            kryptonButton11.StateNormal.Back.Color2 = Color.Transparent;
-            kryptonButton11.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
-            kryptonButton11.StatePressed.Back.Color1 = Color.Transparent;
-            kryptonButton11.StatePressed.Back.Color2 = Color.Transparent;
-            kryptonButton11.StateTracking.Border.Rounding = 40F;
-            kryptonButton11.TabIndex = 186;
-            kryptonButton11.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton11.Values.Text = "Ajustes";
-            // 
-            // pictureBox18
-            // 
-            pictureBox18.BackgroundImage = Properties.Resources.ajus;
-            pictureBox18.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox18.Location = new Point(1309, 28);
-            pictureBox18.Name = "pictureBox18";
-            pictureBox18.Size = new Size(53, 49);
-            pictureBox18.TabIndex = 185;
-            pictureBox18.TabStop = false;
-            // 
             // btnNoti
             // 
             btnNoti.BackColor = Color.Transparent;
@@ -635,7 +597,7 @@
             btnNoti.FlatAppearance.BorderSize = 0;
             btnNoti.FlatStyle = FlatStyle.Flat;
             btnNoti.ForeColor = Color.Navy;
-            btnNoti.Location = new Point(1243, 28);
+            btnNoti.Location = new Point(1399, 29);
             btnNoti.Name = "btnNoti";
             btnNoti.Size = new Size(59, 44);
             btnNoti.TabIndex = 184;
@@ -753,8 +715,6 @@
             Controls.Add(panel1);
             Controls.Add(txtBuscar);
             Controls.Add(btnAgregar);
-            Controls.Add(kryptonButton11);
-            Controls.Add(pictureBox18);
             Controls.Add(btnNoti);
             Controls.Add(panel7);
             Controls.Add(kryptonButton10);
@@ -776,7 +736,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox18).EndInit();
             panel7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvProductosAdmin).EndInit();
@@ -818,8 +777,6 @@
         private PictureBox pictureBox1;
         private Krypton.Toolkit.KryptonTextBox txtBuscar;
         private Krypton.Toolkit.KryptonButton btnAgregar;
-        private Krypton.Toolkit.KryptonButton kryptonButton11;
-        private PictureBox pictureBox18;
         private Button btnNoti;
         private Panel panel7;
         private PictureBox pictureBox2;
