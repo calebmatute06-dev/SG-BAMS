@@ -26,14 +26,45 @@ namespace SG_BAMS.ProductoInventario
                     cmd.Parameters.Add("@precio_venta", SqlDbType.Money).Value = precio;
                     cmd.Parameters.AddWithValue("@codigo_barra", codBarra);
                     cmd.Parameters.AddWithValue("@id_proveedor", idProveedor);
+
                     cmd.ExecuteNonQuery();
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Error en la capa de lógica: " + ex.Message);
+                throw new Exception("Error al actualizar el producto: " + ex.Message);
             }
-            finally { conexion.Cerrar(); }
+            finally
+            {
+                conexion.Cerrar();
+            }
+        }
+
+        public bool ExisteCodigoEnOtros(int idActual, string codigo)
+        {
+            int conteo = 0;
+            string sql = "SELECT COUNT(*) FROM Producto WHERE codigo_barra = @codigo AND id_producto <> @id";
+
+            try
+            {
+                conexion.AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand(sql, conexion.Conectar))
+                {
+                    cmd.Parameters.AddWithValue("@codigo", codigo);
+                    cmd.Parameters.AddWithValue("@id", idActual);
+                    conteo = Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al verificar duplicados de código: " + ex.Message);
+            }
+            finally
+            {
+                conexion.Cerrar();
+            }
+
+            return conteo > 0;
         }
     }
 }

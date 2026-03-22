@@ -52,22 +52,23 @@ namespace SG_BAMS
 
                 // --- NUEVA VALIDACIÓN ADAPTADA ---
                 // Reemplazamos la validación vieja de nombre por la del "Trío" (Nombre+Marca+Proveedor)
+                // Se asume que ClsValidacion.ValidarExistencia ya fue actualizada para recibir estos 4 parámetros
                 if (!ClsValidacion.ValidarExistencia(idActual, nombreNuevo, idMarca, idProveedor))
                 {
                     txtNombre.Focus();
                     return;
                 }
 
-                // Validación de duplicados (Código) - Este se queda porque el código de barra es único siempre
-                if (ExisteDuplicadoEnOtros(idActual, "codigo_barra", codigoNuevo))
+                // Instancia de la lógica
+                SG_BAMS.ProductoInventario.ClsActualizarProducto logica = new SG_BAMS.ProductoInventario.ClsActualizarProducto();
+
+                // Validación de duplicados (Código) usando el nuevo método de la clase lógica
+                if (logica.ExisteCodigoEnOtros(idActual, codigoNuevo))
                 {
                     MessageBox.Show("El código de barras ya está asignado a otro producto.", "Código Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     txtCodigoBarra.Focus();
                     return;
                 }
-
-                // Instancia de la lógica
-                SG_BAMS.ProductoInventario.ClsActualizarProducto logica = new SG_BAMS.ProductoInventario.ClsActualizarProducto();
 
                 // Ejecución con los 9 parámetros requeridos
                 logica.EjecutarActualizacion(
@@ -92,6 +93,7 @@ namespace SG_BAMS
             }
         }
 
+        // Se mantiene el método aunque la lógica ahora se llame desde ClsActualizarProducto para no romper referencias si existieran
         private bool ExisteDuplicadoEnOtros(int idActual, string columna, string valor)
         {
             ClsConexion conexion = new ClsConexion();
@@ -118,7 +120,6 @@ namespace SG_BAMS
         {
             LlenarCombosModificar();
 
-            // Usamos Trim() para asegurar que la coincidencia sea exacta
             cmbMarca.SelectedIndex = cmbMarca.FindStringExact(marcaActual?.Trim());
             cmbTipo.SelectedIndex = cmbTipo.FindStringExact(tipoActual?.Trim());
             cmbModelo.SelectedIndex = cmbModelo.FindStringExact(modeloActual?.Trim());
@@ -132,6 +133,7 @@ namespace SG_BAMS
 
             try
             {
+                // Usando el nuevo método optimizado que configuramos previamente
                 llenar.ConfigurarComboBox(cmbMarca, "Marca");
                 llenar.ConfigurarComboBox(cmbTipo, "Tipo");
                 llenar.ConfigurarComboBox(cmbModelo, "Modelo");
@@ -157,6 +159,7 @@ namespace SG_BAMS
 
         private void txtCodigoBarra_TextChanged(object sender, EventArgs e)
         {
+
         }
 
         private void txtCodigoBarra_KeyPress(object sender, KeyPressEventArgs e)
@@ -173,9 +176,9 @@ namespace SG_BAMS
             }
         }
 
-        // Mantenido para evitar errores en el Designer
         private void label2_Click(object sender, EventArgs e)
         {
+
         }
     }
 }
