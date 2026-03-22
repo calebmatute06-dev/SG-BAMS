@@ -6,14 +6,13 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Krypton.Toolkit;
-using Microsoft.Data.SqlClient; // Asegúrate de tener esta referencia
+using Microsoft.Data.SqlClient; 
 
 namespace SG_BAMS.ProductoInventario
 {
     internal class ClsValidacion
     {
-        // --- NUEVA VALIDACIÓN DE REGLA DE NEGOCIO ---
-        // Verifica que no exista el mismo Nombre + Marca para el mismo Proveedor
+
         public static bool ValidarExistencia(int idActual, string nombre, int idMarca, int idProveedor)
         {
             ClsConexion conexion = new ClsConexion();

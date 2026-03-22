@@ -9,6 +9,7 @@ namespace SG_BAMS.ProductoInventario
     public class ClsLlenarCombo
     {
         private ClsConexion conexion = new ClsConexion();
+
         public void ConfigurarComboBox(KryptonComboBox combo, string tipoTabla)
         {
             DataTable dt = ObtenerDatosCombo(tipoTabla);
