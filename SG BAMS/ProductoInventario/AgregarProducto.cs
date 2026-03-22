@@ -24,33 +24,31 @@ namespace SG_BAMS
         {
             if (!ClsValidacion.ValidarNombre(txtNombre.Text)) return;
             if (!ClsValidacion.ValidarPrecio(txtPrecio.Text)) return;
-
-            // Validaciones de Selección (Combos)
             if (!ClsValidacion.ValidarSeleccion(cmbMarca, "la Marca")) return;
             if (!ClsValidacion.ValidarSeleccion(cmbTipo, "el Tipo de Producto")) return;
             if (!ClsValidacion.ValidarSeleccion(cmbModelo, "el Modelo de Auto")) return;
-            if (!ClsValidacion.ValidarSeleccion(cmbProveedor, "el Proveedor")) return; // OBLIGATORIO
-
+            if (!ClsValidacion.ValidarSeleccion(cmbProveedor, "el Proveedor")) return; 
             if (!ClsValidacion.ValidarCodigoBarra(txtCodigoBarra.Text)) return;
 
             try
             {
-                // 2. Captura de variables necesarias para la validación de regla de negocio
+                ClsAgregarProducto logicaInsertar = new ClsAgregarProducto();
                 string nombre = txtNombre.Text.Trim();
                 int idMarca = (int)cmbMarca.SelectedValue;
                 int idProveedor = (int)cmbProveedor.SelectedValue;
                 string codBarra = txtCodigoBarra.Text.Trim();
 
-                // 3. NUEVA REGLA: Validar combinación Nombre + Marca + Proveedor
-                // Pasamos '0' porque al ser un producto nuevo no necesitamos excluir ningún ID
-                if (!ClsValidacion.ValidarExistencia(0, nombre, idMarca, idProveedor))
+                // 1. Validar Triple Coincidencia (Nombre + Marca + Proveedor)
+                if (logicaInsertar.ExisteProductoMarcaProveedor(nombre, idMarca, idProveedor))
                 {
-                    txtNombre.Focus();
+                    MessageBox.Show("Este producto con esta marca ya está registrado para el proveedor seleccionado.\n\n" +
+                                    "Si es un proveedor distinto, sí puede usar el mismo nombre.",
+                                    "Producto Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     return;
                 }
 
-                // 4. VALIDACIÓN DE CÓDIGO DE BARRAS (Sigue siendo universalmente único)
-                if (ExisteProductoPorCodigo(codBarra))
+                // 2. Validar Código de Barras (Este sigue siendo ÚNICO en todo el sistema)
+                if (logicaInsertar.ExisteCodigoBarra(codBarra))
                 {
                     MessageBox.Show("El código de barras ya pertenece a otro producto en el sistema.",
                                     "Código Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Stop);
@@ -58,90 +56,22 @@ namespace SG_BAMS
                     return;
                 }
 
-                // 5. Instancia de la lógica e Inserción
-                ClsAgregarProducto logicaInsertar = new ClsAgregarProducto();
+                // 3. Si pasa ambas, insertamos
+                logicaInsertar.EjecutarInsercion(nombre, idMarca, (int)cmbTipo.SelectedValue,
+                                                (int)cmbModelo.SelectedValue, decimal.Parse(txtPrecio.Text),
+                                                codBarra, idProveedor);
 
-                int idTipo = (int)cmbTipo.SelectedValue;
-                int idModelo = (int)cmbModelo.SelectedValue;
-                decimal precio = decimal.Parse(txtPrecio.Text);
-
-                // Ejecución con los 7 parámetros
-                logicaInsertar.EjecutarInsercion(nombre, idMarca, idTipo, idModelo, precio, codBarra, idProveedor);
-
-                MessageBox.Show("¡Producto guardado exitosamente con su proveedor!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                MessageBox.Show("¡Producto guardado exitosamente!", "Éxito");
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al guardar: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
 
-        private bool ExisteProducto(string nombre)
-        {
-            ClsConexion conexion = new ClsConexion();
-            int count = 0;
-            try
-            {
-                conexion.AbrirConexion();
-                string sql = "SELECT COUNT(*) FROM Producto WHERE nombre_producto = @nombre";
-                using (SqlCommand cmd = new SqlCommand(sql, conexion.Conectar))
-                {
-                    cmd.Parameters.AddWithValue("@nombre", nombre);
-                    count = (int)cmd.ExecuteScalar();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al verificar duplicados: " + ex.Message);
-            }
-            finally
-            {
-                conexion.Cerrar();
-            }
-            return count > 0;
-        }
-
-        private bool ExisteProductoPorNombre(string nombre)
-        {
-            ClsConexion conexion = new ClsConexion();
-            int count = 0;
-            try
-            {
-                conexion.AbrirConexion();
-                string sql = "SELECT COUNT(*) FROM Producto WHERE nombre_producto = @nombre";
-                using (SqlCommand cmd = new SqlCommand(sql, conexion.Conectar))
-                {
-                    cmd.Parameters.AddWithValue("@nombre", nombre);
-                    count = (int)cmd.ExecuteScalar();
-                }
-            }
-            catch { throw; }
-            finally { conexion.Cerrar(); }
-            return count > 0;
-        }
-
-        private bool ExisteProductoPorCodigo(string codigo)
-        {
-            ClsConexion conexion = new ClsConexion();
-            int count = 0;
-            try
-            {
-                conexion.AbrirConexion();
-                // Buscamos específicamente en la columna codigo_barra
-                string sql = "SELECT COUNT(*) FROM Producto WHERE codigo_barra = @codigo";
-                using (SqlCommand cmd = new SqlCommand(sql, conexion.Conectar))
-                {
-                    cmd.Parameters.AddWithValue("@codigo", codigo);
-                    count = (int)cmd.ExecuteScalar();
-                }
-            }
-            catch { throw; }
-            finally { conexion.Cerrar(); }
-            return count > 0;
-        }
+        
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
@@ -166,31 +96,10 @@ namespace SG_BAMS
 
             try
             {
-                // Carga de Marcas
-                cmbMarca.DataSource = llenar.ObtenerDatosCombo("Marca");
-                cmbMarca.DisplayMember = "nombre_marca";
-                cmbMarca.ValueMember = "id_marca_producto";
-
-                // Carga de Tipos
-                cmbTipo.DataSource = llenar.ObtenerDatosCombo("Tipo");
-                cmbTipo.DisplayMember = "descripcion_forma_pago";
-                cmbTipo.ValueMember = "id_tipo_producto";
-
-                // Carga de Modelos
-                cmbModelo.DataSource = llenar.ObtenerDatosCombo("Modelo");
-                cmbModelo.DisplayMember = "nombre_modelo_auto";
-                cmbModelo.ValueMember = "id_modelo_auto";
-
-                // --- ADAPTACIÓN: Carga de Proveedores ---
-                cmbProveedor.DataSource = llenar.ObtenerDatosCombo("Proveedor");
-                cmbProveedor.DisplayMember = "nombre_proveedor"; // Lo que el usuario lee
-                cmbProveedor.ValueMember = "id_proveedor";     // El ID para la tabla intermedia
-
-                // Reinicio de índices para que aparezcan vacíos al inicio
-                cmbMarca.SelectedIndex = -1;
-                cmbTipo.SelectedIndex = -1;
-                cmbModelo.SelectedIndex = -1;
-                cmbProveedor.SelectedIndex = -1; // Nuevo reinicio
+                llenar.ConfigurarComboBox(cmbMarca, "Marca");
+                llenar.ConfigurarComboBox(cmbTipo, "Tipo");
+                llenar.ConfigurarComboBox(cmbModelo, "Modelo");
+                llenar.ConfigurarComboBox(cmbProveedor, "Proveedor");
             }
             catch (Exception ex)
             {

@@ -130,25 +130,18 @@ namespace SG_BAMS
         {
             ClsLlenarCombo llenar = new ClsLlenarCombo();
 
-            cmbMarca.DataSource = llenar.ObtenerDatosCombo("Marca");
-            cmbMarca.DisplayMember = "nombre_marca";
-            cmbMarca.ValueMember = "id_marca_producto";
-
-            cmbTipo.DataSource = llenar.ObtenerDatosCombo("Tipo");
-            cmbTipo.DisplayMember = "descripcion_forma_pago";
-            cmbTipo.ValueMember = "id_tipo_producto";
-
-            cmbModelo.DataSource = llenar.ObtenerDatosCombo("Modelo");
-            cmbModelo.DisplayMember = "nombre_modelo_auto";
-            cmbModelo.ValueMember = "id_modelo_auto";
-
-            cmbEstado.DataSource = llenar.ObtenerDatosCombo("Estado");
-            cmbEstado.DisplayMember = "descripcion_estado";
-            cmbEstado.ValueMember = "id_estado";
-
-            cmbProveedor.DataSource = llenar.ObtenerDatosCombo("Proveedor");
-            cmbProveedor.DisplayMember = "nombre_proveedor";
-            cmbProveedor.ValueMember = "id_proveedor";
+            try
+            {
+                llenar.ConfigurarComboBox(cmbMarca, "Marca");
+                llenar.ConfigurarComboBox(cmbTipo, "Tipo");
+                llenar.ConfigurarComboBox(cmbModelo, "Modelo");
+                llenar.ConfigurarComboBox(cmbEstado, "Estado");
+                llenar.ConfigurarComboBox(cmbProveedor, "Proveedor");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los datos: " + ex.Message);
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -161,7 +154,7 @@ namespace SG_BAMS
             Close();
         }
 
-        // Mantenido para evitar errores en el Designer
+
         private void txtCodigoBarra_TextChanged(object sender, EventArgs e)
         {
         }

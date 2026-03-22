@@ -8,7 +8,6 @@ namespace SG_BAMS.ProductoInventario
     {
         private ClsConexion conexion = new ClsConexion();
 
-        // Se eliminó el parámetro 'string servicio' de la firma del método
         public void EjecutarInsercion(string nombre, int idMarca, int idTipo, int idModelo, decimal precio, string codBarra, int idProveedor)
         {
             try
@@ -24,7 +23,7 @@ namespace SG_BAMS.ProductoInventario
                     cmd.Parameters.AddWithValue("@id_modelo_auto", idModelo);
                     cmd.Parameters.Add("@precio_venta", SqlDbType.Money).Value = precio;
                     cmd.Parameters.AddWithValue("@codigo_barra", codBarra);
-                    cmd.Parameters.AddWithValue("@id_proveedor", idProveedor); // El nuevo parámetro
+                    cmd.Parameters.AddWithValue("@id_proveedor", idProveedor);
 
                     cmd.ExecuteNonQuery();
                 }
@@ -32,28 +31,47 @@ namespace SG_BAMS.ProductoInventario
             finally { conexion.Cerrar(); }
         }
 
-        public bool ExisteNombreProducto(string nombre)
+        public bool ExisteProductoMarcaProveedor(string nombre, int idMarca, int idProveedor)
         {
             int conteo = 0;
-            string query = "SELECT COUNT(*) FROM Producto WHERE nombre_producto = @nombre";
+            string sql = @"SELECT COUNT(*) 
+                           FROM Producto p
+                           INNER JOIN Proveedor_Producto pp ON p.id_producto = pp.id_producto
+                           WHERE p.nombre_producto = @nombre 
+                           AND p.id_marca_producto = @idMarca 
+                           AND pp.id_proveedor = @idProv";
 
             try
             {
                 conexion.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand(query, conexion.Conectar))
+                using (SqlCommand cmd = new SqlCommand(sql, conexion.Conectar))
                 {
                     cmd.Parameters.AddWithValue("@nombre", nombre);
+                    cmd.Parameters.AddWithValue("@idMarca", idMarca);
+                    cmd.Parameters.AddWithValue("@idProv", idProveedor);
                     conteo = Convert.ToInt32(cmd.ExecuteScalar());
                 }
             }
-            catch (Exception ex)
+            finally { conexion.Cerrar(); }
+
+            return conteo > 0;
+        }
+
+        public bool ExisteCodigoBarra(string codigo)
+        {
+            int conteo = 0;
+            string sql = "SELECT COUNT(*) FROM Producto WHERE codigo_barra = @codigo";
+
+            try
             {
-                throw new Exception("Error al verificar duplicados: " + ex.Message);
+                conexion.AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand(sql, conexion.Conectar))
+                {
+                    cmd.Parameters.AddWithValue("@codigo", codigo);
+                    conteo = Convert.ToInt32(cmd.ExecuteScalar());
+                }
             }
-            finally
-            {
-                conexion.Cerrar();
-            }
+            finally { conexion.Cerrar(); }
 
             return conteo > 0;
         }
