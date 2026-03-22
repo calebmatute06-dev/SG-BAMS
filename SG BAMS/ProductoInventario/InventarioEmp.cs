@@ -34,48 +34,14 @@ namespace SG_BAMS
                 return;
             }
 
-            ClsConexion conexion = new ClsConexion();
-            DataTable dt = new DataTable();
-
             try
             {
-                conexion.AbrirConexion();
-
-                // Usamos exactamente "Proveedor_Producto" como dice tu imagen de CREATE TABLE
-                string query = @"SELECT 
-                            p.id_producto AS ID, 
-                            p.nombre_producto AS Producto, 
-                            m.nombre_marca AS Marca, 
-                            t.descripcion_forma_pago AS Tipo, 
-                            mo.nombre_modelo_auto AS [Modelo Auto], 
-                            prov.nombre_proveedor AS Proveedor,
-                            p.precio_venta AS [Precio Venta],
-                            p.codigo_barra AS [Codigo Barra],
-                            e.descripcion_estado AS Estado
-                         FROM Producto p
-                         INNER JOIN Marca_producto m ON p.id_marca_producto = m.id_marca_producto
-                         INNER JOIN Tipo_producto t ON p.id_tipo_producto = t.id_tipo_producto
-                         INNER JOIN Modelo_de_auto mo ON p.id_modelo_auto = mo.id_modelo_auto
-                         INNER JOIN Estado e ON p.id_estado = e.id_estado
-                         LEFT JOIN Proveedor_Producto pp ON p.id_producto = pp.id_producto
-                         LEFT JOIN Proveedor prov ON pp.id_proveedor = prov.id_proveedor
-                         WHERE p.nombre_producto LIKE '%' + @filtro + '%' 
-                         OR p.codigo_barra LIKE '%' + @filtro + '%'";
-
-                using (SqlCommand cmd = new SqlCommand(query, conexion.Conectar))
-                {
-                    cmd.Parameters.AddWithValue("@filtro", txtBuscar.Text.Trim());
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(dt);
-                }
-
-                dgvInventarioEmp.DataSource = dt;
+                dgvInventarioEmp.DataSource = logica.BuscarProductos(txtBuscar.Text.Trim());
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error en búsqueda: " + ex.Message);
+                MessageBox.Show("Error al buscar: " + ex.Message, "BAMS");
             }
-            finally { conexion.Cerrar(); }
         }
 
         public void CargarInventarioCompleto()

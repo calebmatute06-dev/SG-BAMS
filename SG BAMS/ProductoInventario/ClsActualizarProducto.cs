@@ -17,7 +17,6 @@ namespace SG_BAMS.ProductoInventario
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    // Parámetros existentes
                     cmd.Parameters.AddWithValue("@id_producto", id);
                     cmd.Parameters.AddWithValue("@nombre_producto", nombre);
                     cmd.Parameters.AddWithValue("@id_marca_producto", idMarca);
@@ -26,10 +25,7 @@ namespace SG_BAMS.ProductoInventario
                     cmd.Parameters.AddWithValue("@id_estado", idEstado);
                     cmd.Parameters.Add("@precio_venta", SqlDbType.Money).Value = precio;
                     cmd.Parameters.AddWithValue("@codigo_barra", codBarra);
-
-                    // NUEVO: Parámetro para la relación con el proveedor
                     cmd.Parameters.AddWithValue("@id_proveedor", idProveedor);
-
                     cmd.ExecuteNonQuery();
                 }
             }
