@@ -33,5 +33,33 @@ namespace SG_BAMS.ProductoInventario
             }
             return tabla;
         }
+
+        public DataTable BuscarProductos(string filtro)
+        {
+            ClsConexion conexion = new ClsConexion();
+            DataTable dt = new DataTable();
+            try
+            {
+                conexion.AbrirConexion();
+
+                using (SqlCommand cmd = new SqlCommand("sp_BuscarProductos", conexion.Conectar))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@filtro", filtro);
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al ejecutar procedimiento: " + ex.Message);
+            }
+            finally
+            {
+                conexion.Cerrar();
+            }
+            return dt;
+        }
     }
 }
