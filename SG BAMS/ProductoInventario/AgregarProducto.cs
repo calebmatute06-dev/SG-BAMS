@@ -38,7 +38,7 @@ namespace SG_BAMS
                 int idProveedor = (int)cmbProveedor.SelectedValue;
                 string codBarra = txtCodigoBarra.Text.Trim();
 
-                // 1. Validar Triple Coincidencia (Nombre + Marca + Proveedor)
+
                 if (logicaInsertar.ExisteProductoMarcaProveedor(nombre, idMarca, idProveedor))
                 {
                     MessageBox.Show("Este producto con esta marca ya está registrado para el proveedor seleccionado.\n\n" +
@@ -47,7 +47,6 @@ namespace SG_BAMS
                     return;
                 }
 
-                // 2. Validar Código de Barras (Este sigue siendo ÚNICO en todo el sistema)
                 if (logicaInsertar.ExisteCodigoBarra(codBarra))
                 {
                     MessageBox.Show("El código de barras ya pertenece a otro producto en el sistema.",
@@ -56,7 +55,6 @@ namespace SG_BAMS
                     return;
                 }
 
-                // 3. Si pasa ambas, insertamos
                 logicaInsertar.EjecutarInsercion(nombre, idMarca, (int)cmbTipo.SelectedValue,
                                                 (int)cmbModelo.SelectedValue, decimal.Parse(txtPrecio.Text),
                                                 codBarra, idProveedor);
