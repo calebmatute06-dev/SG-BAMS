@@ -21,7 +21,6 @@ namespace SG_BAMS
             InitializeComponent();
         }
 
-        // Mantenido para evitar errores en el Designer
         private void kryptonTextBox3_TextChanged(object sender, EventArgs e)
         {
         }
@@ -30,19 +29,11 @@ namespace SG_BAMS
         {
             try
             {
-                // 1. Validaciones de Formato y Limpieza
                 if (!ClsValidacion.ValidarNombre(txtNombre.Text)) return;
 
                 string precioLimpio = txtPrecio.Text.Replace("Lps", "").Replace("$", "").Trim();
                 if (!ClsValidacion.ValidarPrecio(precioLimpio)) return;
                 if (!ClsValidacion.ValidarCodigoBarra(txtCodigoBarra.Text)) return;
-
-                // 2. Validaciones de selección de ComboBoxes
-                if (!ClsValidacion.ValidarSeleccion(cmbMarca, "Marca")) return;
-                if (!ClsValidacion.ValidarSeleccion(cmbTipo, "Tipo")) return;
-                if (!ClsValidacion.ValidarSeleccion(cmbModelo, "Modelo")) return;
-                if (!ClsValidacion.ValidarSeleccion(cmbEstado, "Estado")) return;
-                if (!ClsValidacion.ValidarSeleccion(cmbProveedor, "Proveedor")) return;
 
                 int idActual = Convert.ToInt32(txtID.Text);
                 string nombreNuevo = txtNombre.Text.Trim();
@@ -50,27 +41,25 @@ namespace SG_BAMS
                 int idMarca = Convert.ToInt32(cmbMarca.SelectedValue);
                 int idProveedor = Convert.ToInt32(cmbProveedor.SelectedValue);
 
-                // --- NUEVA VALIDACIÓN ADAPTADA ---
-                // Reemplazamos la validación vieja de nombre por la del "Trío" (Nombre+Marca+Proveedor)
-                // Se asume que ClsValidacion.ValidarExistencia ya fue actualizada para recibir estos 4 parámetros
-                if (!ClsValidacion.ValidarExistencia(idActual, nombreNuevo, idMarca, idProveedor))
+                ClsActualizarProducto logica = new ClsActualizarProducto();
+
+                if (logica.ExisteProductoEnOtros(idActual, nombreNuevo, idMarca, idProveedor))
                 {
+                    MessageBox.Show("Este producto con esta marca ya está registrado para el proveedor seleccionado.\n\n" +
+                    "Si es un proveedor distinto, sí puede usar el mismo nombre.",
+                    "Producto Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     txtNombre.Focus();
                     return;
                 }
 
-                // Instancia de la lógica
-                SG_BAMS.ProductoInventario.ClsActualizarProducto logica = new SG_BAMS.ProductoInventario.ClsActualizarProducto();
-
-                // Validación de duplicados (Código) usando el nuevo método de la clase lógica
                 if (logica.ExisteCodigoEnOtros(idActual, codigoNuevo))
                 {
-                    MessageBox.Show("El código de barras ya está asignado a otro producto.", "Código Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    MessageBox.Show("El código de barras ya está asignado a otro producto.",
+                                    "Código Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     txtCodigoBarra.Focus();
                     return;
                 }
 
-                // Ejecución con los 9 parámetros requeridos
                 logica.EjecutarActualizacion(
                     idActual,
                     nombreNuevo,
@@ -93,29 +82,6 @@ namespace SG_BAMS
             }
         }
 
-        // Se mantiene el método aunque la lógica ahora se llame desde ClsActualizarProducto para no romper referencias si existieran
-        private bool ExisteDuplicadoEnOtros(int idActual, string columna, string valor)
-        {
-            ClsConexion conexion = new ClsConexion();
-            int total = 0;
-            try
-            {
-                conexion.AbrirConexion();
-                string sql = $"SELECT COUNT(*) FROM Producto WHERE {columna} = @valor AND id_producto <> @id";
-
-                using (SqlCommand cmd = new SqlCommand(sql, conexion.Conectar))
-                {
-                    cmd.Parameters.AddWithValue("@valor", valor);
-                    cmd.Parameters.AddWithValue("@id", idActual);
-                    total = (int)cmd.ExecuteScalar();
-                }
-            }
-            catch { throw; }
-            finally { conexion.Cerrar(); }
-
-            return total > 0;
-        }
-
         private void ModificarProducto_Load(object sender, EventArgs e)
         {
             LlenarCombosModificar();
@@ -130,10 +96,8 @@ namespace SG_BAMS
         public void LlenarCombosModificar()
         {
             ClsLlenarCombo llenar = new ClsLlenarCombo();
-
             try
             {
-                // Usando el nuevo método optimizado que configuramos previamente
                 llenar.ConfigurarComboBox(cmbMarca, "Marca");
                 llenar.ConfigurarComboBox(cmbTipo, "Tipo");
                 llenar.ConfigurarComboBox(cmbModelo, "Modelo");
@@ -155,7 +119,6 @@ namespace SG_BAMS
         {
             Close();
         }
-
 
         private void txtCodigoBarra_TextChanged(object sender, EventArgs e)
         {
