@@ -22,13 +22,13 @@ namespace SG_BAMS
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (!ClsValidacion.ValidarNombre(txtNombre.Text)) return;
-            if (!ClsValidacion.ValidarPrecio(txtPrecio.Text)) return;
-            if (!ClsValidacion.ValidarSeleccion(cmbMarca, "la Marca")) return;
-            if (!ClsValidacion.ValidarSeleccion(cmbTipo, "el Tipo de Producto")) return;
-            if (!ClsValidacion.ValidarSeleccion(cmbModelo, "el Modelo de Auto")) return;
-            if (!ClsValidacion.ValidarSeleccion(cmbProveedor, "el Proveedor")) return; 
-            if (!ClsValidacion.ValidarCodigoBarra(txtCodigoBarra.Text)) return;
+            if (!ClsValidaciones.ValidarNombre(txtNombre.Text)) return;
+            if (!ClsValidaciones.ValidarPrecio(txtPrecio.Text)) return;
+            if (!ClsValidaciones.ValidarSeleccion(cmbMarca, "la Marca")) return;
+            if (!ClsValidaciones.ValidarSeleccion(cmbTipo, "el Tipo de Producto")) return;
+            if (!ClsValidaciones.ValidarSeleccion(cmbModelo, "el Modelo de Auto")) return;
+            if (!ClsValidaciones.ValidarSeleccion(cmbProveedor, "el Proveedor")) return; 
+            if (!ClsValidaciones.ValidarCodigoBarra(txtCodigoBarra.Text)) return;
 
             try
             {

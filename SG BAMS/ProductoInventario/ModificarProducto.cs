@@ -29,11 +29,11 @@ namespace SG_BAMS
         {
             try
             {
-                if (!ClsValidacion.ValidarNombre(txtNombre.Text)) return;
+                if (!ClsValidaciones.ValidarNombre(txtNombre.Text)) return;
 
                 string precioLimpio = txtPrecio.Text.Replace("Lps", "").Replace("$", "").Trim();
-                if (!ClsValidacion.ValidarPrecio(precioLimpio)) return;
-                if (!ClsValidacion.ValidarCodigoBarra(txtCodigoBarra.Text)) return;
+                if (!ClsValidaciones.ValidarPrecio(precioLimpio)) return;
+                if (!ClsValidaciones.ValidarCodigoBarra(txtCodigoBarra.Text)) return;
 
                 int idActual = Convert.ToInt32(txtID.Text);
                 string nombreNuevo = txtNombre.Text.Trim();
