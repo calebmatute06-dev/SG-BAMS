@@ -137,7 +137,6 @@ namespace SG_BAMS
             {
                 conexion.AbrirConexion();
 
-                // Esta consulta usa los nombres EXACTOS de tu script SQL
                 string query = @"SELECT 
                             C.id_compra AS [ID],
                             U.nombre_usuario AS [Usuario],
@@ -156,15 +155,11 @@ namespace SG_BAMS
                     da.Fill(dt);
                 }
 
-                // Asignamos los datos al DataGridView
                 dgvComprasAdmin.DataSource = dt;
-
-                // Ajuste visual para que se vea profesional
                 dgvComprasAdmin.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
             catch (Exception ex)
             {
-                // Si sale error ahora, es porque falta algún dato en las tablas (como un ID que no existe)
                 MessageBox.Show("Error al cargar compras: " + ex.Message);
             }
             finally
