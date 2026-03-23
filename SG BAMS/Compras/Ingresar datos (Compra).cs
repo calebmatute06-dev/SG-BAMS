@@ -66,7 +66,7 @@ namespace SG_BAMS
                 ClsCargaCombos carga = new ClsCargaCombos();
                 return carga.SugerirSiguienteID();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return "1";
             }
@@ -74,7 +74,6 @@ namespace SG_BAMS
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            // 1. Validaciones de Interfaz
             if (dgvProductosCompra.Rows.Count == 0)
             {
                 MessageBox.Show("Debe agregar al menos un producto a la lista.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -89,12 +88,11 @@ namespace SG_BAMS
 
             try
             {
-                // 2. Llenar la lista de detalles desde el DataGridView
                 List<DetalleCompra> listaDetalles = new List<DetalleCompra>();
 
                 foreach (DataGridViewRow fila in dgvProductosCompra.Rows)
                 {
-                    if (fila.Cells[0].Value != null) // Aseguramos que la fila no esté vacía
+                    if (fila.Cells[0].Value != null)
                     {
                         listaDetalles.Add(new DetalleCompra
                         {
@@ -105,10 +103,8 @@ namespace SG_BAMS
                     }
                 }
 
-                // 3. Llamar a la lógica para guardar
                 ClsCompras logic = new ClsCompras();
 
-                // El ID de usuario lo dejamos en 1 por ahora (puedes cambiarlo luego por el del login)
                 bool exito = logic.GuardarNuevaCompra(
                     1,
                     dtpFechaPedido.SelectionStart,
@@ -121,7 +117,7 @@ namespace SG_BAMS
                 if (exito)
                 {
                     MessageBox.Show("La compra se registró correctamente y el inventario fue actualizado.", "BAMS - Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close(); // Cerramos el formulario al terminar
+                    this.Close();
                 }
             }
             catch (Exception ex)
@@ -139,16 +135,12 @@ namespace SG_BAMS
                 return;
             }
 
-            // Obtenemos el ID del proveedor seleccionado
             int idProv = Convert.ToInt32(cmbProveedor.SelectedValue);
 
-            // 2. Abrir el formulario hijo pasando el ID del proveedor al constructor
             using (var formularioHijo = new Agregar_Producto__Compras_(idProv))
             {
                 if (formularioHijo.ShowDialog() == DialogResult.OK)
                 {
-                    // --- INICIO DE LÓGICA PARA PRODUCTO REPETIDO ---
-                    // Usamos ToString() para asegurar que la comparación sea entre cadenas
                     string idNuevo = formularioHijo.IdSeleccionado.ToString();
                     bool existe = false;
 
@@ -167,9 +159,7 @@ namespace SG_BAMS
                                         "Producto Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return;
                     }
-                    // --- FIN DE LÓGICA PARA PRODUCTO REPETIDO ---
 
-                    // 3. Calcular subtotal y agregar a la tabla
                     decimal subtotal = formularioHijo.CantidadSeleccionada * formularioHijo.PrecioSeleccionado;
 
                     dgvProductosCompra.Rows.Add(
@@ -180,7 +170,6 @@ namespace SG_BAMS
                         subtotal
                     );
 
-                    // 4. LÓGICA DE BLOQUEO: Al agregar el primer producto, congelamos el proveedor
                     if (dgvProductosCompra.Rows.Count > 0)
                     {
                         cmbProveedor.Enabled = false;
@@ -209,9 +198,6 @@ namespace SG_BAMS
             this.Dispose();
         }
 
-        private void kryptonLabel8_Click(object sender, EventArgs e) { }
-        private void label4_Click(object sender, EventArgs e) { }
-
         private void btnEliminarProducto_Click(object sender, EventArgs e)
         {
             if (dgvProductosCompra.CurrentRow != null && dgvProductosCompra.CurrentRow.Index >= 0)
@@ -222,7 +208,6 @@ namespace SG_BAMS
                 if (respuesta == DialogResult.Yes)
                 {
                     dgvProductosCompra.Rows.RemoveAt(dgvProductosCompra.CurrentRow.Index);
-
                     ActualizarGranTotal();
                 }
             }
@@ -231,6 +216,7 @@ namespace SG_BAMS
                 MessageBox.Show("Por favor, seleccione el producto que desea eliminar de la tabla.",
                     "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
             if (dgvProductosCompra.Rows.Count == 0)
             {
                 cmbProveedor.Enabled = true;
@@ -241,7 +227,6 @@ namespace SG_BAMS
 
         private void dgvProductosCompra_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
-            // SOLO guardamos el valor actual antes de que cambie
             if (e.RowIndex >= 0 && (e.ColumnIndex == 2 || e.ColumnIndex == 3))
             {
                 valorOriginal = dgvProductosCompra.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
@@ -250,12 +235,9 @@ namespace SG_BAMS
 
         private void dgvProductosCompra_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            // Validamos solo cuando el cambio ocurre en Cantidad (2) o Precio (3)
             if (e.RowIndex >= 0 && (e.ColumnIndex == 2 || e.ColumnIndex == 3))
             {
                 var fila = dgvProductosCompra.Rows[e.RowIndex];
-
-                // Intentamos obtener el nuevo valor ingresado
                 decimal valorNuevo;
                 bool esNumerico = decimal.TryParse(fila.Cells[e.ColumnIndex].Value?.ToString(), out valorNuevo);
 
@@ -265,14 +247,12 @@ namespace SG_BAMS
                     MessageBox.Show($"{campo} no puede ser cero o menor.",
                                     "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                    // Desconectamos el evento para evitar recursividad infinita al restaurar
                     dgvProductosCompra.CellValueChanged -= dgvProductosCompra_CellValueChanged;
                     fila.Cells[e.ColumnIndex].Value = valorOriginal;
                     dgvProductosCompra.CellValueChanged += dgvProductosCompra_CellValueChanged;
                     return;
                 }
 
-                // Si el valor es válido, procedemos al cálculo normal
                 try
                 {
                     decimal cant = Convert.ToDecimal(fila.Cells[2].Value ?? 0);
@@ -288,12 +268,8 @@ namespace SG_BAMS
             }
         }
 
-        private void dgvProductosCompra_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex < 0)
-            {
-                return; // Salimos del método sin hacer nada
-            }
-        }
+        private void kryptonLabel8_Click(object sender, EventArgs e) { }
+        private void label4_Click(object sender, EventArgs e) { }
+        private void dgvProductosCompra_CellDoubleClick(object sender, DataGridViewCellEventArgs e) { }
     }
 }
