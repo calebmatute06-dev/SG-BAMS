@@ -36,42 +36,25 @@ namespace SG_BAMS
 
         private void LlenarCombos()
         {
-            ClsConexion conexion = new ClsConexion();
             try
             {
-                conexion.AbrirConexion();
+                ClsCargaCombos carga = new ClsCargaCombos();
 
-                string qPago = "SELECT id_tipo_forma_pago, descripcion_forma_pago FROM Tipo_Forma_de_pago";
-                SqlDataAdapter daPago = new SqlDataAdapter(qPago, conexion.Conectar);
-                DataTable dtPago = new DataTable();
-                daPago.Fill(dtPago);
-
-                cmbFormaPago.DataSource = dtPago;
+                cmbFormaPago.DataSource = carga.ListarFormasPago();
                 cmbFormaPago.DisplayMember = "descripcion_forma_pago";
                 cmbFormaPago.ValueMember = "id_tipo_forma_pago";
-
-                string qProv = "SELECT id_proveedor, nombre_proveedor FROM Proveedor WHERE id_estado = 1";
-                SqlDataAdapter daProv = new SqlDataAdapter(qProv, conexion.Conectar);
-                DataTable dtProv = new DataTable();
-                daProv.Fill(dtProv);
-
-                cmbProveedor.DataSource = dtProv;
+                cmbProveedor.DataSource = carga.ListarProveedoresActivos();
                 cmbProveedor.DisplayMember = "nombre_proveedor";
                 cmbProveedor.ValueMember = "id_proveedor";
-
                 cmbProveedor.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 cmbProveedor.AutoCompleteSource = AutoCompleteSource.ListItems;
                 cmbProveedor.DropDownStyle = ComboBoxStyle.DropDown;
-
                 cmbProveedor.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar datos iniciales: " + ex.Message);
-            }
-            finally
-            {
-                conexion.Cerrar();
+                MessageBox.Show("Error al cargar los combos: " + ex.Message, "BAMS - Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
