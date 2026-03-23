@@ -15,25 +15,19 @@ namespace SG_BAMS.ProductoInventario
             {
                 conexion.AbrirConexion();
 
-                // Consulta para traer los datos de la tabla Compra
-                // Ajusta los nombres de las columnas según tu base de datos
-                string query = @"SELECT 
-                                    id_compra AS [ID Compra],
-                                    fecha_compra AS [Fecha],
-                                    proveedor AS [Proveedor],
-                                    total_compra AS [Total],
-                                    descripcion AS [Descripción]
-                                 FROM Compra";
+                string query = "SELECT * FROM Vista_ListadoCompras";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexion.Conectar))
                 {
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(dt);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al obtener las compras: " + ex.Message);
+                throw new Exception("Error al obtener las compras desde la base de datos: " + ex.Message);
             }
             finally
             {

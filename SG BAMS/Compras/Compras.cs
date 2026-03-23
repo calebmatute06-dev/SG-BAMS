@@ -17,6 +17,7 @@ namespace SG_BAMS
     public partial class Compras : Form
     {
         private ClsModificarCompras logic = new ClsModificarCompras();
+        private ClsMostrarCompras consultaLogic = new ClsMostrarCompras();
 
         public Compras()
         {
@@ -25,38 +26,30 @@ namespace SG_BAMS
 
         private void kryptonGroup3_Paint(object sender, PaintEventArgs e)
         {
-
         }
 
         private void kryptonButton10_Click(object sender, EventArgs e)
         {
-
         }
 
         private void pictureBox19_Click(object sender, EventArgs e)
         {
-
-
         }
 
         private void kryptonButton13_Click(object sender, EventArgs e)
         {
-
         }
 
         private void kryptonGroup4_Paint(object sender, PaintEventArgs e)
         {
-
         }
 
         private void kryptonButton15_Click(object sender, EventArgs e)
         {
-
         }
 
         private void kryptonButton13_Click_1(object sender, EventArgs e)
         {
-
         }
 
         private void btnMenu_Click(object sender, EventArgs e)
@@ -64,7 +57,6 @@ namespace SG_BAMS
             MenuPrincipalAdm menuPrincipalAdm = new MenuPrincipalAdm();
             menuPrincipalAdm.Show();
             this.Hide();
-
         }
 
         private void btnFactura_Click(object sender, EventArgs e)
@@ -130,77 +122,39 @@ namespace SG_BAMS
 
         public void CargarCompras()
         {
-            ClsConexion conexion = new ClsConexion();
-            DataTable dt = new DataTable();
-
             try
             {
-                conexion.AbrirConexion();
-
-                string query = @"SELECT 
-                            C.id_compra AS [ID],
-                            U.nombre_usuario AS [Usuario],
-                            C.fecha_pedido AS [Fecha],
-                            FP.descripcion_forma_pago AS [Forma Pago],
-                            P.nombre_proveedor AS [Proveedor],
-                            C.desc_compra AS [Descripción]
-                         FROM Compra C
-                         INNER JOIN Usuario U ON C.id_usuario = U.id_usuario
-                         INNER JOIN Tipo_Forma_de_pago FP ON C.id_tipo_forma_pago = FP.id_tipo_forma_pago
-                         INNER JOIN Proveedor P ON C.id_proveedor = P.id_proveedor";
-
-                using (SqlCommand cmd = new SqlCommand(query, conexion.Conectar))
-                {
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(dt);
-                }
-
-                dgvComprasAdmin.DataSource = dt;
+                dgvComprasAdmin.DataSource = consultaLogic.ListarCompras();
                 dgvComprasAdmin.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar compras: " + ex.Message);
             }
-            finally
-            {
-                conexion.Cerrar();
-            }
         }
 
         private void btnComprar_Click(object sender, EventArgs e)
         {
             Ingresar_datos__Compra_ frmNuevaCompra = new Ingresar_datos__Compra_();
-
             frmNuevaCompra.ShowDialog();
-
             CargarCompras();
         }
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         private void btnVer_Click(object sender, EventArgs e)
         {
-            {
-
-            }
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
             if (dgvComprasAdmin.SelectedRows.Count > 0)
             {
-                // 1. Capturar el ID de la fila seleccionada
                 int idSeleccionado = Convert.ToInt32(dgvComprasAdmin.CurrentRow.Cells["ID"].Value);
-
-                // 2. Abrir el formulario pasando el ID al constructor
                 Modificar_datos__Compra_ frmModificar = new Modificar_datos__Compra_(idSeleccionado);
                 frmModificar.ShowDialog();
-
-                // 3. Refrescar la tabla al cerrar la edición
                 CargarCompras();
             }
             else
@@ -211,18 +165,14 @@ namespace SG_BAMS
 
         private void dgvComprasAdmin_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            // 1. Verificamos que haya una fila seleccionada
             if (dgvComprasAdmin.CurrentRow != null)
             {
-                // 2. Obtenemos el ID de la compra (Asegúrate que la columna se llame "ID" o el índice correcto)
                 int idCompra = Convert.ToInt32(dgvComprasAdmin.CurrentRow.Cells["ID"].Value);
 
-                // 3. Mostramos el mensaje de confirmación
                 DialogResult resultado = MessageBox.Show("¿Está seguro de que desea eliminar permanentemente esta compra?",
                                                         "Confirmar Eliminación - BAMS",
                                                         MessageBoxButtons.YesNo,
@@ -232,13 +182,9 @@ namespace SG_BAMS
                 {
                     try
                     {
-                        // 4. Llamamos a la lógica para eliminar de la BD
-                        // Puedes usar un método en tu clase logic o una consulta directa
                         if (logic.EliminarCompraCompleta(idCompra))
                         {
                             MessageBox.Show("Compra eliminada correctamente.", "BAMS", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                            // 5. Refrescamos el grid para mostrar los datos actualizados
                             CargarCompras();
                         }
                     }
@@ -275,26 +221,17 @@ namespace SG_BAMS
 
         private void dgvComprasAdmin_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-
         }
 
         private void dgvComprasAdmin_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0)
-            {
-                return;
-            }
+            if (e.RowIndex < 0) return;
 
             if (dgvComprasAdmin.SelectedRows.Count > 0)
             {
-                // 1. Capturar el ID de la fila seleccionada
                 int idSeleccionado = Convert.ToInt32(dgvComprasAdmin.CurrentRow.Cells["ID"].Value);
-
-                // 2. Abrir el formulario pasando el ID al constructor
                 Modificar_datos__Compra_ frmModificar = new Modificar_datos__Compra_(idSeleccionado);
                 frmModificar.ShowDialog();
-
-                // 3. Refrescar la tabla al cerrar la edición
                 CargarCompras();
             }
             else
