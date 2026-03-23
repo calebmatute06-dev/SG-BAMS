@@ -21,7 +21,7 @@ namespace SG_BAMS
 
         private int _idProveedor;
 
-        // Adaptamos el constructor para recibir el ID sin borrar el InitializeComponent
+
         public Agregar_Producto__Compras_(int idProv)
         {
             InitializeComponent();
@@ -32,12 +32,12 @@ namespace SG_BAMS
 
         private void kryptonLabel1_Click(object sender, EventArgs e)
         {
-            // Se mantiene vacío como pediste
+
         }
 
         private void kryptonLabel4_Click(object sender, EventArgs e)
         {
-            // Se mantiene vacío como pediste
+
         }
 
         private void Agregar_Producto__Compras__Load(object sender, EventArgs e)
@@ -53,10 +53,6 @@ namespace SG_BAMS
             try
             {
                 conexion.AbrirConexion();
-
-                // Adaptamos la consulta: Si la tabla intermedia aún no tiene datos, 
-                // usa esta línea comentada para ver todos los productos y que no te salga vacío:
-                // string query = "SELECT id_producto, nombre_producto FROM Producto WHERE id_estado = 1";
 
                 string query = @"SELECT p.id_producto, p.nombre_producto 
                  FROM Producto p
