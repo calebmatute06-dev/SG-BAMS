@@ -60,28 +60,15 @@ namespace SG_BAMS
 
         private string ObtenerSiguienteID()
         {
-            ClsConexion conexion = new ClsConexion();
-            string proximoID = "1";
-
             try
             {
-                conexion.AbrirConexion();
-                string query = "SELECT ISNULL(MAX(id_compra), 0) + 1 FROM Compra";
-
-                using (SqlCommand cmd = new SqlCommand(query, conexion.Conectar))
-                {
-                    proximoID = cmd.ExecuteScalar().ToString();
-                }
+                ClsCargaCombos carga = new ClsCargaCombos();
+                return carga.SugerirSiguienteID();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al generar ID: " + ex.Message);
+                return "1";
             }
-            finally
-            {
-                conexion.Cerrar();
-            }
-            return proximoID;
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
