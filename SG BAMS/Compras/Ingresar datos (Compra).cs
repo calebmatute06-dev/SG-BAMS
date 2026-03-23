@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static SG_BAMS.ClsCompras;
 
 namespace SG_BAMS
 {
@@ -73,96 +74,59 @@ namespace SG_BAMS
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            decimal totalValidar = 0;
-            if (!decimal.TryParse(lblTotal.Text, out totalValidar) || totalValidar <= 0)
+            // 1. Validaciones de Interfaz
+            if (dgvProductosCompra.Rows.Count == 0)
             {
-                MessageBox.Show("No se puede guardar una compra con total L. 0.00.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Debe agregar al menos un producto a la lista.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (cmbProveedor.SelectedValue == null || cmbFormaPago.SelectedValue == null)
             {
-                MessageBox.Show("Asegúrese de seleccionar Proveedor y Forma de Pago.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Seleccione el Proveedor y la Forma de Pago.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            ClsConexion conexion = new ClsConexion();
-            conexion.AbrirConexion();
-            SqlTransaction transaccion = conexion.Conectar.BeginTransaction();
-
             try
             {
-                // 1. INSERTAR CABECERA
-                string queryCabecera = @"INSERT INTO Compra (id_usuario, fecha_pedido, id_tipo_forma_pago, id_proveedor, desc_compra) 
-                                 VALUES (@id_usuario, @fecha, @id_pago, @id_prov, @desc);
-                                 SELECT SCOPE_IDENTITY();";
-
-                int idCompraRecienCreada;
-                using (SqlCommand cmd = new SqlCommand(queryCabecera, conexion.Conectar, transaccion))
-                {
-                    cmd.Parameters.AddWithValue("@id_usuario", 1);
-                    cmd.Parameters.AddWithValue("@fecha", dtpFechaPedido.SelectionStart);
-                    cmd.Parameters.AddWithValue("@id_pago", cmbFormaPago.SelectedValue);
-                    cmd.Parameters.AddWithValue("@id_prov", cmbProveedor.SelectedValue);
-
-                    // CORRECCIÓN AQUÍ: Antes tenías txtPrecio.Text. 
-                    // Debe ser el cuadro de texto donde escribes la nota de la compra.
-                    cmd.Parameters.AddWithValue("@desc", txtNotaDetalle.Text);
-
-                    idCompraRecienCreada = Convert.ToInt32(cmd.ExecuteScalar());
-                }
-
-                // 2. INSERTAR DETALLES Y ACTUALIZAR STOCK
-                string queryDetalle = @"INSERT INTO Compra_producto (id_compra, id_producto, cantidad, precio_costo_unitario) 
-                                VALUES (@idC, @idP, @cant, @precio)";
-
-                string queryAsegurarInventario = @"IF NOT EXISTS (SELECT 1 FROM Inventario WHERE id_producto = @idP)
-                                           BEGIN
-                                               INSERT INTO Inventario (id_producto, stock) VALUES (@idP, 0)
-                                           END";
-
-                // Nueva consulta para SUMAR el stock
-                string querySumarStock = "UPDATE Inventario SET stock = stock + @cant WHERE id_producto = @idP";
+                // 2. Llenar la lista de detalles desde el DataGridView
+                List<DetalleCompra> listaDetalles = new List<DetalleCompra>();
 
                 foreach (DataGridViewRow fila in dgvProductosCompra.Rows)
                 {
-                    if (fila.Cells[0].Value != null)
+                    if (fila.Cells[0].Value != null) // Aseguramos que la fila no esté vacía
                     {
-                        int idProd = Convert.ToInt32(fila.Cells[0].Value);
-                        int cant = Convert.ToInt32(fila.Cells[2].Value);
-                        decimal precio = Convert.ToDecimal(fila.Cells[3].Value);
-
-                        // Asegurar que el producto existe en inventario
-                        using (SqlCommand cmdAsegurar = new SqlCommand(queryAsegurarInventario, conexion.Conectar, transaccion))
+                        listaDetalles.Add(new DetalleCompra
                         {
-                            cmdAsegurar.Parameters.AddWithValue("@idP", idProd);
-                            cmdAsegurar.ExecuteNonQuery();
-                        }
-
-                        // Insertar el detalle de la compra
-                        using (SqlCommand cmdDetalle = new SqlCommand(queryDetalle, conexion.Conectar, transaccion))
-                        {
-                            cmdDetalle.Parameters.AddWithValue("@idC", idCompraRecienCreada);
-                            cmdDetalle.Parameters.AddWithValue("@idP", idProd);
-                            cmdDetalle.Parameters.AddWithValue("@cant", cant);
-                            cmdDetalle.Parameters.AddWithValue("@precio", precio);
-                            cmdDetalle.ExecuteNonQuery();
-                        }
+                            IdProducto = Convert.ToInt32(fila.Cells[0].Value),
+                            Cantidad = Convert.ToInt32(fila.Cells[2].Value),
+                            Precio = Convert.ToDecimal(fila.Cells[3].Value)
+                        });
                     }
                 }
 
-                transaccion.Commit();
-                MessageBox.Show("Compra #" + idCompraRecienCreada + " guardada y stock actualizado.", "Éxito");
-                this.Close();
+                // 3. Llamar a la lógica para guardar
+                ClsCompras logic = new ClsCompras();
+
+                // El ID de usuario lo dejamos en 1 por ahora (puedes cambiarlo luego por el del login)
+                bool exito = logic.GuardarNuevaCompra(
+                    1,
+                    dtpFechaPedido.SelectionStart,
+                    Convert.ToInt32(cmbFormaPago.SelectedValue),
+                    Convert.ToInt32(cmbProveedor.SelectedValue),
+                    txtNotaDetalle.Text,
+                    listaDetalles
+                );
+
+                if (exito)
+                {
+                    MessageBox.Show("La compra se registró correctamente y el inventario fue actualizado.", "BAMS - Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close(); // Cerramos el formulario al terminar
+                }
             }
             catch (Exception ex)
             {
-                transaccion.Rollback();
-                MessageBox.Show("Error crítico al guardar: " + ex.Message);
-            }
-            finally
-            {
-                conexion.Cerrar();
+                MessageBox.Show("Error al procesar la compra: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
