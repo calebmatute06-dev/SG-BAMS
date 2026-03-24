@@ -6,10 +6,8 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Media.TextFormatting;
 
 namespace SG_BAMS
 {
@@ -18,14 +16,15 @@ namespace SG_BAMS
         public frmAgregarModeloAuto()
         {
             InitializeComponent();
-            txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
-        }
 
+            
+            txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirAlfanumerico(e);
+        }
 
         private async void btnAgregar_Click_1(object sender, EventArgs e)
         {
             
-            if (!ClsValidaciones.EsNombrePersonalValido(txtDescri.TextBox, "Nombre del Modelo de Auto"))
+            if (!ClsValidaciones.EsAlfanumericoValido(txtDescri, "Nombre del Modelo de Auto"))
             {
                 return;
             }
@@ -45,8 +44,7 @@ namespace SG_BAMS
                     MessageBox.Show("Modelo de auto agregado con éxito.", "SG-BAMS",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    this.DialogResult = DialogResult.OK;
-                    
+                    this.DialogResult = DialogResult.OK; 
                     this.Close();
                 }
             }
@@ -64,8 +62,7 @@ namespace SG_BAMS
 
         private void btnSalir_Click_1(object sender, EventArgs e)
         {
-            frmModeloAuto verMauto = new frmModeloAuto();
-            verMauto.Show();
+            
             this.Close();
         }
     }

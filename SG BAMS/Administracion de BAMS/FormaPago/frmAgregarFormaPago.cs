@@ -17,49 +17,15 @@ namespace SG_BAMS
         public frmAgregarFormaPago()
         {
             InitializeComponent();
+            
             txtdescri.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private async void btnAgregar_Click(object sender, EventArgs e)
         {
-            string nombreLimpio = txtdescri.Text.Trim();
-            if (string.IsNullOrWhiteSpace(txtdescri.Text))
+            
+            if (!ClsValidaciones.EsNombrePersonalValido(txtdescri, "Descripción de Forma de Pago"))
             {
-                MessageBox.Show("El nombre del modelo no puede estar vacío.");
-                return;
-            }
-
-            if (nombreLimpio.Contains("  "))
-            {
-                MessageBox.Show("El nombre no puede contener dos espacios seguidos.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (Regex.IsMatch(nombreLimpio, @"(\w)\1{2,}"))
-            {
-                MessageBox.Show("No se permite repetir la misma letra más de dos veces seguidas.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (nombreLimpio.Length < 3)
-            {
-                MessageBox.Show("El nombre debe tener mas de 3 caracteres.", "Error de Longitud", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (!Regex.IsMatch(nombreLimpio, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ]{2,}(\s[a-zA-ZñÑáéíóúÁÉÍÓÚ]{2,})*$"))
-            {
-                MessageBox.Show("Escriba un nombre Valido.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -70,6 +36,7 @@ namespace SG_BAMS
 
                 clsFormaPago objetoFP = new clsFormaPago();
 
+               
                 bool insertado = await objetoFP.InsertarFormaPagoAsync(txtdescri.Text.Trim());
 
                 if (insertado)
@@ -78,8 +45,6 @@ namespace SG_BAMS
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     this.DialogResult = DialogResult.OK;
-                    frmFormaPago verFpago = new frmFormaPago();
-                    verFpago.Show();
                     this.Close();
                 }
             }
@@ -96,8 +61,6 @@ namespace SG_BAMS
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            frmFormaPago frmFormaPago = new frmFormaPago();
-            frmFormaPago.Show();
             this.Close();
         }
     }

@@ -1,5 +1,4 @@
-﻿using Krypton.Toolkit;
-using SG_BAMS.Administracion_de_BAMS.Usuarios;
+﻿using SG_BAMS.Administracion_de_BAMS.Usuarios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,7 +6,6 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,21 +13,21 @@ namespace SG_BAMS
 {
     public partial class frmModificarUsuarios : Form
     {
-
         private int idUsuarioSeleccionado;
 
         public frmModificarUsuarios(int id, string nombre, int rol, int estado)
         {
             InitializeComponent();
+
+            
             cmbRol.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbEstado.DropDownStyle = ComboBoxStyle.DropDownList;
-
             txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
 
             this.idUsuarioSeleccionado = id;
-
             txtNombre.Text = nombre;
 
+            
             this.Load += async (s, e) =>
             {
                 await CargarCombos();
@@ -56,34 +54,31 @@ namespace SG_BAMS
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar listas: " + ex.Message);
+                MessageBox.Show("Error al cargar listas: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void fmrModificarUsuarios_Load(object sender, EventArgs e)
-        {
-
-        }
-
-
 
         private async void btmModificar_Click_1(object sender, EventArgs e)
         {
             
-            if (!ClsValidaciones.EsNombrePersonalValido(txtNombre.TextBox, "Nombre de Usuario"))
+            if (!ClsValidaciones.EsNombrePersonalValido(txtNombre, "Nombre de Usuario"))
             {
                 return;
             }
 
             
-            if (!ClsValidaciones.EsPasswordValido(txtContra.TextBox, "Contraseña"))
+            if (!string.IsNullOrWhiteSpace(txtContra.Text))
             {
-                return;
+                if (!ClsValidaciones.EsPasswordValido(txtContra, "Contraseña"))
+                {
+                    return;
+                }
             }
 
             
-            if (cmbRol.SelectedIndex == -1)
+            if (cmbRol.SelectedIndex == -1 || cmbEstado.SelectedIndex == -1)
             {
-                MessageBox.Show("Debe seleccionar un Rol.");
+                MessageBox.Show("Debe seleccionar un Rol y un Estado.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -98,10 +93,11 @@ namespace SG_BAMS
                 int idEstado = (int)cmbEstado.SelectedValue;
                 byte[] imagenByte = null;
 
+                
                 bool exito = await objetoUsuario.ModificarUsuarioAsync(
                     idUsuarioSeleccionado,
                     txtNombre.Text.Trim(),
-                    txtContra.Text,
+                    txtContra.Text, 
                     idRol,
                     idEstado,
                     imagenByte
@@ -116,7 +112,7 @@ namespace SG_BAMS
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al modificar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al modificar: " + ex.Message, "Error de Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -132,11 +128,8 @@ namespace SG_BAMS
 
         private void btnImagen_Click_1(object sender, EventArgs e)
         {
-            string nombreParaEnviar = txtNombre.Text;
-
-            frmImagenEmpleado agregarImagen = new frmImagenEmpleado(nombreParaEnviar);
-
-            agregarImagen.Show();
+            frmImagenEmpleado agregarImagen = new frmImagenEmpleado(txtNombre.Text);
+            agregarImagen.ShowDialog();
         }
     }
 }

@@ -117,7 +117,7 @@ namespace SG_BAMS
             label2.Size = new Size(331, 31);
             label2.TabIndex = 113;
             label2.Text = "Ingrese el tipo de forma de pago:";
-            label2.Click += label2_Click;
+            //label2.Click += label2_Click;
             // 
             // pictureBox16
             // 

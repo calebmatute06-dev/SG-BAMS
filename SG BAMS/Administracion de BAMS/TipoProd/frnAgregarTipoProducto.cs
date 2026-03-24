@@ -6,7 +6,6 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,13 +16,15 @@ namespace SG_BAMS
         public frnAgregarTipoProducto()
         {
             InitializeComponent();
-            txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
+
+            
+            txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirAlfanumerico(e);
         }
 
         private async void btnAgregar_Click_1(object sender, EventArgs e)
         {
-           
-            if (!ClsValidaciones.EsNombrePersonalValido(txtDescri.TextBox, "Tipo de Producto"))
+            
+            if (!ClsValidaciones.EsAlfanumericoValido(txtDescri, "Tipo de Producto"))
             {
                 return;
             }
@@ -43,15 +44,13 @@ namespace SG_BAMS
                     MessageBox.Show("Tipo de producto registrado con éxito.", "SG-BAMS",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    this.DialogResult = DialogResult.OK;
-
-                   
+                    this.DialogResult = DialogResult.OK; 
                     this.Close();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al guardar: " + ex.Message, "Error",
+                MessageBox.Show("Error al guardar: " + ex.Message, "Error de Sistema",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
@@ -63,8 +62,7 @@ namespace SG_BAMS
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            frmTipoProducto verTproductos = new frmTipoProducto();
-            verTproductos.Show();
+            
             this.Close();
         }
     }

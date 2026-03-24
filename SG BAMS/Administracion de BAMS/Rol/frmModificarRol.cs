@@ -6,7 +6,6 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,23 +13,22 @@ namespace SG_BAMS
 {
     public partial class frmModificarRol : Form
     {
-        int idRolSeleccionado;
+        private int idRolSeleccionado;
+
         public frmModificarRol(int id, string nombreActual)
         {
             InitializeComponent();
             this.idRolSeleccionado = id;
             txtDescri.Text = nombreActual;
 
+            
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
-        
         }
-
-
 
         private async void btmModificar_Click(object sender, EventArgs e)
         {
             
-            if (!ClsValidaciones.EsNombrePersonalValido(txtDescri.TextBox, "Nombre del Rol"))
+            if (!ClsValidaciones.EsNombrePersonalValido(txtDescri, "Nombre del Rol"))
             {
                 return;
             }
@@ -50,13 +48,13 @@ namespace SG_BAMS
                     MessageBox.Show("Rol actualizado con éxito.", "SG-BAMS",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    this.DialogResult = DialogResult.OK;
+                    this.DialogResult = DialogResult.OK; 
                     this.Close();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al actualizar: " + ex.Message, "Error",
+                MessageBox.Show("Error al actualizar: " + ex.Message, "Error de Sistema",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
@@ -68,6 +66,7 @@ namespace SG_BAMS
 
         private void btmSalir_Click(object sender, EventArgs e)
         {
+            
             this.Close();
         }
     }
