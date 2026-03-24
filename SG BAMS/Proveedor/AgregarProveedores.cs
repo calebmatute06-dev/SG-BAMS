@@ -63,7 +63,7 @@ namespace SG_BAMS.Proveedor
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-           
+            
             string nombre = txtNombre.Text.Trim();
 
             
@@ -98,6 +98,23 @@ namespace SG_BAMS.Proveedor
                 return;
             }
 
+           
+            if (Regex.IsMatch(nombre, @"([a-zA-ZñÑáéíóúÁÉÍÓÚ])\s\1", RegexOptions.IgnoreCase))
+            {
+                MessageBox.Show("El nombre contiene una secuencia de letras repetidas no válida (ejemplo: 'a a').", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNombre.Focus();
+                return;
+            }
+
+           
+            if (nombre.Length >= 2 && nombre[0] == nombre[1])
+            {
+                MessageBox.Show("El nombre no puede iniciar con dos letras iguales.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNombre.Focus();
+                return;
+            }
+
+            
             if (ClsValidaciones.CampoVacio(txtDireccion, "Dirección")) return;
             if (!ClsValidaciones.EsTelefonoHondurasValido(txtTelefono)) return;
             if (!ClsValidaciones.EsRTNValido(txtRTN)) return;
@@ -108,7 +125,6 @@ namespace SG_BAMS.Proveedor
                 return;
             }
 
-            
             if (proveedor.ExisteNombreProveedor(nombre))
             {
                 MessageBox.Show("El nombre del proveedor ya existe.", "Nombre Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -132,7 +148,6 @@ namespace SG_BAMS.Proveedor
 
                 MessageBox.Show("Proveedor agregado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                
                 ProveedoresAdmin admin = new ProveedoresAdmin();
                 admin.Show();
                 this.Dispose();

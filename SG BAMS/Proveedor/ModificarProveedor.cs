@@ -34,12 +34,11 @@ namespace SG_BAMS.Proveedor
 
             _idEstado = idEstado;
             _idClasificacion = idClasificacion;
-            _nombreOriginal = nombre; 
+            _nombreOriginal = nombre;
 
             txtTelefono.MaxLength = 8;
             txtRTN.MaxLength = 14;
 
-            
             this.txtNombre.KeyPress += new KeyPressEventHandler(this.txtNombre_KeyPress);
             this.txtDireccion.KeyPress += new KeyPressEventHandler(this.txtDireccion_KeyPress);
             this.txtTelefono.KeyPress += new KeyPressEventHandler(this.txtTelefono_KeyPress);
@@ -66,9 +65,9 @@ namespace SG_BAMS.Proveedor
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            
             string nombreNuevo = txtNombre.Text.Trim();
 
+          
             if (string.IsNullOrWhiteSpace(nombreNuevo))
             {
                 MessageBox.Show("El nombre del proveedor no puede estar vacío.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -76,7 +75,6 @@ namespace SG_BAMS.Proveedor
                 return;
             }
 
-           
             if (!Regex.IsMatch(nombreNuevo, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s&]+$"))
             {
                 MessageBox.Show("El nombre solo puede contener letras y el carácter '&'.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -84,7 +82,7 @@ namespace SG_BAMS.Proveedor
                 return;
             }
 
-            
+           
             if (nombreNuevo.Contains("  "))
             {
                 MessageBox.Show("El nombre no puede contener espacios dobles.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -100,8 +98,25 @@ namespace SG_BAMS.Proveedor
                 return;
             }
 
-            
+           
+            if (Regex.IsMatch(nombreNuevo, @"([a-zA-ZñÑáéíóúÁÉÍÓÚ])\s\1", RegexOptions.IgnoreCase))
+            {
+                MessageBox.Show("El nombre contiene una secuencia de letras repetidas no válida (ejemplo: 'a a').", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNombre.Focus();
+                return;
+            }
+
+           
             if (ClsValidaciones.CampoVacio(txtDireccion, "Dirección")) return;
+
+            
+            if (txtDireccion.Text.Contains("  "))
+            {
+                MessageBox.Show("La dirección no puede contener espacios dobles.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtDireccion.Focus();
+                return;
+            }
+
             if (!ClsValidaciones.EsTelefonoHondurasValido(txtTelefono)) return;
             if (!ClsValidaciones.EsRTNValido(txtRTN)) return;
 
@@ -111,7 +126,7 @@ namespace SG_BAMS.Proveedor
                 return;
             }
 
-            
+           
             if (nombreNuevo != _nombreOriginal && proveedor.ExisteNombreProveedor(nombreNuevo))
             {
                 MessageBox.Show("El nuevo nombre ya pertenece a otro proveedor.", "Nombre Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -119,6 +134,7 @@ namespace SG_BAMS.Proveedor
                 return;
             }
 
+            
             try
             {
                 int idProveedor = Convert.ToInt32(txtID.Text);
@@ -149,11 +165,8 @@ namespace SG_BAMS.Proveedor
             }
         }
 
-        
-
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
             if (!char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != '&')
             {
                 e.Handled = true;
@@ -173,14 +186,12 @@ namespace SG_BAMS.Proveedor
             if (char.IsControl(e.KeyChar)) return;
             if (!char.IsDigit(e.KeyChar)) { e.Handled = true; return; }
 
-           
             if (txtTelefono.SelectionStart == 0)
             {
                 char[] validos = { '2', '3', '8', '9' };
                 if (!validos.Contains(e.KeyChar)) { e.Handled = true; return; }
             }
 
-            
             if (txtTelefono.Text.Length >= 3)
             {
                 int pos = txtTelefono.SelectionStart;
