@@ -34,12 +34,12 @@ namespace SG_BAMS.Proveedor
 
             _idEstado = idEstado;
             _idClasificacion = idClasificacion;
-            _nombreOriginal = nombre; // IMPORTANTE: Guardar el nombre original para la validación de duplicados
+            _nombreOriginal = nombre; 
 
             txtTelefono.MaxLength = 8;
             txtRTN.MaxLength = 14;
 
-            // Asignación de eventos KeyPress
+            
             this.txtNombre.KeyPress += new KeyPressEventHandler(this.txtNombre_KeyPress);
             this.txtDireccion.KeyPress += new KeyPressEventHandler(this.txtDireccion_KeyPress);
             this.txtTelefono.KeyPress += new KeyPressEventHandler(this.txtTelefono_KeyPress);
@@ -62,35 +62,56 @@ namespace SG_BAMS.Proveedor
             cmbEstado.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbClasificacion.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbClasificacion.SelectedValue = _idClasificacion;
-
-            // Validaciones en tiempo real (KeyPress dinámicos)
-            txtNombre.KeyPress += (s, ev) => ClsValidaciones.PermitirSoloLetras(ev);
-            txtDireccion.KeyPress += (s, ev) => ClsValidaciones.ValidarBusquedaAlfanumerica(ev);
-            txtTelefono.KeyPress += (s, ev) => ClsValidaciones.ValidarSoloNumeros(ev);
-            txtRTN.KeyPress += (s, ev) => ClsValidaciones.ValidarSoloNumeros(ev);
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            // 1. Validaciones de Texto
-            if (!ClsValidaciones.EsNombrePersonalValido(txtNombre, "Nombre del Proveedor")) return;
+            
+            string nombreNuevo = txtNombre.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(nombreNuevo))
+            {
+                MessageBox.Show("El nombre del proveedor no puede estar vacío.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNombre.Focus();
+                return;
+            }
+
+           
+            if (!Regex.IsMatch(nombreNuevo, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s&]+$"))
+            {
+                MessageBox.Show("El nombre solo puede contener letras y el carácter '&'.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNombre.Focus();
+                return;
+            }
+
+            
+            if (nombreNuevo.Contains("  "))
+            {
+                MessageBox.Show("El nombre no puede contener espacios dobles.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNombre.Focus();
+                return;
+            }
+
+            
+            if (Regex.IsMatch(nombreNuevo, @"(.)\1{2,}", RegexOptions.IgnoreCase))
+            {
+                MessageBox.Show("El nombre no puede tener más de dos letras repetidas consecutivamente.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNombre.Focus();
+                return;
+            }
+
+            
             if (ClsValidaciones.CampoVacio(txtDireccion, "Dirección")) return;
-
-            // 2. Validación de Teléfono
             if (!ClsValidaciones.EsTelefonoHondurasValido(txtTelefono)) return;
-
-            // 3. Validación de RTN (Centralizada)
             if (!ClsValidaciones.EsRTNValido(txtRTN)) return;
 
-            // 4. Validación de Combos
             if (cmbEstado.SelectedValue == null || cmbClasificacion.SelectedValue == null)
             {
                 MessageBox.Show("Asegúrese de seleccionar el Estado y la Clasificación.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // 5. Validación de Duplicados (Solo si el nombre cambió)
-            string nombreNuevo = txtNombre.Text.Trim();
+            
             if (nombreNuevo != _nombreOriginal && proveedor.ExisteNombreProveedor(nombreNuevo))
             {
                 MessageBox.Show("El nuevo nombre ya pertenece a otro proveedor.", "Nombre Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -118,7 +139,6 @@ namespace SG_BAMS.Proveedor
 
                 MessageBox.Show("Proveedor modificado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Navegación de regreso
                 ProveedoresAdmin admin = new ProveedoresAdmin();
                 admin.Show();
                 this.Dispose();
@@ -129,10 +149,11 @@ namespace SG_BAMS.Proveedor
             }
         }
 
-        // --- Eventos KeyPress manuales (Manteniendo compatibilidad) ---
+        
 
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
+            
             if (!char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != '&')
             {
                 e.Handled = true;
@@ -152,12 +173,14 @@ namespace SG_BAMS.Proveedor
             if (char.IsControl(e.KeyChar)) return;
             if (!char.IsDigit(e.KeyChar)) { e.Handled = true; return; }
 
+           
             if (txtTelefono.SelectionStart == 0)
             {
                 char[] validos = { '2', '3', '8', '9' };
                 if (!validos.Contains(e.KeyChar)) { e.Handled = true; return; }
             }
 
+            
             if (txtTelefono.Text.Length >= 3)
             {
                 int pos = txtTelefono.SelectionStart;

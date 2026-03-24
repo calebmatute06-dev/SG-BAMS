@@ -19,7 +19,17 @@ namespace SG_BAMS.Proveedor
         public ProveedoresAdmin()
         {
             InitializeComponent();
-            txtBuscar.KeyPress += (s, e) => ClsValidaciones.ValidarBusquedaAlfanumerica(e);
+
+            
+            txtBuscar.KeyPress += (s, e) =>
+            {
+                
+                if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) &&
+                    !char.IsControl(e.KeyChar) && e.KeyChar != '&')
+                {
+                    e.Handled = true;
+                }
+            };
         }
 
         private void ProveedoresAdmin_Load(object sender, EventArgs e)

@@ -32,7 +32,13 @@ namespace SG_BAMS.Proveedor
             proveedor.CargarComboClasificacion(cmbClasificacion);
             cmbClasificacion.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            txtNombre.KeyPress += (s, ev) => ClsValidaciones.PermitirSoloLetras(ev);
+           
+            txtNombre.KeyPress += (s, ev) => {
+                if (!char.IsLetter(ev.KeyChar) && !char.IsWhiteSpace(ev.KeyChar) && !char.IsControl(ev.KeyChar) && ev.KeyChar != '&')
+                {
+                    ev.Handled = true;
+                }
+            };
             txtDireccion.KeyPress += (s, ev) => ClsValidaciones.ValidarBusquedaAlfanumerica(ev);
             txtTelefono.KeyPress += (s, ev) => ClsValidaciones.ValidarSoloNumeros(ev);
             txtRTN.KeyPress += (s, ev) => ClsValidaciones.ValidarSoloNumeros(ev);
@@ -40,8 +46,8 @@ namespace SG_BAMS.Proveedor
 
         private void btnsalir_Click(object sender, EventArgs e)
         {
-            ProveedoresAdmin proveedor = new ProveedoresAdmin();
-            proveedor.Show();
+            ProveedoresAdmin admin = new ProveedoresAdmin();
+            admin.Show();
             this.Close();
         }
 
@@ -57,17 +63,45 @@ namespace SG_BAMS.Proveedor
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+           
+            string nombre = txtNombre.Text.Trim();
+
             
-            if (!ClsValidaciones.EsNombrePersonalValido(txtNombre, "Nombre del Proveedor")) return;
+            if (string.IsNullOrWhiteSpace(nombre))
+            {
+                MessageBox.Show("El nombre del proveedor no puede estar vacío.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNombre.Focus();
+                return;
+            }
+
+           
+            if (!Regex.IsMatch(nombre, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s&]+$"))
+            {
+                MessageBox.Show("El nombre solo puede contener letras y el carácter '&'.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNombre.Focus();
+                return;
+            }
+
+            
+            if (nombre.Contains("  "))
+            {
+                MessageBox.Show("El nombre no puede contener espacios dobles.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNombre.Focus();
+                return;
+            }
+
+            
+            if (Regex.IsMatch(nombre, @"(.)\1{2,}", RegexOptions.IgnoreCase))
+            {
+                MessageBox.Show("El nombre no puede tener más de dos letras repetidas consecutivamente.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNombre.Focus();
+                return;
+            }
+
             if (ClsValidaciones.CampoVacio(txtDireccion, "Dirección")) return;
-
-            
             if (!ClsValidaciones.EsTelefonoHondurasValido(txtTelefono)) return;
-
-            
             if (!ClsValidaciones.EsRTNValido(txtRTN)) return;
 
-            
             if (cmbClasificacion.SelectedValue == null)
             {
                 MessageBox.Show("Debe seleccionar una clasificación.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -75,7 +109,7 @@ namespace SG_BAMS.Proveedor
             }
 
             
-            if (proveedor.ExisteNombreProveedor(txtNombre.Text.Trim()))
+            if (proveedor.ExisteNombreProveedor(nombre))
             {
                 MessageBox.Show("El nombre del proveedor ya existe.", "Nombre Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtNombre.Focus();
@@ -87,9 +121,8 @@ namespace SG_BAMS.Proveedor
                 int idClasificacion = Convert.ToInt32(cmbClasificacion.SelectedValue);
                 int idUsuario = new ClsPasarUsuario().IdUsuario();
 
-                
                 proveedor.AgregarProveedor(
-                    txtNombre.Text.Trim(),
+                    nombre,
                     txtTelefono.Text.Trim(),
                     txtDireccion.Text.Trim(),
                     txtRTN.Text.Trim(),
@@ -97,12 +130,12 @@ namespace SG_BAMS.Proveedor
                     idUsuario
                 );
 
-                
                 MessageBox.Show("Proveedor agregado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 
-
-                this.Dispose(); 
+                ProveedoresAdmin admin = new ProveedoresAdmin();
+                admin.Show();
+                this.Dispose();
             }
             catch (Exception ex)
             {
@@ -142,6 +175,7 @@ namespace SG_BAMS.Proveedor
 
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
+            
             if (!char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != '&')
             {
                 e.Handled = true;
