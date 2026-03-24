@@ -91,13 +91,12 @@ namespace SG_BAMS
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            if (dgvTipoProducto1.SelectedRows.Count > 0)
+            if (dgvTipoProducto.SelectedRows.Count > 0)
             {
-                int id = Convert.ToInt32(dgvTipoProducto1.CurrentRow.Cells["id_tipo_producto"].Value);
-                string descripcion = dgvTipoProducto1.CurrentRow.Cells["nombre_tipo_producto"].Value.ToString();
+                int id = Convert.ToInt32(dgvTipoProducto.SelectedRows[0].Cells["id_tipo_producto"].Value);
+                string descripcion = dgvTipoProducto.SelectedRows[0].Cells["nombre_tipo_producto"].Value.ToString();
 
                 frmModificarTipoProducto ModificarTProducto = new frmModificarTipoProducto(id, descripcion);
-
 
                 if (ModificarTProducto.ShowDialog() == DialogResult.OK)
                 {
@@ -106,7 +105,7 @@ namespace SG_BAMS
             }
             else
             {
-                MessageBox.Show("Por favor, seleccione un tipo de producto de la lista.");
+                MessageBox.Show("Por favor, seleccione una fila completa de la lista.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

@@ -6,34 +6,29 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Azure.Core.HttpHeader;
 
 namespace SG_BAMS
 {
     public partial class frmAgregarUsuarios : Form
     {
+        private DataTable dtRoles;
         public frmAgregarUsuarios()
         {
             InitializeComponent();
-
+            CargarComboRoles();
             btnImagen.Enabled = false;
             cmbRol.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            
             txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
         }
 
-       
-        private async void frmAgregarUsuarios_Load(object sender, EventArgs e)
+        private async void fmrAgregarUsuarios_Load(object sender, EventArgs e)
         {
             await CargarComboRoles();
-        }
-
-        
-        private void txtNombre_TextChanged(object sender, EventArgs e)
-        {
-           
         }
 
         private async Task CargarComboRoles()
@@ -42,7 +37,6 @@ namespace SG_BAMS
             {
                 clsUsuario objetoUsuario = new clsUsuario();
                 DataTable dt = await objetoUsuario.ListarRolesAsync();
-
                 cmbRol.SelectedIndexChanged -= cmbRol_SelectedIndexChanged;
 
                 cmbRol.DataSource = dt;
@@ -54,16 +48,34 @@ namespace SG_BAMS
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al cargar roles: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message);
             }
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private List<string> listaOriginalRoles = new List<string>();
+
+
 
         private void cmbRol_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmbRol.SelectedIndex != -1)
             {
                 string rolSeleccionado = cmbRol.Text;
-                btnImagen.Enabled = (rolSeleccionado == "Administrador" || rolSeleccionado == "Empleado");
+
+                if (rolSeleccionado == "Administrador" || rolSeleccionado == "Empleado")
+                {
+                    btnImagen.Enabled = true;
+                }
+                else
+                {
+                    btnImagen.Enabled = false;
+                }
             }
             else
             {
@@ -71,15 +83,29 @@ namespace SG_BAMS
             }
         }
 
+        private void txtNombre_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private async void btmModificar_Click(object sender, EventArgs e)
         {
-            if (!ClsValidaciones.EsNombrePersonalValido(txtNombre, "Nombre de Usuario")) return;
-            if (!ClsValidaciones.EsPasswordValido(txtContra, "Contraseña")) return;
+
+            if (!ClsValidaciones.EsNombrePersonalValido(txtNombre.TextBox, "Nombre de Usuario"))
+            {
+                return;
+            }
+
+
+            if (!ClsValidaciones.EsPasswordValido(txtContra.TextBox, "Contraseña"))
+            {
+                return;
+            }
+
 
             if (cmbRol.SelectedIndex == -1)
             {
-                MessageBox.Show("Por favor, seleccione un Rol para el usuario.", "Validación",
-                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Debe seleccionar un Rol.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -87,6 +113,7 @@ namespace SG_BAMS
             {
                 this.Cursor = Cursors.WaitCursor;
                 btmModificar.Enabled = false;
+
 
                 clsUsuario objetoUsuario = new clsUsuario();
 
@@ -102,8 +129,7 @@ namespace SG_BAMS
 
                 if (exito)
                 {
-                    MessageBox.Show("Usuario guardado exitosamente.", "SG-BAMS",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Usuario guardado exitosamente.", "SG-BAMS", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     this.DialogResult = DialogResult.OK;
                     this.Close();
@@ -111,8 +137,7 @@ namespace SG_BAMS
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocurrió un error al guardar: " + ex.Message, "Error de Sistema",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocurrió un error: " + ex.Message, "Error de Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -128,15 +153,8 @@ namespace SG_BAMS
 
         private void btnImagen_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtNombre.Text))
-            {
-                MessageBox.Show("Escriba el nombre del usuario antes de asignar una imagen.", "Aviso",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
             frmImagenEmpleado agregarImagen = new frmImagenEmpleado(txtNombre.Text);
-            agregarImagen.ShowDialog();
+            agregarImagen.Show();
         }
     }
 }
