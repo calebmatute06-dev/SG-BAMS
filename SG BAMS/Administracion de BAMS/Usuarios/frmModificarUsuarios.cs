@@ -14,6 +14,8 @@ namespace SG_BAMS
     public partial class frmModificarUsuarios : Form
     {
         private int idUsuarioSeleccionado;
+        private int rolInicial;
+        private int estadoInicial;
 
         public frmModificarUsuarios(int id, string nombre, int rol, int estado)
         {
@@ -24,16 +26,21 @@ namespace SG_BAMS
             cmbEstado.DropDownStyle = ComboBoxStyle.DropDownList;
             txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
 
+           
             this.idUsuarioSeleccionado = id;
+            this.rolInicial = rol;
+            this.estadoInicial = estado;
             txtNombre.Text = nombre;
+        }
+
+       
+        private async void fmrModificarUsuarios_Load(object sender, EventArgs e)
+        {
+            await CargarCombos();
 
             
-            this.Load += async (s, e) =>
-            {
-                await CargarCombos();
-                cmbRol.SelectedValue = rol;
-                cmbEstado.SelectedValue = estado;
-            };
+            cmbRol.SelectedValue = rolInicial;
+            cmbEstado.SelectedValue = estadoInicial;
         }
 
         private async Task CargarCombos()
@@ -61,18 +68,12 @@ namespace SG_BAMS
         private async void btmModificar_Click_1(object sender, EventArgs e)
         {
             
-            if (!ClsValidaciones.EsNombrePersonalValido(txtNombre, "Nombre de Usuario"))
-            {
-                return;
-            }
+            if (!ClsValidaciones.EsNombrePersonalValido(txtNombre, "Nombre de Usuario")) return;
 
             
             if (!string.IsNullOrWhiteSpace(txtContra.Text))
             {
-                if (!ClsValidaciones.EsPasswordValido(txtContra, "Contraseña"))
-                {
-                    return;
-                }
+                if (!ClsValidaciones.EsPasswordValido(txtContra, "Contraseña")) return;
             }
 
             
@@ -93,7 +94,6 @@ namespace SG_BAMS
                 int idEstado = (int)cmbEstado.SelectedValue;
                 byte[] imagenByte = null;
 
-                
                 bool exito = await objetoUsuario.ModificarUsuarioAsync(
                     idUsuarioSeleccionado,
                     txtNombre.Text.Trim(),

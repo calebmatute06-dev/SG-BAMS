@@ -25,9 +25,16 @@ namespace SG_BAMS
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirAlfanumerico(e);
         }
 
+        
+        private void frmModificarTipoProducto_Load(object sender, EventArgs e)
+        {
+           
+            txtDescri.Focus();
+            txtDescri.SelectionStart = txtDescri.Text.Length;
+        }
+
         private async void btnModificar_Click(object sender, EventArgs e)
         {
-            
             if (!ClsValidaciones.EsAlfanumericoValido(txtDescri, "Tipo de Producto"))
             {
                 return;
@@ -40,7 +47,6 @@ namespace SG_BAMS
 
                 clsTipoProducto objetoTipo = new clsTipoProducto();
 
-               
                 bool exito = await objetoTipo.ModificarTipoProductoAsync(idSeleccionado, txtDescri.Text.Trim());
 
                 if (exito)
@@ -48,7 +54,7 @@ namespace SG_BAMS
                     MessageBox.Show("Tipo de producto actualizado correctamente.", "SG-BAMS",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    this.DialogResult = DialogResult.OK; 
+                    this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
             }

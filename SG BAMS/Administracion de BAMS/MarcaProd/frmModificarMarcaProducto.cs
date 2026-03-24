@@ -1,5 +1,4 @@
 ﻿using SG_BAMS.Administracion_de_BAMS.MarcaProd;
-using SG_BAMS.Administracion_de_BAMS.Rol;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,9 +25,15 @@ namespace SG_BAMS
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirAlfanumerico(e);
         }
 
-        private async void btnModificar_Click(object sender, EventArgs e)
+       
+        private void frmModificarMarcaProducto_Load(object sender, EventArgs e)
         {
             
+            txtDescri.Focus();
+        }
+
+        private async void btnModificar_Click(object sender, EventArgs e)
+        {
             if (!ClsValidaciones.EsAlfanumericoValido(txtDescri, "Nombre de la Marca"))
             {
                 return;
@@ -41,7 +46,6 @@ namespace SG_BAMS
 
                 clsMarca objetoMarca = new clsMarca();
 
-                
                 bool exito = await objetoMarca.ModificarMarcaAsync(idMarca, txtDescri.Text.Trim());
 
                 if (exito)
@@ -49,7 +53,7 @@ namespace SG_BAMS
                     MessageBox.Show("Marca actualizada correctamente.", "SG-BAMS",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    this.DialogResult = DialogResult.OK; 
+                    this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
             }
@@ -67,11 +71,9 @@ namespace SG_BAMS
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-           
             this.Close();
         }
 
-       
         private void kryptonButton6_Click(object sender, EventArgs e)
         {
             this.Close();

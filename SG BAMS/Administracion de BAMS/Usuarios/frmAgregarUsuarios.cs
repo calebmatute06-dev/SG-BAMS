@@ -17,7 +17,6 @@ namespace SG_BAMS
         {
             InitializeComponent();
 
-           
             btnImagen.Enabled = false;
             cmbRol.DropDownStyle = ComboBoxStyle.DropDownList;
 
@@ -25,9 +24,16 @@ namespace SG_BAMS
             txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
         }
 
-        private async void fmrAgregarUsuarios_Load(object sender, EventArgs e)
+       
+        private async void frmAgregarUsuarios_Load(object sender, EventArgs e)
         {
             await CargarComboRoles();
+        }
+
+        
+        private void txtNombre_TextChanged(object sender, EventArgs e)
+        {
+           
         }
 
         private async Task CargarComboRoles()
@@ -37,7 +43,6 @@ namespace SG_BAMS
                 clsUsuario objetoUsuario = new clsUsuario();
                 DataTable dt = await objetoUsuario.ListarRolesAsync();
 
-                
                 cmbRol.SelectedIndexChanged -= cmbRol_SelectedIndexChanged;
 
                 cmbRol.DataSource = dt;
@@ -58,7 +63,6 @@ namespace SG_BAMS
             if (cmbRol.SelectedIndex != -1)
             {
                 string rolSeleccionado = cmbRol.Text;
-                
                 btnImagen.Enabled = (rolSeleccionado == "Administrador" || rolSeleccionado == "Empleado");
             }
             else
@@ -69,10 +73,7 @@ namespace SG_BAMS
 
         private async void btmModificar_Click(object sender, EventArgs e)
         {
-           
             if (!ClsValidaciones.EsNombrePersonalValido(txtNombre, "Nombre de Usuario")) return;
-
-           
             if (!ClsValidaciones.EsPasswordValido(txtContra, "Contraseña")) return;
 
             if (cmbRol.SelectedIndex == -1)
@@ -90,9 +91,8 @@ namespace SG_BAMS
                 clsUsuario objetoUsuario = new clsUsuario();
 
                 int idRol = (int)cmbRol.SelectedValue;
-                byte[] imagenByte = null; 
+                byte[] imagenByte = null;
 
-                
                 bool exito = await objetoUsuario.InsertarUsuarioAsync(
                     txtNombre.Text.Trim(),
                     txtContra.Text,
@@ -128,7 +128,6 @@ namespace SG_BAMS
 
         private void btnImagen_Click(object sender, EventArgs e)
         {
-            
             if (string.IsNullOrWhiteSpace(txtNombre.Text))
             {
                 MessageBox.Show("Escriba el nombre del usuario antes de asignar una imagen.", "Aviso",
@@ -137,7 +136,7 @@ namespace SG_BAMS
             }
 
             frmImagenEmpleado agregarImagen = new frmImagenEmpleado(txtNombre.Text);
-            agregarImagen.ShowDialog(); 
+            agregarImagen.ShowDialog();
         }
     }
 }

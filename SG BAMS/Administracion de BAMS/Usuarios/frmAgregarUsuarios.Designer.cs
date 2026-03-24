@@ -61,7 +61,7 @@
             label2.Size = new Size(178, 31);
             label2.TabIndex = 2;
             label2.Text = "Nombre Usuario:";
-            label2.Click += label2_Click;
+            //label2.Click += label2_Click;
             // 
             // label9
             // 
