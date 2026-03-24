@@ -4,14 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Diagnostics.Contracts;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SG_BAMS.Proveedor
 {
@@ -34,34 +32,27 @@ namespace SG_BAMS.Proveedor
             txtDireccion.Text = direccion;
             txtRTN.Text = rtn;
 
-
             _idEstado = idEstado;
             _idClasificacion = idClasificacion;
+            _nombreOriginal = nombre; // IMPORTANTE: Guardar el nombre original para la validación de duplicados
+
             txtTelefono.MaxLength = 8;
             txtRTN.MaxLength = 14;
 
-
-           
-
+            // Asignación de eventos KeyPress
             this.txtNombre.KeyPress += new KeyPressEventHandler(this.txtNombre_KeyPress);
             this.txtDireccion.KeyPress += new KeyPressEventHandler(this.txtDireccion_KeyPress);
             this.txtTelefono.KeyPress += new KeyPressEventHandler(this.txtTelefono_KeyPress);
             this.txtRTN.KeyPress += new KeyPressEventHandler(this.txtRTN_KeyPress);
-
-            txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
-            txtDireccion.KeyPress += (s, e) => ClsValidaciones.ValidarBusquedaAlfanumerica(e);
-            txtTelefono.KeyPress += (s, e) => ClsValidaciones.ValidarSoloNumeros(e);
-            txtRTN.KeyPress += (s, e) => ClsValidaciones.ValidarSoloNumeros(e);
         }
 
         private void btnsalir_Click(object sender, EventArgs e)
         {
-            ProveedoresAdmin proveedor = new ProveedoresAdmin();
-            proveedor.Show();
+            ProveedoresAdmin admin = new ProveedoresAdmin();
+            admin.Show();
             this.Close();
         }
 
-       
         private void ModificarProveedor_Load(object sender, EventArgs e)
         {
             proveedor.CargarComboEstado(cmbEstado);
@@ -70,56 +61,35 @@ namespace SG_BAMS.Proveedor
             cmbEstado.SelectedValue = _idEstado;
             cmbEstado.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbClasificacion.DropDownStyle = ComboBoxStyle.DropDownList;
-
             cmbClasificacion.SelectedValue = _idClasificacion;
-        }
 
-        private void cmbEstado_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbEstado.SelectedIndex != -1 && cmbEstado.SelectedItem is DataRowView)
-            {
-                DataRowView drv = (DataRowView)cmbEstado.SelectedItem;
-                int idEstado = Convert.ToInt32(drv["id_estado"]);
-                string nombreEstado = drv["descripcion_estado"].ToString();
-            }
-
-        }
-
-        private void cmbClasificacion_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbEstado.SelectedIndex != -1 && cmbEstado.SelectedItem is DataRowView)
-            {
-                DataRowView drv = (DataRowView)cmbEstado.SelectedItem;
-                int idEstado = Convert.ToInt32(drv["id_estado"]);
-                string nombreEstado = drv["descripcion_estado"].ToString();
-            }
+            // Validaciones en tiempo real (KeyPress dinámicos)
+            txtNombre.KeyPress += (s, ev) => ClsValidaciones.PermitirSoloLetras(ev);
+            txtDireccion.KeyPress += (s, ev) => ClsValidaciones.ValidarBusquedaAlfanumerica(ev);
+            txtTelefono.KeyPress += (s, ev) => ClsValidaciones.ValidarSoloNumeros(ev);
+            txtRTN.KeyPress += (s, ev) => ClsValidaciones.ValidarSoloNumeros(ev);
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            
+            // 1. Validaciones de Texto
             if (!ClsValidaciones.EsNombrePersonalValido(txtNombre, "Nombre del Proveedor")) return;
             if (ClsValidaciones.CampoVacio(txtDireccion, "Dirección")) return;
 
-            
+            // 2. Validación de Teléfono
             if (!ClsValidaciones.EsTelefonoHondurasValido(txtTelefono)) return;
 
-            
-            if (txtRTN.Text.Trim().Length != 14)
-            {
-                MessageBox.Show("El RTN debe tener exactamente 14 dígitos.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtRTN.Focus();
-                return;
-            }
+            // 3. Validación de RTN (Centralizada)
+            if (!ClsValidaciones.EsRTNValido(txtRTN)) return;
 
-            
+            // 4. Validación de Combos
             if (cmbEstado.SelectedValue == null || cmbClasificacion.SelectedValue == null)
             {
                 MessageBox.Show("Asegúrese de seleccionar el Estado y la Clasificación.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // 5. VALIDACIÓN DE DUPLICADOS (Solo si el nombre cambió)
+            // 5. Validación de Duplicados (Solo si el nombre cambió)
             string nombreNuevo = txtNombre.Text.Trim();
             if (nombreNuevo != _nombreOriginal && proveedor.ExisteNombreProveedor(nombreNuevo))
             {
@@ -147,13 +117,19 @@ namespace SG_BAMS.Proveedor
                 );
 
                 MessageBox.Show("Proveedor modificado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
+
+                // Navegación de regreso
+                ProveedoresAdmin admin = new ProveedoresAdmin();
+                admin.Show();
+                this.Dispose();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al modificar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        // --- Eventos KeyPress manuales (Manteniendo compatibilidad) ---
 
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -200,5 +176,8 @@ namespace SG_BAMS.Proveedor
                 e.Handled = true;
             }
         }
+
+        private void cmbEstado_SelectedIndexChanged(object sender, EventArgs e) { }
+        private void cmbClasificacion_SelectedIndexChanged(object sender, EventArgs e) { }
     }
 }

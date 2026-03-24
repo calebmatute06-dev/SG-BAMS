@@ -32,14 +32,11 @@ namespace SG_BAMS.Proveedor
             proveedor.CargarComboClasificacion(cmbClasificacion);
             cmbClasificacion.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
-            txtDireccion.KeyPress += (s, e) => ClsValidaciones.ValidarBusquedaAlfanumerica(e);
-            txtTelefono.KeyPress += (s, e) => ClsValidaciones.ValidarSoloNumeros(e);
-            txtRTN.KeyPress += (s, e) => ClsValidaciones.ValidarSoloNumeros(e);
+            txtNombre.KeyPress += (s, ev) => ClsValidaciones.PermitirSoloLetras(ev);
+            txtDireccion.KeyPress += (s, ev) => ClsValidaciones.ValidarBusquedaAlfanumerica(ev);
+            txtTelefono.KeyPress += (s, ev) => ClsValidaciones.ValidarSoloNumeros(ev);
+            txtRTN.KeyPress += (s, ev) => ClsValidaciones.ValidarSoloNumeros(ev);
         }
-
-        
-
 
         private void btnsalir_Click(object sender, EventArgs e)
         {
@@ -55,35 +52,29 @@ namespace SG_BAMS.Proveedor
                 DataRowView drv = (DataRowView)cmbClasificacion.SelectedItem;
                 int idClasificacion = Convert.ToInt32(drv["id_clasificacion_proveedor"]);
                 string nombreClasificacion = drv["clasificacion_proveedor"].ToString();
-
             }
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            // 1. VALIDACIONES DE TEXTO (Usando ClsValidaciones)
+            
             if (!ClsValidaciones.EsNombrePersonalValido(txtNombre, "Nombre del Proveedor")) return;
             if (ClsValidaciones.CampoVacio(txtDireccion, "Dirección")) return;
 
-            // 2. VALIDACIÓN DE TELÉFONO (Honduras - 8 dígitos)
+            
             if (!ClsValidaciones.EsTelefonoHondurasValido(txtTelefono)) return;
 
-            // 3. VALIDACIÓN DE RTN (Exactamente 14 dígitos)
-            if (txtRTN.Text.Trim().Length != 14)
-            {
-                MessageBox.Show("El RTN debe tener exactamente 14 dígitos.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtRTN.Focus();
-                return;
-            }
+            
+            if (!ClsValidaciones.EsRTNValido(txtRTN)) return;
 
-            // 4. VALIDACIÓN DE COMBO
+            
             if (cmbClasificacion.SelectedValue == null)
             {
                 MessageBox.Show("Debe seleccionar una clasificación.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // 5. VALIDACIÓN DE DUPLICADOS EN BD
+            
             if (proveedor.ExisteNombreProveedor(txtNombre.Text.Trim()))
             {
                 MessageBox.Show("El nombre del proveedor ya existe.", "Nombre Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -96,6 +87,7 @@ namespace SG_BAMS.Proveedor
                 int idClasificacion = Convert.ToInt32(cmbClasificacion.SelectedValue);
                 int idUsuario = new ClsPasarUsuario().IdUsuario();
 
+                
                 proveedor.AgregarProveedor(
                     txtNombre.Text.Trim(),
                     txtTelefono.Text.Trim(),
@@ -105,8 +97,12 @@ namespace SG_BAMS.Proveedor
                     idUsuario
                 );
 
-                MessageBox.Show("Proveedor agregado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 
+                MessageBox.Show("Proveedor agregado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                
+
+                this.Dispose(); 
             }
             catch (Exception ex)
             {

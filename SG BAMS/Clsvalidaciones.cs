@@ -111,7 +111,7 @@ namespace SG_BAMS
                 return false;
             }
 
-            // Cambiado a {3,} para que el 4to carácter repetido dispare el error
+           
             if (Regex.IsMatch(textoTrim, @"(.)\1{3,}") || Regex.IsMatch(textoTrim.Replace(" ", ""), @"(.{2,})\1{2,}"))
             {
                 MessageBox.Show($"{nombreCampo} contiene caracteres o patrones repetitivos inválidos.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -157,7 +157,7 @@ namespace SG_BAMS
                 return false;
             }
 
-            // Validación de no más de 3 repetidos (4 o más es error)
+            
             if (Regex.IsMatch(textoTrim, @"(.)\1{3,}"))
             {
                 MessageBox.Show($"{nombreCampo} contiene demasiados caracteres repetidos seguidos.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -200,7 +200,7 @@ namespace SG_BAMS
         {
             string tel = control.Text.Trim();
 
-            // Validar formato base y prefijos
+           
             if (!Regex.IsMatch(tel, @"^[23789]\d{7}$"))
             {
                 MessageBox.Show("El teléfono debe tener 8 dígitos y comenzar con un prefijo válido de Honduras (2, 3, 7, 8 o 9).",
@@ -209,7 +209,7 @@ namespace SG_BAMS
                 return false;
             }
 
-            // Validación de no más de 3 números repetidos seguidos
+            
             if (Regex.IsMatch(tel, @"(.)\1{3,}"))
             {
                 MessageBox.Show("El teléfono no puede tener más de 3 números repetidos seguidos.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -230,7 +230,7 @@ namespace SG_BAMS
                 return false;
             }
 
-            // Seguridad extra: evitar contraseñas como "111111"
+            
             if (Regex.IsMatch(pass, @"(.)\1{3,}"))
             {
                 MessageBox.Show($"{nombreCampo} es muy débil (demasiados caracteres repetidos).", "Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -334,6 +334,31 @@ namespace SG_BAMS
             {
                 dtpInicio.Value = dtpFin.Value;
             }
+        }
+
+        public static bool EsRTNValido(Control control)
+        {
+            string rtn = control.Text.Trim();
+
+            
+            if (!Regex.IsMatch(rtn, @"^\d{14}$"))
+            {
+                MessageBox.Show("El RTN debe tener exactamente 14 dígitos numéricos.",
+                                "RTN Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                control.Focus();
+                return false;
+            }
+
+           
+            if (Regex.IsMatch(rtn, @"^(.)\1{13}$"))
+            {
+                MessageBox.Show("El RTN contiene un patrón de repetición inválido.",
+                                "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                control.Focus();
+                return false;
+            }
+
+            return true;
         }
     }
 }
