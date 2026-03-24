@@ -98,18 +98,8 @@ namespace SG_BAMS
 
         private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
         {
-           
-            ClsValidaciones.ValidarSoloNumeros(e);
 
-            
-            if (!e.Handled && txtTelefono.SelectionStart == 0 && !char.IsControl(e.KeyChar))
-            {
-                char[] prefijosHonduras = { '2', '3', '8', '9' };
-                if (!prefijosHonduras.Contains(e.KeyChar))
-                {
-                    e.Handled = true;
-                }
-            }
+            ClsValidaciones.ValidarTelefonoKeyPress(txtTelefono, e);
         }
 
         private void BtnExistente_Click(object sender, EventArgs e)

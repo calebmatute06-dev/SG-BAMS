@@ -23,16 +23,18 @@ namespace SG_BAMS
             txtRTN.Text = rtnCliente;
             idEstadoSelec = idEstado;
 
-            
+
             txtTelefono.MaxLength = 8;
             txtRTN.MaxLength = 14;
             txtID.ReadOnly = true;
 
-            
+
             txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
             txtApellido.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
             txtTelefono.KeyPress += (s, e) => ClsValidaciones.ValidarSoloNumeros(e);
             txtRTN.KeyPress += (s, e) => ClsValidaciones.ValidarSoloNumeros(e);
+            txtTelefono.KeyPress += (s, e) => 
+                ClsValidaciones.ValidarTelefonoKeyPress(txtTelefono, e);
         }
 
         public ClienteModificar()
@@ -42,26 +44,26 @@ namespace SG_BAMS
 
         private async void BtnModificar_Click(object sender, EventArgs e)
         {
-            
+
             if (!ClsValidaciones.EsNombrePersonalValido(txtNombre, "Nombre") ||
                 !ClsValidaciones.EsNombrePersonalValido(txtApellido, "Apellido"))
             {
                 return;
             }
 
-            
+
             if (!ClsValidaciones.EsTelefonoHondurasValido(txtTelefono))
             {
                 return;
             }
 
-            
+
             if (!ClsValidaciones.ValidarSeleccion(cmbEstado, "el estado del cliente"))
             {
                 return;
             }
 
-            
+
             string rtn = txtRTN.Text.Trim();
             if (!string.IsNullOrWhiteSpace(rtn) && rtn.ToUpper() != "SIN RTN")
             {
@@ -134,5 +136,10 @@ namespace SG_BAMS
         }
 
         private void BtnSalir_Click(object sender, EventArgs e) => this.Close();
+
+        private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ClsValidaciones.ValidarTelefonoKeyPress(txtTelefono, e);
+        }
     }
 }

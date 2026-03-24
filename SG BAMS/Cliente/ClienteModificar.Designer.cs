@@ -230,7 +230,6 @@
             txtRTN.StateCommon.Back.Color1 = Color.SkyBlue;
             txtRTN.StateCommon.Border.Rounding = 10F;
             txtRTN.TabIndex = 323;
-            //txtRTN.KeyPress += txtRTN_KeyPress;
             // 
             // txtTelefono
             // 
@@ -240,7 +239,7 @@
             txtTelefono.StateCommon.Back.Color1 = Color.SkyBlue;
             txtTelefono.StateCommon.Border.Rounding = 10F;
             txtTelefono.TabIndex = 324;
-            //txtTelefono.KeyPress += txtTelefono_KeyPress;
+            txtTelefono.KeyPress += txtTelefono_KeyPress;
             // 
             // txtApellido
             // 

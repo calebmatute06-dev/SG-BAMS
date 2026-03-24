@@ -268,5 +268,37 @@ namespace SG_BAMS
 
             return true;
         }
+        public static void ValidarTelefonoKeyPress(KryptonTextBox txt, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+                return;
+            }
+
+            if (!char.IsControl(e.KeyChar))
+            {
+                int pos = txt.SelectionStart;
+                if (pos >= 3)
+                {
+                    if (txt.Text[pos - 1] == e.KeyChar &&
+                        txt.Text[pos - 2] == e.KeyChar &&
+                        txt.Text[pos - 3] == e.KeyChar)
+                    {
+                        e.Handled = true;
+                        return;
+                    }
+                }
+            }
+
+            if (!e.Handled && txt.SelectionStart == 0 && !char.IsControl(e.KeyChar))
+            {
+                char[] prefijosHonduras = { '2', '3', '7', '8', '9' };
+                if (!prefijosHonduras.Contains(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+        }
     }
 }

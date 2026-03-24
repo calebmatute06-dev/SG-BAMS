@@ -12,8 +12,6 @@ namespace SG_BAMS.Login
         public static int idusuario;
         public int ValidarUsuario(string usuario, string contra)
         {
-
-
             int rol = 0;
 
             try
@@ -23,8 +21,8 @@ namespace SG_BAMS.Login
                 string query = @"
                     SELECT id_rol_usuario, id_estado, id_usuario
                     FROM credenciales_usuarios
-                    WHERE nombre_usuario = @usuario
-                      AND contraseña_login = @contra";
+                    WHERE nombre_usuario = @usuario COLLATE Latin1_General_CS_AS
+                      AND contraseña_login = @contra COLLATE Latin1_General_CS_AS";
 
                 SqlCommand cmd = new SqlCommand(query, Conectar);
                 cmd.Parameters.AddWithValue("@usuario", usuario);
