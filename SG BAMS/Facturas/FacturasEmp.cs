@@ -1,166 +1,64 @@
 ﻿using SG_BAMS.Facturas;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace SG_BAMS
 {
     public partial class FacturasEmp : Form
     {
-        DataTable datosFac;
+        private DataTable datosFac;
+
         public FacturasEmp()
         {
             InitializeComponent();
+            ConfigurarGrid();
+        }
+
+        private void ConfigurarGrid()
+        {
             dgvFacturas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvFacturas.MultiSelect = false;
             dgvFacturas.AllowUserToAddRows = false;
+            dgvFacturas.ReadOnly = true;
+            dgvFacturas.AllowUserToOrderColumns = false;
+            dgvFacturas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
+            
             txtBusqueda.KeyPress += (s, e) => ClsValidaciones.ValidarBusquedaAlfanumerica(e);
-        }
-
-        private async void dgvFacturas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e != null && e.RowIndex < 0) return;
-
-            int idFacturas, idPago, bateriaVieja;
-            string nombre_Cliente;
-           
-            DateTime fecha;
-
-            if (dgvFacturas.CurrentRow != null)
-            {
-
-                idFacturas = Convert.ToInt32(dgvFacturas.CurrentRow.Cells[0].Value);
-                nombre_Cliente = dgvFacturas.CurrentRow.Cells[2].Value.ToString();
-                fecha = Convert.ToDateTime(dgvFacturas.CurrentRow.Cells[6].Value);
-                bateriaVieja = Convert.ToInt32(dgvFacturas.CurrentRow.Cells[7].Value);
-                idPago = Convert.ToInt32(dgvFacturas.CurrentRow.Cells[10].Value);
-                double rebaja = Convert.ToDouble(dgvFacturas.CurrentRow.Cells["Rebaja"].Value);
-
-
-                FacturaVer frmFV = new FacturaVer(idFacturas, nombre_Cliente, fecha, bateriaVieja, idPago, rebaja);
-                frmFV.ShowDialog();
-
-
-
-                await CargarFactura();
-                FiltrarPorFecha();
-            }
-        }
-
-        private async void BtnNueva_Click(object sender, EventArgs e)
-        {
-            using (ClienteAgregar frmCA = new ClienteAgregar())
-            {
-                if (frmCA.ShowDialog() == DialogResult.OK)
-                {
-                    await CargarFactura();
-                    FiltrarPorFecha();
-                }
-            }
-        }
-
-        private void BtnVer_Click(object sender, EventArgs e)
-        {
-            if (dgvFacturas.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Debe seleccionar una fila",
-                                "Ninguna fila seleccionada",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Warning);
-                return;
-            }
-            if (dgvFacturas.CurrentRow != null)
-            {
-                dgvFacturas_CellDoubleClick(null, null);
-            }
-
-        }
-
-        private void txtBusqueda_TextChanged(object sender, EventArgs e)
-        {
-            if (datosFac != null)
-            {
-                DataView dv = datosFac.DefaultView;
-
-                if (string.IsNullOrWhiteSpace(txtBusqueda.Text))
-                {
-                    dv.RowFilter = string.Empty;
-                }
-                else
-                {
-                    string textoSeguro = txtBusqueda.Text
-                        .Replace("'", "''")
-                        .Replace("[", "[[]")
-                        .Replace("]", "[]]")
-                        .Replace("*", "[*]")
-                        .Replace("%", "[%]");
-
-                    try
-                    {
-                        dv.RowFilter = string.Format(
-                            "Convert([Factura], 'System.String') LIKE '%{0}%' OR " +
-                            "[Vendedor] LIKE '%{0}%' OR " +
-                            "[Cliente] LIKE '%{0}%' OR " +
-                            "[Método de Pago] LIKE '%{0}%'",
-                            textoSeguro);
-                    }
-                    catch (Exception)
-                    {
-                        dv.RowFilter = string.Empty;
-                    }
-                }
-
-                dgvFacturas.DataSource = dv;
-                dgvFacturas.ClearSelection();
-            }
         }
 
         private async Task CargarFactura()
         {
-            ClsVerFactura objFac = new ClsVerFactura();
-            datosFac = await objFac.VerFacturas();
-
-            if (datosFac != null)
+            try
             {
-                dgvFacturas.DataSource = datosFac;
-                dgvFacturas.Columns["Rebaja"].DisplayIndex = 8;
-                dgvFacturas.Columns["Batería Vieja"].DisplayIndex = 7;
-                dgvFacturas.Columns["Total Unidades"].DisplayIndex = 9;
+                ClsVerFactura objFac = new ClsVerFactura();
+                datosFac = await objFac.VerFacturas();
 
+                if (datosFac != null)
+                {
+                    dgvFacturas.DataSource = datosFac;
 
-                dgvFacturas.Columns["Factura"].HeaderText = "N° Factura";
-                dgvFacturas.Columns["Vendedor"].HeaderText = "Vendedor";
-                dgvFacturas.Columns["Cliente"].HeaderText = "Cliente";
-                dgvFacturas.Columns["RTN Cliente"].HeaderText = "RTN Cliente";
-                dgvFacturas.Columns["Método de Pago"].HeaderText = "Metodo de pago";
-                dgvFacturas.Columns["ID Método de Pago"].Visible = false;
-                dgvFacturas.Columns["Fecha"].HeaderText = "Fecha";
-                dgvFacturas.Columns["Detalle Venta"].HeaderText = "Detalle Venta";
-                dgvFacturas.Columns["Batería Vieja"].HeaderText = "Batería Vieja";
-                dgvFacturas.Columns["Rebaja"].HeaderText = "Rebaja de Batería Vieja";
-                dgvFacturas.Columns["Total Unidades"].HeaderText = "Total Unidades";
+                   
+                    dgvFacturas.Columns["Factura"].HeaderText = "N° Factura";
+                    dgvFacturas.Columns["ID Método de Pago"].Visible = false;
+                    dgvFacturas.Columns["Rebaja"].HeaderText = "Rebaja Batería";
 
+                    
+                    dgvFacturas.Columns["Rebaja"].DisplayIndex = 8;
+                    dgvFacturas.Columns["Batería Vieja"].DisplayIndex = 7;
+                    dgvFacturas.Columns["Total Unidades"].DisplayIndex = 9;
 
+                    dgvFacturas.ClearSelection();
+                }
             }
-        }
-
-        private void BtnRefrescar_Click(object sender, EventArgs e)
-        {
-            dtpInicio.Value = DateTime.Today;
-            dtpFin.Value = DateTime.Today;
-
-            FiltrarPorFecha();
-
-            txtBusqueda.Text = "";
-            dgvFacturas.ClearSelection();
-        
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar facturas: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private async void FacturasEmp_Load(object sender, EventArgs e)
@@ -170,88 +68,129 @@ namespace SG_BAMS
             dtpInicio.Value = DateTime.Today;
             dtpFin.Value = DateTime.Today;
 
-            FiltrarPorFecha();
+            FiltrarDatos();
 
-            dtpFin.ValueChanged += dtpInicio_ValueChanged;
-            dgvFacturas.ClearSelection();
-            dgvFacturas.ReadOnly = true;
-            dgvFacturas.AllowUserToOrderColumns = false;
+            dtpInicio.ValueChanged += (s, ev) => ValidarYFiltrar();
+            dtpFin.ValueChanged += (s, ev) => ValidarYFiltrar();
         }
 
-        private void FiltrarPorFecha()
+        private void ValidarYFiltrar()
         {
-            if (datosFac != null)
+            if (dtpFin.Value < dtpInicio.Value)
+                dtpFin.Value = dtpInicio.Value;
+
+            FiltrarDatos();
+        }
+
+        private void FiltrarDatos()
+        {
+            if (datosFac == null) return;
+
+            DataView dv = datosFac.DefaultView;
+
+           
+            string fInicio = dtpInicio.Value.Date.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+            string fFin = dtpFin.Value.Date.AddDays(1).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+            string texto = txtBusqueda.Text.Replace("'", "''").Replace("[", "[[]").Replace("]", "[]]");
+
+            
+            string rowFilter = $"[Fecha] >= #{fInicio}# AND [Fecha] < #{fFin}#";
+
+           
+            if (!string.IsNullOrWhiteSpace(texto))
             {
-                DataView dv = datosFac.DefaultView;
+                rowFilter += $" AND (Convert([Factura], 'System.String') LIKE '%{texto}%' OR " +
+                             $"[Vendedor] LIKE '%{texto}%' OR " +
+                             $"[Cliente] LIKE '%{texto}%' OR " +
+                             $"[Método de Pago] LIKE '%{texto}%')";
+            }
 
-                DateTime fechaInicio = dtpInicio.Value.Date;
-
-
-                DateTime fechaFin = dtpFin.Value.Date.AddDays(1);
-
-                dv.RowFilter = string.Format(System.Globalization.CultureInfo.InvariantCulture,
-                    "[Fecha] >= #{0}# AND [Fecha] < #{1}#",
-                    fechaInicio.ToString("MM/dd/yyyy"),
-                    fechaFin.ToString("MM/dd/yyyy"));
-
+            try
+            {
+                dv.RowFilter = rowFilter;
                 dgvFacturas.DataSource = dv;
                 dgvFacturas.ClearSelection();
             }
+            catch {  }
         }
 
-        private void dtpInicio_ValueChanged(object sender, EventArgs e)
-        {
+        private void txtBusqueda_TextChanged(object sender, EventArgs e) => FiltrarDatos();
 
-            FiltrarPorFecha();
+        private async void BtnNueva_Click(object sender, EventArgs e)
+        {
+            using (ClienteAgregar frmCA = new ClienteAgregar())
+            {
+                if (frmCA.ShowDialog() == DialogResult.OK)
+                {
+                    await CargarFactura();
+                    FiltrarDatos();
+                }
+            }
+        }
+
+        private void BtnVer_Click(object sender, EventArgs e)
+        {
+            if (dgvFacturas.CurrentRow == null)
+            {
+                MessageBox.Show("Debe seleccionar una fila", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            AbrirDetalle();
+        }
+
+        private void dgvFacturas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) AbrirDetalle();
+        }
+
+        private async void AbrirDetalle()
+        {
+            var row = dgvFacturas.CurrentRow;
+            int idFacturas = Convert.ToInt32(row.Cells[0].Value);
+            string nombre_Cliente = row.Cells[2].Value.ToString();
+            DateTime fecha = Convert.ToDateTime(row.Cells[6].Value);
+            int bateriaVieja = Convert.ToInt32(row.Cells[7].Value);
+            int idPago = Convert.ToInt32(row.Cells[10].Value);
+            double rebaja = Convert.ToDouble(row.Cells["Rebaja"].Value);
+
+            FacturaVer frmFV = new FacturaVer(idFacturas, nombre_Cliente, fecha, bateriaVieja, idPago, rebaja);
+            frmFV.ShowDialog();
+
+            await CargarFactura();
+            FiltrarDatos();
+        }
+
+        private void BtnRefrescar_Click(object sender, EventArgs e)
+        {
+            txtBusqueda.Clear();
+            dtpInicio.Value = DateTime.Today;
+            dtpFin.Value = DateTime.Today;
+            FiltrarDatos();
+        }
+
+        
+
+        private void NavegarA(Form formulario)
+        {
+            formulario.Show();
+            this.Close();
+        }
+
+        private void BtnMenu_Click(object sender, EventArgs e) => NavegarA(new MenuPrincipalEmp());
+        private void BtnClientes_Click(object sender, EventArgs e) => NavegarA(new ClientesEmp());
+        private void BtnInventario_Click(object sender, EventArgs e) => NavegarA(new InventarioEmp());
+        private void BtnDeudores_Click(object sender, EventArgs e) => NavegarA(new Deudores_Emp());
+
+        private void BtnNotificaciones_Click(object sender, EventArgs e)
+        {
+            new NotificacionesAdmin().Show(); 
+            this.Hide();
         }
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
-            Login.Login login = new Login.Login();
-            login.Show();
+            new Login.Login().Show();
             this.Close();
-        }
-
-        private void BtnMenu_Click(object sender, EventArgs e)
-        {
-            MenuPrincipalEmp MPE = new MenuPrincipalEmp();
-            MPE.Show();
-            this.Close();
-        }
-
-        private void BtnFacturas_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BtnClientes_Click(object sender, EventArgs e)
-        {
-            ClientesEmp CE = new ClientesEmp();
-            CE.Show();
-            this.Close();
-        }
-
-        private void BtnInventario_Click(object sender, EventArgs e)
-        {
-            InventarioEmp IE = new InventarioEmp();
-            IE.Show();
-            this.Close();
-        }
-
-        private void BtnDeudores_Click(object sender, EventArgs e)
-        {
-            Deudores_Emp DE = new Deudores_Emp();
-            DE.Show();
-            this.Close();
-        }
-
-       
-
-        private void BtnNotificaciones_Click(object sender, EventArgs e)
-        {
-            NotificacionesAdmin NA = new NotificacionesAdmin();
-            NA.Show();
-            this.Hide();
         }
     }
 }

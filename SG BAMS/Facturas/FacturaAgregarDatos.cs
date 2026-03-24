@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
-using Microsoft.IdentityModel.Tokens;
 using SG_BAMS.Administracion_de_BAMS.FormaPago;
 using SG_BAMS.Cliente;
 using SG_BAMS.Facturas;
@@ -18,28 +17,24 @@ namespace SG_BAMS
 {
     public partial class FacturaAgregarDatos : Form
     {
+        
         int idCliente, idProducto, cantidades;
         string nombresProductos, cantidadBateria;
         double precioBateria;
+
         public FacturaAgregarDatos(string cliente, int idCli)
         {
             InitializeComponent();
             txtCliente.Text = cliente;
             idCliente = idCli;
-
         }
 
+        
         public void SetProducto(int idProd, string nombreProd, int cantidadProd)
         {
             idProducto = idProd;
             nombresProductos = nombreProd;
             cantidades = cantidadProd;
-        }
-        public FacturaAgregarDatos(double total, string cant)
-        {
-            InitializeComponent();
-            cantidadBateria = cant;
-            precioBateria = total;
         }
 
         public FacturaAgregarDatos()
@@ -52,25 +47,17 @@ namespace SG_BAMS
         private async Task LlenarComboPago()
         {
             ClsAgregarFactura AF = new ClsAgregarFactura();
-
             try
             {
-
                 DataTable dt = await AF.ObtenerFormasPago();
-
-
                 cmbPago.DisplayMember = "descripcion_forma_pago";
                 cmbPago.ValueMember = "id_tipo_forma_pago";
                 cmbPago.DataSource = dt;
+                cmbPago.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al llenar ComboBox de pagos: " + ex.Message);
-            }
-            finally
-            {
-
-                dgvProductos.Rows.Clear();
+                MessageBox.Show("Error al llenar pagos: " + ex.Message);
             }
         }
 
@@ -78,125 +65,78 @@ namespace SG_BAMS
         {
             await LlenarComboPago();
 
+            
+            dgvProductos.Columns.Clear();
             dgvProductos.Columns.Add("id_producto", "Código");
             dgvProductos.Columns.Add("nombre_producto", "Nombre");
             dgvProductos.Columns.Add("cantidad", "Cantidad");
             dgvProductos.Columns.Add("precio", "Precio");
             dgvProductos.Columns.Add("subtotal", "Subtotal");
+            dgvProductos.Columns.Add("stock_max", "StockMax");
+            dgvProductos.Columns["stock_max"].Visible = false;
 
+           
             txtCliente.ReadOnly = true;
             txtTotal.ReadOnly = true;
             txtBateria.ReadOnly = true;
             txtRebaja.ReadOnly = true;
             txtSubtotal.ReadOnly = true;
-            dgvProductos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
             dgvProductos.AllowUserToAddRows = false;
-            dgvProductos.ClearSelection();
             dgvProductos.Columns["id_producto"].ReadOnly = true;
             dgvProductos.Columns["nombre_producto"].ReadOnly = true;
             dgvProductos.Columns["precio"].ReadOnly = true;
             dgvProductos.Columns["subtotal"].ReadOnly = true;
 
-            dgvProductos.Columns.Add("stock_max", "StockMax");
-            dgvProductos.Columns["stock_max"].Visible = false;
-
             btnBateria.Enabled = false;
             ActualizarEstadoBotonAceptar();
-
-
-
         }
 
         private void CalcularTotal()
         {
-
             double acumulador = 0;
-
-            for (int i = 0; i < dgvProductos.Rows.Count; i++)
+            foreach (DataGridViewRow row in dgvProductos.Rows)
             {
-                if (dgvProductos.Rows[i].Cells["Subtotal"].Value != null)
+                if (row.Cells["subtotal"].Value != null)
                 {
-                    acumulador += Convert.ToDouble(dgvProductos.Rows[i].Cells["Subtotal"].Value);
+                    acumulador += Convert.ToDouble(row.Cells["subtotal"].Value);
                 }
             }
 
+            
             double rebaja = precioBateria;
-
             double total = acumulador - rebaja;
-            txtSubtotal.Text = acumulador.ToString();
-            txtRebaja.Text = rebaja.ToString();
-            txtTotal.Text = total.ToString();
-        }
-        private bool FacturaTieneProductos()
-        {
-            return dgvProductos.Rows
-                .Cast<DataGridViewRow>()
-                .Any(row => !row.IsNewRow);
+
+            txtSubtotal.Text = acumulador.ToString("N2");
+            txtRebaja.Text = rebaja.ToString("N2");
+            txtTotal.Text = (total < 0 ? 0 : total).ToString("N2");
         }
 
         private async void BtnAceptar_Click(object sender, EventArgs e)
         {
-
-            if (string.IsNullOrEmpty(txtBateria.Text.Trim()))
-            {
-                MessageBox.Show("Debe ingresar un valor en Batería Vieja", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtBateria.Focus();
-                return;
-            }
-
-            if (!int.TryParse(txtBateria.Text.Trim(), out int bateria))
-            {
-                MessageBox.Show("El valor de Batería Vieja debe ser un número.");
-                txtBateria.Focus();
-                return;
-            }
-
-            if (bateria < 0 || bateria > 100)
-            {
-                MessageBox.Show("El valor de Batería Vieja debe estar entre 0 y 100.",
-                                "Valor fuera de rango",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Warning);
-                txtBateria.Focus();
-                return;
-            }
-
-            if (!FacturaTieneProductos())
-            {
-                MessageBox.Show("Debe agregar al menos un producto a la factura.",
-                                "Factura vacía",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (Convert.ToDecimal(txtTotal.Text) <= 0)
-            {
-                MessageBox.Show("El total no puede ser menor o igual a 0.",
-                                "Total inválido",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Warning);
-                return;
-            }
-
+            
+            if (ClsValidaciones.CampoVacio(txtCliente, "Cliente")) return;
             if (cmbPago.SelectedIndex == -1)
             {
-                MessageBox.Show("Seleccione una forma de pago.",
-                                "Forma de pago requerida",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Warning);
+                MessageBox.Show("Seleccione una forma de pago.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-
-
-            if (cmbPago.SelectedValue == null)
+            if (dgvProductos.Rows.Count == 0)
             {
-                MessageBox.Show("Por favor seleccione una forma de pago.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Debe agregar al menos un producto.", "Factura Vacía", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            DialogResult imprimir = MessageBox.Show("¿Desea imprimir la factura?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            double totalFactura = Convert.ToDouble(txtTotal.Text);
+            if (totalFactura < 0)
+            {
+                MessageBox.Show("El descuento por batería vieja no puede ser mayor al total de la compra.", "Error de Lógica", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            DialogResult imprimir = MessageBox.Show("¿Desea guardar e imprimir la factura?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (imprimir == DialogResult.No) return;
 
             try
             {
@@ -204,17 +144,16 @@ namespace SG_BAMS
                 ClsAgregarFactura objAF = new ClsAgregarFactura();
                 ClsAgregarProductos objAP = new ClsAgregarProductos();
 
-                
                 int idUser = objPU.IdUsuario();
-
                 int idPago = Convert.ToInt32(cmbPago.SelectedValue);
                 int.TryParse(txtBateria.Text, out int bat);
 
-             
+                
                 int idFactura = await objAF.AgregarFacturas(idUser, idCliente, idPago, DateTFecha.SelectionStart, bat, precioBateria);
 
                 if (idFactura > 0)
                 {
+                    
                     foreach (DataGridViewRow fila in dgvProductos.Rows)
                     {
                         if (fila.IsNewRow) continue;
@@ -223,20 +162,10 @@ namespace SG_BAMS
                         await objAP.GuardarProductoFactura(idFactura, idPr, cant);
                     }
 
-                    if (imprimir == DialogResult.Yes)
-                    {
-                        objAF.ImprimirFactura(
-                            idFactura,
-                            txtCliente.Text,
-                            DateTFecha.SelectionStart.ToShortDateString(),
-                            txtSubtotal.Text,
-                            txtRebaja.Text,
-                            txtTotal.Text,
-                            cmbPago.Text,
-                            dgvProductos,
-                            SG_BAMS.Login.Login.UsuarioLogueado
-                        );
-                    }
+                    
+                    objAF.ImprimirFactura(idFactura, txtCliente.Text, DateTFecha.SelectionStart.ToShortDateString(),
+                                        txtSubtotal.Text, txtRebaja.Text, txtTotal.Text, cmbPago.Text,
+                                        dgvProductos, SG_BAMS.Login.Login.UsuarioLogueado);
 
                     this.DialogResult = DialogResult.OK;
                     this.Close();
@@ -244,37 +173,12 @@ namespace SG_BAMS
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Error crítico al facturar: " + ex.Message);
             }
-
-        }
-
-        private void BtnCancelar_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            dgvProductos.Columns.Clear();
         }
 
         private async void BtnAgregar_Click(object sender, EventArgs e)
         {
-           
-            if (ClsValidaciones.CampoVacio(txtBateria, "Batería Vieja")) return;
-
-            if (!int.TryParse(txtBateria.Text.Trim(), out int bateria))
-            {
-                MessageBox.Show("El valor de Batería Vieja debe ser un número.");
-                return;
-            }
-
-            if (bateria < 0 || bateria > 100)
-            {
-                MessageBox.Show("El valor de Batería Vieja debe estar entre 0 y 100.",
-                                "Valor fuera de rango",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Warning);
-                return;
-            }
-
             using (FacturaProducto frmProd = new FacturaProducto())
             {
                 frmProd.FormularioFactura = this;
@@ -282,102 +186,54 @@ namespace SG_BAMS
                 {
                     ClsAgregarProductos objAP = new ClsAgregarProductos();
                     double precio = await objAP.ObtenerPrecioProducto(idProducto);
+
+                    
                     dgvProductos.Rows.Add(idProducto, nombresProductos, cantidades, precio, (cantidades * precio), frmProd.StockSeleccionado);
+
                     CalcularTotal();
                     ActualizarEstadoBotonAceptar();
                 }
             }
-        }
-
-        private void DateTFecha_DateChanged(object sender, DateRangeEventArgs e)
-        {
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
-
             if (dgvProductos.SelectedRows.Count > 0)
             {
-                if (MessageBox.Show("¿Desea quitar el producto?", "Eliminar", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                foreach (DataGridViewRow row in dgvProductos.SelectedRows)
                 {
-                    foreach (DataGridViewRow row in dgvProductos.SelectedRows)
-                    {
-                        if (!row.IsNewRow) dgvProductos.Rows.Remove(row);
-                    }
-
-                    double nuevoSubtotal = dgvProductos.Rows.Cast<DataGridViewRow>()
-                        .Where(r => !r.IsNewRow)
-                        .Sum(r => Convert.ToDouble(r.Cells["subtotal"].Value));
-
-
-                    if (nuevoSubtotal == 0 || this.precioBateria > nuevoSubtotal)
-                    {
-                        this.precioBateria = 0;
-                        this.cantidadBateria = "0";
-                        txtBateria.Text = "0";
-                    }
-
-                    CalcularTotal();
-                    ActualizarEstadoBotonAceptar();
+                    dgvProductos.Rows.Remove(row);
                 }
+
+                if (dgvProductos.Rows.Count == 0)
+                {
+                    precioBateria = 0;
+                    cantidadBateria = "0";
+                    txtBateria.Text = "0";
+                }
+
+                CalcularTotal();
+                ActualizarEstadoBotonAceptar();
             }
-
-        }
-
-        private void dgvProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void dgvProductos_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-
-            if (dgvProductos.Rows[e.RowIndex].IsNewRow) return;
-
-
             if (dgvProductos.Columns[e.ColumnIndex].Name == "cantidad")
             {
-                string valorEntrada = e.FormattedValue.ToString().Trim();
-
-
-                if (string.IsNullOrEmpty(valorEntrada))
+                string valor = e.FormattedValue.ToString();
+                if (!int.TryParse(valor, out int n) || n <= 0)
                 {
-                    MessageBox.Show("La cantidad no puede estar vacía.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Cantidad inválida.");
                     e.Cancel = true;
                     return;
                 }
 
-
-                if (!int.TryParse(valorEntrada, out int nuevaCantidad) || nuevaCantidad <= 0)
+                int stock = Convert.ToInt32(dgvProductos.Rows[e.RowIndex].Cells["stock_max"].Value);
+                if (n > stock)
                 {
-                    MessageBox.Show("Ingrese una cantidad válida mayor a 0", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show($"Stock insuficiente. Máximo: {stock}");
                     e.Cancel = true;
-                    return;
-                }
-
-                if (dgvProductos.Columns.Contains("stock_max"))
-                {
-                    var celdaStock = dgvProductos.Rows[e.RowIndex].Cells["stock_max"].Value;
-                    if (celdaStock != null)
-                    {
-                        int stockDisponible = Convert.ToInt32(celdaStock);
-                        if (nuevaCantidad > stockDisponible)
-                        {
-                            MessageBox.Show($"No puedes vender {nuevaCantidad}. El stock disponible es {stockDisponible}.",
-                                            "Stock Insuficiente", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            e.Cancel = true;
-                        }
-                    }
                 }
             }
         }
@@ -388,25 +244,15 @@ namespace SG_BAMS
             {
                 int cant = Convert.ToInt32(dgvProductos.Rows[e.RowIndex].Cells["cantidad"].Value);
                 double precio = Convert.ToDouble(dgvProductos.Rows[e.RowIndex].Cells["precio"].Value);
-
                 dgvProductos.Rows[e.RowIndex].Cells["subtotal"].Value = cant * precio;
-
                 CalcularTotal();
             }
         }
 
         private void btnBateria_Click(object sender, EventArgs e)
         {
-            double subtotalProductos = 0;
-            foreach (DataGridViewRow row in dgvProductos.Rows)
-            {
-                if (row.Cells["subtotal"].Value != null)
-                {
-                    subtotalProductos += Convert.ToDouble(row.Cells["subtotal"].Value);
-                }
-            }
-
-            using (BateriaVieja BV = new BateriaVieja(subtotalProductos))
+            double subtotalActual = Convert.ToDouble(txtSubtotal.Text);
+            using (BateriaVieja BV = new BateriaVieja(subtotalActual))
             {
                 if (BV.ShowDialog() == DialogResult.OK)
                 {
@@ -416,19 +262,15 @@ namespace SG_BAMS
                     CalcularTotal();
                 }
             }
-
         }
 
         private void ActualizarEstadoBotonAceptar()
         {
-            bool tieneProductos = dgvProductos.Rows.Cast<DataGridViewRow>().Any(row => !row.IsNewRow);
+            bool tieneProductos = dgvProductos.Rows.Count > 0;
             BtnAceptar.Enabled = tieneProductos;
             btnBateria.Enabled = tieneProductos;
         }
 
-        private void txtBateria_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            ClsValidaciones.ValidarSoloNumeros(e);
-        }
+        private void BtnCancelar_Click(object sender, EventArgs e) => this.Close();
     }
 }
