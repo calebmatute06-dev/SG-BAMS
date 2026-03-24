@@ -509,7 +509,7 @@
             dtpInicio.Name = "dtpInicio";
             dtpInicio.Size = new Size(100, 23);
             dtpInicio.TabIndex = 344;
-            dtpInicio.ValueChanged += dtpInicio_ValueChanged;
+            //dtpInicio.ValueChanged += dtpInicio_ValueChanged;
             // 
             // BtnNueva
             // 

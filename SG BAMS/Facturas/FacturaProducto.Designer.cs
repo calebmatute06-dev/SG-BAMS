@@ -76,7 +76,7 @@
             label4.Size = new Size(217, 29);
             label4.TabIndex = 258;
             label4.Text = "Agregar Producto";
-            label4.Click += label4_Click;
+           // label4.Click += label4_Click;
             // 
             // panel3
             // 

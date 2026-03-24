@@ -66,7 +66,7 @@
             txtPrecio.StateCommon.Content.Color1 = Color.Navy;
             txtPrecio.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtPrecio.TabIndex = 336;
-            txtPrecio.TextChanged += txtPrecio_TextChanged;
+            //txtPrecio.TextChanged += txtPrecio_TextChanged;
             txtPrecio.KeyPress += txtPrecio_KeyPress;
             // 
             // cmbBaterias
@@ -130,10 +130,10 @@
             dgvBateria.RowHeadersWidth = 51;
             dgvBateria.Size = new Size(480, 184);
             dgvBateria.TabIndex = 341;
-            dgvBateria.CellValidating += dgvBateria_CellValidating;
-            dgvBateria.CellValueChanged += dgvBateria_CellValueChanged;
-            dgvBateria.CurrentCellDirtyStateChanged += dgvBateria_CurrentCellDirtyStateChanged;
-            dgvBateria.EditingControlShowing += dgvBateria_EditingControlShowing;
+            //dgvBateria.CellValidating += dgvBateria_CellValidating;
+            ////dgvBateria.CellValueChanged += dgvBateria_CellValueChanged;
+            //dgvBateria.CurrentCellDirtyStateChanged += dgvBateria_CurrentCellDirtyStateChanged;
+            //dgvBateria.EditingControlShowing += dgvBateria_EditingControlShowing;
             // 
             // BtnAceptar
             // 

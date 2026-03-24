@@ -73,7 +73,7 @@
             label7.Size = new Size(80, 27);
             label7.TabIndex = 307;
             label7.Text = "Fecha";
-            label7.Click += label7_Click;
+            //label7.Click += label7_Click;
             // 
             // label9
             // 
@@ -142,7 +142,7 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(25, 755);
             panel3.TabIndex = 294;
-            panel3.Paint += panel3_Paint;
+           // panel3.Paint += panel3_Paint;
             // 
             // panel1
             // 
@@ -244,7 +244,7 @@
             DateTFecha.Margin = new Padding(10, 12, 10, 12);
             DateTFecha.Name = "DateTFecha";
             DateTFecha.TabIndex = 315;
-            DateTFecha.DateChanged += DateTFecha_DateChanged;
+           // DateTFecha.DateChanged += DateTFecha_DateChanged;
             // 
             // label2
             // 
@@ -330,7 +330,7 @@
             dgvProductos.RowHeadersWidth = 51;
             dgvProductos.Size = new Size(678, 267);
             dgvProductos.TabIndex = 323;
-            dgvProductos.CellContentClick += dgvProductos_CellContentClick;
+            //dgvProductos.CellContentClick += dgvProductos_CellContentClick;
             dgvProductos.CellValidating += dgvProductos_CellValidating;
             dgvProductos.CellValueChanged += dgvProductos_CellValueChanged;
             // 

@@ -144,10 +144,11 @@ namespace SG_BAMS.Facturas
             }
         }
 
-       
+
         private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
         {
-            ClsValidaciones.ValidarSoloNumeros(e); 
+            ClsValidaciones.ValidarSoloNumeros(e);
+        }
 
         private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
         {

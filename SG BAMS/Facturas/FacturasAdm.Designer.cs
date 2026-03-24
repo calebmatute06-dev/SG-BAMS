@@ -195,7 +195,7 @@
             btnnotificaciones.Size = new Size(59, 44);
             btnnotificaciones.TabIndex = 113;
             btnnotificaciones.UseVisualStyleBackColor = false;
-            btnnotificaciones.Click += btnnotificaciones_Click;
+           // btnnotificaciones.Click += btnnotificaciones_Click;
             // 
             // panel8
             // 
@@ -316,7 +316,7 @@
             btnreportes.TabIndex = 40;
             btnreportes.Values.DropDownArrowColor = Color.Empty;
             btnreportes.Values.Text = "Reportes";
-            btnreportes.Click += btnreportes_Click;
+           // btnreportes.Click += btnreportes_Click;
             // 
             // btncompra
             // 
@@ -498,7 +498,7 @@
             btndeudores.TabIndex = 27;
             btndeudores.Values.DropDownArrowColor = Color.Empty;
             btndeudores.Values.Text = "Deudores";
-            btndeudores.Click += btndeudores_Click;
+            //btndeudores.Click += btndeudores_Click;
             // 
             // pictureBox16
             // 
@@ -716,7 +716,7 @@
             dtpInicio.Name = "dtpInicio";
             dtpInicio.Size = new Size(114, 27);
             dtpInicio.TabIndex = 143;
-            dtpInicio.ValueChanged += dtpInicio_ValueChanged;
+            //dtpInicio.ValueChanged += dtpInicio_ValueChanged;
             // 
             // dtpFin
             // 
@@ -795,7 +795,7 @@
             BtnRefrescar.Size = new Size(65, 44);
             BtnRefrescar.TabIndex = 331;
             BtnRefrescar.UseVisualStyleBackColor = true;
-            BtnRefrescar.Click += BtnRefrescar_Click_1;
+           // BtnRefrescar.Click += BtnRefrescar_Click_1;
             // 
             // label4
             // 
