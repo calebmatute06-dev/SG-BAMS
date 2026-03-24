@@ -3,7 +3,6 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Windows.Forms;
 using System;
 
 namespace SG_BAMS
@@ -321,6 +320,19 @@ namespace SG_BAMS
                 {
                     e.Handled = true;
                 }
+            }
+        }
+
+        public static void ValidarRangoFechas(DateTimePicker dtpInicio, DateTimePicker dtpFin)
+        {
+            
+            dtpInicio.MaxDate = DateTime.Today;
+            dtpFin.MaxDate = DateTime.Today;
+
+           
+            if (dtpInicio.Value.Date > dtpFin.Value.Date)
+            {
+                dtpInicio.Value = dtpFin.Value;
             }
         }
     }

@@ -27,7 +27,7 @@ namespace SG_BAMS
             dgvFacturas.AllowUserToOrderColumns = false;
             dgvFacturas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            
+
             txtBusqueda.KeyPress += (s, e) => ClsValidaciones.ValidarBusquedaAlfanumerica(e);
         }
 
@@ -42,12 +42,12 @@ namespace SG_BAMS
                 {
                     dgvFacturas.DataSource = datosFac;
 
-                   
+
                     dgvFacturas.Columns["Factura"].HeaderText = "N° Factura";
                     dgvFacturas.Columns["ID Método de Pago"].Visible = false;
                     dgvFacturas.Columns["Rebaja"].HeaderText = "Rebaja Batería";
 
-                    
+
                     dgvFacturas.Columns["Rebaja"].DisplayIndex = 8;
                     dgvFacturas.Columns["Batería Vieja"].DisplayIndex = 7;
                     dgvFacturas.Columns["Total Unidades"].DisplayIndex = 9;
@@ -68,6 +68,9 @@ namespace SG_BAMS
             dtpInicio.Value = DateTime.Today;
             dtpFin.Value = DateTime.Today;
 
+           
+            ClsValidaciones.ValidarRangoFechas(dtpInicio, dtpFin);
+
             FiltrarDatos();
 
             dtpInicio.ValueChanged += (s, ev) => ValidarYFiltrar();
@@ -76,6 +79,9 @@ namespace SG_BAMS
 
         private void ValidarYFiltrar()
         {
+            
+            ClsValidaciones.ValidarRangoFechas(dtpInicio, dtpFin);
+
             if (dtpFin.Value < dtpInicio.Value)
                 dtpFin.Value = dtpInicio.Value;
 
@@ -88,15 +94,15 @@ namespace SG_BAMS
 
             DataView dv = datosFac.DefaultView;
 
-           
+
             string fInicio = dtpInicio.Value.Date.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
             string fFin = dtpFin.Value.Date.AddDays(1).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
             string texto = txtBusqueda.Text.Replace("'", "''").Replace("[", "[[]").Replace("]", "[]]");
 
-            
+
             string rowFilter = $"[Fecha] >= #{fInicio}# AND [Fecha] < #{fFin}#";
 
-           
+
             if (!string.IsNullOrWhiteSpace(texto))
             {
                 rowFilter += $" AND (Convert([Factura], 'System.String') LIKE '%{texto}%' OR " +
@@ -111,7 +117,7 @@ namespace SG_BAMS
                 dgvFacturas.DataSource = dv;
                 dgvFacturas.ClearSelection();
             }
-            catch {  }
+            catch { }
         }
 
         private void txtBusqueda_TextChanged(object sender, EventArgs e) => FiltrarDatos();
@@ -168,7 +174,7 @@ namespace SG_BAMS
             FiltrarDatos();
         }
 
-        
+
 
         private void NavegarA(Form formulario)
         {
@@ -183,7 +189,7 @@ namespace SG_BAMS
 
         private void BtnNotificaciones_Click(object sender, EventArgs e)
         {
-            new NotificacionesAdmin().Show(); 
+            new NotificacionesAdmin().Show();
             this.Hide();
         }
 
