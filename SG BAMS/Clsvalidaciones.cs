@@ -300,5 +300,28 @@ namespace SG_BAMS
                 }
             }
         }
+
+        public static void PermitirNumerosYDecimales(object sender, KeyPressEventArgs e)
+        {
+
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+                return;
+            }
+
+
+            if (e.KeyChar == '.')
+            {
+                string textoActual = "";
+                if (sender is Control control) textoActual = control.Text;
+                else if (sender is string texto) textoActual = texto;
+
+                if (textoActual.Contains("."))
+                {
+                    e.Handled = true;
+                }
+            }
+        }
     }
 }

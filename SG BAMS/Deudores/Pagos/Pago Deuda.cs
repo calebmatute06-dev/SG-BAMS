@@ -26,18 +26,21 @@ namespace SG_BAMS
             this.idDeudaRecibido = idDeuda;
             ConfigurarFormulario();
         }
+
         private void RegistrarEventos()
         {
             if (this.txtMonto != null)
             {
-                this.txtMonto.KeyPress += new KeyPressEventHandler(this.txtMonto_KeyPress);
+                
+                this.txtMonto.KeyPress += (s, e) => ClsValidaciones.PermitirNumerosYDecimales(s, e);
             }
         }
+
         private void ConfigurarFormulario()
         {
-            DataTable dt = objetoDeudas.ObtenerDeudoresActivos();
+            DataTable dtDeudores = objetoDeudas.ObtenerDeudoresActivos();
 
-            if (dt != null && dt.Rows.Count > 0)
+            if (dtDeudores != null && dtDeudores.Rows.Count > 0)
             {
                 cmbDeudores.DataSource = null;
                 cmbDeudores.Items.Clear();
@@ -47,7 +50,7 @@ namespace SG_BAMS
 
                 cmbDeudores.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 cmbDeudores.AutoCompleteSource = AutoCompleteSource.ListItems;
-                cmbDeudores.DataSource = dt;
+                cmbDeudores.DataSource = dtDeudores;
                 cmbDeudores.SelectedIndex = -1;
             }
         }
@@ -56,11 +59,11 @@ namespace SG_BAMS
         {
             if (idDeudaRecibido > 0 && cmbDeudores.DataSource != null)
             {
-                DataTable dt = (DataTable)cmbDeudores.DataSource;
+                DataTable dtDatos = (DataTable)cmbDeudores.DataSource;
 
-                for (int i = 0; i < dt.Rows.Count; i++)
+                for (int i = 0; i < dtDatos.Rows.Count; i++)
                 {
-                    if (Convert.ToInt32(dt.Rows[i]["ID"]) == idDeudaRecibido)
+                    if (Convert.ToInt32(dtDatos.Rows[i]["ID"]) == idDeudaRecibido)
                     {
                         cmbDeudores.SelectedIndex = i;
                         cmbDeudores.Enabled = false;
@@ -70,45 +73,23 @@ namespace SG_BAMS
             }
             else if (!string.IsNullOrEmpty(nombreRecibido))
             {
-                int index = cmbDeudores.FindStringExact(nombreRecibido);
-                if (index == -1) index = cmbDeudores.FindString(nombreRecibido);
-                cmbDeudores.SelectedIndex = index;
+                int indiceEncontrado = cmbDeudores.FindStringExact(nombreRecibido);
+                if (indiceEncontrado == -1) indiceEncontrado = cmbDeudores.FindString(nombreRecibido);
+                cmbDeudores.SelectedIndex = indiceEncontrado;
             }
         }
 
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtMonto_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
-            {
-                e.Handled = true;
-                return;
-            }
-
-            string textoActual = "";
-            if (sender is Control control)
-            {
-                textoActual = control.Text;
-            }
-
-            if (e.KeyChar == '.' && textoActual.Contains("."))
-            {
-                e.Handled = true;
-            }
-        }
+        
+        private void txtMonto_KeyPress(object sender, KeyPressEventArgs e) { }
 
         private async void btnAceptar_Click(object sender, EventArgs e)
         {
             if (cmbDeudores.SelectedValue == null ||
-            !decimal.TryParse(txtMonto.Text, out decimal montoPago) ||
-            montoPago <= 0)
+                !decimal.TryParse(txtMonto.Text, out decimal montoPago) ||
+                montoPago <= 0)
             {
-                MessageBox.Show("Por favor, selecciona un deudor y escribe un monto positivo mayor a cero.");
+                MessageBox.Show("Por favor, selecciona un deudor y escribe un monto válido mayor a cero.",
+                                "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -118,13 +99,13 @@ namespace SG_BAMS
             if (montoPago > saldoPendiente)
             {
                 MessageBox.Show($"El monto ingresado ({montoPago:C}) supera el saldo pendiente ({saldoPendiente:C}).",
-                                "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                "Error de saldo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            bool ok = await objetoDeudas.InsertarPago(idDeudaFinal, montoPago, DateTime.Now);
+            bool transaccionOk = await objetoDeudas.InsertarPago(idDeudaFinal, montoPago, DateTime.Now);
 
-            if (ok)
+            if (transaccionOk)
             {
                 MessageBox.Show("¡Pago registrado correctamente!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;
@@ -136,5 +117,7 @@ namespace SG_BAMS
         {
             this.Close();
         }
+
+        private void label2_Click(object sender, EventArgs e) { }
     }
 }
