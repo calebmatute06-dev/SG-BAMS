@@ -10,24 +10,18 @@ namespace SG_BAMS
 {
     public static class ClsValidaciones
     {
-        // --- MÉTODOS DE COMPATIBILIDAD (Para que tus Forms no den error) ---
-
         public static bool ValidarNombre(string nombre)
         {
-            // Creamos un control temporal para usar la lógica robusta de EsNombrePersonalValido
             TextBox temp = new TextBox { Text = nombre };
             return EsNombrePersonalValido(temp, "Nombre");
         }
 
         public static bool ValidarPrecio(string precio)
         {
-            // Usamos la lógica de decimales existente
             TextBox temp = new TextBox { Text = precio };
             decimal salida;
             return EsNumeroDecimalValido(temp, "Precio", out salida);
         }
-
-        // --- VALIDACIONES DE ESTADO DE CAMPO ---
 
         public static bool CampoVacio(Control control, string nombreCampo)
         {
@@ -39,8 +33,6 @@ namespace SG_BAMS
             }
             return false;
         }
-
-        // --- VALIDACIONES NUMÉRICAS Y DECIMALES ---
 
         public static bool EsNumeroDecimalValido(Control control, string nombreCampo, out decimal valorResultado)
         {
@@ -78,8 +70,6 @@ namespace SG_BAMS
             }
         }
 
-        // --- VALIDACIONES DE TEXTO (SOLO LETRAS) ---
-
         public static void PermitirSoloLetras(KeyPressEventArgs e)
         {
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
@@ -100,6 +90,8 @@ namespace SG_BAMS
             }
 
             string textoTrim = texto.Trim();
+
+            
             if (textoTrim.Length < minLength || textoTrim.Length > maxLength)
             {
                 MessageBox.Show($"{nombreCampo} debe tener entre {minLength} y {maxLength} caracteres.", "Longitud", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -107,6 +99,7 @@ namespace SG_BAMS
                 return false;
             }
 
+            
             if (Regex.IsMatch(texto, @"\s{2,}") || texto.StartsWith(" ") || texto.EndsWith(" "))
             {
                 MessageBox.Show($"El campo '{nombreCampo}' tiene un espaciado incorrecto.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -121,16 +114,10 @@ namespace SG_BAMS
                 return false;
             }
 
-            if (Regex.IsMatch(textoTrim, @"(.)\1{2,}"))
+            
+            if (Regex.IsMatch(textoTrim, @"(.)\1{2,}") || Regex.IsMatch(textoTrim.Replace(" ", ""), @"(.{2,})\1{2,}"))
             {
-                MessageBox.Show($"{nombreCampo} contiene demasiados caracteres repetidos seguidos.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                control.Focus();
-                return false;
-            }
-
-            if (Regex.IsMatch(textoTrim.Replace(" ", ""), @"(.{2,})\1{2,}"))
-            {
-                MessageBox.Show($"{nombreCampo} tiene un patrón repetitivo inválido.", "Formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"{nombreCampo} contiene caracteres o patrones repetitivos inválidos.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
             }
@@ -145,8 +132,6 @@ namespace SG_BAMS
             return true;
         }
 
-        // --- VALIDACIONES ALFANUMÉRICAS ---
-
         public static void PermitirAlfanumerico(KeyPressEventArgs e)
         {
             if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
@@ -155,7 +140,7 @@ namespace SG_BAMS
             }
         }
 
-        public static bool EsAlfanumericoValido(Control control, string nombreCampo, int minLength = 2, int maxLength = 50)
+        public static bool EsAlfanumericoValido(Control control, string nombreCampo, int minLength = 3, int maxLength = 50)
         {
             string texto = control.Text;
 
@@ -167,9 +152,19 @@ namespace SG_BAMS
             }
 
             string textoTrim = texto.Trim();
+
+            
             if (textoTrim.Length < minLength || textoTrim.Length > maxLength)
             {
-                MessageBox.Show($"{nombreCampo} debe tener entre {minLength} y {maxLength} caracteres.", "Longitud", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"{nombreCampo} debe tener al menos {minLength} caracteres.", "Longitud", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                control.Focus();
+                return false;
+            }
+
+            
+            if (Regex.IsMatch(textoTrim, @"(?i)\b(?![yY]\b)[a-zñáéíóú]\b"))
+            {
+                MessageBox.Show($"No se permiten letras aisladas en {nombreCampo}.", "Formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
             }
@@ -178,7 +173,7 @@ namespace SG_BAMS
                 Regex.IsMatch(textoTrim, @"(.)\1{3,}") ||
                 Regex.IsMatch(textoTrim.Replace(" ", ""), @"(.{2,})\1{2,}"))
             {
-                MessageBox.Show($"{nombreCampo} tiene un formato inválido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"{nombreCampo} tiene un formato o repetición inválida.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
             }
@@ -192,8 +187,6 @@ namespace SG_BAMS
 
             return true;
         }
-
-        // --- VALIDACIONES ESPECÍFICAS ---
 
         public static void ValidarBusquedaAlfanumerica(KeyPressEventArgs e)
         {

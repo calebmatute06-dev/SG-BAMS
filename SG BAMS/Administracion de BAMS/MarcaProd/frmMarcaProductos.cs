@@ -92,21 +92,35 @@ namespace SG_BAMS
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            if (dgvMarcas.SelectedRows.Count > 0)
+            
+            if (dgvMarcas.CurrentRow != null && dgvMarcas.SelectedRows.Count > 0)
             {
-                int id = Convert.ToInt32(dgvMarcas.CurrentRow.Cells["id_marca_producto"].Value);
-                string nombre = dgvMarcas.CurrentRow.Cells["nombre_marca"].Value.ToString();
-
-                frmModificarMarcaProducto frm = new frmModificarMarcaProducto(id, nombre);
-
-                if (frm.ShowDialog() == DialogResult.OK)
+                try
                 {
-                    _ = CargarGridMarcas();
+                    
+                    int id = Convert.ToInt32(dgvMarcas.CurrentRow.Cells["id_marca_producto"].Value);
+                    string nombre = dgvMarcas.CurrentRow.Cells["nombre_marca"].Value.ToString();
+
+                    
+                    frmModificarMarcaProducto frm = new frmModificarMarcaProducto(id, nombre);
+
+                   
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
+                        
+                        _ = CargarGridMarcas();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al intentar editar el registro: " + ex.Message, "Sistema BAMS",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show("Seleccione una marca de la lista.");
+                MessageBox.Show("Por favor, seleccione una marca de la lista para modificar.", "SG-BAMS",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

@@ -14,6 +14,7 @@ namespace SG_BAMS
     public partial class frmModeloAuto : Form
     {
         clsModeloAuto objetoModelo = new clsModeloAuto();
+
         public frmModeloAuto()
         {
             InitializeComponent();
@@ -30,11 +31,8 @@ namespace SG_BAMS
             try
             {
                 this.Cursor = Cursors.WaitCursor;
-
                 DataTable dt = await objetoModelo.LeerModelosAsync();
-
                 dgvModelos.DataSource = dt;
-
                 ConfigurarDisenoGrid();
             }
             catch (Exception ex)
@@ -46,7 +44,6 @@ namespace SG_BAMS
             {
                 this.Cursor = Cursors.Default;
             }
-
         }
 
         private void ConfigurarDisenoGrid()
@@ -67,29 +64,25 @@ namespace SG_BAMS
             dgvModelos.ClearSelection();
         }
 
-        private void kryptonButton2_Click(object sender, EventArgs e)
+        
+        private void btnAgregar_Click(object sender, EventArgs e)
         {
+            frmAgregarModeloAuto agregarMauto = new frmAgregarModeloAuto();
 
-        }
-
-
-
-        private void dgvModelos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            int id = Convert.ToInt32(dgvModelos.CurrentRow.Cells["id_modelo_auto"].Value);
-            string nombre = dgvModelos.CurrentRow.Cells["nombre_modelo_auto"].Value.ToString();
-
-            frmModificarModelos frmMod = new frmModificarModelos(id, nombre);
-
-            if (frmMod.ShowDialog() == DialogResult.OK)
+            
+            if (agregarMauto.ShowDialog() == DialogResult.OK)
             {
+                
                 _ = CargarGridModelos();
             }
+
+           
         }
 
+        
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            if (dgvModelos.SelectedRows.Count > 0)
+            if (dgvModelos.CurrentRow != null && dgvModelos.SelectedRows.Count > 0)
             {
                 int id = Convert.ToInt32(dgvModelos.CurrentRow.Cells["id_modelo_auto"].Value);
                 string nombre = dgvModelos.CurrentRow.Cells["nombre_modelo_auto"].Value.ToString();
@@ -103,15 +96,14 @@ namespace SG_BAMS
             }
             else
             {
-                MessageBox.Show("Por favor, seleccione un modelo de la lista.");
+                MessageBox.Show("Por favor, seleccione un modelo de la lista.", "Validación",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
-        private void btnAgregar_Click(object sender, EventArgs e)
+        private void dgvModelos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            frmAgregarModeloAuto agregarMauto = new frmAgregarModeloAuto();
-            agregarMauto.Show();
-            this.Close();
+            btnModificar_Click(sender, e); 
         }
 
         private void btnSalir_Click(object sender, EventArgs e)

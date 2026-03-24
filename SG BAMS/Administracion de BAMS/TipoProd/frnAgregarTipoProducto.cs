@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions; 
 
 namespace SG_BAMS
 {
@@ -29,6 +30,17 @@ namespace SG_BAMS
                 return;
             }
 
+            
+            if (Regex.IsMatch(txtDescri.Text.Trim(), @"(?i)\b(?![yY]\b)[a-zñáéíóú]\b"))
+            {
+                MessageBox.Show("No se permiten letras aisladas en el nombre (excepto la 'y').",
+                                "Formato Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtDescri.Focus();
+                return;
+            }
+
+            
+
             try
             {
                 this.Cursor = Cursors.WaitCursor;
@@ -36,7 +48,6 @@ namespace SG_BAMS
 
                 clsTipoProducto objetoTipo = new clsTipoProducto();
 
-                
                 bool exito = await objetoTipo.InsertarTipoProductoAsync(txtDescri.Text.Trim());
 
                 if (exito)
@@ -44,7 +55,7 @@ namespace SG_BAMS
                     MessageBox.Show("Tipo de producto registrado con éxito.", "SG-BAMS",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    this.DialogResult = DialogResult.OK; 
+                    this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
             }
@@ -62,7 +73,6 @@ namespace SG_BAMS
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            
             this.Close();
         }
     }
