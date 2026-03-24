@@ -120,7 +120,7 @@
             label10.Size = new Size(158, 42);
             label10.TabIndex = 90;
             label10.Text = "Bitácora";
-            label10.Click += label10_Click;
+           // label10.Click += label10_Click;
             // 
             // kryptonButton14
             // 
@@ -220,7 +220,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(286, 892);
             panel1.TabIndex = 63;
-            panel1.Paint += panel1_Paint;
+            //panel1.Paint += panel1_Paint;
             // 
             // btnPerfil
             // 

@@ -1,39 +1,36 @@
-﻿using Microsoft.Data.SqlClient;
-using SG_BAMS.Administracion_de_BAMS.Estado;
-using SG_BAMS.Cliente;
-using SG_BAMS.Facturas;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using SG_BAMS.Cliente;
+using SG_BAMS.Facturas;
 
 namespace SG_BAMS
 {
     public partial class ClienteAgregar : Form
     {
+        public int IdClienteGenerado { get; private set; }
+        public string NombreDelCliente { get; private set; }
+
         public ClienteAgregar()
         {
             InitializeComponent();
+
+           
             txtTelefono.MaxLength = 8;
             txtRTN.MaxLength = 14;
 
+            
             txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
             txtApellido.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
+            txtRTN.KeyPress += (s, e) => ClsValidaciones.ValidarSoloNumeros(e);
         }
 
-        
-        public int IdClienteGenerado { get; private set; }
-        public string NombreDelCliente { get; private set; }
         private async void btnAgregar_Click(object sender, EventArgs e)
         {
-            
+           
             if (!ClsValidaciones.EsNombrePersonalValido(txtNombre.TextBox, "El Nombre") ||
                 !ClsValidaciones.EsNombrePersonalValido(txtApellido.TextBox, "El Apellido"))
             {
@@ -46,18 +43,18 @@ namespace SG_BAMS
                 return;
             }
 
-            string tel = txtTelefono.Text.Trim();
             string rtn = txtRTN.Text.Trim();
 
             
-            if (!string.IsNullOrWhiteSpace(rtn) && rtn.Length < 14)
+            if (!string.IsNullOrWhiteSpace(rtn))
             {
-                MessageBox.Show("El RTN debe tener exactamente 14 números o dejarse vacío.",
-                                "RTN Incompleto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                
+                if (!ClsValidaciones.EsAlfanumericoValido(txtRTN.TextBox, "RTN", 14, 14))
+                {
+                    return;
+                }
             }
-
-            if (string.IsNullOrWhiteSpace(rtn))
+            else
             {
                 rtn = "Sin RTN";
             }
@@ -67,7 +64,12 @@ namespace SG_BAMS
                 this.Cursor = Cursors.WaitCursor;
                 ClsAgregarClientes objAC = new ClsAgregarClientes();
 
-                int id = await objAC.AgregarClientes(txtNombre.Text.Trim(), txtApellido.Text.Trim(), tel, rtn);
+                int id = await objAC.AgregarClientes(
+                    txtNombre.Text.Trim(),
+                    txtApellido.Text.Trim(),
+                    txtTelefono.Text.Trim(),
+                    rtn
+                );
 
                 if (id > 0)
                 {
@@ -86,64 +88,44 @@ namespace SG_BAMS
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al guardar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
                 this.Cursor = Cursors.Default;
             }
-
-        }
-
-        private void ClienteAgregar_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BtnExistente_Click(object sender, EventArgs e)
-        {
-
-            using (ClienteExistente frmCE = new ClienteExistente())
-            {
-                if (frmCE.ShowDialog() == DialogResult.OK)
-                {
-                    this.DialogResult = DialogResult.OK;
-
-                }
-            }
-
-
-        }
-
-        private void BtnSalir_Click(object sender, EventArgs e)
-        {
-            this.Close();
-
-
         }
 
         private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
+           
             ClsValidaciones.ValidarSoloNumeros(e);
 
             
             if (!e.Handled && txtTelefono.SelectionStart == 0 && !char.IsControl(e.KeyChar))
             {
-                char[] validos = { '2', '3', '8', '9' };
-                if (!validos.Contains(e.KeyChar))
+                char[] prefijosHonduras = { '2', '3', '8', '9' };
+                if (!prefijosHonduras.Contains(e.KeyChar))
                 {
                     e.Handled = true;
                 }
             }
         }
 
-        private void txtRTN_KeyPress(object sender, KeyPressEventArgs e)
+        private void BtnExistente_Click(object sender, EventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            using (ClienteExistente frmCE = new ClienteExistente())
             {
-                e.Handled = true;
+                if (frmCE.ShowDialog() == DialogResult.OK)
+                {
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
             }
         }
+
+        private void BtnSalir_Click(object sender, EventArgs e) => this.Close();
+
+        private void ClienteAgregar_Load(object sender, EventArgs e) { }
     }
 }

@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Krypton.Toolkit;
 
 namespace SG_BAMS
 {
@@ -22,6 +23,7 @@ namespace SG_BAMS
             txtRTN.Text = rtnCliente;
             idEstadoSelec = idEstado;
 
+            
             txtTelefono.MaxLength = 8;
             txtRTN.MaxLength = 14;
             txtID.ReadOnly = true;
@@ -29,6 +31,8 @@ namespace SG_BAMS
             
             txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
             txtApellido.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
+            txtTelefono.KeyPress += (s, e) => ClsValidaciones.ValidarSoloNumeros(e);
+            txtRTN.KeyPress += (s, e) => ClsValidaciones.ValidarSoloNumeros(e);
         }
 
         public ClienteModificar()
@@ -38,35 +42,38 @@ namespace SG_BAMS
 
         private async void BtnModificar_Click(object sender, EventArgs e)
         {
-           
-            if (!ClsValidaciones.EsNombrePersonalValido(txtNombre, "El Nombre") ||
-                !ClsValidaciones.EsNombrePersonalValido(txtApellido, "El Apellido"))
+            
+            if (!ClsValidaciones.EsNombrePersonalValido(txtNombre, "Nombre") ||
+                !ClsValidaciones.EsNombrePersonalValido(txtApellido, "Apellido"))
             {
                 return;
             }
 
-           
+            
             if (!ClsValidaciones.EsTelefonoHondurasValido(txtTelefono))
             {
                 return;
             }
 
-            if (cmbEstado.SelectedValue == null)
+            
+            if (!ClsValidaciones.ValidarSeleccion(cmbEstado, "el estado del cliente"))
             {
-                MessageBox.Show("Debe seleccionar un estado para el cliente.", "Campo Requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             
             string rtn = txtRTN.Text.Trim();
-            if (!string.IsNullOrWhiteSpace(rtn) && rtn.Length < 14 && rtn.ToUpper() != "SIN RTN")
+            if (!string.IsNullOrWhiteSpace(rtn) && rtn.ToUpper() != "SIN RTN")
             {
-                MessageBox.Show("Debe completar los 14 números del RTN o dejar el campo vacío.",
-                                "RTN Incompleto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                if (!ClsValidaciones.EsAlfanumericoValido(txtRTN, "RTN", 14, 14))
+                {
+                    return;
+                }
             }
-
-            if (string.IsNullOrWhiteSpace(rtn)) rtn = "Sin RTN";
+            else
+            {
+                rtn = "Sin RTN";
+            }
 
             try
             {
@@ -127,25 +134,5 @@ namespace SG_BAMS
         }
 
         private void BtnSalir_Click(object sender, EventArgs e) => this.Close();
-
-        private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            
-            ClsValidaciones.ValidarSoloNumeros(e);
-
-            
-            if (!e.Handled && txtTelefono.SelectionStart == 0 && !char.IsControl(e.KeyChar))
-            {
-                char[] validos = { '2', '3', '8', '9' };
-                if (!validos.Contains(e.KeyChar)) e.Handled = true;
-            }
-
-            
-        }
-
-        private void txtRTN_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            ClsValidaciones.ValidarSoloNumeros(e);
-        }
     }
 }

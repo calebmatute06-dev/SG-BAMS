@@ -91,7 +91,6 @@ namespace SG_BAMS
 
             string textoTrim = texto.Trim();
 
-            
             if (textoTrim.Length < minLength || textoTrim.Length > maxLength)
             {
                 MessageBox.Show($"{nombreCampo} debe tener entre {minLength} y {maxLength} caracteres.", "Longitud", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -99,7 +98,6 @@ namespace SG_BAMS
                 return false;
             }
 
-            
             if (Regex.IsMatch(texto, @"\s{2,}") || texto.StartsWith(" ") || texto.EndsWith(" "))
             {
                 MessageBox.Show($"El campo '{nombreCampo}' tiene un espaciado incorrecto.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -114,8 +112,8 @@ namespace SG_BAMS
                 return false;
             }
 
-            
-            if (Regex.IsMatch(textoTrim, @"(.)\1{2,}") || Regex.IsMatch(textoTrim.Replace(" ", ""), @"(.{2,})\1{2,}"))
+            // Cambiado a {3,} para que el 4to carácter repetido dispare el error
+            if (Regex.IsMatch(textoTrim, @"(.)\1{3,}") || Regex.IsMatch(textoTrim.Replace(" ", ""), @"(.{2,})\1{2,}"))
             {
                 MessageBox.Show($"{nombreCampo} contiene caracteres o patrones repetitivos inválidos.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
@@ -153,15 +151,21 @@ namespace SG_BAMS
 
             string textoTrim = texto.Trim();
 
-            
             if (textoTrim.Length < minLength || textoTrim.Length > maxLength)
             {
-                MessageBox.Show($"{nombreCampo} debe tener al menos {minLength} caracteres.", "Longitud", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"{nombreCampo} debe tener entre {minLength} y {maxLength} caracteres.", "Longitud", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
             }
 
-            
+            // Validación de no más de 3 repetidos (4 o más es error)
+            if (Regex.IsMatch(textoTrim, @"(.)\1{3,}"))
+            {
+                MessageBox.Show($"{nombreCampo} contiene demasiados caracteres repetidos seguidos.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                control.Focus();
+                return false;
+            }
+
             if (Regex.IsMatch(textoTrim, @"(?i)\b(?![yY]\b)[a-zñáéíóú]\b"))
             {
                 MessageBox.Show($"No se permiten letras aisladas en {nombreCampo}.", "Formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -170,7 +174,6 @@ namespace SG_BAMS
             }
 
             if (Regex.IsMatch(texto, @"\s{2,}") || texto.StartsWith(" ") || texto.EndsWith(" ") ||
-                Regex.IsMatch(textoTrim, @"(.)\1{3,}") ||
                 Regex.IsMatch(textoTrim.Replace(" ", ""), @"(.{2,})\1{2,}"))
             {
                 MessageBox.Show($"{nombreCampo} tiene un formato o repetición inválida.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -197,12 +200,24 @@ namespace SG_BAMS
         public static bool EsTelefonoHondurasValido(Control control)
         {
             string tel = control.Text.Trim();
-            if (tel.Length != 8 || !tel.All(char.IsDigit))
+
+            // Validar formato base y prefijos
+            if (!Regex.IsMatch(tel, @"^[23789]\d{7}$"))
             {
-                MessageBox.Show("El teléfono debe tener 8 dígitos numéricos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("El teléfono debe tener 8 dígitos y comenzar con un prefijo válido de Honduras (2, 3, 7, 8 o 9).",
+                                "Teléfono Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
             }
+
+            // Validación de no más de 3 números repetidos seguidos
+            if (Regex.IsMatch(tel, @"(.)\1{3,}"))
+            {
+                MessageBox.Show("El teléfono no puede tener más de 3 números repetidos seguidos.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                control.Focus();
+                return false;
+            }
+
             return true;
         }
 
@@ -215,6 +230,15 @@ namespace SG_BAMS
                 control.Focus();
                 return false;
             }
+
+            // Seguridad extra: evitar contraseñas como "111111"
+            if (Regex.IsMatch(pass, @"(.)\1{3,}"))
+            {
+                MessageBox.Show($"{nombreCampo} es muy débil (demasiados caracteres repetidos).", "Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                control.Focus();
+                return false;
+            }
+
             return true;
         }
 
@@ -235,6 +259,13 @@ namespace SG_BAMS
                 MessageBox.Show("El código de barra debe contener 13 números.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
+
+            if (Regex.IsMatch(codigo, @"(.)\1{3,}"))
+            {
+                MessageBox.Show("El código de barra tiene un patrón de repetición inválido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
             return true;
         }
     }

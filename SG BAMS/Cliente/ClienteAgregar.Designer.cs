@@ -275,7 +275,7 @@
             txtRTN.StateCommon.Back.Color1 = Color.SkyBlue;
             txtRTN.StateCommon.Border.Rounding = 10F;
             txtRTN.TabIndex = 322;
-            txtRTN.KeyPress += txtRTN_KeyPress;
+            //txtRTN.KeyPress += txtRTN_KeyPress;
             // 
             // ClienteAgregar
             // 

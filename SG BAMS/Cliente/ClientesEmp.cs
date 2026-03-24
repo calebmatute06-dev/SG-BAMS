@@ -14,103 +14,19 @@ namespace SG_BAMS
     public partial class ClientesEmp : Form
     {
         DataTable datosCli;
+
         public ClientesEmp()
         {
             InitializeComponent();
             dgvClientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
-            txtBusqueda.KeyPress += (s, e) => ClsValidaciones.ValidarBusquedaAlfanumerica(e);
-        
             dgvClientes.MultiSelect = false;
-        }
 
-        private void panel6_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void txtBusqueda_TextChanged(object sender, EventArgs e)
-        {
-            if (datosCli != null)
-            {
-                DataView dv = datosCli.DefaultView;
-
-                if (string.IsNullOrWhiteSpace(txtBusqueda.Text))
-                {
-                    if (chkActivo.Checked)
-                        dv.RowFilter = "Estado <> 'Activo'";
-                    else
-                        dv.RowFilter = "Estado = 'Activo'";
-                }
-                else
-                {
-                    string textoSeguro = txtBusqueda.Text
-                        .Replace("'", "''")
-                        .Replace("[", "[[]")
-                        .Replace("]", "[]]")
-                        .Replace("*", "[*]")
-                        .Replace("%", "[%]");
-
-                    string filtroEstado = chkActivo.Checked ? "Estado <> 'Activo'" : "Estado = 'Activo'";
-
-                    try
-                    {
-                        dv.RowFilter = string.Format(
-                            "({0}) AND (Nombre LIKE '%{1}%' OR Apellido LIKE '%{1}%' OR RTN LIKE '%{1}%' OR Teléfono LIKE '%{1}%' OR Estado LIKE '%{1}%')",
-                            filtroEstado, textoSeguro);
-                    }
-                    catch (Exception)
-                    {
-                        dv.RowFilter = filtroEstado;
-                    }
-                }
-                dgvClientes.DataSource = dv;
-                dgvClientes.ClearSelection();
-            }
-        }
-
-        private void chkActivo_CheckedChanged(object sender, EventArgs e)
-        {
-            DataView dv = datosCli.DefaultView;
-            if (chkActivo.Checked)
-            {
-
-                dv.RowFilter = "";
-                dv.RowFilter = "Estado <> 'Activo'";
-            }
-
-            else
-            {
-                dv.RowFilter = "Estado = 'Activo'";
-            }
-            dgvClientes.DataSource = dv;
-        }
-
-        private void dgvClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e != null && e.RowIndex < 0) return;
-            int idCliente, idEstado;
-            string nombreCliente, apellidoCliente, telefonoCliente, rtnCliente;
-
-            if (dgvClientes.CurrentRow != null)
-            {
-
-                idCliente = Convert.ToInt32(dgvClientes.CurrentRow.Cells[0].Value);
-                nombreCliente = dgvClientes.CurrentRow.Cells[1].Value.ToString();
-                apellidoCliente = dgvClientes.CurrentRow.Cells[2].Value.ToString();
-                telefonoCliente = dgvClientes.CurrentRow.Cells[3].Value.ToString();
-                rtnCliente = dgvClientes.CurrentRow.Cells[4].Value.ToString();
-                idEstado = Convert.ToInt32(dgvClientes.CurrentRow.Cells[5].Value);
-                ClienteModificar frmMo = new ClienteModificar(idCliente, nombreCliente, apellidoCliente, telefonoCliente, rtnCliente, idEstado);
-                frmMo.ShowDialog();
-                TablaClientes();
-            }
-
+            
+            txtBusqueda.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
         }
 
         private async Task TablaClientes()
         {
-
             ClsVerCliente objC = new ClsVerCliente();
             datosCli = await objC.VerClienteTabla();
 
@@ -124,18 +40,86 @@ namespace SG_BAMS
                 dgvClientes.Columns["Teléfono"].HeaderText = "Teléfono";
                 dgvClientes.Columns["RTN"].HeaderText = "RTN";
                 dgvClientes.Columns["Estado"].HeaderText = "Estado";
-                dgvClientes.Columns["ID Estado"].Visible = false;
 
-                DataView dv = datosCli.DefaultView;
+                if (dgvClientes.Columns.Contains("ID Estado"))
+                    dgvClientes.Columns["ID Estado"].Visible = false;
 
-                dv.RowFilter = "Estado = 'Activo'";
+                
+                AplicarFiltro();
 
-                dgvClientes.DataSource = dv;
                 dgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dgvClientes.AllowUserToAddRows = false;
                 dgvClientes.ReadOnly = true;
                 dgvClientes.ClearSelection();
+            }
+        }
 
+        
+        private void AplicarFiltro()
+        {
+            if (datosCli == null) return;
+
+            DataView dv = datosCli.DefaultView;
+            string filtroEstado = chkActivo.Checked ? "Estado <> 'Activo'" : "Estado = 'Activo'";
+
+            if (string.IsNullOrWhiteSpace(txtBusqueda.Text))
+            {
+                dv.RowFilter = filtroEstado;
+            }
+            else
+            {
+                
+                string textoSeguro = txtBusqueda.Text
+                    .Replace("'", "''")
+                    .Replace("[", "[[]")
+                    .Replace("]", "[]]")
+                    .Replace("*", "[*]")
+                    .Replace("%", "[%]");
+
+                
+                dv.RowFilter = string.Format(
+                    "({0}) AND (Nombre LIKE '%{1}%' OR Apellido LIKE '%{1}%' OR RTN LIKE '%{1}%' OR Teléfono LIKE '%{1}%')",
+                    filtroEstado, textoSeguro);
+            }
+
+            dgvClientes.DataSource = dv;
+            dgvClientes.ClearSelection();
+        }
+
+        private void txtBusqueda_TextChanged(object sender, EventArgs e)
+        {
+            AplicarFiltro();
+        }
+
+        private void chkActivo_CheckedChanged(object sender, EventArgs e)
+        {
+            AplicarFiltro();
+        }
+
+        private async void dgvClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e != null && e.RowIndex < 0) return;
+
+            if (dgvClientes.CurrentRow != null)
+            {
+                try
+                {
+                    int idCliente = Convert.ToInt32(dgvClientes.CurrentRow.Cells[0].Value);
+                    string nombre = dgvClientes.CurrentRow.Cells[1].Value?.ToString() ?? "";
+                    string apellido = dgvClientes.CurrentRow.Cells[2].Value?.ToString() ?? "";
+                    string telefono = dgvClientes.CurrentRow.Cells[3].Value?.ToString() ?? "";
+                    string rtn = dgvClientes.CurrentRow.Cells[4].Value?.ToString() ?? "";
+                    int idEstado = Convert.ToInt32(dgvClientes.CurrentRow.Cells[5].Value);
+
+                    ClienteModificar frmMo = new ClienteModificar(idCliente, nombre, apellido, telefono, rtn, idEstado);
+                    frmMo.ShowDialog();
+
+                    await TablaClientes();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al cargar datos del cliente: " + ex.Message);
+                }
             }
         }
 
@@ -143,84 +127,66 @@ namespace SG_BAMS
         {
             if (dgvClientes.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Debe seleccionar una fila",
-                                "Ninguna fila seleccionada",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Warning);
+                MessageBox.Show("Debe seleccionar una fila", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (dgvClientes.CurrentRow != null)
-            {
-                dgvClientes_CellDoubleClick(null, null);
-            }
+            dgvClientes_CellDoubleClick(null, null);
         }
 
         private async void ClientesEmp_Load(object sender, EventArgs e)
         {
             await TablaClientes();
-            dgvClientes.ClearSelection();
-            dgvClientes.ReadOnly = true;
-            dgvClientes.AllowUserToOrderColumns = false;
         }
+
+        
 
         private void BtnMenu_Click(object sender, EventArgs e)
         {
-            MenuPrincipalEmp MPE = new MenuPrincipalEmp();
-            MPE.Show();
+            new MenuPrincipalEmp().Show();
             this.Close();
         }
 
         private void BtnFacturas_Click(object sender, EventArgs e)
         {
-            FacturasEmp FE = new FacturasEmp();
-            FE.Show();
+            new FacturasEmp().Show();
             this.Close();
         }
 
-
-
         private void BtnDeudores_Click(object sender, EventArgs e)
         {
-            Deudores_Emp DE = new Deudores_Emp();
-            DE.Show();
+            new Deudores_Emp().Show();
             this.Close();
         }
 
         private void BtnInventario_Click(object sender, EventArgs e)
         {
-            InventarioEmp IE = new InventarioEmp();
-            IE.Show();
+            new InventarioEmp().Show();
             this.Close();
         }
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
-            Login.Login login = new Login.Login();
-            login.Show();
+            new Login.Login().Show();
             this.Close();
         }
 
         private void btnAjustes_Click(object sender, EventArgs e)
         {
-            Ajustes ajustes = new Ajustes();
-            ajustes.Show();
-        }
-
-        private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
+            new Ajustes().Show();
         }
 
         private void btnNoti_Click(object sender, EventArgs e)
         {
-            NotificacionesAdmin NE = new NotificacionesAdmin();
-            NE.Show();
+            new NotificacionesAdmin().Show();
         }
 
         private void btnEmp_Click(object sender, EventArgs e)
         {
-            Perfil Per = new Perfil();
-            Per.Show();
+            new Perfil().Show();
         }
+
+        
+        private void panel6_Paint(object sender, PaintEventArgs e) { }
+        private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
     }
 }

@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SG_BAMS
 {
@@ -32,48 +31,58 @@ namespace SG_BAMS
                 cmbClientes.ValueMember = "ID";
                 cmbClientes.DataSource = dt;
 
+                
                 cmbClientes.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 cmbClientes.AutoCompleteSource = AutoCompleteSource.ListItems;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al obtener datos: " + ex.Message);
+                MessageBox.Show("Error al obtener datos: " + ex.Message, "Error de Carga", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private async void ClienteExistente_Load(object sender, EventArgs e)
         {
             await LlenarComboCliente();
+            
             cmbClientes.SelectedIndex = -1;
         }
 
         private void BtnAsignar_Click(object sender, EventArgs e)
         {
-            if (cmbClientes.SelectedValue != null)
+            
+            if (!ClsValidaciones.ValidarSeleccion(cmbClientes, "la lista de clientes"))
             {
-                try
-                {
+                return;
+            }
 
-                    int idCliente = Convert.ToInt32(cmbClientes.SelectedValue);
+            try
+            {
+                
+                if (cmbClientes.SelectedValue != null && int.TryParse(cmbClientes.SelectedValue.ToString(), out int idCliente))
+                {
                     using (FacturaAgregarDatos frmFA = new FacturaAgregarDatos(cmbClientes.Text, idCliente))
                     {
+                        this.Hide(); 
                         if (frmFA.ShowDialog() == DialogResult.OK)
                         {
                             this.DialogResult = DialogResult.OK;
                             this.Close();
                         }
+                        else
+                        {
+                            this.Show();
+                        }
                     }
-
                 }
-                catch
+                else
                 {
-
-                    MessageBox.Show("El sistema aún está cargando los datos. Por favor, selecciona el cliente de nuevo.");
+                    MessageBox.Show("Por favor, seleccione un cliente válido de la lista desplegable.", "Selección Requerida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Por favor, seleccione un cliente válido de la lista.");
+                MessageBox.Show("Ocurrió un error al asignar el cliente: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -82,5 +91,4 @@ namespace SG_BAMS
             this.Close();
         }
     }
-
 }
