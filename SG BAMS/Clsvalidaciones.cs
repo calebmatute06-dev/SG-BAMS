@@ -304,33 +304,37 @@ namespace SG_BAMS
 
         public static void PermitirNumerosYDecimales(object sender, KeyPressEventArgs e)
         {
-           
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',' && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
                 return;
             }
 
-            string textoActual = "";
-            if (sender is Control control) textoActual = control.Text;
-
-           
-            if (e.KeyChar == '.')
+            if (sender is Control control)
             {
-                if (textoActual.Contains("."))
+                string texto = control.Text;
+
+                if ((e.KeyChar == '.' || e.KeyChar == ',') && string.IsNullOrEmpty(texto))
                 {
                     e.Handled = true;
+                    return;
                 }
-            }
 
-            
-            if (e.KeyChar == ',')
-            {
-                
-                if (textoActual.Contains("."))
+                if (e.KeyChar == '.')
                 {
-                    
-                    e.Handled = true; 
+                    if (texto.Contains("."))
+                    {
+                        e.Handled = true;
+                    }
+                }
+
+                // 4. Reglas para la COMA (Miles)
+                if (e.KeyChar == ',')
+                {
+                    if (texto.Contains("."))
+                    {
+                        e.Handled = true;
+                    }
                 }
             }
         }
