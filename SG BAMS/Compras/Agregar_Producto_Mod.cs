@@ -7,7 +7,7 @@ namespace SG_BAMS
 {
     public partial class Agregar_Producto_Mod : Form
     {
-        
+
         public string IdCompraActual { get; set; }
 
         public string IdSeleccionado { get; set; }
@@ -19,7 +19,7 @@ namespace SG_BAMS
 
         private int _idProveedor;
 
-        public Agregar_Producto_Mod(int idProv) 
+        public Agregar_Producto_Mod(int idProv)
         {
             InitializeComponent();
             this._idProveedor = idProv;
@@ -84,16 +84,16 @@ namespace SG_BAMS
             return dt;
         }
 
-        private void kryptonButton3_Click(object sender, EventArgs e) 
+        private void kryptonButton3_Click(object sender, EventArgs e)
         {
-            
+
             if (cmbProductos.SelectedValue == null || cmbProductos.SelectedIndex == -1)
             {
                 MessageBox.Show("Por favor, seleccione un producto válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            
+
             if (numCantidad.Value <= 0)
             {
                 MessageBox.Show("La cantidad debe ser mayor a cero.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -101,7 +101,7 @@ namespace SG_BAMS
                 return;
             }
 
-            
+
             if (!ClsValidaciones.EsNumeroDecimalValido(txtPrecio, "El precio", out decimal precioFinal))
             {
                 return;
@@ -111,7 +111,7 @@ namespace SG_BAMS
             {
                 conexion.AbrirConexion();
 
-                
+
                 string sqlCheck = "SELECT COUNT(*) FROM Compra_producto WHERE id_compra = @idC AND id_producto = @idP";
                 using (SqlCommand cmdCheck = new SqlCommand(sqlCheck, conexion.Conectar))
                 {
@@ -127,7 +127,7 @@ namespace SG_BAMS
                     }
                 }
 
-               
+
                 string sql = "INSERT INTO Compra_producto (id_compra, id_producto, cantidad, precio_costo_unitario) " +
                              "VALUES (@idC, @idP, @cant, @prec)";
 
@@ -140,7 +140,7 @@ namespace SG_BAMS
                     cmd.ExecuteNonQuery();
                 }
 
-               
+
                 IdSeleccionado = cmbProductos.SelectedValue.ToString();
                 NombreSeleccionado = cmbProductos.Text;
                 CantidadSeleccionada = (int)numCantidad.Value;
@@ -161,6 +161,12 @@ namespace SG_BAMS
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
+        }
+
+        private void btnProductoNuevo_Click(object sender, EventArgs e)
+        {
+            AgregarProducto agregarProducto = new AgregarProducto();
+            agregarProducto.Show();
         }
     }
 }

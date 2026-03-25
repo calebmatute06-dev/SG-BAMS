@@ -29,8 +29,7 @@ namespace SG_BAMS
         {
             try
             {
-                if (!ClsValidaciones.ValidarNombre(txtNombre.Text)) return;
-
+                if (!ClsValidaciones.EsAlfanumericoValido(txtNombre, "Nombre del Producto")) return;
                 string precioLimpio = txtPrecio.Text.Replace("Lps", "").Replace("$", "").Trim();
                 if (!ClsValidaciones.ValidarPrecio(precioLimpio)) return;
                 if (!ClsValidaciones.ValidarCodigoBarra(txtCodigoBarra.Text)) return;

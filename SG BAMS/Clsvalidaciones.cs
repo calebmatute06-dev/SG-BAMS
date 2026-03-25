@@ -180,9 +180,9 @@ namespace SG_BAMS
                 return false;
             }
 
-            if (!Regex.IsMatch(textoTrim, @"^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\s]+$"))
+            if (!Regex.IsMatch(textoTrim, @"^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\s&]+$"))
             {
-                MessageBox.Show($"{nombreCampo} solo debe contener letras y números.", "Formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"{nombreCampo} solo debe contener letras, números y '&'.", "Formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
             }
@@ -373,4 +373,5 @@ namespace SG_BAMS
             return true;
         }
     }
+
 }

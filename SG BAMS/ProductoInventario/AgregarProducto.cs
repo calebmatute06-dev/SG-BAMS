@@ -20,14 +20,30 @@ namespace SG_BAMS
             InitializeComponent();
         }
 
+
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (!ClsValidaciones.ValidarNombre(txtNombre.Text)) return;
+            string nombreVal = txtNombre.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(nombreVal) || nombreVal.Length < 3)
+            {
+                MessageBox.Show("El nombre del producto debe tener al menos 3 caracteres.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNombre.Focus();
+                return;
+            }
+
+            if (!System.Text.RegularExpressions.Regex.IsMatch(nombreVal, @"^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\s&]+$"))
+            {
+                MessageBox.Show("El nombre solo permite letras, números, espacios y el símbolo '&'.", "Formato Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNombre.Focus();
+                return;
+            }
+            if (!ClsValidaciones.EsAlfanumericoValido(txtNombre, "Nombre del Producto")) return;
             if (!ClsValidaciones.ValidarPrecio(txtPrecio.Text)) return;
             if (!ClsValidaciones.ValidarSeleccion(cmbMarca, "la Marca")) return;
             if (!ClsValidaciones.ValidarSeleccion(cmbTipo, "el Tipo de Producto")) return;
             if (!ClsValidaciones.ValidarSeleccion(cmbModelo, "el Modelo de Auto")) return;
-            if (!ClsValidaciones.ValidarSeleccion(cmbProveedor, "el Proveedor")) return; 
+            if (!ClsValidaciones.ValidarSeleccion(cmbProveedor, "el Proveedor")) return;
             if (!ClsValidaciones.ValidarCodigoBarra(txtCodigoBarra.Text)) return;
 
             try
@@ -69,7 +85,7 @@ namespace SG_BAMS
             }
         }
 
-        
+
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
@@ -112,31 +128,31 @@ namespace SG_BAMS
 
         private void txtCodigoBarra_KeyPress(object sender, KeyPressEventArgs e)
         {
-           
+
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
                 return;
             }
 
-          
+
             if (txtCodigoBarra.Text.Length >= 20 && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
                 return;
             }
 
-          
+
             if (e.KeyChar == (char)Keys.Return)
             {
-                e.Handled = true; 
+                e.Handled = true;
 
                 int longitud = txtCodigoBarra.Text.Length;
 
-              
+
                 if (longitud >= 6 && longitud <= 20)
                 {
-                    
+
                     cmbProveedor.Focus();
                 }
                 else
@@ -148,6 +164,11 @@ namespace SG_BAMS
                     txtCodigoBarra.Focus();
                 }
             }
+        }
+
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
         }
     }
 }
