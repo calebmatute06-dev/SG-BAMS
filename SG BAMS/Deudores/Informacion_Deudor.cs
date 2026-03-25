@@ -18,9 +18,6 @@ namespace SG_BAMS
         }
 
 
-
-
-       
         public Modificar_Datos__Deudor_(int idDeuda, string nombreCliente, string montoInicial, DateTime fechaInicio)
         {
             InitializeComponent();

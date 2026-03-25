@@ -299,7 +299,7 @@
             Controls.Add(pictureBox4);
             Controls.Add(kryptonButton13);
             Name = "Modificar_Datos__Deudor_";
-            Text = "Modificar_Datos__Deudor_";
+            Text = "Información Deudor";
             Load += Modificar_Datos__Deudor__Load;
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).EndInit();

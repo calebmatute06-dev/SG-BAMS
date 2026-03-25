@@ -85,14 +85,16 @@ namespace SG_BAMS
         private async void BtnNueva_Click(object sender, EventArgs e)
         {
             using (ClienteAgregar frmCA = new ClienteAgregar())
-
             {
-
                 if (frmCA.ShowDialog() == DialogResult.OK)
                 {
                     await CargarFactura();
-                }
 
+                    dtpInicio.Value = DateTime.Today;
+                    dtpFin.Value = DateTime.Today;
+                    FiltrarPorFecha();
+                    dgvFacturas.ClearSelection();
+                }
             }
         }
 
@@ -188,7 +190,7 @@ namespace SG_BAMS
 
         private void dtpInicio_ValueChanged(object sender, EventArgs e)
         {
-            // Validación de rango de fechas y bloqueo de fechas futuras
+           
             ClsValidaciones.ValidarRangoFechas(dtpInicio, dtpFin);
 
             if (dtpFin.Value.Date < dtpInicio.Value.Date)
@@ -309,8 +311,7 @@ namespace SG_BAMS
 
         private void btnajustes_Click(object sender, EventArgs e)
         {
-            Ajustes Aju = new Ajustes();
-            Aju.Show();
+           
         }
 
 

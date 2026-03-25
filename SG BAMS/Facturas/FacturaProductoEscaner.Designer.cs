@@ -44,7 +44,7 @@
             panel8 = new Panel();
             panel2 = new Panel();
             kryptonGroupBox3 = new Krypton.Toolkit.KryptonGroupBox();
-            kryptonTextBox1 = new Krypton.Toolkit.KryptonTextBox();
+            txtEscaner = new Krypton.Toolkit.KryptonTextBox();
             BtnNombre = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
@@ -118,6 +118,7 @@
             BtnSalir.TabIndex = 350;
             BtnSalir.Values.DropDownArrowColor = Color.Empty;
             BtnSalir.Values.Text = "Cancelar";
+            BtnSalir.Click += BtnSalir_Click;
             // 
             // BtnAceptar
             // 
@@ -140,6 +141,7 @@
             BtnAceptar.TabIndex = 351;
             BtnAceptar.Values.DropDownArrowColor = Color.Empty;
             BtnAceptar.Values.Text = "Aceptar";
+            BtnAceptar.Click += BtnAceptar_Click_1;
             // 
             // label1
             // 
@@ -240,17 +242,19 @@
             kryptonGroupBox3.StateCommon.Border.Rounding = 50F;
             kryptonGroupBox3.TabIndex = 349;
             // 
-            // kryptonTextBox1
+            // txtEscaner
             // 
-            kryptonTextBox1.Location = new Point(277, 162);
-            kryptonTextBox1.Margin = new Padding(3, 4, 3, 4);
-            kryptonTextBox1.Name = "kryptonTextBox1";
-            kryptonTextBox1.Size = new Size(219, 36);
-            kryptonTextBox1.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonTextBox1.StateCommon.Border.Rounding = 10F;
-            kryptonTextBox1.StateCommon.Content.Color1 = Color.Navy;
-            kryptonTextBox1.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonTextBox1.TabIndex = 357;
+            txtEscaner.Location = new Point(277, 162);
+            txtEscaner.Margin = new Padding(3, 4, 3, 4);
+            txtEscaner.Name = "txtEscaner";
+            txtEscaner.Size = new Size(219, 36);
+            txtEscaner.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtEscaner.StateCommon.Border.Rounding = 10F;
+            txtEscaner.StateCommon.Content.Color1 = Color.Navy;
+            txtEscaner.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtEscaner.TabIndex = 357;
+            txtEscaner.KeyDown += txtEscaner_KeyDown_1;
+            txtEscaner.Leave += txtEscaner_Leave;
             // 
             // BtnNombre
             // 
@@ -281,7 +285,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(692, 405);
             Controls.Add(BtnNombre);
-            Controls.Add(kryptonTextBox1);
+            Controls.Add(txtEscaner);
             Controls.Add(lblNumero);
             Controls.Add(kryptonGroup1);
             Controls.Add(lblStock);
@@ -299,6 +303,8 @@
             Controls.Add(kryptonGroupBox3);
             Name = "FacturaProductoEscaner";
             Text = "FacturaProductoEscaner";
+            Load += FacturaProductoEscaner_Load;
+            Shown += FacturaProductoEscaner_Shown;
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).EndInit();
             panel8.ResumeLayout(false);
@@ -326,7 +332,7 @@
         private Panel panel8;
         private Panel panel2;
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox3;
-        private Krypton.Toolkit.KryptonTextBox kryptonTextBox1;
+        private Krypton.Toolkit.KryptonTextBox txtEscaner;
         private Krypton.Toolkit.KryptonButton BtnNombre;
     }
 }

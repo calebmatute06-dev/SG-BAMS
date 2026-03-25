@@ -129,7 +129,11 @@ namespace SG_BAMS
                 if (frmCA.ShowDialog() == DialogResult.OK)
                 {
                     await CargarFactura();
-                    FiltrarDatos();
+
+                    dtpInicio.Value = DateTime.Today;
+                    dtpFin.Value = DateTime.Today;
+                    FiltrarPorFecha();
+                    dgvFacturas.ClearSelection();
                 }
             }
         }
@@ -180,6 +184,26 @@ namespace SG_BAMS
         {
             formulario.Show();
             this.Close();
+        }
+
+        private void FiltrarPorFecha()
+        {
+            if (datosFac != null)
+            {
+                DataView dv = datosFac.DefaultView;
+
+                DateTime fechaInicio = dtpInicio.Value.Date;
+
+
+                DateTime fechaFin = dtpFin.Value.Date.AddDays(1);
+
+                dv.RowFilter = string.Format(System.Globalization.CultureInfo.InvariantCulture,
+                    "[Fecha] >= #{0}# AND [Fecha] < #{1}#",
+                    fechaInicio.ToString("MM/dd/yyyy"),
+                    fechaFin.ToString("MM/dd/yyyy"));
+
+                dgvFacturas.DataSource = dv;
+            }
         }
 
         private void BtnMenu_Click(object sender, EventArgs e) => NavegarA(new MenuPrincipalEmp());

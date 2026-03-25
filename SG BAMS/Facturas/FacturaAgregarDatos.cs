@@ -17,8 +17,9 @@ namespace SG_BAMS
 {
     public partial class FacturaAgregarDatos : Form
     {
-        
-        int idCliente, idProducto, cantidades;
+
+        int idCliente, cantidades;
+        public int idProducto;
         string nombresProductos, cantidadBateria;
         double precioBateria;
 
@@ -114,14 +115,12 @@ namespace SG_BAMS
 
         private async void BtnAceptar_Click(object sender, EventArgs e)
         {
-            
             if (ClsValidaciones.CampoVacio(txtCliente, "Cliente")) return;
             if (cmbPago.SelectedIndex == -1)
             {
                 MessageBox.Show("Seleccione una forma de pago.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
             if (dgvProductos.Rows.Count == 0)
             {
                 MessageBox.Show("Debe agregar al menos un producto.", "Factura Vacía", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -135,9 +134,6 @@ namespace SG_BAMS
                 return;
             }
 
-            DialogResult imprimir = MessageBox.Show("¿Desea guardar e imprimir la factura?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (imprimir == DialogResult.No) return;
-
             try
             {
                 ClsPasarUsuario objPU = new ClsPasarUsuario();
@@ -148,12 +144,12 @@ namespace SG_BAMS
                 int idPago = Convert.ToInt32(cmbPago.SelectedValue);
                 int.TryParse(txtBateria.Text, out int bat);
 
-                
-                int idFactura = await objAF.AgregarFacturas(idUser, idCliente, idPago, DateTFecha.SelectionStart, bat, precioBateria);
+            
+                int idFactura = await objAF.AgregarFacturas(idUser, idCliente, idPago,
+                                    DateTFecha.SelectionStart, bat, precioBateria);
 
                 if (idFactura > 0)
                 {
-                    
                     foreach (DataGridViewRow fila in dgvProductos.Rows)
                     {
                         if (fila.IsNewRow) continue;
@@ -162,11 +158,33 @@ namespace SG_BAMS
                         await objAP.GuardarProductoFactura(idFactura, idPr, cant);
                     }
 
-                    
-                    objAF.ImprimirFactura(idFactura, txtCliente.Text, DateTFecha.SelectionStart.ToShortDateString(),
-                                        txtSubtotal.Text, txtRebaja.Text, txtTotal.Text, cmbPago.Text,
-                                        dgvProductos, SG_BAMS.Login.Login.UsuarioLogueado);
+                   
+                    DialogResult imprimir = MessageBox.Show(
+                        "¿Desea imprimir la factura?", "Imprimir",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
+                    if (imprimir == DialogResult.Yes)
+                    {
+                        objAF.ImprimirFactura(idFactura, txtCliente.Text,
+                            DateTFecha.SelectionStart.ToShortDateString(),
+                            txtSubtotal.Text, txtRebaja.Text, txtTotal.Text,
+                            cmbPago.Text, dgvProductos,
+                            SG_BAMS.Login.Login.UsuarioLogueado);
+                    }
+
+                  
+                    if (idPago == 2)
+                    {
+                        Modificar_Datos__Deudor_ frmDeuda = new Modificar_Datos__Deudor_(
+                            0,
+                            idCliente,
+                            txtCliente.Text,
+                            txtTotal.Text,
+                            DateTFecha.SelectionStart
+                        );
+                    }
+
+             
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
@@ -179,20 +197,26 @@ namespace SG_BAMS
 
         private async void BtnAgregar_Click(object sender, EventArgs e)
         {
-            using (FacturaProducto frmProd = new FacturaProducto())
+            using (FacturaProductoEscaner frmEscaner = new FacturaProductoEscaner())
             {
-                frmProd.FormularioFactura = this;
-                if (frmProd.ShowDialog() == DialogResult.OK)
-                {
-                    ClsAgregarProductos objAP = new ClsAgregarProductos();
-                    double precio = await objAP.ObtenerPrecioProducto(idProducto);
+                frmEscaner.FormularioFactura = this;
 
-                    
-                    dgvProductos.Rows.Add(idProducto, nombresProductos, cantidades, precio, (cantidades * precio), frmProd.StockSeleccionado);
+                if (frmEscaner.ShowDialog() == DialogResult.OK)
+                {
+                    double precio = frmEscaner.PrecioSeleccionado;
+
+                    dgvProductos.Rows.Add(
+                        idProducto,
+                        nombresProductos,
+                        cantidades,
+                        precio,
+                        (cantidades * precio),
+                        frmEscaner.StockSeleccionado);
 
                     CalcularTotal();
                     ActualizarEstadoBotonAceptar();
                 }
+               
             }
         }
 

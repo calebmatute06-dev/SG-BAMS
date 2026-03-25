@@ -15,6 +15,7 @@ namespace SG_BAMS
     public partial class FacturaProducto : Form
     {
         public int StockSeleccionado { get; set; }
+        public double PrecioSeleccionado { get; set; }
         public FacturaAgregarDatos FormularioFactura { get; set; }
 
         public FacturaProducto()
@@ -59,28 +60,34 @@ namespace SG_BAMS
 
         private void BtnAceptar_Click(object sender, EventArgs e)
         {
-            
+
+
+          
+           
             if (cmbProductos.SelectedIndex == -1)
             {
-                MessageBox.Show("Por favor, seleccione un producto.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor, seleccione un producto.", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 cmbProductos.Focus();
                 return;
             }
 
-            
+         
             if (ClsValidaciones.CampoVacio(txtCantidad, "Cantidad")) return;
 
-            
+           
             if (!int.TryParse(txtCantidad.Text.Trim(), out int cantidad) || cantidad <= 0)
             {
-                MessageBox.Show("Ingrese una cantidad válida mayor a 0.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Ingrese una cantidad válida mayor a 0.", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            
+          
             if (!int.TryParse(lblNumero.Text, out int stock) || cantidad > stock)
             {
-                MessageBox.Show($"Stock insuficiente. Solo hay {lblNumero.Text} unidades disponibles.", "Inventario", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"Stock insuficiente. Solo hay {lblNumero.Text} unidades disponibles.",
+                    "Inventario", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -89,19 +96,27 @@ namespace SG_BAMS
             foreach (DataGridViewRow fila in FormularioFactura.dgvProductos.Rows)
             {
                 if (fila.IsNewRow) continue;
-                if (fila.Cells["id_producto"].Value != null && Convert.ToInt32(fila.Cells["id_producto"].Value) == idProdu)
+                if (fila.Cells["id_producto"].Value != null &&
+                    Convert.ToInt32(fila.Cells["id_producto"].Value) == idProdu)
                 {
-                    MessageBox.Show("Este producto ya fue agregado a la factura actual. Modifique la cantidad en la tabla si es necesario.", "Producto Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Este producto ya fue agregado a la factura actual. " +
+                        "Modifique la cantidad en la tabla si es necesario.",
+                        "Producto Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
             }
 
-            
+           
+            DataRowView filaSeleccionada = (DataRowView)cmbProductos.SelectedItem;
+            double precio = Convert.ToDouble(filaSeleccionada.Row["precio_venta"]);
+
             FormularioFactura.SetProducto(idProdu, cmbProductos.Text, cantidad);
             this.StockSeleccionado = stock;
+            this.PrecioSeleccionado = precio; 
 
             this.DialogResult = DialogResult.OK;
-            this.Close(); 
+            this.Close();
+        
         }
 
         private void BtnSalir_Click(object sender, EventArgs e)

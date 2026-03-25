@@ -29,38 +29,38 @@ namespace SG_BAMS.Facturas
             Cerrar();
         }
 
-        public async Task<double> ObtenerPrecioProducto(int idProducto)
+        public async Task<DataRow> ObtenerProductoPorCodigoBarra(string codigoBarra)
         {
-            double precio = 0;
-            
-
+            ClsConexion objConexion = new ClsConexion();
             try
             {
-                AbrirConexion();
-                string query = "SELECT precio_venta FROM vista_precio WHERE id_producto = @IdProducto";
+                objConexion.AbrirConexion();
+                string query = @"SELECT id_producto, 
+                                nombre_producto, 
+                                precio_venta, 
+                                stock
+                         FROM Vista_Producto_CodigoBarra
+                         WHERE codigo_barra = @codigo";
 
-                using (SqlCommand cmd = new SqlCommand(query,Conectar))
+                using (SqlCommand cmd = new SqlCommand(query, objConexion.Conectar))
                 {
-                    cmd.Parameters.AddWithValue("@IdProducto", idProducto);
+                    cmd.Parameters.AddWithValue("@codigo", codigoBarra.Trim());
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
 
-                    object result = await cmd.ExecuteScalarAsync();
+                    await Task.Run(() => da.Fill(dt));
 
-                    if (result != null)
-                        precio = Convert.ToDouble(result);
+                    return dt.Rows.Count > 0 ? dt.Rows[0] : null;
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al obtener precio: " + ex.Message);
-                return 0;
             }
             finally
             {
-                Cerrar();
+                objConexion.Cerrar();
             }
-
-            return precio;
         }
+
+
+
 
         public async Task<DataTable> ObtenerStockProductos()
         {
