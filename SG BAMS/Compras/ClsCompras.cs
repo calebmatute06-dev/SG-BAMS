@@ -22,7 +22,6 @@ namespace SG_BAMS
 
             try
             {
-                // 1. Insertar la compra (Cabecera)
                 string queryCabecera = @"INSERT INTO Compra (id_usuario, fecha_pedido, id_tipo_forma_pago, id_proveedor, desc_compra) 
                                          VALUES (@idU, @fecha, @idPag, @idProv, @desc);
                                          SELECT SCOPE_IDENTITY();";
@@ -38,10 +37,8 @@ namespace SG_BAMS
                     idCompra = Convert.ToInt32(cmd.ExecuteScalar());
                 }
 
-                // 2. Insertar los productos (Detalle)
                 foreach (var item in detalles)
                 {
-                    // Asegurar que el producto existe en la tabla Inventario
                     string queryInv = "IF NOT EXISTS (SELECT 1 FROM Inventario WHERE id_producto = @idP) INSERT INTO Inventario (id_producto, stock) VALUES (@idP, 0)";
                     using (SqlCommand cmdInv = new SqlCommand(queryInv, conexion.Conectar, transaccion))
                     {
@@ -49,7 +46,6 @@ namespace SG_BAMS
                         cmdInv.ExecuteNonQuery();
                     }
 
-                    // Insertar detalle - EL TRIGGER SUMARÁ EL STOCK AUTOMÁTICAMENTE
                     string queryDet = "INSERT INTO Compra_producto (id_compra, id_producto, cantidad, precio_costo_unitario) VALUES (@idC, @idP, @cant, @prec)";
                     using (SqlCommand cmdDet = new SqlCommand(queryDet, conexion.Conectar, transaccion))
                     {
@@ -67,7 +63,7 @@ namespace SG_BAMS
             catch (Exception)
             {
                 transaccion.Rollback();
-                throw; // Lanza el error para que el MessageBox del formulario lo muestre
+                throw; 
             }
             finally
             {

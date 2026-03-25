@@ -6,10 +6,38 @@ namespace SG_BAMS.ProductoInventario
 {
     internal class ClsModificarCompras
     {
-        // Instancia de tu clase de conexión ya existente
         private ClsConexion conexion = new ClsConexion();
 
-        // Recupera los productos asociados a la compra para el DataGridView
+        public DataTable ListarFormasPago()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                conexion.AbrirConexion();
+                string query = "SELECT id_tipo_forma_pago, descripcion_forma_pago FROM Tipo_Forma_de_pago";
+                SqlDataAdapter da = new SqlDataAdapter(query, conexion.Conectar);
+                da.Fill(dt);
+            }
+            catch (Exception ex) { throw new Exception("Error al listar formas de pago: " + ex.Message); }
+            finally { conexion.Cerrar(); }
+            return dt;
+        }
+
+        public DataTable ListarProveedoresActivos()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                conexion.AbrirConexion();
+                string query = "SELECT id_proveedor, nombre_proveedor FROM Proveedor WHERE id_estado = 1";
+                SqlDataAdapter da = new SqlDataAdapter(query, conexion.Conectar);
+                da.Fill(dt);
+            }
+            catch (Exception ex) { throw new Exception("Error al listar proveedores: " + ex.Message); }
+            finally { conexion.Cerrar(); }
+            return dt;
+        }
+
         public DataTable ObtenerDetalleCompra(int idCompra)
         {
             DataTable dt = new DataTable();
@@ -33,18 +61,11 @@ namespace SG_BAMS.ProductoInventario
                     da.Fill(dt);
                 }
             }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener detalle de productos: " + ex.Message);
-            }
-            finally
-            {
-                conexion.Cerrar();
-            }
+            catch (Exception ex) { throw new Exception("Error al obtener detalle: " + ex.Message); }
+            finally { conexion.Cerrar(); }
             return dt;
         }
 
-        // Recupera los datos de la cabecera (Proveedor, Pago, Fecha) para los controles
         public DataTable ObtenerCabeceraCompra(int idCompra)
         {
             DataTable dt = new DataTable();
@@ -52,7 +73,6 @@ namespace SG_BAMS.ProductoInventario
             {
                 conexion.AbrirConexion();
                 string query = "SELECT id_proveedor, id_tipo_forma_pago, fecha_pedido, desc_compra FROM Compra WHERE id_compra = @id";
-
                 using (SqlCommand cmd = new SqlCommand(query, conexion.Conectar))
                 {
                     cmd.Parameters.AddWithValue("@id", idCompra);
@@ -60,16 +80,11 @@ namespace SG_BAMS.ProductoInventario
                     da.Fill(dt);
                 }
             }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener datos de la cabecera: " + ex.Message);
-            }
-            finally
-            {
-                conexion.Cerrar();
-            }
+            catch (Exception ex) { throw new Exception("Error en cabecera: " + ex.Message); }
+            finally { conexion.Cerrar(); }
             return dt;
         }
+
         public void GuardarCambiosDetalle(int idCompra, int idProd, int cant, decimal precio)
         {
             try
@@ -85,9 +100,27 @@ namespace SG_BAMS.ProductoInventario
                     cmd.ExecuteNonQuery();
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) { throw new Exception("Error al procesar producto " + idProd + ": " + ex.Message); }
+            finally { conexion.Cerrar(); }
+        }
+
+        public void ActualizarCabeceraCompra(int idCompra, int idProv, int idPago, DateTime fecha, string nota)
+        {
+            try
             {
-                throw new Exception("Error al procesar producto " + idProd + ": " + ex.Message);
+                conexion.AbrirConexion();
+                string query = @"UPDATE Compra SET id_proveedor = @idProv, id_tipo_forma_pago = @idPago, 
+                                 fecha_pedido = @fecha, desc_compra = @nota WHERE id_compra = @idC";
+
+                using (SqlCommand cmd = new SqlCommand(query, conexion.Conectar))
+                {
+                    cmd.Parameters.AddWithValue("@idProv", idProv);
+                    cmd.Parameters.AddWithValue("@idPago", idPago);
+                    cmd.Parameters.AddWithValue("@fecha", fecha);
+                    cmd.Parameters.AddWithValue("@nota", nota);
+                    cmd.Parameters.AddWithValue("@idC", idCompra);
+                    cmd.ExecuteNonQuery();
+                }
             }
             finally { conexion.Cerrar(); }
         }
@@ -108,78 +141,14 @@ namespace SG_BAMS.ProductoInventario
             finally { conexion.Cerrar(); }
         }
 
-        //
-        public void ActualizarCabeceraCompra(int idCompra, int idProv, int idPago, DateTime fecha, string nota)
-        {
-            try
-            {
-                conexion.AbrirConexion();
-                string query = @"UPDATE Compra SET id_proveedor = @idProv, id_tipo_forma_pago = @idPago, 
-                         fecha_pedido = @fecha, desc_compra = @nota WHERE id_compra = @idC";
-
-                using (SqlCommand cmd = new SqlCommand(query, conexion.Conectar))
-                {
-                    cmd.Parameters.AddWithValue("@idProv", idProv);
-                    cmd.Parameters.AddWithValue("@idPago", idPago);
-                    cmd.Parameters.AddWithValue("@fecha", fecha);
-                    cmd.Parameters.AddWithValue("@nota", nota);
-                    cmd.Parameters.AddWithValue("@idC", idCompra);
-                    cmd.ExecuteNonQuery();
-                }
-            }
-            finally { conexion.Cerrar(); }
-        }
-
-        public bool EliminarCompraCompleta(int idCompra)
-        {
-            ClsConexion conexion = new ClsConexion();
-            try
-            {
-                conexion.AbrirConexion();
-
-                string sql = @"
-            -- Ajuste de Inventario
-            UPDATE I
-            SET I.stock = I.stock - CP.cantidad
-            FROM Inventario I
-            INNER JOIN Compra_producto CP ON I.id_producto = CP.id_producto
-            WHERE CP.id_compra = @id;
-
-            -- Eliminación de Detalles
-            DELETE FROM Compra_producto WHERE id_compra = @id;
-
-            -- Eliminación de Cabecera
-            DELETE FROM Compra WHERE id_compra = @id;";
-
-                using (SqlCommand cmd = new SqlCommand(sql, conexion.Conectar))
-                {
-                    cmd.Parameters.AddWithValue("@id", idCompra);
-                    int filasAfectadas = cmd.ExecuteNonQuery();
-
-                    // Si se ejecutó correctamente, devolvemos true
-                    return filasAfectadas > 0;
-                }
-            }
-            catch (Exception ex)
-            {
-                // Esto atrapará cualquier error y lo enviará al MessageBox de tu formulario
-                throw new Exception("Error al eliminar la compra y ajustar stock: " + ex.Message);
-            }
-            finally
-            {
-                conexion.Cerrar();
-            }
-        }
-
         public void RevertirStockProductoNuevo(int idCompra, int idProd, int cant)
         {
             try
             {
                 conexion.AbrirConexion();
-                // Usamos una pequeña transacción interna para asegurar que ambos cambios ocurran
                 string sql = @"
-            UPDATE Inventario SET stock = stock - @cant WHERE id_producto = @idP;
-            DELETE FROM Compra_producto WHERE id_compra = @idC AND id_producto = @idP;";
+                    UPDATE Inventario SET stock = stock - @cant WHERE id_producto = @idP;
+                    DELETE FROM Compra_producto WHERE id_compra = @idC AND id_producto = @idP;";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conexion.Conectar))
                 {
@@ -189,11 +158,39 @@ namespace SG_BAMS.ProductoInventario
                     cmd.ExecuteNonQuery();
                 }
             }
+            finally { conexion.Cerrar(); }
+        }
+
+        public bool EliminarCompraCompleta(int idCompra)
+        {
+            try
+            {
+                conexion.AbrirConexion();
+                string sql = @"
+            UPDATE I
+            SET I.stock = I.stock - CP.cantidad
+            FROM Inventario I
+            INNER JOIN Compra_producto CP ON I.id_producto = CP.id_producto
+            WHERE CP.id_compra = @id;
+
+            DELETE FROM Compra_producto WHERE id_compra = @id;
+            DELETE FROM Compra WHERE id_compra = @id;";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conexion.Conectar))
+                {
+                    cmd.Parameters.AddWithValue("@id", idCompra);
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+                    return filasAfectadas > 0;
+                }
+            }
             catch (Exception ex)
             {
-                throw new Exception("Error al revertir producto nuevo: " + ex.Message);
+                throw new Exception("Error al eliminar la compra y ajustar stock: " + ex.Message);
             }
-            finally { conexion.Cerrar(); }
+            finally
+            {
+                conexion.Cerrar();
+            }
         }
     }
 }

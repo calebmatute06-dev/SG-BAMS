@@ -24,34 +24,6 @@ namespace SG_BAMS
             InitializeComponent();
         }
 
-        private void kryptonGroup3_Paint(object sender, PaintEventArgs e)
-        {
-        }
-
-        private void kryptonButton10_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void pictureBox19_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void kryptonButton13_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void kryptonGroup4_Paint(object sender, PaintEventArgs e)
-        {
-        }
-
-        private void kryptonButton15_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void kryptonButton13_Click_1(object sender, EventArgs e)
-        {
-        }
-
         private void btnMenu_Click(object sender, EventArgs e)
         {
             MenuPrincipalAdm menuPrincipalAdm = new MenuPrincipalAdm();
@@ -239,5 +211,34 @@ namespace SG_BAMS
                 MessageBox.Show("Por favor, seleccione una compra de la lista.");
             }
         }
+
+        private void kryptonGroup3_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+        private void kryptonButton10_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void pictureBox19_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void kryptonButton13_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void kryptonGroup4_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+        private void kryptonButton15_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void kryptonButton13_Click_1(object sender, EventArgs e)
+        {
+        }
+
     }
 }

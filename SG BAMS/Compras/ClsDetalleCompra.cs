@@ -14,7 +14,6 @@ namespace SG_BAMS.ProductoInventario
             try
             {
                 conexion.AbrirConexion();
-                // Usamos INNER JOIN para traer el nombre del producto desde la tabla Producto
                 string query = @"SELECT 
                                     cp.id_producto AS [ID], 
                                     p.nombre_producto AS [Producto], 

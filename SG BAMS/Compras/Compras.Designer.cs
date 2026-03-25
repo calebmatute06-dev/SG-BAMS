@@ -638,7 +638,7 @@
             // 
             // btnComprar
             // 
-            btnComprar.Location = new Point(985, 181);
+            btnComprar.Location = new Point(1035, 227);
             btnComprar.Name = "btnComprar";
             btnComprar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnComprar.OverrideDefault.Back.Color2 = Color.White;
@@ -661,7 +661,7 @@
             // 
             // btnModificar
             // 
-            btnModificar.Location = new Point(985, 243);
+            btnModificar.Location = new Point(1035, 289);
             btnModificar.Name = "btnModificar";
             btnModificar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnModificar.OverrideDefault.Back.Color2 = Color.White;
@@ -684,7 +684,7 @@
             // 
             // btnEliminar
             // 
-            btnEliminar.Location = new Point(985, 303);
+            btnEliminar.Location = new Point(308, 289);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnEliminar.OverrideDefault.Back.Color2 = Color.White;
