@@ -133,9 +133,34 @@ namespace SG_BAMS
                 return;
             }
 
-            if (txtCodigoBarra.Text.Length >= 13 && !char.IsControl(e.KeyChar))
+
+            if (txtCodigoBarra.Text.Length >= 20 && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
+                return;
+            }
+
+
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                e.Handled = true;
+
+                int longitud = txtCodigoBarra.Text.Length;
+
+
+                if (longitud >= 6 && longitud <= 20)
+                {
+
+                    cmbProveedor.Focus();
+                }
+                else
+                {
+                    MessageBox.Show("Código inválido. Debe tener entre 6 y 20 dígitos.\n" +
+                                    "Intenta escanear de nuevo.",
+                                    "Código Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtCodigoBarra.Clear();
+                    txtCodigoBarra.Focus();
+                }
             }
         }
 

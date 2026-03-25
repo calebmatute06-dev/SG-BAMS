@@ -253,15 +253,17 @@ namespace SG_BAMS
 
         public static bool ValidarCodigoBarra(string codigo)
         {
-            if (!Regex.IsMatch(codigo, @"^\d{13}$"))
+            if (!Regex.IsMatch(codigo, @"^\d{6,20}$"))
             {
-                MessageBox.Show("El código de barra debe contener 13 números.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("El código de barras debe contener entre 6 y 20 dígitos. Por favor, verifíquelo.",
+                                "Error de Código de Barras", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
-            if (Regex.IsMatch(codigo, @"(.)\1{3,}"))
+            if (Regex.IsMatch(codigo, @"(.)\1{4,}"))
             {
-                MessageBox.Show("El código de barra tiene un patrón de repetición inválido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("El código de barras tiene un patrón de repetición inválido.",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
