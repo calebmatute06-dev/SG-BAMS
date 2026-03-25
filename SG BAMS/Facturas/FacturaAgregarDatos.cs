@@ -172,19 +172,22 @@ namespace SG_BAMS
                             SG_BAMS.Login.Login.UsuarioLogueado);
                     }
 
-                  
-                    if (idPago == 2)
-                    {
-                        Modificar_Datos__Deudor_ frmDeuda = new Modificar_Datos__Deudor_(
-                            0,
-                            idCliente,
-                            txtCliente.Text,
-                            txtTotal.Text,
-                            DateTFecha.SelectionStart
-                        );
-                    }
+                    
+                    string formaPagoTexto = cmbPago.Text.ToLower();
 
-             
+                    if (formaPagoTexto.Contains("crédito") || formaPagoTexto.Contains("credito"))
+                    {
+                        string nombreCliente = txtCliente.Text.Trim();
+                        string montoTotal = txtTotal.Text;
+                        DateTime fechaVenta = DateTFecha.SelectionStart;
+
+                        using (Modificar_Datos__Deudor_ frmInfo = new Modificar_Datos__Deudor_(idFactura, nombreCliente, montoTotal, fechaVenta))
+                        {
+                            frmInfo.ShowDialog();
+                        }
+                    }
+                  
+
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
