@@ -16,8 +16,6 @@ public class ClsExportarExcel
             using (var workbook = new XLWorkbook())
             {
                 var worksheet = workbook.Worksheets.Add("Reporte BAMS");
-
-                // --- 1. CABECERA DINÁMICA ---
                 var rangoTitulo = worksheet.Range(1, 1, 1, dgv.Columns.Count).Merge();
                 rangoTitulo.Value = "SISTEMA BAMS - REPORTE DE " + tituloReporte.ToUpper();
                 rangoTitulo.Style.Font.Bold = true;
@@ -41,7 +39,6 @@ public class ClsExportarExcel
                 rangoInfo.Style.Font.FontColor = XLColor.Gray;
                 rangoInfo.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
 
-                // --- 2. ENCABEZADOS ---
                 int filaInicioTabla = 5;
                 for (int i = 0; i < dgv.Columns.Count; i++)
                 {
@@ -53,12 +50,9 @@ public class ClsExportarExcel
                     celda.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
                 }
 
-                // --- 3. DATOS Y CÁLCULO DE TOTAL ---
                 decimal totalGeneral = 0;
                 int indiceColumnaSumar = -1;
                 string tituloUpper = tituloReporte.ToUpper();
-
-                // Definir columna a sumar y etiqueta personalizada
                 string etiquetaTotal = "TOTAL GENERAL:";
 
                 if (tituloUpper.Contains("VENTAS"))
@@ -78,7 +72,6 @@ public class ClsExportarExcel
                 }
                 else if (tituloUpper.Contains("INVENTARIO"))
                 {
-                    // Sumamos la nueva columna de Capital (la última)
                     indiceColumnaSumar = dgv.Columns.Count - 1;
                     etiquetaTotal = "CAPITAL TOTAL EN STOCK:";
                 }
@@ -106,10 +99,7 @@ public class ClsExportarExcel
                         else if (decimal.TryParse(celdaDgv.Value?.ToString(), out decimal num))
                         {
                             celdaExcel.Value = num;
-                            // Sumar si es la columna objetivo
                             if (c == indiceColumnaSumar) totalGeneral += num;
-
-                            // Aplicar formato de número/moneda a columnas de dinero
                             if (header.Contains("PRECIO") || header.Contains("TOTAL") || header.Contains("SALDO") || header.Contains("CAPITAL"))
                                 celdaExcel.Style.NumberFormat.Format = "#,##0.00";
                         }
@@ -121,11 +111,9 @@ public class ClsExportarExcel
                     }
                 }
 
-                // --- 4. FILA DE TOTAL PERSONALIZADA ---
                 int filaTotales = dgv.Rows.Count + filaInicioTabla + 1;
                 if (indiceColumnaSumar != -1)
                 {
-                    // Unimos las celdas previas para la etiqueta personalizada
                     var rangoEtiqueta = worksheet.Range(filaTotales, 1, filaTotales, indiceColumnaSumar).Merge();
                     rangoEtiqueta.Value = etiquetaTotal;
                     rangoEtiqueta.Style.Font.Bold = true;
@@ -139,7 +127,6 @@ public class ClsExportarExcel
                     celdaMonto.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
                 }
 
-                // --- 5. BORDES Y AJUSTES ---
                 var ultimaFilaFinal = (indiceColumnaSumar != -1) ? filaTotales : dgv.Rows.Count + filaInicioTabla;
                 var rangoTabla = worksheet.Range(filaInicioTabla, 1, ultimaFilaFinal, dgv.Columns.Count);
                 rangoTabla.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;

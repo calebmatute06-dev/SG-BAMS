@@ -13,7 +13,6 @@ public class DocumentoDinamico : IDocument
     private DateTime _desde;
     private DateTime _hasta;
 
-    // Constructor que recibe el DGV, el título y el rango de fechas
     public DocumentoDinamico(DataGridView dgv, string tituloCabecera, DateTime desde, DateTime hasta)
     {
         _dgv = dgv;
@@ -27,7 +26,6 @@ public class DocumentoDinamico : IDocument
         decimal totalGeneral = 0;
         int indiceColumna = -1;
 
-        // Lógica extendida para incluir Inventario (Capital)
         string titulo = _tituloCabecera.ToUpper();
 
         if (titulo.Contains("VENTAS"))
@@ -38,12 +36,10 @@ public class DocumentoDinamico : IDocument
             indiceColumna = 6;
         else if (titulo.Contains("INVENTARIO"))
         {
-            // Buscamos la columna "Total_Venta_Esperada" o por su índice
-            // Si es la última columna agregada, podemos usar:
+
             indiceColumna = _dgv.Columns.Count - 1;
         }
 
-        // Proceso de suma idéntico para mantener consistencia
         if (indiceColumna != -1 && _dgv.Columns.Count > indiceColumna)
         {
             foreach (DataGridViewRow row in _dgv.Rows)
@@ -71,7 +67,6 @@ public class DocumentoDinamico : IDocument
                     col.Item().Text($"Rango del reporte: {_desde:dd/MM/yyyy} al {_hasta:dd/MM/yyyy}")
                         .FontSize(12).Italic().FontColor(Colors.Grey.Darken2);
                 }
-                // Agregamos una nota para Inventario si lo deseas
                 else if (titulo.Contains("INVENTARIO"))
                 {
                     col.Item().Text($"Estado actual del stock al: {DateTime.Now:dd/MM/yyyy}")
@@ -121,7 +116,6 @@ public class DocumentoDinamico : IDocument
                     }
                 });
 
-                // El cuadro de TOTAL GENERAL ahora también aparecerá en Inventario
                 if (indiceColumna != -1)
                 {
                     col.Item().PaddingTop(10).AlignRight().Table(tTotal =>
@@ -129,10 +123,9 @@ public class DocumentoDinamico : IDocument
                         tTotal.ColumnsDefinition(c =>
                         {
                             c.RelativeColumn();
-                            c.ConstantColumn(160); // Ajustado para etiquetas más largas
+                            c.ConstantColumn(160);
                         });
 
-                        // Lógica de etiquetas personalizadas
                         string etiqueta = "TOTAL GENERAL:";
                         string tituloUpper = _tituloCabecera.ToUpper();
 

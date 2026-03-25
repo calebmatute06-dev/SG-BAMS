@@ -95,7 +95,6 @@ namespace SG_BAMS.Reporte
             }
             else
             {
-                // Limpiamos y "apagamos" visualmente
                 Min.Value = 0;
                 Max.Value = 0;
                 Min.BackColor = System.Drawing.Color.LightGray;
@@ -116,7 +115,6 @@ namespace SG_BAMS.Reporte
                 {
                     if (stock == 0)
                     {
-                        // Especificamos la ruta completa del color
                         e.CellStyle.BackColor = System.Drawing.Color.FromArgb(255, 192, 192);
                         e.CellStyle.ForeColor = System.Drawing.Color.DarkRed;
                     }
@@ -200,13 +198,10 @@ namespace SG_BAMS.Reporte
             if (cmbReporte.SelectedItem == null) return;
             string reporteSeleccionado = cmbReporte.SelectedItem.ToString();
 
-            // NUEVA LÓGICA: Control de activación de Fechas
-            // Solo se habilitan si es Ventas o Compras
             bool usaFechas = (reporteSeleccionado == "Ventas" || reporteSeleccionado == "Compras");
             dtpDesde.Enabled = usaFechas;
             dtpHasta.Enabled = usaFechas;
 
-            // Mantenemos tu control de Stock original
             ControlarFiltroStock(reporteSeleccionado == "Inventario");
 
             try
