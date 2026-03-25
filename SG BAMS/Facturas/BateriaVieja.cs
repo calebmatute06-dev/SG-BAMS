@@ -10,7 +10,6 @@ namespace SG_BAMS.Facturas
 {
     public partial class BateriaVieja : Form
     {
-       
         public double TotalDineroBateria { get; private set; }
         public string TotalCantidadBateria { get; private set; }
 
@@ -18,7 +17,6 @@ namespace SG_BAMS.Facturas
 
         public BateriaVieja(double montoFactura)
         {
-            
             System.Threading.Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
             System.Threading.Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
 
@@ -30,12 +28,10 @@ namespace SG_BAMS.Facturas
         {
             ConfigurarGrid();
 
-            
             cmbBaterias.Items.Clear();
             cmbBaterias.Items.AddRange(new string[] { "Moto", "Carro", "Camión" });
             cmbBaterias.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            
             txtTotal.ReadOnly = true;
             txtCantidadTotal.ReadOnly = true;
         }
@@ -50,23 +46,25 @@ namespace SG_BAMS.Facturas
 
             dgvBateria.Columns["nombre"].ReadOnly = true;
             dgvBateria.Columns["subtotal"].ReadOnly = true;
+
+            
+            dgvBateria.CellValueChanged += dgvBateria_CellValueChanged;
+            dgvBateria.CurrentCellDirtyStateChanged += dgvBateria_CurrentCellDirtyStateChanged;
+
             dgvBateria.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvBateria.AllowUserToAddRows = false;
         }
 
         private void Agregar_Click(object sender, EventArgs e)
         {
-            
             if (cmbBaterias.SelectedIndex == -1)
             {
                 MessageBox.Show("Seleccione un tipo de batería.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-           
             if (ClsValidaciones.CampoVacio(txtPrecio, "Precio") || ClsValidaciones.CampoVacio(txtCantidad, "Cantidad")) return;
 
-            
             if (!double.TryParse(txtPrecio.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out double precio) || precio <= 0)
             {
                 MessageBox.Show("Precio inválido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -79,7 +77,6 @@ namespace SG_BAMS.Facturas
                 return;
             }
 
-            
             double subtotal = Math.Round(precio * cant, 2);
             dgvBateria.Rows.Add(cmbBaterias.Text, precio.ToString("N2"), cant, subtotal.ToString("N2"));
 
@@ -102,8 +99,11 @@ namespace SG_BAMS.Facturas
 
             foreach (DataGridViewRow row in dgvBateria.Rows)
             {
-                totalDinero += Convert.ToDouble(row.Cells["subtotal"].Value);
-                totalProductos += Convert.ToInt32(row.Cells["cantidad"].Value);
+                if (row.Cells["subtotal"].Value != null)
+                    totalDinero += Convert.ToDouble(row.Cells["subtotal"].Value);
+
+                if (row.Cells["cantidad"].Value != null)
+                    totalProductos += Convert.ToInt32(row.Cells["cantidad"].Value);
             }
 
             txtTotal.Text = totalDinero.ToString("N2");
@@ -120,7 +120,6 @@ namespace SG_BAMS.Facturas
 
             double totalBateria = double.Parse(txtTotal.Text);
 
-           
             if (totalBateria >= limiteFactura)
             {
                 MessageBox.Show($"El descuento (L. {totalBateria:N2}) no puede ser igual o mayor al total de los productos (L. {limiteFactura:N2}).",
@@ -144,15 +143,51 @@ namespace SG_BAMS.Facturas
             }
         }
 
+        
+
+        private void dgvBateria_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            
+            if (dgvBateria.IsCurrentCellDirty)
+            {
+                dgvBateria.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
+
+        private void dgvBateria_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+           
+            if (dgvBateria.Columns[e.ColumnIndex].Name == "precio" || dgvBateria.Columns[e.ColumnIndex].Name == "cantidad")
+            {
+                try
+                {
+                    var row = dgvBateria.Rows[e.RowIndex];
+                    double precio = Convert.ToDouble(row.Cells["precio"].Value ?? 0);
+                    int cantidad = Convert.ToInt32(row.Cells["cantidad"].Value ?? 0);
+
+                    double subtotal = Math.Round(precio * cantidad, 2);
+                    row.Cells["subtotal"].Value = subtotal.ToString("N2");
+
+                    CalcularTotales();
+                }
+                catch
+                {
+                    dgvBateria.Rows[e.RowIndex].Cells["subtotal"].Value = "0.00";
+                    CalcularTotales();
+                }
+            }
+        }
 
         private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
         {
-            ClsValidaciones.ValidarSoloNumeros(e);
+            ClsValidaciones.PermitirNumerosYDecimales(sender, e);
         }
 
         private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar)) e.Handled = true;
+            ClsValidaciones.ValidarSoloNumeros(e);
         }
 
         private void BtnSalir_Click(object sender, EventArgs e) => this.Close();
