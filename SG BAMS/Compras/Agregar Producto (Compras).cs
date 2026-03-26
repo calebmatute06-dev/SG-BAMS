@@ -49,38 +49,20 @@ namespace SG_BAMS
 
         private void LlenarComboProductos()
         {
-            ClsConexion conexion = new ClsConexion();
-            DataTable dt = new DataTable();
-
             try
             {
-                conexion.AbrirConexion();
-
-                string query = @"SELECT p.id_producto, p.nombre_producto 
-                 FROM Producto p
-                 INNER JOIN Proveedor_Producto pp ON p.id_producto = pp.id_producto
-                 WHERE p.id_estado = 1 AND pp.id_proveedor = @idProv";
-
-                using (SqlCommand cmd = new SqlCommand(query, conexion.Conectar))
-                {
-                    cmd.Parameters.AddWithValue("@idProv", _idProveedor);
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(dt);
-                }
+                ClsCompras objCompras = new ClsCompras();
+                DataTable dt = objCompras.ObtenerProductosPorProveedor(_idProveedor);
 
                 cmbProductos.DataSource = dt;
-                cmbProductos.DisplayMember = "nombre_producto";
+                cmbProductos.DisplayMember = "DisplayFull";
                 cmbProductos.ValueMember = "id_producto";
 
                 cmbProductos.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al filtrar productos por proveedor: " + ex.Message);
-            }
-            finally
-            {
-                conexion.Cerrar();
+                MessageBox.Show("Error al cargar los productos: " + ex.Message);
             }
         }
 

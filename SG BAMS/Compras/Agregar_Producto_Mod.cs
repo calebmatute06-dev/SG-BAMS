@@ -30,9 +30,9 @@ namespace SG_BAMS
         {
             try
             {
-                DataTable dtProductos = ObtenerDatosCombo("Producto");
-                cmbProductos.DataSource = dtProductos;
-                cmbProductos.DisplayMember = "nombre_producto";
+                ClsCompras objCompras = new ClsCompras();
+                cmbProductos.DataSource = objCompras.ObtenerProductosPorProveedor(_idProveedor);
+                cmbProductos.DisplayMember = "DisplayFull";
                 cmbProductos.ValueMember = "id_producto";
 
                 cmbProductos.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
@@ -42,49 +42,12 @@ namespace SG_BAMS
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Error al cargar productos: " + ex.Message);
             }
             numCantidad.DecimalPlaces = 0;
             numCantidad.ThousandsSeparator = true;
         }
 
-        public DataTable ObtenerDatosCombo(string tabla)
-        {
-            DataTable dt = new DataTable();
-            string query = "";
-            switch (tabla)
-            {
-                case "Producto":
-                    // Filtramos por el proveedor que recibimos en el constructor
-                    query = @"SELECT p.id_producto, p.nombre_producto 
-                      FROM Producto p
-                      INNER JOIN Proveedor_Producto pp ON p.id_producto = pp.id_producto
-                      WHERE p.id_estado = 1 AND pp.id_proveedor = @idProv
-                      ORDER BY p.nombre_producto ASC";
-                    break;
-
-                case "Marca": query = "SELECT id_marca_producto, nombre_marca FROM Marca_producto"; break;
-                    // ... los demás casos se quedan igual
-            }
-
-            try
-            {
-                conexion.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand(query, conexion.Conectar))
-                {
-                    // ¡IMPORTANTE! Agregamos el parámetro para el filtro
-                    if (tabla == "Producto")
-                    {
-                        cmd.Parameters.AddWithValue("@idProv", _idProveedor);
-                    }
-
-                    using (SqlDataReader leer = cmd.ExecuteReader()) { dt.Load(leer); }
-                }
-            }
-            catch (Exception ex) { throw new Exception("Error al llenar combo " + tabla + ": " + ex.Message); }
-            finally { conexion.Cerrar(); }
-            return dt;
-        }
 
         private void kryptonButton3_Click(object sender, EventArgs e)
         {
@@ -95,14 +58,12 @@ namespace SG_BAMS
                 return;
             }
 
-
             if (numCantidad.Value <= 0)
             {
                 MessageBox.Show("La cantidad debe ser mayor a cero.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 numCantidad.Focus();
                 return;
             }
-
 
             if (!ClsValidaciones.EsNumeroDecimalValido(txtPrecio, "El precio", out decimal precioFinal))
             {
@@ -111,39 +72,19 @@ namespace SG_BAMS
 
             try
             {
-                conexion.AbrirConexion();
+                ClsCompras objCompras = new ClsCompras();
+                int idProd = Convert.ToInt32(cmbProductos.SelectedValue);
 
-
-                string sqlCheck = "SELECT COUNT(*) FROM Compra_producto WHERE id_compra = @idC AND id_producto = @idP";
-                using (SqlCommand cmdCheck = new SqlCommand(sqlCheck, conexion.Conectar))
+                if (objCompras.ValidarProductoEnCompra(IdCompraActual, idProd))
                 {
-                    cmdCheck.Parameters.AddWithValue("@idC", IdCompraActual);
-                    cmdCheck.Parameters.AddWithValue("@idP", cmbProductos.SelectedValue);
-
-                    int existe = (int)cmdCheck.ExecuteScalar();
-                    if (existe > 0)
-                    {
-                        MessageBox.Show("Este producto ya está incluido en la compra.\nModifique la cantidad en la pantalla anterior\n(dando doble click sobre la celda precio o cantidad).",
-                                        "Producto Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return;
-                    }
+                    MessageBox.Show("Este producto ya está incluido en la compra.\nModifique la cantidad en la pantalla anterior\n(dando doble click sobre la celda precio o cantidad).",
+                                    "Producto Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
                 }
 
+                objCompras.AgregarDetalleACompraExistente(IdCompraActual, idProd, (int)numCantidad.Value, precioFinal);
 
-                string sql = "INSERT INTO Compra_producto (id_compra, id_producto, cantidad, precio_costo_unitario) " +
-                             "VALUES (@idC, @idP, @cant, @prec)";
-
-                using (SqlCommand cmd = new SqlCommand(sql, conexion.Conectar))
-                {
-                    cmd.Parameters.AddWithValue("@idC", IdCompraActual);
-                    cmd.Parameters.AddWithValue("@idP", cmbProductos.SelectedValue);
-                    cmd.Parameters.AddWithValue("@cant", (int)numCantidad.Value);
-                    cmd.Parameters.AddWithValue("@prec", precioFinal);
-                    cmd.ExecuteNonQuery();
-                }
-
-
-                IdSeleccionado = cmbProductos.SelectedValue.ToString();
+                IdSeleccionado = idProd.ToString();
                 NombreSeleccionado = cmbProductos.Text;
                 CantidadSeleccionada = (int)numCantidad.Value;
                 PrecioSeleccionado = precioFinal;
@@ -154,9 +95,8 @@ namespace SG_BAMS
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al guardar: " + ex.Message, "Error SQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al guardar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            finally { conexion.Cerrar(); }
         }
 
         private void btnCancelar_Click_1(object sender, EventArgs e)

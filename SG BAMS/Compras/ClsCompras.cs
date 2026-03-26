@@ -7,6 +7,89 @@ namespace SG_BAMS
 {
     public class ClsCompras
     {
+        public DataTable ObtenerProductosPorProveedor(int idProv)
+        {
+            ClsConexion conexion = new ClsConexion();
+            DataTable dt = new DataTable();
+
+            try
+            {
+                conexion.AbrirConexion();
+                string query = @"SELECT p.id_producto, 
+                                 (p.nombre_producto + ' -- ' + m.nombre_marca) AS DisplayFull
+                                 FROM Producto p
+                                 INNER JOIN Proveedor_Producto pp ON p.id_producto = pp.id_producto
+                                 INNER JOIN Marca_producto m ON p.id_marca_producto = m.id_marca_producto
+                                 WHERE p.id_estado = 1 AND pp.id_proveedor = @idProv";
+
+                using (SqlCommand cmd = new SqlCommand(query, conexion.Conectar))
+                {
+                    cmd.Parameters.AddWithValue("@idProv", idProv);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                }
+                return dt;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                conexion.Cerrar();
+            }
+        }
+
+        public bool ValidarProductoEnCompra(string idCompra, int idProducto)
+        {
+            ClsConexion conexion = new ClsConexion();
+            try
+            {
+                conexion.AbrirConexion();
+                string sql = "SELECT COUNT(*) FROM Compra_producto WHERE id_compra = @idC AND id_producto = @idP";
+                using (SqlCommand cmd = new SqlCommand(sql, conexion.Conectar))
+                {
+                    cmd.Parameters.AddWithValue("@idC", idCompra);
+                    cmd.Parameters.AddWithValue("@idP", idProducto);
+                    return (int)cmd.ExecuteScalar() > 0;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                conexion.Cerrar();
+            }
+        }
+
+        public void AgregarDetalleACompraExistente(string idCompra, int idProducto, int cantidad, decimal precio)
+        {
+            ClsConexion conexion = new ClsConexion();
+            try
+            {
+                conexion.AbrirConexion();
+                string sql = "INSERT INTO Compra_producto (id_compra, id_producto, cantidad, precio_costo_unitario) VALUES (@idC, @idP, @cant, @prec)";
+                using (SqlCommand cmd = new SqlCommand(sql, conexion.Conectar))
+                {
+                    cmd.Parameters.AddWithValue("@idC", idCompra);
+                    cmd.Parameters.AddWithValue("@idP", idProducto);
+                    cmd.Parameters.AddWithValue("@cant", cantidad);
+                    cmd.Parameters.AddWithValue("@prec", precio);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                conexion.Cerrar();
+            }
+        }
+
         public class DetalleCompra
         {
             public int IdProducto { get; set; }
@@ -63,7 +146,7 @@ namespace SG_BAMS
             catch (Exception)
             {
                 transaccion.Rollback();
-                throw; 
+                throw;
             }
             finally
             {
