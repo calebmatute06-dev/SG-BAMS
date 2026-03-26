@@ -722,9 +722,9 @@
             label3.ForeColor = Color.Navy;
             label3.Location = new Point(360, 275);
             label3.Name = "label3";
-            label3.Size = new Size(99, 27);
+            label3.Size = new Size(74, 27);
             label3.TabIndex = 327;
-            label3.Text = "Busqueda:";
+            label3.Text = "Buscar:";
             // 
             // label10
             // 

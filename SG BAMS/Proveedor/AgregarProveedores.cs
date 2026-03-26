@@ -32,8 +32,9 @@ namespace SG_BAMS.Proveedor
             proveedor.CargarComboClasificacion(cmbClasificacion);
             cmbClasificacion.DropDownStyle = ComboBoxStyle.DropDownList;
 
-           
-            txtNombre.KeyPress += (s, ev) => {
+
+            txtNombre.KeyPress += (s, ev) =>
+            {
                 if (!char.IsLetter(ev.KeyChar) && !char.IsWhiteSpace(ev.KeyChar) && !char.IsControl(ev.KeyChar) && ev.KeyChar != '&')
                 {
                     ev.Handled = true;
@@ -63,10 +64,10 @@ namespace SG_BAMS.Proveedor
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            
+
             string nombre = txtNombre.Text.Trim();
 
-            
+
             if (string.IsNullOrWhiteSpace(nombre))
             {
                 MessageBox.Show("El nombre del proveedor no puede estar vacío.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -74,7 +75,7 @@ namespace SG_BAMS.Proveedor
                 return;
             }
 
-           
+
             if (!Regex.IsMatch(nombre, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s&]+$"))
             {
                 MessageBox.Show("El nombre solo puede contener letras y el carácter '&'.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -82,7 +83,7 @@ namespace SG_BAMS.Proveedor
                 return;
             }
 
-            
+
             if (nombre.Contains("  "))
             {
                 MessageBox.Show("El nombre no puede contener espacios dobles.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -90,7 +91,7 @@ namespace SG_BAMS.Proveedor
                 return;
             }
 
-            
+
             if (Regex.IsMatch(nombre, @"(.)\1{2,}", RegexOptions.IgnoreCase))
             {
                 MessageBox.Show("El nombre no puede tener más de dos letras repetidas consecutivamente.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -98,7 +99,7 @@ namespace SG_BAMS.Proveedor
                 return;
             }
 
-           
+
             if (Regex.IsMatch(nombre, @"([a-zA-ZñÑáéíóúÁÉÍÓÚ])\s\1", RegexOptions.IgnoreCase))
             {
                 MessageBox.Show("El nombre contiene una secuencia de letras repetidas no válida (ejemplo: 'a a').", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -106,7 +107,7 @@ namespace SG_BAMS.Proveedor
                 return;
             }
 
-           
+
             if (nombre.Length >= 2 && nombre[0] == nombre[1])
             {
                 MessageBox.Show("El nombre no puede iniciar con dos letras iguales.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -114,7 +115,7 @@ namespace SG_BAMS.Proveedor
                 return;
             }
 
-            
+
             if (ClsValidaciones.CampoVacio(txtDireccion, "Dirección")) return;
             if (!ClsValidaciones.EsTelefonoHondurasValido(txtTelefono)) return;
             if (!ClsValidaciones.EsRTNValido(txtRTN)) return;
@@ -190,7 +191,7 @@ namespace SG_BAMS.Proveedor
 
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
+
             if (!char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != '&')
             {
                 e.Handled = true;
@@ -203,6 +204,11 @@ namespace SG_BAMS.Proveedor
             {
                 e.Handled = true;
             }
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

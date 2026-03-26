@@ -303,11 +303,12 @@ namespace SG_BAMS
             {
                 int pos = txt.SelectionStart;
                 
-                if (pos >= 3)
+                if (pos >= 4)
                 {
                     if (txt.Text[pos - 1] == e.KeyChar &&
                         txt.Text[pos - 2] == e.KeyChar &&
-                        txt.Text[pos - 3] == e.KeyChar)
+                        txt.Text[pos - 3] == e.KeyChar &&
+                        txt.Text[pos - 4] == e.KeyChar)
                     {
                         e.Handled = true;
                         return;

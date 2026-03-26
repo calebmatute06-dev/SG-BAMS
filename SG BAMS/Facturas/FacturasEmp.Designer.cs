@@ -33,6 +33,8 @@
             panel3 = new Panel();
             panel4 = new Panel();
             panel1 = new Panel();
+            panel7 = new Panel();
+            label7 = new Label();
             BtnMenu = new Krypton.Toolkit.KryptonButton();
             pictureBox6 = new PictureBox();
             btnPerfil = new Krypton.Toolkit.KryptonButton();
@@ -67,9 +69,8 @@
             kryptonGroupBox2 = new Krypton.Toolkit.KryptonGroupBox();
             kryptonGroupBox3 = new Krypton.Toolkit.KryptonGroupBox();
             Nombre = new Label();
-            label7 = new Label();
-            panel7 = new Panel();
             panel1.SuspendLayout();
+            panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox15).BeginInit();
@@ -83,7 +84,6 @@
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3.Panel).BeginInit();
-            panel7.SuspendLayout();
             SuspendLayout();
             // 
             // panel5
@@ -141,6 +141,25 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(286, 892);
             panel1.TabIndex = 144;
+            // 
+            // panel7
+            // 
+            panel7.BackColor = Color.White;
+            panel7.Controls.Add(label7);
+            panel7.Location = new Point(11, 316);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(261, 40);
+            panel7.TabIndex = 355;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.ForeColor = Color.Navy;
+            label7.Location = new Point(129, 10);
+            label7.Name = "label7";
+            label7.Size = new Size(62, 20);
+            label7.TabIndex = 333;
+            label7.Text = "Facturas";
             // 
             // BtnMenu
             // 
@@ -616,28 +635,9 @@
             Nombre.ForeColor = Color.Navy;
             Nombre.Location = new Point(574, 216);
             Nombre.Name = "Nombre";
-            Nombre.Size = new Size(132, 27);
+            Nombre.Size = new Size(99, 27);
             Nombre.TabIndex = 352;
-            Nombre.Text = "Búsqueda:";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.ForeColor = Color.Navy;
-            label7.Location = new Point(129, 10);
-            label7.Name = "label7";
-            label7.Size = new Size(62, 20);
-            label7.TabIndex = 333;
-            label7.Text = "Facturas";
-            // 
-            // panel7
-            // 
-            panel7.BackColor = Color.White;
-            panel7.Controls.Add(label7);
-            panel7.Location = new Point(11, 316);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(261, 40);
-            panel7.TabIndex = 355;
+            Nombre.Text = "Buscar:";
             // 
             // FacturasEmp
             // 
@@ -675,6 +675,8 @@
             Load += FacturasEmp_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            panel7.ResumeLayout(false);
+            panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox15).EndInit();
@@ -688,8 +690,6 @@
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3).EndInit();
-            panel7.ResumeLayout(false);
-            panel7.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
