@@ -169,7 +169,7 @@
             // 
             // btnAceptar
             // 
-            btnAceptar.Location = new Point(392, 533);
+            btnAceptar.Location = new Point(178, 523);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnAceptar.OverrideDefault.Back.Color2 = Color.White;
@@ -193,7 +193,7 @@
             // 
             // btnsalir
             // 
-            btnsalir.Location = new Point(21, 533);
+            btnsalir.Location = new Point(314, 523);
             btnsalir.Name = "btnsalir";
             btnsalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnsalir.OverrideDefault.Back.Color2 = Color.White;

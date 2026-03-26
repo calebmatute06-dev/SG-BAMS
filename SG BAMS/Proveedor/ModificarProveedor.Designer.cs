@@ -89,7 +89,7 @@
             // 
             // btnAceptar
             // 
-            btnAceptar.Location = new Point(391, 516);
+            btnAceptar.Location = new Point(156, 516);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnAceptar.OverrideDefault.Back.Color2 = Color.White;
@@ -124,14 +124,14 @@
             // 
             // btnsalir
             // 
-            btnsalir.Location = new Point(21, 516);
+            btnsalir.Location = new Point(282, 516);
             btnsalir.Name = "btnsalir";
             btnsalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnsalir.OverrideDefault.Back.Color2 = Color.White;
             btnsalir.OverrideDefault.Border.Rounding = 40F;
             btnsalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnsalir.OverrideFocus.Back.Color2 = Color.White;
-            btnsalir.Size = new Size(75, 44);
+            btnsalir.Size = new Size(101, 44);
             btnsalir.StateCommon.Back.Color1 = Color.SkyBlue;
             btnsalir.StateCommon.Back.Color2 = Color.White;
             btnsalir.StateCommon.Border.Rounding = 40F;
@@ -143,7 +143,7 @@
             btnsalir.StateTracking.Border.Rounding = 40F;
             btnsalir.TabIndex = 166;
             btnsalir.Values.DropDownArrowColor = Color.Empty;
-            btnsalir.Values.Text = "Salir";
+            btnsalir.Values.Text = "Cancelar";
             btnsalir.Click += btnsalir_Click;
             // 
             // pictureBox3
