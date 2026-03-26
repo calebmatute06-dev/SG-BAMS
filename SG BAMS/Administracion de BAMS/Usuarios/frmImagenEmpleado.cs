@@ -42,18 +42,13 @@ namespace SG_BAMS
                         {
                             using (var frame = frameMat.ToImage<Bgr, byte>())
                             {
-                                // PROCESAMIENTO PARA LUZ: Convertir a gris y mejorar contraste
                                 using (var grayFrame = frame.Convert<Gray, byte>())
                                 {
-                                    // Ecualización para normalizar la iluminación
                                     CvInvoke.EqualizeHist(grayFrame, grayFrame);
 
-                                    // Detección frontal
                                     Rectangle[] rostrosFrontales = frontalFaceDetector.DetectMultiScale(grayFrame, 1.1, 10, Size.Empty);
-                                    // Detección de perfil (ángulos)
                                     Rectangle[] rostrosPerfil = profileFaceDetector.DetectMultiScale(grayFrame, 1.1, 10, Size.Empty);
 
-                                    // Dibujar rostros detectados
                                     foreach (Rectangle rostro in rostrosFrontales.Concat(rostrosPerfil))
                                     {
                                         frame.Draw(rostro, new Bgr(Color.LimeGreen), 2);
@@ -79,7 +74,6 @@ namespace SG_BAMS
 
         }
 
-        // --- El resto de métodos (Load, LlenarUsuarios, Detener, etc.) se mantienen igual ---
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
@@ -132,6 +126,18 @@ namespace SG_BAMS
 
         private async void btnCapturar_Click_1(object sender, EventArgs e)
         {
+            if (camara == null)
+            {
+                MessageBox.Show("Primero debes encender la cámara.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(cmbUsuarios.Text))
+            {
+                MessageBox.Show("Selecciona o ingresa un usuario primero.");
+                return;
+            }
+
             if (string.IsNullOrWhiteSpace(cmbUsuarios.Text))
             {
                 MessageBox.Show("Selecciona o ingresa un usuario primero.");
@@ -144,7 +150,7 @@ namespace SG_BAMS
 
             btnCapturar.Enabled = false;
 
-            while (fotosTomadas < 5 && intentos < 30) // Más intentos para buscar mejores ángulos
+            while (fotosTomadas < 5 && intentos < 30) 
             {
                 using (var frameMat = camara.QueryFrame())
                 {
@@ -152,11 +158,9 @@ namespace SG_BAMS
                     {
                         using (var frame = frameMat.ToImage<Bgr, byte>())
                         {
-                            // Aplicamos la misma mejora de luz antes de pasar el frame a clsSoporte
                             using (var gray = frame.Convert<Gray, byte>())
                             {
                                 CvInvoke.EqualizeHist(gray, gray);
-                                // Nota: clsSoporte.DetectarRostro debería idealmente usar gray para ser más preciso
                             }
 
                             var rostro = clsSoporte.DetectarRostro(frame);
@@ -172,7 +176,7 @@ namespace SG_BAMS
                     }
                 }
                 intentos++;
-                await Task.Delay(400); // Pausa ligeramente mayor para permitir movimiento
+                await Task.Delay(400); 
             }
 
             btnCapturar.Enabled = true;
@@ -193,35 +197,88 @@ namespace SG_BAMS
 
         private void btnBorrar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(cmbUsuarios.Text)) return;
+            if (string.IsNullOrWhiteSpace(cmbUsuarios.Text))
+            {
+                MessageBox.Show("Selecciona un usuario para buscar sus fotos.", "Aviso");
+                return;
+            }
+
             string nombreUsuario = cmbUsuarios.Text;
             try
             {
                 var archivos = Directory.GetFiles(clsSoporte.DirectorioRostros, "*.jpg")
                     .Where(f => Path.GetFileNameWithoutExtension(f).StartsWith(nombreUsuario)).ToList();
 
-                if (archivos.Count > 0 && MessageBox.Show($"¿Eliminar {archivos.Count} fotos?", "Confirmar", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (archivos.Count == 0)
                 {
-                    foreach (var archivo in archivos) File.Delete(archivo);
-                    MessageBox.Show("Registros eliminados.");
+                    MessageBox.Show($"No se encontraron fotos registradas para '{nombreUsuario}'.", "Sin archivos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                if (MessageBox.Show($"Se encontraron {archivos.Count} fotos. ¿Estás seguro de eliminarlas?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    foreach (var archivo in archivos)
+                    {
+                        File.Delete(archivo);
+                    }
+                    MessageBox.Show("Fotos eliminadas con éxito.", "Éxito");
                 }
             }
-            catch (Exception ex) { MessageBox.Show("Error: " + ex.Message); }
+            catch (IOException ex)
+            {
+                MessageBox.Show("No se pudieron borrar los archivos. Asegúrate de que no estén abiertos en otro programa: " + ex.Message, "Error de E/S");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error inesperado al borrar: " + ex.Message, "Error");
+            }
         }
 
         private void btnEncender_Click(object sender, EventArgs e)
         {
-            if (camara == null)
+            try
             {
-                camara = new VideoCapture(0);
-                Application.Idle += FrameProcess;
-                camaraEnEncendida = true;
+                if (camara == null)
+                {
+                    camara = new VideoCapture(0);
+
+                    if (camara.IsOpened)
+                    {
+                        Application.Idle += FrameProcess;
+                        camaraEnEncendida = true;
+                        btnCapturar.Enabled = true;
+                        MessageBox.Show("Cámara encendida con éxito.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        camara.Dispose();
+                        camara = null;
+                        MessageBox.Show("No se detectó ninguna cámara o está siendo usada por otra aplicación.", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("La cámara ya está encendida.", "Aviso");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error fatal al encender la cámara: " + ex.Message, "Error Critico", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnDetener_Click(object sender, EventArgs e)
         {
-            DetenerCamara();
+            if (camara != null)
+            {
+                DetenerCamara();
+                btnCapturar.Enabled = false; 
+                MessageBox.Show("Cámara desconectada correctamente.", "Sistema");
+            }
+            else
+            {
+                MessageBox.Show("La cámara ya se encuentra apagada.", "Aviso");
+            }
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
