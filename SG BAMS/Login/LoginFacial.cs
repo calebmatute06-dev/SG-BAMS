@@ -22,7 +22,6 @@ namespace SG_BAMS.Login
         private VideoCapture camara;
         private List<Image<Gray, byte>> rostrosReferencia = new List<Image<Gray, byte>>();
 
-        // Detectores para mejorar el ángulo (Frontal y Perfil)
         private CascadeClassifier faceDetector = new CascadeClassifier("haarcascade_frontalface_default.xml");
         private CascadeClassifier profileFaceDetector = new CascadeClassifier("haarcascade_profileface.xml");
 
@@ -47,7 +46,6 @@ namespace SG_BAMS.Login
 
             foreach (var archivo in archivos)
             {
-                // Cargamos y ecualizamos la referencia para que coincida con el proceso de validación
                 var imgReferencia = new Image<Gray, byte>(archivo);
                 CvInvoke.EqualizeHist(imgReferencia, imgReferencia);
                 rostrosReferencia.Add(imgReferencia);
@@ -72,10 +70,8 @@ namespace SG_BAMS.Login
                     {
                         using (var grayFrame = frame.Convert<Gray, byte>())
                         {
-                            // MEJORA DE LUZ: Ecualización para combatir sombras o exceso de brillo
                             CvInvoke.EqualizeHist(grayFrame, grayFrame);
 
-                            // DETECCIÓN MULTI-ÁNGULO
                             Rectangle[] rostrosFrontales = faceDetector.DetectMultiScale(grayFrame, 1.1, 10, Size.Empty);
                             Rectangle[] rostrosPerfil = profileFaceDetector.DetectMultiScale(grayFrame, 1.1, 10, Size.Empty);
 
@@ -86,17 +82,13 @@ namespace SG_BAMS.Login
                                 frame.Draw(rostro, new Bgr(Color.Cyan), 2);
                             }
 
-                            // Feedback visual en el PictureBox
                             if (picValidar.Image != null) picValidar.Image.Dispose();
                             picValidar.Image = frame.ToBitmap();
 
-                            // Procesar detección para comparación
-                            // Usamos el frame ecualizado para que la comparación sea justa
                             var rostroActual = clsSoporte.DetectarRostro(frame);
 
                             if (rostroActual != null)
                             {
-                                // Aseguramos que el rostro detectado también esté ecualizado antes de comparar
                                 CvInvoke.EqualizeHist(rostroActual, rostroActual);
                                 CompararRostros(rostroActual);
                             }
@@ -116,7 +108,6 @@ namespace SG_BAMS.Login
             {
                 foreach (var referencia in rostrosReferencia)
                 {
-                    // Redimensionar para asegurar que MatchTemplate funcione (deben tener tamaños compatibles)
                     using (Image<Gray, byte> refResized = referencia.Resize(rostroActual.Width, rostroActual.Height, Inter.Linear))
                     {
                         using (Mat resultado = new Mat())
@@ -127,7 +118,6 @@ namespace SG_BAMS.Login
                             Point minLoc = new Point(), maxLoc = new Point();
                             CvInvoke.MinMaxLoc(resultado, ref minVal, ref maxVal, ref minLoc, ref maxLoc);
 
-                            // Umbral de validación (0.70 es un buen equilibrio)
                             if (maxVal > 0.70)
                             {
                                 Finalizar(DialogResult.OK);
@@ -148,7 +138,7 @@ namespace SG_BAMS.Login
             Application.Idle -= ProcesoValidacion;
             if (camara != null)
             {
-                camara.Stop(); // Detener captura antes de dispose
+                camara.Stop();
                 camara.Dispose();
                 camara = null;
             }
