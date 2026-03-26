@@ -169,7 +169,7 @@
             // 
             // btnAceptar
             // 
-            btnAceptar.Location = new Point(178, 523);
+            btnAceptar.Location = new Point(148, 523);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnAceptar.OverrideDefault.Back.Color2 = Color.White;
@@ -183,7 +183,7 @@
             btnAceptar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnAceptar.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnAceptar.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnAceptar.StateNormal.Back.Color2 = Color.White;
+            btnAceptar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
             btnAceptar.StateNormal.Border.Rounding = 40F;
             btnAceptar.StateTracking.Border.Rounding = 40F;
             btnAceptar.TabIndex = 285;
@@ -193,26 +193,26 @@
             // 
             // btnsalir
             // 
-            btnsalir.Location = new Point(314, 523);
+            btnsalir.Location = new Point(269, 523);
             btnsalir.Name = "btnsalir";
             btnsalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnsalir.OverrideDefault.Back.Color2 = Color.White;
             btnsalir.OverrideDefault.Border.Rounding = 40F;
             btnsalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnsalir.OverrideFocus.Back.Color2 = Color.White;
-            btnsalir.Size = new Size(75, 44);
+            btnsalir.Size = new Size(121, 44);
             btnsalir.StateCommon.Back.Color1 = Color.SkyBlue;
             btnsalir.StateCommon.Back.Color2 = Color.White;
             btnsalir.StateCommon.Border.Rounding = 40F;
             btnsalir.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnsalir.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnsalir.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnsalir.StateNormal.Back.Color2 = Color.White;
+            btnsalir.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
             btnsalir.StateNormal.Border.Rounding = 40F;
             btnsalir.StateTracking.Border.Rounding = 40F;
             btnsalir.TabIndex = 284;
             btnsalir.Values.DropDownArrowColor = Color.Empty;
-            btnsalir.Values.Text = "Salir";
+            btnsalir.Values.Text = "Cancelar";
             btnsalir.Click += btnsalir_Click;
             // 
             // cmbClasificacion
