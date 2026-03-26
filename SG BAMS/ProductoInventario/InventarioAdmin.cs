@@ -23,6 +23,7 @@ namespace SG_BAMS
         public InventarioAdmin()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
 
         public void CargarInventarioCompleto()
@@ -227,6 +228,44 @@ namespace SG_BAMS
             {
                 MessageBox.Show("Por favor, selecciona una fila para modificar.", "BAMS");
             }
+        }
+
+        private DateTime ultimaTeclaEscaner = DateTime.Now;
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            Keys key = keyData & Keys.KeyCode;
+
+            if ((key >= Keys.D0 && key <= Keys.Z) || (key >= Keys.NumPad0 && key <= Keys.NumPad9))
+            {
+                TimeSpan intervalo = DateTime.Now - ultimaTeclaEscaner;
+                ultimaTeclaEscaner = DateTime.Now;
+
+                if (intervalo.TotalMilliseconds < 50 || !txtBuscar.Focused)
+                {
+                    txtBuscar.Text = string.Empty;
+
+                    if (!txtBuscar.Focused) txtBuscar.Focus();
+
+                    char c = (char)key;
+                    txtBuscar.AppendText(c.ToString().ToLower());
+
+                    return true;
+                }
+            }
+
+            if (key == Keys.Enter)
+            {
+                if (txtBuscar.Focused && !string.IsNullOrWhiteSpace(txtBuscar.Text))
+                {
+                    dgvProductosAdmin.DataSource = logica.BuscarProductos(txtBuscar.Text.Trim());
+                    txtBuscar.SelectAll();
+
+                    return true;
+                }
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }
