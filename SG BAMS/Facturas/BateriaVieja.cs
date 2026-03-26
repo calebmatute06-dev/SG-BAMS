@@ -47,7 +47,7 @@ namespace SG_BAMS.Facturas
             dgvBateria.Columns["nombre"].ReadOnly = true;
             dgvBateria.Columns["subtotal"].ReadOnly = true;
 
-            
+
             dgvBateria.CellValueChanged += dgvBateria_CellValueChanged;
             dgvBateria.CurrentCellDirtyStateChanged += dgvBateria_CurrentCellDirtyStateChanged;
 
@@ -143,11 +143,11 @@ namespace SG_BAMS.Facturas
             }
         }
 
-        
+
 
         private void dgvBateria_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
-            
+
             if (dgvBateria.IsCurrentCellDirty)
             {
                 dgvBateria.CommitEdit(DataGridViewDataErrorContexts.Commit);
@@ -158,7 +158,7 @@ namespace SG_BAMS.Facturas
         {
             if (e.RowIndex < 0) return;
 
-           
+
             if (dgvBateria.Columns[e.ColumnIndex].Name == "precio" || dgvBateria.Columns[e.ColumnIndex].Name == "cantidad")
             {
                 try

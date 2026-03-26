@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using System;
 using System.Data;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace SG_BAMS
@@ -23,7 +24,6 @@ namespace SG_BAMS
         {
             InitializeComponent();
             this._idProveedor = idProv;
-            txtPrecio.KeyPress += (s, e) => ClsValidaciones.ValidarDecimales(txtPrecio, e);
         }
 
         private void Agregar_Producto_Mod_Load(object sender, EventArgs e)
@@ -44,6 +44,8 @@ namespace SG_BAMS
             {
                 MessageBox.Show(ex.Message);
             }
+            numCantidad.DecimalPlaces = 0;
+            numCantidad.ThousandsSeparator = true;
         }
 
         public DataTable ObtenerDatosCombo(string tabla)
@@ -167,6 +169,27 @@ namespace SG_BAMS
         {
             AgregarProducto agregarProducto = new AgregarProducto();
             agregarProducto.Show();
+        }
+
+        private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ClsValidaciones.PermitirNumerosYDecimales(sender, e);
+        }
+
+        private void txtPrecio_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(txtPrecio.Text))
+            {
+                if (decimal.TryParse(txtPrecio.Text, out decimal valor))
+                {
+                    txtPrecio.Text = valor.ToString("N2", CultureInfo.InvariantCulture);
+                }
+            }
+        }
+
+        private void numCantidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ClsValidaciones.ValidarSoloNumeros(e);
         }
     }
 }

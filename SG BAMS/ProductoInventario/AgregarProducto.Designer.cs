@@ -297,6 +297,7 @@
             txtPrecio.StateCommon.Content.Color1 = Color.Navy;
             txtPrecio.StateNormal.Content.Color1 = Color.Navy;
             txtPrecio.TabIndex = 249;
+            txtPrecio.KeyPress += txtPrecio_KeyPress;
             // 
             // txtID
             // 

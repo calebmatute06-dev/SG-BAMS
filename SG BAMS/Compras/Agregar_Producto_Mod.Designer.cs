@@ -60,6 +60,8 @@
             txtPrecio.StateCommon.Back.Color1 = Color.SkyBlue;
             txtPrecio.StateCommon.Border.Rounding = 10F;
             txtPrecio.TabIndex = 228;
+            txtPrecio.KeyPress += txtPrecio_KeyPress;
+            txtPrecio.Leave += txtPrecio_Leave;
             // 
             // numCantidad
             // 
@@ -75,6 +77,7 @@
             numCantidad.StateCommon.Content.Color1 = Color.Navy;
             numCantidad.TabIndex = 227;
             numCantidad.Value = new decimal(new int[] { 0, 0, 0, 0 });
+            numCantidad.KeyPress += numCantidad_KeyPress;
             // 
             // kryptonButton3
             // 

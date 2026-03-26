@@ -170,5 +170,10 @@ namespace SG_BAMS
         {
 
         }
+
+        private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ClsValidaciones.PermitirNumerosYDecimales(sender, e);
+        }
     }
 }

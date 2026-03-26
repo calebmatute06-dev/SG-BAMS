@@ -22,7 +22,7 @@ namespace SG_BAMS
             dgvClientes.MultiSelect = false;
 
             
-            txtBusqueda.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
+            txtBusqueda.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetrasYNumeros(e);
         }
 
         private async Task TablaClientes()

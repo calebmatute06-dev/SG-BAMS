@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,7 +28,6 @@ namespace SG_BAMS
             InitializeComponent();
             this._idProveedor = idProv;
 
-            txtPrecio.KeyPress += (s, e) => ClsValidaciones.ValidarDecimales(txtPrecio, e);
         }
 
         private void kryptonLabel1_Click(object sender, EventArgs e)
@@ -43,6 +43,8 @@ namespace SG_BAMS
         private void Agregar_Producto__Compras__Load(object sender, EventArgs e)
         {
             LlenarComboProductos();
+            numCantidad.DecimalPlaces = 0;
+            numCantidad.ThousandsSeparator = true;
         }
 
         private void LlenarComboProductos()
@@ -130,6 +132,27 @@ namespace SG_BAMS
                     LlenarComboProductos();
                 }
             }
+        }
+
+        private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ClsValidaciones.PermitirNumerosYDecimales(sender, e);
+        }
+
+        private void txtPrecio_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(txtPrecio.Text))
+            {
+                if (decimal.TryParse(txtPrecio.Text, out decimal valor))
+                {
+                    txtPrecio.Text = valor.ToString("N2", CultureInfo.InvariantCulture);
+                }
+            }
+        }
+
+        private void numCantidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ClsValidaciones.ValidarSoloNumeros(e);
         }
     }
 }

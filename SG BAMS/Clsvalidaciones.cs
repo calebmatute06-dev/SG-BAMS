@@ -37,8 +37,13 @@ namespace SG_BAMS
         public static bool EsNumeroDecimalValido(Control control, string nombreCampo, out decimal valorResultado)
         {
             valorResultado = 0;
-            string textoLimpio = control.Text.Trim().Replace(",", ".");
-            bool esValido = decimal.TryParse(textoLimpio, NumberStyles.Any, CultureInfo.InvariantCulture, out valorResultado);
+            string texto = control.Text.Trim();
+            bool esValido = decimal.TryParse(texto, NumberStyles.Number | NumberStyles.AllowThousands | NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out valorResultado);
+
+            if (!esValido)
+            {
+                esValido = decimal.TryParse(texto, NumberStyles.Currency, CultureInfo.CurrentCulture, out valorResultado);
+            }
 
             if (!esValido || valorResultado <= 0)
             {
@@ -127,6 +132,15 @@ namespace SG_BAMS
                 return false;
             }
 
+            if (Regex.IsMatch(textoTrim, @"(.)\1{2,}") ||
+                Regex.IsMatch(textoTrim, @"\b(\w+)\b\s+\1\b", RegexOptions.IgnoreCase))
+            {
+                MessageBox.Show($"{nombreCampo} contiene caracteres o palabras repetidas inválidas.",
+                                "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                control.Focus();
+                return false;
+            }
+
             return true;
         }
 
@@ -188,6 +202,12 @@ namespace SG_BAMS
                 return false;
             }
 
+            if (Regex.IsMatch(texto, @"(.)\1{2,}") || Regex.IsMatch(texto, @"\b(\w+)\b\s+\1\b", RegexOptions.IgnoreCase))
+            {
+                MessageBox.Show($"{nombreCampo} contiene caracteres o palabras repetidas inválidas.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                control.Focus();
+                return false;
+            }
             return true;
         }
 
@@ -372,6 +392,13 @@ namespace SG_BAMS
             }
 
             return true;
+        }
+        public static void PermitirSoloLetrasYNumeros(KeyPressEventArgs e)
+        {
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true; 
+            }
         }
     }
 }
