@@ -88,5 +88,38 @@ namespace SG_BAMS
             login.Show();
             this.Close();
         }
+
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            MenuPrincipalEmp menu = new MenuPrincipalEmp();
+            menu.Show();
+            this.Close();
+        }
+
+        private void btnFactu_Click(object sender, EventArgs e)
+        {
+            FacturasEmp facturasEmp = new FacturasEmp();
+            facturasEmp.Show();
+            this.Close();
+        }
+
+        private void btnDeudores_Click(object sender, EventArgs e)
+        {
+            Deudores_Emp deudoresEmp = new Deudores_Emp();
+            deudoresEmp.Show();
+            this.Close();
+        }
+
+        private void btnNoti_Click(object sender, EventArgs e)
+        {
+            NotificacionesAdmin notificacionesAdmin = new NotificacionesAdmin();
+            notificacionesAdmin.Show();
+        }
+
+        private void btnPerfil_Click(object sender, EventArgs e)
+        {
+            Perfil perfil = new Perfil();
+            perfil.Show();
+        }
     }
 }

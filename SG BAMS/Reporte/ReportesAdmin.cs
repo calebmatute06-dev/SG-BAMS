@@ -28,6 +28,24 @@ namespace SG_BAMS.Reporte
         }
         private void FiltroFecha_ValueChanged(object sender, EventArgs e)
         {
+            this.dtpDesde.ValueChanged -= new System.EventHandler(this.FiltroFecha_ValueChanged);
+            this.dtpHasta.ValueChanged -= new System.EventHandler(this.FiltroFecha_ValueChanged);
+            
+            if (dtpDesde.Value.Date > dtpHasta.Value.Date)
+            {
+                if (sender == dtpDesde)
+                {
+                    dtpDesde.Value = dtpHasta.Value;
+                }
+                else if (sender == dtpHasta)
+                {
+                    dtpHasta.Value = dtpDesde.Value;
+                }
+            }
+
+            this.dtpDesde.ValueChanged += new System.EventHandler(this.FiltroFecha_ValueChanged);
+            this.dtpHasta.ValueChanged += new System.EventHandler(this.FiltroFecha_ValueChanged);
+
             string reporte = cmbReporte.SelectedItem?.ToString();
 
             if (reporte == "Ventas" || reporte == "Compras")
@@ -40,6 +58,9 @@ namespace SG_BAMS.Reporte
         private void ReportesAdmin_Load(object sender, EventArgs e)
         {
             ControlarFiltroStock(false);
+
+            dtpHasta.MaxDate = DateTime.Now;
+            dtpDesde.MaxDate = DateTime.Now;
 
             dtpHasta.Value = DateTime.Now;
             dtpDesde.Value = DateTime.Now.AddDays(-30);
@@ -100,11 +121,6 @@ namespace SG_BAMS.Reporte
                 Min.BackColor = System.Drawing.Color.LightGray;
                 Max.BackColor = System.Drawing.Color.LightGray;
             }
-        }
-
-        private void dgvReporte_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void dgvReporte_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
