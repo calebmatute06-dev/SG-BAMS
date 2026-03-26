@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            kryptonLabel1 = new Krypton.Toolkit.KryptonLabel();
             txtBuscar = new Krypton.Toolkit.KryptonTextBox();
-            pictureBox3 = new PictureBox();
             btnAjustes = new Krypton.Toolkit.KryptonButton();
             pictureBox18 = new PictureBox();
             btnNoti = new Button();
@@ -42,6 +40,8 @@
             panel4 = new Panel();
             pictureBox2 = new PictureBox();
             panel1 = new Panel();
+            panel7 = new Panel();
+            label7 = new Label();
             btnPerfil = new Krypton.Toolkit.KryptonButton();
             btnCerrarSesion = new Krypton.Toolkit.KryptonButton();
             btnMenu = new Krypton.Toolkit.KryptonButton();
@@ -71,15 +71,15 @@
             btnAgregar = new Krypton.Toolkit.KryptonButton();
             btnRefresh = new Button();
             label3 = new Label();
-            label7 = new Label();
-            panel7 = new Panel();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            label10 = new Label();
+            kryptonGroupBox2 = new Krypton.Toolkit.KryptonGroupBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panel1.SuspendLayout();
+            panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox15).BeginInit();
@@ -94,17 +94,9 @@
             ((System.ComponentModel.ISupportInitialize)dgvProveedor).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
-            panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).BeginInit();
             SuspendLayout();
-            // 
-            // kryptonLabel1
-            // 
-            kryptonLabel1.Location = new Point(369, 39);
-            kryptonLabel1.Name = "kryptonLabel1";
-            kryptonLabel1.Size = new Size(136, 31);
-            kryptonLabel1.StateCommon.ShortText.Color1 = Color.Navy;
-            kryptonLabel1.TabIndex = 114;
-            kryptonLabel1.Values.Text = "Proveedores";
             // 
             // txtBuscar
             // 
@@ -115,17 +107,6 @@
             txtBuscar.StateCommon.Border.Rounding = 20F;
             txtBuscar.TabIndex = 113;
             txtBuscar.KeyUp += txtBuscar_KeyUp;
-            // 
-            // pictureBox3
-            // 
-            pictureBox3.BackColor = Color.White;
-            pictureBox3.BackgroundImage = Properties.Resources.Proveedores;
-            pictureBox3.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox3.Location = new Point(305, 28);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(58, 56);
-            pictureBox3.TabIndex = 102;
-            pictureBox3.TabStop = false;
             // 
             // btnAjustes
             // 
@@ -269,6 +250,25 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(286, 892);
             panel1.TabIndex = 103;
+            // 
+            // panel7
+            // 
+            panel7.BackColor = Color.White;
+            panel7.Controls.Add(label7);
+            panel7.Location = new Point(11, 518);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(261, 40);
+            panel7.TabIndex = 356;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.ForeColor = Color.Navy;
+            label7.Location = new Point(125, 10);
+            label7.Name = "label7";
+            label7.Size = new Size(91, 20);
+            label7.TabIndex = 333;
+            label7.Text = "Proveedores";
             // 
             // btnPerfil
             // 
@@ -757,24 +757,27 @@
             label3.TabIndex = 328;
             label3.Text = "Busqueda:";
             // 
-            // label7
+            // label10
             // 
-            label7.AutoSize = true;
-            label7.ForeColor = Color.Navy;
-            label7.Location = new Point(125, 10);
-            label7.Name = "label7";
-            label7.Size = new Size(91, 20);
-            label7.TabIndex = 333;
-            label7.Text = "Proveedores";
+            label10.AutoSize = true;
+            label10.BackColor = Color.SkyBlue;
+            label10.Font = new Font("Arial Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label10.ForeColor = Color.Navy;
+            label10.Location = new Point(622, 61);
+            label10.Name = "label10";
+            label10.Size = new Size(220, 42);
+            label10.TabIndex = 329;
+            label10.Text = "Proveedores";
             // 
-            // panel7
+            // kryptonGroupBox2
             // 
-            panel7.BackColor = Color.White;
-            panel7.Controls.Add(label7);
-            panel7.Location = new Point(11, 518);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(261, 40);
-            panel7.TabIndex = 356;
+            kryptonGroupBox2.CaptionVisible = false;
+            kryptonGroupBox2.Location = new Point(545, 50);
+            kryptonGroupBox2.Margin = new Padding(3, 4, 3, 4);
+            kryptonGroupBox2.Size = new Size(344, 65);
+            kryptonGroupBox2.StateCommon.Back.Color1 = Color.SkyBlue;
+            kryptonGroupBox2.StateCommon.Border.Rounding = 50F;
+            kryptonGroupBox2.TabIndex = 330;
             // 
             // ProveedoresAdmin
             // 
@@ -782,6 +785,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1163, 903);
+            Controls.Add(label10);
+            Controls.Add(kryptonGroupBox2);
             Controls.Add(label3);
             Controls.Add(btnRefresh);
             Controls.Add(btnModificar);
@@ -789,9 +794,7 @@
             Controls.Add(dgvProveedor);
             Controls.Add(kryptonGroup1);
             Controls.Add(panel2);
-            Controls.Add(kryptonLabel1);
             Controls.Add(txtBuscar);
-            Controls.Add(pictureBox3);
             Controls.Add(btnAjustes);
             Controls.Add(pictureBox18);
             Controls.Add(btnNoti);
@@ -805,7 +808,6 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ProveedoresAdmin";
             Load += ProveedoresAdmin_Load;
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox18).EndInit();
             panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
@@ -813,6 +815,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            panel7.ResumeLayout(false);
+            panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox15).EndInit();
@@ -827,16 +831,14 @@
             ((System.ComponentModel.ISupportInitialize)dgvProveedor).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).EndInit();
-            panel7.ResumeLayout(false);
-            panel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).EndInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-        private Krypton.Toolkit.KryptonLabel kryptonLabel1;
         private Krypton.Toolkit.KryptonTextBox txtBuscar;
-        private PictureBox pictureBox3;
         private Krypton.Toolkit.KryptonButton btnAjustes;
         private PictureBox pictureBox18;
         private Button btnNoti;
@@ -879,5 +881,7 @@
         private Label label3;
         private Panel panel7;
         private Label label7;
+        private Label label10;
+        private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox2;
     }
 }

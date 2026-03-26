@@ -53,6 +53,8 @@
             panel3 = new Panel();
             panel4 = new Panel();
             panel1 = new Panel();
+            panel7 = new Panel();
+            label6 = new Label();
             btnReportes = new Krypton.Toolkit.KryptonButton();
             pictureBox9 = new PictureBox();
             pictureBox14 = new PictureBox();
@@ -62,7 +64,6 @@
             pictureBox5 = new PictureBox();
             pictureBox8 = new PictureBox();
             pictureBox1 = new PictureBox();
-            pictureBox17 = new PictureBox();
             label4 = new Label();
             txtBusqueda = new Krypton.Toolkit.KryptonTextBox();
             kryptonGroupBox1 = new Krypton.Toolkit.KryptonGroupBox();
@@ -70,14 +71,14 @@
             dgvClientes = new DataGridView();
             chkActivo = new Krypton.Toolkit.KryptonCheckBox();
             label3 = new Label();
-            label5 = new Label();
-            label6 = new Label();
-            panel7 = new Panel();
+            label10 = new Label();
+            kryptonGroupBox2 = new Krypton.Toolkit.KryptonGroupBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox15).BeginInit();
             panel1.SuspendLayout();
+            panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox14).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox11).BeginInit();
@@ -86,11 +87,11 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox17).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvClientes).BeginInit();
-            panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).BeginInit();
             SuspendLayout();
             // 
             // panel6
@@ -502,6 +503,25 @@
             panel1.TabIndex = 106;
             panel1.Paint += panel1_Paint;
             // 
+            // panel7
+            // 
+            panel7.BackColor = Color.White;
+            panel7.Controls.Add(label6);
+            panel7.Location = new Point(11, 397);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(261, 40);
+            panel7.TabIndex = 334;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.ForeColor = Color.Navy;
+            label6.Location = new Point(137, 10);
+            label6.Name = "label6";
+            label6.Size = new Size(61, 20);
+            label6.TabIndex = 333;
+            label6.Text = "Clientes";
+            // 
             // btnReportes
             // 
             btnReportes.Location = new Point(127, 643);
@@ -616,16 +636,6 @@
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
             // 
-            // pictureBox17
-            // 
-            pictureBox17.BackgroundImage = Properties.Resources.clientes;
-            pictureBox17.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox17.Location = new Point(344, 55);
-            pictureBox17.Name = "pictureBox17";
-            pictureBox17.Size = new Size(69, 61);
-            pictureBox17.TabIndex = 134;
-            pictureBox17.TabStop = false;
-            // 
             // label4
             // 
             label4.AutoSize = true;
@@ -716,35 +726,27 @@
             label3.TabIndex = 327;
             label3.Text = "Busqueda:";
             // 
-            // label5
+            // label10
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.Navy;
-            label5.Location = new Point(426, 64);
-            label5.Name = "label5";
-            label5.Size = new Size(138, 46);
-            label5.TabIndex = 328;
-            label5.Text = "Clientes";
+            label10.AutoSize = true;
+            label10.BackColor = Color.SkyBlue;
+            label10.Font = new Font("Arial Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label10.ForeColor = Color.Navy;
+            label10.Location = new Point(692, 111);
+            label10.Name = "label10";
+            label10.Size = new Size(152, 42);
+            label10.TabIndex = 328;
+            label10.Text = "Clientes";
             // 
-            // label6
+            // kryptonGroupBox2
             // 
-            label6.AutoSize = true;
-            label6.ForeColor = Color.Navy;
-            label6.Location = new Point(137, 10);
-            label6.Name = "label6";
-            label6.Size = new Size(61, 20);
-            label6.TabIndex = 333;
-            label6.Text = "Clientes";
-            // 
-            // panel7
-            // 
-            panel7.BackColor = Color.White;
-            panel7.Controls.Add(label6);
-            panel7.Location = new Point(11, 397);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(261, 40);
-            panel7.TabIndex = 334;
+            kryptonGroupBox2.CaptionVisible = false;
+            kryptonGroupBox2.Location = new Point(595, 100);
+            kryptonGroupBox2.Margin = new Padding(3, 4, 3, 4);
+            kryptonGroupBox2.Size = new Size(344, 65);
+            kryptonGroupBox2.StateCommon.Back.Color1 = Color.SkyBlue;
+            kryptonGroupBox2.StateCommon.Border.Rounding = 50F;
+            kryptonGroupBox2.TabIndex = 329;
             // 
             // ClientesAdm
             // 
@@ -752,15 +754,15 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1259, 908);
+            Controls.Add(label10);
+            Controls.Add(kryptonGroupBox2);
             Controls.Add(panel4);
-            Controls.Add(label5);
             Controls.Add(label3);
             Controls.Add(chkActivo);
             Controls.Add(dgvClientes);
             Controls.Add(BtnModificar);
             Controls.Add(txtBusqueda);
             Controls.Add(label4);
-            Controls.Add(pictureBox17);
             Controls.Add(panel6);
             Controls.Add(panel2);
             Controls.Add(kryptonButton14);
@@ -782,6 +784,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox15).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            panel7.ResumeLayout(false);
+            panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox14).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox11).EndInit();
@@ -790,12 +794,11 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox17).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvClientes).EndInit();
-            panel7.ResumeLayout(false);
-            panel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).EndInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -835,7 +838,6 @@
         private PictureBox pictureBox5;
         private PictureBox pictureBox8;
         private PictureBox pictureBox1;
-        private PictureBox pictureBox17;
         private Label label4;
         private Krypton.Toolkit.KryptonTextBox txtBusqueda;
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox1;
@@ -843,9 +845,10 @@
         private DataGridView dgvClientes;
         private Krypton.Toolkit.KryptonCheckBox chkActivo;
         private Label label3;
-        private Label label5;
         private Krypton.Toolkit.KryptonButton btnReportes;
         private Label label6;
         private Panel panel7;
+        private Label label10;
+        private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox2;
     }
 }
