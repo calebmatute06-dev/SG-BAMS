@@ -30,11 +30,15 @@ namespace SG_BAMS
             {
                 DataTable dt = await ap.ObtenerStockProductos();
 
-                cmbProductos.DisplayMember = "Nombre Producto";
+                cmbProductos.DisplayMember = "NombreCompleto";
                 cmbProductos.ValueMember = "ID";
                 cmbProductos.DataSource = dt;
 
-                
+                if (cmbProductos.Items.Count > 0)
+                {
+                    ActualizarStock();
+                }
+
                 cmbProductos.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 cmbProductos.AutoCompleteSource = AutoCompleteSource.ListItems;
 
@@ -125,9 +129,21 @@ namespace SG_BAMS
             this.Close();
         }
 
+        private void ActualizarStock()
+        {
+            if (cmbProductos.SelectedItem != null)
+            {
+                
+                DataRowView fila = (DataRowView)cmbProductos.SelectedItem;
+
+               
+                lblNumero.Text = fila["Stock"].ToString();
+            }
+        }
+
         private void cmbProductos_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+            ActualizarStock();
             txtCantidad.Clear();
         }
     }

@@ -9,11 +9,9 @@ namespace SG_BAMS.Facturas
 {
     public partial class FacturaProductoEscaner : Form
     {
-
         public int StockSeleccionado { get; set; }
         public double PrecioSeleccionado { get; set; }
         public FacturaAgregarDatos FormularioFactura { get; set; }
-
 
         private int _idProductoEncontrado = -1;
         private string _nombreProductoEncontrado = string.Empty;
@@ -25,22 +23,12 @@ namespace SG_BAMS.Facturas
             InitializeComponent();
         }
 
-
         private void FacturaProductoEscaner_Load(object sender, EventArgs e)
         {
-
             txtCantidad.KeyPress += (s, ev) => ClsValidaciones.ValidarSoloNumeros(ev);
-
-
             lblNumero.Text = "0";
             LimpiarEstado();
         }
-
-
-
-
-
-
 
         private async Task BuscarPorCodigoBarra()
         {
@@ -55,6 +43,7 @@ namespace SG_BAMS.Facturas
             ClsAgregarProductos ap = new ClsAgregarProductos();
             try
             {
+              
                 DataRow fila = await ap.ObtenerProductoPorCodigoBarra(codigo);
 
                 if (fila == null)
@@ -71,12 +60,29 @@ namespace SG_BAMS.Facturas
                     return;
                 }
 
+                int stockActual = Convert.ToInt32(fila["stock"]);
+
+                if (stockActual <= 0)
+                {
+                    MessageBox.Show(
+                        "Este producto no tiene stock disponible (Existencias: 0).",
+                        "Sin Inventario",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Stop);
+
+                    LimpiarEstado();
+                    txtEscaner.Clear();
+                    txtEscaner.Focus();
+                    return;
+                }
 
                 _idProductoEncontrado = Convert.ToInt32(fila["id_producto"]);
-                _nombreProductoEncontrado = fila["nombre_producto"].ToString();
-                _stockProductoEncontrado = Convert.ToInt32(fila["stock"]);
-                _precioProductoEncontrado = Convert.ToDouble(fila["precio_venta"]);
 
+              
+                _nombreProductoEncontrado = fila["nombre_producto"].ToString();
+
+                _stockProductoEncontrado = stockActual;
+                _precioProductoEncontrado = Convert.ToDouble(fila["precio_venta"]);
 
                 lblNumero.Text = _stockProductoEncontrado.ToString();
                 txtCantidad.Clear();
@@ -94,13 +100,6 @@ namespace SG_BAMS.Facturas
             }
         }
 
-
-
-
-
-
-
-
         private void BtnNombre_Click(object sender, EventArgs e)
         {
             using (FacturaProducto FP = new FacturaProducto())
@@ -110,16 +109,15 @@ namespace SG_BAMS.Facturas
 
                 if (resultado == DialogResult.OK)
                 {
-
+                  
                     this.PrecioSeleccionado = FP.PrecioSeleccionado;
                     this.StockSeleccionado = FP.StockSeleccionado;
+
+                    
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
                 }
-
-                this.DialogResult = resultado;
-                this.Close();
             }
-
-
         }
 
         private void LimpiarEstado()
@@ -146,7 +144,6 @@ namespace SG_BAMS.Facturas
                 return;
             }
 
-
             if (ClsValidaciones.CampoVacio(txtCantidad, "Cantidad")) return;
 
             if (!int.TryParse(txtCantidad.Text.Trim(), out int cantidad) || cantidad <= 0)
@@ -159,7 +156,6 @@ namespace SG_BAMS.Facturas
                 return;
             }
 
-
             if (!int.TryParse(lblNumero.Text, out int stock) || cantidad > stock)
             {
                 MessageBox.Show(
@@ -170,7 +166,6 @@ namespace SG_BAMS.Facturas
                 return;
             }
 
-
             foreach (DataGridViewRow fila in FormularioFactura.dgvProductos.Rows)
             {
                 if (fila.IsNewRow) continue;
@@ -179,8 +174,7 @@ namespace SG_BAMS.Facturas
                     Convert.ToInt32(fila.Cells["id_producto"].Value) == _idProductoEncontrado)
                 {
                     MessageBox.Show(
-                        "Este producto ya fue agregado a la factura actual. " +
-                        "Modifique la cantidad en la tabla si es necesario.",
+                        "Este producto ya fue agregado a la factura actual.",
                         "Producto Duplicado",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
@@ -188,7 +182,7 @@ namespace SG_BAMS.Facturas
                 }
             }
 
-
+           
             FormularioFactura.SetProducto(
                 _idProductoEncontrado,
                 _nombreProductoEncontrado,
@@ -207,8 +201,6 @@ namespace SG_BAMS.Facturas
             this.Close();
         }
 
-
-
         private async void txtEscaner_KeyDown_1(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -220,7 +212,6 @@ namespace SG_BAMS.Facturas
 
         private async void txtEscaner_Leave(object sender, EventArgs e)
         {
-
             if (!string.IsNullOrWhiteSpace(txtEscaner.Text))
                 await BuscarPorCodigoBarra();
         }

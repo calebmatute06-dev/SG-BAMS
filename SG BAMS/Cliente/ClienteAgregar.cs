@@ -76,7 +76,7 @@ namespace SG_BAMS
                     this.IdClienteGenerado = id;
                     this.NombreDelCliente = $"{txtNombre.Text.Trim()} {txtApellido.Text.Trim()}";
 
-                    using (FacturaAgregarDatos frmFact = new FacturaAgregarDatos(this.NombreDelCliente, this.IdClienteGenerado))
+                    using (FacturaAgregarDatos frmFact = new FacturaAgregarDatos(this.NombreDelCliente, this.IdClienteGenerado, rtn))
                     {
                         this.Hide();
                         frmFact.ShowDialog();

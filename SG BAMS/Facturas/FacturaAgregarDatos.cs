@@ -1,4 +1,10 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using SG_BAMS.Administracion_de_BAMS.FormaPago;
+using SG_BAMS.Cliente;
+using SG_BAMS.Deudores;
+using SG_BAMS.Facturas;
+using SG_BAMS.Login;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,30 +13,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.Data.SqlClient;
-using SG_BAMS.Administracion_de_BAMS.FormaPago;
-using SG_BAMS.Cliente;
-using SG_BAMS.Facturas;
-using SG_BAMS.Login;
 
 namespace SG_BAMS
 {
     public partial class FacturaAgregarDatos : Form
     {
-
         int idCliente, cantidades;
         public int idProducto;
         string nombresProductos, cantidadBateria;
         double precioBateria;
+        string rtnCliente;   // <-- nuevo campo RTN
 
-        public FacturaAgregarDatos(string cliente, int idCli)
+        // Constructor principal: ahora recibe el RTN
+        public FacturaAgregarDatos(string cliente, int idCli, string rtn = "Sin RTN")
         {
             InitializeComponent();
             txtCliente.Text = cliente;
             idCliente = idCli;
+            rtnCliente = string.IsNullOrWhiteSpace(rtn) ? "Sin RTN" : rtn;
         }
 
-        
         public void SetProducto(int idProd, string nombreProd, int cantidadProd)
         {
             idProducto = idProd;
@@ -43,6 +45,7 @@ namespace SG_BAMS
             InitializeComponent();
             cantidadBateria = "0";
             precioBateria = 0;
+            rtnCliente = "Sin RTN";
         }
 
         private async Task LlenarComboPago()
@@ -66,7 +69,6 @@ namespace SG_BAMS
         {
             await LlenarComboPago();
 
-            
             dgvProductos.Columns.Clear();
             dgvProductos.Columns.Add("id_producto", "Código");
             dgvProductos.Columns.Add("nombre_producto", "Nombre");
@@ -76,7 +78,6 @@ namespace SG_BAMS
             dgvProductos.Columns.Add("stock_max", "StockMax");
             dgvProductos.Columns["stock_max"].Visible = false;
 
-           
             txtCliente.ReadOnly = true;
             txtTotal.ReadOnly = true;
             txtBateria.ReadOnly = true;
@@ -86,6 +87,7 @@ namespace SG_BAMS
             dgvProductos.AllowUserToAddRows = false;
             dgvProductos.Columns["id_producto"].ReadOnly = true;
             dgvProductos.Columns["nombre_producto"].ReadOnly = true;
+            dgvProductos.Columns["nombre_producto"].Width = 200;
             dgvProductos.Columns["precio"].ReadOnly = true;
             dgvProductos.Columns["subtotal"].ReadOnly = true;
 
@@ -99,18 +101,25 @@ namespace SG_BAMS
             foreach (DataGridViewRow row in dgvProductos.Rows)
             {
                 if (row.Cells["subtotal"].Value != null)
-                {
                     acumulador += Convert.ToDouble(row.Cells["subtotal"].Value);
-                }
             }
 
-            
             double rebaja = precioBateria;
             double total = acumulador - rebaja;
 
             txtSubtotal.Text = acumulador.ToString("N2");
             txtRebaja.Text = rebaja.ToString("N2");
             txtTotal.Text = (total < 0 ? 0 : total).ToString("N2");
+        }
+
+        private void txtExento_TextChanged(object sender, EventArgs e) { }
+
+        private void txtExento_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+                e.Handled = true;
+            if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains('.'))
+                e.Handled = true;
         }
 
         private async void BtnAceptar_Click(object sender, EventArgs e)
@@ -134,6 +143,21 @@ namespace SG_BAMS
                 return;
             }
 
+            double montoExento = 0;
+            if (!string.IsNullOrWhiteSpace(txtExento.Text))
+            {
+                if (!double.TryParse(txtExento.Text, out montoExento) || montoExento < 0)
+                {
+                    MessageBox.Show("El monto exento ingresado no es válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (montoExento > totalFactura)
+                {
+                    MessageBox.Show("El monto exento no puede ser mayor al total de la factura.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+
             try
             {
                 ClsPasarUsuario objPU = new ClsPasarUsuario();
@@ -144,7 +168,6 @@ namespace SG_BAMS
                 int idPago = Convert.ToInt32(cmbPago.SelectedValue);
                 int.TryParse(txtBateria.Text, out int bat);
 
-            
                 int idFactura = await objAF.AgregarFacturas(idUser, idCliente, idPago,
                                     DateTFecha.SelectionStart, bat, precioBateria);
 
@@ -158,21 +181,28 @@ namespace SG_BAMS
                         await objAP.GuardarProductoFactura(idFactura, idPr, cant);
                     }
 
-                   
                     DialogResult imprimir = MessageBox.Show(
                         "¿Desea imprimir la factura?", "Imprimir",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (imprimir == DialogResult.Yes)
                     {
-                        objAF.ImprimirFactura(idFactura, txtCliente.Text,
+                        objAF.ImprimirFactura(
+                            idFactura,
+                            txtCliente.Text,
                             DateTFecha.SelectionStart.ToShortDateString(),
-                            txtSubtotal.Text, txtRebaja.Text, txtTotal.Text,
-                            cmbPago.Text, dgvProductos,
-                            SG_BAMS.Login.Login.UsuarioLogueado);
+                            txtSubtotal.Text,
+                            txtRebaja.Text,
+                            txtTotal.Text,
+                            cmbPago.Text,
+                            dgvProductos,
+                            SG_BAMS.Login.Login.UsuarioLogueado,
+                            chkGobierno.Checked,
+                            montoExento,
+                            rtnCliente
+                        );
                     }
 
-                    
                     string formaPagoTexto = cmbPago.Text.ToLower();
 
                     if (formaPagoTexto.Contains("crédito") || formaPagoTexto.Contains("credito"))
@@ -181,12 +211,11 @@ namespace SG_BAMS
                         string montoTotal = txtTotal.Text;
                         DateTime fechaVenta = DateTFecha.SelectionStart;
 
-                        using (Modificar_Datos__Deudor_ frmInfo = new Modificar_Datos__Deudor_(idFactura, nombreCliente, montoTotal, fechaVenta))
+                        using (Información_Deudores frmInfo = new Información_Deudores(idFactura, nombreCliente, montoTotal, fechaVenta))
                         {
                             frmInfo.ShowDialog();
                         }
                     }
-                  
 
                     this.DialogResult = DialogResult.OK;
                     this.Close();
@@ -219,7 +248,6 @@ namespace SG_BAMS
                     CalcularTotal();
                     ActualizarEstadoBotonAceptar();
                 }
-               
             }
         }
 
@@ -228,9 +256,7 @@ namespace SG_BAMS
             if (dgvProductos.SelectedRows.Count > 0)
             {
                 foreach (DataGridViewRow row in dgvProductos.SelectedRows)
-                {
                     dgvProductos.Rows.Remove(row);
-                }
 
                 if (dgvProductos.Rows.Count == 0)
                 {
@@ -299,5 +325,23 @@ namespace SG_BAMS
         }
 
         private void BtnCancelar_Click(object sender, EventArgs e) => this.Close();
+
+        private void chkGobierno_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkGobierno.Checked)
+            {
+                txtExento.Enabled = false;
+                txtExento.Text = "0";
+            }
+            else
+            {
+                txtExento.Enabled = true;
+            }
+        }
+
+        private void DateTFecha_DateChanged(object sender, DateRangeEventArgs e)
+        {
+
+        }
     }
 }

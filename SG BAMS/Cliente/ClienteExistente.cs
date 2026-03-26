@@ -24,14 +24,12 @@ namespace SG_BAMS
             ClsAgregarClientes objAC = new ClsAgregarClientes();
             try
             {
-                
                 DataTable dt = await objAC.ObtenerClientes();
 
                 cmbClientes.DisplayMember = "Nombre Completo";
                 cmbClientes.ValueMember = "ID";
                 cmbClientes.DataSource = dt;
 
-                
                 cmbClientes.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 cmbClientes.AutoCompleteSource = AutoCompleteSource.ListItems;
             }
@@ -44,26 +42,30 @@ namespace SG_BAMS
         private async void ClienteExistente_Load(object sender, EventArgs e)
         {
             await LlenarComboCliente();
-            
             cmbClientes.SelectedIndex = -1;
         }
 
         private void BtnAsignar_Click(object sender, EventArgs e)
         {
-            
             if (!ClsValidaciones.ValidarSeleccion(cmbClientes, "la lista de clientes"))
-            {
                 return;
-            }
 
             try
             {
-                
                 if (cmbClientes.SelectedValue != null && int.TryParse(cmbClientes.SelectedValue.ToString(), out int idCliente))
                 {
-                    using (FacturaAgregarDatos frmFA = new FacturaAgregarDatos(cmbClientes.Text, idCliente))
+                   
+                    string rtn = "Sin RTN";
+                    if (cmbClientes.SelectedItem is DataRowView drv)
                     {
-                        this.Hide(); 
+                        string rtnValor = drv["rtn_cliente"]?.ToString()?.Trim();
+                        if (!string.IsNullOrWhiteSpace(rtnValor) && rtnValor != "Sin RTN")
+                            rtn = rtnValor;
+                    }
+
+                    using (FacturaAgregarDatos frmFA = new FacturaAgregarDatos(cmbClientes.Text, idCliente, rtn))
+                    {
+                        this.Hide();
                         if (frmFA.ShowDialog() == DialogResult.OK)
                         {
                             this.DialogResult = DialogResult.OK;

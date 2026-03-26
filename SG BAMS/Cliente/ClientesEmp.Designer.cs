@@ -62,6 +62,8 @@
             label1 = new Label();
             btnNoti = new Button();
             kryptonGroupBox1 = new Krypton.Toolkit.KryptonGroupBox();
+            label6 = new Label();
+            panel7 = new Panel();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox12).BeginInit();
@@ -75,6 +77,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox17).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1.Panel).BeginInit();
+            panel7.SuspendLayout();
             SuspendLayout();
             // 
             // pictureBox6
@@ -105,6 +108,7 @@
             // panel1
             // 
             panel1.BackColor = Color.SkyBlue;
+            panel1.Controls.Add(panel7);
             panel1.Controls.Add(BtnMenu);
             panel1.Controls.Add(BtnFacturas);
             panel1.Controls.Add(BtnInventario);
@@ -179,7 +183,7 @@
             // 
             // BtnInventario
             // 
-            BtnInventario.Location = new Point(119, 349);
+            BtnInventario.Location = new Point(119, 397);
             BtnInventario.Name = "BtnInventario";
             BtnInventario.OverrideDefault.Back.Color1 = Color.Transparent;
             BtnInventario.OverrideDefault.Back.Color2 = Color.Transparent;
@@ -205,7 +209,7 @@
             // 
             // BtnDeudores
             // 
-            BtnDeudores.Location = new Point(119, 413);
+            BtnDeudores.Location = new Point(119, 461);
             BtnDeudores.Name = "BtnDeudores";
             BtnDeudores.OverrideDefault.Back.Color1 = Color.Transparent;
             BtnDeudores.OverrideDefault.Back.Color2 = Color.Transparent;
@@ -234,7 +238,7 @@
             pictureBox12.BackColor = Color.SkyBlue;
             pictureBox12.BackgroundImage = Properties.Resources.Deudores;
             pictureBox12.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox12.Location = new Point(39, 395);
+            pictureBox12.Location = new Point(39, 443);
             pictureBox12.Name = "pictureBox12";
             pictureBox12.Size = new Size(63, 53);
             pictureBox12.TabIndex = 41;
@@ -245,7 +249,7 @@
             pictureBox5.BackColor = Color.SkyBlue;
             pictureBox5.BackgroundImage = Properties.Resources.Inventario;
             pictureBox5.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox5.Location = new Point(43, 341);
+            pictureBox5.Location = new Point(43, 389);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new Size(49, 49);
             pictureBox5.TabIndex = 38;
@@ -547,6 +551,25 @@
             kryptonGroupBox1.StateCommon.Border.Rounding = 50F;
             kryptonGroupBox1.TabIndex = 337;
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.ForeColor = Color.Navy;
+            label6.Location = new Point(134, 10);
+            label6.Name = "label6";
+            label6.Size = new Size(61, 20);
+            label6.TabIndex = 333;
+            label6.Text = "Clientes";
+            // 
+            // panel7
+            // 
+            panel7.BackColor = Color.White;
+            panel7.Controls.Add(label6);
+            panel7.Location = new Point(8, 343);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(275, 40);
+            panel7.TabIndex = 343;
+            // 
             // ClientesEmp
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -591,6 +614,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox17).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1).EndInit();
+            panel7.ResumeLayout(false);
+            panel7.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -630,5 +655,7 @@
         private Label label1;
         private Button btnNoti;
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox1;
+        private Panel panel7;
+        private Label label6;
     }
 }

@@ -25,7 +25,7 @@ namespace SG_BAMS
             dgvClientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvClientes.MultiSelect = false;
 
-            
+
             txtBusqueda.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetrasYNumeros(e);
         }
 
@@ -70,7 +70,7 @@ namespace SG_BAMS
             }
             else
             {
-                
+
                 string textoSeguro = txtBusqueda.Text
                     .Replace("'", "''")
                     .Replace("[", "[[]")
@@ -78,7 +78,7 @@ namespace SG_BAMS
                     .Replace("*", "[*]")
                     .Replace("%", "[%]");
 
-               
+
                 dv.RowFilter = string.Format(
                     "({0}) AND (Nombre LIKE '%{1}%' OR Apellido LIKE '%{1}%' OR RTN LIKE '%{1}%' OR Teléfono LIKE '%{1}%')",
                     filtroEstado, textoSeguro);
@@ -142,7 +142,7 @@ namespace SG_BAMS
             AplicarFiltro();
         }
 
-        
+
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
@@ -208,5 +208,10 @@ namespace SG_BAMS
         private void label6_Click(object sender, EventArgs e) { }
         private void BtnReporte_Click(object sender, EventArgs e) { }
         private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

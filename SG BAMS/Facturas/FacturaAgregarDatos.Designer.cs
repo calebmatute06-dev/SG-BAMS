@@ -56,6 +56,9 @@
             txtRebaja = new Krypton.Toolkit.KryptonTextBox();
             label8 = new Label();
             txtSubtotal = new Krypton.Toolkit.KryptonTextBox();
+            chkGobierno = new Krypton.Toolkit.KryptonCheckBox();
+            txtExento = new Krypton.Toolkit.KryptonTextBox();
+            label10 = new Label();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cmbPago).BeginInit();
@@ -73,7 +76,6 @@
             label7.Size = new Size(80, 27);
             label7.TabIndex = 307;
             label7.Text = "Fecha";
-            //label7.Click += label7_Click;
             // 
             // label9
             // 
@@ -81,7 +83,7 @@
             label9.BackColor = Color.Transparent;
             label9.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label9.ForeColor = Color.Navy;
-            label9.Location = new Point(57, 581);
+            label9.Location = new Point(50, 508);
             label9.Name = "label9";
             label9.Size = new Size(183, 27);
             label9.TabIndex = 304;
@@ -93,7 +95,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(50, 491);
+            label1.Location = new Point(50, 451);
             label1.Name = "label1";
             label1.Size = new Size(159, 27);
             label1.TabIndex = 303;
@@ -105,11 +107,11 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(58, 131);
+            label3.Location = new Point(70, 112);
             label3.Name = "label3";
-            label3.Size = new Size(92, 27);
+            label3.Size = new Size(99, 27);
             label3.TabIndex = 302;
-            label3.Text = "Cliente";
+            label3.Text = "Cliente:";
             // 
             // label5
             // 
@@ -129,7 +131,7 @@
             label4.BackColor = Color.SkyBlue;
             label4.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(478, 51);
+            label4.Location = new Point(430, 48);
             label4.Name = "label4";
             label4.Size = new Size(223, 35);
             label4.TabIndex = 296;
@@ -142,7 +144,6 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(25, 755);
             panel3.TabIndex = 294;
-           // panel3.Paint += panel3_Paint;
             // 
             // panel1
             // 
@@ -244,7 +245,6 @@
             DateTFecha.Margin = new Padding(10, 12, 10, 12);
             DateTFecha.Name = "DateTFecha";
             DateTFecha.TabIndex = 315;
-           // DateTFecha.DateChanged += DateTFecha_DateChanged;
             // 
             // label2
             // 
@@ -261,7 +261,7 @@
             // kryptonGroupBox3
             // 
             kryptonGroupBox3.CaptionVisible = false;
-            kryptonGroupBox3.Location = new Point(408, 37);
+            kryptonGroupBox3.Location = new Point(354, 31);
             kryptonGroupBox3.Margin = new Padding(3, 4, 3, 4);
             kryptonGroupBox3.Size = new Size(365, 65);
             kryptonGroupBox3.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -270,7 +270,7 @@
             // 
             // txtCliente
             // 
-            txtCliente.Location = new Point(182, 123);
+            txtCliente.Location = new Point(182, 107);
             txtCliente.Margin = new Padding(3, 4, 3, 4);
             txtCliente.Name = "txtCliente";
             txtCliente.Size = new Size(239, 36);
@@ -282,7 +282,7 @@
             // 
             // txtBateria
             // 
-            txtBateria.Location = new Point(216, 481);
+            txtBateria.Location = new Point(216, 444);
             txtBateria.Margin = new Padding(3, 4, 3, 4);
             txtBateria.Name = "txtBateria";
             txtBateria.Size = new Size(112, 37);
@@ -310,7 +310,7 @@
             // 
             cmbPago.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbPago.DropDownWidth = 300;
-            cmbPago.Location = new Point(239, 571);
+            cmbPago.Location = new Point(239, 503);
             cmbPago.Name = "cmbPago";
             cmbPago.Size = new Size(146, 38);
             cmbPago.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
@@ -325,12 +325,11 @@
             // 
             dgvProductos.BackgroundColor = Color.SkyBlue;
             dgvProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProductos.Location = new Point(57, 187);
+            dgvProductos.Location = new Point(57, 161);
             dgvProductos.Name = "dgvProductos";
             dgvProductos.RowHeadersWidth = 51;
-            dgvProductos.Size = new Size(678, 267);
+            dgvProductos.Size = new Size(721, 267);
             dgvProductos.TabIndex = 323;
-            //dgvProductos.CellContentClick += dgvProductos_CellContentClick;
             dgvProductos.CellValidating += dgvProductos_CellValidating;
             dgvProductos.CellValueChanged += dgvProductos_CellValueChanged;
             // 
@@ -367,7 +366,7 @@
             // 
             // btnBateria
             // 
-            btnBateria.Location = new Point(343, 481);
+            btnBateria.Location = new Point(343, 444);
             btnBateria.Name = "btnBateria";
             btnBateria.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnBateria.OverrideDefault.Back.Color2 = Color.White;
@@ -438,12 +437,52 @@
             txtSubtotal.TabIndex = 329;
             txtSubtotal.Text = "0";
             // 
+            // chkGobierno
+            // 
+            chkGobierno.Location = new Point(64, 558);
+            chkGobierno.Name = "chkGobierno";
+            chkGobierno.Size = new Size(301, 32);
+            chkGobierno.StateCommon.LongText.Color1 = Color.Navy;
+            chkGobierno.StateNormal.ShortText.Color1 = Color.Navy;
+            chkGobierno.StateNormal.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            chkGobierno.TabIndex = 330;
+            chkGobierno.Values.Text = "Organización Gubernamental";
+            chkGobierno.CheckedChanged += chkGobierno_CheckedChanged;
+            // 
+            // txtExento
+            // 
+            txtExento.Location = new Point(243, 597);
+            txtExento.Margin = new Padding(3, 4, 3, 4);
+            txtExento.Name = "txtExento";
+            txtExento.Size = new Size(158, 37);
+            txtExento.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtExento.StateCommon.Border.Rounding = 10F;
+            txtExento.StateCommon.Content.Color1 = Color.Navy;
+            txtExento.StateCommon.Content.Font = new Font("Arial Narrow", 12F);
+            txtExento.TabIndex = 332;
+            txtExento.Text = "0";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.BackColor = Color.Transparent;
+            label10.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label10.ForeColor = Color.Navy;
+            label10.Location = new Point(57, 605);
+            label10.Name = "label10";
+            label10.Size = new Size(180, 27);
+            label10.TabIndex = 331;
+            label10.Text = "Monto Extento:";
+            // 
             // FacturaAgregarDatos
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1136, 756);
+            Controls.Add(txtExento);
+            Controls.Add(label10);
+            Controls.Add(chkGobierno);
             Controls.Add(txtSubtotal);
             Controls.Add(label8);
             Controls.Add(txtRebaja);
@@ -513,5 +552,8 @@
         private Krypton.Toolkit.KryptonTextBox txtRebaja;
         private Label label8;
         private Krypton.Toolkit.KryptonTextBox txtSubtotal;
+        private Krypton.Toolkit.KryptonCheckBox chkGobierno;
+        private Krypton.Toolkit.KryptonTextBox txtExento;
+        private Label label10;
     }
 }

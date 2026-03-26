@@ -71,6 +71,8 @@
             chkActivo = new Krypton.Toolkit.KryptonCheckBox();
             label3 = new Label();
             label5 = new Label();
+            label6 = new Label();
+            panel7 = new Panel();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).BeginInit();
@@ -88,6 +90,7 @@
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvClientes).BeginInit();
+            panel7.SuspendLayout();
             SuspendLayout();
             // 
             // panel6
@@ -247,7 +250,7 @@
             // 
             // BtnInventario
             // 
-            BtnInventario.Location = new Point(127, 407);
+            BtnInventario.Location = new Point(127, 453);
             BtnInventario.Name = "BtnInventario";
             BtnInventario.OverrideDefault.Back.Color1 = Color.Transparent;
             BtnInventario.OverrideDefault.Back.Color2 = Color.Transparent;
@@ -273,7 +276,7 @@
             // 
             // BtnProveedores
             // 
-            BtnProveedores.Location = new Point(111, 469);
+            BtnProveedores.Location = new Point(111, 515);
             BtnProveedores.Name = "BtnProveedores";
             BtnProveedores.OverrideDefault.Back.Color1 = Color.Transparent;
             BtnProveedores.OverrideDefault.Back.Color2 = Color.Transparent;
@@ -299,7 +302,7 @@
             // 
             // BtnBitacora
             // 
-            BtnBitacora.Location = new Point(127, 653);
+            BtnBitacora.Location = new Point(127, 699);
             BtnBitacora.Name = "BtnBitacora";
             BtnBitacora.OverrideDefault.Back.Color1 = Color.Transparent;
             BtnBitacora.OverrideDefault.Back.Color2 = Color.Transparent;
@@ -325,7 +328,7 @@
             // 
             // BtnDeudores
             // 
-            BtnDeudores.Location = new Point(127, 540);
+            BtnDeudores.Location = new Point(127, 586);
             BtnDeudores.Name = "BtnDeudores";
             BtnDeudores.OverrideDefault.Back.Color1 = Color.Transparent;
             BtnDeudores.OverrideDefault.Back.Color2 = Color.Transparent;
@@ -468,6 +471,7 @@
             // panel1
             // 
             panel1.BackColor = Color.SkyBlue;
+            panel1.Controls.Add(panel7);
             panel1.Controls.Add(btnReportes);
             panel1.Controls.Add(pictureBox6);
             panel1.Controls.Add(BtnPerfil);
@@ -496,10 +500,11 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(286, 892);
             panel1.TabIndex = 106;
+            panel1.Paint += panel1_Paint;
             // 
             // btnReportes
             // 
-            btnReportes.Location = new Point(127, 597);
+            btnReportes.Location = new Point(127, 643);
             btnReportes.Name = "btnReportes";
             btnReportes.OverrideDefault.Back.Color1 = Color.Transparent;
             btnReportes.OverrideDefault.Back.Color2 = Color.Transparent;
@@ -538,7 +543,7 @@
             pictureBox14.BackColor = Color.SkyBlue;
             pictureBox14.BackgroundImage = Properties.Resources.bitacora;
             pictureBox14.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox14.Location = new Point(47, 652);
+            pictureBox14.Location = new Point(47, 698);
             pictureBox14.Name = "pictureBox14";
             pictureBox14.Size = new Size(53, 40);
             pictureBox14.TabIndex = 18;
@@ -549,7 +554,7 @@
             pictureBox11.BackColor = Color.SkyBlue;
             pictureBox11.BackgroundImage = Properties.Resources.Reportes;
             pictureBox11.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox11.Location = new Point(46, 588);
+            pictureBox11.Location = new Point(46, 634);
             pictureBox11.Name = "pictureBox11";
             pictureBox11.Size = new Size(56, 51);
             pictureBox11.TabIndex = 15;
@@ -560,7 +565,7 @@
             pictureBox12.BackColor = Color.SkyBlue;
             pictureBox12.BackgroundImage = Properties.Resources.Deudores;
             pictureBox12.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox12.Location = new Point(42, 525);
+            pictureBox12.Location = new Point(42, 571);
             pictureBox12.Name = "pictureBox12";
             pictureBox12.Size = new Size(63, 53);
             pictureBox12.TabIndex = 16;
@@ -571,7 +576,7 @@
             pictureBox10.BackColor = Color.SkyBlue;
             pictureBox10.BackgroundImage = Properties.Resources.Proveedores;
             pictureBox10.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox10.Location = new Point(47, 459);
+            pictureBox10.Location = new Point(47, 505);
             pictureBox10.Name = "pictureBox10";
             pictureBox10.Size = new Size(58, 56);
             pictureBox10.TabIndex = 14;
@@ -582,7 +587,7 @@
             pictureBox5.BackColor = Color.SkyBlue;
             pictureBox5.BackgroundImage = Properties.Resources.Inventario;
             pictureBox5.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox5.Location = new Point(53, 397);
+            pictureBox5.Location = new Point(53, 443);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new Size(49, 49);
             pictureBox5.TabIndex = 11;
@@ -722,6 +727,25 @@
             label5.TabIndex = 328;
             label5.Text = "Clientes";
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.ForeColor = Color.Navy;
+            label6.Location = new Point(137, 10);
+            label6.Name = "label6";
+            label6.Size = new Size(61, 20);
+            label6.TabIndex = 333;
+            label6.Text = "Clientes";
+            // 
+            // panel7
+            // 
+            panel7.BackColor = Color.White;
+            panel7.Controls.Add(label6);
+            panel7.Location = new Point(11, 397);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(261, 40);
+            panel7.TabIndex = 334;
+            // 
             // ClientesAdm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -743,10 +767,10 @@
             Controls.Add(label1);
             Controls.Add(btnNoti);
             Controls.Add(panel8);
-            Controls.Add(panel5);
             Controls.Add(panel3);
-            Controls.Add(panel1);
             Controls.Add(kryptonGroupBox1);
+            Controls.Add(panel5);
+            Controls.Add(panel1);
             Margin = new Padding(3, 4, 3, 4);
             Name = "ClientesAdm";
             StartPosition = FormStartPosition.CenterScreen;
@@ -770,6 +794,8 @@
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvClientes).EndInit();
+            panel7.ResumeLayout(false);
+            panel7.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -819,5 +845,7 @@
         private Label label3;
         private Label label5;
         private Krypton.Toolkit.KryptonButton btnReportes;
+        private Label label6;
+        private Panel panel7;
     }
 }

@@ -70,7 +70,7 @@ namespace SG_BAMS.Facturas
             try
             {
                 AbrirConexion();
-                string query = "SELECT * FROM vista_stock_productos";
+                string query = "SELECT * FROM vista_nombre_productos";
 
                 using (SqlCommand cmd = new SqlCommand(query, Conectar))
                 using (SqlDataReader reader = await cmd.ExecuteReaderAsync())

@@ -203,7 +203,7 @@
             cmbProductos.DropDownWidth = 300;
             cmbProductos.Location = new Point(171, 170);
             cmbProductos.Name = "cmbProductos";
-            cmbProductos.Size = new Size(197, 38);
+            cmbProductos.Size = new Size(298, 38);
             cmbProductos.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
             cmbProductos.StateCommon.ComboBox.Border.Rounding = 20F;
             cmbProductos.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
@@ -215,10 +215,10 @@
             // 
             // txtCantidad
             // 
-            txtCantidad.Location = new Point(171, 225);
+            txtCantidad.Location = new Point(171, 230);
             txtCantidad.Margin = new Padding(3, 4, 3, 4);
             txtCantidad.Name = "txtCantidad";
-            txtCantidad.Size = new Size(197, 36);
+            txtCantidad.Size = new Size(298, 36);
             txtCantidad.StateCommon.Back.Color1 = Color.SkyBlue;
             txtCantidad.StateCommon.Border.Rounding = 10F;
             txtCantidad.StateCommon.Content.Color1 = Color.Navy;
@@ -231,7 +231,7 @@
             lblStock.BackColor = Color.Transparent;
             lblStock.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             lblStock.ForeColor = Color.Navy;
-            lblStock.Location = new Point(392, 179);
+            lblStock.Location = new Point(475, 176);
             lblStock.Name = "lblStock";
             lblStock.Size = new Size(82, 27);
             lblStock.TabIndex = 338;
@@ -239,7 +239,7 @@
             // 
             // kryptonGroup1
             // 
-            kryptonGroup1.Location = new Point(472, 170);
+            kryptonGroup1.Location = new Point(555, 167);
             kryptonGroup1.Size = new Size(71, 44);
             kryptonGroup1.StateCommon.Border.Rounding = 40F;
             kryptonGroup1.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -251,7 +251,7 @@
             lblNumero.BackColor = Color.SkyBlue;
             lblNumero.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblNumero.ForeColor = Color.Navy;
-            lblNumero.Location = new Point(495, 180);
+            lblNumero.Location = new Point(578, 177);
             lblNumero.Name = "lblNumero";
             lblNumero.Size = new Size(25, 27);
             lblNumero.TabIndex = 340;

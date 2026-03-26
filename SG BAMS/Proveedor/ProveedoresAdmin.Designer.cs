@@ -71,6 +71,8 @@
             btnAgregar = new Krypton.Toolkit.KryptonButton();
             btnRefresh = new Button();
             label3 = new Label();
+            label7 = new Label();
+            panel7 = new Panel();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
             panel5.SuspendLayout();
@@ -92,6 +94,7 @@
             ((System.ComponentModel.ISupportInitialize)dgvProveedor).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
+            panel7.SuspendLayout();
             SuspendLayout();
             // 
             // kryptonLabel1
@@ -239,6 +242,7 @@
             // panel1
             // 
             panel1.BackColor = Color.SkyBlue;
+            panel1.Controls.Add(panel7);
             panel1.Controls.Add(btnPerfil);
             panel1.Controls.Add(btnCerrarSesion);
             panel1.Controls.Add(btnMenu);
@@ -450,7 +454,7 @@
             // 
             // btnBitacora
             // 
-            btnBitacora.Location = new Point(130, 645);
+            btnBitacora.Location = new Point(130, 692);
             btnBitacora.Name = "btnBitacora";
             btnBitacora.OverrideDefault.Back.Color1 = Color.Transparent;
             btnBitacora.OverrideDefault.Back.Color2 = Color.Transparent;
@@ -476,7 +480,7 @@
             // 
             // btnDeudores
             // 
-            btnDeudores.Location = new Point(130, 532);
+            btnDeudores.Location = new Point(130, 579);
             btnDeudores.Name = "btnDeudores";
             btnDeudores.OverrideDefault.Back.Color1 = Color.Transparent;
             btnDeudores.OverrideDefault.Back.Color2 = Color.Transparent;
@@ -532,7 +536,7 @@
             // 
             // btnReporte
             // 
-            btnReporte.Location = new Point(130, 592);
+            btnReporte.Location = new Point(130, 639);
             btnReporte.Name = "btnReporte";
             btnReporte.OverrideDefault.Back.Color1 = Color.Transparent;
             btnReporte.OverrideDefault.Back.Color2 = Color.Transparent;
@@ -582,7 +586,7 @@
             pictureBox14.BackColor = Color.SkyBlue;
             pictureBox14.BackgroundImage = Properties.Resources.bitacora;
             pictureBox14.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox14.Location = new Point(50, 644);
+            pictureBox14.Location = new Point(50, 691);
             pictureBox14.Name = "pictureBox14";
             pictureBox14.Size = new Size(53, 40);
             pictureBox14.TabIndex = 18;
@@ -593,7 +597,7 @@
             pictureBox11.BackColor = Color.SkyBlue;
             pictureBox11.BackgroundImage = Properties.Resources.Reportes;
             pictureBox11.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox11.Location = new Point(49, 580);
+            pictureBox11.Location = new Point(49, 627);
             pictureBox11.Name = "pictureBox11";
             pictureBox11.Size = new Size(56, 51);
             pictureBox11.TabIndex = 15;
@@ -604,7 +608,7 @@
             pictureBox12.BackColor = Color.SkyBlue;
             pictureBox12.BackgroundImage = Properties.Resources.Deudores;
             pictureBox12.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox12.Location = new Point(46, 517);
+            pictureBox12.Location = new Point(46, 564);
             pictureBox12.Name = "pictureBox12";
             pictureBox12.Size = new Size(63, 53);
             pictureBox12.TabIndex = 16;
@@ -753,6 +757,25 @@
             label3.TabIndex = 328;
             label3.Text = "Busqueda:";
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.ForeColor = Color.Navy;
+            label7.Location = new Point(125, 10);
+            label7.Name = "label7";
+            label7.Size = new Size(91, 20);
+            label7.TabIndex = 333;
+            label7.Text = "Proveedores";
+            // 
+            // panel7
+            // 
+            panel7.BackColor = Color.White;
+            panel7.Controls.Add(label7);
+            panel7.Location = new Point(11, 518);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(261, 40);
+            panel7.TabIndex = 356;
+            // 
             // ProveedoresAdmin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -804,6 +827,8 @@
             ((System.ComponentModel.ISupportInitialize)dgvProveedor).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).EndInit();
+            panel7.ResumeLayout(false);
+            panel7.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -852,5 +877,7 @@
         private Krypton.Toolkit.KryptonButton btnAgregar;
         private Button btnRefresh;
         private Label label3;
+        private Panel panel7;
+        private Label label7;
     }
 }

@@ -39,14 +39,12 @@
             btnMenu = new Krypton.Toolkit.KryptonButton();
             btnFactu = new Krypton.Toolkit.KryptonButton();
             btnClientes = new Krypton.Toolkit.KryptonButton();
-            btnInventario = new Krypton.Toolkit.KryptonButton();
             btnDeudores = new Krypton.Toolkit.KryptonButton();
             pictureBox16 = new PictureBox();
             pictureBox15 = new PictureBox();
             label2 = new Label();
             pictureBox9 = new PictureBox();
             pictureBox12 = new PictureBox();
-            pictureBox5 = new PictureBox();
             pictureBox7 = new PictureBox();
             pictureBox8 = new PictureBox();
             pictureBox1 = new PictureBox();
@@ -59,6 +57,8 @@
             dgvInventarioEmp = new DataGridView();
             label10 = new Label();
             kryptonGroupBox2 = new Krypton.Toolkit.KryptonGroupBox();
+            label7 = new Label();
+            panel8 = new Panel();
             panel1.SuspendLayout();
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
@@ -66,7 +66,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox15).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox12).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -75,6 +74,7 @@
             ((System.ComponentModel.ISupportInitialize)dgvInventarioEmp).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).BeginInit();
+            panel8.SuspendLayout();
             SuspendLayout();
             // 
             // panel6
@@ -105,19 +105,18 @@
             // 
             panel1.BackColor = Color.SkyBlue;
             panel1.Controls.Add(panel5);
+            panel1.Controls.Add(panel8);
             panel1.Controls.Add(kryptonButton1);
             panel1.Controls.Add(btnCerrarSesion);
             panel1.Controls.Add(btnMenu);
             panel1.Controls.Add(btnFactu);
             panel1.Controls.Add(btnClientes);
-            panel1.Controls.Add(btnInventario);
             panel1.Controls.Add(btnDeudores);
             panel1.Controls.Add(pictureBox16);
             panel1.Controls.Add(pictureBox15);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(pictureBox9);
             panel1.Controls.Add(pictureBox12);
-            panel1.Controls.Add(pictureBox5);
             panel1.Controls.Add(pictureBox7);
             panel1.Controls.Add(pictureBox8);
             panel1.Controls.Add(pictureBox1);
@@ -271,34 +270,9 @@
             btnClientes.Values.Text = "Clientes";
             btnClientes.Click += btnClientes_Click;
             // 
-            // btnInventario
-            // 
-            btnInventario.Location = new Point(130, 403);
-            btnInventario.Name = "btnInventario";
-            btnInventario.OverrideDefault.Back.Color1 = Color.Transparent;
-            btnInventario.OverrideDefault.Back.Color2 = Color.Transparent;
-            btnInventario.OverrideDefault.Border.Rounding = 40F;
-            btnInventario.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnInventario.OverrideFocus.Back.Color2 = Color.White;
-            btnInventario.Size = new Size(104, 36);
-            btnInventario.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnInventario.StateCommon.Back.Color2 = Color.White;
-            btnInventario.StateCommon.Border.Rounding = 40F;
-            btnInventario.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnInventario.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnInventario.StateNormal.Back.Color1 = Color.Transparent;
-            btnInventario.StateNormal.Back.Color2 = Color.Transparent;
-            btnInventario.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
-            btnInventario.StatePressed.Back.Color1 = Color.Transparent;
-            btnInventario.StatePressed.Back.Color2 = Color.Transparent;
-            btnInventario.StateTracking.Border.Rounding = 40F;
-            btnInventario.TabIndex = 30;
-            btnInventario.Values.DropDownArrowColor = Color.Empty;
-            btnInventario.Values.Text = "Inventario";
-            // 
             // btnDeudores
             // 
-            btnDeudores.Location = new Point(130, 465);
+            btnDeudores.Location = new Point(130, 453);
             btnDeudores.Name = "btnDeudores";
             btnDeudores.OverrideDefault.Back.Color1 = Color.Transparent;
             btnDeudores.OverrideDefault.Back.Color2 = Color.Transparent;
@@ -367,22 +341,11 @@
             pictureBox12.BackColor = Color.SkyBlue;
             pictureBox12.BackgroundImage = Properties.Resources.Deudores;
             pictureBox12.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox12.Location = new Point(46, 451);
+            pictureBox12.Location = new Point(46, 439);
             pictureBox12.Name = "pictureBox12";
             pictureBox12.Size = new Size(63, 53);
             pictureBox12.TabIndex = 16;
             pictureBox12.TabStop = false;
-            // 
-            // pictureBox5
-            // 
-            pictureBox5.BackColor = Color.SkyBlue;
-            pictureBox5.BackgroundImage = Properties.Resources.Inventario;
-            pictureBox5.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox5.Location = new Point(56, 392);
-            pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(49, 49);
-            pictureBox5.TabIndex = 11;
-            pictureBox5.TabStop = false;
             // 
             // pictureBox7
             // 
@@ -511,6 +474,25 @@
             kryptonGroupBox2.StateCommon.Border.Rounding = 50F;
             kryptonGroupBox2.TabIndex = 215;
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.ForeColor = Color.Navy;
+            label7.Location = new Point(133, 10);
+            label7.Name = "label7";
+            label7.Size = new Size(75, 20);
+            label7.TabIndex = 333;
+            label7.Text = "Inventario";
+            // 
+            // panel8
+            // 
+            panel8.BackColor = Color.White;
+            panel8.Controls.Add(label7);
+            panel8.Location = new Point(11, 393);
+            panel8.Name = "panel8";
+            panel8.Size = new Size(257, 40);
+            panel8.TabIndex = 356;
+            // 
             // InventarioEmp
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -540,7 +522,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox15).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox12).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -549,6 +530,8 @@
             ((System.ComponentModel.ISupportInitialize)dgvInventarioEmp).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).EndInit();
+            panel8.ResumeLayout(false);
+            panel8.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -565,14 +548,12 @@
         private Krypton.Toolkit.KryptonButton btnMenu;
         private Krypton.Toolkit.KryptonButton btnFactu;
         private Krypton.Toolkit.KryptonButton btnClientes;
-        private Krypton.Toolkit.KryptonButton btnInventario;
         private Krypton.Toolkit.KryptonButton btnDeudores;
         private PictureBox pictureBox16;
         private PictureBox pictureBox15;
         private Label label2;
         private PictureBox pictureBox9;
         private PictureBox pictureBox12;
-        private PictureBox pictureBox5;
         private PictureBox pictureBox7;
         private PictureBox pictureBox8;
         private PictureBox pictureBox1;
@@ -585,5 +566,7 @@
         private DataGridView dgvInventarioEmp;
         private Label label10;
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox2;
+        private Panel panel8;
+        private Label label7;
     }
 }
