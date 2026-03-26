@@ -89,7 +89,7 @@
             // 
             // btnAceptar
             // 
-            btnAceptar.Location = new Point(156, 516);
+            btnAceptar.Location = new Point(146, 516);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnAceptar.OverrideDefault.Back.Color2 = Color.White;
@@ -103,7 +103,7 @@
             btnAceptar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnAceptar.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnAceptar.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnAceptar.StateNormal.Back.Color2 = Color.White;
+            btnAceptar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
             btnAceptar.StateNormal.Border.Rounding = 40F;
             btnAceptar.StateTracking.Border.Rounding = 40F;
             btnAceptar.TabIndex = 184;
@@ -124,7 +124,7 @@
             // 
             // btnsalir
             // 
-            btnsalir.Location = new Point(282, 516);
+            btnsalir.Location = new Point(274, 516);
             btnsalir.Name = "btnsalir";
             btnsalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnsalir.OverrideDefault.Back.Color2 = Color.White;
@@ -138,7 +138,7 @@
             btnsalir.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnsalir.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnsalir.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnsalir.StateNormal.Back.Color2 = Color.White;
+            btnsalir.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
             btnsalir.StateNormal.Border.Rounding = 40F;
             btnsalir.StateTracking.Border.Rounding = 40F;
             btnsalir.TabIndex = 166;
