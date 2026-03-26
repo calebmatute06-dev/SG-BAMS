@@ -44,7 +44,6 @@
             kryptonGroup1 = new Krypton.Toolkit.KryptonGroup();
             dtpHasta = new Krypton.Toolkit.KryptonDateTimePicker();
             dtpDesde = new Krypton.Toolkit.KryptonDateTimePicker();
-            pictureBox3 = new PictureBox();
             btnNoti = new Button();
             panel6 = new Panel();
             panel8 = new Panel();
@@ -87,7 +86,6 @@
             label9 = new Label();
             kryptonGroup4 = new Krypton.Toolkit.KryptonGroup();
             dgvReporte = new DataGridView();
-            label10 = new Label();
             btnExportaar = new Krypton.Toolkit.KryptonButton();
             btnExportarEx = new Krypton.Toolkit.KryptonButton();
             btnLimpiar = new Krypton.Toolkit.KryptonButton();
@@ -100,7 +98,6 @@
             ((System.ComponentModel.ISupportInitialize)kryptonGroup2.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             panel4.SuspendLayout();
@@ -270,17 +267,6 @@
             dtpDesde.StateCommon.Content.Color1 = Color.Navy;
             dtpDesde.StateCommon.Content.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dtpDesde.TabIndex = 264;
-            // 
-            // pictureBox3
-            // 
-            pictureBox3.BackColor = Color.White;
-            pictureBox3.BackgroundImage = Properties.Resources.Reportes;
-            pictureBox3.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox3.Location = new Point(320, 31);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(56, 51);
-            pictureBox3.TabIndex = 251;
-            pictureBox3.TabStop = false;
             // 
             // btnNoti
             // 
@@ -911,17 +897,6 @@
             dgvReporte.Size = new Size(848, 604);
             dgvReporte.TabIndex = 174;
             // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label10.ForeColor = Color.Navy;
-            label10.Location = new Point(384, 45);
-            label10.Name = "label10";
-            label10.Size = new Size(102, 31);
-            label10.TabIndex = 340;
-            label10.Text = "Reportes";
-            // 
             // btnExportaar
             // 
             btnExportaar.Location = new Point(319, 669);
@@ -1024,7 +999,6 @@
             Controls.Add(btnLimpiar);
             Controls.Add(btnExportarEx);
             Controls.Add(btnExportaar);
-            Controls.Add(label10);
             Controls.Add(dgvReporte);
             Controls.Add(label9);
             Controls.Add(kryptonGroup4);
@@ -1043,7 +1017,6 @@
             Controls.Add(kryptonGroup1);
             Controls.Add(dtpHasta);
             Controls.Add(dtpDesde);
-            Controls.Add(pictureBox3);
             Controls.Add(btnNoti);
             Controls.Add(panel6);
             Controls.Add(panel8);
@@ -1064,7 +1037,6 @@
             ((System.ComponentModel.ISupportInitialize)kryptonGroup2).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             panel4.ResumeLayout(false);
@@ -1105,7 +1077,6 @@
         private Krypton.Toolkit.KryptonGroup kryptonGroup1;
         private Krypton.Toolkit.KryptonDateTimePicker dtpHasta;
         private Krypton.Toolkit.KryptonDateTimePicker dtpDesde;
-        private PictureBox pictureBox3;
         private Button btnNoti;
         private Panel panel6;
         private Panel panel8;
@@ -1146,7 +1117,6 @@
         private Label label9;
         private Krypton.Toolkit.KryptonGroup kryptonGroup4;
         private DataGridView dgvReporte;
-        private Label label10;
         private Krypton.Toolkit.KryptonButton btnExportaar;
         private Krypton.Toolkit.KryptonButton btnExportarEx;
         private Krypton.Toolkit.KryptonButton btnLimpiar;
