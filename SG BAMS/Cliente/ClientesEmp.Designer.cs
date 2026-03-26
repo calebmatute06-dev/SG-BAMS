@@ -53,7 +53,6 @@
             panel2 = new Panel();
             panel6 = new Panel();
             label5 = new Label();
-            label3 = new Label();
             chkActivo = new Krypton.Toolkit.KryptonCheckBox();
             dgvClientes = new DataGridView();
             BtnModificar = new Krypton.Toolkit.KryptonButton();
@@ -64,6 +63,7 @@
             label1 = new Label();
             btnNoti = new Button();
             kryptonGroupBox1 = new Krypton.Toolkit.KryptonGroupBox();
+            label7 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             panel1.SuspendLayout();
             panel7.SuspendLayout();
@@ -434,17 +434,6 @@
             label5.TabIndex = 342;
             label5.Text = "Clientes";
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.Navy;
-            label3.Location = new Point(362, 275);
-            label3.Name = "label3";
-            label3.Size = new Size(81, 31);
-            label3.TabIndex = 341;
-            label3.Text = "Buscar";
-            // 
             // chkActivo
             // 
             chkActivo.Location = new Point(1077, 271);
@@ -570,14 +559,26 @@
             kryptonGroupBox1.StateCommon.Border.Rounding = 50F;
             kryptonGroupBox1.TabIndex = 337;
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.BackColor = Color.Transparent;
+            label7.Font = new Font("Arial", 13.8F, FontStyle.Bold);
+            label7.ForeColor = Color.Navy;
+            label7.Location = new Point(380, 275);
+            label7.Name = "label7";
+            label7.Size = new Size(99, 27);
+            label7.TabIndex = 355;
+            label7.Text = "Buscar:";
+            // 
             // ClientesEmp
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1297, 908);
+            Controls.Add(label7);
             Controls.Add(label5);
-            Controls.Add(label3);
             Controls.Add(chkActivo);
             Controls.Add(dgvClientes);
             Controls.Add(BtnModificar);
@@ -644,7 +645,6 @@
         private PictureBox pictureBox1;
         private Panel panel6;
         private Label label5;
-        private Label label3;
         private Krypton.Toolkit.KryptonCheckBox chkActivo;
         private DataGridView dgvClientes;
         private Krypton.Toolkit.KryptonButton BtnModificar;
@@ -657,5 +657,6 @@
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox1;
         private Panel panel7;
         private Label label6;
+        private Label label7;
     }
 }

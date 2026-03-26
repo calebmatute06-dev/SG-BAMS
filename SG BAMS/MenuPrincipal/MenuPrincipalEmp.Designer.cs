@@ -46,7 +46,6 @@ namespace SG_BAMS
             kryptonButton14 = new Krypton.Toolkit.KryptonButton();
             kryptonButton13 = new Krypton.Toolkit.KryptonButton();
             label1 = new Label();
-            pictureBox18 = new PictureBox();
             panel6 = new Panel();
             panel8 = new Panel();
             panel5 = new Panel();
@@ -57,6 +56,8 @@ namespace SG_BAMS
             panel2 = new Panel();
             pictureBox4 = new PictureBox();
             panel1 = new Panel();
+            panel7 = new Panel();
+            label11 = new Label();
             btnempleado = new Krypton.Toolkit.KryptonButton();
             btndeudores = new Krypton.Toolkit.KryptonButton();
             btninventario = new Krypton.Toolkit.KryptonButton();
@@ -79,12 +80,9 @@ namespace SG_BAMS
             btnclientes2 = new Krypton.Toolkit.KryptonButton();
             btnnotificaciones = new Button();
             chartStock1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            panel7 = new Panel();
-            label11 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox21).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox20).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox19).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             panel4.SuspendLayout();
@@ -92,6 +90,7 @@ namespace SG_BAMS
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             panel1.SuspendLayout();
+            panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox15).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
@@ -102,7 +101,6 @@ namespace SG_BAMS
             ((System.ComponentModel.ISupportInitialize)dgvVentas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)chartStock).BeginInit();
             ((System.ComponentModel.ISupportInitialize)chartStock1).BeginInit();
-            panel7.SuspendLayout();
             SuspendLayout();
             // 
             // pictureBox21
@@ -276,16 +274,6 @@ namespace SG_BAMS
             label1.Size = new Size(0, 20);
             label1.TabIndex = 76;
             // 
-            // pictureBox18
-            // 
-            pictureBox18.BackgroundImage = Properties.Resources.ajus;
-            pictureBox18.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox18.Location = new Point(923, 28);
-            pictureBox18.Name = "pictureBox18";
-            pictureBox18.Size = new Size(53, 49);
-            pictureBox18.TabIndex = 73;
-            pictureBox18.TabStop = false;
-            // 
             // panel6
             // 
             panel6.BackColor = Color.Navy;
@@ -386,6 +374,25 @@ namespace SG_BAMS
             panel1.Name = "panel1";
             panel1.Size = new Size(286, 892);
             panel1.TabIndex = 63;
+            // 
+            // panel7
+            // 
+            panel7.BackColor = Color.White;
+            panel7.Controls.Add(label11);
+            panel7.Location = new Point(16, 228);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(256, 40);
+            panel7.TabIndex = 357;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.ForeColor = Color.Navy;
+            label11.Location = new Point(118, 10);
+            label11.Name = "label11";
+            label11.Size = new Size(107, 20);
+            label11.TabIndex = 333;
+            label11.Text = "Menu Principal";
             // 
             // btnempleado
             // 
@@ -742,7 +749,7 @@ namespace SG_BAMS
             btnnotificaciones.FlatAppearance.BorderSize = 0;
             btnnotificaciones.FlatStyle = FlatStyle.Flat;
             btnnotificaciones.ForeColor = Color.Navy;
-            btnnotificaciones.Location = new Point(850, 33);
+            btnnotificaciones.Location = new Point(1017, 29);
             btnnotificaciones.Name = "btnnotificaciones";
             btnnotificaciones.Size = new Size(59, 44);
             btnnotificaciones.TabIndex = 100;
@@ -772,25 +779,6 @@ namespace SG_BAMS
             chartStock1.TabIndex = 101;
             chartStock1.Text = "chart1";
             // 
-            // panel7
-            // 
-            panel7.BackColor = Color.White;
-            panel7.Controls.Add(label11);
-            panel7.Location = new Point(16, 228);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(256, 40);
-            panel7.TabIndex = 357;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.ForeColor = Color.Navy;
-            label11.Location = new Point(118, 10);
-            label11.Name = "label11";
-            label11.Size = new Size(107, 20);
-            label11.TabIndex = 333;
-            label11.Text = "Menu Principal";
-            // 
             // MenuPrincipalEmp
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -814,7 +802,6 @@ namespace SG_BAMS
             Controls.Add(kryptonButton14);
             Controls.Add(kryptonButton13);
             Controls.Add(label1);
-            Controls.Add(pictureBox18);
             Controls.Add(panel6);
             Controls.Add(panel8);
             Controls.Add(panel5);
@@ -833,7 +820,6 @@ namespace SG_BAMS
             ((System.ComponentModel.ISupportInitialize)pictureBox21).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox20).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox19).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox18).EndInit();
             panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             panel4.ResumeLayout(false);
@@ -842,6 +828,8 @@ namespace SG_BAMS
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            panel7.ResumeLayout(false);
+            panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox15).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
@@ -852,8 +840,6 @@ namespace SG_BAMS
             ((System.ComponentModel.ISupportInitialize)dgvVentas).EndInit();
             ((System.ComponentModel.ISupportInitialize)chartStock).EndInit();
             ((System.ComponentModel.ISupportInitialize)chartStock1).EndInit();
-            panel7.ResumeLayout(false);
-            panel7.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -879,7 +865,6 @@ namespace SG_BAMS
         private Krypton.Toolkit.KryptonButton kryptonButton14;
         private Krypton.Toolkit.KryptonButton kryptonButton13;
         private Label label1;
-        private PictureBox pictureBox18;
         private Panel panel6;
         private Panel panel8;
         private Panel panel5;

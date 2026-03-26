@@ -826,7 +826,7 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(494, 260);
+            label4.Location = new Point(525, 260);
             label4.Name = "label4";
             label4.Size = new Size(99, 27);
             label4.TabIndex = 353;

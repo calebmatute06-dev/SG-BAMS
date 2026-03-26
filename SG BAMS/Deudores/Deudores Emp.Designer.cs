@@ -46,6 +46,8 @@
             panel2 = new Panel();
             pictureBox4 = new PictureBox();
             panel1 = new Panel();
+            panel7 = new Panel();
+            label11 = new Label();
             btnPerfil = new Krypton.Toolkit.KryptonButton();
             btnCerrarSesion = new Krypton.Toolkit.KryptonButton();
             btnMenuEmp = new Krypton.Toolkit.KryptonButton();
@@ -71,8 +73,6 @@
             dgvDeudores = new DataGridView();
             label3 = new Label();
             kryptonGroup3 = new Krypton.Toolkit.KryptonGroup();
-            panel7 = new Panel();
-            label11 = new Label();
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -81,6 +81,7 @@
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             panel1.SuspendLayout();
+            panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox15).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
@@ -96,7 +97,6 @@
             ((System.ComponentModel.ISupportInitialize)dgvDeudores).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup3.Panel).BeginInit();
-            panel7.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -216,6 +216,25 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(286, 892);
             panel1.TabIndex = 83;
+            // 
+            // panel7
+            // 
+            panel7.BackColor = Color.White;
+            panel7.Controls.Add(label11);
+            panel7.Location = new Point(20, 460);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(261, 40);
+            panel7.TabIndex = 357;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.ForeColor = Color.Navy;
+            label11.Location = new Point(121, 10);
+            label11.Name = "label11";
+            label11.Size = new Size(73, 20);
+            label11.TabIndex = 333;
+            label11.Text = "Deudores";
             // 
             // btnPerfil
             // 
@@ -619,25 +638,6 @@
             kryptonGroup3.StateCommon.Border.Rounding = 100F;
             kryptonGroup3.TabIndex = 174;
             // 
-            // panel7
-            // 
-            panel7.BackColor = Color.White;
-            panel7.Controls.Add(label11);
-            panel7.Location = new Point(20, 460);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(261, 40);
-            panel7.TabIndex = 357;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.ForeColor = Color.Navy;
-            label11.Location = new Point(121, 10);
-            label11.Name = "label11";
-            label11.Size = new Size(73, 20);
-            label11.TabIndex = 333;
-            label11.Text = "Deudores";
-            // 
             // Deudores_Emp
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -667,6 +667,7 @@
             ForeColor = Color.SkyBlue;
             Name = "Deudores_Emp";
             Text = "Deudores_Emp";
+            Load += Deudores_Emp_Load;
             panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
@@ -676,6 +677,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            panel7.ResumeLayout(false);
+            panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox15).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
@@ -691,8 +694,6 @@
             ((System.ComponentModel.ISupportInitialize)dgvDeudores).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup3.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup3).EndInit();
-            panel7.ResumeLayout(false);
-            panel7.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }

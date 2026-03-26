@@ -66,6 +66,7 @@ namespace SG_BAMS.Reporte
             dtpDesde.Value = DateTime.Now.AddDays(-30);
 
             cmbReporte.SelectedIndex = 0;
+            dgvReporte.ClearSelection();
         }
 
         private void CargarReporteVentas()

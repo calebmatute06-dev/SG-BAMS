@@ -29,13 +29,15 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             panel1 = new Panel();
+            panel7 = new Panel();
+            label11 = new Label();
             BtnCerrarSesión = new Krypton.Toolkit.KryptonButton();
             BtnFacturas = new Krypton.Toolkit.KryptonButton();
             btnperfil = new Krypton.Toolkit.KryptonButton();
@@ -70,7 +72,6 @@
             pictureBox6 = new PictureBox();
             panel8 = new Panel();
             pictureBox17 = new PictureBox();
-            pictureBox18 = new PictureBox();
             label1 = new Label();
             btninventario2 = new Krypton.Toolkit.KryptonButton();
             kryptonButton13 = new Krypton.Toolkit.KryptonButton();
@@ -94,9 +95,8 @@
             timer1 = new System.Windows.Forms.Timer(components);
             btnadmin = new Button();
             btnAdministracion = new Krypton.Toolkit.KryptonButton();
-            label11 = new Label();
-            panel7 = new Panel();
             panel1.SuspendLayout();
+            panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox15).BeginInit();
@@ -116,13 +116,11 @@
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox17).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox19).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox20).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox21).BeginInit();
             ((System.ComponentModel.ISupportInitialize)chartMasVendidos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)chartStock).BeginInit();
-            panel7.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -157,6 +155,25 @@
             panel1.Size = new Size(286, 892);
             panel1.TabIndex = 1;
             panel1.Paint += panel1_Paint;
+            // 
+            // panel7
+            // 
+            panel7.BackColor = Color.White;
+            panel7.Controls.Add(label11);
+            panel7.Location = new Point(12, 213);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(270, 40);
+            panel7.TabIndex = 356;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.ForeColor = Color.Navy;
+            label11.Location = new Point(119, 10);
+            label11.Name = "label11";
+            label11.Size = new Size(107, 20);
+            label11.TabIndex = 333;
+            label11.Text = "Menu Principal";
             // 
             // BtnCerrarSesión
             // 
@@ -652,16 +669,6 @@
             pictureBox17.TabIndex = 24;
             pictureBox17.TabStop = false;
             // 
-            // pictureBox18
-            // 
-            pictureBox18.BackgroundImage = Properties.Resources.ajus;
-            pictureBox18.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox18.Location = new Point(923, 29);
-            pictureBox18.Name = "pictureBox18";
-            pictureBox18.Size = new Size(53, 49);
-            pictureBox18.TabIndex = 25;
-            pictureBox18.TabStop = false;
-            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -917,18 +924,18 @@
             // 
             // chartMasVendidos
             // 
-            chartArea3.Name = "ChartArea1";
-            chartMasVendidos.ChartAreas.Add(chartArea3);
-            legend3.BackColor = Color.SkyBlue;
-            legend3.Name = "Legend1";
-            chartMasVendidos.Legends.Add(legend3);
+            chartArea1.Name = "ChartArea1";
+            chartMasVendidos.ChartAreas.Add(chartArea1);
+            legend1.BackColor = Color.SkyBlue;
+            legend1.Name = "Legend1";
+            chartMasVendidos.Legends.Add(legend1);
             chartMasVendidos.Location = new Point(346, 187);
             chartMasVendidos.Name = "chartMasVendidos";
             chartMasVendidos.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            chartMasVendidos.Series.Add(series3);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            chartMasVendidos.Series.Add(series1);
             chartMasVendidos.Size = new Size(411, 219);
             chartMasVendidos.TabIndex = 63;
             chartMasVendidos.Text = "chart1";
@@ -937,21 +944,21 @@
             // 
             chartStock.BackColor = Color.SkyBlue;
             chartStock.BorderlineColor = Color.SkyBlue;
-            chartArea4.BackColor = Color.SkyBlue;
-            chartArea4.BackSecondaryColor = Color.White;
-            chartArea4.Name = "ChartArea1";
-            chartStock.ChartAreas.Add(chartArea4);
-            legend4.BackColor = Color.SkyBlue;
-            legend4.Name = "Legend1";
-            chartStock.Legends.Add(legend4);
+            chartArea2.BackColor = Color.SkyBlue;
+            chartArea2.BackSecondaryColor = Color.White;
+            chartArea2.Name = "ChartArea1";
+            chartStock.ChartAreas.Add(chartArea2);
+            legend2.BackColor = Color.SkyBlue;
+            legend2.Name = "Legend1";
+            chartStock.Legends.Add(legend2);
             chartStock.Location = new Point(346, 567);
             chartStock.Name = "chartStock";
             chartStock.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.EarthTones;
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            chartStock.Series.Add(series4);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            chartStock.Series.Add(series2);
             chartStock.Size = new Size(426, 215);
             chartStock.TabIndex = 96;
             chartStock.Text = "chartStock";
@@ -969,7 +976,7 @@
             btnadmin.FlatAppearance.BorderSize = 0;
             btnadmin.FlatStyle = FlatStyle.Flat;
             btnadmin.ForeColor = Color.Navy;
-            btnadmin.Location = new Point(849, 35);
+            btnadmin.Location = new Point(1016, 37);
             btnadmin.Name = "btnadmin";
             btnadmin.Size = new Size(59, 44);
             btnadmin.TabIndex = 97;
@@ -1002,25 +1009,6 @@
             btnAdministracion.Values.Text = "Administración de BAMS";
             btnAdministracion.Click += btnAdministracion_Click;
             // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.ForeColor = Color.Navy;
-            label11.Location = new Point(119, 10);
-            label11.Name = "label11";
-            label11.Size = new Size(107, 20);
-            label11.TabIndex = 333;
-            label11.Text = "Menu Principal";
-            // 
-            // panel7
-            // 
-            panel7.BackColor = Color.White;
-            panel7.Controls.Add(label11);
-            panel7.Location = new Point(12, 213);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(270, 40);
-            panel7.TabIndex = 356;
-            // 
             // MenuPrincipalAdm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -1049,7 +1037,6 @@
             Controls.Add(kryptonButton13);
             Controls.Add(btninventario2);
             Controls.Add(label1);
-            Controls.Add(pictureBox18);
             Controls.Add(pictureBox17);
             Controls.Add(panel6);
             Controls.Add(panel8);
@@ -1064,6 +1051,8 @@
             Load += MenuPrincipalAdm_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            panel7.ResumeLayout(false);
+            panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox15).EndInit();
@@ -1083,14 +1072,11 @@
             panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox17).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox18).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox19).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox20).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox21).EndInit();
             ((System.ComponentModel.ISupportInitialize)chartMasVendidos).EndInit();
             ((System.ComponentModel.ISupportInitialize)chartStock).EndInit();
-            panel7.ResumeLayout(false);
-            panel7.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1120,7 +1106,6 @@
         private PictureBox pictureBox16;
         private PictureBox pictureBox15;
         private PictureBox pictureBox17;
-        private PictureBox pictureBox18;
         private Krypton.Toolkit.KryptonButton btnReporte;
         private Krypton.Toolkit.KryptonButton kryptonButton9;
         private Krypton.Toolkit.KryptonButton btncompra;

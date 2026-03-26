@@ -33,6 +33,8 @@ namespace SG_BAMS.Bitacora
         {
             bitacora.cargarDatos(dgvBitacora);
             EjecutarBusquedaSegura();
+            dgvBitacora.ClearSelection();
+            dgvBitacora.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
         private void txtBuscar_KeyUp(object sender, KeyEventArgs e)
@@ -89,6 +91,7 @@ namespace SG_BAMS.Bitacora
 
             bitacora.cargarDatos(dgvBitacora);
             EjecutarBusquedaSegura();
+            dgvBitacora.ClearSelection();
         }
 
         private void btnExportar_Click(object sender, EventArgs e)

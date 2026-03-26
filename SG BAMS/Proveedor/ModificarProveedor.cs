@@ -47,8 +47,7 @@ namespace SG_BAMS.Proveedor
 
         private void btnsalir_Click(object sender, EventArgs e)
         {
-            ProveedoresAdmin admin = new ProveedoresAdmin();
-            admin.Show();
+            
             this.Close();
         }
 

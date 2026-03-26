@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             txtBuscar = new Krypton.Toolkit.KryptonTextBox();
-            btnAjustes = new Krypton.Toolkit.KryptonButton();
-            pictureBox18 = new PictureBox();
             btnNoti = new Button();
             panel6 = new Panel();
             panel8 = new Panel();
@@ -73,7 +71,6 @@
             label3 = new Label();
             label10 = new Label();
             kryptonGroupBox2 = new Krypton.Toolkit.KryptonGroupBox();
-            ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             panel4.SuspendLayout();
@@ -108,42 +105,6 @@
             txtBuscar.TabIndex = 113;
             txtBuscar.KeyUp += txtBuscar_KeyUp;
             // 
-            // btnAjustes
-            // 
-            btnAjustes.Location = new Point(1035, 29);
-            btnAjustes.Name = "btnAjustes";
-            btnAjustes.OverrideDefault.Back.Color1 = Color.Transparent;
-            btnAjustes.OverrideDefault.Back.Color2 = Color.Transparent;
-            btnAjustes.OverrideDefault.Border.Rounding = 40F;
-            btnAjustes.OverrideFocus.Back.Color1 = Color.White;
-            btnAjustes.OverrideFocus.Back.Color2 = Color.SkyBlue;
-            btnAjustes.Size = new Size(98, 41);
-            btnAjustes.StateCommon.Back.Color1 = Color.White;
-            btnAjustes.StateCommon.Back.Color2 = Color.SkyBlue;
-            btnAjustes.StateCommon.Border.Rounding = 40F;
-            btnAjustes.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnAjustes.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnAjustes.StateNormal.Back.Color1 = Color.Transparent;
-            btnAjustes.StateNormal.Back.Color2 = Color.Transparent;
-            btnAjustes.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
-            btnAjustes.StatePressed.Back.Color1 = Color.Transparent;
-            btnAjustes.StatePressed.Back.Color2 = Color.Transparent;
-            btnAjustes.StateTracking.Border.Rounding = 40F;
-            btnAjustes.TabIndex = 111;
-            btnAjustes.Values.DropDownArrowColor = Color.Empty;
-            btnAjustes.Values.Text = "Ajustes";
-            btnAjustes.Click += btnAjustes_Click;
-            // 
-            // pictureBox18
-            // 
-            pictureBox18.BackgroundImage = Properties.Resources.ajus;
-            pictureBox18.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox18.Location = new Point(979, 28);
-            pictureBox18.Name = "pictureBox18";
-            pictureBox18.Size = new Size(53, 49);
-            pictureBox18.TabIndex = 110;
-            pictureBox18.TabStop = false;
-            // 
             // btnNoti
             // 
             btnNoti.BackColor = Color.Transparent;
@@ -153,7 +114,7 @@
             btnNoti.FlatAppearance.BorderSize = 0;
             btnNoti.FlatStyle = FlatStyle.Flat;
             btnNoti.ForeColor = Color.Navy;
-            btnNoti.Location = new Point(915, 28);
+            btnNoti.Location = new Point(1074, 30);
             btnNoti.Name = "btnNoti";
             btnNoti.Size = new Size(59, 44);
             btnNoti.TabIndex = 109;
@@ -795,8 +756,6 @@
             Controls.Add(kryptonGroup1);
             Controls.Add(panel2);
             Controls.Add(txtBuscar);
-            Controls.Add(btnAjustes);
-            Controls.Add(pictureBox18);
             Controls.Add(btnNoti);
             Controls.Add(panel6);
             Controls.Add(panel8);
@@ -808,7 +767,6 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ProveedoresAdmin";
             Load += ProveedoresAdmin_Load;
-            ((System.ComponentModel.ISupportInitialize)pictureBox18).EndInit();
             panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             panel4.ResumeLayout(false);
@@ -839,8 +797,6 @@
 
         #endregion
         private Krypton.Toolkit.KryptonTextBox txtBuscar;
-        private Krypton.Toolkit.KryptonButton btnAjustes;
-        private PictureBox pictureBox18;
         private Button btnNoti;
         private Panel panel6;
         private Panel panel8;

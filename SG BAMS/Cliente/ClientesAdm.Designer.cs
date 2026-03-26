@@ -64,15 +64,14 @@
             pictureBox5 = new PictureBox();
             pictureBox8 = new PictureBox();
             pictureBox1 = new PictureBox();
-            label4 = new Label();
             txtBusqueda = new Krypton.Toolkit.KryptonTextBox();
             kryptonGroupBox1 = new Krypton.Toolkit.KryptonGroupBox();
             BtnModificar = new Krypton.Toolkit.KryptonButton();
             dgvClientes = new DataGridView();
             chkActivo = new Krypton.Toolkit.KryptonCheckBox();
-            label3 = new Label();
             label10 = new Label();
             kryptonGroupBox2 = new Krypton.Toolkit.KryptonGroupBox();
+            label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).BeginInit();
@@ -636,18 +635,6 @@
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.BackColor = Color.Transparent;
-            label4.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.Navy;
-            label4.Location = new Point(354, 212);
-            label4.Name = "label4";
-            label4.Size = new Size(167, 24);
-            label4.TabIndex = 138;
-            label4.Text = "Lista de Clientes";
-            // 
             // txtBusqueda
             // 
             txtBusqueda.Location = new Point(483, 269);
@@ -708,23 +695,12 @@
             // 
             chkActivo.Location = new Point(1072, 272);
             chkActivo.Name = "chkActivo";
-            chkActivo.Size = new Size(104, 31);
+            chkActivo.Size = new Size(107, 31);
             chkActivo.StateCommon.ShortText.Color1 = Color.Navy;
-            chkActivo.StateCommon.ShortText.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            chkActivo.StateCommon.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             chkActivo.TabIndex = 326;
             chkActivo.Values.Text = "Inactivos";
             chkActivo.CheckedChanged += chkActivo_CheckedChanged;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.Navy;
-            label3.Location = new Point(360, 275);
-            label3.Name = "label3";
-            label3.Size = new Size(74, 27);
-            label3.TabIndex = 327;
-            label3.Text = "Buscar:";
             // 
             // label10
             // 
@@ -732,7 +708,7 @@
             label10.BackColor = Color.SkyBlue;
             label10.Font = new Font("Arial Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Navy;
-            label10.Location = new Point(692, 111);
+            label10.Location = new Point(680, 75);
             label10.Name = "label10";
             label10.Size = new Size(152, 42);
             label10.TabIndex = 328;
@@ -741,12 +717,24 @@
             // kryptonGroupBox2
             // 
             kryptonGroupBox2.CaptionVisible = false;
-            kryptonGroupBox2.Location = new Point(595, 100);
+            kryptonGroupBox2.Location = new Point(578, 62);
             kryptonGroupBox2.Margin = new Padding(3, 4, 3, 4);
             kryptonGroupBox2.Size = new Size(344, 65);
             kryptonGroupBox2.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroupBox2.StateCommon.Border.Rounding = 50F;
             kryptonGroupBox2.TabIndex = 329;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Arial", 13.8F, FontStyle.Bold);
+            label3.ForeColor = Color.Navy;
+            label3.Location = new Point(378, 273);
+            label3.Name = "label3";
+            label3.Size = new Size(99, 27);
+            label3.TabIndex = 354;
+            label3.Text = "Buscar:";
             // 
             // ClientesAdm
             // 
@@ -754,15 +742,14 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1259, 908);
+            Controls.Add(label3);
             Controls.Add(label10);
             Controls.Add(kryptonGroupBox2);
             Controls.Add(panel4);
-            Controls.Add(label3);
             Controls.Add(chkActivo);
             Controls.Add(dgvClientes);
             Controls.Add(BtnModificar);
             Controls.Add(txtBusqueda);
-            Controls.Add(label4);
             Controls.Add(panel6);
             Controls.Add(panel2);
             Controls.Add(kryptonButton14);
@@ -838,17 +825,16 @@
         private PictureBox pictureBox5;
         private PictureBox pictureBox8;
         private PictureBox pictureBox1;
-        private Label label4;
         private Krypton.Toolkit.KryptonTextBox txtBusqueda;
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox1;
         private Krypton.Toolkit.KryptonButton BtnModificar;
         private DataGridView dgvClientes;
         private Krypton.Toolkit.KryptonCheckBox chkActivo;
-        private Label label3;
         private Krypton.Toolkit.KryptonButton btnReportes;
         private Label label6;
         private Panel panel7;
         private Label label10;
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox2;
+        private Label label3;
     }
 }

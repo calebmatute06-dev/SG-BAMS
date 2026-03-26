@@ -90,6 +90,7 @@ namespace SG_BAMS
         private void Compras_Load(object sender, EventArgs e)
         {
             CargarCompras();
+            dgvComprasAdmin.ClearSelection();
         }
 
         public void CargarCompras()
@@ -98,6 +99,7 @@ namespace SG_BAMS
             {
                 dgvComprasAdmin.DataSource = consultaLogic.ListarCompras();
                 dgvComprasAdmin.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dgvComprasAdmin.ClearSelection();
             }
             catch (Exception ex)
             {

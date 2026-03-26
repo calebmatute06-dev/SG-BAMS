@@ -93,7 +93,7 @@ namespace SG_BAMS.Proveedor
         private void btnAgregar_Click_1(object sender, EventArgs e)
         {
             AgregarProveedores agregar = new AgregarProveedores();
-            agregar.Show();
+            agregar.ShowDialog();
            
         }
 
@@ -176,8 +176,8 @@ namespace SG_BAMS.Proveedor
             int idClasificacion = Convert.ToInt32(dgvProveedor.CurrentRow.Cells["idClasificacion"].Value);
 
             ModificarProveedor frm = new ModificarProveedor(idProveedor, nombre, contacto, direccion, rtn, idEstado, idClasificacion);
-            frm.Show();
-            this.Hide();
+            frm.ShowDialog();
+            
         }
 
         private void btnNoti_Click(object sender, EventArgs e)

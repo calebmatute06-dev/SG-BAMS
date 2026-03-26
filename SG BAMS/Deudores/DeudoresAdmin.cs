@@ -33,14 +33,16 @@ namespace SG_BAMS
             dtDeudores = objetoDeuda.ListarDeudores();
             dgvDeudores.DataSource = dtDeudores;
 
-            // CONFIGURACIÓN PARA QUE EL GRID NO SEA MODIFICABLE
+          
             dgvDeudores.ReadOnly = true;
-            dgvDeudores.AllowUserToAddRows = false; // Elimina la fila vacía al final
-            dgvDeudores.AllowUserToDeleteRows = false; // Evita borrar registros con el teclado
+            dgvDeudores.AllowUserToAddRows = false; 
+            dgvDeudores.AllowUserToDeleteRows = false; 
 
-            // Mejora la selección para el evento DoubleClick
+            
             dgvDeudores.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvDeudores.MultiSelect = false;
+
+            dgvDeudores.ClearSelection();
         }
 
         private void FiltrarDeudores()
@@ -122,7 +124,7 @@ namespace SG_BAMS
             ClsValidaciones.PermitirSoloLetras(e);
         }
 
-        // --- NAVEGACIÓN ---
+        
 
         private void btnMenuAdmin_Click(object sender, EventArgs e)
         {
@@ -195,5 +197,10 @@ namespace SG_BAMS
 
         private void kryptonDataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
         private void dgvDeudores_DoubleClick(object sender, EventArgs e) { }
+
+        private void DeudoresAdmin_Load(object sender, EventArgs e)
+        {
+            dgvDeudores.ClearSelection();
+        }
     }
 }

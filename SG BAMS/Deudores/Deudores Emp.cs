@@ -21,7 +21,7 @@ namespace SG_BAMS
             InitializeComponent();
             CargarGridDeudores();
 
-            
+
             this.txtBuscarNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
         }
 
@@ -30,11 +30,22 @@ namespace SG_BAMS
             ClsDeuda objetoDeuda = new ClsDeuda();
             dtDeudores = objetoDeuda.ListarDeudores();
             dgvDeudores.DataSource = dtDeudores;
+
+
+            dgvDeudores.ReadOnly = true;
+            dgvDeudores.AllowUserToAddRows = false;
+            dgvDeudores.AllowUserToDeleteRows = false;
+
+
+            dgvDeudores.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvDeudores.MultiSelect = false;
+
+            dgvDeudores.ClearSelection();
         }
 
         private void txtBuscarNombre_TextChanged(object sender, EventArgs e)
         {
-           
+
             int cursor = txtBuscarNombre.SelectionStart;
             txtBuscarNombre.Text = txtBuscarNombre.Text.ToUpper();
             txtBuscarNombre.SelectionStart = cursor;
@@ -46,7 +57,7 @@ namespace SG_BAMS
         {
             if (dtDeudores != null)
             {
-               
+
                 string filtro = txtBuscarNombre.Text
                     .Replace("'", "''")
                     .Replace("[", "[[]")
@@ -106,14 +117,14 @@ namespace SG_BAMS
             Ayudante_UI.AplicarZoomGlobal(this);
         }
 
-        
+
         private void txtBuscarNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
+
             ClsValidaciones.PermitirSoloLetras(e);
         }
 
-        
+
 
         private void btnNoti(object sender, EventArgs e)
         {
@@ -123,7 +134,7 @@ namespace SG_BAMS
         private void btnMenuEmp_Click(object sender, EventArgs e)
         {
             new MenuPrincipalEmp().Show();
-            this.Close(); 
+            this.Close();
         }
 
         private void btnFacturasEmp_Click(object sender, EventArgs e)
@@ -155,8 +166,13 @@ namespace SG_BAMS
             this.Close();
         }
 
-       
+
         private void timer1_Tick(object sender, EventArgs e) { }
         private void dgvDeudores_DoubleClick(object sender, EventArgs e) { }
+
+        private void Deudores_Emp_Load(object sender, EventArgs e)
+        {
+            dgvDeudores.ClearSelection();
+        }
     }
 }
