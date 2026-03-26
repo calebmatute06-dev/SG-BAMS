@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System;
+using System.Windows.Forms;
 
 namespace SG_BAMS
 {
@@ -112,9 +113,9 @@ namespace SG_BAMS
             }
 
            
-            if (Regex.IsMatch(textoTrim, @"(.)\1{3,}") || Regex.IsMatch(textoTrim.Replace(" ", ""), @"(.{2,})\1{2,}"))
+            if (Regex.IsMatch(textoTrim, @"(.)\1{2,}") || Regex.IsMatch(textoTrim.Replace(" ", ""), @"(.{2,})\1{2,}"))
             {
-                MessageBox.Show($"{nombreCampo} contiene caracteres o patrones repetitivos inválidos.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"{nombreCampo} contiene caracteres o patrones repetitivos inválidos (máximo 2 iguales seguidos).", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
             }
@@ -158,9 +159,9 @@ namespace SG_BAMS
             }
 
             
-            if (Regex.IsMatch(textoTrim, @"(.)\1{3,}"))
+            if (Regex.IsMatch(textoTrim, @"(.)\1{2,}"))
             {
-                MessageBox.Show($"{nombreCampo} contiene demasiados caracteres repetidos seguidos.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"{nombreCampo} contiene demasiados caracteres repetidos seguidos (máximo 2).", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
             }
@@ -200,7 +201,6 @@ namespace SG_BAMS
         {
             string tel = control.Text.Trim();
 
-           
             if (!Regex.IsMatch(tel, @"^[23789]\d{7}$"))
             {
                 MessageBox.Show("El teléfono debe tener 8 dígitos y comenzar con un prefijo válido de Honduras (2, 3, 7, 8 o 9).",
@@ -209,10 +209,10 @@ namespace SG_BAMS
                 return false;
             }
 
-            
-            if (Regex.IsMatch(tel, @"(.)\1{3,}"))
+          
+            if (Regex.IsMatch(tel, @"(.)\1{2,}"))
             {
-                MessageBox.Show("El teléfono no puede tener más de 3 números repetidos seguidos.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("El teléfono no puede tener más de 2 números repetidos seguidos.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
             }
@@ -231,9 +231,9 @@ namespace SG_BAMS
             }
 
             
-            if (Regex.IsMatch(pass, @"(.)\1{3,}"))
+            if (Regex.IsMatch(pass, @"(.)\1{2,}"))
             {
-                MessageBox.Show($"{nombreCampo} es muy débil (demasiados caracteres repetidos).", "Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"{nombreCampo} es muy débil (demasiados caracteres repetidos seguidos).", "Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
             }
@@ -260,7 +260,8 @@ namespace SG_BAMS
                 return false;
             }
 
-            if (Regex.IsMatch(codigo, @"(.)\1{4,}"))
+           
+            if (Regex.IsMatch(codigo, @"(.)\1{2,}"))
             {
                 MessageBox.Show("El código de barras tiene un patrón de repetición inválido.",
                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -269,6 +270,7 @@ namespace SG_BAMS
 
             return true;
         }
+
         public static void ValidarTelefonoKeyPress(KryptonTextBox txt, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
@@ -280,11 +282,11 @@ namespace SG_BAMS
             if (!char.IsControl(e.KeyChar))
             {
                 int pos = txt.SelectionStart;
-                if (pos >= 3)
+                
+                if (pos >= 2)
                 {
                     if (txt.Text[pos - 1] == e.KeyChar &&
-                        txt.Text[pos - 2] == e.KeyChar &&
-                        txt.Text[pos - 3] == e.KeyChar)
+                        txt.Text[pos - 2] == e.KeyChar)
                     {
                         e.Handled = true;
                         return;
@@ -328,7 +330,6 @@ namespace SG_BAMS
                     }
                 }
 
-                // 4. Reglas para la COMA (Miles)
                 if (e.KeyChar == ',')
                 {
                     if (texto.Contains("."))
@@ -341,11 +342,9 @@ namespace SG_BAMS
 
         public static void ValidarRangoFechas(DateTimePicker dtpInicio, DateTimePicker dtpFin)
         {
-            
             dtpInicio.MaxDate = DateTime.Today;
             dtpFin.MaxDate = DateTime.Today;
 
-           
             if (dtpInicio.Value.Date > dtpFin.Value.Date)
             {
                 dtpInicio.Value = dtpFin.Value;
@@ -356,7 +355,6 @@ namespace SG_BAMS
         {
             string rtn = control.Text.Trim();
 
-            
             if (!Regex.IsMatch(rtn, @"^\d{14}$"))
             {
                 MessageBox.Show("El RTN debe tener exactamente 14 dígitos numéricos.",
@@ -365,7 +363,6 @@ namespace SG_BAMS
                 return false;
             }
 
-           
             if (Regex.IsMatch(rtn, @"^(.)\1{13}$"))
             {
                 MessageBox.Show("El RTN contiene un patrón de repetición inválido.",
@@ -377,5 +374,4 @@ namespace SG_BAMS
             return true;
         }
     }
-
 }
