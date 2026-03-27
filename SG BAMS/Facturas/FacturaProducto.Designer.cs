@@ -45,6 +45,9 @@
             lblStock = new Label();
             kryptonGroup1 = new Krypton.Toolkit.KryptonGroup();
             lblNumero = new Label();
+            btnEscanear = new Krypton.Toolkit.KryptonButton();
+            txtCodigo = new Krypton.Toolkit.KryptonTextBox();
+            label2 = new Label();
             panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3.Panel).BeginInit();
@@ -124,7 +127,7 @@
             Nombre.BackColor = Color.Transparent;
             Nombre.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             Nombre.ForeColor = Color.Navy;
-            Nombre.Location = new Point(60, 176);
+            Nombre.Location = new Point(60, 185);
             Nombre.Name = "Nombre";
             Nombre.Size = new Size(105, 27);
             Nombre.TabIndex = 264;
@@ -201,7 +204,7 @@
             // cmbProductos
             // 
             cmbProductos.DropDownWidth = 300;
-            cmbProductos.Location = new Point(171, 170);
+            cmbProductos.Location = new Point(171, 179);
             cmbProductos.Name = "cmbProductos";
             cmbProductos.Size = new Size(298, 38);
             cmbProductos.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
@@ -231,7 +234,7 @@
             lblStock.BackColor = Color.Transparent;
             lblStock.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             lblStock.ForeColor = Color.Navy;
-            lblStock.Location = new Point(475, 176);
+            lblStock.Location = new Point(502, 93);
             lblStock.Name = "lblStock";
             lblStock.Size = new Size(82, 27);
             lblStock.TabIndex = 338;
@@ -239,7 +242,7 @@
             // 
             // kryptonGroup1
             // 
-            kryptonGroup1.Location = new Point(555, 167);
+            kryptonGroup1.Location = new Point(582, 84);
             kryptonGroup1.Size = new Size(71, 44);
             kryptonGroup1.StateCommon.Border.Rounding = 40F;
             kryptonGroup1.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -251,11 +254,56 @@
             lblNumero.BackColor = Color.SkyBlue;
             lblNumero.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblNumero.ForeColor = Color.Navy;
-            lblNumero.Location = new Point(578, 177);
+            lblNumero.Location = new Point(605, 94);
             lblNumero.Name = "lblNumero";
             lblNumero.Size = new Size(25, 27);
             lblNumero.TabIndex = 340;
             lblNumero.Text = "0";
+            // 
+            // btnEscanear
+            // 
+            btnEscanear.Location = new Point(393, 127);
+            btnEscanear.Name = "btnEscanear";
+            btnEscanear.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnEscanear.OverrideDefault.Back.Color2 = Color.White;
+            btnEscanear.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnEscanear.OverrideFocus.Back.Color2 = Color.White;
+            btnEscanear.Size = new Size(90, 37);
+            btnEscanear.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnEscanear.StateCommon.Back.Color2 = Color.White;
+            btnEscanear.StateCommon.Border.Rounding = 20F;
+            btnEscanear.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnEscanear.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnEscanear.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnEscanear.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnEscanear.StatePressed.Back.Color1 = Color.Transparent;
+            btnEscanear.StatePressed.Back.Color2 = Color.Transparent;
+            btnEscanear.TabIndex = 345;
+            btnEscanear.Values.DropDownArrowColor = Color.Empty;
+            btnEscanear.Values.Text = "Cambiar";
+            btnEscanear.Click += btnEscanear_Click;
+            // 
+            // txtCodigo
+            // 
+            txtCodigo.Enabled = false;
+            txtCodigo.Location = new Point(171, 131);
+            txtCodigo.Name = "txtCodigo";
+            txtCodigo.Size = new Size(216, 33);
+            txtCodigo.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtCodigo.StateCommon.Border.Rounding = 10F;
+            txtCodigo.TabIndex = 344;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Arial", 13.8F, FontStyle.Bold);
+            label2.ForeColor = Color.Navy;
+            label2.Location = new Point(60, 137);
+            label2.Name = "label2";
+            label2.Size = new Size(99, 27);
+            label2.TabIndex = 346;
+            label2.Text = "Codigo:";
             // 
             // FacturaProducto
             // 
@@ -263,6 +311,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(686, 400);
+            Controls.Add(label2);
+            Controls.Add(btnEscanear);
+            Controls.Add(txtCodigo);
             Controls.Add(lblNumero);
             Controls.Add(kryptonGroup1);
             Controls.Add(lblStock);
@@ -311,5 +362,8 @@
         private Label lblStock;
         private Krypton.Toolkit.KryptonGroup kryptonGroup1;
         private Label lblNumero;
+        private Krypton.Toolkit.KryptonButton btnEscanear;
+        private Krypton.Toolkit.KryptonTextBox txtCodigo;
+        private Label label2;
     }
 }
