@@ -16,11 +16,12 @@ namespace SG_BAMS
             {
                 conexion.AbrirConexion();
                 string query = @"SELECT p.id_producto, 
-                                 (p.nombre_producto + ' -- ' + m.nombre_marca) AS DisplayFull
-                                 FROM Producto p
-                                 INNER JOIN Proveedor_Producto pp ON p.id_producto = pp.id_producto
-                                 INNER JOIN Marca_producto m ON p.id_marca_producto = m.id_marca_producto
-                                 WHERE p.id_estado = 1 AND pp.id_proveedor = @idProv";
+                         p.codigo_barra,
+                         (p.nombre_producto + ' -- ' + m.nombre_marca) AS DisplayFull
+                         FROM Producto p
+                         INNER JOIN Proveedor_Producto pp ON p.id_producto = pp.id_producto
+                         INNER JOIN Marca_producto m ON p.id_marca_producto = m.id_marca_producto
+                         WHERE p.id_estado = 1 AND pp.id_proveedor = @idProv";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexion.Conectar))
                 {

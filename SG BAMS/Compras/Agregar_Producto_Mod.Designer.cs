@@ -44,6 +44,9 @@
             pictureBox4 = new PictureBox();
             kryptonButton13 = new Krypton.Toolkit.KryptonButton();
             cmbProductos = new Krypton.Toolkit.KryptonComboBox();
+            kryptonLabel3 = new Krypton.Toolkit.KryptonLabel();
+            txtCodigo = new Krypton.Toolkit.KryptonTextBox();
+            btnEscanear = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -53,7 +56,7 @@
             // 
             // txtPrecio
             // 
-            txtPrecio.Location = new Point(184, 233);
+            txtPrecio.Location = new Point(184, 277);
             txtPrecio.Name = "txtPrecio";
             txtPrecio.Size = new Size(166, 33);
             txtPrecio.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -65,7 +68,7 @@
             // numCantidad
             // 
             numCantidad.Increment = new decimal(new int[] { 1, 0, 0, 0 });
-            numCantidad.Location = new Point(184, 183);
+            numCantidad.Location = new Point(184, 227);
             numCantidad.Maximum = new decimal(new int[] { 100, 0, 0, 0 });
             numCantidad.Minimum = new decimal(new int[] { 0, 0, 0, 0 });
             numCantidad.Name = "numCantidad";
@@ -79,7 +82,7 @@
             // 
             // kryptonButton3
             // 
-            kryptonButton3.Location = new Point(30, 304);
+            kryptonButton3.Location = new Point(30, 348);
             kryptonButton3.Name = "kryptonButton3";
             kryptonButton3.OverrideDefault.Back.Color1 = Color.SkyBlue;
             kryptonButton3.OverrideDefault.Back.Color2 = Color.White;
@@ -102,7 +105,7 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(157, 304);
+            btnCancelar.Location = new Point(157, 348);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnCancelar.OverrideDefault.Back.Color2 = Color.White;
@@ -125,7 +128,7 @@
             // 
             // btnProductoNuevo
             // 
-            btnProductoNuevo.Location = new Point(362, 304);
+            btnProductoNuevo.Location = new Point(362, 348);
             btnProductoNuevo.Name = "btnProductoNuevo";
             btnProductoNuevo.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnProductoNuevo.OverrideDefault.Back.Color2 = Color.White;
@@ -148,7 +151,7 @@
             // 
             // kryptonLabel2
             // 
-            kryptonLabel2.Location = new Point(67, 235);
+            kryptonLabel2.Location = new Point(67, 279);
             kryptonLabel2.Name = "kryptonLabel2";
             kryptonLabel2.Size = new Size(101, 31);
             kryptonLabel2.StateCommon.ShortText.Color1 = Color.Navy;
@@ -157,7 +160,7 @@
             // 
             // kryptonLabel1
             // 
-            kryptonLabel1.Location = new Point(65, 184);
+            kryptonLabel1.Location = new Point(65, 228);
             kryptonLabel1.Name = "kryptonLabel1";
             kryptonLabel1.Size = new Size(86, 31);
             kryptonLabel1.StateCommon.ShortText.Color1 = Color.Navy;
@@ -177,7 +180,7 @@
             // 
             // kryptonLabel6
             // 
-            kryptonLabel6.Location = new Point(65, 132);
+            kryptonLabel6.Location = new Point(65, 176);
             kryptonLabel6.Name = "kryptonLabel6";
             kryptonLabel6.Size = new Size(86, 31);
             kryptonLabel6.StateCommon.ShortText.Color1 = Color.Navy;
@@ -203,7 +206,7 @@
             // panel3
             // 
             panel3.BackColor = Color.Navy;
-            panel3.Location = new Point(10, 349);
+            panel3.Location = new Point(10, 393);
             panel3.Name = "panel3";
             panel3.Size = new Size(551, 24);
             panel3.TabIndex = 215;
@@ -213,7 +216,7 @@
             pictureBox1.BackColor = Color.Navy;
             pictureBox1.Location = new Point(0, 0);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(24, 376);
+            pictureBox1.Size = new Size(24, 417);
             pictureBox1.TabIndex = 214;
             pictureBox1.TabStop = false;
             // 
@@ -222,7 +225,7 @@
             pictureBox4.BackColor = Color.Navy;
             pictureBox4.Location = new Point(527, 0);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(24, 376);
+            pictureBox4.Size = new Size(24, 404);
             pictureBox4.TabIndex = 213;
             pictureBox4.TabStop = false;
             // 
@@ -254,7 +257,7 @@
             // cmbProductos
             // 
             cmbProductos.DropDownWidth = 300;
-            cmbProductos.Location = new Point(142, 125);
+            cmbProductos.Location = new Point(142, 169);
             cmbProductos.Name = "cmbProductos";
             cmbProductos.Size = new Size(379, 38);
             cmbProductos.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
@@ -265,11 +268,56 @@
             cmbProductos.StateNormal.ComboBox.Border.Rounding = 40F;
             cmbProductos.TabIndex = 336;
             // 
+            // kryptonLabel3
+            // 
+            kryptonLabel3.Location = new Point(65, 126);
+            kryptonLabel3.Name = "kryptonLabel3";
+            kryptonLabel3.Size = new Size(86, 31);
+            kryptonLabel3.StateCommon.ShortText.Color1 = Color.Navy;
+            kryptonLabel3.TabIndex = 337;
+            kryptonLabel3.Values.Text = "Codigo:";
+            // 
+            // txtCodigo
+            // 
+            txtCodigo.Enabled = false;
+            txtCodigo.Location = new Point(142, 124);
+            txtCodigo.Name = "txtCodigo";
+            txtCodigo.Size = new Size(216, 33);
+            txtCodigo.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtCodigo.StateCommon.Border.Rounding = 10F;
+            txtCodigo.TabIndex = 338;
+            // 
+            // btnEscanear
+            // 
+            btnEscanear.Location = new Point(364, 120);
+            btnEscanear.Name = "btnEscanear";
+            btnEscanear.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnEscanear.OverrideDefault.Back.Color2 = Color.White;
+            btnEscanear.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnEscanear.OverrideFocus.Back.Color2 = Color.White;
+            btnEscanear.Size = new Size(90, 37);
+            btnEscanear.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnEscanear.StateCommon.Back.Color2 = Color.White;
+            btnEscanear.StateCommon.Border.Rounding = 20F;
+            btnEscanear.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnEscanear.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnEscanear.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnEscanear.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnEscanear.StatePressed.Back.Color1 = Color.Transparent;
+            btnEscanear.StatePressed.Back.Color2 = Color.Transparent;
+            btnEscanear.TabIndex = 339;
+            btnEscanear.Values.DropDownArrowColor = Color.Empty;
+            btnEscanear.Values.Text = "Cambiar";
+            btnEscanear.Click += btnEscanear_Click;
+            // 
             // Agregar_Producto_Mod
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(551, 373);
+            ClientSize = new Size(551, 416);
+            Controls.Add(btnEscanear);
+            Controls.Add(txtCodigo);
+            Controls.Add(kryptonLabel3);
             Controls.Add(cmbProductos);
             Controls.Add(txtPrecio);
             Controls.Add(numCantidad);
@@ -316,5 +364,8 @@
         private PictureBox pictureBox4;
         private Krypton.Toolkit.KryptonButton kryptonButton13;
         private Krypton.Toolkit.KryptonComboBox cmbProductos;
+        private Krypton.Toolkit.KryptonLabel kryptonLabel3;
+        private Krypton.Toolkit.KryptonTextBox txtCodigo;
+        private Krypton.Toolkit.KryptonButton btnEscanear;
     }
 }
