@@ -136,5 +136,87 @@ namespace SG_BAMS
         {
             ClsValidaciones.ValidarSoloNumeros(e);
         }
+
+        private DateTime ultimaTeclaEscaner = DateTime.Now;
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            Keys key = keyData & Keys.KeyCode;
+
+            if (cmbProductos.Focused || numCantidad.Focused || txtPrecio.Focused)
+            {
+                return base.ProcessCmdKey(ref msg, keyData);
+            }
+
+            if ((key >= Keys.D0 && key <= Keys.Z) || (key >= Keys.NumPad0 && key <= Keys.NumPad9))
+            {
+                TimeSpan intervalo = DateTime.Now - ultimaTeclaEscaner;
+                ultimaTeclaEscaner = DateTime.Now;
+
+                if (intervalo.TotalMilliseconds > 100)
+                {
+                    txtCodigo.Text = "";
+                }
+
+                char c = (char)key;
+                txtCodigo.AppendText(c.ToString().ToLower());
+
+                return true; 
+            }
+
+            if (key == Keys.Enter)
+            {
+                if (!cmbProductos.Focused && !numCantidad.Focused && !txtPrecio.Focused)
+                {
+                    if (!string.IsNullOrWhiteSpace(txtCodigo.Text))
+                    {
+                        BuscarProductoPorCodigo(txtCodigo.Text.Trim());
+                        return true;
+                    }
+                }
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void BuscarProductoPorCodigo(string codigo)
+        {
+            try
+            {
+                ClsCompras objCompras = new ClsCompras();
+                DataTable dt = objCompras.ObtenerProductosPorProveedor(_idProveedor);
+
+                bool encontrado = false;
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    if (row["codigo_barra"].ToString().Trim() == codigo.Trim())
+                    {
+                        cmbProductos.SelectedValue = row["id_producto"];
+                        numCantidad.Focus(); 
+                        encontrado = true;
+                        break;
+                    }
+                }
+
+                if (!encontrado)
+                {
+                    MessageBox.Show($"El código [{codigo}] no está asociado a este proveedor.", "BAMS");
+                    txtCodigo.Clear();
+                    txtCodigo.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en búsqueda: " + ex.Message);
+            }
+        }
+
+        private void btnEscanear_Click(object sender, EventArgs e)
+        {
+            txtCodigo.Clear();
+            txtCodigo.Focus();
+            txtCodigo.StateCommon.Back.Color1 = Color.SkyBlue;
+        }
     }
 }

@@ -213,5 +213,6 @@ namespace SG_BAMS
             txtCodigo.Focus();
             txtCodigo.StateCommon.Back.Color1 = Color.SkyBlue;
         }
+
     }
 }
