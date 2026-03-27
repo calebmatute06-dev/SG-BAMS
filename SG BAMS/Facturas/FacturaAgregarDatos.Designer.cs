@@ -328,6 +328,7 @@
             dgvProductos.Location = new Point(57, 161);
             dgvProductos.Name = "dgvProductos";
             dgvProductos.RowHeadersWidth = 51;
+            dgvProductos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvProductos.Size = new Size(721, 267);
             dgvProductos.TabIndex = 323;
             dgvProductos.CellValidating += dgvProductos_CellValidating;

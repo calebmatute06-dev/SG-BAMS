@@ -35,8 +35,10 @@ namespace SG_BAMS
                 cmbProductos.DisplayMember = "NombreCompleto";
                 cmbProductos.ValueMember = "ID";
                 cmbProductos.DataSource = dt;
+                cmbProductos.DropDownStyle = ComboBoxStyle.DropDown; 
                 cmbProductos.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 cmbProductos.AutoCompleteSource = AutoCompleteSource.ListItems;
+
                 lblNumero.DataBindings.Clear();
             }
             catch (Exception ex)
@@ -75,7 +77,7 @@ namespace SG_BAMS
         {
             Keys key = keyData & Keys.KeyCode;
 
-            if (txtCantidad.Focused)
+            if (cmbProductos.Focused || txtCantidad.Focused)
             {
                 return base.ProcessCmdKey(ref msg, keyData);
             }
@@ -97,7 +99,7 @@ namespace SG_BAMS
 
             if (key == Keys.Enter)
             {
-                if (!txtCantidad.Focused && !string.IsNullOrWhiteSpace(txtCodigo.Text))
+                if (!cmbProductos.Focused && !txtCantidad.Focused && !string.IsNullOrWhiteSpace(txtCodigo.Text))
                 {
                     BuscarProductoPorCodigo(txtCodigo.Text.Trim());
                     return true;
@@ -124,7 +126,7 @@ namespace SG_BAMS
 
             if (!encontrado)
             {
-                MessageBox.Show($"El producto con este código [{codigo}] no tiene stock en el inventario.", "BAMS");
+                MessageBox.Show($"El producto con este código [{codigo}] no tiene stock en el inventario. o No existe", "BAMS");
                 txtCodigo.Clear();
                 txtCodigo.Focus();
             }

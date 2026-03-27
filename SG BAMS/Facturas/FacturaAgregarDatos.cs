@@ -229,13 +229,14 @@ namespace SG_BAMS
 
         private async void BtnAgregar_Click(object sender, EventArgs e)
         {
-            using (FacturaProductoEscaner frmEscaner = new FacturaProductoEscaner())
+            using (FacturaProducto frmProducto = new FacturaProducto())
             {
-                frmEscaner.FormularioFactura = this;
+                frmProducto.FormularioFactura = this;
 
-                if (frmEscaner.ShowDialog() == DialogResult.OK)
+                if (frmProducto.ShowDialog() == DialogResult.OK)
                 {
-                    double precio = frmEscaner.PrecioSeleccionado;
+                    double precio = frmProducto.PrecioSeleccionado;
+                    int stock = frmProducto.StockSeleccionado;
 
                     dgvProductos.Rows.Add(
                         idProducto,
@@ -243,7 +244,7 @@ namespace SG_BAMS
                         cantidades,
                         precio,
                         (cantidades * precio),
-                        frmEscaner.StockSeleccionado);
+                        stock);
 
                     CalcularTotal();
                     ActualizarEstadoBotonAceptar();
