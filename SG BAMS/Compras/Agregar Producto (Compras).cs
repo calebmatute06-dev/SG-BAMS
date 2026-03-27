@@ -54,9 +54,20 @@ namespace SG_BAMS
                 ClsCompras objCompras = new ClsCompras();
                 DataTable dt = objCompras.ObtenerProductosPorProveedor(_idProveedor);
 
+                // 1. Asignación de datos
                 cmbProductos.DataSource = dt;
                 cmbProductos.DisplayMember = "DisplayFull";
                 cmbProductos.ValueMember = "id_producto";
+
+                // 2. CONFIGURACIÓN PARA BUSCADOR INTELIGENTE
+                // Cambiamos a DropDown para que el usuario pueda escribir sobre el campo
+                cmbProductos.DropDownStyle = ComboBoxStyle.DropDown;
+
+                // SuggestAppend hace que aparezca la lista y complete el texto automáticamente
+                cmbProductos.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+
+                // Indicamos que las sugerencias vengan de los elementos de la lista cargada
+                cmbProductos.AutoCompleteSource = AutoCompleteSource.ListItems;
 
                 cmbProductos.SelectedIndex = -1;
             }
