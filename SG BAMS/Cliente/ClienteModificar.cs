@@ -67,7 +67,7 @@ namespace SG_BAMS
             string rtn = txtRTN.Text.Trim();
             if (!string.IsNullOrWhiteSpace(rtn) && rtn.ToUpper() != "SIN RTN")
             {
-                if (!ClsValidaciones.EsAlfanumericoValido(txtRTN, "RTN", 14, 14))
+                if (!ClsValidaciones.EsRTNValido(txtRTN))
                 {
                     return;
                 }
