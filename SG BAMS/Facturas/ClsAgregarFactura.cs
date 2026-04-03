@@ -276,5 +276,83 @@ namespace SG_BAMS.Facturas
 
             return resultado.Trim();
         }
+
+        public void ImprimirFacturaNormal(int id, string cliente, string total, string pago, DataGridView dgv)
+        {
+            PrintDocument pd = new PrintDocument();
+            pd.PrintPage += (sender, e) =>
+            {
+                Graphics g = e.Graphics;
+                CultureInfo hn = new CultureInfo("es-HN");
+
+                Font fEncabezado = new Font("Arial", 11, FontStyle.Bold);
+                Font fDetalles = new Font("Arial", 10, FontStyle.Regular);
+                Font fTablaHead = new Font("Arial", 10, FontStyle.Bold);
+
+                int y = 40;
+                int margin = 50;
+                int width = e.PageBounds.Width - (margin * 2);
+
+                g.DrawString("VENTA DE BATERÍAS MATUTE", new Font("Arial", 13, FontStyle.Bold), Brushes.Black, margin, y); y += 30;
+
+                g.DrawString($"Factura N.{id}", fEncabezado, Brushes.Black, margin, y);
+                g.DrawString("CLIENTE", fEncabezado, Brushes.Black, margin + 300, y); y += 22;
+
+                g.DrawString($"FECHA: {DateTime.Now:dd/MM/yyyy}", fDetalles, Brushes.Black, margin, y);
+                g.DrawString(cliente.ToUpper(), fDetalles, Brushes.Black, margin + 300, y); y += 18;
+
+                g.DrawString($"Vendedor: {SG_BAMS.Login.Login.UsuarioLogueado}", fDetalles, Brushes.Black, margin, y);
+                y += 35;
+
+               
+                g.DrawLine(Pens.Black, margin, y, margin + width, y); y += 10;
+
+                g.DrawString("Descripción", fTablaHead, Brushes.Black, margin, y);
+                g.DrawString("Cantidad", fTablaHead, Brushes.Black, margin + 280, y);
+                g.DrawString("Precio unidad", fTablaHead, Brushes.Black, margin + 420, y);
+                g.DrawString("Subtotal", fTablaHead, Brushes.Black, margin + 600, y);
+                y += 20;
+                g.DrawLine(Pens.Black, margin, y, margin + width, y); y += 15;
+
+           
+                foreach (DataGridViewRow fila in dgv.Rows)
+                {
+                    if (fila.IsNewRow) continue;
+
+                    string nombre = fila.Cells["nombre_producto"].Value?.ToString() ?? "";
+                    int cant = Convert.ToInt32(fila.Cells["cantidad"].Value);
+                    double precio = Convert.ToDouble(fila.Cells["precio"].Value);
+                    double sub = Convert.ToDouble(fila.Cells["subtotal"].Value);
+
+                    g.DrawString(nombre, fDetalles, Brushes.Black, margin, y);
+                    g.DrawString(cant.ToString("N0", hn), fDetalles, Brushes.Black, margin + 280, y);
+                    g.DrawString(precio.ToString("N2", hn), fDetalles, Brushes.Black, margin + 420, y);
+                    g.DrawString(sub.ToString("N2", hn), fDetalles, Brushes.Black, margin + 600, y);
+                    y += 20;
+                }
+
+                y += 15;
+                g.DrawLine(Pens.Black, margin, y, margin + width, y); y += 15;
+
+               
+                double valTotal = Convert.ToDouble(total);
+
+                g.DrawString($"Forma de Pago: {pago}", fDetalles, Brushes.Black, margin, y);
+                g.DrawString("Total", fDetalles, Brushes.Black, margin + 520, y);
+                g.DrawString($"L. {valTotal.ToString("N2", hn)}", fDetalles, Brushes.Black, margin + 600, y);
+                y += 50;
+
+             
+                
+            };
+
+            PrintPreviewDialog ppd = new PrintPreviewDialog { Document = pd };
+            ppd.ShowDialog();
+        }
+
+
     }
+
+
+
 }

@@ -39,7 +39,7 @@ namespace SG_BAMS.Facturas
                                 nombre_producto, 
                                 precio_venta, 
                                 stock
-                         FROM Vista_Producto_CodigoBarra
+                         FROM vista_nombre_productos
                          WHERE codigo_barra = @codigo";
 
                 using (SqlCommand cmd = new SqlCommand(query, objConexion.Conectar))

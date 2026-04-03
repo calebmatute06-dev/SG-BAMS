@@ -187,20 +187,34 @@ namespace SG_BAMS
 
                     if (imprimir == DialogResult.Yes)
                     {
-                        objAF.ImprimirFactura(
-                            idFactura,
-                            txtCliente.Text,
-                            DateTFecha.SelectionStart.ToShortDateString(),
-                            txtSubtotal.Text,
-                            txtRebaja.Text,
-                            txtTotal.Text,
-                            cmbPago.Text,
-                            dgvProductos,
-                            SG_BAMS.Login.Login.UsuarioLogueado,
-                            chkGobierno.Checked,
-                            montoExento,
-                            rtnCliente
-                        );
+                        if (chkNormal.Checked)
+                        {
+                            objAF.ImprimirFacturaNormal(
+                                idFactura,
+                                txtCliente.Text,
+                                txtTotal.Text,
+                                cmbPago.Text,
+                                dgvProductos
+                            );
+                        }
+                        else
+                        {
+
+                            objAF.ImprimirFactura(
+                                idFactura,
+                                txtCliente.Text,
+                                DateTFecha.SelectionStart.ToShortDateString(),
+                                txtSubtotal.Text,
+                                txtRebaja.Text,
+                                txtTotal.Text,
+                                cmbPago.Text,
+                                dgvProductos,
+                                SG_BAMS.Login.Login.UsuarioLogueado,
+                                chkGobierno.Checked,
+                                montoExento,
+                                rtnCliente
+                            );
+                        }
                     }
 
                     string formaPagoTexto = cmbPago.Text.ToLower();
@@ -343,6 +357,24 @@ namespace SG_BAMS
         private void DateTFecha_DateChanged(object sender, DateRangeEventArgs e)
         {
 
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chkNormal_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkNormal.Checked)
+            {
+                txtExento.ReadOnly = true;
+                txtExento.Text = "0";
+            }
+            else
+            {
+                txtExento.ReadOnly = false;
+            }
         }
     }
 }
