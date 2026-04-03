@@ -49,7 +49,7 @@ namespace SG_BAMS
             if (!string.IsNullOrWhiteSpace(rtn))
             {
                 
-                if (!ClsValidaciones.EsAlfanumericoValido(txtRTN.TextBox, "RTN", 14, 14))
+                if (!ClsValidaciones.EsRTNValido(txtRTN.TextBox))
                 {
                     return;
                 }
