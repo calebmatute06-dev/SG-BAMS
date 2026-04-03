@@ -229,14 +229,6 @@ namespace SG_BAMS
                 return false;
             }
 
-          
-            if (Regex.IsMatch(tel, @"(.)\1{2,}"))
-            {
-                MessageBox.Show("El teléfono no puede tener más de 2 números repetidos seguidos.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                control.Focus();
-                return false;
-            }
-
             return true;
         }
 
@@ -273,18 +265,10 @@ namespace SG_BAMS
 
         public static bool ValidarCodigoBarra(string codigo)
         {
-            if (!Regex.IsMatch(codigo, @"^\d{6,20}$"))
-            {
-                MessageBox.Show("El código de barras debe contener entre 6 y 20 dígitos. Por favor, verifíquelo.",
+            if(!Regex.IsMatch(codigo, @"^[a-zA-Z0-9]{6,20}$"))
+    {
+                MessageBox.Show("El código de barras debe ser alfanumérico y tener entre 6 y 20 caracteres.",
                                 "Error de Código de Barras", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-           
-            if (Regex.IsMatch(codigo, @"(.)\1{2,}"))
-            {
-                MessageBox.Show("El código de barras tiene un patrón de repetición inválido.",
-                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -297,23 +281,6 @@ namespace SG_BAMS
             {
                 e.Handled = true;
                 return;
-            }
-
-            if (!char.IsControl(e.KeyChar))
-            {
-                int pos = txt.SelectionStart;
-                
-                if (pos >= 4)
-                {
-                    if (txt.Text[pos - 1] == e.KeyChar &&
-                        txt.Text[pos - 2] == e.KeyChar &&
-                        txt.Text[pos - 3] == e.KeyChar &&
-                        txt.Text[pos - 4] == e.KeyChar)
-                    {
-                        e.Handled = true;
-                        return;
-                    }
-                }
             }
 
             if (!e.Handled && txt.SelectionStart == 0 && !char.IsControl(e.KeyChar))

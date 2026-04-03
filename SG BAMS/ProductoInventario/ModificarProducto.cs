@@ -126,12 +126,11 @@ namespace SG_BAMS
 
         private void txtCodigoBarra_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
                 return;
             }
-
 
             if (txtCodigoBarra.Text.Length >= 20 && !char.IsControl(e.KeyChar))
             {
@@ -139,23 +138,20 @@ namespace SG_BAMS
                 return;
             }
 
-
             if (e.KeyChar == (char)Keys.Return)
             {
                 e.Handled = true;
 
                 int longitud = txtCodigoBarra.Text.Length;
 
-
                 if (longitud >= 6 && longitud <= 20)
                 {
-
                     cmbProveedor.Focus();
                 }
                 else
                 {
-                    MessageBox.Show("Código inválido. Debe tener entre 6 y 20 dígitos.\n" +
-                                    "Intenta escanear de nuevo.",
+                    MessageBox.Show("Código inválido. Debe tener entre 6 y 20 caracteres (letras o números).\n" +
+                                    "Intenta escanear o escribir de nuevo.",
                                     "Código Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtCodigoBarra.Clear();
                     txtCodigoBarra.Focus();
