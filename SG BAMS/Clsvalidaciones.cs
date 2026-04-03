@@ -377,6 +377,7 @@ namespace SG_BAMS
         {
             string rtn = control.Text.Trim();
 
+            
             if (!Regex.IsMatch(rtn, @"^\d{14}$"))
             {
                 MessageBox.Show("El RTN debe tener exactamente 14 dígitos numéricos.",
@@ -385,10 +386,33 @@ namespace SG_BAMS
                 return false;
             }
 
+            
             if (Regex.IsMatch(rtn, @"^(.)\1{13}$"))
             {
                 MessageBox.Show("El RTN contiene un patrón de repetición inválido.",
                                 "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                control.Focus();
+                return false;
+            }
+
+            
+            int depto = int.Parse(rtn.Substring(0, 2));
+            if (depto < 1 || depto > 19)
+            {
+                MessageBox.Show("Los primeros dígitos del RTN no corresponden a un departamento válido de Honduras.",
+                                "Ubicación Inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                control.Focus();
+                return false;
+            }
+
+           
+            int anio = int.Parse(rtn.Substring(4, 4));
+            int anioActual = DateTime.Now.Year;
+
+            if (anio < 1850 || anio > anioActual)
+            {
+                MessageBox.Show($"El año ({anio}) registrado en el RTN no es válido.",
+                                "Fecha Inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
             }
