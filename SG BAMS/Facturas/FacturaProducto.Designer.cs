@@ -228,7 +228,7 @@
             lblStock.BackColor = Color.Transparent;
             lblStock.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             lblStock.ForeColor = Color.Navy;
-            lblStock.Location = new Point(439, 70);
+            lblStock.Location = new Point(433, 70);
             lblStock.Name = "lblStock";
             lblStock.Size = new Size(70, 22);
             lblStock.TabIndex = 338;
@@ -236,9 +236,9 @@
             // 
             // kryptonGroup1
             // 
-            kryptonGroup1.Location = new Point(509, 63);
+            kryptonGroup1.Location = new Point(499, 63);
             kryptonGroup1.Margin = new Padding(3, 2, 3, 2);
-            kryptonGroup1.Size = new Size(62, 33);
+            kryptonGroup1.Size = new Size(77, 33);
             kryptonGroup1.StateCommon.Border.Rounding = 40F;
             kryptonGroup1.StateNormal.Back.Color1 = Color.SkyBlue;
             kryptonGroup1.TabIndex = 339;
@@ -249,7 +249,7 @@
             lblNumero.BackColor = Color.SkyBlue;
             lblNumero.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblNumero.ForeColor = Color.Navy;
-            lblNumero.Location = new Point(529, 70);
+            lblNumero.Location = new Point(527, 69);
             lblNumero.Name = "lblNumero";
             lblNumero.Size = new Size(21, 22);
             lblNumero.TabIndex = 340;

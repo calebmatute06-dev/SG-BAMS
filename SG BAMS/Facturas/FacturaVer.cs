@@ -31,11 +31,13 @@ namespace SG_BAMS
             fechaDT.SelectionStart = fec;
             lblFactura.Text = "No." + idF.ToString();
             monto_rebaja = reb;
+            
 
         }
         public FacturaVer()
         {
             InitializeComponent();
+
         }
 
         private async Task VerFacturasProductos()
@@ -51,7 +53,7 @@ namespace SG_BAMS
 
                 dgvFacturas.Columns["ID_Factura"].Visible = false;
                 dgvFacturas.Columns["ID"].HeaderText = "ID Producto";
-                dgvFacturas.Columns["Nombre"].HeaderText = "Nombre";
+                dgvFacturas.Columns["Nombre Completo"].Width = 200;
                 dgvFacturas.Columns["Cantidad"].HeaderText = "Cantidad";
                 dgvFacturas.Columns["Precio"].HeaderText = "Precio";
                 dgvFacturas.Columns["Subtotal"].HeaderText = "Subtotal";
@@ -77,9 +79,9 @@ namespace SG_BAMS
 
             double total = acumulador - rebaja;
 
-            txtSubtotal.Text = acumulador.ToString();
-            txtRebaja.Text = rebaja.ToString(); 
-            txtTotal.Text = total.ToString();
+            txtSubtotal.Text = acumulador.ToString("F2");
+            txtRebaja.Text = rebaja.ToString("F2"); 
+            txtTotal.Text = total.ToString("F2");
         }
 
         private async void FacturaVer_Load(object sender, EventArgs e)

@@ -337,8 +337,10 @@
             dgvProductos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvProductos.Size = new Size(631, 200);
             dgvProductos.TabIndex = 323;
+            dgvProductos.CellClick += dgvProductos_CellClick;
             dgvProductos.CellValidating += dgvProductos_CellValidating;
             dgvProductos.CellValueChanged += dgvProductos_CellValueChanged;
+            dgvProductos.SelectionChanged += dgvProductos_SelectionChanged;
             // 
             // panel5
             // 

@@ -22,9 +22,9 @@ namespace SG_BAMS
         public int idProducto;
         string nombresProductos, cantidadBateria;
         double precioBateria;
-        string rtnCliente;   // <-- nuevo campo RTN
+        string rtnCliente;
 
-        // Constructor principal: ahora recibe el RTN
+
         public FacturaAgregarDatos(string cliente, int idCli, string rtn = "Sin RTN")
         {
             InitializeComponent();
@@ -78,6 +78,7 @@ namespace SG_BAMS
             dgvProductos.Columns.Add("stock_max", "StockMax");
             dgvProductos.Columns["stock_max"].Visible = false;
 
+
             txtCliente.ReadOnly = true;
             txtTotal.ReadOnly = true;
             txtBateria.ReadOnly = true;
@@ -90,6 +91,14 @@ namespace SG_BAMS
             dgvProductos.Columns["nombre_producto"].Width = 200;
             dgvProductos.Columns["precio"].ReadOnly = true;
             dgvProductos.Columns["subtotal"].ReadOnly = true;
+            dgvProductos.Columns["Cantidad"].DefaultCellStyle.BackColor = Color.LightBlue;
+            dgvProductos.CellClick += dgvProductos_CellClick;
+            dgvProductos.SelectionChanged += dgvProductos_SelectionChanged;
+
+
+            dgvProductos.SelectionMode = DataGridViewSelectionMode.CellSelect;
+            dgvProductos.EditMode = DataGridViewEditMode.EditOnKeystrokeOrF2;
+
 
             btnBateria.Enabled = false;
             ActualizarEstadoBotonAceptar();
@@ -374,6 +383,23 @@ namespace SG_BAMS
             else
             {
                 txtExento.ReadOnly = false;
+            }
+        }
+
+        private void dgvProductos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && dgvProductos.Columns[e.ColumnIndex].Name == "cantidad")
+            {
+                dgvProductos.BeginEdit(true);
+            }
+        }
+
+        private void dgvProductos_SelectionChanged(object sender, EventArgs e)
+        {
+            foreach (DataGridViewCell cell in dgvProductos.SelectedCells)
+            {
+                if (dgvProductos.Columns[cell.ColumnIndex].Name != "cantidad")
+                    cell.Selected = false;
             }
         }
     }
