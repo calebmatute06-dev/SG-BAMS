@@ -380,45 +380,61 @@ namespace SG_BAMS
             
             if (!Regex.IsMatch(rtn, @"^\d{14}$"))
             {
-                MessageBox.Show("El RTN debe tener exactamente 14 dígitos numéricos.",
-                                "RTN Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                control.Focus();
-                return false;
-            }
-
-            
-            if (Regex.IsMatch(rtn, @"^(.)\1{13}$"))
-            {
-                MessageBox.Show("El RTN contiene un patrón de repetición inválido.",
-                                "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("El RTN debe tener 14 dígitos numéricos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
             }
 
             
             int depto = int.Parse(rtn.Substring(0, 2));
-            if (depto < 1 || depto > 19)
+            int municipio = int.Parse(rtn.Substring(2, 2));
+            if (depto < 1 || depto > 18 || municipio < 1 || municipio > 28) 
             {
-                MessageBox.Show("Los primeros dígitos del RTN no corresponden a un departamento válido de Honduras.",
-                                "Ubicación Inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("El código de ubicación (Departamento/Municipio) es inválido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
             }
 
-           
+            
             int anio = int.Parse(rtn.Substring(4, 4));
             int anioActual = DateTime.Now.Year;
-
             if (anio < 1850 || anio > anioActual)
             {
-                MessageBox.Show($"El año ({anio}) registrado en el RTN no es válido.",
-                                "Fecha Inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("El año registrado en el RTN no es coherente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                control.Focus();
+                return false;
+            }
+
+            
+            if (!ValidarDigitoVerificadorRTN(rtn))
+            {
+                MessageBox.Show("El RTN ingresado no es auténtico (Falló el dígito verificador).", "RTN Falso", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 control.Focus();
                 return false;
             }
 
             return true;
         }
+
+       
+        private static bool ValidarDigitoVerificadorRTN(string rtn)
+        {
+            int[] factores = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
+            int suma = 0;
+
+            for (int i = 0; i < 13; i++)
+            {
+                suma += (rtn[i] - '0') * factores[i];
+            }
+
+            int residuo = suma % 11;
+            int verificadorCalculado = (residuo == 10) ? 0 : residuo;
+            int verificadorReal = rtn[13] - '0';
+
+            return verificadorCalculado == verificadorReal;
+        }
+
+
         public static void PermitirSoloLetrasYNumeros(KeyPressEventArgs e)
         {
             if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
