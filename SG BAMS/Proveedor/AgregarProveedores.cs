@@ -32,8 +32,14 @@ namespace SG_BAMS.Proveedor
             proveedor.CargarComboClasificacion(cmbClasificacion);
             cmbClasificacion.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            
-            txtNombre.KeyPress += (s, ev) => ClsValidaciones.PermitirAlfanumerico(ev);
+
+            txtNombre.KeyPress += (s, ev) =>
+            {
+                if (!char.IsLetter(ev.KeyChar) && !char.IsWhiteSpace(ev.KeyChar) && !char.IsControl(ev.KeyChar) && ev.KeyChar != '&')
+                {
+                    ev.Handled = true;
+                }
+            };
             txtDireccion.KeyPress += (s, ev) => ClsValidaciones.ValidarBusquedaAlfanumerica(ev);
             txtTelefono.KeyPress += (s, ev) => ClsValidaciones.ValidarSoloNumeros(ev);
             txtRTN.KeyPress += (s, ev) => ClsValidaciones.ValidarSoloNumeros(ev);
@@ -41,6 +47,7 @@ namespace SG_BAMS.Proveedor
 
         private void btnsalir_Click(object sender, EventArgs e)
         {
+
             this.Close();
         }
 
@@ -56,10 +63,57 @@ namespace SG_BAMS.Proveedor
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+
             string nombre = txtNombre.Text.Trim();
 
-            
-            if (!ClsValidaciones.EsAlfanumericoValido(txtNombre, "Nombre del Proveedor")) return;
+
+            if (string.IsNullOrWhiteSpace(nombre))
+            {
+                MessageBox.Show("El nombre del proveedor no puede estar vacío.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNombre.Focus();
+                return;
+            }
+
+
+            if (!Regex.IsMatch(nombre, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s&]+$"))
+            {
+                MessageBox.Show("El nombre solo puede contener letras y el carácter '&'.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNombre.Focus();
+                return;
+            }
+
+
+            if (nombre.Contains("  "))
+            {
+                MessageBox.Show("El nombre no puede contener espacios dobles.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNombre.Focus();
+                return;
+            }
+
+
+            if (Regex.IsMatch(nombre, @"(.)\1{2,}", RegexOptions.IgnoreCase))
+            {
+                MessageBox.Show("El nombre no puede tener más de dos letras repetidas consecutivamente.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNombre.Focus();
+                return;
+            }
+
+
+            if (Regex.IsMatch(nombre, @"([a-zA-ZñÑáéíóúÁÉÍÓÚ])\s\1", RegexOptions.IgnoreCase))
+            {
+                MessageBox.Show("El nombre contiene una secuencia de letras repetidas no válida (ejemplo: 'a a').", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNombre.Focus();
+                return;
+            }
+
+
+            if (nombre.Length >= 2 && nombre[0] == nombre[1])
+            {
+                MessageBox.Show("El nombre no puede iniciar con dos letras iguales.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNombre.Focus();
+                return;
+            }
+
 
             if (ClsValidaciones.CampoVacio(txtDireccion, "Dirección")) return;
             if (!ClsValidaciones.EsTelefonoHondurasValido(txtTelefono)) return;
@@ -104,30 +158,56 @@ namespace SG_BAMS.Proveedor
             }
         }
 
-       
         private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
         {
-            ClsValidaciones.ValidarSoloNumeros(e);
+            if (char.IsControl(e.KeyChar)) return;
+            if (!char.IsDigit(e.KeyChar)) { e.Handled = true; return; }
+
+            if (txtTelefono.SelectionStart == 0)
+            {
+                char[] validos = { '2', '3', '8', '9' };
+                if (!validos.Contains(e.KeyChar)) { e.Handled = true; return; }
+            }
+
+            if (txtTelefono.Text.Length >= 3)
+            {
+                int pos = txtTelefono.SelectionStart;
+                string t = txtTelefono.Text;
+                if (pos >= 3 && t[pos - 1] == e.KeyChar && t[pos - 2] == e.KeyChar && t[pos - 3] == e.KeyChar)
+                {
+                    e.Handled = true;
+                }
+            }
         }
 
         private void txtRTN_KeyPress(object sender, KeyPressEventArgs e)
         {
-            ClsValidaciones.ValidarSoloNumeros(e);
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
 
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            ClsValidaciones.PermitirAlfanumerico(e);
+
+            if (!char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != '&')
+            {
+                e.Handled = true;
+            }
         }
 
         private void txtDireccion_KeyPress(object sender, KeyPressEventArgs e)
         {
-            ClsValidaciones.ValidarBusquedaAlfanumerica(e);
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
 
         private void label7_Click(object sender, EventArgs e)
         {
-           
+
         }
     }
 }
