@@ -56,7 +56,7 @@
             // 
             // txtPrecio
             // 
-            txtPrecio.Location = new Point(184, 277);
+            txtPrecio.Location = new Point(192, 277);
             txtPrecio.Name = "txtPrecio";
             txtPrecio.Size = new Size(166, 33);
             txtPrecio.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -68,7 +68,7 @@
             // numCantidad
             // 
             numCantidad.Increment = new decimal(new int[] { 1, 0, 0, 0 });
-            numCantidad.Location = new Point(184, 227);
+            numCantidad.Location = new Point(175, 227);
             numCantidad.Maximum = new decimal(new int[] { 100, 0, 0, 0 });
             numCantidad.Minimum = new decimal(new int[] { 0, 0, 0, 0 });
             numCantidad.Name = "numCantidad";
@@ -93,7 +93,7 @@
             kryptonButton3.StateCommon.Back.Color2 = Color.White;
             kryptonButton3.StateCommon.Border.Rounding = 20F;
             kryptonButton3.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton3.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            kryptonButton3.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
             kryptonButton3.StateNormal.Back.Color1 = Color.SkyBlue;
             kryptonButton3.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
             kryptonButton3.StatePressed.Back.Color1 = Color.Transparent;
@@ -116,7 +116,7 @@
             btnCancelar.StateCommon.Back.Color2 = Color.White;
             btnCancelar.StateCommon.Border.Rounding = 20F;
             btnCancelar.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnCancelar.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnCancelar.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnCancelar.StateNormal.Back.Color1 = Color.SkyBlue;
             btnCancelar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
             btnCancelar.StatePressed.Back.Color1 = Color.Transparent;
@@ -128,18 +128,18 @@
             // 
             // btnProductoNuevo
             // 
-            btnProductoNuevo.Location = new Point(362, 348);
+            btnProductoNuevo.Location = new Point(337, 348);
             btnProductoNuevo.Name = "btnProductoNuevo";
             btnProductoNuevo.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnProductoNuevo.OverrideDefault.Back.Color2 = Color.White;
             btnProductoNuevo.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnProductoNuevo.OverrideFocus.Back.Color2 = Color.White;
-            btnProductoNuevo.Size = new Size(159, 39);
+            btnProductoNuevo.Size = new Size(184, 39);
             btnProductoNuevo.StateCommon.Back.Color1 = Color.SkyBlue;
             btnProductoNuevo.StateCommon.Back.Color2 = Color.White;
             btnProductoNuevo.StateCommon.Border.Rounding = 20F;
             btnProductoNuevo.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnProductoNuevo.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnProductoNuevo.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnProductoNuevo.StateNormal.Back.Color1 = Color.SkyBlue;
             btnProductoNuevo.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
             btnProductoNuevo.StatePressed.Back.Color1 = Color.Transparent;
@@ -151,19 +151,21 @@
             // 
             // kryptonLabel2
             // 
-            kryptonLabel2.Location = new Point(67, 279);
+            kryptonLabel2.Location = new Point(53, 279);
             kryptonLabel2.Name = "kryptonLabel2";
-            kryptonLabel2.Size = new Size(101, 31);
+            kryptonLabel2.Size = new Size(147, 31);
             kryptonLabel2.StateCommon.ShortText.Color1 = Color.Navy;
+            kryptonLabel2.StateCommon.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
             kryptonLabel2.TabIndex = 221;
             kryptonLabel2.Values.Text = "Precio Costo:";
             // 
             // kryptonLabel1
             // 
-            kryptonLabel1.Location = new Point(65, 228);
+            kryptonLabel1.Location = new Point(53, 227);
             kryptonLabel1.Name = "kryptonLabel1";
-            kryptonLabel1.Size = new Size(86, 31);
+            kryptonLabel1.Size = new Size(108, 31);
             kryptonLabel1.StateCommon.ShortText.Color1 = Color.Navy;
+            kryptonLabel1.StateCommon.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
             kryptonLabel1.TabIndex = 220;
             kryptonLabel1.Values.Text = "Cantidad:";
             // 
@@ -171,26 +173,28 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.SkyBlue;
-            label1.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(79, 67);
+            label1.Font = new Font("Arial", 12F, FontStyle.Bold);
+            label1.ForeColor = Color.Navy;
+            label1.Location = new Point(41, 42);
             label1.Name = "label1";
-            label1.Size = new Size(137, 24);
+            label1.Size = new Size(178, 24);
             label1.TabIndex = 219;
             label1.Text = "Agregar Producto";
             // 
             // kryptonLabel6
             // 
-            kryptonLabel6.Location = new Point(65, 176);
+            kryptonLabel6.Location = new Point(53, 174);
             kryptonLabel6.Name = "kryptonLabel6";
-            kryptonLabel6.Size = new Size(86, 31);
+            kryptonLabel6.Size = new Size(98, 31);
             kryptonLabel6.StateCommon.ShortText.Color1 = Color.Navy;
+            kryptonLabel6.StateCommon.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
             kryptonLabel6.TabIndex = 218;
             kryptonLabel6.Values.Text = "Nombre:";
             // 
             // kryptonGroup1
             // 
-            kryptonGroup1.Location = new Point(65, 51);
-            kryptonGroup1.Size = new Size(165, 59);
+            kryptonGroup1.Location = new Point(27, 26);
+            kryptonGroup1.Size = new Size(199, 59);
             kryptonGroup1.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroup1.StateCommon.Border.Rounding = 70F;
             kryptonGroup1.TabIndex = 217;
@@ -231,7 +235,7 @@
             // 
             // kryptonButton13
             // 
-            kryptonButton13.Location = new Point(414, 29);
+            kryptonButton13.Location = new Point(418, 26);
             kryptonButton13.Name = "kryptonButton13";
             kryptonButton13.OverrideDefault.Back.Color1 = Color.Transparent;
             kryptonButton13.OverrideDefault.Back.Color2 = Color.Transparent;
@@ -257,9 +261,9 @@
             // cmbProductos
             // 
             cmbProductos.DropDownWidth = 300;
-            cmbProductos.Location = new Point(142, 169);
+            cmbProductos.Location = new Point(157, 169);
             cmbProductos.Name = "cmbProductos";
-            cmbProductos.Size = new Size(379, 38);
+            cmbProductos.Size = new Size(364, 38);
             cmbProductos.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
             cmbProductos.StateCommon.ComboBox.Border.Rounding = 20F;
             cmbProductos.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
@@ -270,10 +274,11 @@
             // 
             // kryptonLabel3
             // 
-            kryptonLabel3.Location = new Point(65, 126);
+            kryptonLabel3.Location = new Point(39, 126);
             kryptonLabel3.Name = "kryptonLabel3";
-            kryptonLabel3.Size = new Size(86, 31);
+            kryptonLabel3.Size = new Size(91, 31);
             kryptonLabel3.StateCommon.ShortText.Color1 = Color.Navy;
+            kryptonLabel3.StateCommon.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
             kryptonLabel3.TabIndex = 337;
             kryptonLabel3.Values.Text = "Codigo:";
             // 
