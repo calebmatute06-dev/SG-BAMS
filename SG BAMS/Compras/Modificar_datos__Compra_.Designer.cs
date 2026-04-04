@@ -225,6 +225,7 @@
             dgvProductosCompraMod.BorderStyle = BorderStyle.None;
             dgvProductosCompraMod.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvProductosCompraMod.Location = new Point(48, 278);
+            dgvProductosCompraMod.MultiSelect = false;
             dgvProductosCompraMod.Name = "dgvProductosCompraMod";
             dgvProductosCompraMod.RowHeadersWidth = 51;
             dgvProductosCompraMod.SelectionMode = DataGridViewSelectionMode.FullRowSelect;

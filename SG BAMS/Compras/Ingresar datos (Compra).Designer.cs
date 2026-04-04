@@ -130,6 +130,7 @@
             dgvProductosCompra.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvProductosCompra.Columns.AddRange(new DataGridViewColumn[] { ID, Producto, Cantidad, Precio, Subtotal });
             dgvProductosCompra.Location = new Point(62, 274);
+            dgvProductosCompra.MultiSelect = false;
             dgvProductosCompra.Name = "dgvProductosCompra";
             dgvProductosCompra.RowHeadersWidth = 51;
             dgvProductosCompra.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
