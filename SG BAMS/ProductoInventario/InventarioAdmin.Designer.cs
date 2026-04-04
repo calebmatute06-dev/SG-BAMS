@@ -57,6 +57,7 @@
             pictureBox8 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel8 = new Panel();
+            pictureBox5 = new PictureBox();
             label7 = new Label();
             txtBuscar = new Krypton.Toolkit.KryptonTextBox();
             btnAgregar = new Krypton.Toolkit.KryptonButton();
@@ -84,6 +85,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvProductosAdmin).BeginInit();
@@ -557,12 +559,24 @@
             // 
             // panel8
             // 
-            panel8.BackColor = Color.White;
+            panel8.BackColor = Color.SteelBlue;
+            panel8.Controls.Add(pictureBox5);
             panel8.Controls.Add(label7);
             panel8.Location = new Point(7, 450);
             panel8.Name = "panel8";
             panel8.Size = new Size(261, 40);
             panel8.TabIndex = 355;
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.BackColor = Color.SteelBlue;
+            pictureBox5.BackgroundImage = Properties.Resources.Inventario;
+            pictureBox5.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox5.Location = new Point(48, -5);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(57, 49);
+            pictureBox5.TabIndex = 334;
+            pictureBox5.TabStop = false;
             // 
             // label7
             // 
@@ -766,6 +780,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel8.ResumeLayout(false);
             panel8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             panel7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvProductosAdmin).EndInit();
@@ -818,5 +833,6 @@
         private Panel panel8;
         private Label label7;
         private Label label3;
+        private PictureBox pictureBox5;
     }
 }
