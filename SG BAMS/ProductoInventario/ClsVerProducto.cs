@@ -11,7 +11,11 @@ namespace SG_BAMS.ProductoInventario
         public DataTable MostrarProductosCompleto()
         {
             DataTable tabla = new DataTable();
-            string query = "SELECT * FROM Vista_Productos_Detallada";
+            string query = @"SELECT * FROM Vista_Productos_Detallada 
+                             ORDER BY 
+                                CASE WHEN [Estado] = 'Activo' THEN 1 ELSE 2 END ASC, 
+                                [Stock Actual] DESC;";
+
             try
             {
                 conexion.AbrirConexion();

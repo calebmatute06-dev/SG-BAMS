@@ -236,7 +236,7 @@
             // 
             numCantidad.Increment = new decimal(new int[] { 1, 0, 0, 0 });
             numCantidad.Location = new Point(175, 245);
-            numCantidad.Maximum = new decimal(new int[] { 100, 0, 0, 0 });
+            numCantidad.Maximum = new decimal(new int[] { 99999, 0, 0, 0 });
             numCantidad.Minimum = new decimal(new int[] { 0, 0, 0, 0 });
             numCantidad.Name = "numCantidad";
             numCantidad.Size = new Size(150, 32);

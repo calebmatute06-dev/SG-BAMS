@@ -8,7 +8,7 @@ namespace SG_BAMS.ProductoInventario
     {
         private ClsConexion conexion = new ClsConexion();
 
-        public void EjecutarInsercion(string nombre, int idMarca, int idTipo, int idModelo, decimal precio, string codBarra, int idProveedor)
+        public void EjecutarInsercion(string nombre, int idMarca, int idTipo, int idModelo, decimal precio, string codBarra, int idProveedor, int stock)
         {
             try
             {
@@ -24,6 +24,7 @@ namespace SG_BAMS.ProductoInventario
                     cmd.Parameters.Add("@precio_venta", SqlDbType.Money).Value = precio;
                     cmd.Parameters.AddWithValue("@codigo_barra", codBarra);
                     cmd.Parameters.AddWithValue("@id_proveedor", idProveedor);
+                    cmd.Parameters.AddWithValue("@stock", stock);
 
                     cmd.ExecuteNonQuery();
                 }

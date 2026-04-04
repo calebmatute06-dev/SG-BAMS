@@ -104,7 +104,7 @@
             panel4.BackColor = Color.Navy;
             panel4.Location = new Point(1, 881);
             panel4.Name = "panel4";
-            panel4.Size = new Size(1487, 21);
+            panel4.Size = new Size(1629, 21);
             panel4.TabIndex = 180;
             // 
             // panel3
@@ -576,7 +576,7 @@
             // 
             // txtBuscar
             // 
-            txtBuscar.Location = new Point(438, 145);
+            txtBuscar.Location = new Point(685, 153);
             txtBuscar.Name = "txtBuscar";
             txtBuscar.Size = new Size(656, 39);
             txtBuscar.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -589,7 +589,7 @@
             // 
             btnAgregar.AutoSize = true;
             btnAgregar.DropDownPosition = Krypton.Toolkit.VisualOrientation.Bottom;
-            btnAgregar.Location = new Point(738, 796);
+            btnAgregar.Location = new Point(832, 796);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnAgregar.OverrideDefault.Back.Color2 = Color.White;
@@ -620,7 +620,7 @@
             btnNoti.FlatAppearance.BorderSize = 0;
             btnNoti.FlatStyle = FlatStyle.Flat;
             btnNoti.ForeColor = Color.Navy;
-            btnNoti.Location = new Point(1399, 29);
+            btnNoti.Location = new Point(1541, 30);
             btnNoti.Name = "btnNoti";
             btnNoti.Size = new Size(59, 44);
             btnNoti.TabIndex = 184;
@@ -631,7 +631,7 @@
             // 
             panel7.BackColor = Color.Navy;
             panel7.Controls.Add(pictureBox2);
-            panel7.Location = new Point(1464, 24);
+            panel7.Location = new Point(1606, 24);
             panel7.Name = "panel7";
             panel7.Size = new Size(24, 869);
             panel7.TabIndex = 182;
@@ -650,14 +650,14 @@
             panel2.BackColor = Color.Navy;
             panel2.Location = new Point(1, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1487, 24);
+            panel2.Size = new Size(1629, 24);
             panel2.TabIndex = 192;
             // 
             // kryptonButton10
             // 
             kryptonButton10.AutoSize = true;
             kryptonButton10.DropDownPosition = Krypton.Toolkit.VisualOrientation.Bottom;
-            kryptonButton10.Location = new Point(921, 796);
+            kryptonButton10.Location = new Point(1015, 796);
             kryptonButton10.Name = "kryptonButton10";
             kryptonButton10.OverrideDefault.Back.Color1 = Color.SkyBlue;
             kryptonButton10.OverrideDefault.Back.Color2 = Color.White;
@@ -688,7 +688,7 @@
             dgvProductosAdmin.Location = new Point(305, 200);
             dgvProductosAdmin.Name = "dgvProductosAdmin";
             dgvProductosAdmin.RowHeadersWidth = 51;
-            dgvProductosAdmin.Size = new Size(1139, 581);
+            dgvProductosAdmin.Size = new Size(1279, 581);
             dgvProductosAdmin.TabIndex = 197;
             dgvProductosAdmin.CellDoubleClick += dgvProductosAdmin_CellDoubleClick_1;
             // 
@@ -698,7 +698,7 @@
             label10.BackColor = Color.SkyBlue;
             label10.Font = new Font("Arial Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Navy;
-            label10.Location = new Point(798, 61);
+            label10.Location = new Point(928, 68);
             label10.Name = "label10";
             label10.Size = new Size(182, 42);
             label10.TabIndex = 198;
@@ -707,7 +707,7 @@
             // kryptonGroupBox2
             // 
             kryptonGroupBox2.CaptionVisible = false;
-            kryptonGroupBox2.Location = new Point(701, 50);
+            kryptonGroupBox2.Location = new Point(831, 57);
             kryptonGroupBox2.Margin = new Padding(3, 4, 3, 4);
             kryptonGroupBox2.Size = new Size(344, 65);
             kryptonGroupBox2.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -720,7 +720,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(333, 153);
+            label3.Location = new Point(580, 161);
             label3.Name = "label3";
             label3.Size = new Size(99, 27);
             label3.TabIndex = 355;
@@ -731,7 +731,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1487, 898);
+            ClientSize = new Size(1629, 898);
             Controls.Add(label3);
             Controls.Add(label10);
             Controls.Add(kryptonGroupBox2);
