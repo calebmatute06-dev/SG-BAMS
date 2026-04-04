@@ -107,73 +107,6 @@ namespace SG_BAMS
             }
         }
 
-        private void btnComprar_Click(object sender, EventArgs e)
-        {
-            Ingresar_datos__Compra_ frmNuevaCompra = new Ingresar_datos__Compra_();
-            frmNuevaCompra.ShowDialog();
-            CargarCompras();
-        }
-
-        private void txtBuscar_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void btnVer_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void btnModificar_Click(object sender, EventArgs e)
-        {
-            if (dgvComprasAdmin.SelectedRows.Count > 0)
-            {
-                int idSeleccionado = Convert.ToInt32(dgvComprasAdmin.CurrentRow.Cells["ID"].Value);
-                Modificar_datos__Compra_ frmModificar = new Modificar_datos__Compra_(idSeleccionado);
-                frmModificar.ShowDialog();
-                CargarCompras();
-            }
-            else
-            {
-                MessageBox.Show("Por favor, seleccione una compra de la lista.");
-            }
-        }
-
-        private void dgvComprasAdmin_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-        }
-
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-            if (dgvComprasAdmin.CurrentRow != null)
-            {
-                int idCompra = Convert.ToInt32(dgvComprasAdmin.CurrentRow.Cells["ID"].Value);
-
-                DialogResult resultado = MessageBox.Show("¿Está seguro de que desea eliminar permanentemente esta compra?",
-                                                        "Confirmar Eliminación - BAMS",
-                                                        MessageBoxButtons.YesNo,
-                                                        MessageBoxIcon.Warning);
-
-                if (resultado == DialogResult.Yes)
-                {
-                    try
-                    {
-                        if (logic.EliminarCompraCompleta(idCompra))
-                        {
-                            MessageBox.Show("Compra eliminada correctamente.", "BAMS", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            CargarCompras();
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("No se pudo eliminar la compra: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Por favor, seleccione una compra de la lista para eliminar.", "BAMS", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-        }
-
         private void btnNoti_Click(object sender, EventArgs e)
         {
             NotificacionesAdmin notificacionesAdmin = new NotificacionesAdmin();
@@ -214,33 +147,62 @@ namespace SG_BAMS
             }
         }
 
-        private void kryptonGroup3_Paint(object sender, PaintEventArgs e)
+        private void btnCompra_Click_1(object sender, EventArgs e)
         {
+            Ingresar_datos__Compra_ frmNuevaCompra = new Ingresar_datos__Compra_();
+            frmNuevaCompra.ShowDialog();
+            CargarCompras();
         }
 
-        private void kryptonButton10_Click(object sender, EventArgs e)
+        private void btnModificarC_Click(object sender, EventArgs e)
         {
+            if (dgvComprasAdmin.SelectedRows.Count > 0)
+            {
+                int idSeleccionado = Convert.ToInt32(dgvComprasAdmin.CurrentRow.Cells["ID"].Value);
+                Modificar_datos__Compra_ frmModificar = new Modificar_datos__Compra_(idSeleccionado);
+                frmModificar.ShowDialog();
+                CargarCompras();
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione una compra de la lista.",
+                                "BAMS", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
-        private void pictureBox19_Click(object sender, EventArgs e)
+        private void btnEliminarC_Click(object sender, EventArgs e)
         {
-        }
+            if (dgvComprasAdmin.SelectedRows.Count > 0)
+            {
+                int idCompra = Convert.ToInt32(dgvComprasAdmin.SelectedRows[0].Cells["ID"].Value);
 
-        private void kryptonButton13_Click(object sender, EventArgs e)
-        {
-        }
+                DialogResult resultado = MessageBox.Show("¿Está seguro de que desea eliminar permanentemente esta compra?",
+                                                        "Confirmar Eliminación - BAMS",
+                                                        MessageBoxButtons.YesNo,
+                                                        MessageBoxIcon.Warning);
 
-        private void kryptonGroup4_Paint(object sender, PaintEventArgs e)
-        {
+                if (resultado == DialogResult.Yes)
+                {
+                    try
+                    {
+                        if (logic.EliminarCompraCompleta(idCompra))
+                        {
+                            MessageBox.Show("Compra eliminada correctamente.", "BAMS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            CargarCompras();
+                            dgvComprasAdmin.ClearSelection();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("No se pudo eliminar la compra: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione una compra de la lista.",
+                                "BAMS", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
-
-        private void kryptonButton15_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void kryptonButton13_Click_1(object sender, EventArgs e)
-        {
-        }
-
     }
 }

@@ -41,6 +41,9 @@
             panel2 = new Panel();
             pictureBox4 = new PictureBox();
             panel1 = new Panel();
+            panel7 = new Panel();
+            pictureBox13 = new PictureBox();
+            label6 = new Label();
             btnBitacora = new Krypton.Toolkit.KryptonButton();
             btnPerfil = new Krypton.Toolkit.KryptonButton();
             btnCerrarSesion = new Krypton.Toolkit.KryptonButton();
@@ -64,14 +67,12 @@
             pictureBox8 = new PictureBox();
             pictureBox1 = new PictureBox();
             pictureBox21 = new PictureBox();
-            btnComprar = new Krypton.Toolkit.KryptonButton();
-            btnModificar = new Krypton.Toolkit.KryptonButton();
-            btnEliminar = new Krypton.Toolkit.KryptonButton();
             dgvComprasAdmin = new DataGridView();
             label10 = new Label();
             kryptonGroupBox2 = new Krypton.Toolkit.KryptonGroupBox();
-            label6 = new Label();
-            panel7 = new Panel();
+            btnCompra = new Krypton.Toolkit.KryptonButton();
+            btnModificarC = new Krypton.Toolkit.KryptonButton();
+            btnEliminarC = new Krypton.Toolkit.KryptonButton();
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -80,6 +81,8 @@
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             panel1.SuspendLayout();
+            panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox13).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox15).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
@@ -95,7 +98,6 @@
             ((System.ComponentModel.ISupportInitialize)dgvComprasAdmin).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).BeginInit();
-            panel7.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -239,6 +241,37 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(286, 892);
             panel1.TabIndex = 46;
+            // 
+            // panel7
+            // 
+            panel7.BackColor = Color.SteelBlue;
+            panel7.Controls.Add(pictureBox13);
+            panel7.Controls.Add(label6);
+            panel7.ForeColor = SystemColors.Control;
+            panel7.Location = new Point(20, 328);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(261, 40);
+            panel7.TabIndex = 335;
+            // 
+            // pictureBox13
+            // 
+            pictureBox13.BackgroundImage = Properties.Resources.compras;
+            pictureBox13.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox13.Location = new Point(12, -25);
+            pictureBox13.Name = "pictureBox13";
+            pictureBox13.Size = new Size(98, 90);
+            pictureBox13.TabIndex = 318;
+            pictureBox13.TabStop = false;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.ForeColor = Color.Navy;
+            label6.Location = new Point(128, 10);
+            label6.Name = "label6";
+            label6.Size = new Size(68, 20);
+            label6.TabIndex = 333;
+            label6.Text = "Compras";
             // 
             // btnBitacora
             // 
@@ -640,75 +673,6 @@
             pictureBox21.TabIndex = 151;
             pictureBox21.TabStop = false;
             // 
-            // btnComprar
-            // 
-            btnComprar.Location = new Point(1035, 227);
-            btnComprar.Name = "btnComprar";
-            btnComprar.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnComprar.OverrideDefault.Back.Color2 = Color.White;
-            btnComprar.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnComprar.OverrideFocus.Back.Color2 = Color.White;
-            btnComprar.Size = new Size(178, 55);
-            btnComprar.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnComprar.StateCommon.Back.Color2 = Color.White;
-            btnComprar.StateCommon.Border.Rounding = 40F;
-            btnComprar.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnComprar.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnComprar.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnComprar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            btnComprar.StatePressed.Back.Color1 = Color.Transparent;
-            btnComprar.StatePressed.Back.Color2 = Color.Transparent;
-            btnComprar.TabIndex = 147;
-            btnComprar.Values.DropDownArrowColor = Color.Empty;
-            btnComprar.Values.Text = "Hacer Compras";
-            btnComprar.Click += btnComprar_Click;
-            // 
-            // btnModificar
-            // 
-            btnModificar.Location = new Point(1035, 289);
-            btnModificar.Name = "btnModificar";
-            btnModificar.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnModificar.OverrideDefault.Back.Color2 = Color.White;
-            btnModificar.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnModificar.OverrideFocus.Back.Color2 = Color.White;
-            btnModificar.Size = new Size(178, 55);
-            btnModificar.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnModificar.StateCommon.Back.Color2 = Color.White;
-            btnModificar.StateCommon.Border.Rounding = 40F;
-            btnModificar.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnModificar.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnModificar.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnModificar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            btnModificar.StatePressed.Back.Color1 = Color.Transparent;
-            btnModificar.StatePressed.Back.Color2 = Color.Transparent;
-            btnModificar.TabIndex = 153;
-            btnModificar.Values.DropDownArrowColor = Color.Empty;
-            btnModificar.Values.Text = "Modificar";
-            btnModificar.Click += btnModificar_Click;
-            // 
-            // btnEliminar
-            // 
-            btnEliminar.Location = new Point(308, 289);
-            btnEliminar.Name = "btnEliminar";
-            btnEliminar.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnEliminar.OverrideDefault.Back.Color2 = Color.White;
-            btnEliminar.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnEliminar.OverrideFocus.Back.Color2 = Color.White;
-            btnEliminar.Size = new Size(178, 55);
-            btnEliminar.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnEliminar.StateCommon.Back.Color2 = Color.White;
-            btnEliminar.StateCommon.Border.Rounding = 40F;
-            btnEliminar.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnEliminar.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnEliminar.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnEliminar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            btnEliminar.StatePressed.Back.Color1 = Color.Transparent;
-            btnEliminar.StatePressed.Back.Color2 = Color.Transparent;
-            btnEliminar.TabIndex = 154;
-            btnEliminar.Values.DropDownArrowColor = Color.Empty;
-            btnEliminar.Values.Text = "Eliminar";
-            btnEliminar.Click += btnEliminar_Click;
-            // 
             // dgvComprasAdmin
             // 
             dgvComprasAdmin.AllowUserToAddRows = false;
@@ -716,6 +680,7 @@
             dgvComprasAdmin.BackgroundColor = Color.SkyBlue;
             dgvComprasAdmin.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvComprasAdmin.Location = new Point(308, 388);
+            dgvComprasAdmin.MultiSelect = false;
             dgvComprasAdmin.Name = "dgvComprasAdmin";
             dgvComprasAdmin.RowHeadersWidth = 51;
             dgvComprasAdmin.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -746,24 +711,74 @@
             kryptonGroupBox2.StateCommon.Border.Rounding = 50F;
             kryptonGroupBox2.TabIndex = 201;
             // 
-            // label6
+            // btnCompra
             // 
-            label6.AutoSize = true;
-            label6.ForeColor = Color.Navy;
-            label6.Location = new Point(128, 10);
-            label6.Name = "label6";
-            label6.Size = new Size(68, 20);
-            label6.TabIndex = 333;
-            label6.Text = "Compras";
+            btnCompra.Location = new Point(1035, 218);
+            btnCompra.Name = "btnCompra";
+            btnCompra.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnCompra.OverrideDefault.Back.Color2 = Color.White;
+            btnCompra.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnCompra.OverrideFocus.Back.Color2 = Color.White;
+            btnCompra.Size = new Size(178, 55);
+            btnCompra.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnCompra.StateCommon.Back.Color2 = Color.White;
+            btnCompra.StateCommon.Border.Rounding = 40F;
+            btnCompra.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnCompra.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
+            btnCompra.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnCompra.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnCompra.StatePressed.Back.Color1 = Color.Transparent;
+            btnCompra.StatePressed.Back.Color2 = Color.Transparent;
+            btnCompra.TabIndex = 315;
+            btnCompra.Values.DropDownArrowColor = Color.Empty;
+            btnCompra.Values.Text = "Comprar";
+            btnCompra.Click += btnCompra_Click_1;
             // 
-            // panel7
+            // btnModificarC
             // 
-            panel7.BackColor = Color.White;
-            panel7.Controls.Add(label6);
-            panel7.Location = new Point(20, 328);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(261, 40);
-            panel7.TabIndex = 335;
+            btnModificarC.Location = new Point(1035, 289);
+            btnModificarC.Name = "btnModificarC";
+            btnModificarC.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnModificarC.OverrideDefault.Back.Color2 = Color.White;
+            btnModificarC.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnModificarC.OverrideFocus.Back.Color2 = Color.White;
+            btnModificarC.Size = new Size(178, 55);
+            btnModificarC.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnModificarC.StateCommon.Back.Color2 = Color.White;
+            btnModificarC.StateCommon.Border.Rounding = 40F;
+            btnModificarC.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnModificarC.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
+            btnModificarC.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnModificarC.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnModificarC.StatePressed.Back.Color1 = Color.Transparent;
+            btnModificarC.StatePressed.Back.Color2 = Color.Transparent;
+            btnModificarC.TabIndex = 316;
+            btnModificarC.Values.DropDownArrowColor = Color.Empty;
+            btnModificarC.Values.Text = "Modificar";
+            btnModificarC.Click += btnModificarC_Click;
+            // 
+            // btnEliminarC
+            // 
+            btnEliminarC.Location = new Point(308, 289);
+            btnEliminarC.Name = "btnEliminarC";
+            btnEliminarC.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnEliminarC.OverrideDefault.Back.Color2 = Color.White;
+            btnEliminarC.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnEliminarC.OverrideFocus.Back.Color2 = Color.White;
+            btnEliminarC.Size = new Size(178, 55);
+            btnEliminarC.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnEliminarC.StateCommon.Back.Color2 = Color.White;
+            btnEliminarC.StateCommon.Border.Rounding = 40F;
+            btnEliminarC.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnEliminarC.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
+            btnEliminarC.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnEliminarC.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnEliminarC.StatePressed.Back.Color1 = Color.Transparent;
+            btnEliminarC.StatePressed.Back.Color2 = Color.Transparent;
+            btnEliminarC.TabIndex = 317;
+            btnEliminarC.Values.DropDownArrowColor = Color.Empty;
+            btnEliminarC.Values.Text = "Eliminar";
+            btnEliminarC.Click += btnEliminarC_Click;
             // 
             // Compras
             // 
@@ -771,12 +786,12 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1257, 908);
+            Controls.Add(btnEliminarC);
+            Controls.Add(btnModificarC);
+            Controls.Add(btnCompra);
             Controls.Add(label10);
             Controls.Add(kryptonGroupBox2);
             Controls.Add(dgvComprasAdmin);
-            Controls.Add(btnEliminar);
-            Controls.Add(btnModificar);
-            Controls.Add(btnComprar);
             Controls.Add(pictureBox21);
             Controls.Add(label1);
             Controls.Add(btnNoti);
@@ -800,6 +815,9 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            panel7.ResumeLayout(false);
+            panel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox13).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox15).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
@@ -815,8 +833,6 @@
             ((System.ComponentModel.ISupportInitialize)dgvComprasAdmin).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).EndInit();
-            panel7.ResumeLayout(false);
-            panel7.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -857,14 +873,16 @@
         private PictureBox pictureBox8;
         private PictureBox pictureBox1;
         private PictureBox pictureBox21;
-        private Krypton.Toolkit.KryptonButton btnComprar;
+        private Krypton.Toolkit.KryptonButton btnCompra;
         private Krypton.Toolkit.KryptonButton btnBitacora;
-        private Krypton.Toolkit.KryptonButton btnModificar;
-        private Krypton.Toolkit.KryptonButton btnEliminar;
         private DataGridView dgvComprasAdmin;
         private Label label10;
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox2;
         private Panel panel7;
         private Label label6;
+        private Krypton.Toolkit.KryptonButton btnModificarC;
+        private Krypton.Toolkit.KryptonButton btnEliminarC;
+        private PictureBox pictureBox13;
+        //private Krypton.Toolkit.KryptonButton btnComprar;
     }
 }

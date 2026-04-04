@@ -72,61 +72,67 @@ namespace SG_BAMS
             }
         }
 
-        private void btnAceptar_Click(object sender, EventArgs e)
+        private void ActualizarGranTotal()
         {
-            if (dgvProductosCompra.Rows.Count == 0)
+            decimal granTotal = 0;
+            foreach (DataGridViewRow fila in dgvProductosCompra.Rows)
             {
-                MessageBox.Show("Debe agregar al menos un producto a la lista.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (cmbProveedor.SelectedValue == null || cmbFormaPago.SelectedValue == null)
-            {
-                MessageBox.Show("Seleccione el Proveedor y la Forma de Pago.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            try
-            {
-                List<DetalleCompra> listaDetalles = new List<DetalleCompra>();
-
-                foreach (DataGridViewRow fila in dgvProductosCompra.Rows)
+                if (fila.Cells[4].Value != null)
                 {
-                    if (fila.Cells[0].Value != null)
-                    {
-                        listaDetalles.Add(new DetalleCompra
-                        {
-                            IdProducto = Convert.ToInt32(fila.Cells[0].Value),
-                            Cantidad = Convert.ToInt32(fila.Cells[2].Value),
-                            Precio = Convert.ToDecimal(fila.Cells[3].Value)
-                        });
-                    }
-                }
-
-                ClsCompras logic = new ClsCompras();
-
-                bool exito = logic.GuardarNuevaCompra(
-                    1,
-                    dtpFechaPedido.SelectionStart,
-                    Convert.ToInt32(cmbFormaPago.SelectedValue),
-                    Convert.ToInt32(cmbProveedor.SelectedValue),
-                    txtNotaDetalle.Text,
-                    listaDetalles
-                );
-
-                if (exito)
-                {
-                    MessageBox.Show("La compra se registró correctamente y el inventario fue actualizado.", "BAMS - Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
+                    granTotal += Convert.ToDecimal(fila.Cells[4].Value);
                 }
             }
-            catch (Exception ex)
+            lblTotal.Text = granTotal.ToString("N2");
+        }
+
+        private object valorOriginal;
+
+        private void dgvProductosCompra_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            if (e.RowIndex >= 0 && (e.ColumnIndex == 2 || e.ColumnIndex == 3))
             {
-                MessageBox.Show("Error al procesar la compra: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                valorOriginal = dgvProductosCompra.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
             }
         }
 
-        private void kryptonButton5_Click(object sender, EventArgs e)
+        private void dgvProductosCompra_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && (e.ColumnIndex == 2 || e.ColumnIndex == 3))
+            {
+                var fila = dgvProductosCompra.Rows[e.RowIndex];
+                decimal valorNuevo;
+                bool esNumerico = decimal.TryParse(fila.Cells[e.ColumnIndex].Value?.ToString(), out valorNuevo);
+
+                if (!esNumerico || valorNuevo <= 0)
+                {
+                    string campo = (e.ColumnIndex == 2) ? "La cantidad" : "El precio";
+                    MessageBox.Show($"{campo} no puede ser cero o menor.",
+                                    "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    dgvProductosCompra.CellValueChanged -= dgvProductosCompra_CellValueChanged;
+                    fila.Cells[e.ColumnIndex].Value = valorOriginal;
+                    dgvProductosCompra.CellValueChanged += dgvProductosCompra_CellValueChanged;
+                    return;
+                }
+
+                try
+                {
+                    decimal cant = Convert.ToDecimal(fila.Cells[2].Value ?? 0);
+                    decimal prec = Convert.ToDecimal(fila.Cells[3].Value ?? 0);
+
+                    fila.Cells[4].Value = cant * prec;
+                    ActualizarGranTotal();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al calcular el subtotal: " + ex.Message);
+                }
+            }
+        }
+
+        private void dgvProductosCompra_CellDoubleClick(object sender, DataGridViewCellEventArgs e) { }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
         {
             if (cmbProveedor.SelectedValue == null || cmbProveedor.SelectedIndex == -1)
             {
@@ -180,25 +186,66 @@ namespace SG_BAMS
             }
         }
 
-        private void ActualizarGranTotal()
+        private void btnAceptar_Click_1(object sender, EventArgs e)
         {
-            decimal granTotal = 0;
-            foreach (DataGridViewRow fila in dgvProductosCompra.Rows)
+            if (dgvProductosCompra.Rows.Count == 0)
             {
-                if (fila.Cells[4].Value != null)
+                MessageBox.Show("Debe agregar al menos un producto a la lista.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (cmbProveedor.SelectedValue == null || cmbFormaPago.SelectedValue == null)
+            {
+                MessageBox.Show("Seleccione el Proveedor y la Forma de Pago.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                List<DetalleCompra> listaDetalles = new List<DetalleCompra>();
+
+                foreach (DataGridViewRow fila in dgvProductosCompra.Rows)
                 {
-                    granTotal += Convert.ToDecimal(fila.Cells[4].Value);
+                    if (fila.Cells[0].Value != null)
+                    {
+                        listaDetalles.Add(new DetalleCompra
+                        {
+                            IdProducto = Convert.ToInt32(fila.Cells[0].Value),
+                            Cantidad = Convert.ToInt32(fila.Cells[2].Value),
+                            Precio = Convert.ToDecimal(fila.Cells[3].Value)
+                        });
+                    }
+                }
+
+                ClsCompras logic = new ClsCompras();
+
+                bool exito = logic.GuardarNuevaCompra(
+                    1,
+                    dtpFechaPedido.SelectionStart,
+                    Convert.ToInt32(cmbFormaPago.SelectedValue),
+                    Convert.ToInt32(cmbProveedor.SelectedValue),
+                    txtNotaDetalle.Text,
+                    listaDetalles
+                );
+
+                if (exito)
+                {
+                    MessageBox.Show("La compra se registró correctamente y el inventario fue actualizado.", "BAMS - Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
                 }
             }
-            lblTotal.Text = granTotal.ToString("N2");
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al procesar la compra: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        private void kryptonButton4_Click(object sender, EventArgs e)
+        private void btnCancelar_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            this.Close();
         }
 
-        private void btnEliminarProducto_Click(object sender, EventArgs e)
+        private void btnQuitar_Click(object sender, EventArgs e)
         {
             if (dgvProductosCompra.CurrentRow != null && dgvProductosCompra.CurrentRow.Index >= 0)
             {
@@ -222,54 +269,5 @@ namespace SG_BAMS
                 cmbProveedor.Enabled = true;
             }
         }
-
-        private object valorOriginal;
-
-        private void dgvProductosCompra_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
-        {
-            if (e.RowIndex >= 0 && (e.ColumnIndex == 2 || e.ColumnIndex == 3))
-            {
-                valorOriginal = dgvProductosCompra.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-            }
-        }
-
-        private void dgvProductosCompra_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0 && (e.ColumnIndex == 2 || e.ColumnIndex == 3))
-            {
-                var fila = dgvProductosCompra.Rows[e.RowIndex];
-                decimal valorNuevo;
-                bool esNumerico = decimal.TryParse(fila.Cells[e.ColumnIndex].Value?.ToString(), out valorNuevo);
-
-                if (!esNumerico || valorNuevo <= 0)
-                {
-                    string campo = (e.ColumnIndex == 2) ? "La cantidad" : "El precio";
-                    MessageBox.Show($"{campo} no puede ser cero o menor.",
-                                    "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                    dgvProductosCompra.CellValueChanged -= dgvProductosCompra_CellValueChanged;
-                    fila.Cells[e.ColumnIndex].Value = valorOriginal;
-                    dgvProductosCompra.CellValueChanged += dgvProductosCompra_CellValueChanged;
-                    return;
-                }
-
-                try
-                {
-                    decimal cant = Convert.ToDecimal(fila.Cells[2].Value ?? 0);
-                    decimal prec = Convert.ToDecimal(fila.Cells[3].Value ?? 0);
-
-                    fila.Cells[4].Value = cant * prec;
-                    ActualizarGranTotal();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al calcular el subtotal: " + ex.Message);
-                }
-            }
-        }
-
-        private void kryptonLabel8_Click(object sender, EventArgs e) { }
-        private void label4_Click(object sender, EventArgs e) { }
-        private void dgvProductosCompra_CellDoubleClick(object sender, DataGridViewCellEventArgs e) { }
     }
 }
