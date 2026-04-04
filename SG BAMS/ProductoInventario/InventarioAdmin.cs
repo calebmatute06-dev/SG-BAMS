@@ -17,7 +17,6 @@ namespace SG_BAMS
 {
     public partial class InventarioAdmin : Form
     {
-
         ClsVerProducto logica = new ClsVerProducto();
 
         public InventarioAdmin()
@@ -71,6 +70,12 @@ namespace SG_BAMS
                 frmMod.txtNombre.Text = dgvProductosAdmin.CurrentRow.Cells["Producto"].Value.ToString();
                 frmMod.txtPrecio.Text = dgvProductosAdmin.CurrentRow.Cells["Precio Venta"].Value.ToString();
                 frmMod.txtCodigoBarra.Text = dgvProductosAdmin.CurrentRow.Cells["Codigo Barra"].Value.ToString();
+
+                if (dgvProductosAdmin.CurrentRow.Cells["Stock Actual"].Value != DBNull.Value)
+                {
+                    frmMod.txtStock.Value = Convert.ToDecimal(dgvProductosAdmin.CurrentRow.Cells["Stock Actual"].Value);
+                }
+
                 frmMod.proveedorActual = dgvProductosAdmin.CurrentRow.Cells["Proveedor"].Value.ToString();
                 frmMod.marcaActual = dgvProductosAdmin.CurrentRow.Cells["Marca"].Value.ToString();
                 frmMod.tipoActual = dgvProductosAdmin.CurrentRow.Cells["Tipo"].Value.ToString();
@@ -108,12 +113,6 @@ namespace SG_BAMS
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-
-        }
-
-        private void dgvProductosAdmin_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void kryptonButton9_Click(object sender, EventArgs e)
@@ -200,10 +199,7 @@ namespace SG_BAMS
 
         private void dgvProductosAdmin_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0)
-            {
-                return;
-            }
+            if (e.RowIndex < 0) return;
 
             if (dgvProductosAdmin.SelectedRows.Count > 0)
             {
@@ -213,6 +209,11 @@ namespace SG_BAMS
                 frmMod.txtNombre.Text = dgvProductosAdmin.CurrentRow.Cells["Producto"].Value.ToString();
                 frmMod.txtPrecio.Text = dgvProductosAdmin.CurrentRow.Cells["Precio Venta"].Value.ToString();
                 frmMod.txtCodigoBarra.Text = dgvProductosAdmin.CurrentRow.Cells["Codigo Barra"].Value.ToString();
+                if (dgvProductosAdmin.CurrentRow.Cells["Stock Actual"].Value != DBNull.Value)
+                {
+                    frmMod.txtStock.Value = Convert.ToDecimal(dgvProductosAdmin.CurrentRow.Cells["Stock Actual"].Value);
+                }
+
                 frmMod.marcaActual = dgvProductosAdmin.CurrentRow.Cells["Marca"].Value.ToString();
                 frmMod.tipoActual = dgvProductosAdmin.CurrentRow.Cells["Tipo"].Value.ToString();
                 frmMod.modeloActual = dgvProductosAdmin.CurrentRow.Cells["Modelo Auto"].Value.ToString();

@@ -7,8 +7,7 @@ namespace SG_BAMS.ProductoInventario
     internal class ClsActualizarProducto
     {
         private ClsConexion conexion = new ClsConexion();
-
-        public void EjecutarActualizacion(int id, string nombre, int idMarca, int idTipo, int idModelo, int idEstado, decimal precio, string codBarra, int idProveedor)
+        public void EjecutarActualizacion(int id, string nombre, int idMarca, int idTipo, int idModelo, int idEstado, decimal precio, string codBarra, int idProveedor, int stock)
         {
             try
             {
@@ -25,26 +24,31 @@ namespace SG_BAMS.ProductoInventario
                     cmd.Parameters.Add("@precio_venta", SqlDbType.Money).Value = precio;
                     cmd.Parameters.AddWithValue("@codigo_barra", codBarra);
                     cmd.Parameters.AddWithValue("@id_proveedor", idProveedor);
+                    cmd.Parameters.AddWithValue("@stock", stock);
+
                     cmd.ExecuteNonQuery();
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al actualizar: " + ex.Message);
+                throw new Exception("Error al actualizar producto e inventario: " + ex.Message);
             }
-            finally { conexion.Cerrar(); }
+            finally
+            {
+                conexion.Cerrar();
+            }
         }
 
         public bool ExisteProductoEnOtros(int idActual, string nombre, int idMarca, int idProveedor)
         {
             int conteo = 0;
             string sql = @"SELECT COUNT(*) 
-                   FROM Producto p
-                   INNER JOIN Proveedor_Producto pp ON p.id_producto = pp.id_producto
-                   WHERE p.nombre_producto = @nombre 
-                   AND p.id_marca_producto = @idMarca 
-                   AND pp.id_proveedor = @idProveedor 
-                   AND p.id_producto <> @id";
+                           FROM Producto p
+                           INNER JOIN Proveedor_Producto pp ON p.id_producto = pp.id_producto
+                           WHERE p.nombre_producto = @nombre 
+                           AND p.id_marca_producto = @idMarca 
+                           AND pp.id_proveedor = @idProveedor 
+                           AND p.id_producto <> @id";
             try
             {
                 conexion.AbrirConexion();

@@ -30,7 +30,7 @@ namespace SG_BAMS
             try
             {
                 if (!ClsValidaciones.EsAlfanumericoValido(txtNombre, "Nombre del Producto")) return;
-                string precioLimpio = txtPrecio.Text.Replace("Lps", "").Replace("$", "").Trim();
+                string precioLimpio = txtPrecio.Text.Replace("Lps", "").Replace("L.", "").Replace("$", "").Trim();
                 if (!ClsValidaciones.ValidarPrecio(precioLimpio)) return;
                 if (!ClsValidaciones.ValidarCodigoBarra(txtCodigoBarra.Text)) return;
 
@@ -39,6 +39,7 @@ namespace SG_BAMS
                 string codigoNuevo = txtCodigoBarra.Text.Trim();
                 int idMarca = Convert.ToInt32(cmbMarca.SelectedValue);
                 int idProveedor = Convert.ToInt32(cmbProveedor.SelectedValue);
+                int stockNuevo = Convert.ToInt32(txtStock.Value);
 
                 ClsActualizarProducto logica = new ClsActualizarProducto();
 
@@ -68,7 +69,8 @@ namespace SG_BAMS
                     Convert.ToInt32(cmbEstado.SelectedValue),
                     Convert.ToDecimal(precioLimpio),
                     codigoNuevo,
-                    idProveedor
+                    idProveedor,
+                    stockNuevo
                 );
 
                 MessageBox.Show("¡Producto actualizado correctamente!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);

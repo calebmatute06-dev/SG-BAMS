@@ -54,6 +54,8 @@
             cmbEstado = new Krypton.Toolkit.KryptonComboBox();
             cmbProveedor = new Krypton.Toolkit.KryptonComboBox();
             label5 = new Label();
+            label6 = new Label();
+            txtStock = new Krypton.Toolkit.KryptonNumericUpDown();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -178,7 +180,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(65, 424);
+            label1.Location = new Point(66, 414);
             label1.Name = "label1";
             label1.Size = new Size(91, 33);
             label1.TabIndex = 222;
@@ -186,7 +188,7 @@
             // 
             // txtPrecio
             // 
-            txtPrecio.Location = new Point(200, 217);
+            txtPrecio.Location = new Point(201, 207);
             txtPrecio.Name = "txtPrecio";
             txtPrecio.Size = new Size(250, 39);
             txtPrecio.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -197,7 +199,7 @@
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(200, 164);
+            txtNombre.Location = new Point(201, 154);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(250, 39);
             txtNombre.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -209,7 +211,7 @@
             // txtID
             // 
             txtID.Enabled = false;
-            txtID.Location = new Point(200, 115);
+            txtID.Location = new Point(201, 105);
             txtID.Name = "txtID";
             txtID.ReadOnly = true;
             txtID.Size = new Size(250, 39);
@@ -224,7 +226,7 @@
             label10.BackColor = Color.Transparent;
             label10.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Navy;
-            label10.Location = new Point(56, 373);
+            label10.Location = new Point(57, 363);
             label10.Name = "label10";
             label10.Size = new Size(149, 33);
             label10.TabIndex = 217;
@@ -236,7 +238,7 @@
             label12.BackColor = Color.Transparent;
             label12.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label12.ForeColor = Color.Navy;
-            label12.Location = new Point(65, 328);
+            label12.Location = new Point(66, 318);
             label12.Name = "label12";
             label12.Size = new Size(71, 33);
             label12.TabIndex = 216;
@@ -248,7 +250,7 @@
             label14.BackColor = Color.Transparent;
             label14.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label14.ForeColor = Color.Navy;
-            label14.Location = new Point(65, 275);
+            label14.Location = new Point(66, 265);
             label14.Name = "label14";
             label14.Size = new Size(89, 33);
             label14.TabIndex = 215;
@@ -260,7 +262,7 @@
             label7.BackColor = Color.Transparent;
             label7.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Navy;
-            label7.Location = new Point(65, 223);
+            label7.Location = new Point(66, 213);
             label7.Name = "label7";
             label7.Size = new Size(85, 33);
             label7.TabIndex = 214;
@@ -272,7 +274,7 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(65, 171);
+            label4.Location = new Point(66, 161);
             label4.Name = "label4";
             label4.Size = new Size(111, 33);
             label4.TabIndex = 213;
@@ -284,7 +286,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(65, 121);
+            label3.Location = new Point(66, 111);
             label3.Name = "label3";
             label3.Size = new Size(50, 33);
             label3.TabIndex = 212;
@@ -292,7 +294,7 @@
             // 
             // txtCodigoBarra
             // 
-            txtCodigoBarra.Location = new Point(200, 467);
+            txtCodigoBarra.Location = new Point(201, 457);
             txtCodigoBarra.Name = "txtCodigoBarra";
             txtCodigoBarra.Size = new Size(250, 39);
             txtCodigoBarra.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -308,7 +310,7 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(65, 472);
+            label2.Location = new Point(66, 462);
             label2.Name = "label2";
             label2.Size = new Size(131, 33);
             label2.TabIndex = 232;
@@ -319,7 +321,7 @@
             // 
             cmbModelo.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbModelo.DropDownWidth = 300;
-            cmbModelo.Location = new Point(200, 368);
+            cmbModelo.Location = new Point(201, 358);
             cmbModelo.Name = "cmbModelo";
             cmbModelo.Size = new Size(250, 38);
             cmbModelo.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
@@ -334,7 +336,7 @@
             // 
             cmbTipo.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbTipo.DropDownWidth = 300;
-            cmbTipo.Location = new Point(200, 321);
+            cmbTipo.Location = new Point(201, 311);
             cmbTipo.Name = "cmbTipo";
             cmbTipo.Size = new Size(250, 38);
             cmbTipo.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
@@ -349,7 +351,7 @@
             // 
             cmbMarca.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbMarca.DropDownWidth = 300;
-            cmbMarca.Location = new Point(200, 269);
+            cmbMarca.Location = new Point(201, 259);
             cmbMarca.Name = "cmbMarca";
             cmbMarca.Size = new Size(250, 38);
             cmbMarca.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
@@ -364,7 +366,7 @@
             // 
             cmbEstado.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbEstado.DropDownWidth = 300;
-            cmbEstado.Location = new Point(200, 419);
+            cmbEstado.Location = new Point(201, 409);
             cmbEstado.Name = "cmbEstado";
             cmbEstado.Size = new Size(250, 38);
             cmbEstado.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
@@ -379,7 +381,7 @@
             // 
             cmbProveedor.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbProveedor.DropDownWidth = 300;
-            cmbProveedor.Location = new Point(200, 513);
+            cmbProveedor.Location = new Point(201, 503);
             cmbProveedor.Name = "cmbProveedor";
             cmbProveedor.Size = new Size(250, 38);
             cmbProveedor.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
@@ -396,11 +398,37 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(56, 517);
+            label5.Location = new Point(57, 507);
             label5.Name = "label5";
             label5.Size = new Size(128, 33);
             label5.TabIndex = 343;
             label5.Text = "Proveedor:";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.BackColor = Color.Transparent;
+            label6.Font = new Font("Arial", 13F, FontStyle.Bold);
+            label6.ForeColor = Color.Navy;
+            label6.Location = new Point(94, 556);
+            label6.Name = "label6";
+            label6.Size = new Size(78, 26);
+            label6.TabIndex = 346;
+            label6.Text = "Stock:";
+            // 
+            // txtStock
+            // 
+            txtStock.Increment = new decimal(new int[] { 1, 0, 0, 0 });
+            txtStock.Location = new Point(201, 556);
+            txtStock.Maximum = new decimal(new int[] { 99999, 0, 0, 0 });
+            txtStock.Minimum = new decimal(new int[] { 0, 0, 0, 0 });
+            txtStock.Name = "txtStock";
+            txtStock.Size = new Size(162, 32);
+            txtStock.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtStock.StateCommon.Border.Rounding = 10F;
+            txtStock.StateCommon.Content.Color1 = Color.Navy;
+            txtStock.TabIndex = 345;
+            txtStock.Value = new decimal(new int[] { 0, 0, 0, 0 });
             // 
             // ModificarProducto
             // 
@@ -408,6 +436,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(515, 673);
+            Controls.Add(label6);
+            Controls.Add(txtStock);
             Controls.Add(cmbProveedor);
             Controls.Add(label5);
             Controls.Add(cmbEstado);
@@ -479,5 +509,7 @@
         private Krypton.Toolkit.KryptonComboBox cmbEstado;
         private Krypton.Toolkit.KryptonComboBox cmbProveedor;
         private Label label5;
+        private Label label6;
+        public Krypton.Toolkit.KryptonNumericUpDown txtStock;
     }
 }
