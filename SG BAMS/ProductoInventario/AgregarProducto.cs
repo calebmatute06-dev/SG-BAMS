@@ -25,7 +25,6 @@ namespace SG_BAMS
         {
             string nombreVal = txtNombre.Text.Trim();
 
-            // Validaciones de nombre
             if (string.IsNullOrWhiteSpace(nombreVal) || nombreVal.Length < 3)
             {
                 MessageBox.Show("El nombre del producto debe tener al menos 3 caracteres.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -40,7 +39,6 @@ namespace SG_BAMS
                 return;
             }
 
-            // Validaciones generales
             if (!ClsValidaciones.EsAlfanumericoValido(txtNombre, "Nombre del Producto")) return;
             if (!ClsValidaciones.ValidarPrecio(txtPrecio.Text)) return;
             if (!ClsValidaciones.ValidarSeleccion(cmbMarca, "la Marca")) return;
@@ -56,12 +54,8 @@ namespace SG_BAMS
                 int idMarca = (int)cmbMarca.SelectedValue;
                 int idProveedor = (int)cmbProveedor.SelectedValue;
                 string codBarra = txtCodigoBarra.Text.Trim();
-
-                // --- NUEVA CAPTURA DE STOCK ---
-                // Obtenemos el valor del KryptonNumericUpDown y lo convertimos a entero
                 int stockInicial = decimal.ToInt32(txtStock.Value);
 
-                // Verificación de duplicados
                 if (logicaInsertar.ExisteProductoMarcaProveedor(nombre, idMarca, idProveedor))
                 {
                     MessageBox.Show("Este producto con esta marca ya está registrado para el proveedor seleccionado.\n\n" +
@@ -77,8 +71,6 @@ namespace SG_BAMS
                     txtCodigoBarra.Focus();
                     return;
                 }
-
-                // --- LLAMADA A LA LÓGICA CON EL PARÁMETRO STOCK ---
                 logicaInsertar.EjecutarInsercion(
                     nombre,
                     idMarca,
@@ -87,7 +79,7 @@ namespace SG_BAMS
                     decimal.Parse(txtPrecio.Text),
                     codBarra,
                     idProveedor,
-                    stockInicial // Nuevo parámetro enviado
+                    stockInicial
                 );
 
                 MessageBox.Show("¡Producto y stock guardados exitosamente!", "Éxito");
