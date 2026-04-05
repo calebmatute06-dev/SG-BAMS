@@ -34,7 +34,7 @@ namespace SG_BAMS
         Clscontador_cliente objetoContador = new Clscontador_cliente();
 
 
-      
+
         private async Task ActualizarLabel()
         {
 
@@ -90,7 +90,7 @@ namespace SG_BAMS
                 chartStock.Legends.Clear();
                 chartStock.ChartAreas[0].Position.Auto = true;
 
-               
+
                 int sinStock = 0;
                 int bajoStock = 0;
                 int conStock = 0;
@@ -105,7 +105,7 @@ namespace SG_BAMS
 
                 int total = sinStock + bajoStock + conStock;
 
-               
+
                 Legend leyenda = chartStock.Legends.Add("Leyenda");
                 leyenda.BackColor = Color.Transparent;
                 leyenda.IsTextAutoFit = true;
@@ -113,7 +113,7 @@ namespace SG_BAMS
                 leyenda.Docking = Docking.Bottom;
                 leyenda.Font = new Font("Segoe UI", 9f, FontStyle.Bold);
 
-                
+
                 var serieSin = chartStock.Series.Add("Sin Stock");
                 serieSin.ChartType = SeriesChartType.Bar;
                 serieSin.Color = Color.FromArgb(210, 50, 50);
@@ -125,7 +125,7 @@ namespace SG_BAMS
                 int pSin = serieSin.Points.AddY(sinStock);
                 serieSin.Points[pSin].AxisLabel = "Estado de Stock";
 
-                
+
                 var serieBajo = chartStock.Series.Add("Bajo Stock");
                 serieBajo.ChartType = SeriesChartType.Bar;
                 serieBajo.Color = Color.FromArgb(220, 180, 0);
@@ -137,7 +137,7 @@ namespace SG_BAMS
                 int pBajo = serieBajo.Points.AddY(bajoStock);
                 serieBajo.Points[pBajo].AxisLabel = "Estado de Stock";
 
-                
+
                 var serieConStock = chartStock.Series.Add("Con Stock");
                 serieConStock.ChartType = SeriesChartType.Bar;
                 serieConStock.Color = Color.FromArgb(50, 160, 60);
@@ -149,13 +149,13 @@ namespace SG_BAMS
                 int pCon = serieConStock.Points.AddY(conStock);
                 serieConStock.Points[pCon].AxisLabel = "Estado de Stock";
 
-                
+
                 var area = chartStock.ChartAreas[0];
                 area.BackColor = Color.Transparent;
                 area.AxisX.LineColor = Color.Transparent;
                 area.AxisX.MajorGrid.Enabled = false;
                 area.AxisX.MajorTickMark.Enabled = false;
-                area.AxisX.LabelStyle.Enabled = false;   
+                area.AxisX.LabelStyle.Enabled = false;
                 area.AxisY.MajorGrid.LineColor = Color.FromArgb(80, Color.White);
                 area.AxisY.LabelStyle.Font = new Font("Segoe UI", 8f);
                 area.AxisY.Maximum = total + (total * 0.1);
@@ -384,6 +384,12 @@ namespace SG_BAMS
             ReportesAdmin reportesAdmin = new ReportesAdmin();
             reportesAdmin.Show();
             this.Close();
+        }
+
+        private void btnAsis_Click(object sender, EventArgs e)
+        {
+            AsistentedeIA AIA = new AsistentedeIA();
+            AIA.ShowDialog();
         }
     }
 }

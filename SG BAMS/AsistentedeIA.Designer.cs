@@ -34,6 +34,7 @@
             txtInfo = new Krypton.Toolkit.KryptonTextBox();
             label10 = new Label();
             kryptonGroupBox2 = new Krypton.Toolkit.KryptonGroupBox();
+            btnSalir = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).BeginInit();
             SuspendLayout();
@@ -126,12 +127,37 @@
             kryptonGroupBox2.StateCommon.Border.Rounding = 50F;
             kryptonGroupBox2.TabIndex = 331;
             // 
+            // btnSalir
+            // 
+            btnSalir.Location = new Point(756, 30);
+            btnSalir.Margin = new Padding(3, 2, 3, 2);
+            btnSalir.Name = "btnSalir";
+            btnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnSalir.OverrideDefault.Back.Color2 = Color.White;
+            btnSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnSalir.OverrideFocus.Back.Color2 = Color.White;
+            btnSalir.Size = new Size(125, 37);
+            btnSalir.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnSalir.StateCommon.Back.Color2 = Color.White;
+            btnSalir.StateCommon.Border.Rounding = 30F;
+            btnSalir.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnSalir.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
+            btnSalir.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnSalir.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnSalir.StatePressed.Back.Color1 = Color.Transparent;
+            btnSalir.StatePressed.Back.Color2 = Color.Transparent;
+            btnSalir.TabIndex = 332;
+            btnSalir.Values.DropDownArrowColor = Color.Empty;
+            btnSalir.Values.Text = "Salir";
+            btnSalir.Click += btnSalir_Click;
+            // 
             // AsistentedeIA
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(893, 544);
+            Controls.Add(btnSalir);
             Controls.Add(label10);
             Controls.Add(kryptonGroupBox2);
             Controls.Add(txtInfo);
@@ -155,5 +181,6 @@
         private Krypton.Toolkit.KryptonTextBox txtInfo;
         private Label label10;
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox2;
+        private Krypton.Toolkit.KryptonButton btnSalir;
     }
 }

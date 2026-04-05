@@ -262,7 +262,7 @@ namespace SG_BAMS
             FacturasEmp fact = new FacturasEmp();
 
             fact.Show();
-            
+
         }
 
         private async void btnclientes_Click(object sender, EventArgs e)
@@ -352,6 +352,12 @@ namespace SG_BAMS
         private void btnmenuprincipal_Click(object sender, EventArgs e)
         {
             this.Refresh();
+        }
+
+        private void btnAsis_Click(object sender, EventArgs e)
+        {
+            AsistentedeIA AIA = new AsistentedeIA();
+            AIA.ShowDialog();
         }
     }
 }

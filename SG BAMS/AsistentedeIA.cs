@@ -49,7 +49,7 @@ namespace SG_BAMS
             {
                 string respuesta = await _servicioIA.ConsultarAsync(pregunta);
 
-              
+
                 if (lstIA.Items.Count > 0)
                     lstIA.Items.RemoveAt(lstIA.Items.Count - 1);
 
@@ -64,23 +64,23 @@ namespace SG_BAMS
 
                     if (string.IsNullOrEmpty(textoRestante))
                     {
-                        lstIA.Items.Add(""); 
+                        lstIA.Items.Add("");
                         continue;
                     }
 
                     while (textoRestante.Length > limiteCaracteres)
                     {
-                       
+
                         int puntoDeCorte = textoRestante.LastIndexOf(' ', limiteCaracteres);
 
-                       
+
                         if (puntoDeCorte <= 0) puntoDeCorte = limiteCaracteres;
 
                         lstIA.Items.Add("   " + textoRestante.Substring(0, puntoDeCorte).Trim());
                         textoRestante = textoRestante.Substring(puntoDeCorte).Trim();
                     }
 
-                  
+
                     if (!string.IsNullOrEmpty(textoRestante))
                         lstIA.Items.Add("   " + textoRestante);
                 }
@@ -114,15 +114,20 @@ namespace SG_BAMS
         {
             if (e.KeyCode == Keys.Enter)
             {
-                e.SuppressKeyPress = true; 
+                e.SuppressKeyPress = true;
                 await EnviarMensaje();
             }
         }
 
         private void AsistentedeIA_Load(object sender, EventArgs e)
         {
-            
+
             lstIA.HorizontalScrollbar = false;
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
