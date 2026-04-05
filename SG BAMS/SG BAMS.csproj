@@ -17,6 +17,7 @@
     <PackageReference Include="Krypton.Toolkit" Version="100.26.1.19" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <PackageReference Include="OpenCvSharp4" Version="4.13.0.20260228" />
     <PackageReference Include="OpenCvSharp4.Extensions" Version="4.13.0.20260228" />
     <PackageReference Include="OpenCvSharp4.runtime.win" Version="4.13.0.20260228" />
