@@ -44,7 +44,7 @@ namespace SG_BAMS.Login
                 MessageBox.Show("No hay registros faciales registrados en el sistema.", "Sin registros",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 RegresarAlLogin();
-                return;
+                return; 
             }
 
             var archivosUsuario = todosLosArchivos
@@ -57,7 +57,7 @@ namespace SG_BAMS.Login
                 MessageBox.Show($"El usuario '{UsuarioAValidar}' no tiene un registro facial.", "Sin registro facial",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 RegresarAlLogin();
-                return;
+                return; 
             }
 
             ActualizarEstado("Cargando modelo facial...", Color.Gray);
@@ -76,12 +76,9 @@ namespace SG_BAMS.Login
             if (camara != null) { camara.Stop(); camara.Dispose(); camara = null; }
 
             Form loginOriginal = Application.OpenForms["Login"];
-            if (loginOriginal != null)
-                loginOriginal.Show();
-            else
-                new Login().Show();
+            loginOriginal?.Show();
 
-            this.Close();
+            this.BeginInvoke(new Action(() => this.Close()));
         }
 
         private void EntrenarModelo(List<string> todosLosArchivos)
@@ -318,28 +315,27 @@ namespace SG_BAMS.Login
             if (resultado == DialogResult.OK)
             {
                 Form loginOriginal = Application.OpenForms["Login"];
-                loginOriginal?.Close();
+                loginOriginal?.Hide();
+
                 switch (RolAsignado)
                 {
                     case 1:
-                        SG_BAMS.MenuPrincipalAdm menuAdm = new SG_BAMS.MenuPrincipalAdm();
-                        menuAdm.Show();
+                        new SG_BAMS.MenuPrincipalAdm().Show();
                         break;
                     case 2:
-                        SG_BAMS.MenuPrincipalEmp menuEmp = new SG_BAMS.MenuPrincipalEmp();
-                        menuEmp.Show();
+                        new SG_BAMS.MenuPrincipalEmp().Show();
                         break;
                     default:
                         MessageBox.Show("Rol no reconocido.", "Error",
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        RegresarAlLogin();
+                        loginOriginal?.Show();
                         break;
                 }
             }
             else
             {
-                RegresarAlLogin();
-                return;
+                Form loginOriginal = Application.OpenForms["Login"];
+                loginOriginal?.Show();
             }
 
             this.Close();
