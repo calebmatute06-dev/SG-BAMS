@@ -22,7 +22,7 @@ namespace SG_BAMS.ProductoInventario
                     combo.ValueMember = "id_marca_producto";
                     break;
                 case "Tipo":
-                    combo.DisplayMember = "descripcion_forma_pago";
+                    combo.DisplayMember = "descripcion_producto";
                     combo.ValueMember = "id_tipo_producto";
                     break;
                 case "Modelo":
@@ -53,7 +53,7 @@ namespace SG_BAMS.ProductoInventario
                     query = "SELECT id_marca_producto, nombre_marca FROM Marca_producto";
                     break;
                 case "Tipo":
-                    query = "SELECT id_tipo_producto, descripcion_forma_pago FROM Tipo_producto";
+                    query = "SELECT id_tipo_producto,descripcion_producto FROM Tipo_producto";
                     break;
                 case "Modelo":
                     query = "SELECT id_modelo_auto, nombre_modelo_auto FROM Modelo_de_auto";
