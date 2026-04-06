@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             panel1 = new Panel();
             panel7 = new Panel();
             label11 = new Label();
@@ -63,9 +63,7 @@
             pictureBox8 = new PictureBox();
             panel6 = new Panel();
             panel2 = new Panel();
-            pictureBox4 = new PictureBox();
             panel4 = new Panel();
-            pictureBox2 = new PictureBox();
             pictureBox3 = new PictureBox();
             panel3 = new Panel();
             panel5 = new Panel();
@@ -108,10 +106,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
-            panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
-            panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox17).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox19).BeginInit();
@@ -605,43 +599,20 @@
             // panel2
             // 
             panel2.BackColor = Color.Navy;
-            panel2.Controls.Add(pictureBox4);
-            panel2.Location = new Point(3, 1);
+            panel2.Location = new Point(3, 0);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
             panel2.Size = new Size(964, 18);
             panel2.TabIndex = 2;
             // 
-            // pictureBox4
-            // 
-            pictureBox4.BackColor = Color.Navy;
-            pictureBox4.Location = new Point(494, -176);
-            pictureBox4.Margin = new Padding(3, 2, 3, 2);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(21, 494);
-            pictureBox4.TabIndex = 9;
-            pictureBox4.TabStop = false;
-            pictureBox4.Click += pictureBox4_Click;
-            // 
             // panel4
             // 
             panel4.BackColor = Color.Navy;
-            panel4.Controls.Add(pictureBox2);
             panel4.Location = new Point(946, 18);
             panel4.Margin = new Padding(3, 2, 3, 2);
             panel4.Name = "panel4";
             panel4.Size = new Size(21, 652);
             panel4.TabIndex = 3;
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.BackColor = Color.Navy;
-            pictureBox2.Location = new Point(-203, 595);
-            pictureBox2.Margin = new Padding(3, 2, 3, 2);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(232, 18);
-            pictureBox2.TabIndex = 7;
-            pictureBox2.TabStop = false;
             // 
             // pictureBox3
             // 
@@ -665,7 +636,7 @@
             // panel5
             // 
             panel5.BackColor = Color.Navy;
-            panel5.Location = new Point(-2, 1);
+            panel5.Location = new Point(-2, -1);
             panel5.Margin = new Padding(3, 2, 3, 2);
             panel5.Name = "panel5";
             panel5.Size = new Size(21, 678);
@@ -956,19 +927,19 @@
             // 
             // chartMasVendidos
             // 
-            chartArea3.Name = "ChartArea1";
-            chartMasVendidos.ChartAreas.Add(chartArea3);
-            legend3.BackColor = Color.SkyBlue;
-            legend3.Name = "Legend1";
-            chartMasVendidos.Legends.Add(legend3);
+            chartArea1.Name = "ChartArea1";
+            chartMasVendidos.ChartAreas.Add(chartArea1);
+            legend1.BackColor = Color.SkyBlue;
+            legend1.Name = "Legend1";
+            chartMasVendidos.Legends.Add(legend1);
             chartMasVendidos.Location = new Point(303, 140);
             chartMasVendidos.Margin = new Padding(3, 2, 3, 2);
             chartMasVendidos.Name = "chartMasVendidos";
             chartMasVendidos.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            chartMasVendidos.Series.Add(series3);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            chartMasVendidos.Series.Add(series1);
             chartMasVendidos.Size = new Size(360, 164);
             chartMasVendidos.TabIndex = 63;
             chartMasVendidos.Text = "chart1";
@@ -977,22 +948,22 @@
             // 
             chartStock.BackColor = Color.SkyBlue;
             chartStock.BorderlineColor = Color.SkyBlue;
-            chartArea4.BackColor = Color.SkyBlue;
-            chartArea4.BackSecondaryColor = Color.White;
-            chartArea4.Name = "ChartArea1";
-            chartStock.ChartAreas.Add(chartArea4);
-            legend4.BackColor = Color.SkyBlue;
-            legend4.Name = "Legend1";
-            chartStock.Legends.Add(legend4);
+            chartArea2.BackColor = Color.SkyBlue;
+            chartArea2.BackSecondaryColor = Color.White;
+            chartArea2.Name = "ChartArea1";
+            chartStock.ChartAreas.Add(chartArea2);
+            legend2.BackColor = Color.SkyBlue;
+            legend2.Name = "Legend1";
+            chartStock.Legends.Add(legend2);
             chartStock.Location = new Point(311, 431);
             chartStock.Margin = new Padding(3, 2, 3, 2);
             chartStock.Name = "chartStock";
             chartStock.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.EarthTones;
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            chartStock.Series.Add(series4);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            chartStock.Series.Add(series2);
             chartStock.Size = new Size(346, 161);
             chartStock.TabIndex = 96;
             chartStock.Text = "chartStock";
@@ -1110,6 +1081,7 @@
             Controls.Add(panel4);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 2, 3, 2);
             Name = "MenuPrincipalAdm";
             Text = "MenuPrincipalAdm";
@@ -1129,10 +1101,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
-            panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
-            panel4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox17).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox19).EndInit();
@@ -1148,8 +1116,6 @@
         private Panel panel1;
         private Panel panel2;
         private Panel panel4;
-        private PictureBox pictureBox2;
-        private PictureBox pictureBox4;
         private PictureBox pictureBox3;
         private Panel panel8;
         private Panel panel3;
