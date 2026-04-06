@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             panel1 = new Panel();
             panel7 = new Panel();
             label11 = new Label();
@@ -69,12 +69,11 @@
             pictureBox3 = new PictureBox();
             panel3 = new Panel();
             panel5 = new Panel();
-            pictureBox6 = new PictureBox();
             panel8 = new Panel();
             pictureBox17 = new PictureBox();
             label1 = new Label();
             btninventario2 = new Krypton.Toolkit.KryptonButton();
-            kryptonButton13 = new Krypton.Toolkit.KryptonButton();
+            btnProd = new Krypton.Toolkit.KryptonButton();
             kryptonButton14 = new Krypton.Toolkit.KryptonButton();
             btninventario3 = new Krypton.Toolkit.KryptonButton();
             btndeudores2 = new Krypton.Toolkit.KryptonButton();
@@ -114,8 +113,6 @@
             panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox17).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox19).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox20).BeginInit();
@@ -668,22 +665,11 @@
             // panel5
             // 
             panel5.BackColor = Color.Navy;
-            panel5.Controls.Add(pictureBox6);
             panel5.Location = new Point(-2, 1);
             panel5.Margin = new Padding(3, 2, 3, 2);
             panel5.Name = "panel5";
             panel5.Size = new Size(21, 678);
             panel5.TabIndex = 8;
-            // 
-            // pictureBox6
-            // 
-            pictureBox6.BackColor = Color.Navy;
-            pictureBox6.Location = new Point(-203, 595);
-            pictureBox6.Margin = new Padding(3, 2, 3, 2);
-            pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(232, 18);
-            pictureBox6.TabIndex = 7;
-            pictureBox6.TabStop = false;
             // 
             // panel8
             // 
@@ -735,26 +721,27 @@
             btninventario2.Values.Text = "";
             btninventario2.Click += btninventario2_Click;
             // 
-            // kryptonButton13
+            // btnProd
             // 
-            kryptonButton13.Location = new Point(284, 381);
-            kryptonButton13.Margin = new Padding(3, 2, 3, 2);
-            kryptonButton13.Name = "kryptonButton13";
-            kryptonButton13.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            kryptonButton13.OverrideDefault.Back.Color2 = Color.White;
-            kryptonButton13.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            kryptonButton13.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton13.Size = new Size(399, 260);
-            kryptonButton13.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonButton13.StateCommon.Back.Color2 = Color.White;
-            kryptonButton13.StateCommon.Border.Rounding = 100F;
-            kryptonButton13.StateNormal.Back.Color1 = Color.SkyBlue;
-            kryptonButton13.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            kryptonButton13.StatePressed.Back.Color1 = Color.Transparent;
-            kryptonButton13.StatePressed.Back.Color2 = Color.Transparent;
-            kryptonButton13.TabIndex = 47;
-            kryptonButton13.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton13.Values.Text = "";
+            btnProd.Location = new Point(284, 381);
+            btnProd.Margin = new Padding(3, 2, 3, 2);
+            btnProd.Name = "btnProd";
+            btnProd.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnProd.OverrideDefault.Back.Color2 = Color.White;
+            btnProd.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnProd.OverrideFocus.Back.Color2 = Color.White;
+            btnProd.Size = new Size(399, 260);
+            btnProd.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnProd.StateCommon.Back.Color2 = Color.White;
+            btnProd.StateCommon.Border.Rounding = 100F;
+            btnProd.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnProd.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnProd.StatePressed.Back.Color1 = Color.Transparent;
+            btnProd.StatePressed.Back.Color2 = Color.Transparent;
+            btnProd.TabIndex = 47;
+            btnProd.Values.DropDownArrowColor = Color.Empty;
+            btnProd.Values.Text = "";
+            btnProd.Click += btnProd_Click;
             // 
             // kryptonButton14
             // 
@@ -969,19 +956,19 @@
             // 
             // chartMasVendidos
             // 
-            chartArea1.Name = "ChartArea1";
-            chartMasVendidos.ChartAreas.Add(chartArea1);
-            legend1.BackColor = Color.SkyBlue;
-            legend1.Name = "Legend1";
-            chartMasVendidos.Legends.Add(legend1);
+            chartArea3.Name = "ChartArea1";
+            chartMasVendidos.ChartAreas.Add(chartArea3);
+            legend3.BackColor = Color.SkyBlue;
+            legend3.Name = "Legend1";
+            chartMasVendidos.Legends.Add(legend3);
             chartMasVendidos.Location = new Point(303, 140);
             chartMasVendidos.Margin = new Padding(3, 2, 3, 2);
             chartMasVendidos.Name = "chartMasVendidos";
             chartMasVendidos.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            chartMasVendidos.Series.Add(series1);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            chartMasVendidos.Series.Add(series3);
             chartMasVendidos.Size = new Size(360, 164);
             chartMasVendidos.TabIndex = 63;
             chartMasVendidos.Text = "chart1";
@@ -990,23 +977,23 @@
             // 
             chartStock.BackColor = Color.SkyBlue;
             chartStock.BorderlineColor = Color.SkyBlue;
-            chartArea2.BackColor = Color.SkyBlue;
-            chartArea2.BackSecondaryColor = Color.White;
-            chartArea2.Name = "ChartArea1";
-            chartStock.ChartAreas.Add(chartArea2);
-            legend2.BackColor = Color.SkyBlue;
-            legend2.Name = "Legend1";
-            chartStock.Legends.Add(legend2);
-            chartStock.Location = new Point(303, 425);
+            chartArea4.BackColor = Color.SkyBlue;
+            chartArea4.BackSecondaryColor = Color.White;
+            chartArea4.Name = "ChartArea1";
+            chartStock.ChartAreas.Add(chartArea4);
+            legend4.BackColor = Color.SkyBlue;
+            legend4.Name = "Legend1";
+            chartStock.Legends.Add(legend4);
+            chartStock.Location = new Point(311, 431);
             chartStock.Margin = new Padding(3, 2, 3, 2);
             chartStock.Name = "chartStock";
             chartStock.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.EarthTones;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            chartStock.Series.Add(series2);
-            chartStock.Size = new Size(373, 161);
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            chartStock.Series.Add(series4);
+            chartStock.Size = new Size(346, 161);
             chartStock.TabIndex = 96;
             chartStock.Text = "chartStock";
             // 
@@ -1111,7 +1098,7 @@
             Controls.Add(btndeudores2);
             Controls.Add(btninventario3);
             Controls.Add(kryptonButton14);
-            Controls.Add(kryptonButton13);
+            Controls.Add(btnProd);
             Controls.Add(btninventario2);
             Controls.Add(label1);
             Controls.Add(pictureBox17);
@@ -1147,8 +1134,6 @@
             panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            panel5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox17).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox19).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox20).EndInit();
@@ -1195,7 +1180,7 @@
         private Krypton.Toolkit.KryptonButton btnperfil;
         private Label label1;
         private Krypton.Toolkit.KryptonButton btninventario2;
-        private Krypton.Toolkit.KryptonButton kryptonButton13;
+        private Krypton.Toolkit.KryptonButton btnProd;
         private Krypton.Toolkit.KryptonButton kryptonButton14;
         private Krypton.Toolkit.KryptonButton btninventario3;
         private Krypton.Toolkit.KryptonButton btndeudores2;

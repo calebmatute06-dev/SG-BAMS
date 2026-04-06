@@ -102,23 +102,23 @@ namespace SG_BAMS
                     else conStock++;
                 }
 
-                
+
                 Legend leyenda = chartStock.Legends.Add("Leyenda");
                 leyenda.BackColor = Color.Transparent;
                 leyenda.Docking = Docking.Bottom;
                 leyenda.Font = new Font("Segoe UI", 9f, FontStyle.Bold);
 
-               
+
                 var seriePastel = chartStock.Series.Add("StockSeries");
                 seriePastel.ChartType = SeriesChartType.Pie;
                 seriePastel.IsValueShownAsLabel = true;
                 seriePastel.Font = new Font("Segoe UI", 10f, FontStyle.Bold);
 
-               
+
                 seriePastel["PieLabelStyle"] = "Inside";
                 seriePastel.LabelForeColor = Color.White;
 
-               
+
                 int p1 = seriePastel.Points.AddY(sinStock);
                 seriePastel.Points[p1].Color = Color.FromArgb(210, 50, 50);
                 seriePastel.Points[p1].LegendText = $"Sin Stock ({sinStock})";
@@ -135,7 +135,7 @@ namespace SG_BAMS
                 seriePastel.Points[p3].LegendText = $"Con Stock ({conStock})";
                 seriePastel.Points[p3].Label = conStock > 0 ? conStock.ToString() : "";
 
-                
+
                 var area = chartStock.ChartAreas[0];
                 area.BackColor = Color.Transparent;
                 area.AxisX.Enabled = AxisEnabled.False;
@@ -368,6 +368,13 @@ namespace SG_BAMS
         {
             AsistentedeIA AIA = new AsistentedeIA();
             AIA.ShowDialog();
+        }
+
+        private void btnProd_Click(object sender, EventArgs e)
+        {
+            InventarioAdmin Invad = new InventarioAdmin();
+            Invad.Show();
+            this.Hide();
         }
     }
 }
