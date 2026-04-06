@@ -164,6 +164,7 @@
             Controls.Add(btnBorrar);
             Controls.Add(btnEnviar);
             Controls.Add(lstIA);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "AsistentedeIA";
             Text = "AsistentedeIA";
             Load += AsistentedeIA_Load;

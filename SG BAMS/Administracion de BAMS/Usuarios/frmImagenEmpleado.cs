@@ -87,6 +87,7 @@ namespace SG_BAMS
             clsSoporte.InicializarDirectorio();
             LlenarUsuarios();
             if (!string.IsNullOrEmpty(usuarioAsignado)) cmbUsuarios.Text = usuarioAsignado;
+            EncenderCamara(false);
         }
 
         private void LlenarUsuarios()
@@ -107,7 +108,45 @@ namespace SG_BAMS
             }
             catch (Exception ex) { MessageBox.Show("Error al cargar ComboBox: " + ex.Message); }
         }
+        private void EncenderCamara(bool mostrarMensajeExito)
+        {
+            try
+            {
+                if (camara == null)
+                {
+                    camara = new VideoCapture(0);
 
+                    if (camara.IsOpened)
+                    {
+                        Application.Idle += FrameProcess;
+                        camaraEnEncendida = true;
+                        btnCapturar.Enabled = true;
+
+                        if (mostrarMensajeExito)
+                        {
+                            MessageBox.Show("Cámara encendida con éxito.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    else
+                    {
+                        camara.Dispose();
+                        camara = null;
+                        MessageBox.Show("No se logro encender la camara intente de nuevo", "Error de Cámara", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                else
+                {
+                    if (mostrarMensajeExito)
+                    {
+                        MessageBox.Show("La cámara ya está encendida.", "Aviso");
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No se logro encender la camara intente de nuevo", "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
         private void DetenerCamara()
         {
@@ -236,35 +275,7 @@ namespace SG_BAMS
 
         private void btnEncender_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (camara == null)
-                {
-                    camara = new VideoCapture(0);
-
-                    if (camara.IsOpened)
-                    {
-                        Application.Idle += FrameProcess;
-                        camaraEnEncendida = true;
-                        btnCapturar.Enabled = true;
-                        MessageBox.Show("Cámara encendida con éxito.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        camara.Dispose();
-                        camara = null;
-                        MessageBox.Show("No se detectó ninguna cámara o está siendo usada por otra aplicación.", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("La cámara ya está encendida.", "Aviso");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error fatal al encender la cámara: " + ex.Message, "Error Critico", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            EncenderCamara(true);
         }
 
         private void btnDetener_Click(object sender, EventArgs e)
