@@ -28,6 +28,8 @@ namespace SG_BAMS.Login
         private const int VOTOS_PARA_VALIDAR = 2;
         private const double UMBRAL_DISTANCIA = 130;
 
+        private int etiquetaUsuarioValido = -1;
+
         private CancellationTokenSource cts;
         private volatile bool _procesando = false;
 
@@ -35,12 +37,21 @@ namespace SG_BAMS.Login
 
         private void LoginFacial_Load(object sender, EventArgs e)
         {
-            var archivos = Directory.GetFiles(clsSoporte.DirectorioRostros, "*.jpg")
+            var todosLosArchivos = Directory.GetFiles(clsSoporte.DirectorioRostros, "*.jpg").ToList();
+
+            if (todosLosArchivos.Count == 0)
+            {
+                MessageBox.Show("No hay registros faciales.", "Error");
+                Finalizar(DialogResult.Abort);
+                return;
+            }
+
+            var archivosUsuario = todosLosArchivos
                 .Where(f => Path.GetFileNameWithoutExtension(f) == UsuarioAValidar ||
                             Path.GetFileNameWithoutExtension(f).StartsWith(UsuarioAValidar + "_"))
                 .ToList();
 
-            if (archivos.Count == 0)
+            if (archivosUsuario.Count == 0)
             {
                 MessageBox.Show("No tienes un registro facial.", "Error");
                 Finalizar(DialogResult.Abort);
@@ -50,21 +61,40 @@ namespace SG_BAMS.Login
             ActualizarEstado("Cargando modelo facial...", Color.Gray);
             Task.Run(() =>
             {
-                EntrenarModelo(archivos);
+                EntrenarModelo(todosLosArchivos);
                 this.Invoke(new Action(IniciarCamara));
             });
         }
 
-        private void EntrenarModelo(List<string> archivos)
+        private void EntrenarModelo(List<string> todosLosArchivos)
         {
             var rostros = new List<Image<Gray, byte>>();
             var etiquetas = new List<int>();
 
-            foreach (var archivo in archivos)
+            var usuarios = todosLosArchivos
+                .GroupBy(f =>
+                {
+                    string nombre = Path.GetFileNameWithoutExtension(f);
+                    int idx = nombre.IndexOf('_');
+                    return idx >= 0 ? nombre.Substring(0, idx) : nombre;
+                })
+                .ToList();
+
+            int etiquetaActual = 1;
+            foreach (var grupo in usuarios)
             {
-                var img = new Image<Gray, byte>(archivo).Resize(100, 100, Inter.Linear);
-                AplicarPreprocesado(img);
-                AgregarConVariantes(img, rostros, etiquetas);
+                string nombreUsuario = grupo.Key;
+                int etiqueta = etiquetaActual++;
+
+                if (nombreUsuario == UsuarioAValidar)
+                    etiquetaUsuarioValido = etiqueta;
+
+                foreach (var archivo in grupo)
+                {
+                    var img = new Image<Gray, byte>(archivo).Resize(100, 100, Inter.Linear);
+                    AplicarPreprocesado(img);
+                    AgregarConVariantes(img, rostros, etiquetas, etiqueta);
+                }
             }
 
             using (var vR = new VectorOfMat())
@@ -77,9 +107,9 @@ namespace SG_BAMS.Login
         }
 
         private void AgregarConVariantes(Image<Gray, byte> base_,
-            List<Image<Gray, byte>> lista, List<int> etiquetas)
+            List<Image<Gray, byte>> lista, List<int> etiquetas, int etiqueta)
         {
-            void Add(Image<Gray, byte> img) { lista.Add(img); etiquetas.Add(1); }
+            void Add(Image<Gray, byte> img) { lista.Add(img); etiquetas.Add(etiqueta); }
             Add(base_);
             Add(base_.Flip(FlipType.Horizontal));
             var b1 = base_.Clone(); b1._Mul(1.6); Add(b1);
@@ -88,7 +118,6 @@ namespace SG_BAMS.Login
             var b4 = base_.Clone(); b4._Mul(0.4); Add(b4);
             Add(SimularLuzLateral(base_));
         }
-
 
         private System.Windows.Forms.Timer timerCamara;
 
@@ -124,7 +153,6 @@ namespace SG_BAMS.Login
                 finally { m.Dispose(); _procesando = false; }
             }, token);
         }
-
 
         private void ProcesarFrame(Mat m)
         {
@@ -166,7 +194,9 @@ namespace SG_BAMS.Login
                     {
                         AplicarPreprocesado(rostroProcesado);
                         var resultado = recognizer.Predict(rostroProcesado);
-                        bool coincide = resultado.Label != -1 && resultado.Distance < UMBRAL_DISTANCIA;
+
+                        bool coincide = resultado.Label == etiquetaUsuarioValido
+                                        && resultado.Distance < UMBRAL_DISTANCIA;
 
                         if (coincide)
                         {
@@ -178,7 +208,12 @@ namespace SG_BAMS.Login
                         else
                         {
                             contadorExito = Math.Max(0, contadorExito - 1);
-                            ActualizarEstado($"Ajusta posición... (dist: {resultado.Distance:F0})", Color.Orange);
+
+                            string msg = resultado.Label != etiquetaUsuarioValido && resultado.Label != -1
+                                ? "Rostro no autorizado"
+                                : $"Ajusta posición... (dist: {resultado.Distance:F0})";
+
+                            ActualizarEstado(msg, Color.Red);
                         }
                     }
                 }
@@ -269,17 +304,36 @@ namespace SG_BAMS.Login
 
             if (resultado == DialogResult.OK)
             {
+                Form loginOriginal = Application.OpenForms["Login"];
+                loginOriginal?.Close();
+
                 switch (RolAsignado)
                 {
-                    case 1: new MenuPrincipalAdm().Show(); break;
-                    case 2: new MenuPrincipalEmp().Show(); break;
+                    case 1:
+                        new MenuPrincipalAdm().Show();
+                        break;
+                    case 2:
+                        new MenuPrincipalEmp().Show();
+                        break;
+                    default:
+                        MessageBox.Show("Rol no reconocido.", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
                 }
             }
             else
             {
                 Form loginOriginal = Application.OpenForms["Login"];
-                if (loginOriginal != null) loginOriginal.Show();
+                if (loginOriginal != null)
+                {
+                    loginOriginal.Show();
+                }
+                else
+                {
+                    new Login().Show();
+                }
             }
+
             this.Close();
         }
 
