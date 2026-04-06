@@ -90,7 +90,6 @@ namespace SG_BAMS
                 chartStock.Legends.Clear();
                 chartStock.ChartAreas[0].Position.Auto = true;
 
-
                 int sinStock = 0;
                 int bajoStock = 0;
                 int conStock = 0;
@@ -103,65 +102,44 @@ namespace SG_BAMS
                     else conStock++;
                 }
 
-                int total = sinStock + bajoStock + conStock;
-
-
+                
                 Legend leyenda = chartStock.Legends.Add("Leyenda");
                 leyenda.BackColor = Color.Transparent;
-                leyenda.IsTextAutoFit = true;
-                leyenda.LegendStyle = LegendStyle.Column;
                 leyenda.Docking = Docking.Bottom;
                 leyenda.Font = new Font("Segoe UI", 9f, FontStyle.Bold);
 
+               
+                var seriePastel = chartStock.Series.Add("StockSeries");
+                seriePastel.ChartType = SeriesChartType.Pie;
+                seriePastel.IsValueShownAsLabel = true;
+                seriePastel.Font = new Font("Segoe UI", 10f, FontStyle.Bold);
 
-                var serieSin = chartStock.Series.Add("Sin Stock");
-                serieSin.ChartType = SeriesChartType.Bar;
-                serieSin.Color = Color.FromArgb(210, 50, 50);
-                serieSin.LegendText = "Sin Stock (" + sinStock + " productos)";
-                serieSin.IsValueShownAsLabel = true;
-                serieSin.Font = new Font("Segoe UI", 10f, FontStyle.Bold);
-                serieSin.LabelForeColor = Color.White;
-                serieSin["BarLabelStyle"] = "Center";
-                int pSin = serieSin.Points.AddY(sinStock);
-                serieSin.Points[pSin].AxisLabel = "Estado de Stock";
+               
+                seriePastel["PieLabelStyle"] = "Inside";
+                seriePastel.LabelForeColor = Color.White;
 
+               
+                int p1 = seriePastel.Points.AddY(sinStock);
+                seriePastel.Points[p1].Color = Color.FromArgb(210, 50, 50);
+                seriePastel.Points[p1].LegendText = $"Sin Stock ({sinStock})";
+                seriePastel.Points[p1].Label = sinStock > 0 ? sinStock.ToString() : "";
 
-                var serieBajo = chartStock.Series.Add("Bajo Stock");
-                serieBajo.ChartType = SeriesChartType.Bar;
-                serieBajo.Color = Color.FromArgb(220, 180, 0);
-                serieBajo.LegendText = "Bajo Stock (" + bajoStock + " productos)";
-                serieBajo.IsValueShownAsLabel = true;
-                serieBajo.Font = new Font("Segoe UI", 10f, FontStyle.Bold);
-                serieBajo.LabelForeColor = Color.Black;
-                serieBajo["BarLabelStyle"] = "Center";
-                int pBajo = serieBajo.Points.AddY(bajoStock);
-                serieBajo.Points[pBajo].AxisLabel = "Estado de Stock";
+                int p2 = seriePastel.Points.AddY(bajoStock);
+                seriePastel.Points[p2].Color = Color.FromArgb(220, 180, 0);
+                seriePastel.Points[p2].LegendText = $"Bajo Stock ({bajoStock})";
+                seriePastel.Points[p2].LabelForeColor = Color.Black;
+                seriePastel.Points[p2].Label = bajoStock > 0 ? bajoStock.ToString() : "";
 
+                int p3 = seriePastel.Points.AddY(conStock);
+                seriePastel.Points[p3].Color = Color.FromArgb(50, 160, 60);
+                seriePastel.Points[p3].LegendText = $"Con Stock ({conStock})";
+                seriePastel.Points[p3].Label = conStock > 0 ? conStock.ToString() : "";
 
-                var serieConStock = chartStock.Series.Add("Con Stock");
-                serieConStock.ChartType = SeriesChartType.Bar;
-                serieConStock.Color = Color.FromArgb(50, 160, 60);
-                serieConStock.LegendText = "Con Stock (" + conStock + " productos)";
-                serieConStock.IsValueShownAsLabel = true;
-                serieConStock.Font = new Font("Segoe UI", 10f, FontStyle.Bold);
-                serieConStock.LabelForeColor = Color.White;
-                serieConStock["BarLabelStyle"] = "Center";
-                int pCon = serieConStock.Points.AddY(conStock);
-                serieConStock.Points[pCon].AxisLabel = "Estado de Stock";
-
-
+                
                 var area = chartStock.ChartAreas[0];
                 area.BackColor = Color.Transparent;
-                area.AxisX.LineColor = Color.Transparent;
-                area.AxisX.MajorGrid.Enabled = false;
-                area.AxisX.MajorTickMark.Enabled = false;
-                area.AxisX.LabelStyle.Enabled = false;
-                area.AxisY.MajorGrid.LineColor = Color.FromArgb(80, Color.White);
-                area.AxisY.LabelStyle.Font = new Font("Segoe UI", 8f);
-                area.AxisY.Maximum = total + (total * 0.1);
-                area.AxisY.Minimum = 0;
-                area.AxisY.Title = "Cantidad de productos";
-                area.AxisY.TitleFont = new Font("Segoe UI", 8f, FontStyle.Bold);
+                area.AxisX.Enabled = AxisEnabled.False;
+                area.AxisY.Enabled = AxisEnabled.False;
 
                 chartStock.BackColor = Color.SkyBlue;
             }

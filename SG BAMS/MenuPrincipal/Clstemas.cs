@@ -33,7 +33,7 @@ public static class ClsTemas
 
     private static void ProcesarEstiloCapa(Control objetoControl, bool esOscuro)
     {
-        // --- 1. BOTONES (ESTÁNDAR Y KRYPTONBUTTON11) ---
+        
         if (objetoControl.Name == "kryptonButton11" || objetoControl is Button)
         {
             if (esOscuro)
@@ -41,23 +41,23 @@ public static class ClsTemas
                 objetoControl.BackColor = Color.White;
                 objetoControl.ForeColor = Color.Black;
 
-                // Si es el botón de Krypton, forzamos blanco en TODOS sus estados
+                
                 if (objetoControl.GetType().Name.Contains("KryptonButton"))
                 {
                     try
                     {
                         dynamic kBtn = objetoControl;
-                        // Color Normal
+                        
                         kBtn.StateCommon.Back.Color1 = Color.White;
                         kBtn.StateCommon.Back.Color2 = Color.White;
                         kBtn.StateCommon.Content.ShortText.Color1 = Color.Black;
 
-                        // Color al pasar el mouse (Tracking) - Forzamos Blanco también
+                       
                         kBtn.StateTracking.Back.Color1 = Color.White;
                         kBtn.StateTracking.Back.Color2 = Color.White;
                         kBtn.StateTracking.Content.ShortText.Color1 = Color.Black;
 
-                        // Color al hacer clic (Pressed)
+                       
                         kBtn.StatePressed.Back.Color1 = Color.White;
                         kBtn.StatePressed.Back.Color2 = Color.White;
                     }
@@ -66,7 +66,7 @@ public static class ClsTemas
             }
             else
             {
-                // Modo Claro: Devolvemos a la normalidad o colores estándar
+                
                 objetoControl.BackColor = SystemColors.ControlLight;
                 objetoControl.ForeColor = SystemColors.ControlText;
 
@@ -75,7 +75,7 @@ public static class ClsTemas
                     try
                     {
                         dynamic kBtn = objetoControl;
-                        // Al poner Color.Empty, Krypton vuelve a usar su paleta original
+                        
                         kBtn.StateCommon.Back.Color1 = Color.Empty;
                         kBtn.StateTracking.Back.Color1 = Color.Empty;
                         kBtn.StateCommon.Content.ShortText.Color1 = Color.Empty;
@@ -85,20 +85,20 @@ public static class ClsTemas
             }
         }
 
-        // --- 2. TEXTOS (Labels, CheckBox, Radio) ---
+        
         else if (objetoControl is Label || objetoControl is CheckBox || objetoControl is RadioButton)
         {
             objetoControl.ForeColor = esOscuro ? colorTextoBlanco : SystemColors.ControlText;
         }
 
-        // --- 3. CAJAS DE TEXTO Y COMBOS ---
+        
         else if (objetoControl is TextBox || objetoControl is ComboBox)
         {
             objetoControl.BackColor = esOscuro ? Color.FromArgb(45, 45, 48) : Color.White;
             objetoControl.ForeColor = esOscuro ? colorTextoBlanco : Color.Black;
         }
 
-        // --- 4. PANELES ---
+        
         else if (objetoControl is Panel || objetoControl is GroupBox)
         {
             if (objetoControl.BackColor == SystemColors.Control)

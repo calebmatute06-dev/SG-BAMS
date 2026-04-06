@@ -68,7 +68,7 @@ namespace SG_BAMS
             cantidadnotificaciones.ForeColor = (contadorNoLeidas > 0) ? Color.Red : Color.Gray;
         }
 
-        // --- MODIFICADO: Ahora guarda en la Base de Datos ---
+       
         private async void Notificaciones_DoubleClick(object sender, EventArgs e)
         {
             if (notificaciones.SelectedIndex != -1 && notificaciones.SelectedItem != null)
@@ -82,13 +82,13 @@ namespace SG_BAMS
 
                 if (!notificacionesLeidas.Contains(idNotificacion))
                 {
-                    // 1. Llamamos a la clase de lógica para actualizar SQL
+                   
                     ClsNotificaciones objNoti = new ClsNotificaciones();
                     bool exito = await objNoti.MarcarComoLeida(idNotificacion);
 
                     if (exito)
                     {
-                        // 2. Si se guardó en SQL, actualizamos la interfaz
+                        
                         notificacionesLeidas.Add(idNotificacion);
                         if (contadorNoLeidas > 0)
                         {

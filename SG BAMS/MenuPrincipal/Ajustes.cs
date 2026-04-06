@@ -21,8 +21,7 @@ namespace SG_BAMS
 
 
 
-            // Sincronizar ComboBox con el factor actual (progresivo)
-            // Esto asegura que si el zoom es 1.1f, el combo marque "110%"
+           
             string zoomTexto = Math.Round(Config_Sistema.FactorZoom * 100).ToString() + "%";
 
             if (cmbZoom.Items.Contains(zoomTexto))
@@ -31,7 +30,7 @@ namespace SG_BAMS
             }
             else
             {
-                // Si el valor no está en la lista (por ejemplo al inicio), ponemos 100%
+                
                 cmbZoom.SelectedIndex = cmbZoom.FindString("100%");
             }
 
@@ -51,11 +50,11 @@ namespace SG_BAMS
 
             if (float.TryParse(textoLimpio, out float porcentaje))
             {
-                // 1. Guardar el nuevo factor de zoom en el archivo config
+                
                 Config_Sistema.FactorZoom = porcentaje / 100f;
                 Config_Sistema.GuardarConfiguracion();
 
-                // 2. Solo informar al usuario (sin botones de Sí/No, solo OK)
+               
                 MessageBox.Show(
                     "El nivel de zoom se ha guardado. Los cambios se aplicarán por completo al iniciar la próxima sesión.",
                     "Configuración Guardada",

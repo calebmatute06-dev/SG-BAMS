@@ -14,7 +14,7 @@ namespace SG_BAMS
             {
                 AbrirConexion();
 
-                // IMPORTANTE: Agregamos "WHERE leida = 0" para que no vuelvan a aparecer al entrar
+               
                 string query = "SELECT * FROM Notificaciones WHERE leida = 0";
 
                 if (!esAdmin)
@@ -40,7 +40,6 @@ namespace SG_BAMS
             return tablaDatos;
         }
 
-        // --- NUEVO MÉTODO PARA PERSISTENCIA ---
         public async Task<bool> MarcarComoLeida(int idNotificacion)
         {
             try

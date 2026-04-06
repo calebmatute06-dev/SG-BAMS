@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO; // Necesario para manejar la memoria de la imagen
+using System.IO; 
 
 namespace SG_BAMS
 {

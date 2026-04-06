@@ -29,12 +29,7 @@ namespace SG_BAMS
         Clscontador_cliente objetoContador = new Clscontador_cliente();
 
 
-        //Bloque de contadores 
-        //--------------------------------------------------------------------
-
-
-
-        // Método asíncrono para que no se congele la interfaz al conectar con Somee
+       
         private async Task ActualizarLabel()
         {
 
@@ -77,8 +72,7 @@ namespace SG_BAMS
             }
         }
 
-        //-----------------------------------------------------------------------------------------
-
+        
 
 
 
@@ -92,7 +86,7 @@ namespace SG_BAMS
 
                 dgvVentas.DataSource = datosVentas;
 
-                // FIX: Validación de existencia de columnas para evitar ArgumentOutOfRangeException
+                
                 if (dgvVentas.Columns.Contains("factura_id"))
                     dgvVentas.Columns["factura_id"].HeaderText = "N° Factura";
 
@@ -118,50 +112,69 @@ namespace SG_BAMS
             {
                 chartStock1.Series.Clear();
                 chartStock1.Legends.Clear();
-                chartStock1.ChartAreas[0].Position.Auto = true;
 
-                Legend leyendaEstandar = chartStock1.Legends.Add("Default");
-                leyendaEstandar.BackColor = Color.Transparent;
-                leyendaEstandar.IsTextAutoFit = true;
-                leyendaEstandar.LegendStyle = LegendStyle.Table;
-                leyendaEstandar.Docking = Docking.Right;
-
-                var serieInventario = chartStock1.Series.Add("StockSeries");
-                serieInventario.ChartType = SeriesChartType.Pie;
-
-                foreach (DataRow filaDatos in tablaStock.Rows)
+                
+                if (chartStock1.ChartAreas.Count == 0)
                 {
-                    // --- CORRECCIÓN DE NOMBRES DE COLUMNA SEGÚN LA VISTA NUEVA ---
-                    string nombreArticulo = filaDatos["Nombre Producto"].ToString(); // Antes "producto"
-                    int cantidadReal = Convert.ToInt32(filaDatos["STOCK"]);           // Antes "cantidad"
-
-                    double valorVisual = (cantidadReal == 0) ? 0.6 : cantidadReal;
-
-                    int puntoIndice = serieInventario.Points.AddXY(nombreArticulo, valorVisual);
-                    var puntoActual = serieInventario.Points[puntoIndice];
-
-                    if (cantidadReal == 0)
-                    {
-                        puntoActual.Color = Color.Red;
-                        puntoActual.LegendText = nombreArticulo + " - Agotado";
-                        puntoActual.Label = "0";
-                    }
-                    else if (cantidadReal < 5)
-                    {
-                        puntoActual.Color = Color.Yellow;
-                        puntoActual.LegendText = nombreArticulo + " - A punto de agotarse";
-                        puntoActual.Label = cantidadReal.ToString();
-                    }
-                    else
-                    {
-                        puntoActual.Color = Color.Green;
-                        puntoActual.LegendText = nombreArticulo + " (" + cantidadReal + ")";
-                        puntoActual.Label = cantidadReal.ToString();
-                    }
+                    chartStock1.ChartAreas.Add(new ChartArea("Default"));
                 }
 
+                var area = chartStock1.ChartAreas[0];
+                area.Position.Auto = true;
+                area.BackColor = Color.Transparent;
+                area.AxisX.Enabled = AxisEnabled.False;
+                area.AxisY.Enabled = AxisEnabled.False;
+
+                
+                int sinStock = 0;
+                int bajoStock = 0;
+                int conStock = 0;
+
+                foreach (DataRow fila in tablaStock.Rows)
+                {
+                    int cantidad = Convert.ToInt32(fila["STOCK"]);
+                    if (cantidad == 0) sinStock++;
+                    else if (cantidad < 5) bajoStock++;
+                    else conStock++;
+                }
+
+                
+                Legend leyenda = chartStock1.Legends.Add("Leyenda");
+                leyenda.BackColor = Color.Transparent;
+                leyenda.Docking = Docking.Bottom;
+                leyenda.Font = new Font("Segoe UI", 9f, FontStyle.Bold);
+
+                
+                var seriePastel = chartStock1.Series.Add("StockSeries");
+                seriePastel.ChartType = SeriesChartType.Pie;
+                seriePastel.IsValueShownAsLabel = true;
+                seriePastel.Font = new Font("Segoe UI", 10f, FontStyle.Bold);
+                seriePastel["PieLabelStyle"] = "Inside";
+
+                
+
+                
+                int p1 = seriePastel.Points.AddY(sinStock);
+                seriePastel.Points[p1].Color = Color.FromArgb(210, 50, 50);
+                seriePastel.Points[p1].LegendText = $"Sin Stock ({sinStock} productos)";
+                seriePastel.Points[p1].Label = sinStock > 0 ? sinStock.ToString() : "";
+                seriePastel.Points[p1].LabelForeColor = Color.White;
+
+               
+                int p2 = seriePastel.Points.AddY(bajoStock);
+                seriePastel.Points[p2].Color = Color.FromArgb(220, 180, 0);
+                seriePastel.Points[p2].LegendText = $"Bajo Stock ({bajoStock} productos)";
+                seriePastel.Points[p2].Label = bajoStock > 0 ? bajoStock.ToString() : "";
+                seriePastel.Points[p2].LabelForeColor = Color.Black;
+
+               
+                int p3 = seriePastel.Points.AddY(conStock);
+                seriePastel.Points[p3].Color = Color.FromArgb(50, 160, 60);
+                seriePastel.Points[p3].LegendText = $"Con Stock ({conStock} productos)";
+                seriePastel.Points[p3].Label = conStock > 0 ? conStock.ToString() : "";
+                seriePastel.Points[p3].LabelForeColor = Color.White;
+
                 chartStock1.BackColor = Color.SkyBlue;
-                chartStock1.ChartAreas[0].BackColor = Color.Transparent;
             }
         }
 
