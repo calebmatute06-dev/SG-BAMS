@@ -128,7 +128,7 @@ namespace SG_BAMS
 
         private void btnNoti(object sender, EventArgs e)
         {
-            new NotificacionesEmp().Show();
+            new NotificacionesAdmin().Show();
         }
 
         private void btnMenuEmp_Click(object sender, EventArgs e)
