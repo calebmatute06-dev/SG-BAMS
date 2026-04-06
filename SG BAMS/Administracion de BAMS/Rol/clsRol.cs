@@ -48,7 +48,7 @@ namespace SG_BAMS.Administracion_de_BAMS.Rol
 
                     cmd.Parameters.AddWithValue("@descripcion_rol", descripcion);
 
-                    // Ejecutamos de forma asíncrona
+                    
                     int filasAfectadas = await cmd.ExecuteNonQueryAsync();
 
                     return filasAfectadas > 0;

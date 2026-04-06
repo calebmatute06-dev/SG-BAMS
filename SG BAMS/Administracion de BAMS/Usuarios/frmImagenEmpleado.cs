@@ -17,7 +17,7 @@ namespace SG_BAMS
         private VideoCapture camara;
         private bool camaraEnEncendida = false;
 
-        // Detectores para diferentes ángulos
+       
         private CascadeClassifier frontalFaceDetector = new CascadeClassifier("haarcascade_frontalface_default.xml");
         private CascadeClassifier profileFaceDetector = new CascadeClassifier("haarcascade_profileface.xml");
 
