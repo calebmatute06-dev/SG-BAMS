@@ -152,10 +152,12 @@ namespace SG_BAMS.Login
                 {
                     case 1: 
                         new MenuPrincipalAdm().Show();
+                        this.Close();
                         break;
 
                     case 2: 
                         new MenuPrincipalEmp().Show();
+                        this.Close();
                         break;
                 }
                 this.Close();

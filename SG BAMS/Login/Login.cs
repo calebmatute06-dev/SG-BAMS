@@ -63,6 +63,7 @@ namespace SG_BAMS.Login
                         frmFacialAdm.UsuarioAValidar = txtUsu.Text;
                         frmFacialAdm.RolAsignado = rol;
                         frmFacialAdm.Show();
+                        this.Hide();
                         break;
 
                     case 2:
