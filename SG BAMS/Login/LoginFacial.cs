@@ -48,6 +48,7 @@ namespace SG_BAMS.Login
             {
                 var imgReferencia = new Image<Gray, byte>(archivo);
                 CvInvoke.EqualizeHist(imgReferencia, imgReferencia);
+                AplicarMejoraIluminacion(imgReferencia);
                 rostrosReferencia.Add(imgReferencia);
             }
 
@@ -70,28 +71,15 @@ namespace SG_BAMS.Login
                     {
                         using (var grayFrame = frame.Convert<Gray, byte>())
                         {
-                            CvInvoke.EqualizeHist(grayFrame, grayFrame);
-
-                            Rectangle[] rostrosFrontales = faceDetector.DetectMultiScale(grayFrame, 1.1, 10, Size.Empty);
-                            Rectangle[] rostrosPerfil = profileFaceDetector.DetectMultiScale(grayFrame, 1.1, 10, Size.Empty);
-
-                            var todosLosRostros = rostrosFrontales.Concat(rostrosPerfil);
-
-                            foreach (Rectangle rostro in todosLosRostros)
-                            {
-                                frame.Draw(rostro, new Bgr(Color.Cyan), 2);
-                            }
-
-                            if (picValidar.Image != null) picValidar.Image.Dispose();
-                            picValidar.Image = frame.ToBitmap();
-
+                            AplicarMejoraIluminacion(grayFrame);
                             var rostroActual = clsSoporte.DetectarRostro(frame);
 
                             if (rostroActual != null)
                             {
-                                CvInvoke.EqualizeHist(rostroActual, rostroActual);
+                                AplicarMejoraIluminacion(rostroActual);
                                 CompararRostros(rostroActual);
                             }
+
                         }
                     }
                 }
@@ -169,7 +157,20 @@ namespace SG_BAMS.Login
                 this.Close();
             }
         }
-
+        private void AplicarMejoraIluminacion(Image<Gray, byte> imagen)
+        {
+            using (Mat claheResult = new Mat())
+            {
+                CvInvoke.CLAHE(imagen, 2.0, new Size(8, 8), claheResult);
+                claheResult.CopyTo(imagen);
+            }
+        }
+        private Image<Gray, byte> CorregirGamma(Image<Gray, byte> imagen, double gamma = 0.5)
+        {
+            Image<Gray, byte> res = imagen.Clone();
+            res._GammaCorrect(gamma);
+            return res;
+        }
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             Application.Idle -= ProcesoValidacion;
