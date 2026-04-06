@@ -687,7 +687,7 @@
             // kryptonGroupBox3
             // 
             kryptonGroupBox3.CaptionVisible = false;
-            kryptonGroupBox3.Location = new Point(338, 86);
+            kryptonGroupBox3.Location = new Point(306, 65);
             kryptonGroupBox3.Size = new Size(139, 31);
             kryptonGroupBox3.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroupBox3.StateCommon.Border.Rounding = 50F;
@@ -743,17 +743,17 @@
             // 
             // dtpInicio
             // 
-            dtpInicio.Location = new Point(324, 140);
+            dtpInicio.Location = new Point(276, 115);
             dtpInicio.Name = "dtpInicio";
-            dtpInicio.Size = new Size(100, 23);
+            dtpInicio.Size = new Size(222, 23);
             dtpInicio.TabIndex = 143;
             // 
             // dtpFin
             // 
             dtpFin.CalendarForeColor = Color.Navy;
-            dtpFin.Location = new Point(451, 140);
+            dtpFin.Location = new Point(276, 159);
             dtpFin.Name = "dtpFin";
-            dtpFin.Size = new Size(102, 23);
+            dtpFin.Size = new Size(222, 23);
             dtpFin.TabIndex = 143;
             // 
             // dgvFacturas
@@ -786,7 +786,7 @@
             label3.BackColor = Color.SkyBlue;
             label3.Font = new Font("Arial Narrow", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(376, 89);
+            label3.Location = new Point(343, 67);
             label3.Name = "label3";
             label3.Size = new Size(64, 26);
             label3.TabIndex = 324;
@@ -798,7 +798,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(347, 120);
+            label5.Location = new Point(276, 96);
             label5.Name = "label5";
             label5.Size = new Size(46, 19);
             label5.TabIndex = 329;
@@ -809,7 +809,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(476, 120);
+            label6.Location = new Point(276, 140);
             label6.Name = "label6";
             label6.Size = new Size(40, 19);
             label6.TabIndex = 330;
