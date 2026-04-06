@@ -29,19 +29,16 @@ namespace SG_BAMS.Login
         private const double UMBRAL_DISTANCIA = 85;
 
         private CancellationTokenSource cts;
-        private bool _procesando = false; 
+        private volatile bool _procesando = false;
 
-        public LoginFacial()
-        {
-            InitializeComponent();
-        }
+        public LoginFacial() { InitializeComponent(); }
 
         private void LoginFacial_Load(object sender, EventArgs e)
         {
             var archivos = Directory.GetFiles(clsSoporte.DirectorioRostros, "*.jpg")
-                           .Where(f => Path.GetFileNameWithoutExtension(f) == UsuarioAValidar ||
-                                       Path.GetFileNameWithoutExtension(f).StartsWith(UsuarioAValidar + "_"))
-                           .ToList();
+                .Where(f => Path.GetFileNameWithoutExtension(f) == UsuarioAValidar ||
+                            Path.GetFileNameWithoutExtension(f).StartsWith(UsuarioAValidar + "_"))
+                .ToList();
 
             if (archivos.Count == 0)
             {
@@ -58,42 +55,37 @@ namespace SG_BAMS.Login
             });
         }
 
-
         private void EntrenarModelo(List<string> archivos)
         {
-            var rostrosEntrenamiento = new List<Image<Gray, byte>>();
+            var rostros = new List<Image<Gray, byte>>();
             var etiquetas = new List<int>();
 
             foreach (var archivo in archivos)
             {
-                var imgOriginal = new Image<Gray, byte>(archivo).Resize(100, 100, Inter.Linear);
-                AplicarPreprocesado(imgOriginal);
-                AgregarConVariantes(imgOriginal, rostrosEntrenamiento, etiquetas);
+                var img = new Image<Gray, byte>(archivo).Resize(100, 100, Inter.Linear);
+                AplicarPreprocesado(img);
+                AgregarConVariantes(img, rostros, etiquetas);
             }
 
-            using (var vRostros = new VectorOfMat())
-            using (var vEtiquetas = new VectorOfInt(etiquetas.ToArray()))
+            using (var vR = new VectorOfMat())
+            using (var vE = new VectorOfInt(etiquetas.ToArray()))
             {
-                foreach (var img in rostrosEntrenamiento)
-                    vRostros.Push(img.Mat);
-                recognizer.Train(vRostros, vEtiquetas);
+                foreach (var img in rostros) vR.Push(img.Mat);
+                recognizer.Train(vR, vE);
             }
-
-            foreach (var img in rostrosEntrenamiento) img.Dispose();
+            foreach (var img in rostros) img.Dispose();
         }
 
         private void AgregarConVariantes(Image<Gray, byte> base_,
             List<Image<Gray, byte>> lista, List<int> etiquetas)
         {
             void Add(Image<Gray, byte> img) { lista.Add(img); etiquetas.Add(1); }
-
             Add(base_);
             Add(base_.Flip(FlipType.Horizontal));
-
-            var b1 = base_.Clone(); b1._Mul(1.6); Add(b1); 
-            var b2 = base_.Clone(); b2._Mul(1.3); Add(b2); 
-            var b3 = base_.Clone(); b3._Mul(0.7); Add(b3); 
-            var b4 = base_.Clone(); b4._Mul(0.4); Add(b4); 
+            var b1 = base_.Clone(); b1._Mul(1.6); Add(b1);
+            var b2 = base_.Clone(); b2._Mul(1.3); Add(b2);
+            var b3 = base_.Clone(); b3._Mul(0.7); Add(b3);
+            var b4 = base_.Clone(); b4._Mul(0.4); Add(b4);
             Add(SimularLuzLateral(base_));
         }
 
@@ -104,18 +96,15 @@ namespace SG_BAMS.Login
         {
             camara = new VideoCapture(0);
             cts = new CancellationTokenSource();
-
-            timerCamara = new System.Windows.Forms.Timer();
-            timerCamara.Interval = 66; 
+            timerCamara = new System.Windows.Forms.Timer { Interval = 66 };
             timerCamara.Tick += TimerCamara_Tick;
             timerCamara.Start();
-
             ActualizarEstado("Coloca tu rostro frente a la cámara", Color.Gray);
         }
 
         private void TimerCamara_Tick(object sender, EventArgs e)
         {
-            if (camara == null || _procesando) return; 
+            if (camara == null || _procesando) return;
 
             Mat m = new Mat();
             camara.Read(m);
@@ -131,18 +120,11 @@ namespace SG_BAMS.Login
             var token = cts.Token;
             Task.Run(() =>
             {
-                try
-                {
-                    if (token.IsCancellationRequested) return;
-                    ProcesarFrame(m);
-                }
-                finally
-                {
-                    m.Dispose();
-                    _procesando = false;
-                }
+                try { if (!token.IsCancellationRequested) ProcesarFrame(m); }
+                finally { m.Dispose(); _procesando = false; }
             }, token);
         }
+
 
         private void ProcesarFrame(Mat m)
         {
@@ -150,17 +132,37 @@ namespace SG_BAMS.Login
             {
                 using (var frame = m.ToImage<Bgr, byte>())
                 {
-                    var rostroActual = DetectarRostroMejorado(frame);
+                    Image<Gray, byte> grisNormalizado = PrepararGrisParaDeteccion(frame);
 
-                    if (rostroActual == null)
+                    Rectangle[] rostrosDetectados;
+                    using (grisNormalizado)
+                    {
+                        rostrosDetectados = faceDetector.DetectMultiScale(
+                            grisNormalizado,
+                            scaleFactor: 1.05,  
+                            minNeighbors: 3,      
+                            minSize: new Size(50, 50),
+                            maxSize: new Size(500, 500));
+                    }
+
+                    if (rostrosDetectados.Length == 0)
                     {
                         contadorExito = Math.Max(0, contadorExito - 1);
                         ActualizarEstado("Coloca tu rostro frente a la cámara", Color.Gray);
                         return;
                     }
 
-                    using (rostroActual)
-                    using (var rostroProcesado = rostroActual.Resize(100, 100, Inter.Linear))
+                    var mejor = rostrosDetectados.OrderByDescending(r => r.Width * r.Height).First();
+                    int mg = (int)(mejor.Width * 0.10);
+                    int rx = Math.Max(0, mejor.X - mg);
+                    int ry = Math.Max(0, mejor.Y - mg);
+                    int rw = Math.Min(frame.Width - rx, mejor.Width + mg * 2);
+                    int rh = Math.Min(frame.Height - ry, mejor.Height + mg * 2);
+
+                    using (var rostroRecortado = frame.Convert<Gray, byte>()
+                                                      .GetSubRect(new Rectangle(rx, ry, rw, rh))
+                                                      .Clone())
+                    using (var rostroProcesado = rostroRecortado.Resize(100, 100, Inter.Linear))
                     {
                         AplicarPreprocesado(rostroProcesado);
                         var resultado = recognizer.Predict(rostroProcesado);
@@ -170,11 +172,8 @@ namespace SG_BAMS.Login
                         {
                             contadorExito++;
                             ActualizarEstado($"Verificando... ({contadorExito}/{VOTOS_PARA_VALIDAR})", Color.DodgerBlue);
-
                             if (contadorExito >= VOTOS_PARA_VALIDAR)
-                            {
                                 this.Invoke(new Action(() => Finalizar(DialogResult.OK)));
-                            }
                         }
                         else
                         {
@@ -186,8 +185,28 @@ namespace SG_BAMS.Login
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine("ProcesarFrame error: " + ex.Message);
+                System.Diagnostics.Debug.WriteLine("ProcesarFrame: " + ex.Message);
             }
+        }
+
+        private Image<Gray, byte> PrepararGrisParaDeteccion(Image<Bgr, byte> frame)
+        {
+            var gris = frame.Convert<Gray, byte>();
+
+            using (Mat m = gris.Mat)
+            {
+                double media = CvInvoke.Mean(m).V0;
+                if (media < 80) AplicarGamma(m, 0.45);  
+                else if (media < 110) AplicarGamma(m, 0.7);   
+                else if (media > 180) AplicarGamma(m, 2.2);   
+                else if (media > 150) AplicarGamma(m, 1.6);   
+
+                CvInvoke.CLAHE(m, 4.0, new Size(4, 4), m);
+                CvInvoke.EqualizeHist(m, m);
+                CvInvoke.GaussianBlur(m, m, new Size(3, 3), 0);
+            }
+
+            return gris;
         }
 
         private void AplicarPreprocesado(Image<Gray, byte> imagen)
@@ -233,28 +252,6 @@ namespace SG_BAMS.Login
             return res;
         }
 
-        private Image<Gray, byte> DetectarRostroMejorado(Image<Bgr, byte> frame)
-        {
-            using (var gris = frame.Convert<Gray, byte>())
-            {
-                CvInvoke.EqualizeHist(gris.Mat, gris.Mat);
-                var rostros = faceDetector.DetectMultiScale(
-                    gris, scaleFactor: 1.1, minNeighbors: 4,
-                    minSize: new Size(60, 60), maxSize: new Size(400, 400));
-
-                if (rostros.Length == 0) return null;
-
-                var mejor = rostros.OrderByDescending(r => r.Width * r.Height).First();
-                int mg = (int)(mejor.Width * 0.10);
-                int x = Math.Max(0, mejor.X - mg);
-                int y = Math.Max(0, mejor.Y - mg);
-                int w = Math.Min(frame.Width - x, mejor.Width + mg * 2);
-                int h = Math.Min(frame.Height - y, mejor.Height + mg * 2);
-
-                return frame.Convert<Gray, byte>().GetSubRect(new Rectangle(x, y, w, h)).Clone();
-            }
-        }
-
         private void ActualizarEstado(string texto, Color color)
         {
             if (lblEstado.InvokeRequired)
@@ -268,7 +265,6 @@ namespace SG_BAMS.Login
             cts?.Cancel();
             timerCamara?.Stop();
             timerCamara?.Dispose();
-
             if (camara != null) { camara.Stop(); camara.Dispose(); camara = null; }
 
             if (resultado == DialogResult.OK)
