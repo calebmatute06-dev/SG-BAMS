@@ -245,6 +245,7 @@
             Controls.Add(label5);
             Controls.Add(label3);
             Controls.Add(label2);
+            FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 2, 3, 2);
             Name = "Perfil";
             Text = "Perfil";

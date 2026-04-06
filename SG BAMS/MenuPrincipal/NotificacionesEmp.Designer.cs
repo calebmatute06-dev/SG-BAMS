@@ -80,7 +80,7 @@
             // pictureBox3
             // 
             pictureBox3.BackColor = Color.Navy;
-            pictureBox3.Location = new Point(438, -3);
+            pictureBox3.Location = new Point(441, -3);
             pictureBox3.Margin = new Padding(3, 2, 3, 2);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(13, 418);
@@ -167,6 +167,7 @@
             Controls.Add(pictureBox1);
             Controls.Add(pictureBox2);
             Controls.Add(label6);
+            FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 2, 3, 2);
             Name = "NotificacionesEmp";
             Text = "NotificacionesEmp";

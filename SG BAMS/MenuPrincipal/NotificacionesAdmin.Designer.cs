@@ -168,6 +168,7 @@
             Controls.Add(pictureBox1);
             Controls.Add(pictureBox2);
             Controls.Add(label6);
+            FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 2, 3, 2);
             Name = "NotificacionesAdmin";
             Text = "NotificacionesAdmin";
