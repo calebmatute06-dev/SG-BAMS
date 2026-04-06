@@ -1,5 +1,7 @@
 ﻿using Emgu.CV;
+using Emgu.CV.Face;
 using Emgu.CV.Structure;
+using Emgu.CV.Util;
 using SG_BAMS.Administracion_de_BAMS.Usuarios;
 using Emgu.CV.Util;
 using Emgu.CV.CvEnum;
@@ -54,7 +56,18 @@ namespace SG_BAMS.Login
                 rostrosEntrenamiento.Add(imgReferencia);
                 etiquetas.Add(1);
             }
-            recognizer.Train(rostrosEntrenamiento.ToArray(), etiquetas.ToArray());
+            using (VectorOfMat vRostros = new VectorOfMat())
+            using (VectorOfInt vEtiquetas = new VectorOfInt())
+            {
+                foreach (var img in rostrosEntrenamiento)
+                {
+                    vRostros.Push(img.Mat); 
+                }
+
+                vEtiquetas.Push(etiquetas.ToArray());
+
+                recognizer.Train(vRostros, vEtiquetas);
+            }
 
             camara = new VideoCapture(0);
             Application.Idle += ProcesoValidacion;
