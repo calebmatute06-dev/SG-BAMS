@@ -59,13 +59,13 @@ namespace SG_BAMS.Login
                 {
                     case 1:
                         MessageBox.Show("Login correcto. ¡Bienvenido Administrador!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        new MenuPrincipalAdm().Show();
+                        new LoginFacial().Show();
                         this.Hide();
                         break;
 
                     case 2:
                         MessageBox.Show("Login correcto. ¡Bienvenido Empleado!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        new MenuPrincipalEmp().Show();
+                        new LoginFacial().Show();
                         this.Hide();
                         break;
 
