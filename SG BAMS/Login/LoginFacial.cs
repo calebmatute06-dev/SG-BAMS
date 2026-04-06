@@ -24,7 +24,7 @@ namespace SG_BAMS.Login
 
         private CascadeClassifier faceDetector = new CascadeClassifier("haarcascade_frontalface_default.xml");
         private CascadeClassifier profileFaceDetector = new CascadeClassifier("haarcascade_profileface.xml");
-
+        public int RolAsignado { get; set; }
         public LoginFacial()
         {
             InitializeComponent();
@@ -146,8 +146,26 @@ namespace SG_BAMS.Login
             foreach (var img in rostrosReferencia) { img.Dispose(); }
             rostrosReferencia.Clear();
 
-            this.DialogResult = resultado;
-            if (this.IsHandleCreated) this.Close();
+            if (resultado == DialogResult.OK)
+            {
+                switch (RolAsignado)
+                {
+                    case 1: 
+                        new MenuPrincipalAdm().Show();
+                        break;
+
+                    case 2: 
+                        new MenuPrincipalEmp().Show();
+                        break;
+                }
+                this.Close();
+            }
+            else if (resultado == DialogResult.Abort || resultado == DialogResult.Cancel)
+            {
+                Form loginOriginal = Application.OpenForms["Login"];
+                if (loginOriginal != null) loginOriginal.Show();
+                this.Close();
+            }
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -171,5 +189,6 @@ namespace SG_BAMS.Login
             lblEstado.Text = "Reintentando escaneo...";
             lblEstado.ForeColor = Color.Black;
         }
+
     }
 }
