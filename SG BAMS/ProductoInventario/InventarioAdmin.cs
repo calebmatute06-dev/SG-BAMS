@@ -49,6 +49,34 @@ namespace SG_BAMS
         private void InventarioAdmin_Load(object sender, EventArgs e)
         {
             CargarInventarioCompleto();
+
+            dgvProductosAdmin.BorderStyle = BorderStyle.None;
+            dgvProductosAdmin.BackgroundColor = Color.White;
+            dgvProductosAdmin.RowHeadersVisible = false;
+            dgvProductosAdmin.EnableHeadersVisualStyles = false;
+            dgvProductosAdmin.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+
+            dgvProductosAdmin.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
+            dgvProductosAdmin.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
+            dgvProductosAdmin.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgvProductosAdmin.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvProductosAdmin.ColumnHeadersHeight = 28;
+
+            dgvProductosAdmin.DefaultCellStyle.BackColor = Color.White;
+            dgvProductosAdmin.DefaultCellStyle.ForeColor = Color.Navy;
+            dgvProductosAdmin.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dgvProductosAdmin.DefaultCellStyle.Padding = new Padding(3);
+            dgvProductosAdmin.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 245, 255);
+            dgvProductosAdmin.AlternatingRowsDefaultCellStyle.ForeColor = Color.Navy;
+
+            dgvProductosAdmin.DefaultCellStyle.SelectionBackColor = Color.DeepSkyBlue;
+            dgvProductosAdmin.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            dgvProductosAdmin.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvProductosAdmin.GridColor = Color.LightGray;
+            dgvProductosAdmin.RowTemplate.Height = 32;
+            dgvProductosAdmin.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvProductosAdmin.ClearSelection();
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)

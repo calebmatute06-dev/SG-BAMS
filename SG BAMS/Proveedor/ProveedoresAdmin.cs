@@ -20,10 +20,8 @@ namespace SG_BAMS.Proveedor
         {
             InitializeComponent();
 
-            
             txtBuscar.KeyPress += (s, e) =>
             {
-                
                 if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) &&
                     !char.IsControl(e.KeyChar) && e.KeyChar != '&')
                 {
@@ -42,7 +40,35 @@ namespace SG_BAMS.Proveedor
             dgvProveedor.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvProveedor.AllowUserToAddRows = false;
             dgvProveedor.ReadOnly = true;
+
+            dgvProveedor.BorderStyle = BorderStyle.None;
+            dgvProveedor.BackgroundColor = Color.White;
+            dgvProveedor.RowHeadersVisible = false;
+            dgvProveedor.EnableHeadersVisualStyles = false;
+            dgvProveedor.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+
+            dgvProveedor.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
+            dgvProveedor.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
+            dgvProveedor.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgvProveedor.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvProveedor.ColumnHeadersHeight = 28;
+
+            dgvProveedor.DefaultCellStyle.BackColor = Color.White;
+            dgvProveedor.DefaultCellStyle.ForeColor = Color.Navy;
+            dgvProveedor.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dgvProveedor.DefaultCellStyle.Padding = new Padding(3);
+            dgvProveedor.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 245, 255);
+            dgvProveedor.AlternatingRowsDefaultCellStyle.ForeColor = Color.Navy;
+
+            dgvProveedor.DefaultCellStyle.SelectionBackColor = Color.DeepSkyBlue;
+            dgvProveedor.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            dgvProveedor.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvProveedor.GridColor = Color.LightGray;
+            dgvProveedor.RowTemplate.Height = 32;
+            dgvProveedor.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvProveedor.ClearSelection();
+
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -57,7 +83,6 @@ namespace SG_BAMS.Proveedor
             Login.Login login = new Login.Login();
             this.Hide();
             login.Show();
-            
         }
 
         private void btnAjustes_Click(object sender, EventArgs e)
@@ -94,7 +119,6 @@ namespace SG_BAMS.Proveedor
         {
             AgregarProveedores agregar = new AgregarProveedores();
             agregar.ShowDialog();
-           
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -112,7 +136,6 @@ namespace SG_BAMS.Proveedor
         {
             txtBuscar.Clear();
             proveedor.cargarDatos(dgvProveedor);
-
         }
 
         private void btnCompras_Click(object sender, EventArgs e)
@@ -177,7 +200,6 @@ namespace SG_BAMS.Proveedor
 
             ModificarProveedor frm = new ModificarProveedor(idProveedor, nombre, contacto, direccion, rtn, idEstado, idClasificacion);
             frm.ShowDialog();
-            
         }
 
         private void btnNoti_Click(object sender, EventArgs e)

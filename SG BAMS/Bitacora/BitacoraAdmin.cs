@@ -11,6 +11,7 @@ using QuestPDF.Fluent;
 using QuestPDF.Infrastructure;
 using SG_BAMS.Proveedor;
 using SG_BAMS.Reporte;
+using Color = System.Drawing.Color;
 
 namespace SG_BAMS.Bitacora
 {
@@ -31,10 +32,39 @@ namespace SG_BAMS.Bitacora
 
         private void Bitacora_Load(object sender, EventArgs e)
         {
+        
+            
+            dgvBitacora.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvBitacora.BorderStyle = BorderStyle.None;
+            dgvBitacora.BackgroundColor = Color.White;
+            dgvBitacora.RowHeadersVisible = false;
+            dgvBitacora.EnableHeadersVisualStyles = false;
+            dgvBitacora.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+
+            dgvBitacora.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
+            dgvBitacora.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
+            dgvBitacora.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgvBitacora.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvBitacora.ColumnHeadersHeight = 28;
+
+            dgvBitacora.DefaultCellStyle.BackColor = Color.White;
+            dgvBitacora.DefaultCellStyle.ForeColor = Color.Navy;
+            dgvBitacora.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dgvBitacora.DefaultCellStyle.Padding = new Padding(3);
+            dgvBitacora.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 245, 255);
+            dgvBitacora.AlternatingRowsDefaultCellStyle.ForeColor = Color.Navy;
+
+            dgvBitacora.DefaultCellStyle.SelectionBackColor = Color.DeepSkyBlue;
+            dgvBitacora.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            dgvBitacora.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvBitacora.GridColor = Color.LightGray;
+            dgvBitacora.RowTemplate.Height = 32;
+            dgvBitacora.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
             bitacora.cargarDatos(dgvBitacora);
             EjecutarBusquedaSegura();
             dgvBitacora.ClearSelection();
-            dgvBitacora.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
         private void txtBuscar_KeyUp(object sender, KeyEventArgs e)

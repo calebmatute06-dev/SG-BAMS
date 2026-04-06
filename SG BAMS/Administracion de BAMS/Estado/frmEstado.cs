@@ -129,5 +129,36 @@ namespace SG_BAMS
         {
             this.Close();
         }
+
+        private void frmEstado_Load(object sender, EventArgs e)
+        {
+            dgvEstados.BorderStyle = BorderStyle.None;
+            dgvEstados.BackgroundColor = Color.White;
+            dgvEstados.RowHeadersVisible = false;
+            dgvEstados.EnableHeadersVisualStyles = false;
+            dgvEstados.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+
+            dgvEstados.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
+            dgvEstados.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
+            dgvEstados.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgvEstados.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvEstados.ColumnHeadersHeight = 28;
+
+            dgvEstados.DefaultCellStyle.BackColor = Color.White;
+            dgvEstados.DefaultCellStyle.ForeColor = Color.Navy;
+            dgvEstados.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dgvEstados.DefaultCellStyle.Padding = new Padding(3);
+            dgvEstados.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 245, 255);
+            dgvEstados.AlternatingRowsDefaultCellStyle.ForeColor = Color.Navy;
+
+            dgvEstados.DefaultCellStyle.SelectionBackColor = Color.DeepSkyBlue;
+            dgvEstados.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            dgvEstados.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvEstados.GridColor = Color.LightGray;
+            dgvEstados.RowTemplate.Height = 32;
+            dgvEstados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvEstados.ClearSelection();
+        }
     }
 }

@@ -18,15 +18,11 @@ namespace SG_BAMS
         public frmUsuarios()
         {
             InitializeComponent();
-            this.Load += new EventHandler(FormUsuarios_Load);
+            this.Load += new EventHandler(frmUsuarios_Load);
 
         }
 
-        private async void FormUsuarios_Load(object sender, EventArgs e)
-        {
-            await CargarGridUsuarios();
-
-        }
+       
 
         private async Task CargarGridUsuarios()
         {
@@ -129,6 +125,38 @@ namespace SG_BAMS
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private async void frmUsuarios_Load(object sender, EventArgs e)
+        {
+            await CargarGridUsuarios();
+            dgvUsuarios.BorderStyle = BorderStyle.None;
+            dgvUsuarios.BackgroundColor = Color.White;
+            dgvUsuarios.RowHeadersVisible = false;
+            dgvUsuarios.EnableHeadersVisualStyles = false;
+            dgvUsuarios.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+
+            dgvUsuarios.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
+            dgvUsuarios.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
+            dgvUsuarios.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgvUsuarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvUsuarios.ColumnHeadersHeight = 28;
+
+            dgvUsuarios.DefaultCellStyle.BackColor = Color.White;
+            dgvUsuarios.DefaultCellStyle.ForeColor = Color.Navy;
+            dgvUsuarios.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dgvUsuarios.DefaultCellStyle.Padding = new Padding(3);
+            dgvUsuarios.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 245, 255);
+            dgvUsuarios.AlternatingRowsDefaultCellStyle.ForeColor = Color.Navy;
+
+            dgvUsuarios.DefaultCellStyle.SelectionBackColor = Color.DeepSkyBlue;
+            dgvUsuarios.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            dgvUsuarios.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvUsuarios.GridColor = Color.LightGray;
+            dgvUsuarios.RowTemplate.Height = 32;
+            dgvUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvUsuarios.ClearSelection();
         }
     }
 }

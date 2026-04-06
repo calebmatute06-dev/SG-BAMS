@@ -11,7 +11,7 @@ namespace SG_BAMS.Proveedor
 {
     internal class ClsProveedor : ClsConexion
     {
-        public void cargarDatos(Krypton.Toolkit.KryptonDataGridView dgvProveedor)
+        public void cargarDatos(DataGridView dgvProveedor)
         {
             try
             {
@@ -21,7 +21,6 @@ namespace SG_BAMS.Proveedor
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
                 dgvProveedor.DataSource = dt;
-
             }
             catch (Exception ex)
             {
@@ -33,7 +32,6 @@ namespace SG_BAMS.Proveedor
             }
         }
 
-
         private void SetUsuarioEnSesion(int idUsuario)
         {
             using (SqlCommand ctx = new SqlCommand(
@@ -43,6 +41,7 @@ namespace SG_BAMS.Proveedor
                 ctx.ExecuteNonQuery();
             }
         }
+
         public void CargarComboEstado(Krypton.Toolkit.KryptonComboBox cmb)
         {
             try
@@ -53,12 +52,10 @@ namespace SG_BAMS.Proveedor
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
 
-
                 cmb.DataSource = dt;
                 cmb.DisplayMember = "descripcion_estado";
                 cmb.ValueMember = "id_estado";
                 cmb.SelectedIndex = -1;
-
             }
             catch (Exception ex)
             {
@@ -66,11 +63,10 @@ namespace SG_BAMS.Proveedor
             }
             finally
             {
-               Cerrar();
+                Cerrar();
             }
         }
 
-        
         public void CargarComboClasificacion(Krypton.Toolkit.KryptonComboBox cmb)
         {
             try
@@ -80,7 +76,6 @@ namespace SG_BAMS.Proveedor
                 SqlDataAdapter adapter = new SqlDataAdapter(consulta, Conectar);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
-
 
                 cmb.DataSource = dt;
                 cmb.DisplayMember = "clasificacion_proveedor";
@@ -96,11 +91,8 @@ namespace SG_BAMS.Proveedor
                 Cerrar();
             }
         }
-        
 
-
-        public void BuscarProveedor(Krypton.Toolkit.KryptonTextBox txt,
-            Krypton.Toolkit.KryptonDataGridView dgvProveedor)
+        public void BuscarProveedor(Krypton.Toolkit.KryptonTextBox txt, DataGridView dgvProveedor)
         {
             try
             {
@@ -163,6 +155,7 @@ namespace SG_BAMS.Proveedor
                 Cerrar();
             }
         }
+
         public bool ExisteNombreProveedor(string nombre)
         {
             bool existe = false;
@@ -192,6 +185,7 @@ namespace SG_BAMS.Proveedor
             }
             return existe;
         }
+
         public void ModificarProveedor(int idProveedor, string nombre, string contacto, string direccion,
             string rtn, int idEstado, int idClasificacion, int idUsuario)
         {

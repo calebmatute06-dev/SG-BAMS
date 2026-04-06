@@ -24,6 +24,34 @@ namespace SG_BAMS
         private void InventarioEmp_Load(object sender, EventArgs e)
         {
             CargarInventarioCompleto();
+            dgvInventarioEmp.BorderStyle = BorderStyle.None;
+            dgvInventarioEmp.BackgroundColor = Color.White;
+            dgvInventarioEmp.RowHeadersVisible = false;
+            dgvInventarioEmp.EnableHeadersVisualStyles = false;
+            dgvInventarioEmp.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+
+            dgvInventarioEmp.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
+            dgvInventarioEmp.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
+            dgvInventarioEmp.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgvInventarioEmp.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvInventarioEmp.ColumnHeadersHeight = 28;
+
+            dgvInventarioEmp.DefaultCellStyle.BackColor = Color.White;
+            dgvInventarioEmp.DefaultCellStyle.ForeColor = Color.Navy;
+            dgvInventarioEmp.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dgvInventarioEmp.DefaultCellStyle.Padding = new Padding(3);
+            dgvInventarioEmp.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 245, 255);
+            dgvInventarioEmp.AlternatingRowsDefaultCellStyle.ForeColor = Color.Navy;
+
+            dgvInventarioEmp.DefaultCellStyle.SelectionBackColor = Color.DeepSkyBlue;
+            dgvInventarioEmp.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            dgvInventarioEmp.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvInventarioEmp.GridColor = Color.LightGray;
+            dgvInventarioEmp.RowTemplate.Height = 32;
+            dgvInventarioEmp.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvInventarioEmp.ClearSelection();
+
         }
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)

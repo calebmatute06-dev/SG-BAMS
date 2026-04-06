@@ -267,11 +267,7 @@ namespace SG_BAMS
             this.Refresh();
         }
 
-        private void btnajustes_Click(object sender, EventArgs e)
-        {
-            Ajustes Ajus = new Ajustes();
-            Ajus.Show();
-        }
+       
 
         private void btnperfil_Click(object sender, EventArgs e)
         {

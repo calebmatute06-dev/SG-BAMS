@@ -91,6 +91,33 @@ namespace SG_BAMS
         private async void ClientesAdm_Load(object sender, EventArgs e)
         {
             await TablaClientes();
+            dgvClientes.BorderStyle = BorderStyle.None;
+            dgvClientes.BackgroundColor = Color.White;
+            dgvClientes.RowHeadersVisible = false;
+            dgvClientes.EnableHeadersVisualStyles = false;
+            dgvClientes.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+
+            dgvClientes.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
+            dgvClientes.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
+            dgvClientes.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgvClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvClientes.ColumnHeadersHeight = 28;
+
+            dgvClientes.DefaultCellStyle.BackColor = Color.White;
+            dgvClientes.DefaultCellStyle.ForeColor = Color.Navy;
+            dgvClientes.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dgvClientes.DefaultCellStyle.Padding = new Padding(3);
+            dgvClientes.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 245, 255);
+            dgvClientes.AlternatingRowsDefaultCellStyle.ForeColor = Color.Navy;
+
+            dgvClientes.DefaultCellStyle.SelectionBackColor = Color.DeepSkyBlue;
+            dgvClientes.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            dgvClientes.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvClientes.GridColor = Color.LightGray;
+            dgvClientes.RowTemplate.Height = 32;
+            dgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvClientes.ClearSelection();
         }
 
         private async void dgvClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -194,7 +221,7 @@ namespace SG_BAMS
             this.Close();
         }
 
-        private void btnAjustes_Click(object sender, EventArgs e) => new Ajustes().Show();
+       
 
         private void btnReportes_Click(object sender, EventArgs e)
         {

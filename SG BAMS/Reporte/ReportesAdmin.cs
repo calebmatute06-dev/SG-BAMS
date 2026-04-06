@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Color = System.Drawing.Color;
 
 namespace SG_BAMS.Reporte
 {
@@ -66,6 +67,33 @@ namespace SG_BAMS.Reporte
             dtpDesde.Value = DateTime.Now.AddDays(-30);
 
             cmbReporte.SelectedIndex = 0;
+
+            dgvReporte.BorderStyle = BorderStyle.None;
+            dgvReporte.BackgroundColor = Color.White;
+            dgvReporte.RowHeadersVisible = false;
+            dgvReporte.EnableHeadersVisualStyles = false;
+            dgvReporte.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+
+            dgvReporte.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
+            dgvReporte.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
+            dgvReporte.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgvReporte.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvReporte.ColumnHeadersHeight = 28;
+
+            dgvReporte.DefaultCellStyle.BackColor = Color.White;
+            dgvReporte.DefaultCellStyle.ForeColor = Color.Navy;
+            dgvReporte.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dgvReporte.DefaultCellStyle.Padding = new Padding(3);
+            dgvReporte.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 245, 255);
+            dgvReporte.AlternatingRowsDefaultCellStyle.ForeColor = Color.Navy;
+
+            dgvReporte.DefaultCellStyle.SelectionBackColor = Color.DeepSkyBlue;
+            dgvReporte.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            dgvReporte.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvReporte.GridColor = Color.LightGray;
+            dgvReporte.RowTemplate.Height = 32;
+            dgvReporte.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvReporte.ClearSelection();
         }
 

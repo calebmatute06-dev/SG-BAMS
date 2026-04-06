@@ -133,7 +133,7 @@
             label10.BackColor = Color.SkyBlue;
             label10.Font = new Font("Arial Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Navy;
-            label10.Location = new Point(771, 39);
+            label10.Location = new Point(744, 31);
             label10.Name = "label10";
             label10.Size = new Size(131, 33);
             label10.TabIndex = 121;
@@ -678,7 +678,7 @@
             // kryptonGroupBox2
             // 
             kryptonGroupBox2.CaptionVisible = false;
-            kryptonGroupBox2.Location = new Point(686, 31);
+            kryptonGroupBox2.Location = new Point(659, 23);
             kryptonGroupBox2.Size = new Size(301, 49);
             kryptonGroupBox2.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroupBox2.StateCommon.Border.Rounding = 50F;
@@ -687,7 +687,7 @@
             // kryptonGroupBox3
             // 
             kryptonGroupBox3.CaptionVisible = false;
-            kryptonGroupBox3.Location = new Point(306, 65);
+            kryptonGroupBox3.Location = new Point(318, 87);
             kryptonGroupBox3.Size = new Size(139, 31);
             kryptonGroupBox3.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroupBox3.StateCommon.Border.Rounding = 50F;
@@ -743,7 +743,7 @@
             // 
             // dtpInicio
             // 
-            dtpInicio.Location = new Point(276, 115);
+            dtpInicio.Location = new Point(288, 137);
             dtpInicio.Name = "dtpInicio";
             dtpInicio.Size = new Size(222, 23);
             dtpInicio.TabIndex = 143;
@@ -751,7 +751,7 @@
             // dtpFin
             // 
             dtpFin.CalendarForeColor = Color.Navy;
-            dtpFin.Location = new Point(276, 159);
+            dtpFin.Location = new Point(288, 181);
             dtpFin.Name = "dtpFin";
             dtpFin.Size = new Size(222, 23);
             dtpFin.TabIndex = 143;
@@ -770,7 +770,7 @@
             // 
             // txtBusqueda
             // 
-            txtBusqueda.Location = new Point(550, 191);
+            txtBusqueda.Location = new Point(550, 207);
             txtBusqueda.Name = "txtBusqueda";
             txtBusqueda.Size = new Size(553, 32);
             txtBusqueda.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -786,7 +786,7 @@
             label3.BackColor = Color.SkyBlue;
             label3.Font = new Font("Arial Narrow", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(343, 67);
+            label3.Location = new Point(355, 89);
             label3.Name = "label3";
             label3.Size = new Size(64, 26);
             label3.TabIndex = 324;
@@ -798,7 +798,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(276, 96);
+            label5.Location = new Point(288, 118);
             label5.Name = "label5";
             label5.Size = new Size(46, 19);
             label5.TabIndex = 329;
@@ -809,7 +809,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(276, 140);
+            label6.Location = new Point(288, 162);
             label6.Name = "label6";
             label6.Size = new Size(40, 19);
             label6.TabIndex = 330;
@@ -819,7 +819,7 @@
             // 
             BtnRefrescar.BackgroundImage = Properties.Resources.refresh;
             BtnRefrescar.BackgroundImageLayout = ImageLayout.Stretch;
-            BtnRefrescar.Location = new Point(1109, 188);
+            BtnRefrescar.Location = new Point(1109, 207);
             BtnRefrescar.Margin = new Padding(3, 2, 3, 2);
             BtnRefrescar.Name = "BtnRefrescar";
             BtnRefrescar.Size = new Size(57, 33);
@@ -833,7 +833,7 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(459, 195);
+            label4.Location = new Point(460, 214);
             label4.Name = "label4";
             label4.Size = new Size(84, 22);
             label4.TabIndex = 353;

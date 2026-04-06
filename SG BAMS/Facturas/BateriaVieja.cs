@@ -34,6 +34,34 @@ namespace SG_BAMS.Facturas
 
             txtTotal.ReadOnly = true;
             txtCantidadTotal.ReadOnly = true;
+
+            dgvBateria.BorderStyle = BorderStyle.None;
+            dgvBateria.BackgroundColor = Color.White;
+            dgvBateria.RowHeadersVisible = false;
+            dgvBateria.EnableHeadersVisualStyles = false;
+            dgvBateria.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+
+            dgvBateria.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
+            dgvBateria.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
+            dgvBateria.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgvBateria.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvBateria.ColumnHeadersHeight = 28;
+
+            dgvBateria.DefaultCellStyle.BackColor = Color.White;
+            dgvBateria.DefaultCellStyle.ForeColor = Color.Navy;
+            dgvBateria.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dgvBateria.DefaultCellStyle.Padding = new Padding(3);
+            dgvBateria.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 245, 255);
+            dgvBateria.AlternatingRowsDefaultCellStyle.ForeColor = Color.Navy;
+
+            dgvBateria.DefaultCellStyle.SelectionBackColor = Color.DeepSkyBlue;
+            dgvBateria.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            dgvBateria.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvBateria.GridColor = Color.LightGray;
+            dgvBateria.RowTemplate.Height = 32;
+            dgvBateria.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvBateria.ClearSelection();
         }
 
         private void ConfigurarGrid()

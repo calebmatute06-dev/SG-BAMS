@@ -64,22 +64,22 @@ namespace SG_BAMS
             dgvModelos.ClearSelection();
         }
 
-        
+
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmAgregarModeloAuto agregarMauto = new frmAgregarModeloAuto();
 
-            
+
             if (agregarMauto.ShowDialog() == DialogResult.OK)
             {
-                
+
                 _ = CargarGridModelos();
             }
 
-           
+
         }
 
-        
+
         private void btnModificar_Click(object sender, EventArgs e)
         {
             if (dgvModelos.CurrentRow != null && dgvModelos.SelectedRows.Count > 0)
@@ -103,12 +103,43 @@ namespace SG_BAMS
 
         private void dgvModelos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            btnModificar_Click(sender, e); 
+            btnModificar_Click(sender, e);
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void frmModeloAuto_Load(object sender, EventArgs e)
+        {
+            dgvModelos.BorderStyle = BorderStyle.None;
+            dgvModelos.BackgroundColor = Color.White;
+            dgvModelos.RowHeadersVisible = false;
+            dgvModelos.EnableHeadersVisualStyles = false;
+            dgvModelos.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+
+            dgvModelos.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
+            dgvModelos.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
+            dgvModelos.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgvModelos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvModelos.ColumnHeadersHeight = 28;
+
+            dgvModelos.DefaultCellStyle.BackColor = Color.White;
+            dgvModelos.DefaultCellStyle.ForeColor = Color.Navy;
+            dgvModelos.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dgvModelos.DefaultCellStyle.Padding = new Padding(3);
+            dgvModelos.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 245, 255);
+            dgvModelos.AlternatingRowsDefaultCellStyle.ForeColor = Color.Navy;
+
+            dgvModelos.DefaultCellStyle.SelectionBackColor = Color.DeepSkyBlue;
+            dgvModelos.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            dgvModelos.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvModelos.GridColor = Color.LightGray;
+            dgvModelos.RowTemplate.Height = 32;
+            dgvModelos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvModelos.ClearSelection();
         }
     }
 }

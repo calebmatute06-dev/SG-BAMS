@@ -119,6 +119,37 @@ namespace SG_BAMS
         {
             this.Close();
         }
+
+        private void frmRoles_Load_1(object sender, EventArgs e)
+        {
+            dgvRoles.BorderStyle = BorderStyle.None;
+            dgvRoles.BackgroundColor = Color.White;
+            dgvRoles.RowHeadersVisible = false;
+            dgvRoles.EnableHeadersVisualStyles = false;
+            dgvRoles.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+
+            dgvRoles.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
+            dgvRoles.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
+            dgvRoles.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgvRoles.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvRoles.ColumnHeadersHeight = 28;
+
+            dgvRoles.DefaultCellStyle.BackColor = Color.White;
+            dgvRoles.DefaultCellStyle.ForeColor = Color.Navy;
+            dgvRoles.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dgvRoles.DefaultCellStyle.Padding = new Padding(3);
+            dgvRoles.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 245, 255);
+            dgvRoles.AlternatingRowsDefaultCellStyle.ForeColor = Color.Navy;
+
+            dgvRoles.DefaultCellStyle.SelectionBackColor = Color.DeepSkyBlue;
+            dgvRoles.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            dgvRoles.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvRoles.GridColor = Color.LightGray;
+            dgvRoles.RowTemplate.Height = 32;
+            dgvRoles.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvRoles.ClearSelection();
+        }
     }
 }
 

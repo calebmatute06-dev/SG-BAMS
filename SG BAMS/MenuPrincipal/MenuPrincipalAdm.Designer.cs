@@ -940,7 +940,7 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             chartMasVendidos.Series.Add(series1);
-            chartMasVendidos.Size = new Size(360, 164);
+            chartMasVendidos.Size = new Size(354, 164);
             chartMasVendidos.TabIndex = 63;
             chartMasVendidos.Text = "chart1";
             // 

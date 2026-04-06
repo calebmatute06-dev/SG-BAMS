@@ -102,6 +102,34 @@ namespace SG_BAMS
 
             btnBateria.Enabled = false;
             ActualizarEstadoBotonAceptar();
+
+            dgvProductos.BorderStyle = BorderStyle.None;
+            dgvProductos.BackgroundColor = Color.White;
+            dgvProductos.RowHeadersVisible = false;
+            dgvProductos.EnableHeadersVisualStyles = false;
+            dgvProductos.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+
+            dgvProductos.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
+            dgvProductos.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
+            dgvProductos.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgvProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvProductos.ColumnHeadersHeight = 28;
+
+            dgvProductos.DefaultCellStyle.BackColor = Color.White;
+            dgvProductos.DefaultCellStyle.ForeColor = Color.Navy;
+            dgvProductos.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dgvProductos.DefaultCellStyle.Padding = new Padding(3);
+            dgvProductos.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 245, 255);
+            dgvProductos.AlternatingRowsDefaultCellStyle.ForeColor = Color.Navy;
+
+            dgvProductos.DefaultCellStyle.SelectionBackColor = Color.DeepSkyBlue;
+            dgvProductos.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            dgvProductos.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvProductos.GridColor = Color.LightGray;
+            dgvProductos.RowTemplate.Height = 32;
+            dgvProductos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvProductos.ClearSelection();
         }
 
         private void CalcularTotal()

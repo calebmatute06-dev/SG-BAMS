@@ -101,7 +101,7 @@
             panel8.Location = new Point(235, 16);
             panel8.Margin = new Padding(3, 2, 3, 2);
             panel8.Name = "panel8";
-            panel8.Size = new Size(21, 652);
+            panel8.Size = new Size(21, 664);
             panel8.TabIndex = 148;
             // 
             // panel3
@@ -452,7 +452,7 @@
             // 
             BtnRefrescar.BackgroundImage = Properties.Resources.refresh;
             BtnRefrescar.BackgroundImageLayout = ImageLayout.Stretch;
-            BtnRefrescar.Location = new Point(1203, 152);
+            BtnRefrescar.Location = new Point(1146, 206);
             BtnRefrescar.Margin = new Padding(3, 2, 3, 2);
             BtnRefrescar.Name = "BtnRefrescar";
             BtnRefrescar.Size = new Size(57, 33);
@@ -465,7 +465,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(489, 104);
+            label6.Location = new Point(300, 148);
             label6.Name = "label6";
             label6.Size = new Size(40, 19);
             label6.TabIndex = 350;
@@ -476,7 +476,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(360, 104);
+            label5.Location = new Point(300, 100);
             label5.Name = "label5";
             label5.Size = new Size(46, 19);
             label5.TabIndex = 349;
@@ -488,7 +488,7 @@
             label3.BackColor = Color.SkyBlue;
             label3.Font = new Font("Arial Narrow", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(389, 73);
+            label3.Location = new Point(375, 74);
             label3.Name = "label3";
             label3.Size = new Size(64, 26);
             label3.TabIndex = 347;
@@ -497,7 +497,7 @@
             // 
             // txtBusqueda
             // 
-            txtBusqueda.Location = new Point(620, 158);
+            txtBusqueda.Location = new Point(562, 207);
             txtBusqueda.Name = "txtBusqueda";
             txtBusqueda.Size = new Size(578, 32);
             txtBusqueda.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -511,7 +511,7 @@
             // 
             dgvFacturas.BackgroundColor = Color.SkyBlue;
             dgvFacturas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvFacturas.Location = new Point(298, 209);
+            dgvFacturas.Location = new Point(298, 244);
             dgvFacturas.Margin = new Padding(3, 2, 3, 2);
             dgvFacturas.Name = "dgvFacturas";
             dgvFacturas.RowHeadersWidth = 51;
@@ -522,16 +522,16 @@
             // dtpFin
             // 
             dtpFin.CalendarForeColor = Color.Navy;
-            dtpFin.Location = new Point(464, 124);
+            dtpFin.Location = new Point(300, 170);
             dtpFin.Name = "dtpFin";
-            dtpFin.Size = new Size(102, 23);
+            dtpFin.Size = new Size(227, 23);
             dtpFin.TabIndex = 345;
             // 
             // dtpInicio
             // 
-            dtpInicio.Location = new Point(337, 124);
+            dtpInicio.Location = new Point(300, 122);
             dtpInicio.Name = "dtpInicio";
-            dtpInicio.Size = new Size(100, 23);
+            dtpInicio.Size = new Size(227, 23);
             dtpInicio.TabIndex = 344;
             dtpInicio.ValueChanged += dtpInicio_ValueChanged;
             // 
@@ -645,7 +645,7 @@
             // kryptonGroupBox3
             // 
             kryptonGroupBox3.CaptionVisible = false;
-            kryptonGroupBox3.Location = new Point(351, 70);
+            kryptonGroupBox3.Location = new Point(337, 71);
             kryptonGroupBox3.Size = new Size(139, 31);
             kryptonGroupBox3.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroupBox3.StateCommon.Border.Rounding = 50F;
@@ -657,7 +657,7 @@
             Nombre.BackColor = Color.Transparent;
             Nombre.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             Nombre.ForeColor = Color.Navy;
-            Nombre.Location = new Point(502, 162);
+            Nombre.Location = new Point(477, 214);
             Nombre.Name = "Nombre";
             Nombre.Size = new Size(84, 22);
             Nombre.TabIndex = 352;

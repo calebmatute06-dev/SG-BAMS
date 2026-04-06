@@ -76,7 +76,6 @@
             pictureBox7 = new PictureBox();
             pictureBox8 = new PictureBox();
             pictureBox1 = new PictureBox();
-            kryptonGroup1 = new Krypton.Toolkit.KryptonGroup();
             pictureBox19 = new PictureBox();
             txtBuscarNombre = new TextBox();
             kryptonGroup5 = new Krypton.Toolkit.KryptonGroup();
@@ -100,8 +99,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox19).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5.Panel).BeginInit();
@@ -733,15 +730,6 @@
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
             // 
-            // kryptonGroup1
-            // 
-            kryptonGroup1.Location = new Point(290, 170);
-            kryptonGroup1.Margin = new Padding(3, 2, 3, 2);
-            kryptonGroup1.Size = new Size(1096, 416);
-            kryptonGroup1.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroup1.StateCommon.Border.Rounding = 70F;
-            kryptonGroup1.TabIndex = 71;
-            // 
             // pictureBox19
             // 
             pictureBox19.Image = (Image)resources.GetObject("pictureBox19.Image");
@@ -901,7 +889,6 @@
             Controls.Add(txtBuscarNombre);
             Controls.Add(kryptonGroup5);
             Controls.Add(pictureBox19);
-            Controls.Add(kryptonGroup1);
             Controls.Add(label1);
             Controls.Add(button12);
             Controls.Add(panel6);
@@ -935,8 +922,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox19).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5).EndInit();
@@ -981,7 +966,6 @@
         private PictureBox pictureBox7;
         private PictureBox pictureBox8;
         private PictureBox pictureBox1;
-        private Krypton.Toolkit.KryptonGroup kryptonGroup1;
         private PictureBox pictureBox19;
         private TextBox txtBuscarNombre;
         private Krypton.Toolkit.KryptonGroup kryptonGroup5;

@@ -33,7 +33,6 @@
             panel6 = new Panel();
             panel8 = new Panel();
             panel5 = new Panel();
-            pictureBox6 = new PictureBox();
             panel3 = new Panel();
             panel4 = new Panel();
             panel1 = new Panel();
@@ -62,16 +61,13 @@
             pictureBox8 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel2 = new Panel();
-            dgvProveedor = new Krypton.Toolkit.KryptonDataGridView();
-            kryptonGroup1 = new Krypton.Toolkit.KryptonGroup();
             btnModificar = new Krypton.Toolkit.KryptonButton();
             btnAgregar = new Krypton.Toolkit.KryptonButton();
             btnRefresh = new Button();
             label3 = new Label();
             label10 = new Label();
             kryptonGroupBox2 = new Krypton.Toolkit.KryptonGroupBox();
-            panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
+            dgvProveedor = new DataGridView();
             panel1.SuspendLayout();
             panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
@@ -85,11 +81,9 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dgvProveedor).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvProveedor).BeginInit();
             SuspendLayout();
             // 
             // txtBuscar
@@ -123,10 +117,10 @@
             // panel6
             // 
             panel6.BackColor = Color.Navy;
-            panel6.Location = new Point(14, 567);
+            panel6.Location = new Point(2, 567);
             panel6.Margin = new Padding(3, 2, 3, 2);
             panel6.Name = "panel6";
-            panel6.Size = new Size(228, 18);
+            panel6.Size = new Size(250, 18);
             panel6.TabIndex = 108;
             // 
             // panel8
@@ -141,22 +135,11 @@
             // panel5
             // 
             panel5.BackColor = Color.Navy;
-            panel5.Controls.Add(pictureBox6);
             panel5.Location = new Point(-1, -1);
             panel5.Margin = new Padding(3, 2, 3, 2);
             panel5.Name = "panel5";
             panel5.Size = new Size(21, 678);
             panel5.TabIndex = 105;
-            // 
-            // pictureBox6
-            // 
-            pictureBox6.BackColor = Color.Navy;
-            pictureBox6.Location = new Point(-203, 595);
-            pictureBox6.Margin = new Padding(3, 2, 3, 2);
-            pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(232, 18);
-            pictureBox6.TabIndex = 7;
-            pictureBox6.TabStop = false;
             // 
             // panel3
             // 
@@ -647,29 +630,6 @@
             panel2.Size = new Size(1015, 18);
             panel2.TabIndex = 117;
             // 
-            // dgvProveedor
-            // 
-            dgvProveedor.BorderStyle = BorderStyle.None;
-            dgvProveedor.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProveedor.Location = new Point(287, 158);
-            dgvProveedor.Margin = new Padding(3, 2, 3, 2);
-            dgvProveedor.Name = "dgvProveedor";
-            dgvProveedor.RowHeadersWidth = 51;
-            dgvProveedor.Size = new Size(682, 398);
-            dgvProveedor.StateCommon.Background.Color1 = Color.LightBlue;
-            dgvProveedor.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
-            dgvProveedor.TabIndex = 196;
-            dgvProveedor.CellDoubleClick += dgvProveedor_CellDoubleClick;
-            // 
-            // kryptonGroup1
-            // 
-            kryptonGroup1.Location = new Point(278, 151);
-            kryptonGroup1.Margin = new Padding(3, 2, 3, 2);
-            kryptonGroup1.Size = new Size(699, 413);
-            kryptonGroup1.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroup1.StateCommon.Border.Rounding = 20F;
-            kryptonGroup1.TabIndex = 195;
-            // 
             // btnModificar
             // 
             btnModificar.Location = new Point(655, 593);
@@ -761,20 +721,28 @@
             kryptonGroupBox2.StateCommon.Border.Rounding = 50F;
             kryptonGroupBox2.TabIndex = 330;
             // 
+            // dgvProveedor
+            // 
+            dgvProveedor.BackgroundColor = Color.SkyBlue;
+            dgvProveedor.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvProveedor.Location = new Point(288, 168);
+            dgvProveedor.Name = "dgvProveedor";
+            dgvProveedor.Size = new Size(682, 398);
+            dgvProveedor.TabIndex = 331;
+            // 
             // ProveedoresAdmin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1018, 677);
+            Controls.Add(dgvProveedor);
             Controls.Add(label10);
             Controls.Add(kryptonGroupBox2);
             Controls.Add(label3);
             Controls.Add(btnRefresh);
             Controls.Add(btnModificar);
             Controls.Add(btnAgregar);
-            Controls.Add(dgvProveedor);
-            Controls.Add(kryptonGroup1);
             Controls.Add(panel2);
             Controls.Add(txtBuscar);
             Controls.Add(btnNoti);
@@ -790,8 +758,6 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ProveedoresAdmin";
             Load += ProveedoresAdmin_Load;
-            panel5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel7.ResumeLayout(false);
@@ -807,11 +773,9 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dgvProveedor).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup1).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvProveedor).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -822,7 +786,6 @@
         private Panel panel6;
         private Panel panel8;
         private Panel panel5;
-        private PictureBox pictureBox6;
         private Panel panel3;
         private Panel panel4;
         private Panel panel1;
@@ -849,8 +812,6 @@
         private PictureBox pictureBox8;
         private PictureBox pictureBox1;
         private Panel panel2;
-        private Krypton.Toolkit.KryptonDataGridView dgvProveedor;
-        private Krypton.Toolkit.KryptonGroup kryptonGroup1;
         private Krypton.Toolkit.KryptonButton btnModificar;
         private Krypton.Toolkit.KryptonButton btnAgregar;
         private Button btnRefresh;
@@ -859,5 +820,6 @@
         private Label label7;
         private Label label10;
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox2;
+        private DataGridView dgvProveedor;
     }
 }

@@ -33,7 +33,6 @@
             panel3 = new Panel();
             panel1 = new Panel();
             panel5 = new Panel();
-            pictureBox6 = new PictureBox();
             panel8 = new Panel();
             label7 = new Label();
             btnPerfil = new Krypton.Toolkit.KryptonButton();
@@ -59,8 +58,6 @@
             kryptonGroupBox2 = new Krypton.Toolkit.KryptonGroupBox();
             label3 = new Label();
             panel1.SuspendLayout();
-            panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox15).BeginInit();
@@ -77,10 +74,10 @@
             // panel6
             // 
             panel6.BackColor = Color.Navy;
-            panel6.Location = new Point(7, 568);
+            panel6.Location = new Point(1, 568);
             panel6.Margin = new Padding(3, 2, 3, 2);
             panel6.Name = "panel6";
-            panel6.Size = new Size(228, 18);
+            panel6.Size = new Size(251, 18);
             panel6.TabIndex = 198;
             // 
             // panel4
@@ -120,31 +117,20 @@
             panel1.Controls.Add(pictureBox7);
             panel1.Controls.Add(pictureBox8);
             panel1.Controls.Add(pictureBox1);
-            panel1.Location = new Point(1, 0);
+            panel1.Location = new Point(-1, 0);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(250, 669);
+            panel1.Size = new Size(250, 679);
             panel1.TabIndex = 195;
             // 
             // panel5
             // 
             panel5.BackColor = Color.Navy;
-            panel5.Controls.Add(pictureBox6);
-            panel5.Location = new Point(-4, 2);
+            panel5.Location = new Point(2, 4);
             panel5.Margin = new Padding(3, 2, 3, 2);
             panel5.Name = "panel5";
             panel5.Size = new Size(21, 678);
             panel5.TabIndex = 37;
-            // 
-            // pictureBox6
-            // 
-            pictureBox6.BackColor = Color.Navy;
-            pictureBox6.Location = new Point(-203, 595);
-            pictureBox6.Margin = new Padding(3, 2, 3, 2);
-            pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(232, 18);
-            pictureBox6.TabIndex = 7;
-            pictureBox6.TabStop = false;
             // 
             // panel8
             // 
@@ -423,7 +409,7 @@
             // 
             // txtBuscar
             // 
-            txtBuscar.Location = new Point(394, 138);
+            txtBuscar.Location = new Point(537, 137);
             txtBuscar.Margin = new Padding(3, 2, 3, 2);
             txtBuscar.Name = "txtBuscar";
             txtBuscar.Size = new Size(594, 35);
@@ -456,7 +442,7 @@
             panel7.Location = new Point(1284, 16);
             panel7.Margin = new Padding(3, 2, 3, 2);
             panel7.Name = "panel7";
-            panel7.Size = new Size(21, 652);
+            panel7.Size = new Size(21, 663);
             panel7.TabIndex = 199;
             // 
             // panel2
@@ -485,7 +471,7 @@
             label10.BackColor = Color.SkyBlue;
             label10.Font = new Font("Arial Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Navy;
-            label10.Location = new Point(678, 52);
+            label10.Location = new Point(697, 30);
             label10.Name = "label10";
             label10.Size = new Size(147, 33);
             label10.TabIndex = 214;
@@ -494,7 +480,7 @@
             // kryptonGroupBox2
             // 
             kryptonGroupBox2.CaptionVisible = false;
-            kryptonGroupBox2.Location = new Point(608, 44);
+            kryptonGroupBox2.Location = new Point(617, 22);
             kryptonGroupBox2.Size = new Size(301, 49);
             kryptonGroupBox2.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroupBox2.StateCommon.Border.Rounding = 50F;
@@ -506,7 +492,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(302, 147);
+            label3.Location = new Point(445, 146);
             label3.Name = "label3";
             label3.Size = new Size(84, 22);
             label3.TabIndex = 355;
@@ -537,8 +523,6 @@
             Load += InventarioEmp_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            panel5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             panel8.ResumeLayout(false);
             panel8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
@@ -561,7 +545,6 @@
         private Panel panel3;
         private Panel panel1;
         private Panel panel5;
-        private PictureBox pictureBox6;
         private Krypton.Toolkit.KryptonButton btnPerfil;
         private Krypton.Toolkit.KryptonButton btnCerrarSesion;
         private Krypton.Toolkit.KryptonButton btnMenu;

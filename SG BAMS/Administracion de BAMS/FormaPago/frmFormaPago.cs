@@ -126,5 +126,36 @@ namespace SG_BAMS
         {
             this.Close();
         }
+
+        private void frmFormaPago_Load(object sender, EventArgs e)
+        {
+            dgvFormasPago.BorderStyle = BorderStyle.None;
+            dgvFormasPago.BackgroundColor = Color.White;
+            dgvFormasPago.RowHeadersVisible = false;
+            dgvFormasPago.EnableHeadersVisualStyles = false;
+            dgvFormasPago.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+
+            dgvFormasPago.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
+            dgvFormasPago.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
+            dgvFormasPago.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgvFormasPago.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvFormasPago.ColumnHeadersHeight = 28;
+
+            dgvFormasPago.DefaultCellStyle.BackColor = Color.White;
+            dgvFormasPago.DefaultCellStyle.ForeColor = Color.Navy;
+            dgvFormasPago.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dgvFormasPago.DefaultCellStyle.Padding = new Padding(3);
+            dgvFormasPago.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 245, 255);
+            dgvFormasPago.AlternatingRowsDefaultCellStyle.ForeColor = Color.Navy;
+
+            dgvFormasPago.DefaultCellStyle.SelectionBackColor = Color.DeepSkyBlue;
+            dgvFormasPago.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            dgvFormasPago.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvFormasPago.GridColor = Color.LightGray;
+            dgvFormasPago.RowTemplate.Height = 32;
+            dgvFormasPago.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvFormasPago.ClearSelection();
+        }
     }
 }

@@ -91,6 +91,34 @@ namespace SG_BAMS
         {
             CargarCompras();
             dgvComprasAdmin.ClearSelection();
+            dgvComprasAdmin.BorderStyle = BorderStyle.None;
+            dgvComprasAdmin.BackgroundColor = Color.White;
+            dgvComprasAdmin.RowHeadersVisible = false;
+            dgvComprasAdmin.EnableHeadersVisualStyles = false;
+            dgvComprasAdmin.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+
+            dgvComprasAdmin.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
+            dgvComprasAdmin.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
+            dgvComprasAdmin.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgvComprasAdmin.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvComprasAdmin.ColumnHeadersHeight = 28;
+
+            dgvComprasAdmin.DefaultCellStyle.BackColor = Color.White;
+            dgvComprasAdmin.DefaultCellStyle.ForeColor = Color.Navy;
+            dgvComprasAdmin.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dgvComprasAdmin.DefaultCellStyle.Padding = new Padding(3);
+            dgvComprasAdmin.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 245, 255);
+            dgvComprasAdmin.AlternatingRowsDefaultCellStyle.ForeColor = Color.Navy;
+
+            dgvComprasAdmin.DefaultCellStyle.SelectionBackColor = Color.DeepSkyBlue;
+            dgvComprasAdmin.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            dgvComprasAdmin.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvComprasAdmin.GridColor = Color.LightGray;
+            dgvComprasAdmin.RowTemplate.Height = 32;
+            dgvComprasAdmin.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvComprasAdmin.ClearSelection();
+
         }
 
         public void CargarCompras()

@@ -248,12 +248,7 @@ namespace SG_BAMS
 
 
 
-        private void kryptonButton11_Click(object sender, EventArgs e)
-        {
-            Ajustes aju = new Ajustes();
-
-            aju.Show();
-        }
+       
 
 
 

@@ -64,7 +64,6 @@
             txtBuscarNombre = new TextBox();
             kryptonGroup5 = new Krypton.Toolkit.KryptonGroup();
             pictureBox19 = new PictureBox();
-            kryptonGroup1 = new Krypton.Toolkit.KryptonGroup();
             button12 = new Button();
             label5 = new Label();
             dgvDeudores = new DataGridView();
@@ -83,8 +82,6 @@
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox19).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvDeudores).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup3.Panel).BeginInit();
@@ -529,15 +526,6 @@
             pictureBox19.TabIndex = 164;
             pictureBox19.TabStop = false;
             // 
-            // kryptonGroup1
-            // 
-            kryptonGroup1.Location = new Point(282, 175);
-            kryptonGroup1.Margin = new Padding(3, 2, 3, 2);
-            kryptonGroup1.Size = new Size(1096, 416);
-            kryptonGroup1.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroup1.StateCommon.Border.Rounding = 70F;
-            kryptonGroup1.TabIndex = 162;
-            // 
             // button12
             // 
             button12.BackColor = Color.Transparent;
@@ -644,7 +632,6 @@
             Controls.Add(txtBuscarNombre);
             Controls.Add(kryptonGroup5);
             Controls.Add(pictureBox19);
-            Controls.Add(kryptonGroup1);
             Controls.Add(button12);
             Controls.Add(panel4);
             Controls.Add(label1);
@@ -676,8 +663,6 @@
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox19).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvDeudores).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup3.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup3).EndInit();
@@ -714,7 +699,6 @@
         private TextBox txtBuscarNombre;
         private Krypton.Toolkit.KryptonGroup kryptonGroup5;
         private PictureBox pictureBox19;
-        private Krypton.Toolkit.KryptonGroup kryptonGroup1;
         private Button button12;
         private Label label5;
         private DataGridView dgvDeudores;

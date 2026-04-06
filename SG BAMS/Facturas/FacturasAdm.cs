@@ -74,6 +74,36 @@ namespace SG_BAMS
             dtpFin.ValueChanged += (s, ev) => ValidarYFiltrar();
 
             dgvFacturas.ClearSelection();
+
+            dgvFacturas.BorderStyle = BorderStyle.None;
+            dgvFacturas.BackgroundColor = Color.White;
+            dgvFacturas.RowHeadersVisible = false;
+            dgvFacturas.EnableHeadersVisualStyles = false;
+            dgvFacturas.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+
+            dgvFacturas.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
+            dgvFacturas.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
+            dgvFacturas.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgvFacturas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvFacturas.ColumnHeadersHeight = 28;
+
+            dgvFacturas.DefaultCellStyle.BackColor = Color.White;
+            dgvFacturas.DefaultCellStyle.ForeColor = Color.Navy;
+            dgvFacturas.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dgvFacturas.DefaultCellStyle.Padding = new Padding(3);
+            dgvFacturas.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 245, 255);
+            dgvFacturas.AlternatingRowsDefaultCellStyle.ForeColor = Color.Navy;
+
+            dgvFacturas.DefaultCellStyle.SelectionBackColor = Color.DeepSkyBlue;
+            dgvFacturas.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            dgvFacturas.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvFacturas.GridColor = Color.LightGray;
+            dgvFacturas.RowTemplate.Height = 32;
+            dgvFacturas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvFacturas.ClearSelection();
+
+
         }
 
         private void ValidarYFiltrar()

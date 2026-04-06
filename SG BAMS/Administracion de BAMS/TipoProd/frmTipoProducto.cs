@@ -19,10 +19,7 @@ namespace SG_BAMS
             CargarGridTipos();
         }
 
-        private async void frmTipoProducto_Load(object sender, EventArgs e)
-        {
-            await CargarGridTipos();
-        }
+        
 
         private async Task CargarGridTipos()
         {
@@ -112,6 +109,38 @@ namespace SG_BAMS
         private void kryptonButton2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private async void frmTipoProducto_Load_1(object sender, EventArgs e)
+        {
+            await CargarGridTipos();
+            dgvTipoProducto.BorderStyle = BorderStyle.None;
+            dgvTipoProducto.BackgroundColor = Color.White;
+            dgvTipoProducto.RowHeadersVisible = false;
+            dgvTipoProducto.EnableHeadersVisualStyles = false;
+            dgvTipoProducto.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+
+            dgvTipoProducto.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
+            dgvTipoProducto.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
+            dgvTipoProducto.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgvTipoProducto.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvTipoProducto.ColumnHeadersHeight = 28;
+
+            dgvTipoProducto.DefaultCellStyle.BackColor = Color.White;
+            dgvTipoProducto.DefaultCellStyle.ForeColor = Color.Navy;
+            dgvTipoProducto.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dgvTipoProducto.DefaultCellStyle.Padding = new Padding(3);
+            dgvTipoProducto.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 245, 255);
+            dgvTipoProducto.AlternatingRowsDefaultCellStyle.ForeColor = Color.Navy;
+
+            dgvTipoProducto.DefaultCellStyle.SelectionBackColor = Color.DeepSkyBlue;
+            dgvTipoProducto.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            dgvTipoProducto.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvTipoProducto.GridColor = Color.LightGray;
+            dgvTipoProducto.RowTemplate.Height = 32;
+            dgvTipoProducto.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvTipoProducto.ClearSelection();
         }
     }
 }

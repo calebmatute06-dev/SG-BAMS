@@ -28,16 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
             btnPerfil = new Krypton.Toolkit.KryptonButton();
             btnCerrarSesion = new Krypton.Toolkit.KryptonButton();
             pictureBox16 = new PictureBox();
             pictureBox15 = new PictureBox();
-            kryptonGroup3 = new Krypton.Toolkit.KryptonGroup();
             label1 = new Label();
             kryptonGroup2 = new Krypton.Toolkit.KryptonGroup();
             label8 = new Label();
@@ -48,11 +47,9 @@
             panel6 = new Panel();
             panel8 = new Panel();
             panel5 = new Panel();
-            pictureBox6 = new PictureBox();
             panel3 = new Panel();
             panel4 = new Panel();
             panel2 = new Panel();
-            pictureBox4 = new PictureBox();
             panel1 = new Panel();
             panel7 = new Panel();
             label11 = new Label();
@@ -91,16 +88,10 @@
             btnFiltro = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox15).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup3.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup2.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
-            panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
-            panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             panel1.SuspendLayout();
             panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).BeginInit();
@@ -194,15 +185,6 @@
             pictureBox15.TabIndex = 12;
             pictureBox15.TabStop = false;
             // 
-            // kryptonGroup3
-            // 
-            kryptonGroup3.Location = new Point(486, 169);
-            kryptonGroup3.Margin = new Padding(3, 2, 3, 2);
-            kryptonGroup3.Size = new Size(766, 474);
-            kryptonGroup3.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroup3.StateCommon.Border.Rounding = 30F;
-            kryptonGroup3.TabIndex = 272;
-            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -294,10 +276,10 @@
             // panel6
             // 
             panel6.BackColor = Color.Navy;
-            panel6.Location = new Point(15, 568);
+            panel6.Location = new Point(0, 568);
             panel6.Margin = new Padding(3, 2, 3, 2);
             panel6.Name = "panel6";
-            panel6.Size = new Size(228, 18);
+            panel6.Size = new Size(254, 18);
             panel6.TabIndex = 258;
             // 
             // panel8
@@ -306,28 +288,17 @@
             panel8.Location = new Point(234, 16);
             panel8.Margin = new Padding(3, 2, 3, 2);
             panel8.Name = "panel8";
-            panel8.Size = new Size(21, 652);
+            panel8.Size = new Size(21, 664);
             panel8.TabIndex = 256;
             // 
             // panel5
             // 
             panel5.BackColor = Color.Navy;
-            panel5.Controls.Add(pictureBox6);
             panel5.Location = new Point(0, 0);
             panel5.Margin = new Padding(3, 2, 3, 2);
             panel5.Name = "panel5";
             panel5.Size = new Size(21, 678);
             panel5.TabIndex = 255;
-            // 
-            // pictureBox6
-            // 
-            pictureBox6.BackColor = Color.Navy;
-            pictureBox6.Location = new Point(-203, 595);
-            pictureBox6.Margin = new Padding(3, 2, 3, 2);
-            pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(232, 18);
-            pictureBox6.TabIndex = 7;
-            pictureBox6.TabStop = false;
             // 
             // panel3
             // 
@@ -350,22 +321,11 @@
             // panel2
             // 
             panel2.BackColor = Color.Navy;
-            panel2.Controls.Add(pictureBox4);
             panel2.Location = new Point(4, 0);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
             panel2.Size = new Size(1288, 18);
             panel2.TabIndex = 253;
-            // 
-            // pictureBox4
-            // 
-            pictureBox4.BackColor = Color.Navy;
-            pictureBox4.Location = new Point(494, -176);
-            pictureBox4.Margin = new Padding(3, 2, 3, 2);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(21, 494);
-            pictureBox4.TabIndex = 9;
-            pictureBox4.TabStop = false;
             // 
             // panel1
             // 
@@ -780,7 +740,7 @@
             // Min
             // 
             Min.Increment = new decimal(new int[] { 1, 0, 0, 0 });
-            Min.Location = new Point(736, 140);
+            Min.Location = new Point(735, 142);
             Min.Margin = new Padding(3, 2, 3, 2);
             Min.Maximum = new decimal(new int[] { 100, 0, 0, 0 });
             Min.Minimum = new decimal(new int[] { 0, 0, 0, 0 });
@@ -798,7 +758,7 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(806, 114);
+            label5.Location = new Point(805, 116);
             label5.Name = "label5";
             label5.Size = new Size(75, 17);
             label5.TabIndex = 283;
@@ -810,7 +770,7 @@
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(701, 145);
+            label6.Location = new Point(700, 147);
             label6.Name = "label6";
             label6.Size = new Size(27, 17);
             label6.TabIndex = 284;
@@ -822,7 +782,7 @@
             label7.BackColor = Color.Transparent;
             label7.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Navy;
-            label7.Location = new Point(850, 145);
+            label7.Location = new Point(849, 147);
             label7.Name = "label7";
             label7.Size = new Size(31, 17);
             label7.TabIndex = 285;
@@ -831,7 +791,7 @@
             // Max
             // 
             Max.Increment = new decimal(new int[] { 1, 0, 0, 0 });
-            Max.Location = new Point(888, 140);
+            Max.Location = new Point(887, 142);
             Max.Margin = new Padding(3, 2, 3, 2);
             Max.Maximum = new decimal(new int[] { 100, 0, 0, 0 });
             Max.Minimum = new decimal(new int[] { 0, 0, 0, 0 });
@@ -886,42 +846,42 @@
             // 
             // dgvReporte
             // 
-            dataGridViewCellStyle1.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = Color.Navy;
-            dgvReporte.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle6.ForeColor = Color.Navy;
+            dgvReporte.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             dgvReporte.BackgroundColor = Color.SkyBlue;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Control;
-            dataGridViewCellStyle2.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = Color.Navy;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvReporte.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = SystemColors.Control;
+            dataGridViewCellStyle7.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle7.ForeColor = Color.Navy;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dgvReporte.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             dgvReporte.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Window;
-            dataGridViewCellStyle3.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = Color.SkyBlue;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dgvReporte.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = SystemColors.Window;
+            dataGridViewCellStyle8.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle8.ForeColor = Color.SkyBlue;
+            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
+            dgvReporte.DefaultCellStyle = dataGridViewCellStyle8;
             dgvReporte.Location = new Point(498, 179);
             dgvReporte.Margin = new Padding(3, 2, 3, 2);
             dgvReporte.Name = "dgvReporte";
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Control;
-            dataGridViewCellStyle4.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = Color.Navy;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgvReporte.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = SystemColors.Control;
+            dataGridViewCellStyle9.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle9.ForeColor = Color.Navy;
+            dataGridViewCellStyle9.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
+            dgvReporte.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             dgvReporte.RowHeadersWidth = 51;
-            dataGridViewCellStyle5.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle5.ForeColor = Color.Navy;
-            dgvReporte.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle10.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle10.ForeColor = Color.Navy;
+            dgvReporte.RowsDefaultCellStyle = dataGridViewCellStyle10;
             dgvReporte.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvReporte.Size = new Size(742, 453);
             dgvReporte.TabIndex = 174;
@@ -1000,14 +960,14 @@
             // 
             // btnFiltro
             // 
-            btnFiltro.Location = new Point(984, 139);
+            btnFiltro.Location = new Point(984, 142);
             btnFiltro.Margin = new Padding(3, 2, 3, 2);
             btnFiltro.Name = "btnFiltro";
             btnFiltro.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnFiltro.OverrideDefault.Back.Color2 = Color.White;
             btnFiltro.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnFiltro.OverrideFocus.Back.Color2 = Color.White;
-            btnFiltro.Size = new Size(80, 24);
+            btnFiltro.Size = new Size(80, 29);
             btnFiltro.StateCommon.Back.Color1 = Color.SkyBlue;
             btnFiltro.StateCommon.Back.Color2 = Color.White;
             btnFiltro.StateCommon.Border.Rounding = 20F;
@@ -1043,7 +1003,6 @@
             Controls.Add(Min);
             Controls.Add(label3);
             Controls.Add(label4);
-            Controls.Add(kryptonGroup3);
             Controls.Add(label1);
             Controls.Add(kryptonGroup2);
             Controls.Add(label8);
@@ -1066,16 +1025,10 @@
             Load += ReportesAdmin_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox15).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup3.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup3).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup2.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup2).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).EndInit();
-            panel5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
-            panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel7.ResumeLayout(false);
@@ -1103,7 +1056,6 @@
         private Krypton.Toolkit.KryptonButton btnCerrarSesion;
         private PictureBox pictureBox16;
         private PictureBox pictureBox15;
-        private Krypton.Toolkit.KryptonGroup kryptonGroup3;
         private Label label1;
         private Krypton.Toolkit.KryptonGroup kryptonGroup2;
         private Label label8;
@@ -1114,11 +1066,9 @@
         private Panel panel6;
         private Panel panel8;
         private Panel panel5;
-        private PictureBox pictureBox6;
         private Panel panel3;
         private Panel panel4;
         private Panel panel2;
-        private PictureBox pictureBox4;
         private Panel panel1;
         private Krypton.Toolkit.KryptonButton btnMenuPrincipal;
         private Krypton.Toolkit.KryptonButton btnFactura;

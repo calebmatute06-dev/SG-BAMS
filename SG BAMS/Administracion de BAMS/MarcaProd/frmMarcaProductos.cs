@@ -80,7 +80,33 @@ namespace SG_BAMS
 
         private void frmMarcaProductos_Load(object sender, EventArgs e)
         {
+            dgvMarcas.BorderStyle = BorderStyle.None;
+            dgvMarcas.BackgroundColor = Color.White;
+            dgvMarcas.RowHeadersVisible = false;
+            dgvMarcas.EnableHeadersVisualStyles = false;
+            dgvMarcas.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
 
+            dgvMarcas.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
+            dgvMarcas.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
+            dgvMarcas.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgvMarcas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvMarcas.ColumnHeadersHeight = 28;
+
+            dgvMarcas.DefaultCellStyle.BackColor = Color.White;
+            dgvMarcas.DefaultCellStyle.ForeColor = Color.Navy;
+            dgvMarcas.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dgvMarcas.DefaultCellStyle.Padding = new Padding(3);
+            dgvMarcas.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 245, 255);
+            dgvMarcas.AlternatingRowsDefaultCellStyle.ForeColor = Color.Navy;
+
+            dgvMarcas.DefaultCellStyle.SelectionBackColor = Color.DeepSkyBlue;
+            dgvMarcas.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            dgvMarcas.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvMarcas.GridColor = Color.LightGray;
+            dgvMarcas.RowTemplate.Height = 32;
+            dgvMarcas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvMarcas.ClearSelection();
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)

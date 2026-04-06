@@ -630,7 +630,7 @@
             // 
             btnAgregar.AutoSize = true;
             btnAgregar.DropDownPosition = Krypton.Toolkit.VisualOrientation.Bottom;
-            btnAgregar.Location = new Point(728, 597);
+            btnAgregar.Location = new Point(680, 597);
             btnAgregar.Margin = new Padding(3, 2, 3, 2);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -692,7 +692,7 @@
             // 
             kryptonButton10.AutoSize = true;
             kryptonButton10.DropDownPosition = Krypton.Toolkit.VisualOrientation.Bottom;
-            kryptonButton10.Location = new Point(888, 597);
+            kryptonButton10.Location = new Point(840, 597);
             kryptonButton10.Margin = new Padding(3, 2, 3, 2);
             kryptonButton10.Name = "kryptonButton10";
             kryptonButton10.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -721,11 +721,11 @@
             // 
             dgvProductosAdmin.BackgroundColor = Color.SkyBlue;
             dgvProductosAdmin.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProductosAdmin.Location = new Point(267, 150);
+            dgvProductosAdmin.Location = new Point(267, 159);
             dgvProductosAdmin.Margin = new Padding(3, 2, 3, 2);
             dgvProductosAdmin.Name = "dgvProductosAdmin";
             dgvProductosAdmin.RowHeadersWidth = 51;
-            dgvProductosAdmin.Size = new Size(1119, 436);
+            dgvProductosAdmin.Size = new Size(1119, 427);
             dgvProductosAdmin.TabIndex = 197;
             dgvProductosAdmin.CellDoubleClick += dgvProductosAdmin_CellDoubleClick_1;
             // 
@@ -735,7 +735,7 @@
             label10.BackColor = Color.SkyBlue;
             label10.Font = new Font("Arial Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Navy;
-            label10.Location = new Point(812, 51);
+            label10.Location = new Point(775, 31);
             label10.Name = "label10";
             label10.Size = new Size(147, 33);
             label10.TabIndex = 198;
@@ -744,7 +744,7 @@
             // kryptonGroupBox2
             // 
             kryptonGroupBox2.CaptionVisible = false;
-            kryptonGroupBox2.Location = new Point(727, 43);
+            kryptonGroupBox2.Location = new Point(690, 23);
             kryptonGroupBox2.Size = new Size(301, 49);
             kryptonGroupBox2.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroupBox2.StateCommon.Border.Rounding = 50F;
