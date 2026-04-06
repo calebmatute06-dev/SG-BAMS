@@ -21,12 +21,12 @@ namespace SG_BAMS.Login
         public int RolAsignado { get; set; }
 
         private VideoCapture camara;
-        private LBPHFaceRecognizer recognizer = new LBPHFaceRecognizer(1, 8, 8, 8, 100);
+        private LBPHFaceRecognizer recognizer = new LBPHFaceRecognizer(1, 8, 8, 8, 200);
         private CascadeClassifier faceDetector = new CascadeClassifier("haarcascade_frontalface_default.xml");
 
         private int contadorExito = 0;
-        private const int VOTOS_PARA_VALIDAR = 4;
-        private const double UMBRAL_DISTANCIA = 85;
+        private const int VOTOS_PARA_VALIDAR = 2;
+        private const double UMBRAL_DISTANCIA = 130;
 
         private CancellationTokenSource cts;
         private volatile bool _procesando = false;
@@ -139,10 +139,10 @@ namespace SG_BAMS.Login
                     {
                         rostrosDetectados = faceDetector.DetectMultiScale(
                             grisNormalizado,
-                            scaleFactor: 1.05,  
-                            minNeighbors: 3,      
-                            minSize: new Size(50, 50),
-                            maxSize: new Size(500, 500));
+                            scaleFactor: 1.08,
+                            minNeighbors: 2,
+                            minSize: new Size(35, 35),
+                            maxSize: new Size(600, 600));
                     }
 
                     if (rostrosDetectados.Length == 0)
@@ -196,10 +196,10 @@ namespace SG_BAMS.Login
             using (Mat m = gris.Mat)
             {
                 double media = CvInvoke.Mean(m).V0;
-                if (media < 80) AplicarGamma(m, 0.45);  
-                else if (media < 110) AplicarGamma(m, 0.7);   
-                else if (media > 180) AplicarGamma(m, 2.2);   
-                else if (media > 150) AplicarGamma(m, 1.6);   
+                if (media < 80) AplicarGamma(m, 0.45);
+                else if (media < 110) AplicarGamma(m, 0.7);
+                else if (media > 180) AplicarGamma(m, 2.2);
+                else if (media > 150) AplicarGamma(m, 1.6);
 
                 CvInvoke.CLAHE(m, 4.0, new Size(4, 4), m);
                 CvInvoke.EqualizeHist(m, m);
