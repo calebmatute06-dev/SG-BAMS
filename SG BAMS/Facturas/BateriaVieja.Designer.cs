@@ -305,37 +305,37 @@
             // panel1
             // 
             panel1.BackColor = Color.Navy;
-            panel1.Location = new Point(1, 2);
+            panel1.Location = new Point(1, -8);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(801, 16);
+            panel1.Size = new Size(801, 26);
             panel1.TabIndex = 353;
             // 
             // panel2
             // 
             panel2.BackColor = Color.Navy;
-            panel2.Location = new Point(1, 472);
+            panel2.Location = new Point(1, 471);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(801, 16);
+            panel2.Size = new Size(801, 17);
             panel2.TabIndex = 354;
             // 
             // panel3
             // 
             panel3.BackColor = Color.Navy;
-            panel3.Location = new Point(780, 2);
+            panel3.Location = new Point(780, -6);
             panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(22, 484);
+            panel3.Size = new Size(22, 492);
             panel3.TabIndex = 355;
             // 
             // panel4
             // 
             panel4.BackColor = Color.Navy;
-            panel4.Location = new Point(1, 8);
+            panel4.Location = new Point(-1, -6);
             panel4.Margin = new Padding(3, 2, 3, 2);
             panel4.Name = "panel4";
-            panel4.Size = new Size(22, 480);
+            panel4.Size = new Size(23, 494);
             panel4.TabIndex = 356;
             // 
             // label6
@@ -386,6 +386,7 @@
             Controls.Add(cmbBaterias);
             Controls.Add(txtPrecio);
             Controls.Add(kryptonGroupBox3);
+            FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 2, 3, 2);
             Name = "BateriaVieja";
             Text = "BateriaVieja";

@@ -33,10 +33,10 @@
             pictureBox1 = new PictureBox();
             pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
-            label7 = new Label();
             lblEstado = new Label();
             btnReintentar1 = new Krypton.Toolkit.KryptonButton();
             btnCancelar1 = new Krypton.Toolkit.KryptonButton();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)picValidar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -91,17 +91,6 @@
             pictureBox2.Size = new Size(801, 18);
             pictureBox2.TabIndex = 48;
             pictureBox2.TabStop = false;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.ForeColor = Color.Navy;
-            label7.Location = new Point(731, 427);
-            label7.Name = "label7";
-            label7.Size = new Size(60, 25);
-            label7.TabIndex = 148;
-            label7.Text = "BAMS";
             // 
             // lblEstado
             // 
@@ -161,21 +150,34 @@
             btnCancelar1.Values.Text = "Cancelar";
             btnCancelar1.Click += btnCancelar1_Click;
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.BackColor = Color.Transparent;
+            label5.Font = new Font("Arial Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.Navy;
+            label5.Location = new Point(700, 419);
+            label5.Name = "label5";
+            label5.Size = new Size(93, 33);
+            label5.TabIndex = 329;
+            label5.Text = "BAMS";
+            // 
             // LoginFacial
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(817, 469);
+            Controls.Add(label5);
             Controls.Add(btnCancelar1);
             Controls.Add(btnReintentar1);
             Controls.Add(lblEstado);
-            Controls.Add(label7);
             Controls.Add(pictureBox4);
             Controls.Add(pictureBox1);
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox2);
             Controls.Add(picValidar);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "LoginFacial";
             Text = "LoginFacial";
             Load += LoginFacial_Load;
@@ -195,9 +197,9 @@
         private PictureBox pictureBox1;
         private PictureBox pictureBox3;
         private PictureBox pictureBox2;
-        private Label label7;
         private Label lblEstado;
         private Krypton.Toolkit.KryptonButton btnReintentar1;
         private Krypton.Toolkit.KryptonButton btnCancelar1;
+        private Label label5;
     }
 }

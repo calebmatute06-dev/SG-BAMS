@@ -668,7 +668,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1370, 679);
+            ClientSize = new Size(1436, 679);
             Controls.Add(Nombre);
             Controls.Add(BtnRefrescar);
             Controls.Add(label6);
@@ -693,6 +693,7 @@
             Controls.Add(panel6);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "FacturasEmp";
             Text = "FacturasEmp";
             Load += FacturasEmp_Load;

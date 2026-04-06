@@ -189,7 +189,7 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(844, 441);
+            label5.Location = new Point(844, 461);
             label5.Name = "label5";
             label5.Size = new Size(93, 33);
             label5.TabIndex = 328;
@@ -397,6 +397,7 @@
             Controls.Add(panel4);
             Controls.Add(panel8);
             Controls.Add(kryptonGroupBox3);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "FacturaVer";
             Text = "FacturaVer";
             Load += FacturaVer_Load;

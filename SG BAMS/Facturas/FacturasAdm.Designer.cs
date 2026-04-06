@@ -102,10 +102,10 @@
             // panel6
             // 
             panel6.BackColor = Color.Navy;
-            panel6.Location = new Point(15, 567);
+            panel6.Location = new Point(0, 567);
             panel6.Margin = new Padding(3, 2, 3, 2);
             panel6.Name = "panel6";
-            panel6.Size = new Size(228, 18);
+            panel6.Size = new Size(256, 18);
             panel6.TabIndex = 112;
             // 
             // panel2
@@ -210,7 +210,7 @@
             panel8.Location = new Point(235, 16);
             panel8.Margin = new Padding(3, 2, 3, 2);
             panel8.Name = "panel8";
-            panel8.Size = new Size(21, 652);
+            panel8.Size = new Size(21, 664);
             panel8.TabIndex = 110;
             // 
             // panel3
@@ -672,7 +672,7 @@
             panel5.Location = new Point(0, 0);
             panel5.Margin = new Padding(3, 2, 3, 2);
             panel5.Name = "panel5";
-            panel5.Size = new Size(21, 678);
+            panel5.Size = new Size(21, 680);
             panel5.TabIndex = 109;
             // 
             // kryptonGroupBox2
@@ -842,7 +842,7 @@
             // panel9
             // 
             panel9.BackColor = Color.Navy;
-            panel9.Location = new Point(1369, 0);
+            panel9.Location = new Point(1371, 0);
             panel9.Margin = new Padding(3, 2, 3, 2);
             panel9.Name = "panel9";
             panel9.Size = new Size(21, 690);
@@ -878,6 +878,7 @@
             Controls.Add(panel1);
             Controls.Add(kryptonGroupBox2);
             Controls.Add(kryptonGroupBox3);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "FacturasAdm";
             Text = "FacturasAdm";
             Load += FacturasAdm_Load;

@@ -29,9 +29,9 @@ namespace SG_BAMS
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             pictureBox21 = new PictureBox();
             pictureBox20 = new PictureBox();
             pictureBox19 = new PictureBox();
@@ -49,12 +49,10 @@ namespace SG_BAMS
             panel6 = new Panel();
             panel8 = new Panel();
             panel5 = new Panel();
-            pictureBox6 = new PictureBox();
             panel3 = new Panel();
             panel4 = new Panel();
             pictureBox2 = new PictureBox();
             panel2 = new Panel();
-            pictureBox4 = new PictureBox();
             panel1 = new Panel();
             panel7 = new Panel();
             label11 = new Label();
@@ -84,12 +82,8 @@ namespace SG_BAMS
             ((System.ComponentModel.ISupportInitialize)pictureBox21).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox20).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox19).BeginInit();
-            panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             panel1.SuspendLayout();
             panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
@@ -283,10 +277,10 @@ namespace SG_BAMS
             // panel6
             // 
             panel6.BackColor = Color.Navy;
-            panel6.Location = new Point(14, 567);
+            panel6.Location = new Point(-1, 567);
             panel6.Margin = new Padding(3, 2, 3, 2);
             panel6.Name = "panel6";
-            panel6.Size = new Size(228, 18);
+            panel6.Size = new Size(256, 18);
             panel6.TabIndex = 70;
             // 
             // panel8
@@ -295,28 +289,17 @@ namespace SG_BAMS
             panel8.Location = new Point(234, 16);
             panel8.Margin = new Padding(3, 2, 3, 2);
             panel8.Name = "panel8";
-            panel8.Size = new Size(21, 652);
+            panel8.Size = new Size(21, 664);
             panel8.TabIndex = 68;
             // 
             // panel5
             // 
             panel5.BackColor = Color.Navy;
-            panel5.Controls.Add(pictureBox6);
             panel5.Location = new Point(-1, -1);
             panel5.Margin = new Padding(3, 2, 3, 2);
             panel5.Name = "panel5";
-            panel5.Size = new Size(21, 678);
+            panel5.Size = new Size(21, 681);
             panel5.TabIndex = 67;
-            // 
-            // pictureBox6
-            // 
-            pictureBox6.BackColor = Color.Navy;
-            pictureBox6.Location = new Point(-203, 595);
-            pictureBox6.Margin = new Padding(3, 2, 3, 2);
-            pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(232, 18);
-            pictureBox6.TabIndex = 7;
-            pictureBox6.TabStop = false;
             // 
             // panel3
             // 
@@ -350,22 +333,11 @@ namespace SG_BAMS
             // panel2
             // 
             panel2.BackColor = Color.Navy;
-            panel2.Controls.Add(pictureBox4);
             panel2.Location = new Point(4, -1);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
             panel2.Size = new Size(964, 18);
             panel2.TabIndex = 64;
-            // 
-            // pictureBox4
-            // 
-            pictureBox4.BackColor = Color.Navy;
-            pictureBox4.Location = new Point(494, -176);
-            pictureBox4.Margin = new Padding(3, 2, 3, 2);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(21, 494);
-            pictureBox4.TabIndex = 9;
-            pictureBox4.TabStop = false;
             // 
             // panel1
             // 
@@ -796,22 +768,22 @@ namespace SG_BAMS
             // 
             chartStock1.BackColor = Color.SkyBlue;
             chartStock1.BorderlineColor = Color.SkyBlue;
-            chartArea1.BackColor = Color.SkyBlue;
-            chartArea1.BackSecondaryColor = Color.White;
-            chartArea1.Name = "ChartArea1";
-            chartStock1.ChartAreas.Add(chartArea1);
-            legend1.BackColor = Color.SkyBlue;
-            legend1.Name = "Legend1";
-            chartStock1.Legends.Add(legend1);
+            chartArea2.BackColor = Color.SkyBlue;
+            chartArea2.BackSecondaryColor = Color.White;
+            chartArea2.Name = "ChartArea1";
+            chartStock1.ChartAreas.Add(chartArea2);
+            legend2.BackColor = Color.SkyBlue;
+            legend2.Name = "Legend1";
+            chartStock1.Legends.Add(legend2);
             chartStock1.Location = new Point(298, 136);
             chartStock1.Margin = new Padding(3, 2, 3, 2);
             chartStock1.Name = "chartStock1";
             chartStock1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.EarthTones;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            chartStock1.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            chartStock1.Series.Add(series2);
             chartStock1.Size = new Size(373, 161);
             chartStock1.TabIndex = 101;
             chartStock1.Text = "chart1";
@@ -886,12 +858,8 @@ namespace SG_BAMS
             ((System.ComponentModel.ISupportInitialize)pictureBox21).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox20).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox19).EndInit();
-            panel5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel7.ResumeLayout(false);
@@ -934,12 +902,10 @@ namespace SG_BAMS
         private Panel panel6;
         private Panel panel8;
         private Panel panel5;
-        private PictureBox pictureBox6;
         private Panel panel3;
         private Panel panel4;
         private PictureBox pictureBox2;
         private Panel panel2;
-        private PictureBox pictureBox4;
         private Panel panel1;
         private Krypton.Toolkit.KryptonButton btnCerrarSesion;
         private PictureBox pictureBox16;

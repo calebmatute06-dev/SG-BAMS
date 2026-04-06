@@ -160,10 +160,10 @@
             // panel4
             // 
             panel4.BackColor = Color.Navy;
-            panel4.Location = new Point(0, 593);
+            panel4.Location = new Point(0, 592);
             panel4.Margin = new Padding(3, 2, 3, 2);
             panel4.Name = "panel4";
-            panel4.Size = new Size(992, 18);
+            panel4.Size = new Size(992, 19);
             panel4.TabIndex = 295;
             // 
             // panel8
@@ -535,6 +535,7 @@
             Controls.Add(panel1);
             Controls.Add(panel8);
             Controls.Add(kryptonGroupBox3);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "FacturaAgregarDatos";
             Text = "FacturaAgregarDatos";
             Load += FacturaAgregarDatos_Load;

@@ -590,10 +590,10 @@
             // panel6
             // 
             panel6.BackColor = Color.Navy;
-            panel6.Location = new Point(13, 568);
+            panel6.Location = new Point(1, 568);
             panel6.Margin = new Padding(3, 2, 3, 2);
             panel6.Name = "panel6";
-            panel6.Size = new Size(228, 18);
+            panel6.Size = new Size(249, 18);
             panel6.TabIndex = 11;
             // 
             // panel2
@@ -639,7 +639,7 @@
             panel5.Location = new Point(-2, -1);
             panel5.Margin = new Padding(3, 2, 3, 2);
             panel5.Name = "panel5";
-            panel5.Size = new Size(21, 678);
+            panel5.Size = new Size(21, 682);
             panel5.TabIndex = 8;
             // 
             // panel8
@@ -648,7 +648,7 @@
             panel8.Location = new Point(233, 17);
             panel8.Margin = new Padding(3, 2, 3, 2);
             panel8.Name = "panel8";
-            panel8.Size = new Size(21, 652);
+            panel8.Size = new Size(21, 664);
             panel8.TabIndex = 9;
             // 
             // pictureBox17
