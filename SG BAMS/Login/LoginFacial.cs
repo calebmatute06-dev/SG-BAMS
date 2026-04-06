@@ -41,8 +41,9 @@ namespace SG_BAMS.Login
 
             if (todosLosArchivos.Count == 0)
             {
-                MessageBox.Show("No hay registros faciales.", "Error");
-                Finalizar(DialogResult.Abort);
+                MessageBox.Show("No hay registros faciales registrados en el sistema.", "Sin registros",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                RegresarAlLogin();
                 return;
             }
 
@@ -53,8 +54,9 @@ namespace SG_BAMS.Login
 
             if (archivosUsuario.Count == 0)
             {
-                MessageBox.Show("No tienes un registro facial.", "Error");
-                Finalizar(DialogResult.Abort);
+                MessageBox.Show($"El usuario '{UsuarioAValidar}' no tiene un registro facial.", "Sin registro facial",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                RegresarAlLogin();
                 return;
             }
 
@@ -64,6 +66,22 @@ namespace SG_BAMS.Login
                 EntrenarModelo(todosLosArchivos);
                 this.Invoke(new Action(IniciarCamara));
             });
+        }
+
+        private void RegresarAlLogin()
+        {
+            cts?.Cancel();
+            timerCamara?.Stop();
+            timerCamara?.Dispose();
+            if (camara != null) { camara.Stop(); camara.Dispose(); camara = null; }
+
+            Form loginOriginal = Application.OpenForms["Login"];
+            if (loginOriginal != null)
+                loginOriginal.Show();
+            else
+                new Login().Show();
+
+            this.Close();
         }
 
         private void EntrenarModelo(List<string> todosLosArchivos)
@@ -208,11 +226,9 @@ namespace SG_BAMS.Login
                         else
                         {
                             contadorExito = Math.Max(0, contadorExito - 1);
-
                             string msg = resultado.Label != etiquetaUsuarioValido && resultado.Label != -1
                                 ? "Rostro no autorizado"
                                 : $"Ajusta posición... (dist: {resultado.Distance:F0})";
-
                             ActualizarEstado(msg, Color.Red);
                         }
                     }
@@ -227,7 +243,6 @@ namespace SG_BAMS.Login
         private Image<Gray, byte> PrepararGrisParaDeteccion(Image<Bgr, byte> frame)
         {
             var gris = frame.Convert<Gray, byte>();
-
             using (Mat m = gris.Mat)
             {
                 double media = CvInvoke.Mean(m).V0;
@@ -240,7 +255,6 @@ namespace SG_BAMS.Login
                 CvInvoke.EqualizeHist(m, m);
                 CvInvoke.GaussianBlur(m, m, new Size(3, 3), 0);
             }
-
             return gris;
         }
 
@@ -259,7 +273,6 @@ namespace SG_BAMS.Login
                     CvInvoke.BilateralFilter(m, temp, 9, 75, 75);
                     temp.CopyTo(m);
                 }
-
                 CvInvoke.EqualizeHist(m, m);
             }
         }
@@ -306,32 +319,27 @@ namespace SG_BAMS.Login
             {
                 Form loginOriginal = Application.OpenForms["Login"];
                 loginOriginal?.Close();
-
                 switch (RolAsignado)
                 {
                     case 1:
-                        new MenuPrincipalAdm().Show();
+                        SG_BAMS.MenuPrincipalAdm menuAdm = new SG_BAMS.MenuPrincipalAdm();
+                        menuAdm.Show();
                         break;
                     case 2:
-                        new MenuPrincipalEmp().Show();
+                        SG_BAMS.MenuPrincipalEmp menuEmp = new SG_BAMS.MenuPrincipalEmp();
+                        menuEmp.Show();
                         break;
                     default:
                         MessageBox.Show("Rol no reconocido.", "Error",
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        RegresarAlLogin();
                         break;
                 }
             }
             else
             {
-                Form loginOriginal = Application.OpenForms["Login"];
-                if (loginOriginal != null)
-                {
-                    loginOriginal.Show();
-                }
-                else
-                {
-                    new Login().Show();
-                }
+                RegresarAlLogin();
+                return;
             }
 
             this.Close();
@@ -346,7 +354,7 @@ namespace SG_BAMS.Login
             base.OnFormClosing(e);
         }
 
-        private void btnCancelar1_Click(object sender, EventArgs e) => Finalizar(DialogResult.Cancel);
+        private void btnCancelar1_Click(object sender, EventArgs e) => RegresarAlLogin();
 
         private void btnReintentar1_Click(object sender, EventArgs e)
         {
