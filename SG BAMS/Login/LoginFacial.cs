@@ -3,17 +3,12 @@ using Emgu.CV.Face;
 using Emgu.CV.Structure;
 using Emgu.CV.Util;
 using SG_BAMS.Administracion_de_BAMS.Usuarios;
-using Emgu.CV.Util;
 using Emgu.CV.CvEnum;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SG_BAMS.Login
@@ -21,22 +16,27 @@ namespace SG_BAMS.Login
     public partial class LoginFacial : Form
     {
         public string UsuarioAValidar { get; set; }
-        private VideoCapture camara;
-        private List<Image<Gray, byte>> rostrosReferencia = new List<Image<Gray, byte>>();
-
-        private CascadeClassifier faceDetector = new CascadeClassifier("haarcascade_frontalface_default.xml");
-        private CascadeClassifier profileFaceDetector = new CascadeClassifier("haarcascade_profileface.xml");
         public int RolAsignado { get; set; }
+
+        private VideoCapture camara;
+        private LBPHFaceRecognizer recognizer = new LBPHFaceRecognizer(1, 8, 8, 8, 100);
+        private CascadeClassifier faceDetector = new CascadeClassifier("haarcascade_frontalface_default.xml");
+
+        private int contadorExito = 0;
+        private int contadorFallo = 0;
+        private const int VOTOS_PARA_VALIDAR = 4;   
+        private const double UMBRAL_DISTANCIA = 85;  
+
         public LoginFacial()
         {
             InitializeComponent();
         }
-        private LBPHFaceRecognizer recognizer = new LBPHFaceRecognizer(1, 8, 8, 8, 100);
+
         private void LoginFacial_Load(object sender, EventArgs e)
         {
             var archivos = Directory.GetFiles(clsSoporte.DirectorioRostros, "*.jpg")
                            .Where(f => Path.GetFileNameWithoutExtension(f) == UsuarioAValidar ||
-                           Path.GetFileNameWithoutExtension(f).StartsWith(UsuarioAValidar + "_"))
+                                       Path.GetFileNameWithoutExtension(f).StartsWith(UsuarioAValidar + "_"))
                            .ToList();
 
             if (archivos.Count == 0)
@@ -51,34 +51,53 @@ namespace SG_BAMS.Login
 
             foreach (var archivo in archivos)
             {
-                var imgReferencia = new Image<Gray, byte>(archivo).Resize(100, 100, Inter.Linear);
-                AplicarClahe(imgReferencia);
-                rostrosEntrenamiento.Add(imgReferencia);
+                var imgOriginal = new Image<Gray, byte>(archivo).Resize(100, 100, Inter.Linear);
+                AplicarPreprocesado(imgOriginal);
+                rostrosEntrenamiento.Add(imgOriginal);
+                etiquetas.Add(1);
+
+                var imgFlip = imgOriginal.Flip(FlipType.Horizontal);
+                rostrosEntrenamiento.Add(imgFlip);
+                etiquetas.Add(1);
+                var imgBrillo = imgOriginal.Clone();
+                imgBrillo._Mul(1.3);
+                rostrosEntrenamiento.Add(imgBrillo);
+                etiquetas.Add(1);
+
+                var imgOscura = imgOriginal.Clone();
+                imgOscura._Mul(0.7);
+                rostrosEntrenamiento.Add(imgOscura);
                 etiquetas.Add(1);
             }
+
             using (VectorOfMat vRostros = new VectorOfMat())
-            using (VectorOfInt vEtiquetas = new VectorOfInt())
+            using (VectorOfInt vEtiquetas = new VectorOfInt(etiquetas.ToArray()))
             {
                 foreach (var img in rostrosEntrenamiento)
-                {
-                    vRostros.Push(img.Mat); 
-                }
-
-                vEtiquetas.Push(etiquetas.ToArray());
+                    vRostros.Push(img.Mat);
 
                 recognizer.Train(vRostros, vEtiquetas);
             }
 
+            foreach (var img in rostrosEntrenamiento) img.Dispose();
+
             camara = new VideoCapture(0);
             Application.Idle += ProcesoValidacion;
         }
-        private void AplicarClahe(Image<Gray, byte> imagen)
+
+        private void AplicarPreprocesado(Image<Gray, byte> imagen)
         {
             using (Mat m = imagen.Mat)
             {
-                CvInvoke.CLAHE(m, 2.0, new Size(8, 8), m);
+                CvInvoke.CLAHE(m, 3.0, new Size(8, 8), m);
+                Mat temp = new Mat();
+                CvInvoke.BilateralFilter(m, temp, 9, 75, 75);
+                temp.CopyTo(m);
+                temp.Dispose();
+                CvInvoke.EqualizeHist(m, m);
             }
         }
+
         private void ProcesoValidacion(object sender, EventArgs e)
         {
             if (camara == null) return;
@@ -91,24 +110,48 @@ namespace SG_BAMS.Login
 
                     using (var frame = m.ToImage<Bgr, byte>())
                     {
-                        var rostroActual = clsSoporte.DetectarRostro(frame);
+                        var rostroActual = DetectarRostroMejorado(frame);
 
                         if (rostroActual != null)
                         {
                             using (var rostroProcesado = rostroActual.Resize(100, 100, Inter.Linear))
                             {
-                                AplicarClahe(rostroProcesado);
+                                AplicarPreprocesado(rostroProcesado);
                                 var resultado = recognizer.Predict(rostroProcesado);
-                                if (resultado.Label != -1 && resultado.Distance < 70)
+
+                                bool coincide = resultado.Label != -1 && resultado.Distance < UMBRAL_DISTANCIA;
+
+                                if (coincide)
+                                {
+                                    contadorExito++;
+                                    contadorFallo = 0;
+                                    ActualizarEstado("Verificando... ({contadorExito}/{VOTOS_PARA_VALIDAR})", Color.DodgerBlue);
+                                }
+                                else
+                                {
+                                    contadorFallo++;
+                                    contadorExito = Math.Max(0, contadorExito - 1);
+                                    ActualizarEstado("Buscando rostro... (dist: {resultado.Distance:F0})", Color.Orange);
+                                }
+
+                                if (contadorExito >= VOTOS_PARA_VALIDAR)
                                 {
                                     Finalizar(DialogResult.OK);
                                     return;
                                 }
                             }
+                            rostroActual.Dispose();
+                        }
+                        else
+                        {
+                            contadorExito = Math.Max(0, contadorExito - 1);
+                            ActualizarEstado("Coloca tu rostro frente a la cámara", Color.Gray);
                         }
 
-                        if (picValidar.Image != null) picValidar.Image.Dispose();
-                        picValidar.Image = frame.ToBitmap();
+                        if (picValidar.InvokeRequired)
+                            picValidar.Invoke(new Action(() => RefrescarImagen(frame)));
+                        else
+                            RefrescarImagen(frame);
                     }
                 }
             }
@@ -118,34 +161,53 @@ namespace SG_BAMS.Login
             }
         }
 
-        private void CompararRostros(Image<Gray, byte> rostroActual)
+        private void RefrescarImagen(Image<Bgr, byte> frame)
         {
-            try
+            if (picValidar.Image != null) picValidar.Image.Dispose();
+            picValidar.Image = frame.ToBitmap();
+        }
+
+        private void ActualizarEstado(string texto, Color color)
+        {
+            if (lblEstado.InvokeRequired)
             {
-                foreach (var referencia in rostrosReferencia)
-                {
-                    using (Image<Gray, byte> refResized = referencia.Resize(rostroActual.Width, rostroActual.Height, Inter.Linear))
-                    {
-                        using (Mat resultado = new Mat())
-                        {
-                            CvInvoke.MatchTemplate(rostroActual, refResized, resultado, TemplateMatchingType.CcoeffNormed);
-
-                            double minVal = 0, maxVal = 0;
-                            Point minLoc = new Point(), maxLoc = new Point();
-                            CvInvoke.MinMaxLoc(resultado, ref minVal, ref maxVal, ref minLoc, ref maxLoc);
-
-                            if (maxVal > 0.70)
-                            {
-                                Finalizar(DialogResult.OK);
-                                return;
-                            }
-                        }
-                    }
-                }
+                lblEstado.Invoke(new Action(() => {
+                    lblEstado.Text = texto;
+                    lblEstado.ForeColor = color;
+                }));
             }
-            catch (Exception ex)
+            else
             {
-                System.Diagnostics.Debug.WriteLine("Error comp: " + ex.Message);
+                lblEstado.Text = texto;
+                lblEstado.ForeColor = color;
+            }
+        }
+
+        private Image<Gray, byte> DetectarRostroMejorado(Image<Bgr, byte> frame)
+        {
+            using (var gris = frame.Convert<Gray, byte>())
+            {
+                CvInvoke.EqualizeHist(gris.Mat, gris.Mat);
+
+                var rostros = faceDetector.DetectMultiScale(
+                    gris,
+                    scaleFactor: 1.1,
+                    minNeighbors: 4,      
+                    minSize: new Size(60, 60),
+                    maxSize: new Size(400, 400)
+                );
+
+                if (rostros.Length == 0) return null;
+
+                var mejorRostro = rostros.OrderByDescending(r => r.Width * r.Height).First();
+
+                int margen = (int)(mejorRostro.Width * 0.10);
+                int x = Math.Max(0, mejorRostro.X - margen);
+                int y = Math.Max(0, mejorRostro.Y - margen);
+                int w = Math.Min(frame.Width - x, mejorRostro.Width + margen * 2);
+                int h = Math.Min(frame.Height - y, mejorRostro.Height + margen * 2);
+
+                return frame.Convert<Gray, byte>().GetSubRect(new Rectangle(x, y, w, h)).Clone();
             }
         }
 
@@ -159,26 +221,16 @@ namespace SG_BAMS.Login
                 camara = null;
             }
 
-            foreach (var img in rostrosReferencia) { img.Dispose(); }
-            rostrosReferencia.Clear();
-
             if (resultado == DialogResult.OK)
             {
                 switch (RolAsignado)
                 {
-                    case 1: 
-                        new MenuPrincipalAdm().Show();
-                        this.Close();
-                        break;
-
-                    case 2: 
-                        new MenuPrincipalEmp().Show();
-                        this.Close();
-                        break;
+                    case 1: new MenuPrincipalAdm().Show(); break;
+                    case 2: new MenuPrincipalEmp().Show(); break;
                 }
                 this.Close();
             }
-            else if (resultado == DialogResult.Abort || resultado == DialogResult.Cancel)
+            else
             {
                 Form loginOriginal = Application.OpenForms["Login"];
                 if (loginOriginal != null) loginOriginal.Show();
@@ -189,24 +241,17 @@ namespace SG_BAMS.Login
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             Application.Idle -= ProcesoValidacion;
-            if (camara != null)
-            {
-                camara.Dispose();
-                camara = null;
-            }
+            if (camara != null) { camara.Dispose(); camara = null; }
             base.OnFormClosing(e);
         }
 
-        private void btnCancelar1_Click(object sender, EventArgs e)
-        {
-            Finalizar(DialogResult.Cancel);
-        }
+        private void btnCancelar1_Click(object sender, EventArgs e) => Finalizar(DialogResult.Cancel);
 
         private void btnReintentar1_Click(object sender, EventArgs e)
         {
-            lblEstado.Text = "Reintentando escaneo...";
-            lblEstado.ForeColor = Color.Black;
+            contadorExito = 0;
+            contadorFallo = 0;
+            ActualizarEstado("Reintentando escaneo...", Color.Black);
         }
-
     }
 }
