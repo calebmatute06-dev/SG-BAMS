@@ -29,13 +29,13 @@ namespace SG_BAMS.Login
         {
             InitializeComponent();
         }
-
+        private LBPHFaceRecognizer recognizer = new LBPHFaceRecognizer(1, 8, 8, 8, 100);
         private void LoginFacial_Load(object sender, EventArgs e)
         {
             var archivos = Directory.GetFiles(clsSoporte.DirectorioRostros, "*.jpg")
-                .Where(f => Path.GetFileNameWithoutExtension(f) == UsuarioAValidar ||
-                            Path.GetFileNameWithoutExtension(f).StartsWith(UsuarioAValidar + "_"))
-                .ToList();
+                           .Where(f => Path.GetFileNameWithoutExtension(f) == UsuarioAValidar ||
+                           Path.GetFileNameWithoutExtension(f).StartsWith(UsuarioAValidar + "_"))
+                           .ToList();
 
             if (archivos.Count == 0)
             {
@@ -44,22 +44,31 @@ namespace SG_BAMS.Login
                 return;
             }
 
+            List<Image<Gray, byte>> rostrosEntrenamiento = new List<Image<Gray, byte>>();
+            List<int> etiquetas = new List<int>();
+
             foreach (var archivo in archivos)
             {
-                var imgReferencia = new Image<Gray, byte>(archivo);
-                CvInvoke.EqualizeHist(imgReferencia, imgReferencia);
-                AplicarMejoraIluminacion(imgReferencia);
-                rostrosReferencia.Add(imgReferencia);
+                var imgReferencia = new Image<Gray, byte>(archivo).Resize(100, 100, Inter.Linear);
+                AplicarClahe(imgReferencia);
+                rostrosEntrenamiento.Add(imgReferencia);
+                etiquetas.Add(1);
             }
+            recognizer.Train(rostrosEntrenamiento.ToArray(), etiquetas.ToArray());
 
             camara = new VideoCapture(0);
             Application.Idle += ProcesoValidacion;
         }
-
+        private void AplicarClahe(Image<Gray, byte> imagen)
+        {
+            using (Mat m = imagen.Mat)
+            {
+                CvInvoke.CLAHE(m, 2.0, new Size(8, 8), m);
+            }
+        }
         private void ProcesoValidacion(object sender, EventArgs e)
         {
             if (camara == null) return;
-
             try
             {
                 using (Mat m = new Mat())
@@ -69,24 +78,30 @@ namespace SG_BAMS.Login
 
                     using (var frame = m.ToImage<Bgr, byte>())
                     {
-                        using (var grayFrame = frame.Convert<Gray, byte>())
+                        var rostroActual = clsSoporte.DetectarRostro(frame);
+
+                        if (rostroActual != null)
                         {
-                            AplicarMejoraIluminacion(grayFrame);
-                            var rostroActual = clsSoporte.DetectarRostro(frame);
-
-                            if (rostroActual != null)
+                            using (var rostroProcesado = rostroActual.Resize(100, 100, Inter.Linear))
                             {
-                                AplicarMejoraIluminacion(rostroActual);
-                                CompararRostros(rostroActual);
+                                AplicarClahe(rostroProcesado);
+                                var resultado = recognizer.Predict(rostroProcesado);
+                                if (resultado.Label != -1 && resultado.Distance < 70)
+                                {
+                                    Finalizar(DialogResult.OK);
+                                    return;
+                                }
                             }
-
                         }
+
+                        if (picValidar.Image != null) picValidar.Image.Dispose();
+                        picValidar.Image = frame.ToBitmap();
                     }
                 }
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine("Error en proceso: " + ex.Message);
+                System.Diagnostics.Debug.WriteLine("Error: " + ex.Message);
             }
         }
 
@@ -157,20 +172,7 @@ namespace SG_BAMS.Login
                 this.Close();
             }
         }
-        private void AplicarMejoraIluminacion(Image<Gray, byte> imagen)
-        {
-            using (Mat claheResult = new Mat())
-            {
-                CvInvoke.CLAHE(imagen, 2.0, new Size(8, 8), claheResult);
-                claheResult.CopyTo(imagen);
-            }
-        }
-        private Image<Gray, byte> CorregirGamma(Image<Gray, byte> imagen, double gamma = 0.5)
-        {
-            Image<Gray, byte> res = imagen.Clone();
-            res._GammaCorrect(gamma);
-            return res;
-        }
+
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             Application.Idle -= ProcesoValidacion;
