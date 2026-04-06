@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualBasic.Logging;
+using SG_BAMS.Administracion_de_BAMS.Usuarios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -58,7 +59,21 @@ namespace SG_BAMS.Login
                 switch (rol)
                 {
                     case 1:
-                        MessageBox.Show("Login correcto. ¡Bienvenido Administrador!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        var archivos = Directory.GetFiles(clsSoporte.DirectorioRostros, "*.jpg")
+                            .Where(f => Path.GetFileNameWithoutExtension(f) == txtUsu.Text ||
+                                        Path.GetFileNameWithoutExtension(f).StartsWith(txtUsu.Text + "_"))
+                            .ToList();
+
+                        if (archivos.Count == 0)
+                        {
+                            MessageBox.Show($"El usuario '{txtUsu.Text}' no tiene un registro facial registrado.",
+                                "Sin registro facial", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            break;
+                        }
+
+                        string bienvenida = rol == 1 ? "¡Bienvenido Administrador!" : "¡Bienvenido Empleado!";
+                        MessageBox.Show($"Login correcto. {bienvenida}", "Éxito",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
                         LoginFacial frmFacialAdm = new LoginFacial();
                         frmFacialAdm.UsuarioAValidar = txtUsu.Text;
                         frmFacialAdm.RolAsignado = rol;
@@ -67,7 +82,21 @@ namespace SG_BAMS.Login
                         break;
 
                     case 2:
-                        MessageBox.Show("Login correcto. ¡Bienvenido Empleado!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        var archivos2 = Directory.GetFiles(clsSoporte.DirectorioRostros, "*.jpg")
+                            .Where(f => Path.GetFileNameWithoutExtension(f) == txtUsu.Text ||
+                                        Path.GetFileNameWithoutExtension(f).StartsWith(txtUsu.Text + "_"))
+                            .ToList();
+
+                        if (archivos2.Count == 0)
+                        {
+                            MessageBox.Show($"El usuario '{txtUsu.Text}' no tiene un registro facial registrado.",
+                                "Sin registro facial", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            break;
+                        }
+
+                        string bienvenida2 = rol == 1 ? "¡Bienvenido Administrador!" : "¡Bienvenido Empleado!";
+                        MessageBox.Show($"Login correcto. {bienvenida2}", "Éxito",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
                         LoginFacial frmFacial = new LoginFacial();
                         frmFacial.UsuarioAValidar = txtUsu.Text;
                         frmFacial.RolAsignado = rol;
