@@ -476,6 +476,7 @@
             Controls.Add(pictureBox1);
             Controls.Add(pictureBox4);
             Controls.Add(kryptonButton13);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "Ingresar_datos__Compra_";
             Text = "Ingresar_datos__Compra_";
             Load += Ingresar_datos__Compra__Load;

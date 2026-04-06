@@ -339,6 +339,7 @@
             Controls.Add(pictureBox1);
             Controls.Add(pictureBox4);
             Controls.Add(kryptonButton13);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "Agregar_Producto_Mod";
             Text = "Agregar_Producto_Mod";
             Load += Agregar_Producto_Mod_Load;

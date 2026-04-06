@@ -278,6 +278,7 @@
             Controls.Add(pctCamara);
             Controls.Add(panel2);
             Controls.Add(label7);
+            FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmImagenEmpleado";
             StartPosition = FormStartPosition.CenterScreen;

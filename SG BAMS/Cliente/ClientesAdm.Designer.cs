@@ -760,6 +760,7 @@
             Controls.Add(kryptonGroupBox1);
             Controls.Add(panel5);
             Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
             Name = "ClientesAdm";
             StartPosition = FormStartPosition.CenterScreen;

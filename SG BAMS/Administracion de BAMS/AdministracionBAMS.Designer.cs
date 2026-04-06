@@ -933,6 +933,7 @@
             Controls.Add(label1);
             Controls.Add(kryptonGroup1);
             Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
             Name = "AdministracionBAMS";
             StartPosition = FormStartPosition.CenterScreen;

@@ -803,6 +803,7 @@
             Controls.Add(panel4);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "Compras";
             Text = "Compras";
             Load += Compras_Load;

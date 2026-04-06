@@ -61,7 +61,6 @@
             label2.Size = new Size(178, 31);
             label2.TabIndex = 2;
             label2.Text = "Nombre Usuario:";
-            //label2.Click += label2_Click;
             // 
             // label9
             // 
@@ -292,6 +291,7 @@
             Controls.Add(txtNombre);
             Controls.Add(label9);
             Controls.Add(label2);
+            FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmAgregarUsuarios";
             StartPosition = FormStartPosition.CenterScreen;

@@ -202,6 +202,7 @@
             Controls.Add(txtDescri);
             Controls.Add(label9);
             Controls.Add(label2);
+            FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
             Name = "frnAgregarTipoProducto";
             StartPosition = FormStartPosition.CenterScreen;

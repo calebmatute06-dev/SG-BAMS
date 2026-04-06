@@ -246,6 +246,7 @@
             Controls.Add(pictureBox2);
             Controls.Add(panel2);
             Controls.Add(pictureBox16);
+            FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmMarcaProductos";
             StartPosition = FormStartPosition.CenterScreen;

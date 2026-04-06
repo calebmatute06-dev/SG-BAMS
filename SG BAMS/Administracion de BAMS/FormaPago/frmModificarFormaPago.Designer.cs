@@ -203,6 +203,7 @@ namespace SG_BAMS
             Controls.Add(panel2);
             Controls.Add(label9);
             Controls.Add(label2);
+            FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmModificarFormaPago";
             StartPosition = FormStartPosition.CenterScreen;

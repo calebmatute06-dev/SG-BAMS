@@ -117,7 +117,6 @@ namespace SG_BAMS
             label2.Size = new Size(331, 31);
             label2.TabIndex = 113;
             label2.Text = "Ingrese el tipo de forma de pago:";
-            //label2.Click += label2_Click;
             // 
             // pictureBox16
             // 
@@ -204,6 +203,7 @@ namespace SG_BAMS
             Controls.Add(txtdescri);
             Controls.Add(label9);
             Controls.Add(label2);
+            FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmAgregarFormaPago";
             StartPosition = FormStartPosition.CenterScreen;

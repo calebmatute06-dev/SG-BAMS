@@ -245,6 +245,7 @@ namespace SG_BAMS
             Controls.Add(panel1);
             Controls.Add(pictureBox2);
             Controls.Add(panel2);
+            FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmUsuarios";
             StartPosition = FormStartPosition.CenterScreen;

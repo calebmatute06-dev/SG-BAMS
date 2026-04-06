@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle17 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle18 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle19 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle20 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             pictureBox6 = new PictureBox();
             label10 = new Label();
             kryptonButton14 = new Krypton.Toolkit.KryptonButton();
@@ -65,6 +65,8 @@
             pictureBox7 = new PictureBox();
             pictureBox8 = new PictureBox();
             pictureBox1 = new PictureBox();
+            panel7 = new Panel();
+            label6 = new Label();
             panel6 = new Panel();
             panel2 = new Panel();
             pictureBox2 = new PictureBox();
@@ -79,8 +81,6 @@
             btnExportar = new Krypton.Toolkit.KryptonButton();
             dgvBitacora = new DataGridView();
             label5 = new Label();
-            panel7 = new Panel();
-            label6 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
@@ -94,13 +94,13 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvBitacora).BeginInit();
-            panel7.SuspendLayout();
             SuspendLayout();
             // 
             // pictureBox6
@@ -613,6 +613,25 @@
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
             // 
+            // panel7
+            // 
+            panel7.BackColor = Color.White;
+            panel7.Controls.Add(label6);
+            panel7.Location = new Point(11, 707);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(275, 40);
+            panel7.TabIndex = 333;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.ForeColor = Color.Navy;
+            label6.Location = new Point(137, 10);
+            label6.Name = "label6";
+            label6.Size = new Size(64, 20);
+            label6.TabIndex = 333;
+            label6.Text = "BItacora";
+            // 
             // panel6
             // 
             panel6.BackColor = Color.Navy;
@@ -750,41 +769,41 @@
             // dgvBitacora
             // 
             dgvBitacora.AccessibleDescription = "";
-            dataGridViewCellStyle16.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle16.ForeColor = Color.Navy;
-            dgvBitacora.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle1.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Navy;
+            dgvBitacora.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dgvBitacora.BackgroundColor = Color.SkyBlue;
-            dataGridViewCellStyle17.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = SystemColors.Control;
-            dataGridViewCellStyle17.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle17.ForeColor = Color.Navy;
-            dataGridViewCellStyle17.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle17.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = DataGridViewTriState.True;
-            dgvBitacora.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.Navy;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvBitacora.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvBitacora.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle18.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = SystemColors.Window;
-            dataGridViewCellStyle18.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle18.ForeColor = Color.SkyBlue;
-            dataGridViewCellStyle18.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle18.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle18.WrapMode = DataGridViewTriState.False;
-            dgvBitacora.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.SkyBlue;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvBitacora.DefaultCellStyle = dataGridViewCellStyle3;
             dgvBitacora.Location = new Point(521, 257);
             dgvBitacora.Name = "dgvBitacora";
-            dataGridViewCellStyle19.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle19.BackColor = SystemColors.Control;
-            dataGridViewCellStyle19.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle19.ForeColor = Color.Navy;
-            dataGridViewCellStyle19.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle19.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle19.WrapMode = DataGridViewTriState.True;
-            dgvBitacora.RowHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = Color.Navy;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvBitacora.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dgvBitacora.RowHeadersWidth = 51;
-            dataGridViewCellStyle20.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle20.ForeColor = Color.Navy;
-            dgvBitacora.RowsDefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle5.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = Color.Navy;
+            dgvBitacora.RowsDefaultCellStyle = dataGridViewCellStyle5;
             dgvBitacora.Size = new Size(579, 491);
             dgvBitacora.TabIndex = 330;
             // 
@@ -799,25 +818,6 @@
             label5.Size = new Size(88, 31);
             label5.TabIndex = 331;
             label5.Text = "Buscar:";
-            // 
-            // panel7
-            // 
-            panel7.BackColor = Color.White;
-            panel7.Controls.Add(label6);
-            panel7.Location = new Point(11, 707);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(275, 40);
-            panel7.TabIndex = 333;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.ForeColor = Color.Navy;
-            label6.Location = new Point(137, 10);
-            label6.Name = "label6";
-            label6.Size = new Size(64, 20);
-            label6.TabIndex = 333;
-            label6.Text = "BItacora";
             // 
             // BitacoraAdmin
             // 
@@ -848,6 +848,7 @@
             Controls.Add(kryptonGroupBox2);
             Controls.Add(panel8);
             Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
             Name = "BitacoraAdmin";
             StartPosition = FormStartPosition.CenterScreen;
@@ -867,14 +868,14 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panel7.ResumeLayout(false);
+            panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvBitacora).EndInit();
-            panel7.ResumeLayout(false);
-            panel7.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }

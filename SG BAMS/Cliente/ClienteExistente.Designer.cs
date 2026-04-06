@@ -199,6 +199,7 @@
             Controls.Add(panel1);
             Controls.Add(panel2);
             Controls.Add(panel8);
+            FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
             Name = "ClienteExistente";
             Text = "ClienteExistente";

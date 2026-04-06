@@ -203,6 +203,7 @@ namespace SG_BAMS
             Controls.Add(pictureBox1);
             Controls.Add(panel2);
             Controls.Add(label9);
+            FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmAgregarEstado";
             StartPosition = FormStartPosition.CenterScreen;

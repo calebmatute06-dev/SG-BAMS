@@ -245,6 +245,7 @@
             Controls.Add(pictureBox2);
             Controls.Add(panel2);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmTipoProducto";
             StartPosition = FormStartPosition.CenterScreen;

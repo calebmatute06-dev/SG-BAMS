@@ -202,6 +202,7 @@
             Controls.Add(label9);
             Controls.Add(label2);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmModificarTipoProducto";
             StartPosition = FormStartPosition.CenterScreen;
