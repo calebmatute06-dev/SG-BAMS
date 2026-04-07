@@ -550,7 +550,7 @@
             btnReportes.BackColor = Color.Transparent;
             btnReportes.DialogResult = DialogResult.None;
             btnReportes.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnReportes.ForeColor = Color.Navy;
+            btnReportes.ForeColor = Color.SkyBlue;
             btnReportes.HoverBackColor = Color.Navy;
             btnReportes.HoverForeColor = Color.White;
             btnReportes.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
@@ -572,7 +572,7 @@
             btndeudores.BackColor = Color.Transparent;
             btndeudores.DialogResult = DialogResult.None;
             btndeudores.Font = new Font("Arial Narrow", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btndeudores.ForeColor = Color.Navy;
+            btndeudores.ForeColor = Color.SkyBlue;
             btndeudores.HoverBackColor = Color.Navy;
             btndeudores.HoverForeColor = Color.White;
             btndeudores.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
@@ -594,7 +594,7 @@
             btnProveedores.BackColor = Color.Transparent;
             btnProveedores.DialogResult = DialogResult.None;
             btnProveedores.Font = new Font("Arial Narrow", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnProveedores.ForeColor = Color.Navy;
+            btnProveedores.ForeColor = Color.SkyBlue;
             btnProveedores.HoverBackColor = Color.Navy;
             btnProveedores.HoverForeColor = Color.White;
             btnProveedores.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
@@ -616,7 +616,7 @@
             btninventario.BackColor = Color.Transparent;
             btninventario.DialogResult = DialogResult.None;
             btninventario.Font = new Font("Arial Narrow", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btninventario.ForeColor = Color.Navy;
+            btninventario.ForeColor = Color.SkyBlue;
             btninventario.HoverBackColor = Color.Navy;
             btninventario.HoverForeColor = Color.White;
             btninventario.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
@@ -638,7 +638,7 @@
             btnClientes.BackColor = Color.Transparent;
             btnClientes.DialogResult = DialogResult.None;
             btnClientes.Font = new Font("Arial Narrow", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnClientes.ForeColor = Color.Navy;
+            btnClientes.ForeColor = Color.SkyBlue;
             btnClientes.HoverBackColor = Color.Navy;
             btnClientes.HoverForeColor = Color.White;
             btnClientes.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
@@ -660,7 +660,7 @@
             btncompra.BackColor = Color.Transparent;
             btncompra.DialogResult = DialogResult.None;
             btncompra.Font = new Font("Arial Narrow", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btncompra.ForeColor = Color.Navy;
+            btncompra.ForeColor = Color.SkyBlue;
             btncompra.HoverBackColor = Color.Navy;
             btncompra.HoverForeColor = Color.White;
             btncompra.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
@@ -682,7 +682,7 @@
             BtnFacturas.BackColor = Color.Transparent;
             BtnFacturas.DialogResult = DialogResult.None;
             BtnFacturas.Font = new Font("Arial Narrow", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            BtnFacturas.ForeColor = Color.Navy;
+            BtnFacturas.ForeColor = Color.SkyBlue;
             BtnFacturas.HoverBackColor = Color.Navy;
             BtnFacturas.HoverForeColor = Color.White;
             BtnFacturas.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
@@ -704,7 +704,7 @@
             btnBitacora.BackColor = Color.Transparent;
             btnBitacora.DialogResult = DialogResult.None;
             btnBitacora.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnBitacora.ForeColor = Color.Navy;
+            btnBitacora.ForeColor = Color.SkyBlue;
             btnBitacora.HoverBackColor = Color.Navy;
             btnBitacora.HoverForeColor = Color.White;
             btnBitacora.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
@@ -770,7 +770,7 @@
             btnMenu.BackColor = Color.Transparent;
             btnMenu.DialogResult = DialogResult.None;
             btnMenu.Font = new Font("Arial Narrow", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnMenu.ForeColor = Color.Navy;
+            btnMenu.ForeColor = Color.SkyBlue;
             btnMenu.HoverBackColor = Color.Navy;
             btnMenu.HoverForeColor = Color.White;
             btnMenu.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
@@ -835,6 +835,7 @@
             Controls.Add(btnProveedores);
             Controls.Add(btndeudores);
             Controls.Add(btnMenu);
+            ForeColor = Color.SkyBlue;
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 2, 3, 2);
             Name = "MenuPrincipalAdm";
