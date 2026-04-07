@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,13 +29,34 @@ namespace SG_BAMS
         /// The consulta logic
         /// </summary>
         private ClsMostrarCompras consultaLogic = new ClsMostrarCompras();
+        /// <summary>
+        /// The dt compras
+        /// </summary>
+        private DataTable dtCompras;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Compras"/> class.
+        /// Initializes a new instance of the <see cref="Compras" /> class.
         /// </summary>
         public Compras()
         {
             InitializeComponent();
+            CargarCompras();
+
+            
+            dtpDesde.MaxDate = DateTime.Today;
+            dtpHasta.MaxDate = DateTime.Today;
+
+            
+            dtpDesde.Value = DateTime.Today.AddDays(-7);
+            dtpHasta.Value = DateTime.Today;
+
+            
+            txtBuscarCompra.TextChanged += (s, e) => FiltrarCompras();
+            txtBuscarCompra.KeyPress += (s, e) => ClsValidaciones.ValidarBusquedaAlfanumerica(e);
+
+            
+            dtpDesde.ValueChanged += dtpDesde_ValueChanged;
+            dtpHasta.ValueChanged += dtpHasta_ValueChanged;
         }
 
         /// <summary>
@@ -152,7 +174,6 @@ namespace SG_BAMS
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void Compras_Load(object sender, EventArgs e)
         {
-            CargarCompras();
             dgvComprasAdmin.ClearSelection();
             dgvComprasAdmin.BorderStyle = BorderStyle.None;
             dgvComprasAdmin.BackgroundColor = Color.White;
@@ -182,6 +203,8 @@ namespace SG_BAMS
             dgvComprasAdmin.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvComprasAdmin.ClearSelection();
 
+            
+            FiltrarCompras();
         }
 
         /// <summary>
@@ -191,7 +214,8 @@ namespace SG_BAMS
         {
             try
             {
-                dgvComprasAdmin.DataSource = consultaLogic.ListarCompras();
+                dtCompras = consultaLogic.ListarCompras();
+                dgvComprasAdmin.DataSource = dtCompras;
                 dgvComprasAdmin.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dgvComprasAdmin.ClearSelection();
             }
@@ -199,6 +223,151 @@ namespace SG_BAMS
             {
                 MessageBox.Show("Error al cargar compras: " + ex.Message);
             }
+        }
+
+        /// <summary>
+        /// Filtrars the compras.
+        /// Igual que FacturasAdm: si hay texto busca en todas las columnas string
+        /// ignorando las fechas; si no hay texto filtra solo por rango de fechas.
+        /// </summary>
+        private void FiltrarCompras()
+        {
+            if (dtCompras == null) return;
+
+            DataView dv = dtCompras.DefaultView;
+
+            string texto = txtBuscarCompra.Text
+                .Replace("'", "''")
+                .Replace("[", "[[]")
+                .Replace("]", "[]]")
+                .Trim();
+
+            string rowFilter;
+
+            if (string.IsNullOrWhiteSpace(texto))
+            {
+                
+                string fDesde = dtpDesde.Value.Date.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+                string fHasta = dtpHasta.Value.Date.AddDays(1).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+
+                var condicionesFecha = new List<string>();
+                foreach (DataColumn col in dtCompras.Columns)
+                {
+                    if (col.DataType == typeof(DateTime))
+                        condicionesFecha.Add(
+                            $"[{col.ColumnName}] >= #{fDesde}# AND [{col.ColumnName}] < #{fHasta}#"
+                        );
+                }
+
+                rowFilter = condicionesFecha.Count > 0
+                    ? string.Join(" AND ", condicionesFecha)
+                    : string.Empty;
+            }
+            else
+            {
+                
+                var condicionesTexto = new List<string>();
+                foreach (DataColumn col in dtCompras.Columns)
+                {
+                    if (col.DataType == typeof(string))
+                        condicionesTexto.Add($"[{col.ColumnName}] LIKE '%{texto}%'");
+                }
+
+                rowFilter = condicionesTexto.Count > 0
+                    ? string.Join(" OR ", condicionesTexto)
+                    : string.Empty;
+            }
+
+            try
+            {
+                dv.RowFilter = rowFilter;
+                dgvComprasAdmin.DataSource = dv;
+                dgvComprasAdmin.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al filtrar: " + ex.Message, "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Handles the TextChanged event of the txtBuscarCompra control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void txtBuscarCompra_TextChanged(object sender, EventArgs e)
+        {
+            FiltrarCompras();
+        }
+
+        /// <summary>
+        /// Handles the KeyPress event of the txtBuscarCompra control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
+        private void txtBuscarCompra_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ClsValidaciones.ValidarBusquedaAlfanumerica(e);
+        }
+
+        /// <summary>
+        /// Handles the ValueChanged event of the dtpDesde control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void dtpDesde_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtpDesde.Value > DateTime.Today)
+                dtpDesde.Value = DateTime.Today;
+
+            if (dtpDesde.Value > dtpHasta.Value)
+                dtpDesde.Value = dtpHasta.Value;
+
+            FiltrarCompras();
+        }
+
+        /// <summary>
+        /// Handles the ValueChanged event of the dtpHasta control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void dtpHasta_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtpHasta.Value > DateTime.Today)
+                dtpHasta.Value = DateTime.Today;
+
+            if (dtpHasta.Value < dtpDesde.Value)
+                dtpHasta.Value = dtpDesde.Value;
+
+            FiltrarCompras();
+        }
+
+        /// <summary>
+        /// Handles the Click event of the btnRefresh control — reinicia filtros.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void btnRefresh_Click_1(object sender, EventArgs e)
+        {
+            txtBuscarCompra.Clear();
+
+            
+            dtpDesde.ValueChanged -= dtpDesde_ValueChanged;
+            dtpHasta.ValueChanged -= dtpHasta_ValueChanged;
+
+            dtpDesde.MaxDate = DateTime.Today;
+            dtpHasta.MaxDate = DateTime.Today;
+            dtpDesde.Value = DateTime.Today.AddDays(-7);
+            dtpHasta.Value = DateTime.Today;
+
+            
+            dtpDesde.ValueChanged += dtpDesde_ValueChanged;
+            dtpHasta.ValueChanged += dtpHasta_ValueChanged;
+
+            CargarCompras();
+            FiltrarCompras();
+            dgvComprasAdmin.ClearSelection();
         }
 
         /// <summary>
@@ -245,7 +414,7 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the 1 event of the dgvComprasAdmin_CellDoubleClick control.
+        /// Handles the CellDoubleClick event of the dgvComprasAdmin control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
@@ -259,6 +428,8 @@ namespace SG_BAMS
                 Modificar_datos__Compra_ frmModificar = new Modificar_datos__Compra_(idSeleccionado);
                 frmModificar.ShowDialog();
                 CargarCompras();
+                FiltrarCompras();
+                txtBuscarCompra.Clear();
             }
             else
             {
@@ -267,7 +438,7 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the 1 event of the btnCompra_Click control.
+        /// Handles the Click event of the btnNuevaCompra control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
@@ -276,6 +447,8 @@ namespace SG_BAMS
             Ingresar_datos__Compra_ frmNuevaCompra = new Ingresar_datos__Compra_();
             frmNuevaCompra.ShowDialog();
             CargarCompras();
+            FiltrarCompras();
+            txtBuscarCompra.Clear();
         }
 
         /// <summary>
@@ -291,6 +464,8 @@ namespace SG_BAMS
                 Modificar_datos__Compra_ frmModificar = new Modificar_datos__Compra_(idSeleccionado);
                 frmModificar.ShowDialog();
                 CargarCompras();
+                FiltrarCompras();
+                txtBuscarCompra.Clear();
             }
             else
             {
@@ -321,14 +496,18 @@ namespace SG_BAMS
                     {
                         if (logic.EliminarCompraCompleta(idCompra))
                         {
-                            MessageBox.Show("Compra eliminada correctamente.", "BAMS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Compra eliminada correctamente.", "BAMS",
+                                            MessageBoxButtons.OK, MessageBoxIcon.Information);
                             CargarCompras();
+                            FiltrarCompras();
+                            txtBuscarCompra.Clear();
                             dgvComprasAdmin.ClearSelection();
                         }
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("No se pudo eliminar la compra: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("No se pudo eliminar la compra: " + ex.Message,
+                                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -338,5 +517,7 @@ namespace SG_BAMS
                                 "BAMS", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
+
+      
     }
 }
