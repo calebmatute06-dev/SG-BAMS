@@ -54,6 +54,34 @@ namespace SG_BAMS
             huboCambios = false;
             cmbProveedor.SelectedIndexChanged += cmbProveedor_SelectedIndexChanged;
             cmbFormaPago.SelectedIndexChanged += cmbFormaPago_SelectedIndexChanged;
+
+            dgvProductosModificar.BorderStyle = BorderStyle.None;
+            dgvProductosModificar.BackgroundColor = Color.White;
+            dgvProductosModificar.RowHeadersVisible = false;
+            dgvProductosModificar.EnableHeadersVisualStyles = false;
+            dgvProductosModificar.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+
+            dgvProductosModificar.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
+            dgvProductosModificar.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
+            dgvProductosModificar.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgvProductosModificar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvProductosModificar.ColumnHeadersHeight = 28;
+
+            dgvProductosModificar.DefaultCellStyle.BackColor = Color.White;
+            dgvProductosModificar.DefaultCellStyle.ForeColor = Color.Navy;
+            dgvProductosModificar.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dgvProductosModificar.DefaultCellStyle.Padding = new Padding(3);
+            dgvProductosModificar.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 245, 255);
+            dgvProductosModificar.AlternatingRowsDefaultCellStyle.ForeColor = Color.Navy;
+
+            dgvProductosModificar.DefaultCellStyle.SelectionBackColor = Color.DeepSkyBlue;
+            dgvProductosModificar.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            dgvProductosModificar.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvProductosModificar.GridColor = Color.LightGray;
+            dgvProductosModificar.RowTemplate.Height = 32;
+            dgvProductosModificar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvProductosModificar.ClearSelection();
         }
 
         private void ActualizarTotalGeneral()

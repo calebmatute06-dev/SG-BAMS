@@ -113,7 +113,7 @@
             // dtpFechaPedido
             // 
             dtpFechaPedido.Enabled = false;
-            dtpFechaPedido.Location = new Point(624, 136);
+            dtpFechaPedido.Location = new Point(624, 114);
             dtpFechaPedido.Margin = new Padding(3, 2, 3, 2);
             dtpFechaPedido.Name = "dtpFechaPedido";
             dtpFechaPedido.Size = new Size(230, 182);
@@ -188,7 +188,7 @@
             label8.BackColor = Color.Transparent;
             label8.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Navy;
-            label8.Location = new Point(699, 89);
+            label8.Location = new Point(687, 89);
             label8.Name = "label8";
             label8.Size = new Size(113, 20);
             label8.TabIndex = 180;
@@ -406,6 +406,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(913, 421);
             Controls.Add(dgvIngresarCompra);
             Controls.Add(label4);

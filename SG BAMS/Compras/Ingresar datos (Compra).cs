@@ -36,6 +36,34 @@ namespace SG_BAMS
             dtpFechaPedido.SelectionStart = DateTime.Now;
             dtpFechaPedido.SelectionEnd = DateTime.Now;
             lblIDCompra.Text = ObtenerSiguienteID();
+
+            dgvIngresarCompra.BorderStyle = BorderStyle.None;
+            dgvIngresarCompra.BackgroundColor = Color.White;
+            dgvIngresarCompra.RowHeadersVisible = false;
+            dgvIngresarCompra.EnableHeadersVisualStyles = false;
+            dgvIngresarCompra.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+
+            dgvIngresarCompra.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
+            dgvIngresarCompra.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
+            dgvIngresarCompra.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgvIngresarCompra.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvIngresarCompra.ColumnHeadersHeight = 28;
+
+            dgvIngresarCompra.DefaultCellStyle.BackColor = Color.White;
+            dgvIngresarCompra.DefaultCellStyle.ForeColor = Color.Navy;
+            dgvIngresarCompra.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dgvIngresarCompra.DefaultCellStyle.Padding = new Padding(3);
+            dgvIngresarCompra.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 245, 255);
+            dgvIngresarCompra.AlternatingRowsDefaultCellStyle.ForeColor = Color.Navy;
+
+            dgvIngresarCompra.DefaultCellStyle.SelectionBackColor = Color.DeepSkyBlue;
+            dgvIngresarCompra.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            dgvIngresarCompra.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvIngresarCompra.GridColor = Color.LightGray;
+            dgvIngresarCompra.RowTemplate.Height = 32;
+            dgvIngresarCompra.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvIngresarCompra.ClearSelection();
         }
 
         private void LlenarCombos()
