@@ -4,10 +4,21 @@ using Microsoft.Data.SqlClient;
 
 namespace SG_BAMS.ProductoInventario
 {
+    /// <summary>
+    /// 
+    /// </summary>
     internal class ClsModificarCompras
     {
+        /// <summary>
+        /// The conexion
+        /// </summary>
         private ClsConexion conexion = new ClsConexion();
 
+        /// <summary>
+        /// Listars the formas pago.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Error al listar formas de pago: " + ex.Message</exception>
         public DataTable ListarFormasPago()
         {
             DataTable dt = new DataTable();
@@ -23,6 +34,11 @@ namespace SG_BAMS.ProductoInventario
             return dt;
         }
 
+        /// <summary>
+        /// Listars the proveedores activos.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Error al listar proveedores: " + ex.Message</exception>
         public DataTable ListarProveedoresActivos()
         {
             DataTable dt = new DataTable();
@@ -38,6 +54,12 @@ namespace SG_BAMS.ProductoInventario
             return dt;
         }
 
+        /// <summary>
+        /// Obteners the detalle compra.
+        /// </summary>
+        /// <param name="idCompra">The identifier compra.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Error al obtener detalle: " + ex.Message</exception>
         public DataTable ObtenerDetalleCompra(int idCompra)
         {
             DataTable dt = new DataTable();
@@ -66,6 +88,12 @@ namespace SG_BAMS.ProductoInventario
             return dt;
         }
 
+        /// <summary>
+        /// Obteners the cabecera compra.
+        /// </summary>
+        /// <param name="idCompra">The identifier compra.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Error en cabecera: " + ex.Message</exception>
         public DataTable ObtenerCabeceraCompra(int idCompra)
         {
             DataTable dt = new DataTable();
@@ -85,6 +113,14 @@ namespace SG_BAMS.ProductoInventario
             return dt;
         }
 
+        /// <summary>
+        /// Guardars the cambios detalle.
+        /// </summary>
+        /// <param name="idCompra">The identifier compra.</param>
+        /// <param name="idProd">The identifier product.</param>
+        /// <param name="cant">The cant.</param>
+        /// <param name="precio">The precio.</param>
+        /// <exception cref="System.Exception">Error al procesar producto " + idProd + ": " + ex.Message</exception>
         public void GuardarCambiosDetalle(int idCompra, int idProd, int cant, decimal precio)
         {
             try
@@ -104,6 +140,14 @@ namespace SG_BAMS.ProductoInventario
             finally { conexion.Cerrar(); }
         }
 
+        /// <summary>
+        /// Actualizars the cabecera compra.
+        /// </summary>
+        /// <param name="idCompra">The identifier compra.</param>
+        /// <param name="idProv">The identifier prov.</param>
+        /// <param name="idPago">The identifier pago.</param>
+        /// <param name="fecha">The fecha.</param>
+        /// <param name="nota">The nota.</param>
         public void ActualizarCabeceraCompra(int idCompra, int idProv, int idPago, DateTime fecha, string nota)
         {
             try
@@ -125,6 +169,11 @@ namespace SG_BAMS.ProductoInventario
             finally { conexion.Cerrar(); }
         }
 
+        /// <summary>
+        /// Eliminars the producto de bd.
+        /// </summary>
+        /// <param name="idCompra">The identifier compra.</param>
+        /// <param name="idProd">The identifier product.</param>
         public void EliminarProductoDeBD(int idCompra, int idProd)
         {
             try
@@ -141,6 +190,12 @@ namespace SG_BAMS.ProductoInventario
             finally { conexion.Cerrar(); }
         }
 
+        /// <summary>
+        /// Revertirs the stock producto nuevo.
+        /// </summary>
+        /// <param name="idCompra">The identifier compra.</param>
+        /// <param name="idProd">The identifier product.</param>
+        /// <param name="cant">The cant.</param>
         public void RevertirStockProductoNuevo(int idCompra, int idProd, int cant)
         {
             try
@@ -161,6 +216,12 @@ namespace SG_BAMS.ProductoInventario
             finally { conexion.Cerrar(); }
         }
 
+        /// <summary>
+        /// Eliminars the compra completa.
+        /// </summary>
+        /// <param name="idCompra">The identifier compra.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Error al eliminar la compra y ajustar stock: " + ex.Message</exception>
         public bool EliminarCompraCompleta(int idCompra)
         {
             try

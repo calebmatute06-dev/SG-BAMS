@@ -8,13 +8,36 @@ using System.Globalization;
 
 namespace SG_BAMS.Facturas
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class BateriaVieja : Form
     {
+        /// <summary>
+        /// Gets the total dinero bateria.
+        /// </summary>
+        /// <value>
+        /// The total dinero bateria.
+        /// </value>
         public double TotalDineroBateria { get; private set; }
+        /// <summary>
+        /// Gets the total cantidad bateria.
+        /// </summary>
+        /// <value>
+        /// The total cantidad bateria.
+        /// </value>
         public string TotalCantidadBateria { get; private set; }
 
+        /// <summary>
+        /// The limite factura
+        /// </summary>
         private double limiteFactura;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BateriaVieja"/> class.
+        /// </summary>
+        /// <param name="montoFactura">The monto factura.</param>
         public BateriaVieja(double montoFactura)
         {
             System.Threading.Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
@@ -24,6 +47,11 @@ namespace SG_BAMS.Facturas
             this.limiteFactura = montoFactura;
         }
 
+        /// <summary>
+        /// Handles the Load event of the BateriaVieja control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BateriaVieja_Load(object sender, EventArgs e)
         {
             ConfigurarGrid();
@@ -64,6 +92,9 @@ namespace SG_BAMS.Facturas
             dgvBateria.ClearSelection();
         }
 
+        /// <summary>
+        /// Configurars the grid.
+        /// </summary>
         private void ConfigurarGrid()
         {
             dgvBateria.Columns.Clear();
@@ -83,6 +114,11 @@ namespace SG_BAMS.Facturas
             dgvBateria.AllowUserToAddRows = false;
         }
 
+        /// <summary>
+        /// Handles the Click event of the Agregar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void Agregar_Click(object sender, EventArgs e)
         {
             if (cmbBaterias.SelectedIndex == -1)
@@ -112,6 +148,9 @@ namespace SG_BAMS.Facturas
             LimpiarCamposEntrada();
         }
 
+        /// <summary>
+        /// Limpiars the campos entrada.
+        /// </summary>
         private void LimpiarCamposEntrada()
         {
             cmbBaterias.SelectedIndex = -1;
@@ -120,6 +159,9 @@ namespace SG_BAMS.Facturas
             txtPrecio.Focus();
         }
 
+        /// <summary>
+        /// Calculars the totales.
+        /// </summary>
         private void CalcularTotales()
         {
             double totalDinero = 0;
@@ -138,6 +180,11 @@ namespace SG_BAMS.Facturas
             txtCantidadTotal.Text = totalProductos.ToString();
         }
 
+        /// <summary>
+        /// Handles the Click event of the BtnAceptar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnAceptar_Click(object sender, EventArgs e)
         {
             if (dgvBateria.Rows.Count == 0)
@@ -162,6 +209,11 @@ namespace SG_BAMS.Facturas
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the BtnEliminar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
             if (dgvBateria.CurrentRow != null)
@@ -173,6 +225,11 @@ namespace SG_BAMS.Facturas
 
 
 
+        /// <summary>
+        /// Handles the CurrentCellDirtyStateChanged event of the dgvBateria control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void dgvBateria_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
 
@@ -182,6 +239,11 @@ namespace SG_BAMS.Facturas
             }
         }
 
+        /// <summary>
+        /// Handles the CellValueChanged event of the dgvBateria control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
         private void dgvBateria_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
@@ -208,16 +270,31 @@ namespace SG_BAMS.Facturas
             }
         }
 
+        /// <summary>
+        /// Handles the KeyPress event of the txtPrecio control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
         private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
         {
             ClsValidaciones.PermitirNumerosYDecimales(sender, e);
         }
 
+        /// <summary>
+        /// Handles the KeyPress event of the txtCantidad control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
         private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
         {
             ClsValidaciones.ValidarSoloNumeros(e);
         }
 
+        /// <summary>
+        /// Handles the Click event of the BtnSalir control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnSalir_Click(object sender, EventArgs e) => this.Close();
     }
 }

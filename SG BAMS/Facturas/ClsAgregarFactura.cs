@@ -12,8 +12,22 @@ using System.Windows.Forms;
 
 namespace SG_BAMS.Facturas
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="SG_BAMS.ClsConexion" />
     internal class ClsAgregarFactura : ClsConexion
     {
+        /// <summary>
+        /// Agregars the facturas.
+        /// </summary>
+        /// <param name="idusuario">The idusuario.</param>
+        /// <param name="idcliente">The idcliente.</param>
+        /// <param name="pago">The pago.</param>
+        /// <param name="fecha">The fecha.</param>
+        /// <param name="bateria">The bateria.</param>
+        /// <param name="rebaja">The rebaja.</param>
+        /// <returns></returns>
         public async Task<int> AgregarFacturas(int idusuario, int idcliente, int pago, DateTime fecha, int bateria, double rebaja)
         {
             try
@@ -47,6 +61,10 @@ namespace SG_BAMS.Facturas
             }
         }
 
+        /// <summary>
+        /// Obteners the formas pago.
+        /// </summary>
+        /// <returns></returns>
         public async Task<DataTable> ObtenerFormasPago()
         {
             DataTable dt = new DataTable();
@@ -73,8 +91,26 @@ namespace SG_BAMS.Facturas
             }
         }
 
+        /// <summary>
+        /// The datos temporary
+        /// </summary>
         private dynamic datosTemp;
 
+        /// <summary>
+        /// Imprimirs the factura.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="cliente">The cliente.</param>
+        /// <param name="fecha">The fecha.</param>
+        /// <param name="sub">The sub.</param>
+        /// <param name="desc">The desc.</param>
+        /// <param name="total">The total.</param>
+        /// <param name="pago">The pago.</param>
+        /// <param name="dgv">The DGV.</param>
+        /// <param name="nombreVendedor">The nombre vendedor.</param>
+        /// <param name="esGobierno">if set to <c>true</c> [es gobierno].</param>
+        /// <param name="montoExento">The monto exento.</param>
+        /// <param name="rtnCliente">The RTN cliente.</param>
         public void ImprimirFactura(int id, string cliente, string fecha, string sub, string desc, string total,
             string pago, DataGridView dgv, string nombreVendedor, bool esGobierno = false, double montoExento = 0, string rtnCliente = "Sin RTN")
         {
@@ -85,6 +121,11 @@ namespace SG_BAMS.Facturas
             ppd.ShowDialog();
         }
 
+        /// <summary>
+        /// Disenoes the factura final.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="PrintPageEventArgs"/> instance containing the event data.</param>
         private void DisenoFacturaFinal(object sender, PrintPageEventArgs e)
         {
             Graphics g = e.Graphics;
@@ -212,6 +253,11 @@ namespace SG_BAMS.Facturas
             g.DrawString(frase, fPie, Brushes.Black, (e.PageBounds.Width - size.Width) / 2, y);
         }
 
+        /// <summary>
+        /// Numeroes a letras.
+        /// </summary>
+        /// <param name="total">The total.</param>
+        /// <returns></returns>
         private string NumeroALetras(double total)
         {
             if (total < 0) total = 0;
@@ -219,6 +265,11 @@ namespace SG_BAMS.Facturas
             return $"{EnteroALetras(entero)} LEMPIRAS";
         }
 
+        /// <summary>
+        /// Enteroes a letras.
+        /// </summary>
+        /// <param name="numero">The numero.</param>
+        /// <returns></returns>
         private string EnteroALetras(long numero)
         {
             if (numero == 0) return "CERO";
@@ -277,6 +328,14 @@ namespace SG_BAMS.Facturas
             return resultado.Trim();
         }
 
+        /// <summary>
+        /// Imprimirs the factura normal.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="cliente">The cliente.</param>
+        /// <param name="total">The total.</param>
+        /// <param name="pago">The pago.</param>
+        /// <param name="dgv">The DGV.</param>
         public void ImprimirFacturaNormal(int id, string cliente, string total, string pago, DataGridView dgv)
         {
             PrintDocument pd = new PrintDocument();

@@ -8,8 +8,17 @@ using System.Threading.Tasks;
 
 namespace SG_BAMS.Administracion_de_BAMS.ModeloAuto
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="SG_BAMS.ClsConexion" />
     internal class clsModeloAuto : ClsConexion
     {
+        /// <summary>
+        /// Leers the modelos asynchronous.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Error al obtener los modelos de auto: " + ex.Message</exception>
         public async Task<DataTable> LeerModelosAsync()
         {
             DataTable tabla = new DataTable();
@@ -37,6 +46,12 @@ namespace SG_BAMS.Administracion_de_BAMS.ModeloAuto
             return tabla;
         }
 
+        /// <summary>
+        /// Insertars the modelo automatic asynchronous.
+        /// </summary>
+        /// <param name="nombreModelo">The nombre modelo.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Error al insertar el modelo de auto: " + ex.Message</exception>
         public async Task<bool> InsertarModeloAutoAsync(string nombreModelo)
         {
             try
@@ -67,6 +82,13 @@ namespace SG_BAMS.Administracion_de_BAMS.ModeloAuto
         }
 
 
+        /// <summary>
+        /// Modificars the modelo automatic asynchronous.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="nuevoNombre">The nuevo nombre.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Error al modificar el modelo de auto: " + ex.Message</exception>
         public async Task<bool> ModificarModeloAutoAsync(int id, string nuevoNombre)
         {
             try

@@ -4,10 +4,22 @@ using Microsoft.Data.SqlClient;
 
 namespace SG_BAMS.ProductoInventario
 {
+    /// <summary>
+    /// 
+    /// </summary>
     internal class ClsDetalleCompra
     {
+        /// <summary>
+        /// The conexion
+        /// </summary>
         private ClsConexion conexion = new ClsConexion();
 
+        /// <summary>
+        /// Listars the productos de compra.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Error al cargar productos: " + ex.Message</exception>
         public DataTable ListarProductosDeCompra(int id)
         {
             DataTable dt = new DataTable();

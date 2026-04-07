@@ -4,8 +4,15 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmAgregarModeloAuto : Form
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="frmAgregarModeloAuto"/> class.
+        /// </summary>
         public frmAgregarModeloAuto()
         {
             InitializeComponent();
@@ -13,6 +20,11 @@ namespace SG_BAMS
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirAlfanumerico(e);
         }
 
+        /// <summary>
+        /// Handles the 1 event of the btnAgregar_Click control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void btnAgregar_Click_1(object sender, EventArgs e)
         {
             
@@ -54,6 +66,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the 1 event of the btnSalir_Click control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnSalir_Click_1(object sender, EventArgs e)
         {
             this.Close();

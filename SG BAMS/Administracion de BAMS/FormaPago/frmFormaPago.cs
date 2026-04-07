@@ -11,20 +11,38 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmFormaPago : Form
     {
+        /// <summary>
+        /// The objeto fp
+        /// </summary>
         clsFormaPago objetoFP = new clsFormaPago();
+        /// <summary>
+        /// Initializes a new instance of the <see cref="frmFormaPago"/> class.
+        /// </summary>
         public frmFormaPago()
         {
             InitializeComponent();
             this.Load += new EventHandler(frmFormasPago_Load);
         }
+        /// <summary>
+        /// Handles the Load event of the frmFormasPago control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void frmFormasPago_Load(object sender, EventArgs e)
         {
             await CargarGridFormasPago();
             this.Load += async (s, e) => await CargarGridFormasPago();
         }
 
+        /// <summary>
+        /// Cargars the grid formas pago.
+        /// </summary>
         private async Task CargarGridFormasPago()
         {
             try
@@ -48,6 +66,9 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Configurars the diseno grid.
+        /// </summary>
         private void ConfigurarDisenoGrid()
         {
             if (dgvFormasPago.Columns.Contains("id_tipo_forma_pago"))
@@ -66,6 +87,11 @@ namespace SG_BAMS
             dgvFormasPago.ClearSelection();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btmAgregar2 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btmAgregar2_Click(object sender, EventArgs e)
         {
             frmAgregarFormaPago AgregarFpago = new frmAgregarFormaPago();
@@ -73,6 +99,11 @@ namespace SG_BAMS
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the CellContentDoubleClick event of the dgvFormasPago control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
         private void dgvFormasPago_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvFormasPago.SelectedRows.Count > 0)
@@ -94,6 +125,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnAgregar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmAgregarFormaPago agregarFpago = new frmAgregarFormaPago();
@@ -101,6 +137,11 @@ namespace SG_BAMS
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnModificar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnModificar_Click(object sender, EventArgs e)
         {
             if (dgvFormasPago.SelectedRows.Count > 0)
@@ -122,11 +163,21 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnSalir control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the Load event of the frmFormaPago control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void frmFormaPago_Load(object sender, EventArgs e)
         {
             dgvFormasPago.BorderStyle = BorderStyle.None;

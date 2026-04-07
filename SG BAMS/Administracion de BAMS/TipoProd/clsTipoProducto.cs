@@ -9,8 +9,17 @@ using System.Threading.Tasks;
 
 namespace SG_BAMS.Administracion_de_BAMS.TipoProd
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="SG_BAMS.ClsConexion" />
     internal class clsTipoProducto : ClsConexion
     {
+        /// <summary>
+        /// Leers the tipos producto asynchronous.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Error al obtener los tipos de producto: " + ex.Message</exception>
         public async Task<DataTable> LeerTiposProductoAsync()
         {
             DataTable tabla = new DataTable();
@@ -39,6 +48,12 @@ namespace SG_BAMS.Administracion_de_BAMS.TipoProd
             return tabla;
         }
 
+        /// <summary>
+        /// Insertars the tipo producto asynchronous.
+        /// </summary>
+        /// <param name="descripcion">The descripcion.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Error al insertar tipo de producto: " + ex.Message</exception>
         public async Task<bool> InsertarTipoProductoAsync(string descripcion)
         {
             try
@@ -65,6 +80,13 @@ namespace SG_BAMS.Administracion_de_BAMS.TipoProd
             }
         }
 
+        /// <summary>
+        /// Modificars the tipo producto asynchronous.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="nuevaDescripcion">The nueva descripcion.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Error al actualizar el tipo de producto: " + ex.Message</exception>
         public async Task<bool> ModificarTipoProductoAsync(int id, string nuevaDescripcion)
         {
             try

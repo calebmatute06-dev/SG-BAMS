@@ -11,20 +11,38 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmEstado : Form
     {
+        /// <summary>
+        /// The objeto estado
+        /// </summary>
         clsEstado objetoEstado = new clsEstado();
+        /// <summary>
+        /// Initializes a new instance of the <see cref="frmEstado"/> class.
+        /// </summary>
         public frmEstado()
         {
             InitializeComponent();
             this.Load += new EventHandler(frmEstados_Load);
         }
 
+        /// <summary>
+        /// Handles the Load event of the frmEstados control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void frmEstados_Load(object sender, EventArgs e)
         {
             await CargarGridEstados();
         }
 
+        /// <summary>
+        /// Cargars the grid estados.
+        /// </summary>
         private async Task CargarGridEstados()
         {
             try
@@ -48,6 +66,9 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Personalizars the grid.
+        /// </summary>
         private void PersonalizarGrid()
         {
             if (dgvEstados.Columns.Contains("id_estado"))
@@ -73,6 +94,11 @@ namespace SG_BAMS
             dgvEstados.ClearSelection();
         }
 
+        /// <summary>
+        /// Handles the CellContentDoubleClick event of the dgvEstados control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
         private void dgvEstados_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvEstados.SelectedRows.Count > 0)
@@ -94,6 +120,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnAgregar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmAgregarEstado frm = new frmAgregarEstado();
@@ -104,6 +135,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnModificar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnModificar_Click(object sender, EventArgs e)
         {
             if (dgvEstados.SelectedRows.Count > 0)
@@ -125,11 +161,21 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnSalir control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the Load event of the frmEstado control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void frmEstado_Load(object sender, EventArgs e)
         {
             dgvEstados.BorderStyle = BorderStyle.None;

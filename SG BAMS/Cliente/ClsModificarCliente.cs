@@ -9,9 +9,23 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SG_BAMS.Cliente
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="SG_BAMS.ClsConexion" />
     internal class ClsModificarCliente:ClsConexion
     {
 
+        /// <summary>
+        /// Modificars the clientes.
+        /// </summary>
+        /// <param name="idCliente">The identifier cliente.</param>
+        /// <param name="nombre">The nombre.</param>
+        /// <param name="apellido">The apellido.</param>
+        /// <param name="telefono">The telefono.</param>
+        /// <param name="RTN">The RTN.</param>
+        /// <param name="idEstado">The identifier estado.</param>
+        /// <returns></returns>
         public async Task<int> ModificarClientes(int idCliente,string nombre, string apellido, string telefono, string RTN, int idEstado)
         {
             
@@ -52,6 +66,10 @@ namespace SG_BAMS.Cliente
         
         }
 
+        /// <summary>
+        /// Obteners the estados.
+        /// </summary>
+        /// <returns></returns>
         public async Task<DataTable> ObtenerEstados()
         {
             

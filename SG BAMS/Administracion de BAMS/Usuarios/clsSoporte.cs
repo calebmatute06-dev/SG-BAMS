@@ -10,17 +10,35 @@ using System.Threading.Tasks;
 
 namespace SG_BAMS.Administracion_de_BAMS.Usuarios
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="SG_BAMS.ClsConexion" />
     internal class clsSoporte: ClsConexion
     {
+        /// <summary>
+        /// The directorio rostros
+        /// </summary>
         public static string DirectorioRostros = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Rostros");
 
+        /// <summary>
+        /// The face cascaide
+        /// </summary>
         private static CascadeClassifier faceCascaide = new CascadeClassifier(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "haarcascade_frontalface_default.xml"));
 
+        /// <summary>
+        /// Inicializars the directorio.
+        /// </summary>
         public static void InicializarDirectorio()
         {
             if (!Directory.Exists(DirectorioRostros)) Directory.CreateDirectory(DirectorioRostros);
         }
 
+        /// <summary>
+        /// Detectars the rostro.
+        /// </summary>
+        /// <param name="frame">The frame.</param>
+        /// <returns></returns>
         public static Image<Gray, byte> DetectarRostro(Image<Bgr, byte> frame)
         {
             var grayFrame = frame.Convert<Gray, byte>();
@@ -32,6 +50,11 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
             }
             return null;
         }
+        /// <summary>
+        /// Obteners the usuarios.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Error en clsSoporte al filtrar activos: " + ex.Message</exception>
         public DataTable ObtenerUsuarios()
         {
             DataTable dt = new DataTable();

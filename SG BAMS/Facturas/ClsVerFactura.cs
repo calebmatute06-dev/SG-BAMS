@@ -10,9 +10,17 @@ using System.Data;
 
 namespace SG_BAMS.Facturas
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="SG_BAMS.ClsConexion" />
     internal class ClsVerFactura:ClsConexion
     {
 
+        /// <summary>
+        /// Vers the facturas.
+        /// </summary>
+        /// <returns></returns>
         public async Task<DataTable> VerFacturas()
         {
             DataTable tablaFac = new DataTable();

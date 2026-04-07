@@ -8,16 +8,29 @@ using System.Globalization;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class FacturasEmp : Form
     {
+        /// <summary>
+        /// The datos fac
+        /// </summary>
         private DataTable datosFac;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FacturasEmp"/> class.
+        /// </summary>
         public FacturasEmp()
         {
             InitializeComponent();
             ConfigurarGrid();
         }
 
+        /// <summary>
+        /// Configurars the grid.
+        /// </summary>
         private void ConfigurarGrid()
         {
             dgvFacturas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -30,6 +43,9 @@ namespace SG_BAMS
             txtBusqueda.KeyPress += (s, e) => ClsValidaciones.ValidarBusquedaAlfanumerica(e);
         }
 
+        /// <summary>
+        /// Cargars the factura.
+        /// </summary>
         private async Task CargarFactura()
         {
             try
@@ -58,6 +74,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Load event of the FacturasEmp control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void FacturasEmp_Load(object sender, EventArgs e)
         {
             await CargarFactura();
@@ -100,6 +121,9 @@ namespace SG_BAMS
             dgvFacturas.ClearSelection();
         }
 
+        /// <summary>
+        /// Validars the y filtrar.
+        /// </summary>
         private void ValidarYFiltrar()
         {
             ClsValidaciones.ValidarRangoFechas(dtpInicio, dtpFin);
@@ -110,6 +134,9 @@ namespace SG_BAMS
             FiltrarDatos();
         }
 
+        /// <summary>
+        /// Filtrars the datos.
+        /// </summary>
         private void FiltrarDatos()
         {
             if (datosFac == null) return;
@@ -148,8 +175,18 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the TextChanged event of the txtBusqueda control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void txtBusqueda_TextChanged(object sender, EventArgs e) => FiltrarDatos();
 
+        /// <summary>
+        /// Handles the Click event of the BtnNueva control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void BtnNueva_Click(object sender, EventArgs e)
         {
             using (ClienteAgregar frmCA = new ClienteAgregar())
@@ -166,6 +203,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the BtnVer control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnVer_Click(object sender, EventArgs e)
         {
             if (dgvFacturas.SelectedRows.Count == 0)
@@ -179,6 +221,11 @@ namespace SG_BAMS
                 dgvFacturas_CellDoubleClick(null, null);
         }
 
+        /// <summary>
+        /// Handles the CellDoubleClick event of the dgvFacturas control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
         private async void dgvFacturas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e != null && e.RowIndex < 0) return;
@@ -211,6 +258,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the BtnRefrescar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnRefrescar_Click(object sender, EventArgs e)
         {
             txtBusqueda.Clear();
@@ -219,29 +271,68 @@ namespace SG_BAMS
             FiltrarDatos();
         }
 
+        /// <summary>
+        /// Navegars a.
+        /// </summary>
+        /// <param name="formulario">The formulario.</param>
         private void NavegarA(Form formulario)
         {
             formulario.Show();
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the BtnMenu control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnMenu_Click(object sender, EventArgs e) => NavegarA(new MenuPrincipalEmp());
+        /// <summary>
+        /// Handles the Click event of the BtnClientes control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnClientes_Click(object sender, EventArgs e) => NavegarA(new ClientesEmp());
+        /// <summary>
+        /// Handles the Click event of the BtnInventario control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnInventario_Click(object sender, EventArgs e) => NavegarA(new InventarioEmp());
+        /// <summary>
+        /// Handles the Click event of the BtnDeudores control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnDeudores_Click(object sender, EventArgs e) => NavegarA(new Deudores_Emp());
 
+        /// <summary>
+        /// Handles the Click event of the BtnNotificaciones control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnNotificaciones_Click(object sender, EventArgs e)
         {
             new NotificacionesAdmin().Show();
             this.Hide();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnCerrarSesion control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
             new Login.Login().Show();
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the ValueChanged event of the dtpInicio control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void dtpInicio_ValueChanged(object sender, EventArgs e)
         {
 

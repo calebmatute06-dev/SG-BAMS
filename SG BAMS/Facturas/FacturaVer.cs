@@ -13,13 +13,38 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class FacturaVer : Form
     {
+        /// <summary>
+        /// The identifier fac
+        /// </summary>
         int idFac;
+        /// <summary>
+        /// The datos cli
+        /// </summary>
         DataTable datosCli;
+        /// <summary>
+        /// The identifier pago sele
+        /// </summary>
         int idPagoSele;
+        /// <summary>
+        /// The monto rebaja
+        /// </summary>
         double monto_rebaja;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FacturaVer"/> class.
+        /// </summary>
+        /// <param name="idF">The identifier f.</param>
+        /// <param name="nomFac">The nom fac.</param>
+        /// <param name="fec">The fec.</param>
+        /// <param name="bateriaVij">The bateria vij.</param>
+        /// <param name="idPago">The identifier pago.</param>
+        /// <param name="reb">The reb.</param>
         public FacturaVer(int idF, string nomFac, DateTime fec, int bateriaVij, int idPago, double reb)
         {
             InitializeComponent();
@@ -34,12 +59,18 @@ namespace SG_BAMS
             
 
         }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FacturaVer"/> class.
+        /// </summary>
         public FacturaVer()
         {
             InitializeComponent();
 
         }
 
+        /// <summary>
+        /// Vers the facturas productos.
+        /// </summary>
         private async Task VerFacturasProductos()
         {
 
@@ -61,6 +92,9 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Calculars the total.
+        /// </summary>
         private void CalcularTotal()
         {
             double acumulador = 0;
@@ -84,6 +118,11 @@ namespace SG_BAMS
             txtTotal.Text = total.ToString("F2");
         }
 
+        /// <summary>
+        /// Handles the Load event of the FacturaVer control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void FacturaVer_Load(object sender, EventArgs e)
         {
             await LlenarComboPago();
@@ -102,6 +141,9 @@ namespace SG_BAMS
 
         }
 
+        /// <summary>
+        /// Llenars the combo pago.
+        /// </summary>
         private async Task LlenarComboPago()
         {
             ClsConexion objCl = new ClsConexion();
@@ -135,6 +177,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the BtnSalir control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnSalir_Click(object sender, EventArgs e)
         {
             this.Close();

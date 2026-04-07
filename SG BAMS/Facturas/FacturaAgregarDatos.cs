@@ -16,15 +16,40 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class FacturaAgregarDatos : Form
     {
+        /// <summary>
+        /// The identifier cliente
+        /// </summary>
         int idCliente, cantidades;
+        /// <summary>
+        /// The identifier producto
+        /// </summary>
         public int idProducto;
+        /// <summary>
+        /// The nombres productos
+        /// </summary>
         string nombresProductos, cantidadBateria;
+        /// <summary>
+        /// The precio bateria
+        /// </summary>
         double precioBateria;
+        /// <summary>
+        /// The RTN cliente
+        /// </summary>
         string rtnCliente;
 
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FacturaAgregarDatos"/> class.
+        /// </summary>
+        /// <param name="cliente">The cliente.</param>
+        /// <param name="idCli">The identifier cli.</param>
+        /// <param name="rtn">The RTN.</param>
         public FacturaAgregarDatos(string cliente, int idCli, string rtn = "Sin RTN")
         {
             InitializeComponent();
@@ -33,6 +58,12 @@ namespace SG_BAMS
             rtnCliente = string.IsNullOrWhiteSpace(rtn) ? "Sin RTN" : rtn;
         }
 
+        /// <summary>
+        /// Sets the producto.
+        /// </summary>
+        /// <param name="idProd">The identifier product.</param>
+        /// <param name="nombreProd">The nombre product.</param>
+        /// <param name="cantidadProd">The cantidad product.</param>
         public void SetProducto(int idProd, string nombreProd, int cantidadProd)
         {
             idProducto = idProd;
@@ -40,6 +71,9 @@ namespace SG_BAMS
             cantidades = cantidadProd;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FacturaAgregarDatos"/> class.
+        /// </summary>
         public FacturaAgregarDatos()
         {
             InitializeComponent();
@@ -48,6 +82,9 @@ namespace SG_BAMS
             rtnCliente = "Sin RTN";
         }
 
+        /// <summary>
+        /// Llenars the combo pago.
+        /// </summary>
         private async Task LlenarComboPago()
         {
             ClsAgregarFactura AF = new ClsAgregarFactura();
@@ -65,6 +102,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Load event of the FacturaAgregarDatos control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void FacturaAgregarDatos_Load(object sender, EventArgs e)
         {
             await LlenarComboPago();
@@ -132,6 +174,9 @@ namespace SG_BAMS
             dgvProductos.ClearSelection();
         }
 
+        /// <summary>
+        /// Calculars the total.
+        /// </summary>
         private void CalcularTotal()
         {
             double acumulador = 0;
@@ -149,8 +194,18 @@ namespace SG_BAMS
             txtTotal.Text = (total < 0 ? 0 : total).ToString("N2");
         }
 
+        /// <summary>
+        /// Handles the TextChanged event of the txtExento control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void txtExento_TextChanged(object sender, EventArgs e) { }
 
+        /// <summary>
+        /// Handles the KeyPress event of the txtExento control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
         private void txtExento_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
@@ -159,6 +214,11 @@ namespace SG_BAMS
                 e.Handled = true;
         }
 
+        /// <summary>
+        /// Handles the Click event of the BtnAceptar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void BtnAceptar_Click(object sender, EventArgs e)
         {
             if (ClsValidaciones.CampoVacio(txtCliente, "Cliente")) return;
@@ -278,6 +338,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the BtnAgregar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void BtnAgregar_Click(object sender, EventArgs e)
         {
             using (FacturaProducto frmProducto = new FacturaProducto())
@@ -303,6 +368,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the BtnEliminar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
             if (dgvProductos.SelectedRows.Count > 0)
@@ -322,6 +392,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the CellValidating event of the dgvProductos control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DataGridViewCellValidatingEventArgs"/> instance containing the event data.</param>
         private void dgvProductos_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
             if (dgvProductos.Columns[e.ColumnIndex].Name == "cantidad")
@@ -343,6 +418,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the CellValueChanged event of the dgvProductos control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
         private void dgvProductos_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && dgvProductos.Columns[e.ColumnIndex].Name == "cantidad")
@@ -354,6 +434,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnBateria control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnBateria_Click(object sender, EventArgs e)
         {
             double subtotalActual = Convert.ToDouble(txtSubtotal.Text);
@@ -369,6 +454,9 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Actualizars the estado boton aceptar.
+        /// </summary>
         private void ActualizarEstadoBotonAceptar()
         {
             bool tieneProductos = dgvProductos.Rows.Count > 0;
@@ -376,8 +464,18 @@ namespace SG_BAMS
             btnBateria.Enabled = tieneProductos;
         }
 
+        /// <summary>
+        /// Handles the Click event of the BtnCancelar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnCancelar_Click(object sender, EventArgs e) => this.Close();
 
+        /// <summary>
+        /// Handles the CheckedChanged event of the chkGobierno control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void chkGobierno_CheckedChanged(object sender, EventArgs e)
         {
             if (chkGobierno.Checked)
@@ -391,16 +489,31 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the DateChanged event of the DateTFecha control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DateRangeEventArgs"/> instance containing the event data.</param>
         private void DateTFecha_DateChanged(object sender, DateRangeEventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// Handles the Click event of the label5 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void label5_Click(object sender, EventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// Handles the CheckedChanged event of the chkNormal control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void chkNormal_CheckedChanged(object sender, EventArgs e)
         {
             if (chkNormal.Checked)
@@ -414,6 +527,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the CellClick event of the dgvProductos control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
         private void dgvProductos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && dgvProductos.Columns[e.ColumnIndex].Name == "cantidad")
@@ -422,6 +540,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the SelectionChanged event of the dgvProductos control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void dgvProductos_SelectionChanged(object sender, EventArgs e)
         {
             foreach (DataGridViewCell cell in dgvProductos.SelectedCells)

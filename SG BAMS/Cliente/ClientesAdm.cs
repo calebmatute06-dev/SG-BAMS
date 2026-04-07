@@ -15,10 +15,20 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class ClientesAdm : Form
     {
+        /// <summary>
+        /// The datos cli
+        /// </summary>
         DataTable datosCli;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ClientesAdm"/> class.
+        /// </summary>
         public ClientesAdm()
         {
             InitializeComponent();
@@ -29,6 +39,9 @@ namespace SG_BAMS
             txtBusqueda.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetrasYNumeros(e);
         }
 
+        /// <summary>
+        /// Tablas the clientes.
+        /// </summary>
         private async Task TablaClientes()
         {
             ClsVerCliente objC = new ClsVerCliente();
@@ -57,6 +70,9 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Aplicars the filtro.
+        /// </summary>
         private void AplicarFiltro()
         {
             if (datosCli == null) return;
@@ -88,6 +104,11 @@ namespace SG_BAMS
             dgvClientes.ClearSelection();
         }
 
+        /// <summary>
+        /// Handles the Load event of the ClientesAdm control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void ClientesAdm_Load(object sender, EventArgs e)
         {
             await TablaClientes();
@@ -120,6 +141,11 @@ namespace SG_BAMS
             dgvClientes.ClearSelection();
         }
 
+        /// <summary>
+        /// Handles the CellDoubleClick event of the dgvClientes control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
         private async void dgvClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e != null && e.RowIndex < 0) return;
@@ -149,6 +175,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnModificar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnModificar_Click(object sender, EventArgs e)
         {
             if (dgvClientes.SelectedRows.Count == 0)
@@ -159,11 +190,21 @@ namespace SG_BAMS
             dgvClientes_CellDoubleClick(null, null);
         }
 
+        /// <summary>
+        /// Handles the TextChanged event of the txtBusqueda control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void txtBusqueda_TextChanged(object sender, EventArgs e)
         {
             AplicarFiltro();
         }
 
+        /// <summary>
+        /// Handles the CheckedChanged event of the chkActivo control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void chkActivo_CheckedChanged(object sender, EventArgs e)
         {
             AplicarFiltro();
@@ -171,71 +212,151 @@ namespace SG_BAMS
 
 
 
+        /// <summary>
+        /// Handles the Click event of the btnCerrarSesion control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
             new Login.Login().Show();
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the BtnPerfil control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnPerfil_Click(object sender, EventArgs e) => new Perfil().Show();
 
+        /// <summary>
+        /// Handles the Click event of the BtnMenu control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnMenu_Click(object sender, EventArgs e)
         {
             new MenuPrincipalAdm().Show();
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the BtnFacturas control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnFacturas_Click(object sender, EventArgs e)
         {
             new FacturasAdm().Show();
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the BtnCompras control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnCompras_Click(object sender, EventArgs e)
         {
             new Compras().Show();
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the BtnInventario control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnInventario_Click(object sender, EventArgs e)
         {
             new InventarioAdmin().Show();
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the BtnProveedores control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnProveedores_Click(object sender, EventArgs e)
         {
             new ProveedoresAdmin().Show();
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the BtnDeudores control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnDeudores_Click(object sender, EventArgs e)
         {
             new DeudoresAdmin().Show();
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the BtnBitacora control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnBitacora_Click(object sender, EventArgs e)
         {
             new BitacoraAdmin().Show();
             this.Close();
         }
 
-       
 
+
+        /// <summary>
+        /// Handles the Click event of the btnReportes control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnReportes_Click(object sender, EventArgs e)
         {
             new ReportesAdmin().Show();
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnNoti control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnNoti_Click(object sender, EventArgs e) => new NotificacionesAdmin().Show();
 
+        /// <summary>
+        /// Handles the Click event of the label4 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void label4_Click(object sender, EventArgs e) { }
+        /// <summary>
+        /// Handles the Click event of the label6 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void label6_Click(object sender, EventArgs e) { }
+        /// <summary>
+        /// Handles the Click event of the BtnReporte control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnReporte_Click(object sender, EventArgs e) { }
+        /// <summary>
+        /// Handles the CellContentClick event of the dgvClientes control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
         private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
 
+        /// <summary>
+        /// Handles the Paint event of the panel1 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="PaintEventArgs"/> instance containing the event data.</param>
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 

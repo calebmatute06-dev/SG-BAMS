@@ -8,9 +8,19 @@ using System.Threading.Tasks;
 
 namespace SG_BAMS.Facturas
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="SG_BAMS.ClsConexion" />
     internal class ClsAgregarProductos:ClsConexion
     {
 
+        /// <summary>
+        /// Guardars the producto factura.
+        /// </summary>
+        /// <param name="idFactura">The identifier factura.</param>
+        /// <param name="idProducto">The identifier producto.</param>
+        /// <param name="cantidad">The cantidad.</param>
         public async Task GuardarProductoFactura(int idFactura, int idProducto, int cantidad)
         {
             AbrirConexion();
@@ -29,6 +39,11 @@ namespace SG_BAMS.Facturas
             Cerrar();
         }
 
+        /// <summary>
+        /// Obteners the producto por codigo barra.
+        /// </summary>
+        /// <param name="codigoBarra">The codigo barra.</param>
+        /// <returns></returns>
         public async Task<DataRow> ObtenerProductoPorCodigoBarra(string codigoBarra)
         {
             ClsConexion objConexion = new ClsConexion();
@@ -62,6 +77,10 @@ namespace SG_BAMS.Facturas
 
 
 
+        /// <summary>
+        /// Obteners the stock productos.
+        /// </summary>
+        /// <returns></returns>
         public async Task<DataTable> ObtenerStockProductos()
         {
            

@@ -12,8 +12,15 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmAgregarRol : Form
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="frmAgregarRol"/> class.
+        /// </summary>
         public frmAgregarRol()
         {
             InitializeComponent();
@@ -21,16 +28,31 @@ namespace SG_BAMS
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
         }
 
+        /// <summary>
+        /// Handles the Click event of the pictureBox16 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void pictureBox16_Click(object sender, EventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// Handles the Click event of the label1 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void label1_Click(object sender, EventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// Handles the Click event of the btmAgregar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void btmAgregar_Click(object sender, EventArgs e)
         {
             
@@ -72,6 +94,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btmSalir control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btmSalir_Click(object sender, EventArgs e)
         {
             frmRoles verRoles = new frmRoles();

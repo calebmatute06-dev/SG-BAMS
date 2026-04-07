@@ -11,8 +11,15 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmIngresarMarcaProducto : Form
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="frmIngresarMarcaProducto"/> class.
+        /// </summary>
         public frmIngresarMarcaProducto()
         {
             InitializeComponent();
@@ -21,6 +28,11 @@ namespace SG_BAMS
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirAlfanumerico(e);
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnAgregar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void btnAgregar_Click(object sender, EventArgs e)
         {
             
@@ -60,6 +72,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnSalir control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();

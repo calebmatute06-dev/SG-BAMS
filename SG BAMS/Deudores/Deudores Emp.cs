@@ -12,10 +12,20 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class Deudores_Emp : Form
     {
+        /// <summary>
+        /// The dt deudores
+        /// </summary>
         private DataTable dtDeudores;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Deudores_Emp"/> class.
+        /// </summary>
         public Deudores_Emp()
         {
             InitializeComponent();
@@ -25,6 +35,9 @@ namespace SG_BAMS
             this.txtBuscarNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
         }
 
+        /// <summary>
+        /// Cargars the grid deudores.
+        /// </summary>
         public void CargarGridDeudores()
         {
             ClsDeuda objetoDeuda = new ClsDeuda();
@@ -43,6 +56,11 @@ namespace SG_BAMS
             dgvDeudores.ClearSelection();
         }
 
+        /// <summary>
+        /// Handles the TextChanged event of the txtBuscarNombre control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void txtBuscarNombre_TextChanged(object sender, EventArgs e)
         {
 
@@ -53,6 +71,9 @@ namespace SG_BAMS
             FiltrarDeudores();
         }
 
+        /// <summary>
+        /// Filtrars the deudores.
+        /// </summary>
         private void FiltrarDeudores()
         {
             if (dtDeudores != null)
@@ -69,6 +90,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the kryptonButton15 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void kryptonButton15_Click(object sender, EventArgs e)
         {
             Pago_Deuda PagDe = new Pago_Deuda("", 0);
@@ -76,6 +102,11 @@ namespace SG_BAMS
             CargarGridDeudores();
         }
 
+        /// <summary>
+        /// Handles the CellDoubleClick event of the dgvDeudores control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
         private void dgvDeudores_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
@@ -112,12 +143,22 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Shown event of the Deudores control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void Deudores_Shown(object sender, EventArgs e)
         {
             Ayudante_UI.AplicarZoomGlobal(this);
         }
 
 
+        /// <summary>
+        /// Handles the KeyPress event of the txtBuscarNombre control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
         private void txtBuscarNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
 
@@ -126,40 +167,75 @@ namespace SG_BAMS
 
 
 
+        /// <summary>
+        /// BTNs the noti.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnNoti(object sender, EventArgs e)
         {
             new NotificacionesAdmin().Show();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnMenuEmp control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnMenuEmp_Click(object sender, EventArgs e)
         {
             new MenuPrincipalEmp().Show();
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnFacturasEmp control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnFacturasEmp_Click(object sender, EventArgs e)
         {
             new FacturasEmp().Show();
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnClientesEmp control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnClientesEmp_Click(object sender, EventArgs e)
         {
             new ClientesEmp().Show();
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnInventarioEmp control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnInventarioEmp_Click(object sender, EventArgs e)
         {
             new InventarioEmp().Show();
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnPerfil control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnPerfil_Click(object sender, EventArgs e)
         {
             new Perfil().Show();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnCerrarSesion control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
             new SG_BAMS.Login.Login().Show();
@@ -167,9 +243,24 @@ namespace SG_BAMS
         }
 
 
+        /// <summary>
+        /// Handles the Tick event of the timer1 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void timer1_Tick(object sender, EventArgs e) { }
+        /// <summary>
+        /// Handles the DoubleClick event of the dgvDeudores control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void dgvDeudores_DoubleClick(object sender, EventArgs e) { }
 
+        /// <summary>
+        /// Handles the Load event of the Deudores_Emp control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void Deudores_Emp_Load(object sender, EventArgs e)
         {
             dgvDeudores.ClearSelection();

@@ -12,18 +12,49 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class FacturaProducto : Form
     {
+        /// <summary>
+        /// Gets or sets the stock seleccionado.
+        /// </summary>
+        /// <value>
+        /// The stock seleccionado.
+        /// </value>
         public int StockSeleccionado { get; set; }
+        /// <summary>
+        /// Gets or sets the precio seleccionado.
+        /// </summary>
+        /// <value>
+        /// The precio seleccionado.
+        /// </value>
         public double PrecioSeleccionado { get; set; }
+        /// <summary>
+        /// Gets or sets the formulario factura.
+        /// </summary>
+        /// <value>
+        /// The formulario factura.
+        /// </value>
         public FacturaAgregarDatos FormularioFactura { get; set; }
+        /// <summary>
+        /// The ultima tecla escaner
+        /// </summary>
         private DateTime ultimaTeclaEscaner = DateTime.Now;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FacturaProducto"/> class.
+        /// </summary>
         public FacturaProducto()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Llenars the combo productos.
+        /// </summary>
         private async Task LlenarComboProductos()
         {
             ClsAgregarProductos ap = new ClsAgregarProductos();
@@ -47,6 +78,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Load event of the FacturaProducto control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void FacturaProducto_Load(object sender, EventArgs e)
         {
             await LlenarComboProductos();
@@ -55,6 +91,9 @@ namespace SG_BAMS
             txtCantidad.KeyPress += (s, ev) => ClsValidaciones.ValidarSoloNumeros(ev);
         }
 
+        /// <summary>
+        /// Actualizars the stock.
+        /// </summary>
         private void ActualizarStock()
         {
             if (cmbProductos.SelectedItem != null && cmbProductos.SelectedItem is DataRowView fila)
@@ -67,12 +106,25 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the SelectedIndexChanged event of the cmbProductos control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void cmbProductos_SelectedIndexChanged(object sender, EventArgs e)
         {
             ActualizarStock();
             txtCantidad.Clear();
         }
 
+        /// <summary>
+        /// Processes a command key.
+        /// </summary>
+        /// <param name="msg">A <see cref="T:System.Windows.Forms.Message" />, passed by reference, that represents the Win32 message to process.</param>
+        /// <param name="keyData">One of the <see cref="T:System.Windows.Forms.Keys" /> values that represents the key to process.</param>
+        /// <returns>
+        ///   <see langword="true" /> if the keystroke was processed and consumed by the control; otherwise, <see langword="false" /> to allow further processing.
+        /// </returns>
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             Keys key = keyData & Keys.KeyCode;
@@ -109,6 +161,10 @@ namespace SG_BAMS
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
+        /// <summary>
+        /// Buscars the producto por codigo.
+        /// </summary>
+        /// <param name="codigo">The codigo.</param>
         private void BuscarProductoPorCodigo(string codigo)
         {
             bool encontrado = false;
@@ -132,6 +188,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the BtnAceptar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnAceptar_Click(object sender, EventArgs e)
         {
             if (cmbProductos.SelectedIndex == -1)
@@ -176,6 +237,11 @@ namespace SG_BAMS
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnEscanear control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnEscanear_Click(object sender, EventArgs e)
         {
             txtCodigo.Clear();
@@ -183,6 +249,11 @@ namespace SG_BAMS
             this.Focus();
         }
 
+        /// <summary>
+        /// Handles the Click event of the BtnSalir control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnSalir_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;

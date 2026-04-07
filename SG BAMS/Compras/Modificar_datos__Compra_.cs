@@ -8,17 +8,53 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class Modificar_datos__Compra_ : Form
     {
+        /// <summary>
+        /// Handles the SelectedIndexChanged event of the cmbProveedor control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void cmbProveedor_SelectedIndexChanged(object sender, EventArgs e) { huboCambios = true; }
+        /// <summary>
+        /// Handles the SelectedIndexChanged event of the cmbFormaPago control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void cmbFormaPago_SelectedIndexChanged(object sender, EventArgs e) { huboCambios = true; }
+        /// <summary>
+        /// The dt respaldo
+        /// </summary>
         private DataTable dtRespaldo;
+        /// <summary>
+        /// The hubo cambios
+        /// </summary>
         private bool huboCambios = false;
+        /// <summary>
+        /// The valor antes de cambio
+        /// </summary>
         private object valorAntesDeCambio;
+        /// <summary>
+        /// The identifier compra a editar
+        /// </summary>
         private int idCompraAEditar;
+        /// <summary>
+        /// The logic
+        /// </summary>
         private ClsModificarCompras logic = new ClsModificarCompras();
+        /// <summary>
+        /// The lista eliminados
+        /// </summary>
         private List<int> listaEliminados = new List<int>();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Modificar_datos__Compra_"/> class.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
         public Modificar_datos__Compra_(int id)
         {
             InitializeComponent();
@@ -28,6 +64,11 @@ namespace SG_BAMS
             dgvProductosCompraMod.CellBeginEdit += dgvProductosCompraMod_CellBeginEdit;
         }
 
+        /// <summary>
+        /// Handles the Load event of the Modificar_datos__Compra_ control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void Modificar_datos__Compra__Load(object sender, EventArgs e)
         {
             cmbProveedor.Enabled = false;
@@ -55,6 +96,11 @@ namespace SG_BAMS
             cmbFormaPago.SelectedIndexChanged += cmbFormaPago_SelectedIndexChanged;
         }
 
+        /// <summary>
+        /// Handles the CurrentCellDirtyStateChanged event of the dgvProductosCompraMod control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void dgvProductosCompraMod_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
             if (dgvProductosCompraMod.IsCurrentCellDirty)
@@ -63,6 +109,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the CellValueChanged event of the dgvProductosCompraMod control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
         private void dgvProductosCompraMod_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && (dgvProductosCompraMod.Columns[e.ColumnIndex].Name == "Cantidad" ||
@@ -79,6 +130,9 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Actualizars the total general.
+        /// </summary>
         private void ActualizarTotalGeneral()
         {
             decimal total = 0;
@@ -90,6 +144,9 @@ namespace SG_BAMS
             lblTotal.Text = "Total: L " + total.ToString("N2");
         }
 
+        /// <summary>
+        /// Configurars the edicion grid.
+        /// </summary>
         private void ConfigurarEdicionGrid()
         {
             if (dgvProductosCompraMod.Columns.Contains("ID")) dgvProductosCompraMod.Columns["ID"].ReadOnly = true;
@@ -103,6 +160,9 @@ namespace SG_BAMS
                 dgvProductosCompraMod.Columns["Subtotal"].DefaultCellStyle.Format = "N2";
         }
 
+        /// <summary>
+        /// Llenars the combos.
+        /// </summary>
         private void LlenarCombos()
         {
             try
@@ -117,6 +177,9 @@ namespace SG_BAMS
             catch (Exception ex) { MessageBox.Show("Error al llenar listas: " + ex.Message); }
         }
 
+        /// <summary>
+        /// Cargars the datos cabecera.
+        /// </summary>
         private void CargarDatosCabecera()
         {
             try
@@ -140,6 +203,11 @@ namespace SG_BAMS
             catch (Exception ex) { MessageBox.Show("Error al cargar datos: " + ex.Message); }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnAceptar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             if (cmbProveedor.SelectedValue == null || cmbProveedor.SelectedIndex == -1)
@@ -184,6 +252,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnEliminarProducto control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnEliminarProducto_Click(object sender, EventArgs e)
         {
             if (dgvProductosCompraMod.CurrentRow != null && !dgvProductosCompraMod.CurrentRow.IsNewRow)
@@ -242,6 +315,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the kryptonButton5 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void kryptonButton5_Click(object sender, EventArgs e)
         {
             if (cmbProveedor.SelectedValue == null)
@@ -273,6 +351,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the kryptonButton4 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void kryptonButton4_Click(object sender, EventArgs e)
         {
             if (!huboCambios)
@@ -316,6 +399,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the CellBeginEdit event of the dgvProductosCompraMod control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DataGridViewCellCancelEventArgs"/> instance containing the event data.</param>
         private void dgvProductosCompraMod_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -324,6 +412,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the 1 event of the dgvProductosCompraMod_CellValueChanged control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
         private void dgvProductosCompraMod_CellValueChanged_1(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
@@ -360,11 +453,21 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the CellDoubleClick event of the dgvProductosCompraMod control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
         private void dgvProductosCompraMod_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
         }
 
+        /// <summary>
+        /// Handles the AllowUserToAddRowsChanged event of the dgvProductosCompraMod control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void dgvProductosCompraMod_AllowUserToAddRowsChanged(object sender, EventArgs e)
         {
         }

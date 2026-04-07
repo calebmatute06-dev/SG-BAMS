@@ -49,47 +49,44 @@
             // 
             panel1.BackColor = Color.Navy;
             panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(598, 18);
+            panel1.Size = new Size(683, 24);
             panel1.TabIndex = 121;
             // 
             // pictureBox2
             // 
             pictureBox2.BackColor = Color.Navy;
             pictureBox2.Location = new Point(0, 0);
-            pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(21, 215);
+            pictureBox2.Size = new Size(24, 287);
             pictureBox2.TabIndex = 122;
             pictureBox2.TabStop = false;
             // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Navy;
-            pictureBox1.Location = new Point(577, 0);
-            pictureBox1.Margin = new Padding(3, 2, 3, 2);
+            pictureBox1.Location = new Point(659, 0);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(21, 215);
+            pictureBox1.Size = new Size(24, 287);
             pictureBox1.TabIndex = 114;
             pictureBox1.TabStop = false;
             // 
             // panel2
             // 
             panel2.BackColor = Color.Navy;
-            panel2.Location = new Point(0, 197);
-            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Location = new Point(0, 263);
             panel2.Name = "panel2";
-            panel2.Size = new Size(598, 18);
+            panel2.Size = new Size(683, 24);
             panel2.TabIndex = 120;
             // 
             // txtDescri
             // 
-            txtDescri.Location = new Point(280, 79);
+            txtDescri.Location = new Point(320, 105);
+            txtDescri.Margin = new Padding(3, 4, 3, 4);
             txtDescri.MaxLength = 70;
             txtDescri.Multiline = true;
             txtDescri.Name = "txtDescri";
-            txtDescri.Size = new Size(264, 41);
+            txtDescri.Size = new Size(302, 55);
             txtDescri.StateCommon.Back.Color1 = Color.SkyBlue;
             txtDescri.StateCommon.Border.Rounding = 15F;
             txtDescri.StateCommon.Content.Color1 = Color.Navy;
@@ -102,22 +99,21 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(62, 87);
+            label2.Location = new Point(71, 116);
             label2.Name = "label2";
-            label2.Size = new Size(209, 25);
+            label2.Size = new Size(252, 31);
             label2.TabIndex = 113;
             label2.Text = "Ingrese el rol de usuario:";
             // 
             // btmAgregar
             // 
-            btmAgregar.Location = new Point(164, 130);
-            btmAgregar.Margin = new Padding(3, 2, 3, 2);
+            btmAgregar.Location = new Point(187, 173);
             btmAgregar.Name = "btmAgregar";
             btmAgregar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btmAgregar.OverrideDefault.Back.Color2 = Color.White;
             btmAgregar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btmAgregar.OverrideFocus.Back.Color2 = Color.White;
-            btmAgregar.Size = new Size(125, 49);
+            btmAgregar.Size = new Size(143, 65);
             btmAgregar.StateCommon.Back.Color1 = Color.SkyBlue;
             btmAgregar.StateCommon.Back.Color2 = Color.White;
             btmAgregar.StateCommon.Border.Rounding = 30F;
@@ -134,14 +130,13 @@
             // 
             // btmSalir
             // 
-            btmSalir.Location = new Point(310, 130);
-            btmSalir.Margin = new Padding(3, 2, 3, 2);
+            btmSalir.Location = new Point(354, 173);
             btmSalir.Name = "btmSalir";
             btmSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btmSalir.OverrideDefault.Back.Color2 = Color.White;
             btmSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btmSalir.OverrideFocus.Back.Color2 = Color.White;
-            btmSalir.Size = new Size(125, 49);
+            btmSalir.Size = new Size(143, 65);
             btmSalir.StateCommon.Back.Color1 = Color.SkyBlue;
             btmSalir.StateCommon.Back.Color2 = Color.White;
             btmSalir.StateCommon.Border.Rounding = 30F;
@@ -162,9 +157,9 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(491, 165);
+            label5.Location = new Point(551, 225);
             label5.Name = "label5";
-            label5.Size = new Size(84, 29);
+            label5.Size = new Size(102, 35);
             label5.TabIndex = 347;
             label5.Text = "BAMS";
             // 
@@ -174,27 +169,28 @@
             label8.BackColor = Color.SkyBlue;
             label8.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Navy;
-            label8.Location = new Point(182, 36);
+            label8.Location = new Point(208, 48);
             label8.Name = "label8";
-            label8.Size = new Size(247, 22);
+            label8.Size = new Size(307, 29);
             label8.TabIndex = 356;
             label8.Text = "Agregar Roles de Usuario";
             // 
             // kryptonGroupBox2
             // 
             kryptonGroupBox2.CaptionVisible = false;
-            kryptonGroupBox2.Location = new Point(169, 27);
-            kryptonGroupBox2.Size = new Size(272, 39);
+            kryptonGroupBox2.Location = new Point(193, 36);
+            kryptonGroupBox2.Margin = new Padding(3, 4, 3, 4);
+            kryptonGroupBox2.Size = new Size(331, 52);
             kryptonGroupBox2.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroupBox2.StateCommon.Border.Rounding = 50F;
             kryptonGroupBox2.TabIndex = 357;
             // 
             // frmAgregarRol
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(598, 214);
+            ClientSize = new Size(683, 285);
             Controls.Add(label8);
             Controls.Add(kryptonGroupBox2);
             Controls.Add(label5);
@@ -207,6 +203,7 @@
             Controls.Add(txtDescri);
             Controls.Add(label2);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "frmAgregarRol";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmAgregarRol";

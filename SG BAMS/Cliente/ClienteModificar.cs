@@ -8,11 +8,30 @@ using Krypton.Toolkit;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class ClienteModificar : Form
     {
+        /// <summary>
+        /// The object cl
+        /// </summary>
         ClsConexion objCl = new ClsConexion();
+        /// <summary>
+        /// The identifier estado selec
+        /// </summary>
         int idEstadoSelec;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ClienteModificar"/> class.
+        /// </summary>
+        /// <param name="idCliente">The identifier cliente.</param>
+        /// <param name="nombreCliente">The nombre cliente.</param>
+        /// <param name="apellidoCliente">The apellido cliente.</param>
+        /// <param name="telefonoCliente">The telefono cliente.</param>
+        /// <param name="rtnCliente">The RTN cliente.</param>
+        /// <param name="idEstado">The identifier estado.</param>
         public ClienteModificar(int idCliente, string nombreCliente, string apellidoCliente, string telefonoCliente, string rtnCliente, int idEstado)
         {
             InitializeComponent();
@@ -37,11 +56,19 @@ namespace SG_BAMS
                 ClsValidaciones.ValidarTelefonoKeyPress(txtTelefono, e);
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ClienteModificar"/> class.
+        /// </summary>
         public ClienteModificar()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Handles the Click event of the BtnModificar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void BtnModificar_Click(object sender, EventArgs e)
         {
 
@@ -112,6 +139,9 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Llenars the combo estado.
+        /// </summary>
         private async Task LlenarComboEstado()
         {
             ClsModificarCliente MC = new ClsModificarCliente();
@@ -128,6 +158,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Load event of the ClienteModificar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void ClienteModificar_Load(object sender, EventArgs e)
         {
             await LlenarComboEstado();
@@ -135,8 +170,18 @@ namespace SG_BAMS
             cmbEstado.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
+        /// <summary>
+        /// Handles the Click event of the BtnSalir control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnSalir_Click(object sender, EventArgs e) => this.Close();
 
+        /// <summary>
+        /// Handles the KeyPress event of the txtTelefono control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
         private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
         {
             ClsValidaciones.ValidarTelefonoKeyPress(txtTelefono, e);

@@ -11,18 +11,36 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmMarcaProductos : Form
     {
+        /// <summary>
+        /// The objeto marca
+        /// </summary>
         clsMarca objetoMarca = new clsMarca();
+        /// <summary>
+        /// Initializes a new instance of the <see cref="frmMarcaProductos"/> class.
+        /// </summary>
         public frmMarcaProductos()
         {
             InitializeComponent();
             this.Load += new EventHandler(frmMarcas_Load);
         }
+        /// <summary>
+        /// Handles the Load event of the frmMarcas control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void frmMarcas_Load(object sender, EventArgs e)
         {
             await CargarGridMarcas();
         }
+        /// <summary>
+        /// Cargars the grid marcas.
+        /// </summary>
         private async Task CargarGridMarcas()
         {
             try
@@ -46,6 +64,9 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Configurars the diseno grid.
+        /// </summary>
         private void ConfigurarDisenoGrid()
         {
             if (dgvMarcas.Columns.Contains("id_marca_producto"))
@@ -65,6 +86,11 @@ namespace SG_BAMS
         }
 
 
+        /// <summary>
+        /// Handles the CellContentDoubleClick event of the dgvMarcas control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
         private void dgvMarcas_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             int id = Convert.ToInt32(dgvMarcas.CurrentRow.Cells["id_marca_producto"].Value);
@@ -78,6 +104,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Load event of the frmMarcaProductos control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void frmMarcaProductos_Load(object sender, EventArgs e)
         {
             dgvMarcas.BorderStyle = BorderStyle.None;
@@ -109,6 +140,11 @@ namespace SG_BAMS
             dgvMarcas.ClearSelection();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnAgregar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmIngresarMarcaProducto agregarMproducto = new frmIngresarMarcaProducto();
@@ -116,6 +152,11 @@ namespace SG_BAMS
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnModificar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnModificar_Click(object sender, EventArgs e)
         {
             
@@ -150,6 +191,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnSalir control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();

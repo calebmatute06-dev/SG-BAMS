@@ -8,8 +8,16 @@ using System.Threading.Tasks;
 
 namespace SG_BAMS.Cliente
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="SG_BAMS.ClsConexion" />
     internal class ClsVerCliente:ClsConexion
     {
+        /// <summary>
+        /// Vers the cliente tabla.
+        /// </summary>
+        /// <returns></returns>
         public async Task<DataTable> VerClienteTabla()
         {
             DataTable tablaC = new DataTable();

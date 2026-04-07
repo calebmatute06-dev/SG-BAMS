@@ -11,10 +11,22 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmModificarTipoProducto : Form
     {
+        /// <summary>
+        /// The identifier seleccionado
+        /// </summary>
         private int idSeleccionado;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="frmModificarTipoProducto"/> class.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="descripcionActual">The descripcion actual.</param>
         public frmModificarTipoProducto(int id, string descripcionActual)
         {
             InitializeComponent();
@@ -25,7 +37,12 @@ namespace SG_BAMS
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirAlfanumerico(e);
         }
 
-        
+
+        /// <summary>
+        /// Handles the Load event of the frmModificarTipoProducto control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void frmModificarTipoProducto_Load(object sender, EventArgs e)
         {
            
@@ -33,6 +50,11 @@ namespace SG_BAMS
             txtDescri.SelectionStart = txtDescri.Text.Length;
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnModificar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void btnModificar_Click(object sender, EventArgs e)
         {
             if (!ClsValidaciones.EsAlfanumericoValido(txtDescri, "Tipo de Producto"))
@@ -70,6 +92,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnSalir control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();

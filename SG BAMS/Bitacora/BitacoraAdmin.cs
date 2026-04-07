@@ -15,10 +15,20 @@ using Color = System.Drawing.Color;
 
 namespace SG_BAMS.Bitacora
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class BitacoraAdmin : Form
     {
+        /// <summary>
+        /// The bitacora
+        /// </summary>
         ClsBitacora bitacora = new ClsBitacora();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BitacoraAdmin"/> class.
+        /// </summary>
         public BitacoraAdmin()
         {
             InitializeComponent();
@@ -30,6 +40,11 @@ namespace SG_BAMS.Bitacora
             txtBuscar.KeyPress += (s, e) => ClsValidaciones.ValidarBusquedaAlfanumerica(e);
         }
 
+        /// <summary>
+        /// Handles the Load event of the Bitacora control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void Bitacora_Load(object sender, EventArgs e)
         {
         
@@ -67,12 +82,22 @@ namespace SG_BAMS.Bitacora
             dgvBitacora.ClearSelection();
         }
 
+        /// <summary>
+        /// Handles the KeyUp event of the txtBuscar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="KeyEventArgs"/> instance containing the event data.</param>
         private void txtBuscar_KeyUp(object sender, KeyEventArgs e)
         {
             
             EjecutarBusquedaSegura();
         }
 
+        /// <summary>
+        /// Handles the ValueChanged event of the dtpDesde control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void dtpDesde_ValueChanged(object sender, EventArgs e)
         {
             
@@ -89,6 +114,11 @@ namespace SG_BAMS.Bitacora
             EjecutarBusquedaSegura();
         }
 
+        /// <summary>
+        /// Handles the ValueChanged event of the dtpHasta control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void dtpHasta_ValueChanged(object sender, EventArgs e)
         {
             
@@ -105,11 +135,19 @@ namespace SG_BAMS.Bitacora
             EjecutarBusquedaSegura();
         }
 
+        /// <summary>
+        /// Ejecutars the busqueda segura.
+        /// </summary>
         private void EjecutarBusquedaSegura()
         {
             bitacora.BuscarBitacora(txtBuscar, dtpDesde.Value, dtpHasta.Value, dgvBitacora);
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnRefresh control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             txtBuscar.Clear();
@@ -124,6 +162,11 @@ namespace SG_BAMS.Bitacora
             dgvBitacora.ClearSelection();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnExportar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnExportar_Click(object sender, EventArgs e)
         {
             try
@@ -165,63 +208,118 @@ namespace SG_BAMS.Bitacora
             }
         }
 
-        
+
+        /// <summary>
+        /// Handles the Click event of the btnCerrarSesion control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
             new Login.Login().Show();
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnMenu control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnMenu_Click(object sender, EventArgs e)
         {
             new MenuPrincipalAdm().Show();
             this.Hide();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnProveedores control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnProveedores_Click(object sender, EventArgs e)
         {
             new ProveedoresAdmin().Show();
             this.Hide();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnFacturas control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnFacturas_Click(object sender, EventArgs e)
         {
             new FacturasAdm().Show();
             this.Hide();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnCompras control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnCompras_Click(object sender, EventArgs e)
         {
             new Compras().Show();
             this.Hide();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnClientes control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnClientes_Click(object sender, EventArgs e)
         {
             new ClientesAdm().Show();
             this.Hide();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnInventario control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnInventario_Click(object sender, EventArgs e)
         {
             new InventarioAdmin().Show();
             this.Hide();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnDeudores control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnDeudores_Click(object sender, EventArgs e)
         {
             new DeudoresAdmin().Show();
             this.Hide();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnReporte control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnReporte_Click(object sender, EventArgs e)
         {
             new ReportesAdmin().Show();
             this.Hide();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnNoti control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnNoti_Click(object sender, EventArgs e) => new NotificacionesAdmin().Show();
 
+        /// <summary>
+        /// Handles the Click event of the btnPerfil control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnPerfil_Click(object sender, EventArgs e) => new Perfil().Show();
     }
 }

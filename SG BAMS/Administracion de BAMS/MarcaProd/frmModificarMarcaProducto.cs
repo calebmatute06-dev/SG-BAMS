@@ -11,10 +11,22 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmModificarMarcaProducto : Form
     {
+        /// <summary>
+        /// The identifier marca
+        /// </summary>
         private int idMarca;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="frmModificarMarcaProducto"/> class.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="nombreActual">The nombre actual.</param>
         public frmModificarMarcaProducto(int id, string nombreActual)
         {
             InitializeComponent();
@@ -25,13 +37,23 @@ namespace SG_BAMS
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirAlfanumerico(e);
         }
 
-       
+
+        /// <summary>
+        /// Handles the Load event of the frmModificarMarcaProducto control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void frmModificarMarcaProducto_Load(object sender, EventArgs e)
         {
             
             txtDescri.Focus();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnModificar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void btnModificar_Click(object sender, EventArgs e)
         {
             if (!ClsValidaciones.EsAlfanumericoValido(txtDescri, "Nombre de la Marca"))
@@ -69,11 +91,21 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnSalir control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the kryptonButton6 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void kryptonButton6_Click(object sender, EventArgs e)
         {
             this.Close();

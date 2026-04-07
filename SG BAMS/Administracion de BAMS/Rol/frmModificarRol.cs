@@ -11,10 +11,22 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmModificarRol : Form
     {
+        /// <summary>
+        /// The identifier rol seleccionado
+        /// </summary>
         private int idRolSeleccionado;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="frmModificarRol"/> class.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="nombreActual">The nombre actual.</param>
         public frmModificarRol(int id, string nombreActual)
         {
             InitializeComponent();
@@ -25,6 +37,11 @@ namespace SG_BAMS
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
         }
 
+        /// <summary>
+        /// Handles the Click event of the btmModificar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void btmModificar_Click(object sender, EventArgs e)
         {
             
@@ -64,6 +81,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btmSalir control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btmSalir_Click(object sender, EventArgs e)
         {
             

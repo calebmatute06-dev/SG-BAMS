@@ -11,18 +11,31 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmUsuarios : Form
     {
 
+        /// <summary>
+        /// The objeto usuario
+        /// </summary>
         clsUsuario objetoUsuario = new clsUsuario();
+        /// <summary>
+        /// Initializes a new instance of the <see cref="frmUsuarios"/> class.
+        /// </summary>
         public frmUsuarios()
         {
             InitializeComponent();
   
         }
 
-       
 
+
+        /// <summary>
+        /// Cargars the grid usuarios.
+        /// </summary>
         private async Task CargarGridUsuarios()
         {
             try
@@ -41,6 +54,9 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Configurars the grid.
+        /// </summary>
         private void ConfigurarGrid()
         {
             if (dgvUsuarios.Columns.Contains("imagen_usuario"))
@@ -65,6 +81,11 @@ namespace SG_BAMS
             dgvUsuarios.ClearSelection();
         }
 
+        /// <summary>
+        /// Handles the CellContentDoubleClick event of the dgvUsuarios control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
         private void dgvUsuarios_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvUsuarios.SelectedRows.Count > 0)
@@ -90,12 +111,22 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnAgregar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmAgregarUsuarios agregarUsuario = new frmAgregarUsuarios();
             agregarUsuario.Show();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnModificar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnModificar_Click(object sender, EventArgs e)
         {
             if (dgvUsuarios.SelectedRows.Count > 0)
@@ -121,11 +152,21 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnSalir control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the Load event of the frmUsuarios control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void frmUsuarios_Load(object sender, EventArgs e)
         {
             await CargarGridUsuarios();

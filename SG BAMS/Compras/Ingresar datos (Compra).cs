@@ -14,13 +14,25 @@ using static SG_BAMS.ClsCompras;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class Ingresar_datos__Compra_ : Form
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Ingresar_datos__Compra_"/> class.
+        /// </summary>
         public Ingresar_datos__Compra_()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Handles the Load event of the Ingresar_datos__Compra_ control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void Ingresar_datos__Compra__Load(object sender, EventArgs e)
         {
             dgvProductosCompra.Columns[0].ReadOnly = true;
@@ -35,6 +47,9 @@ namespace SG_BAMS
             lblIDCompra.Text = ObtenerSiguienteID();
         }
 
+        /// <summary>
+        /// Llenars the combos.
+        /// </summary>
         private void LlenarCombos()
         {
             try
@@ -59,6 +74,10 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Obteners the siguiente identifier.
+        /// </summary>
+        /// <returns></returns>
         private string ObtenerSiguienteID()
         {
             try
@@ -72,6 +91,9 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Actualizars the gran total.
+        /// </summary>
         private void ActualizarGranTotal()
         {
             decimal granTotal = 0;
@@ -85,8 +107,16 @@ namespace SG_BAMS
             lblTotal.Text = granTotal.ToString("N2");
         }
 
+        /// <summary>
+        /// The valor original
+        /// </summary>
         private object valorOriginal;
 
+        /// <summary>
+        /// Handles the CellBeginEdit event of the dgvProductosCompra control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DataGridViewCellCancelEventArgs"/> instance containing the event data.</param>
         private void dgvProductosCompra_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             if (e.RowIndex >= 0 && (e.ColumnIndex == 2 || e.ColumnIndex == 3))
@@ -95,6 +125,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the CellValueChanged event of the dgvProductosCompra control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
         private void dgvProductosCompra_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && (e.ColumnIndex == 2 || e.ColumnIndex == 3))
@@ -130,8 +165,18 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the CellDoubleClick event of the dgvProductosCompra control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
         private void dgvProductosCompra_CellDoubleClick(object sender, DataGridViewCellEventArgs e) { }
 
+        /// <summary>
+        /// Handles the Click event of the btnAgregar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             if (cmbProveedor.SelectedValue == null || cmbProveedor.SelectedIndex == -1)
@@ -186,6 +231,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the 1 event of the btnAceptar_Click control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnAceptar_Click_1(object sender, EventArgs e)
         {
             if (dgvProductosCompra.Rows.Count == 0)
@@ -240,11 +290,21 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnCancelar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnQuitar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnQuitar_Click(object sender, EventArgs e)
         {
             if (dgvProductosCompra.CurrentRow != null && dgvProductosCompra.CurrentRow.Index >= 0)

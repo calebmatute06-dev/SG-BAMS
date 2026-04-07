@@ -8,8 +8,17 @@ using System.Threading.Tasks;
 
 namespace SG_BAMS.Administracion_de_BAMS.MarcaProd
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="SG_BAMS.ClsConexion" />
     internal class clsMarca : ClsConexion
     {
+        /// <summary>
+        /// Leers the marcas asynchronous.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Error al obtener las marcas: " + ex.Message</exception>
         public async Task<DataTable> LeerMarcasAsync()
         {
             DataTable tabla = new DataTable();
@@ -37,6 +46,12 @@ namespace SG_BAMS.Administracion_de_BAMS.MarcaProd
             return tabla;
         }
 
+        /// <summary>
+        /// Insertars the marca asynchronous.
+        /// </summary>
+        /// <param name="nombreMarca">The nombre marca.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Error al insertar la marca: " + ex.Message</exception>
         public async Task<bool> InsertarMarcaAsync(string nombreMarca)
         {
             try
@@ -65,6 +80,13 @@ namespace SG_BAMS.Administracion_de_BAMS.MarcaProd
             }
         }
 
+        /// <summary>
+        /// Modificars the marca asynchronous.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="nuevoNombre">The nuevo nombre.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Error al modificar la marca: " + ex.Message</exception>
         public async Task<bool> ModificarMarcaAsync(int id, string nuevoNombre)
         {
             try

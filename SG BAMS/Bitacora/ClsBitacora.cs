@@ -8,8 +8,16 @@ using Microsoft.Data.SqlClient;
 
 namespace SG_BAMS.Bitacora
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="SG_BAMS.ClsConexion" />
     internal class ClsBitacora : ClsConexion
     {
+        /// <summary>
+        /// Cargars the datos.
+        /// </summary>
+        /// <param name="dgvBitacora">The DGV bitacora.</param>
         public void cargarDatos(System.Windows.Forms.DataGridView dgvBitacora)
         {
             try
@@ -32,6 +40,13 @@ namespace SG_BAMS.Bitacora
             }
         }
 
+        /// <summary>
+        /// Buscars the bitacora.
+        /// </summary>
+        /// <param name="txt">The text.</param>
+        /// <param name="desde">The desde.</param>
+        /// <param name="hasta">The hasta.</param>
+        /// <param name="dgvBitacora">The DGV bitacora.</param>
         public void BuscarBitacora(Krypton.Toolkit.KryptonTextBox txt,
             DateTime desde,
             DateTime hasta,

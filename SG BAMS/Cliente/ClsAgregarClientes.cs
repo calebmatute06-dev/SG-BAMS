@@ -9,9 +9,21 @@ using System.Data;
 
 namespace SG_BAMS.Cliente
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="SG_BAMS.ClsConexion" />
     internal class ClsAgregarClientes:ClsConexion
     {
 
+        /// <summary>
+        /// Agregars the clientes.
+        /// </summary>
+        /// <param name="nombre">The nombre.</param>
+        /// <param name="apellido">The apellido.</param>
+        /// <param name="telefono">The telefono.</param>
+        /// <param name="RTN">The RTN.</param>
+        /// <returns></returns>
         public async Task<int> AgregarClientes(string nombre, string apellido, string telefono, string RTN)
         {
             try
@@ -54,6 +66,10 @@ namespace SG_BAMS.Cliente
         
         }
 
+        /// <summary>
+        /// Obteners the clientes.
+        /// </summary>
+        /// <returns></returns>
         public async Task<DataTable> ObtenerClientes()
         {
             

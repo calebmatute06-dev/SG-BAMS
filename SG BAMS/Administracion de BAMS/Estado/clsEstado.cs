@@ -8,8 +8,17 @@ using System.Threading.Tasks;
 
 namespace SG_BAMS.Administracion_de_BAMS.Estado
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="SG_BAMS.ClsConexion" />
     internal class clsEstado : ClsConexion
     {
+        /// <summary>
+        /// Leers the estados asynchronous.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Error al cargar los estados: " + ex.Message</exception>
         public async Task<DataTable> LeerEstadosAsync()
         {
             DataTable tabla = new DataTable();
@@ -38,6 +47,12 @@ namespace SG_BAMS.Administracion_de_BAMS.Estado
             return tabla;
         }
 
+        /// <summary>
+        /// Insertars the estado asynchronous.
+        /// </summary>
+        /// <param name="descripcion">The descripcion.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Error al insertar el estado: " + ex.Message</exception>
         public async Task<bool> InsertarEstadoAsync(string descripcion)
         {
             try
@@ -67,6 +82,13 @@ namespace SG_BAMS.Administracion_de_BAMS.Estado
             }
         }
 
+        /// <summary>
+        /// Modificars the estado asynchronous.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="nuevaDescripcion">The nueva descripcion.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Error al modificar el estado: " + ex.Message</exception>
         public async Task<bool> ModificarEstadoAsync(int id, string nuevaDescripcion)
         {
             try

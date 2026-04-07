@@ -4,9 +4,18 @@ using Microsoft.Data.SqlClient;
 
 namespace SG_BAMS
 {
-   
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="SG_BAMS.ClsConexion" />
     internal class ClsDeuda : ClsConexion
     {
+        /// <summary>
+        /// Listars the deudores.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Error al listar deudores: " + ex.Message</exception>
         public DataTable ListarDeudores()
         {
             DataTable tablaDeudores = new DataTable();

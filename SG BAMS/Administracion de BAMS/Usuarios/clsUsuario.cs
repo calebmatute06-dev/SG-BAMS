@@ -8,8 +8,17 @@ using System.Threading.Tasks;
 
 namespace SG_BAMS.Administracion_de_BAMS.Usuarios
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="SG_BAMS.ClsConexion" />
     internal class clsUsuario : ClsConexion
     {
+        /// <summary>
+        /// Leers the usuarios asynchronous.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Error al obtener la lista de usuarios: " + ex.Message</exception>
         public async Task<DataTable> LeerUsuariosAsync()
         {
             DataTable tabla = new DataTable();
@@ -40,6 +49,15 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
 
         }
 
+        /// <summary>
+        /// Insertars the usuario asynchronous.
+        /// </summary>
+        /// <param name="nombre">The nombre.</param>
+        /// <param name="password">The password.</param>
+        /// <param name="idRol">The identifier rol.</param>
+        /// <param name="imagen">The imagen.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Error al insertar mediante procedimiento: " + ex.Message</exception>
         public async Task<bool> InsertarUsuarioAsync(string nombre, string password, int idRol, byte[] imagen)
         {
             try
@@ -73,6 +91,11 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
             }
         }
 
+        /// <summary>
+        /// Listars the roles asynchronous.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Error al cargar roles: " + ex.Message</exception>
         public async Task<DataTable> ListarRolesAsync()
         {
             DataTable tabla = new DataTable();
@@ -99,6 +122,17 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
             return tabla;
         }
 
+        /// <summary>
+        /// Modificars the usuario asynchronous.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="nombre">The nombre.</param>
+        /// <param name="password">The password.</param>
+        /// <param name="idRol">The identifier rol.</param>
+        /// <param name="idEstado">The identifier estado.</param>
+        /// <param name="imagen">The imagen.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Error: " + ex.Message</exception>
         public async Task<bool> ModificarUsuarioAsync(int id, string nombre, string password, int idRol, int idEstado, byte[] imagen)
         {
             try
@@ -134,6 +168,11 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
             }
         }
 
+        /// <summary>
+        /// Listars the estados asynchronous.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Error al cargar estados: " + ex.Message</exception>
         public async Task<DataTable> ListarEstadosAsync()
         {
             DataTable tabla = new DataTable();

@@ -11,20 +11,38 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmRoles : Form
     {
+        /// <summary>
+        /// The objeto rol
+        /// </summary>
         clsRol objetoRol = new clsRol();
+        /// <summary>
+        /// Initializes a new instance of the <see cref="frmRoles"/> class.
+        /// </summary>
         public frmRoles()
         {
             InitializeComponent();
             this.Load += new EventHandler(frmRoles_Load);
         }
 
+        /// <summary>
+        /// Handles the Load event of the frmRoles control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void frmRoles_Load(object sender, EventArgs e)
         {
             await CargarGridRoles();
         }
 
+        /// <summary>
+        /// Cargars the grid roles.
+        /// </summary>
         private async Task CargarGridRoles()
         {
             try
@@ -46,6 +64,9 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Configurars the diseno grid.
+        /// </summary>
         private void ConfigurarDisenoGrid()
         {
             if (dgvRoles.Columns.Contains("id_rol_usuario"))
@@ -65,12 +86,22 @@ namespace SG_BAMS
         }
 
 
+        /// <summary>
+        /// Handles the Click event of the pictureBox3 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void pictureBox3_Click(object sender, EventArgs e)
         {
 
         }
 
 
+        /// <summary>
+        /// Handles the CellContentDoubleClick event of the dgvRoles control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
         private void dgvRoles_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             int id = Convert.ToInt32(dgvRoles.CurrentRow.Cells["id_rol_usuario"].Value);
@@ -84,6 +115,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btmAgregar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btmAgregar_Click(object sender, EventArgs e)
         {
             frmAgregarRol agregarRol = new frmAgregarRol();
@@ -91,6 +127,11 @@ namespace SG_BAMS
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btmModificar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btmModificar_Click(object sender, EventArgs e)
         {
             if (dgvRoles.SelectedRows.Count > 0)
@@ -115,11 +156,21 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnSalir control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the 1 event of the frmRoles_Load control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void frmRoles_Load_1(object sender, EventArgs e)
         {
             dgvRoles.BorderStyle = BorderStyle.None;

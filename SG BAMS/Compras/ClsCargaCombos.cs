@@ -8,10 +8,22 @@ using System.Threading.Tasks;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ClsCargaCombos
     {
+        /// <summary>
+        /// The conexion
+        /// </summary>
         private ClsConexion conexion = new ClsConexion();
 
+        /// <summary>
+        /// Ejecutars the query.
+        /// </summary>
+        /// <param name="query">The query.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Error en la base de datos: " + ex.Message</exception>
         private DataTable ejecutarQuery(string query)
         {
             DataTable dt = new DataTable();
@@ -34,16 +46,28 @@ namespace SG_BAMS
             return dt;
         }
 
+        /// <summary>
+        /// Listars the formas pago.
+        /// </summary>
+        /// <returns></returns>
         public DataTable ListarFormasPago()
         {
             return ejecutarQuery("SELECT id_tipo_forma_pago, descripcion_forma_pago FROM Tipo_Forma_de_pago");
         }
 
+        /// <summary>
+        /// Listars the proveedores activos.
+        /// </summary>
+        /// <returns></returns>
         public DataTable ListarProveedoresActivos()
         {
             return ejecutarQuery("SELECT id_proveedor, nombre_proveedor FROM Proveedor WHERE id_estado = 1");
         }
 
+        /// <summary>
+        /// Sugerirs the siguiente identifier.
+        /// </summary>
+        /// <returns></returns>
         public string SugerirSiguienteID()
         {
             DataTable dt = ejecutarQuery("SELECT ISNULL(MAX(id_compra), 0) + 1 FROM Compra");

@@ -8,8 +8,17 @@ using System.Threading.Tasks;
 
 namespace SG_BAMS.Administracion_de_BAMS.Rol
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="SG_BAMS.ClsConexion" />
     internal class clsRol : ClsConexion
     {
+        /// <summary>
+        /// Leers the roles asynchronous.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Error al obtener los roles: " + ex.Message</exception>
         public async Task<DataTable> LeerRolesAsync()
         {
             DataTable tabla = new DataTable();
@@ -37,6 +46,12 @@ namespace SG_BAMS.Administracion_de_BAMS.Rol
             return tabla;
         }
 
+        /// <summary>
+        /// Insertars the rol asynchronous.
+        /// </summary>
+        /// <param name="descripcion">The descripcion.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Error al registrar el rol: " + ex.Message</exception>
         public async Task<bool> InsertarRolAsync(string descripcion)
         {
             try
@@ -64,6 +79,13 @@ namespace SG_BAMS.Administracion_de_BAMS.Rol
             }
         }
 
+        /// <summary>
+        /// Modificars the rol asynchronous.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="nuevaDescripcion">The nueva descripcion.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Error al modificar el rol: " + ex.Message</exception>
         public async Task<bool> ModificarRolAsync(int id, string nuevaDescripcion)
         {
             try

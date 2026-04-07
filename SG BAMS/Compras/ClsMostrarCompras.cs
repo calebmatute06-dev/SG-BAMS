@@ -4,10 +4,21 @@ using Microsoft.Data.SqlClient;
 
 namespace SG_BAMS.ProductoInventario
 {
+    /// <summary>
+    /// 
+    /// </summary>
     internal class ClsMostrarCompras
     {
+        /// <summary>
+        /// The conexion
+        /// </summary>
         private ClsConexion conexion = new ClsConexion();
 
+        /// <summary>
+        /// Listars the compras.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Error al obtener las compras desde la base de datos: " + ex.Message</exception>
         public DataTable ListarCompras()
         {
             DataTable dt = new DataTable();

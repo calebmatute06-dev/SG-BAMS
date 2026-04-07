@@ -12,17 +12,40 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmImagenEmpleado : Form
     {
+        /// <summary>
+        /// The camara
+        /// </summary>
         private VideoCapture camara;
+        /// <summary>
+        /// The camara en encendida
+        /// </summary>
         private bool camaraEnEncendida = false;
 
-       
+
+        /// <summary>
+        /// The frontal face detector
+        /// </summary>
         private CascadeClassifier frontalFaceDetector = new CascadeClassifier("haarcascade_frontalface_default.xml");
+        /// <summary>
+        /// The profile face detector
+        /// </summary>
         private CascadeClassifier profileFaceDetector = new CascadeClassifier("haarcascade_profileface.xml");
 
+        /// <summary>
+        /// The usuario asignado
+        /// </summary>
         private string usuarioAsignado = "";
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="frmImagenEmpleado"/> class.
+        /// </summary>
+        /// <param name="nombreUsuario">The nombre usuario.</param>
         public frmImagenEmpleado(string nombreUsuario = "")
         {
             InitializeComponent();
@@ -30,6 +53,11 @@ namespace SG_BAMS
             usuarioAsignado = nombreUsuario;
         }
 
+        /// <summary>
+        /// Frames the process.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void FrameProcess(object sender, EventArgs e)
         {
             if (camara != null && camaraEnEncendida)
@@ -69,12 +97,21 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnCapturar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void btnCapturar_Click(object sender, EventArgs e)
         {
 
         }
 
 
+        /// <summary>
+        /// Raises the <see cref="E:System.Windows.Forms.Form.FormClosing" /> event.
+        /// </summary>
+        /// <param name="e">A <see cref="T:System.Windows.Forms.FormClosingEventArgs" /> that contains the event data.</param>
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             Application.Idle -= FrameProcess;
@@ -82,6 +119,11 @@ namespace SG_BAMS
             base.OnFormClosing(e);
         }
 
+        /// <summary>
+        /// Handles the Load event of the frmImagenEmpleado control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void frmImagenEmpleado_Load(object sender, EventArgs e)
         {
             clsSoporte.InicializarDirectorio();
@@ -90,6 +132,9 @@ namespace SG_BAMS
             EncenderCamara(false);
         }
 
+        /// <summary>
+        /// Llenars the usuarios.
+        /// </summary>
         private void LlenarUsuarios()
         {
             try
@@ -108,6 +153,10 @@ namespace SG_BAMS
             }
             catch (Exception ex) { MessageBox.Show("Error al cargar ComboBox: " + ex.Message); }
         }
+        /// <summary>
+        /// Encenders the camara.
+        /// </summary>
+        /// <param name="mostrarMensajeExito">if set to <c>true</c> [mostrar mensaje exito].</param>
         private void EncenderCamara(bool mostrarMensajeExito)
         {
             try
@@ -148,6 +197,9 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Deteners the camara.
+        /// </summary>
         private void DetenerCamara()
         {
             if (camara != null)
@@ -163,6 +215,11 @@ namespace SG_BAMS
 
 
 
+        /// <summary>
+        /// Handles the 1 event of the btnCapturar_Click control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void btnCapturar_Click_1(object sender, EventArgs e)
         {
             if (camara == null)
@@ -234,6 +291,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnBorrar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnBorrar_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(cmbUsuarios.Text))
@@ -273,11 +335,21 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnEncender control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnEncender_Click(object sender, EventArgs e)
         {
             EncenderCamara(true);
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnDetener control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnDetener_Click(object sender, EventArgs e)
         {
             if (camara != null)
@@ -292,6 +364,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnSalir control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             DetenerCamara(); this.Close();

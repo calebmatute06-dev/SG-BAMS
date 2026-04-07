@@ -11,10 +11,22 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmModificarModelos : Form
     {
+        /// <summary>
+        /// The identifier modelo seleccionado
+        /// </summary>
         private int idModeloSeleccionado;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="frmModificarModelos"/> class.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="nombreActual">The nombre actual.</param>
         public frmModificarModelos(int id, string nombreActual)
         {
             InitializeComponent();
@@ -25,6 +37,11 @@ namespace SG_BAMS
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirAlfanumerico(e);
         }
 
+        /// <summary>
+        /// Handles the 1 event of the btnModificar_Click control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void btnModificar_Click_1(object sender, EventArgs e)
         {
 
@@ -64,11 +81,21 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnSalir control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the Load event of the frmModificarModelos control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void frmModificarModelos_Load(object sender, EventArgs e)
         {
 

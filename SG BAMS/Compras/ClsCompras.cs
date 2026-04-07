@@ -5,8 +5,16 @@ using System.Data;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ClsCompras
     {
+        /// <summary>
+        /// Obteners the productos por proveedor.
+        /// </summary>
+        /// <param name="idProv">The identifier prov.</param>
+        /// <returns></returns>
         public DataTable ObtenerProductosPorProveedor(int idProv)
         {
             ClsConexion conexion = new ClsConexion();
@@ -41,6 +49,12 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Validars the producto en compra.
+        /// </summary>
+        /// <param name="idCompra">The identifier compra.</param>
+        /// <param name="idProducto">The identifier producto.</param>
+        /// <returns></returns>
         public bool ValidarProductoEnCompra(string idCompra, int idProducto)
         {
             ClsConexion conexion = new ClsConexion();
@@ -65,6 +79,13 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Agregars the detalle a compra existente.
+        /// </summary>
+        /// <param name="idCompra">The identifier compra.</param>
+        /// <param name="idProducto">The identifier producto.</param>
+        /// <param name="cantidad">The cantidad.</param>
+        /// <param name="precio">The precio.</param>
         public void AgregarDetalleACompraExistente(string idCompra, int idProducto, int cantidad, decimal precio)
         {
             ClsConexion conexion = new ClsConexion();
@@ -91,13 +112,44 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public class DetalleCompra
         {
+            /// <summary>
+            /// Gets or sets the identifier producto.
+            /// </summary>
+            /// <value>
+            /// The identifier producto.
+            /// </value>
             public int IdProducto { get; set; }
+            /// <summary>
+            /// Gets or sets the cantidad.
+            /// </summary>
+            /// <value>
+            /// The cantidad.
+            /// </value>
             public int Cantidad { get; set; }
+            /// <summary>
+            /// Gets or sets the precio.
+            /// </summary>
+            /// <value>
+            /// The precio.
+            /// </value>
             public decimal Precio { get; set; }
         }
 
+        /// <summary>
+        /// Guardars the nueva compra.
+        /// </summary>
+        /// <param name="idUsuario">The identifier usuario.</param>
+        /// <param name="fecha">The fecha.</param>
+        /// <param name="idPago">The identifier pago.</param>
+        /// <param name="idProv">The identifier prov.</param>
+        /// <param name="nota">The nota.</param>
+        /// <param name="detalles">The detalles.</param>
+        /// <returns></returns>
         public bool GuardarNuevaCompra(int idUsuario, DateTime fecha, int idPago, int idProv, string nota, List<DetalleCompra> detalles)
         {
             ClsConexion conexion = new ClsConexion();

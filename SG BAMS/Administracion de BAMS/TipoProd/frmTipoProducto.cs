@@ -11,16 +11,26 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmTipoProducto : Form
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="frmTipoProducto"/> class.
+        /// </summary>
         public frmTipoProducto()
         {
             InitializeComponent();
             CargarGridTipos();
         }
 
-        
 
+
+        /// <summary>
+        /// Cargars the grid tipos.
+        /// </summary>
         private async Task CargarGridTipos()
         {
             try
@@ -57,6 +67,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the CellContentDoubleClick event of the dgvTipoProducto control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
         private void dgvTipoProducto_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvTipoProducto.SelectedRows.Count > 0)
@@ -78,6 +93,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btmAgregar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btmAgregar_Click(object sender, EventArgs e)
         {
             frnAgregarTipoProducto agregarTproducto = new frnAgregarTipoProducto();
@@ -86,6 +106,11 @@ namespace SG_BAMS
         }
 
 
+        /// <summary>
+        /// Handles the Click event of the btnModificar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnModificar_Click(object sender, EventArgs e)
         {
             if (dgvTipoProducto.SelectedRows.Count > 0)
@@ -106,11 +131,21 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the kryptonButton2 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void kryptonButton2_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the 1 event of the frmTipoProducto_Load control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void frmTipoProducto_Load_1(object sender, EventArgs e)
         {
             await CargarGridTipos();

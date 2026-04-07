@@ -13,9 +13,19 @@ using static Azure.Core.HttpHeader;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmAgregarUsuarios : Form
     {
+        /// <summary>
+        /// The dt roles
+        /// </summary>
         private DataTable dtRoles;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="frmAgregarUsuarios"/> class.
+        /// </summary>
         public frmAgregarUsuarios()
         {
             InitializeComponent();
@@ -26,11 +36,19 @@ namespace SG_BAMS
             txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
         }
 
+        /// <summary>
+        /// Handles the Load event of the fmrAgregarUsuarios control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void fmrAgregarUsuarios_Load(object sender, EventArgs e)
         {
             await CargarComboRoles();
         }
 
+        /// <summary>
+        /// Cargars the combo roles.
+        /// </summary>
         private async Task CargarComboRoles()
         {
             try
@@ -52,16 +70,29 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the label2 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void label2_Click(object sender, EventArgs e)
         {
 
         }
 
 
+        /// <summary>
+        /// The lista original roles
+        /// </summary>
         private List<string> listaOriginalRoles = new List<string>();
 
 
 
+        /// <summary>
+        /// Handles the SelectedIndexChanged event of the cmbRol control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void cmbRol_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmbRol.SelectedIndex != -1)
@@ -83,11 +114,21 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the TextChanged event of the txtNombre control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void txtNombre_TextChanged(object sender, EventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// Handles the Click event of the btmModificar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void btmModificar_Click(object sender, EventArgs e)
         {
 
@@ -146,11 +187,21 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the kryptonButton1 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnImagen control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnImagen_Click(object sender, EventArgs e)
         {
             frmImagenEmpleado agregarImagen = new frmImagenEmpleado(txtNombre.Text);

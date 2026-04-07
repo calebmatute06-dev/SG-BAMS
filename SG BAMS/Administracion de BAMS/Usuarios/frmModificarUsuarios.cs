@@ -11,12 +11,32 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmModificarUsuarios : Form
     {
+        /// <summary>
+        /// The identifier usuario seleccionado
+        /// </summary>
         private int idUsuarioSeleccionado;
+        /// <summary>
+        /// The rol inicial
+        /// </summary>
         private int rolInicial;
+        /// <summary>
+        /// The estado inicial
+        /// </summary>
         private int estadoInicial;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="frmModificarUsuarios"/> class.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="nombre">The nombre.</param>
+        /// <param name="rol">The rol.</param>
+        /// <param name="estado">The estado.</param>
         public frmModificarUsuarios(int id, string nombre, int rol, int estado)
         {
             InitializeComponent();
@@ -33,7 +53,12 @@ namespace SG_BAMS
             txtNombre.Text = nombre;
         }
 
-       
+
+        /// <summary>
+        /// Handles the Load event of the fmrModificarUsuarios control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void fmrModificarUsuarios_Load(object sender, EventArgs e)
         {
             await CargarCombos();
@@ -43,6 +68,9 @@ namespace SG_BAMS
             cmbEstado.SelectedValue = estadoInicial;
         }
 
+        /// <summary>
+        /// Cargars the combos.
+        /// </summary>
         private async Task CargarCombos()
         {
             try
@@ -65,6 +93,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the 1 event of the btmModificar_Click control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void btmModificar_Click_1(object sender, EventArgs e)
         {
             
@@ -121,11 +154,21 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnSalir control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the 1 event of the btnImagen_Click control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnImagen_Click_1(object sender, EventArgs e)
         {
             frmImagenEmpleado agregarImagen = new frmImagenEmpleado(txtNombre.Text);

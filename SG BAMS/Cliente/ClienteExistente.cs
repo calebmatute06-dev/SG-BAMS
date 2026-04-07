@@ -12,13 +12,23 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class ClienteExistente : Form
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ClienteExistente"/> class.
+        /// </summary>
         public ClienteExistente()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Llenars the combo cliente.
+        /// </summary>
         private async Task LlenarComboCliente()
         {
             ClsAgregarClientes objAC = new ClsAgregarClientes();
@@ -39,12 +49,22 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Load event of the ClienteExistente control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void ClienteExistente_Load(object sender, EventArgs e)
         {
             await LlenarComboCliente();
             cmbClientes.SelectedIndex = -1;
         }
 
+        /// <summary>
+        /// Handles the Click event of the BtnAsignar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnAsignar_Click(object sender, EventArgs e)
         {
             if (!ClsValidaciones.ValidarSeleccion(cmbClientes, "la lista de clientes"))
@@ -88,6 +108,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the BtnSalir control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
