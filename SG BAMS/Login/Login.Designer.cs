@@ -88,7 +88,6 @@
             txtCon.Location = new Point(282, 337);
             txtCon.Margin = new Padding(3, 2, 3, 2);
             txtCon.Name = "txtCon";
-            txtCon.PasswordChar = '•';
             txtCon.Size = new Size(192, 39);
             txtCon.StateCommon.Back.Color1 = Color.SkyBlue;
             txtCon.StateCommon.Border.Rounding = 20F;
@@ -242,6 +241,7 @@
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
+            Load += Login_Load;
             ((System.ComponentModel.ISupportInitialize)picBa).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

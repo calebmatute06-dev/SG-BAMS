@@ -170,6 +170,49 @@ namespace SG_BAMS.Login
             Application.Exit();
         }
 
-       
+        /// <summary>
+        /// The password visible
+        /// </summary>
+        private bool _passwordVisible = false;
+        /// <summary>
+        /// The label ojo
+        /// </summary>
+        private Label lblOjo;
+
+        /// <summary>
+        /// Handles the Load event of the Login control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void Login_Load(object sender, EventArgs e)
+        {
+            lblOjo = new Label();
+            lblOjo.Text = "👁";
+            lblOjo.Font = new Font("Arial", 13);
+            lblOjo.AutoSize = false;
+            lblOjo.Size = new Size(32, 32);
+            lblOjo.TextAlign = ContentAlignment.MiddleCenter;
+            lblOjo.Cursor = Cursors.Hand;
+            lblOjo.BackColor = Color.Transparent;
+
+            lblOjo.Location = new Point(
+                txtCon.Right + 5,                          
+                txtCon.Top + (txtCon.Height - 32) / 2      
+            );
+
+            _passwordVisible = false;
+            txtCon.UseSystemPasswordChar = true;
+            lblOjo.Text = "👁";
+
+            lblOjo.Click += (s, ev) =>
+            {
+                _passwordVisible = !_passwordVisible;
+                txtCon.UseSystemPasswordChar = !_passwordVisible; 
+                lblOjo.Text = _passwordVisible ? "🙈" : "👁";
+            };
+
+            txtCon.Parent.Controls.Add(lblOjo);
+            lblOjo.BringToFront();
+        }
     }
 }

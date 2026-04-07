@@ -129,8 +129,39 @@ namespace SG_BAMS
 
                     if (idRol == 1 || idRol == 2)
                     {
-                        frmImagenEmpleado agregarImagen = new frmImagenEmpleado(txtNombre.Text.Trim());
-                        agregarImagen.ShowDialog(); 
+                        bool imagenRegistrada = false;
+
+                        while (!imagenRegistrada)
+                        {
+                            frmImagenEmpleado agregarImagen = new frmImagenEmpleado(txtNombre.Text.Trim());
+                            agregarImagen.ShowDialog();
+
+                            var archivos = Directory.GetFiles(clsSoporte.DirectorioRostros, "*.jpg")
+                                .Where(f => Path.GetFileNameWithoutExtension(f) == txtNombre.Text.Trim() ||
+                                            Path.GetFileNameWithoutExtension(f).StartsWith(txtNombre.Text.Trim() + "_"))
+                                .ToList();
+
+                            if (archivos.Count > 0)
+                            {
+                                imagenRegistrada = true;
+                            }
+                            else
+                            {
+                                DialogResult respuesta = MessageBox.Show(
+                                    "Este usuario requiere registro facial para poder iniciar sesión.\n\n" +
+                                    "¿Deseas cancelar el registro facial?\n\n" +
+                                    "Si cancelas, el usuario quedará guardado pero NO podrá iniciar sesión hasta que registre su rostro.",
+                                    "Registro facial requerido",
+                                    MessageBoxButtons.YesNo,
+                                    MessageBoxIcon.Warning
+                                );
+
+                                if (respuesta == DialogResult.Yes)
+                                {
+                                    break;
+                                }
+                            }
+                        }
                     }
 
                     this.DialogResult = DialogResult.OK;

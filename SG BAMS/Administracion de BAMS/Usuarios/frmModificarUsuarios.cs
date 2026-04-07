@@ -31,7 +31,7 @@ namespace SG_BAMS
         private int estadoInicial;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="frmModificarUsuarios"/> class.
+        /// Initializes a new instance of the <see cref="frmModificarUsuarios" /> class.
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <param name="nombre">The nombre.</param>
@@ -41,16 +41,23 @@ namespace SG_BAMS
         {
             InitializeComponent();
 
-            
             cmbRol.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbEstado.DropDownStyle = ComboBoxStyle.DropDownList;
             txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
 
-           
             this.idUsuarioSeleccionado = id;
             this.rolInicial = rol;
             this.estadoInicial = estado;
             txtNombre.Text = nombre;
+
+            cmbRol.SelectedIndexChanged += (s, e) =>
+            {
+                if (cmbRol.SelectedValue == null) return;
+                if (!int.TryParse(cmbRol.SelectedValue.ToString(), out int rolSeleccionado)) return;
+
+                btnImagen.Enabled = (rolSeleccionado == 1 || rolSeleccionado == 2);
+                btnImagen.Visible = (rolSeleccionado == 1 || rolSeleccionado == 2);
+            };
         }
 
 
@@ -58,14 +65,16 @@ namespace SG_BAMS
         /// Handles the Load event of the fmrModificarUsuarios control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private async void fmrModificarUsuarios_Load(object sender, EventArgs e)
         {
             await CargarCombos();
 
-            
             cmbRol.SelectedValue = rolInicial;
             cmbEstado.SelectedValue = estadoInicial;
+
+            btnImagen.Enabled = (rolInicial == 1 || rolInicial == 2);
+            btnImagen.Visible = (rolInicial == 1 || rolInicial == 2);
         }
 
         /// <summary>
@@ -97,7 +106,7 @@ namespace SG_BAMS
         /// Handles the 1 event of the btmModificar_Click control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private async void btmModificar_Click_1(object sender, EventArgs e)
         {
             
@@ -158,7 +167,7 @@ namespace SG_BAMS
         /// Handles the Click event of the btnSalir control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -168,7 +177,7 @@ namespace SG_BAMS
         /// Handles the 1 event of the btnImagen_Click control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void btnImagen_Click_1(object sender, EventArgs e)
         {
             frmImagenEmpleado agregarImagen = new frmImagenEmpleado(txtNombre.Text);

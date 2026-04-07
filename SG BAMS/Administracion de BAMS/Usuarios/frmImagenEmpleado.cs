@@ -114,6 +114,28 @@ namespace SG_BAMS
         /// <param name="e">A <see cref="T:System.Windows.Forms.FormClosingEventArgs" /> that contains the event data.</param>
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
+            var archivos = Directory.GetFiles(clsSoporte.DirectorioRostros, "*.jpg")
+                    .Where(f => Path.GetFileNameWithoutExtension(f) == usuarioAsignado ||
+                    Path.GetFileNameWithoutExtension(f).StartsWith(usuarioAsignado + "_"))
+                    .ToList();
+
+            if (archivos.Count == 0 && !string.IsNullOrWhiteSpace(usuarioAsignado))
+            {
+                DialogResult respuesta = MessageBox.Show(
+                    "No se ha registrado ningún rostro para este usuario.\n\n" +
+                    "El usuario NO podrá iniciar sesión sin registro facial.\n\n" +
+                    "¿Estás seguro de que deseas salir sin registrar?",
+                    "Registro facial requerido",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
+
+                if (respuesta == DialogResult.No)
+                {
+                    e.Cancel = true; 
+                    return;
+                }
+            }
             Application.Idle -= FrameProcess;
             if (camara != null) camara.Dispose();
             base.OnFormClosing(e);
@@ -338,7 +360,8 @@ namespace SG_BAMS
         /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            DetenerCamara(); this.Close();
+            DetenerCamara(); 
+            this.Close();
         }
     }
 }
