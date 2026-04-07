@@ -64,10 +64,10 @@
             btnModificar = new Krypton.Toolkit.KryptonButton();
             btnAgregar = new Krypton.Toolkit.KryptonButton();
             btnRefresh = new Button();
-            label3 = new Label();
             label10 = new Label();
             kryptonGroupBox2 = new Krypton.Toolkit.KryptonGroupBox();
             dgvProveedor = new DataGridView();
+            Nombre = new Label();
             panel1.SuspendLayout();
             panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
@@ -88,7 +88,7 @@
             // 
             // txtBuscar
             // 
-            txtBuscar.Location = new Point(388, 106);
+            txtBuscar.Location = new Point(388, 128);
             txtBuscar.Margin = new Padding(3, 2, 3, 2);
             txtBuscar.Name = "txtBuscar";
             txtBuscar.Size = new Size(500, 35);
@@ -120,7 +120,7 @@
             panel6.Location = new Point(2, 567);
             panel6.Margin = new Padding(3, 2, 3, 2);
             panel6.Name = "panel6";
-            panel6.Size = new Size(250, 18);
+            panel6.Size = new Size(253, 18);
             panel6.TabIndex = 108;
             // 
             // panel8
@@ -129,7 +129,7 @@
             panel8.Location = new Point(234, 16);
             panel8.Margin = new Padding(3, 2, 3, 2);
             panel8.Name = "panel8";
-            panel8.Size = new Size(21, 652);
+            panel8.Size = new Size(21, 661);
             panel8.TabIndex = 106;
             // 
             // panel5
@@ -682,23 +682,12 @@
             // 
             btnRefresh.BackgroundImage = Properties.Resources.refresh;
             btnRefresh.BackgroundImageLayout = ImageLayout.Stretch;
-            btnRefresh.Location = new Point(895, 95);
+            btnRefresh.Location = new Point(894, 124);
             btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new Size(58, 50);
+            btnRefresh.Size = new Size(48, 38);
             btnRefresh.TabIndex = 324;
             btnRefresh.UseVisualStyleBackColor = true;
             btnRefresh.Click += btnRefresh_Click;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.Navy;
-            label3.Location = new Point(297, 110);
-            label3.Name = "label3";
-            label3.Size = new Size(63, 23);
-            label3.TabIndex = 328;
-            label3.Text = "Buscar:";
             // 
             // label10
             // 
@@ -725,10 +714,22 @@
             // 
             dgvProveedor.BackgroundColor = Color.SkyBlue;
             dgvProveedor.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProveedor.Location = new Point(288, 168);
+            dgvProveedor.Location = new Point(288, 176);
             dgvProveedor.Name = "dgvProveedor";
-            dgvProveedor.Size = new Size(682, 398);
+            dgvProveedor.Size = new Size(682, 403);
             dgvProveedor.TabIndex = 331;
+            // 
+            // Nombre
+            // 
+            Nombre.AutoSize = true;
+            Nombre.BackColor = Color.Transparent;
+            Nombre.Font = new Font("Arial", 13.8F, FontStyle.Bold);
+            Nombre.ForeColor = Color.Navy;
+            Nombre.Location = new Point(298, 136);
+            Nombre.Name = "Nombre";
+            Nombre.Size = new Size(84, 22);
+            Nombre.TabIndex = 354;
+            Nombre.Text = "Buscar:";
             // 
             // ProveedoresAdmin
             // 
@@ -736,10 +737,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1018, 677);
+            Controls.Add(Nombre);
             Controls.Add(dgvProveedor);
             Controls.Add(label10);
             Controls.Add(kryptonGroupBox2);
-            Controls.Add(label3);
             Controls.Add(btnRefresh);
             Controls.Add(btnModificar);
             Controls.Add(btnAgregar);
@@ -815,11 +816,11 @@
         private Krypton.Toolkit.KryptonButton btnModificar;
         private Krypton.Toolkit.KryptonButton btnAgregar;
         private Button btnRefresh;
-        private Label label3;
         private Panel panel7;
         private Label label7;
         private Label label10;
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox2;
         private DataGridView dgvProveedor;
+        private Label Nombre;
     }
 }

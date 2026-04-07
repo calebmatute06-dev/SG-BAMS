@@ -18,8 +18,7 @@ namespace SG_BAMS
         public frmUsuarios()
         {
             InitializeComponent();
-            this.Load += new EventHandler(frmUsuarios_Load);
-
+  
         }
 
        
@@ -130,6 +129,7 @@ namespace SG_BAMS
         private async void frmUsuarios_Load(object sender, EventArgs e)
         {
             await CargarGridUsuarios();
+           
             dgvUsuarios.BorderStyle = BorderStyle.None;
             dgvUsuarios.BackgroundColor = Color.White;
             dgvUsuarios.RowHeadersVisible = false;

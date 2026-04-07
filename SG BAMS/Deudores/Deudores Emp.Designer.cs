@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Deudores_Emp));
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle17 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle18 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle19 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle20 = new DataGridViewCellStyle();
             label1 = new Label();
             panel6 = new Panel();
             panel8 = new Panel();
@@ -59,16 +59,15 @@
             pictureBox7 = new PictureBox();
             pictureBox8 = new PictureBox();
             pictureBox1 = new PictureBox();
-            label4 = new Label();
             kryptonButton15 = new Krypton.Toolkit.KryptonButton();
             txtBuscarNombre = new TextBox();
             kryptonGroup5 = new Krypton.Toolkit.KryptonGroup();
             pictureBox19 = new PictureBox();
             button12 = new Button();
-            label5 = new Label();
             dgvDeudores = new DataGridView();
             label3 = new Label();
             kryptonGroup3 = new Krypton.Toolkit.KryptonGroup();
+            Nombre = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             panel1.SuspendLayout();
             panel7.SuspendLayout();
@@ -110,7 +109,7 @@
             panel8.Location = new Point(228, 15);
             panel8.Margin = new Padding(3, 2, 3, 2);
             panel8.Name = "panel8";
-            panel8.Size = new Size(21, 652);
+            panel8.Size = new Size(21, 661);
             panel8.TabIndex = 88;
             // 
             // panel5
@@ -119,16 +118,16 @@
             panel5.Location = new Point(-2, 7);
             panel5.Margin = new Padding(3, 2, 3, 2);
             panel5.Name = "panel5";
-            panel5.Size = new Size(21, 661);
+            panel5.Size = new Size(21, 669);
             panel5.TabIndex = 87;
             // 
             // panel3
             // 
             panel3.BackColor = Color.Navy;
-            panel3.Location = new Point(-2, 661);
+            panel3.Location = new Point(-2, 658);
             panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1442, 18);
+            panel3.Size = new Size(1384, 18);
             panel3.TabIndex = 89;
             // 
             // pictureBox3
@@ -144,7 +143,7 @@
             // panel4
             // 
             panel4.BackColor = Color.Navy;
-            panel4.Location = new Point(1419, 15);
+            panel4.Location = new Point(1361, 15);
             panel4.Margin = new Padding(3, 2, 3, 2);
             panel4.Name = "panel4";
             panel4.Size = new Size(21, 664);
@@ -156,7 +155,7 @@
             panel2.Location = new Point(-2, -2);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1442, 18);
+            panel2.Size = new Size(1384, 18);
             panel2.TabIndex = 84;
             // 
             // panel1
@@ -458,18 +457,6 @@
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.BackColor = Color.White;
-            label4.Font = new Font("Arial Narrow", 16.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.Navy;
-            label4.Location = new Point(388, 131);
-            label4.Name = "label4";
-            label4.Size = new Size(74, 27);
-            label4.TabIndex = 170;
-            label4.Text = "Buscar:";
-            // 
             // kryptonButton15
             // 
             kryptonButton15.Location = new Point(777, 609);
@@ -498,7 +485,7 @@
             // 
             txtBuscarNombre.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtBuscarNombre.ForeColor = Color.Navy;
-            txtBuscarNombre.Location = new Point(501, 131);
+            txtBuscarNombre.Location = new Point(416, 162);
             txtBuscarNombre.Margin = new Padding(3, 2, 3, 2);
             txtBuscarNombre.Name = "txtBuscarNombre";
             txtBuscarNombre.Size = new Size(851, 29);
@@ -508,7 +495,7 @@
             // 
             // kryptonGroup5
             // 
-            kryptonGroup5.Location = new Point(479, 125);
+            kryptonGroup5.Location = new Point(394, 156);
             kryptonGroup5.Margin = new Padding(3, 2, 3, 2);
             kryptonGroup5.Size = new Size(889, 39);
             kryptonGroup5.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -535,7 +522,7 @@
             button12.FlatAppearance.BorderSize = 0;
             button12.FlatStyle = FlatStyle.Flat;
             button12.ForeColor = Color.Navy;
-            button12.Location = new Point(1335, 28);
+            button12.Location = new Point(1294, 20);
             button12.Margin = new Padding(3, 2, 3, 2);
             button12.Name = "button12";
             button12.Size = new Size(61, 45);
@@ -543,55 +530,44 @@
             button12.UseVisualStyleBackColor = false;
             button12.Click += btnNoti;
             // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.Navy;
-            label5.Location = new Point(1335, 624);
-            label5.Name = "label5";
-            label5.Size = new Size(78, 32);
-            label5.TabIndex = 37;
-            label5.Text = "BAMS";
-            // 
             // dgvDeudores
             // 
-            dataGridViewCellStyle1.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = Color.Navy;
-            dgvDeudores.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle16.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle16.ForeColor = Color.Navy;
+            dgvDeudores.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
             dgvDeudores.BackgroundColor = Color.SkyBlue;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Control;
-            dataGridViewCellStyle2.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = Color.Navy;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvDeudores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle17.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = SystemColors.Control;
+            dataGridViewCellStyle17.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle17.ForeColor = Color.Navy;
+            dataGridViewCellStyle17.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = DataGridViewTriState.True;
+            dgvDeudores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
             dgvDeudores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Window;
-            dataGridViewCellStyle3.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = Color.SkyBlue;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dgvDeudores.DefaultCellStyle = dataGridViewCellStyle3;
-            dgvDeudores.Location = new Point(318, 199);
+            dataGridViewCellStyle18.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = SystemColors.Window;
+            dataGridViewCellStyle18.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle18.ForeColor = Color.SkyBlue;
+            dataGridViewCellStyle18.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = DataGridViewTriState.False;
+            dgvDeudores.DefaultCellStyle = dataGridViewCellStyle18;
+            dgvDeudores.Location = new Point(283, 199);
             dgvDeudores.Margin = new Padding(3, 2, 3, 2);
             dgvDeudores.Name = "dgvDeudores";
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Control;
-            dataGridViewCellStyle4.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = Color.Navy;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgvDeudores.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle19.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle19.BackColor = SystemColors.Control;
+            dataGridViewCellStyle19.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle19.ForeColor = Color.Navy;
+            dataGridViewCellStyle19.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle19.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle19.WrapMode = DataGridViewTriState.True;
+            dgvDeudores.RowHeadersDefaultCellStyle = dataGridViewCellStyle19;
             dgvDeudores.RowHeadersWidth = 51;
-            dataGridViewCellStyle5.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle5.ForeColor = Color.Navy;
-            dgvDeudores.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle20.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle20.ForeColor = Color.Navy;
+            dgvDeudores.RowsDefaultCellStyle = dataGridViewCellStyle20;
             dgvDeudores.Size = new Size(1034, 372);
             dgvDeudores.TabIndex = 171;
             // 
@@ -600,7 +576,7 @@
             label3.BackColor = Color.SkyBlue;
             label3.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(759, 38);
+            label3.Location = new Point(669, 40);
             label3.Name = "label3";
             label3.Size = new Size(271, 51);
             label3.TabIndex = 173;
@@ -610,24 +586,35 @@
             // kryptonGroup3
             // 
             kryptonGroup3.GroupBackStyle = Krypton.Toolkit.PaletteBackStyle.HeaderCalendar;
-            kryptonGroup3.Location = new Point(746, 31);
+            kryptonGroup3.Location = new Point(659, 30);
             kryptonGroup3.Margin = new Padding(3, 2, 3, 2);
             kryptonGroup3.Size = new Size(297, 69);
             kryptonGroup3.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroup3.StateCommon.Border.Rounding = 100F;
             kryptonGroup3.TabIndex = 174;
             // 
+            // Nombre
+            // 
+            Nombre.AutoSize = true;
+            Nombre.BackColor = Color.Transparent;
+            Nombre.Font = new Font("Arial", 13.8F, FontStyle.Bold);
+            Nombre.ForeColor = Color.Navy;
+            Nombre.Location = new Point(304, 167);
+            Nombre.Name = "Nombre";
+            Nombre.Size = new Size(84, 22);
+            Nombre.TabIndex = 354;
+            Nombre.Text = "Buscar:";
+            // 
             // Deudores_Emp
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1442, 674);
+            ClientSize = new Size(1382, 674);
+            Controls.Add(Nombre);
             Controls.Add(label3);
             Controls.Add(kryptonGroup3);
             Controls.Add(dgvDeudores);
-            Controls.Add(label5);
-            Controls.Add(label4);
             Controls.Add(kryptonButton15);
             Controls.Add(txtBuscarNombre);
             Controls.Add(kryptonGroup5);
@@ -694,17 +681,16 @@
         private PictureBox pictureBox7;
         private PictureBox pictureBox8;
         private PictureBox pictureBox1;
-        private Label label4;
         private Krypton.Toolkit.KryptonButton kryptonButton15;
         private TextBox txtBuscarNombre;
         private Krypton.Toolkit.KryptonGroup kryptonGroup5;
         private PictureBox pictureBox19;
         private Button button12;
-        private Label label5;
         private DataGridView dgvDeudores;
         private Label label3;
         private Krypton.Toolkit.KryptonGroup kryptonGroup3;
         private Panel panel7;
         private Label label11;
+        private Label Nombre;
     }
 }

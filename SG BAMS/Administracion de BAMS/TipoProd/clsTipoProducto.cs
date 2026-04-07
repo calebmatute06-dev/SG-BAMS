@@ -49,7 +49,7 @@ namespace SG_BAMS.Administracion_de_BAMS.TipoProd
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("@descripcion_forma_pago", descripcion);
+                    cmd.Parameters.AddWithValue("@descripcion_producto", descripcion);
 
                     int filasAfectadas = await cmd.ExecuteNonQueryAsync();
                     return filasAfectadas > 0;
@@ -76,7 +76,7 @@ namespace SG_BAMS.Administracion_de_BAMS.TipoProd
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.AddWithValue("@id_tipo_producto", id);
-                    cmd.Parameters.AddWithValue("@descripcion_forma_pago", nuevaDescripcion);
+                    cmd.Parameters.AddWithValue("@descripcion_producto", nuevaDescripcion);
 
                     int filasAfectadas = await cmd.ExecuteNonQueryAsync();
                     return filasAfectadas > 0;

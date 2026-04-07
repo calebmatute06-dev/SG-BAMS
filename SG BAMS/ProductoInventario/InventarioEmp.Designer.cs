@@ -471,7 +471,7 @@
             label10.BackColor = Color.SkyBlue;
             label10.Font = new Font("Arial Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Navy;
-            label10.Location = new Point(697, 30);
+            label10.Location = new Point(721, 40);
             label10.Name = "label10";
             label10.Size = new Size(147, 33);
             label10.TabIndex = 214;
@@ -480,7 +480,7 @@
             // kryptonGroupBox2
             // 
             kryptonGroupBox2.CaptionVisible = false;
-            kryptonGroupBox2.Location = new Point(617, 22);
+            kryptonGroupBox2.Location = new Point(641, 32);
             kryptonGroupBox2.Size = new Size(301, 49);
             kryptonGroupBox2.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroupBox2.StateCommon.Border.Rounding = 50F;

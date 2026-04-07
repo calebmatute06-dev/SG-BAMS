@@ -33,76 +33,68 @@
             pictureBox1 = new PictureBox();
             panel2 = new Panel();
             txtDescri = new Krypton.Toolkit.KryptonTextBox();
-            label9 = new Label();
             label2 = new Label();
-            pictureBox4 = new PictureBox();
             btmAgregar = new Krypton.Toolkit.KryptonButton();
             btmSalir = new Krypton.Toolkit.KryptonButton();
-            label3 = new Label();
+            label5 = new Label();
+            label8 = new Label();
+            kryptonGroupBox2 = new Krypton.Toolkit.KryptonGroupBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = Color.Navy;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(683, 24);
+            panel1.Size = new Size(598, 18);
             panel1.TabIndex = 121;
             // 
             // pictureBox2
             // 
             pictureBox2.BackColor = Color.Navy;
             pictureBox2.Location = new Point(0, 0);
+            pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(24, 360);
+            pictureBox2.Size = new Size(21, 215);
             pictureBox2.TabIndex = 122;
             pictureBox2.TabStop = false;
             // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Navy;
-            pictureBox1.Location = new Point(659, 0);
+            pictureBox1.Location = new Point(577, 0);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(24, 375);
+            pictureBox1.Size = new Size(21, 215);
             pictureBox1.TabIndex = 114;
             pictureBox1.TabStop = false;
             // 
             // panel2
             // 
             panel2.BackColor = Color.Navy;
-            panel2.Location = new Point(0, 351);
+            panel2.Location = new Point(0, 197);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(683, 24);
+            panel2.Size = new Size(598, 18);
             panel2.TabIndex = 120;
             // 
             // txtDescri
             // 
-            txtDescri.Location = new Point(320, 100);
-            txtDescri.Margin = new Padding(3, 4, 3, 4);
+            txtDescri.Location = new Point(280, 79);
             txtDescri.MaxLength = 70;
             txtDescri.Multiline = true;
             txtDescri.Name = "txtDescri";
-            txtDescri.Size = new Size(302, 55);
+            txtDescri.Size = new Size(264, 41);
             txtDescri.StateCommon.Back.Color1 = Color.SkyBlue;
             txtDescri.StateCommon.Border.Rounding = 15F;
             txtDescri.StateCommon.Content.Color1 = Color.Navy;
             txtDescri.StateCommon.Content.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtDescri.TabIndex = 116;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.BackColor = Color.Transparent;
-            label9.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label9.ForeColor = Color.Navy;
-            label9.Location = new Point(586, 316);
-            label9.Name = "label9";
-            label9.Size = new Size(70, 30);
-            label9.TabIndex = 115;
-            label9.Text = "BAMS";
             // 
             // label2
             // 
@@ -110,33 +102,22 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(71, 111);
+            label2.Location = new Point(62, 87);
             label2.Name = "label2";
-            label2.Size = new Size(252, 31);
+            label2.Size = new Size(209, 25);
             label2.TabIndex = 113;
             label2.Text = "Ingrese el rol de usuario:";
             // 
-            // pictureBox4
-            // 
-            pictureBox4.BackgroundImage = Properties.Resources.roles1;
-            pictureBox4.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox4.Image = Properties.Resources.roles;
-            pictureBox4.Location = new Point(498, 31);
-            pictureBox4.Margin = new Padding(3, 4, 3, 4);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(71, 51);
-            pictureBox4.TabIndex = 0;
-            pictureBox4.TabStop = false;
-            // 
             // btmAgregar
             // 
-            btmAgregar.Location = new Point(165, 216);
+            btmAgregar.Location = new Point(164, 130);
+            btmAgregar.Margin = new Padding(3, 2, 3, 2);
             btmAgregar.Name = "btmAgregar";
             btmAgregar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btmAgregar.OverrideDefault.Back.Color2 = Color.White;
             btmAgregar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btmAgregar.OverrideFocus.Back.Color2 = Color.White;
-            btmAgregar.Size = new Size(143, 65);
+            btmAgregar.Size = new Size(125, 49);
             btmAgregar.StateCommon.Back.Color1 = Color.SkyBlue;
             btmAgregar.StateCommon.Back.Color2 = Color.White;
             btmAgregar.StateCommon.Border.Rounding = 30F;
@@ -153,13 +134,14 @@
             // 
             // btmSalir
             // 
-            btmSalir.Location = new Point(362, 216);
+            btmSalir.Location = new Point(310, 130);
+            btmSalir.Margin = new Padding(3, 2, 3, 2);
             btmSalir.Name = "btmSalir";
             btmSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btmSalir.OverrideDefault.Back.Color2 = Color.White;
             btmSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btmSalir.OverrideFocus.Back.Color2 = Color.White;
-            btmSalir.Size = new Size(143, 65);
+            btmSalir.Size = new Size(125, 49);
             btmSalir.StateCommon.Back.Color1 = Color.SkyBlue;
             btmSalir.StateCommon.Back.Color2 = Color.White;
             btmSalir.StateCommon.Border.Rounding = 30F;
@@ -174,43 +156,64 @@
             btmSalir.Values.Text = "Salir";
             btmSalir.Click += btmSalir_Click;
             // 
-            // label3
+            // label5
             // 
-            label3.AutoSize = true;
-            label3.BackColor = Color.Transparent;
-            label3.Font = new Font("Arial Narrow", 21F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.Navy;
-            label3.Location = new Point(179, 39);
-            label3.Name = "label3";
-            label3.Size = new Size(300, 42);
-            label3.TabIndex = 341;
-            label3.Text = "Agregar Rol Usuario";
+            label5.AutoSize = true;
+            label5.BackColor = Color.Transparent;
+            label5.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.Navy;
+            label5.Location = new Point(491, 165);
+            label5.Name = "label5";
+            label5.Size = new Size(84, 29);
+            label5.TabIndex = 347;
+            label5.Text = "BAMS";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.BackColor = Color.SkyBlue;
+            label8.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.ForeColor = Color.Navy;
+            label8.Location = new Point(182, 36);
+            label8.Name = "label8";
+            label8.Size = new Size(247, 22);
+            label8.TabIndex = 356;
+            label8.Text = "Agregar Roles de Usuario";
+            // 
+            // kryptonGroupBox2
+            // 
+            kryptonGroupBox2.CaptionVisible = false;
+            kryptonGroupBox2.Location = new Point(169, 27);
+            kryptonGroupBox2.Size = new Size(272, 39);
+            kryptonGroupBox2.StateCommon.Back.Color1 = Color.SkyBlue;
+            kryptonGroupBox2.StateCommon.Border.Rounding = 50F;
+            kryptonGroupBox2.TabIndex = 357;
             // 
             // frmAgregarRol
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(683, 373);
-            Controls.Add(label3);
+            ClientSize = new Size(598, 214);
+            Controls.Add(label8);
+            Controls.Add(kryptonGroupBox2);
+            Controls.Add(label5);
             Controls.Add(btmSalir);
             Controls.Add(btmAgregar);
-            Controls.Add(pictureBox4);
             Controls.Add(panel1);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
             Controls.Add(panel2);
             Controls.Add(txtDescri);
-            Controls.Add(label9);
             Controls.Add(label2);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 4, 3, 4);
             Name = "frmAgregarRol";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmAgregarRol";
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).EndInit();
+            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -222,11 +225,11 @@
         private PictureBox pictureBox1;
         private Panel panel2;
         private Krypton.Toolkit.KryptonTextBox txtDescri;
-        private Label label9;
         private Label label2;
-        private PictureBox pictureBox4;
         private Krypton.Toolkit.KryptonButton btmAgregar;
         private Krypton.Toolkit.KryptonButton btmSalir;
-        private Label label3;
+        private Label label5;
+        private Label label8;
+        private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox2;
     }
 }

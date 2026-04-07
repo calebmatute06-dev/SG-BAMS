@@ -48,8 +48,8 @@
             panel2 = new Panel();
             panel3 = new Panel();
             panel4 = new Panel();
-            label6 = new Label();
             kryptonGroupBox3 = new Krypton.Toolkit.KryptonGroupBox();
+            label6 = new Label();
             ((System.ComponentModel.ISupportInitialize)cmbBaterias).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvBateria).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3).BeginInit();
@@ -99,13 +99,13 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.SkyBlue;
-            label1.Font = new Font("Arial Narrow", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Arial Narrow", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(328, 34);
+            label1.Location = new Point(343, 38);
             label1.Name = "label1";
-            label1.Size = new Size(176, 37);
+            label1.Size = new Size(145, 31);
             label1.TabIndex = 339;
-            label1.Text = "Batería Vieja";
+            label1.Text = "Batería Víeja";
             // 
             // label2
             // 
@@ -156,7 +156,7 @@
             // 
             // BtnAgregar
             // 
-            BtnAgregar.Location = new Point(436, 177);
+            BtnAgregar.Location = new Point(484, 133);
             BtnAgregar.Margin = new Padding(3, 2, 3, 2);
             BtnAgregar.Name = "BtnAgregar";
             BtnAgregar.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -279,7 +279,7 @@
             // 
             // BtnEliminar
             // 
-            BtnEliminar.Location = new Point(585, 177);
+            BtnEliminar.Location = new Point(484, 176);
             BtnEliminar.Margin = new Padding(3, 2, 3, 2);
             BtnEliminar.Name = "BtnEliminar";
             BtnEliminar.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -338,17 +338,6 @@
             panel4.Size = new Size(23, 494);
             panel4.TabIndex = 356;
             // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.ForeColor = Color.Navy;
-            label6.Location = new Point(690, 439);
-            label6.Name = "label6";
-            label6.Size = new Size(78, 32);
-            label6.TabIndex = 357;
-            label6.Text = "BAMS";
-            // 
             // kryptonGroupBox3
             // 
             kryptonGroupBox3.CaptionVisible = false;
@@ -357,6 +346,18 @@
             kryptonGroupBox3.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroupBox3.StateCommon.Border.Rounding = 50F;
             kryptonGroupBox3.TabIndex = 358;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.BackColor = Color.Transparent;
+            label6.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.ForeColor = Color.Navy;
+            label6.Location = new Point(695, 439);
+            label6.Name = "label6";
+            label6.Size = new Size(84, 29);
+            label6.TabIndex = 359;
+            label6.Text = "BAMS";
             // 
             // BateriaVieja
             // 
@@ -420,7 +421,7 @@
         private Panel panel2;
         private Panel panel3;
         private Panel panel4;
-        private Label label6;
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox3;
+        private Label label6;
     }
 }

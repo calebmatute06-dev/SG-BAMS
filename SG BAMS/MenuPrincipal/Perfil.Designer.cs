@@ -37,11 +37,11 @@
             pictureBox3 = new PictureBox();
             pictureBox4 = new PictureBox();
             pictureBox5 = new PictureBox();
-            label6 = new Label();
             btnimagen = new Krypton.Toolkit.KryptonButton();
             btnsalir1 = new Krypton.Toolkit.KryptonButton();
             kryptonGroupBox3 = new Krypton.Toolkit.KryptonGroupBox();
             label7 = new Label();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)pbFotoPerfil).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -145,17 +145,6 @@
             pictureBox5.TabIndex = 75;
             pictureBox5.TabStop = false;
             // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Arial", 22.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.ForeColor = Color.Navy;
-            label6.Location = new Point(21, 19);
-            label6.Name = "label6";
-            label6.Size = new Size(102, 35);
-            label6.TabIndex = 84;
-            label6.Text = "BAMS";
-            // 
             // btnimagen
             // 
             btnimagen.Location = new Point(164, 247);
@@ -225,17 +214,29 @@
             label7.TabIndex = 360;
             label7.Text = "Perfil";
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.Navy;
+            label1.Location = new Point(19, 17);
+            label1.Name = "label1";
+            label1.Size = new Size(84, 29);
+            label1.TabIndex = 361;
+            label1.Text = "BAMS";
+            // 
             // Perfil
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(530, 406);
+            Controls.Add(label1);
             Controls.Add(label7);
             Controls.Add(kryptonGroupBox3);
             Controls.Add(btnsalir1);
             Controls.Add(btnimagen);
-            Controls.Add(label6);
             Controls.Add(pictureBox4);
             Controls.Add(pictureBox5);
             Controls.Add(pictureBox3);
@@ -274,9 +275,9 @@
         private PictureBox pictureBox5;
         private Krypton.Toolkit.KryptonButton btnsalir;
         private Krypton.Toolkit.KryptonButton btnsalir1;
-        private Label label6;
         private Krypton.Toolkit.KryptonButton btnimagen;
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox3;
         private Label label7;
+        private Label label1;
     }
 }

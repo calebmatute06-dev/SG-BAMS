@@ -38,9 +38,9 @@
             pictureBox4 = new PictureBox();
             label2 = new Label();
             label3 = new Label();
-            label5 = new Label();
             btnAceptar = new Krypton.Toolkit.KryptonButton();
             btnCancelar = new Krypton.Toolkit.KryptonButton();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)cmbDeudores).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
@@ -202,17 +202,6 @@
             label3.TabIndex = 194;
             label3.Text = "Pago a Deuda:";
             // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.Navy;
-            label5.Location = new Point(330, 216);
-            label5.Name = "label5";
-            label5.Size = new Size(78, 32);
-            label5.TabIndex = 195;
-            label5.Text = "BAMS";
-            // 
             // btnAceptar
             // 
             btnAceptar.Location = new Point(49, 190);
@@ -261,15 +250,27 @@
             btnCancelar.Values.Text = "Cancelar";
             btnCancelar.Click += btnCancelar_Click;
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.BackColor = Color.Transparent;
+            label5.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.Navy;
+            label5.Location = new Point(329, 217);
+            label5.Name = "label5";
+            label5.Size = new Size(84, 29);
+            label5.TabIndex = 345;
+            label5.Text = "BAMS";
+            // 
             // Pago_Deuda
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(434, 266);
+            Controls.Add(label5);
             Controls.Add(btnCancelar);
             Controls.Add(btnAceptar);
-            Controls.Add(label5);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(txtMonto);
@@ -305,8 +306,8 @@
         private PictureBox pictureBox4;
         private Label label2;
         private Label label3;
-        private Label label5;
         private Krypton.Toolkit.KryptonButton btnAceptar;
         private Krypton.Toolkit.KryptonButton btnCancelar;
+        private Label label5;
     }
 }

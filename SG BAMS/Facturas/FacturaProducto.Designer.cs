@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label5 = new Label();
             label4 = new Label();
             panel3 = new Panel();
             panel1 = new Panel();
@@ -47,6 +46,7 @@
             btnEscanear = new Krypton.Toolkit.KryptonButton();
             txtCodigo = new Krypton.Toolkit.KryptonTextBox();
             label2 = new Label();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cmbProductos).BeginInit();
@@ -54,25 +54,13 @@
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
             SuspendLayout();
             // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.BackColor = Color.Transparent;
-            label5.Font = new Font("Arial Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.Navy;
-            label5.Location = new Point(485, 247);
-            label5.Name = "label5";
-            label5.Size = new Size(93, 33);
-            label5.TabIndex = 261;
-            label5.Text = "BAMS";
-            // 
             // label4
             // 
             label4.AutoSize = true;
             label4.BackColor = Color.SkyBlue;
             label4.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(187, 33);
+            label4.Location = new Point(195, 34);
             label4.Name = "label4";
             label4.Size = new Size(217, 29);
             label4.TabIndex = 258;
@@ -302,12 +290,25 @@
             label2.TabIndex = 346;
             label2.Text = "Codigo:";
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.BackColor = Color.Transparent;
+            label5.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.Navy;
+            label5.Location = new Point(496, 251);
+            label5.Name = "label5";
+            label5.Size = new Size(84, 29);
+            label5.TabIndex = 347;
+            label5.Text = "BAMS";
+            // 
             // FacturaProducto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(600, 300);
+            Controls.Add(label5);
             Controls.Add(label2);
             Controls.Add(btnEscanear);
             Controls.Add(txtCodigo);
@@ -320,7 +321,6 @@
             Controls.Add(BtnAceptar);
             Controls.Add(label1);
             Controls.Add(Nombre);
-            Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(panel3);
             Controls.Add(panel1);
@@ -341,7 +341,6 @@
         }
 
         #endregion
-        private Label label5;
         private Label label4;
         private Panel panel3;
         private Panel panel1;
@@ -360,5 +359,6 @@
         private Krypton.Toolkit.KryptonButton btnEscanear;
         private Krypton.Toolkit.KryptonTextBox txtCodigo;
         private Label label2;
+        private Label label5;
     }
 }

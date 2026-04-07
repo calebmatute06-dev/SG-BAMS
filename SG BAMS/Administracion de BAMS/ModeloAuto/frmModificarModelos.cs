@@ -21,13 +21,13 @@ namespace SG_BAMS
             this.idModeloSeleccionado = id;
             txtDescri.Text = nombreActual;
 
-           
+
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirAlfanumerico(e);
         }
 
         private async void btnModificar_Click_1(object sender, EventArgs e)
         {
-            
+
             if (!ClsValidaciones.EsAlfanumericoValido(txtDescri, "Nombre del Modelo"))
             {
                 return;
@@ -40,7 +40,7 @@ namespace SG_BAMS
 
                 clsModeloAuto objetoModelo = new clsModeloAuto();
 
-               
+
                 bool exito = await objetoModelo.ModificarModeloAutoAsync(idModeloSeleccionado, txtDescri.Text.Trim());
 
                 if (exito)
@@ -48,7 +48,7 @@ namespace SG_BAMS
                     MessageBox.Show("Modelo actualizado con éxito.", "SG-BAMS",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    this.DialogResult = DialogResult.OK; 
+                    this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
             }
@@ -67,6 +67,11 @@ namespace SG_BAMS
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void frmModificarModelos_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

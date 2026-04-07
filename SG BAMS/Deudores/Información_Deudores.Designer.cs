@@ -46,7 +46,7 @@
             panel3 = new Panel();
             pictureBox1 = new PictureBox();
             pictureBox4 = new PictureBox();
-            kryptonButton13 = new Krypton.Toolkit.KryptonButton();
+            label7 = new Label();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -93,7 +93,7 @@
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(682, 64);
+            label6.Location = new Point(630, 56);
             label6.Name = "label6";
             label6.Size = new Size(97, 19);
             label6.TabIndex = 201;
@@ -105,7 +105,7 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(406, 64);
+            label4.Location = new Point(349, 56);
             label4.Name = "label4";
             label4.Size = new Size(101, 19);
             label4.TabIndex = 200;
@@ -114,7 +114,7 @@
             // fechafinal
             // 
             fechafinal.Enabled = false;
-            fechafinal.Location = new Point(603, 85);
+            fechafinal.Location = new Point(557, 77);
             fechafinal.Margin = new Padding(3, 2, 3, 2);
             fechafinal.MaxDate = new DateTime(2100, 12, 31, 0, 0, 0, 0);
             fechafinal.MinDate = new DateTime(2025, 1, 1, 0, 0, 0, 0);
@@ -203,7 +203,7 @@
             // fechainicio
             // 
             fechainicio.Enabled = false;
-            fechainicio.Location = new Point(328, 85);
+            fechainicio.Location = new Point(282, 77);
             fechainicio.Margin = new Padding(3, 2, 3, 2);
             fechainicio.MaxDate = new DateTime(2100, 12, 31, 0, 0, 0, 0);
             fechainicio.MinDate = new DateTime(2025, 1, 1, 0, 0, 0, 0);
@@ -259,37 +259,24 @@
             pictureBox4.TabIndex = 186;
             pictureBox4.TabStop = false;
             // 
-            // kryptonButton13
+            // label7
             // 
-            kryptonButton13.Location = new Point(802, 256);
-            kryptonButton13.Margin = new Padding(3, 2, 3, 2);
-            kryptonButton13.Name = "kryptonButton13";
-            kryptonButton13.OverrideDefault.Back.Color1 = Color.Transparent;
-            kryptonButton13.OverrideDefault.Back.Color2 = Color.Transparent;
-            kryptonButton13.OverrideDefault.Border.Rounding = 40F;
-            kryptonButton13.OverrideFocus.Back.Color1 = Color.White;
-            kryptonButton13.OverrideFocus.Back.Color2 = Color.SkyBlue;
-            kryptonButton13.Size = new Size(94, 31);
-            kryptonButton13.StateCommon.Back.Color1 = Color.White;
-            kryptonButton13.StateCommon.Back.Color2 = Color.SkyBlue;
-            kryptonButton13.StateCommon.Border.Rounding = 40F;
-            kryptonButton13.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton13.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton13.StateNormal.Back.Color1 = Color.Transparent;
-            kryptonButton13.StateNormal.Back.Color2 = Color.Transparent;
-            kryptonButton13.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
-            kryptonButton13.StatePressed.Back.Color1 = Color.Transparent;
-            kryptonButton13.StatePressed.Back.Color2 = Color.Transparent;
-            kryptonButton13.StateTracking.Border.Rounding = 40F;
-            kryptonButton13.TabIndex = 203;
-            kryptonButton13.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton13.Values.Text = "BAMS";
+            label7.AutoSize = true;
+            label7.BackColor = Color.Transparent;
+            label7.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.ForeColor = Color.Navy;
+            label7.Location = new Point(795, 254);
+            label7.Name = "label7";
+            label7.Size = new Size(84, 29);
+            label7.TabIndex = 345;
+            label7.Text = "BAMS";
             // 
             // Información_Deudores
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(900, 302);
+            Controls.Add(label7);
             Controls.Add(lblmontoinicial);
             Controls.Add(btnaceptar);
             Controls.Add(label6);
@@ -308,7 +295,6 @@
             Controls.Add(panel3);
             Controls.Add(pictureBox1);
             Controls.Add(pictureBox4);
-            Controls.Add(kryptonButton13);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 2, 3, 2);
             Name = "Información_Deudores";
@@ -342,6 +328,6 @@
         private Panel panel3;
         private PictureBox pictureBox1;
         private PictureBox pictureBox4;
-        private Krypton.Toolkit.KryptonButton kryptonButton13;
+        private Label label7;
     }
 }

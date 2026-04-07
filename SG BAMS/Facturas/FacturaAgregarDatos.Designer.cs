@@ -32,7 +32,6 @@
             label9 = new Label();
             label1 = new Label();
             label3 = new Label();
-            label5 = new Label();
             label4 = new Label();
             panel3 = new Panel();
             panel1 = new Panel();
@@ -60,6 +59,7 @@
             txtExento = new Krypton.Toolkit.KryptonTextBox();
             label10 = new Label();
             chkNormal = new Krypton.Toolkit.KryptonCheckBox();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cmbPago).BeginInit();
@@ -114,26 +114,13 @@
             label3.TabIndex = 302;
             label3.Text = "Cliente:";
             // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.BackColor = Color.Transparent;
-            label5.Font = new Font("Arial Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.Navy;
-            label5.Location = new Point(870, 558);
-            label5.Name = "label5";
-            label5.Size = new Size(93, 33);
-            label5.TabIndex = 299;
-            label5.Text = "BAMS";
-            label5.Click += label5_Click;
-            // 
             // label4
             // 
             label4.AutoSize = true;
             label4.BackColor = Color.SkyBlue;
             label4.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(376, 36);
+            label4.Location = new Point(376, 32);
             label4.Name = "label4";
             label4.Size = new Size(177, 29);
             label4.TabIndex = 296;
@@ -497,12 +484,25 @@
             chkNormal.Values.Text = "Factura Normal";
             chkNormal.CheckedChanged += chkNormal_CheckedChanged;
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.BackColor = Color.Transparent;
+            label5.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.Navy;
+            label5.Location = new Point(883, 562);
+            label5.Name = "label5";
+            label5.Size = new Size(84, 29);
+            label5.TabIndex = 346;
+            label5.Text = "BAMS";
+            // 
             // FacturaAgregarDatos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(994, 611);
+            Controls.Add(label5);
             Controls.Add(chkNormal);
             Controls.Add(txtExento);
             Controls.Add(label10);
@@ -530,7 +530,6 @@
             Controls.Add(label1);
             Controls.Add(label2);
             Controls.Add(label3);
-            Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(panel1);
             Controls.Add(panel8);
@@ -552,7 +551,6 @@
         private Label label9;
         private Label label1;
         private Label label3;
-        private Label label5;
         private Label label4;
         private Panel panel3;
         private Panel panel1;
@@ -580,5 +578,6 @@
         private Krypton.Toolkit.KryptonTextBox txtExento;
         private Label label10;
         private Krypton.Toolkit.KryptonCheckBox chkNormal;
+        private Label label5;
     }
 }

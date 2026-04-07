@@ -17,13 +17,13 @@ namespace SG_BAMS
         public frmAgregarFormaPago()
         {
             InitializeComponent();
-            
+
             txtdescri.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
         }
 
         private async void btnAgregar_Click(object sender, EventArgs e)
         {
-            
+
             if (!ClsValidaciones.EsNombrePersonalValido(txtdescri, "Descripción de Forma de Pago"))
             {
                 return;
@@ -36,7 +36,7 @@ namespace SG_BAMS
 
                 clsFormaPago objetoFP = new clsFormaPago();
 
-               
+
                 bool insertado = await objetoFP.InsertarFormaPagoAsync(txtdescri.Text.Trim());
 
                 if (insertado)
@@ -62,6 +62,11 @@ namespace SG_BAMS
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

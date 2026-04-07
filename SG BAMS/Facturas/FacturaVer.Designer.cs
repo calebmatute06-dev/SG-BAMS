@@ -38,7 +38,6 @@
             panel1 = new Panel();
             label2 = new Label();
             kryptonGroupBox3 = new Krypton.Toolkit.KryptonGroupBox();
-            label5 = new Label();
             label7 = new Label();
             label9 = new Label();
             label1 = new Label();
@@ -54,6 +53,7 @@
             label8 = new Label();
             txtRebaja = new Krypton.Toolkit.KryptonTextBox();
             label10 = new Label();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)cmbPago).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3.Panel).BeginInit();
@@ -93,7 +93,7 @@
             // 
             txtCliente.Location = new Point(145, 108);
             txtCliente.Name = "txtCliente";
-            txtCliente.Size = new Size(186, 32);
+            txtCliente.Size = new Size(218, 32);
             txtCliente.StateCommon.Back.Color1 = Color.SkyBlue;
             txtCliente.StateCommon.Border.Rounding = 10F;
             txtCliente.StateCommon.Content.Color1 = Color.Navy;
@@ -182,18 +182,6 @@
             kryptonGroupBox3.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroupBox3.StateCommon.Border.Rounding = 50F;
             kryptonGroupBox3.TabIndex = 340;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.BackColor = Color.Transparent;
-            label5.Font = new Font("Arial Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.Navy;
-            label5.Location = new Point(844, 461);
-            label5.Name = "label5";
-            label5.Size = new Size(93, 33);
-            label5.TabIndex = 328;
-            label5.Text = "BAMS";
             // 
             // label7
             // 
@@ -300,7 +288,7 @@
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(675, 97);
+            label6.Location = new Point(675, 87);
             label6.Name = "label6";
             label6.Size = new Size(99, 29);
             label6.TabIndex = 346;
@@ -312,7 +300,7 @@
             lblFactura.BackColor = Color.Transparent;
             lblFactura.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblFactura.ForeColor = Color.Navy;
-            lblFactura.Location = new Point(784, 97);
+            lblFactura.Location = new Point(784, 87);
             lblFactura.Name = "lblFactura";
             lblFactura.Size = new Size(20, 29);
             lblFactura.TabIndex = 347;
@@ -366,12 +354,25 @@
             label10.TabIndex = 348;
             label10.Text = "Descuentos:";
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.BackColor = Color.Transparent;
+            label5.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.Navy;
+            label5.Location = new Point(858, 466);
+            label5.Name = "label5";
+            label5.Size = new Size(84, 29);
+            label5.TabIndex = 352;
+            label5.Text = "BAMS";
+            // 
             // FacturaVer
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(965, 516);
+            Controls.Add(label5);
             Controls.Add(txtSubtotal);
             Controls.Add(label8);
             Controls.Add(txtRebaja);
@@ -387,7 +388,6 @@
             Controls.Add(txtTotal);
             Controls.Add(panel1);
             Controls.Add(label2);
-            Controls.Add(label5);
             Controls.Add(label7);
             Controls.Add(label9);
             Controls.Add(label1);
@@ -422,7 +422,6 @@
         private Panel panel1;
         private Label label2;
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox3;
-        private Label label5;
         private Label label7;
         private Label label9;
         private Label label1;
@@ -438,5 +437,6 @@
         private Label label8;
         private Krypton.Toolkit.KryptonTextBox txtRebaja;
         private Label label10;
+        private Label label5;
     }
 }

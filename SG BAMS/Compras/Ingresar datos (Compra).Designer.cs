@@ -47,7 +47,6 @@
             label7 = new Label();
             lblTotal = new Krypton.Toolkit.KryptonLabel();
             label8 = new Label();
-            kryptonButton13 = new Krypton.Toolkit.KryptonButton();
             txtNotaDetalle = new Krypton.Toolkit.KryptonTextBox();
             cmbProveedor = new Krypton.Toolkit.KryptonComboBox();
             cmbFormaPago = new Krypton.Toolkit.KryptonComboBox();
@@ -59,6 +58,7 @@
             label2 = new Label();
             label3 = new Label();
             label5 = new Label();
+            label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
@@ -71,39 +71,39 @@
             // pictureBox4
             // 
             pictureBox4.BackColor = Color.Navy;
-            pictureBox4.Location = new Point(788, -2);
+            pictureBox4.Location = new Point(869, -2);
             pictureBox4.Margin = new Padding(3, 2, 3, 2);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(21, 412);
+            pictureBox4.Size = new Size(22, 430);
             pictureBox4.TabIndex = 9;
             pictureBox4.TabStop = false;
             // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Navy;
-            pictureBox1.Location = new Point(1, -2);
+            pictureBox1.Location = new Point(-1, -2);
             pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(21, 412);
+            pictureBox1.Size = new Size(21, 424);
             pictureBox1.TabIndex = 10;
             pictureBox1.TabStop = false;
             // 
             // panel3
             // 
             panel3.BackColor = Color.Navy;
-            panel3.Location = new Point(1, 401);
+            panel3.Location = new Point(-1, 404);
             panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(808, 18);
+            panel3.Size = new Size(892, 18);
             panel3.TabIndex = 54;
             // 
             // panel1
             // 
             panel1.BackColor = Color.Navy;
-            panel1.Location = new Point(1, -2);
+            panel1.Location = new Point(-1, -2);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(808, 18);
+            panel1.Size = new Size(898, 18);
             panel1.TabIndex = 55;
             // 
             // kryptonGroup1
@@ -118,7 +118,7 @@
             // dtpFechaPedido
             // 
             dtpFechaPedido.Enabled = false;
-            dtpFechaPedido.Location = new Point(510, 39);
+            dtpFechaPedido.Location = new Point(624, 101);
             dtpFechaPedido.Margin = new Padding(3, 2, 3, 2);
             dtpFechaPedido.Name = "dtpFechaPedido";
             dtpFechaPedido.Size = new Size(230, 182);
@@ -135,7 +135,7 @@
             dgvProductosCompra.BorderStyle = BorderStyle.None;
             dgvProductosCompra.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvProductosCompra.Columns.AddRange(new DataGridViewColumn[] { ID, Producto, Cantidad, Precio, Subtotal });
-            dgvProductosCompra.Location = new Point(54, 206);
+            dgvProductosCompra.Location = new Point(47, 206);
             dgvProductosCompra.Margin = new Padding(3, 2, 3, 2);
             dgvProductosCompra.MultiSelect = false;
             dgvProductosCompra.Name = "dgvProductosCompra";
@@ -246,37 +246,11 @@
             label8.BackColor = Color.Transparent;
             label8.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Navy;
-            label8.Location = new Point(597, 19);
+            label8.Location = new Point(683, 76);
             label8.Name = "label8";
             label8.Size = new Size(113, 20);
             label8.TabIndex = 180;
             label8.Text = "Fecha de pedido";
-            // 
-            // kryptonButton13
-            // 
-            kryptonButton13.Location = new Point(691, 368);
-            kryptonButton13.Margin = new Padding(3, 2, 3, 2);
-            kryptonButton13.Name = "kryptonButton13";
-            kryptonButton13.OverrideDefault.Back.Color1 = Color.Transparent;
-            kryptonButton13.OverrideDefault.Back.Color2 = Color.Transparent;
-            kryptonButton13.OverrideDefault.Border.Rounding = 40F;
-            kryptonButton13.OverrideFocus.Back.Color1 = Color.White;
-            kryptonButton13.OverrideFocus.Back.Color2 = Color.SkyBlue;
-            kryptonButton13.Size = new Size(94, 31);
-            kryptonButton13.StateCommon.Back.Color1 = Color.White;
-            kryptonButton13.StateCommon.Back.Color2 = Color.SkyBlue;
-            kryptonButton13.StateCommon.Border.Rounding = 40F;
-            kryptonButton13.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton13.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton13.StateNormal.Back.Color1 = Color.Transparent;
-            kryptonButton13.StateNormal.Back.Color2 = Color.Transparent;
-            kryptonButton13.StateNormal.Border.Draw = Krypton.Toolkit.InheritBool.False;
-            kryptonButton13.StatePressed.Back.Color1 = Color.Transparent;
-            kryptonButton13.StatePressed.Back.Color2 = Color.Transparent;
-            kryptonButton13.StateTracking.Border.Rounding = 40F;
-            kryptonButton13.TabIndex = 184;
-            kryptonButton13.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton13.Values.Text = "BAMS";
             // 
             // txtNotaDetalle
             // 
@@ -321,7 +295,7 @@
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(525, 357);
+            btnAgregar.Location = new Point(487, 356);
             btnAgregar.Margin = new Padding(3, 2, 3, 2);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -393,7 +367,7 @@
             // 
             // btnQuitar
             // 
-            btnQuitar.Location = new Point(392, 356);
+            btnQuitar.Location = new Point(353, 356);
             btnQuitar.Margin = new Padding(3, 2, 3, 2);
             btnQuitar.Name = "btnQuitar";
             btnQuitar.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -463,11 +437,24 @@
             label5.TabIndex = 346;
             label5.Text = "Nota:";
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.BackColor = Color.Transparent;
+            label4.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.Navy;
+            label4.Location = new Point(782, 373);
+            label4.Name = "label4";
+            label4.Size = new Size(84, 29);
+            label4.TabIndex = 347;
+            label4.Text = "BAMS";
+            // 
             // Ingresar_datos__Compra_
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(809, 421);
+            ClientSize = new Size(890, 421);
+            Controls.Add(label4);
             Controls.Add(label5);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -492,7 +479,6 @@
             Controls.Add(panel3);
             Controls.Add(pictureBox1);
             Controls.Add(pictureBox4);
-            Controls.Add(kryptonButton13);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 2, 3, 2);
             Name = "Ingresar_datos__Compra_";
@@ -525,7 +511,6 @@
         private Label label7;
         private Krypton.Toolkit.KryptonLabel lblTotal;
         private Label label8;
-        private Krypton.Toolkit.KryptonButton kryptonButton13;
         private Krypton.Toolkit.KryptonTextBox txtNotaDetalle;
         private DataGridViewTextBoxColumn ID;
         private DataGridViewTextBoxColumn Producto;
@@ -542,5 +527,6 @@
         private Label label2;
         private Label label3;
         private Label label5;
+        private Label label4;
     }
 }

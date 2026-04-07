@@ -154,12 +154,12 @@
             // 
             label5.AutoSize = true;
             label5.BackColor = Color.Transparent;
-            label5.Font = new Font("Arial Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(700, 419);
+            label5.Location = new Point(713, 423);
             label5.Name = "label5";
-            label5.Size = new Size(93, 33);
-            label5.TabIndex = 329;
+            label5.Size = new Size(84, 29);
+            label5.TabIndex = 345;
             label5.Text = "BAMS";
             // 
             // LoginFacial
