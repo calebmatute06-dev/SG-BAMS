@@ -8,72 +8,31 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class Modificar_datos__Compra_ : Form
     {
-        /// <summary>
-        /// Handles the SelectedIndexChanged event of the cmbProveedor control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void cmbProveedor_SelectedIndexChanged(object sender, EventArgs e) { huboCambios = true; }
-        /// <summary>
-        /// Handles the SelectedIndexChanged event of the cmbFormaPago control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void cmbFormaPago_SelectedIndexChanged(object sender, EventArgs e) { huboCambios = true; }
-        /// <summary>
-        /// The dt respaldo
-        /// </summary>
         private DataTable dtRespaldo;
-        /// <summary>
-        /// The hubo cambios
-        /// </summary>
         private bool huboCambios = false;
-        /// <summary>
-        /// The valor antes de cambio
-        /// </summary>
         private object valorAntesDeCambio;
-        /// <summary>
-        /// The identifier compra a editar
-        /// </summary>
         private int idCompraAEditar;
-        /// <summary>
-        /// The logic
-        /// </summary>
         private ClsModificarCompras logic = new ClsModificarCompras();
-        /// <summary>
-        /// The lista eliminados
-        /// </summary>
         private List<int> listaEliminados = new List<int>();
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Modificar_datos__Compra_"/> class.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
         public Modificar_datos__Compra_(int id)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             this.idCompraAEditar = id;
-            dgvProductosMo.CellValueChanged += dgvProductosCompraMod_CellValueChanged;
-            dgvProductosMo.CurrentCellDirtyStateChanged += dgvProductosCompraMod_CurrentCellDirtyStateChanged;
-            dgvProductosMo.CellBeginEdit += dgvProductosCompraMod_CellBeginEdit;
+
+            dgvProductosModificar.CellValueChanged += dgvProductosModificar_CellValueChanged;
+            dgvProductosModificar.CurrentCellDirtyStateChanged += dgvProductosModificar_CurrentCellDirtyStateChanged;
+            dgvProductosModificar.CellBeginEdit += dgvProductosModificar_CellBeginEdit;
         }
 
-        /// <summary>
-        /// Handles the Load event of the Modificar_datos__Compra_ control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void Modificar_datos__Compra__Load(object sender, EventArgs e)
         {
             cmbProveedor.Enabled = false;
             cmbProveedor.BackColor = Color.LightGray;
+
 
             cmbProveedor.SelectedIndexChanged -= cmbProveedor_SelectedIndexChanged;
             cmbFormaPago.SelectedIndexChanged -= cmbFormaPago_SelectedIndexChanged;
@@ -81,7 +40,7 @@ namespace SG_BAMS
             LlenarCombos();
 
             DataTable dtOriginal = logic.ObtenerDetalleCompra(idCompraAEditar);
-            dgvProductosMo.DataSource = dtOriginal;
+            dgvProductosModificar.DataSource = dtOriginal;
 
             if (dtOriginal != null)
             {
@@ -97,47 +56,10 @@ namespace SG_BAMS
             cmbFormaPago.SelectedIndexChanged += cmbFormaPago_SelectedIndexChanged;
         }
 
-        /// <summary>
-        /// Handles the CurrentCellDirtyStateChanged event of the dgvProductosCompraMod control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void dgvProductosCompraMod_CurrentCellDirtyStateChanged(object sender, EventArgs e)
-        {
-            if (dgvProductosMo.IsCurrentCellDirty)
-            {
-                dgvProductosMo.CommitEdit(DataGridViewDataErrorContexts.Commit);
-            }
-        }
-
-        /// <summary>
-        /// Handles the CellValueChanged event of the dgvProductosCompraMod control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
-        private void dgvProductosCompraMod_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0 && (dgvProductosMo.Columns[e.ColumnIndex].Name == "Cantidad" ||
-                                    dgvProductosMo.Columns[e.ColumnIndex].Name == "Precio"))
-            {
-                try
-                {
-                    decimal cantidad = Convert.ToDecimal(dgvProductosMo.Rows[e.RowIndex].Cells["Cantidad"].Value ?? 0);
-                    decimal precio = Convert.ToDecimal(dgvProductosMo.Rows[e.RowIndex].Cells["Precio"].Value ?? 0);
-                    dgvProductosMo.Rows[e.RowIndex].Cells["Subtotal"].Value = cantidad * precio;
-                    ActualizarTotalGeneral();
-                }
-                catch { }
-            }
-        }
-
-        /// <summary>
-        /// Actualizars the total general.
-        /// </summary>
         private void ActualizarTotalGeneral()
         {
             decimal total = 0;
-            foreach (DataGridViewRow fila in dgvProductosMo.Rows)
+            foreach (DataGridViewRow fila in dgvProductosModificar.Rows)
             {
                 if (fila.Cells["Subtotal"].Value != null)
                     total += Convert.ToDecimal(fila.Cells["Subtotal"].Value);
@@ -145,25 +67,18 @@ namespace SG_BAMS
             lblTotal.Text = "Total: L " + total.ToString("N2");
         }
 
-        /// <summary>
-        /// Configurars the edicion grid.
-        /// </summary>
         private void ConfigurarEdicionGrid()
         {
-            if (dgvProductosMo.Columns.Contains("ID")) dgvProductosMo.Columns["ID"].ReadOnly = true;
-            if (dgvProductosMo.Columns.Contains("Producto")) dgvProductosMo.Columns["Producto"].ReadOnly = true;
-            if (dgvProductosMo.Columns.Contains("Subtotal")) dgvProductosMo.Columns["Subtotal"].ReadOnly = true;
-            if (dgvProductosMo.Columns.Contains("Cantidad")) dgvProductosMo.Columns["Cantidad"].ReadOnly = false;
-            if (dgvProductosMo.Columns.Contains("Precio")) dgvProductosMo.Columns["Precio"].ReadOnly = false;
-            if (dgvProductosMo.Columns.Contains("Precio"))
-                dgvProductosMo.Columns["Precio"].DefaultCellStyle.Format = "N2";
-            if (dgvProductosMo.Columns.Contains("Subtotal"))
-                dgvProductosMo.Columns["Subtotal"].DefaultCellStyle.Format = "N2";
+            if (dgvProductosModificar.Columns.Contains("ID")) dgvProductosModificar.Columns["ID"].ReadOnly = true;
+            if (dgvProductosModificar.Columns.Contains("Producto")) dgvProductosModificar.Columns["Producto"].ReadOnly = true;
+            if (dgvProductosModificar.Columns.Contains("Subtotal")) dgvProductosModificar.Columns["Subtotal"].ReadOnly = true;
+            if (dgvProductosModificar.Columns.Contains("Cantidad")) dgvProductosModificar.Columns["Cantidad"].ReadOnly = false;
+            if (dgvProductosModificar.Columns.Contains("Precio")) dgvProductosModificar.Columns["Precio"].ReadOnly = false;
+
+            if (dgvProductosModificar.Columns.Contains("Precio")) dgvProductosModificar.Columns["Precio"].DefaultCellStyle.Format = "N2";
+            if (dgvProductosModificar.Columns.Contains("Subtotal")) dgvProductosModificar.Columns["Subtotal"].DefaultCellStyle.Format = "N2";
         }
 
-        /// <summary>
-        /// Llenars the combos.
-        /// </summary>
         private void LlenarCombos()
         {
             try
@@ -171,6 +86,7 @@ namespace SG_BAMS
                 cmbFormaPago.DataSource = logic.ListarFormasPago();
                 cmbFormaPago.DisplayMember = "descripcion_forma_pago";
                 cmbFormaPago.ValueMember = "id_tipo_forma_pago";
+
                 cmbProveedor.DataSource = logic.ListarProveedoresActivos();
                 cmbProveedor.DisplayMember = "nombre_proveedor";
                 cmbProveedor.ValueMember = "id_proveedor";
@@ -178,9 +94,6 @@ namespace SG_BAMS
             catch (Exception ex) { MessageBox.Show("Error al llenar listas: " + ex.Message); }
         }
 
-        /// <summary>
-        /// Cargars the datos cabecera.
-        /// </summary>
         private void CargarDatosCabecera()
         {
             try
@@ -195,251 +108,115 @@ namespace SG_BAMS
                     dtpFechaPedido.SelectionStart = fecha;
                     dtpFechaPedido.SelectionEnd = fecha;
                     txtNotaDetalle.Text = fila["desc_compra"].ToString();
-
-                    cmbProveedor.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                    cmbProveedor.AutoCompleteSource = AutoCompleteSource.ListItems;
-                    cmbProveedor.DropDownStyle = ComboBoxStyle.DropDown;
                 }
             }
             catch (Exception ex) { MessageBox.Show("Error al cargar datos: " + ex.Message); }
         }
 
-        /// <summary>
-        /// Handles the Click event of the btnAceptar control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (cmbProveedor.SelectedValue == null || cmbProveedor.SelectedIndex == -1)
-            {
-                MessageBox.Show("Por favor, seleccione un proveedor válido de la lista",
-                                "BAMS - Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                cmbProveedor.Focus();
-                return;
-            }
+            if (cmbProveedor.SelectedValue == null) return;
 
             try
             {
-                int idProv = Convert.ToInt32(cmbProveedor.SelectedValue);
-                int idPago = Convert.ToInt32(cmbFormaPago.SelectedValue);
-                DateTime fecha = dtpFechaPedido.SelectionStart;
-                string nota = txtNotaDetalle.Text;
-
-                logic.ActualizarCabeceraCompra(idCompraAEditar, idProv, idPago, fecha, nota);
+                logic.ActualizarCabeceraCompra(idCompraAEditar, (int)cmbProveedor.SelectedValue, (int)cmbFormaPago.SelectedValue, dtpFechaPedido.SelectionStart, txtNotaDetalle.Text);
 
                 foreach (int idEliminado in listaEliminados)
-                {
                     logic.EliminarProductoDeBD(idCompraAEditar, idEliminado);
-                }
 
-                foreach (DataGridViewRow fila in dgvProductosMo.Rows)
+                foreach (DataGridViewRow fila in dgvProductosModificar.Rows)
                 {
                     if (fila.Cells["ID"].Value != null && fila.Cells["ID"].Value != DBNull.Value)
                     {
-                        int idProd = Convert.ToInt32(fila.Cells["ID"].Value);
-                        int cant = Convert.ToInt32(fila.Cells["Cantidad"].Value);
-                        decimal precio = Convert.ToDecimal(fila.Cells["Precio"].Value);
-                        logic.GuardarCambiosDetalle(idCompraAEditar, idProd, cant, precio);
+                        logic.GuardarCambiosDetalle(idCompraAEditar, (int)fila.Cells["ID"].Value, Convert.ToInt32(fila.Cells["Cantidad"].Value), Convert.ToDecimal(fila.Cells["Precio"].Value));
                     }
                 }
 
-                MessageBox.Show("¡Datos de compra, productos e inventario actualizados con éxito!");
+                MessageBox.Show("¡Compra actualizada con éxito!");
                 this.Close();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al guardar cambios: " + ex.Message);
-            }
+            catch (Exception ex) { MessageBox.Show("Error al guardar: " + ex.Message); }
         }
 
-        /// <summary>
-        /// Handles the Click event of the btnEliminarProducto control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnEliminarProducto_Click(object sender, EventArgs e)
         {
-            if (dgvProductosMo.CurrentRow != null && !dgvProductosMo.CurrentRow.IsNewRow)
+            if (dgvProductosModificar.CurrentRow == null || dgvProductosModificar.CurrentRow.IsNewRow) return;
+
+            if (dgvProductosModificar.Rows.Count <= 1)
             {
-                int filasMinimas = dgvProductosMo.AllowUserToAddRows ? 2 : 1;
+                MessageBox.Show("Debe mantener al menos un artículo.", "BAMS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-                if (dgvProductosMo.Rows.Count <= filasMinimas)
+            if (MessageBox.Show("¿Quitar este producto?", "Confirmar", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                int idAEliminar = Convert.ToInt32(dgvProductosModificar.CurrentRow.Cells["ID"].Value);
+                int cant = Convert.ToInt32(dgvProductosModificar.CurrentRow.Cells["Cantidad"].Value);
+
+                bool esNuevoSesion = true;
+                if (dtRespaldo != null)
                 {
-                    MessageBox.Show("Una compra no puede quedarse sin productos. Debe mantener al menos un artículo.",
-                                    "BAMS - Restricción", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    foreach (DataRow r in dtRespaldo.Rows)
+                        if ((int)r["ID"] == idAEliminar) { esNuevoSesion = false; break; }
                 }
 
-                DialogResult respuesta = MessageBox.Show("¿Quitar este producto de la compra?", "Confirmar",
-                                             MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (esNuevoSesion) logic.RevertirStockProductoNuevo(idCompraAEditar, idAEliminar, cant);
+                else listaEliminados.Add(idAEliminar);
 
-                if (respuesta == DialogResult.Yes)
-                {
-                    try
-                    {
-                        int idAEliminar = Convert.ToInt32(dgvProductosMo.CurrentRow.Cells["ID"].Value);
-                        int cantidadARestar = Convert.ToInt32(dgvProductosMo.CurrentRow.Cells["Cantidad"].Value);
-
-                        bool esNuevoDeEstaSesion = true;
-                        if (dtRespaldo != null)
-                        {
-                            foreach (DataRow filaRespaldo in dtRespaldo.Rows)
-                            {
-                                if (Convert.ToInt32(filaRespaldo["ID"]) == idAEliminar)
-                                {
-                                    esNuevoDeEstaSesion = false;
-                                    break;
-                                }
-                            }
-                        }
-
-                        if (esNuevoDeEstaSesion)
-                        {
-                            logic.RevertirStockProductoNuevo(idCompraAEditar, idAEliminar, cantidadARestar);
-                        }
-                        else
-                        {
-                            listaEliminados.Add(idAEliminar);
-                        }
-
-                        huboCambios = true;
-                        dgvProductosMo.Rows.RemoveAt(dgvProductosMo.CurrentRow.Index);
-                        ActualizarTotalGeneral();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error al procesar la eliminación y stock: " + ex.Message,
-                                        "Error BAMS", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
+                huboCambios = true;
+                dgvProductosModificar.Rows.RemoveAt(dgvProductosModificar.CurrentRow.Index);
+                ActualizarTotalGeneral();
             }
         }
 
-        /// <summary>
-        /// Handles the Click event of the kryptonButton5 control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void kryptonButton5_Click(object sender, EventArgs e)
         {
-            if (cmbProveedor.SelectedValue == null)
-            {
-                MessageBox.Show("No se pudo detectar el proveedor de esta compra.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            if (cmbProveedor.SelectedValue == null) return;
 
-            int idProv = Convert.ToInt32(cmbProveedor.SelectedValue);
-
-            using (Agregar_Producto_Mod frm = new Agregar_Producto_Mod(idProv))
+            using (Agregar_Producto_Mod frm = new Agregar_Producto_Mod((int)cmbProveedor.SelectedValue))
             {
                 frm.IdCompraActual = idCompraAEditar.ToString();
-
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
-                    try
-                    {
-                        huboCambios = true;
-                        dgvProductosMo.DataSource = logic.ObtenerDetalleCompra(idCompraAEditar);
-                        ConfigurarEdicionGrid();
-                        ActualizarTotalGeneral();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error al actualizar la lista: " + ex.Message);
-                    }
+                    huboCambios = true;
+                    dgvProductosModificar.DataSource = logic.ObtenerDetalleCompra(idCompraAEditar);
+                    ConfigurarEdicionGrid();
+                    ActualizarTotalGeneral();
                 }
             }
         }
 
-        /// <summary>
-        /// Handles the Click event of the kryptonButton4 control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void kryptonButton4_Click(object sender, EventArgs e)
         {
-            if (!huboCambios)
+            if (!huboCambios) { this.Close(); return; }
+
+            if (MessageBox.Show("¿Desea cancelar? Se perderán los cambios.", "Confirmar", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 this.Close();
-                return;
-            }
-
-            if (MessageBox.Show("¿Desea cancelar? Se eliminarán los cambios de esta sesión.",
-                "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                try
-                {
-                    foreach (DataGridViewRow fila in dgvProductosMo.Rows)
-                    {
-                        if (fila.Cells["ID"].Value == null || fila.Cells["ID"].Value == DBNull.Value) continue;
-
-                        int idProd = Convert.ToInt32(fila.Cells["ID"].Value);
-                        int cantidadARestar = Convert.ToInt32(fila.Cells["Cantidad"].Value);
-
-                        bool esNuevo = true;
-                        if (dtRespaldo != null)
-                        {
-                            foreach (DataRow filaRespaldo in dtRespaldo.Rows)
-                            {
-                                if (Convert.ToInt32(filaRespaldo["ID"]) == idProd) { esNuevo = false; break; }
-                            }
-                        }
-
-                        if (esNuevo)
-                        {
-                            logic.RevertirStockProductoNuevo(idCompraAEditar, idProd, cantidadARestar);
-                        }
-                    }
-                    this.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al revertir stock: " + ex.Message, "Error de Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
             }
         }
 
-        /// <summary>
-        /// Handles the CellBeginEdit event of the dgvProductosCompraMod control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="DataGridViewCellCancelEventArgs"/> instance containing the event data.</param>
-        private void dgvProductosCompraMod_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                valorAntesDeCambio = dgvProductosMo.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-            }
-        }
+        private void cmbProveedor_SelectedIndexChanged(object sender, EventArgs e) => huboCambios = true;
+        private void cmbFormaPago_SelectedIndexChanged(object sender, EventArgs e) => huboCambios = true;
 
-        /// <summary>
-        /// Handles the 1 event of the dgvProductosCompraMod_CellValueChanged control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
-        private void dgvProductosCompraMod_CellValueChanged_1(object sender, DataGridViewCellEventArgs e)
+        private void dgvProductosModificar_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
 
-            string nombreCol = dgvProductosMo.Columns[e.ColumnIndex].Name;
+            string nombreCol = dgvProductosModificar.Columns[e.ColumnIndex].Name;
 
             if (nombreCol == "Cantidad" || nombreCol == "Precio")
             {
                 huboCambios = true;
-                var fila = dgvProductosMo.Rows[e.RowIndex];
-                decimal nuevoValor;
-                string valorCelda = fila.Cells[e.ColumnIndex].Value?.ToString();
-                bool esValido = decimal.TryParse(valorCelda, out nuevoValor);
+                var fila = dgvProductosModificar.Rows[e.RowIndex];
 
-                if (!esValido || nuevoValor <= 0)
+                if (!decimal.TryParse(fila.Cells[e.ColumnIndex].Value?.ToString(), out decimal nuevoValor) || nuevoValor <= 0)
                 {
-                    MessageBox.Show($"El valor en '{nombreCol}' debe ser un número mayor a cero.",
-                                    "BAMS - Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show($"El valor en '{nombreCol}' debe ser un número mayor a cero.", "BAMS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-                    dgvProductosMo.CellValueChanged -= dgvProductosCompraMod_CellValueChanged;
+                    dgvProductosModificar.CellValueChanged -= dgvProductosModificar_CellValueChanged;
                     fila.Cells[e.ColumnIndex].Value = valorAntesDeCambio;
-                    dgvProductosMo.CellValueChanged += dgvProductosCompraMod_CellValueChanged;
+                    dgvProductosModificar.CellValueChanged += dgvProductosModificar_CellValueChanged;
                     return;
                 }
 
@@ -454,23 +231,20 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Handles the CellDoubleClick event of the dgvProductosCompraMod control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
-        private void dgvProductosCompraMod_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvProductosModificar_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
-            if (e.RowIndex < 0) return;
+            if (e.RowIndex >= 0)
+            {
+                valorAntesDeCambio = dgvProductosModificar.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+            }
         }
 
-        /// <summary>
-        /// Handles the AllowUserToAddRowsChanged event of the dgvProductosCompraMod control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void dgvProductosCompraMod_AllowUserToAddRowsChanged(object sender, EventArgs e)
+        private void dgvProductosModificar_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
+            if (dgvProductosModificar.IsCurrentCellDirty)
+            {
+                dgvProductosModificar.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
         }
     }
 }

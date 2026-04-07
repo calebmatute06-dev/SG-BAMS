@@ -39,7 +39,6 @@
             label5 = new Label();
             label3 = new Label();
             label1 = new Label();
-            dgvProductosMo = new Krypton.Toolkit.KryptonDataGridView();
             dtpFechaPedido = new Krypton.Toolkit.KryptonMonthCalendar();
             kryptonGroup1 = new Krypton.Toolkit.KryptonGroup();
             panel1 = new Panel();
@@ -50,15 +49,14 @@
             cmbFormaPago = new Krypton.Toolkit.KryptonComboBox();
             cmbProveedor = new Krypton.Toolkit.KryptonComboBox();
             label2 = new Label();
-            dataGridView1 = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dgvProductosMo).BeginInit();
+            dgvProductosModificar = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cmbFormaPago).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cmbProveedor).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvProductosModificar).BeginInit();
             SuspendLayout();
             // 
             // txtNotaDetalle
@@ -133,7 +131,7 @@
             // 
             // kryptonButton5
             // 
-            kryptonButton5.Location = new Point(527, 358);
+            kryptonButton5.Location = new Point(527, 356);
             kryptonButton5.Margin = new Padding(3, 2, 3, 2);
             kryptonButton5.Name = "kryptonButton5";
             kryptonButton5.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -226,24 +224,6 @@
             label1.TabIndex = 220;
             label1.Text = "Modificar Compra";
             // 
-            // dgvProductosMo
-            // 
-            dgvProductosMo.AllowUserToAddRows = false;
-            dgvProductosMo.BorderStyle = BorderStyle.None;
-            dgvProductosMo.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProductosMo.Location = new Point(42, 208);
-            dgvProductosMo.Margin = new Padding(3, 2, 3, 2);
-            dgvProductosMo.MultiSelect = false;
-            dgvProductosMo.Name = "dgvProductosMo";
-            dgvProductosMo.RowHeadersWidth = 51;
-            dgvProductosMo.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvProductosMo.Size = new Size(563, 137);
-            dgvProductosMo.TabIndex = 218;
-            dgvProductosMo.AllowUserToAddRowsChanged += dgvProductosCompraMod_AllowUserToAddRowsChanged;
-            dgvProductosMo.CellBeginEdit += dgvProductosCompraMod_CellBeginEdit;
-            dgvProductosMo.CellDoubleClick += dgvProductosCompraMod_CellDoubleClick;
-            dgvProductosMo.CellValueChanged += dgvProductosCompraMod_CellValueChanged_1;
-            // 
             // dtpFechaPedido
             // 
             dtpFechaPedido.Enabled = false;
@@ -302,7 +282,7 @@
             // 
             // btnEliminarProducto
             // 
-            btnEliminarProducto.Location = new Point(417, 358);
+            btnEliminarProducto.Location = new Point(417, 356);
             btnEliminarProducto.Margin = new Padding(3, 2, 3, 2);
             btnEliminarProducto.Name = "btnEliminarProducto";
             btnEliminarProducto.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -367,20 +347,24 @@
             label2.TabIndex = 345;
             label2.Text = "BAMS";
             // 
-            // dataGridView1
+            // dgvProductosModificar
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(166, 43);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(563, 137);
-            dataGridView1.TabIndex = 346;
+            dgvProductosModificar.BackgroundColor = Color.SkyBlue;
+            dgvProductosModificar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvProductosModificar.Location = new Point(38, 210);
+            dgvProductosModificar.Name = "dgvProductosModificar";
+            dgvProductosModificar.Size = new Size(563, 137);
+            dgvProductosModificar.TabIndex = 346;
+            dgvProductosModificar.CellBeginEdit += dgvProductosModificar_CellBeginEdit;
+            dgvProductosModificar.CellValueChanged += dgvProductosModificar_CellValueChanged;
+            dgvProductosModificar.CurrentCellDirtyStateChanged += dgvProductosModificar_CurrentCellDirtyStateChanged;
             // 
             // Modificar_datos__Compra_
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(918, 420);
-            Controls.Add(dataGridView1);
+            Controls.Add(dgvProductosModificar);
             Controls.Add(label2);
             Controls.Add(cmbFormaPago);
             Controls.Add(cmbProveedor);
@@ -396,7 +380,6 @@
             Controls.Add(label5);
             Controls.Add(label3);
             Controls.Add(label1);
-            Controls.Add(dgvProductosMo);
             Controls.Add(dtpFechaPedido);
             Controls.Add(kryptonGroup1);
             Controls.Add(panel1);
@@ -408,14 +391,13 @@
             Name = "Modificar_datos__Compra_";
             Text = "Modificar_datos__Compra_";
             Load += Modificar_datos__Compra__Load;
-            ((System.ComponentModel.ISupportInitialize)dgvProductosMo).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)cmbFormaPago).EndInit();
             ((System.ComponentModel.ISupportInitialize)cmbProveedor).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvProductosModificar).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -433,7 +415,6 @@
         private Label label5;
         private Label label3;
         private Label label1;
-        private Krypton.Toolkit.KryptonDataGridView dgvProductosMo;
         private Krypton.Toolkit.KryptonMonthCalendar dtpFechaPedido;
         private Krypton.Toolkit.KryptonGroup kryptonGroup1;
         private Panel panel1;
@@ -444,6 +425,6 @@
         private Krypton.Toolkit.KryptonComboBox cmbFormaPago;
         private Krypton.Toolkit.KryptonComboBox cmbProveedor;
         private Label label2;
-        private DataGridView dataGridView1;
+        private DataGridView dgvProductosModificar;
     }
 }
