@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using SG_BAMS.Bitacora;
 using SG_BAMS.ProductoInventario;
+using SG_BAMS.Proveedor;
 using SG_BAMS.Reporte;
 using System;
 using System.Collections.Generic;
@@ -42,130 +43,24 @@ namespace SG_BAMS
             InitializeComponent();
             CargarCompras();
 
-            
+
             dtpDesde.MaxDate = DateTime.Today;
             dtpHasta.MaxDate = DateTime.Today;
 
-            
+
             dtpDesde.Value = DateTime.Today.AddDays(-7);
             dtpHasta.Value = DateTime.Today;
 
-            
+
             txtBuscarCompra.TextChanged += (s, e) => FiltrarCompras();
             txtBuscarCompra.KeyPress += (s, e) => ClsValidaciones.ValidarBusquedaAlfanumerica(e);
 
-            
+
             dtpDesde.ValueChanged += dtpDesde_ValueChanged;
             dtpHasta.ValueChanged += dtpHasta_ValueChanged;
         }
 
-        /// <summary>
-        /// Handles the Click event of the btnMenu control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnMenu_Click(object sender, EventArgs e)
-        {
-            MenuPrincipalAdm menuPrincipalAdm = new MenuPrincipalAdm();
-            menuPrincipalAdm.Show();
-            this.Hide();
-        }
 
-        /// <summary>
-        /// Handles the Click event of the btnFactura control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnFactura_Click(object sender, EventArgs e)
-        {
-            FacturasAdm facturasAdm = new FacturasAdm();
-            facturasAdm.Show();
-            this.Hide();
-        }
-
-        /// <summary>
-        /// Handles the Click event of the btnClientes control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnClientes_Click(object sender, EventArgs e)
-        {
-            ClientesAdm clientesAdm = new ClientesAdm();
-            clientesAdm.Show();
-            this.Hide();
-        }
-
-        /// <summary>
-        /// Handles the Click event of the btnCompra control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnCompra_Click(object sender, EventArgs e)
-        {
-            Compras compras = new Compras();
-            compras.Show();
-            this.Hide();
-        }
-
-        /// <summary>
-        /// Handles the Click event of the btnInve control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnInve_Click(object sender, EventArgs e)
-        {
-            InventarioAdmin inventarioAdmin = new InventarioAdmin();
-            inventarioAdmin.Show();
-            this.Hide();
-        }
-
-        /// <summary>
-        /// Handles the Click event of the btnProvee control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnProvee_Click(object sender, EventArgs e)
-        {
-            Proveedor.ProveedoresAdmin proveedoresAdmin = new Proveedor.ProveedoresAdmin();
-            proveedoresAdmin.Show();
-            this.Hide();
-        }
-
-        /// <summary>
-        /// Handles the Click event of the btnDeudores control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnDeudores_Click(object sender, EventArgs e)
-        {
-            DeudoresAdmin deudores = new DeudoresAdmin();
-            deudores.Show();
-            this.Hide();
-        }
-
-        /// <summary>
-        /// Handles the Click event of the btnReporte control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnReporte_Click(object sender, EventArgs e)
-        {
-            ReportesAdmin frmReportes = new ReportesAdmin();
-            frmReportes.Show();
-            this.Hide();
-        }
-
-        /// <summary>
-        /// Handles the Click event of the btnBitacora control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnBitacora_Click(object sender, EventArgs e)
-        {
-            BitacoraAdmin bitacoraAdmin = new BitacoraAdmin();
-            bitacoraAdmin.Show();
-            this.Hide();
-        }
 
         /// <summary>
         /// Handles the Load event of the Compras control.
@@ -203,7 +98,7 @@ namespace SG_BAMS
             dgvComprasAdmin.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvComprasAdmin.ClearSelection();
 
-            
+
             FiltrarCompras();
         }
 
@@ -246,7 +141,7 @@ namespace SG_BAMS
 
             if (string.IsNullOrWhiteSpace(texto))
             {
-                
+
                 string fDesde = dtpDesde.Value.Date.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
                 string fHasta = dtpHasta.Value.Date.AddDays(1).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
 
@@ -265,7 +160,7 @@ namespace SG_BAMS
             }
             else
             {
-                
+
                 var condicionesTexto = new List<string>();
                 foreach (DataColumn col in dtCompras.Columns)
                 {
@@ -352,7 +247,7 @@ namespace SG_BAMS
         {
             txtBuscarCompra.Clear();
 
-            
+
             dtpDesde.ValueChanged -= dtpDesde_ValueChanged;
             dtpHasta.ValueChanged -= dtpHasta_ValueChanged;
 
@@ -361,7 +256,7 @@ namespace SG_BAMS
             dtpDesde.Value = DateTime.Today.AddDays(-7);
             dtpHasta.Value = DateTime.Today;
 
-            
+
             dtpDesde.ValueChanged += dtpDesde_ValueChanged;
             dtpHasta.ValueChanged += dtpHasta_ValueChanged;
 
@@ -381,28 +276,9 @@ namespace SG_BAMS
             notificacionesAdmin.Show();
         }
 
-        /// <summary>
-        /// Handles the Click event of the btnCerrarSesion control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnCerrarSesion_Click(object sender, EventArgs e)
-        {
-            Login.Login login = new Login.Login();
-            login.Show();
-            this.Close();
-        }
 
-        /// <summary>
-        /// Handles the Click event of the btnPerfil control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnPerfil_Click(object sender, EventArgs e)
-        {
-            Perfil perfil = new Perfil();
-            perfil.Show();
-        }
+
+
 
         /// <summary>
         /// Handles the CellContentDoubleClick event of the dgvComprasAdmin control.
@@ -411,6 +287,7 @@ namespace SG_BAMS
         /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
         private void dgvComprasAdmin_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+
         }
 
         /// <summary>
@@ -518,6 +395,80 @@ namespace SG_BAMS
             }
         }
 
-      
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            MenuPrincipalAdm MPA = new MenuPrincipalAdm();
+            MPA.Show();
+            this.Hide();
+        }
+
+        private void btnFacturas_Click(object sender, EventArgs e)
+        {
+            FacturasAdm FA = new FacturasAdm();
+            FA.Show();
+            this.Hide();
+        }
+
+        private void btnClientes_Click(object sender, EventArgs e)
+        {
+            ClientesAdm CA = new ClientesAdm();
+            CA.Show();
+            this.Hide();
+        }
+
+        private void btnInventario_Click(object sender, EventArgs e)
+        {
+            InventarioAdmin IA = new InventarioAdmin();
+            IA.Show();
+            this.Hide();
+        }
+
+        private void btnProveedores_Click(object sender, EventArgs e)
+        {
+            ProveedoresAdmin PA = new ProveedoresAdmin();
+            PA.Show();
+            this.Hide();
+        }
+
+        private void btnDeudores_Click(object sender, EventArgs e)
+        {
+            DeudoresAdmin DA = new DeudoresAdmin();
+            DA.Show();
+            this.Hide();
+        }
+
+        private void btnReportes_Click(object sender, EventArgs e)
+        {
+            ReportesAdmin RA = new ReportesAdmin();
+            RA.Show();
+            this.Hide();
+        }
+
+        private void btnBitacora_Click(object sender, EventArgs e)
+        {
+            BitacoraAdmin BA = new BitacoraAdmin();
+            BA.Show();
+            this.Hide();
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            Login.Login login = new Login.Login();
+            login.Show();
+            this.Close();
+        }
+
+        private void btnPerfil_Click(object sender, EventArgs e)
+        {
+            Perfil perfil = new Perfil();
+            perfil.Show();
+        }
+
+        private void btnComprasMenu_Click(object sender, EventArgs e)
+        {
+            Compras CF = new Compras();
+            CF.Show();
+            this.Hide();
+        }
     }
 }

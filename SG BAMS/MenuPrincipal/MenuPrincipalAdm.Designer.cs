@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea13 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend13 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea14 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend14 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
             panel2 = new Panel();
             panel4 = new Panel();
             pictureBox3 = new PictureBox();
@@ -68,15 +68,15 @@
             btnAsis = new Krypton.Toolkit.KryptonButton();
             label2 = new Label();
             btnReportes = new ReaLTaiizor.Controls.NightButton();
-            btndeudores = new ReaLTaiizor.Controls.NightButton();
+            btnDeudores = new ReaLTaiizor.Controls.NightButton();
             btnProveedores = new ReaLTaiizor.Controls.NightButton();
-            btninventario = new ReaLTaiizor.Controls.NightButton();
+            btnInventario = new ReaLTaiizor.Controls.NightButton();
             btnClientes = new ReaLTaiizor.Controls.NightButton();
-            btncompra = new ReaLTaiizor.Controls.NightButton();
-            BtnFacturas = new ReaLTaiizor.Controls.NightButton();
+            btnCompra = new ReaLTaiizor.Controls.NightButton();
+            btnFacturas = new ReaLTaiizor.Controls.NightButton();
             btnBitacora = new ReaLTaiizor.Controls.NightButton();
-            btnCerrarSesión = new ReaLTaiizor.Controls.NightButton();
-            btnperfil = new ReaLTaiizor.Controls.NightButton();
+            btnCerrar = new ReaLTaiizor.Controls.NightButton();
+            btnPerfil = new ReaLTaiizor.Controls.NightButton();
             btnMenu = new ReaLTaiizor.Controls.NightButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox17).BeginInit();
@@ -418,19 +418,19 @@
             // 
             // chartMasVendidos
             // 
-            chartArea1.Name = "ChartArea1";
-            chartMasVendidos.ChartAreas.Add(chartArea1);
-            legend1.BackColor = Color.SkyBlue;
-            legend1.Name = "Legend1";
-            chartMasVendidos.Legends.Add(legend1);
+            chartArea13.Name = "ChartArea1";
+            chartMasVendidos.ChartAreas.Add(chartArea13);
+            legend13.BackColor = Color.SkyBlue;
+            legend13.Name = "Legend1";
+            chartMasVendidos.Legends.Add(legend13);
             chartMasVendidos.Location = new Point(303, 140);
             chartMasVendidos.Margin = new Padding(3, 2, 3, 2);
             chartMasVendidos.Name = "chartMasVendidos";
             chartMasVendidos.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            chartMasVendidos.Series.Add(series1);
+            series13.ChartArea = "ChartArea1";
+            series13.Legend = "Legend1";
+            series13.Name = "Series1";
+            chartMasVendidos.Series.Add(series13);
             chartMasVendidos.Size = new Size(354, 164);
             chartMasVendidos.TabIndex = 63;
             chartMasVendidos.Text = "chart1";
@@ -439,22 +439,22 @@
             // 
             chartStock.BackColor = Color.SkyBlue;
             chartStock.BorderlineColor = Color.SkyBlue;
-            chartArea2.BackColor = Color.SkyBlue;
-            chartArea2.BackSecondaryColor = Color.White;
-            chartArea2.Name = "ChartArea1";
-            chartStock.ChartAreas.Add(chartArea2);
-            legend2.BackColor = Color.SkyBlue;
-            legend2.Name = "Legend1";
-            chartStock.Legends.Add(legend2);
+            chartArea14.BackColor = Color.SkyBlue;
+            chartArea14.BackSecondaryColor = Color.White;
+            chartArea14.Name = "ChartArea1";
+            chartStock.ChartAreas.Add(chartArea14);
+            legend14.BackColor = Color.SkyBlue;
+            legend14.Name = "Legend1";
+            chartStock.Legends.Add(legend14);
             chartStock.Location = new Point(311, 431);
             chartStock.Margin = new Padding(3, 2, 3, 2);
             chartStock.Name = "chartStock";
             chartStock.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.EarthTones;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            chartStock.Series.Add(series2);
+            series14.ChartArea = "ChartArea1";
+            series14.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series14.Legend = "Legend1";
+            series14.Name = "Series1";
+            chartStock.Series.Add(series14);
             chartStock.Size = new Size(346, 161);
             chartStock.TabIndex = 96;
             chartStock.Text = "chartStock";
@@ -566,28 +566,30 @@
             btnReportes.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             btnReportes.TabIndex = 101;
             btnReportes.Text = "Reportes";
+            btnReportes.Click += btnReportes_Click;
             // 
-            // btndeudores
+            // btnDeudores
             // 
-            btndeudores.BackColor = Color.Transparent;
-            btndeudores.DialogResult = DialogResult.None;
-            btndeudores.Font = new Font("Arial Narrow", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btndeudores.ForeColor = Color.SkyBlue;
-            btndeudores.HoverBackColor = Color.Navy;
-            btndeudores.HoverForeColor = Color.White;
-            btndeudores.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-            btndeudores.Location = new Point(12, 411);
-            btndeudores.MinimumSize = new Size(144, 47);
-            btndeudores.Name = "btndeudores";
-            btndeudores.NormalBackColor = Color.Navy;
-            btndeudores.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-            btndeudores.PressedBackColor = Color.Navy;
-            btndeudores.PressedForeColor = Color.White;
-            btndeudores.Radius = 20;
-            btndeudores.Size = new Size(215, 47);
-            btndeudores.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-            btndeudores.TabIndex = 102;
-            btndeudores.Text = "Deudores";
+            btnDeudores.BackColor = Color.Transparent;
+            btnDeudores.DialogResult = DialogResult.None;
+            btnDeudores.Font = new Font("Arial Narrow", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDeudores.ForeColor = Color.SkyBlue;
+            btnDeudores.HoverBackColor = Color.Navy;
+            btnDeudores.HoverForeColor = Color.White;
+            btnDeudores.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+            btnDeudores.Location = new Point(12, 411);
+            btnDeudores.MinimumSize = new Size(144, 47);
+            btnDeudores.Name = "btnDeudores";
+            btnDeudores.NormalBackColor = Color.Navy;
+            btnDeudores.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+            btnDeudores.PressedBackColor = Color.Navy;
+            btnDeudores.PressedForeColor = Color.White;
+            btnDeudores.Radius = 20;
+            btnDeudores.Size = new Size(215, 47);
+            btnDeudores.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            btnDeudores.TabIndex = 102;
+            btnDeudores.Text = "Deudores";
+            btnDeudores.Click += btnDeudores_Click;
             // 
             // btnProveedores
             // 
@@ -610,28 +612,30 @@
             btnProveedores.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             btnProveedores.TabIndex = 103;
             btnProveedores.Text = "Proveedores";
+            btnProveedores.Click += btnProveedores_Click;
             // 
-            // btninventario
+            // btnInventario
             // 
-            btninventario.BackColor = Color.Transparent;
-            btninventario.DialogResult = DialogResult.None;
-            btninventario.Font = new Font("Arial Narrow", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btninventario.ForeColor = Color.SkyBlue;
-            btninventario.HoverBackColor = Color.Navy;
-            btninventario.HoverForeColor = Color.White;
-            btninventario.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-            btninventario.Location = new Point(12, 308);
-            btninventario.MinimumSize = new Size(144, 47);
-            btninventario.Name = "btninventario";
-            btninventario.NormalBackColor = Color.Navy;
-            btninventario.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-            btninventario.PressedBackColor = Color.Navy;
-            btninventario.PressedForeColor = Color.White;
-            btninventario.Radius = 20;
-            btninventario.Size = new Size(215, 47);
-            btninventario.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-            btninventario.TabIndex = 104;
-            btninventario.Text = "Inventario";
+            btnInventario.BackColor = Color.Transparent;
+            btnInventario.DialogResult = DialogResult.None;
+            btnInventario.Font = new Font("Arial Narrow", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnInventario.ForeColor = Color.SkyBlue;
+            btnInventario.HoverBackColor = Color.Navy;
+            btnInventario.HoverForeColor = Color.White;
+            btnInventario.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+            btnInventario.Location = new Point(12, 308);
+            btnInventario.MinimumSize = new Size(144, 47);
+            btnInventario.Name = "btnInventario";
+            btnInventario.NormalBackColor = Color.Navy;
+            btnInventario.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+            btnInventario.PressedBackColor = Color.Navy;
+            btnInventario.PressedForeColor = Color.White;
+            btnInventario.Radius = 20;
+            btnInventario.Size = new Size(215, 47);
+            btnInventario.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            btnInventario.TabIndex = 104;
+            btnInventario.Text = "Inventario";
+            btnInventario.Click += btnInventario_Click;
             // 
             // btnClientes
             // 
@@ -654,50 +658,53 @@
             btnClientes.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             btnClientes.TabIndex = 105;
             btnClientes.Text = "Clientes";
+            btnClientes.Click += btnClientes_Click_1;
             // 
-            // btncompra
+            // btnCompra
             // 
-            btncompra.BackColor = Color.Transparent;
-            btncompra.DialogResult = DialogResult.None;
-            btncompra.Font = new Font("Arial Narrow", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btncompra.ForeColor = Color.SkyBlue;
-            btncompra.HoverBackColor = Color.Navy;
-            btncompra.HoverForeColor = Color.White;
-            btncompra.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-            btncompra.Location = new Point(12, 207);
-            btncompra.MinimumSize = new Size(144, 47);
-            btncompra.Name = "btncompra";
-            btncompra.NormalBackColor = Color.Navy;
-            btncompra.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-            btncompra.PressedBackColor = Color.Navy;
-            btncompra.PressedForeColor = Color.White;
-            btncompra.Radius = 20;
-            btncompra.Size = new Size(215, 47);
-            btncompra.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-            btncompra.TabIndex = 106;
-            btncompra.Text = "Compras";
+            btnCompra.BackColor = Color.Transparent;
+            btnCompra.DialogResult = DialogResult.None;
+            btnCompra.Font = new Font("Arial Narrow", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCompra.ForeColor = Color.SkyBlue;
+            btnCompra.HoverBackColor = Color.Navy;
+            btnCompra.HoverForeColor = Color.White;
+            btnCompra.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+            btnCompra.Location = new Point(12, 207);
+            btnCompra.MinimumSize = new Size(144, 47);
+            btnCompra.Name = "btnCompra";
+            btnCompra.NormalBackColor = Color.Navy;
+            btnCompra.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+            btnCompra.PressedBackColor = Color.Navy;
+            btnCompra.PressedForeColor = Color.White;
+            btnCompra.Radius = 20;
+            btnCompra.Size = new Size(215, 47);
+            btnCompra.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            btnCompra.TabIndex = 106;
+            btnCompra.Text = "Compras";
+            btnCompra.Click += btnCompra_Click;
             // 
-            // BtnFacturas
+            // btnFacturas
             // 
-            BtnFacturas.BackColor = Color.Transparent;
-            BtnFacturas.DialogResult = DialogResult.None;
-            BtnFacturas.Font = new Font("Arial Narrow", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            BtnFacturas.ForeColor = Color.SkyBlue;
-            BtnFacturas.HoverBackColor = Color.Navy;
-            BtnFacturas.HoverForeColor = Color.White;
-            BtnFacturas.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-            BtnFacturas.Location = new Point(12, 157);
-            BtnFacturas.MinimumSize = new Size(144, 47);
-            BtnFacturas.Name = "BtnFacturas";
-            BtnFacturas.NormalBackColor = Color.Navy;
-            BtnFacturas.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-            BtnFacturas.PressedBackColor = Color.Navy;
-            BtnFacturas.PressedForeColor = Color.White;
-            BtnFacturas.Radius = 20;
-            BtnFacturas.Size = new Size(215, 47);
-            BtnFacturas.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-            BtnFacturas.TabIndex = 107;
-            BtnFacturas.Text = "Facturas";
+            btnFacturas.BackColor = Color.Transparent;
+            btnFacturas.DialogResult = DialogResult.None;
+            btnFacturas.Font = new Font("Arial Narrow", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnFacturas.ForeColor = Color.SkyBlue;
+            btnFacturas.HoverBackColor = Color.Navy;
+            btnFacturas.HoverForeColor = Color.White;
+            btnFacturas.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+            btnFacturas.Location = new Point(12, 157);
+            btnFacturas.MinimumSize = new Size(144, 47);
+            btnFacturas.Name = "btnFacturas";
+            btnFacturas.NormalBackColor = Color.Navy;
+            btnFacturas.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+            btnFacturas.PressedBackColor = Color.Navy;
+            btnFacturas.PressedForeColor = Color.White;
+            btnFacturas.Radius = 20;
+            btnFacturas.Size = new Size(215, 47);
+            btnFacturas.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            btnFacturas.TabIndex = 107;
+            btnFacturas.Text = "Facturas";
+            btnFacturas.Click += btnFacturas_Click;
             // 
             // btnBitacora
             // 
@@ -720,50 +727,53 @@
             btnBitacora.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             btnBitacora.TabIndex = 109;
             btnBitacora.Text = "Bitácora";
+            btnBitacora.Click += btnBitacora_Click;
             // 
-            // btnCerrarSesión
+            // btnCerrar
             // 
-            btnCerrarSesión.BackColor = Color.Transparent;
-            btnCerrarSesión.DialogResult = DialogResult.None;
-            btnCerrarSesión.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCerrarSesión.ForeColor = Color.SkyBlue;
-            btnCerrarSesión.HoverBackColor = Color.Navy;
-            btnCerrarSesión.HoverForeColor = Color.White;
-            btnCerrarSesión.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-            btnCerrarSesión.Location = new Point(12, 564);
-            btnCerrarSesión.MinimumSize = new Size(144, 47);
-            btnCerrarSesión.Name = "btnCerrarSesión";
-            btnCerrarSesión.NormalBackColor = Color.Navy;
-            btnCerrarSesión.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-            btnCerrarSesión.PressedBackColor = Color.Navy;
-            btnCerrarSesión.PressedForeColor = Color.White;
-            btnCerrarSesión.Radius = 20;
-            btnCerrarSesión.Size = new Size(215, 47);
-            btnCerrarSesión.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-            btnCerrarSesión.TabIndex = 110;
-            btnCerrarSesión.Text = "Cerrar Sesión";
+            btnCerrar.BackColor = Color.Transparent;
+            btnCerrar.DialogResult = DialogResult.None;
+            btnCerrar.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCerrar.ForeColor = Color.SkyBlue;
+            btnCerrar.HoverBackColor = Color.Navy;
+            btnCerrar.HoverForeColor = Color.White;
+            btnCerrar.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+            btnCerrar.Location = new Point(12, 564);
+            btnCerrar.MinimumSize = new Size(144, 47);
+            btnCerrar.Name = "btnCerrar";
+            btnCerrar.NormalBackColor = Color.Navy;
+            btnCerrar.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+            btnCerrar.PressedBackColor = Color.Navy;
+            btnCerrar.PressedForeColor = Color.White;
+            btnCerrar.Radius = 20;
+            btnCerrar.Size = new Size(215, 47);
+            btnCerrar.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            btnCerrar.TabIndex = 110;
+            btnCerrar.Text = "Cerrar Sesión";
+            btnCerrar.Click += btnCerrar_Click;
             // 
-            // btnperfil
+            // btnPerfil
             // 
-            btnperfil.BackColor = Color.Transparent;
-            btnperfil.DialogResult = DialogResult.None;
-            btnperfil.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnperfil.ForeColor = Color.SkyBlue;
-            btnperfil.HoverBackColor = Color.Navy;
-            btnperfil.HoverForeColor = Color.White;
-            btnperfil.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-            btnperfil.Location = new Point(12, 614);
-            btnperfil.MinimumSize = new Size(144, 47);
-            btnperfil.Name = "btnperfil";
-            btnperfil.NormalBackColor = Color.Navy;
-            btnperfil.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-            btnperfil.PressedBackColor = Color.Navy;
-            btnperfil.PressedForeColor = Color.White;
-            btnperfil.Radius = 20;
-            btnperfil.Size = new Size(215, 47);
-            btnperfil.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-            btnperfil.TabIndex = 111;
-            btnperfil.Text = "Perfil";
+            btnPerfil.BackColor = Color.Transparent;
+            btnPerfil.DialogResult = DialogResult.None;
+            btnPerfil.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnPerfil.ForeColor = Color.SkyBlue;
+            btnPerfil.HoverBackColor = Color.Navy;
+            btnPerfil.HoverForeColor = Color.White;
+            btnPerfil.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+            btnPerfil.Location = new Point(12, 614);
+            btnPerfil.MinimumSize = new Size(144, 47);
+            btnPerfil.Name = "btnPerfil";
+            btnPerfil.NormalBackColor = Color.Navy;
+            btnPerfil.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+            btnPerfil.PressedBackColor = Color.Navy;
+            btnPerfil.PressedForeColor = Color.White;
+            btnPerfil.Radius = 20;
+            btnPerfil.Size = new Size(215, 47);
+            btnPerfil.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            btnPerfil.TabIndex = 111;
+            btnPerfil.Text = "Perfil";
+            btnPerfil.Click += btnPerfil_Click_1;
             // 
             // btnMenu
             // 
@@ -786,6 +796,7 @@
             btnMenu.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             btnMenu.TabIndex = 112;
             btnMenu.Text = "Menu Principal";
+            btnMenu.Click += btnMenu_Click;
             // 
             // MenuPrincipalAdm
             // 
@@ -825,15 +836,15 @@
             Controls.Add(panel4);
             Controls.Add(panel2);
             Controls.Add(btnReportes);
-            Controls.Add(btnperfil);
-            Controls.Add(btnCerrarSesión);
+            Controls.Add(btnPerfil);
+            Controls.Add(btnCerrar);
             Controls.Add(btnBitacora);
-            Controls.Add(BtnFacturas);
-            Controls.Add(btncompra);
+            Controls.Add(btnFacturas);
+            Controls.Add(btnCompra);
             Controls.Add(btnClientes);
-            Controls.Add(btninventario);
+            Controls.Add(btnInventario);
             Controls.Add(btnProveedores);
-            Controls.Add(btndeudores);
+            Controls.Add(btnDeudores);
             Controls.Add(btnMenu);
             ForeColor = Color.SkyBlue;
             FormBorderStyle = FormBorderStyle.None;
@@ -887,15 +898,15 @@
         private Krypton.Toolkit.KryptonButton btnAsis;
         private Label label2;
         private ReaLTaiizor.Controls.NightButton btnReportes;
-        private ReaLTaiizor.Controls.NightButton btndeudores;
+        private ReaLTaiizor.Controls.NightButton btnDeudores;
         private ReaLTaiizor.Controls.NightButton btnProveedores;
-        private ReaLTaiizor.Controls.NightButton btninventario;
+        private ReaLTaiizor.Controls.NightButton btnInventario;
         private ReaLTaiizor.Controls.NightButton btnClientes;
-        private ReaLTaiizor.Controls.NightButton btncompra;
-        private ReaLTaiizor.Controls.NightButton BtnFacturas;
+        private ReaLTaiizor.Controls.NightButton btnCompra;
+        private ReaLTaiizor.Controls.NightButton btnFacturas;
         private ReaLTaiizor.Controls.NightButton btnBitacora;
-        private ReaLTaiizor.Controls.NightButton btnCerrarSesión;
-        private ReaLTaiizor.Controls.NightButton btnperfil;
+        private ReaLTaiizor.Controls.NightButton btnCerrar;
+        private ReaLTaiizor.Controls.NightButton btnPerfil;
         private ReaLTaiizor.Controls.NightButton btnMenu;
     }
 }

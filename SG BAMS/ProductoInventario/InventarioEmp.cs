@@ -217,5 +217,10 @@ namespace SG_BAMS
             Perfil perfil = new Perfil();
             perfil.Show();
         }
+
+        private void panel1_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

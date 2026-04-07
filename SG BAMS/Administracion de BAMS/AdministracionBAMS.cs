@@ -1,4 +1,6 @@
-﻿using SG_BAMS.Reporte;
+﻿using SG_BAMS.Bitacora;
+using SG_BAMS.Proveedor;
+using SG_BAMS.Reporte;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,170 +27,32 @@ namespace SG_BAMS
             InitializeComponent();
         }
 
-        /// <summary>
-        /// Handles the Click event of the label1 control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        /// <summary>
-        /// Handles the Click event of the label2 control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        /// <summary>
-        /// Handles the Click event of the label4 control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
 
 
-        /// <summary>
-        /// Handles the Click event of the btnCerrarSesion control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnCerrarSesion_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            SG_BAMS.Login.Login log = new SG_BAMS.Login.Login();
-            log.Show();
-        }
 
 
-        /// <summary>
-        /// Handles the Click event of the btnMproducto control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnMproducto_Click(object sender, EventArgs e)
-        {
-            frmMarcaProductos verMproducto = new frmMarcaProductos();
-            verMproducto.Show();
-        }
 
 
-        /// <summary>
-        /// Handles the Click event of the btnMenuP control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnMenuP_Click(object sender, EventArgs e)
-        {
-            MenuPrincipalAdm menuPrincipalAdm = new MenuPrincipalAdm();
-            menuPrincipalAdm.Show();
-            this.Hide();
-        }
 
-        /// <summary>
-        /// Handles the Click event of the btnFactura control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnFactura_Click(object sender, EventArgs e)
-        {
-            FacturasAdm facturas = new FacturasAdm();
-            facturas.Show();
-            this.Hide();
-        }
 
-        /// <summary>
-        /// Handles the Click event of the btnCompras control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnCompras_Click(object sender, EventArgs e)
-        {
-            Compras vercompras = new Compras();
-            vercompras.Show();
-            this.Hide();
-        }
 
-        /// <summary>
-        /// Handles the Click event of the btnClientes control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnClientes_Click(object sender, EventArgs e)
-        {
-            ClientesAdm clientes = new ClientesAdm();
-            clientes.Show();
-            this.Hide();
-        }
 
-        /// <summary>
-        /// Handles the Click event of the btnInventario control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnInventario_Click(object sender, EventArgs e)
-        {
-            InventarioAdmin inventario = new InventarioAdmin();
-            inventario.Show();
-            this.Hide();
-        }
 
-        /// <summary>
-        /// Handles the Click event of the btnProveedores control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnProveedores_Click(object sender, EventArgs e)
-        {
-            Proveedor.ProveedoresAdmin proveedores = new Proveedor.ProveedoresAdmin();
-            proveedores.Show();
-            this.Hide();
-        }
 
-        /// <summary>
-        /// Handles the Click event of the btnDeudores control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnDeudores_Click(object sender, EventArgs e)
-        {
-            DeudoresAdmin deudoresAdm = new DeudoresAdmin();
-            deudoresAdm.Show();
-            this.Hide();
-        }
 
-        /// <summary>
-        /// Handles the Click event of the btnReporte control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnReporte_Click(object sender, EventArgs e)
-        {
-            ReportesAdmin frmReportes = new ReportesAdmin();
-            frmReportes.Show();
-            this.Hide();
 
-        }
 
-        /// <summary>
-        /// Handles the Click event of the btnBitacora control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnBitacora_Click(object sender, EventArgs e)
-        {
-            Bitacora.BitacoraAdmin bitacora = new Bitacora.BitacoraAdmin();
-            bitacora.Show();
-            this.Hide();
-        }
+
+
+
+
+
+
+
+
+
+
+
 
         /// <summary>
         /// Handles the Click event of the btnNoti control.
@@ -201,16 +65,7 @@ namespace SG_BAMS
             notificaciones.Show();
         }
 
-        /// <summary>
-        /// Handles the Click event of the btnPerfil control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnPerfil_Click(object sender, EventArgs e)
-        {
-            Perfil perfil = new Perfil();
-            perfil.Show();
-        }
+
 
         /// <summary>
         /// Handles the Load event of the AdministracionBAMS control.
@@ -297,6 +152,82 @@ namespace SG_BAMS
         {
             frmModeloAuto verMauto = new frmModeloAuto();
             verMauto.Show();
+        }
+
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            MenuPrincipalAdm MPA = new MenuPrincipalAdm();
+            MPA.Show();
+            this.Hide();
+        }
+
+        private void btnFacturas_Click(object sender, EventArgs e)
+        {
+            FacturasAdm FA = new FacturasAdm();
+            FA.Show();
+            this.Hide();
+        }
+
+        private void btnCompra_Click(object sender, EventArgs e)
+        {
+            Compras CF = new Compras();
+            CF.Show();
+            this.Hide();
+        }
+
+        private void btnClientes_Click(object sender, EventArgs e)
+        {
+            ClientesAdm CA = new ClientesAdm();
+            CA.Show();
+            this.Hide();
+        }
+
+        private void btnInventario_Click(object sender, EventArgs e)
+        {
+            InventarioAdmin IA = new InventarioAdmin();
+            IA.Show();
+            this.Hide();
+        }
+
+        private void btnProveedores_Click(object sender, EventArgs e)
+        {
+            ProveedoresAdmin PA = new ProveedoresAdmin();
+            PA.Show();
+            this.Hide();
+        }
+
+        private void btnDeudores_Click(object sender, EventArgs e)
+        {
+            DeudoresAdmin DA = new DeudoresAdmin();
+            DA.Show();
+            this.Hide();
+        }
+
+        private void btnReportes_Click(object sender, EventArgs e)
+        {
+            ReportesAdmin RA = new ReportesAdmin();
+            RA.Show();
+            this.Hide();
+        }
+
+        private void btnBitacora_Click(object sender, EventArgs e)
+        {
+            BitacoraAdmin BA = new BitacoraAdmin();
+            BA.Show();
+            this.Hide();
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            Login.Login login = new Login.Login();
+            login.Show();
+            this.Close();
+        }
+
+        private void btnPerfil_Click(object sender, EventArgs e)
+        {
+            Perfil perfil = new Perfil();
+            perfil.Show();
         }
     }
 }
