@@ -24,13 +24,12 @@ namespace SG_BAMS
         /// </summary>
         private DataTable dtRoles;
         /// <summary>
-        /// Initializes a new instance of the <see cref="frmAgregarUsuarios"/> class.
+        /// Initializes a new instance of the <see cref="frmAgregarUsuarios" /> class.
         /// </summary>
         public frmAgregarUsuarios()
         {
             InitializeComponent();
             CargarComboRoles();
-            btnImagen.Enabled = false;
             cmbRol.DropDownStyle = ComboBoxStyle.DropDownList;
 
             txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
@@ -38,16 +37,6 @@ namespace SG_BAMS
 
         /// <summary>
         /// Handles the Load event of the fmrAgregarUsuarios control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private async void fmrAgregarUsuarios_Load(object sender, EventArgs e)
-        {
-            await CargarComboRoles();
-        }
-
-        /// <summary>
-        /// Cargars the combo roles.
         /// </summary>
         private async Task CargarComboRoles()
         {
@@ -74,16 +63,7 @@ namespace SG_BAMS
         /// Handles the Click event of the label2 control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-        /// <summary>
-        /// The lista original roles
-        /// </summary>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private List<string> listaOriginalRoles = new List<string>();
 
 
@@ -92,33 +72,17 @@ namespace SG_BAMS
         /// Handles the SelectedIndexChanged event of the cmbRol control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void cmbRol_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbRol.SelectedIndex != -1)
-            {
-                string rolSeleccionado = cmbRol.Text;
-
-                if (rolSeleccionado == "Administrador" || rolSeleccionado == "Empleado")
-                {
-                    btnImagen.Enabled = true;
-                }
-                else
-                {
-                    btnImagen.Enabled = false;
-                }
-            }
-            else
-            {
-                btnImagen.Enabled = false;
-            }
+            
         }
 
         /// <summary>
         /// Handles the TextChanged event of the txtNombre control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void txtNombre_TextChanged(object sender, EventArgs e)
         {
 
@@ -128,21 +92,14 @@ namespace SG_BAMS
         /// Handles the Click event of the btmModificar control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private async void btmModificar_Click(object sender, EventArgs e)
         {
-
             if (!ClsValidaciones.EsNombrePersonalValido(txtNombre.TextBox, "Nombre de Usuario"))
-            {
                 return;
-            }
-
 
             if (!ClsValidaciones.EsPasswordValido(txtContra.TextBox, "Contraseña"))
-            {
                 return;
-            }
-
 
             if (cmbRol.SelectedIndex == -1)
             {
@@ -155,9 +112,7 @@ namespace SG_BAMS
                 this.Cursor = Cursors.WaitCursor;
                 btmModificar.Enabled = false;
 
-
                 clsUsuario objetoUsuario = new clsUsuario();
-
                 int idRol = (int)cmbRol.SelectedValue;
                 byte[] imagenByte = null;
 
@@ -171,6 +126,12 @@ namespace SG_BAMS
                 if (exito)
                 {
                     MessageBox.Show("Usuario guardado exitosamente.", "SG-BAMS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    if (idRol == 1 || idRol == 2)
+                    {
+                        frmImagenEmpleado agregarImagen = new frmImagenEmpleado(txtNombre.Text.Trim());
+                        agregarImagen.ShowDialog(); 
+                    }
 
                     this.DialogResult = DialogResult.OK;
                     this.Close();
@@ -191,7 +152,7 @@ namespace SG_BAMS
         /// Handles the Click event of the kryptonButton1 control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -201,11 +162,7 @@ namespace SG_BAMS
         /// Handles the Click event of the btnImagen control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnImagen_Click(object sender, EventArgs e)
-        {
-            frmImagenEmpleado agregarImagen = new frmImagenEmpleado(txtNombre.Text);
-            agregarImagen.Show();
-        }
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+
     }
 }

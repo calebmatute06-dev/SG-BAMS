@@ -24,7 +24,7 @@ namespace SG_BAMS.Login
         /// </summary>
         public static string UsuarioLogueado;
         /// <summary>
-        /// Initializes a new instance of the <see cref="Login"/> class.
+        /// Initializes a new instance of the <see cref="Login" /> class.
         /// </summary>
         public Login()
         {
@@ -38,7 +38,7 @@ namespace SG_BAMS.Login
         /// Handles the Click event of the btnSalir control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -49,7 +49,7 @@ namespace SG_BAMS.Login
         /// Handles the KeyPress event of the txtUsu control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="KeyPressEventArgs" /> instance containing the event data.</param>
         private void txtUsu_KeyPress(object sender, KeyPressEventArgs e)
         {
 
@@ -60,7 +60,7 @@ namespace SG_BAMS.Login
         /// Handles the KeyPress event of the txtCon control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="KeyPressEventArgs" /> instance containing the event data.</param>
         private void txtCon_KeyPress(object sender, KeyPressEventArgs e)
         {
 
@@ -70,7 +70,7 @@ namespace SG_BAMS.Login
         /// Handles the Click event of the btninicioSesion1 control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void btninicioSesion1_Click(object sender, EventArgs e)
         {
             if (ClsValidaciones.CampoVacio(txtUsu, "Usuario")) return;
@@ -133,7 +133,13 @@ namespace SG_BAMS.Login
                         frmFacial.Show();
                         this.Hide();
                         break;
-
+                    case 3:
+                        MessageBox.Show("Login correcto. ¡Bienvenido Soporte!", "Éxito",
+                           MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Soporte soporte = new Soporte();
+                        soporte.Show();
+                        this.Hide();
+                        break;
                     case -1:
                         MessageBox.Show("El usuario está inactivo. No puede ingresar.", "Cuenta Inactiva", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         break;
@@ -158,7 +164,7 @@ namespace SG_BAMS.Login
         /// Handles the Click event of the btnsalirLogin1 control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void btnsalirLogin1_Click(object sender, EventArgs e)
         {
             Application.Exit();

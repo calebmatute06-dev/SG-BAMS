@@ -43,7 +43,7 @@ namespace SG_BAMS
         private string usuarioAsignado = "";
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="frmImagenEmpleado"/> class.
+        /// Initializes a new instance of the <see cref="frmImagenEmpleado" /> class.
         /// </summary>
         /// <param name="nombreUsuario">The nombre usuario.</param>
         public frmImagenEmpleado(string nombreUsuario = "")
@@ -57,7 +57,7 @@ namespace SG_BAMS
         /// Frames the process.
         /// </summary>
         /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void FrameProcess(object sender, EventArgs e)
         {
             if (camara != null && camaraEnEncendida)
@@ -101,7 +101,7 @@ namespace SG_BAMS
         /// Handles the Click event of the btnCapturar control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private async void btnCapturar_Click(object sender, EventArgs e)
         {
 
@@ -123,38 +123,17 @@ namespace SG_BAMS
         /// Handles the Load event of the frmImagenEmpleado control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void frmImagenEmpleado_Load(object sender, EventArgs e)
         {
             clsSoporte.InicializarDirectorio();
-            LlenarUsuarios();
-            if (!string.IsNullOrEmpty(usuarioAsignado)) cmbUsuarios.Text = usuarioAsignado;
+            if (!string.IsNullOrEmpty(usuarioAsignado))
+                lblUsuario.Text = usuarioAsignado;
             EncenderCamara(false);
         }
 
         /// <summary>
         /// Llenars the usuarios.
-        /// </summary>
-        private void LlenarUsuarios()
-        {
-            try
-            {
-                clsSoporte soporte = new clsSoporte();
-                DataTable dt = soporte.ObtenerUsuarios();
-                if (dt.Rows.Count > 0)
-                {
-                    cmbUsuarios.DataSource = dt;
-                    cmbUsuarios.DisplayMember = "nombre_usuario";
-                    cmbUsuarios.ValueMember = "id_usuario";
-                    cmbUsuarios.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                    cmbUsuarios.AutoCompleteSource = AutoCompleteSource.ListItems;
-                    cmbUsuarios.SelectedIndex = -1;
-                }
-            }
-            catch (Exception ex) { MessageBox.Show("Error al cargar ComboBox: " + ex.Message); }
-        }
-        /// <summary>
-        /// Encenders the camara.
         /// </summary>
         /// <param name="mostrarMensajeExito">if set to <c>true</c> [mostrar mensaje exito].</param>
         private void EncenderCamara(bool mostrarMensajeExito)
@@ -219,7 +198,7 @@ namespace SG_BAMS
         /// Handles the 1 event of the btnCapturar_Click control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private async void btnCapturar_Click_1(object sender, EventArgs e)
         {
             if (camara == null)
@@ -228,25 +207,19 @@ namespace SG_BAMS
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(cmbUsuarios.Text))
+            if (string.IsNullOrWhiteSpace(lblUsuario.Text))
             {
-                MessageBox.Show("Selecciona o ingresa un usuario primero.");
+                MessageBox.Show("No hay un usuario asignado.");
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(cmbUsuarios.Text))
-            {
-                MessageBox.Show("Selecciona o ingresa un usuario primero.");
-                return;
-            }
-
-            string nombreArchivo = cmbUsuarios.Text;
+            string nombreArchivo = lblUsuario.Text; 
             int fotosTomadas = 0;
             int intentos = 0;
 
             btnCapturar.Enabled = false;
 
-            while (fotosTomadas < 5 && intentos < 30) 
+            while (fotosTomadas < 5 && intentos < 30)
             {
                 using (var frameMat = camara.QueryFrame())
                 {
@@ -272,39 +245,33 @@ namespace SG_BAMS
                     }
                 }
                 intentos++;
-                await Task.Delay(400); 
+                await Task.Delay(400);
             }
 
             btnCapturar.Enabled = true;
 
             if (fotosTomadas >= 5)
-            {
                 MessageBox.Show($"¡Análisis completado! Se guardaron {fotosTomadas} capturas con éxito.", "Éxito");
-            }
             else if (fotosTomadas > 0)
-            {
                 MessageBox.Show($"Se capturaron {fotosTomadas} fotos. Intenta mover la cabeza más lento para llegar a 5.", "Aviso");
-            }
             else
-            {
                 MessageBox.Show("No se detectó el rostro. Asegúrate de tener buena iluminación frontal.");
-            }
         }
 
         /// <summary>
         /// Handles the Click event of the btnBorrar control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void btnBorrar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(cmbUsuarios.Text))
+            if (string.IsNullOrWhiteSpace(lblUsuario.Text)) 
             {
-                MessageBox.Show("Selecciona un usuario para buscar sus fotos.", "Aviso");
+                MessageBox.Show("No hay un usuario asignado.", "Aviso");
                 return;
             }
 
-            string nombreUsuario = cmbUsuarios.Text;
+            string nombreUsuario = lblUsuario.Text; 
             try
             {
                 var archivos = Directory.GetFiles(clsSoporte.DirectorioRostros, "*.jpg")
@@ -339,7 +306,7 @@ namespace SG_BAMS
         /// Handles the Click event of the btnEncender control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void btnEncender_Click(object sender, EventArgs e)
         {
             EncenderCamara(true);
@@ -349,7 +316,7 @@ namespace SG_BAMS
         /// Handles the Click event of the btnDetener control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void btnDetener_Click(object sender, EventArgs e)
         {
             if (camara != null)
@@ -368,7 +335,7 @@ namespace SG_BAMS
         /// Handles the Click event of the btnSalir control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             DetenerCamara(); this.Close();

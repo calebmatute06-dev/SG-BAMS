@@ -30,7 +30,6 @@
         {
             panel2 = new Panel();
             pctCamara = new PictureBox();
-            cmbUsuarios = new Krypton.Toolkit.KryptonComboBox();
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
@@ -42,8 +41,8 @@
             label3 = new Label();
             label1 = new Label();
             label2 = new Label();
+            lblUsuario = new Label();
             ((System.ComponentModel.ISupportInitialize)pctCamara).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)cmbUsuarios).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -65,23 +64,6 @@
             pctCamara.Size = new Size(486, 295);
             pctCamara.TabIndex = 148;
             pctCamara.TabStop = false;
-            // 
-            // cmbUsuarios
-            // 
-            cmbUsuarios.DropDownWidth = 300;
-            cmbUsuarios.Location = new Point(49, 61);
-            cmbUsuarios.Margin = new Padding(3, 2, 3, 2);
-            cmbUsuarios.Name = "cmbUsuarios";
-            cmbUsuarios.Size = new Size(199, 40);
-            cmbUsuarios.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
-            cmbUsuarios.StateCommon.ComboBox.Border.Rounding = 20F;
-            cmbUsuarios.StateCommon.ComboBox.Content.Color1 = Color.Navy;
-            cmbUsuarios.StateCommon.ComboBox.Content.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cmbUsuarios.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
-            cmbUsuarios.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
-            cmbUsuarios.StateCommon.Item.Content.ShortText.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cmbUsuarios.StateNormal.ComboBox.Border.Rounding = 40F;
-            cmbUsuarios.TabIndex = 149;
             // 
             // pictureBox2
             // 
@@ -240,9 +222,9 @@
             label3.ForeColor = Color.Navy;
             label3.Location = new Point(408, 26);
             label3.Name = "label3";
-            label3.Size = new Size(193, 29);
+            label3.Size = new Size(153, 29);
             label3.TabIndex = 342;
-            label3.Text = "Imagen del Usuario";
+            label3.Text = "Registro Facial";
             // 
             // label1
             // 
@@ -268,12 +250,25 @@
             label2.TabIndex = 349;
             label2.Text = "BAMS";
             // 
+            // lblUsuario
+            // 
+            lblUsuario.AutoSize = true;
+            lblUsuario.BackColor = Color.Transparent;
+            lblUsuario.Font = new Font("Arial Narrow", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblUsuario.ForeColor = Color.Navy;
+            lblUsuario.Location = new Point(66, 66);
+            lblUsuario.Name = "lblUsuario";
+            lblUsuario.Size = new Size(153, 29);
+            lblUsuario.TabIndex = 350;
+            lblUsuario.Text = "Registro Facial";
+            // 
             // frmImagenEmpleado
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(809, 410);
+            Controls.Add(lblUsuario);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(label3);
@@ -285,7 +280,6 @@
             Controls.Add(panel1);
             Controls.Add(pictureBox1);
             Controls.Add(pictureBox2);
-            Controls.Add(cmbUsuarios);
             Controls.Add(pctCamara);
             Controls.Add(panel2);
             FormBorderStyle = FormBorderStyle.None;
@@ -294,7 +288,6 @@
             Text = "fmrImagenEmpleado";
             Load += frmImagenEmpleado_Load;
             ((System.ComponentModel.ISupportInitialize)pctCamara).EndInit();
-            ((System.ComponentModel.ISupportInitialize)cmbUsuarios).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
@@ -304,7 +297,6 @@
         #endregion
         private Panel panel2;
         private PictureBox pctCamara;
-        private Krypton.Toolkit.KryptonComboBox cmbUsuarios;
         private PictureBox pictureBox2;
         private PictureBox pictureBox1;
         private Panel panel1;
@@ -316,5 +308,6 @@
         private Label label3;
         private Label label1;
         private Label label2;
+        private Label lblUsuario;
     }
 }
