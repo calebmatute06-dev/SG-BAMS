@@ -271,5 +271,59 @@ namespace SG_BAMS.Proveedor
                 Cerrar();
             }
         }
+
+        public bool ExisteRtnProveedor(string rtn)
+        {
+            bool existe = false;
+            try
+            {
+                AbrirConexion();
+                
+                string consulta = "SELECT COUNT(*) FROM Proveedor WHERE rtn_proveedor = @rtn";
+
+                using (SqlCommand cmd = new SqlCommand(consulta, Conectar))
+                {
+                    cmd.Parameters.AddWithValue("@rtn", rtn);
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    existe = count > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al validar el RTN: " + ex.Message);
+            }
+            finally
+            {
+                Cerrar();
+            }
+            return existe;
+        }
+
+        public bool ExisteRtnProveedorModificar(string rtn, int idProveedorActual)
+        {
+            bool existe = false;
+            try
+            {
+                AbrirConexion();
+                string consulta = "SELECT COUNT(*) FROM Proveedor WHERE rtn_proveedor = @rtn AND id_proveedor <> @idActual";
+
+                using (SqlCommand cmd = new SqlCommand(consulta, Conectar))
+                {
+                    cmd.Parameters.AddWithValue("@rtn", rtn);
+                    cmd.Parameters.AddWithValue("@idActual", idProveedorActual);
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    existe = count > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al validar duplicado de RTN: " + ex.Message);
+            }
+            finally
+            {
+                Cerrar();
+            }
+            return existe;
+        }
     }
 }

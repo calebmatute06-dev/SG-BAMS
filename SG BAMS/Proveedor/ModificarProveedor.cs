@@ -38,7 +38,7 @@ namespace SG_BAMS.Proveedor
         private string _nombreOriginal;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ModificarProveedor"/> class.
+        /// Initializes a new instance of the <see cref="ModificarProveedor" /> class.
         /// </summary>
         /// <param name="idProveedor">The identifier proveedor.</param>
         /// <param name="nombre">The nombre.</param>
@@ -75,7 +75,7 @@ namespace SG_BAMS.Proveedor
         /// Handles the Click event of the btnsalir control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void btnsalir_Click(object sender, EventArgs e)
         {
 
@@ -86,7 +86,7 @@ namespace SG_BAMS.Proveedor
         /// Handles the Load event of the ModificarProveedor control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void ModificarProveedor_Load(object sender, EventArgs e)
         {
             proveedor.CargarComboEstado(cmbEstado);
@@ -102,11 +102,12 @@ namespace SG_BAMS.Proveedor
         /// Handles the Click event of the btnAceptar control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             string nombreNuevo = txtNombre.Text.Trim();
-
+            string rtnNuevo = txtRTN.Text.Trim();
+            int idProveedor = Convert.ToInt32(txtID.Text);
 
             if (string.IsNullOrWhiteSpace(nombreNuevo))
             {
@@ -174,10 +175,16 @@ namespace SG_BAMS.Proveedor
                 return;
             }
 
+            
+            if (proveedor.ExisteRtnProveedorModificar(rtnNuevo, idProveedor))
+            {
+                MessageBox.Show("El RTN ingresado ya pertenece a otro proveedor registrado.", "RTN Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtRTN.Focus();
+                return;
+            }
 
             try
             {
-                int idProveedor = Convert.ToInt32(txtID.Text);
                 int idEstado = Convert.ToInt32(cmbEstado.SelectedValue);
                 int idClasificacion = Convert.ToInt32(cmbClasificacion.SelectedValue);
                 int idUsuario = new ClsPasarUsuario().IdUsuario();
@@ -187,7 +194,7 @@ namespace SG_BAMS.Proveedor
                     nombreNuevo,
                     txtTelefono.Text.Trim(),
                     txtDireccion.Text.Trim(),
-                    txtRTN.Text.Trim(),
+                    rtnNuevo,
                     idEstado,
                     idClasificacion,
                     idUsuario
@@ -209,7 +216,7 @@ namespace SG_BAMS.Proveedor
         /// Handles the KeyPress event of the txtNombre control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="KeyPressEventArgs" /> instance containing the event data.</param>
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != '&')
@@ -222,7 +229,7 @@ namespace SG_BAMS.Proveedor
         /// Handles the KeyPress event of the txtDireccion control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="KeyPressEventArgs" /> instance containing the event data.</param>
         private void txtDireccion_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && !char.IsControl(e.KeyChar))
@@ -235,7 +242,7 @@ namespace SG_BAMS.Proveedor
         /// Handles the KeyPress event of the txtTelefono control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="KeyPressEventArgs" /> instance containing the event data.</param>
         private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (char.IsControl(e.KeyChar)) return;
@@ -262,7 +269,7 @@ namespace SG_BAMS.Proveedor
         /// Handles the KeyPress event of the txtRTN control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="KeyPressEventArgs" /> instance containing the event data.</param>
         private void txtRTN_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -275,13 +282,13 @@ namespace SG_BAMS.Proveedor
         /// Handles the SelectedIndexChanged event of the cmbEstado control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void cmbEstado_SelectedIndexChanged(object sender, EventArgs e) { }
         /// <summary>
         /// Handles the SelectedIndexChanged event of the cmbClasificacion control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void cmbClasificacion_SelectedIndexChanged(object sender, EventArgs e) { }
     }
 }

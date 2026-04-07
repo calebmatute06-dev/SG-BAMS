@@ -162,6 +162,14 @@ namespace SG_BAMS.Proveedor
                 return;
             }
 
+            
+            if (proveedor.ExisteRtnProveedor(txtRTN.Text.Trim()))
+            {
+                MessageBox.Show("El RTN ingresado ya pertenece a otro proveedor.", "RTN Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtRTN.Focus();
+                return;
+            }
+
             try
             {
                 int idClasificacion = Convert.ToInt32(cmbClasificacion.SelectedValue);

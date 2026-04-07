@@ -9,15 +9,13 @@ using System.Windows.Forms;
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    /// Clase centralizada de validaciones reutilizables para controles de formulario.
     /// </summary>
     public static class ClsValidaciones
     {
         /// <summary>
-        /// Validars the nombre.
+        /// Validar un nombre simple (wrapper).
         /// </summary>
-        /// <param name="nombre">The nombre.</param>
-        /// <returns></returns>
         public static bool ValidarNombre(string nombre)
         {
             TextBox temp = new TextBox { Text = nombre };
@@ -25,10 +23,8 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Validars the precio.
+        /// Validar un precio simple (wrapper).
         /// </summary>
-        /// <param name="precio">The precio.</param>
-        /// <returns></returns>
         public static bool ValidarPrecio(string precio)
         {
             TextBox temp = new TextBox { Text = precio };
@@ -37,16 +33,14 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Campoes the vacio.
+        /// Verifica si un campo de control está vacío y muestra advertencia.
         /// </summary>
-        /// <param name="control">The control.</param>
-        /// <param name="nombreCampo">The nombre campo.</param>
-        /// <returns></returns>
         public static bool CampoVacio(Control control, string nombreCampo)
         {
             if (string.IsNullOrWhiteSpace(control.Text))
             {
-                MessageBox.Show($"El campo '{nombreCampo}' no puede estar vacío.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"El campo '{nombreCampo}' no puede estar vacío.",
+                    "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return true;
             }
@@ -54,26 +48,24 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Eses the numero decimal valido.
+        /// Valida que el texto del control sea un número decimal mayor a cero.
         /// </summary>
-        /// <param name="control">The control.</param>
-        /// <param name="nombreCampo">The nombre campo.</param>
-        /// <param name="valorResultado">The valor resultado.</param>
-        /// <returns></returns>
         public static bool EsNumeroDecimalValido(Control control, string nombreCampo, out decimal valorResultado)
         {
             valorResultado = 0;
             string texto = control.Text.Trim();
-            bool esValido = decimal.TryParse(texto, NumberStyles.Number | NumberStyles.AllowThousands | NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out valorResultado);
+            bool esValido = decimal.TryParse(texto,
+                NumberStyles.Number | NumberStyles.AllowThousands | NumberStyles.AllowDecimalPoint,
+                CultureInfo.InvariantCulture, out valorResultado);
 
             if (!esValido)
-            {
-                esValido = decimal.TryParse(texto, NumberStyles.Currency, CultureInfo.CurrentCulture, out valorResultado);
-            }
+                esValido = decimal.TryParse(texto, NumberStyles.Currency,
+                    CultureInfo.CurrentCulture, out valorResultado);
 
             if (!esValido || valorResultado <= 0)
             {
-                MessageBox.Show($"{nombreCampo} debe ser un valor numérico válido y mayor a cero.", "Formato Incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"{nombreCampo} debe ser un valor numérico válido y mayor a cero.",
+                    "Formato Incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
             }
@@ -81,62 +73,54 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Validars the decimales.
+        /// Permite solo dígitos y un separador decimal (punto o coma) en el KeyPress.
         /// </summary>
-        /// <param name="control">The control.</param>
-        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
         public static void ValidarDecimales(Control control, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.') && (e.KeyChar != ','))
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar)
+                && e.KeyChar != '.' && e.KeyChar != ',')
             {
                 e.Handled = true;
             }
 
-            if ((e.KeyChar == '.' || e.KeyChar == ',') && (control.Text.Contains(".") || control.Text.Contains(",")))
+            if ((e.KeyChar == '.' || e.KeyChar == ',')
+                && (control.Text.Contains(".") || control.Text.Contains(",")))
             {
                 e.Handled = true;
             }
         }
 
         /// <summary>
-        /// Validars the solo numeros.
+        /// Permite solo dígitos en el KeyPress.
         /// </summary>
-        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
         public static void ValidarSoloNumeros(KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
-            {
                 e.Handled = true;
-            }
         }
 
         /// <summary>
-        /// Permitirs the solo letras.
+        /// Permite solo letras y espacios en el KeyPress.
         /// </summary>
-        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
         public static void PermitirSoloLetras(KeyPressEventArgs e)
         {
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
-            {
                 e.Handled = true;
-            }
         }
 
         /// <summary>
-        /// Eses the nombre personal valido.
+        /// Valida que el texto del control sea un nombre personal (solo letras, sin caracteres raros,
+        /// sin letras aisladas, sin repeticiones excesivas ni palabras duplicadas).
         /// </summary>
-        /// <param name="control">The control.</param>
-        /// <param name="nombreCampo">The nombre campo.</param>
-        /// <param name="minLength">The minimum length.</param>
-        /// <param name="maxLength">The maximum length.</param>
-        /// <returns></returns>
-        public static bool EsNombrePersonalValido(Control control, string nombreCampo, int minLength = 3, int maxLength = 50)
+        public static bool EsNombrePersonalValido(Control control, string nombreCampo,
+            int minLength = 3, int maxLength = 50)
         {
             string texto = control.Text;
 
             if (string.IsNullOrWhiteSpace(texto))
             {
-                MessageBox.Show($"El campo '{nombreCampo}' es obligatorio.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"El campo '{nombreCampo}' es obligatorio.",
+                    "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
             }
@@ -145,45 +129,50 @@ namespace SG_BAMS
 
             if (textoTrim.Length < minLength || textoTrim.Length > maxLength)
             {
-                MessageBox.Show($"{nombreCampo} debe tener entre {minLength} y {maxLength} caracteres.", "Longitud", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"{nombreCampo} debe tener entre {minLength} y {maxLength} caracteres.",
+                    "Longitud", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
             }
 
             if (Regex.IsMatch(texto, @"\s{2,}") || texto.StartsWith(" ") || texto.EndsWith(" "))
             {
-                MessageBox.Show($"El campo '{nombreCampo}' tiene un espaciado incorrecto.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"El campo '{nombreCampo}' tiene un espaciado incorrecto.",
+                    "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
             }
 
             if (Regex.IsMatch(textoTrim, @"(?i)\b(?![yY]\b)[a-zñáéíóú]\b"))
             {
-                MessageBox.Show($"No se permiten letras aisladas en {nombreCampo} (excepto la 'y').", "Formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"No se permiten letras aisladas en {nombreCampo} (excepto la 'y').",
+                    "Formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
             }
 
-           
-            if (Regex.IsMatch(textoTrim, @"(.)\1{2,}") || Regex.IsMatch(textoTrim.Replace(" ", ""), @"(.{2,})\1{2,}"))
+            if (Regex.IsMatch(textoTrim, @"(.)\1{2,}")
+                || Regex.IsMatch(textoTrim.Replace(" ", ""), @"(.{2,})\1{2,}"))
             {
-                MessageBox.Show($"{nombreCampo} contiene caracteres o patrones repetitivos inválidos (máximo 2 iguales seguidos).", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(
+                    $"{nombreCampo} contiene caracteres o patrones repetitivos inválidos (máximo 2 iguales seguidos).",
+                    "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
             }
 
             if (!Regex.IsMatch(textoTrim, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"))
             {
-                MessageBox.Show($"{nombreCampo} solo debe contener letras.", "Formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"{nombreCampo} solo debe contener letras.",
+                    "Formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
             }
 
-            if (Regex.IsMatch(textoTrim, @"(.)\1{2,}") ||
-                Regex.IsMatch(textoTrim, @"\b(\w+)\b\s+\1\b", RegexOptions.IgnoreCase))
+            if (Regex.IsMatch(textoTrim, @"\b(\w+)\b\s+\1\b", RegexOptions.IgnoreCase))
             {
-                MessageBox.Show($"{nombreCampo} contiene caracteres o palabras repetidas inválidas.",
-                                "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"{nombreCampo} contiene palabras repetidas inválidas.",
+                    "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
             }
@@ -192,32 +181,26 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Permitirs the alfanumerico.
+        /// Permite alfanumérico y espacio en el KeyPress.
         /// </summary>
-        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
         public static void PermitirAlfanumerico(KeyPressEventArgs e)
         {
             if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
-            {
                 e.Handled = true;
-            }
         }
 
         /// <summary>
-        /// Eses the alfanumerico valido.
+        /// Valida que el texto del control sea alfanumérico válido (letras, números, '&', sin repeticiones).
         /// </summary>
-        /// <param name="control">The control.</param>
-        /// <param name="nombreCampo">The nombre campo.</param>
-        /// <param name="minLength">The minimum length.</param>
-        /// <param name="maxLength">The maximum length.</param>
-        /// <returns></returns>
-        public static bool EsAlfanumericoValido(Control control, string nombreCampo, int minLength = 3, int maxLength = 50)
+        public static bool EsAlfanumericoValido(Control control, string nombreCampo,
+            int minLength = 3, int maxLength = 50)
         {
             string texto = control.Text;
 
             if (string.IsNullOrWhiteSpace(texto))
             {
-                MessageBox.Show($"El campo '{nombreCampo}' es obligatorio.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"El campo '{nombreCampo}' es obligatorio.",
+                    "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
             }
@@ -226,73 +209,79 @@ namespace SG_BAMS
 
             if (textoTrim.Length < minLength || textoTrim.Length > maxLength)
             {
-                MessageBox.Show($"{nombreCampo} debe tener entre {minLength} y {maxLength} caracteres.", "Longitud", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"{nombreCampo} debe tener entre {minLength} y {maxLength} caracteres.",
+                    "Longitud", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
             }
 
-            
             if (Regex.IsMatch(textoTrim, @"(.)\1{2,}"))
             {
-                MessageBox.Show($"{nombreCampo} contiene demasiados caracteres repetidos seguidos (máximo 2).", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(
+                    $"{nombreCampo} contiene demasiados caracteres repetidos seguidos (máximo 2).",
+                    "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
             }
 
             if (Regex.IsMatch(textoTrim, @"(?i)\b(?![yY]\b)[a-zñáéíóú]\b"))
             {
-                MessageBox.Show($"No se permiten letras aisladas en {nombreCampo}.", "Formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"No se permiten letras aisladas en {nombreCampo}.",
+                    "Formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
             }
 
-            if (Regex.IsMatch(texto, @"\s{2,}") || texto.StartsWith(" ") || texto.EndsWith(" ") ||
-                Regex.IsMatch(textoTrim.Replace(" ", ""), @"(.{2,})\1{2,}"))
+            if (Regex.IsMatch(texto, @"\s{2,}") || texto.StartsWith(" ") || texto.EndsWith(" ")
+                || Regex.IsMatch(textoTrim.Replace(" ", ""), @"(.{2,})\1{2,}"))
             {
-                MessageBox.Show($"{nombreCampo} tiene un formato o repetición inválida.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"{nombreCampo} tiene un formato o repetición inválida.",
+                    "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
             }
 
             if (!Regex.IsMatch(textoTrim, @"^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\s&]+$"))
             {
-                MessageBox.Show($"{nombreCampo} solo debe contener letras, números y '&'.", "Formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"{nombreCampo} solo debe contener letras, números y '&'.",
+                    "Formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
             }
 
-            if (Regex.IsMatch(texto, @"(.)\1{2,}") || Regex.IsMatch(texto, @"\b(\w+)\b\s+\1\b", RegexOptions.IgnoreCase))
+            if (Regex.IsMatch(texto, @"\b(\w+)\b\s+\1\b", RegexOptions.IgnoreCase))
             {
-                MessageBox.Show($"{nombreCampo} contiene caracteres o palabras repetidas inválidas.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"{nombreCampo} contiene palabras repetidas inválidas.",
+                    "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
             }
+
             return true;
         }
 
         /// <summary>
-        /// Validars the busqueda alfanumerica.
+        /// Permite solo caracteres alfanuméricos (sin espacios) en una búsqueda, en el KeyPress.
         /// </summary>
-        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
         public static void ValidarBusquedaAlfanumerica(KeyPressEventArgs e)
         {
             if (char.IsControl(e.KeyChar) || char.IsWhiteSpace(e.KeyChar)) return;
-            if (!Regex.IsMatch(e.KeyChar.ToString(), @"^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ]+$")) e.Handled = true;
+            if (!Regex.IsMatch(e.KeyChar.ToString(), @"^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ]+$"))
+                e.Handled = true;
         }
 
         /// <summary>
-        /// Eses the telefono honduras valido.
+        /// Valida que el teléfono tenga 8 dígitos y comience con prefijo válido de Honduras (2,3,7,8,9).
         /// </summary>
-        /// <param name="control">The control.</param>
-        /// <returns></returns>
         public static bool EsTelefonoHondurasValido(Control control)
         {
             string tel = control.Text.Trim();
 
             if (!Regex.IsMatch(tel, @"^[23789]\d{7}$"))
             {
-                MessageBox.Show("El teléfono debe tener 8 dígitos y comenzar con un prefijo válido de Honduras (2, 3, 7, 8 o 9).",
-                                "Teléfono Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(
+                    "El teléfono debe tener 8 dígitos y comenzar con un prefijo válido de Honduras (2, 3, 7, 8 o 9).",
+                    "Teléfono Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
             }
@@ -301,26 +290,27 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Eses the password valido.
+        /// Valida que la contraseña no esté vacía, no tenga espacios, tenga longitud mínima
+        /// y no contenga más de 2 caracteres repetidos consecutivos.
         /// </summary>
-        /// <param name="control">The control.</param>
-        /// <param name="nombreCampo">The nombre campo.</param>
-        /// <param name="minLength">The minimum length.</param>
-        /// <returns></returns>
         public static bool EsPasswordValido(Control control, string nombreCampo, int minLength = 6)
         {
             string pass = control.Text;
+
             if (string.IsNullOrWhiteSpace(pass) || pass.Contains(" ") || pass.Length < minLength)
             {
-                MessageBox.Show($"{nombreCampo} debe tener al menos {minLength} caracteres sin espacios.", "Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(
+                    $"{nombreCampo} debe tener al menos {minLength} caracteres sin espacios.",
+                    "Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
             }
 
-            
             if (Regex.IsMatch(pass, @"(.)\1{2,}"))
             {
-                MessageBox.Show($"{nombreCampo} es muy débil (demasiados caracteres repetidos seguidos).", "Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(
+                    $"{nombreCampo} es muy débil (demasiados caracteres repetidos seguidos).",
+                    "Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
             }
@@ -329,32 +319,29 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Validars the seleccion.
+        /// Valida que un KryptonComboBox tenga una opción seleccionada.
         /// </summary>
-        /// <param name="cb">The cb.</param>
-        /// <param name="nombreCampo">The nombre campo.</param>
-        /// <returns></returns>
         public static bool ValidarSeleccion(KryptonComboBox cb, string nombreCampo)
         {
             if (cb.SelectedIndex == -1 || string.IsNullOrWhiteSpace(cb.Text))
             {
-                MessageBox.Show("Debe seleccionar una opción en " + nombreCampo + ".", "Campo Requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Debe seleccionar una opción en " + nombreCampo + ".",
+                    "Campo Requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             return true;
         }
 
         /// <summary>
-        /// Validars the codigo barra.
+        /// Valida que un código de barras sea alfanumérico y tenga entre 6 y 20 caracteres.
         /// </summary>
-        /// <param name="codigo">The codigo.</param>
-        /// <returns></returns>
         public static bool ValidarCodigoBarra(string codigo)
         {
-            if(!Regex.IsMatch(codigo, @"^[a-zA-Z0-9]{6,20}$"))
-    {
-                MessageBox.Show("El código de barras debe ser alfanumérico y tener entre 6 y 20 caracteres.",
-                                "Error de Código de Barras", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (!Regex.IsMatch(codigo, @"^[a-zA-Z0-9]{6,20}$"))
+            {
+                MessageBox.Show(
+                    "El código de barras debe ser alfanumérico y tener entre 6 y 20 caracteres.",
+                    "Error de Código de Barras", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -362,10 +349,8 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Validars the telefono key press.
+        /// Restringe el KeyPress de un campo de teléfono: solo dígitos y primer dígito con prefijo hondureño válido.
         /// </summary>
-        /// <param name="txt">The text.</param>
-        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
         public static void ValidarTelefonoKeyPress(KryptonTextBox txt, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
@@ -378,20 +363,17 @@ namespace SG_BAMS
             {
                 char[] prefijosHonduras = { '2', '3', '7', '8', '9' };
                 if (!prefijosHonduras.Contains(e.KeyChar))
-                {
                     e.Handled = true;
-                }
             }
         }
 
         /// <summary>
-        /// Permitirs the numeros y decimales.
+        /// Permite dígitos y un solo separador decimal (punto o coma) en el KeyPress.
         /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
         public static void PermitirNumerosYDecimales(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',' && !char.IsControl(e.KeyChar))
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ','
+                && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
                 return;
@@ -407,98 +389,82 @@ namespace SG_BAMS
                     return;
                 }
 
-                if (e.KeyChar == '.')
-                {
-                    if (texto.Contains("."))
-                    {
-                        e.Handled = true;
-                    }
-                }
+                if (e.KeyChar == '.' && texto.Contains("."))
+                    e.Handled = true;
 
-                if (e.KeyChar == ',')
-                {
-                    if (texto.Contains("."))
-                    {
-                        e.Handled = true;
-                    }
-                }
+                if (e.KeyChar == ',' && texto.Contains("."))
+                    e.Handled = true;
             }
         }
 
         /// <summary>
-        /// Validars the rango fechas.
+        /// Ajusta el rango máximo de dos DateTimePicker y evita que la fecha de inicio
+        /// sea posterior a la de fin.
         /// </summary>
-        /// <param name="dtpInicio">The DTP inicio.</param>
-        /// <param name="dtpFin">The DTP fin.</param>
         public static void ValidarRangoFechas(DateTimePicker dtpInicio, DateTimePicker dtpFin)
         {
             dtpInicio.MaxDate = DateTime.Today;
             dtpFin.MaxDate = DateTime.Today;
 
             if (dtpInicio.Value.Date > dtpFin.Value.Date)
-            {
                 dtpInicio.Value = dtpFin.Value;
-            }
         }
 
         /// <summary>
-        /// Eses the RTN valido.
+        /// Valida el formato del RTN hondureño (14 dígitos, código de departamento, tipo y año).
         /// </summary>
-        /// <param name="control">The control.</param>
-        /// <returns></returns>
         public static bool EsRTNValido(Control control)
         {
             string rtn = control.Text.Trim();
 
-            
             if (!Regex.IsMatch(rtn, @"^\d{14}$"))
             {
-                MessageBox.Show("El RTN debe tener exactamente 14 dígitos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("El RTN debe tener exactamente 14 dígitos.",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
             }
 
-            
             int depto = int.Parse(rtn.Substring(0, 2));
             if (depto < 1 || depto > 18)
             {
-                MessageBox.Show("El código de departamento es inválido.", "Ubicación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("El código de departamento es inválido.",
+                    "Ubicación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
             }
 
-            
             int tipo = int.Parse(rtn.Substring(4, 1));
-           
+
             if (tipo != 1 && tipo != 2 && tipo != 3 && tipo != 9)
             {
-                MessageBox.Show("El formato del RTN (dígito de tipo) es incorrecto.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("El formato del RTN (dígito de tipo) es incorrecto.",
+                    "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
             }
 
-           
-            int anioCompleto;
-            string bloqueAnio = rtn.Substring(4, 4);
-
-            if (tipo == 9) 
+            if (tipo == 9)
             {
-                
                 int correlativoEmpresa = int.Parse(rtn.Substring(4, 4));
-                if (correlativoEmpresa < 1000) 
+                if (correlativoEmpresa < 1000)
                 {
-                    MessageBox.Show("El código de registro de empresa es inválido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("El código de registro de empresa es inválido.",
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    control.Focus();
                     return false;
                 }
             }
-            else 
+            else
             {
                 int prefix = (tipo == 1) ? 1800 : (tipo == 2) ? 1900 : 2000;
-                anioCompleto = prefix + int.Parse(rtn.Substring(5, 3));
+                int anioCompleto = prefix + int.Parse(rtn.Substring(5, 3));
 
                 if (anioCompleto > DateTime.Now.Year)
                 {
-                    MessageBox.Show("El año de nacimiento en el RTN es mayor al año actual.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("El año de nacimiento en el RTN es mayor al año actual.",
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    control.Focus();
                     return false;
                 }
             }
@@ -506,18 +472,92 @@ namespace SG_BAMS
             return true;
         }
 
+        /// <summary>
+        /// Verifica que el RTN no esté duplicado en la tabla indicada (Cliente o Proveedor).
+        /// El RTN es único globalmente: ningún proveedor puede compartirlo sin importar su clasificación.
+        /// </summary>
+        /// <param name="control">Control que contiene el RTN.</param>
+        /// <param name="tablaOrigen">"cliente" o "proveedor".</param>
+        /// <param name="idExcluir">ID del registro actual al editar (0 para nuevos registros).</param>
+        public static bool ValidarRTNUnico(Control control, string tablaOrigen, int idExcluir = 0)
+        {
+            string rtnBusqueda = control.Text.Trim();
 
+            if (string.IsNullOrWhiteSpace(rtnBusqueda))
+            {
+                MessageBox.Show("El RTN no puede estar vacío.", "Validación",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                control.Focus();
+                return false;
+            }
+
+            string nombreTabla = "";
+            string columnaRtn = "";
+            string columnaId = "";
+
+            if (tablaOrigen.Equals("cliente", StringComparison.OrdinalIgnoreCase))
+            {
+                nombreTabla = "Cliente";
+                columnaRtn = "rtn_cliente";
+                columnaId = "id_cliente";
+            }
+            else if (tablaOrigen.Equals("proveedor", StringComparison.OrdinalIgnoreCase))
+            {
+                nombreTabla = "Proveedor";
+                columnaRtn = "rtn_proveedor";
+                columnaId = "id_proveedor";
+            }
+            else return true;
+
+            // Consulta indestructible: Quita espacios y guiones en la BD antes de comparar
+            string sql = $@"SELECT COUNT(*) FROM {nombreTabla} 
+                    WHERE REPLACE(REPLACE({columnaRtn}, ' ', ''), '-', '') = @rtn 
+                    AND {columnaId} <> @idExcluir";
+
+            ClsConexion conexion = new ClsConexion();
+            try
+            {
+                conexion.AbrirConexion();
+                using (var cmd = new Microsoft.Data.SqlClient.SqlCommand(sql, conexion.Conectar))
+                {
+                    // Usamos AddWithValue para evitar conflictos estrictos entre VARCHAR y NVARCHAR
+                    cmd.Parameters.AddWithValue("@rtn", rtnBusqueda);
+                    cmd.Parameters.AddWithValue("@idExcluir", idExcluir);
+
+                    int conteo = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    if (conteo > 0)
+                    {
+                        MessageBox.Show(
+                            $"El RTN '{rtnBusqueda}' ya se encuentra registrado en el sistema.",
+                            "RTN Duplicado",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+                        control.Focus();
+                        return false;
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al validar duplicidad: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            finally
+            {
+                conexion.Cerrar();
+            }
+        }
 
         /// <summary>
-        /// Permitirs the solo letras y numeros.
+        /// Permite solo letras, dígitos y espacios en el KeyPress.
         /// </summary>
-        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
         public static void PermitirSoloLetrasYNumeros(KeyPressEventArgs e)
         {
             if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
-            {
-                e.Handled = true; 
-            }
+                e.Handled = true;
         }
     }
 }
