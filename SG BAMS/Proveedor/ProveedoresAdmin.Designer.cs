@@ -718,6 +718,7 @@
             dgvProveedor.Name = "dgvProveedor";
             dgvProveedor.Size = new Size(682, 403);
             dgvProveedor.TabIndex = 331;
+            dgvProveedor.CellDoubleClick += dgvProveedor_CellDoubleClick_1;
             // 
             // Nombre
             // 
