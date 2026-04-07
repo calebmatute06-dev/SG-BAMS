@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using SG_BAMS.Administracion_de_BAMS.FormaPago;
+using SG_BAMS.Login;
 using SG_BAMS.Proveedor;
 using System;
 using System.Collections.Generic;
@@ -216,10 +217,14 @@ namespace SG_BAMS
                     }
                 }
 
+                
+                ClsPasarUsuario sesion = new ClsPasarUsuario();
+                int idUsuarioActual = sesion.IdUsuario();
+
                 ClsCompras logic = new ClsCompras();
 
                 bool exito = logic.GuardarNuevaCompra(
-                    1,
+                    idUsuarioActual,
                     dtpFechaPedido.SelectionStart,
                     Convert.ToInt32(cmbFormaPago.SelectedValue),
                     Convert.ToInt32(cmbProveedor.SelectedValue),

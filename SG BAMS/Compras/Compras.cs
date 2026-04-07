@@ -143,41 +143,46 @@ namespace SG_BAMS
                 .Replace("]", "[]]")
                 .Trim();
 
-            string rowFilter;
+            // Siempre aplicar filtro de fechas
+            string fDesde = dtpDesde.Value.Date.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+            string fHasta = dtpHasta.Value.Date.AddDays(1).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
 
-            if (string.IsNullOrWhiteSpace(texto))
+            var condicionesFecha = new List<string>();
+            foreach (DataColumn col in dtCompras.Columns)
             {
-
-                string fDesde = dtpDesde.Value.Date.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
-                string fHasta = dtpHasta.Value.Date.AddDays(1).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
-
-                var condicionesFecha = new List<string>();
-                foreach (DataColumn col in dtCompras.Columns)
-                {
-                    if (col.DataType == typeof(DateTime))
-                        condicionesFecha.Add(
-                            $"[{col.ColumnName}] >= #{fDesde}# AND [{col.ColumnName}] < #{fHasta}#"
-                        );
-                }
-
-                rowFilter = condicionesFecha.Count > 0
-                    ? string.Join(" AND ", condicionesFecha)
-                    : string.Empty;
+                if (col.DataType == typeof(DateTime))
+                    condicionesFecha.Add(
+                        $"[{col.ColumnName}] >= #{fDesde}# AND [{col.ColumnName}] < #{fHasta}#"
+                    );
             }
-            else
-            {
 
+            string filtroFecha = condicionesFecha.Count > 0
+                ? string.Join(" AND ", condicionesFecha)
+                : string.Empty;
+
+            // Si hay texto, agregar filtro de texto sobre columnas string
+            string filtroTexto = string.Empty;
+            if (!string.IsNullOrWhiteSpace(texto))
+            {
                 var condicionesTexto = new List<string>();
                 foreach (DataColumn col in dtCompras.Columns)
                 {
                     if (col.DataType == typeof(string))
                         condicionesTexto.Add($"[{col.ColumnName}] LIKE '%{texto}%'");
                 }
-
-                rowFilter = condicionesTexto.Count > 0
+                filtroTexto = condicionesTexto.Count > 0
                     ? string.Join(" OR ", condicionesTexto)
                     : string.Empty;
             }
+
+            // Combinar ambos filtros
+            string rowFilter;
+            if (!string.IsNullOrEmpty(filtroFecha) && !string.IsNullOrEmpty(filtroTexto))
+                rowFilter = $"({filtroFecha}) AND ({filtroTexto})";
+            else if (!string.IsNullOrEmpty(filtroFecha))
+                rowFilter = filtroFecha;
+            else
+                rowFilter = filtroTexto;
 
             try
             {
