@@ -431,17 +431,17 @@
             // 
             // btnProveedores
             // 
-            btnProveedores.BackColor = Color.Transparent;
+            btnProveedores.BackColor = Color.SkyBlue;
             btnProveedores.DialogResult = DialogResult.None;
             btnProveedores.Font = new Font("Arial Narrow", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnProveedores.ForeColor = Color.SkyBlue;
-            btnProveedores.HoverBackColor = Color.Navy;
+            btnProveedores.ForeColor = Color.White;
+            btnProveedores.HoverBackColor = Color.SkyBlue;
             btnProveedores.HoverForeColor = Color.White;
             btnProveedores.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
             btnProveedores.Location = new Point(11, 355);
             btnProveedores.MinimumSize = new Size(144, 47);
             btnProveedores.Name = "btnProveedores";
-            btnProveedores.NormalBackColor = Color.Navy;
+            btnProveedores.NormalBackColor = Color.SkyBlue;
             btnProveedores.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
             btnProveedores.PressedBackColor = Color.Navy;
             btnProveedores.PressedForeColor = Color.White;
@@ -450,7 +450,7 @@
             btnProveedores.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             btnProveedores.TabIndex = 371;
             btnProveedores.Text = "Proveedores";
-            btnProveedores.Click += btnProveedores_Click;
+         
             // 
             // btnDeudores
             // 

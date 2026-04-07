@@ -16,7 +16,7 @@ namespace SG_BAMS
         public frmAgregarModeloAuto()
         {
             InitializeComponent();
-            
+            this.StartPosition = FormStartPosition.CenterScreen;
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirAlfanumerico(e);
         }
 

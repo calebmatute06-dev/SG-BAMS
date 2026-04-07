@@ -27,6 +27,7 @@ namespace SG_BAMS
         public MenuPrincipalEmp()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
 
         }
         /// <summary>
@@ -120,7 +121,7 @@ namespace SG_BAMS
 
                 dgvVentas.DataSource = datosVentas;
 
-                
+
                 if (dgvVentas.Columns.Contains("factura_id"))
                     dgvVentas.Columns["factura_id"].HeaderText = "N° Factura";
 
@@ -150,7 +151,7 @@ namespace SG_BAMS
                 chartStock1.Series.Clear();
                 chartStock1.Legends.Clear();
 
-                
+
                 if (chartStock1.ChartAreas.Count == 0)
                 {
                     chartStock1.ChartAreas.Add(new ChartArea("Default"));
@@ -162,7 +163,7 @@ namespace SG_BAMS
                 area.AxisX.Enabled = AxisEnabled.False;
                 area.AxisY.Enabled = AxisEnabled.False;
 
-                
+
                 int sinStock = 0;
                 int bajoStock = 0;
                 int conStock = 0;
@@ -175,36 +176,36 @@ namespace SG_BAMS
                     else conStock++;
                 }
 
-                
+
                 Legend leyenda = chartStock1.Legends.Add("Leyenda");
                 leyenda.BackColor = Color.Transparent;
                 leyenda.Docking = Docking.Bottom;
                 leyenda.Font = new Font("Segoe UI", 9f, FontStyle.Bold);
 
-                
+
                 var seriePastel = chartStock1.Series.Add("StockSeries");
                 seriePastel.ChartType = SeriesChartType.Pie;
                 seriePastel.IsValueShownAsLabel = true;
                 seriePastel.Font = new Font("Segoe UI", 10f, FontStyle.Bold);
                 seriePastel["PieLabelStyle"] = "Inside";
 
-                
 
-                
+
+
                 int p1 = seriePastel.Points.AddY(sinStock);
                 seriePastel.Points[p1].Color = Color.FromArgb(210, 50, 50);
                 seriePastel.Points[p1].LegendText = $"Sin Stock ({sinStock} productos)";
                 seriePastel.Points[p1].Label = sinStock > 0 ? sinStock.ToString() : "";
                 seriePastel.Points[p1].LabelForeColor = Color.White;
 
-               
+
                 int p2 = seriePastel.Points.AddY(bajoStock);
                 seriePastel.Points[p2].Color = Color.FromArgb(220, 180, 0);
                 seriePastel.Points[p2].LegendText = $"Bajo Stock ({bajoStock} productos)";
                 seriePastel.Points[p2].Label = bajoStock > 0 ? bajoStock.ToString() : "";
                 seriePastel.Points[p2].LabelForeColor = Color.Black;
 
-               
+
                 int p3 = seriePastel.Points.AddY(conStock);
                 seriePastel.Points[p3].Color = Color.FromArgb(50, 160, 60);
                 seriePastel.Points[p3].LegendText = $"Con Stock ({conStock} productos)";
@@ -226,6 +227,10 @@ namespace SG_BAMS
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void MenuPrincipalEmp_Load(object sender, EventArgs e)
         {
+            btnMenu.Enabled = false;
+            btnMenu.BackColor = Color.SkyBlue;
+            btnMenu.ForeColor = Color.White;
+
             await ActualizarLabel();
             await ActualizarLabelDeudores();
             await ActualizarLabelProductos();
@@ -242,98 +247,8 @@ namespace SG_BAMS
         }
 
 
-        /// <summary>
-        /// Handles the Click event of the btnCerrarSesion control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnCerrarSesion_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            SG_BAMS.Login.Login log = new SG_BAMS.Login.Login();
-            log.Show();
-        }
 
 
-        /// <summary>
-        /// Handles the Click event of the kryptonButton13 control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void kryptonButton13_Click(object sender, EventArgs e)
-        {
-            FacturasEmp fact = new FacturasEmp();
-
-            fact.Show();
-            this.Close();
-        }
-
-        /// <summary>
-        /// Handles the Click event of the kryptonButton15 control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void kryptonButton15_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-
-
-        /// <summary>
-        /// Handles the Click event of the kryptonButton9 control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void kryptonButton9_Click(object sender, EventArgs e)
-        {
-            this.Show();
-        }
-
-        /// <summary>
-        /// Handles the Click event of the kryptonButton17 control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private async void kryptonButton17_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        /// <summary>
-        /// Handles the Click event of the kryptonButton1 control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void kryptonButton1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /// <summary>
-        /// Handles the Click event of the lblConteoClientes control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void lblConteoClientes_Click(object sender, EventArgs e)
-        {
-
-        }
 
         /// <summary>
         /// Handles the Shown event of the MenuPrincipalEmp control.
@@ -345,72 +260,6 @@ namespace SG_BAMS
             Ayudante_UI.AplicarZoomGlobal(this);
         }
 
-        /// <summary>
-        /// Handles the Click event of the btnfacturas control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnfacturas_Click(object sender, EventArgs e)
-        {
-
-            this.Hide();
-            FacturasEmp fact = new FacturasEmp();
-
-            fact.Show();
-
-        }
-
-        /// <summary>
-        /// Handles the Click event of the btnclientes control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private async void btnclientes_Click(object sender, EventArgs e)
-        {
-            ClientesEmp clienemp = new ClientesEmp();
-            clienemp.Show();
-            this.Close();
-        }
-
-        /// <summary>
-        /// Handles the Click event of the btninventario control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private async void btninventario_Click(object sender, EventArgs e)
-        {
-            InventarioEmp inventarioForm = new InventarioEmp();
-            inventarioForm.Show();
-            this.Close();
-        }
-
-        /// <summary>
-        /// Handles the Click event of the btndeudores control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private async void btndeudores_Click(object sender, EventArgs e)
-        {
-            Deudores_Emp deud = new Deudores_Emp();
-
-            deud.ShowDialog();
-            this.Close();
-            await ActualizarLabel();
-            await ActualizarLabelDeudores();
-            await ActualizarLabelProductos();
-        }
-
-        /// <summary>
-        /// Handles the Click event of the btnempleado control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnempleado_Click(object sender, EventArgs e)
-        {
-            Perfil per = new Perfil();
-
-            per.Show();
-        }
 
         /// <summary>
         /// Handles the Click event of the btninventario2 control.
@@ -447,7 +296,7 @@ namespace SG_BAMS
         private async void btndeudores2_Click(object sender, EventArgs e)
         {
             Deudores_Emp deudoresForm = new Deudores_Emp();
-            deudoresForm.ShowDialog();
+            deudoresForm.Show();
             await ActualizarLabelDeudores();
             this.Hide();
         }
@@ -460,7 +309,7 @@ namespace SG_BAMS
         private async void btnclientes2_Click(object sender, EventArgs e)
         {
             ClientesEmp clienemp = new ClientesEmp();
-            clienemp.ShowDialog();
+            clienemp.Show();
             await ActualizarLabel();
             this.Hide();
         }
@@ -477,37 +326,9 @@ namespace SG_BAMS
             notif.Show();
         }
 
-        /// <summary>
-        /// Handles the Click event of the BtnClientes control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void BtnClientes_Click(object sender, EventArgs e)
-        {
-            ClientesAdm frmCA = new ClientesAdm();
-            frmCA.Show();
-        }
 
-        /// <summary>
-        /// Handles the Click event of the BtnFacturas control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void BtnFacturas_Click(object sender, EventArgs e)
-        {
-            FacturasAdm frmFA = new FacturasAdm();
-            frmFA.Show();
-        }
 
-        /// <summary>
-        /// Handles the Click event of the btnmenuprincipal control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnmenuprincipal_Click(object sender, EventArgs e)
-        {
-            this.Refresh();
-        }
+
 
         /// <summary>
         /// Handles the Click event of the btnAsis control.
@@ -518,6 +339,57 @@ namespace SG_BAMS
         {
             AsistentedeIA AIA = new AsistentedeIA();
             AIA.ShowDialog();
+        }
+
+     
+
+        private void btnFacturas_Click(object sender, EventArgs e)
+        {
+            FacturasEmp FE = new FacturasEmp();
+            FE.Show();
+            this.Hide();
+        }
+
+        private void btnClientes_Click(object sender, EventArgs e)
+        {
+            ClientesEmp CE = new ClientesEmp();
+            CE.Show();
+            this.Hide();
+        }
+
+        private void btnInventario_Click(object sender, EventArgs e)
+        {
+            InventarioEmp IE = new InventarioEmp();
+            IE.Show();
+            this.Hide();
+        }
+
+        private void btnDeudores_Click(object sender, EventArgs e)
+        {
+            Deudores_Emp DE = new Deudores_Emp();
+            DE.Show();
+            this.Hide();
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            Login.Login login = new Login.Login();
+            login.Show();
+            this.Close();
+        }
+
+        private void btnPerfil_Click(object sender, EventArgs e)
+        {
+            Perfil perfil = new Perfil();
+            perfil.Show();
+        }
+
+        private void btnVentas_Click(object sender, EventArgs e)
+        {
+            FacturasEmp FE = new FacturasEmp();
+            FE.Show();
+            this.Hide();
+            
         }
     }
 }

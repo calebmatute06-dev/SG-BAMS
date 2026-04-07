@@ -1,9 +1,6 @@
 ﻿using Krypton.Toolkit;
-using Krypton.Toolkit;
-using SG_BAMS.Bitacora;
 using SG_BAMS.Bitacora;
 using SG_BAMS.MenuPrincipal;
-using SG_BAMS.Proveedor;
 using SG_BAMS.Proveedor;
 using SG_BAMS.Reporte;
 using System;
@@ -16,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+
 
 namespace SG_BAMS
 {
@@ -31,6 +29,7 @@ namespace SG_BAMS
         public MenuPrincipalAdm()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
 
@@ -248,13 +247,17 @@ namespace SG_BAMS
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void MenuPrincipalAdm_Load(object sender, EventArgs e)
         {
+            btnMenu.Enabled = false;
+            btnMenu.BackColor = Color.SkyBlue;
+            btnMenu.ForeColor = Color.White;
+
+
+
             await ActualizarLabel();
             await ActualizarLabelDeudores();
             await ActualizarLabelProductos();
             await CargarGraficoStock();
             await CargarGraficoMasVendidos();
-            
-
         }
 
 
@@ -360,10 +363,7 @@ namespace SG_BAMS
             this.Hide();
         }
 
-        private void btnMenu_Click(object sender, EventArgs e)
-        {
-            
-        }
+        
 
         private void btnFacturas_Click(object sender, EventArgs e)
         {
@@ -427,7 +427,7 @@ namespace SG_BAMS
         {
             Login.Login login = new Login.Login();
             login.Show();
-            this.Close();
+            this.Close(); 
         }
 
         private void btnPerfil_Click_1(object sender, EventArgs e)

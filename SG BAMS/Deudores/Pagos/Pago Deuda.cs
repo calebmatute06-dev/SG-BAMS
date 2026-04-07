@@ -14,6 +14,7 @@ namespace SG_BAMS
         public Pago_Deuda()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             RegistrarEventos();
             ConfigurarFormulario();
         }
@@ -21,6 +22,7 @@ namespace SG_BAMS
         public Pago_Deuda(string nombre, int idDeuda)
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             RegistrarEventos();
             this.nombreRecibido = nombre;
             this.idDeudaRecibido = idDeuda;

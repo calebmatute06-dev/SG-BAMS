@@ -25,6 +25,7 @@ namespace SG_BAMS
         public AgregarProducto()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
 

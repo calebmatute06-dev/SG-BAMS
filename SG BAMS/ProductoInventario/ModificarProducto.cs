@@ -29,6 +29,7 @@ namespace SG_BAMS
         public ModificarProducto()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         /// <summary>

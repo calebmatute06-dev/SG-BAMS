@@ -39,7 +39,7 @@
             label5 = new Label();
             label3 = new Label();
             label1 = new Label();
-            dgvProductosCompraMod = new Krypton.Toolkit.KryptonDataGridView();
+            dgvProductosMo = new Krypton.Toolkit.KryptonDataGridView();
             dtpFechaPedido = new Krypton.Toolkit.KryptonMonthCalendar();
             kryptonGroup1 = new Krypton.Toolkit.KryptonGroup();
             panel1 = new Panel();
@@ -50,20 +50,23 @@
             cmbFormaPago = new Krypton.Toolkit.KryptonComboBox();
             cmbProveedor = new Krypton.Toolkit.KryptonComboBox();
             label2 = new Label();
-            ((System.ComponentModel.ISupportInitialize)dgvProductosCompraMod).BeginInit();
+            dataGridView1 = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dgvProductosMo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cmbFormaPago).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cmbProveedor).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // txtNotaDetalle
             // 
-            txtNotaDetalle.Location = new Point(213, 204);
+            txtNotaDetalle.Location = new Point(186, 155);
+            txtNotaDetalle.Margin = new Padding(3, 2, 3, 2);
             txtNotaDetalle.Name = "txtNotaDetalle";
-            txtNotaDetalle.Size = new Size(277, 33);
+            txtNotaDetalle.Size = new Size(242, 29);
             txtNotaDetalle.StateCommon.Back.Color1 = Color.SkyBlue;
             txtNotaDetalle.StateCommon.Border.Rounding = 10F;
             txtNotaDetalle.TabIndex = 235;
@@ -74,21 +77,22 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial", 13F, FontStyle.Bold);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(151, 205);
+            label4.Location = new Point(132, 159);
             label4.Name = "label4";
-            label4.Size = new Size(67, 26);
+            label4.Size = new Size(57, 21);
             label4.TabIndex = 234;
             label4.Text = "Nota:";
             // 
             // btnAceptar
             // 
-            btnAceptar.Location = new Point(33, 476);
+            btnAceptar.Location = new Point(29, 357);
+            btnAceptar.Margin = new Padding(3, 2, 3, 2);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnAceptar.OverrideDefault.Back.Color2 = Color.White;
             btnAceptar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnAceptar.OverrideFocus.Back.Color2 = Color.White;
-            btnAceptar.Size = new Size(127, 55);
+            btnAceptar.Size = new Size(111, 41);
             btnAceptar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnAceptar.StateCommon.Back.Color2 = Color.White;
             btnAceptar.StateCommon.Border.Rounding = 40F;
@@ -105,13 +109,14 @@
             // 
             // kryptonButton4
             // 
-            kryptonButton4.Location = new Point(166, 477);
+            kryptonButton4.Location = new Point(145, 358);
+            kryptonButton4.Margin = new Padding(3, 2, 3, 2);
             kryptonButton4.Name = "kryptonButton4";
             kryptonButton4.OverrideDefault.Back.Color1 = Color.SkyBlue;
             kryptonButton4.OverrideDefault.Back.Color2 = Color.White;
             kryptonButton4.OverrideFocus.Back.Color1 = Color.SkyBlue;
             kryptonButton4.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton4.Size = new Size(127, 53);
+            kryptonButton4.Size = new Size(111, 40);
             kryptonButton4.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonButton4.StateCommon.Back.Color2 = Color.White;
             kryptonButton4.StateCommon.Border.Rounding = 40F;
@@ -128,13 +133,14 @@
             // 
             // kryptonButton5
             // 
-            kryptonButton5.Location = new Point(602, 477);
+            kryptonButton5.Location = new Point(527, 358);
+            kryptonButton5.Margin = new Padding(3, 2, 3, 2);
             kryptonButton5.Name = "kryptonButton5";
             kryptonButton5.OverrideDefault.Back.Color1 = Color.SkyBlue;
             kryptonButton5.OverrideDefault.Back.Color2 = Color.White;
             kryptonButton5.OverrideFocus.Back.Color1 = Color.SkyBlue;
             kryptonButton5.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton5.Size = new Size(213, 53);
+            kryptonButton5.Size = new Size(186, 40);
             kryptonButton5.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonButton5.StateCommon.Back.Color2 = Color.White;
             kryptonButton5.StateCommon.Border.Rounding = 40F;
@@ -155,17 +161,18 @@
             label8.BackColor = Color.Transparent;
             label8.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Navy;
-            label8.Location = new Point(784, 115);
+            label8.Location = new Point(686, 86);
             label8.Name = "label8";
-            label8.Size = new Size(131, 24);
+            label8.Size = new Size(113, 20);
             label8.TabIndex = 227;
             label8.Text = "Fecha de pedido";
             // 
             // lblTotal
             // 
-            lblTotal.Location = new Point(697, 429);
+            lblTotal.Location = new Point(610, 322);
+            lblTotal.Margin = new Padding(3, 2, 3, 2);
             lblTotal.Name = "lblTotal";
-            lblTotal.Size = new Size(136, 31);
+            lblTotal.Size = new Size(119, 23);
             lblTotal.StateCommon.ShortText.Color1 = Color.Navy;
             lblTotal.StateCommon.ShortText.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblTotal.TabIndex = 226;
@@ -177,9 +184,9 @@
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Arial", 13F, FontStyle.Bold);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(48, 248);
+            label6.Location = new Point(42, 186);
             label6.Name = "label6";
-            label6.Size = new Size(125, 26);
+            label6.Size = new Size(106, 21);
             label6.TabIndex = 224;
             label6.Text = "Productos:";
             // 
@@ -189,9 +196,9 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial", 13F, FontStyle.Bold);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(91, 160);
+            label5.Location = new Point(80, 128);
             label5.Name = "label5";
-            label5.Size = new Size(126, 26);
+            label5.Size = new Size(109, 21);
             label5.TabIndex = 223;
             label5.Text = "Proveedor:";
             // 
@@ -201,9 +208,9 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial", 13F, FontStyle.Bold);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(48, 116);
+            label3.Location = new Point(45, 87);
             label3.Name = "label3";
-            label3.Size = new Size(172, 26);
+            label3.Size = new Size(148, 21);
             label3.TabIndex = 222;
             label3.Text = "Forma de pago:";
             // 
@@ -213,41 +220,44 @@
             label1.BackColor = Color.SkyBlue;
             label1.Font = new Font("Arial", 13F, FontStyle.Bold);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(41, 44);
+            label1.Location = new Point(36, 33);
             label1.Name = "label1";
-            label1.Size = new Size(191, 26);
+            label1.Size = new Size(164, 21);
             label1.TabIndex = 220;
             label1.Text = "Modificar Compra";
             // 
-            // dgvProductosCompraMod
+            // dgvProductosMo
             // 
-            dgvProductosCompraMod.AllowUserToAddRows = false;
-            dgvProductosCompraMod.BorderStyle = BorderStyle.None;
-            dgvProductosCompraMod.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProductosCompraMod.Location = new Point(48, 277);
-            dgvProductosCompraMod.MultiSelect = false;
-            dgvProductosCompraMod.Name = "dgvProductosCompraMod";
-            dgvProductosCompraMod.RowHeadersWidth = 51;
-            dgvProductosCompraMod.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvProductosCompraMod.Size = new Size(643, 183);
-            dgvProductosCompraMod.TabIndex = 218;
-            dgvProductosCompraMod.AllowUserToAddRowsChanged += dgvProductosCompraMod_AllowUserToAddRowsChanged;
-            dgvProductosCompraMod.CellBeginEdit += dgvProductosCompraMod_CellBeginEdit;
-            dgvProductosCompraMod.CellDoubleClick += dgvProductosCompraMod_CellDoubleClick;
-            dgvProductosCompraMod.CellValueChanged += dgvProductosCompraMod_CellValueChanged_1;
+            dgvProductosMo.AllowUserToAddRows = false;
+            dgvProductosMo.BorderStyle = BorderStyle.None;
+            dgvProductosMo.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvProductosMo.Location = new Point(42, 208);
+            dgvProductosMo.Margin = new Padding(3, 2, 3, 2);
+            dgvProductosMo.MultiSelect = false;
+            dgvProductosMo.Name = "dgvProductosMo";
+            dgvProductosMo.RowHeadersWidth = 51;
+            dgvProductosMo.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvProductosMo.Size = new Size(563, 137);
+            dgvProductosMo.TabIndex = 218;
+            dgvProductosMo.AllowUserToAddRowsChanged += dgvProductosCompraMod_AllowUserToAddRowsChanged;
+            dgvProductosMo.CellBeginEdit += dgvProductosCompraMod_CellBeginEdit;
+            dgvProductosMo.CellDoubleClick += dgvProductosCompraMod_CellDoubleClick;
+            dgvProductosMo.CellValueChanged += dgvProductosCompraMod_CellValueChanged_1;
             // 
             // dtpFechaPedido
             // 
             dtpFechaPedido.Enabled = false;
-            dtpFechaPedido.Location = new Point(715, 143);
+            dtpFechaPedido.Location = new Point(626, 107);
+            dtpFechaPedido.Margin = new Padding(3, 2, 3, 2);
             dtpFechaPedido.Name = "dtpFechaPedido";
-            dtpFechaPedido.Size = new Size(293, 218);
+            dtpFechaPedido.Size = new Size(230, 182);
             dtpFechaPedido.TabIndex = 217;
             // 
             // kryptonGroup1
             // 
-            kryptonGroup1.Location = new Point(29, 27);
-            kryptonGroup1.Size = new Size(209, 59);
+            kryptonGroup1.Location = new Point(25, 20);
+            kryptonGroup1.Margin = new Padding(3, 2, 3, 2);
+            kryptonGroup1.Size = new Size(183, 44);
             kryptonGroup1.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroup1.StateCommon.Border.Rounding = 70F;
             kryptonGroup1.TabIndex = 216;
@@ -256,45 +266,50 @@
             // 
             panel1.BackColor = Color.Navy;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1050, 24);
+            panel1.Size = new Size(919, 18);
             panel1.TabIndex = 215;
             // 
             // panel3
             // 
             panel3.BackColor = Color.Navy;
-            panel3.Location = new Point(0, 537);
+            panel3.Location = new Point(0, 403);
+            panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1050, 24);
+            panel3.Size = new Size(919, 18);
             panel3.TabIndex = 214;
             // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Navy;
             pictureBox1.Location = new Point(0, 0);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(24, 549);
+            pictureBox1.Size = new Size(21, 412);
             pictureBox1.TabIndex = 213;
             pictureBox1.TabStop = false;
             // 
             // pictureBox4
             // 
             pictureBox4.BackColor = Color.Navy;
-            pictureBox4.Location = new Point(1026, 6);
+            pictureBox4.Location = new Point(898, 4);
+            pictureBox4.Margin = new Padding(3, 2, 3, 2);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(24, 555);
+            pictureBox4.Size = new Size(21, 416);
             pictureBox4.TabIndex = 212;
             pictureBox4.TabStop = false;
             // 
             // btnEliminarProducto
             // 
-            btnEliminarProducto.Location = new Point(477, 477);
+            btnEliminarProducto.Location = new Point(417, 358);
+            btnEliminarProducto.Margin = new Padding(3, 2, 3, 2);
             btnEliminarProducto.Name = "btnEliminarProducto";
             btnEliminarProducto.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnEliminarProducto.OverrideDefault.Back.Color2 = Color.White;
             btnEliminarProducto.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnEliminarProducto.OverrideFocus.Back.Color2 = Color.White;
-            btnEliminarProducto.Size = new Size(119, 55);
+            btnEliminarProducto.Size = new Size(104, 41);
             btnEliminarProducto.StateCommon.Back.Color1 = Color.SkyBlue;
             btnEliminarProducto.StateCommon.Back.Color2 = Color.White;
             btnEliminarProducto.StateCommon.Border.Rounding = 40F;
@@ -313,9 +328,10 @@
             // 
             cmbFormaPago.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbFormaPago.DropDownWidth = 300;
-            cmbFormaPago.Location = new Point(213, 111);
+            cmbFormaPago.Location = new Point(191, 83);
+            cmbFormaPago.Margin = new Padding(3, 2, 3, 2);
             cmbFormaPago.Name = "cmbFormaPago";
-            cmbFormaPago.Size = new Size(197, 38);
+            cmbFormaPago.Size = new Size(172, 34);
             cmbFormaPago.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
             cmbFormaPago.StateCommon.ComboBox.Border.Rounding = 20F;
             cmbFormaPago.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
@@ -327,9 +343,10 @@
             // cmbProveedor
             // 
             cmbProveedor.DropDownWidth = 300;
-            cmbProveedor.Location = new Point(213, 155);
+            cmbProveedor.Location = new Point(186, 119);
+            cmbProveedor.Margin = new Padding(3, 2, 3, 2);
             cmbProveedor.Name = "cmbProveedor";
-            cmbProveedor.Size = new Size(312, 38);
+            cmbProveedor.Size = new Size(273, 34);
             cmbProveedor.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
             cmbProveedor.StateCommon.ComboBox.Border.Rounding = 20F;
             cmbProveedor.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
@@ -344,17 +361,26 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(902, 495);
+            label2.Location = new Point(789, 371);
             label2.Name = "label2";
-            label2.Size = new Size(102, 35);
+            label2.Size = new Size(84, 29);
             label2.TabIndex = 345;
             label2.Text = "BAMS";
             // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(166, 43);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.Size = new Size(563, 137);
+            dataGridView1.TabIndex = 346;
+            // 
             // Modificar_datos__Compra_
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1049, 560);
+            ClientSize = new Size(918, 420);
+            Controls.Add(dataGridView1);
             Controls.Add(label2);
             Controls.Add(cmbFormaPago);
             Controls.Add(cmbProveedor);
@@ -370,7 +396,7 @@
             Controls.Add(label5);
             Controls.Add(label3);
             Controls.Add(label1);
-            Controls.Add(dgvProductosCompraMod);
+            Controls.Add(dgvProductosMo);
             Controls.Add(dtpFechaPedido);
             Controls.Add(kryptonGroup1);
             Controls.Add(panel1);
@@ -378,16 +404,18 @@
             Controls.Add(pictureBox1);
             Controls.Add(pictureBox4);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Modificar_datos__Compra_";
             Text = "Modificar_datos__Compra_";
             Load += Modificar_datos__Compra__Load;
-            ((System.ComponentModel.ISupportInitialize)dgvProductosCompraMod).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvProductosMo).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)cmbFormaPago).EndInit();
             ((System.ComponentModel.ISupportInitialize)cmbProveedor).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -405,7 +433,7 @@
         private Label label5;
         private Label label3;
         private Label label1;
-        private Krypton.Toolkit.KryptonDataGridView dgvProductosCompraMod;
+        private Krypton.Toolkit.KryptonDataGridView dgvProductosMo;
         private Krypton.Toolkit.KryptonMonthCalendar dtpFechaPedido;
         private Krypton.Toolkit.KryptonGroup kryptonGroup1;
         private Panel panel1;
@@ -416,5 +444,6 @@
         private Krypton.Toolkit.KryptonComboBox cmbFormaPago;
         private Krypton.Toolkit.KryptonComboBox cmbProveedor;
         private Label label2;
+        private DataGridView dataGridView1;
     }
 }

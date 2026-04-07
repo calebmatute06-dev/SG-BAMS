@@ -30,6 +30,7 @@ namespace SG_BAMS
         public frmModificarMarcaProducto(int id, string nombreActual)
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             this.idMarca = id;
             txtDescri.Text = nombreActual;
 

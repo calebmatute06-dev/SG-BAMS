@@ -29,6 +29,7 @@ namespace SG_BAMS
         public frmAgregarUsuarios()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             CargarComboRoles();
             cmbRol.DropDownStyle = ComboBoxStyle.DropDownList;
 

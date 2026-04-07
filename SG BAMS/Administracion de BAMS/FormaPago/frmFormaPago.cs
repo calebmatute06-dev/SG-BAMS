@@ -27,6 +27,7 @@ namespace SG_BAMS
         public frmFormaPago()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             this.Load += new EventHandler(frmFormasPago_Load);
         }
         /// <summary>

@@ -28,7 +28,7 @@ namespace SG_BAMS
         public frmUsuarios()
         {
             InitializeComponent();
-  
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
 

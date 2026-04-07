@@ -30,6 +30,7 @@ namespace SG_BAMS
         public frmModificarModelos(int id, string nombreActual)
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             this.idModeloSeleccionado = id;
             txtDescri.Text = nombreActual;
 

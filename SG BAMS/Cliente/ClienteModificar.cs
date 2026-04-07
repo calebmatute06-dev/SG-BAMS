@@ -35,6 +35,7 @@ namespace SG_BAMS
         public ClienteModificar(int idCliente, string nombreCliente, string apellidoCliente, string telefonoCliente, string rtnCliente, int idEstado)
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             txtID.Text = idCliente.ToString();
             txtNombre.Text = nombreCliente;
             txtApellido.Text = apellidoCliente;

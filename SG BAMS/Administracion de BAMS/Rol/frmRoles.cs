@@ -27,6 +27,7 @@ namespace SG_BAMS
         public frmRoles()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             this.Load += new EventHandler(frmRoles_Load);
         }
 

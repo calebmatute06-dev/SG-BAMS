@@ -29,6 +29,7 @@ namespace SG_BAMS
         public Deudores_Emp()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             CargarGridDeudores();
 
 
@@ -177,70 +178,6 @@ namespace SG_BAMS
             new NotificacionesAdmin().Show();
         }
 
-        /// <summary>
-        /// Handles the Click event of the btnMenuEmp control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnMenuEmp_Click(object sender, EventArgs e)
-        {
-            new MenuPrincipalEmp().Show();
-            this.Close();
-        }
-
-        /// <summary>
-        /// Handles the Click event of the btnFacturasEmp control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnFacturasEmp_Click(object sender, EventArgs e)
-        {
-            new FacturasEmp().Show();
-            this.Close();
-        }
-
-        /// <summary>
-        /// Handles the Click event of the btnClientesEmp control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnClientesEmp_Click(object sender, EventArgs e)
-        {
-            new ClientesEmp().Show();
-            this.Close();
-        }
-
-        /// <summary>
-        /// Handles the Click event of the btnInventarioEmp control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnInventarioEmp_Click(object sender, EventArgs e)
-        {
-            new InventarioEmp().Show();
-            this.Close();
-        }
-
-        /// <summary>
-        /// Handles the Click event of the btnPerfil control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnPerfil_Click(object sender, EventArgs e)
-        {
-            new Perfil().Show();
-        }
-
-        /// <summary>
-        /// Handles the Click event of the btnCerrarSesion control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnCerrarSesion_Click(object sender, EventArgs e)
-        {
-            new SG_BAMS.Login.Login().Show();
-            this.Close();
-        }
 
 
         /// <summary>
@@ -263,6 +200,10 @@ namespace SG_BAMS
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void Deudores_Emp_Load(object sender, EventArgs e)
         {
+            btnDeudores.Enabled = false;
+            btnDeudores.BackColor = Color.SkyBlue;
+            btnDeudores.ForeColor = Color.White;
+
             dgvDeudores.ClearSelection();
             dgvDeudores.BorderStyle = BorderStyle.None;
             dgvDeudores.BackgroundColor = Color.White;
@@ -292,6 +233,49 @@ namespace SG_BAMS
             dgvDeudores.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvDeudores.ClearSelection();
 
+        }
+
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            MenuPrincipalEmp ME = new MenuPrincipalEmp();
+            ME.Show();
+            this.Hide();
+        }
+
+        private void btnFacturas_Click(object sender, EventArgs e)
+        {
+            FacturasEmp FE = new FacturasEmp();
+            FE.Show();
+            this.Hide();
+        }
+
+        private void btnClientes_Click(object sender, EventArgs e)
+        {
+            ClientesEmp CE = new ClientesEmp();
+            CE.Show();
+            this.Hide();
+        }
+
+        private void btnInventario_Click(object sender, EventArgs e)
+        {
+            InventarioEmp IE = new InventarioEmp();
+            IE.Show();
+            this.Hide();
+        }
+
+       
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            Login.Login login = new Login.Login();
+            login.Show();
+            this.Close();
+        }
+
+        private void btnPerfil_Click(object sender, EventArgs e)
+        {
+            Perfil perfil = new Perfil();
+            perfil.Show();
         }
     }
 }

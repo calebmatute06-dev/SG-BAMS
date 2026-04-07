@@ -31,6 +31,7 @@ namespace SG_BAMS
         public Perfil()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         /// <summary>

@@ -32,7 +32,7 @@ namespace SG_BAMS.Bitacora
         public BitacoraAdmin()
         {
             InitializeComponent();
-
+            this.StartPosition = FormStartPosition.CenterScreen;
 
             dtpDesde.MaxDate = DateTime.Today;
             dtpHasta.MaxDate = DateTime.Today;
@@ -47,7 +47,9 @@ namespace SG_BAMS.Bitacora
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void Bitacora_Load(object sender, EventArgs e)
         {
-
+            btnBitacora.Enabled = false;
+            btnBitacora.BackColor = Color.SkyBlue;
+            btnBitacora.ForeColor = Color.White;
 
             dgvBitacora.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvBitacora.BorderStyle = BorderStyle.None;
@@ -273,12 +275,7 @@ namespace SG_BAMS.Bitacora
             this.Hide();
         }
 
-        private void btnBitacora_Click(object sender, EventArgs e)
-        {
-            BitacoraAdmin BA = new BitacoraAdmin();
-            BA.Show();
-            this.Hide();
-        }
+
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
@@ -292,5 +289,7 @@ namespace SG_BAMS.Bitacora
             Perfil perfil = new Perfil();
             perfil.Show();
         }
+
+        
     }
 }

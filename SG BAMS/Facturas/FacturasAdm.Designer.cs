@@ -433,17 +433,17 @@
             // 
             // btnFacturas
             // 
-            btnFacturas.BackColor = Color.Transparent;
+            btnFacturas.BackColor = Color.SkyBlue;
             btnFacturas.DialogResult = DialogResult.None;
             btnFacturas.Font = new Font("Arial Narrow", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnFacturas.ForeColor = Color.SkyBlue;
-            btnFacturas.HoverBackColor = Color.Navy;
+            btnFacturas.ForeColor = Color.White;
+            btnFacturas.HoverBackColor = Color.SkyBlue;
             btnFacturas.HoverForeColor = Color.White;
             btnFacturas.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-            btnFacturas.Location = new Point(9, 149);
+            btnFacturas.Location = new Point(9, 148);
             btnFacturas.MinimumSize = new Size(144, 47);
             btnFacturas.Name = "btnFacturas";
-            btnFacturas.NormalBackColor = Color.Navy;
+            btnFacturas.NormalBackColor = Color.SkyBlue;
             btnFacturas.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
             btnFacturas.PressedBackColor = Color.Navy;
             btnFacturas.PressedForeColor = Color.White;
@@ -452,7 +452,7 @@
             btnFacturas.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             btnFacturas.TabIndex = 361;
             btnFacturas.Text = "Facturas";
-            btnFacturas.Click += btnFacturas_Click;
+       
             // 
             // btnCompra
             // 

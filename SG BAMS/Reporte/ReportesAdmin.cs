@@ -35,6 +35,7 @@ namespace SG_BAMS.Reporte
         public ReportesAdmin()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
 
             this.dtpDesde.ValueChanged += new System.EventHandler(this.FiltroFecha_ValueChanged);
             this.dtpHasta.ValueChanged += new System.EventHandler(this.FiltroFecha_ValueChanged);
@@ -80,6 +81,10 @@ namespace SG_BAMS.Reporte
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ReportesAdmin_Load(object sender, EventArgs e)
         {
+            btnReportes.Enabled = false;
+            btnReportes.BackColor = Color.SkyBlue;
+            btnReportes.ForeColor = Color.White;
+
             ControlarFiltroStock(false);
 
             dtpHasta.MaxDate = DateTime.Now;
@@ -462,12 +467,7 @@ namespace SG_BAMS.Reporte
             this.Hide();
         }
 
-        private void btnReportes_Click(object sender, EventArgs e)
-        {
-            ReportesAdmin RA = new ReportesAdmin();
-            RA.Show();
-            this.Hide();
-        }
+       
 
         private void btnBitacora_Click(object sender, EventArgs e)
         {

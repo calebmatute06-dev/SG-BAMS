@@ -50,6 +50,7 @@ namespace SG_BAMS
         public FacturaProducto()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         /// <summary>

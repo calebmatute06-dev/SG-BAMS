@@ -45,6 +45,8 @@
             btnDeudores = new ReaLTaiizor.Controls.NightButton();
             btnMenu = new ReaLTaiizor.Controls.NightButton();
             panel1 = new Panel();
+            btnPerfil = new ReaLTaiizor.Controls.NightButton();
+            btnCerrar = new ReaLTaiizor.Controls.NightButton();
             ((System.ComponentModel.ISupportInitialize)dgvInventarioEmp).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).BeginInit();
@@ -164,7 +166,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Arial", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(69, 34);
+            label2.Location = new Point(69, 40);
             label2.Name = "label2";
             label2.Size = new Size(117, 41);
             label2.TabIndex = 388;
@@ -179,7 +181,7 @@
             btnFacturas.HoverBackColor = Color.Navy;
             btnFacturas.HoverForeColor = Color.White;
             btnFacturas.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-            btnFacturas.Location = new Point(12, 147);
+            btnFacturas.Location = new Point(9, 148);
             btnFacturas.MinimumSize = new Size(144, 47);
             btnFacturas.Name = "btnFacturas";
             btnFacturas.NormalBackColor = Color.Navy;
@@ -191,6 +193,7 @@
             btnFacturas.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             btnFacturas.TabIndex = 392;
             btnFacturas.Text = "Facturas";
+            btnFacturas.Click += btnFacturas_Click;
             // 
             // btnClientes
             // 
@@ -201,7 +204,7 @@
             btnClientes.HoverBackColor = Color.Navy;
             btnClientes.HoverForeColor = Color.White;
             btnClientes.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-            btnClientes.Location = new Point(12, 200);
+            btnClientes.Location = new Point(9, 201);
             btnClientes.MinimumSize = new Size(144, 47);
             btnClientes.Name = "btnClientes";
             btnClientes.NormalBackColor = Color.Navy;
@@ -213,20 +216,21 @@
             btnClientes.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             btnClientes.TabIndex = 391;
             btnClientes.Text = "Clientes";
+            btnClientes.Click += btnClientes_Click;
             // 
             // btnInventario
             // 
-            btnInventario.BackColor = Color.Transparent;
+            btnInventario.BackColor = Color.SkyBlue;
             btnInventario.DialogResult = DialogResult.None;
             btnInventario.Font = new Font("Arial Narrow", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnInventario.ForeColor = Color.SkyBlue;
-            btnInventario.HoverBackColor = Color.Navy;
+            btnInventario.ForeColor = Color.White;
+            btnInventario.HoverBackColor = Color.SkyBlue;
             btnInventario.HoverForeColor = Color.White;
             btnInventario.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-            btnInventario.Location = new Point(12, 251);
+            btnInventario.Location = new Point(9, 252);
             btnInventario.MinimumSize = new Size(144, 47);
             btnInventario.Name = "btnInventario";
-            btnInventario.NormalBackColor = Color.Navy;
+            btnInventario.NormalBackColor = Color.SkyBlue;
             btnInventario.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
             btnInventario.PressedBackColor = Color.Navy;
             btnInventario.PressedForeColor = Color.White;
@@ -235,6 +239,7 @@
             btnInventario.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             btnInventario.TabIndex = 390;
             btnInventario.Text = "Inventario";
+        
             // 
             // btnDeudores
             // 
@@ -245,7 +250,7 @@
             btnDeudores.HoverBackColor = Color.Navy;
             btnDeudores.HoverForeColor = Color.White;
             btnDeudores.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-            btnDeudores.Location = new Point(12, 302);
+            btnDeudores.Location = new Point(8, 303);
             btnDeudores.MinimumSize = new Size(144, 47);
             btnDeudores.Name = "btnDeudores";
             btnDeudores.NormalBackColor = Color.Navy;
@@ -257,6 +262,7 @@
             btnDeudores.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             btnDeudores.TabIndex = 389;
             btnDeudores.Text = "Deudores";
+            btnDeudores.Click += btnDeudores_Click;
             // 
             // btnMenu
             // 
@@ -267,7 +273,7 @@
             btnMenu.HoverBackColor = Color.Navy;
             btnMenu.HoverForeColor = Color.White;
             btnMenu.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-            btnMenu.Location = new Point(12, 94);
+            btnMenu.Location = new Point(9, 95);
             btnMenu.MinimumSize = new Size(144, 47);
             btnMenu.Name = "btnMenu";
             btnMenu.NormalBackColor = Color.Navy;
@@ -279,6 +285,7 @@
             btnMenu.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             btnMenu.TabIndex = 393;
             btnMenu.Text = "Menu Principal";
+            btnMenu.Click += btnMenu_Click;
             // 
             // panel1
             // 
@@ -288,7 +295,52 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(21, 676);
             panel1.TabIndex = 197;
-            panel1.Paint += panel1_Paint_1;
+            // 
+            // btnPerfil
+            // 
+            btnPerfil.BackColor = Color.Transparent;
+            btnPerfil.DialogResult = DialogResult.None;
+            btnPerfil.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnPerfil.ForeColor = Color.SkyBlue;
+            btnPerfil.HoverBackColor = Color.Navy;
+            btnPerfil.HoverForeColor = Color.White;
+            btnPerfil.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+            btnPerfil.Location = new Point(8, 405);
+            btnPerfil.MinimumSize = new Size(144, 47);
+            btnPerfil.Name = "btnPerfil";
+            btnPerfil.NormalBackColor = Color.Navy;
+            btnPerfil.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+            btnPerfil.PressedBackColor = Color.Navy;
+            btnPerfil.PressedForeColor = Color.White;
+            btnPerfil.Radius = 20;
+            btnPerfil.Size = new Size(215, 47);
+            btnPerfil.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            btnPerfil.TabIndex = 399;
+            btnPerfil.Text = "Perfil";
+            btnPerfil.Click += btnPerfil_Click;
+            // 
+            // btnCerrar
+            // 
+            btnCerrar.BackColor = Color.Transparent;
+            btnCerrar.DialogResult = DialogResult.None;
+            btnCerrar.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCerrar.ForeColor = Color.SkyBlue;
+            btnCerrar.HoverBackColor = Color.Navy;
+            btnCerrar.HoverForeColor = Color.White;
+            btnCerrar.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+            btnCerrar.Location = new Point(8, 355);
+            btnCerrar.MinimumSize = new Size(144, 47);
+            btnCerrar.Name = "btnCerrar";
+            btnCerrar.NormalBackColor = Color.Navy;
+            btnCerrar.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+            btnCerrar.PressedBackColor = Color.Navy;
+            btnCerrar.PressedForeColor = Color.White;
+            btnCerrar.Radius = 20;
+            btnCerrar.Size = new Size(215, 47);
+            btnCerrar.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            btnCerrar.TabIndex = 398;
+            btnCerrar.Text = "Cerrar Sesión";
+            btnCerrar.Click += btnCerrar_Click;
             // 
             // InventarioEmp
             // 
@@ -313,6 +365,8 @@
             Controls.Add(panel3);
             Controls.Add(txtBuscar);
             Controls.Add(btnNoti);
+            Controls.Add(btnPerfil);
+            Controls.Add(btnCerrar);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 2, 3, 2);
             Name = "InventarioEmp";
@@ -343,5 +397,7 @@
         private ReaLTaiizor.Controls.NightButton btnDeudores;
         private ReaLTaiizor.Controls.NightButton btnMenu;
         private Panel panel1;
+        private ReaLTaiizor.Controls.NightButton btnPerfil;
+        private ReaLTaiizor.Controls.NightButton btnCerrar;
     }
 }

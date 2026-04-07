@@ -30,6 +30,7 @@ namespace SG_BAMS
         public frmModificarRol(int id, string nombreActual)
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             this.idRolSeleccionado = id;
             txtDescri.Text = nombreActual;
 

@@ -49,6 +49,7 @@ namespace SG_BAMS
         public frmImagenEmpleado(string nombreUsuario = "")
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             clsSoporte.InicializarDirectorio();
             usuarioAsignado = nombreUsuario;
         }

@@ -24,7 +24,7 @@ namespace SG_BAMS
         public frmAgregarRol()
         {
             InitializeComponent();
-
+            this.StartPosition = FormStartPosition.CenterScreen;
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
         }
 

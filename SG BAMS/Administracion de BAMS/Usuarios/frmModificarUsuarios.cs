@@ -40,7 +40,7 @@ namespace SG_BAMS
         public frmModificarUsuarios(int id, string nombre, int rol, int estado)
         {
             InitializeComponent();
-
+            this.StartPosition = FormStartPosition.CenterScreen;
             cmbRol.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbEstado.DropDownStyle = ComboBoxStyle.DropDownList;
             txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);

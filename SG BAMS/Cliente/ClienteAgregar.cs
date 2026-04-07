@@ -36,8 +36,8 @@ namespace SG_BAMS
         public ClienteAgregar()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
 
-           
             txtTelefono.MaxLength = 8;
             txtRTN.MaxLength = 14;
 

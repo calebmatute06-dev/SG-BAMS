@@ -29,6 +29,7 @@ namespace SG_BAMS
         public InventarioEmp()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         /// <summary>
@@ -38,6 +39,10 @@ namespace SG_BAMS
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void InventarioEmp_Load(object sender, EventArgs e)
         {
+            btnInventario.Enabled = false;
+            btnInventario.BackColor = Color.SkyBlue;
+            btnInventario.ForeColor = Color.White;
+
             CargarInventarioCompleto();
             dgvInventarioEmp.BorderStyle = BorderStyle.None;
             dgvInventarioEmp.BackgroundColor = Color.White;
@@ -116,85 +121,6 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Handles the Paint event of the panel1 control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="PaintEventArgs"/> instance containing the event data.</param>
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        /// <summary>
-        /// Handles the CellDoubleClick event of the dgvInventarioEmp control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
-        private void dgvInventarioEmp_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        /// <summary>
-        /// Handles the Click event of the btnClientes control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnClientes_Click(object sender, EventArgs e)
-        {
-            ClientesEmp CE = new ClientesEmp();
-            CE.Show();
-            this.Close();
-        }
-
-        /// <summary>
-        /// Handles the Click event of the btnCerrarSesion control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnCerrarSesion_Click(object sender, EventArgs e)
-        {
-            Login.Login login = new Login.Login();
-            login.Show();
-            this.Close();
-        }
-
-        /// <summary>
-        /// Handles the Click event of the btnMenu control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnMenu_Click(object sender, EventArgs e)
-        {
-            MenuPrincipalEmp menu = new MenuPrincipalEmp();
-            menu.Show();
-            this.Close();
-        }
-
-        /// <summary>
-        /// Handles the Click event of the btnFactu control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnFactu_Click(object sender, EventArgs e)
-        {
-            FacturasEmp facturasEmp = new FacturasEmp();
-            facturasEmp.Show();
-            this.Close();
-        }
-
-        /// <summary>
-        /// Handles the Click event of the btnDeudores control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnDeudores_Click(object sender, EventArgs e)
-        {
-            Deudores_Emp deudoresEmp = new Deudores_Emp();
-            deudoresEmp.Show();
-            this.Close();
-        }
 
         /// <summary>
         /// Handles the Click event of the btnNoti control.
@@ -207,20 +133,47 @@ namespace SG_BAMS
             notificacionesAdmin.Show();
         }
 
-        /// <summary>
-        /// Handles the Click event of the btnPerfil control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            MenuPrincipalEmp ME = new MenuPrincipalEmp();
+            ME.Show();
+            this.Hide();
+        }
+
+        private void btnFacturas_Click(object sender, EventArgs e)
+        {
+            FacturasEmp FE = new FacturasEmp();
+            FE.Show();
+            this.Hide();
+        }
+
+        private void btnClientes_Click(object sender, EventArgs e)
+        {
+            ClientesEmp CE = new ClientesEmp();
+            CE.Show();
+            this.Hide();
+        }
+
+       
+
+        private void btnDeudores_Click(object sender, EventArgs e)
+        {
+            Deudores_Emp DE = new Deudores_Emp();
+            DE.Show();
+            this.Hide();
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            Login.Login login = new Login.Login();
+            login.Show();
+            this.Close();
+        }
+
         private void btnPerfil_Click(object sender, EventArgs e)
         {
             Perfil perfil = new Perfil();
             perfil.Show();
-        }
-
-        private void panel1_Paint_1(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

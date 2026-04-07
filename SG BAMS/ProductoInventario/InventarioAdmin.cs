@@ -34,6 +34,7 @@ namespace SG_BAMS
         public InventarioAdmin()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             this.KeyPreview = true;
         }
 
@@ -68,6 +69,10 @@ namespace SG_BAMS
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void InventarioAdmin_Load(object sender, EventArgs e)
         {
+            btnInventario.Enabled = false;
+            btnInventario.BackColor = Color.SkyBlue;
+            btnInventario.ForeColor = Color.White;
+
             CargarInventarioCompleto();
 
             dgvProductosAdmin.BorderStyle = BorderStyle.None;
@@ -310,13 +315,7 @@ namespace SG_BAMS
             this.Hide();
         }
 
-        private void btnInventario_Click(object sender, EventArgs e)
-        {
-            InventarioAdmin IA = new InventarioAdmin();
-            IA.Show();
-            this.Hide();
-        }
-
+       
         private void btnProveedores_Click(object sender, EventArgs e)
         {
             ProveedoresAdmin PA = new ProveedoresAdmin();

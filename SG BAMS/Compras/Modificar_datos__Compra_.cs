@@ -58,10 +58,11 @@ namespace SG_BAMS
         public Modificar_datos__Compra_(int id)
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             this.idCompraAEditar = id;
-            dgvProductosCompraMod.CellValueChanged += dgvProductosCompraMod_CellValueChanged;
-            dgvProductosCompraMod.CurrentCellDirtyStateChanged += dgvProductosCompraMod_CurrentCellDirtyStateChanged;
-            dgvProductosCompraMod.CellBeginEdit += dgvProductosCompraMod_CellBeginEdit;
+            dgvProductosMo.CellValueChanged += dgvProductosCompraMod_CellValueChanged;
+            dgvProductosMo.CurrentCellDirtyStateChanged += dgvProductosCompraMod_CurrentCellDirtyStateChanged;
+            dgvProductosMo.CellBeginEdit += dgvProductosCompraMod_CellBeginEdit;
         }
 
         /// <summary>
@@ -80,7 +81,7 @@ namespace SG_BAMS
             LlenarCombos();
 
             DataTable dtOriginal = logic.ObtenerDetalleCompra(idCompraAEditar);
-            dgvProductosCompraMod.DataSource = dtOriginal;
+            dgvProductosMo.DataSource = dtOriginal;
 
             if (dtOriginal != null)
             {
@@ -103,9 +104,9 @@ namespace SG_BAMS
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void dgvProductosCompraMod_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
-            if (dgvProductosCompraMod.IsCurrentCellDirty)
+            if (dgvProductosMo.IsCurrentCellDirty)
             {
-                dgvProductosCompraMod.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                dgvProductosMo.CommitEdit(DataGridViewDataErrorContexts.Commit);
             }
         }
 
@@ -116,14 +117,14 @@ namespace SG_BAMS
         /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
         private void dgvProductosCompraMod_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && (dgvProductosCompraMod.Columns[e.ColumnIndex].Name == "Cantidad" ||
-                                    dgvProductosCompraMod.Columns[e.ColumnIndex].Name == "Precio"))
+            if (e.RowIndex >= 0 && (dgvProductosMo.Columns[e.ColumnIndex].Name == "Cantidad" ||
+                                    dgvProductosMo.Columns[e.ColumnIndex].Name == "Precio"))
             {
                 try
                 {
-                    decimal cantidad = Convert.ToDecimal(dgvProductosCompraMod.Rows[e.RowIndex].Cells["Cantidad"].Value ?? 0);
-                    decimal precio = Convert.ToDecimal(dgvProductosCompraMod.Rows[e.RowIndex].Cells["Precio"].Value ?? 0);
-                    dgvProductosCompraMod.Rows[e.RowIndex].Cells["Subtotal"].Value = cantidad * precio;
+                    decimal cantidad = Convert.ToDecimal(dgvProductosMo.Rows[e.RowIndex].Cells["Cantidad"].Value ?? 0);
+                    decimal precio = Convert.ToDecimal(dgvProductosMo.Rows[e.RowIndex].Cells["Precio"].Value ?? 0);
+                    dgvProductosMo.Rows[e.RowIndex].Cells["Subtotal"].Value = cantidad * precio;
                     ActualizarTotalGeneral();
                 }
                 catch { }
@@ -136,7 +137,7 @@ namespace SG_BAMS
         private void ActualizarTotalGeneral()
         {
             decimal total = 0;
-            foreach (DataGridViewRow fila in dgvProductosCompraMod.Rows)
+            foreach (DataGridViewRow fila in dgvProductosMo.Rows)
             {
                 if (fila.Cells["Subtotal"].Value != null)
                     total += Convert.ToDecimal(fila.Cells["Subtotal"].Value);
@@ -149,15 +150,15 @@ namespace SG_BAMS
         /// </summary>
         private void ConfigurarEdicionGrid()
         {
-            if (dgvProductosCompraMod.Columns.Contains("ID")) dgvProductosCompraMod.Columns["ID"].ReadOnly = true;
-            if (dgvProductosCompraMod.Columns.Contains("Producto")) dgvProductosCompraMod.Columns["Producto"].ReadOnly = true;
-            if (dgvProductosCompraMod.Columns.Contains("Subtotal")) dgvProductosCompraMod.Columns["Subtotal"].ReadOnly = true;
-            if (dgvProductosCompraMod.Columns.Contains("Cantidad")) dgvProductosCompraMod.Columns["Cantidad"].ReadOnly = false;
-            if (dgvProductosCompraMod.Columns.Contains("Precio")) dgvProductosCompraMod.Columns["Precio"].ReadOnly = false;
-            if (dgvProductosCompraMod.Columns.Contains("Precio"))
-                dgvProductosCompraMod.Columns["Precio"].DefaultCellStyle.Format = "N2";
-            if (dgvProductosCompraMod.Columns.Contains("Subtotal"))
-                dgvProductosCompraMod.Columns["Subtotal"].DefaultCellStyle.Format = "N2";
+            if (dgvProductosMo.Columns.Contains("ID")) dgvProductosMo.Columns["ID"].ReadOnly = true;
+            if (dgvProductosMo.Columns.Contains("Producto")) dgvProductosMo.Columns["Producto"].ReadOnly = true;
+            if (dgvProductosMo.Columns.Contains("Subtotal")) dgvProductosMo.Columns["Subtotal"].ReadOnly = true;
+            if (dgvProductosMo.Columns.Contains("Cantidad")) dgvProductosMo.Columns["Cantidad"].ReadOnly = false;
+            if (dgvProductosMo.Columns.Contains("Precio")) dgvProductosMo.Columns["Precio"].ReadOnly = false;
+            if (dgvProductosMo.Columns.Contains("Precio"))
+                dgvProductosMo.Columns["Precio"].DefaultCellStyle.Format = "N2";
+            if (dgvProductosMo.Columns.Contains("Subtotal"))
+                dgvProductosMo.Columns["Subtotal"].DefaultCellStyle.Format = "N2";
         }
 
         /// <summary>
@@ -232,7 +233,7 @@ namespace SG_BAMS
                     logic.EliminarProductoDeBD(idCompraAEditar, idEliminado);
                 }
 
-                foreach (DataGridViewRow fila in dgvProductosCompraMod.Rows)
+                foreach (DataGridViewRow fila in dgvProductosMo.Rows)
                 {
                     if (fila.Cells["ID"].Value != null && fila.Cells["ID"].Value != DBNull.Value)
                     {
@@ -259,11 +260,11 @@ namespace SG_BAMS
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnEliminarProducto_Click(object sender, EventArgs e)
         {
-            if (dgvProductosCompraMod.CurrentRow != null && !dgvProductosCompraMod.CurrentRow.IsNewRow)
+            if (dgvProductosMo.CurrentRow != null && !dgvProductosMo.CurrentRow.IsNewRow)
             {
-                int filasMinimas = dgvProductosCompraMod.AllowUserToAddRows ? 2 : 1;
+                int filasMinimas = dgvProductosMo.AllowUserToAddRows ? 2 : 1;
 
-                if (dgvProductosCompraMod.Rows.Count <= filasMinimas)
+                if (dgvProductosMo.Rows.Count <= filasMinimas)
                 {
                     MessageBox.Show("Una compra no puede quedarse sin productos. Debe mantener al menos un artículo.",
                                     "BAMS - Restricción", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -277,8 +278,8 @@ namespace SG_BAMS
                 {
                     try
                     {
-                        int idAEliminar = Convert.ToInt32(dgvProductosCompraMod.CurrentRow.Cells["ID"].Value);
-                        int cantidadARestar = Convert.ToInt32(dgvProductosCompraMod.CurrentRow.Cells["Cantidad"].Value);
+                        int idAEliminar = Convert.ToInt32(dgvProductosMo.CurrentRow.Cells["ID"].Value);
+                        int cantidadARestar = Convert.ToInt32(dgvProductosMo.CurrentRow.Cells["Cantidad"].Value);
 
                         bool esNuevoDeEstaSesion = true;
                         if (dtRespaldo != null)
@@ -303,7 +304,7 @@ namespace SG_BAMS
                         }
 
                         huboCambios = true;
-                        dgvProductosCompraMod.Rows.RemoveAt(dgvProductosCompraMod.CurrentRow.Index);
+                        dgvProductosMo.Rows.RemoveAt(dgvProductosMo.CurrentRow.Index);
                         ActualizarTotalGeneral();
                     }
                     catch (Exception ex)
@@ -339,7 +340,7 @@ namespace SG_BAMS
                     try
                     {
                         huboCambios = true;
-                        dgvProductosCompraMod.DataSource = logic.ObtenerDetalleCompra(idCompraAEditar);
+                        dgvProductosMo.DataSource = logic.ObtenerDetalleCompra(idCompraAEditar);
                         ConfigurarEdicionGrid();
                         ActualizarTotalGeneral();
                     }
@@ -369,7 +370,7 @@ namespace SG_BAMS
             {
                 try
                 {
-                    foreach (DataGridViewRow fila in dgvProductosCompraMod.Rows)
+                    foreach (DataGridViewRow fila in dgvProductosMo.Rows)
                     {
                         if (fila.Cells["ID"].Value == null || fila.Cells["ID"].Value == DBNull.Value) continue;
 
@@ -408,7 +409,7 @@ namespace SG_BAMS
         {
             if (e.RowIndex >= 0)
             {
-                valorAntesDeCambio = dgvProductosCompraMod.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                valorAntesDeCambio = dgvProductosMo.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
             }
         }
 
@@ -421,12 +422,12 @@ namespace SG_BAMS
         {
             if (e.RowIndex < 0) return;
 
-            string nombreCol = dgvProductosCompraMod.Columns[e.ColumnIndex].Name;
+            string nombreCol = dgvProductosMo.Columns[e.ColumnIndex].Name;
 
             if (nombreCol == "Cantidad" || nombreCol == "Precio")
             {
                 huboCambios = true;
-                var fila = dgvProductosCompraMod.Rows[e.RowIndex];
+                var fila = dgvProductosMo.Rows[e.RowIndex];
                 decimal nuevoValor;
                 string valorCelda = fila.Cells[e.ColumnIndex].Value?.ToString();
                 bool esValido = decimal.TryParse(valorCelda, out nuevoValor);
@@ -436,9 +437,9 @@ namespace SG_BAMS
                     MessageBox.Show($"El valor en '{nombreCol}' debe ser un número mayor a cero.",
                                     "BAMS - Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-                    dgvProductosCompraMod.CellValueChanged -= dgvProductosCompraMod_CellValueChanged;
+                    dgvProductosMo.CellValueChanged -= dgvProductosCompraMod_CellValueChanged;
                     fila.Cells[e.ColumnIndex].Value = valorAntesDeCambio;
-                    dgvProductosCompraMod.CellValueChanged += dgvProductosCompraMod_CellValueChanged;
+                    dgvProductosMo.CellValueChanged += dgvProductosCompraMod_CellValueChanged;
                     return;
                 }
 

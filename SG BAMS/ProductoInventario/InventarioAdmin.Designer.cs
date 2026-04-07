@@ -398,17 +398,17 @@
             // 
             // btnInventario
             // 
-            btnInventario.BackColor = Color.Transparent;
+            btnInventario.BackColor = Color.SkyBlue;
             btnInventario.DialogResult = DialogResult.None;
             btnInventario.Font = new Font("Arial Narrow", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnInventario.ForeColor = Color.SkyBlue;
-            btnInventario.HoverBackColor = Color.Navy;
+            btnInventario.ForeColor = Color.White;
+            btnInventario.HoverBackColor = Color.SkyBlue;
             btnInventario.HoverForeColor = Color.White;
             btnInventario.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
             btnInventario.Location = new Point(8, 300);
             btnInventario.MinimumSize = new Size(144, 47);
             btnInventario.Name = "btnInventario";
-            btnInventario.NormalBackColor = Color.Navy;
+            btnInventario.NormalBackColor = Color.SkyBlue;
             btnInventario.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
             btnInventario.PressedBackColor = Color.Navy;
             btnInventario.PressedForeColor = Color.White;
@@ -417,7 +417,7 @@
             btnInventario.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             btnInventario.TabIndex = 360;
             btnInventario.Text = "Inventario";
-            btnInventario.Click += btnInventario_Click;
+       
             // 
             // btnProveedores
             // 

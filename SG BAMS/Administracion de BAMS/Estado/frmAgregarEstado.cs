@@ -24,7 +24,9 @@ namespace SG_BAMS
         public frmAgregarEstado()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             this.txtDescri.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescri_KeyPress);
+            
         }
 
         /// <summary>

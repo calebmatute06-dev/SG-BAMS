@@ -386,17 +386,17 @@
             // 
             // btnClientes
             // 
-            btnClientes.BackColor = Color.Transparent;
+            btnClientes.BackColor = Color.SkyBlue;
             btnClientes.DialogResult = DialogResult.None;
             btnClientes.Font = new Font("Arial Narrow", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnClientes.ForeColor = Color.SkyBlue;
-            btnClientes.HoverBackColor = Color.Navy;
+            btnClientes.ForeColor = Color.White;
+            btnClientes.HoverBackColor = Color.SkyBlue;
             btnClientes.HoverForeColor = Color.White;
             btnClientes.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
             btnClientes.Location = new Point(3, 247);
             btnClientes.MinimumSize = new Size(144, 47);
             btnClientes.Name = "btnClientes";
-            btnClientes.NormalBackColor = Color.Navy;
+            btnClientes.NormalBackColor = Color.SkyBlue;
             btnClientes.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
             btnClientes.PressedBackColor = Color.Navy;
             btnClientes.PressedForeColor = Color.White;
@@ -405,7 +405,7 @@
             btnClientes.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             btnClientes.TabIndex = 360;
             btnClientes.Text = "Clientes";
-            btnClientes.Click += btnClientes_Click;
+           
             // 
             // btnInventario
             // 

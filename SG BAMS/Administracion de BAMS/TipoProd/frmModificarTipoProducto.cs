@@ -30,6 +30,7 @@ namespace SG_BAMS
         public frmModificarTipoProducto(int id, string descripcionActual)
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             this.idSeleccionado = id;
             txtDescri.Text = descripcionActual;
 

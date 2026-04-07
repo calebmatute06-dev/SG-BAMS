@@ -53,6 +53,7 @@ namespace SG_BAMS
         public FacturaAgregarDatos(string cliente, int idCli, string rtn = "Sin RTN")
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             txtCliente.Text = cliente;
             idCliente = idCli;
             rtnCliente = string.IsNullOrWhiteSpace(rtn) ? "Sin RTN" : rtn;

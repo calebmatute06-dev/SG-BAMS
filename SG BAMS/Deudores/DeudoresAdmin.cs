@@ -30,6 +30,7 @@ namespace SG_BAMS
         public DeudoresAdmin()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             CargarGridDeudores();
 
             dgvDeudores.CellDoubleClick += dgvDeudores_CellDoubleClick;
@@ -206,6 +207,10 @@ namespace SG_BAMS
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void DeudoresAdmin_Load(object sender, EventArgs e)
         {
+            btnDeudores.Enabled = false;
+            btnDeudores.BackColor = Color.SkyBlue;
+            btnDeudores.ForeColor = Color.White;
+
             dgvDeudores.ClearSelection();
             dgvDeudores.BorderStyle = BorderStyle.None;
             dgvDeudores.BackgroundColor = Color.White;
@@ -278,12 +283,7 @@ namespace SG_BAMS
             this.Hide();
         }
 
-        private void btnDeudores_Click(object sender, EventArgs e)
-        {
-            DeudoresAdmin DA = new DeudoresAdmin();
-            DA.Show();
-            this.Hide();
-        }
+       
 
         private void btnReportes_Click(object sender, EventArgs e)
         {

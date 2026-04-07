@@ -28,6 +28,7 @@ namespace SG_BAMS
         public FacturasAdm()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             ConfigurarGrid();
         }
 
@@ -83,6 +84,11 @@ namespace SG_BAMS
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void FacturasAdm_Load(object sender, EventArgs e)
         {
+
+            btnFacturas.Enabled = false;
+            btnFacturas.BackColor = Color.SkyBlue;
+            btnFacturas.ForeColor = Color.White;
+
             await CargarFactura();
 
             dtpInicio.Value = DateTime.Today;
@@ -94,7 +100,7 @@ namespace SG_BAMS
             dtpInicio.ValueChanged += (s, ev) => ValidarYFiltrar();
             dtpFin.ValueChanged += (s, ev) => ValidarYFiltrar();
 
-            dgvFacturas.ClearSelection();
+           
 
             dgvFacturas.BorderStyle = BorderStyle.None;
             dgvFacturas.BackgroundColor = Color.White;
@@ -310,13 +316,7 @@ namespace SG_BAMS
             this.Hide();
         }
 
-        private void btnFacturas_Click(object sender, EventArgs e)
-        {
-            FacturasAdm FA = new FacturasAdm();
-            FA.Show();
-            this.Hide();
-        }
-
+        
         private void btnCompra_Click(object sender, EventArgs e)
         {
             Compras CF = new Compras();

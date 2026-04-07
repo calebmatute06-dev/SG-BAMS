@@ -25,6 +25,7 @@ namespace SG_BAMS
         public FacturasEmp()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             ConfigurarGrid();
         }
 
@@ -81,6 +82,10 @@ namespace SG_BAMS
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void FacturasEmp_Load(object sender, EventArgs e)
         {
+            btnFacturas.Enabled = false;
+            btnFacturas.BackColor = Color.SkyBlue;
+            btnFacturas.ForeColor = Color.White;
+
             await CargarFactura();
 
             dtpInicio.Value = DateTime.Today;
@@ -249,7 +254,7 @@ namespace SG_BAMS
                 double rebaja = Convert.ToDouble(dgvFacturas.CurrentRow.Cells["Rebaja"].Value);
 
 
-               
+
                 FacturaVer frmFV = new FacturaVer(idFacturas, nombre_Cliente, fecha, bateriaVieja, idPago, rebaja);
                 frmFV.ShowDialog();
 
@@ -281,30 +286,6 @@ namespace SG_BAMS
             this.Close();
         }
 
-        /// <summary>
-        /// Handles the Click event of the BtnMenu control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void BtnMenu_Click(object sender, EventArgs e) => NavegarA(new MenuPrincipalEmp());
-        /// <summary>
-        /// Handles the Click event of the BtnClientes control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void BtnClientes_Click(object sender, EventArgs e) => NavegarA(new ClientesEmp());
-        /// <summary>
-        /// Handles the Click event of the BtnInventario control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void BtnInventario_Click(object sender, EventArgs e) => NavegarA(new InventarioEmp());
-        /// <summary>
-        /// Handles the Click event of the BtnDeudores control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void BtnDeudores_Click(object sender, EventArgs e) => NavegarA(new Deudores_Emp());
 
         /// <summary>
         /// Handles the Click event of the BtnNotificaciones control.
@@ -317,25 +298,47 @@ namespace SG_BAMS
             this.Hide();
         }
 
-        /// <summary>
-        /// Handles the Click event of the btnCerrarSesion control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        private void btnMenu_Click(object sender, EventArgs e)
         {
-            new Login.Login().Show();
+            MenuPrincipalEmp ME = new MenuPrincipalEmp();
+            ME.Show();
+            this.Hide();
+        }
+
+       
+
+        private void btnClientes_Click(object sender, EventArgs e)
+        {
+            ClientesEmp CE = new ClientesEmp();
+            CE.Show();
+            this.Hide();
+        }
+
+        private void btnInventario_Click(object sender, EventArgs e)
+        {
+            InventarioEmp IE = new InventarioEmp();
+            IE.Show();
+            this.Hide();
+        }
+
+        private void btnDeudores_Click(object sender, EventArgs e)
+        {
+            Deudores_Emp DE = new Deudores_Emp();
+            DE.Show();
+            this.Hide();
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            Login.Login login = new Login.Login();
+            login.Show();
             this.Close();
         }
 
-        /// <summary>
-        /// Handles the ValueChanged event of the dtpInicio control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void dtpInicio_ValueChanged(object sender, EventArgs e)
+        private void btnPerfil_Click(object sender, EventArgs e)
         {
-
+            Perfil perfil = new Perfil();
+            perfil.Show();
         }
     }
 }

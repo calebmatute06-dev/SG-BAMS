@@ -27,7 +27,9 @@ namespace SG_BAMS
         public frmEstado()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             this.Load += new EventHandler(frmEstados_Load);
+            
         }
 
         /// <summary>

@@ -30,6 +30,7 @@ namespace SG_BAMS
         public frmModificarFormaPago(int id, string descripcionActual)
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             this._idFormaPago = id;
             txtDescri.Text = descripcionActual;
 

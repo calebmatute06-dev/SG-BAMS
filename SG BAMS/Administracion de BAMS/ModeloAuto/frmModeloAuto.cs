@@ -28,6 +28,7 @@ namespace SG_BAMS
         public frmModeloAuto()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             this.Load += new EventHandler(frmModelosAuto_Load);
         }
 

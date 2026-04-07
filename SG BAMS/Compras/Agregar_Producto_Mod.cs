@@ -67,6 +67,7 @@ namespace SG_BAMS
         public Agregar_Producto_Mod(int idProv)
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             this._idProveedor = idProv;
         }
 

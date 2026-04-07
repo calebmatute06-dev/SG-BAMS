@@ -27,6 +27,7 @@ namespace SG_BAMS
         public AsistentedeIA()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             MostrarBienvenida();
         }
 

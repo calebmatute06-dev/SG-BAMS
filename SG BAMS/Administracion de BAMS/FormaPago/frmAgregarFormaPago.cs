@@ -24,7 +24,7 @@ namespace SG_BAMS
         public frmAgregarFormaPago()
         {
             InitializeComponent();
-
+            this.StartPosition = FormStartPosition.CenterScreen;
             txtdescri.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
         }
 

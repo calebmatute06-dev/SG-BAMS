@@ -32,6 +32,7 @@ namespace SG_BAMS
         public ClientesAdm()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             dgvClientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvClientes.MultiSelect = false;
 
@@ -111,6 +112,11 @@ namespace SG_BAMS
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void ClientesAdm_Load(object sender, EventArgs e)
         {
+
+            btnClientes.Enabled = false;
+            btnClientes.BackColor = Color.SkyBlue;
+            btnClientes.ForeColor = Color.White;
+
             await TablaClientes();
             dgvClientes.BorderStyle = BorderStyle.None;
             dgvClientes.BackgroundColor = Color.White;
@@ -248,12 +254,7 @@ namespace SG_BAMS
             this.Hide();
         }
 
-        private void btnClientes_Click(object sender, EventArgs e)
-        {
-            ClientesAdm CA = new ClientesAdm();
-            CA.Show();
-            this.Hide();
-        }
+       
 
         private void btnInventario_Click(object sender, EventArgs e)
         {

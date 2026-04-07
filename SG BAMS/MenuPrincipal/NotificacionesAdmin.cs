@@ -35,6 +35,7 @@ namespace SG_BAMS
         public NotificacionesAdmin()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             DeterminarPermisos();
 
             notificaciones.DrawMode = DrawMode.OwnerDrawFixed;

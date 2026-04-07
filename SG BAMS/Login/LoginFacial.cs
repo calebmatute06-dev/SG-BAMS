@@ -79,7 +79,12 @@ namespace SG_BAMS.Login
         /// <summary>
         /// Initializes a new instance of the <see cref="LoginFacial"/> class.
         /// </summary>
-        public LoginFacial() { InitializeComponent(); }
+        public LoginFacial() 
+        { 
+            InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
+
+        }
 
         /// <summary>
         /// Handles the Load event of the LoginFacial control.

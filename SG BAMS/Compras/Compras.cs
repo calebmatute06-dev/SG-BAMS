@@ -41,6 +41,7 @@ namespace SG_BAMS
         public Compras()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             CargarCompras();
 
 
@@ -69,6 +70,11 @@ namespace SG_BAMS
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void Compras_Load(object sender, EventArgs e)
         {
+            btnComprasMenu.Enabled = false;
+            btnComprasMenu.BackColor = Color.SkyBlue;
+            btnComprasMenu.ForeColor = Color.White;
+
+
             dgvComprasAdmin.ClearSelection();
             dgvComprasAdmin.BorderStyle = BorderStyle.None;
             dgvComprasAdmin.BackgroundColor = Color.White;
@@ -464,11 +470,5 @@ namespace SG_BAMS
             perfil.Show();
         }
 
-        private void btnComprasMenu_Click(object sender, EventArgs e)
-        {
-            Compras CF = new Compras();
-            CF.Show();
-            this.Hide();
-        }
     }
 }

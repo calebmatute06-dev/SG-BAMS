@@ -29,6 +29,7 @@ namespace SG_BAMS.Proveedor
         public ProveedoresAdmin()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
 
             txtBuscar.KeyPress += (s, e) =>
             {
@@ -52,6 +53,10 @@ namespace SG_BAMS.Proveedor
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ProveedoresAdmin_Load(object sender, EventArgs e)
         {
+            btnProveedores.Enabled = false;
+            btnProveedores.BackColor = Color.SkyBlue;
+            btnProveedores.ForeColor = Color.White;
+
             proveedor.cargarDatos(dgvProveedor);
             dgvProveedor.Columns["idProveedor"].Visible = false;
             dgvProveedor.Columns["idClasificacion"].Visible = false;
@@ -251,13 +256,7 @@ namespace SG_BAMS.Proveedor
             this.Hide();
         }
 
-        private void btnProveedores_Click(object sender, EventArgs e)
-        {
-            ProveedoresAdmin PA = new ProveedoresAdmin();
-            PA.Show();
-            this.Hide();
-        }
-
+       
         private void btnDeudores_Click(object sender, EventArgs e)
         {
             DeudoresAdmin DA = new DeudoresAdmin();

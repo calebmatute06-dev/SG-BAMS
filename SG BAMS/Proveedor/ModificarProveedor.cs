@@ -51,7 +51,7 @@ namespace SG_BAMS.Proveedor
             string direccion, string rtn, int idEstado, int idClasificacion)
         {
             InitializeComponent();
-
+            this.StartPosition = FormStartPosition.CenterScreen;
             txtID.Text = idProveedor.ToString();
             txtNombre.Text = nombre;
             txtTelefono.Text = contacto;

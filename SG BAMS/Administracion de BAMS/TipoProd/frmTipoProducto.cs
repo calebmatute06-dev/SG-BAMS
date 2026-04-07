@@ -23,6 +23,7 @@ namespace SG_BAMS
         public frmTipoProducto()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             CargarGridTipos();
         }
 

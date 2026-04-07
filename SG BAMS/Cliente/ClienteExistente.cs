@@ -24,6 +24,7 @@ namespace SG_BAMS
         public ClienteExistente()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         /// <summary>

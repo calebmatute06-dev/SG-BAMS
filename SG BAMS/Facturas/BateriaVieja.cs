@@ -40,10 +40,10 @@ namespace SG_BAMS.Facturas
         /// <param name="montoFactura">The monto factura.</param>
         public BateriaVieja(double montoFactura)
         {
+            InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             System.Threading.Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
             System.Threading.Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
-
-            InitializeComponent();
             this.limiteFactura = montoFactura;
         }
 

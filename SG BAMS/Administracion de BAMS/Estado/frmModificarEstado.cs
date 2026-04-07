@@ -30,6 +30,7 @@ namespace SG_BAMS
         public frmModificarEstado(int id, string descripcionActual)
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             this.idEstado = id;
             txtDescri.Text = descripcionActual;
 

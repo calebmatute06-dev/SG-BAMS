@@ -27,6 +27,7 @@ namespace SG_BAMS
         public frmMarcaProductos()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             this.Load += new EventHandler(frmMarcas_Load);
         }
         /// <summary>

@@ -35,7 +35,7 @@ namespace SG_BAMS.Deudores
         public Información_Deudores(int idDeuda, string nombreCliente, string montoInicial, DateTime fechaInicio)
         {
             InitializeComponent();
-
+            this.StartPosition = FormStartPosition.CenterScreen;
 
             lbliddeuda.Text = idDeuda.ToString();
             lblnombre.Text = nombreCliente;

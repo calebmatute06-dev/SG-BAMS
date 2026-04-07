@@ -22,6 +22,7 @@ namespace SG_BAMS.Login
         public Soporte()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         /// <summary>

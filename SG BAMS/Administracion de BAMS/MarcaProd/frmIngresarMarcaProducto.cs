@@ -23,8 +23,8 @@ namespace SG_BAMS
         public frmIngresarMarcaProducto()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
 
-            
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirAlfanumerico(e);
         }
 

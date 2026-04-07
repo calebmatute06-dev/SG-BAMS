@@ -31,6 +31,7 @@ namespace SG_BAMS.Proveedor
         public AgregarProveedores()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             txtTelefono.MaxLength = 8;
             txtRTN.MaxLength = 14;
             this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);

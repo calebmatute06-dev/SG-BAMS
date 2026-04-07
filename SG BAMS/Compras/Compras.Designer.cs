@@ -478,17 +478,17 @@
             // 
             // btnComprasMenu
             // 
-            btnComprasMenu.BackColor = Color.Transparent;
+            btnComprasMenu.BackColor = Color.SkyBlue;
             btnComprasMenu.DialogResult = DialogResult.None;
             btnComprasMenu.Font = new Font("Arial Narrow", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnComprasMenu.ForeColor = Color.SkyBlue;
-            btnComprasMenu.HoverBackColor = Color.Navy;
+            btnComprasMenu.ForeColor = Color.White;
+            btnComprasMenu.HoverBackColor = Color.SkyBlue;
             btnComprasMenu.HoverForeColor = Color.White;
             btnComprasMenu.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
             btnComprasMenu.Location = new Point(9, 201);
             btnComprasMenu.MinimumSize = new Size(144, 47);
             btnComprasMenu.Name = "btnComprasMenu";
-            btnComprasMenu.NormalBackColor = Color.Navy;
+            btnComprasMenu.NormalBackColor = Color.SkyBlue;
             btnComprasMenu.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
             btnComprasMenu.PressedBackColor = Color.Navy;
             btnComprasMenu.PressedForeColor = Color.White;
@@ -497,7 +497,7 @@
             btnComprasMenu.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             btnComprasMenu.TabIndex = 369;
             btnComprasMenu.Text = "Compras";
-            btnComprasMenu.Click += btnComprasMenu_Click;
+           
             // 
             // btnClientes
             // 
