@@ -25,7 +25,16 @@ namespace SG_BAMS
 
         private void Ingresar_datos__Compra__Load(object sender, EventArgs e)
         {
-            
+
+            dgvIngresarCompra.Columns.Clear();
+
+            dgvIngresarCompra.Columns.Add("ID", "ID");
+            dgvIngresarCompra.Columns.Add("Nombre", "Nombre");
+            dgvIngresarCompra.Columns.Add("Cantidad", "Cantidad");
+            dgvIngresarCompra.Columns.Add("Precio", "Precio");
+            dgvIngresarCompra.Columns.Add("Subtotal", "Subtotal");
+
+           
             dgvIngresarCompra.Columns[0].ReadOnly = true;
             dgvIngresarCompra.Columns[1].ReadOnly = true;
             dgvIngresarCompra.Columns[4].ReadOnly = true;
