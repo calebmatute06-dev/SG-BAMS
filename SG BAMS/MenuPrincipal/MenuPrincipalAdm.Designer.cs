@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             panel2 = new Panel();
             panel4 = new Panel();
             pictureBox3 = new PictureBox();
@@ -418,19 +418,19 @@
             // 
             // chartMasVendidos
             // 
-            chartArea3.Name = "ChartArea1";
-            chartMasVendidos.ChartAreas.Add(chartArea3);
-            legend3.BackColor = Color.SkyBlue;
-            legend3.Name = "Legend1";
-            chartMasVendidos.Legends.Add(legend3);
+            chartArea1.Name = "ChartArea1";
+            chartMasVendidos.ChartAreas.Add(chartArea1);
+            legend1.BackColor = Color.SkyBlue;
+            legend1.Name = "Legend1";
+            chartMasVendidos.Legends.Add(legend1);
             chartMasVendidos.Location = new Point(303, 140);
             chartMasVendidos.Margin = new Padding(3, 2, 3, 2);
             chartMasVendidos.Name = "chartMasVendidos";
             chartMasVendidos.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            chartMasVendidos.Series.Add(series3);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            chartMasVendidos.Series.Add(series1);
             chartMasVendidos.Size = new Size(354, 164);
             chartMasVendidos.TabIndex = 63;
             chartMasVendidos.Text = "chart1";
@@ -439,22 +439,22 @@
             // 
             chartStock.BackColor = Color.SkyBlue;
             chartStock.BorderlineColor = Color.SkyBlue;
-            chartArea4.BackColor = Color.SkyBlue;
-            chartArea4.BackSecondaryColor = Color.White;
-            chartArea4.Name = "ChartArea1";
-            chartStock.ChartAreas.Add(chartArea4);
-            legend4.BackColor = Color.SkyBlue;
-            legend4.Name = "Legend1";
-            chartStock.Legends.Add(legend4);
+            chartArea2.BackColor = Color.SkyBlue;
+            chartArea2.BackSecondaryColor = Color.White;
+            chartArea2.Name = "ChartArea1";
+            chartStock.ChartAreas.Add(chartArea2);
+            legend2.BackColor = Color.SkyBlue;
+            legend2.Name = "Legend1";
+            chartStock.Legends.Add(legend2);
             chartStock.Location = new Point(311, 431);
             chartStock.Margin = new Padding(3, 2, 3, 2);
             chartStock.Name = "chartStock";
             chartStock.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.EarthTones;
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            chartStock.Series.Add(series4);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            chartStock.Series.Add(series2);
             chartStock.Size = new Size(346, 161);
             chartStock.TabIndex = 96;
             chartStock.Text = "chartStock";
@@ -726,7 +726,7 @@
             btnCerrarSesión.BackColor = Color.Transparent;
             btnCerrarSesión.DialogResult = DialogResult.None;
             btnCerrarSesión.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCerrarSesión.ForeColor = Color.Navy;
+            btnCerrarSesión.ForeColor = Color.SkyBlue;
             btnCerrarSesión.HoverBackColor = Color.Navy;
             btnCerrarSesión.HoverForeColor = Color.White;
             btnCerrarSesión.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
@@ -748,7 +748,7 @@
             btnperfil.BackColor = Color.Transparent;
             btnperfil.DialogResult = DialogResult.None;
             btnperfil.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnperfil.ForeColor = Color.Navy;
+            btnperfil.ForeColor = Color.SkyBlue;
             btnperfil.HoverBackColor = Color.Navy;
             btnperfil.HoverForeColor = Color.White;
             btnperfil.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
