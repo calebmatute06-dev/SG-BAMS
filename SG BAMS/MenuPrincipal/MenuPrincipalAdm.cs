@@ -341,7 +341,7 @@ namespace SG_BAMS
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnmenuprincipal_Click(object sender, EventArgs e)
         {
-            this.Refresh();
+            
         }
 
 
