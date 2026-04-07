@@ -5,8 +5,16 @@ using System.Threading.Tasks;
 
 namespace SG_BAMS.MenuPrincipal
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="SG_BAMS.ClsConexion" />
     internal class ClsUltimasVentas : ClsConexion
     {
+        /// <summary>
+        /// Obteners the ventas recientes.
+        /// </summary>
+        /// <returns></returns>
         public async Task<DataTable> ObtenerVentasRecientes()
         {
             DataTable tablaVentas = new DataTable();

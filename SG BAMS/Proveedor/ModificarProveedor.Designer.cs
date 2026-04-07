@@ -65,33 +65,30 @@
             // 
             pictureBox4.BackColor = Color.Navy;
             pictureBox4.Location = new Point(-1, 0);
-            pictureBox4.Margin = new Padding(3, 2, 3, 2);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(22, 473);
+            pictureBox4.Size = new Size(25, 631);
             pictureBox4.TabIndex = 187;
             pictureBox4.TabStop = false;
             // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Navy;
-            pictureBox1.Location = new Point(-1, 455);
-            pictureBox1.Margin = new Padding(3, 2, 3, 2);
+            pictureBox1.Location = new Point(-1, 607);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(454, 18);
+            pictureBox1.Size = new Size(519, 24);
             pictureBox1.TabIndex = 186;
             pictureBox1.TabStop = false;
             // 
             // btnAceptar
             // 
-            btnAceptar.Location = new Point(72, 385);
-            btnAceptar.Margin = new Padding(3, 2, 3, 2);
+            btnAceptar.Location = new Point(82, 513);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnAceptar.OverrideDefault.Back.Color2 = Color.White;
             btnAceptar.OverrideDefault.Border.Rounding = 40F;
             btnAceptar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnAceptar.OverrideFocus.Back.Color2 = Color.White;
-            btnAceptar.Size = new Size(137, 38);
+            btnAceptar.Size = new Size(157, 51);
             btnAceptar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnAceptar.StateCommon.Back.Color2 = Color.White;
             btnAceptar.StateCommon.Border.Rounding = 40F;
@@ -108,15 +105,14 @@
             // 
             // btnsalir
             // 
-            btnsalir.Location = new Point(216, 385);
-            btnsalir.Margin = new Padding(3, 2, 3, 2);
+            btnsalir.Location = new Point(247, 513);
             btnsalir.Name = "btnsalir";
             btnsalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnsalir.OverrideDefault.Back.Color2 = Color.White;
             btnsalir.OverrideDefault.Border.Rounding = 40F;
             btnsalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnsalir.OverrideFocus.Back.Color2 = Color.White;
-            btnsalir.Size = new Size(134, 38);
+            btnsalir.Size = new Size(153, 51);
             btnsalir.StateCommon.Back.Color1 = Color.SkyBlue;
             btnsalir.StateCommon.Back.Color2 = Color.White;
             btnsalir.StateCommon.Border.Rounding = 40F;
@@ -134,30 +130,27 @@
             // pictureBox3
             // 
             pictureBox3.BackColor = Color.Navy;
-            pictureBox3.Location = new Point(430, 0);
-            pictureBox3.Margin = new Padding(3, 2, 3, 2);
+            pictureBox3.Location = new Point(491, 0);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(23, 461);
+            pictureBox3.Size = new Size(26, 615);
             pictureBox3.TabIndex = 165;
             pictureBox3.TabStop = false;
             // 
             // pictureBox2
             // 
             pictureBox2.BackColor = Color.Navy;
-            pictureBox2.Location = new Point(-1, -11);
-            pictureBox2.Margin = new Padding(3, 2, 3, 2);
+            pictureBox2.Location = new Point(-1, -15);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(451, 27);
+            pictureBox2.Size = new Size(515, 36);
             pictureBox2.TabIndex = 164;
             pictureBox2.TabStop = false;
             // 
             // txtDireccion
             // 
-            txtDireccion.Location = new Point(151, 202);
-            txtDireccion.Margin = new Padding(3, 2, 3, 2);
+            txtDireccion.Location = new Point(173, 269);
             txtDireccion.MaxLength = 70;
             txtDireccion.Name = "txtDireccion";
-            txtDireccion.Size = new Size(219, 35);
+            txtDireccion.Size = new Size(250, 39);
             txtDireccion.StateCommon.Back.Color1 = Color.SkyBlue;
             txtDireccion.StateCommon.Border.Rounding = 20F;
             txtDireccion.StateCommon.Content.Color1 = Color.Navy;
@@ -170,19 +163,18 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(44, 206);
+            label2.Location = new Point(50, 275);
             label2.Name = "label2";
-            label2.Size = new Size(92, 26);
+            label2.Size = new Size(115, 33);
             label2.TabIndex = 201;
             label2.Text = "Dirección:";
             // 
             // txtRTN
             // 
-            txtRTN.Location = new Point(149, 244);
-            txtRTN.Margin = new Padding(3, 2, 3, 2);
+            txtRTN.Location = new Point(170, 325);
             txtRTN.MaxLength = 14;
             txtRTN.Name = "txtRTN";
-            txtRTN.Size = new Size(219, 35);
+            txtRTN.Size = new Size(250, 39);
             txtRTN.StateCommon.Back.Color1 = Color.SkyBlue;
             txtRTN.StateCommon.Border.Rounding = 20F;
             txtRTN.StateCommon.Content.Color1 = Color.Navy;
@@ -195,19 +187,18 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(36, 336);
+            label1.Location = new Point(41, 448);
             label1.Name = "label1";
-            label1.Size = new Size(118, 26);
+            label1.Size = new Size(143, 33);
             label1.TabIndex = 198;
             label1.Text = "Clasificación:";
             // 
             // txtTelefono
             // 
-            txtTelefono.Location = new Point(151, 160);
-            txtTelefono.Margin = new Padding(3, 2, 3, 2);
+            txtTelefono.Location = new Point(173, 213);
             txtTelefono.MaxLength = 8;
             txtTelefono.Name = "txtTelefono";
-            txtTelefono.Size = new Size(219, 35);
+            txtTelefono.Size = new Size(250, 39);
             txtTelefono.StateCommon.Back.Color1 = Color.SkyBlue;
             txtTelefono.StateCommon.Border.Rounding = 20F;
             txtTelefono.StateCommon.Content.Color1 = Color.Navy;
@@ -216,11 +207,10 @@
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(151, 120);
-            txtNombre.Margin = new Padding(3, 2, 3, 2);
+            txtNombre.Location = new Point(173, 160);
             txtNombre.MaxLength = 70;
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(219, 35);
+            txtNombre.Size = new Size(250, 39);
             txtNombre.StateCommon.Back.Color1 = Color.SkyBlue;
             txtNombre.StateCommon.Border.Rounding = 20F;
             txtNombre.StateCommon.Content.Color1 = Color.Navy;
@@ -233,9 +223,9 @@
             label15.BackColor = Color.Transparent;
             label15.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label15.ForeColor = Color.Navy;
-            label15.Location = new Point(46, 246);
+            label15.Location = new Point(53, 328);
             label15.Name = "label15";
-            label15.Size = new Size(54, 26);
+            label15.Size = new Size(69, 33);
             label15.TabIndex = 194;
             label15.Text = "RTN:";
             // 
@@ -245,9 +235,9 @@
             label7.BackColor = Color.Transparent;
             label7.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Navy;
-            label7.Location = new Point(42, 164);
+            label7.Location = new Point(48, 219);
             label7.Name = "label7";
-            label7.Size = new Size(92, 26);
+            label7.Size = new Size(116, 33);
             label7.TabIndex = 193;
             label7.Text = "Télefono: ";
             // 
@@ -257,19 +247,18 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(48, 124);
+            label4.Location = new Point(55, 165);
             label4.Name = "label4";
-            label4.Size = new Size(86, 26);
+            label4.Size = new Size(111, 33);
             label4.TabIndex = 192;
             label4.Text = "Nombre: ";
             // 
             // cmbClasificacion
             // 
             cmbClasificacion.DropDownWidth = 300;
-            cmbClasificacion.Location = new Point(152, 332);
-            cmbClasificacion.Margin = new Padding(3, 2, 3, 2);
+            cmbClasificacion.Location = new Point(174, 443);
             cmbClasificacion.Name = "cmbClasificacion";
-            cmbClasificacion.Size = new Size(219, 34);
+            cmbClasificacion.Size = new Size(250, 38);
             cmbClasificacion.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
             cmbClasificacion.StateCommon.ComboBox.Border.Rounding = 20F;
             cmbClasificacion.StateCommon.ComboBox.Content.Color1 = Color.Navy;
@@ -283,10 +272,9 @@
             // cmbEstado
             // 
             cmbEstado.DropDownWidth = 300;
-            cmbEstado.Location = new Point(150, 288);
-            cmbEstado.Margin = new Padding(3, 2, 3, 2);
+            cmbEstado.Location = new Point(171, 384);
             cmbEstado.Name = "cmbEstado";
-            cmbEstado.Size = new Size(219, 34);
+            cmbEstado.Size = new Size(250, 38);
             cmbEstado.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
             cmbEstado.StateCommon.ComboBox.Border.Rounding = 20F;
             cmbEstado.StateCommon.ComboBox.Content.Color1 = Color.Navy;
@@ -303,9 +291,9 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(46, 288);
+            label5.Location = new Point(53, 384);
             label5.Name = "label5";
-            label5.Size = new Size(73, 26);
+            label5.Size = new Size(91, 33);
             label5.TabIndex = 239;
             label5.Text = "Estado:";
             // 
@@ -315,19 +303,18 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(49, 85);
+            label3.Location = new Point(56, 113);
             label3.Name = "label3";
-            label3.Size = new Size(34, 26);
+            label3.Size = new Size(44, 33);
             label3.TabIndex = 192;
             label3.Text = "ID:";
             // 
             // txtID
             // 
             txtID.Enabled = false;
-            txtID.Location = new Point(151, 80);
-            txtID.Margin = new Padding(3, 2, 3, 2);
+            txtID.Location = new Point(173, 107);
             txtID.Name = "txtID";
-            txtID.Size = new Size(219, 35);
+            txtID.Size = new Size(250, 39);
             txtID.StateCommon.Back.Color1 = Color.SkyBlue;
             txtID.StateCommon.Border.Rounding = 20F;
             txtID.StateCommon.Content.Color1 = Color.Navy;
@@ -339,17 +326,18 @@
             label6.BackColor = Color.SkyBlue;
             label6.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(127, 36);
+            label6.Location = new Point(145, 48);
             label6.Name = "label6";
-            label6.Size = new Size(200, 22);
+            label6.Size = new Size(246, 29);
             label6.TabIndex = 352;
             label6.Text = "Modificar Proveedor";
             // 
             // kryptonGroupBox2
             // 
             kryptonGroupBox2.CaptionVisible = false;
-            kryptonGroupBox2.Location = new Point(116, 27);
-            kryptonGroupBox2.Size = new Size(219, 39);
+            kryptonGroupBox2.Location = new Point(133, 36);
+            kryptonGroupBox2.Margin = new Padding(3, 4, 3, 4);
+            kryptonGroupBox2.Size = new Size(267, 52);
             kryptonGroupBox2.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroupBox2.StateCommon.Border.Rounding = 50F;
             kryptonGroupBox2.TabIndex = 353;
@@ -360,18 +348,18 @@
             label8.BackColor = Color.Transparent;
             label8.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Navy;
-            label8.Location = new Point(344, 424);
+            label8.Location = new Point(393, 565);
             label8.Name = "label8";
-            label8.Size = new Size(84, 29);
+            label8.Size = new Size(102, 35);
             label8.TabIndex = 354;
             label8.Text = "BAMS";
             // 
             // ModificarProveedor
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(451, 472);
+            ClientSize = new Size(515, 629);
             Controls.Add(label8);
             Controls.Add(label6);
             Controls.Add(kryptonGroupBox2);
@@ -396,7 +384,6 @@
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox2);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 2, 3, 2);
             Name = "ModificarProveedor";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ModificarProveedor";

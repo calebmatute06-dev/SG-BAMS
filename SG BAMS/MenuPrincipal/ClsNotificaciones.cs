@@ -5,8 +5,18 @@ using System.Threading.Tasks;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="SG_BAMS.ClsConexion" />
     internal class ClsNotificaciones : ClsConexion
     {
+        /// <summary>
+        /// Listars the notificaciones.
+        /// </summary>
+        /// <param name="esAdmin">if set to <c>true</c> [es admin].</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Error al cargar notificaciones: " + ex.Message</exception>
         public DataTable ListarNotificaciones(bool esAdmin)
         {
             DataTable tablaDatos = new DataTable();
@@ -40,6 +50,11 @@ namespace SG_BAMS
             return tablaDatos;
         }
 
+        /// <summary>
+        /// Marcars the como leida.
+        /// </summary>
+        /// <param name="idNotificacion">The identifier notificacion.</param>
+        /// <returns></returns>
         public async Task<bool> MarcarComoLeida(int idNotificacion)
         {
             try

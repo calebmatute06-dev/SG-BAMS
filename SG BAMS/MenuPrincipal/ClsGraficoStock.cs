@@ -6,8 +6,16 @@ using System.Threading.Tasks;
 
 namespace SG_BAMS.MenuPrincipal
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="SG_BAMS.ClsConexion" />
     internal class ClsGraficoStock : ClsConexion
     {
+        /// <summary>
+        /// Obteners the datos grafico.
+        /// </summary>
+        /// <returns></returns>
         public async Task<DataTable> ObtenerDatosGrafico()
         {
             DataTable tablaDatos = new DataTable();

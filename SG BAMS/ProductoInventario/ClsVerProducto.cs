@@ -4,10 +4,21 @@ using Microsoft.Data.SqlClient;
 
 namespace SG_BAMS.ProductoInventario
 {
+    /// <summary>
+    /// 
+    /// </summary>
     internal class ClsVerProducto
     {
+        /// <summary>
+        /// The conexion
+        /// </summary>
         private ClsConexion conexion = new ClsConexion();
 
+        /// <summary>
+        /// Mostrars the productos completo.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Error al obtener la lista: " + ex.Message</exception>
         public DataTable MostrarProductosCompleto()
         {
             DataTable tabla = new DataTable();
@@ -38,6 +49,12 @@ namespace SG_BAMS.ProductoInventario
             return tabla;
         }
 
+        /// <summary>
+        /// Buscars the productos.
+        /// </summary>
+        /// <param name="filtro">The filtro.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Error al ejecutar procedimiento: " + ex.Message</exception>
         public DataTable BuscarProductos(string filtro)
         {
             ClsConexion conexion = new ClsConexion();

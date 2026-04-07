@@ -7,9 +7,23 @@ using System.Threading.Tasks;
 
 namespace SG_BAMS.Login
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="SG_BAMS.ClsConexion" />
     internal class ClsLogin : ClsConexion
     {
+        /// <summary>
+        /// The idusuario
+        /// </summary>
         public static int idusuario;
+        /// <summary>
+        /// Validars the usuario.
+        /// </summary>
+        /// <param name="usuario">The usuario.</param>
+        /// <param name="contra">The contra.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Error al validar el usuario" + ex.Message</exception>
         public int ValidarUsuario(string usuario, string contra)
         {
             int rol = 0;

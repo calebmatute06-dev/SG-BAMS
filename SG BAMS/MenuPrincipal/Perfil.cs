@@ -11,15 +11,33 @@ using System.IO;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class Perfil : Form
     {
+        /// <summary>
+        /// Gets or sets the usuario actual.
+        /// </summary>
+        /// <value>
+        /// The usuario actual.
+        /// </value>
         public string UsuarioActual { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Perfil"/> class.
+        /// </summary>
         public Perfil()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Handles the Load event of the Perfil control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void Perfil_Load(object sender, EventArgs e)
         {
             await CargarDatosUsuario();
@@ -27,6 +45,9 @@ namespace SG_BAMS
 
         }
 
+        /// <summary>
+        /// Cargars the datos usuario.
+        /// </summary>
         private async Task CargarDatosUsuario()
         {
             try
@@ -66,16 +87,31 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the kryptonButton1 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void kryptonButton1_Click(object sender, EventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// Handles the Shown event of the Perfil control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void Perfil_Shown(object sender, EventArgs e)
         {
             Ayudante_UI.AplicarZoomGlobal(this);
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnimagen control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void btnimagen_Click(object sender, EventArgs e)
         {
             OpenFileDialog selectorImagen = new OpenFileDialog();
@@ -109,6 +145,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnsalir1 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnsalir1_Click(object sender, EventArgs e)
         {
             this.Close();

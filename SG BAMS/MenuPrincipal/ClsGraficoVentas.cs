@@ -6,10 +6,19 @@ using System.Threading.Tasks;
 
 namespace SG_BAMS
 {
-    
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="SG_BAMS.ClsConexion" />
     internal class ClsGraficoVentas : ClsConexion
     {
-       
+
+        /// <summary>
+        /// Obteners the productos mas vendidos.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Error al obtener ventas para el gráfico: " + ex.Message</exception>
         public async Task<DataTable> ObtenerProductosMasVendidos()
         {
             DataTable tablaVentas = new DataTable();

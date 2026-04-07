@@ -5,8 +5,16 @@ using System.Threading.Tasks;
 
 namespace SG_BAMS.MenuPrincipal
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="SG_BAMS.ClsConexion" />
     internal class ClsContadorProducto : ClsConexion
     {
+        /// <summary>
+        /// Obteners the total productos.
+        /// </summary>
+        /// <returns></returns>
         public async Task<int> ObtenerTotalProductos()
         {
             try

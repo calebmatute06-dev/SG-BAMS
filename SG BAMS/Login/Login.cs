@@ -13,9 +13,19 @@ using System.Windows.Forms;
 
 namespace SG_BAMS.Login
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class Login : Form
     {
+        /// <summary>
+        /// The usuario logueado
+        /// </summary>
         public static string UsuarioLogueado;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Login"/> class.
+        /// </summary>
         public Login()
         {
             InitializeComponent();
@@ -24,23 +34,43 @@ namespace SG_BAMS.Login
             txtCon.KeyPress += new KeyPressEventHandler(txtCon_KeyPress);
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnSalir control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
 
+        /// <summary>
+        /// Handles the KeyPress event of the txtUsu control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
         private void txtUsu_KeyPress(object sender, KeyPressEventArgs e)
         {
 
             ClsValidaciones.ValidarBusquedaAlfanumerica(e);
         }
 
+        /// <summary>
+        /// Handles the KeyPress event of the txtCon control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
         private void txtCon_KeyPress(object sender, KeyPressEventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// Handles the Click event of the btninicioSesion1 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btninicioSesion1_Click(object sender, EventArgs e)
         {
             if (ClsValidaciones.CampoVacio(txtUsu, "Usuario")) return;
@@ -124,6 +154,11 @@ namespace SG_BAMS.Login
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnsalirLogin1 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnsalirLogin1_Click(object sender, EventArgs e)
         {
             Application.Exit();

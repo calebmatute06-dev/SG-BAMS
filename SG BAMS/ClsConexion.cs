@@ -9,17 +9,30 @@ using Microsoft.Data.SqlClient;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ClsConexion
     {
+        /// <summary>
+        /// The cadena conexion
+        /// </summary>
         private String CadenaConexion = "Data Source = AutoBattDB.mssql.somee.com; " +
                                         "Initial catalog = AutoBattDB; " +
                                         "User ID = exobonnie_SQLLogin_1; " +
                                         "Password = w6et2uoghs;" +
                                         "TrustServerCertificate=True;";
 
+        /// <summary>
+        /// The conectar
+        /// </summary>
         public SqlConnection Conectar = new SqlConnection();
 
 
+        /// <summary>
+        /// Abrirs the conexion.
+        /// </summary>
+        /// <exception cref="System.Exception">Error de conexion a la base de datos: " + ex.Message</exception>
         public void AbrirConexion()
         {
             try
@@ -36,6 +49,9 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Cerrars this instance.
+        /// </summary>
         public void Cerrar()
         {
             if (Conectar.State == ConnectionState.Open)

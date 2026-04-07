@@ -13,14 +13,26 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class AgregarProducto : Form
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AgregarProducto"/> class.
+        /// </summary>
         public AgregarProducto()
         {
             InitializeComponent();
         }
 
 
+        /// <summary>
+        /// Handles the Click event of the btnAceptar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             string nombreVal = txtNombre.Text.Trim();
@@ -94,23 +106,41 @@ namespace SG_BAMS
 
 
 
+        /// <summary>
+        /// Handles the Click event of the btnCancelar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnsalir control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnsalir_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the Load event of the AgregarProducto control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void AgregarProducto_Load(object sender, EventArgs e)
         {
             LlenarTodosLosCombos();
         }
 
+        /// <summary>
+        /// Llenars the todos los combos.
+        /// </summary>
         private void LlenarTodosLosCombos()
         {
             ClsLlenarCombo llenar = new ClsLlenarCombo();
@@ -128,11 +158,21 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the TextChanged event of the txtCodigoBarra control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void txtCodigoBarra_TextChanged(object sender, EventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// Handles the KeyPress event of the txtCodigoBarra control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
         private void txtCodigoBarra_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
@@ -168,11 +208,21 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the KeyPress event of the txtNombre control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// Handles the KeyPress event of the txtPrecio control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
         private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
         {
             ClsValidaciones.PermitirNumerosYDecimales(sender, e);

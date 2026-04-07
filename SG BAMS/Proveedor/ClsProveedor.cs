@@ -9,8 +9,16 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace SG_BAMS.Proveedor
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="SG_BAMS.ClsConexion" />
     internal class ClsProveedor : ClsConexion
     {
+        /// <summary>
+        /// Cargars the datos.
+        /// </summary>
+        /// <param name="dgvProveedor">The DGV proveedor.</param>
         public void cargarDatos(DataGridView dgvProveedor)
         {
             try
@@ -32,6 +40,10 @@ namespace SG_BAMS.Proveedor
             }
         }
 
+        /// <summary>
+        /// Sets the usuario en sesion.
+        /// </summary>
+        /// <param name="idUsuario">The identifier usuario.</param>
         private void SetUsuarioEnSesion(int idUsuario)
         {
             using (SqlCommand ctx = new SqlCommand(
@@ -42,6 +54,10 @@ namespace SG_BAMS.Proveedor
             }
         }
 
+        /// <summary>
+        /// Cargars the combo estado.
+        /// </summary>
+        /// <param name="cmb">The CMB.</param>
         public void CargarComboEstado(Krypton.Toolkit.KryptonComboBox cmb)
         {
             try
@@ -67,6 +83,10 @@ namespace SG_BAMS.Proveedor
             }
         }
 
+        /// <summary>
+        /// Cargars the combo clasificacion.
+        /// </summary>
+        /// <param name="cmb">The CMB.</param>
         public void CargarComboClasificacion(Krypton.Toolkit.KryptonComboBox cmb)
         {
             try
@@ -92,6 +112,11 @@ namespace SG_BAMS.Proveedor
             }
         }
 
+        /// <summary>
+        /// Buscars the proveedor.
+        /// </summary>
+        /// <param name="txt">The text.</param>
+        /// <param name="dgvProveedor">The DGV proveedor.</param>
         public void BuscarProveedor(Krypton.Toolkit.KryptonTextBox txt, DataGridView dgvProveedor)
         {
             try
@@ -122,6 +147,15 @@ namespace SG_BAMS.Proveedor
             }
         }
 
+        /// <summary>
+        /// Agregars the proveedor.
+        /// </summary>
+        /// <param name="nombre">The nombre.</param>
+        /// <param name="contacto">The contacto.</param>
+        /// <param name="direccion">The direccion.</param>
+        /// <param name="rtn">The RTN.</param>
+        /// <param name="idClasificacion">The identifier clasificacion.</param>
+        /// <param name="idUsuario">The identifier usuario.</param>
         public void AgregarProveedor(string nombre, string contacto, string direccion, string rtn,
             int idClasificacion, int idUsuario)
         {
@@ -156,6 +190,11 @@ namespace SG_BAMS.Proveedor
             }
         }
 
+        /// <summary>
+        /// Existes the nombre proveedor.
+        /// </summary>
+        /// <param name="nombre">The nombre.</param>
+        /// <returns></returns>
         public bool ExisteNombreProveedor(string nombre)
         {
             bool existe = false;
@@ -186,6 +225,17 @@ namespace SG_BAMS.Proveedor
             return existe;
         }
 
+        /// <summary>
+        /// Modificars the proveedor.
+        /// </summary>
+        /// <param name="idProveedor">The identifier proveedor.</param>
+        /// <param name="nombre">The nombre.</param>
+        /// <param name="contacto">The contacto.</param>
+        /// <param name="direccion">The direccion.</param>
+        /// <param name="rtn">The RTN.</param>
+        /// <param name="idEstado">The identifier estado.</param>
+        /// <param name="idClasificacion">The identifier clasificacion.</param>
+        /// <param name="idUsuario">The identifier usuario.</param>
         public void ModificarProveedor(int idProveedor, string nombre, string contacto, string direccion,
             string rtn, int idEstado, int idClasificacion, int idUsuario)
         {

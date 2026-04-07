@@ -4,8 +4,15 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class Ayudante_UI
     {
+        /// <summary>
+        /// Aplicars the zoom global.
+        /// </summary>
+        /// <param name="formulario">The formulario.</param>
         public static void AplicarZoomGlobal(Form formulario)
         {
             float factor = Config_Sistema.FactorZoom;
@@ -28,6 +35,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Escalars the fuentes recurrente.
+        /// </summary>
+        /// <param name="contenedor">The contenedor.</param>
+        /// <param name="factor">The factor.</param>
         private static void EscalarFuentesRecurrente(Control contenedor, float factor)
         {
             foreach (Control c in contenedor.Controls)

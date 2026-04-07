@@ -4,10 +4,27 @@ using Microsoft.Data.SqlClient;
 
 namespace SG_BAMS.ProductoInventario
 {
+    /// <summary>
+    /// 
+    /// </summary>
     internal class ClsAgregarProducto
     {
+        /// <summary>
+        /// The conexion
+        /// </summary>
         private ClsConexion conexion = new ClsConexion();
 
+        /// <summary>
+        /// Ejecutars the insercion.
+        /// </summary>
+        /// <param name="nombre">The nombre.</param>
+        /// <param name="idMarca">The identifier marca.</param>
+        /// <param name="idTipo">The identifier tipo.</param>
+        /// <param name="idModelo">The identifier modelo.</param>
+        /// <param name="precio">The precio.</param>
+        /// <param name="codBarra">The cod barra.</param>
+        /// <param name="idProveedor">The identifier proveedor.</param>
+        /// <param name="stock">The stock.</param>
         public void EjecutarInsercion(string nombre, int idMarca, int idTipo, int idModelo, decimal precio, string codBarra, int idProveedor, int stock)
         {
             try
@@ -32,6 +49,13 @@ namespace SG_BAMS.ProductoInventario
             finally { conexion.Cerrar(); }
         }
 
+        /// <summary>
+        /// Existes the producto marca proveedor.
+        /// </summary>
+        /// <param name="nombre">The nombre.</param>
+        /// <param name="idMarca">The identifier marca.</param>
+        /// <param name="idProveedor">The identifier proveedor.</param>
+        /// <returns></returns>
         public bool ExisteProductoMarcaProveedor(string nombre, int idMarca, int idProveedor)
         {
             int conteo = 0;
@@ -58,6 +82,11 @@ namespace SG_BAMS.ProductoInventario
             return conteo > 0;
         }
 
+        /// <summary>
+        /// Existes the codigo barra.
+        /// </summary>
+        /// <param name="codigo">The codigo.</param>
+        /// <returns></returns>
         public bool ExisteCodigoBarra(string codigo)
         {
             int conteo = 0;

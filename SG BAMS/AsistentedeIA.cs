@@ -10,16 +10,29 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class AsistentedeIA : Form
     {
+        /// <summary>
+        /// The servicio ia
+        /// </summary>
         private ClsServicioAyudaIA _servicioIA = new ClsServicioAyudaIA();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AsistentedeIA"/> class.
+        /// </summary>
         public AsistentedeIA()
         {
             InitializeComponent();
             MostrarBienvenida();
         }
 
+        /// <summary>
+        /// Mostrars the bienvenida.
+        /// </summary>
         private void MostrarBienvenida()
         {
             lstIA.Items.Add("🤖 Asistente: ¡Hola! Soy tu asistente de SG BAMS.");
@@ -32,6 +45,9 @@ namespace SG_BAMS
             lstIA.Items.Add("💡 Prueba diciendo: '¿Qué productos se venden más?'");
         }
 
+        /// <summary>
+        /// Enviars the mensaje.
+        /// </summary>
         private async Task EnviarMensaje()
         {
             string pregunta = txtInfo.Text.Trim();
@@ -98,11 +114,21 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnEnviar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void btnEnviar_Click(object sender, EventArgs e)
         {
             await EnviarMensaje();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnBorrar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnBorrar_Click(object sender, EventArgs e)
         {
             lstIA.Items.Clear();
@@ -110,6 +136,11 @@ namespace SG_BAMS
             MostrarBienvenida();
         }
 
+        /// <summary>
+        /// Handles the KeyDown event of the txtInfo control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="KeyEventArgs"/> instance containing the event data.</param>
         private async void txtInfo_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -119,12 +150,22 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Load event of the AsistentedeIA control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void AsistentedeIA_Load(object sender, EventArgs e)
         {
 
             lstIA.HorizontalScrollbar = false;
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnSalir control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();

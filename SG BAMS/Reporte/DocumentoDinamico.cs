@@ -6,13 +6,35 @@ using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
 
+/// <summary>
+/// 
+/// </summary>
 public class DocumentoDinamico : IDocument
 {
+    /// <summary>
+    /// The DGV
+    /// </summary>
     private DataGridView _dgv;
+    /// <summary>
+    /// The titulo cabecera
+    /// </summary>
     private string _tituloCabecera;
+    /// <summary>
+    /// The desde
+    /// </summary>
     private DateTime _desde;
+    /// <summary>
+    /// The hasta
+    /// </summary>
     private DateTime _hasta;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="DocumentoDinamico"/> class.
+    /// </summary>
+    /// <param name="dgv">The DGV.</param>
+    /// <param name="tituloCabecera">The titulo cabecera.</param>
+    /// <param name="desde">The desde.</param>
+    /// <param name="hasta">The hasta.</param>
     public DocumentoDinamico(DataGridView dgv, string tituloCabecera, DateTime desde, DateTime hasta)
     {
         _dgv = dgv;
@@ -21,6 +43,10 @@ public class DocumentoDinamico : IDocument
         _hasta = hasta;
     }
 
+    /// <summary>
+    /// Configures the document content by specifying its layout structure and visual element.
+    /// </summary>
+    /// <param name="container">The document container used for defining content via the FluentAPI.</param>
     public void Compose(IDocumentContainer container)
     {
         decimal totalGeneral = 0;

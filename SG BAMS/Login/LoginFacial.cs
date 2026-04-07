@@ -15,26 +15,77 @@ using System.Windows.Forms;
 
 namespace SG_BAMS.Login
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class LoginFacial : Form
     {
+        /// <summary>
+        /// Gets or sets the usuario a validar.
+        /// </summary>
+        /// <value>
+        /// The usuario a validar.
+        /// </value>
         public string UsuarioAValidar { get; set; }
+        /// <summary>
+        /// Gets or sets the rol asignado.
+        /// </summary>
+        /// <value>
+        /// The rol asignado.
+        /// </value>
         public int RolAsignado { get; set; }
 
+        /// <summary>
+        /// The camara
+        /// </summary>
         private VideoCapture camara;
+        /// <summary>
+        /// The recognizer
+        /// </summary>
         private LBPHFaceRecognizer recognizer = new LBPHFaceRecognizer(1, 8, 8, 8, 200);
+        /// <summary>
+        /// The face detector
+        /// </summary>
         private CascadeClassifier faceDetector = new CascadeClassifier("haarcascade_frontalface_default.xml");
 
+        /// <summary>
+        /// The contador exito
+        /// </summary>
         private int contadorExito = 0;
+        /// <summary>
+        /// The votos para validar
+        /// </summary>
         private const int VOTOS_PARA_VALIDAR = 2;
+        /// <summary>
+        /// The umbral distancia
+        /// </summary>
         private const double UMBRAL_DISTANCIA = 130;
 
+        /// <summary>
+        /// The etiqueta usuario valido
+        /// </summary>
         private int etiquetaUsuarioValido = -1;
 
+        /// <summary>
+        /// The CTS
+        /// </summary>
         private CancellationTokenSource cts;
+        /// <summary>
+        /// The procesando
+        /// </summary>
         private volatile bool _procesando = false;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LoginFacial"/> class.
+        /// </summary>
         public LoginFacial() { InitializeComponent(); }
 
+        /// <summary>
+        /// Handles the Load event of the LoginFacial control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void LoginFacial_Load(object sender, EventArgs e)
         {
             var todosLosArchivos = Directory.GetFiles(clsSoporte.DirectorioRostros, "*.jpg").ToList();
@@ -68,6 +119,9 @@ namespace SG_BAMS.Login
             });
         }
 
+        /// <summary>
+        /// Regresars the al login.
+        /// </summary>
         private void RegresarAlLogin()
         {
             cts?.Cancel();
@@ -81,6 +135,10 @@ namespace SG_BAMS.Login
             this.BeginInvoke(new Action(() => this.Close()));
         }
 
+        /// <summary>
+        /// Entrenars the modelo.
+        /// </summary>
+        /// <param name="todosLosArchivos">The todos los archivos.</param>
         private void EntrenarModelo(List<string> todosLosArchivos)
         {
             var rostros = new List<Image<Gray, byte>>();
@@ -121,6 +179,13 @@ namespace SG_BAMS.Login
             foreach (var img in rostros) img.Dispose();
         }
 
+        /// <summary>
+        /// Agregars the con variantes.
+        /// </summary>
+        /// <param name="base_">The base.</param>
+        /// <param name="lista">The lista.</param>
+        /// <param name="etiquetas">The etiquetas.</param>
+        /// <param name="etiqueta">The etiqueta.</param>
         private void AgregarConVariantes(Image<Gray, byte> base_,
             List<Image<Gray, byte>> lista, List<int> etiquetas, int etiqueta)
         {
@@ -134,8 +199,14 @@ namespace SG_BAMS.Login
             Add(SimularLuzLateral(base_));
         }
 
+        /// <summary>
+        /// The timer camara
+        /// </summary>
         private System.Windows.Forms.Timer timerCamara;
 
+        /// <summary>
+        /// Iniciars the camara.
+        /// </summary>
         private void IniciarCamara()
         {
             camara = new VideoCapture(0);
@@ -146,6 +217,11 @@ namespace SG_BAMS.Login
             ActualizarEstado("Coloca tu rostro frente a la cámara", Color.Gray);
         }
 
+        /// <summary>
+        /// Handles the Tick event of the TimerCamara control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void TimerCamara_Tick(object sender, EventArgs e)
         {
             if (camara == null || _procesando) return;
@@ -169,6 +245,10 @@ namespace SG_BAMS.Login
             }, token);
         }
 
+        /// <summary>
+        /// Procesars the frame.
+        /// </summary>
+        /// <param name="m">The m.</param>
         private void ProcesarFrame(Mat m)
         {
             try
@@ -237,6 +317,11 @@ namespace SG_BAMS.Login
             }
         }
 
+        /// <summary>
+        /// Preparars the gris para deteccion.
+        /// </summary>
+        /// <param name="frame">The frame.</param>
+        /// <returns></returns>
         private Image<Gray, byte> PrepararGrisParaDeteccion(Image<Bgr, byte> frame)
         {
             var gris = frame.Convert<Gray, byte>();
@@ -255,6 +340,10 @@ namespace SG_BAMS.Login
             return gris;
         }
 
+        /// <summary>
+        /// Aplicars the preprocesado.
+        /// </summary>
+        /// <param name="imagen">The imagen.</param>
         private void AplicarPreprocesado(Image<Gray, byte> imagen)
         {
             using (Mat m = imagen.Mat)
@@ -274,6 +363,11 @@ namespace SG_BAMS.Login
             }
         }
 
+        /// <summary>
+        /// Aplicars the gamma.
+        /// </summary>
+        /// <param name="imagen">The imagen.</param>
+        /// <param name="gamma">The gamma.</param>
         private void AplicarGamma(Mat imagen, double gamma)
         {
             byte[] lut = new byte[256];
@@ -287,6 +381,11 @@ namespace SG_BAMS.Login
             }
         }
 
+        /// <summary>
+        /// Simulars the luz lateral.
+        /// </summary>
+        /// <param name="original">The original.</param>
+        /// <returns></returns>
         private Image<Gray, byte> SimularLuzLateral(Image<Gray, byte> original)
         {
             var res = original.Clone();
@@ -297,6 +396,11 @@ namespace SG_BAMS.Login
             return res;
         }
 
+        /// <summary>
+        /// Actualizars the estado.
+        /// </summary>
+        /// <param name="texto">The texto.</param>
+        /// <param name="color">The color.</param>
         private void ActualizarEstado(string texto, Color color)
         {
             if (lblEstado.InvokeRequired)
@@ -305,6 +409,10 @@ namespace SG_BAMS.Login
             { lblEstado.Text = texto; lblEstado.ForeColor = color; }
         }
 
+        /// <summary>
+        /// Finalizars the specified resultado.
+        /// </summary>
+        /// <param name="resultado">The resultado.</param>
         private void Finalizar(DialogResult resultado)
         {
             cts?.Cancel();
@@ -341,6 +449,10 @@ namespace SG_BAMS.Login
             this.Close();
         }
 
+        /// <summary>
+        /// Raises the <see cref="E:System.Windows.Forms.Form.FormClosing" /> event.
+        /// </summary>
+        /// <param name="e">A <see cref="T:System.Windows.Forms.FormClosingEventArgs" /> that contains the event data.</param>
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             cts?.Cancel();
@@ -350,8 +462,18 @@ namespace SG_BAMS.Login
             base.OnFormClosing(e);
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnCancelar1 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnCancelar1_Click(object sender, EventArgs e) => RegresarAlLogin();
 
+        /// <summary>
+        /// Handles the Click event of the btnReintentar1 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnReintentar1_Click(object sender, EventArgs e)
         {
             contadorExito = 0;

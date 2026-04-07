@@ -2,8 +2,16 @@
 using SG_BAMS;
 using System.Data;
 using System.IO;
+/// <summary>
+/// 
+/// </summary>
 internal class ClsUsuario : ClsConexion
 {
+    /// <summary>
+    /// Obteners the perfil desde vista.
+    /// </summary>
+    /// <param name="nombreUsuario">The nombre usuario.</param>
+    /// <returns></returns>
     public async Task<DataTable> ObtenerPerfilDesdeVista(string nombreUsuario)
     {
         DataTable tablaUsuario = new DataTable();
@@ -26,6 +34,12 @@ internal class ClsUsuario : ClsConexion
         return tablaUsuario;
     }
 
+    /// <summary>
+    /// Actualizars the foto usuario.
+    /// </summary>
+    /// <param name="nombreUsuario">The nombre usuario.</param>
+    /// <param name="imagenBytes">The imagen bytes.</param>
+    /// <exception cref="System.Exception">Error al subir imagen a Somee: " + ex.Message</exception>
     public async Task ActualizarFotoUsuario(string nombreUsuario, byte[] imagenBytes)
     {
         try

@@ -5,8 +5,18 @@ using System.Diagnostics;
 using ClosedXML.Excel;
 using System.Linq;
 
+/// <summary>
+/// 
+/// </summary>
 public class ClsExportarExcel
 {
+    /// <summary>
+    /// Exportars the data grid view.
+    /// </summary>
+    /// <param name="dgv">The DGV.</param>
+    /// <param name="tituloReporte">The titulo reporte.</param>
+    /// <param name="desde">The desde.</param>
+    /// <param name="hasta">The hasta.</param>
     public void ExportarDataGridView(DataGridView dgv, string tituloReporte, DateTime desde, DateTime hasta)
     {
         try

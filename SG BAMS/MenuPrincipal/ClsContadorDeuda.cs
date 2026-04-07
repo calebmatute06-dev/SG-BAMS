@@ -5,11 +5,19 @@ using System.Threading.Tasks;
 
 namespace SG_BAMS.MenuPrincipal
 {
-    
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="SG_BAMS.ClsConexion" />
     internal class ClsContadorDeuda : ClsConexion
     {
-        
 
+
+        /// <summary>
+        /// Obteners the total deudores.
+        /// </summary>
+        /// <returns></returns>
         public async Task<int> ObtenerTotalDeudores()
         {
             try

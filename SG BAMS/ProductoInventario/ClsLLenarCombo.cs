@@ -6,10 +6,21 @@ using Krypton.Toolkit;
 
 namespace SG_BAMS.ProductoInventario
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ClsLlenarCombo
     {
+        /// <summary>
+        /// The conexion
+        /// </summary>
         private ClsConexion conexion = new ClsConexion();
 
+        /// <summary>
+        /// Configurars the ComboBox.
+        /// </summary>
+        /// <param name="combo">The combo.</param>
+        /// <param name="tipoTabla">The tipo tabla.</param>
         public void ConfigurarComboBox(KryptonComboBox combo, string tipoTabla)
         {
             DataTable dt = ObtenerDatosCombo(tipoTabla);
@@ -42,6 +53,16 @@ namespace SG_BAMS.ProductoInventario
             combo.SelectedIndex = -1;
         }
 
+        /// <summary>
+        /// Obteners the datos combo.
+        /// </summary>
+        /// <param name="tabla">The tabla.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">
+        /// La tabla solicitada no está configurada.
+        /// or
+        /// Error al obtener datos para " + tabla + ": " + ex.Message
+        /// </exception>
         private DataTable ObtenerDatosCombo(string tabla)
         {
             DataTable dt = new DataTable();

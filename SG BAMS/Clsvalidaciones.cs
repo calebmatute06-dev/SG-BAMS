@@ -8,14 +8,27 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class ClsValidaciones
     {
+        /// <summary>
+        /// Validars the nombre.
+        /// </summary>
+        /// <param name="nombre">The nombre.</param>
+        /// <returns></returns>
         public static bool ValidarNombre(string nombre)
         {
             TextBox temp = new TextBox { Text = nombre };
             return EsNombrePersonalValido(temp, "Nombre");
         }
 
+        /// <summary>
+        /// Validars the precio.
+        /// </summary>
+        /// <param name="precio">The precio.</param>
+        /// <returns></returns>
         public static bool ValidarPrecio(string precio)
         {
             TextBox temp = new TextBox { Text = precio };
@@ -23,6 +36,12 @@ namespace SG_BAMS
             return EsNumeroDecimalValido(temp, "Precio", out salida);
         }
 
+        /// <summary>
+        /// Campoes the vacio.
+        /// </summary>
+        /// <param name="control">The control.</param>
+        /// <param name="nombreCampo">The nombre campo.</param>
+        /// <returns></returns>
         public static bool CampoVacio(Control control, string nombreCampo)
         {
             if (string.IsNullOrWhiteSpace(control.Text))
@@ -34,6 +53,13 @@ namespace SG_BAMS
             return false;
         }
 
+        /// <summary>
+        /// Eses the numero decimal valido.
+        /// </summary>
+        /// <param name="control">The control.</param>
+        /// <param name="nombreCampo">The nombre campo.</param>
+        /// <param name="valorResultado">The valor resultado.</param>
+        /// <returns></returns>
         public static bool EsNumeroDecimalValido(Control control, string nombreCampo, out decimal valorResultado)
         {
             valorResultado = 0;
@@ -54,6 +80,11 @@ namespace SG_BAMS
             return true;
         }
 
+        /// <summary>
+        /// Validars the decimales.
+        /// </summary>
+        /// <param name="control">The control.</param>
+        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
         public static void ValidarDecimales(Control control, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.') && (e.KeyChar != ','))
@@ -67,6 +98,10 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Validars the solo numeros.
+        /// </summary>
+        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
         public static void ValidarSoloNumeros(KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
@@ -75,6 +110,10 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Permitirs the solo letras.
+        /// </summary>
+        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
         public static void PermitirSoloLetras(KeyPressEventArgs e)
         {
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
@@ -83,6 +122,14 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Eses the nombre personal valido.
+        /// </summary>
+        /// <param name="control">The control.</param>
+        /// <param name="nombreCampo">The nombre campo.</param>
+        /// <param name="minLength">The minimum length.</param>
+        /// <param name="maxLength">The maximum length.</param>
+        /// <returns></returns>
         public static bool EsNombrePersonalValido(Control control, string nombreCampo, int minLength = 3, int maxLength = 50)
         {
             string texto = control.Text;
@@ -144,6 +191,10 @@ namespace SG_BAMS
             return true;
         }
 
+        /// <summary>
+        /// Permitirs the alfanumerico.
+        /// </summary>
+        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
         public static void PermitirAlfanumerico(KeyPressEventArgs e)
         {
             if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
@@ -152,6 +203,14 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Eses the alfanumerico valido.
+        /// </summary>
+        /// <param name="control">The control.</param>
+        /// <param name="nombreCampo">The nombre campo.</param>
+        /// <param name="minLength">The minimum length.</param>
+        /// <param name="maxLength">The maximum length.</param>
+        /// <returns></returns>
         public static bool EsAlfanumericoValido(Control control, string nombreCampo, int minLength = 3, int maxLength = 50)
         {
             string texto = control.Text;
@@ -211,12 +270,21 @@ namespace SG_BAMS
             return true;
         }
 
+        /// <summary>
+        /// Validars the busqueda alfanumerica.
+        /// </summary>
+        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
         public static void ValidarBusquedaAlfanumerica(KeyPressEventArgs e)
         {
             if (char.IsControl(e.KeyChar) || char.IsWhiteSpace(e.KeyChar)) return;
             if (!Regex.IsMatch(e.KeyChar.ToString(), @"^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ]+$")) e.Handled = true;
         }
 
+        /// <summary>
+        /// Eses the telefono honduras valido.
+        /// </summary>
+        /// <param name="control">The control.</param>
+        /// <returns></returns>
         public static bool EsTelefonoHondurasValido(Control control)
         {
             string tel = control.Text.Trim();
@@ -232,6 +300,13 @@ namespace SG_BAMS
             return true;
         }
 
+        /// <summary>
+        /// Eses the password valido.
+        /// </summary>
+        /// <param name="control">The control.</param>
+        /// <param name="nombreCampo">The nombre campo.</param>
+        /// <param name="minLength">The minimum length.</param>
+        /// <returns></returns>
         public static bool EsPasswordValido(Control control, string nombreCampo, int minLength = 6)
         {
             string pass = control.Text;
@@ -253,6 +328,12 @@ namespace SG_BAMS
             return true;
         }
 
+        /// <summary>
+        /// Validars the seleccion.
+        /// </summary>
+        /// <param name="cb">The cb.</param>
+        /// <param name="nombreCampo">The nombre campo.</param>
+        /// <returns></returns>
         public static bool ValidarSeleccion(KryptonComboBox cb, string nombreCampo)
         {
             if (cb.SelectedIndex == -1 || string.IsNullOrWhiteSpace(cb.Text))
@@ -263,6 +344,11 @@ namespace SG_BAMS
             return true;
         }
 
+        /// <summary>
+        /// Validars the codigo barra.
+        /// </summary>
+        /// <param name="codigo">The codigo.</param>
+        /// <returns></returns>
         public static bool ValidarCodigoBarra(string codigo)
         {
             if(!Regex.IsMatch(codigo, @"^[a-zA-Z0-9]{6,20}$"))
@@ -275,6 +361,11 @@ namespace SG_BAMS
             return true;
         }
 
+        /// <summary>
+        /// Validars the telefono key press.
+        /// </summary>
+        /// <param name="txt">The text.</param>
+        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
         public static void ValidarTelefonoKeyPress(KryptonTextBox txt, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
@@ -293,6 +384,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Permitirs the numeros y decimales.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
         public static void PermitirNumerosYDecimales(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',' && !char.IsControl(e.KeyChar))
@@ -329,6 +425,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Validars the rango fechas.
+        /// </summary>
+        /// <param name="dtpInicio">The DTP inicio.</param>
+        /// <param name="dtpFin">The DTP fin.</param>
         public static void ValidarRangoFechas(DateTimePicker dtpInicio, DateTimePicker dtpFin)
         {
             dtpInicio.MaxDate = DateTime.Today;
@@ -340,6 +441,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Eses the RTN valido.
+        /// </summary>
+        /// <param name="control">The control.</param>
+        /// <returns></returns>
         public static bool EsRTNValido(Control control)
         {
             string rtn = control.Text.Trim();
@@ -402,6 +508,10 @@ namespace SG_BAMS
 
 
 
+        /// <summary>
+        /// Permitirs the solo letras y numeros.
+        /// </summary>
+        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
         public static void PermitirSoloLetrasYNumeros(KeyPressEventArgs e)
         {
             if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))

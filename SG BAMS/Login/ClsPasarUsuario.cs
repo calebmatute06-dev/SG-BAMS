@@ -6,9 +6,17 @@ using System.Threading.Tasks;
 
 namespace SG_BAMS.Login
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="SG_BAMS.Login.ClsLogin" />
     internal class ClsPasarUsuario:ClsLogin
     {
 
+        /// <summary>
+        /// Identifiers the usuario.
+        /// </summary>
+        /// <returns></returns>
         public int IdUsuario()
         {
             return idusuario;

@@ -3,24 +3,50 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
 
+/// <summary>
+/// 
+/// </summary>
 public static class ClsTemas
 {
+    /// <summary>
+    /// The modo oscuro enabled
+    /// </summary>
     public static bool modoOscuroEnabled = false;
+    /// <summary>
+    /// The ruta archivo
+    /// </summary>
     private static string rutaArchivo = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "config_tema_krypton_fix.txt");
 
+    /// <summary>
+    /// The color fondo negro
+    /// </summary>
     private static Color colorFondoNegro = Color.FromArgb(25, 25, 25);
+    /// <summary>
+    /// The color texto blanco
+    /// </summary>
     private static Color colorTextoBlanco = Color.White;
 
+    /// <summary>
+    /// Guardars the preferencia.
+    /// </summary>
+    /// <param name="estado">if set to <c>true</c> [estado].</param>
     public static void GuardarPreferencia(bool estado)
     {
         try { modoOscuroEnabled = estado; File.WriteAllText(rutaArchivo, estado.ToString()); } catch { }
     }
 
+    /// <summary>
+    /// Cargars the preferencia.
+    /// </summary>
     public static void CargarPreferencia()
     {
         try { if (File.Exists(rutaArchivo)) bool.TryParse(File.ReadAllText(rutaArchivo), out modoOscuroEnabled); } catch { }
     }
 
+    /// <summary>
+    /// Aplicars the tema.
+    /// </summary>
+    /// <param name="formulario">The formulario.</param>
     public static void AplicarTema(Form formulario)
     {
         formulario.BackColor = modoOscuroEnabled ? colorFondoNegro : SystemColors.Control;
@@ -31,6 +57,11 @@ public static class ClsTemas
         }
     }
 
+    /// <summary>
+    /// Procesars the estilo capa.
+    /// </summary>
+    /// <param name="objetoControl">The objeto control.</param>
+    /// <param name="esOscuro">if set to <c>true</c> [es oscuro].</param>
     private static void ProcesarEstiloCapa(Control objetoControl, bool esOscuro)
     {
         

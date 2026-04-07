@@ -10,25 +10,48 @@ using System.Threading.Tasks;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
     internal class ClsServicioAyudaIA
     {
+        /// <summary>
+        /// The client
+        /// </summary>
         private readonly HttpClient _client;
-        private readonly string _apiKey = "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"; 
+        /// <summary>
+        /// The API key
+        /// </summary>
+        private readonly string _apiKey = "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";
 
+        /// <summary>
+        /// The URL
+        /// </summary>
         private readonly string _url = "https://api.groq.com/openai/v1/chat/completions";
 
+        /// <summary>
+        /// The cadena conexion
+        /// </summary>
         private readonly string _cadenaConexion = "Data Source = AutoBattDB.mssql.somee.com; " +
                                                    "Initial catalog = AutoBattDB; " +
                                                    "User ID = exobonnie_SQLLogin_1; " +
                                                    "Password = w6et2uoghs;" +
                                                    "TrustServerCertificate=True;";
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ClsServicioAyudaIA"/> class.
+        /// </summary>
         public ClsServicioAyudaIA()
         {
             _client = new HttpClient();
             _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {_apiKey}");
         }
 
+        /// <summary>
+        /// Consultars the asynchronous.
+        /// </summary>
+        /// <param name="pregunta">The pregunta.</param>
+        /// <returns></returns>
         public async Task<string> ConsultarAsync(string pregunta)
         {
             try
@@ -75,6 +98,10 @@ namespace SG_BAMS
                 return "Error: " + ex.Message;
             }
         }
+        /// <summary>
+        /// Obteners the contexto bd.
+        /// </summary>
+        /// <returns></returns>
         private string ObtenerContextoBD()
         {
             StringBuilder sb = new StringBuilder();
@@ -107,6 +134,12 @@ namespace SG_BAMS
         }
 
 
+        /// <summary>
+        /// Ejecutars the consulta.
+        /// </summary>
+        /// <param name="con">The con.</param>
+        /// <param name="query">The query.</param>
+        /// <returns></returns>
         private string EjecutarConsulta(SqlConnection con, string query)
         {
             StringBuilder sb = new StringBuilder();

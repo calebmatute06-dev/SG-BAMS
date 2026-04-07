@@ -10,12 +10,28 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class NotificacionesAdmin : Form
     {
+        /// <summary>
+        /// The es administrador
+        /// </summary>
         private bool esAdministrador;
+        /// <summary>
+        /// The notificaciones leidas
+        /// </summary>
         private HashSet<int> notificacionesLeidas = new HashSet<int>();
+        /// <summary>
+        /// The contador no leidas
+        /// </summary>
         private int contadorNoLeidas = 0;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NotificacionesAdmin"/> class.
+        /// </summary>
         public NotificacionesAdmin()
         {
             InitializeComponent();
@@ -26,18 +42,29 @@ namespace SG_BAMS
             notificaciones.DoubleClick += new EventHandler(Notificaciones_DoubleClick);
         }
 
+        /// <summary>
+        /// Handles the Load event of the NotificacionesAdmin control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void NotificacionesAdmin_Load(object sender, EventArgs e)
         {
             CargarListBox();
             Ayudante_UI.AplicarZoomGlobal(this);
         }
 
+        /// <summary>
+        /// Determinars the permisos.
+        /// </summary>
         private void DeterminarPermisos()
         {
             string usuarioActivo = SG_BAMS.Login.Login.UsuarioLogueado;
             this.esAdministrador = true;
         }
 
+        /// <summary>
+        /// Cargars the ListBox.
+        /// </summary>
         private void CargarListBox()
         {
             try
@@ -62,13 +89,21 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Actualizars the label contador.
+        /// </summary>
         private void ActualizarLabelContador()
         {
             cantidadnotificaciones.Text = contadorNoLeidas.ToString();
             cantidadnotificaciones.ForeColor = (contadorNoLeidas > 0) ? Color.Red : Color.Gray;
         }
 
-       
+
+        /// <summary>
+        /// Handles the DoubleClick event of the Notificaciones control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void Notificaciones_DoubleClick(object sender, EventArgs e)
         {
             if (notificaciones.SelectedIndex != -1 && notificaciones.SelectedItem != null)
@@ -101,6 +136,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the DrawItem event of the Notificaciones control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DrawItemEventArgs"/> instance containing the event data.</param>
         private void Notificaciones_DrawItem(object sender, DrawItemEventArgs e)
         {
             if (e.Index < 0) return;
@@ -138,12 +178,32 @@ namespace SG_BAMS
             e.DrawFocusRectangle();
         }
 
+        /// <summary>
+        /// Handles the Shown event of the NotificacionesAdmin control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void NotificacionesAdmin_Shown(object sender, EventArgs e) => Ayudante_UI.AplicarZoomGlobal(this);
 
+        /// <summary>
+        /// Handles the SelectedIndexChanged event of the listBox1 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e) { }
 
+        /// <summary>
+        /// Handles the MouseClick event of the listBox1 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
         private void listBox1_MouseClick(object sender, MouseEventArgs e) { }
 
+        /// <summary>
+        /// Handles the Click event of the btnsalir1 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnsalir1_Click(object sender, EventArgs e) => this.Close();
     }
 }

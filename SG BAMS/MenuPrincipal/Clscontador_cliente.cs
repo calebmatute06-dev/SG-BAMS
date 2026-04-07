@@ -5,9 +5,17 @@ using System.Threading.Tasks;
 
 namespace SG_BAMS.MenuPrincipal
 {
-   
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="SG_BAMS.ClsConexion" />
     internal class Clscontador_cliente : ClsConexion
     {
+        /// <summary>
+        /// Obteners the total clientes.
+        /// </summary>
+        /// <returns></returns>
         public async Task<int> ObtenerTotalClientes()
         {
             try

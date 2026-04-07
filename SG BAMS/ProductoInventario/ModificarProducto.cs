@@ -12,19 +12,39 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class ModificarProducto : Form
     {
+        /// <summary>
+        /// The marca actual
+        /// </summary>
         public string marcaActual, tipoActual, modeloActual, estadoActual, proveedorActual;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ModificarProducto"/> class.
+        /// </summary>
         public ModificarProducto()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Handles the TextChanged event of the kryptonTextBox3 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void kryptonTextBox3_TextChanged(object sender, EventArgs e)
         {
         }
 
+        /// <summary>
+        /// Handles the Click event of the kryptonButton20 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void kryptonButton20_Click(object sender, EventArgs e)
         {
             try
@@ -83,6 +103,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Load event of the ModificarProducto control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ModificarProducto_Load(object sender, EventArgs e)
         {
             LlenarCombosModificar();
@@ -94,6 +119,9 @@ namespace SG_BAMS
             cmbProveedor.SelectedIndex = cmbProveedor.FindStringExact(proveedorActual?.Trim());
         }
 
+        /// <summary>
+        /// Llenars the combos modificar.
+        /// </summary>
         public void LlenarCombosModificar()
         {
             ClsLlenarCombo llenar = new ClsLlenarCombo();
@@ -111,21 +139,41 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnCancelar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnsalir control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnsalir_Click(object sender, EventArgs e)
         {
             Close();
         }
 
+        /// <summary>
+        /// Handles the TextChanged event of the txtCodigoBarra control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void txtCodigoBarra_TextChanged(object sender, EventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// Handles the KeyPress event of the txtCodigoBarra control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
         private void txtCodigoBarra_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
@@ -161,11 +209,21 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the label2 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void label2_Click(object sender, EventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// Handles the KeyPress event of the txtPrecio control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
         private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
         {
             ClsValidaciones.PermitirNumerosYDecimales(sender, e);
