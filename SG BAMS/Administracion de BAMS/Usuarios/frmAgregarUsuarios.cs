@@ -66,7 +66,7 @@ namespace SG_BAMS
         /// </summary>
         private void cmbRol_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Espacio para lógica adicional al cambiar de rol si es necesario.
+            
         }
 
         /// <summary>

@@ -74,7 +74,7 @@
             txtNombre.StateCommon.Content.Color1 = Color.Navy;
             txtNombre.StateCommon.Content.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNombre.TabIndex = 18;
-            txtNombre.TextChanged += txtNombre_TextChanged;
+            //txtNombre.TextChanged += txtNombre_TextChanged;
             // 
             // txtContra
             // 
