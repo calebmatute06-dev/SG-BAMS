@@ -137,7 +137,6 @@ namespace SG_BAMS
         {
             frmAgregarFormaPago agregarFpago = new frmAgregarFormaPago();
             agregarFpago.Show();
-            this.Close();
         }
 
         /// <summary>

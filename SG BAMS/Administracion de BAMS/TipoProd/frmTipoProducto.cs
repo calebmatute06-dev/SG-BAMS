@@ -42,13 +42,13 @@ namespace SG_BAMS
                 dgvTipoProducto.DataSource = await objetoTipo.LeerTiposProductoAsync();
 
                 if (dgvTipoProducto.Columns.Contains("nombre_tipo_producto"))
-                    dgvTipoProducto.Columns["nombre_tipo_producto"].HeaderText = "Nombre del Tipo de Producto";
+                    dgvTipoProducto.Columns["nombre_tipo_producto"].HeaderText = "Tipo de Producto";
 
                 if (dgvTipoProducto.Columns.Contains("id_tipo_producto"))
                     dgvTipoProducto.Columns["id_tipo_producto"].HeaderText = "ID";
 
                 if (dgvTipoProducto.Columns.Contains("cantidad_productos_asociados"))
-                    dgvTipoProducto.Columns["cantidad_productos_asociados"].HeaderText = "Cantidad de productos";
+                    dgvTipoProducto.Columns["cantidad_productos_asociados"].HeaderText = "Cantidad";
 
                 dgvTipoProducto.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dgvTipoProducto.SelectionMode = DataGridViewSelectionMode.FullRowSelect;

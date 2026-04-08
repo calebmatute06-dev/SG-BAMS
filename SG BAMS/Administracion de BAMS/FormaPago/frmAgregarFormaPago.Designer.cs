@@ -90,7 +90,7 @@ namespace SG_BAMS
             txtdescri.MaxLength = 70;
             txtdescri.Multiline = true;
             txtdescri.Name = "txtdescri";
-            txtdescri.Size = new Size(264, 49);
+            txtdescri.Size = new Size(264, 43);
             txtdescri.StateCommon.Back.Color1 = Color.SkyBlue;
             txtdescri.StateCommon.Border.Rounding = 15F;
             txtdescri.StateCommon.Content.Color1 = Color.Navy;
@@ -103,7 +103,7 @@ namespace SG_BAMS
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(28, 98);
+            label2.Location = new Point(33, 94);
             label2.Name = "label2";
             label2.Size = new Size(274, 25);
             label2.TabIndex = 113;

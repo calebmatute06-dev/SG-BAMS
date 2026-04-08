@@ -78,16 +78,16 @@ namespace SG_BAMS
                 dgvEstados.Columns["id_estado"].Visible = false;
 
             if (dgvEstados.Columns.Contains("descripcion_estado"))
-                dgvEstados.Columns["descripcion_estado"].HeaderText = "Nombre del Estado";
+                dgvEstados.Columns["descripcion_estado"].HeaderText = "Estado";
 
             if (dgvEstados.Columns.Contains("total_usuarios"))
-                dgvEstados.Columns["total_usuarios"].HeaderText = "Total de Usuarios";
+                dgvEstados.Columns["total_usuarios"].HeaderText = "Total Usuarios";
 
             if (dgvEstados.Columns.Contains("total_productos"))
-                dgvEstados.Columns["total_productos"].HeaderText = "Total de Productos";
+                dgvEstados.Columns["total_productos"].HeaderText = "Total Productos";
 
             if (dgvEstados.Columns.Contains("total_proveedores"))
-                dgvEstados.Columns["total_proveedores"].HeaderText = "Total de Proveedores";
+                dgvEstados.Columns["total_proveedores"].HeaderText = "Total Proveedores";
 
 
             dgvEstados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;

@@ -89,7 +89,7 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(32, 88);
+            label2.Location = new Point(34, 91);
             label2.Name = "label2";
             label2.Size = new Size(249, 25);
             label2.TabIndex = 91;
@@ -97,11 +97,11 @@
             // 
             // txtDescri
             // 
-            txtDescri.Location = new Point(293, 80);
+            txtDescri.Location = new Point(293, 82);
             txtDescri.MaxLength = 70;
             txtDescri.Multiline = true;
             txtDescri.Name = "txtDescri";
-            txtDescri.Size = new Size(264, 46);
+            txtDescri.Size = new Size(264, 42);
             txtDescri.StateCommon.Back.Color1 = Color.SkyBlue;
             txtDescri.StateCommon.Border.Rounding = 15F;
             txtDescri.StateCommon.Content.Color1 = Color.Navy;

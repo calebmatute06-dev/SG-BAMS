@@ -153,7 +153,6 @@ namespace SG_BAMS
         {
             frmIngresarMarcaProducto agregarMproducto = new frmIngresarMarcaProducto();
             agregarMproducto.Show();
-            this.Close();
         }
 
         /// <summary>
