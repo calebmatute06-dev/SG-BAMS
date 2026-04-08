@@ -119,7 +119,7 @@ namespace SG_BAMS.Login
             ActualizarEstado("Cargando modelo facial...", Color.Gray);
             Task.Run(() =>
             {
-                EntrenarModelo(todosLosArchivos);
+                EntrenarModelo(archivosUsuario);
                 this.Invoke(new Action(IniciarCamara));
             });
         }
@@ -144,35 +144,18 @@ namespace SG_BAMS.Login
         /// Entrena el modelo facial.
         /// </summary>
         /// <param name="todosLosArchivos">Todos los archivos de rostros.</param>
-        private void EntrenarModelo(List<string> todosLosArchivos)
+        private void EntrenarModelo(List<string> archivosDelUsuario)
         {
             var rostros = new List<Image<Gray, byte>>();
             var etiquetas = new List<int>();
 
-            var usuarios = todosLosArchivos
-                .GroupBy(f =>
-                {
-                    string nombre = Path.GetFileNameWithoutExtension(f);
-                    int idx = nombre.IndexOf('_');
-                    return idx >= 0 ? nombre.Substring(0, idx) : nombre;
-                })
-                .ToList();
+            etiquetaUsuarioValido = 1;
 
-            int etiquetaActual = 1;
-            foreach (var grupo in usuarios)
+            foreach (var archivo in archivosDelUsuario)
             {
-                string nombreUsuario = grupo.Key;
-                int etiqueta = etiquetaActual++;
-
-                if (nombreUsuario == UsuarioAValidar)
-                    etiquetaUsuarioValido = etiqueta;
-
-                foreach (var archivo in grupo)
-                {
-                    var img = new Image<Gray, byte>(archivo).Resize(100, 100, Inter.Linear);
-                    AplicarPreprocesado(img);
-                    AgregarConVariantes(img, rostros, etiquetas, etiqueta);
-                }
+                var img = new Image<Gray, byte>(archivo).Resize(100, 100, Inter.Linear);
+                AplicarPreprocesado(img);
+                AgregarConVariantes(img, rostros, etiquetas, etiquetaUsuarioValido);
             }
 
             using (var vR = new VectorOfMat())
@@ -181,6 +164,7 @@ namespace SG_BAMS.Login
                 foreach (var img in rostros) vR.Push(img.Mat);
                 recognizer.Train(vR, vE);
             }
+
             foreach (var img in rostros) img.Dispose();
         }
 
