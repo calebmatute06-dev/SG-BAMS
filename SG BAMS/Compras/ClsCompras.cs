@@ -2,6 +2,7 @@
 using Microsoft.Data.SqlClient;
 using System.Collections.Generic;
 using System.Data;
+using SG_BAMS.Login;
 
 namespace SG_BAMS
 {
@@ -136,14 +137,13 @@ namespace SG_BAMS
         /// <summary>
         /// Guarda una nueva compra junto con sus detalles en la base de datos.
         /// </summary>
-        /// <param name="idUsuario">El identificador del usuario que realiza la compra.</param>
         /// <param name="fecha">La fecha de la compra.</param>
         /// <param name="idPago">El identificador del tipo de pago.</param>
         /// <param name="idProv">El identificador del proveedor.</param>
         /// <param name="nota">Una nota o descripción de la compra.</param>
         /// <param name="detalles">La lista de detalles de la compra.</param>
         /// <returns><c>true</c> si la compra se guarda correctamente; de lo contrario, lanza una excepción.</returns>
-        public bool GuardarNuevaCompra(int idUsuario, DateTime fecha, int idPago, int idProv, string nota, List<DetalleCompra> detalles)
+        public bool GuardarNuevaCompra(DateTime fecha, int idPago, int idProv, string nota, List<DetalleCompra> detalles)
         {
             ClsConexion conexion = new ClsConexion();
             conexion.AbrirConexion();
@@ -151,6 +151,15 @@ namespace SG_BAMS
 
             try
             {
+                // Obtener el ID del usuario actual de la sesión
+                ClsPasarUsuario obtenerUsuario = new ClsPasarUsuario();
+                int idUsuario = obtenerUsuario.IdUsuario();
+
+                if (idUsuario == 0)
+                {
+                    throw new Exception("No se ha iniciado sesión o no se pudo obtener el ID del usuario.");
+                }
+
                 string queryCabecera = @"INSERT INTO Compra (id_usuario, fecha_pedido, id_tipo_forma_pago, id_proveedor, desc_compra) 
                                          VALUES (@idU, @fecha, @idPag, @idProv, @desc);
                                          SELECT SCOPE_IDENTITY();";

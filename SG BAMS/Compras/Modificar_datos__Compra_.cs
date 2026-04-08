@@ -242,7 +242,17 @@ namespace SG_BAMS
         {
             if (dgvProductosModificar.CurrentRow == null || dgvProductosModificar.CurrentRow.IsNewRow) return;
 
-            if (dgvProductosModificar.Rows.Count <= 1)
+           
+            int filasConDatos = 0;
+            foreach (DataGridViewRow fila in dgvProductosModificar.Rows)
+            {
+                if (!fila.IsNewRow && fila.Cells["ID"].Value != null && fila.Cells["ID"].Value != DBNull.Value)
+                {
+                    filasConDatos++;
+                }
+            }
+
+            if (filasConDatos <= 1)
             {
                 MessageBox.Show("Debe mantener al menos un artículo.", "BAMS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
