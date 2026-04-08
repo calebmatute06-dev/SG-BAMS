@@ -327,7 +327,7 @@
             dgvProductos.CellClick += dgvProductos_CellClick;
             dgvProductos.CellValidating += dgvProductos_CellValidating;
             dgvProductos.CellValueChanged += dgvProductos_CellValueChanged;
-            dgvProductos.SelectionChanged += dgvProductos_SelectionChanged;
+            dgvProductos.RowsAdded += dgvProductos_RowsAdded;
             // 
             // panel5
             // 

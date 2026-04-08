@@ -134,9 +134,9 @@ namespace SG_BAMS
             dgvProductos.Columns["nombre_producto"].Width = 200;
             dgvProductos.Columns["precio"].ReadOnly = true;
             dgvProductos.Columns["subtotal"].ReadOnly = true;
-            dgvProductos.Columns["Cantidad"].DefaultCellStyle.BackColor = Color.LightBlue;
+            dgvProductos.RowsAdded += dgvProductos_RowsAdded;
             dgvProductos.CellClick += dgvProductos_CellClick;
-            dgvProductos.SelectionChanged += dgvProductos_SelectionChanged;
+
 
 
             dgvProductos.SelectionMode = DataGridViewSelectionMode.CellSelect;
@@ -276,7 +276,8 @@ namespace SG_BAMS
                         if (fila.IsNewRow) continue;
                         int idPr = Convert.ToInt32(fila.Cells["id_producto"].Value);
                         int cant = Convert.ToInt32(fila.Cells["cantidad"].Value);
-                        await objAP.GuardarProductoFactura(idFactura, idPr, cant);
+                        double precio = Convert.ToDouble(fila.Cells["precio"].Value);
+                        await objAP.GuardarProductoFactura(idFactura, idPr, cant, precio);
                     }
 
                     DialogResult imprimir = MessageBox.Show(
@@ -363,6 +364,8 @@ namespace SG_BAMS
                         (cantidades * precio),
                         stock);
 
+
+                    dgvProductos.ClearSelection();
                     CalcularTotal();
                     ActualizarEstadoBotonAceptar();
                 }
@@ -388,6 +391,7 @@ namespace SG_BAMS
                     txtBateria.Text = "0";
                 }
 
+                dgvProductos.ClearSelection();
                 CalcularTotal();
                 ActualizarEstadoBotonAceptar();
             }
@@ -541,17 +545,11 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Handles the SelectionChanged event of the dgvProductos control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void dgvProductos_SelectionChanged(object sender, EventArgs e)
+        private void dgvProductos_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
-            foreach (DataGridViewCell cell in dgvProductos.SelectedCells)
+            if (dgvProductos.Columns.Contains("cantidad"))
             {
-                if (dgvProductos.Columns[cell.ColumnIndex].Name != "cantidad")
-                    cell.Selected = false;
+                dgvProductos.Rows[e.RowIndex].Cells["cantidad"].Style.BackColor = Color.LightBlue;
             }
         }
     }

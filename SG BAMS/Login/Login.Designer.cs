@@ -51,11 +51,11 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 30F);
+            label3.Font = new Font("Arial Narrow", 60F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(282, 206);
+            label3.Location = new Point(346, 43);
             label3.Name = "label3";
-            label3.Size = new Size(129, 54);
+            label3.Size = new Size(233, 94);
             label3.TabIndex = 6;
             label3.Text = "BAMS";
             // 
@@ -64,7 +64,7 @@
             picBa.BackColor = Color.Transparent;
             picBa.BackgroundImageLayout = ImageLayout.Stretch;
             picBa.Image = Properties.Resources.Bateria_1;
-            picBa.Location = new Point(247, 19);
+            picBa.Location = new Point(49, 75);
             picBa.Margin = new Padding(3, 2, 3, 2);
             picBa.Name = "picBa";
             picBa.Size = new Size(202, 185);
@@ -73,7 +73,7 @@
             // 
             // txtUsu
             // 
-            txtUsu.Location = new Point(282, 282);
+            txtUsu.Location = new Point(410, 150);
             txtUsu.Margin = new Padding(3, 2, 3, 2);
             txtUsu.Name = "txtUsu";
             txtUsu.Size = new Size(192, 39);
@@ -85,7 +85,7 @@
             // 
             // txtCon
             // 
-            txtCon.Location = new Point(282, 337);
+            txtCon.Location = new Point(410, 205);
             txtCon.Margin = new Padding(3, 2, 3, 2);
             txtCon.Name = "txtCon";
             txtCon.Size = new Size(192, 39);
@@ -127,7 +127,7 @@
             // pictureBox2
             // 
             pictureBox2.BackColor = Color.Navy;
-            pictureBox2.Location = new Point(-1, -3);
+            pictureBox2.Location = new Point(-1, 0);
             pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(701, 18);
@@ -137,7 +137,7 @@
             // pictureBox3
             // 
             pictureBox3.BackColor = Color.Navy;
-            pictureBox3.Location = new Point(-1, 458);
+            pictureBox3.Location = new Point(-1, 337);
             pictureBox3.Margin = new Padding(3, 2, 3, 2);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(701, 23);
@@ -146,7 +146,7 @@
             // 
             // btninicioSesion1
             // 
-            btninicioSesion1.Location = new Point(154, 394);
+            btninicioSesion1.Location = new Point(249, 272);
             btninicioSesion1.Margin = new Padding(3, 2, 3, 2);
             btninicioSesion1.Name = "btninicioSesion1";
             btninicioSesion1.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -170,7 +170,7 @@
             // 
             // btnsalirLogin1
             // 
-            btnsalirLogin1.Location = new Point(371, 394);
+            btnsalirLogin1.Location = new Point(451, 272);
             btnsalirLogin1.Margin = new Padding(3, 2, 3, 2);
             btnsalirLogin1.Name = "btnsalirLogin1";
             btnsalirLogin1.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -198,7 +198,7 @@
             Nombre.BackColor = Color.Transparent;
             Nombre.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             Nombre.ForeColor = Color.Navy;
-            Nombre.Location = new Point(185, 289);
+            Nombre.Location = new Point(313, 157);
             Nombre.Name = "Nombre";
             Nombre.Size = new Size(89, 22);
             Nombre.TabIndex = 339;
@@ -210,7 +210,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(150, 343);
+            label1.Location = new Point(278, 211);
             label1.Name = "label1";
             label1.Size = new Size(125, 22);
             label1.TabIndex = 339;
@@ -221,7 +221,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(700, 481);
+            ClientSize = new Size(700, 356);
             Controls.Add(label1);
             Controls.Add(Nombre);
             Controls.Add(btnsalirLogin1);

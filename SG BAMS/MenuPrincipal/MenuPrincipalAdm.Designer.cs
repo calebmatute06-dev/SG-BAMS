@@ -28,14 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            panel2 = new Panel();
             panel4 = new Panel();
             pictureBox3 = new PictureBox();
             panel3 = new Panel();
@@ -62,7 +60,6 @@
             pictureBox21 = new PictureBox();
             chartMasVendidos = new System.Windows.Forms.DataVisualization.Charting.Chart();
             chartStock = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            timer1 = new System.Windows.Forms.Timer(components);
             btnadmin = new Button();
             btnAdministracion = new Krypton.Toolkit.KryptonButton();
             btnAsis = new Krypton.Toolkit.KryptonButton();
@@ -78,6 +75,7 @@
             btnCerrar = new ReaLTaiizor.Controls.NightButton();
             btnPerfil = new ReaLTaiizor.Controls.NightButton();
             btnMenu = new ReaLTaiizor.Controls.NightButton();
+            panel1 = new Panel();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox17).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox19).BeginInit();
@@ -87,22 +85,13 @@
             ((System.ComponentModel.ISupportInitialize)chartStock).BeginInit();
             SuspendLayout();
             // 
-            // panel2
-            // 
-            panel2.BackColor = Color.Navy;
-            panel2.Location = new Point(3, 0);
-            panel2.Margin = new Padding(3, 2, 3, 2);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(964, 18);
-            panel2.TabIndex = 2;
-            // 
             // panel4
             // 
             panel4.BackColor = Color.Navy;
-            panel4.Location = new Point(946, 18);
+            panel4.Location = new Point(946, 0);
             panel4.Margin = new Padding(3, 2, 3, 2);
             panel4.Name = "panel4";
-            panel4.Size = new Size(21, 652);
+            panel4.Size = new Size(21, 670);
             panel4.TabIndex = 3;
             // 
             // pictureBox3
@@ -163,7 +152,7 @@
             // 
             // btninventario2
             // 
-            btninventario2.Location = new Point(281, 88);
+            btninventario2.Location = new Point(290, 111);
             btninventario2.Margin = new Padding(3, 2, 3, 2);
             btninventario2.Name = "btninventario2";
             btninventario2.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -326,7 +315,7 @@
             label6.BackColor = Color.SkyBlue;
             label6.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(819, 416);
+            label6.Location = new Point(812, 418);
             label6.Name = "label6";
             label6.Size = new Size(16, 20);
             label6.TabIndex = 55;
@@ -338,7 +327,7 @@
             label7.BackColor = Color.SkyBlue;
             label7.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Navy;
-            label7.Location = new Point(819, 605);
+            label7.Location = new Point(813, 614);
             label7.Name = "label7";
             label7.Size = new Size(16, 20);
             label7.TabIndex = 56;
@@ -350,7 +339,7 @@
             label8.BackColor = Color.SkyBlue;
             label8.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Navy;
-            label8.Location = new Point(819, 214);
+            label8.Location = new Point(812, 219);
             label8.Name = "label8";
             label8.Size = new Size(16, 20);
             label8.TabIndex = 57;
@@ -374,7 +363,7 @@
             label10.BackColor = Color.SkyBlue;
             label10.Font = new Font("Arial Narrow", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Navy;
-            label10.Location = new Point(361, 99);
+            label10.Location = new Point(369, 122);
             label10.Name = "label10";
             label10.Size = new Size(227, 29);
             label10.TabIndex = 59;
@@ -385,7 +374,7 @@
             pictureBox19.BackColor = Color.SkyBlue;
             pictureBox19.BackgroundImage = Properties.Resources.canti;
             pictureBox19.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox19.Location = new Point(788, 122);
+            pictureBox19.Location = new Point(783, 122);
             pictureBox19.Margin = new Padding(3, 2, 3, 2);
             pictureBox19.Name = "pictureBox19";
             pictureBox19.Size = new Size(72, 46);
@@ -397,7 +386,7 @@
             pictureBox20.BackColor = Color.SkyBlue;
             pictureBox20.BackgroundImage = Properties.Resources.de1;
             pictureBox20.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox20.Location = new Point(788, 325);
+            pictureBox20.Location = new Point(785, 325);
             pictureBox20.Margin = new Padding(3, 2, 3, 2);
             pictureBox20.Name = "pictureBox20";
             pictureBox20.Size = new Size(72, 46);
@@ -409,7 +398,7 @@
             pictureBox21.BackColor = Color.SkyBlue;
             pictureBox21.BackgroundImage = Properties.Resources.clientes1;
             pictureBox21.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox21.Location = new Point(788, 513);
+            pictureBox21.Location = new Point(785, 513);
             pictureBox21.Margin = new Padding(3, 2, 3, 2);
             pictureBox21.Name = "pictureBox21";
             pictureBox21.Size = new Size(72, 46);
@@ -423,7 +412,7 @@
             legend1.BackColor = Color.SkyBlue;
             legend1.Name = "Legend1";
             chartMasVendidos.Legends.Add(legend1);
-            chartMasVendidos.Location = new Point(303, 140);
+            chartMasVendidos.Location = new Point(311, 157);
             chartMasVendidos.Margin = new Padding(3, 2, 3, 2);
             chartMasVendidos.Name = "chartMasVendidos";
             chartMasVendidos.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
@@ -458,10 +447,6 @@
             chartStock.Size = new Size(346, 161);
             chartStock.TabIndex = 96;
             chartStock.Text = "chartStock";
-            // 
-            // timer1
-            // 
-            timer1.Enabled = true;
             // 
             // btnadmin
             // 
@@ -797,14 +782,23 @@
             btnMenu.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             btnMenu.TabIndex = 112;
             btnMenu.Text = "Menu Principal";
-        
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.Navy;
+            panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(3, 2, 3, 2);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(977, 18);
+            panel1.TabIndex = 11;
             // 
             // MenuPrincipalAdm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
+            BackColor = Color.FromArgb(244, 241, 243);
             ClientSize = new Size(967, 680);
+            Controls.Add(panel1);
             Controls.Add(btnAsis);
             Controls.Add(btnAdministracion);
             Controls.Add(btnadmin);
@@ -835,7 +829,6 @@
             Controls.Add(panel3);
             Controls.Add(pictureBox3);
             Controls.Add(panel4);
-            Controls.Add(panel2);
             Controls.Add(btnReportes);
             Controls.Add(btnPerfil);
             Controls.Add(btnCerrar);
@@ -850,8 +843,10 @@
             ForeColor = Color.SkyBlue;
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 2, 3, 2);
+            MinimumSize = new Size(261, 65);
             Name = "MenuPrincipalAdm";
-            Text = "MenuPrincipalAdm";
+            Text = "dungeonForm1";
+            TransparencyKey = Color.Fuchsia;
             Load += MenuPrincipalAdm_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox17).EndInit();
@@ -865,7 +860,6 @@
         }
 
         #endregion
-        private Panel panel2;
         private Panel panel4;
         private PictureBox pictureBox3;
         private Panel panel8;
@@ -893,7 +887,6 @@
         private PictureBox pictureBox21;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartMasVendidos;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartStock;
-        private System.Windows.Forms.Timer timer1;
         private Button btnadmin;
         private Krypton.Toolkit.KryptonButton btnAdministracion;
         private Krypton.Toolkit.KryptonButton btnAsis;
@@ -909,5 +902,6 @@
         private ReaLTaiizor.Controls.NightButton btnCerrar;
         private ReaLTaiizor.Controls.NightButton btnPerfil;
         private ReaLTaiizor.Controls.NightButton btnMenu;
+        private Panel panel1;
     }
 }

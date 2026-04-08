@@ -237,7 +237,7 @@
             lblNumero.BackColor = Color.SkyBlue;
             lblNumero.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblNumero.ForeColor = Color.Navy;
-            lblNumero.Location = new Point(527, 69);
+            lblNumero.Location = new Point(524, 69);
             lblNumero.Name = "lblNumero";
             lblNumero.Size = new Size(21, 22);
             lblNumero.TabIndex = 340;

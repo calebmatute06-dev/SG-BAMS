@@ -21,17 +21,18 @@ namespace SG_BAMS.Facturas
         /// <param name="idFactura">The identifier factura.</param>
         /// <param name="idProducto">The identifier producto.</param>
         /// <param name="cantidad">The cantidad.</param>
-        public async Task GuardarProductoFactura(int idFactura, int idProducto, int cantidad)
+        public async Task GuardarProductoFactura(int idFactura, int idProducto, int cantidad, double PrecioHistoria)
         {
             AbrirConexion();
 
-            using (SqlCommand cmd = new SqlCommand("PA_insertar_factura_producto ", Conectar))
+            using (SqlCommand cmd = new SqlCommand("PA_insertar_factura_producto", Conectar))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@id_factura", idFactura);
                 cmd.Parameters.AddWithValue("@id_producto", idProducto);
                 cmd.Parameters.AddWithValue("@cantidad", cantidad);
+                cmd.Parameters.AddWithValue("@precio_historia", PrecioHistoria);
 
                 await cmd.ExecuteNonQueryAsync();
             }
