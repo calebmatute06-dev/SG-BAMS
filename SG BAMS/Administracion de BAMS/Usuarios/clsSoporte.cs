@@ -21,12 +21,15 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
         /// <summary>
         /// Ruta absoluta del directorio donde se almacenan las imágenes de los rostros capturados.
         /// </summary>
-        public static string DirectorioRostros = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Rostros");
+        public static string DirectorioRostros = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
+            "SGBAMS", "Rostros");
 
         /// <summary>
         /// Clasificador en cascada utilizado para la detección de rostros frontales mediante el algoritmo Haar.
         /// </summary>
-        private static CascadeClassifier faceCascaide = new CascadeClassifier(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "haarcascade_frontalface_default.xml"));
+        private static CascadeClassifier faceCascaide = new CascadeClassifier(
+            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "haarcascade_frontalface_default.xml"));
 
         /// <summary>
         /// Verifica la existencia del directorio de rostros y lo crea si no se encuentra en el sistema.

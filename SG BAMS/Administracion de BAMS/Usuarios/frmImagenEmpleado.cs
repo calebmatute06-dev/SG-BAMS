@@ -22,8 +22,11 @@ namespace SG_BAMS
         private VideoCapture camara;
         private bool camaraEnEncendida = false;
 
-        private CascadeClassifier frontalFaceDetector = new CascadeClassifier("haarcascade_frontalface_default.xml");
-        private CascadeClassifier profileFaceDetector = new CascadeClassifier("haarcascade_profileface.xml");
+        private CascadeClassifier frontalFaceDetector = new CascadeClassifier(
+        Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "haarcascade_frontalface_default.xml"));
+
+        private CascadeClassifier profileFaceDetector = new CascadeClassifier(
+        Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "haarcascade_profileface.xml"));
 
         private string usuarioAsignado = "";
         private int fotosRequeridas = 15;
