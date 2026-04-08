@@ -12,17 +12,18 @@ using System.Windows.Forms;
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    /// Representa la interfaz de usuario para la visualización y administración de las formas de pago.
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmFormaPago : Form
     {
         /// <summary>
-        /// The objeto fp
+        /// Instancia de la clase lógica de negocio para las formas de pago.
         /// </summary>
         clsFormaPago objetoFP = new clsFormaPago();
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="frmFormaPago"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="frmFormaPago"/>.
         /// </summary>
         public frmFormaPago()
         {
@@ -30,11 +31,12 @@ namespace SG_BAMS
             this.StartPosition = FormStartPosition.CenterScreen;
             this.Load += new EventHandler(frmFormasPago_Load);
         }
+
         /// <summary>
-        /// Handles the Load event of the frmFormasPago control.
+        /// Maneja el evento de carga inicial para llenar el listado de formas de pago de manera asíncrona.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private async void frmFormasPago_Load(object sender, EventArgs e)
         {
             await CargarGridFormasPago();
@@ -42,7 +44,7 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Cargars the grid formas pago.
+        /// Carga los datos desde la base de datos al control DataGridView de forma asíncrona.
         /// </summary>
         private async Task CargarGridFormasPago()
         {
@@ -68,7 +70,7 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Configurars the diseno grid.
+        /// Aplica configuraciones visuales, encabezados y visibilidad de columnas al DataGridView.
         /// </summary>
         private void ConfigurarDisenoGrid()
         {
@@ -89,10 +91,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btmAgregar2 control.
+        /// Maneja el evento de clic para abrir el formulario de creación de una nueva forma de pago.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btmAgregar2_Click(object sender, EventArgs e)
         {
             frmAgregarFormaPago AgregarFpago = new frmAgregarFormaPago();
@@ -101,10 +103,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the CellContentDoubleClick event of the dgvFormasPago control.
+        /// Permite editar una forma de pago al realizar doble clic sobre una celda del listado.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="DataGridViewCellEventArgs"/> que contiene los datos del evento.</param>
         private void dgvFormasPago_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvFormasPago.SelectedRows.Count > 0)
@@ -127,10 +129,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btnAgregar control.
+        /// Abre la ventana para agregar un nuevo registro de forma de pago.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmAgregarFormaPago agregarFpago = new frmAgregarFormaPago();
@@ -139,10 +141,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btnModificar control.
+        /// Abre la ventana de modificación para el elemento seleccionado en la lista.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnModificar_Click(object sender, EventArgs e)
         {
             if (dgvFormasPago.SelectedRows.Count > 0)
@@ -165,20 +167,20 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btnSalir control.
+        /// Cierra el formulario actual.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
         /// <summary>
-        /// Handles the Load event of the frmFormaPago control.
+        /// Configura la apariencia visual detallada del DataGridView al cargar el formulario.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void frmFormaPago_Load(object sender, EventArgs e)
         {
             dgvFormasPago.BorderStyle = BorderStyle.None;

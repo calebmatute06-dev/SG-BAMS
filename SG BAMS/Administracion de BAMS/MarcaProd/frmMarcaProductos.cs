@@ -12,17 +12,18 @@ using System.Windows.Forms;
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    /// Interfaz de usuario para la gestión y visualización del catálogo de marcas de productos.
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmMarcaProductos : Form
     {
         /// <summary>
-        /// The objeto marca
+        /// Instancia de la clase lógica de negocio para las marcas.
         /// </summary>
         clsMarca objetoMarca = new clsMarca();
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="frmMarcaProductos"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="frmMarcaProductos"/>.
         /// </summary>
         public frmMarcaProductos()
         {
@@ -30,17 +31,19 @@ namespace SG_BAMS
             this.StartPosition = FormStartPosition.CenterScreen;
             this.Load += new EventHandler(frmMarcas_Load);
         }
+
         /// <summary>
-        /// Handles the Load event of the frmMarcas control.
+        /// Maneja el evento Load para cargar los datos en el grid al iniciar el formulario.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private async void frmMarcas_Load(object sender, EventArgs e)
         {
             await CargarGridMarcas();
         }
+
         /// <summary>
-        /// Cargars the grid marcas.
+        /// Obtiene los datos de las marcas desde la capa de negocio y los asigna al DataGridView.
         /// </summary>
         private async Task CargarGridMarcas()
         {
@@ -66,7 +69,7 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Configurars the diseno grid.
+        /// Establece los encabezados de columna y propiedades visuales del DataGridView.
         /// </summary>
         private void ConfigurarDisenoGrid()
         {
@@ -88,10 +91,10 @@ namespace SG_BAMS
 
 
         /// <summary>
-        /// Handles the CellContentDoubleClick event of the dgvMarcas control.
+        /// Permite abrir el formulario de edición al hacer doble clic sobre una fila del listado.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="DataGridViewCellEventArgs"/> que contiene los datos del evento.</param>
         private void dgvMarcas_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             int id = Convert.ToInt32(dgvMarcas.CurrentRow.Cells["id_marca_producto"].Value);
@@ -106,10 +109,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Load event of the frmMarcaProductos control.
+        /// Aplica estilos visuales personalizados al DataGridView durante la carga del formulario.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void frmMarcaProductos_Load(object sender, EventArgs e)
         {
             dgvMarcas.BorderStyle = BorderStyle.None;
@@ -142,10 +145,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btnAgregar control.
+        /// Abre el formulario para registrar una nueva marca de producto.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmIngresarMarcaProducto agregarMproducto = new frmIngresarMarcaProducto();
@@ -154,28 +157,28 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btnModificar control.
+        /// Verifica la selección actual y abre el formulario para modificar la marca seleccionada.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            
+
             if (dgvMarcas.CurrentRow != null && dgvMarcas.SelectedRows.Count > 0)
             {
                 try
                 {
-                    
+
                     int id = Convert.ToInt32(dgvMarcas.CurrentRow.Cells["id_marca_producto"].Value);
                     string nombre = dgvMarcas.CurrentRow.Cells["nombre_marca"].Value.ToString();
 
-                    
+
                     frmModificarMarcaProducto frm = new frmModificarMarcaProducto(id, nombre);
 
-                   
+
                     if (frm.ShowDialog() == DialogResult.OK)
                     {
-                        
+
                         _ = CargarGridMarcas();
                     }
                 }
@@ -193,10 +196,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btnSalir control.
+        /// Cierra la ventana actual.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();

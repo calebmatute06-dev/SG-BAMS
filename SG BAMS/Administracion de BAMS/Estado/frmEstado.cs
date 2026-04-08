@@ -12,38 +12,39 @@ using System.Windows.Forms;
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    /// Representa la interfaz de usuario para la visualización y gestión de estados.
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmEstado : Form
     {
         /// <summary>
-        /// The objeto estado
+        /// Instancia de la clase lógica de negocio para los estados.
         /// </summary>
         clsEstado objetoEstado = new clsEstado();
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="frmEstado"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="frmEstado"/>.
         /// </summary>
         public frmEstado()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             this.Load += new EventHandler(frmEstados_Load);
-            
+
         }
 
         /// <summary>
-        /// Handles the Load event of the frmEstados control.
+        /// Maneja el evento de carga del formulario de forma asíncrona.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private async void frmEstados_Load(object sender, EventArgs e)
         {
             await CargarGridEstados();
         }
 
         /// <summary>
-        /// Cargars the grid estados.
+        /// Carga los datos de los estados en el control DataGridView de forma asíncrona.
         /// </summary>
         private async Task CargarGridEstados()
         {
@@ -69,7 +70,7 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Personalizars the grid.
+        /// Aplica configuraciones visuales y de formato al DataGridView.
         /// </summary>
         private void PersonalizarGrid()
         {
@@ -97,10 +98,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the CellContentDoubleClick event of the dgvEstados control.
+        /// Maneja el evento de doble clic en el contenido de una celda para modificar el registro.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="DataGridViewCellEventArgs"/> que contiene los datos del evento.</param>
         private void dgvEstados_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvEstados.SelectedRows.Count > 0)
@@ -123,10 +124,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btnAgregar control.
+        /// Maneja el evento Click del botón agregar.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmAgregarEstado frm = new frmAgregarEstado();
@@ -138,10 +139,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btnModificar control.
+        /// Maneja el evento Click del botón modificar para el registro seleccionado.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnModificar_Click(object sender, EventArgs e)
         {
             if (dgvEstados.SelectedRows.Count > 0)
@@ -164,20 +165,20 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btnSalir control.
+        /// Maneja el evento Click del botón salir para cerrar el formulario.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
         /// <summary>
-        /// Handles the Load event of the frmEstado control.
+        /// Configura el estilo visual avanzado del control DataGridView al cargar el formulario.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void frmEstado_Load(object sender, EventArgs e)
         {
             dgvEstados.BorderStyle = BorderStyle.None;

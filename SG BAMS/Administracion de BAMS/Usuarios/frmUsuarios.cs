@@ -12,18 +12,18 @@ using System.Windows.Forms;
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    /// Formulario principal para la administración y visualización del listado de usuarios del sistema.
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmUsuarios : Form
     {
-
         /// <summary>
-        /// The objeto usuario
+        /// Instancia de la clase de negocio para la gestión de datos de usuarios.
         /// </summary>
         clsUsuario objetoUsuario = new clsUsuario();
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="frmUsuarios"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="frmUsuarios"/>.
         /// </summary>
         public frmUsuarios()
         {
@@ -31,11 +31,10 @@ namespace SG_BAMS
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
-
-
         /// <summary>
-        /// Cargars the grid usuarios.
+        /// Carga de forma asíncrona la lista de usuarios en el control DataGridView.
         /// </summary>
+        /// <returns>Tarea que representa la operación asíncrona.</returns>
         private async Task CargarGridUsuarios()
         {
             try
@@ -55,7 +54,7 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Configurars the grid.
+        /// Aplica configuraciones de visualización, visibilidad de columnas y estilos al DataGridView de usuarios.
         /// </summary>
         private void ConfigurarGrid()
         {
@@ -82,17 +81,16 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the CellContentDoubleClick event of the dgvUsuarios control.
+        /// Maneja el evento de doble clic en una celda para abrir el formulario de edición del usuario seleccionado.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">Instancia de <see cref="DataGridViewCellEventArgs"/> con los datos del evento.</param>
         private void dgvUsuarios_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvUsuarios.SelectedRows.Count > 0)
             {
                 int id = Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["id_usuario"].Value);
                 string nombre = dgvUsuarios.CurrentRow.Cells["nombre_usuario"].Value.ToString();
-
 
                 int idRol = Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["id_rol_usuario"].Value);
                 int idEstado = Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["id_estado"].Value);
@@ -102,7 +100,6 @@ namespace SG_BAMS
                 if (frmMod.ShowDialog() == DialogResult.OK)
                 {
                     _ = CargarGridUsuarios();
-
                 }
             }
             else
@@ -112,10 +109,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btnAgregar control.
+        /// Maneja el evento Click del botón agregar para desplegar el formulario de registro de nuevos usuarios.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> con los datos del evento.</param>
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmAgregarUsuarios agregarUsuario = new frmAgregarUsuarios();
@@ -123,10 +120,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btnModificar control.
+        /// Maneja el evento Click del botón modificar para editar el registro del usuario seleccionado en la lista.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> con los datos del evento.</param>
         private void btnModificar_Click(object sender, EventArgs e)
         {
             if (dgvUsuarios.SelectedRows.Count > 0)
@@ -139,11 +136,9 @@ namespace SG_BAMS
 
                 frmModificarUsuarios frmMod = new frmModificarUsuarios(id, nombre, idRol, idEstado);
 
-
                 if (frmMod.ShowDialog() == DialogResult.OK)
                 {
                     _ = CargarGridUsuarios();
-
                 }
             }
             else
@@ -153,24 +148,24 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btnSalir control.
+        /// Cierra el formulario actual de administración de usuarios.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> con los datos del evento.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
         /// <summary>
-        /// Handles the Load event of the frmUsuarios control.
+        /// Maneja el evento Load del formulario. Ejecuta la carga inicial de datos y aplica estilos visuales al grid.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> con los datos del evento.</param>
         private async void frmUsuarios_Load(object sender, EventArgs e)
         {
             await CargarGridUsuarios();
-           
+
             dgvUsuarios.BorderStyle = BorderStyle.None;
             dgvUsuarios.BackgroundColor = Color.White;
             dgvUsuarios.RowHeadersVisible = false;

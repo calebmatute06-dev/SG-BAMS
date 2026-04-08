@@ -13,39 +13,24 @@ using System.Windows.Forms;
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    /// Proporciona una interfaz para la captura y gestión de imágenes biométricas de empleados, 
+    /// utilizando Emgu CV para la detección de rostros frontales y de perfil.
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmImagenEmpleado : Form
     {
-        /// <summary>
-        /// The camara
-        /// </summary>
         private VideoCapture camara;
-        /// <summary>
-        /// The camara en encendida
-        /// </summary>
         private bool camaraEnEncendida = false;
 
-
-        /// <summary>
-        /// The frontal face detector
-        /// </summary>
         private CascadeClassifier frontalFaceDetector = new CascadeClassifier("haarcascade_frontalface_default.xml");
-        /// <summary>
-        /// The profile face detector
-        /// </summary>
         private CascadeClassifier profileFaceDetector = new CascadeClassifier("haarcascade_profileface.xml");
 
-        /// <summary>
-        /// The usuario asignado
-        /// </summary>
         private string usuarioAsignado = "";
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="frmImagenEmpleado" /> class.
+        /// Inicializa una nueva instancia de la clase <see cref="frmImagenEmpleado"/>.
         /// </summary>
-        /// <param name="nombreUsuario">The nombre usuario.</param>
+        /// <param name="nombreUsuario">Nombre del usuario al que se le asociarán las capturas.</param>
         public frmImagenEmpleado(string nombreUsuario = "")
         {
             InitializeComponent();
@@ -55,10 +40,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Frames the process.
+        /// Procesa cada cuadro capturado por la cámara en tiempo real para detectar y resaltar rostros.
         /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void FrameProcess(object sender, EventArgs e)
         {
             if (camara != null && camaraEnEncendida)
@@ -99,20 +84,9 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btnCapturar control.
+        /// Gestiona el cierre del formulario, verificando que se hayan realizado las capturas mínimas requeridas.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
-        private async void btnCapturar_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-        /// <summary>
-        /// Raises the <see cref="E:System.Windows.Forms.Form.FormClosing" /> event.
-        /// </summary>
-        /// <param name="e">A <see cref="T:System.Windows.Forms.FormClosingEventArgs" /> that contains the event data.</param>
+        /// <param name="e">Datos del evento de cierre.</param>
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             var archivos = Directory.GetFiles(clsSoporte.DirectorioRostros, "*.jpg")
@@ -133,7 +107,7 @@ namespace SG_BAMS
 
                 if (respuesta == DialogResult.No)
                 {
-                    e.Cancel = true; 
+                    e.Cancel = true;
                     return;
                 }
             }
@@ -143,10 +117,8 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Load event of the frmImagenEmpleado control.
+        /// Configura el estado inicial del formulario al cargarse.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void frmImagenEmpleado_Load(object sender, EventArgs e)
         {
             clsSoporte.InicializarDirectorio();
@@ -156,9 +128,9 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Llenars the usuarios.
+        /// Inicializa el dispositivo de captura de video y activa el procesamiento de cuadros.
         /// </summary>
-        /// <param name="mostrarMensajeExito">if set to <c>true</c> [mostrar mensaje exito].</param>
+        /// <param name="mostrarMensajeExito">Indica si se debe notificar al usuario cuando la cámara se encienda.</param>
         private void EncenderCamara(bool mostrarMensajeExito)
         {
             try
@@ -200,7 +172,7 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Deteners the camara.
+        /// Desactiva el dispositivo de captura y libera los recursos asociados.
         /// </summary>
         private void DetenerCamara()
         {
@@ -215,13 +187,9 @@ namespace SG_BAMS
             }
         }
 
-
-
         /// <summary>
-        /// Handles the 1 event of the btnCapturar_Click control.
+        /// Realiza una ráfaga de capturas automáticas buscando detectar el rostro para el entrenamiento o registro.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private async void btnCapturar_Click_1(object sender, EventArgs e)
         {
             if (camara == null)
@@ -236,7 +204,7 @@ namespace SG_BAMS
                 return;
             }
 
-            string nombreArchivo = lblUsuario.Text; 
+            string nombreArchivo = lblUsuario.Text;
             int fotosTomadas = 0;
             int intentos = 0;
 
@@ -250,11 +218,6 @@ namespace SG_BAMS
                     {
                         using (var frame = frameMat.ToImage<Bgr, byte>())
                         {
-                            using (var gray = frame.Convert<Gray, byte>())
-                            {
-                                CvInvoke.EqualizeHist(gray, gray);
-                            }
-
                             var rostro = clsSoporte.DetectarRostro(frame);
                             if (rostro != null)
                             {
@@ -282,19 +245,17 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btnBorrar control.
+        /// Elimina todas las capturas registradas en el disco asociadas al usuario actual.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void btnBorrar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(lblUsuario.Text)) 
+            if (string.IsNullOrWhiteSpace(lblUsuario.Text))
             {
                 MessageBox.Show("No hay un usuario asignado.", "Aviso");
                 return;
             }
 
-            string nombreUsuario = lblUsuario.Text; 
+            string nombreUsuario = lblUsuario.Text;
             try
             {
                 var archivos = Directory.GetFiles(clsSoporte.DirectorioRostros, "*.jpg")
@@ -317,7 +278,7 @@ namespace SG_BAMS
             }
             catch (IOException ex)
             {
-                MessageBox.Show("No se pudieron borrar los archivos. Asegúrate de que no estén abiertos en otro programa: " + ex.Message, "Error de E/S");
+                MessageBox.Show("No se pudieron borrar los archivos: " + ex.Message, "Error de E/S");
             }
             catch (Exception ex)
             {
@@ -326,26 +287,22 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btnEncender control.
+        /// Maneja la acción manual de encendido de la cámara.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void btnEncender_Click(object sender, EventArgs e)
         {
             EncenderCamara(true);
         }
 
         /// <summary>
-        /// Handles the Click event of the btnDetener control.
+        /// Maneja la acción manual de apagado de la cámara.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void btnDetener_Click(object sender, EventArgs e)
         {
             if (camara != null)
             {
                 DetenerCamara();
-                btnCapturar.Enabled = false; 
+                btnCapturar.Enabled = false;
                 MessageBox.Show("Cámara desconectada correctamente.", "Sistema");
             }
             else
@@ -355,13 +312,11 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btnSalir control.
+        /// Detiene la cámara y cierra el formulario.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            DetenerCamara(); 
+            DetenerCamara();
             this.Close();
         }
     }

@@ -9,15 +9,15 @@ using System.Threading.Tasks;
 namespace SG_BAMS.Administracion_de_BAMS.Estado
 {
     /// <summary>
-    /// 
+    /// Clase que gestiona las operaciones de base de datos para los estados.
     /// </summary>
     /// <seealso cref="SG_BAMS.ClsConexion" />
     internal class clsEstado : ClsConexion
     {
         /// <summary>
-        /// Leers the estados asynchronous.
+        /// Lee los estados de forma asíncrona desde la base de datos.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Un DataTable con los registros de los estados.</returns>
         /// <exception cref="System.Exception">Error al cargar los estados: " + ex.Message</exception>
         public async Task<DataTable> LeerEstadosAsync()
         {
@@ -48,10 +48,10 @@ namespace SG_BAMS.Administracion_de_BAMS.Estado
         }
 
         /// <summary>
-        /// Insertars the estado asynchronous.
+        /// Inserta un nuevo estado de forma asíncrona.
         /// </summary>
-        /// <param name="descripcion">The descripcion.</param>
-        /// <returns></returns>
+        /// <param name="descripcion">La descripción del estado.</param>
+        /// <returns>Verdadero si la inserción fue exitosa; de lo contrario, falso.</returns>
         /// <exception cref="System.Exception">Error al insertar el estado: " + ex.Message</exception>
         public async Task<bool> InsertarEstadoAsync(string descripcion)
         {
@@ -83,11 +83,11 @@ namespace SG_BAMS.Administracion_de_BAMS.Estado
         }
 
         /// <summary>
-        /// Modificars the estado asynchronous.
+        /// Modifica un estado existente de forma asíncrona.
         /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <param name="nuevaDescripcion">The nueva descripcion.</param>
-        /// <returns></returns>
+        /// <param name="id">El identificador del estado.</param>
+        /// <param name="nuevaDescripcion">La nueva descripción para el estado.</param>
+        /// <returns>Verdadero si la modificación fue exitosa; de lo contrario, falso.</returns>
         /// <exception cref="System.Exception">Error al modificar el estado: " + ex.Message</exception>
         public async Task<bool> ModificarEstadoAsync(int id, string nuevaDescripcion)
         {

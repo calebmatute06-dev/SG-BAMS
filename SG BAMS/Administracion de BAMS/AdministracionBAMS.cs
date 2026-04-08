@@ -14,13 +14,14 @@ using System.Windows.Forms;
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    /// Formulario principal del módulo de administración del sistema SG_BAMS.
+    /// Proporciona acceso a la gestión de usuarios, roles, catálogos de productos y navegación general.
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class AdministracionBAMS : Form
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AdministracionBAMS"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="AdministracionBAMS"/>.
         /// </summary>
         public AdministracionBAMS()
         {
@@ -28,36 +29,32 @@ namespace SG_BAMS
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
-
-
         /// <summary>
-        /// Handles the Click event of the btnNoti control.
+        /// Maneja el evento Click del botón de notificaciones para abrir el panel de alertas administrativas.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> con los datos del evento.</param>
         private void btnNoti_Click(object sender, EventArgs e)
         {
             NotificacionesAdmin notificaciones = new NotificacionesAdmin();
             notificaciones.Show();
         }
 
-
-
         /// <summary>
-        /// Handles the Load event of the AdministracionBAMS control.
+        /// Maneja el evento de carga del formulario AdministracionBAMS.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> con los datos del evento.</param>
         private void AdministracionBAMS_Load(object sender, EventArgs e)
         {
 
         }
 
         /// <summary>
-        /// Handles the Click event of the btnVerUsuarios control.
+        /// Maneja el evento Click del botón Ver Usuarios para abrir el catálogo de gestión de usuarios.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> con los datos del evento.</param>
         private void btnVerUsuarios_Click(object sender, EventArgs e)
         {
             frmUsuarios usuarios = new frmUsuarios();
@@ -65,10 +62,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btnRoles control.
+        /// Maneja el evento Click del botón Roles para gestionar los permisos y tipos de usuario.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> con los datos del evento.</param>
         private void btnRoles_Click(object sender, EventArgs e)
         {
             frmRoles verRoles = new frmRoles();
@@ -76,10 +73,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the 1 event of the btnTproducto_Click control.
+        /// Maneja el evento Click del botón Tipo de Producto para gestionar las categorías de inventario.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> con los datos del evento.</param>
         private void btnTproducto_Click_1(object sender, EventArgs e)
         {
             frmTipoProducto verTproducto = new frmTipoProducto();
@@ -87,10 +84,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the kryptonButton1 control.
+        /// Maneja el evento Click para abrir la gestión de formas de pago aceptadas por el sistema.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> con los datos del evento.</param>
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
             frmFormaPago verFormaPago = new frmFormaPago();
@@ -98,10 +95,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btnEstado control.
+        /// Maneja el evento Click para gestionar los estados lógicos de los registros en el sistema.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> con los datos del evento.</param>
         private void btnEstado_Click(object sender, EventArgs e)
         {
             frmEstado verEstado = new frmEstado();
@@ -109,10 +106,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the 1 event of the btnMproducto_Click control.
+        /// Maneja el evento Click para abrir el formulario de marcas de productos.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> con los datos del evento.</param>
         private void btnMproducto_Click_1(object sender, EventArgs e)
         {
             frmMarcaProductos verMproducto = new frmMarcaProductos();
@@ -120,16 +117,21 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btnMauto control.
+        /// Maneja el evento Click para gestionar el catálogo de modelos de automóviles.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> con los datos del evento.</param>
         private void btnMauto_Click(object sender, EventArgs e)
         {
             frmModeloAuto verMauto = new frmModeloAuto();
             verMauto.Show();
         }
 
+        /// <summary>
+        /// Redirige al usuario al menú principal administrativo.
+        /// </summary>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> con los datos del evento.</param>
         private void btnMenu_Click(object sender, EventArgs e)
         {
             MenuPrincipalAdm MPA = new MenuPrincipalAdm();
@@ -137,6 +139,11 @@ namespace SG_BAMS
             this.Hide();
         }
 
+        /// <summary>
+        /// Abre el módulo de gestión de facturas administrativas.
+        /// </summary>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> con los datos del evento.</param>
         private void btnFacturas_Click(object sender, EventArgs e)
         {
             FacturasAdm FA = new FacturasAdm();
@@ -144,6 +151,11 @@ namespace SG_BAMS
             this.Hide();
         }
 
+        /// <summary>
+        /// Abre el módulo de gestión de compras a proveedores.
+        /// </summary>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> con los datos del evento.</param>
         private void btnCompra_Click(object sender, EventArgs e)
         {
             Compras CF = new Compras();
@@ -151,6 +163,11 @@ namespace SG_BAMS
             this.Hide();
         }
 
+        /// <summary>
+        /// Abre el módulo de administración de clientes.
+        /// </summary>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> con los datos del evento.</param>
         private void btnClientes_Click(object sender, EventArgs e)
         {
             ClientesAdm CA = new ClientesAdm();
@@ -158,6 +175,11 @@ namespace SG_BAMS
             this.Hide();
         }
 
+        /// <summary>
+        /// Abre el módulo de administración de inventarios.
+        /// </summary>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> con los datos del evento.</param>
         private void btnInventario_Click(object sender, EventArgs e)
         {
             InventarioAdmin IA = new InventarioAdmin();
@@ -165,6 +187,11 @@ namespace SG_BAMS
             this.Hide();
         }
 
+        /// <summary>
+        /// Abre el módulo de gestión de proveedores.
+        /// </summary>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> con los datos del evento.</param>
         private void btnProveedores_Click(object sender, EventArgs e)
         {
             ProveedoresAdmin PA = new ProveedoresAdmin();
@@ -172,6 +199,11 @@ namespace SG_BAMS
             this.Hide();
         }
 
+        /// <summary>
+        /// Abre el módulo de gestión de deudores y cuentas por cobrar.
+        /// </summary>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> con los datos del evento.</param>
         private void btnDeudores_Click(object sender, EventArgs e)
         {
             DeudoresAdmin DA = new DeudoresAdmin();
@@ -179,6 +211,11 @@ namespace SG_BAMS
             this.Hide();
         }
 
+        /// <summary>
+        /// Abre el panel de generación de reportes administrativos.
+        /// </summary>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> con los datos del evento.</param>
         private void btnReportes_Click(object sender, EventArgs e)
         {
             ReportesAdmin RA = new ReportesAdmin();
@@ -186,6 +223,11 @@ namespace SG_BAMS
             this.Hide();
         }
 
+        /// <summary>
+        /// Abre la bitácora de eventos y auditoría del sistema.
+        /// </summary>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> con los datos del evento.</param>
         private void btnBitacora_Click(object sender, EventArgs e)
         {
             BitacoraAdmin BA = new BitacoraAdmin();
@@ -193,6 +235,11 @@ namespace SG_BAMS
             this.Hide();
         }
 
+        /// <summary>
+        /// Cierra la sesión actual y redirige al usuario al formulario de Login.
+        /// </summary>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> con los datos del evento.</param>
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             Login.Login login = new Login.Login();
@@ -200,6 +247,11 @@ namespace SG_BAMS
             this.Close();
         }
 
+        /// <summary>
+        /// Abre el formulario de perfil del usuario actual para visualización o edición.
+        /// </summary>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> con los datos del evento.</param>
         private void btnPerfil_Click(object sender, EventArgs e)
         {
             Perfil perfil = new Perfil();

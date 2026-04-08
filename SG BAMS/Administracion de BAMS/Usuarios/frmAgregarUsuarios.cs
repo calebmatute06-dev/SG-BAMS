@@ -4,47 +4,48 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static Azure.Core.HttpHeader;
 
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    /// Interfaz de usuario para la creación de nuevos usuarios, incluyendo la asignación de roles y el registro facial obligatorio para roles administrativos.
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmAgregarUsuarios : Form
     {
-        /// <summary>
-        /// The dt roles
-        /// </summary>
         private DataTable dtRoles;
+        private List<string> listaOriginalRoles = new List<string>();
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="frmAgregarUsuarios" /> class.
+        /// Inicializa una nueva instancia de la clase <see cref="frmAgregarUsuarios"/>.
         /// </summary>
         public frmAgregarUsuarios()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
-            CargarComboRoles();
+            _ = CargarComboRoles();
             cmbRol.DropDownStyle = ComboBoxStyle.DropDownList;
 
             txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
         }
 
         /// <summary>
-        /// Handles the Load event of the fmrAgregarUsuarios control.
+        /// Carga de forma asíncrona el catálogo de roles en el control ComboBox.
         /// </summary>
+        /// <returns>Una tarea que representa la operación asíncrona.</returns>
         private async Task CargarComboRoles()
         {
             try
             {
                 clsUsuario objetoUsuario = new clsUsuario();
                 DataTable dt = await objetoUsuario.ListarRolesAsync();
+
                 cmbRol.SelectedIndexChanged -= cmbRol_SelectedIndexChanged;
 
                 cmbRol.DataSource = dt;
@@ -61,39 +62,18 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the label2 control.
+        /// Maneja el cambio de selección en el combo de roles.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
-        private List<string> listaOriginalRoles = new List<string>();
-
-
-
-        /// <summary>
-        /// Handles the SelectedIndexChanged event of the cmbRol control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void cmbRol_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            // Espacio para lógica adicional al cambiar de rol si es necesario.
         }
 
         /// <summary>
-        /// Handles the TextChanged event of the txtNombre control.
+        /// Procesa el registro del nuevo usuario y gestiona el flujo de captura facial si el rol lo requiere.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
-        private void txtNombre_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        /// <summary>
-        /// Handles the Click event of the btmModificar control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private async void btmModificar_Click(object sender, EventArgs e)
         {
             if (!ClsValidaciones.EsNombrePersonalValido(txtNombre.TextBox, "Nombre de Usuario"))
@@ -181,20 +161,11 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the kryptonButton1 control.
+        /// Cierra el formulario actual.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
-        /// <summary>
-        /// Handles the Click event of the btnImagen control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
-
     }
 }

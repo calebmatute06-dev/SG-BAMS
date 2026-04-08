@@ -1,5 +1,4 @@
-﻿
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,16 +9,16 @@ using System.Threading.Tasks;
 namespace SG_BAMS.Administracion_de_BAMS.TipoProd
 {
     /// <summary>
-    /// 
+    /// Provee los métodos de acceso a datos para la gestión de las categorías o tipos de productos en el sistema.
     /// </summary>
     /// <seealso cref="SG_BAMS.ClsConexion" />
     internal class clsTipoProducto : ClsConexion
     {
         /// <summary>
-        /// Leers the tipos producto asynchronous.
+        /// Obtiene el listado de todos los tipos de productos mediante una vista detallada de forma asíncrona.
         /// </summary>
-        /// <returns></returns>
-        /// <exception cref="System.Exception">Error al obtener los tipos de producto: " + ex.Message</exception>
+        /// <returns>Un objeto DataTable con los registros de tipos de producto.</returns>
+        /// <exception cref="System.Exception">Lanzada si ocurre un error en la consulta SQL.</exception>
         public async Task<DataTable> LeerTiposProductoAsync()
         {
             DataTable tabla = new DataTable();
@@ -49,11 +48,11 @@ namespace SG_BAMS.Administracion_de_BAMS.TipoProd
         }
 
         /// <summary>
-        /// Insertars the tipo producto asynchronous.
+        /// Inserta un nuevo tipo de producto en la base de datos utilizando un procedimiento almacenado.
         /// </summary>
-        /// <param name="descripcion">The descripcion.</param>
-        /// <returns></returns>
-        /// <exception cref="System.Exception">Error al insertar tipo de producto: " + ex.Message</exception>
+        /// <param name="descripcion">El nombre o descripción de la nueva categoría de producto.</param>
+        /// <returns>True si la operación afectó al menos una fila; de lo contrario, False.</returns>
+        /// <exception cref="System.Exception">Lanzada si el procedimiento almacenado falla.</exception>
         public async Task<bool> InsertarTipoProductoAsync(string descripcion)
         {
             try
@@ -81,12 +80,12 @@ namespace SG_BAMS.Administracion_de_BAMS.TipoProd
         }
 
         /// <summary>
-        /// Modificars the tipo producto asynchronous.
+        /// Actualiza la descripción de un tipo de producto existente de forma asíncrona.
         /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <param name="nuevaDescripcion">The nueva descripcion.</param>
-        /// <returns></returns>
-        /// <exception cref="System.Exception">Error al actualizar el tipo de producto: " + ex.Message</exception>
+        /// <param name="id">El identificador único del tipo de producto.</param>
+        /// <param name="nuevaDescripcion">La nueva descripción que se desea asignar.</param>
+        /// <returns>True si la actualización fue exitosa; de lo contrario, False.</returns>
+        /// <exception cref="System.Exception">Lanzada si ocurre un error durante la actualización.</exception>
         public async Task<bool> ModificarTipoProductoAsync(int id, string nuevaDescripcion)
         {
             try
@@ -113,6 +112,5 @@ namespace SG_BAMS.Administracion_de_BAMS.TipoProd
                 Cerrar();
             }
         }
-
     }
 }

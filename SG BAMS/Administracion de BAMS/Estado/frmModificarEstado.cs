@@ -13,20 +13,20 @@ using System.Windows.Forms;
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    /// Representa la ventana para modificar un estado existente en el sistema.
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmModificarEstado : Form
     {
         /// <summary>
-        /// The identifier estado
+        /// El identificador del estado.
         /// </summary>
         int idEstado;
         /// <summary>
-        /// Initializes a new instance of the <see cref="frmModificarEstado"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="frmModificarEstado"/>.
         /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <param name="descripcionActual">The descripcion actual.</param>
+        /// <param name="id">El identificador del registro.</param>
+        /// <param name="descripcionActual">La descripción actual del estado.</param>
         public frmModificarEstado(int id, string descripcionActual)
         {
             InitializeComponent();
@@ -40,24 +40,24 @@ namespace SG_BAMS
 
 
         /// <summary>
-        /// Handles the KeyPress event of the txtDescri control.
+        /// Maneja el evento KeyPress del control txtDescri.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="KeyPressEventArgs"/> que contiene los datos del evento.</param>
         private void txtDescri_KeyPress(object sender, KeyPressEventArgs e)
         {
 
-           ClsValidaciones.PermitirSoloLetras(e);
+            ClsValidaciones.PermitirSoloLetras(e);
         }
 
         /// <summary>
-        /// Handles the Click event of the btnModificar control.
+        /// Maneja el evento Click del botón modificar de forma asíncrona.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private async void btnModificar_Click(object sender, EventArgs e)
         {
-            
+
             if (!ClsValidaciones.EsNombrePersonalValido(txtDescri.TextBox, "Descripción del Estado"))
             {
                 return;
@@ -70,7 +70,7 @@ namespace SG_BAMS
 
                 clsEstado objetoEstado = new clsEstado();
 
-                
+
                 bool exito = await objetoEstado.ModificarEstadoAsync(idEstado, txtDescri.Text.Trim());
 
                 if (exito)
@@ -94,16 +94,16 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the kryptonButton1 control.
+        /// Maneja el evento Click del botón cancelar o salir.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-        
 
-      
+
+
     }
 }

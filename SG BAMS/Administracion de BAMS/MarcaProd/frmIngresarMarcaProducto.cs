@@ -12,30 +12,32 @@ using System.Windows.Forms;
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    /// Representa la interfaz de usuario para ingresar una nueva marca de producto al sistema.
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmIngresarMarcaProducto : Form
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="frmIngresarMarcaProducto"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="frmIngresarMarcaProducto"/>.
         /// </summary>
         public frmIngresarMarcaProducto()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
 
+            // Restringe la entrada en tiempo real a caracteres alfanuméricos
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirAlfanumerico(e);
         }
 
         /// <summary>
-        /// Handles the Click event of the btnAgregar control.
+        /// Maneja el evento Click del botón agregar de forma asíncrona.
+        /// Valida la entrada y procede con la inserción en la base de datos.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private async void btnAgregar_Click(object sender, EventArgs e)
         {
-            
+
             if (!ClsValidaciones.EsAlfanumericoValido(txtDescri, "Nombre de la Marca"))
             {
                 return;
@@ -48,7 +50,7 @@ namespace SG_BAMS
 
                 clsMarca objetoMarca = new clsMarca();
 
-              
+
                 bool exito = await objetoMarca.InsertarMarcaAsync(txtDescri.Text.Trim());
 
                 if (exito)
@@ -73,10 +75,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btnSalir control.
+        /// Maneja el evento Click del botón salir para cerrar el formulario.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();

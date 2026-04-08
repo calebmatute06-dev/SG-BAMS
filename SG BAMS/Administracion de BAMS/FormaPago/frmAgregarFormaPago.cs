@@ -13,13 +13,13 @@ using System.Windows.Forms;
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    /// Representa la ventana para agregar una nueva forma de pago al sistema.
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmAgregarFormaPago : Form
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="frmAgregarFormaPago"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="frmAgregarFormaPago"/>.
         /// </summary>
         public frmAgregarFormaPago()
         {
@@ -29,10 +29,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btnAgregar control.
+        /// Maneja el evento Click del botón agregar de forma asíncrona.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private async void btnAgregar_Click(object sender, EventArgs e)
         {
 
@@ -53,6 +53,7 @@ namespace SG_BAMS
 
                 if (insertado)
                 {
+                    // Traducido: Forma de pago agregada correctamente.
                     MessageBox.Show("Forma de pago agregada correctamente.", "Éxito",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -72,20 +73,20 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btnSalir control.
+        /// Maneja el evento Click del botón salir.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
         /// <summary>
-        /// Handles the Click event of the label5 control.
+        /// Maneja el evento Click de la etiqueta label5.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void label5_Click(object sender, EventArgs e)
         {
 

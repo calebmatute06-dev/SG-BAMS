@@ -8,18 +8,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Text.RegularExpressions; 
+using System.Text.RegularExpressions;
 
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    /// Interfaz de usuario para el registro de nuevas categorías o tipos de productos en el sistema.
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frnAgregarTipoProducto : Form
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="frnAgregarTipoProducto"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="frnAgregarTipoProducto"/>.
         /// </summary>
         public frnAgregarTipoProducto()
         {
@@ -30,19 +30,17 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the 1 event of the btnAgregar_Click control.
+        /// Procesa la inserción de un nuevo tipo de producto tras validar el formato y contenido de la descripción.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private async void btnAgregar_Click_1(object sender, EventArgs e)
         {
-            
             if (!ClsValidaciones.EsAlfanumericoValido(txtDescri, "Tipo de Producto"))
             {
                 return;
             }
 
-            
             if (Regex.IsMatch(txtDescri.Text.Trim(), @"(?i)\b(?![yY]\b)[a-zñáéíóú]\b"))
             {
                 MessageBox.Show("No se permiten letras aisladas en el nombre (excepto la 'y').",
@@ -50,8 +48,6 @@ namespace SG_BAMS
                 txtDescri.Focus();
                 return;
             }
-
-            
 
             try
             {
@@ -84,10 +80,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btnSalir control.
+        /// Cierra el formulario actual sin realizar ninguna acción.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();

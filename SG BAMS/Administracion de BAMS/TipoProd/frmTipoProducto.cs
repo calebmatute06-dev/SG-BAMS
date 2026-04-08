@@ -12,13 +12,13 @@ using System.Windows.Forms;
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    /// Interfaz de usuario para la visualización y gestión de las categorías de productos (Tipos de Producto).
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmTipoProducto : Form
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="frmTipoProducto"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="frmTipoProducto"/>.
         /// </summary>
         public frmTipoProducto()
         {
@@ -27,11 +27,10 @@ namespace SG_BAMS
             CargarGridTipos();
         }
 
-
-
         /// <summary>
-        /// Cargars the grid tipos.
+        /// Obtiene de forma asíncrona los tipos de productos y los carga en el DataGridView.
         /// </summary>
+        /// <returns>Una tarea que representa la operación asíncrona.</returns>
         private async Task CargarGridTipos()
         {
             try
@@ -69,10 +68,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the CellContentDoubleClick event of the dgvTipoProducto control.
+        /// Abre el formulario de edición al realizar doble clic sobre un registro del grid.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="DataGridViewCellEventArgs"/> que contiene los datos del evento.</param>
         private void dgvTipoProducto_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvTipoProducto.SelectedRows.Count > 0)
@@ -81,7 +80,6 @@ namespace SG_BAMS
                 string descripcion = dgvTipoProducto.CurrentRow.Cells["nombre_tipo_producto"].Value.ToString();
 
                 frmModificarTipoProducto ModificarTProducto = new frmModificarTipoProducto(id, descripcion);
-
 
                 if (ModificarTProducto.ShowDialog() == DialogResult.OK)
                 {
@@ -95,10 +93,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btmAgregar control.
+        /// Dirige al usuario al formulario para agregar un nuevo tipo de producto.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btmAgregar_Click(object sender, EventArgs e)
         {
             frnAgregarTipoProducto agregarTproducto = new frnAgregarTipoProducto();
@@ -106,12 +104,11 @@ namespace SG_BAMS
             this.Close();
         }
 
-
         /// <summary>
-        /// Handles the Click event of the btnModificar control.
+        /// Abre el formulario de modificación para el registro actualmente seleccionado.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnModificar_Click(object sender, EventArgs e)
         {
             if (dgvTipoProducto.SelectedRows.Count > 0)
@@ -133,20 +130,20 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the kryptonButton2 control.
+        /// Cierra el formulario actual.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void kryptonButton2_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
         /// <summary>
-        /// Handles the 1 event of the frmTipoProducto_Load control.
+        /// Configura el diseño visual y carga los datos del grid al iniciar el formulario.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private async void frmTipoProducto_Load_1(object sender, EventArgs e)
         {
             await CargarGridTipos();

@@ -12,21 +12,21 @@ using System.Windows.Forms;
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    /// Representa la interfaz de usuario para la modificación de un modelo de vehículo existente.
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmModificarModelos : Form
     {
         /// <summary>
-        /// The identifier modelo seleccionado
+        /// Almacena el identificador del modelo seleccionado para su actualización.
         /// </summary>
         private int idModeloSeleccionado;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="frmModificarModelos"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="frmModificarModelos"/>.
         /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <param name="nombreActual">The nombre actual.</param>
+        /// <param name="id">El identificador único del modelo.</param>
+        /// <param name="nombreActual">El nombre actual del modelo para mostrar en el campo de edición.</param>
         public frmModificarModelos(int id, string nombreActual)
         {
             InitializeComponent();
@@ -34,18 +34,18 @@ namespace SG_BAMS
             this.idModeloSeleccionado = id;
             txtDescri.Text = nombreActual;
 
-
+            // Restricción de entrada para permitir solo caracteres alfanuméricos
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirAlfanumerico(e);
         }
 
         /// <summary>
-        /// Handles the 1 event of the btnModificar_Click control.
+        /// Maneja el evento Click del botón modificar. Valida la entrada y actualiza los datos de forma asíncrona.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private async void btnModificar_Click_1(object sender, EventArgs e)
         {
-
+            // Validación de campo alfanumérico
             if (!ClsValidaciones.EsAlfanumericoValido(txtDescri, "Nombre del Modelo"))
             {
                 return;
@@ -58,7 +58,7 @@ namespace SG_BAMS
 
                 clsModeloAuto objetoModelo = new clsModeloAuto();
 
-
+                // Intento de actualización en la base de datos
                 bool exito = await objetoModelo.ModificarModeloAutoAsync(idModeloSeleccionado, txtDescri.Text.Trim());
 
                 if (exito)
@@ -83,23 +83,23 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btnSalir control.
+        /// Cierra el formulario de modificación.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
         /// <summary>
-        /// Handles the Load event of the frmModificarModelos control.
+        /// Maneja el evento de carga del formulario.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void frmModificarModelos_Load(object sender, EventArgs e)
         {
-
+            txtDescri.Focus();
         }
     }
 }

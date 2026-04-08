@@ -12,21 +12,21 @@ using System.Windows.Forms;
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    /// Representa la interfaz de usuario para la modificación de una categoría o tipo de producto existente.
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmModificarTipoProducto : Form
     {
         /// <summary>
-        /// The identifier seleccionado
+        /// Almacena el identificador único del tipo de producto seleccionado para su edición.
         /// </summary>
         private int idSeleccionado;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="frmModificarTipoProducto"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="frmModificarTipoProducto"/>.
         /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <param name="descripcionActual">The descripcion actual.</param>
+        /// <param name="id">El identificador único del tipo de producto.</param>
+        /// <param name="descripcionActual">La descripción actual que se cargará en el control de texto.</param>
         public frmModificarTipoProducto(int id, string descripcionActual)
         {
             InitializeComponent();
@@ -34,28 +34,25 @@ namespace SG_BAMS
             this.idSeleccionado = id;
             txtDescri.Text = descripcionActual;
 
-            
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirAlfanumerico(e);
         }
 
-
         /// <summary>
-        /// Handles the Load event of the frmModificarTipoProducto control.
+        /// Prepara el formulario al cargarse, estableciendo el enfoque y la posición del cursor en el campo de texto.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void frmModificarTipoProducto_Load(object sender, EventArgs e)
         {
-           
             txtDescri.Focus();
             txtDescri.SelectionStart = txtDescri.Text.Length;
         }
 
         /// <summary>
-        /// Handles the Click event of the btnModificar control.
+        /// Procesa la actualización del tipo de producto de forma asíncrona tras validar los datos.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private async void btnModificar_Click(object sender, EventArgs e)
         {
             if (!ClsValidaciones.EsAlfanumericoValido(txtDescri, "Tipo de Producto"))
@@ -94,10 +91,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btnSalir control.
+        /// Cierra el formulario de edición sin aplicar cambios.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();

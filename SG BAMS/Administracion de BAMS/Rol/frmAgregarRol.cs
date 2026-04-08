@@ -13,49 +13,51 @@ using System.Windows.Forms;
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    /// Representa la interfaz de usuario para el registro de nuevos roles de usuario en el sistema.
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmAgregarRol : Form
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="frmAgregarRol"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="frmAgregarRol"/>.
         /// </summary>
         public frmAgregarRol()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
+
+            // Restricción para permitir únicamente la entrada de letras en el campo de descripción
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
         }
 
         /// <summary>
-        /// Handles the Click event of the pictureBox16 control.
+        /// Maneja el evento Click de la imagen 16.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void pictureBox16_Click(object sender, EventArgs e)
         {
-
+            // Espacio para implementación futura o decoración
         }
 
         /// <summary>
-        /// Handles the Click event of the label1 control.
+        /// Maneja el evento Click de la etiqueta 1.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void label1_Click(object sender, EventArgs e)
         {
-
+            // Espacio para implementación futura o decoración
         }
 
         /// <summary>
-        /// Handles the Click event of the btmAgregar control.
+        /// Procesa el registro del nuevo rol de forma asíncrona tras validar que el nombre sea válido.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private async void btmAgregar_Click(object sender, EventArgs e)
         {
-            
+            // Validación de formato para nombres de roles (Solo letras y espacios)
             if (!ClsValidaciones.EsNombrePersonalValido(txtDescri.TextBox, "Nombre del Rol"))
             {
                 return;
@@ -68,7 +70,7 @@ namespace SG_BAMS
 
                 clsRol objetoRol = new clsRol();
 
-                
+                // Intento de inserción asíncrona en la base de datos
                 bool exito = await objetoRol.InsertarRolAsync(txtDescri.Text.Trim());
 
                 if (exito)
@@ -76,9 +78,8 @@ namespace SG_BAMS
                     MessageBox.Show("Rol registrado correctamente.", "SG-BAMS",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                    // Establecer resultado OK para actualizar grids en formularios padres
                     this.DialogResult = DialogResult.OK;
-
-                    
                     this.Close();
                 }
             }
@@ -95,14 +96,12 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btmSalir control.
+        /// Cierra el formulario actual y regresa a la vista de gestión de roles.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btmSalir_Click(object sender, EventArgs e)
         {
-            frmRoles verRoles = new frmRoles();
-            verRoles.Show();
             this.Close();
         }
     }

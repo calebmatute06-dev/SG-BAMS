@@ -12,21 +12,21 @@ using System.Windows.Forms;
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    /// Representa la interfaz de usuario para la modificación de una marca de producto existente.
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmModificarMarcaProducto : Form
     {
         /// <summary>
-        /// The identifier marca
+        /// Almacena el identificador único de la marca.
         /// </summary>
         private int idMarca;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="frmModificarMarcaProducto"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="frmModificarMarcaProducto"/>.
         /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <param name="nombreActual">The nombre actual.</param>
+        /// <param name="id">El identificador de la marca.</param>
+        /// <param name="nombreActual">El nombre actual que se cargará en el campo de texto.</param>
         public frmModificarMarcaProducto(int id, string nombreActual)
         {
             InitializeComponent();
@@ -34,27 +34,26 @@ namespace SG_BAMS
             this.idMarca = id;
             txtDescri.Text = nombreActual;
 
-            
+            // Restricción de entrada para permitir solo caracteres alfanuméricos en tiempo real
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirAlfanumerico(e);
         }
 
 
         /// <summary>
-        /// Handles the Load event of the frmModificarMarcaProducto control.
+        /// Maneja el evento de carga del formulario para establecer el foco inicial.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void frmModificarMarcaProducto_Load(object sender, EventArgs e)
         {
-            
             txtDescri.Focus();
         }
 
         /// <summary>
-        /// Handles the Click event of the btnModificar control.
+        /// Procesa la actualización de la marca de forma asíncrona tras validar los datos.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private async void btnModificar_Click(object sender, EventArgs e)
         {
             if (!ClsValidaciones.EsAlfanumericoValido(txtDescri, "Nombre de la Marca"))
@@ -69,6 +68,7 @@ namespace SG_BAMS
 
                 clsMarca objetoMarca = new clsMarca();
 
+                // Intento de modificación en la base de datos
                 bool exito = await objetoMarca.ModificarMarcaAsync(idMarca, txtDescri.Text.Trim());
 
                 if (exito)
@@ -93,20 +93,20 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btnSalir control.
+        /// Cierra el formulario actual.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
         /// <summary>
-        /// Handles the Click event of the kryptonButton6 control.
+        /// Maneja el evento Click del botón secundario para salir.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void kryptonButton6_Click(object sender, EventArgs e)
         {
             this.Close();

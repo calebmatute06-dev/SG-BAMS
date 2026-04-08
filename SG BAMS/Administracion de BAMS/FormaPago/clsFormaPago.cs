@@ -9,15 +9,15 @@ using System.Threading.Tasks;
 namespace SG_BAMS.Administracion_de_BAMS.FormaPago
 {
     /// <summary>
-    /// 
+    /// Clase encargada de gestionar las operaciones de base de datos relacionadas con las formas de pago.
     /// </summary>
     /// <seealso cref="SG_BAMS.ClsConexion" />
     internal class clsFormaPago : ClsConexion
     {
         /// <summary>
-        /// Leers the formas pago asynchronous.
+        /// Obtiene todas las formas de pago registradas de manera asíncrona.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Un objeto DataTable con los registros de las formas de pago.</returns>
         /// <exception cref="System.Exception">Error al obtener formas de pago: " + ex.Message</exception>
         public async Task<DataTable> LeerFormasPagoAsync()
         {
@@ -49,10 +49,10 @@ namespace SG_BAMS.Administracion_de_BAMS.FormaPago
         }
 
         /// <summary>
-        /// Insertars the forma pago asynchronous.
+        /// Inserta una nueva forma de pago de manera asíncrona.
         /// </summary>
-        /// <param name="descripcion">The descripcion.</param>
-        /// <returns></returns>
+        /// <param name="descripcion">La descripción de la forma de pago.</param>
+        /// <returns>Verdadero si la operación fue exitosa; de lo contrario, falso.</returns>
         /// <exception cref="System.Exception">Error al insertar la forma de pago: " + ex.Message</exception>
         public async Task<bool> InsertarFormaPagoAsync(string descripcion)
         {
@@ -85,11 +85,11 @@ namespace SG_BAMS.Administracion_de_BAMS.FormaPago
         }
 
         /// <summary>
-        /// Modificars the forma pago asynchronous.
+        /// Modifica una forma de pago existente de manera asíncrona.
         /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <param name="nuevaDescripcion">The nueva descripcion.</param>
-        /// <returns></returns>
+        /// <param name="id">El identificador único de la forma de pago.</param>
+        /// <param name="nuevaDescripcion">La nueva descripción que se asignará.</param>
+        /// <returns>Verdadero si la actualización fue exitosa; de lo contrario, falso.</returns>
         /// <exception cref="System.Exception">Error en la base de datos: " + ex.Message</exception>
         public async Task<bool> ModificarFormaPagoAsync(int id, string nuevaDescripcion)
         {
@@ -118,4 +118,3 @@ namespace SG_BAMS.Administracion_de_BAMS.FormaPago
 
     }
 }
-

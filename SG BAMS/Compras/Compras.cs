@@ -143,27 +143,11 @@ namespace SG_BAMS
                 .Replace("]", "[]]")
                 .Trim();
 
-            
-            string fDesde = dtpDesde.Value.Date.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
-            string fHasta = dtpHasta.Value.Date.AddDays(1).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+            string rowFilter;
 
-            var condicionesFecha = new List<string>();
-            foreach (DataColumn col in dtCompras.Columns)
-            {
-                if (col.DataType == typeof(DateTime))
-                    condicionesFecha.Add(
-                        $"[{col.ColumnName}] >= #{fDesde}# AND [{col.ColumnName}] < #{fHasta}#"
-                    );
-            }
-
-            string filtroFecha = condicionesFecha.Count > 0
-                ? string.Join(" AND ", condicionesFecha)
-                : string.Empty;
-
-            
-            string filtroTexto = string.Empty;
             if (!string.IsNullOrWhiteSpace(texto))
             {
+                
                 var condicionesTexto = new List<string>();
                 foreach (DataColumn col in dtCompras.Columns)
                 {
@@ -174,25 +158,34 @@ namespace SG_BAMS
                     else if (col.DataType == typeof(int) || col.DataType == typeof(decimal) ||
                              col.DataType == typeof(double) || col.DataType == typeof(long))
                     {
-                       
                         if (decimal.TryParse(texto, out _))
                             condicionesTexto.Add($"CONVERT([{col.ColumnName}], System.String) LIKE '%{texto}%'");
                     }
                 }
 
-                filtroTexto = condicionesTexto.Count > 0
+                rowFilter = condicionesTexto.Count > 0
                     ? string.Join(" OR ", condicionesTexto)
                     : string.Empty;
             }
-
-            
-            string rowFilter;
-            if (!string.IsNullOrEmpty(filtroFecha) && !string.IsNullOrEmpty(filtroTexto))
-                rowFilter = $"({filtroFecha}) AND ({filtroTexto})";
-            else if (!string.IsNullOrEmpty(filtroFecha))
-                rowFilter = filtroFecha;
             else
-                rowFilter = filtroTexto;
+            {
+                
+                string fDesde = dtpDesde.Value.Date.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+                string fHasta = dtpHasta.Value.Date.AddDays(1).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+
+                var condicionesFecha = new List<string>();
+                foreach (DataColumn col in dtCompras.Columns)
+                {
+                    if (col.DataType == typeof(DateTime))
+                        condicionesFecha.Add(
+                            $"[{col.ColumnName}] >= #{fDesde}# AND [{col.ColumnName}] < #{fHasta}#"
+                        );
+                }
+
+                rowFilter = condicionesFecha.Count > 0
+                    ? string.Join(" AND ", condicionesFecha)
+                    : string.Empty;
+            }
 
             try
             {

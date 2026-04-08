@@ -12,18 +12,18 @@ using System.Windows.Forms;
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    /// Interfaz de usuario para la visualización y gestión de los modelos de automóviles en el sistema.
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmModeloAuto : Form
     {
         /// <summary>
-        /// The objeto modelo
+        /// Instancia de la lógica de negocio para las operaciones de modelos de auto.
         /// </summary>
         clsModeloAuto objetoModelo = new clsModeloAuto();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="frmModeloAuto"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="frmModeloAuto"/>.
         /// </summary>
         public frmModeloAuto()
         {
@@ -33,17 +33,17 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Load event of the frmModelosAuto control.
+        /// Maneja el evento de carga del formulario para llenar el grid de datos.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private async void frmModelosAuto_Load(object sender, EventArgs e)
         {
             await CargarGridModelos();
         }
 
         /// <summary>
-        /// Cargars the grid modelos.
+        /// Obtiene de forma asíncrona la lista de modelos de auto y la vincula al DataGridView.
         /// </summary>
         private async Task CargarGridModelos()
         {
@@ -66,7 +66,7 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Configurars the diseno grid.
+        /// Configura las columnas, encabezados y comportamientos de selección del DataGridView.
         /// </summary>
         private void ConfigurarDisenoGrid()
         {
@@ -88,10 +88,10 @@ namespace SG_BAMS
 
 
         /// <summary>
-        /// Handles the Click event of the btnAgregar control.
+        /// Abre el formulario de creación de modelo y actualiza el grid si la operación fue exitosa.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmAgregarModeloAuto agregarMauto = new frmAgregarModeloAuto();
@@ -99,19 +99,16 @@ namespace SG_BAMS
 
             if (agregarMauto.ShowDialog() == DialogResult.OK)
             {
-
                 _ = CargarGridModelos();
             }
-
-
         }
 
 
         /// <summary>
-        /// Handles the Click event of the btnModificar control.
+        /// Valida la selección actual y abre el formulario para modificar el modelo seleccionado.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnModificar_Click(object sender, EventArgs e)
         {
             if (dgvModelos.CurrentRow != null && dgvModelos.SelectedRows.Count > 0)
@@ -134,30 +131,30 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the CellContentDoubleClick event of the dgvModelos control.
+        /// Ejecuta la acción de modificación al hacer doble clic sobre una celda del grid.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="DataGridViewCellEventArgs"/> que contiene los datos del evento.</param>
         private void dgvModelos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             btnModificar_Click(sender, e);
         }
 
         /// <summary>
-        /// Handles the Click event of the btnSalir control.
+        /// Cierra la ventana de gestión de modelos de auto.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
         /// <summary>
-        /// Handles the Load event of the frmModeloAuto control.
+        /// Aplica estilos visuales y de formato al DataGridView para mejorar la legibilidad.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void frmModeloAuto_Load(object sender, EventArgs e)
         {
             dgvModelos.BorderStyle = BorderStyle.None;

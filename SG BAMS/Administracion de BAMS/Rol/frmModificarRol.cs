@@ -12,21 +12,21 @@ using System.Windows.Forms;
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    /// Representa la interfaz de usuario para la modificación de un rol de usuario existente.
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmModificarRol : Form
     {
         /// <summary>
-        /// The identifier rol seleccionado
+        /// Almacena el identificador del rol seleccionado para su edición.
         /// </summary>
         private int idRolSeleccionado;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="frmModificarRol"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="frmModificarRol"/>.
         /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <param name="nombreActual">The nombre actual.</param>
+        /// <param name="id">El identificador único del rol.</param>
+        /// <param name="nombreActual">El nombre actual del rol que se cargará en el campo de texto.</param>
         public frmModificarRol(int id, string nombreActual)
         {
             InitializeComponent();
@@ -34,18 +34,18 @@ namespace SG_BAMS
             this.idRolSeleccionado = id;
             txtDescri.Text = nombreActual;
 
-            
+            // Restricción de entrada para permitir únicamente letras durante la escritura
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
         }
 
         /// <summary>
-        /// Handles the Click event of the btmModificar control.
+        /// Procesa la actualización del rol de forma asíncrona tras validar los datos ingresados.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private async void btmModificar_Click(object sender, EventArgs e)
         {
-            
+            // Validación de formato de nombre (solo letras y espacios permitidos)
             if (!ClsValidaciones.EsNombrePersonalValido(txtDescri, "Nombre del Rol"))
             {
                 return;
@@ -58,7 +58,7 @@ namespace SG_BAMS
 
                 clsRol objetoRol = new clsRol();
 
-                
+                // Intento de modificación en la base de datos a través de la capa de lógica
                 bool exito = await objetoRol.ModificarRolAsync(idRolSeleccionado, txtDescri.Text.Trim());
 
                 if (exito)
@@ -66,7 +66,8 @@ namespace SG_BAMS
                     MessageBox.Show("Rol actualizado con éxito.", "SG-BAMS",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    this.DialogResult = DialogResult.OK; 
+                    // Establecer el resultado como OK para notificar al formulario que realizó la llamada
+                    this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
             }
@@ -83,13 +84,12 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btmSalir control.
+        /// Cierra el formulario actual sin realizar cambios.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btmSalir_Click(object sender, EventArgs e)
         {
-            
             this.Close();
         }
     }

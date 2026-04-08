@@ -13,63 +13,63 @@ using System.Windows.Forms;
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    /// Representa la ventana para agregar un nuevo estado al sistema.
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmAgregarEstado : Form
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="frmAgregarEstado"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="frmAgregarEstado"/>.
         /// </summary>
         public frmAgregarEstado()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             this.txtDescri.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescri_KeyPress);
-            
+
         }
 
         /// <summary>
-        /// Handles the Click event of the pictureBox16 control.
+        /// Maneja el evento Click del control pictureBox16.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void pictureBox16_Click(object sender, EventArgs e)
         {
 
         }
 
         /// <summary>
-        /// Handles the Click event of the btnCerrarSesion control.
+        /// Maneja el evento Click del control btnCerrarSesion.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
         /// <summary>
-        /// Handles the KeyPress event of the txtDescri control.
+        /// Maneja el evento KeyPress del control txtDescri.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="KeyPressEventArgs"/> que contiene los datos del evento.</param>
         private void txtDescri_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
+
             ClsValidaciones.PermitirSoloLetras(e);
         }
 
         /// <summary>
-        /// Handles the Click event of the btnAgregar control.
+        /// Maneja el evento Click del control btnAgregar de forma asíncrona.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private async void btnAgregar_Click(object sender, EventArgs e)
         {
             if (!ClsValidaciones.EsNombrePersonalValido(txtDescri, "Descripción del Estado"))
             {
-                return; 
+                return;
             }
 
             try
@@ -79,7 +79,7 @@ namespace SG_BAMS
 
                 clsEstado objetoEstado = new clsEstado();
 
-                
+
                 bool exito = await objetoEstado.InsertarEstadoAsync(txtDescri.Text.Trim());
 
                 if (exito)
@@ -103,10 +103,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btnSalir control.
+        /// Maneja el evento Click del control btnSalir.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();

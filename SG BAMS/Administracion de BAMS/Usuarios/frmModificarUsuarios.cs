@@ -12,31 +12,33 @@ using System.Windows.Forms;
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    /// Clase que gestiona la interfaz de usuario para la modificación de registros de usuarios existentes.
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmModificarUsuarios : Form
     {
         /// <summary>
-        /// The identifier usuario seleccionado
+        /// El identificador del usuario seleccionado para modificar.
         /// </summary>
         private int idUsuarioSeleccionado;
+
         /// <summary>
-        /// The rol inicial
+        /// El rol inicial del usuario cargado.
         /// </summary>
         private int rolInicial;
+
         /// <summary>
-        /// The estado inicial
+        /// El estado inicial del usuario cargado.
         /// </summary>
         private int estadoInicial;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="frmModificarUsuarios" /> class.
+        /// Inicializa una nueva instancia de la clase <see cref="frmModificarUsuarios" />.
         /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <param name="nombre">The nombre.</param>
-        /// <param name="rol">The rol.</param>
-        /// <param name="estado">The estado.</param>
+        /// <param name="id">El identificador del usuario.</param>
+        /// <param name="nombre">El nombre del usuario.</param>
+        /// <param name="rol">El identificador del rol.</param>
+        /// <param name="estado">El identificador del estado.</param>
         public frmModificarUsuarios(int id, string nombre, int rol, int estado)
         {
             InitializeComponent();
@@ -60,12 +62,11 @@ namespace SG_BAMS
             };
         }
 
-
         /// <summary>
-        /// Handles the Load event of the fmrModificarUsuarios control.
+        /// Maneja el evento Load del control fmrModificarUsuarios.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private async void fmrModificarUsuarios_Load(object sender, EventArgs e)
         {
             await CargarCombos();
@@ -78,8 +79,9 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Cargars the combos.
+        /// Carga de forma asíncrona los datos de los ComboBox de roles y estados.
         /// </summary>
+        /// <returns>Una tarea que representa la operación de carga.</returns>
         private async Task CargarCombos()
         {
             try
@@ -103,22 +105,19 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the 1 event of the btmModificar_Click control.
+        /// Maneja el evento Click del control btmModificar realizando las validaciones pertinentes.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private async void btmModificar_Click_1(object sender, EventArgs e)
         {
-            
             if (!ClsValidaciones.EsNombrePersonalValido(txtNombre, "Nombre de Usuario")) return;
 
-            
             if (!string.IsNullOrWhiteSpace(txtContra.Text))
             {
                 if (!ClsValidaciones.EsPasswordValido(txtContra, "Contraseña")) return;
             }
 
-            
             if (cmbRol.SelectedIndex == -1 || cmbEstado.SelectedIndex == -1)
             {
                 MessageBox.Show("Debe seleccionar un Rol y un Estado.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -139,7 +138,7 @@ namespace SG_BAMS
                 bool exito = await objetoUsuario.ModificarUsuarioAsync(
                     idUsuarioSeleccionado,
                     txtNombre.Text.Trim(),
-                    txtContra.Text, 
+                    txtContra.Text,
                     idRol,
                     idEstado,
                     imagenByte
@@ -164,20 +163,20 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btnSalir control.
+        /// Maneja el evento Click del control btnSalir.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
         /// <summary>
-        /// Handles the 1 event of the btnImagen_Click control.
+        /// Maneja el evento Click del control btnImagen para la gestión de biometría.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void btnImagen_Click_1(object sender, EventArgs e)
         {
             frmImagenEmpleado agregarImagen = new frmImagenEmpleado(txtNombre.Text);

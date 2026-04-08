@@ -13,20 +13,21 @@ using System.Windows.Forms;
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    /// Representa la interfaz de usuario para modificar una forma de pago existente.
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmModificarFormaPago : Form
     {
         /// <summary>
-        /// The identifier forma pago
+        /// El identificador único de la forma de pago a modificar.
         /// </summary>
         private int _idFormaPago;
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="frmModificarFormaPago"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="frmModificarFormaPago"/>.
         /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <param name="descripcionActual">The descripcion actual.</param>
+        /// <param name="id">El identificador de la forma de pago.</param>
+        /// <param name="descripcionActual">La descripción actual que se mostrará en el campo de texto.</param>
         public frmModificarFormaPago(int id, string descripcionActual)
         {
             InitializeComponent();
@@ -34,27 +35,29 @@ namespace SG_BAMS
             this._idFormaPago = id;
             txtDescri.Text = descripcionActual;
 
+            // Validación en tiempo real para permitir solo letras mientras se escribe
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
         }
 
         /// <summary>
-        /// Handles the Click event of the pictureBox16 control.
+        /// Maneja el evento Click del control pictureBox16.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void pictureBox16_Click(object sender, EventArgs e)
         {
-
+            // Espacio para lógica adicional de imagen si es necesario
         }
 
         /// <summary>
-        /// Handles the Click event of the btnModificar control.
+        /// Maneja el evento Click del botón modificar de forma asíncrona.
+        /// Realiza la validación del campo y actualiza el registro en la base de datos.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private async void btnModificar_Click(object sender, EventArgs e)
         {
-            
+            // Validar que la descripción cumpla con el formato requerido antes de procesar
             if (!ClsValidaciones.EsNombrePersonalValido(txtDescri.TextBox, "Descripción de Forma de Pago"))
             {
                 return;
@@ -67,7 +70,7 @@ namespace SG_BAMS
 
                 clsFormaPago objetoFP = new clsFormaPago();
 
-                
+                // Llamada asíncrona a la capa de datos para actualizar el registro
                 bool exito = await objetoFP.ModificarFormaPagoAsync(_idFormaPago, txtDescri.Text.Trim());
 
                 if (exito)
@@ -92,14 +95,13 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btnSalir control.
+        /// Maneja el evento Click del botón salir para cerrar el formulario actual.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
         }
     }
 }
-

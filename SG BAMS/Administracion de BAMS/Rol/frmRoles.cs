@@ -12,17 +12,18 @@ using System.Windows.Forms;
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    /// Interfaz de usuario para la visualización y gestión de los roles de usuario en el sistema SG-BAMS.
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmRoles : Form
     {
         /// <summary>
-        /// The objeto rol
+        /// Instancia de la lógica de negocio para las operaciones de roles.
         /// </summary>
         clsRol objetoRol = new clsRol();
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="frmRoles"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="frmRoles"/>.
         /// </summary>
         public frmRoles()
         {
@@ -32,17 +33,17 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Load event of the frmRoles control.
+        /// Maneja el evento de carga del formulario para disparar la obtención de datos.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private async void frmRoles_Load(object sender, EventArgs e)
         {
             await CargarGridRoles();
         }
 
         /// <summary>
-        /// Cargars the grid roles.
+        /// Obtiene de forma asíncrona la lista de roles y la vincula al control DataGridView.
         /// </summary>
         private async Task CargarGridRoles()
         {
@@ -56,7 +57,7 @@ namespace SG_BAMS
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, "SG-BAMS",
+                MessageBox.Show("Error al cargar la información: " + ex.Message, "SG-BAMS",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
@@ -66,7 +67,7 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Configurars the diseno grid.
+        /// Configura el comportamiento, visibilidad y encabezados de las columnas del grid.
         /// </summary>
         private void ConfigurarDisenoGrid()
         {
@@ -79,99 +80,90 @@ namespace SG_BAMS
             if (dgvRoles.Columns.Contains("total_usuarios_asignados"))
                 dgvRoles.Columns["total_usuarios_asignados"].HeaderText = "Usuarios Activos";
 
-
             dgvRoles.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvRoles.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvRoles.ReadOnly = true;
             dgvRoles.ClearSelection();
         }
 
-
         /// <summary>
-        /// Handles the Click event of the pictureBox3 control.
+        /// Permite abrir el formulario de modificación al hacer doble clic sobre un registro.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void pictureBox3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-        /// <summary>
-        /// Handles the CellContentDoubleClick event of the dgvRoles control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="DataGridViewCellEventArgs"/> que contiene los datos del evento.</param>
         private void dgvRoles_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            int id = Convert.ToInt32(dgvRoles.CurrentRow.Cells["id_rol_usuario"].Value);
-            string nombre = dgvRoles.CurrentRow.Cells["descripcion_rol"].Value.ToString();
+            if (dgvRoles.CurrentRow != null)
+            {
+                int id = Convert.ToInt32(dgvRoles.CurrentRow.Cells["id_rol_usuario"].Value);
+                string nombre = dgvRoles.CurrentRow.Cells["descripcion_rol"].Value.ToString();
 
-            frmModificarRol frmMod = new frmModificarRol(id, nombre);
+                frmModificarRol frmMod = new frmModificarRol(id, nombre);
 
-            if (frmMod.ShowDialog() == DialogResult.OK)
+                if (frmMod.ShowDialog() == DialogResult.OK)
+                {
+                    _ = CargarGridRoles();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Abre el formulario para registrar un nuevo rol.
+        /// </summary>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
+        private void btmAgregar_Click(object sender, EventArgs e)
+        {
+            frmAgregarRol agregarRol = new frmAgregarRol();
+
+            // Si se cierra con OK (éxito), se recarga el grid
+            if (agregarRol.ShowDialog() == DialogResult.OK)
             {
                 _ = CargarGridRoles();
             }
         }
 
         /// <summary>
-        /// Handles the Click event of the btmAgregar control.
+        /// Valida la selección de un registro y abre la ventana de edición.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void btmAgregar_Click(object sender, EventArgs e)
-        {
-            frmAgregarRol agregarRol = new frmAgregarRol();
-            agregarRol.Show();
-            this.Close();
-        }
-
-        /// <summary>
-        /// Handles the Click event of the btmModificar control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btmModificar_Click(object sender, EventArgs e)
         {
-            if (dgvRoles.SelectedRows.Count > 0)
+            if (dgvRoles.SelectedRows.Count > 0 && dgvRoles.CurrentRow != null)
             {
                 int id = Convert.ToInt32(dgvRoles.CurrentRow.Cells["id_rol_usuario"].Value);
                 string nombre = dgvRoles.CurrentRow.Cells["descripcion_rol"].Value.ToString();
 
-
-
                 frmModificarRol frmMod = new frmModificarRol(id, nombre);
-
 
                 if (frmMod.ShowDialog() == DialogResult.OK)
                 {
                     _ = CargarGridRoles();
-
                 }
             }
             else
             {
-                MessageBox.Show("Por favor, seleccione un usuario de la lista.");
+                MessageBox.Show("Por favor, seleccione un rol de la lista.", "Validación",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
         /// <summary>
-        /// Handles the Click event of the btnSalir control.
+        /// Cierra la ventana actual de gestión de roles.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
         /// <summary>
-        /// Handles the 1 event of the frmRoles_Load control.
+        /// Aplica estilos visuales personalizados al DataGridView para mantener la estética del sistema.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void frmRoles_Load_1(object sender, EventArgs e)
         {
             dgvRoles.BorderStyle = BorderStyle.None;
@@ -204,4 +196,3 @@ namespace SG_BAMS
         }
     }
 }
-
