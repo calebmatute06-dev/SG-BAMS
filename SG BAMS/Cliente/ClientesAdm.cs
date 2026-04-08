@@ -16,18 +16,23 @@ using System.Windows.Forms;
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    /// Formulario de administración de clientes. Permite visualizar, buscar,
+    /// filtrar y modificar los clientes registrados en el sistema, así como
+    /// navegar hacia otros módulos del panel administrativo.
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class ClientesAdm : Form
     {
         /// <summary>
-        /// The datos cli
+        /// Almacena los datos de la tabla de clientes obtenidos desde la base de datos,
+        /// utilizados como fuente para el filtrado y visualización en el DataGridView.
         /// </summary>
         DataTable datosCli;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ClientesAdm"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="ClientesAdm"/>.
+        /// Configura el modo de selección del DataGridView y las validaciones
+        /// de entrada del campo de búsqueda.
         /// </summary>
         public ClientesAdm()
         {
@@ -36,12 +41,13 @@ namespace SG_BAMS
             dgvClientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvClientes.MultiSelect = false;
 
-
             txtBusqueda.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetrasYNumeros(e);
         }
 
         /// <summary>
-        /// Tablas the clientes.
+        /// Carga de forma asíncrona los datos de clientes desde la base de datos,
+        /// configura los encabezados de columnas del DataGridView, oculta columnas
+        /// internas y aplica el filtro activo.
         /// </summary>
         private async Task TablaClientes()
         {
@@ -72,7 +78,9 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Aplicars the filtro.
+        /// Aplica un filtro combinado al DataGridView según el texto ingresado
+        /// en el campo de búsqueda y el estado del checkbox de activos/inactivos.
+        /// Filtra por nombre, apellido, RTN y teléfono del cliente.
         /// </summary>
         private void AplicarFiltro()
         {
@@ -87,14 +95,12 @@ namespace SG_BAMS
             }
             else
             {
-
                 string textoSeguro = txtBusqueda.Text
                     .Replace("'", "''")
                     .Replace("[", "[[]")
                     .Replace("]", "[]]")
                     .Replace("*", "[*]")
                     .Replace("%", "[%]");
-
 
                 dv.RowFilter = string.Format(
                     "({0}) AND (Nombre LIKE '%{1}%' OR Apellido LIKE '%{1}%' OR RTN LIKE '%{1}%' OR Teléfono LIKE '%{1}%')",
@@ -106,13 +112,14 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Load event of the ClientesAdm control.
+        /// Maneja el evento Load del formulario <c>ClientesAdm</c>.
+        /// Carga la tabla de clientes y aplica el estilo visual del DataGridView,
+        /// incluyendo colores, fuentes, bordes y altura de filas.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private async void ClientesAdm_Load(object sender, EventArgs e)
         {
-
             btnClientes.Enabled = false;
             btnClientes.BackColor = Color.SkyBlue;
             btnClientes.ForeColor = Color.White;
@@ -148,10 +155,12 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the CellDoubleClick event of the dgvClientes control.
+        /// Maneja el evento CellDoubleClick del DataGridView <c>dgvClientes</c>.
+        /// Obtiene los datos del cliente en la fila seleccionada y abre el formulario
+        /// de modificación. Recarga la tabla al cerrar el formulario.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento de celda del DataGridView.</param>
         private async void dgvClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e != null && e.RowIndex < 0) return;
@@ -182,10 +191,12 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btnModificar control.
+        /// Maneja el evento Click del botón <c>btnModificar</c>.
+        /// Verifica que haya una fila seleccionada en el DataGridView y redirige
+        /// al evento de doble clic para abrir el formulario de modificación.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private void btnModificar_Click(object sender, EventArgs e)
         {
             if (dgvClientes.SelectedRows.Count == 0)
@@ -197,42 +208,50 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the TextChanged event of the txtBusqueda control.
+        /// Maneja el evento TextChanged del campo <c>txtBusqueda</c>.
+        /// Aplica el filtro de búsqueda en tiempo real al modificar el texto ingresado.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private void txtBusqueda_TextChanged(object sender, EventArgs e)
         {
             AplicarFiltro();
         }
 
         /// <summary>
-        /// Handles the CheckedChanged event of the chkActivo control.
+        /// Maneja el evento CheckedChanged del control <c>chkActivo</c>.
+        /// Actualiza el filtro del DataGridView para mostrar clientes
+        /// activos o inactivos según el estado del checkbox.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private void chkActivo_CheckedChanged(object sender, EventArgs e)
         {
             AplicarFiltro();
         }
 
-
-
         /// <summary>
-        /// Handles the Click event of the btnNoti control.
+        /// Maneja el evento Click del botón <c>btnNoti</c>.
+        /// Abre el formulario de notificaciones del administrador.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private void btnNoti_Click(object sender, EventArgs e) => new NotificacionesAdmin().Show();
 
-
         /// <summary>
-        /// Handles the CellContentClick event of the dgvClientes control.
+        /// Maneja el evento CellContentClick del DataGridView <c>dgvClientes</c>.
+        /// Reservado para uso futuro; no realiza ninguna acción actualmente.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento de celda del DataGridView.</param>
         private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
 
+        /// <summary>
+        /// Maneja el evento Click del botón <c>btnMenu</c>.
+        /// Navega al menú principal del administrador y oculta el formulario actual.
+        /// </summary>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private void btnMenu_Click(object sender, EventArgs e)
         {
             MenuPrincipalAdm MPA = new MenuPrincipalAdm();
@@ -240,6 +259,12 @@ namespace SG_BAMS
             this.Hide();
         }
 
+        /// <summary>
+        /// Maneja el evento Click del botón <c>btnFacturas</c>.
+        /// Navega al módulo de administración de facturas y oculta el formulario actual.
+        /// </summary>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private void btnFacturas_Click(object sender, EventArgs e)
         {
             FacturasAdm FA = new FacturasAdm();
@@ -247,6 +272,12 @@ namespace SG_BAMS
             this.Hide();
         }
 
+        /// <summary>
+        /// Maneja el evento Click del botón <c>btnCompra</c>.
+        /// Navega al módulo de compras y oculta el formulario actual.
+        /// </summary>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private void btnCompra_Click(object sender, EventArgs e)
         {
             Compras CF = new Compras();
@@ -254,8 +285,12 @@ namespace SG_BAMS
             this.Hide();
         }
 
-       
-
+        /// <summary>
+        /// Maneja el evento Click del botón <c>btnInventario</c>.
+        /// Navega al módulo de inventario y oculta el formulario actual.
+        /// </summary>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private void btnInventario_Click(object sender, EventArgs e)
         {
             InventarioAdmin IA = new InventarioAdmin();
@@ -263,6 +298,12 @@ namespace SG_BAMS
             this.Hide();
         }
 
+        /// <summary>
+        /// Maneja el evento Click del botón <c>btnProveedores</c>.
+        /// Navega al módulo de proveedores y oculta el formulario actual.
+        /// </summary>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private void btnProveedores_Click(object sender, EventArgs e)
         {
             ProveedoresAdmin PA = new ProveedoresAdmin();
@@ -270,6 +311,12 @@ namespace SG_BAMS
             this.Hide();
         }
 
+        /// <summary>
+        /// Maneja el evento Click del botón <c>btnDeudores</c>.
+        /// Navega al módulo de deudores y oculta el formulario actual.
+        /// </summary>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private void btnDeudores_Click(object sender, EventArgs e)
         {
             DeudoresAdmin DA = new DeudoresAdmin();
@@ -277,6 +324,12 @@ namespace SG_BAMS
             this.Hide();
         }
 
+        /// <summary>
+        /// Maneja el evento Click del botón <c>btnReportes</c>.
+        /// Navega al módulo de reportes y oculta el formulario actual.
+        /// </summary>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private void btnReportes_Click(object sender, EventArgs e)
         {
             ReportesAdmin RA = new ReportesAdmin();
@@ -284,6 +337,12 @@ namespace SG_BAMS
             this.Hide();
         }
 
+        /// <summary>
+        /// Maneja el evento Click del botón <c>btnBitacora</c>.
+        /// Navega al módulo de bitácora y oculta el formulario actual.
+        /// </summary>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private void btnBitacora_Click(object sender, EventArgs e)
         {
             BitacoraAdmin BA = new BitacoraAdmin();
@@ -291,6 +350,13 @@ namespace SG_BAMS
             this.Hide();
         }
 
+        /// <summary>
+        /// Maneja el evento Click del botón <c>btnCerrar</c>.
+        /// Cierra la sesión actual, muestra el formulario de inicio de sesión
+        /// y cierra el formulario actual.
+        /// </summary>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             Login.Login login = new Login.Login();
@@ -298,6 +364,12 @@ namespace SG_BAMS
             this.Close();
         }
 
+        /// <summary>
+        /// Maneja el evento Click del botón <c>btnPerfil</c>.
+        /// Abre el formulario de perfil del usuario administrador.
+        /// </summary>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private void btnPerfil_Click(object sender, EventArgs e)
         {
             Perfil perfil = new Perfil();

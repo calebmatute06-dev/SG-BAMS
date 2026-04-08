@@ -10,28 +10,33 @@ using SG_BAMS.Facturas;
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    /// Formulario para registrar un nuevo cliente en el sistema.
+    /// Permite ingresar los datos personales del cliente y redirige
+    /// automáticamente al formulario de agregar factura al completar el registro.
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class ClienteAgregar : Form
     {
         /// <summary>
-        /// Gets the identifier cliente generado.
+        /// Obtiene el identificador único generado para el cliente recién registrado.
         /// </summary>
         /// <value>
-        /// The identifier cliente generado.
+        /// El ID del cliente generado por la base de datos.
         /// </value>
         public int IdClienteGenerado { get; private set; }
+
         /// <summary>
-        /// Gets the nombre delete cliente.
+        /// Obtiene el nombre completo del cliente recién registrado.
         /// </summary>
         /// <value>
-        /// The nombre delete cliente.
+        /// El nombre y apellido del cliente concatenados.
         /// </value>
         public string NombreDelCliente { get; private set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ClienteAgregar"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="ClienteAgregar"/>.
+        /// Configura la posición del formulario, las longitudes máximas de los campos
+        /// y las validaciones de entrada por teclado.
         /// </summary>
         public ClienteAgregar()
         {
@@ -41,27 +46,26 @@ namespace SG_BAMS
             txtTelefono.MaxLength = 8;
             txtRTN.MaxLength = 14;
 
-            
             txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
             txtApellido.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
             txtRTN.KeyPress += (s, e) => ClsValidaciones.ValidarSoloNumeros(e);
         }
 
         /// <summary>
-        /// Handles the Click event of the btnAgregar control.
+        /// Maneja el evento Click del botón <c>btnAgregar</c>.
+        /// Valida los campos del formulario, registra el nuevo cliente en la base de datos
+        /// y abre el formulario de factura si el registro fue exitoso.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private async void btnAgregar_Click(object sender, EventArgs e)
         {
-           
             if (!ClsValidaciones.EsNombrePersonalValido(txtNombre.TextBox, "El Nombre") ||
                 !ClsValidaciones.EsNombrePersonalValido(txtApellido.TextBox, "El Apellido"))
             {
                 return;
             }
 
-            
             if (!ClsValidaciones.EsTelefonoHondurasValido(txtTelefono.TextBox))
             {
                 return;
@@ -69,10 +73,8 @@ namespace SG_BAMS
 
             string rtn = txtRTN.Text.Trim();
 
-            
             if (!string.IsNullOrWhiteSpace(rtn))
             {
-                
                 if (!ClsValidaciones.EsRTNValido(txtRTN.TextBox))
                 {
                     return;
@@ -121,21 +123,24 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the KeyPress event of the txtTelefono control.
+        /// Maneja el evento KeyPress del campo <c>txtTelefono</c>.
+        /// Aplica validación en tiempo real para permitir únicamente
+        /// caracteres válidos en un número de teléfono hondureño.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento de teclado.</param>
         private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
         {
-
             ClsValidaciones.ValidarTelefonoKeyPress(txtTelefono, e);
         }
 
         /// <summary>
-        /// Handles the Click event of the BtnExistente control.
+        /// Maneja el evento Click del botón <c>BtnExistente</c>.
+        /// Abre el formulario de búsqueda de clientes existentes y cierra
+        /// el formulario actual si se seleccionó un cliente correctamente.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private void BtnExistente_Click(object sender, EventArgs e)
         {
             using (ClienteExistente frmCE = new ClienteExistente())
@@ -149,17 +154,19 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the BtnSalir control.
+        /// Maneja el evento Click del botón <c>BtnSalir</c>.
+        /// Cierra el formulario actual sin guardar cambios.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private void BtnSalir_Click(object sender, EventArgs e) => this.Close();
 
         /// <summary>
-        /// Handles the Load event of the ClienteAgregar control.
+        /// Maneja el evento Load del formulario <c>ClienteAgregar</c>.
+        /// Se ejecuta al cargar el formulario; reservado para inicializaciones futuras.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private void ClienteAgregar_Load(object sender, EventArgs e) { }
     }
 }

@@ -9,21 +9,21 @@ using System.Threading.Tasks;
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    /// Clase encargada de cargar datos para combos y sugerencias en la interfaz.
     /// </summary>
     public class ClsCargaCombos
     {
         /// <summary>
-        /// The conexion
+        /// La conexión a la base de datos.
         /// </summary>
         private ClsConexion conexion = new ClsConexion();
 
         /// <summary>
-        /// Ejecutars the query.
+        /// Ejecuta una consulta SQL y devuelve los resultados en un DataTable.
         /// </summary>
-        /// <param name="query">The query.</param>
-        /// <returns></returns>
-        /// <exception cref="System.Exception">Error en la base de datos: " + ex.Message</exception>
+        /// <param name="query">La consulta SQL a ejecutar.</param>
+        /// <returns>Un <see cref="DataTable"/> con los resultados de la consulta.</returns>
+        /// <exception cref="System.Exception">Lanza una excepción si ocurre un error en la base de datos.</exception>
         private DataTable ejecutarQuery(string query)
         {
             DataTable dt = new DataTable();
@@ -47,27 +47,27 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Listars the formas pago.
+        /// Obtiene un listado de las formas de pago disponibles.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Un <see cref="DataTable"/> con los tipos de forma de pago.</returns>
         public DataTable ListarFormasPago()
         {
             return ejecutarQuery("SELECT id_tipo_forma_pago, descripcion_forma_pago FROM Tipo_Forma_de_pago");
         }
 
         /// <summary>
-        /// Listars the proveedores activos.
+        /// Obtiene un listado de los proveedores activos.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Un <see cref="DataTable"/> con los proveedores activos.</returns>
         public DataTable ListarProveedoresActivos()
         {
             return ejecutarQuery("SELECT id_proveedor, nombre_proveedor FROM Proveedor WHERE id_estado = 1");
         }
 
         /// <summary>
-        /// Sugerirs the siguiente identifier.
+        /// Sugiere el siguiente identificador para una nueva compra.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Un <see cref="string"/> que representa el próximo ID disponible para la tabla Compra.</returns>
         public string SugerirSiguienteID()
         {
             DataTable dt = ejecutarQuery("SELECT ISNULL(MAX(id_compra), 0) + 1 FROM Compra");

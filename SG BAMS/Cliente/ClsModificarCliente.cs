@@ -1,11 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SG_BAMS.Cliente
 {
@@ -13,23 +7,23 @@ namespace SG_BAMS.Cliente
     /// 
     /// </summary>
     /// <seealso cref="SG_BAMS.ClsConexion" />
-    internal class ClsModificarCliente:ClsConexion
+    internal class ClsModificarCliente : ClsConexion
     {
 
         /// <summary>
-        /// Modificars the clientes.
+        /// Modifica los clientes.
         /// </summary>
-        /// <param name="idCliente">The identifier cliente.</param>
-        /// <param name="nombre">The nombre.</param>
-        /// <param name="apellido">The apellido.</param>
-        /// <param name="telefono">The telefono.</param>
-        /// <param name="RTN">The RTN.</param>
-        /// <param name="idEstado">The identifier estado.</param>
+        /// <param name="idCliente">El identificador del cliente.</param>
+        /// <param name="nombre">El nombre.</param>
+        /// <param name="apellido">El apellido.</param>
+        /// <param name="telefono">El teléfono.</param>
+        /// <param name="RTN">El RTN.</param>
+        /// <param name="idEstado">El identificador del estado.</param>
         /// <returns></returns>
-        public async Task<int> ModificarClientes(int idCliente,string nombre, string apellido, string telefono, string RTN, int idEstado)
+        public async Task<int> ModificarClientes(int idCliente, string nombre, string apellido, string telefono, string RTN, int idEstado)
         {
-            
-            try 
+
+            try
             {
 
                 AbrirConexion();
@@ -63,16 +57,16 @@ namespace SG_BAMS.Cliente
                 Cerrar();
 
             }
-        
+
         }
 
         /// <summary>
-        /// Obteners the estados.
+        /// Obtiene los estados.
         /// </summary>
         /// <returns></returns>
         public async Task<DataTable> ObtenerEstados()
         {
-            
+
             DataTable dt = new DataTable();
 
             try
@@ -89,7 +83,7 @@ namespace SG_BAMS.Cliente
             }
             catch (Exception)
             {
-                throw; 
+                throw;
             }
             finally
             {

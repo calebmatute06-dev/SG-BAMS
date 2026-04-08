@@ -1,13 +1,5 @@
 ﻿using SG_BAMS.Cliente;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace SG_BAMS
 {
@@ -18,12 +10,12 @@ namespace SG_BAMS
     public partial class ClientesEmp : Form
     {
         /// <summary>
-        /// The datos cli
+        /// Datos de clientes
         /// </summary>
         DataTable datosCli;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ClientesEmp"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="ClientesEmp"/>.
         /// </summary>
         public ClientesEmp()
         {
@@ -37,7 +29,7 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Tablas the clientes.
+        /// Carga la tabla de clientes.
         /// </summary>
         private async Task TablaClientes()
         {
@@ -70,7 +62,7 @@ namespace SG_BAMS
 
 
         /// <summary>
-        /// Aplicars the filtro.
+        /// Aplica el filtro.
         /// </summary>
         private void AplicarFiltro()
         {
@@ -104,30 +96,30 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the TextChanged event of the txtBusqueda control.
+        /// Maneja el evento TextChanged del control txtBusqueda.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">Origen del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void txtBusqueda_TextChanged(object sender, EventArgs e)
         {
             AplicarFiltro();
         }
 
         /// <summary>
-        /// Handles the CheckedChanged event of the chkActivo control.
+        /// Maneja el evento CheckedChanged del control chkActivo.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">Origen del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void chkActivo_CheckedChanged(object sender, EventArgs e)
         {
             AplicarFiltro();
         }
 
         /// <summary>
-        /// Handles the CellDoubleClick event of the dgvClientes control.
+        /// Maneja el evento CellDoubleClick del control dgvClientes.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">Origen del evento.</param>
+        /// <param name="e">Instancia de <see cref="DataGridViewCellEventArgs"/> que contiene los datos del evento.</param>
         private async void dgvClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e != null && e.RowIndex < 0) return;
@@ -156,10 +148,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the BtnModificar control.
+        /// Maneja el evento Click del control BtnModificar.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">Origen del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void BtnModificar_Click(object sender, EventArgs e)
         {
             if (dgvClientes.SelectedRows.Count == 0)
@@ -171,10 +163,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Load event of the ClientesEmp control.
+        /// Maneja el evento Load del formulario ClientesEmp.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">Origen del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private async void ClientesEmp_Load(object sender, EventArgs e)
         {
 
@@ -215,10 +207,10 @@ namespace SG_BAMS
 
 
         /// <summary>
-        /// Handles the Click event of the btnNoti control.
+        /// Maneja el evento Click del control btnNoti.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">Origen del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnNoti_Click(object sender, EventArgs e)
         {
             new NotificacionesAdmin().Show();
@@ -238,7 +230,7 @@ namespace SG_BAMS
             this.Hide();
         }
 
-        
+
 
         private void btnInventario_Click(object sender, EventArgs e)
         {

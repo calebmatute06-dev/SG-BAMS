@@ -15,27 +15,38 @@ using static SG_BAMS.ClsCompras;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// Proporciona la interfaz de usuario para registrar la entrada de datos de una nueva compra.
+    /// Permite gestionar productos, proveedores y calcular totales dinámicamente.
+    /// </summary>
     public partial class Ingresar_datos__Compra_ : Form
     {
+        /// <summary>
+        /// Inicializa una nueva instancia de la clase <see cref="Ingresar_datos__Compra_"/>.
+        /// </summary>
         public Ingresar_datos__Compra_()
         {
             InitializeComponent();
-           
+
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
+        /// <summary>
+        /// Configura el estado inicial del formulario, incluyendo la estructura de la tabla y estilos visuales.
+        /// </summary>
         private void Ingresar_datos__Compra__Load(object sender, EventArgs e)
         {
 
             dgvIngresarCompra.Columns.Clear();
 
+            // Configuración de columnas del DataGridView
             dgvIngresarCompra.Columns.Add("ID", "ID");
             dgvIngresarCompra.Columns.Add("Nombre", "Nombre");
             dgvIngresarCompra.Columns.Add("Cantidad", "Cantidad");
             dgvIngresarCompra.Columns.Add("Precio", "Precio");
             dgvIngresarCompra.Columns.Add("Subtotal", "Subtotal");
 
-           
+            // Definición de permisos de edición por celda
             dgvIngresarCompra.Columns[0].ReadOnly = true;
             dgvIngresarCompra.Columns[1].ReadOnly = true;
             dgvIngresarCompra.Columns[4].ReadOnly = true;
@@ -47,6 +58,7 @@ namespace SG_BAMS
             dtpFechaPedido.SelectionEnd = DateTime.Now;
             lblIDCompra.Text = ObtenerSiguienteID();
 
+            // Personalización estética del control DataGridView
             dgvIngresarCompra.BorderStyle = BorderStyle.None;
             dgvIngresarCompra.BackgroundColor = Color.White;
             dgvIngresarCompra.RowHeadersVisible = false;
@@ -76,6 +88,9 @@ namespace SG_BAMS
             dgvIngresarCompra.ClearSelection();
         }
 
+        /// <summary>
+        /// Carga los datos necesarios en los ComboBox de proveedores y formas de pago.
+        /// </summary>
         private void LlenarCombos()
         {
             try
@@ -101,6 +116,9 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Obtiene el identificador correlativo para la nueva transacción de compra.
+        /// </summary>
         private string ObtenerSiguienteID()
         {
             try
@@ -114,6 +132,9 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Calcula y actualiza el total general sumando los subtotales de cada fila.
+        /// </summary>
         private void ActualizarGranTotal()
         {
             decimal granTotal = 0;
@@ -129,9 +150,10 @@ namespace SG_BAMS
 
         private object valorOriginal;
 
-
-
-
+        /// <summary>
+        /// Abre el formulario de selección de productos y añade el resultado a la tabla de compra.
+        /// Valida que el proveedor esté seleccionado y que no haya duplicados.
+        /// </summary>
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             if (cmbProveedor.SelectedValue == null || cmbProveedor.SelectedIndex == -1)
@@ -186,6 +208,9 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Procesa y guarda la compra final en la base de datos tras validar los campos requeridos.
+        /// </summary>
         private void btnAceptar_Click_1(object sender, EventArgs e)
         {
             if (dgvIngresarCompra.Rows.Count == 0)
@@ -217,7 +242,6 @@ namespace SG_BAMS
                     }
                 }
 
-                
                 ClsPasarUsuario sesion = new ClsPasarUsuario();
                 int idUsuarioActual = sesion.IdUsuario();
 
@@ -244,11 +268,17 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Cierra el formulario actual sin realizar cambios.
+        /// </summary>
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// Remueve el producto seleccionado de la tabla de detalles de compra.
+        /// </summary>
         private void btnQuitar_Click(object sender, EventArgs e)
         {
             if (dgvIngresarCompra.CurrentRow != null && dgvIngresarCompra.CurrentRow.Index >= 0)
@@ -274,6 +304,9 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Maneja los cambios en las celdas de la tabla para validar entradas y recalcular subtotales.
+        /// </summary>
         private void dgvIngresarCompra_CellValueChanged_1(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && (e.ColumnIndex == 2 || e.ColumnIndex == 3))
@@ -309,6 +342,9 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Captura el valor de la celda antes de ser editada para permitir reversión en caso de error.
+        /// </summary>
         private void dgvIngresarCompra_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             if (e.RowIndex >= 0 && (e.ColumnIndex == 2 || e.ColumnIndex == 3))

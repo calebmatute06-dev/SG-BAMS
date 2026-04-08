@@ -9,29 +9,33 @@ using Krypton.Toolkit;
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    /// Formulario para modificar los datos de un cliente existente en el sistema.
+    /// Permite editar nombre, apellido, teléfono, RTN y estado del cliente.
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class ClienteModificar : Form
     {
         /// <summary>
-        /// The object cl
+        /// Instancia de la clase de conexión utilizada para operaciones con la base de datos.
         /// </summary>
         ClsConexion objCl = new ClsConexion();
+
         /// <summary>
-        /// The identifier estado selec
+        /// Almacena el identificador del estado actual del cliente para preseleccionarlo en el ComboBox.
         /// </summary>
         int idEstadoSelec;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ClienteModificar"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="ClienteModificar"/> con los datos
+        /// actuales del cliente, precargando los campos del formulario y configurando
+        /// las validaciones de entrada por teclado.
         /// </summary>
-        /// <param name="idCliente">The identifier cliente.</param>
-        /// <param name="nombreCliente">The nombre cliente.</param>
-        /// <param name="apellidoCliente">The apellido cliente.</param>
-        /// <param name="telefonoCliente">The telefono cliente.</param>
-        /// <param name="rtnCliente">The RTN cliente.</param>
-        /// <param name="idEstado">The identifier estado.</param>
+        /// <param name="idCliente">El identificador único del cliente a modificar.</param>
+        /// <param name="nombreCliente">El nombre actual del cliente.</param>
+        /// <param name="apellidoCliente">El apellido actual del cliente.</param>
+        /// <param name="telefonoCliente">El teléfono actual del cliente.</param>
+        /// <param name="rtnCliente">El RTN actual del cliente.</param>
+        /// <param name="idEstado">El identificador del estado actual del cliente.</param>
         public ClienteModificar(int idCliente, string nombreCliente, string apellidoCliente, string telefonoCliente, string rtnCliente, int idEstado)
         {
             InitializeComponent();
@@ -43,22 +47,21 @@ namespace SG_BAMS
             txtRTN.Text = rtnCliente;
             idEstadoSelec = idEstado;
 
-
             txtTelefono.MaxLength = 8;
             txtRTN.MaxLength = 14;
             txtID.ReadOnly = true;
-
 
             txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
             txtApellido.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
             txtTelefono.KeyPress += (s, e) => ClsValidaciones.ValidarSoloNumeros(e);
             txtRTN.KeyPress += (s, e) => ClsValidaciones.ValidarSoloNumeros(e);
-            txtTelefono.KeyPress += (s, e) => 
+            txtTelefono.KeyPress += (s, e) =>
                 ClsValidaciones.ValidarTelefonoKeyPress(txtTelefono, e);
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ClienteModificar"/> class.
+        /// Inicializa una nueva instancia vacía de la clase <see cref="ClienteModificar"/>.
+        /// Utilizada por el diseñador de formularios de Windows Forms.
         /// </summary>
         public ClienteModificar()
         {
@@ -66,31 +69,30 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the BtnModificar control.
+        /// Maneja el evento Click del botón <c>BtnModificar</c>.
+        /// Valida todos los campos del formulario y, si son correctos, actualiza
+        /// los datos del cliente en la base de datos de forma asíncrona.
+        /// Muestra un mensaje de éxito o informa si no hubo cambios detectados.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private async void BtnModificar_Click(object sender, EventArgs e)
         {
-
             if (!ClsValidaciones.EsNombrePersonalValido(txtNombre, "Nombre") ||
                 !ClsValidaciones.EsNombrePersonalValido(txtApellido, "Apellido"))
             {
                 return;
             }
 
-
             if (!ClsValidaciones.EsTelefonoHondurasValido(txtTelefono))
             {
                 return;
             }
 
-
             if (!ClsValidaciones.ValidarSeleccion(cmbEstado, "el estado del cliente"))
             {
                 return;
             }
-
 
             string rtn = txtRTN.Text.Trim();
             if (!string.IsNullOrWhiteSpace(rtn) && rtn.ToUpper() != "SIN RTN")
@@ -141,7 +143,8 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Llenars the combo estado.
+        /// Carga de forma asíncrona los estados disponibles del sistema
+        /// en el control ComboBox de estado del cliente.
         /// </summary>
         private async Task LlenarComboEstado()
         {
@@ -160,10 +163,12 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Load event of the ClienteModificar control.
+        /// Maneja el evento Load del formulario <c>ClienteModificar</c>.
+        /// Carga los estados disponibles en el ComboBox y preselecciona
+        /// el estado actual del cliente. Configura el ComboBox en modo solo lectura.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private async void ClienteModificar_Load(object sender, EventArgs e)
         {
             await LlenarComboEstado();
@@ -172,17 +177,20 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the BtnSalir control.
+        /// Maneja el evento Click del botón <c>BtnSalir</c>.
+        /// Cierra el formulario actual sin guardar cambios.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private void BtnSalir_Click(object sender, EventArgs e) => this.Close();
 
         /// <summary>
-        /// Handles the KeyPress event of the txtTelefono control.
+        /// Maneja el evento KeyPress del campo <c>txtTelefono</c>.
+        /// Aplica validación en tiempo real para permitir únicamente
+        /// caracteres válidos en un número de teléfono hondureño.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento de teclado.</param>
         private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
         {
             ClsValidaciones.ValidarTelefonoKeyPress(txtTelefono, e);

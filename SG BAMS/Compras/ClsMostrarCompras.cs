@@ -10,12 +10,12 @@ namespace SG_BAMS.ProductoInventario
     internal class ClsMostrarCompras
     {
         /// <summary>
-        /// The conexion
+        /// La conexión
         /// </summary>
         private ClsConexion conexion = new ClsConexion();
 
         /// <summary>
-        /// Listars the compras.
+        /// Lista las compras.
         /// </summary>
         /// <returns></returns>
         /// <exception cref="System.Exception">Error al obtener las compras desde la base de datos: " + ex.Message</exception>

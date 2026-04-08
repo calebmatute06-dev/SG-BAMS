@@ -8,15 +8,41 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class Modificar_datos__Compra_ : Form
     {
+        /// <summary>
+        /// La tabla de respaldo
+        /// </summary>
         private DataTable dtRespaldo;
+        /// <summary>
+        /// Indica si hubo cambios
+        /// </summary>
         private bool huboCambios = false;
+        /// <summary>
+        /// El valor antes del cambio
+        /// </summary>
         private object valorAntesDeCambio;
+        /// <summary>
+        /// El identificador de la compra a editar
+        /// </summary>
         private int idCompraAEditar;
+        /// <summary>
+        /// La lógica de negocio
+        /// </summary>
         private ClsModificarCompras logic = new ClsModificarCompras();
+        /// <summary>
+        /// La lista de elementos eliminados
+        /// </summary>
         private List<int> listaEliminados = new List<int>();
 
+        /// <summary>
+        /// Inicializa una nueva instancia de la clase <see cref="Modificar_datos__Compra_"/>.
+        /// </summary>
+        /// <param name="id">El identificador.</param>
         public Modificar_datos__Compra_(int id)
         {
             InitializeComponent();
@@ -28,6 +54,11 @@ namespace SG_BAMS
             dgvProductosModificar.CellBeginEdit += dgvProductosModificar_CellBeginEdit;
         }
 
+        /// <summary>
+        /// Maneja el evento Load del control Modificar_datos__Compra_.
+        /// </summary>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void Modificar_datos__Compra__Load(object sender, EventArgs e)
         {
             cmbProveedor.Enabled = false;
@@ -84,6 +115,9 @@ namespace SG_BAMS
             dgvProductosModificar.ClearSelection();
         }
 
+        /// <summary>
+        /// Actualiza el total general.
+        /// </summary>
         private void ActualizarTotalGeneral()
         {
             decimal total = 0;
@@ -95,6 +129,9 @@ namespace SG_BAMS
             lblTotal.Text = "Total: L " + total.ToString("N2");
         }
 
+        /// <summary>
+        /// Configura la edición de la cuadrícula.
+        /// </summary>
         private void ConfigurarEdicionGrid()
         {
             if (dgvProductosModificar.Columns.Contains("ID")) dgvProductosModificar.Columns["ID"].ReadOnly = true;
@@ -107,6 +144,9 @@ namespace SG_BAMS
             if (dgvProductosModificar.Columns.Contains("Subtotal")) dgvProductosModificar.Columns["Subtotal"].DefaultCellStyle.Format = "N2";
         }
 
+        /// <summary>
+        /// Llena los combos.
+        /// </summary>
         private void LlenarCombos()
         {
             try
@@ -122,6 +162,9 @@ namespace SG_BAMS
             catch (Exception ex) { MessageBox.Show("Error al llenar listas: " + ex.Message); }
         }
 
+        /// <summary>
+        /// Carga los datos de cabecera.
+        /// </summary>
         private void CargarDatosCabecera()
         {
             try
@@ -141,6 +184,11 @@ namespace SG_BAMS
             catch (Exception ex) { MessageBox.Show("Error al cargar datos: " + ex.Message); }
         }
 
+        /// <summary>
+        /// Maneja el evento Click del control btnAceptar.
+        /// </summary>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             if (cmbProveedor.SelectedValue == null) return;
@@ -166,6 +214,11 @@ namespace SG_BAMS
             catch (Exception ex) { MessageBox.Show("Error al guardar: " + ex.Message); }
         }
 
+        /// <summary>
+        /// Maneja el evento Click del control btnEliminarProducto.
+        /// </summary>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnEliminarProducto_Click(object sender, EventArgs e)
         {
             if (dgvProductosModificar.CurrentRow == null || dgvProductosModificar.CurrentRow.IsNewRow) return;
@@ -197,6 +250,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Maneja el evento Click del control kryptonButton5.
+        /// </summary>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void kryptonButton5_Click(object sender, EventArgs e)
         {
             if (cmbProveedor.SelectedValue == null) return;
@@ -214,6 +272,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Maneja el evento Click del control kryptonButton4.
+        /// </summary>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void kryptonButton4_Click(object sender, EventArgs e)
         {
             if (!huboCambios) { this.Close(); return; }
@@ -224,9 +287,24 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Maneja el evento SelectedIndexChanged del control cmbProveedor.
+        /// </summary>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void cmbProveedor_SelectedIndexChanged(object sender, EventArgs e) => huboCambios = true;
+        /// <summary>
+        /// Maneja el evento SelectedIndexChanged del control cmbFormaPago.
+        /// </summary>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void cmbFormaPago_SelectedIndexChanged(object sender, EventArgs e) => huboCambios = true;
 
+        /// <summary>
+        /// Maneja el evento CellValueChanged del control dgvProductosModificar.
+        /// </summary>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="DataGridViewCellEventArgs"/> que contiene los datos del evento.</param>
         private void dgvProductosModificar_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
@@ -259,6 +337,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Maneja el evento CellBeginEdit del control dgvProductosModificar.
+        /// </summary>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="DataGridViewCellCancelEventArgs"/> que contiene los datos del evento.</param>
         private void dgvProductosModificar_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -267,6 +350,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Maneja el evento CurrentCellDirtyStateChanged del control dgvProductosModificar.
+        /// </summary>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void dgvProductosModificar_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
             if (dgvProductosModificar.IsCurrentCellDirty)

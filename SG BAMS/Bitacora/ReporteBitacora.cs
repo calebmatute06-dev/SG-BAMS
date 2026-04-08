@@ -6,73 +6,77 @@ using QuestPDF.Infrastructure;
 namespace SG_BAMS.Bitacora
 {
     /// <summary>
-    /// 
+    /// Objeto de transferencia de datos que representa un registro de la bitácora.
     /// </summary>
     public class BitacoraDTO
     {
         /// <summary>
-        /// Gets or sets the nombre.
+        /// Obtiene o establece el nombre del usuario que realizó la acción.
         /// </summary>
         /// <value>
-        /// The nombre.
+        /// El nombre del usuario.
         /// </value>
         public string Nombre { get; set; }
+
         /// <summary>
-        /// Gets or sets the accion.
+        /// Obtiene o establece la acción realizada por el usuario.
         /// </summary>
         /// <value>
-        /// The accion.
+        /// La acción ejecutada.
         /// </value>
         public string Accion { get; set; }
+
         /// <summary>
-        /// Gets or sets the modulo.
+        /// Obtiene o establece el módulo del sistema donde se realizó la acción.
         /// </summary>
         /// <value>
-        /// The modulo.
+        /// El nombre del módulo.
         /// </value>
         public string Modulo { get; set; }
+
         /// <summary>
-        /// Gets or sets the fecha.
+        /// Obtiene o establece la fecha y hora en que se registró la acción.
         /// </summary>
         /// <value>
-        /// The fecha.
+        /// La fecha y hora del registro.
         /// </value>
         public DateTime Fecha { get; set; }
     }
 
     /// <summary>
-    /// 
+    /// Genera el documento PDF del reporte de bitácora utilizando la librería QuestPDF.
     /// </summary>
     /// <seealso cref="QuestPDF.Infrastructure.IDocument" />
     internal class ReporteBitacora : IDocument
     {
         /// <summary>
-        /// The datos
+        /// Lista de registros de bitácora que se mostrarán en el reporte.
         /// </summary>
         private readonly List<BitacoraDTO> _datos;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ReporteBitacora"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="ReporteBitacora"/>.
         /// </summary>
-        /// <param name="datos">The datos.</param>
+        /// <param name="datos">La lista de registros de bitácora a incluir en el reporte.
+        /// Si es nula, se inicializa con una lista vacía.</param>
         public ReporteBitacora(List<BitacoraDTO> datos)
         {
             _datos = datos ?? new List<BitacoraDTO>();
         }
 
         /// <summary>
-        /// Provides metadata values like author and keywords used in PDF creation.
+        /// Devuelve los metadatos del documento PDF, como autor y palabras clave.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Los metadatos predeterminados del documento.</returns>
         /// <remarks>
-        /// Override this method to customize document's metadata.
+        /// Se puede sobrescribir este método para personalizar los metadatos del documento.
         /// </remarks>
         public DocumentMetadata GetMetadata() => DocumentMetadata.Default;
 
         /// <summary>
-        /// Configures the document content by specifying its layout structure and visual element.
+        /// Define el contenido y la estructura visual del documento PDF mediante la API fluida de QuestPDF.
         /// </summary>
-        /// <param name="container">The document container used for defining content via the FluentAPI.</param>
+        /// <param name="container">El contenedor del documento utilizado para construir el contenido.</param>
         public void Compose(IDocumentContainer container)
         {
             container.Page(page =>
@@ -89,10 +93,10 @@ namespace SG_BAMS.Bitacora
                 {
                     table.ColumnsDefinition(columns =>
                     {
-                        columns.RelativeColumn(); 
-                        columns.RelativeColumn(); 
-                        columns.RelativeColumn(); 
-                        columns.RelativeColumn(); 
+                        columns.RelativeColumn();
+                        columns.RelativeColumn();
+                        columns.RelativeColumn();
+                        columns.RelativeColumn();
                     });
 
                     table.Header(header =>

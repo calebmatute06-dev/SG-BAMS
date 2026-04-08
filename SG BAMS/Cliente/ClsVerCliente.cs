@@ -12,10 +12,10 @@ namespace SG_BAMS.Cliente
     /// 
     /// </summary>
     /// <seealso cref="SG_BAMS.ClsConexion" />
-    internal class ClsVerCliente:ClsConexion
+    internal class ClsVerCliente : ClsConexion
     {
         /// <summary>
-        /// Vers the cliente tabla.
+        /// Consulta la tabla de clientes.
         /// </summary>
         /// <returns></returns>
         public async Task<DataTable> VerClienteTabla()
@@ -53,5 +53,5 @@ namespace SG_BAMS.Cliente
 
 
     }
-    
+
 }

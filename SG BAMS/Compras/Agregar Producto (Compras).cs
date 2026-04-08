@@ -1,15 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Data;
-using System.Drawing;
+﻿using System.Data;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace SG_BAMS
 {
@@ -20,44 +10,44 @@ namespace SG_BAMS
     public partial class Agregar_Producto__Compras_ : Form
     {
         /// <summary>
-        /// Gets or sets the identifier seleccionado.
+        /// Obtiene o establece el identificador seleccionado.
         /// </summary>
         /// <value>
-        /// The identifier seleccionado.
+        /// El identificador seleccionado.
         /// </value>
         public string IdSeleccionado { get; set; }
         /// <summary>
-        /// Gets or sets the nombre seleccionado.
+        /// Obtiene o establece el nombre seleccionado.
         /// </summary>
         /// <value>
-        /// The nombre seleccionado.
+        /// El nombre seleccionado.
         /// </value>
         public string NombreSeleccionado { get; set; }
         /// <summary>
-        /// Gets or sets the cantidad seleccionada.
+        /// Obtiene o establece la cantidad seleccionada.
         /// </summary>
         /// <value>
-        /// The cantidad seleccionada.
+        /// La cantidad seleccionada.
         /// </value>
         public int CantidadSeleccionada { get; set; }
         /// <summary>
-        /// Gets or sets the precio seleccionado.
+        /// Obtiene o establece el precio seleccionado.
         /// </summary>
         /// <value>
-        /// The precio seleccionado.
+        /// El precio seleccionado.
         /// </value>
         public decimal PrecioSeleccionado { get; set; }
 
         /// <summary>
-        /// The identifier proveedor
+        /// Identificador del proveedor
         /// </summary>
         private int _idProveedor;
 
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Agregar_Producto__Compras_"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="Agregar_Producto__Compras_"/>.
         /// </summary>
-        /// <param name="idProv">The identifier prov.</param>
+        /// <param name="idProv">El identificador del proveedor.</param>
         public Agregar_Producto__Compras_(int idProv)
         {
             InitializeComponent();
@@ -67,30 +57,30 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the kryptonLabel1 control.
+        /// Maneja el evento Click del control kryptonLabel1.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">Origen del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void kryptonLabel1_Click(object sender, EventArgs e)
         {
 
         }
 
         /// <summary>
-        /// Handles the Click event of the kryptonLabel4 control.
+        /// Maneja el evento Click del control kryptonLabel4.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">Origen del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void kryptonLabel4_Click(object sender, EventArgs e)
         {
 
         }
 
         /// <summary>
-        /// Handles the Load event of the Agregar_Producto__Compras_ control.
+        /// Maneja el evento Load del formulario Agregar_Producto__Compras_.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">Origen del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void Agregar_Producto__Compras__Load(object sender, EventArgs e)
         {
             LlenarComboProductos();
@@ -99,7 +89,7 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Llenars the combo productos.
+        /// Llena el combo de productos.
         /// </summary>
         private void LlenarComboProductos()
         {
@@ -123,10 +113,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the kryptonButton3 control.
+        /// Maneja el evento Click del control kryptonButton3.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">Origen del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void kryptonButton3_Click(object sender, EventArgs e)
         {
             if (cmbProductos.SelectedValue == null || cmbProductos.SelectedIndex == -1)
@@ -157,20 +147,20 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btnCancelar control.
+        /// Maneja el evento Click del control btnCancelar.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">Origen del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
         /// <summary>
-        /// Handles the Click event of the kryptonButton1 control.
+        /// Maneja el evento Click del control kryptonButton1.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">Origen del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
             using (AgregarProducto frmCrear = new AgregarProducto())
@@ -188,20 +178,20 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the KeyPress event of the txtPrecio control.
+        /// Maneja el evento KeyPress del control txtPrecio.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">Origen del evento.</param>
+        /// <param name="e">Instancia de <see cref="KeyPressEventArgs"/> que contiene los datos del evento.</param>
         private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
         {
             ClsValidaciones.PermitirNumerosYDecimales(sender, e);
         }
 
         /// <summary>
-        /// Handles the Leave event of the txtPrecio control.
+        /// Maneja el evento Leave del control txtPrecio.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">Origen del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void txtPrecio_Leave(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(txtPrecio.Text))
@@ -214,27 +204,27 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the KeyPress event of the numCantidad control.
+        /// Maneja el evento KeyPress del control numCantidad.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">Origen del evento.</param>
+        /// <param name="e">Instancia de <see cref="KeyPressEventArgs"/> que contiene los datos del evento.</param>
         private void numCantidad_KeyPress(object sender, KeyPressEventArgs e)
         {
             ClsValidaciones.ValidarSoloNumeros(e);
         }
 
         /// <summary>
-        /// The ultima tecla escaner
+        /// Última tecla detectada del escáner
         /// </summary>
         private DateTime ultimaTeclaEscaner = DateTime.Now;
 
         /// <summary>
-        /// Processes a command key.
+        /// Procesa una tecla de comando.
         /// </summary>
-        /// <param name="msg">A <see cref="T:System.Windows.Forms.Message" />, passed by reference, that represents the Win32 message to process.</param>
-        /// <param name="keyData">One of the <see cref="T:System.Windows.Forms.Keys" /> values that represents the key to process.</param>
+        /// <param name="msg">Mensaje de Windows que se va a procesar.</param>
+        /// <param name="keyData">Tecla que se va a procesar.</param>
         /// <returns>
-        ///   <see langword="true" /> if the keystroke was processed and consumed by the control; otherwise, <see langword="false" /> to allow further processing.
+        /// true si la tecla fue procesada; de lo contrario, false.
         /// </returns>
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -258,7 +248,7 @@ namespace SG_BAMS
                 char c = (char)key;
                 txtCodigo.AppendText(c.ToString().ToLower());
 
-                return true; 
+                return true;
             }
 
             if (key == Keys.Enter)
@@ -277,9 +267,9 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Buscars the producto por codigo.
+        /// Busca el producto por código.
         /// </summary>
-        /// <param name="codigo">The codigo.</param>
+        /// <param name="codigo">El código.</param>
         private void BuscarProductoPorCodigo(string codigo)
         {
             try
@@ -294,7 +284,7 @@ namespace SG_BAMS
                     if (row["codigo_barra"].ToString().Trim() == codigo.Trim())
                     {
                         cmbProductos.SelectedValue = row["id_producto"];
-                        numCantidad.Focus(); 
+                        numCantidad.Focus();
                         encontrado = true;
                         break;
                     }
@@ -314,10 +304,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btnEscanear control.
+        /// Maneja el evento Click del control btnEscanear.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">Origen del evento.</param>
+        /// <param name="e">Instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnEscanear_Click(object sender, EventArgs e)
         {
             txtCodigo.Clear();

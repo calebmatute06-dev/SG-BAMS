@@ -13,13 +13,15 @@ using System.Windows.Forms;
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    /// Formulario para seleccionar un cliente ya registrado en el sistema
+    /// y asignarle una nueva factura.
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class ClienteExistente : Form
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ClienteExistente"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="ClienteExistente"/>
+        /// y centra el formulario en la pantalla.
         /// </summary>
         public ClienteExistente()
         {
@@ -28,7 +30,8 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Llenars the combo cliente.
+        /// Carga de forma asíncrona la lista de clientes registrados
+        /// en el control ComboBox, configurando el autocompletado.
         /// </summary>
         private async Task LlenarComboCliente()
         {
@@ -51,10 +54,11 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Load event of the ClienteExistente control.
+        /// Maneja el evento Load del formulario <c>ClienteExistente</c>.
+        /// Carga la lista de clientes en el ComboBox y limpia la selección inicial.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private async void ClienteExistente_Load(object sender, EventArgs e)
         {
             await LlenarComboCliente();
@@ -62,10 +66,13 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the BtnAsignar control.
+        /// Maneja el evento Click del botón <c>BtnAsignar</c>.
+        /// Valida que se haya seleccionado un cliente, recupera su RTN
+        /// y abre el formulario de agregar factura asociado al cliente seleccionado.
+        /// Si la factura se confirma, cierra el formulario actual con resultado OK.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private void BtnAsignar_Click(object sender, EventArgs e)
         {
             if (!ClsValidaciones.ValidarSeleccion(cmbClientes, "la lista de clientes"))
@@ -75,7 +82,6 @@ namespace SG_BAMS
             {
                 if (cmbClientes.SelectedValue != null && int.TryParse(cmbClientes.SelectedValue.ToString(), out int idCliente))
                 {
-                   
                     string rtn = "Sin RTN";
                     if (cmbClientes.SelectedItem is DataRowView drv)
                     {
@@ -110,10 +116,11 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the BtnSalir control.
+        /// Maneja el evento Click del botón <c>BtnSalir</c>.
+        /// Cierra el formulario actual sin realizar ninguna acción.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private void BtnSalir_Click(object sender, EventArgs e)
         {
             this.Close();

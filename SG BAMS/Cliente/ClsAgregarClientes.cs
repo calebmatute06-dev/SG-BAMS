@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Data.SqlClient;
-using System.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using System.Data;
 
 namespace SG_BAMS.Cliente
@@ -13,16 +7,16 @@ namespace SG_BAMS.Cliente
     /// 
     /// </summary>
     /// <seealso cref="SG_BAMS.ClsConexion" />
-    internal class ClsAgregarClientes:ClsConexion
+    internal class ClsAgregarClientes : ClsConexion
     {
 
         /// <summary>
-        /// Agregars the clientes.
+        /// Agrega clientes.
         /// </summary>
-        /// <param name="nombre">The nombre.</param>
-        /// <param name="apellido">The apellido.</param>
-        /// <param name="telefono">The telefono.</param>
-        /// <param name="RTN">The RTN.</param>
+        /// <param name="nombre">El nombre.</param>
+        /// <param name="apellido">El apellido.</param>
+        /// <param name="telefono">El teléfono.</param>
+        /// <param name="RTN">El RTN.</param>
         /// <returns></returns>
         public async Task<int> AgregarClientes(string nombre, string apellido, string telefono, string RTN)
         {
@@ -30,7 +24,7 @@ namespace SG_BAMS.Cliente
             {
                 AbrirConexion();
 
-                using (SqlCommand cmd = new SqlCommand("PA_insertar_cliente",Conectar))
+                using (SqlCommand cmd = new SqlCommand("PA_insertar_cliente", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -49,8 +43,8 @@ namespace SG_BAMS.Cliente
                     return 0;
 
                 }
-            
-            
+
+
             }
             catch (Exception ex)
             {
@@ -61,18 +55,18 @@ namespace SG_BAMS.Cliente
             {
                 Cerrar();
             }
-        
-        
-        
+
+
+
         }
 
         /// <summary>
-        /// Obteners the clientes.
+        /// Obtiene los clientes.
         /// </summary>
         /// <returns></returns>
         public async Task<DataTable> ObtenerClientes()
         {
-            
+
             DataTable dt = new DataTable();
 
             try
@@ -89,7 +83,7 @@ namespace SG_BAMS.Cliente
             }
             catch (Exception)
             {
-                throw; 
+                throw;
             }
             finally
             {

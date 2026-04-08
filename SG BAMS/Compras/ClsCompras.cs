@@ -6,15 +6,15 @@ using System.Data;
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    /// Clase que maneja operaciones relacionadas con compras y detalles de compras en la base de datos.
     /// </summary>
     public class ClsCompras
     {
         /// <summary>
-        /// Obteners the productos por proveedor.
+        /// Obtiene los productos asociados a un proveedor específico.
         /// </summary>
-        /// <param name="idProv">The identifier prov.</param>
-        /// <returns></returns>
+        /// <param name="idProv">El identificador del proveedor.</param>
+        /// <returns>Un <see cref="DataTable"/> con los productos del proveedor.</returns>
         public DataTable ObtenerProductosPorProveedor(int idProv)
         {
             ClsConexion conexion = new ClsConexion();
@@ -50,11 +50,11 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Validars the producto en compra.
+        /// Valida si un producto ya está incluido en una compra existente.
         /// </summary>
-        /// <param name="idCompra">The identifier compra.</param>
-        /// <param name="idProducto">The identifier producto.</param>
-        /// <returns></returns>
+        /// <param name="idCompra">El identificador de la compra.</param>
+        /// <param name="idProducto">El identificador del producto.</param>
+        /// <returns><c>true</c> si el producto ya existe en la compra; de lo contrario, <c>false</c>.</returns>
         public bool ValidarProductoEnCompra(string idCompra, int idProducto)
         {
             ClsConexion conexion = new ClsConexion();
@@ -80,12 +80,12 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Agregars the detalle a compra existente.
+        /// Agrega un detalle de producto a una compra existente.
         /// </summary>
-        /// <param name="idCompra">The identifier compra.</param>
-        /// <param name="idProducto">The identifier producto.</param>
-        /// <param name="cantidad">The cantidad.</param>
-        /// <param name="precio">The precio.</param>
+        /// <param name="idCompra">El identificador de la compra.</param>
+        /// <param name="idProducto">El identificador del producto.</param>
+        /// <param name="cantidad">La cantidad de producto a agregar.</param>
+        /// <param name="precio">El precio unitario del producto.</param>
         public void AgregarDetalleACompraExistente(string idCompra, int idProducto, int cantidad, decimal precio)
         {
             ClsConexion conexion = new ClsConexion();
@@ -113,43 +113,36 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// 
+        /// Representa un detalle de compra, incluyendo producto, cantidad y precio.
         /// </summary>
         public class DetalleCompra
         {
             /// <summary>
-            /// Gets or sets the identifier producto.
+            /// Obtiene o establece el identificador del producto.
             /// </summary>
-            /// <value>
-            /// The identifier producto.
-            /// </value>
             public int IdProducto { get; set; }
+
             /// <summary>
-            /// Gets or sets the cantidad.
+            /// Obtiene o establece la cantidad del producto.
             /// </summary>
-            /// <value>
-            /// The cantidad.
-            /// </value>
             public int Cantidad { get; set; }
+
             /// <summary>
-            /// Gets or sets the precio.
+            /// Obtiene o establece el precio unitario del producto.
             /// </summary>
-            /// <value>
-            /// The precio.
-            /// </value>
             public decimal Precio { get; set; }
         }
 
         /// <summary>
-        /// Guardars the nueva compra.
+        /// Guarda una nueva compra junto con sus detalles en la base de datos.
         /// </summary>
-        /// <param name="idUsuario">The identifier usuario.</param>
-        /// <param name="fecha">The fecha.</param>
-        /// <param name="idPago">The identifier pago.</param>
-        /// <param name="idProv">The identifier prov.</param>
-        /// <param name="nota">The nota.</param>
-        /// <param name="detalles">The detalles.</param>
-        /// <returns></returns>
+        /// <param name="idUsuario">El identificador del usuario que realiza la compra.</param>
+        /// <param name="fecha">La fecha de la compra.</param>
+        /// <param name="idPago">El identificador del tipo de pago.</param>
+        /// <param name="idProv">El identificador del proveedor.</param>
+        /// <param name="nota">Una nota o descripción de la compra.</param>
+        /// <param name="detalles">La lista de detalles de la compra.</param>
+        /// <returns><c>true</c> si la compra se guarda correctamente; de lo contrario, lanza una excepción.</returns>
         public bool GuardarNuevaCompra(int idUsuario, DateTime fecha, int idPago, int idProv, string nota, List<DetalleCompra> detalles)
         {
             ClsConexion conexion = new ClsConexion();
