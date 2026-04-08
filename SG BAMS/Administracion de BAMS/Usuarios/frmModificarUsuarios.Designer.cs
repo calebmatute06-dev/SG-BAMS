@@ -60,7 +60,7 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(112, 170);
+            label5.Location = new Point(112, 179);
             label5.Name = "label5";
             label5.Size = new Size(134, 25);
             label5.TabIndex = 79;
@@ -68,11 +68,11 @@
             // 
             // txtContra
             // 
-            txtContra.Location = new Point(247, 123);
+            txtContra.Location = new Point(247, 126);
             txtContra.MaxLength = 70;
             txtContra.Multiline = true;
             txtContra.Name = "txtContra";
-            txtContra.Size = new Size(193, 31);
+            txtContra.Size = new Size(193, 42);
             txtContra.StateCommon.Back.Color1 = Color.SkyBlue;
             txtContra.StateCommon.Border.Rounding = 15F;
             txtContra.StateCommon.Content.Color1 = Color.Navy;
@@ -85,7 +85,7 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(122, 128);
+            label4.Location = new Point(122, 135);
             label4.Name = "label4";
             label4.Size = new Size(109, 25);
             label4.TabIndex = 77;
@@ -93,11 +93,11 @@
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(246, 85);
+            txtNombre.Location = new Point(246, 80);
             txtNombre.MaxLength = 70;
             txtNombre.Multiline = true;
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(193, 31);
+            txtNombre.Size = new Size(193, 40);
             txtNombre.StateCommon.Back.Color1 = Color.SkyBlue;
             txtNombre.StateCommon.Border.Rounding = 15F;
             txtNombre.StateCommon.Content.Color1 = Color.Navy;
@@ -110,7 +110,7 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(98, 87);
+            label2.Location = new Point(98, 86);
             label2.Name = "label2";
             label2.Size = new Size(145, 25);
             label2.TabIndex = 74;
@@ -122,7 +122,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(158, 214);
+            label3.Location = new Point(158, 227);
             label3.Name = "label3";
             label3.Size = new Size(72, 25);
             label3.TabIndex = 85;
@@ -134,7 +134,7 @@
             pictureBox1.Location = new Point(0, -1);
             pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(21, 373);
+            pictureBox1.Size = new Size(21, 387);
             pictureBox1.TabIndex = 88;
             pictureBox1.TabStop = false;
             // 
@@ -144,7 +144,7 @@
             pictureBox2.Location = new Point(642, 1);
             pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(21, 373);
+            pictureBox2.Size = new Size(21, 385);
             pictureBox2.TabIndex = 89;
             pictureBox2.TabStop = false;
             // 
@@ -160,7 +160,7 @@
             // panel2
             // 
             panel2.BackColor = Color.Navy;
-            panel2.Location = new Point(0, 356);
+            panel2.Location = new Point(0, 368);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
             panel2.Size = new Size(663, 18);
@@ -169,7 +169,7 @@
             // cmbRol
             // 
             cmbRol.DropDownWidth = 300;
-            cmbRol.Location = new Point(246, 162);
+            cmbRol.Location = new Point(246, 173);
             cmbRol.Margin = new Padding(3, 2, 3, 2);
             cmbRol.Name = "cmbRol";
             cmbRol.Size = new Size(191, 37);
@@ -187,7 +187,7 @@
             // cmbEstado
             // 
             cmbEstado.DropDownWidth = 300;
-            cmbEstado.Location = new Point(246, 207);
+            cmbEstado.Location = new Point(246, 221);
             cmbEstado.Margin = new Padding(3, 2, 3, 2);
             cmbEstado.Name = "cmbEstado";
             cmbEstado.Size = new Size(190, 37);
@@ -204,7 +204,7 @@
             // 
             // btmModificar
             // 
-            btmModificar.Location = new Point(77, 268);
+            btmModificar.Location = new Point(77, 285);
             btmModificar.Margin = new Padding(3, 2, 3, 2);
             btmModificar.Name = "btmModificar";
             btmModificar.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -228,7 +228,7 @@
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(456, 268);
+            btnSalir.Location = new Point(456, 285);
             btnSalir.Margin = new Padding(3, 2, 3, 2);
             btnSalir.Name = "btnSalir";
             btnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -252,7 +252,7 @@
             // 
             // btnImagen
             // 
-            btnImagen.Location = new Point(214, 268);
+            btnImagen.Location = new Point(214, 285);
             btnImagen.Margin = new Padding(3, 2, 3, 2);
             btnImagen.Name = "btnImagen";
             btnImagen.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -280,7 +280,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(557, 325);
+            label1.Location = new Point(552, 336);
             label1.Name = "label1";
             label1.Size = new Size(84, 29);
             label1.TabIndex = 347;
@@ -292,7 +292,7 @@
             label8.BackColor = Color.SkyBlue;
             label8.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Navy;
-            label8.Location = new Point(229, 34);
+            label8.Location = new Point(233, 34);
             label8.Name = "label8";
             label8.Size = new Size(185, 22);
             label8.TabIndex = 364;
@@ -312,7 +312,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(662, 373);
+            ClientSize = new Size(662, 386);
             Controls.Add(label8);
             Controls.Add(kryptonGroupBox2);
             Controls.Add(label1);

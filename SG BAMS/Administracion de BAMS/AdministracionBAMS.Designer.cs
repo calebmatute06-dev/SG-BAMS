@@ -82,7 +82,7 @@
             label1.BackColor = Color.SkyBlue;
             label1.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(454, 64);
+            label1.Location = new Point(455, 66);
             label1.Name = "label1";
             label1.Size = new Size(271, 51);
             label1.TabIndex = 0;

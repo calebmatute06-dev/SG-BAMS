@@ -30,6 +30,8 @@ namespace SG_BAMS
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            foreverMinimize2 = new ReaLTaiizor.Controls.ForeverMinimize();
+            foreverClose2 = new ReaLTaiizor.Controls.ForeverClose();
             foreverMinimize1 = new ReaLTaiizor.Controls.ForeverMinimize();
             foreverClose1 = new ReaLTaiizor.Controls.ForeverClose();
             pictureBox2 = new PictureBox();
@@ -42,8 +44,6 @@ namespace SG_BAMS
             label8 = new Label();
             kryptonGroupBox2 = new Krypton.Toolkit.KryptonGroupBox();
             label5 = new Label();
-            foreverMinimize2 = new ReaLTaiizor.Controls.ForeverMinimize();
-            foreverClose2 = new ReaLTaiizor.Controls.ForeverClose();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -63,6 +63,38 @@ namespace SG_BAMS
             panel1.Name = "panel1";
             panel1.Size = new Size(598, 18);
             panel1.TabIndex = 110;
+            // 
+            // foreverMinimize2
+            // 
+            foreverMinimize2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            foreverMinimize2.BackColor = Color.White;
+            foreverMinimize2.BaseColor = Color.Navy;
+            foreverMinimize2.DefaultLocation = true;
+            foreverMinimize2.DownColor = Color.FromArgb(30, 0, 0, 0);
+            foreverMinimize2.Font = new Font("Marlett", 12F);
+            foreverMinimize2.Location = new Point(520, 16);
+            foreverMinimize2.Name = "foreverMinimize2";
+            foreverMinimize2.OverColor = Color.FromArgb(30, 255, 255, 255);
+            foreverMinimize2.Size = new Size(18, 18);
+            foreverMinimize2.TabIndex = 354;
+            foreverMinimize2.Text = "foreverMinimize2";
+            foreverMinimize2.TextColor = Color.FromArgb(243, 243, 243);
+            // 
+            // foreverClose2
+            // 
+            foreverClose2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            foreverClose2.BackColor = Color.White;
+            foreverClose2.BaseColor = Color.Navy;
+            foreverClose2.DefaultLocation = true;
+            foreverClose2.DownColor = Color.FromArgb(30, 0, 0, 0);
+            foreverClose2.Font = new Font("Marlett", 10F);
+            foreverClose2.Location = new Point(568, 16);
+            foreverClose2.Name = "foreverClose2";
+            foreverClose2.OverColor = Color.FromArgb(30, 255, 255, 255);
+            foreverClose2.Size = new Size(18, 18);
+            foreverClose2.TabIndex = 355;
+            foreverClose2.Text = "foreverClose2";
+            foreverClose2.TextColor = Color.FromArgb(243, 243, 243);
             // 
             // foreverMinimize1
             // 
@@ -131,7 +163,7 @@ namespace SG_BAMS
             txtDescri.MaxLength = 70;
             txtDescri.Multiline = true;
             txtDescri.Name = "txtDescri";
-            txtDescri.Size = new Size(264, 36);
+            txtDescri.Size = new Size(264, 45);
             txtDescri.StateCommon.Back.Color1 = Color.SkyBlue;
             txtDescri.StateCommon.Border.Rounding = 15F;
             txtDescri.StateCommon.Content.Color1 = Color.Navy;
@@ -144,7 +176,7 @@ namespace SG_BAMS
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(79, 103);
+            label2.Location = new Point(79, 110);
             label2.Name = "label2";
             label2.Size = new Size(154, 25);
             label2.TabIndex = 140;
@@ -152,7 +184,7 @@ namespace SG_BAMS
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(146, 161);
+            btnAgregar.Location = new Point(146, 176);
             btnAgregar.Margin = new Padding(3, 2, 3, 2);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -176,7 +208,7 @@ namespace SG_BAMS
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(312, 161);
+            btnSalir.Location = new Point(312, 176);
             btnSalir.Margin = new Padding(3, 2, 3, 2);
             btnSalir.Name = "btnSalir";
             btnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -204,7 +236,7 @@ namespace SG_BAMS
             label8.BackColor = Color.SkyBlue;
             label8.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Navy;
-            label8.Location = new Point(217, 41);
+            label8.Location = new Point(220, 41);
             label8.Name = "label8";
             label8.Size = new Size(155, 22);
             label8.TabIndex = 350;
@@ -225,43 +257,11 @@ namespace SG_BAMS
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(482, 235);
+            label5.Location = new Point(489, 230);
             label5.Name = "label5";
             label5.Size = new Size(84, 29);
             label5.TabIndex = 352;
             label5.Text = "BAMS";
-            // 
-            // foreverMinimize2
-            // 
-            foreverMinimize2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            foreverMinimize2.BackColor = Color.White;
-            foreverMinimize2.BaseColor = Color.Navy;
-            foreverMinimize2.DefaultLocation = true;
-            foreverMinimize2.DownColor = Color.FromArgb(30, 0, 0, 0);
-            foreverMinimize2.Font = new Font("Marlett", 12F);
-            foreverMinimize2.Location = new Point(560, -5);
-            foreverMinimize2.Name = "foreverMinimize2";
-            foreverMinimize2.OverColor = Color.FromArgb(30, 255, 255, 255);
-            foreverMinimize2.Size = new Size(18, 18);
-            foreverMinimize2.TabIndex = 354;
-            foreverMinimize2.Text = "foreverMinimize2";
-            foreverMinimize2.TextColor = Color.FromArgb(243, 243, 243);
-            // 
-            // foreverClose2
-            // 
-            foreverClose2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            foreverClose2.BackColor = Color.White;
-            foreverClose2.BaseColor = Color.Navy;
-            foreverClose2.DefaultLocation = true;
-            foreverClose2.DownColor = Color.FromArgb(30, 0, 0, 0);
-            foreverClose2.Font = new Font("Marlett", 10F);
-            foreverClose2.Location = new Point(580, 0);
-            foreverClose2.Name = "foreverClose2";
-            foreverClose2.OverColor = Color.FromArgb(30, 255, 255, 255);
-            foreverClose2.Size = new Size(18, 18);
-            foreverClose2.TabIndex = 355;
-            foreverClose2.Text = "foreverClose2";
-            foreverClose2.TextColor = Color.FromArgb(243, 243, 243);
             // 
             // frmAgregarEstado
             // 

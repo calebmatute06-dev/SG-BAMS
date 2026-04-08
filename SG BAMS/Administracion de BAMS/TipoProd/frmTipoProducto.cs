@@ -101,7 +101,6 @@ namespace SG_BAMS
         {
             frnAgregarTipoProducto agregarTproducto = new frnAgregarTipoProducto();
             agregarTproducto.Show();
-            this.Close();
         }
 
         /// <summary>

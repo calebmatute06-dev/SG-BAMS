@@ -56,7 +56,7 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(108, 92);
+            label2.Location = new Point(108, 85);
             label2.Name = "label2";
             label2.Size = new Size(145, 25);
             label2.TabIndex = 2;
@@ -64,25 +64,24 @@
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(259, 86);
+            txtNombre.Location = new Point(259, 73);
             txtNombre.MaxLength = 70;
             txtNombre.Multiline = true;
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(193, 33);
+            txtNombre.Size = new Size(193, 46);
             txtNombre.StateCommon.Back.Color1 = Color.SkyBlue;
             txtNombre.StateCommon.Border.Rounding = 15F;
             txtNombre.StateCommon.Content.Color1 = Color.Navy;
             txtNombre.StateCommon.Content.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNombre.TabIndex = 18;
-            //txtNombre.TextChanged += txtNombre_TextChanged;
             // 
             // txtContra
             // 
-            txtContra.Location = new Point(259, 125);
+            txtContra.Location = new Point(259, 126);
             txtContra.MaxLength = 70;
             txtContra.Multiline = true;
             txtContra.Name = "txtContra";
-            txtContra.Size = new Size(193, 33);
+            txtContra.Size = new Size(193, 47);
             txtContra.StateCommon.Back.Color1 = Color.SkyBlue;
             txtContra.StateCommon.Border.Rounding = 15F;
             txtContra.StateCommon.Content.Color1 = Color.Navy;
@@ -95,7 +94,7 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(108, 127);
+            label4.Location = new Point(108, 141);
             label4.Name = "label4";
             label4.Size = new Size(109, 25);
             label4.TabIndex = 19;
@@ -107,7 +106,7 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(108, 167);
+            label5.Location = new Point(108, 187);
             label5.Name = "label5";
             label5.Size = new Size(134, 25);
             label5.TabIndex = 21;
@@ -154,7 +153,7 @@
             // cmbRol
             // 
             cmbRol.DropDownWidth = 300;
-            cmbRol.Location = new Point(259, 163);
+            cmbRol.Location = new Point(259, 183);
             cmbRol.Margin = new Padding(3, 2, 3, 2);
             cmbRol.Name = "cmbRol";
             cmbRol.Size = new Size(193, 40);
@@ -171,7 +170,7 @@
             // 
             // btmModificar
             // 
-            btmModificar.Location = new Point(147, 221);
+            btmModificar.Location = new Point(148, 243);
             btmModificar.Margin = new Padding(3, 2, 3, 2);
             btmModificar.Name = "btmModificar";
             btmModificar.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -195,7 +194,7 @@
             // 
             // kryptonButton1
             // 
-            kryptonButton1.Location = new Point(318, 221);
+            kryptonButton1.Location = new Point(319, 243);
             kryptonButton1.Margin = new Padding(3, 2, 3, 2);
             kryptonButton1.Name = "kryptonButton1";
             kryptonButton1.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -223,7 +222,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(514, 274);
+            label1.Location = new Point(514, 273);
             label1.Name = "label1";
             label1.Size = new Size(84, 29);
             label1.TabIndex = 348;
@@ -235,7 +234,7 @@
             label8.BackColor = Color.SkyBlue;
             label8.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Navy;
-            label8.Location = new Point(244, 37);
+            label8.Location = new Point(252, 34);
             label8.Name = "label8";
             label8.Size = new Size(162, 22);
             label8.TabIndex = 362;
@@ -244,7 +243,7 @@
             // kryptonGroupBox2
             // 
             kryptonGroupBox2.CaptionVisible = false;
-            kryptonGroupBox2.Location = new Point(230, 28);
+            kryptonGroupBox2.Location = new Point(230, 25);
             kryptonGroupBox2.Size = new Size(204, 39);
             kryptonGroupBox2.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroupBox2.StateCommon.Border.Rounding = 50F;

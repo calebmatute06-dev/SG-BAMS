@@ -49,34 +49,38 @@
             // 
             panel1.BackColor = Color.Navy;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(683, 24);
+            panel1.Size = new Size(598, 18);
             panel1.TabIndex = 99;
             // 
             // pictureBox2
             // 
             pictureBox2.BackColor = Color.Navy;
             pictureBox2.Location = new Point(0, 0);
+            pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(24, 307);
+            pictureBox2.Size = new Size(21, 230);
             pictureBox2.TabIndex = 100;
             pictureBox2.TabStop = false;
             // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Navy;
-            pictureBox1.Location = new Point(659, 0);
+            pictureBox1.Location = new Point(577, 0);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(24, 307);
+            pictureBox1.Size = new Size(21, 230);
             pictureBox1.TabIndex = 92;
             pictureBox1.TabStop = false;
             // 
             // panel2
             // 
             panel2.BackColor = Color.Navy;
-            panel2.Location = new Point(0, 283);
+            panel2.Location = new Point(0, 212);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(683, 24);
+            panel2.Size = new Size(598, 18);
             panel2.TabIndex = 98;
             // 
             // label2
@@ -85,20 +89,19 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(37, 112);
+            label2.Location = new Point(32, 88);
             label2.Name = "label2";
-            label2.Size = new Size(301, 31);
+            label2.Size = new Size(249, 25);
             label2.TabIndex = 91;
             label2.Text = "Ingrese la marca de producto:";
             // 
             // txtDescri
             // 
-            txtDescri.Location = new Point(335, 107);
-            txtDescri.Margin = new Padding(3, 4, 3, 4);
+            txtDescri.Location = new Point(293, 80);
             txtDescri.MaxLength = 70;
             txtDescri.Multiline = true;
             txtDescri.Name = "txtDescri";
-            txtDescri.Size = new Size(302, 48);
+            txtDescri.Size = new Size(264, 46);
             txtDescri.StateCommon.Back.Color1 = Color.SkyBlue;
             txtDescri.StateCommon.Border.Rounding = 15F;
             txtDescri.StateCommon.Content.Color1 = Color.Navy;
@@ -107,13 +110,14 @@
             // 
             // btnModificar
             // 
-            btnModificar.Location = new Point(197, 176);
+            btnModificar.Location = new Point(172, 145);
+            btnModificar.Margin = new Padding(3, 2, 3, 2);
             btnModificar.Name = "btnModificar";
             btnModificar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnModificar.OverrideDefault.Back.Color2 = Color.White;
             btnModificar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnModificar.OverrideFocus.Back.Color2 = Color.White;
-            btnModificar.Size = new Size(143, 65);
+            btnModificar.Size = new Size(125, 49);
             btnModificar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnModificar.StateCommon.Back.Color2 = Color.White;
             btnModificar.StateCommon.Border.Rounding = 30F;
@@ -130,13 +134,14 @@
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(365, 175);
+            btnSalir.Location = new Point(319, 144);
+            btnSalir.Margin = new Padding(3, 2, 3, 2);
             btnSalir.Name = "btnSalir";
             btnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnSalir.OverrideDefault.Back.Color2 = Color.White;
             btnSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnSalir.OverrideFocus.Back.Color2 = Color.White;
-            btnSalir.Size = new Size(143, 65);
+            btnSalir.Size = new Size(125, 49);
             btnSalir.StateCommon.Back.Color1 = Color.SkyBlue;
             btnSalir.StateCommon.Back.Color2 = Color.White;
             btnSalir.StateCommon.Border.Rounding = 30F;
@@ -157,9 +162,9 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(557, 240);
+            label5.Location = new Point(488, 178);
             label5.Name = "label5";
-            label5.Size = new Size(102, 35);
+            label5.Size = new Size(84, 29);
             label5.TabIndex = 347;
             label5.Text = "BAMS";
             // 
@@ -169,28 +174,27 @@
             label8.BackColor = Color.SkyBlue;
             label8.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Navy;
-            label8.Location = new Point(187, 52);
+            label8.Location = new Point(171, 39);
             label8.Name = "label8";
-            label8.Size = new Size(384, 29);
+            label8.Size = new Size(310, 22);
             label8.TabIndex = 354;
             label8.Text = "Modificar la marca de productos";
             // 
             // kryptonGroupBox2
             // 
             kryptonGroupBox2.CaptionVisible = false;
-            kryptonGroupBox2.Location = new Point(165, 40);
-            kryptonGroupBox2.Margin = new Padding(3, 4, 3, 4);
-            kryptonGroupBox2.Size = new Size(417, 52);
+            kryptonGroupBox2.Location = new Point(144, 30);
+            kryptonGroupBox2.Size = new Size(365, 39);
             kryptonGroupBox2.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroupBox2.StateCommon.Border.Rounding = 50F;
             kryptonGroupBox2.TabIndex = 355;
             // 
             // frmModificarMarcaProducto
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(683, 307);
+            ClientSize = new Size(598, 230);
             Controls.Add(label8);
             Controls.Add(kryptonGroupBox2);
             Controls.Add(label5);
@@ -203,7 +207,6 @@
             Controls.Add(panel2);
             Controls.Add(label2);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 4, 3, 4);
             Name = "frmModificarMarcaProducto";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmModificarMarcaProducto";
