@@ -266,7 +266,7 @@ namespace SG_BAMS
         public static void ValidarBusquedaAlfanumerica(KeyPressEventArgs e)
         {
             if (char.IsControl(e.KeyChar) || char.IsWhiteSpace(e.KeyChar)) return;
-            if (!Regex.IsMatch(e.KeyChar.ToString(), @"^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ]+$"))
+            if (!Regex.IsMatch(e.KeyChar.ToString(), @"^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚüÜ&\s]+$"))
                 e.Handled = true;
         }
 
