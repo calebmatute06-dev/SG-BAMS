@@ -39,7 +39,7 @@ namespace SG_BAMS
 
             dgvIngresarCompra.Columns.Clear();
 
-            // Configuración de columnas del DataGridView
+            
             dgvIngresarCompra.Columns.Add("ID", "ID");
             dgvIngresarCompra.Columns.Add("Nombre", "Nombre");
             dgvIngresarCompra.Columns.Add("Cantidad", "Cantidad");
