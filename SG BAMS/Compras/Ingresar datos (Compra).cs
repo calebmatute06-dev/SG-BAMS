@@ -242,13 +242,10 @@ namespace SG_BAMS
                     }
                 }
 
-                ClsPasarUsuario sesion = new ClsPasarUsuario();
-                int idUsuarioActual = sesion.IdUsuario();
-
                 ClsCompras logic = new ClsCompras();
 
                 bool exito = logic.GuardarNuevaCompra(
-                    idUsuarioActual,
+                    1,
                     dtpFechaPedido.SelectionStart,
                     Convert.ToInt32(cmbFormaPago.SelectedValue),
                     Convert.ToInt32(cmbProveedor.SelectedValue),

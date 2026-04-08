@@ -191,27 +191,46 @@ namespace SG_BAMS
         /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (cmbProveedor.SelectedValue == null) return;
+            if (cmbProveedor.SelectedValue == null || cmbProveedor.SelectedIndex == -1)
+            {
+                MessageBox.Show("Por favor, seleccione un proveedor válido de la lista",
+                                "BAMS - Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cmbProveedor.Focus();
+                return;
+            }
 
             try
             {
-                logic.ActualizarCabeceraCompra(idCompraAEditar, (int)cmbProveedor.SelectedValue, (int)cmbFormaPago.SelectedValue, dtpFechaPedido.SelectionStart, txtNotaDetalle.Text);
+                int idProv = Convert.ToInt32(cmbProveedor.SelectedValue);
+                int idPago = Convert.ToInt32(cmbFormaPago.SelectedValue);
+                DateTime fecha = dtpFechaPedido.SelectionStart;
+                string nota = txtNotaDetalle.Text;
+
+                logic.ActualizarCabeceraCompra(idCompraAEditar, idProv, idPago, fecha, nota);
 
                 foreach (int idEliminado in listaEliminados)
+                {
                     logic.EliminarProductoDeBD(idCompraAEditar, idEliminado);
+                }
 
                 foreach (DataGridViewRow fila in dgvProductosModificar.Rows)
                 {
                     if (fila.Cells["ID"].Value != null && fila.Cells["ID"].Value != DBNull.Value)
                     {
-                        logic.GuardarCambiosDetalle(idCompraAEditar, (int)fila.Cells["ID"].Value, Convert.ToInt32(fila.Cells["Cantidad"].Value), Convert.ToDecimal(fila.Cells["Precio"].Value));
+                        int idProd = Convert.ToInt32(fila.Cells["ID"].Value);
+                        int cant = Convert.ToInt32(fila.Cells["Cantidad"].Value);
+                        decimal precio = Convert.ToDecimal(fila.Cells["Precio"].Value);
+                        logic.GuardarCambiosDetalle(idCompraAEditar, idProd, cant, precio);
                     }
                 }
 
-                MessageBox.Show("¡Compra actualizada con éxito!");
+                MessageBox.Show("¡Datos de compra, productos e inventario actualizados con éxito!");
                 this.Close();
             }
-            catch (Exception ex) { MessageBox.Show("Error al guardar: " + ex.Message); }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al guardar cambios: " + ex.Message);
+            }
         }
 
         /// <summary>
