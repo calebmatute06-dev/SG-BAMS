@@ -100,7 +100,7 @@ namespace SG_BAMS
             dtpInicio.ValueChanged += (s, ev) => ValidarYFiltrar();
             dtpFin.ValueChanged += (s, ev) => ValidarYFiltrar();
 
-           
+
 
             dgvFacturas.BorderStyle = BorderStyle.None;
             dgvFacturas.BackgroundColor = Color.White;
@@ -316,7 +316,7 @@ namespace SG_BAMS
             this.Hide();
         }
 
-        
+
         private void btnCompra_Click(object sender, EventArgs e)
         {
             Compras CF = new Compras();
