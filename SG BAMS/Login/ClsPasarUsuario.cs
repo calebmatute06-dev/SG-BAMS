@@ -10,11 +10,11 @@ namespace SG_BAMS.Login
     /// 
     /// </summary>
     /// <seealso cref="SG_BAMS.Login.ClsLogin" />
-    internal class ClsPasarUsuario:ClsLogin
+    internal class ClsPasarUsuario : ClsLogin
     {
 
         /// <summary>
-        /// Identifiers the usuario.
+        /// Obtiene el identificador del usuario.
         /// </summary>
         /// <returns></returns>
         public int IdUsuario()

@@ -12,7 +12,7 @@ namespace SG_BAMS.MenuPrincipal
     internal class ClsUltimasVentas : ClsConexion
     {
         /// <summary>
-        /// Obteners the ventas recientes.
+        /// Obtiene las ventas recientes.
         /// </summary>
         /// <returns></returns>
         public async Task<DataTable> ObtenerVentasRecientes()
@@ -22,7 +22,7 @@ namespace SG_BAMS.MenuPrincipal
             {
                 AbrirConexion();
 
-                
+
                 string sqlQuery = "SELECT * FROM vista_ultimas_ventas";
 
                 using (SqlCommand sqlCommand = new SqlCommand(sqlQuery, Conectar))
@@ -35,7 +35,7 @@ namespace SG_BAMS.MenuPrincipal
             }
             catch (Exception)
             {
-                
+
                 return null;
             }
             finally

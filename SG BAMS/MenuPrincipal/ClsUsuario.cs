@@ -8,9 +8,9 @@ using System.IO;
 internal class ClsUsuario : ClsConexion
 {
     /// <summary>
-    /// Obteners the perfil desde vista.
+    /// Obtiene el perfil desde la vista.
     /// </summary>
-    /// <param name="nombreUsuario">The nombre usuario.</param>
+    /// <param name="nombreUsuario">El nombre del usuario.</param>
     /// <returns></returns>
     public async Task<DataTable> ObtenerPerfilDesdeVista(string nombreUsuario)
     {
@@ -18,7 +18,7 @@ internal class ClsUsuario : ClsConexion
         try
         {
             AbrirConexion();
-            
+
             string consultaSql = "SELECT nombre_usuario, descripcion_rol, imagen_usuario FROM vista_perfil_usuario WHERE nombre_usuario = @usuario";
 
             using (SqlCommand comandoSql = new SqlCommand(consultaSql, Conectar))
@@ -35,22 +35,22 @@ internal class ClsUsuario : ClsConexion
     }
 
     /// <summary>
-    /// Actualizars the foto usuario.
+    /// Actualiza la foto del usuario.
     /// </summary>
-    /// <param name="nombreUsuario">The nombre usuario.</param>
-    /// <param name="imagenBytes">The imagen bytes.</param>
+    /// <param name="nombreUsuario">El nombre del usuario.</param>
+    /// <param name="imagenBytes">Los bytes de la imagen.</param>
     /// <exception cref="System.Exception">Error al subir imagen a Somee: " + ex.Message</exception>
     public async Task ActualizarFotoUsuario(string nombreUsuario, byte[] imagenBytes)
     {
         try
         {
             AbrirConexion();
-            
+
             string consultaSql = "UPDATE Usuario SET imagen_usuario = @foto WHERE nombre_usuario = @usuario";
 
             using (SqlCommand comandoSql = new SqlCommand(consultaSql, Conectar))
             {
-                
+
                 comandoSql.Parameters.Add("@foto", SqlDbType.VarBinary).Value = imagenBytes;
                 comandoSql.Parameters.AddWithValue("@usuario", nombreUsuario);
 

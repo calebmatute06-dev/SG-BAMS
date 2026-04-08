@@ -10,9 +10,9 @@ namespace SG_BAMS
     public static class Ayudante_UI
     {
         /// <summary>
-        /// Aplicars the zoom global.
+        /// Aplica el zoom global al formulario.
         /// </summary>
-        /// <param name="formulario">The formulario.</param>
+        /// <param name="formulario">El formulario.</param>
         public static void AplicarZoomGlobal(Form formulario)
         {
             float factor = Config_Sistema.FactorZoom;
@@ -36,10 +36,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Escalars the fuentes recurrente.
+        /// Escala las fuentes de forma recursiva.
         /// </summary>
-        /// <param name="contenedor">The contenedor.</param>
-        /// <param name="factor">The factor.</param>
+        /// <param name="contenedor">El contenedor.</param>
+        /// <param name="factor">El factor de escala.</param>
         private static void EscalarFuentesRecurrente(Control contenedor, float factor)
         {
             foreach (Control c in contenedor.Controls)

@@ -14,14 +14,14 @@ namespace SG_BAMS.Login
     internal class ClsLogin : ClsConexion
     {
         /// <summary>
-        /// The idusuario
+        /// El identificador del usuario
         /// </summary>
         public static int idusuario;
         /// <summary>
-        /// Validars the usuario.
+        /// Valida el usuario.
         /// </summary>
-        /// <param name="usuario">The usuario.</param>
-        /// <param name="contra">The contra.</param>
+        /// <param name="usuario">El usuario.</param>
+        /// <param name="contra">La contraseña.</param>
         /// <returns></returns>
         /// <exception cref="System.Exception">Error al validar el usuario" + ex.Message</exception>
         public int ValidarUsuario(string usuario, string contra)
@@ -80,7 +80,7 @@ namespace SG_BAMS.Login
 
         }
 
-        
+
 
 
 

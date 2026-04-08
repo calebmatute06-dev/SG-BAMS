@@ -17,12 +17,12 @@ namespace SG_BAMS
     public partial class AsistentedeIA : Form
     {
         /// <summary>
-        /// The servicio ia
+        /// El servicio de IA
         /// </summary>
         private ClsServicioAyudaIA _servicioIA = new ClsServicioAyudaIA();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AsistentedeIA"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="AsistentedeIA" />.
         /// </summary>
         public AsistentedeIA()
         {
@@ -32,7 +32,7 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Mostrars the bienvenida.
+        /// Muestra el mensaje de bienvenida.
         /// </summary>
         private void MostrarBienvenida()
         {
@@ -47,7 +47,7 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Enviars the mensaje.
+        /// Envía el mensaje del usuario al asistente.
         /// </summary>
         private async Task EnviarMensaje()
         {
@@ -116,20 +116,20 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btnEnviar control.
+        /// Maneja el evento Click del control btnEnviar.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private async void btnEnviar_Click(object sender, EventArgs e)
         {
             await EnviarMensaje();
         }
 
         /// <summary>
-        /// Handles the Click event of the btnBorrar control.
+        /// Maneja el evento Click del control btnBorrar.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void btnBorrar_Click(object sender, EventArgs e)
         {
             lstIA.Items.Clear();
@@ -138,10 +138,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the KeyDown event of the txtInfo control.
+        /// Maneja el evento KeyDown del control txtInfo.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="KeyEventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="KeyEventArgs" /> que contiene los datos del evento.</param>
         private async void txtInfo_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -152,10 +152,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Load event of the AsistentedeIA control.
+        /// Maneja el evento Load del control AsistentedeIA.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void AsistentedeIA_Load(object sender, EventArgs e)
         {
 
@@ -163,10 +163,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btnSalir control.
+        /// Maneja el evento Click del control btnSalir.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();

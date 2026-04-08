@@ -12,29 +12,29 @@ using QuestPDF.Infrastructure;
 public class DocumentoDinamico : IDocument
 {
     /// <summary>
-    /// The DGV
+    /// El DataGridView
     /// </summary>
     private DataGridView _dgv;
     /// <summary>
-    /// The titulo cabecera
+    /// El título de cabecera
     /// </summary>
     private string _tituloCabecera;
     /// <summary>
-    /// The desde
+    /// La fecha desde
     /// </summary>
     private DateTime _desde;
     /// <summary>
-    /// The hasta
+    /// La fecha hasta
     /// </summary>
     private DateTime _hasta;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="DocumentoDinamico"/> class.
+    /// Inicializa una nueva instancia de la clase <see cref="DocumentoDinamico" />.
     /// </summary>
-    /// <param name="dgv">The DGV.</param>
-    /// <param name="tituloCabecera">The titulo cabecera.</param>
-    /// <param name="desde">The desde.</param>
-    /// <param name="hasta">The hasta.</param>
+    /// <param name="dgv">El DataGridView.</param>
+    /// <param name="tituloCabecera">El título de cabecera.</param>
+    /// <param name="desde">La fecha desde.</param>
+    /// <param name="hasta">La fecha hasta.</param>
     public DocumentoDinamico(DataGridView dgv, string tituloCabecera, DateTime desde, DateTime hasta)
     {
         _dgv = dgv;
@@ -44,9 +44,9 @@ public class DocumentoDinamico : IDocument
     }
 
     /// <summary>
-    /// Configures the document content by specifying its layout structure and visual element.
+    /// Configura el contenido del documento especificando su estructura de diseño y elementos visuales.
     /// </summary>
-    /// <param name="container">The document container used for defining content via the FluentAPI.</param>
+    /// <param name="container">El contenedor del documento utilizado para definir el contenido a través de FluentAPI.</param>
     public void Compose(IDocumentContainer container)
     {
         decimal totalGeneral = 0;

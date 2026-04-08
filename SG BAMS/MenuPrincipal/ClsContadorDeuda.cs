@@ -15,7 +15,7 @@ namespace SG_BAMS.MenuPrincipal
 
 
         /// <summary>
-        /// Obteners the total deudores.
+        /// Obtiene el total de deudores.
         /// </summary>
         /// <returns></returns>
         public async Task<int> ObtenerTotalDeudores()
@@ -24,12 +24,12 @@ namespace SG_BAMS.MenuPrincipal
             {
                 AbrirConexion();
 
-                
+
                 string sqlQuery = "SELECT COUNT(DISTINCT id_cliente) FROM Deuda WHERE id_estado = 1";
 
                 using (SqlCommand sqlCommand = new SqlCommand(sqlQuery, Conectar))
                 {
-                    
+
                     object resultadoConsulta = await sqlCommand.ExecuteScalarAsync();
                     return resultadoConsulta != null ? Convert.ToInt32(resultadoConsulta) : 0;
                 }

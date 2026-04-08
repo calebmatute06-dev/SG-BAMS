@@ -16,9 +16,9 @@ namespace SG_BAMS.Proveedor
     internal class ClsProveedor : ClsConexion
     {
         /// <summary>
-        /// Cargars the datos.
+        /// Carga los datos en el DataGridView.
         /// </summary>
-        /// <param name="dgvProveedor">The DGV proveedor.</param>
+        /// <param name="dgvProveedor">El DataGridView de proveedores.</param>
         public void cargarDatos(DataGridView dgvProveedor)
         {
             try
@@ -41,9 +41,9 @@ namespace SG_BAMS.Proveedor
         }
 
         /// <summary>
-        /// Sets the usuario en sesion.
+        /// Establece el usuario en sesión.
         /// </summary>
-        /// <param name="idUsuario">The identifier usuario.</param>
+        /// <param name="idUsuario">El identificador del usuario.</param>
         private void SetUsuarioEnSesion(int idUsuario)
         {
             using (SqlCommand ctx = new SqlCommand(
@@ -55,9 +55,9 @@ namespace SG_BAMS.Proveedor
         }
 
         /// <summary>
-        /// Cargars the combo estado.
+        /// Carga el combo de estado.
         /// </summary>
-        /// <param name="cmb">The CMB.</param>
+        /// <param name="cmb">El ComboBox.</param>
         public void CargarComboEstado(Krypton.Toolkit.KryptonComboBox cmb)
         {
             try
@@ -84,9 +84,9 @@ namespace SG_BAMS.Proveedor
         }
 
         /// <summary>
-        /// Cargars the combo clasificacion.
+        /// Carga el combo de clasificación.
         /// </summary>
-        /// <param name="cmb">The CMB.</param>
+        /// <param name="cmb">El ComboBox.</param>
         public void CargarComboClasificacion(Krypton.Toolkit.KryptonComboBox cmb)
         {
             try
@@ -113,10 +113,10 @@ namespace SG_BAMS.Proveedor
         }
 
         /// <summary>
-        /// Buscars the proveedor.
+        /// Busca proveedores.
         /// </summary>
-        /// <param name="txt">The text.</param>
-        /// <param name="dgvProveedor">The DGV proveedor.</param>
+        /// <param name="txt">El cuadro de texto de búsqueda.</param>
+        /// <param name="dgvProveedor">El DataGridView de proveedores.</param>
         public void BuscarProveedor(Krypton.Toolkit.KryptonTextBox txt, DataGridView dgvProveedor)
         {
             try
@@ -148,14 +148,14 @@ namespace SG_BAMS.Proveedor
         }
 
         /// <summary>
-        /// Agregars the proveedor.
+        /// Agrega un proveedor.
         /// </summary>
-        /// <param name="nombre">The nombre.</param>
-        /// <param name="contacto">The contacto.</param>
-        /// <param name="direccion">The direccion.</param>
-        /// <param name="rtn">The RTN.</param>
-        /// <param name="idClasificacion">The identifier clasificacion.</param>
-        /// <param name="idUsuario">The identifier usuario.</param>
+        /// <param name="nombre">El nombre.</param>
+        /// <param name="contacto">El contacto.</param>
+        /// <param name="direccion">La dirección.</param>
+        /// <param name="rtn">El RTN.</param>
+        /// <param name="idClasificacion">El identificador de la clasificación.</param>
+        /// <param name="idUsuario">El identificador del usuario.</param>
         public void AgregarProveedor(string nombre, string contacto, string direccion, string rtn,
             int idClasificacion, int idUsuario)
         {
@@ -191,9 +191,9 @@ namespace SG_BAMS.Proveedor
         }
 
         /// <summary>
-        /// Existes the nombre proveedor.
+        /// Verifica si existe un proveedor con el nombre dado.
         /// </summary>
-        /// <param name="nombre">The nombre.</param>
+        /// <param name="nombre">El nombre.</param>
         /// <returns></returns>
         public bool ExisteNombreProveedor(string nombre)
         {
@@ -226,16 +226,16 @@ namespace SG_BAMS.Proveedor
         }
 
         /// <summary>
-        /// Modificars the proveedor.
+        /// Modifica un proveedor.
         /// </summary>
-        /// <param name="idProveedor">The identifier proveedor.</param>
-        /// <param name="nombre">The nombre.</param>
-        /// <param name="contacto">The contacto.</param>
-        /// <param name="direccion">The direccion.</param>
-        /// <param name="rtn">The RTN.</param>
-        /// <param name="idEstado">The identifier estado.</param>
-        /// <param name="idClasificacion">The identifier clasificacion.</param>
-        /// <param name="idUsuario">The identifier usuario.</param>
+        /// <param name="idProveedor">El identificador del proveedor.</param>
+        /// <param name="nombre">El nombre.</param>
+        /// <param name="contacto">El contacto.</param>
+        /// <param name="direccion">La dirección.</param>
+        /// <param name="rtn">El RTN.</param>
+        /// <param name="idEstado">El identificador del estado.</param>
+        /// <param name="idClasificacion">El identificador de la clasificación.</param>
+        /// <param name="idUsuario">El identificador del usuario.</param>
         public void ModificarProveedor(int idProveedor, string nombre, string contacto, string direccion,
             string rtn, int idEstado, int idClasificacion, int idUsuario)
         {
@@ -272,13 +272,18 @@ namespace SG_BAMS.Proveedor
             }
         }
 
+        /// <summary>
+        /// Verifica si existe un proveedor con el RTN dado.
+        /// </summary>
+        /// <param name="rtn">El RTN.</param>
+        /// <returns></returns>
         public bool ExisteRtnProveedor(string rtn)
         {
             bool existe = false;
             try
             {
                 AbrirConexion();
-                
+
                 string consulta = "SELECT COUNT(*) FROM Proveedor WHERE rtn_proveedor = @rtn";
 
                 using (SqlCommand cmd = new SqlCommand(consulta, Conectar))
@@ -299,6 +304,12 @@ namespace SG_BAMS.Proveedor
             return existe;
         }
 
+        /// <summary>
+        /// Verifica si existe un proveedor con el RTN dado, excluyendo el proveedor actual.
+        /// </summary>
+        /// <param name="rtn">El RTN.</param>
+        /// <param name="idProveedorActual">El identificador del proveedor actual.</param>
+        /// <returns></returns>
         public bool ExisteRtnProveedorModificar(string rtn, int idProveedorActual)
         {
             bool existe = false;

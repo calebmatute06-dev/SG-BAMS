@@ -10,21 +10,21 @@ namespace SG_BAMS.ProductoInventario
     internal class ClsAgregarProducto
     {
         /// <summary>
-        /// The conexion
+        /// La conexión a la base de datos
         /// </summary>
         private ClsConexion conexion = new ClsConexion();
 
         /// <summary>
-        /// Ejecutars the insercion.
+        /// Ejecuta la inserción del producto.
         /// </summary>
-        /// <param name="nombre">The nombre.</param>
-        /// <param name="idMarca">The identifier marca.</param>
-        /// <param name="idTipo">The identifier tipo.</param>
-        /// <param name="idModelo">The identifier modelo.</param>
-        /// <param name="precio">The precio.</param>
-        /// <param name="codBarra">The cod barra.</param>
-        /// <param name="idProveedor">The identifier proveedor.</param>
-        /// <param name="stock">The stock.</param>
+        /// <param name="nombre">El nombre del producto.</param>
+        /// <param name="idMarca">El identificador de la marca.</param>
+        /// <param name="idTipo">El identificador del tipo.</param>
+        /// <param name="idModelo">El identificador del modelo.</param>
+        /// <param name="precio">El precio del producto.</param>
+        /// <param name="codBarra">El código de barras.</param>
+        /// <param name="idProveedor">El identificador del proveedor.</param>
+        /// <param name="stock">La cantidad en stock.</param>
         public void EjecutarInsercion(string nombre, int idMarca, int idTipo, int idModelo, decimal precio, string codBarra, int idProveedor, int stock)
         {
             try
@@ -50,11 +50,11 @@ namespace SG_BAMS.ProductoInventario
         }
 
         /// <summary>
-        /// Existes the producto marca proveedor.
+        /// Verifica si el producto existe para la marca y proveedor dados.
         /// </summary>
-        /// <param name="nombre">The nombre.</param>
-        /// <param name="idMarca">The identifier marca.</param>
-        /// <param name="idProveedor">The identifier proveedor.</param>
+        /// <param name="nombre">El nombre del producto.</param>
+        /// <param name="idMarca">El identificador de la marca.</param>
+        /// <param name="idProveedor">El identificador del proveedor.</param>
         /// <returns></returns>
         public bool ExisteProductoMarcaProveedor(string nombre, int idMarca, int idProveedor)
         {
@@ -83,9 +83,9 @@ namespace SG_BAMS.ProductoInventario
         }
 
         /// <summary>
-        /// Existes the codigo barra.
+        /// Verifica si el código de barras ya existe.
         /// </summary>
-        /// <param name="codigo">The codigo.</param>
+        /// <param name="codigo">El código de barras.</param>
         /// <returns></returns>
         public bool ExisteCodigoBarra(string codigo)
         {

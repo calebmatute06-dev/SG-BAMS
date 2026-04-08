@@ -15,7 +15,7 @@ namespace SG_BAMS
     {
 
         /// <summary>
-        /// Obteners the productos mas vendidos.
+        /// Obtiene los productos más vendidos.
         /// </summary>
         /// <returns></returns>
         /// <exception cref="System.Exception">Error al obtener ventas para el gráfico: " + ex.Message</exception>
@@ -25,7 +25,7 @@ namespace SG_BAMS
 
             try
             {
-                
+
                 AbrirConexion();
 
                 string consultaSql = "SELECT * FROM vista_productos_mas_vendidos";
@@ -40,7 +40,7 @@ namespace SG_BAMS
             }
             catch (Exception ex)
             {
-                
+
                 throw new Exception("Error al obtener ventas para el gráfico: " + ex.Message);
             }
             finally

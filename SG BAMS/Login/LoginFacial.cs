@@ -22,75 +22,75 @@ namespace SG_BAMS.Login
     public partial class LoginFacial : Form
     {
         /// <summary>
-        /// Gets or sets the usuario a validar.
+        /// Obtiene o establece el usuario a validar.
         /// </summary>
         /// <value>
-        /// The usuario a validar.
+        /// El usuario a validar.
         /// </value>
         public string UsuarioAValidar { get; set; }
         /// <summary>
-        /// Gets or sets the rol asignado.
+        /// Obtiene o establece el rol asignado.
         /// </summary>
         /// <value>
-        /// The rol asignado.
+        /// El rol asignado.
         /// </value>
         public int RolAsignado { get; set; }
 
         /// <summary>
-        /// The camara
+        /// La cámara
         /// </summary>
         private VideoCapture camara;
         /// <summary>
-        /// The recognizer
+        /// El reconocedor facial
         /// </summary>
         private LBPHFaceRecognizer recognizer = new LBPHFaceRecognizer(1, 8, 8, 8, 200);
         /// <summary>
-        /// The face detector
+        /// El detector de rostros
         /// </summary>
         private CascadeClassifier faceDetector = new CascadeClassifier("haarcascade_frontalface_default.xml");
 
         /// <summary>
-        /// The contador exito
+        /// El contador de éxitos
         /// </summary>
         private int contadorExito = 0;
         /// <summary>
-        /// The votos para validar
+        /// Los votos necesarios para validar
         /// </summary>
         private const int VOTOS_PARA_VALIDAR = 2;
         /// <summary>
-        /// The umbral distancia
+        /// El umbral de distancia
         /// </summary>
         private const double UMBRAL_DISTANCIA = 130;
 
         /// <summary>
-        /// The etiqueta usuario valido
+        /// La etiqueta del usuario válido
         /// </summary>
         private int etiquetaUsuarioValido = -1;
 
         /// <summary>
-        /// The CTS
+        /// El token de cancelación
         /// </summary>
         private CancellationTokenSource cts;
         /// <summary>
-        /// The procesando
+        /// Indicador de procesamiento
         /// </summary>
         private volatile bool _procesando = false;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="LoginFacial"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="LoginFacial"/>.
         /// </summary>
-        public LoginFacial() 
-        { 
+        public LoginFacial()
+        {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
 
         }
 
         /// <summary>
-        /// Handles the Load event of the LoginFacial control.
+        /// Maneja el evento Load del control LoginFacial.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void LoginFacial_Load(object sender, EventArgs e)
         {
             var todosLosArchivos = Directory.GetFiles(clsSoporte.DirectorioRostros, "*.jpg").ToList();
@@ -100,7 +100,7 @@ namespace SG_BAMS.Login
                 MessageBox.Show("No hay registros faciales registrados en el sistema.", "Sin registros",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 RegresarAlLogin();
-                return; 
+                return;
             }
 
             var archivosUsuario = todosLosArchivos
@@ -113,7 +113,7 @@ namespace SG_BAMS.Login
                 MessageBox.Show($"El usuario '{UsuarioAValidar}' no tiene un registro facial.", "Sin registro facial",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 RegresarAlLogin();
-                return; 
+                return;
             }
 
             ActualizarEstado("Cargando modelo facial...", Color.Gray);
@@ -125,7 +125,7 @@ namespace SG_BAMS.Login
         }
 
         /// <summary>
-        /// Regresars the al login.
+        /// Regresa al formulario de login.
         /// </summary>
         private void RegresarAlLogin()
         {
@@ -141,9 +141,9 @@ namespace SG_BAMS.Login
         }
 
         /// <summary>
-        /// Entrenars the modelo.
+        /// Entrena el modelo facial.
         /// </summary>
-        /// <param name="todosLosArchivos">The todos los archivos.</param>
+        /// <param name="todosLosArchivos">Todos los archivos de rostros.</param>
         private void EntrenarModelo(List<string> todosLosArchivos)
         {
             var rostros = new List<Image<Gray, byte>>();
@@ -185,12 +185,12 @@ namespace SG_BAMS.Login
         }
 
         /// <summary>
-        /// Agregars the con variantes.
+        /// Agrega variantes de la imagen para mejorar el entrenamiento.
         /// </summary>
-        /// <param name="base_">The base.</param>
-        /// <param name="lista">The lista.</param>
-        /// <param name="etiquetas">The etiquetas.</param>
-        /// <param name="etiqueta">The etiqueta.</param>
+        /// <param name="base_">La imagen base.</param>
+        /// <param name="lista">La lista de rostros.</param>
+        /// <param name="etiquetas">La lista de etiquetas.</param>
+        /// <param name="etiqueta">La etiqueta actual.</param>
         private void AgregarConVariantes(Image<Gray, byte> base_,
             List<Image<Gray, byte>> lista, List<int> etiquetas, int etiqueta)
         {
@@ -205,12 +205,12 @@ namespace SG_BAMS.Login
         }
 
         /// <summary>
-        /// The timer camara
+        /// El temporizador de la cámara
         /// </summary>
         private System.Windows.Forms.Timer timerCamara;
 
         /// <summary>
-        /// Iniciars the camara.
+        /// Inicia la cámara.
         /// </summary>
         private void IniciarCamara()
         {
@@ -223,10 +223,10 @@ namespace SG_BAMS.Login
         }
 
         /// <summary>
-        /// Handles the Tick event of the TimerCamara control.
+        /// Maneja el evento Tick del control TimerCamara.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void TimerCamara_Tick(object sender, EventArgs e)
         {
             if (camara == null || _procesando) return;
@@ -251,9 +251,9 @@ namespace SG_BAMS.Login
         }
 
         /// <summary>
-        /// Procesars the frame.
+        /// Procesa el frame de video.
         /// </summary>
-        /// <param name="m">The m.</param>
+        /// <param name="m">La matriz del frame.</param>
         private void ProcesarFrame(Mat m)
         {
             try
@@ -323,9 +323,9 @@ namespace SG_BAMS.Login
         }
 
         /// <summary>
-        /// Preparars the gris para deteccion.
+        /// Prepara la imagen en escala de grises para la detección.
         /// </summary>
-        /// <param name="frame">The frame.</param>
+        /// <param name="frame">El frame original.</param>
         /// <returns></returns>
         private Image<Gray, byte> PrepararGrisParaDeteccion(Image<Bgr, byte> frame)
         {
@@ -346,9 +346,9 @@ namespace SG_BAMS.Login
         }
 
         /// <summary>
-        /// Aplicars the preprocesado.
+        /// Aplica preprocesado a la imagen.
         /// </summary>
-        /// <param name="imagen">The imagen.</param>
+        /// <param name="imagen">La imagen a procesar.</param>
         private void AplicarPreprocesado(Image<Gray, byte> imagen)
         {
             using (Mat m = imagen.Mat)
@@ -369,10 +369,10 @@ namespace SG_BAMS.Login
         }
 
         /// <summary>
-        /// Aplicars the gamma.
+        /// Aplica corrección gamma a la imagen.
         /// </summary>
-        /// <param name="imagen">The imagen.</param>
-        /// <param name="gamma">The gamma.</param>
+        /// <param name="imagen">La imagen.</param>
+        /// <param name="gamma">El valor gamma.</param>
         private void AplicarGamma(Mat imagen, double gamma)
         {
             byte[] lut = new byte[256];
@@ -387,9 +387,9 @@ namespace SG_BAMS.Login
         }
 
         /// <summary>
-        /// Simulars the luz lateral.
+        /// Simula iluminación lateral.
         /// </summary>
-        /// <param name="original">The original.</param>
+        /// <param name="original">La imagen original.</param>
         /// <returns></returns>
         private Image<Gray, byte> SimularLuzLateral(Image<Gray, byte> original)
         {
@@ -402,10 +402,10 @@ namespace SG_BAMS.Login
         }
 
         /// <summary>
-        /// Actualizars the estado.
+        /// Actualiza el estado del proceso.
         /// </summary>
-        /// <param name="texto">The texto.</param>
-        /// <param name="color">The color.</param>
+        /// <param name="texto">El texto a mostrar.</param>
+        /// <param name="color">El color del texto.</param>
         private void ActualizarEstado(string texto, Color color)
         {
             if (lblEstado.InvokeRequired)
@@ -415,9 +415,9 @@ namespace SG_BAMS.Login
         }
 
         /// <summary>
-        /// Finalizars the specified resultado.
+        /// Finaliza el proceso de login facial.
         /// </summary>
-        /// <param name="resultado">The resultado.</param>
+        /// <param name="resultado">El resultado del proceso.</param>
         private void Finalizar(DialogResult resultado)
         {
             cts?.Cancel();
@@ -455,9 +455,9 @@ namespace SG_BAMS.Login
         }
 
         /// <summary>
-        /// Raises the <see cref="E:System.Windows.Forms.Form.FormClosing" /> event.
+        /// Maneja el evento FormClosing del formulario.
         /// </summary>
-        /// <param name="e">A <see cref="T:System.Windows.Forms.FormClosingEventArgs" /> that contains the event data.</param>
+        /// <param name="e">Una instancia <see cref="T:System.Windows.Forms.FormClosingEventArgs" /> que contiene los datos del evento.</param>
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             cts?.Cancel();
@@ -468,17 +468,17 @@ namespace SG_BAMS.Login
         }
 
         /// <summary>
-        /// Handles the Click event of the btnCancelar1 control.
+        /// Maneja el evento Click del control btnCancelar1.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnCancelar1_Click(object sender, EventArgs e) => RegresarAlLogin();
 
         /// <summary>
-        /// Handles the Click event of the btnReintentar1 control.
+        /// Maneja el evento Click del control btnReintentar1.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnReintentar1_Click(object sender, EventArgs e)
         {
             contadorExito = 0;

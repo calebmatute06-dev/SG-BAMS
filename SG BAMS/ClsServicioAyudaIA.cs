@@ -16,21 +16,21 @@ namespace SG_BAMS
     internal class ClsServicioAyudaIA
     {
         /// <summary>
-        /// The client
+        /// El cliente HTTP
         /// </summary>
         private readonly HttpClient _client;
         /// <summary>
-        /// The API key
+        /// La clave de la API
         /// </summary>
         private readonly string _apiKey = "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";
 
         /// <summary>
-        /// The URL
+        /// La URL de la API
         /// </summary>
         private readonly string _url = "https://api.groq.com/openai/v1/chat/completions";
 
         /// <summary>
-        /// The cadena conexion
+        /// La cadena de conexión a la base de datos
         /// </summary>
         private readonly string _cadenaConexion = "Data Source = AutoBattDB.mssql.somee.com; " +
                                                    "Initial catalog = AutoBattDB; " +
@@ -39,7 +39,7 @@ namespace SG_BAMS
                                                    "TrustServerCertificate=True;";
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ClsServicioAyudaIA"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="ClsServicioAyudaIA"/>.
         /// </summary>
         public ClsServicioAyudaIA()
         {
@@ -48,9 +48,9 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Consultars the asynchronous.
+        /// Consulta al asistente de IA de forma asíncrona.
         /// </summary>
-        /// <param name="pregunta">The pregunta.</param>
+        /// <param name="pregunta">La pregunta del usuario.</param>
         /// <returns></returns>
         public async Task<string> ConsultarAsync(string pregunta)
         {
@@ -69,7 +69,7 @@ namespace SG_BAMS
 
                 var body = new
                 {
-                    model = "llama-3.1-8b-instant", 
+                    model = "llama-3.1-8b-instant",
                     messages = new[]
                 {
                     new { role = "user", content = prompt }
@@ -82,7 +82,7 @@ namespace SG_BAMS
                 var response = await _client.PostAsync(_url, content);
                 var result = await response.Content.ReadAsStringAsync();
 
-               
+
                 if ((int)response.StatusCode == 429)
                     return "⚠️ Límite alcanzado. Espera un momento para seguir usando la IA.";
 
@@ -99,7 +99,7 @@ namespace SG_BAMS
             }
         }
         /// <summary>
-        /// Obteners the contexto bd.
+        /// Obtiene el contexto de la base de datos.
         /// </summary>
         /// <returns></returns>
         private string ObtenerContextoBD()
@@ -112,16 +112,16 @@ namespace SG_BAMS
                 {
                     con.Open();
 
-                   
+
                     sb.AppendLine("=== INVENTARIO Y PRODUCTOS ===");
                     sb.AppendLine(EjecutarConsulta(con, "SELECT TOP 10 * FROM Vista_Productos"));
 
                     sb.AppendLine("=== RANKING DE MÁS VENDIDOS ===");
-                   
+
                     sb.AppendLine(EjecutarConsulta(con, "SELECT TOP 10 * FROM Vista_Productos_Mas_Vendido"));
 
                     sb.AppendLine("=== ESTADO DE DEUDAS Y SALDOS ===");
-                  
+
                     sb.AppendLine(EjecutarConsulta(con, "SELECT TOP 10 * FROM Vista_Deudas"));
                 }
             }
@@ -135,10 +135,10 @@ namespace SG_BAMS
 
 
         /// <summary>
-        /// Ejecutars the consulta.
+        /// Ejecuta una consulta SQL.
         /// </summary>
-        /// <param name="con">The con.</param>
-        /// <param name="query">The query.</param>
+        /// <param name="con">La conexión SQL.</param>
+        /// <param name="query">La consulta.</param>
         /// <returns></returns>
         private string EjecutarConsulta(SqlConnection con, string query)
         {

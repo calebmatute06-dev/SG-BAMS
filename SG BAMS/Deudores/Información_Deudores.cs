@@ -17,7 +17,7 @@ namespace SG_BAMS.Deudores
     public partial class Información_Deudores : Form
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Información_Deudores"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="Información_Deudores"/>.
         /// </summary>
         public Información_Deudores()
         {
@@ -26,12 +26,12 @@ namespace SG_BAMS.Deudores
 
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Información_Deudores"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="Información_Deudores"/>.
         /// </summary>
-        /// <param name="idDeuda">The identifier deuda.</param>
-        /// <param name="nombreCliente">The nombre cliente.</param>
-        /// <param name="montoInicial">The monto inicial.</param>
-        /// <param name="fechaInicio">The fecha inicio.</param>
+        /// <param name="idDeuda">El identificador de la deuda.</param>
+        /// <param name="nombreCliente">El nombre del cliente.</param>
+        /// <param name="montoInicial">El monto inicial.</param>
+        /// <param name="fechaInicio">La fecha de inicio.</param>
         public Información_Deudores(int idDeuda, string nombreCliente, string montoInicial, DateTime fechaInicio)
         {
             InitializeComponent();
@@ -46,20 +46,20 @@ namespace SG_BAMS.Deudores
             fechafinal.SelectionStart = fechaInicio.AddDays(30);
         }
         /// <summary>
-        /// Handles the Load event of the Información_Deudores control.
+        /// Maneja el evento Load del control Información_Deudores.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void Información_Deudores_Load(object sender, EventArgs e)
         {
 
         }
 
         /// <summary>
-        /// Handles the Click event of the btnaceptar control.
+        /// Maneja el evento Click del control btnaceptar.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnaceptar_Click(object sender, EventArgs e)
         {
             List<Form> formulariosACerrar = new List<Form>();

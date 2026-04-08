@@ -12,15 +12,15 @@ namespace SG_BAMS.ProductoInventario
     public class ClsLlenarCombo
     {
         /// <summary>
-        /// The conexion
+        /// La conexión a la base de datos
         /// </summary>
         private ClsConexion conexion = new ClsConexion();
 
         /// <summary>
-        /// Configurars the ComboBox.
+        /// Configura el ComboBox.
         /// </summary>
-        /// <param name="combo">The combo.</param>
-        /// <param name="tipoTabla">The tipo tabla.</param>
+        /// <param name="combo">El combo a configurar.</param>
+        /// <param name="tipoTabla">El tipo de tabla.</param>
         public void ConfigurarComboBox(KryptonComboBox combo, string tipoTabla)
         {
             DataTable dt = ObtenerDatosCombo(tipoTabla);
@@ -54,9 +54,9 @@ namespace SG_BAMS.ProductoInventario
         }
 
         /// <summary>
-        /// Obteners the datos combo.
+        /// Obtiene los datos del combo.
         /// </summary>
-        /// <param name="tabla">The tabla.</param>
+        /// <param name="tabla">La tabla.</param>
         /// <returns></returns>
         /// <exception cref="System.Exception">
         /// La tabla solicitada no está configurada.

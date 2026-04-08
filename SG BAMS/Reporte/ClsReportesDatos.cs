@@ -4,7 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Data.SqlClient; 
+using Microsoft.Data.SqlClient;
 
 namespace SG_BAMS.Reporte
 {
@@ -15,15 +15,15 @@ namespace SG_BAMS.Reporte
     {
 
         /// <summary>
-        /// The database
+        /// La base de datos
         /// </summary>
         private ClsConexion db = new ClsConexion();
 
         /// <summary>
-        /// Reportes the ventas.
+        /// Reporte de ventas.
         /// </summary>
-        /// <param name="desde">The desde.</param>
-        /// <param name="hasta">The hasta.</param>
+        /// <param name="desde">La fecha desde.</param>
+        /// <param name="hasta">La fecha hasta.</param>
         /// <returns></returns>
         public DataTable ReporteVentas(DateTime desde, DateTime hasta)
         {
@@ -32,10 +32,10 @@ namespace SG_BAMS.Reporte
         }
 
         /// <summary>
-        /// Reportes the compras.
+        /// Reporte de compras.
         /// </summary>
-        /// <param name="desde">The desde.</param>
-        /// <param name="hasta">The hasta.</param>
+        /// <param name="desde">La fecha desde.</param>
+        /// <param name="hasta">La fecha hasta.</param>
         /// <returns></returns>
         public DataTable ReporteCompras(DateTime desde, DateTime hasta)
         {
@@ -44,7 +44,7 @@ namespace SG_BAMS.Reporte
         }
 
         /// <summary>
-        /// Reportes the deudores.
+        /// Reporte de deudores.
         /// </summary>
         /// <returns></returns>
         public DataTable ReporteDeudores()
@@ -54,7 +54,7 @@ namespace SG_BAMS.Reporte
         }
 
         /// <summary>
-        /// Reportes the inventario.
+        /// Reporte de inventario.
         /// </summary>
         /// <returns></returns>
         public DataTable ReporteInventario()
@@ -64,9 +64,9 @@ namespace SG_BAMS.Reporte
         }
 
         /// <summary>
-        /// Ejecutars the consulta.
+        /// Ejecuta la consulta.
         /// </summary>
-        /// <param name="query">The query.</param>
+        /// <param name="query">La consulta.</param>
         /// <returns></returns>
         /// <exception cref="System.Exception">Error al consultar la base de datos: " + ex.Message</exception>
         private DataTable EjecutarConsulta(string query)

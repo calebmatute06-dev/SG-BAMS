@@ -20,7 +20,7 @@ namespace SG_BAMS
     public partial class AgregarProducto : Form
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AgregarProducto"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="AgregarProducto"/>.
         /// </summary>
         public AgregarProducto()
         {
@@ -30,10 +30,10 @@ namespace SG_BAMS
 
 
         /// <summary>
-        /// Handles the Click event of the btnAceptar control.
+        /// Maneja el evento Click del control btnAceptar.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             string nombreVal = txtNombre.Text.Trim();
@@ -108,10 +108,10 @@ namespace SG_BAMS
 
 
         /// <summary>
-        /// Handles the Click event of the btnCancelar control.
+        /// Maneja el evento Click del control btnCancelar.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
@@ -119,10 +119,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btnsalir control.
+        /// Maneja el evento Click del control btnsalir.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnsalir_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
@@ -130,17 +130,17 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Load event of the AgregarProducto control.
+        /// Maneja el evento Load del control AgregarProducto.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void AgregarProducto_Load(object sender, EventArgs e)
         {
             LlenarTodosLosCombos();
         }
 
         /// <summary>
-        /// Llenars the todos los combos.
+        /// Llena todos los combos del formulario.
         /// </summary>
         private void LlenarTodosLosCombos()
         {
@@ -160,20 +160,20 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the TextChanged event of the txtCodigoBarra control.
+        /// Maneja el evento TextChanged del control txtCodigoBarra.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void txtCodigoBarra_TextChanged(object sender, EventArgs e)
         {
 
         }
 
         /// <summary>
-        /// Handles the KeyPress event of the txtCodigoBarra control.
+        /// Maneja el evento KeyPress del control txtCodigoBarra.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="KeyPressEventArgs"/> que contiene los datos del evento.</param>
         private void txtCodigoBarra_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
@@ -210,20 +210,20 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the KeyPress event of the txtNombre control.
+        /// Maneja el evento KeyPress del control txtNombre.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="KeyPressEventArgs"/> que contiene los datos del evento.</param>
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
 
         }
 
         /// <summary>
-        /// Handles the KeyPress event of the txtPrecio control.
+        /// Maneja el evento KeyPress del control txtPrecio.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="KeyPressEventArgs"/> que contiene los datos del evento.</param>
         private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
         {
             ClsValidaciones.PermitirNumerosYDecimales(sender, e);

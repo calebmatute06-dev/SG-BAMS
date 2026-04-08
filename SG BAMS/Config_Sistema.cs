@@ -9,21 +9,21 @@ namespace SG_BAMS
     public static class Config_Sistema
     {
         /// <summary>
-        /// The factor zoom
+        /// El factor de zoom
         /// </summary>
         public static float FactorZoom = 1.0f;
         /// <summary>
-        /// The ultimo factor aplicado
+        /// El último factor aplicado
         /// </summary>
         public static float UltimoFactorAplicado = 1.0f;
 
         /// <summary>
-        /// The ruta archivo
+        /// La ruta del archivo de configuración
         /// </summary>
         private static string rutaArchivo = AppDomain.CurrentDomain.BaseDirectory + "config_zoom.txt";
 
         /// <summary>
-        /// Guardars the configuracion.
+        /// Guarda la configuración.
         /// </summary>
         public static void GuardarConfiguracion()
         {
@@ -31,7 +31,7 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Cargars the configuracion.
+        /// Carga la configuración.
         /// </summary>
         public static void CargarConfiguracion()
         {
@@ -41,7 +41,7 @@ namespace SG_BAMS
                 if (float.TryParse(contenido, out float valorGuardado))
                 {
                     FactorZoom = valorGuardado;
-                    UltimoFactorAplicado = valorGuardado; 
+                    UltimoFactorAplicado = valorGuardado;
                 }
             }
         }

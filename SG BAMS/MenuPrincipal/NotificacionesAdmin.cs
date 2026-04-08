@@ -17,20 +17,20 @@ namespace SG_BAMS
     public partial class NotificacionesAdmin : Form
     {
         /// <summary>
-        /// The es administrador
+        /// Indica si es administrador
         /// </summary>
         private bool esAdministrador;
         /// <summary>
-        /// The notificaciones leidas
+        /// Conjunto de notificaciones leídas
         /// </summary>
         private HashSet<int> notificacionesLeidas = new HashSet<int>();
         /// <summary>
-        /// The contador no leidas
+        /// Contador de notificaciones no leídas
         /// </summary>
         private int contadorNoLeidas = 0;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NotificacionesAdmin"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="NotificacionesAdmin"/>.
         /// </summary>
         public NotificacionesAdmin()
         {
@@ -44,10 +44,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Load event of the NotificacionesAdmin control.
+        /// Maneja el evento Load del control NotificacionesAdmin.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void NotificacionesAdmin_Load(object sender, EventArgs e)
         {
             CargarListBox();
@@ -55,7 +55,7 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Determinars the permisos.
+        /// Determina los permisos del usuario.
         /// </summary>
         private void DeterminarPermisos()
         {
@@ -64,7 +64,7 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Cargars the ListBox.
+        /// Carga el ListBox con las notificaciones.
         /// </summary>
         private void CargarListBox()
         {
@@ -91,7 +91,7 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Actualizars the label contador.
+        /// Actualiza la etiqueta del contador.
         /// </summary>
         private void ActualizarLabelContador()
         {
@@ -101,10 +101,10 @@ namespace SG_BAMS
 
 
         /// <summary>
-        /// Handles the DoubleClick event of the Notificaciones control.
+        /// Maneja el evento DoubleClick del control Notificaciones.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private async void Notificaciones_DoubleClick(object sender, EventArgs e)
         {
             if (notificaciones.SelectedIndex != -1 && notificaciones.SelectedItem != null)
@@ -118,13 +118,13 @@ namespace SG_BAMS
 
                 if (!notificacionesLeidas.Contains(idNotificacion))
                 {
-                   
+
                     ClsNotificaciones objNoti = new ClsNotificaciones();
                     bool exito = await objNoti.MarcarComoLeida(idNotificacion);
 
                     if (exito)
                     {
-                        
+
                         notificacionesLeidas.Add(idNotificacion);
                         if (contadorNoLeidas > 0)
                         {
@@ -138,10 +138,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the DrawItem event of the Notificaciones control.
+        /// Maneja el evento DrawItem del control Notificaciones.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="DrawItemEventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="DrawItemEventArgs"/> que contiene los datos del evento.</param>
         private void Notificaciones_DrawItem(object sender, DrawItemEventArgs e)
         {
             if (e.Index < 0) return;
@@ -180,31 +180,31 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Shown event of the NotificacionesAdmin control.
+        /// Maneja el evento Shown del control NotificacionesAdmin.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void NotificacionesAdmin_Shown(object sender, EventArgs e) => Ayudante_UI.AplicarZoomGlobal(this);
 
         /// <summary>
-        /// Handles the SelectedIndexChanged event of the listBox1 control.
+        /// Maneja el evento SelectedIndexChanged del control listBox1.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e) { }
 
         /// <summary>
-        /// Handles the MouseClick event of the listBox1 control.
+        /// Maneja el evento MouseClick del control listBox1.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="MouseEventArgs"/> que contiene los datos del evento.</param>
         private void listBox1_MouseClick(object sender, MouseEventArgs e) { }
 
         /// <summary>
-        /// Handles the Click event of the btnsalir1 control.
+        /// Maneja el evento Click del control btnsalir1.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnsalir1_Click(object sender, EventArgs e) => this.Close();
     }
 }

@@ -15,7 +15,7 @@ namespace SG_BAMS
     public class ClsConexion
     {
         /// <summary>
-        /// The cadena conexion
+        /// La cadena de conexión
         /// </summary>
         private String CadenaConexion = "Data Source = AutoBattDB.mssql.somee.com; " +
                                         "Initial catalog = AutoBattDB; " +
@@ -24,13 +24,13 @@ namespace SG_BAMS
                                         "TrustServerCertificate=True;";
 
         /// <summary>
-        /// The conectar
+        /// La conexión
         /// </summary>
         public SqlConnection Conectar = new SqlConnection();
 
 
         /// <summary>
-        /// Abrirs the conexion.
+        /// Abre la conexión a la base de datos.
         /// </summary>
         /// <exception cref="System.Exception">Error de conexion a la base de datos: " + ex.Message</exception>
         public void AbrirConexion()
@@ -50,7 +50,7 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Cerrars this instance.
+        /// Cierra la conexión a la base de datos.
         /// </summary>
         public void Cerrar()
         {
@@ -61,4 +61,3 @@ namespace SG_BAMS
         }
     }
 }
-

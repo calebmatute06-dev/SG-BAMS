@@ -19,12 +19,12 @@ namespace SG_BAMS
     public partial class InventarioEmp : Form
     {
         /// <summary>
-        /// The logica
+        /// La lógica de negocio
         /// </summary>
         ClsVerProducto logica = new ClsVerProducto();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="InventarioEmp"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="InventarioEmp" />.
         /// </summary>
         public InventarioEmp()
         {
@@ -33,10 +33,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Load event of the InventarioEmp control.
+        /// Maneja el evento Load del control InventarioEmp.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void InventarioEmp_Load(object sender, EventArgs e)
         {
             btnInventario.Enabled = false;
@@ -75,10 +75,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the TextChanged event of the txtBuscar control.
+        /// Maneja el evento TextChanged del control txtBuscar.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtBuscar.Text))
@@ -98,7 +98,7 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Cargars the inventario completo.
+        /// Carga el inventario completo.
         /// </summary>
         public void CargarInventarioCompleto()
         {
@@ -123,16 +123,21 @@ namespace SG_BAMS
 
 
         /// <summary>
-        /// Handles the Click event of the btnNoti control.
+        /// Maneja el evento Click del control btnNoti.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void btnNoti_Click(object sender, EventArgs e)
         {
             NotificacionesAdmin notificacionesAdmin = new NotificacionesAdmin();
             notificacionesAdmin.Show();
         }
 
+        /// <summary>
+        /// Maneja el evento Click del control btnMenu.
+        /// </summary>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnMenu_Click(object sender, EventArgs e)
         {
             MenuPrincipalEmp ME = new MenuPrincipalEmp();
@@ -140,6 +145,11 @@ namespace SG_BAMS
             this.Hide();
         }
 
+        /// <summary>
+        /// Maneja el evento Click del control btnFacturas.
+        /// </summary>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnFacturas_Click(object sender, EventArgs e)
         {
             FacturasEmp FE = new FacturasEmp();
@@ -147,6 +157,11 @@ namespace SG_BAMS
             this.Hide();
         }
 
+        /// <summary>
+        /// Maneja el evento Click del control btnClientes.
+        /// </summary>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnClientes_Click(object sender, EventArgs e)
         {
             ClientesEmp CE = new ClientesEmp();
@@ -154,8 +169,13 @@ namespace SG_BAMS
             this.Hide();
         }
 
-       
 
+
+        /// <summary>
+        /// Maneja el evento Click del control btnDeudores.
+        /// </summary>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnDeudores_Click(object sender, EventArgs e)
         {
             Deudores_Emp DE = new Deudores_Emp();
@@ -163,6 +183,11 @@ namespace SG_BAMS
             this.Hide();
         }
 
+        /// <summary>
+        /// Maneja el evento Click del control btnCerrar.
+        /// </summary>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             Login.Login login = new Login.Login();
@@ -170,6 +195,11 @@ namespace SG_BAMS
             this.Close();
         }
 
+        /// <summary>
+        /// Maneja el evento Click del control btnPerfil.
+        /// </summary>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnPerfil_Click(object sender, EventArgs e)
         {
             Perfil perfil = new Perfil();

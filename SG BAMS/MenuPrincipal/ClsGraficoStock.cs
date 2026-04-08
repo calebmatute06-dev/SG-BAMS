@@ -13,7 +13,7 @@ namespace SG_BAMS.MenuPrincipal
     internal class ClsGraficoStock : ClsConexion
     {
         /// <summary>
-        /// Obteners the datos grafico.
+        /// Obtiene los datos para el gráfico.
         /// </summary>
         /// <returns></returns>
         public async Task<DataTable> ObtenerDatosGrafico()

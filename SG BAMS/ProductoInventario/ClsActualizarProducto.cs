@@ -10,22 +10,22 @@ namespace SG_BAMS.ProductoInventario
     internal class ClsActualizarProducto
     {
         /// <summary>
-        /// The conexion
+        /// La conexión a la base de datos
         /// </summary>
         private ClsConexion conexion = new ClsConexion();
         /// <summary>
-        /// Ejecutars the actualizacion.
+        /// Ejecuta la actualización del producto.
         /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <param name="nombre">The nombre.</param>
-        /// <param name="idMarca">The identifier marca.</param>
-        /// <param name="idTipo">The identifier tipo.</param>
-        /// <param name="idModelo">The identifier modelo.</param>
-        /// <param name="idEstado">The identifier estado.</param>
-        /// <param name="precio">The precio.</param>
-        /// <param name="codBarra">The cod barra.</param>
-        /// <param name="idProveedor">The identifier proveedor.</param>
-        /// <param name="stock">The stock.</param>
+        /// <param name="id">El identificador del producto.</param>
+        /// <param name="nombre">El nombre del producto.</param>
+        /// <param name="idMarca">El identificador de la marca.</param>
+        /// <param name="idTipo">El identificador del tipo.</param>
+        /// <param name="idModelo">El identificador del modelo.</param>
+        /// <param name="idEstado">El identificador del estado.</param>
+        /// <param name="precio">El precio del producto.</param>
+        /// <param name="codBarra">El código de barras.</param>
+        /// <param name="idProveedor">El identificador del proveedor.</param>
+        /// <param name="stock">La cantidad en stock.</param>
         /// <exception cref="System.Exception">Error al actualizar producto e inventario: " + ex.Message</exception>
         public void EjecutarActualizacion(int id, string nombre, int idMarca, int idTipo, int idModelo, int idEstado, decimal precio, string codBarra, int idProveedor, int stock)
         {
@@ -60,12 +60,12 @@ namespace SG_BAMS.ProductoInventario
         }
 
         /// <summary>
-        /// Existes the producto en otros.
+        /// Verifica si el producto existe en otros registros.
         /// </summary>
-        /// <param name="idActual">The identifier actual.</param>
-        /// <param name="nombre">The nombre.</param>
-        /// <param name="idMarca">The identifier marca.</param>
-        /// <param name="idProveedor">The identifier proveedor.</param>
+        /// <param name="idActual">El identificador actual del producto.</param>
+        /// <param name="nombre">El nombre del producto.</param>
+        /// <param name="idMarca">El identificador de la marca.</param>
+        /// <param name="idProveedor">El identificador del proveedor.</param>
         /// <returns></returns>
         public bool ExisteProductoEnOtros(int idActual, string nombre, int idMarca, int idProveedor)
         {
@@ -94,10 +94,10 @@ namespace SG_BAMS.ProductoInventario
         }
 
         /// <summary>
-        /// Existes the codigo en otros.
+        /// Verifica si el código de barras existe en otros productos.
         /// </summary>
-        /// <param name="idActual">The identifier actual.</param>
-        /// <param name="codigo">The codigo.</param>
+        /// <param name="idActual">El identificador actual del producto.</param>
+        /// <param name="codigo">El código de barras.</param>
         /// <returns></returns>
         public bool ExisteCodigoEnOtros(int idActual, string codigo)
         {

@@ -17,7 +17,7 @@ namespace SG_BAMS.Login
     public partial class Soporte : Form
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Soporte"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="Soporte"/>.
         /// </summary>
         public Soporte()
         {
@@ -26,10 +26,10 @@ namespace SG_BAMS.Login
         }
 
         /// <summary>
-        /// Handles the Click event of the btnVerUsuarios control.
+        /// Maneja el evento Click del control btnVerUsuarios.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnVerUsuarios_Click(object sender, EventArgs e)
         {
             MenuPrincipalAdm menuPrincipalAdm = new MenuPrincipalAdm();
@@ -38,10 +38,10 @@ namespace SG_BAMS.Login
         }
 
         /// <summary>
-        /// Handles the Click event of the kryptonButton1 control.
+        /// Maneja el evento Click del control kryptonButton1.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
             MenuPrincipalEmp menuPrincipalEmp = new MenuPrincipalEmp();

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO; 
+using System.IO;
 
 namespace SG_BAMS
 {
@@ -18,15 +18,15 @@ namespace SG_BAMS
     public partial class Perfil : Form
     {
         /// <summary>
-        /// Gets or sets the usuario actual.
+        /// Obtiene o establece el usuario actual.
         /// </summary>
         /// <value>
-        /// The usuario actual.
+        /// El usuario actual.
         /// </value>
         public string UsuarioActual { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Perfil"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="Perfil"/>.
         /// </summary>
         public Perfil()
         {
@@ -35,10 +35,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Load event of the Perfil control.
+        /// Maneja el evento Load del control Perfil.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private async void Perfil_Load(object sender, EventArgs e)
         {
             await CargarDatosUsuario();
@@ -47,7 +47,7 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Cargars the datos usuario.
+        /// Carga los datos del usuario.
         /// </summary>
         private async Task CargarDatosUsuario()
         {
@@ -89,30 +89,30 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the kryptonButton1 control.
+        /// Maneja el evento Click del control kryptonButton1.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private async void kryptonButton1_Click(object sender, EventArgs e)
         {
 
         }
 
         /// <summary>
-        /// Handles the Shown event of the Perfil control.
+        /// Maneja el evento Shown del control Perfil.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void Perfil_Shown(object sender, EventArgs e)
         {
             Ayudante_UI.AplicarZoomGlobal(this);
         }
 
         /// <summary>
-        /// Handles the Click event of the btnimagen control.
+        /// Maneja el evento Click del control btnimagen.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private async void btnimagen_Click(object sender, EventArgs e)
         {
             OpenFileDialog selectorImagen = new OpenFileDialog();
@@ -147,10 +147,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the btnsalir1 control.
+        /// Maneja el evento Click del control btnsalir1.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnsalir1_Click(object sender, EventArgs e)
         {
             this.Close();

@@ -21,12 +21,12 @@ namespace SG_BAMS.Proveedor
     public partial class AgregarProveedores : Form
     {
         /// <summary>
-        /// The proveedor
+        /// El proveedor
         /// </summary>
         ClsProveedor proveedor = new ClsProveedor();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AgregarProveedores"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="AgregarProveedores"/>.
         /// </summary>
         public AgregarProveedores()
         {
@@ -39,10 +39,10 @@ namespace SG_BAMS.Proveedor
         }
 
         /// <summary>
-        /// Handles the Load event of the AgregarProveedores control.
+        /// Maneja el evento Load del control AgregarProveedores.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void AgregarProveedores_Load(object sender, EventArgs e)
         {
             proveedor.CargarComboClasificacion(cmbClasificacion);
@@ -62,10 +62,10 @@ namespace SG_BAMS.Proveedor
         }
 
         /// <summary>
-        /// Handles the Click event of the btnsalir control.
+        /// Maneja el evento Click del control btnsalir.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnsalir_Click(object sender, EventArgs e)
         {
 
@@ -73,10 +73,10 @@ namespace SG_BAMS.Proveedor
         }
 
         /// <summary>
-        /// Handles the SelectedIndexChanged event of the cmbClasificacion control.
+        /// Maneja el evento SelectedIndexChanged del control cmbClasificacion.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void cmbClasificacion_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmbClasificacion.SelectedIndex != -1 && cmbClasificacion.SelectedItem is DataRowView)
@@ -88,10 +88,10 @@ namespace SG_BAMS.Proveedor
         }
 
         /// <summary>
-        /// Handles the Click event of the btnAceptar control.
+        /// Maneja el evento Click del control btnAceptar.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnAceptar_Click(object sender, EventArgs e)
         {
 
@@ -163,7 +163,7 @@ namespace SG_BAMS.Proveedor
                 return;
             }
 
-            
+
             if (proveedor.ExisteRtnProveedor(txtRTN.Text.Trim()))
             {
                 MessageBox.Show("El RTN ingresado ya pertenece a otro proveedor.", "RTN Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -198,10 +198,10 @@ namespace SG_BAMS.Proveedor
         }
 
         /// <summary>
-        /// Handles the KeyPress event of the txtTelefono control.
+        /// Maneja el evento KeyPress del control txtTelefono.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="KeyPressEventArgs"/> que contiene los datos del evento.</param>
         private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (char.IsControl(e.KeyChar)) return;
@@ -225,10 +225,10 @@ namespace SG_BAMS.Proveedor
         }
 
         /// <summary>
-        /// Handles the KeyPress event of the txtRTN control.
+        /// Maneja el evento KeyPress del control txtRTN.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="KeyPressEventArgs"/> que contiene los datos del evento.</param>
         private void txtRTN_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -238,10 +238,10 @@ namespace SG_BAMS.Proveedor
         }
 
         /// <summary>
-        /// Handles the KeyPress event of the txtNombre control.
+        /// Maneja el evento KeyPress del control txtNombre.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="KeyPressEventArgs"/> que contiene los datos del evento.</param>
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
 
@@ -252,10 +252,10 @@ namespace SG_BAMS.Proveedor
         }
 
         /// <summary>
-        /// Handles the KeyPress event of the txtDireccion control.
+        /// Maneja el evento KeyPress del control txtDireccion.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="KeyPressEventArgs"/> que contiene los datos del evento.</param>
         private void txtDireccion_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && !char.IsControl(e.KeyChar))
@@ -265,10 +265,10 @@ namespace SG_BAMS.Proveedor
         }
 
         /// <summary>
-        /// Handles the Click event of the label7 control.
+        /// Maneja el evento Click del control label7.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void label7_Click(object sender, EventArgs e)
         {
 

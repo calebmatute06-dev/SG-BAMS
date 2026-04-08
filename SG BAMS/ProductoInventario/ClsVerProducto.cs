@@ -10,12 +10,12 @@ namespace SG_BAMS.ProductoInventario
     internal class ClsVerProducto
     {
         /// <summary>
-        /// The conexion
+        /// La conexión a la base de datos
         /// </summary>
         private ClsConexion conexion = new ClsConexion();
 
         /// <summary>
-        /// Mostrars the productos completo.
+        /// Muestra el listado completo de productos.
         /// </summary>
         /// <returns></returns>
         /// <exception cref="System.Exception">Error al obtener la lista: " + ex.Message</exception>
@@ -50,9 +50,9 @@ namespace SG_BAMS.ProductoInventario
         }
 
         /// <summary>
-        /// Buscars the productos.
+        /// Busca productos por filtro.
         /// </summary>
-        /// <param name="filtro">The filtro.</param>
+        /// <param name="filtro">El filtro de búsqueda.</param>
         /// <returns></returns>
         /// <exception cref="System.Exception">Error al ejecutar procedimiento: " + ex.Message</exception>
         public DataTable BuscarProductos(string filtro)

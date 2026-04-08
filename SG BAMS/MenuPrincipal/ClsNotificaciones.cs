@@ -12,9 +12,9 @@ namespace SG_BAMS
     internal class ClsNotificaciones : ClsConexion
     {
         /// <summary>
-        /// Listars the notificaciones.
+        /// Lista las notificaciones.
         /// </summary>
-        /// <param name="esAdmin">if set to <c>true</c> [es admin].</param>
+        /// <param name="esAdmin">si se establece en <c>true</c> [es admin].</param>
         /// <returns></returns>
         /// <exception cref="System.Exception">Error al cargar notificaciones: " + ex.Message</exception>
         public DataTable ListarNotificaciones(bool esAdmin)
@@ -24,7 +24,7 @@ namespace SG_BAMS
             {
                 AbrirConexion();
 
-               
+
                 string query = "SELECT * FROM Notificaciones WHERE leida = 0";
 
                 if (!esAdmin)
@@ -51,9 +51,9 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Marcars the como leida.
+        /// Marca la notificación como leída.
         /// </summary>
-        /// <param name="idNotificacion">The identifier notificacion.</param>
+        /// <param name="idNotificacion">El identificador de la notificación.</param>
         /// <returns></returns>
         public async Task<bool> MarcarComoLeida(int idNotificacion)
         {

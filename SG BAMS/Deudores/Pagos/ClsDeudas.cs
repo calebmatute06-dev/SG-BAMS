@@ -5,9 +5,20 @@ using System.Threading.Tasks;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="SG_BAMS.ClsConexion" />
     public class ClsDeudas : ClsConexion
     {
-        
+
+        /// <summary>
+        /// Inserta el pago.
+        /// </summary>
+        /// <param name="idDeuda">El identificador de la deuda.</param>
+        /// <param name="montoPago">El monto del pago.</param>
+        /// <param name="fechaPago">La fecha del pago.</param>
+        /// <returns></returns>
         public async Task<bool> InsertarPago(int idDeuda, decimal montoPago, DateTime fechaPago)
         {
             try
@@ -34,6 +45,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Obtiene el saldo.
+        /// </summary>
+        /// <param name="idDeuda">El identificador de la deuda.</param>
+        /// <returns></returns>
         public async Task<decimal> ObtenerSaldo(int idDeuda)
         {
             decimal saldo = 0;
@@ -46,8 +62,8 @@ namespace SG_BAMS
 
             try
             {
-                AbrirConexion(); // Usamos los métodos de ClsConexion
-                using (SqlCommand cmd = new SqlCommand(query, Conectar)) // Usamos la propiedad Conectar de la base
+                AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand(query, Conectar))
                 {
                     cmd.Parameters.AddWithValue("@id_deuda", idDeuda);
 
@@ -60,23 +76,27 @@ namespace SG_BAMS
             }
             catch (Exception ex)
             {
-                // Puedes registrar el error aquí si lo deseas
+
                 System.Diagnostics.Debug.WriteLine("Error en ObtenerSaldo: " + ex.Message);
             }
             finally
             {
-                Cerrar(); // Cerramos siempre la conexión
+                Cerrar();
             }
 
             return saldo;
         }
+        /// <summary>
+        /// Obtiene los deudores activos.
+        /// </summary>
+        /// <returns></returns>
         public DataTable ObtenerDeudoresActivos()
         {
             DataTable tablaDeudores = new DataTable();
             try
             {
                 AbrirConexion();
-                // Usamos la vista especializada que creaste y asignamos alias simples (ID, ClienteDetalle)
+
                 string consultaSql = @"SELECT 
                                 ID, 
                                 [Nombre completo] + ' (Saldo: L.' + CAST([Saldo Real] AS VARCHAR) + ')' AS ClienteDetalle 
@@ -98,7 +118,11 @@ namespace SG_BAMS
             return tablaDeudores;
         }
 
-        
+
+        /// <summary>
+        /// Obtiene las últimas ventas.
+        /// </summary>
+        /// <returns></returns>
         public DataTable ObtenerUltimasVentas()
         {
             DataTable tablaVentas = new DataTable();

@@ -14,7 +14,7 @@ namespace SG_BAMS
     public static class ClsValidaciones
     {
         /// <summary>
-        /// Validar un nombre simple (wrapper).
+        /// Validar un nombre simple (envoltorio).
         /// </summary>
         public static bool ValidarNombre(string nombre)
         {
@@ -23,7 +23,7 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Validar un precio simple (wrapper).
+        /// Validar un precio simple (envoltorio).
         /// </summary>
         public static bool ValidarPrecio(string precio)
         {

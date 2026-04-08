@@ -12,7 +12,7 @@ namespace SG_BAMS
     internal class ClsDeuda : ClsConexion
     {
         /// <summary>
-        /// Listars the deudores.
+        /// Lista los deudores.
         /// </summary>
         /// <returns></returns>
         /// <exception cref="System.Exception">Error al listar deudores: " + ex.Message</exception>
@@ -22,13 +22,13 @@ namespace SG_BAMS
 
             try
             {
-                
+
                 AbrirConexion();
 
-                
+
                 string query = "SELECT * FROM vista_lista_deudores";
 
-                
+
                 using (SqlCommand comando = new SqlCommand(query, Conectar))
                 {
                     using (SqlDataAdapter adaptador = new SqlDataAdapter(comando))
@@ -43,7 +43,7 @@ namespace SG_BAMS
             }
             finally
             {
-               
+
                 Cerrar();
             }
 

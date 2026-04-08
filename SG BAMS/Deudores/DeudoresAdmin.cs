@@ -20,12 +20,12 @@ namespace SG_BAMS
     public partial class DeudoresAdmin : Form
     {
         /// <summary>
-        /// The dt deudores
+        /// La tabla de datos de deudores
         /// </summary>
         private DataTable dtDeudores;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeudoresAdmin"/> class.
+        /// Inicializa una nueva instancia de la clase <see cref="DeudoresAdmin"/>.
         /// </summary>
         public DeudoresAdmin()
         {
@@ -39,7 +39,7 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Cargars the grid deudores.
+        /// Carga el grid de deudores.
         /// </summary>
         public void CargarGridDeudores()
         {
@@ -60,7 +60,7 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Filtrars the deudores.
+        /// Filtra los deudores.
         /// </summary>
         private void FiltrarDeudores()
         {
@@ -79,30 +79,30 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the TextChanged event of the txtBuscarNombre control.
+        /// Maneja el evento TextChanged del control txtBuscarNombre.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void txtBuscarNombre_TextChanged(object sender, EventArgs e)
         {
             FiltrarDeudores();
         }
 
         /// <summary>
-        /// Handles the Click event of the kryptonButton12 control.
+        /// Maneja el evento Click del control kryptonButton12.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void kryptonButton12_Click(object sender, EventArgs e)
         {
             FiltrarDeudores();
         }
 
         /// <summary>
-        /// Handles the CellDoubleClick event of the dgvDeudores control.
+        /// Maneja el evento CellDoubleClick del control dgvDeudores.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="DataGridViewCellEventArgs"/> que contiene los datos del evento.</param>
         private void dgvDeudores_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
@@ -140,10 +140,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Click event of the kryptonButton15 control.
+        /// Maneja el evento Click del control kryptonButton15.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void kryptonButton15_Click(object sender, EventArgs e)
         {
             Pago_Deuda PagDe = new Pago_Deuda("", 0);
@@ -152,20 +152,20 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Handles the Shown event of the Deudores control.
+        /// Maneja el evento Shown del control Deudores.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void Deudores_Shown(object sender, EventArgs e)
         {
             Ayudante_UI.AplicarZoomGlobal(this);
         }
 
         /// <summary>
-        /// Handles the KeyPress event of the txtBuscarNombre control.
+        /// Maneja el evento KeyPress del control txtBuscarNombre.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="KeyPressEventArgs"/> que contiene los datos del evento.</param>
         private void txtBuscarNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
             ClsValidaciones.PermitirSoloLetras(e);
@@ -176,35 +176,35 @@ namespace SG_BAMS
 
 
         /// <summary>
-        /// Handles the Click event of the button12 control.
+        /// Maneja el evento Click del control button12.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void button12_Click(object sender, EventArgs e)
         {
             new NotificacionesAdmin().Show();
         }
 
-      
+
 
         /// <summary>
-        /// Handles the CellContentClick event of the kryptonDataGridView1 control.
+        /// Maneja el evento CellContentClick del control kryptonDataGridView1.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="DataGridViewCellEventArgs"/> que contiene los datos del evento.</param>
         private void kryptonDataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
         /// <summary>
-        /// Handles the DoubleClick event of the dgvDeudores control.
+        /// Maneja el evento DoubleClick del control dgvDeudores.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void dgvDeudores_DoubleClick(object sender, EventArgs e) { }
 
         /// <summary>
-        /// Handles the Load event of the DeudoresAdmin control.
+        /// Maneja el evento Load del control DeudoresAdmin.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void DeudoresAdmin_Load(object sender, EventArgs e)
         {
             btnDeudores.Enabled = false;
@@ -283,7 +283,7 @@ namespace SG_BAMS
             this.Hide();
         }
 
-       
+
 
         private void btnReportes_Click(object sender, EventArgs e)
         {

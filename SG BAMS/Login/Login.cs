@@ -20,11 +20,11 @@ namespace SG_BAMS.Login
     public partial class Login : Form
     {
         /// <summary>
-        /// The usuario logueado
+        /// El usuario logueado
         /// </summary>
         public static string UsuarioLogueado;
         /// <summary>
-        /// Initializes a new instance of the <see cref="Login" /> class.
+        /// Inicializa una nueva instancia de la clase <see cref="Login" />.
         /// </summary>
         public Login()
         {
@@ -35,10 +35,10 @@ namespace SG_BAMS.Login
         }
 
         /// <summary>
-        /// Handles the Click event of the btnSalir control.
+        /// Maneja el evento Click del control btnSalir.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -46,10 +46,10 @@ namespace SG_BAMS.Login
 
 
         /// <summary>
-        /// Handles the KeyPress event of the txtUsu control.
+        /// Maneja el evento KeyPress del control txtUsu.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="KeyPressEventArgs" /> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="KeyPressEventArgs" /> que contiene los datos del evento.</param>
         private void txtUsu_KeyPress(object sender, KeyPressEventArgs e)
         {
 
@@ -57,20 +57,20 @@ namespace SG_BAMS.Login
         }
 
         /// <summary>
-        /// Handles the KeyPress event of the txtCon control.
+        /// Maneja el evento KeyPress del control txtCon.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="KeyPressEventArgs" /> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="KeyPressEventArgs" /> que contiene los datos del evento.</param>
         private void txtCon_KeyPress(object sender, KeyPressEventArgs e)
         {
 
         }
 
         /// <summary>
-        /// Handles the Click event of the btninicioSesion1 control.
+        /// Maneja el evento Click del control btninicioSesion1.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void btninicioSesion1_Click(object sender, EventArgs e)
         {
             if (ClsValidaciones.CampoVacio(txtUsu, "Usuario")) return;
@@ -161,29 +161,29 @@ namespace SG_BAMS.Login
         }
 
         /// <summary>
-        /// Handles the Click event of the btnsalirLogin1 control.
+        /// Maneja el evento Click del control btnsalirLogin1.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void btnsalirLogin1_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
         /// <summary>
-        /// The password visible
+        /// La visibilidad de la contraseña
         /// </summary>
         private bool _passwordVisible = false;
         /// <summary>
-        /// The label ojo
+        /// La etiqueta del ojo
         /// </summary>
         private Label lblOjo;
 
         /// <summary>
-        /// Handles the Load event of the Login control.
+        /// Maneja el evento Load del control Login.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">La fuente del evento.</param>
+        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void Login_Load(object sender, EventArgs e)
         {
             lblOjo = new Label();
@@ -196,8 +196,8 @@ namespace SG_BAMS.Login
             lblOjo.BackColor = Color.Transparent;
 
             lblOjo.Location = new Point(
-                txtCon.Right + 5,                          
-                txtCon.Top + (txtCon.Height - 32) / 2      
+                txtCon.Right + 5,
+                txtCon.Top + (txtCon.Height - 32) / 2
             );
 
             _passwordVisible = false;
@@ -207,7 +207,7 @@ namespace SG_BAMS.Login
             lblOjo.Click += (s, ev) =>
             {
                 _passwordVisible = !_passwordVisible;
-                txtCon.UseSystemPasswordChar = !_passwordVisible; 
+                txtCon.UseSystemPasswordChar = !_passwordVisible;
                 lblOjo.Text = _passwordVisible ? "🙈" : "👁";
             };
 
