@@ -295,7 +295,6 @@ namespace SG_BAMS
         private void BtnNotificaciones_Click(object sender, EventArgs e)
         {
             new NotificacionesAdmin().Show();
-            this.Hide();
         }
 
         private void btnMenu_Click(object sender, EventArgs e)
