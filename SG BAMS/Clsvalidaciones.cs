@@ -559,5 +559,127 @@ namespace SG_BAMS
             if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
                 e.Handled = true;
         }
+        // Agregar dentro de la clase ClsValidaciones
+
+        /// <summary>
+        /// Permite solo letras y números (sin espacios) en el KeyPress.
+        /// </summary>
+        public static void PermitirSoloLetrasNumerosSinEspacios(KeyPressEventArgs e)
+        {
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                e.Handled = true;
+        }
+
+        /// <summary>
+        /// Valida que el nombre de usuario no tenga espacios, solo alfanumérico,
+        /// y cumpla con la longitud mínima/máxima.
+        /// </summary>
+        public static bool EsNombreUsuarioValido(Control control, string nombreCampo,
+            int minLength = 3, int maxLength = 20)
+        {
+            string texto = control.Text;
+
+            if (string.IsNullOrWhiteSpace(texto))
+            {
+                MessageBox.Show($"El campo '{nombreCampo}' es obligatorio.",
+                    "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                control.Focus();
+                return false;
+            }
+
+            string textoTrim = texto.Trim();
+
+            if (textoTrim.Length < minLength || textoTrim.Length > maxLength)
+            {
+                MessageBox.Show($"{nombreCampo} debe tener entre {minLength} y {maxLength} caracteres.",
+                    "Longitud", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                control.Focus();
+                return false;
+            }
+
+            if (textoTrim.Contains(" "))
+            {
+                MessageBox.Show($"El campo '{nombreCampo}' no puede contener espacios.",
+                    "Formato inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                control.Focus();
+                return false;
+            }
+
+            if (!Regex.IsMatch(textoTrim, @"^[a-zA-Z0-9]+$"))
+            {
+                MessageBox.Show($"{nombreCampo} solo puede contener letras y números (sin espacios ni caracteres especiales).",
+                    "Formato inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                control.Focus();
+                return false;
+            }
+
+            if (Regex.IsMatch(textoTrim, @"(.)\1{2,}"))
+            {
+                MessageBox.Show($"{nombreCampo} contiene demasiados caracteres repetidos seguidos.",
+                    "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                control.Focus();
+                return false;
+            }
+
+            return true;
+        }
+        /// <summary>
+        /// Valida que un nombre no esté duplicado en una tabla específica.
+        /// </summary>
+        /// <param name="control">Control que contiene el nombre.</param>
+        /// <param name="tabla">Nombre de la tabla (ej. "Tipo_producto", "Marca_producto").</param>
+        /// <param name="columnaNombre">Nombre de la columna que almacena el nombre (ej. "descripcion_forma_pago").</param>
+        /// <param name="nombreCampo">Nombre amigable del campo para el mensaje (ej. "Tipo de Producto").</param>
+        /// <param name="idExcluir">ID del registro actual cuando se modifica (0 para nuevos registros).</param>
+        /// <param name="idColumna">Nombre de la columna de ID (por defecto "id_tipo_producto" o el que corresponda).</param>
+        /// <returns>True si el nombre es único, False si ya existe.</returns>
+        public static bool ValidarNombreUnico(Control control, string tabla, string columnaNombre, string nombreCampo, int idExcluir = 0, string idColumna = "id")
+        {
+            string nombre = control.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(nombre))
+            {
+                MessageBox.Show($"El campo '{nombreCampo}' no puede estar vacío.", "Validación",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                control.Focus();
+                return false;
+            }
+
+            string sql = $@"
+            SELECT COUNT(*) FROM {tabla}
+            WHERE LTRIM(RTRIM({columnaNombre})) = @nombre
+            AND {idColumna} <> @idExcluir";
+
+            ClsConexion conexion = new ClsConexion();
+            try
+            {
+                conexion.AbrirConexion();
+                using (var cmd = new Microsoft.Data.SqlClient.SqlCommand(sql, conexion.Conectar))
+                {
+                    cmd.Parameters.AddWithValue("@nombre", nombre);
+                    cmd.Parameters.AddWithValue("@idExcluir", idExcluir);
+                    int conteo = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    if (conteo > 0)
+                    {
+                        MessageBox.Show($"El {nombreCampo.ToLower()} '{nombre}' ya se encuentra registrado.",
+                            "Registro Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        control.Focus();
+                        return false;
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al validar nombre único: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            finally
+            {
+                conexion.Cerrar();
+            }
+        }
     }
 }

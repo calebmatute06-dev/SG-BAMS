@@ -32,7 +32,7 @@ namespace SG_BAMS
             _ = CargarComboRoles();
             cmbRol.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
+            txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetrasNumerosSinEspacios(e);
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace SG_BAMS
         /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private async void btmModificar_Click(object sender, EventArgs e)
         {
-            if (!ClsValidaciones.EsNombrePersonalValido(txtNombre.TextBox, "Nombre de Usuario"))
+            if (!ClsValidaciones.EsNombreUsuarioValido(txtNombre.TextBox, "Nombre de Usuario"))
                 return;
 
             if (!ClsValidaciones.EsPasswordValido(txtContra.TextBox, "Contraseña"))
@@ -94,6 +94,17 @@ namespace SG_BAMS
                 btmModificar.Enabled = false;
 
                 clsUsuario objetoUsuario = new clsUsuario();
+                string nombreUsuario = txtNombre.Text.Trim();
+                
+                bool existe = await objetoUsuario.ExisteUsuarioAsync(nombreUsuario);
+                if (existe)
+                {
+                    MessageBox.Show("El nombre de usuario ya está en uso. Por favor elija otro.",
+                        "Usuario duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtNombre.Focus();
+                    return;
+                }
+
                 int idRol = (int)cmbRol.SelectedValue;
                 byte[] imagenByte = null;
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using DocumentFormat.OpenXml.Spreadsheet;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -192,6 +193,32 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
                 Cerrar();
             }
             return tabla;
+        }
+
+        /// <summary>
+        /// Verifica si ya existe un usuario con el nombre indicado.
+        /// </summary>
+        public async Task<bool> ExisteUsuarioAsync(string nombreUsuario)
+        {
+            try
+            {
+                AbrirConexion();
+                string query = "SELECT COUNT(1) FROM usuario WHERE nombre_usuario = @nombre_usuario";
+                using (SqlCommand cmd = new SqlCommand(query, Conectar))
+                {
+                    cmd.Parameters.AddWithValue("@nombre_usuario", nombreUsuario);
+                    int count = (int)await cmd.ExecuteScalarAsync();
+                    return count > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al verificar existencia de usuario: " + ex.Message);
+            }
+            finally
+            {
+                Cerrar();
+            }
         }
     }
 }

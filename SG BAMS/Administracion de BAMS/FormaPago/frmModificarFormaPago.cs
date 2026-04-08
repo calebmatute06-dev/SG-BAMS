@@ -57,8 +57,18 @@ namespace SG_BAMS
         /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private async void btnModificar_Click(object sender, EventArgs e)
         {
-            // Validar que la descripción cumpla con el formato requerido antes de procesar
             if (!ClsValidaciones.EsNombrePersonalValido(txtDescri.TextBox, "Descripción de Forma de Pago"))
+            {
+                return;
+            }
+
+            if (!ClsValidaciones.ValidarNombreUnico(
+                    control: txtDescri,
+                    tabla: "Tipo_Forma_de_pago",
+                    columnaNombre: "descripcion_forma_pago",
+                    nombreCampo: "Tipo de Forma de Pago",
+                    idExcluir: 0,
+                    idColumna: "id_tipo_forma_pago"))
             {
                 return;
             }
@@ -70,7 +80,6 @@ namespace SG_BAMS
 
                 clsFormaPago objetoFP = new clsFormaPago();
 
-                // Llamada asíncrona a la capa de datos para actualizar el registro
                 bool exito = await objetoFP.ModificarFormaPagoAsync(_idFormaPago, txtDescri.Text.Trim());
 
                 if (exito)

@@ -63,6 +63,16 @@ namespace SG_BAMS
                 return;
             }
 
+            if (!ClsValidaciones.ValidarNombreUnico(
+                    control: txtDescri,
+                    tabla: "Rol",
+                    columnaNombre: "descripcion_rol",
+                    nombreCampo: "Tipo de Rol",
+                    idExcluir: 0,
+                    idColumna: "id_rol_usuario"))
+            {
+                return;
+            }
             try
             {
                 this.Cursor = Cursors.WaitCursor;

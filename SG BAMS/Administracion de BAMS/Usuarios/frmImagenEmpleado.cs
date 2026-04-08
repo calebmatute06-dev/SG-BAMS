@@ -26,6 +26,8 @@ namespace SG_BAMS
         private CascadeClassifier profileFaceDetector = new CascadeClassifier("haarcascade_profileface.xml");
 
         private string usuarioAsignado = "";
+        private int fotosRequeridas = 15;
+        private int fotosAnguloRequeridas = 5;
 
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="frmImagenEmpleado"/>.
@@ -42,8 +44,6 @@ namespace SG_BAMS
         /// <summary>
         /// Procesa cada cuadro capturado por la cámara en tiempo real para detectar y resaltar rostros.
         /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void FrameProcess(object sender, EventArgs e)
         {
             if (camara != null && camaraEnEncendida)
@@ -58,14 +58,17 @@ namespace SG_BAMS
                             {
                                 using (var grayFrame = frame.Convert<Gray, byte>())
                                 {
-                                    CvInvoke.EqualizeHist(grayFrame, grayFrame);
 
-                                    Rectangle[] rostrosFrontales = frontalFaceDetector.DetectMultiScale(grayFrame, 1.1, 10, Size.Empty);
-                                    Rectangle[] rostrosPerfil = profileFaceDetector.DetectMultiScale(grayFrame, 1.1, 10, Size.Empty);
+                                    CvInvoke.EqualizeHist(grayFrame, grayFrame);
+                                    CvInvoke.GaussianBlur(grayFrame, grayFrame, new Size(3, 3), 0);
+
+                                    Rectangle[] rostrosFrontales = frontalFaceDetector.DetectMultiScale(grayFrame, 1.05, 8, Size.Empty);
+                                    Rectangle[] rostrosPerfil = profileFaceDetector.DetectMultiScale(grayFrame, 1.05, 8, Size.Empty);
 
                                     foreach (Rectangle rostro in rostrosFrontales.Concat(rostrosPerfil))
                                     {
-                                        frame.Draw(rostro, new Bgr(Color.LimeGreen), 2);
+
+                                        frame.Draw(rostro, new Bgr(Color.LimeGreen), 3);
                                     }
                                 }
 
@@ -86,7 +89,6 @@ namespace SG_BAMS
         /// <summary>
         /// Gestiona el cierre del formulario, verificando que se hayan realizado las capturas mínimas requeridas.
         /// </summary>
-        /// <param name="e">Datos del evento de cierre.</param>
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             var archivos = Directory.GetFiles(clsSoporte.DirectorioRostros, "*.jpg")
@@ -94,13 +96,13 @@ namespace SG_BAMS
                     Path.GetFileNameWithoutExtension(f).StartsWith(usuarioAsignado + "_"))
                     .ToList();
 
-            if (archivos.Count == 0 && !string.IsNullOrWhiteSpace(usuarioAsignado))
+            if (archivos.Count < fotosRequeridas && !string.IsNullOrWhiteSpace(usuarioAsignado))
             {
                 DialogResult respuesta = MessageBox.Show(
-                    "No se ha registrado ningún rostro para este usuario.\n\n" +
-                    "El usuario NO podrá iniciar sesión sin registro facial.\n\n" +
-                    "¿Estás seguro de que deseas salir sin registrar?",
-                    "Registro facial requerido",
+                    $"Solo se han registrado {archivos.Count} rostros de {fotosRequeridas} requeridos.\n\n" +
+                    "El usuario necesitará al menos 15 fotos para un reconocimiento facial confiable.\n\n" +
+                    "¿Estás seguro de que deseas salir sin completar el registro?",
+                    "Registro facial incompleto",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Warning
                 );
@@ -130,7 +132,6 @@ namespace SG_BAMS
         /// <summary>
         /// Inicializa el dispositivo de captura de video y activa el procesamiento de cuadros.
         /// </summary>
-        /// <param name="mostrarMensajeExito">Indica si se debe notificar al usuario cuando la cámara se encienda.</param>
         private void EncenderCamara(bool mostrarMensajeExito)
         {
             try
@@ -138,6 +139,15 @@ namespace SG_BAMS
                 if (camara == null)
                 {
                     camara = new VideoCapture(0);
+
+
+                    try
+                    {
+                        camara.Set(CapProp.FrameWidth, 640);
+                        camara.Set(CapProp.FrameHeight, 480);
+                        camara.Set(CapProp.AutoExposure, 0.25);
+                    }
+                    catch { }
 
                     if (camara.IsOpened)
                     {
@@ -154,7 +164,7 @@ namespace SG_BAMS
                     {
                         camara.Dispose();
                         camara = null;
-                        MessageBox.Show("No se logro encender la camara intente de nuevo", "Error de Cámara", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("No se logró encender la cámara. Intente de nuevo.", "Error de Cámara", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
                 else
@@ -167,7 +177,7 @@ namespace SG_BAMS
             }
             catch (Exception)
             {
-                MessageBox.Show("No se logro encender la camara intente de nuevo", "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No se logró encender la cámara. Intente de nuevo.", "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -188,7 +198,53 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Realiza una ráfaga de capturas automáticas buscando detectar el rostro para el entrenamiento o registro.
+        /// Verifica la calidad del rostro detectado.
+        /// </summary>
+        /// <summary>
+        /// Verifica la calidad del rostro detectado.
+        /// </summary>
+        private bool VerificarCalidadRostro(Image<Gray, byte> rostro)
+        {
+
+            if (rostro.Width < 100 || rostro.Height < 100)
+                return false;
+
+
+            using (Mat laplacian = new Mat())
+            {
+                CvInvoke.Laplacian(rostro.Mat, laplacian, DepthType.Cv32F, 3);
+
+
+                MCvScalar media = new MCvScalar();
+                MCvScalar desviacion = new MCvScalar();
+
+
+                CvInvoke.MeanStdDev(laplacian, ref media, ref desviacion);
+
+                double varianza = desviacion.V0 * desviacion.V0;
+
+
+                return varianza > 50;
+            }
+        }
+
+        /// <summary>
+        /// Aplica preprocesamiento a la imagen capturada para mejorar la calidad.
+        /// </summary>
+        private Image<Gray, byte> PreprocesarRostro(Image<Gray, byte> rostro)
+        {
+
+            var redimensionado = rostro.Resize(100, 100, Inter.Linear);
+
+
+            CvInvoke.EqualizeHist(redimensionado, redimensionado);
+            CvInvoke.CLAHE(redimensionado, 2.5, new Size(8, 8), redimensionado);
+
+            return redimensionado;
+        }
+
+        /// <summary>
+        /// Realiza captura automática de múltiples fotos con diferentes ángulos y condiciones.
         /// </summary>
         private async void btnCapturar_Click_1(object sender, EventArgs e)
         {
@@ -205,12 +261,40 @@ namespace SG_BAMS
             }
 
             string nombreArchivo = lblUsuario.Text;
+
+
+            var archivosExistentes = Directory.GetFiles(clsSoporte.DirectorioRostros, "*.jpg")
+                .Where(f => Path.GetFileNameWithoutExtension(f).StartsWith(nombreArchivo))
+                .ToList();
+
+            int fotosActuales = archivosExistentes.Count;
+            int fotosNecesarias = fotosRequeridas - fotosActuales;
+
+            if (fotosNecesarias <= 0)
+            {
+                MessageBox.Show($"Ya tienes {fotosActuales} fotos registradas. No necesitas más.\n" +
+                    "Si deseas agregar más, primero borra las existentes.",
+                    "Captura completa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             int fotosTomadas = 0;
             int intentos = 0;
+            int maxIntentos = fotosNecesarias * 10;
 
             btnCapturar.Enabled = false;
 
-            while (fotosTomadas < 5 && intentos < 30)
+
+            MessageBox.Show($"Se capturarán {fotosNecesarias} fotos.\n\n" +
+                "Instrucciones:\n" +
+                "1. Mantén tu rostro centrado\n" +
+                "2. Mueve ligeramente la cabeza entre fotos\n" +
+                "3. Cambia tu expresión (sonríe, serio, etc.)\n" +
+                "4. Asegura buena iluminación\n\n" +
+                "El proceso es automático. Presiona OK para comenzar.",
+                "Captura facial", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            while (fotosTomadas < fotosNecesarias && intentos < maxIntentos)
             {
                 using (var frameMat = camara.QueryFrame())
                 {
@@ -218,30 +302,75 @@ namespace SG_BAMS
                     {
                         using (var frame = frameMat.ToImage<Bgr, byte>())
                         {
-                            var rostro = clsSoporte.DetectarRostro(frame);
-                            if (rostro != null)
+                            using (var grayFrame = frame.Convert<Gray, byte>())
                             {
-                                string nombreFoto = $"{nombreArchivo}_{fotosTomadas + 1}_{DateTime.Now.Ticks}.jpg";
-                                string path = Path.Combine(clsSoporte.DirectorioRostros, nombreFoto);
 
-                                rostro.Save(path);
-                                fotosTomadas++;
+                                CvInvoke.EqualizeHist(grayFrame, grayFrame);
+                                CvInvoke.GaussianBlur(grayFrame, grayFrame, new Size(3, 3), 0);
+
+                                var rostrosFrontales = frontalFaceDetector.DetectMultiScale(grayFrame, 1.05, 8, new Size(80, 80));
+                                var rostro = rostrosFrontales.FirstOrDefault();
+
+                                if (rostro != null && rostro.Width >= 100 && rostro.Height >= 100)
+                                {
+                                    using (var rostroRecortado = grayFrame.GetSubRect(rostro).Clone())
+                                    {
+
+                                        if (VerificarCalidadRostro(rostroRecortado))
+                                        {
+
+                                            var rostroProcesado = PreprocesarRostro(rostroRecortado);
+
+
+                                            string angulo = (fotosTomadas % fotosAnguloRequeridas + 1).ToString();
+                                            string nombreFoto = $"{nombreArchivo}_{fotosActuales + fotosTomadas + 1}_a{angulo}_{DateTime.Now.Ticks}.jpg";
+                                            string path = Path.Combine(clsSoporte.DirectorioRostros, nombreFoto);
+
+                                            rostroProcesado.Save(path);
+                                            fotosTomadas++;
+
+
+                                            await Task.Delay(800);
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
                 }
                 intentos++;
-                await Task.Delay(400);
+                await Task.Delay(100);
             }
 
             btnCapturar.Enabled = true;
 
-            if (fotosTomadas >= 5)
-                MessageBox.Show($"¡Análisis completado! Se guardaron {fotosTomadas} capturas con éxito.", "Éxito");
+            if (fotosTomadas >= fotosNecesarias)
+            {
+                MessageBox.Show($"¡Éxito! Se capturaron {fotosTomadas} fotos con calidad óptima.\n\n" +
+                    $"Total de fotos para {nombreArchivo}: {fotosActuales + fotosTomadas}\n" +
+                    "El reconocimiento facial funcionará correctamente.",
+                    "Captura completada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             else if (fotosTomadas > 0)
-                MessageBox.Show($"Se capturaron {fotosTomadas} fotos. Intenta mover la cabeza más lento para llegar a 5.", "Aviso");
+            {
+                MessageBox.Show($"Se capturaron {fotosTomadas} de {fotosNecesarias} fotos requeridas.\n\n" +
+                    "Sugerencias:\n" +
+                    "- Acércate más a la cámara\n" +
+                    "- Mejora la iluminación frontal\n" +
+                    "- Limpia el lente de la cámara\n\n" +
+                    "Presiona 'Capturar' nuevamente para completar el registro.",
+                    "Captura parcial", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             else
-                MessageBox.Show("No se detectó el rostro. Asegúrate de tener buena iluminación frontal.");
+            {
+                MessageBox.Show("No se detectó ningún rostro válido.\n\n" +
+                    "Verifica:\n" +
+                    "- Buena iluminación frontal\n" +
+                    "- Rostro bien centrado\n" +
+                    "- Cámara funcionando correctamente\n\n" +
+                    "Presiona 'Encender Cámara' y vuelve a intentar.",
+                    "Error de detección", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         /// <summary>
@@ -267,13 +396,22 @@ namespace SG_BAMS
                     return;
                 }
 
-                if (MessageBox.Show($"Se encontraron {archivos.Count} fotos. ¿Estás seguro de eliminarlas?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                DialogResult resultado = MessageBox.Show(
+                    $"Se encontraron {archivos.Count} fotos.\n\n" +
+                    "¿Estás seguro de eliminarlas?\n" +
+                    "El usuario deberá volver a registrar su rostro.",
+                    "Confirmar eliminación",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (resultado == DialogResult.Yes)
                 {
                     foreach (var archivo in archivos)
                     {
                         File.Delete(archivo);
                     }
-                    MessageBox.Show("Fotos eliminadas con éxito.", "Éxito");
+                    MessageBox.Show($"{archivos.Count} fotos eliminadas con éxito.", "Éxito",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (IOException ex)

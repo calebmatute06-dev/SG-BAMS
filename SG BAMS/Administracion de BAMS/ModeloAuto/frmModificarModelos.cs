@@ -45,8 +45,17 @@ namespace SG_BAMS
         /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private async void btnModificar_Click_1(object sender, EventArgs e)
         {
-            // Validación de campo alfanumérico
             if (!ClsValidaciones.EsAlfanumericoValido(txtDescri, "Nombre del Modelo"))
+            {
+                return;
+            }
+            if (!ClsValidaciones.ValidarNombreUnico(
+                    control: txtDescri,
+                    tabla: "Modelo_de_auto",
+                    columnaNombre: "nombre_modelo_auto",
+                    nombreCampo: "Tipo de Modelo de Auto",
+                    idExcluir: 0,
+                    idColumna: "id_modelo_auto"))
             {
                 return;
             }
@@ -58,7 +67,6 @@ namespace SG_BAMS
 
                 clsModeloAuto objetoModelo = new clsModeloAuto();
 
-                // Intento de actualización en la base de datos
                 bool exito = await objetoModelo.ModificarModeloAutoAsync(idModeloSeleccionado, txtDescri.Text.Trim());
 
                 if (exito)

@@ -139,7 +139,7 @@ namespace SG_BAMS
 
 
 
-            dgvProductos.SelectionMode = DataGridViewSelectionMode.CellSelect;
+            dgvProductos.SelectionMode = DataGridViewSelectionMode.FullRowSelect; 
             dgvProductos.EditMode = DataGridViewEditMode.EditOnKeystrokeOrF2;
 
 

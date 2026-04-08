@@ -71,6 +71,16 @@ namespace SG_BAMS
             {
                 return;
             }
+            if (!ClsValidaciones.ValidarNombreUnico(
+                    control: txtDescri,
+                    tabla: "Estado",
+                    columnaNombre: "descripcion_estado",
+                    nombreCampo: "Tipo de Estado",
+                    idExcluir: 0,
+                    idColumna: "id_estado"))
+            {
+                return;
+            }
 
             try
             {

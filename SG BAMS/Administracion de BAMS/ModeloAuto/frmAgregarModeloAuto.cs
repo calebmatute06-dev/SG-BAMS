@@ -35,6 +35,16 @@ namespace SG_BAMS
             {
                 return;
             }
+            if (!ClsValidaciones.ValidarNombreUnico(
+                    control: txtDescri,
+                    tabla: "Modelo_de_auto",
+                    columnaNombre: "nombre_modelo_auto",
+                    nombreCampo: "Tipo de Modelo de Auto",
+                    idExcluir: 0,
+                    idColumna: "id_modelo_auto"))
+            {
+                return;
+            }
 
             try
             {

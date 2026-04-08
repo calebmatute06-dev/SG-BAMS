@@ -60,6 +60,17 @@ namespace SG_BAMS
                 return;
             }
 
+            if (!ClsValidaciones.ValidarNombreUnico(
+                    control: txtDescri,
+                    tabla: "Tipo_producto",
+                    columnaNombre: "descripcion_producto",
+                    nombreCampo: "Tipo de Producto",
+                    idExcluir: 0,
+                    idColumna: "id_tipo_producto"))
+            {
+                return;
+            }
+
             try
             {
                 this.Cursor = Cursors.WaitCursor;

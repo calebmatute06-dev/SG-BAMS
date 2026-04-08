@@ -40,6 +40,16 @@ namespace SG_BAMS
             {
                 return;
             }
+            if (!ClsValidaciones.ValidarNombreUnico(
+                    control: txtdescri,
+                    tabla: "Tipo_Forma_de_pago",
+                    columnaNombre: "descripcion_forma_pago",
+                    nombreCampo: "Tipo de Forma de Pago",
+                    idExcluir: 0,
+                    idColumna: "id_tipo_forma_pago"))
+            {
+                return;
+            }
 
             try
             {

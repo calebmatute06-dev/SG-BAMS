@@ -118,6 +118,8 @@ namespace SG_BAMS
             txtCantidad.Clear();
         }
 
+
+
         /// <summary>
         /// Processes a command key.
         /// </summary>
@@ -135,6 +137,7 @@ namespace SG_BAMS
                 return base.ProcessCmdKey(ref msg, keyData);
             }
 
+
             if ((key >= Keys.D0 && key <= Keys.Z) || (key >= Keys.NumPad0 && key <= Keys.NumPad9))
             {
                 TimeSpan intervalo = DateTime.Now - ultimaTeclaEscaner;
@@ -145,8 +148,11 @@ namespace SG_BAMS
                     txtCodigo.Text = "";
                 }
 
-                char c = (char)key;
-                txtCodigo.AppendText(c.ToString().ToLower());
+
+                string tecla = new KeysConverter().ConvertToString(key);
+
+
+                txtCodigo.AppendText(tecla);
                 return true;
             }
 
@@ -154,6 +160,7 @@ namespace SG_BAMS
             {
                 if (!cmbProductos.Focused && !txtCantidad.Focused && !string.IsNullOrWhiteSpace(txtCodigo.Text))
                 {
+
                     BuscarProductoPorCodigo(txtCodigo.Text.Trim());
                     return true;
                 }
@@ -170,9 +177,13 @@ namespace SG_BAMS
         {
             bool encontrado = false;
 
+            string codigoBusqueda = codigo.ToUpper();
+
             foreach (DataRowView fila in cmbProductos.Items)
             {
-                if (fila.Row["codigo_barra"].ToString().Trim() == codigo)
+                string codFila = fila.Row["codigo_barra"].ToString().Trim().ToUpper();
+
+                if (codFila == codigoBusqueda)
                 {
                     cmbProductos.SelectedItem = fila;
                     encontrado = true;
@@ -183,7 +194,7 @@ namespace SG_BAMS
 
             if (!encontrado)
             {
-                MessageBox.Show($"El producto con este código [{codigo}] no tiene stock en el inventario. o No existe", "BAMS");
+                MessageBox.Show($"El producto con código [{codigo}] no existe o no tiene stock.", "BAMS");
                 txtCodigo.Clear();
                 txtCodigo.Focus();
             }

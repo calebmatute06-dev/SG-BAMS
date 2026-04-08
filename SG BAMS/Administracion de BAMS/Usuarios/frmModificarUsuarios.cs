@@ -45,7 +45,7 @@ namespace SG_BAMS
             this.StartPosition = FormStartPosition.CenterScreen;
             cmbRol.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbEstado.DropDownStyle = ComboBoxStyle.DropDownList;
-            txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
+            txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetrasNumerosSinEspacios(e);
 
             this.idUsuarioSeleccionado = id;
             this.rolInicial = rol;
@@ -111,7 +111,8 @@ namespace SG_BAMS
         /// <param name="e">La instancia de <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private async void btmModificar_Click_1(object sender, EventArgs e)
         {
-            if (!ClsValidaciones.EsNombrePersonalValido(txtNombre, "Nombre de Usuario")) return;
+            if (!ClsValidaciones.EsNombreUsuarioValido(txtNombre.TextBox, "Nombre de Usuario"))
+                return;
 
             if (!string.IsNullOrWhiteSpace(txtContra.Text))
             {
@@ -130,6 +131,15 @@ namespace SG_BAMS
                 btmModificar.Enabled = false;
 
                 clsUsuario objetoUsuario = new clsUsuario();
+                string nombreUsuario = txtNombre.Text.Trim();
+                bool existe = await objetoUsuario.ExisteUsuarioAsync(nombreUsuario);
+                if (existe)
+                {
+                    MessageBox.Show("El nombre de usuario ya está en uso. Por favor elija otro.",
+                        "Usuario duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtNombre.Focus();
+                    return;
+                }
 
                 int idRol = (int)cmbRol.SelectedValue;
                 int idEstado = (int)cmbEstado.SelectedValue;
