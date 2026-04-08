@@ -50,28 +50,25 @@
             // panel2
             // 
             panel2.BackColor = Color.Navy;
-            panel2.Location = new Point(0, 388);
-            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Location = new Point(0, 517);
             panel2.Name = "panel2";
-            panel2.Size = new Size(809, 22);
+            panel2.Size = new Size(925, 29);
             panel2.TabIndex = 88;
             // 
             // pctCamara
             // 
-            pctCamara.Location = new Point(265, 57);
-            pctCamara.Margin = new Padding(3, 2, 3, 2);
+            pctCamara.Location = new Point(303, 76);
             pctCamara.Name = "pctCamara";
-            pctCamara.Size = new Size(486, 295);
+            pctCamara.Size = new Size(555, 393);
             pctCamara.TabIndex = 148;
             pctCamara.TabStop = false;
             // 
             // pictureBox2
             // 
             pictureBox2.BackColor = Color.Navy;
-            pictureBox2.Location = new Point(784, -1);
-            pictureBox2.Margin = new Padding(3, 2, 3, 2);
+            pictureBox2.Location = new Point(896, -1);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(25, 411);
+            pictureBox2.Size = new Size(29, 548);
             pictureBox2.TabIndex = 150;
             pictureBox2.TabStop = false;
             // 
@@ -79,9 +76,8 @@
             // 
             pictureBox1.BackColor = Color.Navy;
             pictureBox1.Location = new Point(0, -1);
-            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(25, 411);
+            pictureBox1.Size = new Size(29, 548);
             pictureBox1.TabIndex = 151;
             pictureBox1.TabStop = false;
             // 
@@ -89,21 +85,19 @@
             // 
             panel1.BackColor = Color.Navy;
             panel1.Location = new Point(0, -1);
-            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(809, 22);
+            panel1.Size = new Size(925, 29);
             panel1.TabIndex = 89;
             // 
             // btnCapturar
             // 
-            btnCapturar.Location = new Point(42, 106);
-            btnCapturar.Margin = new Padding(3, 2, 3, 2);
+            btnCapturar.Location = new Point(48, 141);
             btnCapturar.Name = "btnCapturar";
             btnCapturar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnCapturar.OverrideDefault.Back.Color2 = Color.White;
             btnCapturar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnCapturar.OverrideFocus.Back.Color2 = Color.White;
-            btnCapturar.Size = new Size(209, 51);
+            btnCapturar.Size = new Size(239, 68);
             btnCapturar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnCapturar.StateCommon.Back.Color2 = Color.White;
             btnCapturar.StateCommon.Border.Rounding = 30F;
@@ -120,14 +114,13 @@
             // 
             // btnBorrar
             // 
-            btnBorrar.Location = new Point(42, 162);
-            btnBorrar.Margin = new Padding(3, 2, 3, 2);
+            btnBorrar.Location = new Point(48, 216);
             btnBorrar.Name = "btnBorrar";
             btnBorrar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnBorrar.OverrideDefault.Back.Color2 = Color.White;
             btnBorrar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnBorrar.OverrideFocus.Back.Color2 = Color.White;
-            btnBorrar.Size = new Size(209, 51);
+            btnBorrar.Size = new Size(239, 68);
             btnBorrar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnBorrar.StateCommon.Back.Color2 = Color.White;
             btnBorrar.StateCommon.Border.Rounding = 30F;
@@ -144,14 +137,13 @@
             // 
             // btnEncender
             // 
-            btnEncender.Location = new Point(42, 217);
-            btnEncender.Margin = new Padding(3, 2, 3, 2);
+            btnEncender.Location = new Point(48, 289);
             btnEncender.Name = "btnEncender";
             btnEncender.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnEncender.OverrideDefault.Back.Color2 = Color.White;
             btnEncender.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnEncender.OverrideFocus.Back.Color2 = Color.White;
-            btnEncender.Size = new Size(209, 51);
+            btnEncender.Size = new Size(239, 68);
             btnEncender.StateCommon.Back.Color1 = Color.SkyBlue;
             btnEncender.StateCommon.Back.Color2 = Color.White;
             btnEncender.StateCommon.Border.Rounding = 30F;
@@ -168,14 +160,13 @@
             // 
             // btnDetener
             // 
-            btnDetener.Location = new Point(42, 272);
-            btnDetener.Margin = new Padding(3, 2, 3, 2);
+            btnDetener.Location = new Point(48, 363);
             btnDetener.Name = "btnDetener";
             btnDetener.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnDetener.OverrideDefault.Back.Color2 = Color.White;
             btnDetener.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnDetener.OverrideFocus.Back.Color2 = Color.White;
-            btnDetener.Size = new Size(209, 51);
+            btnDetener.Size = new Size(239, 68);
             btnDetener.StateCommon.Back.Color1 = Color.SkyBlue;
             btnDetener.StateCommon.Back.Color2 = Color.White;
             btnDetener.StateCommon.Border.Rounding = 30F;
@@ -192,14 +183,13 @@
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(31, 334);
-            btnSalir.Margin = new Padding(3, 2, 3, 2);
+            btnSalir.Location = new Point(35, 445);
             btnSalir.Name = "btnSalir";
             btnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnSalir.OverrideDefault.Back.Color2 = Color.White;
             btnSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnSalir.OverrideFocus.Back.Color2 = Color.White;
-            btnSalir.Size = new Size(116, 49);
+            btnSalir.Size = new Size(133, 65);
             btnSalir.StateCommon.Back.Color1 = Color.SkyBlue;
             btnSalir.StateCommon.Back.Color2 = Color.White;
             btnSalir.StateCommon.Border.Rounding = 30F;
@@ -220,9 +210,9 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial Narrow", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(408, 26);
+            label3.Location = new Point(466, 35);
             label3.Name = "label3";
-            label3.Size = new Size(153, 29);
+            label3.Size = new Size(194, 35);
             label3.TabIndex = 342;
             label3.Text = "Registro Facial";
             // 
@@ -232,9 +222,9 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial Narrow", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(91, 27);
+            label1.Location = new Point(104, 36);
             label1.Name = "label1";
-            label1.Size = new Size(97, 29);
+            label1.Size = new Size(122, 35);
             label1.TabIndex = 343;
             label1.Text = "Usuarios";
             // 
@@ -244,9 +234,9 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(698, 357);
+            label2.Location = new Point(788, 475);
             label2.Name = "label2";
-            label2.Size = new Size(84, 29);
+            label2.Size = new Size(102, 35);
             label2.TabIndex = 349;
             label2.Text = "BAMS";
             // 
@@ -256,18 +246,18 @@
             lblUsuario.BackColor = Color.Transparent;
             lblUsuario.Font = new Font("Arial Narrow", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblUsuario.ForeColor = Color.Navy;
-            lblUsuario.Location = new Point(66, 66);
+            lblUsuario.Location = new Point(75, 88);
             lblUsuario.Name = "lblUsuario";
-            lblUsuario.Size = new Size(153, 29);
+            lblUsuario.Size = new Size(194, 35);
             lblUsuario.TabIndex = 350;
             lblUsuario.Text = "Registro Facial";
             // 
             // frmImagenEmpleado
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(809, 410);
+            ClientSize = new Size(925, 547);
             Controls.Add(lblUsuario);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -283,6 +273,7 @@
             Controls.Add(pctCamara);
             Controls.Add(panel2);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "frmImagenEmpleado";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "fmrImagenEmpleado";
