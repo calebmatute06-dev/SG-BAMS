@@ -143,7 +143,7 @@ namespace SG_BAMS
                 .Replace("]", "[]]")
                 .Trim();
 
-            // Siempre aplicar filtro de fechas
+            
             string fDesde = dtpDesde.Value.Date.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
             string fHasta = dtpHasta.Value.Date.AddDays(1).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
 
@@ -160,7 +160,7 @@ namespace SG_BAMS
                 ? string.Join(" AND ", condicionesFecha)
                 : string.Empty;
 
-            // Si hay texto, agregar filtro de texto sobre columnas string
+            
             string filtroTexto = string.Empty;
             if (!string.IsNullOrWhiteSpace(texto))
             {
@@ -168,14 +168,24 @@ namespace SG_BAMS
                 foreach (DataColumn col in dtCompras.Columns)
                 {
                     if (col.DataType == typeof(string))
+                    {
                         condicionesTexto.Add($"[{col.ColumnName}] LIKE '%{texto}%'");
+                    }
+                    else if (col.DataType == typeof(int) || col.DataType == typeof(decimal) ||
+                             col.DataType == typeof(double) || col.DataType == typeof(long))
+                    {
+                       
+                        if (decimal.TryParse(texto, out _))
+                            condicionesTexto.Add($"CONVERT([{col.ColumnName}], System.String) LIKE '%{texto}%'");
+                    }
                 }
+
                 filtroTexto = condicionesTexto.Count > 0
                     ? string.Join(" OR ", condicionesTexto)
                     : string.Empty;
             }
 
-            // Combinar ambos filtros
+            
             string rowFilter;
             if (!string.IsNullOrEmpty(filtroFecha) && !string.IsNullOrEmpty(filtroTexto))
                 rowFilter = $"({filtroFecha}) AND ({filtroTexto})";
