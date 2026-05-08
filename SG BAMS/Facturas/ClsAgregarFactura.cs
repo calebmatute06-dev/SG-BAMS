@@ -28,25 +28,22 @@ namespace SG_BAMS.Facturas
         /// <param name="bateria">The bateria.</param>
         /// <param name="rebaja">The rebaja.</param>
         /// <returns></returns>
-        public async Task<int> AgregarFacturas(int idusuario, int idcliente, int pago, DateTime fecha, int bateria, double rebaja)
+        public async Task<int> AgregarFacturas(int idusuario, int idcliente, int pago, DateTime fecha, int bateria, double rebaja, double totalFactura)
         {
             try
             {
                 AbrirConexion();
-
-                using (SqlCommand cmd = new SqlCommand("PA_insertar_facturas", Conectar))
+                using (SqlCommand cmd = new SqlCommand("PA_insertar_factura", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-
                     cmd.Parameters.AddWithValue("@id_usuario", idusuario);
                     cmd.Parameters.AddWithValue("@id_cliente", idcliente);
                     cmd.Parameters.AddWithValue("@id_tipo_forma_pago", pago);
                     cmd.Parameters.AddWithValue("@fecha_venta", fecha);
                     cmd.Parameters.AddWithValue("@bateria_vieja", bateria);
                     cmd.Parameters.AddWithValue("@manejo_rebaja", rebaja);
-
+                    cmd.Parameters.AddWithValue("@total_factura", totalFactura);
                     int idFactura = Convert.ToInt32(await cmd.ExecuteScalarAsync());
-
                     return idFactura;
                 }
             }

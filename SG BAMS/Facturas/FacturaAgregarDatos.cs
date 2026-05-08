@@ -139,7 +139,7 @@ namespace SG_BAMS
 
 
 
-            dgvProductos.SelectionMode = DataGridViewSelectionMode.FullRowSelect; 
+            dgvProductos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvProductos.EditMode = DataGridViewEditMode.EditOnKeystrokeOrF2;
 
 
@@ -216,6 +216,64 @@ namespace SG_BAMS
         }
 
         /// <summary>
+        /// Crea o actualiza la deuda manualmente con el monto correcto
+        /// </summary>
+        private async Task<bool> CrearDeudaManual(int idFactura, int idCliente, double montoTotal, DateTime fechaVenta)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection("Data Source = AutoBattDB.mssql.somee.com; Initial catalog = AutoBattDB; User ID = exobonnie_SQLLogin_1; Password = w6et2uoghs; TrustServerCertificate=True;"))
+                {
+                    await conn.OpenAsync();
+
+                    // Primero, verificar si ya existe una deuda para esta factura
+                    string checkQuery = "SELECT COUNT(*) FROM Deuda WHERE id_factura = @idFactura";
+                    using (SqlCommand checkCmd = new SqlCommand(checkQuery, conn))
+                    {
+                        checkCmd.Parameters.AddWithValue("@idFactura", idFactura);
+                        int existe = (int)await checkCmd.ExecuteScalarAsync();
+
+                        DateTime fechaFin = fechaVenta.AddDays(30);
+
+                        if (existe > 0)
+                        {
+                            // Actualizar la deuda existente con el monto correcto
+                            string updateQuery = "UPDATE Deuda SET monto_inicial = @monto WHERE id_factura = @idFactura";
+                            using (SqlCommand updateCmd = new SqlCommand(updateQuery, conn))
+                            {
+                                updateCmd.Parameters.AddWithValue("@monto", montoTotal);
+                                updateCmd.Parameters.AddWithValue("@idFactura", idFactura);
+                                int rows = await updateCmd.ExecuteNonQueryAsync();
+                                return rows > 0;
+                            }
+                        }
+                        else
+                        {
+                            // Crear nueva deuda
+                            string insertQuery = @"INSERT INTO Deuda (id_cliente, fecha_inicio, fecha_fin, id_estado, monto_inicial, id_factura) 
+                                                  VALUES (@idCliente, @fechaInicio, @fechaFin, 1, @monto, @idFactura)";
+                            using (SqlCommand insertCmd = new SqlCommand(insertQuery, conn))
+                            {
+                                insertCmd.Parameters.AddWithValue("@idCliente", idCliente);
+                                insertCmd.Parameters.AddWithValue("@fechaInicio", fechaVenta);
+                                insertCmd.Parameters.AddWithValue("@fechaFin", fechaFin);
+                                insertCmd.Parameters.AddWithValue("@monto", montoTotal);
+                                insertCmd.Parameters.AddWithValue("@idFactura", idFactura);
+                                int rows = await insertCmd.ExecuteNonQueryAsync();
+                                return rows > 0;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al crear/actualizar deuda: " + ex.Message);
+                return false;
+            }
+        }
+
+        /// <summary>
         /// Handles the Click event of the BtnAceptar control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
@@ -266,8 +324,11 @@ namespace SG_BAMS
                 int idPago = Convert.ToInt32(cmbPago.SelectedValue);
                 int.TryParse(txtBateria.Text, out int bat);
 
+                // Calcular el total real de la factura
+                double totalFacturaReal = Convert.ToDouble(txtTotal.Text);
+
                 int idFactura = await objAF.AgregarFacturas(idUser, idCliente, idPago,
-                                    DateTFecha.SelectionStart, bat, precioBateria);
+                                    DateTFecha.SelectionStart, bat, precioBateria, totalFacturaReal);
 
                 if (idFactura > 0)
                 {
@@ -298,7 +359,6 @@ namespace SG_BAMS
                         }
                         else
                         {
-
                             objAF.ImprimirFactura(
                                 idFactura,
                                 txtCliente.Text,
@@ -320,13 +380,24 @@ namespace SG_BAMS
 
                     if (formaPagoTexto.Contains("crédito") || formaPagoTexto.Contains("credito"))
                     {
-                        string nombreCliente = txtCliente.Text.Trim();
-                        string montoTotal = txtTotal.Text;
-                        DateTime fechaVenta = DateTFecha.SelectionStart;
+                        double montoTotalReal = Convert.ToDouble(txtTotal.Text);
+                        bool deudaCreada = await CrearDeudaManual(idFactura, idCliente, montoTotalReal, DateTFecha.SelectionStart);
 
-                        using (Información_Deudores frmInfo = new Información_Deudores(idFactura, nombreCliente, montoTotal, fechaVenta))
+                        if (deudaCreada)
                         {
-                            frmInfo.ShowDialog();
+                            string nombreCliente = txtCliente.Text.Trim();
+                            string montoTotal = txtTotal.Text;
+                            DateTime fechaVenta = DateTFecha.SelectionStart;
+
+                            using (Información_Deudores frmInfo = new Información_Deudores(idFactura, nombreCliente, montoTotal, fechaVenta))
+                            {
+                                frmInfo.ShowDialog();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error al crear la deuda. El monto no se registró correctamente.",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
 
