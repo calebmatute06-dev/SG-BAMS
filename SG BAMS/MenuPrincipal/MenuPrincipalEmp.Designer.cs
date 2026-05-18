@@ -610,7 +610,6 @@ namespace SG_BAMS
             btnMenu.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             btnMenu.TabIndex = 405;
             btnMenu.Text = "Menu Principal";
-       
             // 
             // btnPerfil
             // 
