@@ -18,7 +18,7 @@ namespace SG_BAMS
     {
        
         private readonly HttpClient _client;
-        private readonly string _apiKey = "TU_API_KEY_AQUI";  // <-- pon tu clave Groq aquí
+        private readonly string _apiKey = "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";  // <-- pon tu clave Groq aquí
         private readonly string _url = "https://api.groq.com/openai/v1/chat/completions";
         private readonly string _modelo = "llama-3.1-8b-instant";
 
