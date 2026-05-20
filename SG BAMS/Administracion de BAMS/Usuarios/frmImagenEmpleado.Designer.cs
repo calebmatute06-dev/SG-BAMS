@@ -36,7 +36,6 @@
             btnCapturar = new Krypton.Toolkit.KryptonButton();
             btnBorrar = new Krypton.Toolkit.KryptonButton();
             btnEncender = new Krypton.Toolkit.KryptonButton();
-            btnDetener = new Krypton.Toolkit.KryptonButton();
             btnSalir = new Krypton.Toolkit.KryptonButton();
             label3 = new Label();
             label1 = new Label();
@@ -158,29 +157,6 @@
             btnEncender.Values.Text = "Encender Cámara";
             btnEncender.Click += btnEncender_Click;
             // 
-            // btnDetener
-            // 
-            btnDetener.Location = new Point(48, 363);
-            btnDetener.Name = "btnDetener";
-            btnDetener.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnDetener.OverrideDefault.Back.Color2 = Color.White;
-            btnDetener.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnDetener.OverrideFocus.Back.Color2 = Color.White;
-            btnDetener.Size = new Size(239, 68);
-            btnDetener.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnDetener.StateCommon.Back.Color2 = Color.White;
-            btnDetener.StateCommon.Border.Rounding = 30F;
-            btnDetener.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnDetener.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnDetener.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnDetener.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            btnDetener.StatePressed.Back.Color1 = Color.Transparent;
-            btnDetener.StatePressed.Back.Color2 = Color.Transparent;
-            btnDetener.TabIndex = 155;
-            btnDetener.Values.DropDownArrowColor = Color.Empty;
-            btnDetener.Values.Text = "Detener Cámara";
-            btnDetener.Click += btnDetener_Click;
-            // 
             // btnSalir
             // 
             btnSalir.Location = new Point(35, 445);
@@ -263,7 +239,6 @@
             Controls.Add(label1);
             Controls.Add(label3);
             Controls.Add(btnSalir);
-            Controls.Add(btnDetener);
             Controls.Add(btnEncender);
             Controls.Add(btnBorrar);
             Controls.Add(btnCapturar);
@@ -294,7 +269,6 @@
         private Krypton.Toolkit.KryptonButton btnCapturar;
         private Krypton.Toolkit.KryptonButton btnBorrar;
         private Krypton.Toolkit.KryptonButton btnEncender;
-        private Krypton.Toolkit.KryptonButton btnDetener;
         private Krypton.Toolkit.KryptonButton btnSalir;
         private Label label3;
         private Label label1;
