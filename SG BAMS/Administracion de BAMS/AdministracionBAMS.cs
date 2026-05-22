@@ -1,4 +1,5 @@
-﻿using SG_BAMS.Bitacora;
+﻿using SG_BAMS.Administracion_de_BAMS.Clasificacion;
+using SG_BAMS.Bitacora;
 using SG_BAMS.Proveedor;
 using SG_BAMS.Reporte;
 using System;
@@ -256,6 +257,13 @@ namespace SG_BAMS
         {
             Perfil perfil = new Perfil();
             perfil.Show();
+        }
+
+        private void btnClasificacion_Click(object sender, EventArgs e)
+        {
+            Clasificacion clasificacion = new Clasificacion();
+            clasificacion.Show();
+            this.Close();
         }
     }
 }

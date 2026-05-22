@@ -62,6 +62,8 @@
             btnProveedores = new ReaLTaiizor.Controls.NightButton();
             btnDeudores = new ReaLTaiizor.Controls.NightButton();
             btnMenu = new ReaLTaiizor.Controls.NightButton();
+            label7 = new Label();
+            btnClasificacion = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
             SuspendLayout();
@@ -659,12 +661,49 @@
             btnMenu.Text = "Menu Principal";
             btnMenu.Click += btnMenu_Click;
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Arial Narrow", 15.75F);
+            label7.ForeColor = Color.Navy;
+            label7.Location = new Point(396, 588);
+            label7.Name = "label7";
+            label7.Size = new Size(117, 25);
+            label7.TabIndex = 162;
+            label7.Text = "Clasificación ";
+            // 
+            // btnClasificacion
+            // 
+            btnClasificacion.Location = new Point(698, 573);
+            btnClasificacion.Margin = new Padding(3, 2, 3, 2);
+            btnClasificacion.Name = "btnClasificacion";
+            btnClasificacion.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnClasificacion.OverrideDefault.Back.Color2 = Color.White;
+            btnClasificacion.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnClasificacion.OverrideFocus.Back.Color2 = Color.White;
+            btnClasificacion.Size = new Size(90, 40);
+            btnClasificacion.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnClasificacion.StateCommon.Back.Color2 = Color.White;
+            btnClasificacion.StateCommon.Border.Rounding = 30F;
+            btnClasificacion.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnClasificacion.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnClasificacion.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnClasificacion.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnClasificacion.StatePressed.Back.Color1 = Color.Transparent;
+            btnClasificacion.StatePressed.Back.Color2 = Color.Transparent;
+            btnClasificacion.TabIndex = 163;
+            btnClasificacion.Values.DropDownArrowColor = Color.Empty;
+            btnClasificacion.Values.Text = "Ver";
+            btnClasificacion.Click += btnClasificacion_Click;
+            // 
             // AdministracionBAMS
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(964, 679);
+            Controls.Add(btnClasificacion);
+            Controls.Add(label7);
             Controls.Add(label6);
             Controls.Add(btnEstado);
             Controls.Add(btnMauto);
@@ -745,5 +784,7 @@
         private ReaLTaiizor.Controls.NightButton btnProveedores;
         private ReaLTaiizor.Controls.NightButton btnDeudores;
         private ReaLTaiizor.Controls.NightButton btnMenu;
+        private Label label7;
+        private Krypton.Toolkit.KryptonButton btnClasificacion;
     }
 }
