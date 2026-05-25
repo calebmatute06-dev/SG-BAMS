@@ -35,6 +35,11 @@
             label10 = new Label();
             kryptonGroupBox2 = new Krypton.Toolkit.KryptonGroupBox();
             btnSalir = new Krypton.Toolkit.KryptonButton();
+            panel8 = new Panel();
+            panel1 = new Panel();
+            panel3 = new Panel();
+            panel4 = new Panel();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).BeginInit();
             SuspendLayout();
@@ -43,14 +48,14 @@
             // 
             lstIA.FormattingEnabled = true;
             lstIA.ItemHeight = 15;
-            lstIA.Location = new Point(12, 72);
+            lstIA.Location = new Point(34, 102);
             lstIA.Name = "lstIA";
             lstIA.Size = new Size(869, 409);
             lstIA.TabIndex = 0;
             // 
             // btnEnviar
             // 
-            btnEnviar.Location = new Point(635, 495);
+            btnEnviar.Location = new Point(656, 525);
             btnEnviar.Margin = new Padding(3, 2, 3, 2);
             btnEnviar.Name = "btnEnviar";
             btnEnviar.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -74,7 +79,7 @@
             // 
             // btnBorrar
             // 
-            btnBorrar.Location = new Point(766, 495);
+            btnBorrar.Location = new Point(788, 524);
             btnBorrar.Margin = new Padding(3, 2, 3, 2);
             btnBorrar.Name = "btnBorrar";
             btnBorrar.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -98,7 +103,7 @@
             // 
             // txtInfo
             // 
-            txtInfo.Location = new Point(12, 503);
+            txtInfo.Location = new Point(30, 531);
             txtInfo.Name = "txtInfo";
             txtInfo.Size = new Size(617, 29);
             txtInfo.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -112,7 +117,7 @@
             label10.BackColor = Color.SkyBlue;
             label10.Font = new Font("Arial Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Navy;
-            label10.Location = new Point(408, 22);
+            label10.Location = new Point(432, 47);
             label10.Name = "label10";
             label10.Size = new Size(97, 33);
             label10.TabIndex = 330;
@@ -121,7 +126,7 @@
             // kryptonGroupBox2
             // 
             kryptonGroupBox2.CaptionVisible = false;
-            kryptonGroupBox2.Location = new Point(300, 12);
+            kryptonGroupBox2.Location = new Point(324, 37);
             kryptonGroupBox2.Size = new Size(301, 49);
             kryptonGroupBox2.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonGroupBox2.StateCommon.Border.Rounding = 50F;
@@ -129,7 +134,7 @@
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(756, 30);
+            btnSalir.Location = new Point(778, 57);
             btnSalir.Margin = new Padding(3, 2, 3, 2);
             btnSalir.Name = "btnSalir";
             btnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -151,12 +156,65 @@
             btnSalir.Values.Text = "Salir";
             btnSalir.Click += btnSalir_Click;
             // 
+            // panel8
+            // 
+            panel8.BackColor = Color.Navy;
+            panel8.Location = new Point(-1, 0);
+            panel8.Margin = new Padding(3, 2, 3, 2);
+            panel8.Name = "panel8";
+            panel8.Size = new Size(950, 20);
+            panel8.TabIndex = 333;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.Navy;
+            panel1.Location = new Point(-1, 571);
+            panel1.Margin = new Padding(3, 2, 3, 2);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(950, 20);
+            panel1.TabIndex = 334;
+            // 
+            // panel3
+            // 
+            panel3.BackColor = Color.Navy;
+            panel3.Location = new Point(-1, 0);
+            panel3.Margin = new Padding(3, 2, 3, 2);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(20, 950);
+            panel3.TabIndex = 335;
+            // 
+            // panel4
+            // 
+            panel4.BackColor = Color.Navy;
+            panel4.Location = new Point(924, 0);
+            panel4.Margin = new Padding(3, 2, 3, 2);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(20, 950);
+            panel4.TabIndex = 336;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.BackColor = Color.Transparent;
+            label5.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.Navy;
+            label5.Location = new Point(19, 21);
+            label5.Name = "label5";
+            label5.Size = new Size(84, 29);
+            label5.TabIndex = 347;
+            label5.Text = "BAMS";
+            // 
             // AsistentedeIA
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(893, 544);
+            ClientSize = new Size(943, 590);
+            Controls.Add(label5);
+            Controls.Add(panel4);
+            Controls.Add(panel3);
+            Controls.Add(panel1);
+            Controls.Add(panel8);
             Controls.Add(btnSalir);
             Controls.Add(label10);
             Controls.Add(kryptonGroupBox2);
@@ -183,5 +241,11 @@
         private Label label10;
         private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox2;
         private Krypton.Toolkit.KryptonButton btnSalir;
+        private Panel panel2;
+        private Panel panel8;
+        private Panel panel1;
+        private Panel panel3;
+        private Panel panel4;
+        private Label label5;
     }
 }
