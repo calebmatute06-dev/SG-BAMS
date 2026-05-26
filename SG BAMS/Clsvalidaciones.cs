@@ -410,6 +410,8 @@ namespace SG_BAMS
                 dtpInicio.Value = dtpFin.Value;
         }
 
+        private static readonly int[] Municipios = { 0, 28, 12, 11, 9, 8, 28, 16, 19, 23, 16, 16, 28, 11, 4, 8, 12, 11, 6 };
+
         /// <summary>
         /// Valida el formato del RTN hondureño (14 dígitos, código de departamento, tipo y año).
         /// </summary>
@@ -430,6 +432,16 @@ namespace SG_BAMS
             {
                 MessageBox.Show("El código de departamento es inválido.",
                     "Ubicación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                control.Focus();
+                return false;
+            }
+
+
+            int municipio = int.Parse(rtn.Substring(2, 2));
+            if (municipio < 1 || municipio > Municipios[depto])
+            {
+                MessageBox.Show("El código de municipio es inválido.",
+                    "Municipio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
             }
