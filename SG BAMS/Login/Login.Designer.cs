@@ -53,9 +53,9 @@
             label3.AutoSize = true;
             label3.Font = new Font("Arial Narrow", 60F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(346, 43);
+            label3.Location = new Point(429, 106);
             label3.Name = "label3";
-            label3.Size = new Size(233, 94);
+            label3.Size = new Size(290, 116);
             label3.TabIndex = 6;
             label3.Text = "BAMS";
             // 
@@ -64,19 +64,17 @@
             picBa.BackColor = Color.Transparent;
             picBa.BackgroundImageLayout = ImageLayout.Stretch;
             picBa.Image = Properties.Resources.Bateria_1;
-            picBa.Location = new Point(49, 75);
-            picBa.Margin = new Padding(3, 2, 3, 2);
+            picBa.Location = new Point(79, 203);
             picBa.Name = "picBa";
-            picBa.Size = new Size(202, 185);
+            picBa.Size = new Size(231, 187);
             picBa.TabIndex = 8;
             picBa.TabStop = false;
             // 
             // txtUsu
             // 
-            txtUsu.Location = new Point(410, 150);
-            txtUsu.Margin = new Padding(3, 2, 3, 2);
+            txtUsu.Location = new Point(503, 273);
             txtUsu.Name = "txtUsu";
-            txtUsu.Size = new Size(192, 39);
+            txtUsu.Size = new Size(270, 44);
             txtUsu.StateCommon.Back.Color1 = Color.SkyBlue;
             txtUsu.StateCommon.Border.Rounding = 20F;
             txtUsu.StateCommon.Content.Color1 = Color.Navy;
@@ -85,10 +83,9 @@
             // 
             // txtCon
             // 
-            txtCon.Location = new Point(410, 205);
-            txtCon.Margin = new Padding(3, 2, 3, 2);
+            txtCon.Location = new Point(503, 346);
             txtCon.Name = "txtCon";
-            txtCon.Size = new Size(192, 39);
+            txtCon.Size = new Size(270, 44);
             txtCon.StateCommon.Back.Color1 = Color.SkyBlue;
             txtCon.StateCommon.Border.Rounding = 20F;
             txtCon.StateCommon.Content.Color1 = Color.Navy;
@@ -98,29 +95,26 @@
             // panel2
             // 
             panel2.BackColor = Color.Navy;
-            panel2.Location = new Point(-132, 176);
-            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Location = new Point(-151, 235);
             panel2.Name = "panel2";
-            panel2.Size = new Size(10, 26);
+            panel2.Size = new Size(11, 35);
             panel2.TabIndex = 42;
             // 
             // pictureBox4
             // 
             pictureBox4.BackColor = Color.Navy;
-            pictureBox4.Location = new Point(-1, -3);
-            pictureBox4.Margin = new Padding(3, 2, 3, 2);
+            pictureBox4.Location = new Point(-1, -4);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(21, 484);
+            pictureBox4.Size = new Size(24, 645);
             pictureBox4.TabIndex = 9;
             pictureBox4.TabStop = false;
             // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Navy;
-            pictureBox1.Location = new Point(679, -13);
-            pictureBox1.Margin = new Padding(3, 2, 3, 2);
+            pictureBox1.Location = new Point(901, -18);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(21, 494);
+            pictureBox1.Size = new Size(24, 659);
             pictureBox1.TabIndex = 43;
             pictureBox1.TabStop = false;
             // 
@@ -128,32 +122,29 @@
             // 
             pictureBox2.BackColor = Color.Navy;
             pictureBox2.Location = new Point(-1, 0);
-            pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(701, 18);
+            pictureBox2.Size = new Size(926, 24);
             pictureBox2.TabIndex = 44;
             pictureBox2.TabStop = false;
             // 
             // pictureBox3
             // 
             pictureBox3.BackColor = Color.Navy;
-            pictureBox3.Location = new Point(-1, 337);
-            pictureBox3.Margin = new Padding(3, 2, 3, 2);
+            pictureBox3.Location = new Point(-1, 591);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(701, 23);
+            pictureBox3.Size = new Size(926, 31);
             pictureBox3.TabIndex = 45;
             pictureBox3.TabStop = false;
             // 
             // btninicioSesion1
             // 
-            btninicioSesion1.Location = new Point(249, 272);
-            btninicioSesion1.Margin = new Padding(3, 2, 3, 2);
+            btninicioSesion1.Location = new Point(368, 444);
             btninicioSesion1.Name = "btninicioSesion1";
             btninicioSesion1.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btninicioSesion1.OverrideDefault.Back.Color2 = Color.White;
             btninicioSesion1.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btninicioSesion1.OverrideFocus.Back.Color2 = Color.White;
-            btninicioSesion1.Size = new Size(196, 45);
+            btninicioSesion1.Size = new Size(224, 60);
             btninicioSesion1.StateCommon.Back.Color1 = Color.SkyBlue;
             btninicioSesion1.StateCommon.Back.Color2 = Color.White;
             btninicioSesion1.StateCommon.Border.Rounding = 30F;
@@ -170,14 +161,13 @@
             // 
             // btnsalirLogin1
             // 
-            btnsalirLogin1.Location = new Point(451, 272);
-            btnsalirLogin1.Margin = new Padding(3, 2, 3, 2);
+            btnsalirLogin1.Location = new Point(598, 444);
             btnsalirLogin1.Name = "btnsalirLogin1";
             btnsalirLogin1.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnsalirLogin1.OverrideDefault.Back.Color2 = Color.White;
             btnsalirLogin1.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnsalirLogin1.OverrideFocus.Back.Color2 = Color.White;
-            btnsalirLogin1.Size = new Size(196, 45);
+            btnsalirLogin1.Size = new Size(224, 60);
             btnsalirLogin1.StateCommon.Back.Color1 = Color.SkyBlue;
             btnsalirLogin1.StateCommon.Back.Color2 = Color.White;
             btnsalirLogin1.StateCommon.Border.Rounding = 30F;
@@ -198,9 +188,9 @@
             Nombre.BackColor = Color.Transparent;
             Nombre.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             Nombre.ForeColor = Color.Navy;
-            Nombre.Location = new Point(313, 157);
+            Nombre.Location = new Point(392, 282);
             Nombre.Name = "Nombre";
-            Nombre.Size = new Size(89, 22);
+            Nombre.Size = new Size(107, 27);
             Nombre.TabIndex = 339;
             Nombre.Text = "Usuario:";
             // 
@@ -210,18 +200,18 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(278, 211);
+            label1.Location = new Point(352, 354);
             label1.Name = "label1";
-            label1.Size = new Size(125, 22);
+            label1.Size = new Size(148, 27);
             label1.TabIndex = 339;
             label1.Text = "Contraseña:";
             // 
             // Login
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(700, 356);
+            ClientSize = new Size(925, 619);
             Controls.Add(label1);
             Controls.Add(Nombre);
             Controls.Add(btnsalirLogin1);
@@ -237,7 +227,6 @@
             Controls.Add(label3);
             ForeColor = SystemColors.ActiveCaptionText;
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 2, 3, 2);
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
