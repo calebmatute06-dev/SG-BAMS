@@ -1,5 +1,6 @@
 ﻿using DocumentFormat.OpenXml.Spreadsheet;
 using Microsoft.Data.SqlClient;
+using SG_BAMS.Login;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -50,17 +51,21 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
 
         /// <summary>
         /// Registra un nuevo usuario en la base de datos de forma asíncrona.
+        /// La contraseña se hashea con SHA-256 antes de enviarse al procedimiento almacenado.
         /// </summary>
         /// <param name="nombre">Nombre de identificación del usuario.</param>
-        /// <param name="password">Contraseña de acceso.</param>
+        /// <param name="password">Contraseña en texto plano ingresada por el usuario.</param>
         /// <param name="idRol">Identificador del rol asignado.</param>
-        /// <param name="imagen">Arreglo de bytes que representa la imagen de perfil o rostro del usuario.</param>
+        /// <param name="imagen">Arreglo de bytes que representa la imagen de perfil del usuario.</param>
         /// <returns>True si el registro fue exitoso; de lo contrario, False.</returns>
         /// <exception cref="System.Exception">Lanzada cuando falla el procedimiento almacenado de inserción.</exception>
         public async Task<bool> InsertarUsuarioAsync(string nombre, string password, int idRol, byte[] imagen)
         {
             try
             {
+                
+                string passwordHasheado = ClsSeguridad.HashSHA256(password);
+
                 AbrirConexion();
 
                 using (SqlCommand cmd = new SqlCommand("PA_insertar_usuario", Conectar))
@@ -68,7 +73,7 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.AddWithValue("@nombre_usuario", nombre);
-                    cmd.Parameters.AddWithValue("@contraseña_login", password);
+                    cmd.Parameters.AddWithValue("@contraseña_login", passwordHasheado);
                     cmd.Parameters.AddWithValue("@id_rol_usuario", idRol);
 
                     SqlParameter paramImg = new SqlParameter("@imagen_usuario", SqlDbType.Image);
@@ -122,27 +127,41 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
 
         /// <summary>
         /// Actualiza de forma asíncrona la información de un usuario existente.
+        /// Si la contraseña viene vacía, el procedimiento conserva la contraseña actual en la BD.
+        /// Si viene con valor, se hashea con SHA-256 antes de enviarse.
         /// </summary>
         /// <param name="id">Identificador único del usuario a modificar.</param>
         /// <param name="nombre">Nuevo nombre de usuario.</param>
-        /// <param name="password">Nueva contraseña o contraseña actual.</param>
+        /// <param name="password">Nueva contraseña en texto plano, o cadena vacía para no cambiarla.</param>
         /// <param name="idRol">Nuevo identificador de rol.</param>
         /// <param name="idEstado">Nuevo identificador de estado (Activo/Inactivo).</param>
         /// <param name="imagen">Nuevo arreglo de bytes de la imagen del usuario.</param>
         /// <returns>True si la actualización fue exitosa; de lo contrario, False.</returns>
         /// <exception cref="System.Exception">Lanzada cuando ocurre un error en el procedimiento de actualización.</exception>
-        public async Task<bool> ModificarUsuarioAsync(int id, string nombre, string password, int idRol, int idEstado, byte[] imagen)
+        public async Task<bool> ModificarUsuarioAsync(int id, string nombre, string password,
+                                                       int idRol, int idEstado, byte[] imagen)
         {
             try
             {
+               
+                string passwordFinal = string.IsNullOrWhiteSpace(password)
+                    ? null
+                    : ClsSeguridad.HashSHA256(password.Trim());
+
                 AbrirConexion();
+
                 using (SqlCommand cmd = new SqlCommand("PA_actualizar_usuario", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.AddWithValue("@id_usuario", id);
                     cmd.Parameters.AddWithValue("@nombre_usuario", nombre);
-                    cmd.Parameters.AddWithValue("@contraseña_login", password.Trim());
+
+                    
+                    SqlParameter paramPass = new SqlParameter("@contraseña_login", SqlDbType.VarChar, 64);
+                    paramPass.Value = (object)passwordFinal ?? DBNull.Value;
+                    cmd.Parameters.Add(paramPass);
+
                     cmd.Parameters.AddWithValue("@id_rol_usuario", idRol);
                     cmd.Parameters.AddWithValue("@id_estado", idEstado);
 
@@ -150,8 +169,9 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
                     paramImg.Value = (object)imagen ?? DBNull.Value;
                     cmd.Parameters.Add(paramImg);
 
-                    int filasAfectadas = await cmd.ExecuteNonQueryAsync();
-                    return filasAfectadas > 0;
+                    
+                    await cmd.ExecuteNonQueryAsync();
+                    return true;
                 }
             }
             catch (Exception ex)
@@ -196,17 +216,30 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
         }
 
         /// <summary>
-        /// Verifica si ya existe un usuario con el nombre indicado.
+        /// Verifica si ya existe un usuario con el nombre indicado,
+        /// opcionalmente excluyendo un id para no detectar al propio usuario al editar.
         /// </summary>
-        public async Task<bool> ExisteUsuarioAsync(string nombreUsuario)
+        /// <param name="nombreUsuario">Nombre de usuario a verificar.</param>
+        /// <param name="idExcluir">Id del usuario a ignorar en la búsqueda (0 = ninguno).</param>
+        /// <returns>True si el nombre ya está en uso por otro usuario; de lo contrario, False.</returns>
+        /// <exception cref="System.Exception">Lanzada cuando ocurre un error en la consulta.</exception>
+        public async Task<bool> ExisteUsuarioAsync(string nombreUsuario, int idExcluir = 0)
         {
             try
             {
                 AbrirConexion();
-                string query = "SELECT COUNT(1) FROM usuario WHERE nombre_usuario = @nombre_usuario";
+
+                
+                string query = idExcluir > 0
+                    ? "SELECT COUNT(1) FROM Usuario WHERE nombre_usuario = @nombre_usuario AND id_usuario <> @id_excluir"
+                    : "SELECT COUNT(1) FROM Usuario WHERE nombre_usuario = @nombre_usuario";
+
                 using (SqlCommand cmd = new SqlCommand(query, Conectar))
                 {
                     cmd.Parameters.AddWithValue("@nombre_usuario", nombreUsuario);
+                    if (idExcluir > 0)
+                        cmd.Parameters.AddWithValue("@id_excluir", idExcluir);
+
                     int count = (int)await cmd.ExecuteScalarAsync();
                     return count > 0;
                 }
