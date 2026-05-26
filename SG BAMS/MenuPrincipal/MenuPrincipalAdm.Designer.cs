@@ -440,7 +440,7 @@
             btnadmin.FlatAppearance.BorderSize = 0;
             btnadmin.FlatStyle = FlatStyle.Flat;
             btnadmin.ForeColor = Color.Navy;
-            btnadmin.Location = new Point(1015, 31);
+            btnadmin.Location = new Point(1212, 30);
             btnadmin.Name = "btnadmin";
             btnadmin.Size = new Size(59, 44);
             btnadmin.TabIndex = 97;
@@ -475,7 +475,7 @@
             // 
             // btnAsis
             // 
-            btnAsis.Location = new Point(894, 33);
+            btnAsis.Location = new Point(1091, 32);
             btnAsis.Name = "btnAsis";
             btnAsis.OverrideDefault.Back.Color1 = Color.Transparent;
             btnAsis.OverrideDefault.Back.Color2 = Color.Transparent;
