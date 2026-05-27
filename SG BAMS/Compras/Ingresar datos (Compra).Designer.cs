@@ -32,7 +32,6 @@
             pictureBox1 = new PictureBox();
             panel3 = new Panel();
             panel1 = new Panel();
-            kryptonGroup1 = new Krypton.Toolkit.KryptonGroup();
             dtpFechaPedido = new Krypton.Toolkit.KryptonMonthCalendar();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
             lblIDCompra = new Krypton.Toolkit.KryptonLabel();
@@ -56,8 +55,6 @@
             dgvIngresarCompra = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cmbProveedor).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cmbFormaPago).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvIngresarCompra).BeginInit();
@@ -101,19 +98,10 @@
             panel1.Size = new Size(898, 18);
             panel1.TabIndex = 55;
             // 
-            // kryptonGroup1
-            // 
-            kryptonGroup1.Location = new Point(24, 19);
-            kryptonGroup1.Margin = new Padding(3, 2, 3, 2);
-            kryptonGroup1.Size = new Size(175, 44);
-            kryptonGroup1.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroup1.StateCommon.Border.Rounding = 70F;
-            kryptonGroup1.TabIndex = 80;
-            // 
             // dtpFechaPedido
             // 
             dtpFechaPedido.Enabled = false;
-            dtpFechaPedido.Location = new Point(624, 114);
+            dtpFechaPedido.Location = new Point(629, 114);
             dtpFechaPedido.Margin = new Padding(3, 2, 3, 2);
             dtpFechaPedido.Name = "dtpFechaPedido";
             dtpFechaPedido.Size = new Size(230, 182);
@@ -126,7 +114,7 @@
             // 
             // lblIDCompra
             // 
-            lblIDCompra.Location = new Point(145, 70);
+            lblIDCompra.Location = new Point(145, 69);
             lblIDCompra.Margin = new Padding(3, 2, 3, 2);
             lblIDCompra.Name = "lblIDCompra";
             lblIDCompra.Size = new Size(119, 23);
@@ -138,12 +126,12 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.BackColor = Color.SkyBlue;
-            label1.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Arial", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(39, 32);
+            label1.Location = new Point(317, 25);
             label1.Name = "label1";
-            label1.Size = new Size(137, 19);
+            label1.Size = new Size(272, 37);
             label1.TabIndex = 150;
             label1.Text = "Ingresar Compra";
             // 
@@ -196,7 +184,7 @@
             // 
             // txtNotaDetalle
             // 
-            txtNotaDetalle.Location = new Point(197, 156);
+            txtNotaDetalle.Location = new Point(197, 162);
             txtNotaDetalle.Margin = new Padding(3, 2, 3, 2);
             txtNotaDetalle.Name = "txtNotaDetalle";
             txtNotaDetalle.Size = new Size(242, 29);
@@ -207,7 +195,7 @@
             // cmbProveedor
             // 
             cmbProveedor.DropDownWidth = 300;
-            cmbProveedor.Location = new Point(197, 123);
+            cmbProveedor.Location = new Point(197, 124);
             cmbProveedor.Margin = new Padding(3, 2, 3, 2);
             cmbProveedor.Name = "cmbProveedor";
             cmbProveedor.Size = new Size(273, 34);
@@ -223,7 +211,7 @@
             // 
             cmbFormaPago.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbFormaPago.DropDownWidth = 300;
-            cmbFormaPago.Location = new Point(197, 89);
+            cmbFormaPago.Location = new Point(197, 86);
             cmbFormaPago.Margin = new Padding(3, 2, 3, 2);
             cmbFormaPago.Name = "cmbFormaPago";
             cmbFormaPago.Size = new Size(172, 34);
@@ -337,7 +325,7 @@
             label9.BackColor = Color.Transparent;
             label9.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label9.ForeColor = Color.Navy;
-            label9.Location = new Point(32, 70);
+            label9.Location = new Point(32, 69);
             label9.Name = "label9";
             label9.Size = new Size(115, 22);
             label9.TabIndex = 343;
@@ -349,7 +337,7 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(27, 98);
+            label2.Location = new Point(27, 95);
             label2.Name = "label2";
             label2.Size = new Size(157, 22);
             label2.TabIndex = 344;
@@ -361,7 +349,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(70, 128);
+            label3.Location = new Point(70, 133);
             label3.Name = "label3";
             label3.Size = new Size(115, 22);
             label3.TabIndex = 345;
@@ -373,7 +361,7 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(124, 158);
+            label5.Location = new Point(124, 165);
             label5.Name = "label5";
             label5.Size = new Size(59, 22);
             label5.TabIndex = 346;
@@ -428,7 +416,6 @@
             Controls.Add(label1);
             Controls.Add(lblIDCompra);
             Controls.Add(dtpFechaPedido);
-            Controls.Add(kryptonGroup1);
             Controls.Add(panel1);
             Controls.Add(panel3);
             Controls.Add(pictureBox1);
@@ -440,8 +427,6 @@
             Load += Ingresar_datos__Compra__Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup1).EndInit();
             ((System.ComponentModel.ISupportInitialize)cmbProveedor).EndInit();
             ((System.ComponentModel.ISupportInitialize)cmbFormaPago).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvIngresarCompra).EndInit();
@@ -455,7 +440,6 @@
         private PictureBox pictureBox1;
         private Panel panel3;
         private Panel panel1;
-        private Krypton.Toolkit.KryptonGroup kryptonGroup1;
         private Krypton.Toolkit.KryptonMonthCalendar dtpFechaPedido;
         private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
         private Krypton.Toolkit.KryptonLabel lblIDCompra;

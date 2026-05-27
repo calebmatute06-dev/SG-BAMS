@@ -43,7 +43,6 @@
             panel4 = new Panel();
             panel2 = new Panel();
             pictureBox2 = new PictureBox();
-            kryptonGroupBox2 = new Krypton.Toolkit.KryptonGroupBox();
             txtBuscar = new Krypton.Toolkit.KryptonTextBox();
             btnRefresh = new Button();
             dtpHasta = new DateTimePicker();
@@ -66,20 +65,18 @@
             btnDeudores = new ReaLTaiizor.Controls.NightButton();
             btnMenu = new ReaLTaiizor.Controls.NightButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvBitacora).BeginInit();
             SuspendLayout();
             // 
             // label10
             // 
             label10.AutoSize = true;
-            label10.BackColor = Color.SkyBlue;
-            label10.Font = new Font("Arial Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label10.BackColor = Color.Transparent;
+            label10.Font = new Font("Arial", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Navy;
-            label10.Location = new Point(624, 54);
+            label10.Location = new Point(577, 37);
             label10.Name = "label10";
-            label10.Size = new Size(128, 33);
+            label10.Size = new Size(217, 56);
             label10.TabIndex = 90;
             label10.Text = "Bitácora";
             // 
@@ -133,10 +130,10 @@
             // panel5
             // 
             panel5.BackColor = Color.Navy;
-            panel5.Location = new Point(0, 1);
+            panel5.Location = new Point(0, 0);
             panel5.Margin = new Padding(3, 2, 3, 2);
             panel5.Name = "panel5";
-            panel5.Size = new Size(21, 678);
+            panel5.Size = new Size(22, 692);
             panel5.TabIndex = 67;
             // 
             // panel3
@@ -151,10 +148,10 @@
             // panel4
             // 
             panel4.BackColor = Color.Navy;
-            panel4.Location = new Point(1111, 3);
+            panel4.Location = new Point(1114, 0);
             panel4.Margin = new Padding(3, 2, 3, 2);
             panel4.Name = "panel4";
-            panel4.Size = new Size(21, 671);
+            panel4.Size = new Size(20, 674);
             panel4.TabIndex = 65;
             // 
             // panel2
@@ -177,16 +174,6 @@
             pictureBox2.Size = new Size(55, 45);
             pictureBox2.TabIndex = 37;
             pictureBox2.TabStop = false;
-            // 
-            // kryptonGroupBox2
-            // 
-            kryptonGroupBox2.CaptionVisible = false;
-            kryptonGroupBox2.Location = new Point(562, 44);
-            kryptonGroupBox2.Margin = new Padding(3, 2, 3, 2);
-            kryptonGroupBox2.Size = new Size(263, 54);
-            kryptonGroupBox2.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroupBox2.StateCommon.Border.Rounding = 50F;
-            kryptonGroupBox2.TabIndex = 107;
             // 
             // txtBuscar
             // 
@@ -437,7 +424,6 @@
             btnBitacora.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             btnBitacora.TabIndex = 340;
             btnBitacora.Text = "Bitácora";
-           
             // 
             // btnFacturas
             // 
@@ -624,7 +610,6 @@
             Controls.Add(panel3);
             Controls.Add(panel4);
             Controls.Add(panel2);
-            Controls.Add(kryptonGroupBox2);
             Controls.Add(panel8);
             Controls.Add(label6);
             Controls.Add(btnReportes);
@@ -644,8 +629,6 @@
             Text = "Bitacora";
             Load += Bitacora_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvBitacora).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -663,7 +646,6 @@
         private Panel panel2;
         private Krypton.Toolkit.KryptonDataGridView dgvBitacora1;
         private PictureBox pictureBox2;
-        private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox2;
         private Krypton.Toolkit.KryptonTextBox txtBuscar;
         private Button btnRefresh;
         private DateTimePicker dtpHasta;

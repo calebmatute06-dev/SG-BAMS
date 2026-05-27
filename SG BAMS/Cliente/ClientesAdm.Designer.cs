@@ -41,7 +41,6 @@
             dgvClientes = new DataGridView();
             chkActivo = new Krypton.Toolkit.KryptonCheckBox();
             label10 = new Label();
-            kryptonGroupBox2 = new Krypton.Toolkit.KryptonGroupBox();
             label3 = new Label();
             label6 = new Label();
             btnReportes = new ReaLTaiizor.Controls.NightButton();
@@ -56,8 +55,6 @@
             btnDeudores = new ReaLTaiizor.Controls.NightButton();
             btnMenu = new ReaLTaiizor.Controls.NightButton();
             ((System.ComponentModel.ISupportInitialize)dgvClientes).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).BeginInit();
             SuspendLayout();
             // 
             // panel2
@@ -145,7 +142,7 @@
             // 
             // txtBusqueda
             // 
-            txtBusqueda.Location = new Point(423, 202);
+            txtBusqueda.Location = new Point(421, 157);
             txtBusqueda.Name = "txtBusqueda";
             txtBusqueda.Size = new Size(499, 29);
             txtBusqueda.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -181,18 +178,18 @@
             // 
             dgvClientes.BackgroundColor = Color.SkyBlue;
             dgvClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvClientes.Location = new Point(310, 249);
+            dgvClientes.Location = new Point(311, 197);
             dgvClientes.Margin = new Padding(3, 2, 3, 2);
             dgvClientes.Name = "dgvClientes";
             dgvClientes.RowHeadersWidth = 51;
-            dgvClientes.Size = new Size(722, 291);
+            dgvClientes.Size = new Size(722, 376);
             dgvClientes.TabIndex = 325;
             dgvClientes.CellContentClick += dgvClientes_CellContentClick;
             dgvClientes.CellDoubleClick += dgvClientes_CellDoubleClick;
             // 
             // chkActivo
             // 
-            chkActivo.Location = new Point(938, 204);
+            chkActivo.Location = new Point(938, 158);
             chkActivo.Margin = new Padding(3, 2, 3, 2);
             chkActivo.Name = "chkActivo";
             chkActivo.Size = new Size(94, 26);
@@ -205,23 +202,14 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.BackColor = Color.SkyBlue;
-            label10.Font = new Font("Arial Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label10.BackColor = Color.Transparent;
+            label10.Font = new Font("Arial", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Navy;
-            label10.Location = new Point(595, 56);
+            label10.Location = new Point(595, 51);
             label10.Name = "label10";
-            label10.Size = new Size(124, 33);
+            label10.Size = new Size(211, 56);
             label10.TabIndex = 328;
             label10.Text = "Clientes";
-            // 
-            // kryptonGroupBox2
-            // 
-            kryptonGroupBox2.CaptionVisible = false;
-            kryptonGroupBox2.Location = new Point(506, 46);
-            kryptonGroupBox2.Size = new Size(301, 49);
-            kryptonGroupBox2.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroupBox2.StateCommon.Border.Rounding = 50F;
-            kryptonGroupBox2.TabIndex = 329;
             // 
             // label3
             // 
@@ -229,7 +217,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(331, 205);
+            label3.Location = new Point(331, 162);
             label3.Name = "label3";
             label3.Size = new Size(84, 22);
             label3.TabIndex = 354;
@@ -405,7 +393,6 @@
             btnClientes.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             btnClientes.TabIndex = 360;
             btnClientes.Text = "Clientes";
-           
             // 
             // btnInventario
             // 
@@ -507,7 +494,6 @@
             ClientSize = new Size(1102, 681);
             Controls.Add(label3);
             Controls.Add(label10);
-            Controls.Add(kryptonGroupBox2);
             Controls.Add(panel4);
             Controls.Add(chkActivo);
             Controls.Add(dgvClientes);
@@ -538,8 +524,6 @@
             Text = "ClientesAdm";
             Load += ClientesAdm_Load;
             ((System.ComponentModel.ISupportInitialize)dgvClientes).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -558,7 +542,6 @@
         private DataGridView dgvClientes;
         private Krypton.Toolkit.KryptonCheckBox chkActivo;
         private Label label10;
-        private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox2;
         private Label label3;
         private Label label6;
         private ReaLTaiizor.Controls.NightButton btnReportes;

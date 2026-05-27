@@ -39,7 +39,6 @@
             btnAgregar = new Krypton.Toolkit.KryptonButton();
             btnRefresh = new Button();
             label10 = new Label();
-            kryptonGroupBox2 = new Krypton.Toolkit.KryptonGroupBox();
             dgvProveedor = new DataGridView();
             Nombre = new Label();
             label6 = new Label();
@@ -54,8 +53,6 @@
             btnProveedores = new ReaLTaiizor.Controls.NightButton();
             btnDeudores = new ReaLTaiizor.Controls.NightButton();
             btnMenu = new ReaLTaiizor.Controls.NightButton();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvProveedor).BeginInit();
             SuspendLayout();
             // 
@@ -194,23 +191,14 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.BackColor = Color.SkyBlue;
-            label10.Font = new Font("Arial Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label10.BackColor = Color.Transparent;
+            label10.Font = new Font("Arial", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Navy;
-            label10.Location = new Point(544, 46);
+            label10.Location = new Point(474, 38);
             label10.Name = "label10";
-            label10.Size = new Size(178, 33);
+            label10.Size = new Size(316, 56);
             label10.TabIndex = 329;
             label10.Text = "Proveedores";
-            // 
-            // kryptonGroupBox2
-            // 
-            kryptonGroupBox2.CaptionVisible = false;
-            kryptonGroupBox2.Location = new Point(477, 38);
-            kryptonGroupBox2.Size = new Size(301, 49);
-            kryptonGroupBox2.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroupBox2.StateCommon.Border.Rounding = 50F;
-            kryptonGroupBox2.TabIndex = 330;
             // 
             // dgvProveedor
             // 
@@ -450,7 +438,6 @@
             btnProveedores.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             btnProveedores.TabIndex = 371;
             btnProveedores.Text = "Proveedores";
-         
             // 
             // btnDeudores
             // 
@@ -507,7 +494,6 @@
             Controls.Add(Nombre);
             Controls.Add(dgvProveedor);
             Controls.Add(label10);
-            Controls.Add(kryptonGroupBox2);
             Controls.Add(btnRefresh);
             Controls.Add(btnModificar);
             Controls.Add(btnAgregar);
@@ -536,8 +522,6 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ProveedoresAdmin";
             Load += ProveedoresAdmin_Load;
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvProveedor).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -555,7 +539,6 @@
         private Krypton.Toolkit.KryptonButton btnAgregar;
         private Button btnRefresh;
         private Label label10;
-        private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox2;
         private DataGridView dgvProveedor;
         private Label Nombre;
         private Label label6;

@@ -40,7 +40,6 @@
             label3 = new Label();
             label1 = new Label();
             dtpFechaPedido = new Krypton.Toolkit.KryptonMonthCalendar();
-            kryptonGroup1 = new Krypton.Toolkit.KryptonGroup();
             panel1 = new Panel();
             panel3 = new Panel();
             pictureBox1 = new PictureBox();
@@ -50,8 +49,6 @@
             cmbProveedor = new Krypton.Toolkit.KryptonComboBox();
             label2 = new Label();
             dgvProductosModificar = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cmbFormaPago).BeginInit();
@@ -215,12 +212,12 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.BackColor = Color.SkyBlue;
-            label1.Font = new Font("Arial", 13F, FontStyle.Bold);
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Arial", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(36, 33);
+            label1.Location = new Point(322, 29);
             label1.Name = "label1";
-            label1.Size = new Size(164, 21);
+            label1.Size = new Size(291, 37);
             label1.TabIndex = 220;
             label1.Text = "Modificar Compra";
             // 
@@ -232,15 +229,6 @@
             dtpFechaPedido.Name = "dtpFechaPedido";
             dtpFechaPedido.Size = new Size(230, 182);
             dtpFechaPedido.TabIndex = 217;
-            // 
-            // kryptonGroup1
-            // 
-            kryptonGroup1.Location = new Point(25, 20);
-            kryptonGroup1.Margin = new Padding(3, 2, 3, 2);
-            kryptonGroup1.Size = new Size(183, 44);
-            kryptonGroup1.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroup1.StateCommon.Border.Rounding = 70F;
-            kryptonGroup1.TabIndex = 216;
             // 
             // panel1
             // 
@@ -382,7 +370,6 @@
             Controls.Add(label3);
             Controls.Add(label1);
             Controls.Add(dtpFechaPedido);
-            Controls.Add(kryptonGroup1);
             Controls.Add(panel1);
             Controls.Add(panel3);
             Controls.Add(pictureBox1);
@@ -392,8 +379,6 @@
             Name = "Modificar_datos__Compra_";
             Text = "Modificar_datos__Compra_";
             Load += Modificar_datos__Compra__Load;
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)cmbFormaPago).EndInit();
@@ -417,7 +402,6 @@
         private Label label3;
         private Label label1;
         private Krypton.Toolkit.KryptonMonthCalendar dtpFechaPedido;
-        private Krypton.Toolkit.KryptonGroup kryptonGroup1;
         private Panel panel1;
         private Panel panel3;
         private PictureBox pictureBox1;

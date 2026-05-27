@@ -38,7 +38,6 @@
             panel2 = new Panel();
             dgvComprasAdmin = new DataGridView();
             label10 = new Label();
-            kryptonGroupBox2 = new Krypton.Toolkit.KryptonGroupBox();
             btnCompra = new Krypton.Toolkit.KryptonButton();
             btnModificarC = new Krypton.Toolkit.KryptonButton();
             btnEliminarC = new Krypton.Toolkit.KryptonButton();
@@ -64,8 +63,6 @@
             btnMenu = new ReaLTaiizor.Controls.NightButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvComprasAdmin).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5.Panel).BeginInit();
             SuspendLayout();
@@ -170,23 +167,14 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.BackColor = Color.SkyBlue;
-            label10.Font = new Font("Arial Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label10.BackColor = Color.Transparent;
+            label10.Font = new Font("Arial", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Navy;
-            label10.Location = new Point(588, 31);
+            label10.Location = new Point(588, 26);
             label10.Name = "label10";
-            label10.Size = new Size(132, 33);
+            label10.Size = new Size(233, 56);
             label10.TabIndex = 200;
             label10.Text = "Compras";
-            // 
-            // kryptonGroupBox2
-            // 
-            kryptonGroupBox2.CaptionVisible = false;
-            kryptonGroupBox2.Location = new Point(503, 23);
-            kryptonGroupBox2.Size = new Size(301, 49);
-            kryptonGroupBox2.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroupBox2.StateCommon.Border.Rounding = 50F;
-            kryptonGroupBox2.TabIndex = 201;
             // 
             // btnCompra
             // 
@@ -497,7 +485,6 @@
             btnComprasMenu.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             btnComprasMenu.TabIndex = 369;
             btnComprasMenu.Text = "Compras";
-           
             // 
             // btnClientes
             // 
@@ -632,7 +619,6 @@
             Controls.Add(btnModificarC);
             Controls.Add(btnCompra);
             Controls.Add(label10);
-            Controls.Add(kryptonGroupBox2);
             Controls.Add(dgvComprasAdmin);
             Controls.Add(label1);
             Controls.Add(btnNoti);
@@ -661,8 +647,6 @@
             Load += Compras_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvComprasAdmin).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5).EndInit();
             ResumeLayout(false);
@@ -681,7 +665,6 @@
         private Krypton.Toolkit.KryptonButton btnCompra;
         private DataGridView dgvComprasAdmin;
         private Label label10;
-        private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox2;
         private Krypton.Toolkit.KryptonButton btnModificarC;
         private Krypton.Toolkit.KryptonButton btnEliminarC;
         private Label Nombre;

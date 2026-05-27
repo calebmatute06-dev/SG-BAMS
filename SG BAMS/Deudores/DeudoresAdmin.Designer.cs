@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle17 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle18 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle19 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle20 = new DataGridViewCellStyle();
             label1 = new Label();
             button12 = new Button();
             panel8 = new Panel();
@@ -46,7 +46,6 @@
             kryptonButton15 = new Krypton.Toolkit.KryptonButton();
             dgvDeudores = new DataGridView();
             label3 = new Label();
-            kryptonGroup3 = new Krypton.Toolkit.KryptonGroup();
             Nombre = new Label();
             label6 = new Label();
             btnReportes = new ReaLTaiizor.Controls.NightButton();
@@ -64,8 +63,6 @@
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvDeudores).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup3.Panel).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -154,7 +151,7 @@
             txtBuscarNombre.BorderStyle = BorderStyle.None;
             txtBuscarNombre.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtBuscarNombre.ForeColor = Color.Navy;
-            txtBuscarNombre.Location = new Point(421, 171);
+            txtBuscarNombre.Location = new Point(421, 167);
             txtBuscarNombre.Margin = new Padding(3, 2, 3, 2);
             txtBuscarNombre.Name = "txtBuscarNombre";
             txtBuscarNombre.Size = new Size(850, 19);
@@ -164,7 +161,7 @@
             // 
             // kryptonGroup5
             // 
-            kryptonGroup5.Location = new Point(403, 159);
+            kryptonGroup5.Location = new Point(403, 157);
             kryptonGroup5.Margin = new Padding(3, 2, 3, 2);
             kryptonGroup5.Size = new Size(889, 39);
             kryptonGroup5.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -173,14 +170,14 @@
             // 
             // kryptonButton15
             // 
-            kryptonButton15.Location = new Point(722, 608);
+            kryptonButton15.Location = new Point(722, 604);
             kryptonButton15.Margin = new Padding(3, 2, 3, 2);
             kryptonButton15.Name = "kryptonButton15";
             kryptonButton15.OverrideDefault.Back.Color1 = Color.SkyBlue;
             kryptonButton15.OverrideDefault.Back.Color2 = Color.White;
             kryptonButton15.OverrideFocus.Back.Color1 = Color.SkyBlue;
             kryptonButton15.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton15.Size = new Size(236, 38);
+            kryptonButton15.Size = new Size(236, 42);
             kryptonButton15.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonButton15.StateCommon.Back.Color2 = Color.White;
             kryptonButton15.StateCommon.Border.Rounding = 40F;
@@ -199,66 +196,56 @@
             // 
             dgvDeudores.AllowUserToAddRows = false;
             dgvDeudores.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = Color.Navy;
-            dgvDeudores.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle16.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle16.ForeColor = Color.Navy;
+            dgvDeudores.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
             dgvDeudores.BackgroundColor = Color.SkyBlue;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Control;
-            dataGridViewCellStyle2.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = Color.Navy;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvDeudores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle17.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = SystemColors.Control;
+            dataGridViewCellStyle17.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle17.ForeColor = Color.Navy;
+            dataGridViewCellStyle17.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = DataGridViewTriState.True;
+            dgvDeudores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
             dgvDeudores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Window;
-            dataGridViewCellStyle3.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = Color.SkyBlue;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dgvDeudores.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle18.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = SystemColors.Window;
+            dataGridViewCellStyle18.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle18.ForeColor = Color.SkyBlue;
+            dataGridViewCellStyle18.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = DataGridViewTriState.False;
+            dgvDeudores.DefaultCellStyle = dataGridViewCellStyle18;
             dgvDeudores.Location = new Point(289, 203);
             dgvDeudores.Margin = new Padding(3, 2, 3, 2);
             dgvDeudores.Name = "dgvDeudores";
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Control;
-            dataGridViewCellStyle4.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = Color.Navy;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgvDeudores.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle19.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle19.BackColor = SystemColors.Control;
+            dataGridViewCellStyle19.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle19.ForeColor = Color.Navy;
+            dataGridViewCellStyle19.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle19.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle19.WrapMode = DataGridViewTriState.True;
+            dgvDeudores.RowHeadersDefaultCellStyle = dataGridViewCellStyle19;
             dgvDeudores.RowHeadersWidth = 51;
-            dataGridViewCellStyle5.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle5.ForeColor = Color.Navy;
-            dgvDeudores.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle20.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle20.ForeColor = Color.Navy;
+            dgvDeudores.RowsDefaultCellStyle = dataGridViewCellStyle20;
             dgvDeudores.Size = new Size(1034, 372);
             dgvDeudores.TabIndex = 173;
             // 
             // label3
             // 
-            label3.BackColor = Color.SkyBlue;
-            label3.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Arial", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(687, 34);
+            label3.Location = new Point(707, 38);
             label3.Name = "label3";
             label3.Size = new Size(271, 51);
             label3.TabIndex = 175;
             label3.Text = "Deudores";
             label3.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // kryptonGroup3
-            // 
-            kryptonGroup3.GroupBackStyle = Krypton.Toolkit.PaletteBackStyle.HeaderCalendar;
-            kryptonGroup3.Location = new Point(674, 27);
-            kryptonGroup3.Margin = new Padding(3, 2, 3, 2);
-            kryptonGroup3.Size = new Size(297, 69);
-            kryptonGroup3.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroup3.StateCommon.Border.Rounding = 100F;
-            kryptonGroup3.TabIndex = 176;
             // 
             // Nombre
             // 
@@ -266,7 +253,7 @@
             Nombre.BackColor = Color.Transparent;
             Nombre.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             Nombre.ForeColor = Color.Navy;
-            Nombre.Location = new Point(313, 169);
+            Nombre.Location = new Point(313, 167);
             Nombre.Name = "Nombre";
             Nombre.Size = new Size(84, 22);
             Nombre.TabIndex = 353;
@@ -543,7 +530,6 @@
             ClientSize = new Size(1389, 685);
             Controls.Add(Nombre);
             Controls.Add(label3);
-            Controls.Add(kryptonGroup3);
             Controls.Add(dgvDeudores);
             Controls.Add(kryptonButton15);
             Controls.Add(txtBuscarNombre);
@@ -579,8 +565,6 @@
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvDeudores).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup3.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup3).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -599,7 +583,6 @@
         private Krypton.Toolkit.KryptonButton kryptonButton15;
         private DataGridView dgvDeudores;
         private Label label3;
-        private Krypton.Toolkit.KryptonGroup kryptonGroup3;
         private Label Nombre;
         private Label label6;
         private ReaLTaiizor.Controls.NightButton btnReportes;

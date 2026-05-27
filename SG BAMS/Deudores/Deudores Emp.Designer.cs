@@ -46,7 +46,6 @@
             button12 = new Button();
             dgvDeudores = new DataGridView();
             label3 = new Label();
-            kryptonGroup3 = new Krypton.Toolkit.KryptonGroup();
             Nombre = new Label();
             label2 = new Label();
             btnFacturas = new ReaLTaiizor.Controls.NightButton();
@@ -60,8 +59,6 @@
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvDeudores).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup3.Panel).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -129,14 +126,14 @@
             // 
             // kryptonButton15
             // 
-            kryptonButton15.Location = new Point(713, 608);
+            kryptonButton15.Location = new Point(732, 599);
             kryptonButton15.Margin = new Padding(3, 2, 3, 2);
             kryptonButton15.Name = "kryptonButton15";
             kryptonButton15.OverrideDefault.Back.Color1 = Color.SkyBlue;
             kryptonButton15.OverrideDefault.Back.Color2 = Color.White;
             kryptonButton15.OverrideFocus.Back.Color1 = Color.SkyBlue;
             kryptonButton15.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton15.Size = new Size(236, 38);
+            kryptonButton15.Size = new Size(236, 44);
             kryptonButton15.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonButton15.StateCommon.Back.Color2 = Color.White;
             kryptonButton15.StateCommon.Border.Rounding = 40F;
@@ -157,7 +154,7 @@
             txtBuscarNombre.BorderStyle = BorderStyle.None;
             txtBuscarNombre.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtBuscarNombre.ForeColor = Color.Navy;
-            txtBuscarNombre.Location = new Point(411, 165);
+            txtBuscarNombre.Location = new Point(409, 161);
             txtBuscarNombre.Margin = new Padding(3, 2, 3, 2);
             txtBuscarNombre.Name = "txtBuscarNombre";
             txtBuscarNombre.Size = new Size(850, 22);
@@ -167,7 +164,7 @@
             // 
             // kryptonGroup5
             // 
-            kryptonGroup5.Location = new Point(394, 156);
+            kryptonGroup5.Location = new Point(394, 151);
             kryptonGroup5.Margin = new Padding(3, 2, 3, 2);
             kryptonGroup5.Size = new Size(889, 39);
             kryptonGroup5.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -234,25 +231,15 @@
             // 
             // label3
             // 
-            label3.BackColor = Color.SkyBlue;
-            label3.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Arial", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(669, 40);
+            label3.Location = new Point(706, 33);
             label3.Name = "label3";
             label3.Size = new Size(271, 51);
             label3.TabIndex = 173;
             label3.Text = "Deudores";
             label3.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // kryptonGroup3
-            // 
-            kryptonGroup3.GroupBackStyle = Krypton.Toolkit.PaletteBackStyle.HeaderCalendar;
-            kryptonGroup3.Location = new Point(659, 30);
-            kryptonGroup3.Margin = new Padding(3, 2, 3, 2);
-            kryptonGroup3.Size = new Size(297, 69);
-            kryptonGroup3.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroup3.StateCommon.Border.Rounding = 100F;
-            kryptonGroup3.TabIndex = 174;
             // 
             // Nombre
             // 
@@ -260,7 +247,7 @@
             Nombre.BackColor = Color.Transparent;
             Nombre.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             Nombre.ForeColor = Color.Navy;
-            Nombre.Location = new Point(304, 165);
+            Nombre.Location = new Point(304, 162);
             Nombre.Name = "Nombre";
             Nombre.Size = new Size(84, 22);
             Nombre.TabIndex = 354;
@@ -445,7 +432,6 @@
             ClientSize = new Size(1382, 674);
             Controls.Add(Nombre);
             Controls.Add(label3);
-            Controls.Add(kryptonGroup3);
             Controls.Add(dgvDeudores);
             Controls.Add(kryptonButton15);
             Controls.Add(txtBuscarNombre);
@@ -476,8 +462,6 @@
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5.Panel).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvDeudores).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup3.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup3).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -496,7 +480,6 @@
         private Button button12;
         private DataGridView dgvDeudores;
         private Label label3;
-        private Krypton.Toolkit.KryptonGroup kryptonGroup3;
         private Label Nombre;
         private Label label2;
         private ReaLTaiizor.Controls.NightButton btnFacturas;

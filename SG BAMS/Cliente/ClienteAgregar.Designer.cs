@@ -37,7 +37,6 @@
             label8 = new Label();
             label9 = new Label();
             label10 = new Label();
-            kryptonGroupBox3 = new Krypton.Toolkit.KryptonGroupBox();
             btnAgregar = new Krypton.Toolkit.KryptonButton();
             BtnExistente = new Krypton.Toolkit.KryptonButton();
             BtnSalir = new Krypton.Toolkit.KryptonButton();
@@ -46,19 +45,17 @@
             txtTelefono = new Krypton.Toolkit.KryptonTextBox();
             txtRTN = new Krypton.Toolkit.KryptonTextBox();
             label5 = new Label();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3.Panel).BeginInit();
             SuspendLayout();
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.BackColor = Color.SkyBlue;
-            label4.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.BackColor = Color.Transparent;
+            label4.Font = new Font("Arial", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(48, 42);
+            label4.Location = new Point(155, 39);
             label4.Name = "label4";
-            label4.Size = new Size(204, 29);
+            label4.Size = new Size(245, 34);
             label4.TabIndex = 196;
             label4.Text = "Agregar Clientes";
             // 
@@ -145,15 +142,6 @@
             label10.Size = new Size(49, 19);
             label10.TabIndex = 197;
             label10.Text = "RTN:";
-            // 
-            // kryptonGroupBox3
-            // 
-            kryptonGroupBox3.CaptionVisible = false;
-            kryptonGroupBox3.Location = new Point(36, 32);
-            kryptonGroupBox3.Size = new Size(250, 49);
-            kryptonGroupBox3.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroupBox3.StateCommon.Border.Rounding = 50F;
-            kryptonGroupBox3.TabIndex = 318;
             // 
             // btnAgregar
             // 
@@ -299,13 +287,10 @@
             Controls.Add(panel1);
             Controls.Add(panel2);
             Controls.Add(panel8);
-            Controls.Add(kryptonGroupBox3);
             FormBorderStyle = FormBorderStyle.None;
             Name = "ClienteAgregar";
             Text = "ClienteAgregar";
             Load += ClienteAgregar_Load;
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -320,7 +305,6 @@
         private Label label8;
         private Label label9;
         private Label label10;
-        private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox3;
         private Krypton.Toolkit.KryptonButton btnAgregar;
         private Krypton.Toolkit.KryptonButton BtnExistente;
         private Krypton.Toolkit.KryptonButton BtnSalir;

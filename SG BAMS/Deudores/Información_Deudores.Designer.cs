@@ -41,14 +41,11 @@
             label1 = new Label();
             kryptonLabel8 = new Krypton.Toolkit.KryptonLabel();
             fechainicio = new Krypton.Toolkit.KryptonMonthCalendar();
-            kryptonGroup1 = new Krypton.Toolkit.KryptonGroup();
             panel1 = new Panel();
             panel3 = new Panel();
             pictureBox1 = new PictureBox();
             pictureBox4 = new PictureBox();
             label7 = new Label();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             SuspendLayout();
@@ -77,7 +74,7 @@
             btnaceptar.StateCommon.Back.Color2 = Color.White;
             btnaceptar.StateCommon.Border.Rounding = 20F;
             btnaceptar.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnaceptar.StateCommon.Content.ShortText.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnaceptar.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnaceptar.StateNormal.Back.Color1 = Color.SkyBlue;
             btnaceptar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
             btnaceptar.StatePressed.Back.Color1 = Color.Transparent;
@@ -91,11 +88,11 @@
             // 
             label6.AutoSize = true;
             label6.BackColor = Color.Transparent;
-            label6.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.Font = new Font("Arial", 14.25F, FontStyle.Bold);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(630, 56);
+            label6.Location = new Point(617, 51);
             label6.Name = "label6";
-            label6.Size = new Size(97, 19);
+            label6.Size = new Size(117, 22);
             label6.TabIndex = 201;
             label6.Text = "Fecha Final";
             // 
@@ -103,11 +100,11 @@
             // 
             label4.AutoSize = true;
             label4.BackColor = Color.Transparent;
-            label4.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Font = new Font("Arial", 14.25F, FontStyle.Bold);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(349, 56);
+            label4.Location = new Point(337, 52);
             label4.Name = "label4";
-            label4.Size = new Size(101, 19);
+            label4.Size = new Size(122, 22);
             label4.TabIndex = 200;
             label4.Text = "Fecha Inicio";
             // 
@@ -182,12 +179,12 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.BackColor = Color.SkyBlue;
-            label1.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Arial", 17.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(73, 50);
+            label1.Location = new Point(36, 54);
             label1.Name = "label1";
-            label1.Size = new Size(159, 19);
+            label1.Size = new Size(229, 27);
             label1.TabIndex = 193;
             label1.Text = "Información deudor";
             // 
@@ -211,15 +208,6 @@
             fechainicio.Size = new Size(230, 182);
             fechainicio.StateCheckedNormal.Day.Border.Rounding = 10F;
             fechainicio.TabIndex = 191;
-            // 
-            // kryptonGroup1
-            // 
-            kryptonGroup1.Location = new Point(58, 38);
-            kryptonGroup1.Margin = new Padding(3, 2, 3, 2);
-            kryptonGroup1.Size = new Size(199, 44);
-            kryptonGroup1.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroup1.StateCommon.Border.Rounding = 70F;
-            kryptonGroup1.TabIndex = 190;
             // 
             // panel1
             // 
@@ -290,7 +278,6 @@
             Controls.Add(label1);
             Controls.Add(kryptonLabel8);
             Controls.Add(fechainicio);
-            Controls.Add(kryptonGroup1);
             Controls.Add(panel1);
             Controls.Add(panel3);
             Controls.Add(pictureBox1);
@@ -300,8 +287,6 @@
             Name = "Información_Deudores";
             Text = "Información_Deudores";
             Load += Información_Deudores_Load;
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup1.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ResumeLayout(false);
@@ -323,7 +308,6 @@
         private Label label1;
         private Krypton.Toolkit.KryptonLabel kryptonLabel8;
         private Krypton.Toolkit.KryptonMonthCalendar fechainicio;
-        private Krypton.Toolkit.KryptonGroup kryptonGroup1;
         private Panel panel1;
         private Panel panel3;
         private PictureBox pictureBox1;

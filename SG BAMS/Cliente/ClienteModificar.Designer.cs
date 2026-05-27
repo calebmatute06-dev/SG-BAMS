@@ -47,11 +47,8 @@
             txtID = new Krypton.Toolkit.KryptonTextBox();
             cmbEstado = new Krypton.Toolkit.KryptonComboBox();
             label4 = new Label();
-            kryptonGroupBox3 = new Krypton.Toolkit.KryptonGroupBox();
             label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)cmbEstado).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3.Panel).BeginInit();
             SuspendLayout();
             // 
             // label10
@@ -274,23 +271,14 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.BackColor = Color.SkyBlue;
-            label4.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.BackColor = Color.Transparent;
+            label4.Font = new Font("Arial", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(48, 37);
+            label4.Location = new Point(134, 34);
             label4.Name = "label4";
-            label4.Size = new Size(221, 29);
+            label4.Size = new Size(266, 34);
             label4.TabIndex = 329;
             label4.Text = "Modificar Clientes";
-            // 
-            // kryptonGroupBox3
-            // 
-            kryptonGroupBox3.CaptionVisible = false;
-            kryptonGroupBox3.Location = new Point(38, 28);
-            kryptonGroupBox3.Size = new Size(262, 49);
-            kryptonGroupBox3.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroupBox3.StateCommon.Border.Rounding = 50F;
-            kryptonGroupBox3.TabIndex = 330;
             // 
             // label5
             // 
@@ -312,7 +300,6 @@
             ClientSize = new Size(531, 430);
             Controls.Add(label5);
             Controls.Add(label4);
-            Controls.Add(kryptonGroupBox3);
             Controls.Add(cmbEstado);
             Controls.Add(txtRTN);
             Controls.Add(txtTelefono);
@@ -336,8 +323,6 @@
             Text = "ClienteModificar";
             Load += ClienteModificar_Load;
             ((System.ComponentModel.ISupportInitialize)cmbEstado).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -362,7 +347,6 @@
         private Krypton.Toolkit.KryptonTextBox txtID;
         private Krypton.Toolkit.KryptonComboBox cmbEstado;
         private Label label4;
-        private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox3;
         private Label label5;
     }
 }
