@@ -37,12 +37,9 @@
             btnModificar = new Krypton.Toolkit.KryptonButton();
             kryptonButton1 = new Krypton.Toolkit.KryptonButton();
             label8 = new Label();
-            kryptonGroupBox2 = new Krypton.Toolkit.KryptonGroupBox();
             label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -154,7 +151,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.BackColor = Color.SkyBlue;
+            label8.BackColor = Color.Transparent;
             label8.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Navy;
             label8.Location = new Point(262, 45);
@@ -162,16 +159,6 @@
             label8.Size = new Size(208, 29);
             label8.TabIndex = 352;
             label8.Text = "Modificar Estado";
-            // 
-            // kryptonGroupBox2
-            // 
-            kryptonGroupBox2.CaptionVisible = false;
-            kryptonGroupBox2.Location = new Point(230, 33);
-            kryptonGroupBox2.Margin = new Padding(3, 4, 3, 4);
-            kryptonGroupBox2.Size = new Size(262, 52);
-            kryptonGroupBox2.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroupBox2.StateCommon.Border.Rounding = 50F;
-            kryptonGroupBox2.TabIndex = 353;
             // 
             // label5
             // 
@@ -193,7 +180,6 @@
             ClientSize = new Size(683, 288);
             Controls.Add(label5);
             Controls.Add(label8);
-            Controls.Add(kryptonGroupBox2);
             Controls.Add(kryptonButton1);
             Controls.Add(btnModificar);
             Controls.Add(txtDescri);
@@ -209,8 +195,6 @@
             Text = "frmModificarEstado";
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -227,7 +211,6 @@
         private Krypton.Toolkit.KryptonButton btnModificar;
         private Krypton.Toolkit.KryptonButton kryptonButton1;
         private Label label8;
-        private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox2;
         private Label label5;
     }
 }

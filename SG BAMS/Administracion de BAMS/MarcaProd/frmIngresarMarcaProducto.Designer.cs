@@ -39,11 +39,8 @@ namespace SG_BAMS
             btnSalir = new Krypton.Toolkit.KryptonButton();
             label5 = new Label();
             label8 = new Label();
-            kryptonGroupBox2 = new Krypton.Toolkit.KryptonGroupBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -168,7 +165,7 @@ namespace SG_BAMS
             // label8
             // 
             label8.AutoSize = true;
-            label8.BackColor = Color.SkyBlue;
+            label8.BackColor = Color.Transparent;
             label8.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Navy;
             label8.Location = new Point(187, 52);
@@ -177,16 +174,6 @@ namespace SG_BAMS
             label8.TabIndex = 352;
             label8.Text = "Agregar la marca de productos";
             // 
-            // kryptonGroupBox2
-            // 
-            kryptonGroupBox2.CaptionVisible = false;
-            kryptonGroupBox2.Location = new Point(158, 40);
-            kryptonGroupBox2.Margin = new Padding(3, 4, 3, 4);
-            kryptonGroupBox2.Size = new Size(400, 52);
-            kryptonGroupBox2.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroupBox2.StateCommon.Border.Rounding = 50F;
-            kryptonGroupBox2.TabIndex = 353;
-            // 
             // frmIngresarMarcaProducto
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -194,7 +181,6 @@ namespace SG_BAMS
             BackColor = Color.White;
             ClientSize = new Size(683, 311);
             Controls.Add(label8);
-            Controls.Add(kryptonGroupBox2);
             Controls.Add(label5);
             Controls.Add(btnSalir);
             Controls.Add(btnAgregar);
@@ -211,8 +197,6 @@ namespace SG_BAMS
             Text = "fmrIngresarMarcaProducto";
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -235,6 +219,5 @@ namespace SG_BAMS
         private Krypton.Toolkit.KryptonButton btnSalir;
         private Label label5;
         private Label label8;
-        private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox2;
     }
 }
