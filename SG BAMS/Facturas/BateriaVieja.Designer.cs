@@ -96,11 +96,11 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Arial Narrow", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Arial Narrow", 30F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(300, 29);
+            label1.Location = new Point(296, 31);
             label1.Name = "label1";
-            label1.Size = new Size(200, 43);
+            label1.Size = new Size(216, 46);
             label1.TabIndex = 339;
             label1.Text = "Batería Víeja";
             // 
@@ -230,7 +230,7 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(542, 263);
+            label4.Location = new Point(543, 264);
             label4.Name = "label4";
             label4.Size = new Size(63, 22);
             label4.TabIndex = 348;
@@ -242,7 +242,7 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(540, 304);
+            label5.Location = new Point(541, 304);
             label5.Name = "label5";
             label5.Size = new Size(151, 22);
             label5.TabIndex = 349;
