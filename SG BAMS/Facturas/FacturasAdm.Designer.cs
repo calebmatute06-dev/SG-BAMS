@@ -36,8 +36,6 @@
             panel8 = new Panel();
             panel3 = new Panel();
             panel5 = new Panel();
-            kryptonGroupBox2 = new Krypton.Toolkit.KryptonGroupBox();
-            kryptonGroupBox3 = new Krypton.Toolkit.KryptonGroupBox();
             BtnVer = new Krypton.Toolkit.KryptonButton();
             BtnNueva = new Krypton.Toolkit.KryptonButton();
             dtpInicio = new DateTimePicker();
@@ -62,10 +60,6 @@
             btnProveedores = new ReaLTaiizor.Controls.NightButton();
             btnDeudores = new ReaLTaiizor.Controls.NightButton();
             btnMenu = new ReaLTaiizor.Controls.NightButton();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvFacturas).BeginInit();
             SuspendLayout();
             // 
@@ -81,12 +75,12 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.BackColor = Color.SkyBlue;
-            label10.Font = new Font("Arial Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label10.BackColor = Color.Transparent;
+            label10.Font = new Font("Arial", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Navy;
-            label10.Location = new Point(744, 31);
+            label10.Location = new Point(759, 32);
             label10.Name = "label10";
-            label10.Size = new Size(131, 33);
+            label10.Size = new Size(225, 56);
             label10.TabIndex = 121;
             label10.Text = "Facturas";
             // 
@@ -155,24 +149,6 @@
             panel5.Size = new Size(21, 680);
             panel5.TabIndex = 109;
             // 
-            // kryptonGroupBox2
-            // 
-            kryptonGroupBox2.CaptionVisible = false;
-            kryptonGroupBox2.Location = new Point(659, 23);
-            kryptonGroupBox2.Size = new Size(301, 49);
-            kryptonGroupBox2.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroupBox2.StateCommon.Border.Rounding = 50F;
-            kryptonGroupBox2.TabIndex = 140;
-            // 
-            // kryptonGroupBox3
-            // 
-            kryptonGroupBox3.CaptionVisible = false;
-            kryptonGroupBox3.Location = new Point(318, 87);
-            kryptonGroupBox3.Size = new Size(139, 31);
-            kryptonGroupBox3.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroupBox3.StateCommon.Border.Rounding = 50F;
-            kryptonGroupBox3.TabIndex = 141;
-            // 
             // BtnVer
             // 
             BtnVer.Location = new Point(932, 594);
@@ -223,7 +199,7 @@
             // 
             // dtpInicio
             // 
-            dtpInicio.Location = new Point(288, 137);
+            dtpInicio.Location = new Point(286, 164);
             dtpInicio.Name = "dtpInicio";
             dtpInicio.Size = new Size(222, 23);
             dtpInicio.TabIndex = 143;
@@ -231,7 +207,7 @@
             // dtpFin
             // 
             dtpFin.CalendarForeColor = Color.Navy;
-            dtpFin.Location = new Point(288, 181);
+            dtpFin.Location = new Point(527, 165);
             dtpFin.Name = "dtpFin";
             dtpFin.Size = new Size(222, 23);
             dtpFin.TabIndex = 143;
@@ -250,7 +226,7 @@
             // 
             // txtBusqueda
             // 
-            txtBusqueda.Location = new Point(550, 207);
+            txtBusqueda.Location = new Point(550, 204);
             txtBusqueda.Name = "txtBusqueda";
             txtBusqueda.Size = new Size(553, 32);
             txtBusqueda.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -263,12 +239,12 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.BackColor = Color.SkyBlue;
-            label3.Font = new Font("Arial Narrow", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Arial Narrow", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(355, 89);
+            label3.Location = new Point(283, 96);
             label3.Name = "label3";
-            label3.Size = new Size(64, 26);
+            label3.Size = new Size(94, 37);
             label3.TabIndex = 324;
             label3.Text = "Fecha";
             label3.TextAlign = ContentAlignment.TopCenter;
@@ -276,22 +252,22 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(288, 118);
+            label5.Location = new Point(286, 137);
             label5.Name = "label5";
-            label5.Size = new Size(46, 19);
+            label5.Size = new Size(52, 23);
             label5.TabIndex = 329;
             label5.Text = "Inicial:";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(288, 162);
+            label6.Location = new Point(527, 137);
             label6.Name = "label6";
-            label6.Size = new Size(40, 19);
+            label6.Size = new Size(56, 25);
             label6.TabIndex = 330;
             label6.Text = "Final:";
             // 
@@ -311,11 +287,11 @@
             // 
             label4.AutoSize = true;
             label4.BackColor = Color.Transparent;
-            label4.Font = new Font("Arial", 13.8F, FontStyle.Bold);
+            label4.Font = new Font("Arial", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(460, 214);
+            label4.Location = new Point(457, 211);
             label4.Name = "label4";
-            label4.Size = new Size(84, 22);
+            label4.Size = new Size(89, 24);
             label4.TabIndex = 353;
             label4.Text = "Buscar:";
             // 
@@ -452,7 +428,6 @@
             btnFacturas.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             btnFacturas.TabIndex = 361;
             btnFacturas.Text = "Facturas";
-       
             // 
             // btnCompra
             // 
@@ -618,8 +593,6 @@
             Controls.Add(btnnotificaciones);
             Controls.Add(panel8);
             Controls.Add(panel3);
-            Controls.Add(kryptonGroupBox2);
-            Controls.Add(kryptonGroupBox3);
             Controls.Add(label2);
             Controls.Add(btnReportes);
             Controls.Add(btnPerfil);
@@ -636,10 +609,6 @@
             Name = "FacturasAdm";
             Text = "FacturasAdm";
             Load += FacturasAdm_Load;
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvFacturas).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -657,8 +626,6 @@
         private Panel panel8;
         private Panel panel3;
         private Panel panel5;
-        private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox2;
-        private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox3;
         private Krypton.Toolkit.KryptonButton BtnVer;
         private Krypton.Toolkit.KryptonButton BtnNueva;
         private DateTimePicker dtpInicio;

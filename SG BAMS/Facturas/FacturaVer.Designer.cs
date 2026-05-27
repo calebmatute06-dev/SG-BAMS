@@ -37,7 +37,6 @@
             txtTotal = new Krypton.Toolkit.KryptonTextBox();
             panel1 = new Panel();
             label2 = new Label();
-            kryptonGroupBox3 = new Krypton.Toolkit.KryptonGroupBox();
             label7 = new Label();
             label9 = new Label();
             label1 = new Label();
@@ -55,8 +54,6 @@
             label10 = new Label();
             label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)cmbPago).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3.Panel).BeginInit();
             panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvFacturas).BeginInit();
             SuspendLayout();
@@ -91,7 +88,7 @@
             // 
             // txtCliente
             // 
-            txtCliente.Location = new Point(145, 108);
+            txtCliente.Location = new Point(145, 102);
             txtCliente.Name = "txtCliente";
             txtCliente.Size = new Size(218, 32);
             txtCliente.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -174,15 +171,6 @@
             label2.TabIndex = 329;
             label2.Text = "Total:";
             // 
-            // kryptonGroupBox3
-            // 
-            kryptonGroupBox3.CaptionVisible = false;
-            kryptonGroupBox3.Location = new Point(338, 40);
-            kryptonGroupBox3.Size = new Size(281, 49);
-            kryptonGroupBox3.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroupBox3.StateCommon.Border.Rounding = 50F;
-            kryptonGroupBox3.TabIndex = 340;
-            // 
             // label7
             // 
             label7.AutoSize = true;
@@ -225,7 +213,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(38, 111);
+            label3.Location = new Point(38, 105);
             label3.Name = "label3";
             label3.Size = new Size(81, 22);
             label3.TabIndex = 330;
@@ -234,12 +222,12 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.BackColor = Color.SkyBlue;
-            label4.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.BackColor = Color.Transparent;
+            label4.Font = new Font("Arial", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(404, 50);
+            label4.Location = new Point(365, 34);
             label4.Name = "label4";
-            label4.Size = new Size(143, 29);
+            label4.Size = new Size(222, 44);
             label4.TabIndex = 327;
             label4.Text = "Ver Factura";
             // 
@@ -275,7 +263,7 @@
             // 
             dgvFacturas.BackgroundColor = Color.SkyBlue;
             dgvFacturas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvFacturas.Location = new Point(38, 145);
+            dgvFacturas.Location = new Point(38, 148);
             dgvFacturas.Margin = new Padding(3, 2, 3, 2);
             dgvFacturas.Name = "dgvFacturas";
             dgvFacturas.RowHeadersWidth = 51;
@@ -396,14 +384,11 @@
             Controls.Add(panel3);
             Controls.Add(panel4);
             Controls.Add(panel8);
-            Controls.Add(kryptonGroupBox3);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FacturaVer";
             Text = "FacturaVer";
             Load += FacturaVer_Load;
             ((System.ComponentModel.ISupportInitialize)cmbPago).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3).EndInit();
             panel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvFacturas).EndInit();
             ResumeLayout(false);
@@ -421,7 +406,6 @@
         private Krypton.Toolkit.KryptonTextBox txtTotal;
         private Panel panel1;
         private Label label2;
-        private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox3;
         private Label label7;
         private Label label9;
         private Label label1;

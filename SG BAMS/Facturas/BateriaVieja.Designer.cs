@@ -48,12 +48,9 @@
             panel2 = new Panel();
             panel3 = new Panel();
             panel4 = new Panel();
-            kryptonGroupBox3 = new Krypton.Toolkit.KryptonGroupBox();
             label6 = new Label();
             ((System.ComponentModel.ISupportInitialize)cmbBaterias).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvBateria).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3.Panel).BeginInit();
             SuspendLayout();
             // 
             // txtPrecio
@@ -98,12 +95,12 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.BackColor = Color.SkyBlue;
-            label1.Font = new Font("Arial Narrow", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Arial Narrow", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(343, 38);
+            label1.Location = new Point(300, 29);
             label1.Name = "label1";
-            label1.Size = new Size(145, 31);
+            label1.Size = new Size(200, 43);
             label1.TabIndex = 339;
             label1.Text = "Batería Víeja";
             // 
@@ -338,15 +335,6 @@
             panel4.Size = new Size(23, 494);
             panel4.TabIndex = 356;
             // 
-            // kryptonGroupBox3
-            // 
-            kryptonGroupBox3.CaptionVisible = false;
-            kryptonGroupBox3.Location = new Point(298, 29);
-            kryptonGroupBox3.Size = new Size(233, 47);
-            kryptonGroupBox3.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroupBox3.StateCommon.Border.Rounding = 50F;
-            kryptonGroupBox3.TabIndex = 358;
-            // 
             // label6
             // 
             label6.AutoSize = true;
@@ -386,7 +374,6 @@
             Controls.Add(Nombre);
             Controls.Add(cmbBaterias);
             Controls.Add(txtPrecio);
-            Controls.Add(kryptonGroupBox3);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 2, 3, 2);
             Name = "BateriaVieja";
@@ -394,8 +381,6 @@
             Load += BateriaVieja_Load;
             ((System.ComponentModel.ISupportInitialize)cmbBaterias).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvBateria).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -421,7 +406,6 @@
         private Panel panel2;
         private Panel panel3;
         private Panel panel4;
-        private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox3;
         private Label label6;
     }
 }

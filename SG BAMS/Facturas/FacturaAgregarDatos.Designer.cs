@@ -42,7 +42,6 @@
             BtnCancelar = new Krypton.Toolkit.KryptonButton();
             DateTFecha = new MonthCalendar();
             label2 = new Label();
-            kryptonGroupBox3 = new Krypton.Toolkit.KryptonGroupBox();
             txtCliente = new Krypton.Toolkit.KryptonTextBox();
             txtBateria = new Krypton.Toolkit.KryptonTextBox();
             txtTotal = new Krypton.Toolkit.KryptonTextBox();
@@ -60,8 +59,6 @@
             label10 = new Label();
             chkNormal = new Krypton.Toolkit.KryptonCheckBox();
             label5 = new Label();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cmbPago).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvProductos).BeginInit();
             SuspendLayout();
@@ -72,7 +69,7 @@
             label7.BackColor = Color.Transparent;
             label7.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Navy;
-            label7.Location = new Point(772, 140);
+            label7.Location = new Point(801, 137);
             label7.Name = "label7";
             label7.Size = new Size(67, 22);
             label7.TabIndex = 307;
@@ -84,7 +81,7 @@
             label9.BackColor = Color.Transparent;
             label9.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label9.ForeColor = Color.Navy;
-            label9.Location = new Point(44, 381);
+            label9.Location = new Point(44, 394);
             label9.Name = "label9";
             label9.Size = new Size(158, 22);
             label9.TabIndex = 304;
@@ -96,7 +93,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(44, 338);
+            label1.Location = new Point(44, 351);
             label1.Name = "label1";
             label1.Size = new Size(133, 22);
             label1.TabIndex = 303;
@@ -117,12 +114,12 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.BackColor = Color.SkyBlue;
-            label4.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.BackColor = Color.Transparent;
+            label4.Font = new Font("Arial", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(376, 32);
+            label4.Location = new Point(366, 29);
             label4.Name = "label4";
-            label4.Size = new Size(177, 29);
+            label4.Size = new Size(254, 41);
             label4.TabIndex = 296;
             label4.Text = "Nueva Factura";
             // 
@@ -164,7 +161,7 @@
             // 
             // BtnAgregar
             // 
-            BtnAgregar.Location = new Point(59, 533);
+            BtnAgregar.Location = new Point(59, 530);
             BtnAgregar.Margin = new Padding(3, 2, 3, 2);
             BtnAgregar.Name = "BtnAgregar";
             BtnAgregar.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -188,7 +185,7 @@
             // 
             // BtnAceptar
             // 
-            BtnAceptar.Location = new Point(553, 532);
+            BtnAceptar.Location = new Point(553, 529);
             BtnAceptar.Margin = new Padding(3, 2, 3, 2);
             BtnAceptar.Name = "BtnAceptar";
             BtnAceptar.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -212,7 +209,7 @@
             // 
             // BtnCancelar
             // 
-            BtnCancelar.Location = new Point(688, 530);
+            BtnCancelar.Location = new Point(688, 527);
             BtnCancelar.Margin = new Padding(3, 2, 3, 2);
             BtnCancelar.Name = "BtnCancelar";
             BtnCancelar.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -237,7 +234,7 @@
             // DateTFecha
             // 
             DateTFecha.Enabled = false;
-            DateTFecha.Location = new Point(710, 165);
+            DateTFecha.Location = new Point(735, 164);
             DateTFecha.Name = "DateTFecha";
             DateTFecha.TabIndex = 315;
             // 
@@ -253,18 +250,9 @@
             label2.TabIndex = 302;
             label2.Text = "Total:";
             // 
-            // kryptonGroupBox3
-            // 
-            kryptonGroupBox3.CaptionVisible = false;
-            kryptonGroupBox3.Location = new Point(310, 23);
-            kryptonGroupBox3.Size = new Size(319, 49);
-            kryptonGroupBox3.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroupBox3.StateCommon.Border.Rounding = 50F;
-            kryptonGroupBox3.TabIndex = 317;
-            // 
             // txtCliente
             // 
-            txtCliente.Location = new Point(159, 80);
+            txtCliente.Location = new Point(157, 80);
             txtCliente.Name = "txtCliente";
             txtCliente.Size = new Size(209, 32);
             txtCliente.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -275,7 +263,7 @@
             // 
             // txtBateria
             // 
-            txtBateria.Location = new Point(189, 333);
+            txtBateria.Location = new Point(189, 346);
             txtBateria.Name = "txtBateria";
             txtBateria.Size = new Size(98, 33);
             txtBateria.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -301,7 +289,7 @@
             // 
             cmbPago.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbPago.DropDownWidth = 300;
-            cmbPago.Location = new Point(209, 377);
+            cmbPago.Location = new Point(209, 390);
             cmbPago.Margin = new Padding(3, 2, 3, 2);
             cmbPago.Name = "cmbPago";
             cmbPago.Size = new Size(128, 34);
@@ -332,7 +320,7 @@
             // panel5
             // 
             panel5.BackColor = Color.Navy;
-            panel5.Location = new Point(969, 0);
+            panel5.Location = new Point(971, 0);
             panel5.Margin = new Padding(3, 2, 3, 2);
             panel5.Name = "panel5";
             panel5.Size = new Size(26, 611);
@@ -340,7 +328,7 @@
             // 
             // BtnEliminar
             // 
-            BtnEliminar.Location = new Point(310, 533);
+            BtnEliminar.Location = new Point(310, 530);
             BtnEliminar.Margin = new Padding(3, 2, 3, 2);
             BtnEliminar.Name = "BtnEliminar";
             BtnEliminar.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -364,7 +352,7 @@
             // 
             // btnBateria
             // 
-            btnBateria.Location = new Point(300, 333);
+            btnBateria.Location = new Point(300, 346);
             btnBateria.Margin = new Padding(3, 2, 3, 2);
             btnBateria.Name = "btnBateria";
             btnBateria.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -436,7 +424,7 @@
             // 
             // chkGobierno
             // 
-            chkGobierno.Location = new Point(51, 415);
+            chkGobierno.Location = new Point(51, 428);
             chkGobierno.Margin = new Padding(3, 2, 3, 2);
             chkGobierno.Name = "chkGobierno";
             chkGobierno.Size = new Size(274, 29);
@@ -449,7 +437,7 @@
             // 
             // txtExento
             // 
-            txtExento.Location = new Point(209, 449);
+            txtExento.Location = new Point(209, 462);
             txtExento.Name = "txtExento";
             txtExento.Size = new Size(138, 33);
             txtExento.StateCommon.Back.Color1 = Color.SkyBlue;
@@ -465,7 +453,7 @@
             label10.BackColor = Color.Transparent;
             label10.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Navy;
-            label10.Location = new Point(46, 455);
+            label10.Location = new Point(46, 468);
             label10.Name = "label10";
             label10.Size = new Size(146, 22);
             label10.TabIndex = 331;
@@ -473,7 +461,7 @@
             // 
             // chkNormal
             // 
-            chkNormal.Location = new Point(46, 487);
+            chkNormal.Location = new Point(408, 276);
             chkNormal.Margin = new Padding(3, 2, 3, 2);
             chkNormal.Name = "chkNormal";
             chkNormal.Size = new Size(263, 29);
@@ -502,8 +490,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(994, 611);
-            Controls.Add(label5);
+            Controls.Add(dgvProductos);
             Controls.Add(chkNormal);
+            Controls.Add(label5);
             Controls.Add(txtExento);
             Controls.Add(label10);
             Controls.Add(chkGobierno);
@@ -515,7 +504,6 @@
             Controls.Add(BtnEliminar);
             Controls.Add(panel4);
             Controls.Add(panel5);
-            Controls.Add(dgvProductos);
             Controls.Add(cmbPago);
             Controls.Add(txtTotal);
             Controls.Add(txtBateria);
@@ -533,13 +521,10 @@
             Controls.Add(label4);
             Controls.Add(panel1);
             Controls.Add(panel8);
-            Controls.Add(kryptonGroupBox3);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FacturaAgregarDatos";
             Text = "FacturaAgregarDatos";
             Load += FacturaAgregarDatos_Load;
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)cmbPago).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvProductos).EndInit();
             ResumeLayout(false);
@@ -561,7 +546,6 @@
         private Krypton.Toolkit.KryptonButton BtnCancelar;
         private MonthCalendar DateTFecha;
         private Label label2;
-        private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox3;
         private Krypton.Toolkit.KryptonTextBox txtCliente;
         private Krypton.Toolkit.KryptonTextBox txtBateria;
         private Krypton.Toolkit.KryptonTextBox txtTotal;
