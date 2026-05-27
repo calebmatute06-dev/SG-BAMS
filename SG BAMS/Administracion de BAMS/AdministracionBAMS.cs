@@ -263,7 +263,6 @@ namespace SG_BAMS
         {
             Clasificacion clasificacion = new Clasificacion();
             clasificacion.Show();
-            this.Close();
         }
     }
 }
