@@ -39,19 +39,21 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Carga el grid de deudores.
+        /// Carga el grid de deudores mostrando solo los activos.
         /// </summary>
         public void CargarGridDeudores()
         {
             ClsDeuda objetoDeuda = new ClsDeuda();
             dtDeudores = objetoDeuda.ListarDeudores();
-            dgvDeudores.DataSource = dtDeudores;
 
+            // Aplicar filtro para mostrar solo deudas activas
+            DataView dv = new DataView(dtDeudores);
+            dv.RowFilter = "[Estado Deuda] = 'Activo'";
+            dgvDeudores.DataSource = dv;
 
             dgvDeudores.ReadOnly = true;
             dgvDeudores.AllowUserToAddRows = false;
             dgvDeudores.AllowUserToDeleteRows = false;
-
 
             dgvDeudores.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvDeudores.MultiSelect = false;
@@ -60,20 +62,27 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Filtra los deudores.
+        /// Filtra los deudores por nombre manteniendo el filtro de estado activo.
         /// </summary>
         private void FiltrarDeudores()
         {
             if (dtDeudores != null)
             {
-                string filtro = txtBuscarNombre.Text
+                string filtroNombre = txtBuscarNombre.Text
                     .Replace("'", "''")
                     .Replace("[", "[[]")
                     .Replace("]", "[]]")
                     .Trim();
 
+                // Construir filtro combinado: estado activo + búsqueda por nombre
+                string filtroCompleto = "[Estado Deuda] = 'Activo'";
+                if (!string.IsNullOrEmpty(filtroNombre))
+                {
+                    filtroCompleto += string.Format(" AND Cliente LIKE '%{0}%'", filtroNombre);
+                }
+
                 DataView dv = dtDeudores.DefaultView;
-                dv.RowFilter = string.Format("Cliente LIKE '%{0}%'", filtro);
+                dv.RowFilter = filtroCompleto;
                 dgvDeudores.DataSource = dv;
             }
         }
@@ -99,6 +108,34 @@ namespace SG_BAMS
         }
 
         /// <summary>
+        /// Procesa el pago de una deuda a partir de la fila seleccionada.
+        /// </summary>
+        /// <param name="fila">La fila del deudor seleccionado.</param>
+        private void ProcesarPagoDeuda(DataRowView fila)
+        {
+            if (fila == null) return;
+
+            int idDeuda = Convert.ToInt32(fila["ID Deuda"]);
+            string nombreCliente = fila["Cliente"].ToString().Trim();
+            string estadoDeuda = fila["Estado Deuda"].ToString().Trim();
+
+            if (estadoDeuda.Equals("Activo", StringComparison.OrdinalIgnoreCase))
+            {
+                Pago_Deuda pagDe = new Pago_Deuda(nombreCliente, idDeuda);
+
+                if (pagDe.ShowDialog() == DialogResult.OK)
+                {
+                    CargarGridDeudores();
+                    txtBuscarNombre.Clear();
+                }
+            }
+            else
+            {
+                MessageBox.Show($"La deuda de {nombreCliente} ya no está activa.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        /// <summary>
         /// Maneja el evento CellDoubleClick del control dgvDeudores.
         /// </summary>
         /// <param name="sender">La fuente del evento.</param>
@@ -110,28 +147,7 @@ namespace SG_BAMS
             try
             {
                 DataRowView filaSeleccionada = (DataRowView)dgvDeudores.Rows[e.RowIndex].DataBoundItem;
-
-                if (filaSeleccionada != null)
-                {
-                    int idDeuda = Convert.ToInt32(filaSeleccionada["ID Deuda"]);
-                    string nombreCliente = filaSeleccionada["Cliente"].ToString().Trim();
-                    string estadoDeuda = filaSeleccionada["Estado Deuda"].ToString().Trim();
-
-                    if (estadoDeuda.Equals("Activo", StringComparison.OrdinalIgnoreCase))
-                    {
-                        Pago_Deuda pagDe = new Pago_Deuda(nombreCliente, idDeuda);
-
-                        if (pagDe.ShowDialog() == DialogResult.OK)
-                        {
-                            CargarGridDeudores();
-                            txtBuscarNombre.Clear();
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show($"La deuda de {nombreCliente} ya no está activa.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
+                ProcesarPagoDeuda(filaSeleccionada);
             }
             catch (Exception ex)
             {
@@ -146,9 +162,28 @@ namespace SG_BAMS
         /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void kryptonButton15_Click(object sender, EventArgs e)
         {
-            Pago_Deuda PagDe = new Pago_Deuda("", 0);
-            PagDe.ShowDialog();
-            CargarGridDeudores();
+            if (dgvDeudores.CurrentRow == null || dgvDeudores.CurrentRow.Index < 0)
+            {
+                MessageBox.Show("Por favor, seleccione una fila para pagar la deuda.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            try
+            {
+                DataRowView filaSeleccionada = dgvDeudores.CurrentRow.DataBoundItem as DataRowView;
+                if (filaSeleccionada != null)
+                {
+                    ProcesarPagoDeuda(filaSeleccionada);
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo obtener la información de la fila seleccionada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al procesar el pago: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         /// <summary>
@@ -171,10 +206,6 @@ namespace SG_BAMS
             ClsValidaciones.PermitirSoloLetras(e);
         }
 
-
-
-
-
         /// <summary>
         /// Maneja el evento Click del control button12.
         /// </summary>
@@ -185,14 +216,13 @@ namespace SG_BAMS
             new NotificacionesAdmin().Show();
         }
 
-
-
         /// <summary>
         /// Maneja el evento CellContentClick del control kryptonDataGridView1.
         /// </summary>
         /// <param name="sender">La fuente del evento.</param>
         /// <param name="e">La instancia <see cref="DataGridViewCellEventArgs" /> que contiene los datos del evento.</param>
         private void kryptonDataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
+
         /// <summary>
         /// Maneja el evento DoubleClick del control dgvDeudores.
         /// </summary>
@@ -312,8 +342,6 @@ namespace SG_BAMS
             PA.Show();
             this.Hide();
         }
-
-
 
         /// <summary>
         /// Maneja el evento Click del control btnReportes.

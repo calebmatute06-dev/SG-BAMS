@@ -1,32 +1,17 @@
 ﻿using Krypton.Toolkit;
 using System;
 using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace SG_BAMS
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class Pago_Deuda : Form
     {
-        /// <summary>
-        /// El objeto deudas
-        /// </summary>
         private ClsDeudas objetoDeudas = new ClsDeudas();
-        /// <summary>
-        /// El nombre recibido
-        /// </summary>
         private string nombreRecibido = "";
-        /// <summary>
-        /// El identificador de deuda recibido
-        /// </summary>
         private int idDeudaRecibido = 0;
 
-        /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="Pago_Deuda"/>.
-        /// </summary>
         public Pago_Deuda()
         {
             InitializeComponent();
@@ -35,11 +20,6 @@ namespace SG_BAMS
             ConfigurarFormulario();
         }
 
-        /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="Pago_Deuda"/>.
-        /// </summary>
-        /// <param name="nombre">El nombre.</param>
-        /// <param name="idDeuda">El identificador de la deuda.</param>
         public Pago_Deuda(string nombre, int idDeuda)
         {
             InitializeComponent();
@@ -50,21 +30,14 @@ namespace SG_BAMS
             ConfigurarFormulario();
         }
 
-        /// <summary>
-        /// Registra los eventos.
-        /// </summary>
         private void RegistrarEventos()
         {
             if (this.txtMonto != null)
             {
-
                 this.txtMonto.KeyPress += (s, e) => ClsValidaciones.PermitirNumerosYDecimales(s, e);
             }
         }
 
-        /// <summary>
-        /// Configura el formulario.
-        /// </summary>
         private void ConfigurarFormulario()
         {
             DataTable dtDeudores = objetoDeudas.ObtenerDeudoresActivos();
@@ -77,30 +50,45 @@ namespace SG_BAMS
                 cmbDeudores.ValueMember = "ID";
                 cmbDeudores.DisplayMember = "ClienteDetalle";
 
-                cmbDeudores.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                cmbDeudores.AutoCompleteSource = AutoCompleteSource.ListItems;
+                
+                cmbDeudores.DropDownStyle = ComboBoxStyle.DropDownList;
+                cmbDeudores.AutoCompleteMode = AutoCompleteMode.None;
+
+                
+                if (cmbDeudores is KryptonComboBox kryptonCombo)
+                {
+                    
+                    kryptonCombo.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+                    
+                    kryptonCombo.StateCommon.ComboBox.Border.Color1 = Color.SkyBlue;
+                    
+                    kryptonCombo.StateCommon.ComboBox.Content.Color1 = Color.Navy;
+                    
+                    kryptonCombo.StateCommon.ComboBox.Content.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+                }
+
                 cmbDeudores.DataSource = dtDeudores;
                 cmbDeudores.SelectedIndex = -1;
             }
         }
 
-        /// <summary>
-        /// Maneja el evento Load del control Pago_Deuda.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void Pago_Deuda_Load(object sender, EventArgs e)
         {
             if (idDeudaRecibido > 0 && cmbDeudores.DataSource != null)
             {
                 DataTable dtDatos = (DataTable)cmbDeudores.DataSource;
-
                 for (int i = 0; i < dtDatos.Rows.Count; i++)
                 {
                     if (Convert.ToInt32(dtDatos.Rows[i]["ID"]) == idDeudaRecibido)
                     {
                         cmbDeudores.SelectedIndex = i;
                         cmbDeudores.Enabled = false;
+                        
+                        if (cmbDeudores is KryptonComboBox kc)
+                        {
+                            kc.StateDisabled.ComboBox.Back.Color1 = Color.SkyBlue;
+                            kc.StateDisabled.ComboBox.Content.Color1 = Color.Navy;
+                        }
                         return;
                     }
                 }
@@ -113,19 +101,6 @@ namespace SG_BAMS
             }
         }
 
-
-        /// <summary>
-        /// Maneja el evento KeyPress del control txtMonto.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="KeyPressEventArgs"/> que contiene los datos del evento.</param>
-        private void txtMonto_KeyPress(object sender, KeyPressEventArgs e) { }
-
-        /// <summary>
-        /// Maneja el evento Click del control btnAceptar.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private async void btnAceptar_Click(object sender, EventArgs e)
         {
             if (cmbDeudores.SelectedValue == null ||
@@ -157,21 +132,12 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnCancelar.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control label2.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
+        private void txtMonto_KeyPress(object sender, KeyPressEventArgs e) { }
         private void label2_Click(object sender, EventArgs e) { }
     }
 }
