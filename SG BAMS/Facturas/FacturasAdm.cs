@@ -66,7 +66,6 @@ namespace SG_BAMS
 
                     dgvFacturas.Columns["Rebaja"].DisplayIndex = 8;
                     dgvFacturas.Columns["Batería Vieja"].DisplayIndex = 7;
-                    dgvFacturas.Columns["Total Unidades"].DisplayIndex = 9;
 
                     dgvFacturas.ClearSelection();
                 }
@@ -258,7 +257,10 @@ namespace SG_BAMS
                         bateriaVieja = int.Parse(soloNumero);
                 }
 
-                double rebaja = Convert.ToDouble(dgvFacturas.CurrentRow.Cells["Rebaja"].Value);
+                string valorCelda = dgvFacturas.CurrentRow.Cells["Rebaja"].Value?.ToString() ?? "0";
+                valorCelda = valorCelda.Replace("L.", "").Trim();
+
+                double rebaja = Convert.ToDouble(valorCelda);
 
                 FacturaVer frmFV = new FacturaVer(idFacturas, nombre_Cliente, fecha, bateriaVieja, idPago, rebaja);
                 frmFV.ShowDialog();
