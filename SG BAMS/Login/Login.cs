@@ -83,8 +83,9 @@ namespace SG_BAMS.Login
 
             try
             {
-                UsuarioLogueado = txtUsu.Text;
+                
                 int rol = login.ValidarUsuario(txtUsu.Text, txtCon.Text);
+                UsuarioLogueado = login.NombreUsuario;
 
                 switch (rol)
                 {

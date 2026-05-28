@@ -18,6 +18,8 @@ namespace SG_BAMS.Login
         /// </summary>
         public static int idusuario;
 
+        public string NombreUsuario { get; set; }
+
         /// <summary>
         /// Valida el usuario comparando la contraseña hasheada con SHA-256.
         /// </summary>
@@ -40,9 +42,9 @@ namespace SG_BAMS.Login
 
                 
                 string query = @"
-                    SELECT id_rol_usuario, id_estado, id_usuario
+                    SELECT id_rol_usuario, id_estado, id_usuario, nombre_usuario
                     FROM credenciales_usuarios
-                    WHERE nombre_usuario = @usuario COLLATE Latin1_General_CS_AS
+                    WHERE correo_usuario = @usuario COLLATE Latin1_General_CS_AS
                       AND contraseña_login = @contra";
 
                 SqlCommand cmd = new SqlCommand(query, Conectar);
@@ -58,6 +60,7 @@ namespace SG_BAMS.Login
                         {
                             rol = Convert.ToInt32(reader["id_rol_usuario"]);
                             idusuario = Convert.ToInt32(reader["id_usuario"]);
+                            NombreUsuario = reader["nombre_usuario"].ToString();
                         }
                         else
                         {
