@@ -42,10 +42,10 @@ namespace SG_BAMS.Login
 
                 
                 string query = @"
-                    SELECT id_rol_usuario, id_estado, id_usuario, nombre_usuario
+                    SELECT ID_Rol_Usuario, ID_Estado, ID_Usuario, NombreUsuario
                     FROM credenciales_usuarios
-                    WHERE correo_usuario = @usuario COLLATE Latin1_General_CS_AS
-                      AND contraseña_login = @contra";
+                    WHERE Correo = @usuario COLLATE Latin1_General_CS_AS
+                      AND Contraseña = @contra";
 
                 SqlCommand cmd = new SqlCommand(query, Conectar);
                 cmd.Parameters.AddWithValue("@usuario", usuario);
@@ -55,12 +55,12 @@ namespace SG_BAMS.Login
                 {
                     if (reader.Read())
                     {
-                        int estado = Convert.ToInt32(reader["id_estado"]);
+                        int estado = Convert.ToInt32(reader["ID_Estado"]);
                         if (estado == 1)
                         {
-                            rol = Convert.ToInt32(reader["id_rol_usuario"]);
-                            idusuario = Convert.ToInt32(reader["id_usuario"]);
-                            NombreUsuario = reader["nombre_usuario"].ToString();
+                            rol = Convert.ToInt32(reader["ID_Rol_Usuario"]);
+                            idusuario = Convert.ToInt32(reader["ID_Usuario"]);
+                            NombreUsuario = reader["NombreUsuario"].ToString();
                         }
                         else
                         {
