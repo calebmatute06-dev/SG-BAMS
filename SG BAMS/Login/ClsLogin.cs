@@ -43,7 +43,7 @@ namespace SG_BAMS.Login
                 
                 string query = @"
                     SELECT ID_Rol_Usuario, ID_Estado, ID_Usuario, NombreUsuario
-                    FROM credenciales_usuarios
+                    FROM credenciales_usuario
                     WHERE Correo = @usuario COLLATE Latin1_General_CS_AS
                       AND Contraseña = @contra";
 

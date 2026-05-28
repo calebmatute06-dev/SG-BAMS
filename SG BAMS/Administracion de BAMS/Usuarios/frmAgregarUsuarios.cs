@@ -66,7 +66,7 @@ namespace SG_BAMS
         /// </summary>
         private void cmbRol_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace SG_BAMS
 
                 clsUsuario objetoUsuario = new clsUsuario();
                 string nombreUsuario = txtNombre.Text.Trim();
-                
+
                 bool existe = await objetoUsuario.ExisteUsuarioAsync(nombreUsuario);
                 if (existe)
                 {
@@ -112,7 +112,8 @@ namespace SG_BAMS
                     txtNombre.Text.Trim(),
                     txtContra.Text,
                     idRol,
-                    imagenByte
+                    imagenByte,
+                    txtCorreo.Text
                 );
 
                 if (exito)
@@ -177,6 +178,11 @@ namespace SG_BAMS
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void frmAgregarUsuarios_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

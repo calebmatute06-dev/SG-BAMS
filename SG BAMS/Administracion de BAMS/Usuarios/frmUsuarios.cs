@@ -71,7 +71,12 @@ namespace SG_BAMS
                 dgvUsuarios.Columns["id_usuario"].Visible = false;
 
             if (dgvUsuarios.Columns.Contains("nombre_usuario"))
-                dgvUsuarios.Columns["nombre_usuario"].HeaderText = "Nombres de Usuarios";
+                dgvUsuarios.Columns["nombre_usuario"].HeaderText = "Nombre";
+
+            dgvUsuarios.Columns["nombre_usuario"].FillWeight = 100;
+            dgvUsuarios.Columns["Correo"].FillWeight = 250;
+            dgvUsuarios.Columns["Rol"].FillWeight = 120;
+
 
             dgvUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvUsuarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -95,7 +100,9 @@ namespace SG_BAMS
                 int idRol = Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["id_rol_usuario"].Value);
                 int idEstado = Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["id_estado"].Value);
 
-                frmModificarUsuarios frmMod = new frmModificarUsuarios(id, nombre, idRol, idEstado);
+                string correo = dgvUsuarios.CurrentRow.Cells["Correo"].Value.ToString();
+
+                frmModificarUsuarios frmMod = new frmModificarUsuarios(id, nombre, idRol, idEstado, correo);
 
                 if (frmMod.ShowDialog() == DialogResult.OK)
                 {
@@ -134,7 +141,9 @@ namespace SG_BAMS
                 int idRol = Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["id_rol_usuario"].Value);
                 int idEstado = Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["id_estado"].Value);
 
-                frmModificarUsuarios frmMod = new frmModificarUsuarios(id, nombre, idRol, idEstado);
+                string correo = dgvUsuarios.CurrentRow.Cells["Correo"].Value.ToString();
+
+                frmModificarUsuarios frmMod = new frmModificarUsuarios(id, nombre, idRol, idEstado, correo);
 
                 if (frmMod.ShowDialog() == DialogResult.OK)
                 {

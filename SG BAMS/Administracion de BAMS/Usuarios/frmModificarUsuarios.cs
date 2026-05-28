@@ -46,7 +46,7 @@ namespace SG_BAMS
         /// <param name="nombre">El nombre del usuario.</param>
         /// <param name="rol">El identificador del rol.</param>
         /// <param name="estado">El identificador del estado.</param>
-        public frmModificarUsuarios(int id, string nombre, int rol, int estado)
+        public frmModificarUsuarios(int id, string nombre, int rol, int estado, string correo)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -59,6 +59,8 @@ namespace SG_BAMS
             this.estadoInicial = estado;
             this.nombreOriginal = nombre;
             txtNombre.Text = nombre;
+            txtCorreo.Text = correo;
+            
 
             cmbRol.SelectedIndexChanged += (s, e) =>
             {
@@ -213,10 +215,11 @@ namespace SG_BAMS
                 bool exito = await objetoUsuario.ModificarUsuarioAsync(
                     idUsuarioSeleccionado,
                     nombreNuevo,
-                    txtContra.Text,   
+                    txtContra.Text,  
                     idRol,
                     idEstado,
-                    imagenByte
+                    imagenByte,
+                    txtCorreo.Text
                 );
 
                 if (exito)

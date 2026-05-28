@@ -45,6 +45,8 @@
             btnImagen = new Krypton.Toolkit.KryptonButton();
             label1 = new Label();
             label8 = new Label();
+            label6 = new Label();
+            txtCorreo = new Krypton.Toolkit.KryptonTextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cmbRol).BeginInit();
@@ -57,20 +59,19 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(128, 239);
+            label5.Location = new Point(112, 202);
             label5.Name = "label5";
-            label5.Size = new Size(164, 31);
+            label5.Size = new Size(134, 25);
             label5.TabIndex = 79;
             label5.Text = "Rol de Usuario:";
             // 
             // txtContra
             // 
-            txtContra.Location = new Point(282, 180);
-            txtContra.Margin = new Padding(3, 4, 3, 4);
+            txtContra.Location = new Point(247, 155);
             txtContra.MaxLength = 70;
             txtContra.Multiline = true;
             txtContra.Name = "txtContra";
-            txtContra.Size = new Size(221, 44);
+            txtContra.Size = new Size(190, 34);
             txtContra.StateCommon.Back.Color1 = Color.SkyBlue;
             txtContra.StateCommon.Border.Rounding = 15F;
             txtContra.StateCommon.Content.Color1 = Color.Navy;
@@ -83,20 +84,19 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(139, 180);
+            label4.Location = new Point(113, 159);
             label4.Name = "label4";
-            label4.Size = new Size(132, 31);
+            label4.Size = new Size(109, 25);
             label4.TabIndex = 77;
             label4.Text = "Contraseña:";
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(281, 119);
-            txtNombre.Margin = new Padding(3, 4, 3, 4);
+            txtNombre.Location = new Point(247, 68);
             txtNombre.MaxLength = 70;
             txtNombre.Multiline = true;
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(221, 51);
+            txtNombre.Size = new Size(193, 38);
             txtNombre.StateCommon.Back.Color1 = Color.SkyBlue;
             txtNombre.StateCommon.Border.Rounding = 15F;
             txtNombre.StateCommon.Content.Color1 = Color.Navy;
@@ -109,9 +109,9 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(112, 129);
+            label2.Location = new Point(99, 76);
             label2.Name = "label2";
-            label2.Size = new Size(178, 31);
+            label2.Size = new Size(145, 25);
             label2.TabIndex = 74;
             label2.Text = "Nombre Usuario:";
             // 
@@ -121,9 +121,9 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(181, 303);
+            label3.Location = new Point(138, 245);
             label3.Name = "label3";
-            label3.Size = new Size(88, 31);
+            label3.Size = new Size(72, 25);
             label3.TabIndex = 85;
             label3.Text = "Estado:";
             // 
@@ -131,42 +131,47 @@
             // 
             pictureBox1.BackColor = Color.Navy;
             pictureBox1.Location = new Point(0, -1);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(24, 516);
+            pictureBox1.Size = new Size(21, 387);
             pictureBox1.TabIndex = 88;
             pictureBox1.TabStop = false;
             // 
             // pictureBox2
             // 
             pictureBox2.BackColor = Color.Navy;
-            pictureBox2.Location = new Point(734, 1);
+            pictureBox2.Location = new Point(642, 1);
+            pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(24, 513);
+            pictureBox2.Size = new Size(21, 385);
             pictureBox2.TabIndex = 89;
             pictureBox2.TabStop = false;
             // 
             // panel1
             // 
             panel1.BackColor = Color.Navy;
-            panel1.Location = new Point(11, -1);
+            panel1.Location = new Point(10, -1);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(746, 24);
+            panel1.Size = new Size(653, 18);
             panel1.TabIndex = 88;
             // 
             // panel2
             // 
             panel2.BackColor = Color.Navy;
-            panel2.Location = new Point(0, 491);
+            panel2.Location = new Point(0, 368);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(758, 24);
+            panel2.Size = new Size(663, 18);
             panel2.TabIndex = 87;
             // 
             // cmbRol
             // 
             cmbRol.DropDownWidth = 300;
-            cmbRol.Location = new Point(281, 231);
+            cmbRol.Location = new Point(246, 194);
+            cmbRol.Margin = new Padding(3, 2, 3, 2);
             cmbRol.Name = "cmbRol";
-            cmbRol.Size = new Size(218, 41);
+            cmbRol.Size = new Size(191, 37);
             cmbRol.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
             cmbRol.StateCommon.ComboBox.Border.Rounding = 20F;
             cmbRol.StateCommon.ComboBox.Content.Color1 = Color.Navy;
@@ -181,9 +186,10 @@
             // cmbEstado
             // 
             cmbEstado.DropDownWidth = 300;
-            cmbEstado.Location = new Point(281, 295);
+            cmbEstado.Location = new Point(246, 239);
+            cmbEstado.Margin = new Padding(3, 2, 3, 2);
             cmbEstado.Name = "cmbEstado";
-            cmbEstado.Size = new Size(217, 41);
+            cmbEstado.Size = new Size(190, 37);
             cmbEstado.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
             cmbEstado.StateCommon.ComboBox.Border.Rounding = 20F;
             cmbEstado.StateCommon.ComboBox.Content.Color1 = Color.Navy;
@@ -197,13 +203,14 @@
             // 
             // btmModificar
             // 
-            btmModificar.Location = new Point(88, 380);
+            btmModificar.Location = new Point(77, 287);
+            btmModificar.Margin = new Padding(3, 2, 3, 2);
             btmModificar.Name = "btmModificar";
             btmModificar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btmModificar.OverrideDefault.Back.Color2 = Color.White;
             btmModificar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btmModificar.OverrideFocus.Back.Color2 = Color.White;
-            btmModificar.Size = new Size(150, 65);
+            btmModificar.Size = new Size(131, 49);
             btmModificar.StateCommon.Back.Color1 = Color.SkyBlue;
             btmModificar.StateCommon.Back.Color2 = Color.White;
             btmModificar.StateCommon.Border.Rounding = 30F;
@@ -220,13 +227,14 @@
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(521, 380);
+            btnSalir.Location = new Point(456, 287);
+            btnSalir.Margin = new Padding(3, 2, 3, 2);
             btnSalir.Name = "btnSalir";
             btnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnSalir.OverrideDefault.Back.Color2 = Color.White;
             btnSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnSalir.OverrideFocus.Back.Color2 = Color.White;
-            btnSalir.Size = new Size(133, 65);
+            btnSalir.Size = new Size(116, 49);
             btnSalir.StateCommon.Back.Color1 = Color.SkyBlue;
             btnSalir.StateCommon.Back.Color2 = Color.White;
             btnSalir.StateCommon.Border.Rounding = 30F;
@@ -243,13 +251,14 @@
             // 
             // btnImagen
             // 
-            btnImagen.Location = new Point(245, 380);
+            btnImagen.Location = new Point(214, 287);
+            btnImagen.Margin = new Padding(3, 2, 3, 2);
             btnImagen.Name = "btnImagen";
             btnImagen.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnImagen.OverrideDefault.Back.Color2 = Color.White;
             btnImagen.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnImagen.OverrideFocus.Back.Color2 = Color.White;
-            btnImagen.Size = new Size(270, 65);
+            btnImagen.Size = new Size(236, 49);
             btnImagen.StateCommon.Back.Color1 = Color.SkyBlue;
             btnImagen.StateCommon.Back.Color2 = Color.White;
             btnImagen.StateCommon.Border.Rounding = 30F;
@@ -270,9 +279,9 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(631, 448);
+            label1.Location = new Point(552, 336);
             label1.Name = "label1";
-            label1.Size = new Size(102, 35);
+            label1.Size = new Size(84, 29);
             label1.TabIndex = 347;
             label1.Text = "BAMS";
             // 
@@ -282,18 +291,45 @@
             label8.BackColor = Color.Transparent;
             label8.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Navy;
-            label8.Location = new Point(266, 45);
+            label8.Location = new Point(233, 34);
             label8.Name = "label8";
-            label8.Size = new Size(230, 29);
+            label8.Size = new Size(185, 22);
             label8.TabIndex = 364;
             label8.Text = "Modificar Usuarios";
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.BackColor = Color.Transparent;
+            label6.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.ForeColor = Color.Navy;
+            label6.Location = new Point(115, 119);
+            label6.Name = "label6";
+            label6.Size = new Size(71, 25);
+            label6.TabIndex = 365;
+            label6.Text = "Correo:";
+            // 
+            // txtCorreo
+            // 
+            txtCorreo.Location = new Point(246, 111);
+            txtCorreo.MaxLength = 70;
+            txtCorreo.Multiline = true;
+            txtCorreo.Name = "txtCorreo";
+            txtCorreo.Size = new Size(193, 38);
+            txtCorreo.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtCorreo.StateCommon.Border.Rounding = 15F;
+            txtCorreo.StateCommon.Content.Color1 = Color.Navy;
+            txtCorreo.StateCommon.Content.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtCorreo.TabIndex = 366;
+            // 
             // frmModificarUsuarios
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(757, 515);
+            ClientSize = new Size(662, 386);
+            Controls.Add(txtCorreo);
+            Controls.Add(label6);
             Controls.Add(label8);
             Controls.Add(label1);
             Controls.Add(btnImagen);
@@ -312,7 +348,6 @@
             Controls.Add(txtNombre);
             Controls.Add(label2);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 4, 3, 4);
             Name = "frmModificarUsuarios";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "fmrModificarUsuarios";
@@ -343,5 +378,7 @@
         private Krypton.Toolkit.KryptonButton btnImagen;
         private Label label1;
         private Label label8;
+        private Label label6;
+        private Krypton.Toolkit.KryptonTextBox txtCorreo;
     }
 }
