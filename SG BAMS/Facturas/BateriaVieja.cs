@@ -112,6 +112,17 @@ namespace SG_BAMS.Facturas
 
             dgvBateria.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvBateria.AllowUserToAddRows = false;
+            dgvBateria.CellFormatting += (s, ev) =>
+            {
+                if (ev.RowIndex < 0 || ev.Value == null) return;
+                string col = dgvBateria.Columns[ev.ColumnIndex].Name;
+                if ((col == "precio" || col == "subtotal") &&
+                    decimal.TryParse(ev.Value.ToString(), out decimal monto))
+                {
+                    ev.Value = $"L. {monto:N2}";
+                    ev.FormattingApplied = true;
+                }
+            };
         }
 
         /// <summary>
@@ -176,7 +187,7 @@ namespace SG_BAMS.Facturas
                     totalProductos += Convert.ToInt32(row.Cells["cantidad"].Value);
             }
 
-            txtTotal.Text = totalDinero.ToString("N2");
+            txtTotal.Text = $"L. {totalDinero:N2}";
             txtCantidadTotal.Text = totalProductos.ToString();
         }
 
@@ -193,7 +204,8 @@ namespace SG_BAMS.Facturas
                 return;
             }
 
-            double totalBateria = double.Parse(txtTotal.Text);
+            string limpio = txtTotal.Text.Replace("L.", "").Replace(",", "").Trim();
+            double totalBateria = double.Parse(limpio, CultureInfo.InvariantCulture);
 
             if (totalBateria >= limiteFactura)
             {

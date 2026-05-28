@@ -135,7 +135,13 @@ public class DocumentoDinamico : IDocument
                                 }
                                 else
                                 {
-                                    celda.Text(valorTexto).FontSize(9);
+                                    string[] columnasDinero = { "Total_Venta", "Inversion_Total", "Monto_Credito",
+                                    "Saldo_Pendiente", "Precio_Unitario", "Total_Venta_Esperada", "Abonado" };
+
+                                    if (columnasDinero.Contains(nombreColumna) && decimal.TryParse(valorTexto, out decimal monto))
+                                        celda.Text($"L. {monto:N2}").FontSize(9);
+                                    else
+                                        celda.Text(valorTexto).FontSize(9);
                                 }
                             }
                         }
@@ -167,7 +173,7 @@ public class DocumentoDinamico : IDocument
                         tTotal.Cell().Padding(5).AlignRight().Text(etiqueta).SemiBold().FontSize(12);
 
                         tTotal.Cell().Background(Colors.Grey.Lighten4).Border(1).BorderColor(Colors.Grey.Lighten2)
-                            .Padding(5).AlignCenter().Text($"{totalGeneral:N2}").SemiBold().FontSize(12).FontColor(Colors.Blue.Medium);
+                            .Padding(5).AlignCenter().Text($"L. {totalGeneral:N2}").SemiBold().FontSize(12).FontColor(Colors.Blue.Medium);
                     });
                 }
             });

@@ -39,14 +39,14 @@ namespace SG_BAMS
 
             dgvIngresarCompra.Columns.Clear();
 
-            
+
             dgvIngresarCompra.Columns.Add("ID", "ID");
             dgvIngresarCompra.Columns.Add("Nombre", "Nombre");
             dgvIngresarCompra.Columns.Add("Cantidad", "Cantidad");
             dgvIngresarCompra.Columns.Add("Precio", "Precio");
             dgvIngresarCompra.Columns.Add("Subtotal", "Subtotal");
 
-            
+
             dgvIngresarCompra.Columns[0].ReadOnly = true;
             dgvIngresarCompra.Columns[1].ReadOnly = true;
             dgvIngresarCompra.Columns[4].ReadOnly = true;
@@ -58,7 +58,7 @@ namespace SG_BAMS
             dtpFechaPedido.SelectionEnd = DateTime.Now;
             lblIDCompra.Text = ObtenerSiguienteID();
 
-            
+
             dgvIngresarCompra.BorderStyle = BorderStyle.None;
             dgvIngresarCompra.BackgroundColor = Color.White;
             dgvIngresarCompra.RowHeadersVisible = false;
@@ -86,6 +86,19 @@ namespace SG_BAMS
             dgvIngresarCompra.RowTemplate.Height = 32;
             dgvIngresarCompra.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvIngresarCompra.ClearSelection();
+
+            dgvIngresarCompra.CellFormatting += (s, ev) =>
+            {
+                if (ev.RowIndex < 0 || ev.Value == null) return;
+                string col = dgvIngresarCompra.Columns[ev.ColumnIndex].Name;
+
+                if ((col == "Precio" || col == "Subtotal") &&
+                    decimal.TryParse(ev.Value.ToString(), out decimal monto))
+                {
+                    ev.Value = $"L. {monto:N2}";
+                    ev.FormattingApplied = true;
+                }
+            };
         }
 
         /// <summary>
@@ -145,7 +158,7 @@ namespace SG_BAMS
                     granTotal += Convert.ToDecimal(fila.Cells[4].Value);
                 }
             }
-            lblTotal.Text = granTotal.ToString("N2");
+            lblTotal.Text = $"L. {granTotal:N2}";
         }
 
         private object valorOriginal;
@@ -212,67 +225,67 @@ namespace SG_BAMS
         /// Procesa y guarda la compra final en la base de datos tras validar los campos requeridos.
         /// </summary>
         private void btnAceptar_Click_1(object sender, EventArgs e)
-{
-    
-    int filasConDatos = 0;
-    foreach (DataGridViewRow fila in dgvIngresarCompra.Rows)
-    {
-        if (!fila.IsNewRow && fila.Cells[0].Value != null)
         {
-            filasConDatos++;
-        }
-    }
 
-    if (filasConDatos == 0)
-    {
-        MessageBox.Show("Debe agregar al menos un producto a la lista.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        return;
-    }
-
-    if (cmbProveedor.SelectedValue == null || cmbFormaPago.SelectedValue == null)
-    {
-        MessageBox.Show("Seleccione el Proveedor y la Forma de Pago.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        return;
-    }
-
-    try
-    {
-        List<DetalleCompra> listaDetalles = new List<DetalleCompra>();
-
-        foreach (DataGridViewRow fila in dgvIngresarCompra.Rows)
-        {
-            if (!fila.IsNewRow && fila.Cells[0].Value != null)
+            int filasConDatos = 0;
+            foreach (DataGridViewRow fila in dgvIngresarCompra.Rows)
             {
-                listaDetalles.Add(new DetalleCompra
+                if (!fila.IsNewRow && fila.Cells[0].Value != null)
                 {
-                    IdProducto = Convert.ToInt32(fila.Cells[0].Value),
-                    Cantidad = Convert.ToInt32(fila.Cells[2].Value),
-                    Precio = Convert.ToDecimal(fila.Cells[3].Value)
-                });
+                    filasConDatos++;
+                }
+            }
+
+            if (filasConDatos == 0)
+            {
+                MessageBox.Show("Debe agregar al menos un producto a la lista.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (cmbProveedor.SelectedValue == null || cmbFormaPago.SelectedValue == null)
+            {
+                MessageBox.Show("Seleccione el Proveedor y la Forma de Pago.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                List<DetalleCompra> listaDetalles = new List<DetalleCompra>();
+
+                foreach (DataGridViewRow fila in dgvIngresarCompra.Rows)
+                {
+                    if (!fila.IsNewRow && fila.Cells[0].Value != null)
+                    {
+                        listaDetalles.Add(new DetalleCompra
+                        {
+                            IdProducto = Convert.ToInt32(fila.Cells[0].Value),
+                            Cantidad = Convert.ToInt32(fila.Cells[2].Value),
+                            Precio = Convert.ToDecimal(fila.Cells[3].Value)
+                        });
+                    }
+                }
+
+                ClsCompras logic = new ClsCompras();
+
+                bool exito = logic.GuardarNuevaCompra(
+                dtpFechaPedido.SelectionStart,
+                Convert.ToInt32(cmbFormaPago.SelectedValue),
+                Convert.ToInt32(cmbProveedor.SelectedValue),
+                txtNotaDetalle.Text,
+                listaDetalles
+                    );
+
+                if (exito)
+                {
+                    MessageBox.Show("La compra se registró correctamente y el inventario fue actualizado.", "BAMS - Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al procesar la compra: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        ClsCompras logic = new ClsCompras();
-
-            bool exito = logic.GuardarNuevaCompra(
-            dtpFechaPedido.SelectionStart,
-            Convert.ToInt32(cmbFormaPago.SelectedValue),
-            Convert.ToInt32(cmbProveedor.SelectedValue),
-            txtNotaDetalle.Text,
-            listaDetalles
-                );
-
-        if (exito)
-        {
-            MessageBox.Show("La compra se registró correctamente y el inventario fue actualizado.", "BAMS - Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            this.Close();
-        }
-    }
-    catch (Exception ex)
-    {
-        MessageBox.Show("Error al procesar la compra: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
-    }
-}
 
         /// <summary>
         /// Cierra el formulario actual sin realizar cambios.
@@ -338,7 +351,8 @@ namespace SG_BAMS
                     decimal cant = Convert.ToDecimal(fila.Cells[2].Value ?? 0);
                     decimal prec = Convert.ToDecimal(fila.Cells[3].Value ?? 0);
 
-                    fila.Cells[4].Value = cant * prec;
+                    decimal subtotal = cant * prec;
+                    fila.Cells[4].Value = subtotal;
                     ActualizarGranTotal();
                 }
                 catch (Exception ex)
@@ -358,5 +372,6 @@ namespace SG_BAMS
                 valorOriginal = dgvIngresarCompra.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
             }
         }
+    
     }
 }

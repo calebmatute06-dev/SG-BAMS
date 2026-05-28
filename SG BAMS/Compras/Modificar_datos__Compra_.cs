@@ -126,7 +126,7 @@ namespace SG_BAMS
                 if (fila.Cells["Subtotal"].Value != null)
                     total += Convert.ToDecimal(fila.Cells["Subtotal"].Value);
             }
-            lblTotal.Text = "Total: L " + total.ToString("N2");
+            lblTotal.Text = $"Total: L. {total:N2}";
         }
 
         /// <summary>
@@ -140,8 +140,8 @@ namespace SG_BAMS
             if (dgvProductosModificar.Columns.Contains("Cantidad")) dgvProductosModificar.Columns["Cantidad"].ReadOnly = false;
             if (dgvProductosModificar.Columns.Contains("Precio")) dgvProductosModificar.Columns["Precio"].ReadOnly = false;
 
-            if (dgvProductosModificar.Columns.Contains("Precio")) dgvProductosModificar.Columns["Precio"].DefaultCellStyle.Format = "N2";
-            if (dgvProductosModificar.Columns.Contains("Subtotal")) dgvProductosModificar.Columns["Subtotal"].DefaultCellStyle.Format = "N2";
+            if (dgvProductosModificar.Columns.Contains("Precio")) dgvProductosModificar.Columns["Precio"].DefaultCellStyle.Format = "\"L. \"#,##0.00";
+            if (dgvProductosModificar.Columns.Contains("Subtotal")) dgvProductosModificar.Columns["Subtotal"].DefaultCellStyle.Format = "\"L. \"#,##0.00";
         }
 
         /// <summary>

@@ -214,6 +214,19 @@ namespace SG_BAMS.Reporte
                     }
                 }
             }
+            string colName = dgvReporte.Columns[e.ColumnIndex].Name;
+
+            if ((colName == "Total_Venta" || colName == "Inversion_Total" ||
+                 colName == "Monto_Credito" || colName == "Abono" ||
+                 colName == "Precio_Unitario" || colName == "Total_Venta_Esperada")
+                && e.Value != null)
+            {
+                if (decimal.TryParse(e.Value.ToString(), out decimal monto))
+                {
+                    e.Value = $"L. {monto:N2}";
+                    e.FormattingApplied = true;
+                }
+            }
         }
 
 
@@ -537,6 +550,43 @@ namespace SG_BAMS.Reporte
         {
             Perfil perfil = new Perfil();
             perfil.Show();
+        }
+
+        private void dgvReporte_CellFormatting_1(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvReporte.Columns[e.ColumnIndex].Name == "Stock_Actual" && e.Value != null)
+            {
+                if (int.TryParse(e.Value.ToString(), out int stock))
+                {
+                    if (stock == 0)
+                    {
+                        e.CellStyle.BackColor = System.Drawing.Color.FromArgb(255, 192, 192);
+                        e.CellStyle.ForeColor = System.Drawing.Color.DarkRed;
+                    }
+                    else if (stock <= 10)
+                    {
+                        e.CellStyle.BackColor = System.Drawing.Color.FromArgb(255, 224, 192);
+                        e.CellStyle.ForeColor = System.Drawing.Color.Brown;
+                    }
+                    else
+                    {
+                        e.CellStyle.BackColor = System.Drawing.Color.FromArgb(192, 255, 192);
+                        e.CellStyle.ForeColor = System.Drawing.Color.DarkGreen;
+                    }
+                }
+            }
+
+            string[] columnasDinero = { "Total_Venta", "Inversion_Total", "Monto_Credito",
+                                 "Saldo_Pendiente", "Precio_Unitario", "Total_Venta_Esperada", "Abonado" };
+
+            if (e.Value != null && columnasDinero.Contains(dgvReporte.Columns[e.ColumnIndex].Name))
+            {
+                if (decimal.TryParse(e.Value.ToString(), out decimal monto))
+                {
+                    e.Value = $"L. {monto:N2}";
+                    e.FormattingApplied = true;
+                }
+            }
         }
     }
 }

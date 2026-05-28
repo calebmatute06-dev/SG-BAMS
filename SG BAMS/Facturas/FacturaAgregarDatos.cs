@@ -16,40 +16,14 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class FacturaAgregarDatos : Form
     {
-        /// <summary>
-        /// The identifier cliente
-        /// </summary>
         int idCliente, cantidades;
-        /// <summary>
-        /// The identifier producto
-        /// </summary>
         public int idProducto;
-        /// <summary>
-        /// The nombres productos
-        /// </summary>
         string nombresProductos, cantidadBateria;
-        /// <summary>
-        /// The precio bateria
-        /// </summary>
         double precioBateria;
-        /// <summary>
-        /// The RTN cliente
-        /// </summary>
         string rtnCliente;
 
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="FacturaAgregarDatos"/> class.
-        /// </summary>
-        /// <param name="cliente">The cliente.</param>
-        /// <param name="idCli">The identifier cli.</param>
-        /// <param name="rtn">The RTN.</param>
         public FacturaAgregarDatos(string cliente, int idCli, string rtn = "Sin RTN")
         {
             InitializeComponent();
@@ -59,12 +33,6 @@ namespace SG_BAMS
             rtnCliente = string.IsNullOrWhiteSpace(rtn) ? "Sin RTN" : rtn;
         }
 
-        /// <summary>
-        /// Sets the producto.
-        /// </summary>
-        /// <param name="idProd">The identifier product.</param>
-        /// <param name="nombreProd">The nombre product.</param>
-        /// <param name="cantidadProd">The cantidad product.</param>
         public void SetProducto(int idProd, string nombreProd, int cantidadProd)
         {
             idProducto = idProd;
@@ -72,9 +40,6 @@ namespace SG_BAMS
             cantidades = cantidadProd;
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="FacturaAgregarDatos"/> class.
-        /// </summary>
         public FacturaAgregarDatos()
         {
             InitializeComponent();
@@ -83,9 +48,6 @@ namespace SG_BAMS
             rtnCliente = "Sin RTN";
         }
 
-        /// <summary>
-        /// Llenars the combo pago.
-        /// </summary>
         private async Task LlenarComboPago()
         {
             ClsAgregarFactura AF = new ClsAgregarFactura();
@@ -103,11 +65,6 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Handles the Load event of the FacturaAgregarDatos control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void FacturaAgregarDatos_Load(object sender, EventArgs e)
         {
             await LlenarComboPago();
@@ -121,6 +78,18 @@ namespace SG_BAMS
             dgvProductos.Columns.Add("stock_max", "StockMax");
             dgvProductos.Columns["stock_max"].Visible = false;
 
+            // Formato L. en columnas de precio
+            dgvProductos.CellFormatting += (s, ev) =>
+            {
+                if (ev.RowIndex < 0 || ev.Value == null) return;
+                string col = dgvProductos.Columns[ev.ColumnIndex].Name;
+                if ((col == "precio" || col == "subtotal") &&
+                    decimal.TryParse(ev.Value.ToString(), out decimal monto))
+                {
+                    ev.Value = $"L. {monto:N2}";
+                    ev.FormattingApplied = true;
+                }
+            };
 
             txtCliente.ReadOnly = true;
             txtTotal.ReadOnly = true;
@@ -137,11 +106,8 @@ namespace SG_BAMS
             dgvProductos.RowsAdded += dgvProductos_RowsAdded;
             dgvProductos.CellClick += dgvProductos_CellClick;
 
-
-
             dgvProductos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvProductos.EditMode = DataGridViewEditMode.EditOnKeystrokeOrF2;
-
 
             btnBateria.Enabled = false;
             ActualizarEstadoBotonAceptar();
@@ -176,8 +142,16 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Calculars the total.
+        /// Limpia el texto con formato L. y lo convierte a double de forma segura.
         /// </summary>
+        private double ParsearMonto(string texto)
+        {
+            string limpio = texto.Replace("L.", "").Replace(",", "").Trim();
+            return double.TryParse(limpio, System.Globalization.NumberStyles.Any,
+                                   System.Globalization.CultureInfo.InvariantCulture,
+                                   out double resultado) ? resultado : 0;
+        }
+
         private void CalcularTotal()
         {
             double acumulador = 0;
@@ -190,23 +164,13 @@ namespace SG_BAMS
             double rebaja = precioBateria;
             double total = acumulador - rebaja;
 
-            txtSubtotal.Text = acumulador.ToString("N2");
-            txtRebaja.Text = rebaja.ToString("N2");
-            txtTotal.Text = (total < 0 ? 0 : total).ToString("N2");
+            txtSubtotal.Text = $"L. {acumulador:N2}";
+            txtRebaja.Text = $"L. {rebaja:N2}";
+            txtTotal.Text = $"L. {(total < 0 ? 0 : total):N2}";
         }
 
-        /// <summary>
-        /// Handles the TextChanged event of the txtExento control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void txtExento_TextChanged(object sender, EventArgs e) { }
 
-        /// <summary>
-        /// Handles the KeyPress event of the txtExento control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
         private void txtExento_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
@@ -215,9 +179,6 @@ namespace SG_BAMS
                 e.Handled = true;
         }
 
-        /// <summary>
-        /// Crea o actualiza la deuda manualmente con el monto correcto
-        /// </summary>
         private async Task<bool> CrearDeudaManual(int idFactura, int idCliente, double montoTotal, DateTime fechaVenta)
         {
             try
@@ -226,18 +187,15 @@ namespace SG_BAMS
                 {
                     await conn.OpenAsync();
 
-                    // Primero, verificar si ya existe una deuda para esta factura
                     string checkQuery = "SELECT COUNT(*) FROM Deuda WHERE id_factura = @idFactura";
                     using (SqlCommand checkCmd = new SqlCommand(checkQuery, conn))
                     {
                         checkCmd.Parameters.AddWithValue("@idFactura", idFactura);
                         int existe = (int)await checkCmd.ExecuteScalarAsync();
-
                         DateTime fechaFin = fechaVenta.AddDays(30);
 
                         if (existe > 0)
                         {
-                            // Actualizar la deuda existente con el monto correcto
                             string updateQuery = "UPDATE Deuda SET monto_inicial = @monto WHERE id_factura = @idFactura";
                             using (SqlCommand updateCmd = new SqlCommand(updateQuery, conn))
                             {
@@ -249,7 +207,6 @@ namespace SG_BAMS
                         }
                         else
                         {
-                            // Crear nueva deuda
                             string insertQuery = @"INSERT INTO Deuda (id_cliente, fecha_inicio, fecha_fin, id_estado, monto_inicial, id_factura) 
                                                   VALUES (@idCliente, @fechaInicio, @fechaFin, 1, @monto, @idFactura)";
                             using (SqlCommand insertCmd = new SqlCommand(insertQuery, conn))
@@ -273,11 +230,6 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Handles the Click event of the BtnAceptar control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void BtnAceptar_Click(object sender, EventArgs e)
         {
             if (ClsValidaciones.CampoVacio(txtCliente, "Cliente")) return;
@@ -292,7 +244,7 @@ namespace SG_BAMS
                 return;
             }
 
-            double totalFactura = Convert.ToDouble(txtTotal.Text);
+            double totalFactura = ParsearMonto(txtTotal.Text);
             if (totalFactura < 0)
             {
                 MessageBox.Show("El descuento por batería vieja no puede ser mayor al total de la compra.", "Error de Lógica", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -324,8 +276,7 @@ namespace SG_BAMS
                 int idPago = Convert.ToInt32(cmbPago.SelectedValue);
                 int.TryParse(txtBateria.Text, out int bat);
 
-                // Calcular el total real de la factura
-                double totalFacturaReal = Convert.ToDouble(txtTotal.Text);
+                double totalFacturaReal = ParsearMonto(txtTotal.Text);
 
                 int idFactura = await objAF.AgregarFacturas(idUser, idCliente, idPago,
                                     DateTFecha.SelectionStart, bat, precioBateria, totalFacturaReal);
@@ -352,7 +303,7 @@ namespace SG_BAMS
                             objAF.ImprimirFacturaNormal(
                                 idFactura,
                                 txtCliente.Text,
-                                txtTotal.Text,
+                                ParsearMonto(txtTotal.Text).ToString("N2"),
                                 cmbPago.Text,
                                 dgvProductos
                             );
@@ -363,9 +314,9 @@ namespace SG_BAMS
                                 idFactura,
                                 txtCliente.Text,
                                 DateTFecha.SelectionStart.ToShortDateString(),
-                                txtSubtotal.Text,
-                                txtRebaja.Text,
-                                txtTotal.Text,
+                                ParsearMonto(txtSubtotal.Text).ToString("N2"),
+                                ParsearMonto(txtRebaja.Text).ToString("N2"),
+                                ParsearMonto(txtTotal.Text).ToString("N2"),
                                 cmbPago.Text,
                                 dgvProductos,
                                 SG_BAMS.Login.Login.UsuarioLogueado,
@@ -380,13 +331,13 @@ namespace SG_BAMS
 
                     if (formaPagoTexto.Contains("crédito") || formaPagoTexto.Contains("credito"))
                     {
-                        double montoTotalReal = Convert.ToDouble(txtTotal.Text);
+                        double montoTotalReal = ParsearMonto(txtTotal.Text);
                         bool deudaCreada = await CrearDeudaManual(idFactura, idCliente, montoTotalReal, DateTFecha.SelectionStart);
 
                         if (deudaCreada)
                         {
                             string nombreCliente = txtCliente.Text.Trim();
-                            string montoTotal = txtTotal.Text;
+                            string montoTotal = ParsearMonto(txtTotal.Text).ToString("N2");
                             DateTime fechaVenta = DateTFecha.SelectionStart;
 
                             using (Información_Deudores frmInfo = new Información_Deudores(idFactura, nombreCliente, montoTotal, fechaVenta))
@@ -411,11 +362,6 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Handles the Click event of the BtnAgregar control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void BtnAgregar_Click(object sender, EventArgs e)
         {
             using (FacturaProducto frmProducto = new FacturaProducto())
@@ -435,7 +381,6 @@ namespace SG_BAMS
                         (cantidades * precio),
                         stock);
 
-
                     dgvProductos.ClearSelection();
                     CalcularTotal();
                     ActualizarEstadoBotonAceptar();
@@ -443,11 +388,6 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Handles the Click event of the BtnEliminar control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
             if (dgvProductos.SelectedRows.Count > 0)
@@ -468,11 +408,6 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Handles the CellValidating event of the dgvProductos control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="DataGridViewCellValidatingEventArgs"/> instance containing the event data.</param>
         private void dgvProductos_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
             if (dgvProductos.Columns[e.ColumnIndex].Name == "cantidad")
@@ -494,11 +429,6 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Handles the CellValueChanged event of the dgvProductos control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
         private void dgvProductos_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && dgvProductos.Columns[e.ColumnIndex].Name == "cantidad")
@@ -510,14 +440,9 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Handles the Click event of the btnBateria control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnBateria_Click(object sender, EventArgs e)
         {
-            double subtotalActual = Convert.ToDouble(txtSubtotal.Text);
+            double subtotalActual = ParsearMonto(txtSubtotal.Text);
             using (BateriaVieja BV = new BateriaVieja(subtotalActual))
             {
                 if (BV.ShowDialog() == DialogResult.OK)
@@ -530,9 +455,6 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Actualizars the estado boton aceptar.
-        /// </summary>
         private void ActualizarEstadoBotonAceptar()
         {
             bool tieneProductos = dgvProductos.Rows.Count > 0;
@@ -540,18 +462,8 @@ namespace SG_BAMS
             btnBateria.Enabled = tieneProductos;
         }
 
-        /// <summary>
-        /// Handles the Click event of the BtnCancelar control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnCancelar_Click(object sender, EventArgs e) => this.Close();
 
-        /// <summary>
-        /// Handles the CheckedChanged event of the chkGobierno control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void chkGobierno_CheckedChanged(object sender, EventArgs e)
         {
             if (chkGobierno.Checked)
@@ -565,31 +477,10 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Handles the DateChanged event of the DateTFecha control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="DateRangeEventArgs"/> instance containing the event data.</param>
-        private void DateTFecha_DateChanged(object sender, DateRangeEventArgs e)
-        {
+        private void DateTFecha_DateChanged(object sender, DateRangeEventArgs e) { }
 
-        }
+        private void label5_Click(object sender, EventArgs e) { }
 
-        /// <summary>
-        /// Handles the Click event of the label5 control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        /// <summary>
-        /// Handles the CheckedChanged event of the chkNormal control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void chkNormal_CheckedChanged(object sender, EventArgs e)
         {
             if (chkNormal.Checked)
@@ -603,11 +494,6 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Handles the CellClick event of the dgvProductos control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
         private void dgvProductos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && dgvProductos.Columns[e.ColumnIndex].Name == "cantidad")

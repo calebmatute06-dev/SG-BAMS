@@ -110,8 +110,8 @@ public class ClsExportarExcel
                         {
                             celdaExcel.Value = num;
                             if (c == indiceColumnaSumar) totalGeneral += num;
-                            if (header.Contains("PRECIO") || header.Contains("TOTAL") || header.Contains("SALDO") || header.Contains("CAPITAL"))
-                                celdaExcel.Style.NumberFormat.Format = "#,##0.00";
+                            if (header.Contains("PRECIO") || header.Contains("TOTAL") || header.Contains("SALDO") || header.Contains("CAPITAL") || header.Contains("MONTO") || header.Contains("ABONADO"))
+                                celdaExcel.Style.NumberFormat.Format = "\"L. \"#,##0.00";
                         }
                         else
                         {
@@ -133,7 +133,7 @@ public class ClsExportarExcel
                     celdaMonto.Value = totalGeneral;
                     celdaMonto.Style.Font.Bold = true;
                     celdaMonto.Style.Fill.BackgroundColor = XLColor.LightGray;
-                    celdaMonto.Style.NumberFormat.Format = "#,##0.00";
+                    celdaMonto.Style.NumberFormat.Format = "\"L. \"#,##0.00";
                     celdaMonto.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
                 }
 

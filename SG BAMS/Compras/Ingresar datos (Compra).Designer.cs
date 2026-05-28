@@ -66,7 +66,7 @@
             pictureBox4.Location = new Point(896, -2);
             pictureBox4.Margin = new Padding(3, 2, 3, 2);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(20, 430);
+            pictureBox4.Size = new Size(20, 489);
             pictureBox4.TabIndex = 9;
             pictureBox4.TabStop = false;
             // 
@@ -76,14 +76,14 @@
             pictureBox1.Location = new Point(-1, -2);
             pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(21, 424);
+            pictureBox1.Size = new Size(21, 489);
             pictureBox1.TabIndex = 10;
             pictureBox1.TabStop = false;
             // 
             // panel3
             // 
             panel3.BackColor = Color.Navy;
-            panel3.Location = new Point(-1, 404);
+            panel3.Location = new Point(-1, 469);
             panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
             panel3.Size = new Size(917, 18);
@@ -153,7 +153,7 @@
             label7.BackColor = Color.Transparent;
             label7.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Navy;
-            label7.Location = new Point(624, 316);
+            label7.Location = new Point(630, 315);
             label7.Name = "label7";
             label7.Size = new Size(41, 20);
             label7.TabIndex = 176;
@@ -161,7 +161,7 @@
             // 
             // lblTotal
             // 
-            lblTotal.Location = new Point(664, 315);
+            lblTotal.Location = new Point(670, 314);
             lblTotal.Margin = new Padding(3, 2, 3, 2);
             lblTotal.Name = "lblTotal";
             lblTotal.Size = new Size(119, 23);
@@ -225,7 +225,7 @@
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(487, 357);
+            btnAgregar.Location = new Point(487, 425);
             btnAgregar.Margin = new Padding(3, 2, 3, 2);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -249,7 +249,7 @@
             // 
             // btnAceptar
             // 
-            btnAceptar.Location = new Point(32, 357);
+            btnAceptar.Location = new Point(32, 425);
             btnAceptar.Margin = new Padding(3, 2, 3, 2);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -273,7 +273,7 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(151, 358);
+            btnCancelar.Location = new Point(151, 426);
             btnCancelar.Margin = new Padding(3, 2, 3, 2);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -297,7 +297,7 @@
             // 
             // btnQuitar
             // 
-            btnQuitar.Location = new Point(353, 357);
+            btnQuitar.Location = new Point(353, 425);
             btnQuitar.Margin = new Padding(3, 2, 3, 2);
             btnQuitar.Name = "btnQuitar";
             btnQuitar.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -373,7 +373,7 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(782, 373);
+            label4.Location = new Point(806, 436);
             label4.Name = "label4";
             label4.Size = new Size(84, 29);
             label4.TabIndex = 347;
@@ -385,7 +385,7 @@
             dgvIngresarCompra.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvIngresarCompra.Location = new Point(39, 205);
             dgvIngresarCompra.Name = "dgvIngresarCompra";
-            dgvIngresarCompra.Size = new Size(563, 145);
+            dgvIngresarCompra.Size = new Size(563, 204);
             dgvIngresarCompra.TabIndex = 348;
             dgvIngresarCompra.CellBeginEdit += dgvIngresarCompra_CellBeginEdit;
             dgvIngresarCompra.CellValueChanged += dgvIngresarCompra_CellValueChanged_1;
@@ -395,7 +395,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(913, 421);
+            ClientSize = new Size(913, 487);
             Controls.Add(dgvIngresarCompra);
             Controls.Add(label4);
             Controls.Add(label5);

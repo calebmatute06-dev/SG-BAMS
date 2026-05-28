@@ -81,6 +81,17 @@ namespace SG_BAMS
             if (datosCli != null)
             {
                 dgvFacturas.DataSource = datosCli;
+                dgvFacturas.CellFormatting += (s, ev) =>
+                {
+                    if (ev.RowIndex < 0 || ev.Value == null) return;
+                    string col = dgvFacturas.Columns[ev.ColumnIndex].Name;
+                    if ((col == "Precio" || col == "Subtotal") &&
+                        decimal.TryParse(ev.Value.ToString(), out decimal monto))
+                    {
+                        ev.Value = $"L. {monto:N2}";
+                        ev.FormattingApplied = true;
+                    }
+                };
                 CalcularTotal();
 
                 dgvFacturas.Columns["ID_Factura"].Visible = false;
@@ -114,9 +125,9 @@ namespace SG_BAMS
 
             double total = acumulador - rebaja;
 
-            txtSubtotal.Text = acumulador.ToString("F2");
-            txtRebaja.Text = rebaja.ToString("F2"); 
-            txtTotal.Text = total.ToString("F2");
+            txtSubtotal.Text = $"L. {acumulador:N2}";
+            txtRebaja.Text = $"L. {rebaja:N2}";
+            txtTotal.Text = $"L. {(total < 0 ? 0 : total):N2}";
         }
 
         /// <summary>

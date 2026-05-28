@@ -80,7 +80,7 @@
             // 
             // btnAceptar
             // 
-            btnAceptar.Location = new Point(29, 357);
+            btnAceptar.Location = new Point(29, 426);
             btnAceptar.Margin = new Padding(3, 2, 3, 2);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -104,7 +104,7 @@
             // 
             // kryptonButton4
             // 
-            kryptonButton4.Location = new Point(145, 358);
+            kryptonButton4.Location = new Point(145, 427);
             kryptonButton4.Margin = new Padding(3, 2, 3, 2);
             kryptonButton4.Name = "kryptonButton4";
             kryptonButton4.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -128,7 +128,7 @@
             // 
             // kryptonButton5
             // 
-            kryptonButton5.Location = new Point(527, 356);
+            kryptonButton5.Location = new Point(527, 425);
             kryptonButton5.Margin = new Padding(3, 2, 3, 2);
             kryptonButton5.Name = "kryptonButton5";
             kryptonButton5.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -164,7 +164,7 @@
             // 
             // lblTotal
             // 
-            lblTotal.Location = new Point(610, 322);
+            lblTotal.Location = new Point(626, 302);
             lblTotal.Margin = new Padding(3, 2, 3, 2);
             lblTotal.Name = "lblTotal";
             lblTotal.Size = new Size(119, 23);
@@ -242,7 +242,7 @@
             // panel3
             // 
             panel3.BackColor = Color.Navy;
-            panel3.Location = new Point(0, 403);
+            panel3.Location = new Point(0, 473);
             panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
             panel3.Size = new Size(919, 18);
@@ -254,7 +254,7 @@
             pictureBox1.Location = new Point(0, 0);
             pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(21, 412);
+            pictureBox1.Size = new Size(21, 475);
             pictureBox1.TabIndex = 213;
             pictureBox1.TabStop = false;
             // 
@@ -264,13 +264,13 @@
             pictureBox4.Location = new Point(898, 4);
             pictureBox4.Margin = new Padding(3, 2, 3, 2);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(21, 416);
+            pictureBox4.Size = new Size(21, 471);
             pictureBox4.TabIndex = 212;
             pictureBox4.TabStop = false;
             // 
             // btnEliminarProducto
             // 
-            btnEliminarProducto.Location = new Point(417, 356);
+            btnEliminarProducto.Location = new Point(417, 425);
             btnEliminarProducto.Margin = new Padding(3, 2, 3, 2);
             btnEliminarProducto.Name = "btnEliminarProducto";
             btnEliminarProducto.OverrideDefault.Back.Color1 = Color.SkyBlue;
@@ -329,7 +329,7 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(789, 371);
+            label2.Location = new Point(808, 442);
             label2.Name = "label2";
             label2.Size = new Size(84, 29);
             label2.TabIndex = 345;
@@ -341,7 +341,7 @@
             dgvProductosModificar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvProductosModificar.Location = new Point(38, 210);
             dgvProductosModificar.Name = "dgvProductosModificar";
-            dgvProductosModificar.Size = new Size(563, 137);
+            dgvProductosModificar.Size = new Size(563, 199);
             dgvProductosModificar.TabIndex = 346;
             dgvProductosModificar.CellBeginEdit += dgvProductosModificar_CellBeginEdit;
             dgvProductosModificar.CellValueChanged += dgvProductosModificar_CellValueChanged;
@@ -352,7 +352,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(918, 420);
+            ClientSize = new Size(918, 491);
             Controls.Add(dgvProductosModificar);
             Controls.Add(label2);
             Controls.Add(cmbFormaPago);
