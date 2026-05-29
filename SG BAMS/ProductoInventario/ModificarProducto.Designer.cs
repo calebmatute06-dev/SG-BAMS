@@ -178,6 +178,7 @@
             // 
             // txtPrecio
             // 
+            txtPrecio.CueHint.CueHintText = "Precio del producto ingresado";
             txtPrecio.Location = new Point(175, 207);
             txtPrecio.Name = "txtPrecio";
             txtPrecio.Size = new Size(250, 39);
@@ -185,10 +186,12 @@
             txtPrecio.StateCommon.Border.Rounding = 20F;
             txtPrecio.StateCommon.Content.Color1 = Color.Navy;
             txtPrecio.TabIndex = 221;
+            txtPrecio.Text = "Precio del producto ingresado";
             txtPrecio.KeyPress += txtPrecio_KeyPress;
             // 
             // txtNombre
             // 
+            txtNombre.CueHint.CueHintText = "Nombre producto";
             txtNombre.Location = new Point(175, 155);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(250, 39);
@@ -197,6 +200,7 @@
             txtNombre.StateCommon.Content.Color1 = Color.Navy;
             txtNombre.StateNormal.Content.Color1 = Color.Navy;
             txtNombre.TabIndex = 220;
+            txtNombre.Text = "Nombre producto";
             // 
             // txtID
             // 
@@ -284,6 +288,7 @@
             // 
             // txtCodigoBarra
             // 
+            txtCodigoBarra.CueHint.CueHintText = "Ingrese o Escanee el codigo";
             txtCodigoBarra.Location = new Point(175, 459);
             txtCodigoBarra.Name = "txtCodigoBarra";
             txtCodigoBarra.Size = new Size(250, 39);
@@ -291,6 +296,7 @@
             txtCodigoBarra.StateCommon.Border.Rounding = 20F;
             txtCodigoBarra.StateCommon.Content.Color1 = Color.Navy;
             txtCodigoBarra.TabIndex = 233;
+            txtCodigoBarra.Text = "Ingrese o Escanee el codigo";
             txtCodigoBarra.TextChanged += txtCodigoBarra_TextChanged;
             txtCodigoBarra.KeyPress += txtCodigoBarra_KeyPress;
             // 

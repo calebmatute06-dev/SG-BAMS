@@ -208,38 +208,44 @@
             // 
             // txtNombre
             // 
+            txtNombre.CueHint.CueHintText = "Nombre producto";
             txtNombre.Location = new Point(176, 132);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(250, 39);
             txtNombre.StateCommon.Back.Color1 = Color.SkyBlue;
             txtNombre.StateCommon.Border.Rounding = 20F;
-            txtNombre.StateCommon.Content.Color1 = Color.Navy;
+            txtNombre.StateCommon.Content.Color1 = Color.Gray;
             txtNombre.StateNormal.Content.Color1 = Color.Navy;
             txtNombre.TabIndex = 248;
+            txtNombre.Text = "Nombre producto";
             txtNombre.KeyPress += txtNombre_KeyPress;
             // 
             // txtPrecio
             // 
+            txtPrecio.CueHint.CueHintText = "Precio del producto ingresado";
             txtPrecio.Location = new Point(177, 184);
             txtPrecio.Name = "txtPrecio";
             txtPrecio.Size = new Size(250, 39);
             txtPrecio.StateCommon.Back.Color1 = Color.SkyBlue;
             txtPrecio.StateCommon.Border.Rounding = 20F;
-            txtPrecio.StateCommon.Content.Color1 = Color.Navy;
+            txtPrecio.StateCommon.Content.Color1 = Color.Gray;
             txtPrecio.StateNormal.Content.Color1 = Color.Navy;
             txtPrecio.TabIndex = 249;
+            txtPrecio.Text = "Precio del producto ingresado";
             txtPrecio.KeyPress += txtPrecio_KeyPress;
             // 
             // txtCodigoBarra
             // 
+            txtCodigoBarra.CueHint.CueHintText = "Ingrese o Escanee el codigo";
             txtCodigoBarra.Location = new Point(177, 387);
             txtCodigoBarra.Name = "txtCodigoBarra";
             txtCodigoBarra.Size = new Size(250, 39);
             txtCodigoBarra.StateCommon.Back.Color1 = Color.SkyBlue;
             txtCodigoBarra.StateCommon.Border.Rounding = 20F;
-            txtCodigoBarra.StateCommon.Content.Color1 = Color.Navy;
+            txtCodigoBarra.StateCommon.Content.Color1 = Color.Gray;
             txtCodigoBarra.StateNormal.Content.Color1 = Color.Navy;
             txtCodigoBarra.TabIndex = 260;
+            txtCodigoBarra.Text = "Ingrese o Escanee el codigo";
             txtCodigoBarra.TextChanged += txtCodigoBarra_TextChanged;
             txtCodigoBarra.KeyPress += txtCodigoBarra_KeyPress;
             // 

@@ -97,10 +97,18 @@ namespace SG_BAMS.Proveedor
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
 
+
+                DataRow fila = dt.NewRow();
+                fila["id_clasificacion_proveedor"] = 0;
+                fila["clasificacion_proveedor"] = "Seleccione";
+                dt.Rows.InsertAt(fila, 0);
+
+
                 cmb.DataSource = dt;
                 cmb.DisplayMember = "clasificacion_proveedor";
                 cmb.ValueMember = "id_clasificacion_proveedor";
-                cmb.SelectedIndex = -1;
+                //cmb.SelectedIndex = -1;
+                cmb.SelectedIndex = 0;
             }
             catch (Exception ex)
             {

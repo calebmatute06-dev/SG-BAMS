@@ -59,6 +59,11 @@ namespace SG_BAMS.Proveedor
             txtDireccion.KeyPress += (s, ev) => ClsValidaciones.ValidarBusquedaAlfanumerica(ev);
             txtTelefono.KeyPress += (s, ev) => ClsValidaciones.ValidarSoloNumeros(ev);
             txtRTN.KeyPress += (s, ev) => ClsValidaciones.ValidarSoloNumeros(ev);
+            ClsMensajeGuia.Activar(txtNombre);
+            ClsMensajeGuia.Activar(txtTelefono);
+            ClsMensajeGuia.Activar(txtDireccion);
+            ClsMensajeGuia.Activar(txtRTN);
+
         }
 
         /// <summary>

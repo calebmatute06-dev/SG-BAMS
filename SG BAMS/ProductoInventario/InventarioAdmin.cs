@@ -102,6 +102,7 @@ namespace SG_BAMS
             dgvProductosAdmin.RowTemplate.Height = 32;
             dgvProductosAdmin.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvProductosAdmin.ClearSelection();
+            ClsMensajeGuia.Activar(txtBuscar);
         }
 
         /// <summary>

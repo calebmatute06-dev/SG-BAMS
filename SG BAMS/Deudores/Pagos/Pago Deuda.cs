@@ -99,6 +99,8 @@ namespace SG_BAMS
                 if (indiceEncontrado == -1) indiceEncontrado = cmbDeudores.FindString(nombreRecibido);
                 cmbDeudores.SelectedIndex = indiceEncontrado;
             }
+
+            ClsMensajeGuia.Activar(txtMonto);
         }
 
         private async void btnAceptar_Click(object sender, EventArgs e)

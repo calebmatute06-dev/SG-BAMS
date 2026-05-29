@@ -90,6 +90,8 @@ namespace SG_BAMS
             cmbProductos.SelectedIndex = -1;
             lblNumero.Text = "0";
             txtCantidad.KeyPress += (s, ev) => ClsValidaciones.ValidarSoloNumeros(ev);
+            ClsMensajeGuia.Activar(txtCantidad);
+
         }
 
         /// <summary>

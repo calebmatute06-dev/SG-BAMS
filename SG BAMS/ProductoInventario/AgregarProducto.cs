@@ -137,6 +137,9 @@ namespace SG_BAMS
         private void AgregarProducto_Load(object sender, EventArgs e)
         {
             LlenarTodosLosCombos();
+            ClsMensajeGuia.Activar(txtNombre);
+            ClsMensajeGuia.Activar(txtPrecio);
+            ClsMensajeGuia.Activar(txtCodigoBarra);
         }
 
         /// <summary>

@@ -25,6 +25,7 @@ namespace SG_BAMS.ProductoInventario
         {
             DataTable dt = ObtenerDatosCombo(tipoTabla);
             combo.DataSource = dt;
+ 
 
             switch (tipoTabla)
             {
@@ -49,8 +50,9 @@ namespace SG_BAMS.ProductoInventario
                     combo.ValueMember = "id_proveedor";
                     break;
             }
-
-            combo.SelectedIndex = -1;
+         
+           // combo.SelectedIndex = -1;
+            combo.SelectedIndex = 0;
         }
 
         /// <summary>

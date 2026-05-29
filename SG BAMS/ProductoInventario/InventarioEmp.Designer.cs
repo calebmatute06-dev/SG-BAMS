@@ -67,13 +67,15 @@
             // 
             // txtBuscar
             // 
+            txtBuscar.CueHint.CueHintText = "Ingrese un Nombre, ID, Tipo, Proveedor, Modelo, Marca";
             txtBuscar.Location = new Point(614, 183);
             txtBuscar.Name = "txtBuscar";
             txtBuscar.Size = new Size(679, 39);
             txtBuscar.StateCommon.Back.Color1 = Color.SkyBlue;
             txtBuscar.StateCommon.Border.Rounding = 20F;
-            txtBuscar.StateCommon.Content.Color1 = Color.Navy;
+            txtBuscar.StateCommon.Content.Color1 = Color.Gray;
             txtBuscar.TabIndex = 208;
+            txtBuscar.Text = "Ingrese un Nombre, ID, Tipo, Proveedor, Modelo, Marca";
             txtBuscar.TextChanged += txtBuscar_TextChanged;
             // 
             // btnNoti

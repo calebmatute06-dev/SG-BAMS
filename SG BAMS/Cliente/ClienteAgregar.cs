@@ -167,6 +167,11 @@ namespace SG_BAMS
         /// </summary>
         /// <param name="sender">El objeto que originó el evento.</param>
         /// <param name="e">Los datos del evento.</param>
-        private void ClienteAgregar_Load(object sender, EventArgs e) { }
+        private void ClienteAgregar_Load(object sender, EventArgs e) {
+            ClsMensajeGuia.Activar(txtNombre);
+            ClsMensajeGuia.Activar(txtTelefono);
+            ClsMensajeGuia.Activar(txtApellido);
+            ClsMensajeGuia.Activar(txtRTN);
+        }
     }
 }

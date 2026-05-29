@@ -47,14 +47,16 @@
             // 
             // txtMonto
             // 
+            txtMonto.CueHint.CueHintText = "Cantidad deseada a pagar";
             txtMonto.Location = new Point(194, 181);
             txtMonto.Name = "txtMonto";
             txtMonto.Size = new Size(324, 32);
             txtMonto.StateCommon.Back.Color1 = Color.SkyBlue;
             txtMonto.StateCommon.Border.Rounding = 10F;
-            txtMonto.StateCommon.Content.Color1 = Color.Navy;
+            txtMonto.StateCommon.Content.Color1 = Color.Gray;
             txtMonto.StateCommon.Content.Font = new Font("Arial Narrow", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtMonto.TabIndex = 169;
+            txtMonto.Text = "Cantidad deseada a pagar";
             txtMonto.KeyPress += txtMonto_KeyPress;
             // 
             // label1
