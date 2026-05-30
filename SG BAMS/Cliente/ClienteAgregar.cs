@@ -177,6 +177,7 @@ namespace SG_BAMS
             ClsMensajeGuia.ActivarK(txtApellido);
             ClsMensajeGuia.ActivarK(txtTelefono);
             ClsMensajeGuia.ActivarK(txtRTN);
+            this.ActiveControl = null;
         }
     }
 }

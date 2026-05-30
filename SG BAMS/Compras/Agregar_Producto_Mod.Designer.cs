@@ -228,7 +228,7 @@
             // cmbProductos
             // 
             cmbProductos.CueHint.Color1 = Color.DimGray;
-            cmbProductos.CueHint.CueHintText = "Seleccione un producto";
+            cmbProductos.CueHint.CueHintText = "Seleccione o escriba un producto";
             cmbProductos.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbProductos.DropDownWidth = 300;
             cmbProductos.Location = new Point(157, 169);

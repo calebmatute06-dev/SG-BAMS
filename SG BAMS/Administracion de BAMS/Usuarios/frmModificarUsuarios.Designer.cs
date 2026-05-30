@@ -68,7 +68,7 @@
             // txtContra
             // 
             txtContra.CueHint.Color1 = Color.DimGray;
-            txtContra.CueHint.CueHintText = "Minimo 4 Caractares";
+            txtContra.CueHint.CueHintText = "Minimo 6 Caractares";
             txtContra.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtContra.Location = new Point(287, 203);
             txtContra.Margin = new Padding(3, 4, 3, 4);
@@ -77,7 +77,7 @@
             txtContra.Name = "txtContra";
             txtContra.Size = new Size(270, 40);
             txtContra.StateCommon.Back.Color1 = Color.SkyBlue;
-            txtContra.StateCommon.Border.Rounding = 15F;
+            txtContra.StateCommon.Border.Rounding = 10F;
             txtContra.StateCommon.Content.Color1 = Color.Black;
             txtContra.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtContra.TabIndex = 78;
@@ -106,7 +106,7 @@
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(269, 41);
             txtNombre.StateCommon.Back.Color1 = Color.SkyBlue;
-            txtNombre.StateCommon.Border.Rounding = 15F;
+            txtNombre.StateCommon.Border.Rounding = 10F;
             txtNombre.StateCommon.Content.Color1 = Color.Black;
             txtNombre.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNombre.TabIndex = 76;
@@ -175,11 +175,11 @@
             cmbRol.CueHint.CueHintText = "Seleccione un rol";
             cmbRol.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbRol.DropDownWidth = 300;
-            cmbRol.Location = new Point(289, 263);
+            cmbRol.Location = new Point(287, 263);
             cmbRol.Name = "cmbRol";
             cmbRol.Size = new Size(266, 41);
             cmbRol.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
-            cmbRol.StateCommon.ComboBox.Border.Rounding = 20F;
+            cmbRol.StateCommon.ComboBox.Border.Rounding = 10F;
             cmbRol.StateCommon.ComboBox.Content.Color1 = Color.Black;
             cmbRol.StateCommon.ComboBox.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbRol.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
@@ -195,11 +195,11 @@
             cmbEstado.CueHint.CueHintText = "Seleccione un rol";
             cmbEstado.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbEstado.DropDownWidth = 300;
-            cmbEstado.Location = new Point(290, 327);
+            cmbEstado.Location = new Point(288, 327);
             cmbEstado.Name = "cmbEstado";
             cmbEstado.Size = new Size(269, 41);
             cmbEstado.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
-            cmbEstado.StateCommon.ComboBox.Border.Rounding = 20F;
+            cmbEstado.StateCommon.ComboBox.Border.Rounding = 10F;
             cmbEstado.StateCommon.ComboBox.Content.Color1 = Color.Black;
             cmbEstado.StateCommon.ComboBox.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbEstado.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
@@ -326,7 +326,7 @@
             txtCorreo.Name = "txtCorreo";
             txtCorreo.Size = new Size(270, 41);
             txtCorreo.StateCommon.Back.Color1 = Color.SkyBlue;
-            txtCorreo.StateCommon.Border.Rounding = 15F;
+            txtCorreo.StateCommon.Border.Rounding = 10F;
             txtCorreo.StateCommon.Content.Color1 = Color.Black;
             txtCorreo.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtCorreo.TabIndex = 366;

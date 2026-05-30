@@ -152,6 +152,9 @@ namespace SG_BAMS
             dgvClientes.RowTemplate.Height = 32;
             dgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvClientes.ClearSelection();
+
+            ClsMensajeGuia.ActivarK(txtBusqueda);
+            this.ActiveControl = null;
         }
 
         /// <summary>

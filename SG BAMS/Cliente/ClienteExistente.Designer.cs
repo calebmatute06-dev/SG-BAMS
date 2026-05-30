@@ -107,7 +107,7 @@
             cmbClientes.Name = "cmbClientes";
             cmbClientes.Size = new Size(259, 38);
             cmbClientes.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
-            cmbClientes.StateCommon.ComboBox.Border.Rounding = 20F;
+            cmbClientes.StateCommon.ComboBox.Border.Rounding = 10F;
             cmbClientes.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbClientes.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
             cmbClientes.StateCommon.Item.Content.ShortText.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);

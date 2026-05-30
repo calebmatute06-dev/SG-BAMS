@@ -61,11 +61,13 @@
             txtNotaDetalle.CueHint.Color1 = Color.DimGray;
             txtNotaDetalle.CueHint.CueHintText = "Solo letras y espacios";
             txtNotaDetalle.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtNotaDetalle.Location = new Point(213, 207);
+            txtNotaDetalle.Location = new Point(215, 207);
             txtNotaDetalle.Name = "txtNotaDetalle";
-            txtNotaDetalle.Size = new Size(277, 33);
+            txtNotaDetalle.Size = new Size(277, 36);
             txtNotaDetalle.StateCommon.Back.Color1 = Color.SkyBlue;
             txtNotaDetalle.StateCommon.Border.Rounding = 10F;
+            txtNotaDetalle.StateCommon.Content.Color1 = Color.Black;
+            txtNotaDetalle.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNotaDetalle.TabIndex = 235;
             // 
             // label4
@@ -288,14 +290,16 @@
             // 
             cmbFormaPago.CueHint.Color1 = Color.DimGray;
             cmbFormaPago.CueHint.CueHintText = "Seleccione un pago";
-            cmbFormaPago.CueHint.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbFormaPago.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbFormaPago.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbFormaPago.DropDownWidth = 300;
             cmbFormaPago.Location = new Point(218, 111);
             cmbFormaPago.Name = "cmbFormaPago";
-            cmbFormaPago.Size = new Size(197, 38);
+            cmbFormaPago.Size = new Size(197, 35);
             cmbFormaPago.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
-            cmbFormaPago.StateCommon.ComboBox.Border.Rounding = 20F;
+            cmbFormaPago.StateCommon.ComboBox.Border.Rounding = 10F;
+            cmbFormaPago.StateCommon.ComboBox.Content.Color1 = Color.Black;
+            cmbFormaPago.StateCommon.ComboBox.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbFormaPago.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbFormaPago.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
             cmbFormaPago.StateCommon.Item.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -308,11 +312,13 @@
             cmbProveedor.CueHint.CueHintText = "Seleccione un provedor";
             cmbProveedor.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbProveedor.DropDownWidth = 300;
-            cmbProveedor.Location = new Point(213, 159);
+            cmbProveedor.Location = new Point(216, 159);
             cmbProveedor.Name = "cmbProveedor";
-            cmbProveedor.Size = new Size(312, 38);
+            cmbProveedor.Size = new Size(312, 35);
             cmbProveedor.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
-            cmbProveedor.StateCommon.ComboBox.Border.Rounding = 20F;
+            cmbProveedor.StateCommon.ComboBox.Border.Rounding = 10F;
+            cmbProveedor.StateCommon.ComboBox.Content.Color1 = Color.Black;
+            cmbProveedor.StateCommon.ComboBox.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbProveedor.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbProveedor.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
             cmbProveedor.StateCommon.Item.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);

@@ -99,7 +99,11 @@ namespace SG_BAMS
                     ev.FormattingApplied = true;
                 }
             };
+
+            ClsMensajeGuia.ActivarK(txtNotaDetalle);
         }
+
+
 
         /// <summary>
         /// Carga los datos necesarios en los ComboBox de proveedores y formas de pago.

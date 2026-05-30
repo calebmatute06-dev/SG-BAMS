@@ -93,6 +93,11 @@ namespace SG_BAMS
             }
             numCantidad.DecimalPlaces = 0;
             numCantidad.ThousandsSeparator = true;
+
+            ClsMensajeGuia.ActivarK(txtCodigo);
+            ClsMensajeGuia.ActivarK(txtPrecio);
+            this.ActiveControl = null;
+
         }
 
 

@@ -39,6 +39,8 @@ namespace SG_BAMS.Bitacora
             dtpHasta.MaxDate = DateTime.Today;
 
             txtBuscar.KeyPress += (s, e) => ClsValidaciones.ValidarBusquedaAlfanumerica(e);
+
+            
         }
 
         /// <summary>
@@ -49,6 +51,8 @@ namespace SG_BAMS.Bitacora
         /// <param name="e">Datos del evento <see cref="EventArgs"/>.</param>
         private void Bitacora_Load(object sender, EventArgs e)
         {
+            
+
             btnBitacora.Enabled = false;
             btnBitacora.BackColor = Color.SkyBlue;
             btnBitacora.ForeColor = Color.White;
@@ -81,9 +85,15 @@ namespace SG_BAMS.Bitacora
             dgvBitacora.RowTemplate.Height = 32;
             dgvBitacora.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
+            
+
             bitacora.cargarDatos(dgvBitacora);
             EjecutarBusquedaSegura();
             dgvBitacora.ClearSelection();
+
+            ClsMensajeGuia.ActivarK(txtBuscar);
+            this.ActiveControl = null;
+
         }
 
         /// <summary>

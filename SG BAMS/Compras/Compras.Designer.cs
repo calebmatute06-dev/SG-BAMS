@@ -42,8 +42,6 @@
             btnModificarC = new Krypton.Toolkit.KryptonButton();
             btnEliminarC = new Krypton.Toolkit.KryptonButton();
             Nombre = new Label();
-            txtBuscarCompra = new TextBox();
-            kryptonGroup5 = new Krypton.Toolkit.KryptonGroup();
             label3 = new Label();
             label4 = new Label();
             dtpHasta = new DateTimePicker();
@@ -61,10 +59,9 @@
             btnProveedores = new ReaLTaiizor.Controls.NightButton();
             btnDeudores = new ReaLTaiizor.Controls.NightButton();
             btnMenu = new ReaLTaiizor.Controls.NightButton();
+            txtBuscarCompra = new Krypton.Toolkit.KryptonTextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvComprasAdmin).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup5).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup5.Panel).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -248,25 +245,6 @@
             Nombre.Size = new Size(99, 27);
             Nombre.TabIndex = 356;
             Nombre.Text = "Buscar:";
-            // 
-            // txtBuscarCompra
-            // 
-            txtBuscarCompra.BackColor = Color.SkyBlue;
-            txtBuscarCompra.BorderStyle = BorderStyle.None;
-            txtBuscarCompra.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtBuscarCompra.ForeColor = Color.Navy;
-            txtBuscarCompra.Location = new Point(437, 218);
-            txtBuscarCompra.Name = "txtBuscarCompra";
-            txtBuscarCompra.Size = new Size(318, 23);
-            txtBuscarCompra.TabIndex = 355;
-            // 
-            // kryptonGroup5
-            // 
-            kryptonGroup5.Location = new Point(411, 205);
-            kryptonGroup5.Size = new Size(369, 52);
-            kryptonGroup5.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroup5.StateCommon.Border.Rounding = 70F;
-            kryptonGroup5.TabIndex = 354;
             // 
             // label3
             // 
@@ -596,20 +574,34 @@
             btnMenu.Text = "Menu Principal";
             btnMenu.Click += btnMenu_Click;
             // 
+            // txtBuscarCompra
+            // 
+            txtBuscarCompra.CueHint.Color1 = Color.DimGray;
+            txtBuscarCompra.CueHint.CueHintText = "Busqueda por ID, Nombre, Proveedor y forma de pago";
+            txtBuscarCompra.CueHint.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtBuscarCompra.Location = new Point(405, 214);
+            txtBuscarCompra.Margin = new Padding(3, 4, 3, 4);
+            txtBuscarCompra.Name = "txtBuscarCompra";
+            txtBuscarCompra.Size = new Size(384, 36);
+            txtBuscarCompra.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtBuscarCompra.StateCommon.Border.Rounding = 10F;
+            txtBuscarCompra.StateCommon.Content.Color1 = Color.Black;
+            txtBuscarCompra.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtBuscarCompra.TabIndex = 377;
+            // 
             // Compras
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1257, 908);
+            Controls.Add(txtBuscarCompra);
             Controls.Add(btnRefresh);
             Controls.Add(label3);
             Controls.Add(label4);
             Controls.Add(dtpHasta);
             Controls.Add(dtpDesde);
             Controls.Add(Nombre);
-            Controls.Add(txtBuscarCompra);
-            Controls.Add(kryptonGroup5);
             Controls.Add(btnEliminarC);
             Controls.Add(btnModificarC);
             Controls.Add(btnCompra);
@@ -641,8 +633,6 @@
             Load += Compras_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvComprasAdmin).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup5.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup5).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -662,8 +652,6 @@
         private Krypton.Toolkit.KryptonButton btnModificarC;
         private Krypton.Toolkit.KryptonButton btnEliminarC;
         private Label Nombre;
-        private TextBox txtBuscarCompra;
-        private Krypton.Toolkit.KryptonGroup kryptonGroup5;
         private Label label3;
         private Label label4;
         private DateTimePicker dtpHasta;
@@ -681,6 +669,7 @@
         private ReaLTaiizor.Controls.NightButton btnProveedores;
         private ReaLTaiizor.Controls.NightButton btnDeudores;
         private ReaLTaiizor.Controls.NightButton btnMenu;
+        private Krypton.Toolkit.KryptonTextBox txtBuscarCompra;
         //private Krypton.Toolkit.KryptonButton btnComprar;
     }
 }

@@ -43,7 +43,6 @@
             panel4 = new Panel();
             panel2 = new Panel();
             pictureBox2 = new PictureBox();
-            txtBuscar = new Krypton.Toolkit.KryptonTextBox();
             btnRefresh = new Button();
             dtpHasta = new DateTimePicker();
             dtpDesde = new DateTimePicker();
@@ -64,6 +63,7 @@
             btnProveedores = new ReaLTaiizor.Controls.NightButton();
             btnDeudores = new ReaLTaiizor.Controls.NightButton();
             btnMenu = new ReaLTaiizor.Controls.NightButton();
+            txtBuscar = new Krypton.Toolkit.KryptonTextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvBitacora).BeginInit();
             SuspendLayout();
@@ -166,19 +166,6 @@
             pictureBox2.Size = new Size(63, 60);
             pictureBox2.TabIndex = 37;
             pictureBox2.TabStop = false;
-            // 
-            // txtBuscar
-            // 
-            txtBuscar.CueHint.Color1 = Color.DimGray;
-            txtBuscar.CueHint.CueHintText = "Busqueda por nombre de usuario";
-            txtBuscar.CueHint.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtBuscar.Location = new Point(397, 169);
-            txtBuscar.Name = "txtBuscar";
-            txtBuscar.Size = new Size(417, 33);
-            txtBuscar.StateCommon.Back.Color1 = Color.SkyBlue;
-            txtBuscar.StateCommon.Border.Rounding = 10F;
-            txtBuscar.TabIndex = 325;
-            txtBuscar.KeyUp += txtBuscar_KeyUp;
             // 
             // btnRefresh
             // 
@@ -586,12 +573,28 @@
             btnMenu.Text = "Menu Principal";
             btnMenu.Click += btnMenu_Click;
             // 
+            // txtBuscar
+            // 
+            txtBuscar.CueHint.Color1 = Color.DimGray;
+            txtBuscar.CueHint.CueHintText = "Busqueda por nombre de usuario y Modulo";
+            txtBuscar.CueHint.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtBuscar.Location = new Point(393, 170);
+            txtBuscar.Margin = new Padding(3, 4, 3, 4);
+            txtBuscar.Name = "txtBuscar";
+            txtBuscar.Size = new Size(417, 36);
+            txtBuscar.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtBuscar.StateCommon.Border.Rounding = 10F;
+            txtBuscar.StateCommon.Content.Color1 = Color.Black;
+            txtBuscar.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtBuscar.TabIndex = 344;
+            // 
             // BitacoraAdmin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1294, 908);
+            Controls.Add(txtBuscar);
             Controls.Add(label5);
             Controls.Add(dgvBitacora);
             Controls.Add(btnExportar);
@@ -599,7 +602,6 @@
             Controls.Add(label4);
             Controls.Add(dtpHasta);
             Controls.Add(dtpDesde);
-            Controls.Add(txtBuscar);
             Controls.Add(btnRefresh);
             Controls.Add(pictureBox2);
             Controls.Add(label10);
@@ -647,7 +649,6 @@
         private Panel panel2;
         private Krypton.Toolkit.KryptonDataGridView dgvBitacora1;
         private PictureBox pictureBox2;
-        private Krypton.Toolkit.KryptonTextBox txtBuscar;
         private Button btnRefresh;
         private DateTimePicker dtpHasta;
         private DateTimePicker dtpDesde;
@@ -668,5 +669,6 @@
         private ReaLTaiizor.Controls.NightButton btnProveedores;
         private ReaLTaiizor.Controls.NightButton btnDeudores;
         private ReaLTaiizor.Controls.NightButton btnMenu;
+        private Krypton.Toolkit.KryptonTextBox txtBuscar;
     }
 }

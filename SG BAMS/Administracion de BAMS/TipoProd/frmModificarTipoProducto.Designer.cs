@@ -90,9 +90,9 @@
             // 
             // txtDescri
             // 
-            txtDescri.CueHint.Color1 = Color.Black;
+            txtDescri.CueHint.Color1 = Color.DimGray;
             txtDescri.CueHint.CueHintText = "Letras y números. Sin letras sueltas.";
-            txtDescri.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtDescri.CueHint.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtDescri.Location = new Point(333, 102);
             txtDescri.Margin = new Padding(3, 4, 3, 4);
             txtDescri.MaxLength = 70;

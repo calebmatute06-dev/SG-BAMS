@@ -28,13 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
             label1 = new Label();
-            kryptonGroup2 = new Krypton.Toolkit.KryptonGroup();
             label8 = new Label();
             dtpHasta = new Krypton.Toolkit.KryptonDateTimePicker();
             dtpDesde = new Krypton.Toolkit.KryptonDateTimePicker();
@@ -53,7 +52,6 @@
             Max = new Krypton.Toolkit.KryptonNumericUpDown();
             cmbReporte = new Krypton.Toolkit.KryptonComboBox();
             label9 = new Label();
-            kryptonGroup4 = new Krypton.Toolkit.KryptonGroup();
             dgvReporte = new DataGridView();
             btnExportaar = new Krypton.Toolkit.KryptonButton();
             btnExportarEx = new Krypton.Toolkit.KryptonButton();
@@ -71,18 +69,16 @@
             btnProveedores = new ReaLTaiizor.Controls.NightButton();
             btnDeudores = new ReaLTaiizor.Controls.NightButton();
             btnMenu = new ReaLTaiizor.Controls.NightButton();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup2.Panel).BeginInit();
+            label10 = new Label();
+            label11 = new Label();
             ((System.ComponentModel.ISupportInitialize)cmbReporte).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup4.Panel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvReporte).BeginInit();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.BackColor = Color.SkyBlue;
+            label1.BackColor = Color.White;
             label1.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
             label1.Location = new Point(361, 373);
@@ -90,14 +86,6 @@
             label1.Size = new Size(160, 24);
             label1.TabIndex = 271;
             label1.Text = "RANGO DE FECHA";
-            // 
-            // kryptonGroup2
-            // 
-            kryptonGroup2.Location = new Point(348, 369);
-            kryptonGroup2.Size = new Size(182, 33);
-            kryptonGroup2.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroup2.StateCommon.Border.Rounding = 30F;
-            kryptonGroup2.TabIndex = 270;
             // 
             // label8
             // 
@@ -113,13 +101,13 @@
             // 
             // dtpHasta
             // 
-            dtpHasta.Location = new Point(312, 536);
+            dtpHasta.Location = new Point(313, 531);
             dtpHasta.Name = "dtpHasta";
-            dtpHasta.Size = new Size(248, 49);
+            dtpHasta.Size = new Size(248, 33);
             dtpHasta.StateCommon.Back.Color1 = Color.SkyBlue;
             dtpHasta.StateCommon.Border.Color1 = Color.SkyBlue;
             dtpHasta.StateCommon.Border.Color2 = Color.SkyBlue;
-            dtpHasta.StateCommon.Border.Rounding = 35F;
+            dtpHasta.StateCommon.Border.Rounding = 10F;
             dtpHasta.StateCommon.Content.Color1 = Color.Navy;
             dtpHasta.StateCommon.Content.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dtpHasta.StateDisabled.Content.Color1 = Color.Navy;
@@ -127,13 +115,13 @@
             // 
             // dtpDesde
             // 
-            dtpDesde.Location = new Point(312, 445);
+            dtpDesde.Location = new Point(313, 440);
             dtpDesde.Name = "dtpDesde";
-            dtpDesde.Size = new Size(248, 49);
+            dtpDesde.Size = new Size(248, 33);
             dtpDesde.StateCommon.Back.Color1 = Color.SkyBlue;
             dtpDesde.StateCommon.Border.Color1 = Color.SkyBlue;
             dtpDesde.StateCommon.Border.Color2 = Color.SkyBlue;
-            dtpDesde.StateCommon.Border.Rounding = 35F;
+            dtpDesde.StateCommon.Border.Rounding = 10F;
             dtpDesde.StateCommon.Content.Color1 = Color.Navy;
             dtpDesde.StateCommon.Content.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dtpDesde.TabIndex = 264;
@@ -198,30 +186,30 @@
             // 
             label4.AutoSize = true;
             label4.BackColor = Color.Transparent;
-            label4.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(398, 414);
+            label4.Location = new Point(410, 411);
             label4.Name = "label4";
-            label4.Size = new Size(86, 22);
+            label4.Size = new Size(56, 22);
             label4.TabIndex = 279;
-            label4.Text = "Desde aquí:";
+            label4.Text = "Desde:";
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.BackColor = Color.Transparent;
-            label3.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(398, 506);
+            label3.Location = new Point(410, 502);
             label3.Name = "label3";
-            label3.Size = new Size(81, 22);
+            label3.Size = new Size(51, 22);
             label3.TabIndex = 280;
-            label3.Text = "Hasta aquí:";
+            label3.Text = "Hasta:";
             // 
             // Min
             // 
             Min.Increment = new decimal(new int[] { 1, 0, 0, 0 });
-            Min.Location = new Point(840, 189);
+            Min.Location = new Point(830, 194);
             Min.Maximum = new decimal(new int[] { 100, 0, 0, 0 });
             Min.Minimum = new decimal(new int[] { 0, 0, 0, 0 });
             Min.Name = "Min";
@@ -236,13 +224,13 @@
             // 
             label5.AutoSize = true;
             label5.BackColor = Color.Transparent;
-            label5.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(920, 155);
+            label5.Location = new Point(897, 155);
             label5.Name = "label5";
-            label5.Size = new Size(97, 22);
+            label5.Size = new Size(197, 22);
             label5.TabIndex = 283;
-            label5.Text = "Filtro de stock";
+            label5.Text = "Seleccione un rango de stock";
             // 
             // label6
             // 
@@ -250,7 +238,7 @@
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(800, 196);
+            label6.Location = new Point(790, 201);
             label6.Name = "label6";
             label6.Size = new Size(34, 22);
             label6.TabIndex = 284;
@@ -262,7 +250,7 @@
             label7.BackColor = Color.Transparent;
             label7.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Navy;
-            label7.Location = new Point(970, 196);
+            label7.Location = new Point(960, 201);
             label7.Name = "label7";
             label7.Size = new Size(38, 22);
             label7.TabIndex = 285;
@@ -271,7 +259,7 @@
             // Max
             // 
             Max.Increment = new decimal(new int[] { 1, 0, 0, 0 });
-            Max.Location = new Point(1014, 189);
+            Max.Location = new Point(1004, 194);
             Max.Maximum = new decimal(new int[] { 100, 0, 0, 0 });
             Max.Minimum = new decimal(new int[] { 0, 0, 0, 0 });
             Max.Name = "Max";
@@ -291,11 +279,11 @@
             cmbReporte.Items.AddRange(new object[] { "Ventas", "Compras", "Deudores", "Inventario" });
             cmbReporte.Location = new Point(334, 285);
             cmbReporte.Name = "cmbReporte";
-            cmbReporte.Size = new Size(216, 26);
+            cmbReporte.Size = new Size(216, 41);
             cmbReporte.StateActive.ComboBox.Content.Color1 = Color.Navy;
             cmbReporte.StateActive.ComboBox.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbReporte.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
-            cmbReporte.StateCommon.ComboBox.Border.Rounding = 20F;
+            cmbReporte.StateCommon.ComboBox.Border.Rounding = 10F;
             cmbReporte.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbReporte.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
             cmbReporte.StateCommon.Item.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -306,60 +294,52 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.BackColor = Color.SkyBlue;
+            label9.BackColor = Color.White;
             label9.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label9.ForeColor = Color.Navy;
-            label9.Location = new Point(382, 250);
+            label9.Location = new Point(383, 221);
             label9.Name = "label9";
             label9.Size = new Size(107, 24);
             label9.TabIndex = 339;
             label9.Text = "CATEGORÍA";
             // 
-            // kryptonGroup4
-            // 
-            kryptonGroup4.Location = new Point(347, 246);
-            kryptonGroup4.Size = new Size(182, 33);
-            kryptonGroup4.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroup4.StateCommon.Border.Rounding = 30F;
-            kryptonGroup4.TabIndex = 338;
-            // 
             // dgvReporte
             // 
-            dataGridViewCellStyle1.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = Color.Navy;
-            dgvReporte.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle11.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle11.ForeColor = Color.Navy;
+            dgvReporte.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
             dgvReporte.BackgroundColor = Color.SkyBlue;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Control;
-            dataGridViewCellStyle2.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = Color.Navy;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvReporte.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = SystemColors.Control;
+            dataGridViewCellStyle12.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle12.ForeColor = Color.Navy;
+            dataGridViewCellStyle12.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
+            dgvReporte.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             dgvReporte.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Window;
-            dataGridViewCellStyle3.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = Color.SkyBlue;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dgvReporte.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = SystemColors.Window;
+            dataGridViewCellStyle13.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle13.ForeColor = Color.SkyBlue;
+            dataGridViewCellStyle13.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.False;
+            dgvReporte.DefaultCellStyle = dataGridViewCellStyle13;
             dgvReporte.Location = new Point(569, 239);
             dgvReporte.Name = "dgvReporte";
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Control;
-            dataGridViewCellStyle4.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = Color.Navy;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgvReporte.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = SystemColors.Control;
+            dataGridViewCellStyle14.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle14.ForeColor = Color.Navy;
+            dataGridViewCellStyle14.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.True;
+            dgvReporte.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
             dgvReporte.RowHeadersWidth = 51;
-            dataGridViewCellStyle5.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle5.ForeColor = Color.Navy;
-            dgvReporte.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle15.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle15.ForeColor = Color.Navy;
+            dgvReporte.RowsDefaultCellStyle = dataGridViewCellStyle15;
             dgvReporte.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvReporte.Size = new Size(848, 604);
             dgvReporte.TabIndex = 174;
@@ -376,7 +356,7 @@
             btnExportaar.Size = new Size(151, 41);
             btnExportaar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnExportaar.StateCommon.Back.Color2 = Color.White;
-            btnExportaar.StateCommon.Border.Rounding = 20F;
+            btnExportaar.StateCommon.Border.Rounding = 10F;
             btnExportaar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnExportaar.StateCommon.Content.ShortText.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnExportaar.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -399,7 +379,7 @@
             btnExportarEx.Size = new Size(146, 41);
             btnExportarEx.StateCommon.Back.Color1 = Color.SkyBlue;
             btnExportarEx.StateCommon.Back.Color2 = Color.White;
-            btnExportarEx.StateCommon.Border.Rounding = 20F;
+            btnExportarEx.StateCommon.Border.Rounding = 10F;
             btnExportarEx.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnExportarEx.StateCommon.Content.ShortText.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnExportarEx.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -422,7 +402,7 @@
             btnLimpiar.Size = new Size(167, 41);
             btnLimpiar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnLimpiar.StateCommon.Back.Color2 = Color.White;
-            btnLimpiar.StateCommon.Border.Rounding = 20F;
+            btnLimpiar.StateCommon.Border.Rounding = 10F;
             btnLimpiar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnLimpiar.StateCommon.Content.ShortText.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnLimpiar.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -436,7 +416,7 @@
             // 
             // btnFiltro
             // 
-            btnFiltro.Location = new Point(1125, 189);
+            btnFiltro.Location = new Point(1115, 188);
             btnFiltro.Name = "btnFiltro";
             btnFiltro.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnFiltro.OverrideDefault.Back.Color2 = Color.White;
@@ -445,7 +425,7 @@
             btnFiltro.Size = new Size(91, 39);
             btnFiltro.StateCommon.Back.Color1 = Color.SkyBlue;
             btnFiltro.StateCommon.Back.Color2 = Color.White;
-            btnFiltro.StateCommon.Border.Rounding = 20F;
+            btnFiltro.StateCommon.Border.Rounding = 10F;
             btnFiltro.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnFiltro.StateCommon.Content.ShortText.Font = new Font("Arial", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnFiltro.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -731,19 +711,43 @@
             btnMenu.Text = "Menu Principal";
             btnMenu.Click += btnMenu_Click;
             // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label10.ForeColor = Color.Navy;
+            label10.Location = new Point(375, 610);
+            label10.Name = "label10";
+            label10.Size = new Size(118, 22);
+            label10.TabIndex = 380;
+            label10.Text = "Imprimir Reporte";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label11.ForeColor = Color.Navy;
+            label11.Location = new Point(353, 254);
+            label11.Name = "label11";
+            label11.RightToLeft = RightToLeft.No;
+            label11.Size = new Size(170, 22);
+            label11.TabIndex = 381;
+            label11.Text = "Seleccione una categoria";
+            // 
             // ReportesAdmin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1475, 903);
+            Controls.Add(label11);
+            Controls.Add(label10);
             Controls.Add(btnFiltro);
             Controls.Add(btnLimpiar);
             Controls.Add(btnExportarEx);
             Controls.Add(btnExportaar);
             Controls.Add(dgvReporte);
             Controls.Add(label9);
-            Controls.Add(kryptonGroup4);
             Controls.Add(cmbReporte);
             Controls.Add(Max);
             Controls.Add(label7);
@@ -753,7 +757,6 @@
             Controls.Add(label3);
             Controls.Add(label4);
             Controls.Add(label1);
-            Controls.Add(kryptonGroup2);
             Controls.Add(label8);
             Controls.Add(dtpHasta);
             Controls.Add(dtpDesde);
@@ -780,11 +783,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = " ";
             Load += ReportesAdmin_Load;
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup2.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup2).EndInit();
             ((System.ComponentModel.ISupportInitialize)cmbReporte).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup4.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroup4).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvReporte).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -792,7 +791,6 @@
 
         #endregion
         private Label label1;
-        private Krypton.Toolkit.KryptonGroup kryptonGroup2;
         private Label label8;
         private Krypton.Toolkit.KryptonDateTimePicker dtpHasta;
         private Krypton.Toolkit.KryptonDateTimePicker dtpDesde;
@@ -811,7 +809,6 @@
         private Krypton.Toolkit.KryptonNumericUpDown Max;
         private Krypton.Toolkit.KryptonComboBox cmbReporte;
         private Label label9;
-        private Krypton.Toolkit.KryptonGroup kryptonGroup4;
         private DataGridView dgvReporte;
         private Krypton.Toolkit.KryptonButton btnExportaar;
         private Krypton.Toolkit.KryptonButton btnExportarEx;
@@ -829,5 +826,7 @@
         private ReaLTaiizor.Controls.NightButton btnProveedores;
         private ReaLTaiizor.Controls.NightButton btnDeudores;
         private ReaLTaiizor.Controls.NightButton btnMenu;
+        private Label label10;
+        private Label label11;
     }
 }

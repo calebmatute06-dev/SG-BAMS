@@ -63,6 +63,7 @@ namespace SG_BAMS
         {
             await LlenarComboCliente();
             cmbClientes.SelectedIndex = -1;
+            this.ActiveControl = null;
         }
 
         /// <summary>

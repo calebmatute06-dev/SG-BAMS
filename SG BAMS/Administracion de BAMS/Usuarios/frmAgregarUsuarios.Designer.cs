@@ -81,7 +81,7 @@
             // txtContra
             // 
             txtContra.CueHint.Color1 = Color.DimGray;
-            txtContra.CueHint.CueHintText = "Minimo 4 caracteres";
+            txtContra.CueHint.CueHintText = "Minimo 6 caracteres";
             txtContra.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtContra.Location = new Point(296, 197);
             txtContra.Margin = new Padding(3, 4, 3, 4);
@@ -90,7 +90,7 @@
             txtContra.Name = "txtContra";
             txtContra.Size = new Size(264, 43);
             txtContra.StateCommon.Back.Color1 = Color.SkyBlue;
-            txtContra.StateCommon.Border.Rounding = 15F;
+            txtContra.StateCommon.Border.Rounding = 10F;
             txtContra.StateCommon.Content.Color1 = Color.Black;
             txtContra.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtContra.TabIndex = 20;
@@ -163,7 +163,7 @@
             cmbRol.Name = "cmbRol";
             cmbRol.Size = new Size(264, 41);
             cmbRol.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
-            cmbRol.StateCommon.ComboBox.Border.Rounding = 20F;
+            cmbRol.StateCommon.ComboBox.Border.Rounding = 10F;
             cmbRol.StateCommon.ComboBox.Content.Color1 = Color.Black;
             cmbRol.StateCommon.ComboBox.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbRol.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
@@ -255,7 +255,7 @@
             txtCorreo.Name = "txtCorreo";
             txtCorreo.Size = new Size(264, 43);
             txtCorreo.StateCommon.Back.Color1 = Color.SkyBlue;
-            txtCorreo.StateCommon.Border.Rounding = 15F;
+            txtCorreo.StateCommon.Border.Rounding = 10F;
             txtCorreo.StateCommon.Content.Color1 = Color.Gray;
             txtCorreo.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtCorreo.TabIndex = 364;

@@ -227,14 +227,14 @@
             // cmbProductos
             // 
             cmbProductos.CueHint.Color1 = Color.DimGray;
-            cmbProductos.CueHint.CueHintText = "Seleccione el producto";
+            cmbProductos.CueHint.CueHintText = "Seleccione o escriba el producto";
             cmbProductos.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbProductos.DropDownWidth = 300;
             cmbProductos.Location = new Point(160, 185);
             cmbProductos.Name = "cmbProductos";
-            cmbProductos.Size = new Size(349, 38);
+            cmbProductos.Size = new Size(349, 32);
             cmbProductos.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
-            cmbProductos.StateCommon.ComboBox.Border.Rounding = 20F;
+            cmbProductos.StateCommon.ComboBox.Border.Rounding = 10F;
             cmbProductos.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbProductos.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
             cmbProductos.StateCommon.Item.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);

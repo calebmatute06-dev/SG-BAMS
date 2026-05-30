@@ -86,7 +86,10 @@ namespace SG_BAMS
             LlenarComboProductos();
             numCantidad.DecimalPlaces = 0;
             numCantidad.ThousandsSeparator = true;
+            ClsMensajeGuia.ActivarK(txtCodigo);
             ClsMensajeGuia.ActivarK(txtPrecio);
+            
+
         }
 
         /// <summary>
