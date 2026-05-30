@@ -419,6 +419,7 @@ namespace SG_BAMS
         {
             string rtn = control.Text.Trim();
 
+            // 1. Validación de longitud y caracteres numéricos
             if (!Regex.IsMatch(rtn, @"^\d{14}$"))
             {
                 MessageBox.Show("El RTN debe tener exactamente 14 dígitos.",
@@ -427,6 +428,7 @@ namespace SG_BAMS
                 return false;
             }
 
+            // 2. Validación de Departamento
             int depto = int.Parse(rtn.Substring(0, 2));
             if (depto < 1 || depto > 18)
             {
@@ -436,7 +438,7 @@ namespace SG_BAMS
                 return false;
             }
 
-
+            // 3. Validación de Municipio
             int municipio = int.Parse(rtn.Substring(2, 2));
             if (municipio < 1 || municipio > Municipios[depto])
             {
@@ -446,8 +448,8 @@ namespace SG_BAMS
                 return false;
             }
 
+            // 4. Validación del tipo de dígito clasificador
             int tipo = int.Parse(rtn.Substring(4, 1));
-
             if (tipo != 1 && tipo != 2 && tipo != 3 && tipo != 9)
             {
                 MessageBox.Show("El formato del RTN (dígito de tipo) es incorrecto.",
@@ -456,26 +458,54 @@ namespace SG_BAMS
                 return false;
             }
 
+            // 5. Validación según el tipo (Empresa o Persona Natural)
+            int anioActual = DateTime.Now.Year;
+
             if (tipo == 9)
             {
-                int correlativoEmpresa = int.Parse(rtn.Substring(4, 4));
-                if (correlativoEmpresa < 1000)
+                // --- VALIDACIÓN PARA EMPRESAS (PERSONA JURÍDICA) ---
+                // Extraemos los dos dígitos del año de constitución (Índice 5, longitud 2)
+                int digitosAnio = int.Parse(rtn.Substring(5, 2));
+                int anioActualCorto = anioActual % 100; // Obtiene los últimos dos dígitos (ej. 26 para 2026)
+
+                // Reconstrucción del año basándose en el año actual corto
+                int anioConstitucion = (digitosAnio > anioActualCorto) ? 1900 + digitosAnio : 2000 + digitosAnio;
+
+                // Filtro de control: Si el cálculo da menor a 1950, asumimos que es del siglo XXI (ej: 2029 en lugar de 1929)
+                if (anioConstitucion < 1950)
                 {
-                    MessageBox.Show("El código de registro de empresa es inválido.",
-                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    anioConstitucion += 100;
+                }
+
+                if (anioConstitucion > anioActual)
+                {
+                    MessageBox.Show($"El año de constitución de la empresa ({anioConstitucion}) no puede ser mayor al año actual.",
+                        "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     control.Focus();
                     return false;
                 }
             }
             else
             {
-                int prefix = (tipo == 1) ? 1800 : (tipo == 2) ? 1900 : 2000;
-                int anioCompleto = prefix + int.Parse(rtn.Substring(5, 3));
+                // --- VALIDACIÓN PARA PERSONAS NATURALES (Tipos 1, 2 y 3) ---
+                // Extrae directamente los 4 dígitos del año de nacimiento (Índice 4, longitud 4)
+                int anioCompleto = int.Parse(rtn.Substring(4, 4));
+                int edad = anioActual - anioCompleto;
 
-                if (anioCompleto > DateTime.Now.Year)
+                // Validación: Que el año no esté en el futuro
+                if (anioCompleto > anioActual)
                 {
-                    MessageBox.Show("El año de nacimiento en el RTN es mayor al año actual.",
+                    MessageBox.Show("El año de nacimiento en el RTN no puede ser mayor al año actual.",
                         "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    control.Focus();
+                    return false;
+                }
+
+                // Validación: Mayoría de edad (mínimo 18 años)
+                if (edad < 18)
+                {
+                    MessageBox.Show($"La persona debe ser mayor de edad para ser registrada (Edad calculada: {edad} años).",
+                        "Validación de Edad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     control.Focus();
                     return false;
                 }

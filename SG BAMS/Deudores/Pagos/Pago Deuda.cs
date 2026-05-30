@@ -119,8 +119,8 @@ namespace SG_BAMS
 
             if (montoPago > saldoPendiente)
             {
-                MessageBox.Show($"El monto ingresado ({montoPago:C}) supera el saldo pendiente ({saldoPendiente:C}).",
-                                "Error de saldo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"El monto ingresado (L {montoPago:N2}) supera el saldo pendiente (L {saldoPendiente:N2}).",
+                "Error de saldo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
