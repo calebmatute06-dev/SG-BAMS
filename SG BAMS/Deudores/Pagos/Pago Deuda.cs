@@ -100,7 +100,7 @@ namespace SG_BAMS
                 cmbDeudores.SelectedIndex = indiceEncontrado;
             }
 
-            ClsMensajeGuia.Activar(txtMonto);
+            ClsMensajeGuia.ActivarK(txtMonto);
         }
 
         private async void btnAceptar_Click(object sender, EventArgs e)

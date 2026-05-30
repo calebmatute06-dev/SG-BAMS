@@ -79,16 +79,19 @@ namespace SG_BAMS
             // 
             // txtdescri
             // 
-            txtdescri.Location = new Point(357, 111);
+            txtdescri.CueHint.Color1 = Color.DimGray;
+            txtdescri.CueHint.CueHintText = "Letras y números. Sin letras sueltas.";
+            txtdescri.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtdescri.Location = new Point(357, 125);
             txtdescri.Margin = new Padding(3, 4, 3, 4);
             txtdescri.MaxLength = 70;
             txtdescri.Multiline = true;
             txtdescri.Name = "txtdescri";
-            txtdescri.Size = new Size(302, 45);
+            txtdescri.Size = new Size(302, 38);
             txtdescri.StateCommon.Back.Color1 = Color.SkyBlue;
             txtdescri.StateCommon.Border.Rounding = 15F;
-            txtdescri.StateCommon.Content.Color1 = Color.Navy;
-            txtdescri.StateCommon.Content.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtdescri.StateCommon.Content.Color1 = Color.Black;
+            txtdescri.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtdescri.TabIndex = 116;
             // 
             // label2
@@ -97,7 +100,7 @@ namespace SG_BAMS
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(38, 125);
+            label2.Location = new Point(30, 125);
             label2.Name = "label2";
             label2.Size = new Size(331, 31);
             label2.TabIndex = 113;

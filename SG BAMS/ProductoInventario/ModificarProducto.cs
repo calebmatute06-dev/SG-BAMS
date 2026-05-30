@@ -118,9 +118,9 @@ namespace SG_BAMS
             cmbModelo.SelectedIndex = cmbModelo.FindStringExact(modeloActual?.Trim());
             cmbEstado.SelectedIndex = cmbEstado.FindStringExact(estadoActual?.Trim());
             cmbProveedor.SelectedIndex = cmbProveedor.FindStringExact(proveedorActual?.Trim());
-            ClsMensajeGuia.Activar(txtNombre);
-            ClsMensajeGuia.Activar(txtPrecio);
-            ClsMensajeGuia.Activar(txtCodigoBarra);
+            ClsMensajeGuia.ActivarK(txtNombre);
+            ClsMensajeGuia.ActivarK(txtPrecio);
+            ClsMensajeGuia.ActivarK(txtCodigoBarra);
         }
 
         /// <summary>

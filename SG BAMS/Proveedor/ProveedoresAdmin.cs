@@ -93,7 +93,7 @@ namespace SG_BAMS.Proveedor
             dgvProveedor.RowTemplate.Height = 32;
             dgvProveedor.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvProveedor.ClearSelection();
-            ClsMensajeGuia.Activar(txtBuscar);
+            ClsMensajeGuia.ActivarK(txtBuscar);
 
 
         }

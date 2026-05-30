@@ -79,16 +79,19 @@ namespace SG_BAMS
             // 
             // txtDescri
             // 
-            txtDescri.Location = new Point(321, 96);
+            txtDescri.CueHint.Color1 = Color.DimGray;
+            txtDescri.CueHint.CueHintText = "Letras y números. Sin letras sueltas.";
+            txtDescri.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtDescri.Location = new Point(321, 110);
             txtDescri.Margin = new Padding(3, 4, 3, 4);
             txtDescri.MaxLength = 70;
             txtDescri.Multiline = true;
             txtDescri.Name = "txtDescri";
-            txtDescri.Size = new Size(302, 52);
+            txtDescri.Size = new Size(302, 40);
             txtDescri.StateCommon.Back.Color1 = Color.SkyBlue;
             txtDescri.StateCommon.Border.Rounding = 15F;
-            txtDescri.StateCommon.Content.Color1 = Color.Navy;
-            txtDescri.StateCommon.Content.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtDescri.StateCommon.Content.Color1 = Color.Black;
+            txtDescri.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtDescri.TabIndex = 83;
             // 
             // label2
@@ -97,7 +100,7 @@ namespace SG_BAMS
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(57, 117);
+            label2.Location = new Point(56, 112);
             label2.Name = "label2";
             label2.Size = new Size(270, 31);
             label2.TabIndex = 80;
@@ -167,7 +170,7 @@ namespace SG_BAMS
             label8.BackColor = Color.Transparent;
             label8.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Navy;
-            label8.Location = new Point(216, 48);
+            label8.Location = new Point(210, 48);
             label8.Name = "label8";
             label8.Size = new Size(306, 29);
             label8.TabIndex = 354;

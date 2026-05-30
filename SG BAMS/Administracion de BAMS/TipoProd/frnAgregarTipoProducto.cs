@@ -98,5 +98,10 @@ namespace SG_BAMS
         {
             this.Close();
         }
+
+        private void frnAgregarTipoProducto_Load(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

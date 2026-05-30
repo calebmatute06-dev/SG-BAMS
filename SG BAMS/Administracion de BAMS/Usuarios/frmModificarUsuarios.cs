@@ -86,6 +86,7 @@ namespace SG_BAMS
 
             btnImagen.Enabled = (rolInicial == 1 || rolInicial == 2);
             btnImagen.Visible = (rolInicial == 1 || rolInicial == 2);
+
         }
 
         /// <summary>

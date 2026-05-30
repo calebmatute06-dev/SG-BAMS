@@ -210,56 +210,64 @@
             // 
             // txtNombre
             // 
-            txtNombre.CueHint.CueHintText = "Ingrese primer Nombre";
+            txtNombre.CueHint.Color1 = Color.DimGray;
+            txtNombre.CueHint.CueHintText = "Solo letras y espacios";
+            txtNombre.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNombre.Location = new Point(211, 136);
             txtNombre.Margin = new Padding(3, 4, 3, 4);
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(259, 33);
+            txtNombre.Size = new Size(283, 36);
             txtNombre.StateCommon.Back.Color1 = Color.SkyBlue;
             txtNombre.StateCommon.Border.Rounding = 10F;
-            txtNombre.StateCommon.Content.Color1 = Color.Gray;
+            txtNombre.StateCommon.Content.Color1 = Color.Black;
+            txtNombre.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNombre.TabIndex = 322;
-            txtNombre.Text = "Ingrese primer Nombre";
             // 
             // txtApellido
             // 
-            txtApellido.CueHint.CueHintText = "Ingrese primer Apellido";
+            txtApellido.CueHint.Color1 = Color.DimGray;
+            txtApellido.CueHint.CueHintText = "Solo letras y espacios";
+            txtApellido.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtApellido.Location = new Point(211, 196);
             txtApellido.Margin = new Padding(3, 4, 3, 4);
             txtApellido.Name = "txtApellido";
-            txtApellido.Size = new Size(259, 33);
+            txtApellido.Size = new Size(283, 36);
             txtApellido.StateCommon.Back.Color1 = Color.SkyBlue;
             txtApellido.StateCommon.Border.Rounding = 10F;
-            txtApellido.StateCommon.Content.Color1 = Color.Gray;
+            txtApellido.StateCommon.Content.Color1 = Color.Black;
+            txtApellido.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtApellido.TabIndex = 322;
-            txtApellido.Text = "Ingrese primer Apellido";
             // 
             // txtTelefono
             // 
-            txtTelefono.CueHint.CueHintText = "Numero que empiecen con 9,8,3,2";
+            txtTelefono.CueHint.Color1 = Color.DimGray;
+            txtTelefono.CueHint.CueHintText = "Debe comenzar con 2, 3, 7, 8 o 9";
+            txtTelefono.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtTelefono.Location = new Point(211, 253);
             txtTelefono.Margin = new Padding(3, 4, 3, 4);
             txtTelefono.Name = "txtTelefono";
-            txtTelefono.Size = new Size(259, 33);
+            txtTelefono.Size = new Size(283, 36);
             txtTelefono.StateCommon.Back.Color1 = Color.SkyBlue;
             txtTelefono.StateCommon.Border.Rounding = 10F;
-            txtTelefono.StateCommon.Content.Color1 = Color.Gray;
+            txtTelefono.StateCommon.Content.Color1 = Color.Black;
+            txtTelefono.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtTelefono.TabIndex = 322;
-            txtTelefono.Text = "Numero que empiecen con 9,8,3,2";
             txtTelefono.KeyPress += txtTelefono_KeyPress;
             // 
             // txtRTN
             // 
-            txtRTN.CueHint.CueHintText = "Ingrese el RTN";
+            txtRTN.CueHint.Color1 = Color.DimGray;
+            txtRTN.CueHint.CueHintText = "14 dígitos numéricos minimo";
+            txtRTN.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtRTN.Location = new Point(211, 317);
             txtRTN.Margin = new Padding(3, 4, 3, 4);
             txtRTN.Name = "txtRTN";
-            txtRTN.Size = new Size(259, 33);
+            txtRTN.Size = new Size(283, 36);
             txtRTN.StateCommon.Back.Color1 = Color.SkyBlue;
             txtRTN.StateCommon.Border.Rounding = 10F;
-            txtRTN.StateCommon.Content.Color1 = Color.Gray;
+            txtRTN.StateCommon.Content.Color1 = Color.Black;
+            txtRTN.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtRTN.TabIndex = 322;
-            txtRTN.Text = "Ingrese el RTN";
             // 
             // label5
             // 

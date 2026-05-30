@@ -71,7 +71,7 @@ namespace SG_BAMS
             dgvInventarioEmp.RowTemplate.Height = 32;
             dgvInventarioEmp.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvInventarioEmp.ClearSelection();
-            ClsMensajeGuia.Activar(txtBuscar);
+            ClsMensajeGuia.ActivarK(txtBuscar);
 
 
         }

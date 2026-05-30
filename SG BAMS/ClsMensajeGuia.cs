@@ -72,10 +72,12 @@ namespace SG_BAMS
 
 
 
-        public static void Activar(KryptonTextBox txt)
+
+
+        public static void ActivarK(KryptonTextBox txt)
         {
-            string placeholder = txt.Text;
-            Color colorPlaceholder = txt.StateCommon.Content.Color1;
+            string placeholder = txt.CueHint.CueHintText;
+            Color colorPlaceholder = txt.CueHint.Color1;
 
             bool esPlaceholder = true;
 

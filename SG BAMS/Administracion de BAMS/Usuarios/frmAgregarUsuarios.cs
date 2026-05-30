@@ -182,7 +182,8 @@ namespace SG_BAMS
 
         private void frmAgregarUsuarios_Load(object sender, EventArgs e)
         {
-
+            ClsMensajeGuia.ActivarK(txtNombre);
+            ClsMensajeGuia.ActivarK(txtCorreo);
         }
     }
 }

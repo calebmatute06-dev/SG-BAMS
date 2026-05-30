@@ -91,16 +91,19 @@ namespace SG_BAMS
             // 
             // txtDescri
             // 
-            txtDescri.Location = new Point(358, 122);
+            txtDescri.CueHint.Color1 = Color.DimGray;
+            txtDescri.CueHint.CueHintText = "Letras y números. Sin letras sueltas.";
+            txtDescri.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtDescri.Location = new Point(358, 136);
             txtDescri.Margin = new Padding(3, 4, 3, 4);
             txtDescri.MaxLength = 70;
             txtDescri.Multiline = true;
             txtDescri.Name = "txtDescri";
-            txtDescri.Size = new Size(302, 45);
+            txtDescri.Size = new Size(302, 37);
             txtDescri.StateCommon.Back.Color1 = Color.SkyBlue;
             txtDescri.StateCommon.Border.Rounding = 15F;
-            txtDescri.StateCommon.Content.Color1 = Color.Navy;
-            txtDescri.StateCommon.Content.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtDescri.StateCommon.Content.Color1 = Color.Black;
+            txtDescri.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtDescri.TabIndex = 142;
             // 
             // btnModificar

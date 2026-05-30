@@ -255,7 +255,7 @@
             txtCliente.Size = new Size(239, 36);
             txtCliente.StateCommon.Back.Color1 = Color.SkyBlue;
             txtCliente.StateCommon.Border.Rounding = 10F;
-            txtCliente.StateCommon.Content.Color1 = Color.Navy;
+            txtCliente.StateCommon.Content.Color1 = Color.Black;
             txtCliente.StateCommon.Content.Font = new Font("Arial Narrow", 12F);
             txtCliente.TabIndex = 321;
             // 
@@ -287,11 +287,14 @@
             // 
             // cmbPago
             // 
+            cmbPago.CueHint.Color1 = Color.DimGray;
+            cmbPago.CueHint.CueHintText = "Seleccione un pago";
+            cmbPago.CueHint.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbPago.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbPago.DropDownWidth = 300;
             cmbPago.Location = new Point(239, 520);
             cmbPago.Name = "cmbPago";
-            cmbPago.Size = new Size(146, 38);
+            cmbPago.Size = new Size(179, 38);
             cmbPago.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
             cmbPago.StateCommon.ComboBox.Border.Rounding = 20F;
             cmbPago.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;

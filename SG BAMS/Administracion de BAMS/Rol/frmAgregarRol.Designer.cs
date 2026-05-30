@@ -78,7 +78,10 @@
             // 
             // txtDescri
             // 
-            txtDescri.Location = new Point(320, 106);
+            txtDescri.CueHint.Color1 = Color.DimGray;
+            txtDescri.CueHint.CueHintText = "Letras y números. Sin letras sueltas.";
+            txtDescri.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtDescri.Location = new Point(320, 107);
             txtDescri.Margin = new Padding(3, 4, 3, 4);
             txtDescri.MaxLength = 70;
             txtDescri.Multiline = true;
@@ -86,8 +89,8 @@
             txtDescri.Size = new Size(302, 41);
             txtDescri.StateCommon.Back.Color1 = Color.SkyBlue;
             txtDescri.StateCommon.Border.Rounding = 15F;
-            txtDescri.StateCommon.Content.Color1 = Color.Navy;
-            txtDescri.StateCommon.Content.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtDescri.StateCommon.Content.Color1 = Color.Black;
+            txtDescri.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtDescri.TabIndex = 116;
             // 
             // label2
@@ -96,7 +99,7 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(71, 116);
+            label2.Location = new Point(69, 111);
             label2.Name = "label2";
             label2.Size = new Size(252, 31);
             label2.TabIndex = 113;

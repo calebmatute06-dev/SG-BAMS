@@ -97,10 +97,10 @@ namespace SG_BAMS.Proveedor
             cmbClasificacion.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbClasificacion.SelectedValue = _idClasificacion;
 
-            ClsMensajeGuia.Activar(txtNombre);
-            ClsMensajeGuia.Activar(txtTelefono);
-            ClsMensajeGuia.Activar(txtDireccion);
-            ClsMensajeGuia.Activar(txtRTN);
+            ClsMensajeGuia.ActivarK(txtNombre);
+            ClsMensajeGuia.ActivarK(txtTelefono);
+            ClsMensajeGuia.ActivarK(txtDireccion);
+            ClsMensajeGuia.ActivarK(txtRTN);
         }
 
         /// <summary>

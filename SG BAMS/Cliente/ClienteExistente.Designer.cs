@@ -44,37 +44,33 @@
             // panel3
             // 
             panel3.BackColor = Color.Navy;
-            panel3.Location = new Point(476, 0);
-            panel3.Margin = new Padding(3, 2, 3, 2);
+            panel3.Location = new Point(544, 0);
             panel3.Name = "panel3";
-            panel3.Size = new Size(22, 266);
+            panel3.Size = new Size(25, 355);
             panel3.TabIndex = 176;
             // 
             // panel1
             // 
             panel1.BackColor = Color.Navy;
-            panel1.Location = new Point(19, 0);
-            panel1.Margin = new Padding(3, 2, 3, 2);
+            panel1.Location = new Point(22, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(479, 18);
+            panel1.Size = new Size(547, 24);
             panel1.TabIndex = 171;
             // 
             // panel2
             // 
             panel2.BackColor = Color.Navy;
-            panel2.Location = new Point(-2, 248);
-            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Location = new Point(-2, 331);
             panel2.Name = "panel2";
-            panel2.Size = new Size(500, 18);
+            panel2.Size = new Size(571, 24);
             panel2.TabIndex = 170;
             // 
             // panel8
             // 
             panel8.BackColor = Color.Navy;
             panel8.Location = new Point(-2, -1);
-            panel8.Margin = new Padding(3, 2, 3, 2);
             panel8.Name = "panel8";
-            panel8.Size = new Size(22, 267);
+            panel8.Size = new Size(25, 356);
             panel8.TabIndex = 164;
             // 
             // label3
@@ -83,9 +79,9 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(82, 126);
+            label3.Location = new Point(94, 168);
             label3.Name = "label3";
-            label3.Size = new Size(76, 19);
+            label3.Size = new Size(91, 24);
             label3.TabIndex = 182;
             label3.Text = "Nombre:";
             // 
@@ -95,19 +91,21 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(128, 44);
+            label4.Location = new Point(146, 59);
             label4.Name = "label4";
-            label4.Size = new Size(249, 34);
+            label4.Size = new Size(319, 44);
             label4.TabIndex = 331;
             label4.Text = "Cliente Existente";
             // 
             // cmbClientes
             // 
+            cmbClientes.CueHint.Color1 = Color.DimGray;
+            cmbClientes.CueHint.CueHintText = "Seleccione un cliente";
+            cmbClientes.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbClientes.DropDownWidth = 300;
-            cmbClientes.Location = new Point(164, 119);
-            cmbClientes.Margin = new Padding(3, 2, 3, 2);
+            cmbClientes.Location = new Point(187, 159);
             cmbClientes.Name = "cmbClientes";
-            cmbClientes.Size = new Size(227, 34);
+            cmbClientes.Size = new Size(259, 38);
             cmbClientes.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
             cmbClientes.StateCommon.ComboBox.Border.Rounding = 20F;
             cmbClientes.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
@@ -118,14 +116,13 @@
             // 
             // BtnSalir
             // 
-            BtnSalir.Location = new Point(269, 177);
-            BtnSalir.Margin = new Padding(3, 2, 3, 2);
+            BtnSalir.Location = new Point(307, 236);
             BtnSalir.Name = "BtnSalir";
             BtnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             BtnSalir.OverrideDefault.Back.Color2 = Color.White;
             BtnSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
             BtnSalir.OverrideFocus.Back.Color2 = Color.White;
-            BtnSalir.Size = new Size(89, 45);
+            BtnSalir.Size = new Size(102, 60);
             BtnSalir.StateCommon.Back.Color1 = Color.SkyBlue;
             BtnSalir.StateCommon.Back.Color2 = Color.White;
             BtnSalir.StateCommon.Border.Rounding = 30F;
@@ -142,14 +139,13 @@
             // 
             // BtnAsignar
             // 
-            BtnAsignar.Location = new Point(115, 177);
-            BtnAsignar.Margin = new Padding(3, 2, 3, 2);
+            BtnAsignar.Location = new Point(131, 236);
             BtnAsignar.Name = "BtnAsignar";
             BtnAsignar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             BtnAsignar.OverrideDefault.Back.Color2 = Color.White;
             BtnAsignar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             BtnAsignar.OverrideFocus.Back.Color2 = Color.White;
-            BtnAsignar.Size = new Size(123, 45);
+            BtnAsignar.Size = new Size(141, 60);
             BtnAsignar.StateCommon.Back.Color1 = Color.SkyBlue;
             BtnAsignar.StateCommon.Back.Color2 = Color.White;
             BtnAsignar.StateCommon.Border.Rounding = 30F;
@@ -170,18 +166,18 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(382, 220);
+            label5.Location = new Point(437, 293);
             label5.Name = "label5";
-            label5.Size = new Size(84, 29);
+            label5.Size = new Size(102, 35);
             label5.TabIndex = 346;
             label5.Text = "BAMS";
             // 
             // ClienteExistente
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(498, 266);
+            ClientSize = new Size(569, 355);
             Controls.Add(label5);
             Controls.Add(BtnSalir);
             Controls.Add(BtnAsignar);
@@ -193,6 +189,7 @@
             Controls.Add(panel2);
             Controls.Add(panel8);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "ClienteExistente";
             Text = "ClienteExistente";
             Load += ClienteExistente_Load;

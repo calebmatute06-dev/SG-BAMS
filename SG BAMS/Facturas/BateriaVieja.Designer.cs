@@ -56,10 +56,11 @@
             // txtPrecio
             // 
             txtPrecio.CueHint.CueHintText = "Ingrese precio";
+            txtPrecio.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtPrecio.Location = new Point(251, 184);
             txtPrecio.Margin = new Padding(3, 4, 3, 4);
             txtPrecio.Name = "txtPrecio";
-            txtPrecio.Size = new Size(197, 36);
+            txtPrecio.Size = new Size(197, 37);
             txtPrecio.StateCommon.Back.Color1 = Color.SkyBlue;
             txtPrecio.StateCommon.Border.Rounding = 10F;
             txtPrecio.StateCommon.Content.Color1 = Color.Gray;
@@ -70,6 +71,9 @@
             // 
             // cmbBaterias
             // 
+            cmbBaterias.CueHint.Color1 = Color.Gray;
+            cmbBaterias.CueHint.CueHintText = "Ingrese el nombre";
+            cmbBaterias.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbBaterias.DropDownWidth = 300;
             cmbBaterias.Location = new Point(251, 123);
             cmbBaterias.Name = "cmbBaterias";
@@ -190,10 +194,11 @@
             // txtCantidad
             // 
             txtCantidad.CueHint.CueHintText = "Ingrese la cantidad";
+            txtCantidad.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtCantidad.Location = new Point(251, 237);
             txtCantidad.Margin = new Padding(3, 4, 3, 4);
             txtCantidad.Name = "txtCantidad";
-            txtCantidad.Size = new Size(197, 36);
+            txtCantidad.Size = new Size(197, 37);
             txtCantidad.StateCommon.Back.Color1 = Color.SkyBlue;
             txtCantidad.StateCommon.Border.Rounding = 10F;
             txtCantidad.StateCommon.Content.Color1 = Color.Gray;
