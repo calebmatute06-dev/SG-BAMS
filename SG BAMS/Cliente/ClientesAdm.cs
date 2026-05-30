@@ -89,13 +89,15 @@ namespace SG_BAMS
             DataView dv = datosCli.DefaultView;
             string filtroEstado = chkActivo.Checked ? "Estado <> 'Activo'" : "Estado = 'Activo'";
 
-            if (string.IsNullOrWhiteSpace(txtBusqueda.Text))
+            string textoBusqueda = txtBusqueda.ForeColor == Color.Black ? txtBusqueda.Text : "";
+
+            if (string.IsNullOrWhiteSpace(textoBusqueda))
             {
                 dv.RowFilter = filtroEstado;
             }
             else
             {
-                string textoSeguro = txtBusqueda.Text
+                string textoSeguro = textoBusqueda
                     .Replace("'", "''")
                     .Replace("[", "[[]")
                     .Replace("]", "[]]")
@@ -152,9 +154,13 @@ namespace SG_BAMS
             dgvClientes.RowTemplate.Height = 32;
             dgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvClientes.ClearSelection();
+            txtBusqueda.TextChanged -= txtBusqueda_TextChanged;
 
             ClsMensajeGuia.ActivarK(txtBusqueda);
+            txtBusqueda.TextChanged += txtBusqueda_TextChanged;
             this.ActiveControl = null;
+
+
         }
 
         /// <summary>

@@ -141,7 +141,8 @@
             // txtBusqueda
             // 
             txtBusqueda.CueHint.Color1 = Color.DimGray;
-            txtBusqueda.CueHint.CueHintText = "Busqueda por Nombre o ID";
+            txtBusqueda.CueHint.CueHintText = "Busqueda por Id, Nombre, Apellido y telefono ";
+            txtBusqueda.CueHint.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtBusqueda.Location = new Point(473, 195);
             txtBusqueda.Margin = new Padding(3, 4, 3, 4);
             txtBusqueda.Name = "txtBusqueda";
