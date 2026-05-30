@@ -419,7 +419,6 @@ namespace SG_BAMS
         {
             string rtn = control.Text.Trim();
 
-            // 1. Validación de longitud y caracteres numéricos
             if (!Regex.IsMatch(rtn, @"^\d{14}$"))
             {
                 MessageBox.Show("El RTN debe tener exactamente 14 dígitos.",
@@ -428,7 +427,6 @@ namespace SG_BAMS
                 return false;
             }
 
-            // 2. Validación de Departamento
             int depto = int.Parse(rtn.Substring(0, 2));
             if (depto < 1 || depto > 18)
             {
@@ -438,7 +436,6 @@ namespace SG_BAMS
                 return false;
             }
 
-            // 3. Validación de Municipio
             int municipio = int.Parse(rtn.Substring(2, 2));
             if (municipio < 1 || municipio > Municipios[depto])
             {
@@ -448,7 +445,6 @@ namespace SG_BAMS
                 return false;
             }
 
-            // 4. Validación del tipo de dígito clasificador
             int tipo = int.Parse(rtn.Substring(4, 1));
             if (tipo != 1 && tipo != 2 && tipo != 3 && tipo != 9)
             {
@@ -458,20 +454,15 @@ namespace SG_BAMS
                 return false;
             }
 
-            // 5. Validación según el tipo (Empresa o Persona Natural)
             int anioActual = DateTime.Now.Year;
 
             if (tipo == 9)
             {
-                // --- VALIDACIÓN PARA EMPRESAS (PERSONA JURÍDICA) ---
-                // Extraemos los dos dígitos del año de constitución (Índice 5, longitud 2)
                 int digitosAnio = int.Parse(rtn.Substring(5, 2));
-                int anioActualCorto = anioActual % 100; // Obtiene los últimos dos dígitos (ej. 26 para 2026)
+                int anioActualCorto = anioActual % 100;
 
-                // Reconstrucción del año basándose en el año actual corto
                 int anioConstitucion = (digitosAnio > anioActualCorto) ? 1900 + digitosAnio : 2000 + digitosAnio;
 
-                // Filtro de control: Si el cálculo da menor a 1950, asumimos que es del siglo XXI (ej: 2029 en lugar de 1929)
                 if (anioConstitucion < 1950)
                 {
                     anioConstitucion += 100;
@@ -487,12 +478,9 @@ namespace SG_BAMS
             }
             else
             {
-                // --- VALIDACIÓN PARA PERSONAS NATURALES (Tipos 1, 2 y 3) ---
-                // Extrae directamente los 4 dígitos del año de nacimiento (Índice 4, longitud 4)
                 int anioCompleto = int.Parse(rtn.Substring(4, 4));
                 int edad = anioActual - anioCompleto;
 
-                // Validación: Que el año no esté en el futuro
                 if (anioCompleto > anioActual)
                 {
                     MessageBox.Show("El año de nacimiento en el RTN no puede ser mayor al año actual.",
@@ -501,7 +489,6 @@ namespace SG_BAMS
                     return false;
                 }
 
-                // Validación: Mayoría de edad (mínimo 18 años)
                 if (edad < 18)
                 {
                     MessageBox.Show($"La persona debe ser mayor de edad para ser registrada (Edad calculada: {edad} años).",
