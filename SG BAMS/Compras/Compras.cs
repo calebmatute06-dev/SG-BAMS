@@ -70,6 +70,7 @@ namespace SG_BAMS
         /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void Compras_Load(object sender, EventArgs e)
         {
+            new PlaceholderTextBox(txtBuscarCompra, "Ingrese un Nombre de Vendedor, Cliente, N.Factura, RTN");
             btnComprasMenu.Enabled = false;
             btnComprasMenu.BackColor = Color.SkyBlue;
             btnComprasMenu.ForeColor = Color.White;
@@ -103,7 +104,7 @@ namespace SG_BAMS
             dgvComprasAdmin.RowTemplate.Height = 32;
             dgvComprasAdmin.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvComprasAdmin.ClearSelection();
-            
+
             FiltrarCompras();
 
             ClsMensajeGuia.ActivarK(txtBuscarCompra);
@@ -129,9 +130,8 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Filtra las compras.
-        /// Igual que FacturasAdm: si hay texto, busca en todas las columnas de cadena
-        /// ignorando fechas; si no hay texto, filtra solo por rango de fechas.
+        /// Filtra las compras combinando criterios de texto y rango de fechas.
+        /// Ambos filtros se aplican simultáneamente con AND.
         /// </summary>
         private void FiltrarCompras()
         {
@@ -139,17 +139,29 @@ namespace SG_BAMS
 
             DataView dv = dtCompras.DefaultView;
 
-            string texto = txtBuscarCompra.Text
-                .Replace("'", "''")
-                .Replace("[", "[[]")
-                .Replace("]", "[]]")
-                .Trim();
+            // Obtener el texto y verificar si es el placeholder
+            string texto = txtBuscarCompra.Text?.Trim() ?? "";
 
-            string rowFilter;
+            // Si el texto es exactamente el placeholder, tratarlo como vacío
+            if (texto == "Ingrese un Nombre de Vendedor, Cliente, N.Factura, RTN")
+            {
+                texto = "";
+            }
+            else
+            {
+                // Escapar caracteres especiales para el filtro
+                texto = texto
+                    .Replace("'", "''")
+                    .Replace("[", "[[]")
+                    .Replace("]", "[]]")
+                    .Trim();
+            }
 
+            var condiciones = new List<string>();
+
+            // 1. Construir filtro de texto si hay algo escrito
             if (!string.IsNullOrWhiteSpace(texto))
             {
-
                 var condicionesTexto = new List<string>();
                 foreach (DataColumn col in dtCompras.Columns)
                 {
@@ -160,34 +172,42 @@ namespace SG_BAMS
                     else if (col.DataType == typeof(int) || col.DataType == typeof(decimal) ||
                              col.DataType == typeof(double) || col.DataType == typeof(long))
                     {
+                        // Solo agregar filtro numérico si el texto puede ser un número
                         if (decimal.TryParse(texto, out _))
                             condicionesTexto.Add($"CONVERT([{col.ColumnName}], System.String) LIKE '%{texto}%'");
                     }
                 }
 
-                rowFilter = condicionesTexto.Count > 0
-                    ? string.Join(" OR ", condicionesTexto)
-                    : string.Empty;
-            }
-            else
-            {
-
-                string fDesde = dtpDesde.Value.Date.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
-                string fHasta = dtpHasta.Value.Date.AddDays(1).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
-
-                var condicionesFecha = new List<string>();
-                foreach (DataColumn col in dtCompras.Columns)
+                if (condicionesTexto.Count > 0)
                 {
-                    if (col.DataType == typeof(DateTime))
-                        condicionesFecha.Add(
-                            $"[{col.ColumnName}] >= #{fDesde}# AND [{col.ColumnName}] < #{fHasta}#"
-                        );
+                    condiciones.Add("(" + string.Join(" OR ", condicionesTexto) + ")");
                 }
-
-                rowFilter = condicionesFecha.Count > 0
-                    ? string.Join(" AND ", condicionesFecha)
-                    : string.Empty;
             }
+
+            // 2. Construir siempre el filtro de fechas
+            string fDesde = dtpDesde.Value.Date.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+            string fHasta = dtpHasta.Value.Date.AddDays(1).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+
+            var condicionesFecha = new List<string>();
+            foreach (DataColumn col in dtCompras.Columns)
+            {
+                if (col.DataType == typeof(DateTime))
+                {
+                    condicionesFecha.Add(
+                        $"[{col.ColumnName}] >= #{fDesde}# AND [{col.ColumnName}] < #{fHasta}#"
+                    );
+                }
+            }
+
+            if (condicionesFecha.Count > 0)
+            {
+                condiciones.Add("(" + string.Join(" OR ", condicionesFecha) + ")");
+            }
+
+            // 3. Combinar todas las condiciones con AND
+            string rowFilter = condiciones.Count > 0
+                ? string.Join(" AND ", condiciones)
+                : string.Empty;
 
             try
             {
