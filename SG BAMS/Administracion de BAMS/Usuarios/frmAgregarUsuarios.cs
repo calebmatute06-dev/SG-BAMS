@@ -185,5 +185,10 @@ namespace SG_BAMS
             ClsMensajeGuia.ActivarK(txtNombre);
             ClsMensajeGuia.ActivarK(txtCorreo);
         }
+
+        private void txtContra_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

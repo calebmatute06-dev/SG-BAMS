@@ -47,7 +47,6 @@
             kryptonButton14 = new Krypton.Toolkit.KryptonButton();
             label1 = new Label();
             BtnNotificaciones = new Button();
-            kryptonGroupBox2 = new Krypton.Toolkit.KryptonGroupBox();
             Nombre = new Label();
             label2 = new Label();
             btnFacturas = new ReaLTaiizor.Controls.NightButton();
@@ -58,8 +57,6 @@
             btnPerfil = new ReaLTaiizor.Controls.NightButton();
             btnCerrar = new ReaLTaiizor.Controls.NightButton();
             ((System.ComponentModel.ISupportInitialize)dgvFacturas).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).BeginInit();
             SuspendLayout();
             // 
             // panel5
@@ -118,7 +115,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(1149, 260);
+            label6.Location = new Point(1138, 294);
             label6.Name = "label6";
             label6.Size = new Size(49, 23);
             label6.TabIndex = 350;
@@ -129,7 +126,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(1149, 196);
+            label5.Location = new Point(1129, 260);
             label5.Name = "label5";
             label5.Size = new Size(58, 23);
             label5.TabIndex = 349;
@@ -141,7 +138,7 @@
             label3.BackColor = Color.White;
             label3.Font = new Font("Arial Narrow", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(1235, 162);
+            label3.Location = new Point(1276, 208);
             label3.Name = "label3";
             label3.Size = new Size(82, 33);
             label3.TabIndex = 347;
@@ -153,10 +150,10 @@
             txtBusqueda.Location = new Point(442, 279);
             txtBusqueda.Margin = new Padding(3, 4, 3, 4);
             txtBusqueda.Name = "txtBusqueda";
-            txtBusqueda.Size = new Size(661, 36);
+            txtBusqueda.Size = new Size(661, 34);
             txtBusqueda.StateCommon.Back.Color1 = Color.White;
             txtBusqueda.StateCommon.Border.Color1 = Color.Navy;
-            txtBusqueda.StateCommon.Border.Rounding = 10F;
+            txtBusqueda.StateCommon.Border.Rounding = 5F;
             txtBusqueda.StateCommon.Content.Color1 = Color.Navy;
             txtBusqueda.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtBusqueda.TabIndex = 346;
@@ -176,7 +173,7 @@
             // dtpFin
             // 
             dtpFin.CalendarForeColor = Color.Navy;
-            dtpFin.Location = new Point(1149, 290);
+            dtpFin.Location = new Point(1193, 291);
             dtpFin.Margin = new Padding(3, 4, 3, 4);
             dtpFin.Name = "dtpFin";
             dtpFin.Size = new Size(259, 27);
@@ -184,7 +181,7 @@
             // 
             // dtpInicio
             // 
-            dtpInicio.Location = new Point(1149, 226);
+            dtpInicio.Location = new Point(1193, 256);
             dtpInicio.Margin = new Padding(3, 4, 3, 4);
             dtpInicio.Name = "dtpInicio";
             dtpInicio.Size = new Size(259, 27);
@@ -201,7 +198,7 @@
             BtnNueva.Size = new Size(224, 60);
             BtnNueva.StateCommon.Back.Color1 = Color.SkyBlue;
             BtnNueva.StateCommon.Back.Color2 = Color.White;
-            BtnNueva.StateCommon.Border.Rounding = 30F;
+            BtnNueva.StateCommon.Border.Rounding = 5F;
             BtnNueva.StateCommon.Content.ShortText.Color1 = Color.Navy;
             BtnNueva.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BtnNueva.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -224,7 +221,7 @@
             BtnVer.Size = new Size(86, 60);
             BtnVer.StateCommon.Back.Color1 = Color.SkyBlue;
             BtnVer.StateCommon.Back.Color2 = Color.White;
-            BtnVer.StateCommon.Border.Rounding = 30F;
+            BtnVer.StateCommon.Border.Rounding = 5F;
             BtnVer.StateCommon.Content.ShortText.Color1 = Color.Navy;
             BtnVer.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BtnVer.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -239,7 +236,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.BackColor = Color.SkyBlue;
+            label10.BackColor = Color.White;
             label10.Font = new Font("Arial Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Navy;
             label10.Location = new Point(851, 57);
@@ -283,16 +280,6 @@
             BtnNotificaciones.TabIndex = 333;
             BtnNotificaciones.UseVisualStyleBackColor = false;
             BtnNotificaciones.Click += BtnNotificaciones_Click;
-            // 
-            // kryptonGroupBox2
-            // 
-            kryptonGroupBox2.CaptionVisible = false;
-            kryptonGroupBox2.Location = new Point(752, 47);
-            kryptonGroupBox2.Margin = new Padding(3, 4, 3, 4);
-            kryptonGroupBox2.Size = new Size(344, 65);
-            kryptonGroupBox2.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonGroupBox2.StateCommon.Border.Rounding = 50F;
-            kryptonGroupBox2.TabIndex = 340;
             // 
             // Nombre
             // 
@@ -505,7 +492,6 @@
             Controls.Add(kryptonButton14);
             Controls.Add(label1);
             Controls.Add(BtnNotificaciones);
-            Controls.Add(kryptonGroupBox2);
             Controls.Add(panel5);
             Controls.Add(panel8);
             Controls.Add(panel3);
@@ -525,8 +511,6 @@
             Text = "FacturasEmp";
             Load += FacturasEmp_Load;
             ((System.ComponentModel.ISupportInitialize)dgvFacturas).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2.Panel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kryptonGroupBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -553,7 +537,6 @@
         private Krypton.Toolkit.KryptonButton kryptonButton11;
         private PictureBox pictureBox18;
         private Button BtnNotificaciones;
-        private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox2;
         private Label Nombre;
         private Label label2;
         private ReaLTaiizor.Controls.NightButton btnFacturas;

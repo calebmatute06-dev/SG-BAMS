@@ -129,7 +129,7 @@
             kryptonButton15.Size = new Size(270, 59);
             kryptonButton15.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonButton15.StateCommon.Back.Color2 = Color.White;
-            kryptonButton15.StateCommon.Border.Rounding = 40F;
+            kryptonButton15.StateCommon.Border.Rounding = 5F;
             kryptonButton15.StateCommon.Content.ShortText.Color1 = Color.Navy;
             kryptonButton15.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             kryptonButton15.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -147,7 +147,7 @@
             txtBuscarNombre.BorderStyle = BorderStyle.None;
             txtBuscarNombre.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtBuscarNombre.ForeColor = Color.Gray;
-            txtBuscarNombre.Location = new Point(467, 215);
+            txtBuscarNombre.Location = new Point(461, 220);
             txtBuscarNombre.Name = "txtBuscarNombre";
             txtBuscarNombre.Size = new Size(971, 28);
             txtBuscarNombre.TabIndex = 166;
@@ -156,11 +156,11 @@
             // 
             // kryptonGroup5
             // 
-            kryptonGroup5.Location = new Point(450, 201);
-            kryptonGroup5.Size = new Size(1016, 52);
+            kryptonGroup5.Location = new Point(450, 216);
+            kryptonGroup5.Size = new Size(988, 37);
             kryptonGroup5.StateCommon.Back.Color1 = Color.White;
             kryptonGroup5.StateCommon.Border.Color1 = Color.Navy;
-            kryptonGroup5.StateCommon.Border.Rounding = 70F;
+            kryptonGroup5.StateCommon.Border.Rounding = 5F;
             kryptonGroup5.TabIndex = 165;
             // 
             // button12

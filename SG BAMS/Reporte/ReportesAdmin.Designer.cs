@@ -188,9 +188,9 @@
             Min.Maximum = new decimal(new int[] { 100, 0, 0, 0 });
             Min.Minimum = new decimal(new int[] { 0, 0, 0, 0 });
             Min.Name = "Min";
-            Min.Size = new Size(104, 32);
+            Min.Size = new Size(104, 30);
             Min.StateCommon.Back.Color1 = Color.White;
-            Min.StateCommon.Border.Rounding = 10F;
+            Min.StateCommon.Border.Rounding = 5F;
             Min.StateCommon.Content.Color1 = Color.Navy;
             Min.TabIndex = 281;
             Min.Value = new decimal(new int[] { 0, 0, 0, 0 });
@@ -238,9 +238,9 @@
             Max.Maximum = new decimal(new int[] { 100, 0, 0, 0 });
             Max.Minimum = new decimal(new int[] { 0, 0, 0, 0 });
             Max.Name = "Max";
-            Max.Size = new Size(104, 32);
+            Max.Size = new Size(104, 30);
             Max.StateCommon.Back.Color1 = Color.White;
-            Max.StateCommon.Border.Rounding = 10F;
+            Max.StateCommon.Border.Rounding = 5F;
             Max.StateCommon.Content.Color1 = Color.Navy;
             Max.TabIndex = 286;
             Max.Value = new decimal(new int[] { 0, 0, 0, 0 });
@@ -258,7 +258,7 @@
             cmbReporte.StateActive.ComboBox.Content.Color1 = Color.Navy;
             cmbReporte.StateActive.ComboBox.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbReporte.StateCommon.ComboBox.Back.Color1 = Color.White;
-            cmbReporte.StateCommon.ComboBox.Border.Rounding = 10F;
+            cmbReporte.StateCommon.ComboBox.Border.Rounding = 5F;
             cmbReporte.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbReporte.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
             cmbReporte.StateCommon.Item.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -694,7 +694,7 @@
             cmbCant.StateActive.ComboBox.Content.Color1 = Color.Navy;
             cmbCant.StateActive.ComboBox.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbCant.StateCommon.ComboBox.Back.Color1 = Color.White;
-            cmbCant.StateCommon.ComboBox.Border.Rounding = 10F;
+            cmbCant.StateCommon.ComboBox.Border.Rounding = 5F;
             cmbCant.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbCant.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
             cmbCant.StateCommon.Item.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);

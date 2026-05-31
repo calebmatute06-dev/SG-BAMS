@@ -125,7 +125,7 @@
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(155, 520);
+            btnAgregar.Location = new Point(167, 520);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnAgregar.OverrideDefault.Back.Color2 = Color.White;
@@ -134,7 +134,7 @@
             btnAgregar.Size = new Size(143, 65);
             btnAgregar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnAgregar.StateCommon.Back.Color2 = Color.White;
-            btnAgregar.StateCommon.Border.Rounding = 30F;
+            btnAgregar.StateCommon.Border.Rounding = 5F;
             btnAgregar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnAgregar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAgregar.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -157,7 +157,7 @@
             btnModificar.Size = new Size(143, 65);
             btnModificar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnModificar.StateCommon.Back.Color2 = Color.White;
-            btnModificar.StateCommon.Border.Rounding = 30F;
+            btnModificar.StateCommon.Border.Rounding = 5F;
             btnModificar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnModificar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnModificar.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -171,7 +171,7 @@
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(536, 520);
+            btnSalir.Location = new Point(519, 520);
             btnSalir.Name = "btnSalir";
             btnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnSalir.OverrideDefault.Back.Color2 = Color.White;
@@ -180,7 +180,7 @@
             btnSalir.Size = new Size(143, 65);
             btnSalir.StateCommon.Back.Color1 = Color.SkyBlue;
             btnSalir.StateCommon.Back.Color2 = Color.White;
-            btnSalir.StateCommon.Border.Rounding = 30F;
+            btnSalir.StateCommon.Border.Rounding = 5F;
             btnSalir.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnSalir.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSalir.StateNormal.Back.Color1 = Color.SkyBlue;

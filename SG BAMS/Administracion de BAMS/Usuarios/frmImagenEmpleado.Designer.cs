@@ -99,7 +99,7 @@
             btnCapturar.Size = new Size(239, 68);
             btnCapturar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnCapturar.StateCommon.Back.Color2 = Color.White;
-            btnCapturar.StateCommon.Border.Rounding = 30F;
+            btnCapturar.StateCommon.Border.Rounding = 5F;
             btnCapturar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnCapturar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCapturar.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -122,7 +122,7 @@
             btnBorrar.Size = new Size(239, 68);
             btnBorrar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnBorrar.StateCommon.Back.Color2 = Color.White;
-            btnBorrar.StateCommon.Border.Rounding = 30F;
+            btnBorrar.StateCommon.Border.Rounding = 5F;
             btnBorrar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnBorrar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnBorrar.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -145,7 +145,7 @@
             btnEncender.Size = new Size(239, 68);
             btnEncender.StateCommon.Back.Color1 = Color.SkyBlue;
             btnEncender.StateCommon.Back.Color2 = Color.White;
-            btnEncender.StateCommon.Border.Rounding = 30F;
+            btnEncender.StateCommon.Border.Rounding = 5F;
             btnEncender.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnEncender.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnEncender.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -168,7 +168,7 @@
             btnSalir.Size = new Size(133, 65);
             btnSalir.StateCommon.Back.Color1 = Color.SkyBlue;
             btnSalir.StateCommon.Back.Color2 = Color.White;
-            btnSalir.StateCommon.Border.Rounding = 30F;
+            btnSalir.StateCommon.Border.Rounding = 5F;
             btnSalir.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnSalir.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSalir.StateNormal.Back.Color1 = Color.SkyBlue;

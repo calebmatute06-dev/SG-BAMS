@@ -49,9 +49,9 @@
             cantidadnotificaciones.BackColor = Color.Navy;
             cantidadnotificaciones.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cantidadnotificaciones.ForeColor = Color.White;
-            cantidadnotificaciones.Location = new Point(262, 50);
+            cantidadnotificaciones.Location = new Point(299, 67);
             cantidadnotificaciones.Name = "cantidadnotificaciones";
-            cantidadnotificaciones.Size = new Size(22, 26);
+            cantidadnotificaciones.Size = new Size(28, 33);
             cantidadnotificaciones.TabIndex = 103;
             cantidadnotificaciones.Text = "0";
             // 
@@ -61,49 +61,45 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(122, 50);
+            label3.Location = new Point(139, 67);
             label3.Name = "label3";
-            label3.Size = new Size(124, 26);
+            label3.Size = new Size(153, 33);
             label3.TabIndex = 102;
             label3.Text = "Notificaciones";
             // 
             // pictureBox4
             // 
             pictureBox4.BackColor = Color.Navy;
-            pictureBox4.Location = new Point(-5, -4);
-            pictureBox4.Margin = new Padding(3, 2, 3, 2);
+            pictureBox4.Location = new Point(-6, -5);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(13, 418);
+            pictureBox4.Size = new Size(15, 557);
             pictureBox4.TabIndex = 101;
             pictureBox4.TabStop = false;
             // 
             // pictureBox3
             // 
             pictureBox3.BackColor = Color.Navy;
-            pictureBox3.Location = new Point(433, -4);
-            pictureBox3.Margin = new Padding(3, 2, 3, 2);
+            pictureBox3.Location = new Point(495, -5);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(13, 418);
+            pictureBox3.Size = new Size(15, 557);
             pictureBox3.TabIndex = 100;
             pictureBox3.TabStop = false;
             // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Navy;
-            pictureBox1.Location = new Point(-5, 402);
-            pictureBox1.Margin = new Padding(3, 2, 3, 2);
+            pictureBox1.Location = new Point(-6, 536);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(451, 11);
+            pictureBox1.Size = new Size(515, 15);
             pictureBox1.TabIndex = 99;
             pictureBox1.TabStop = false;
             // 
             // pictureBox2
             // 
             pictureBox2.BackColor = Color.Navy;
-            pictureBox2.Location = new Point(-5, -1);
-            pictureBox2.Margin = new Padding(3, 2, 3, 2);
+            pictureBox2.Location = new Point(-6, -1);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(451, 11);
+            pictureBox2.Size = new Size(515, 15);
             pictureBox2.TabIndex = 98;
             pictureBox2.TabStop = false;
             // 
@@ -112,9 +108,9 @@
             label6.AutoSize = true;
             label6.Font = new Font("Arial", 22.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(158, 16);
+            label6.Location = new Point(181, 21);
             label6.Name = "label6";
-            label6.Size = new Size(102, 35);
+            label6.Size = new Size(129, 44);
             label6.TabIndex = 97;
             label6.Text = "BAMS";
             // 
@@ -122,27 +118,25 @@
             // 
             notificaciones.DrawMode = DrawMode.OwnerDrawFixed;
             notificaciones.FormattingEnabled = true;
-            notificaciones.Location = new Point(10, 92);
-            notificaciones.Margin = new Padding(3, 2, 3, 2);
+            notificaciones.Location = new Point(11, 123);
             notificaciones.Name = "notificaciones";
-            notificaciones.Size = new Size(418, 292);
+            notificaciones.Size = new Size(477, 384);
             notificaciones.TabIndex = 105;
             notificaciones.MouseClick += listBox1_MouseClick;
             notificaciones.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
             // btnsalir1
             // 
-            btnsalir1.Location = new Point(347, 16);
-            btnsalir1.Margin = new Padding(3, 2, 3, 2);
+            btnsalir1.Location = new Point(397, 21);
             btnsalir1.Name = "btnsalir1";
             btnsalir1.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnsalir1.OverrideDefault.Back.Color2 = Color.White;
             btnsalir1.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnsalir1.OverrideFocus.Back.Color2 = Color.White;
-            btnsalir1.Size = new Size(80, 44);
+            btnsalir1.Size = new Size(91, 59);
             btnsalir1.StateCommon.Back.Color1 = Color.SkyBlue;
             btnsalir1.StateCommon.Back.Color2 = Color.White;
-            btnsalir1.StateCommon.Border.Rounding = 30F;
+            btnsalir1.StateCommon.Border.Rounding = 5F;
             btnsalir1.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnsalir1.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnsalir1.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -156,10 +150,10 @@
             // 
             // NotificacionesAdmin
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(444, 412);
+            ClientSize = new Size(507, 549);
             Controls.Add(btnsalir1);
             Controls.Add(notificaciones);
             Controls.Add(cantidadnotificaciones);
@@ -170,7 +164,6 @@
             Controls.Add(pictureBox2);
             Controls.Add(label6);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 2, 3, 2);
             Name = "NotificacionesAdmin";
             Text = "NotificacionesAdmin";
             Load += NotificacionesAdmin_Load;

@@ -103,7 +103,7 @@
             btnCancelar.StateNormal.Back.Color1 = Color.SkyBlue;
             btnCancelar.StateNormal.Back.Color2 = Color.White;
             btnCancelar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            btnCancelar.StateNormal.Border.Rounding = 40F;
+            btnCancelar.StateNormal.Border.Rounding = 5F;
             btnCancelar.StateTracking.Border.Rounding = 40F;
             btnCancelar.TabIndex = 208;
             btnCancelar.Values.DropDownArrowColor = Color.Empty;
@@ -127,7 +127,7 @@
             btnAceptar.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnAceptar.StateNormal.Back.Color1 = Color.SkyBlue;
             btnAceptar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            btnAceptar.StateNormal.Border.Rounding = 40F;
+            btnAceptar.StateNormal.Border.Rounding = 5F;
             btnAceptar.StateTracking.Border.Rounding = 40F;
             btnAceptar.TabIndex = 207;
             btnAceptar.Values.DropDownArrowColor = Color.Empty;
@@ -182,10 +182,10 @@
             txtPrecio.CueHint.CueHintText = "Precio del producto ingresado";
             txtPrecio.Location = new Point(175, 207);
             txtPrecio.Name = "txtPrecio";
-            txtPrecio.Size = new Size(250, 39);
+            txtPrecio.Size = new Size(250, 31);
             txtPrecio.StateCommon.Back.Color1 = Color.White;
             txtPrecio.StateCommon.Border.Color1 = Color.Navy;
-            txtPrecio.StateCommon.Border.Rounding = 20F;
+            txtPrecio.StateCommon.Border.Rounding = 5F;
             txtPrecio.StateCommon.Content.Color1 = Color.Navy;
             txtPrecio.TabIndex = 221;
             txtPrecio.KeyPress += txtPrecio_KeyPress;
@@ -196,10 +196,10 @@
             txtNombre.CueHint.CueHintText = "Nombre producto";
             txtNombre.Location = new Point(175, 155);
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(250, 39);
+            txtNombre.Size = new Size(250, 31);
             txtNombre.StateCommon.Back.Color1 = Color.White;
             txtNombre.StateCommon.Border.Color1 = Color.Navy;
-            txtNombre.StateCommon.Border.Rounding = 20F;
+            txtNombre.StateCommon.Border.Rounding = 5F;
             txtNombre.StateCommon.Content.Color1 = Color.Navy;
             txtNombre.StateNormal.Content.Color1 = Color.Navy;
             txtNombre.TabIndex = 220;
@@ -210,10 +210,10 @@
             txtID.Location = new Point(175, 105);
             txtID.Name = "txtID";
             txtID.ReadOnly = true;
-            txtID.Size = new Size(250, 39);
+            txtID.Size = new Size(250, 31);
             txtID.StateCommon.Back.Color1 = Color.White;
             txtID.StateCommon.Border.Color1 = Color.Navy;
-            txtID.StateCommon.Border.Rounding = 20F;
+            txtID.StateCommon.Border.Rounding = 5F;
             txtID.StateCommon.Content.Color1 = Color.Navy;
             txtID.TabIndex = 219;
             // 
@@ -295,10 +295,10 @@
             txtCodigoBarra.CueHint.CueHintText = "Ingrese o Escanee el codigo";
             txtCodigoBarra.Location = new Point(175, 459);
             txtCodigoBarra.Name = "txtCodigoBarra";
-            txtCodigoBarra.Size = new Size(250, 39);
+            txtCodigoBarra.Size = new Size(250, 31);
             txtCodigoBarra.StateCommon.Back.Color1 = Color.White;
             txtCodigoBarra.StateCommon.Border.Color1 = Color.Navy;
-            txtCodigoBarra.StateCommon.Border.Rounding = 20F;
+            txtCodigoBarra.StateCommon.Border.Rounding = 5F;
             txtCodigoBarra.StateCommon.Content.Color1 = Color.Navy;
             txtCodigoBarra.TabIndex = 233;
             txtCodigoBarra.TextChanged += txtCodigoBarra_TextChanged;
@@ -328,7 +328,7 @@
             cmbModelo.Size = new Size(250, 38);
             cmbModelo.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbModelo.StateCommon.ComboBox.Border.Color1 = Color.Navy;
-            cmbModelo.StateCommon.ComboBox.Border.Rounding = 20F;
+            cmbModelo.StateCommon.ComboBox.Border.Rounding = 5F;
             cmbModelo.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbModelo.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
             cmbModelo.StateCommon.Item.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -346,7 +346,7 @@
             cmbTipo.Size = new Size(250, 38);
             cmbTipo.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbTipo.StateCommon.ComboBox.Border.Color1 = Color.Navy;
-            cmbTipo.StateCommon.ComboBox.Border.Rounding = 20F;
+            cmbTipo.StateCommon.ComboBox.Border.Rounding = 5F;
             cmbTipo.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbTipo.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
             cmbTipo.StateCommon.Item.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -364,7 +364,7 @@
             cmbMarca.Size = new Size(250, 38);
             cmbMarca.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbMarca.StateCommon.ComboBox.Border.Color1 = Color.Navy;
-            cmbMarca.StateCommon.ComboBox.Border.Rounding = 20F;
+            cmbMarca.StateCommon.ComboBox.Border.Rounding = 5F;
             cmbMarca.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbMarca.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
             cmbMarca.StateCommon.Item.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -382,7 +382,7 @@
             cmbEstado.Size = new Size(250, 38);
             cmbEstado.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbEstado.StateCommon.ComboBox.Border.Color1 = Color.Navy;
-            cmbEstado.StateCommon.ComboBox.Border.Rounding = 20F;
+            cmbEstado.StateCommon.ComboBox.Border.Rounding = 5F;
             cmbEstado.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbEstado.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
             cmbEstado.StateCommon.Item.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -400,7 +400,7 @@
             cmbProveedor.Size = new Size(250, 38);
             cmbProveedor.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbProveedor.StateCommon.ComboBox.Border.Color1 = Color.Navy;
-            cmbProveedor.StateCommon.ComboBox.Border.Rounding = 20F;
+            cmbProveedor.StateCommon.ComboBox.Border.Rounding = 5F;
             cmbProveedor.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbProveedor.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
             cmbProveedor.StateCommon.Item.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -426,10 +426,10 @@
             txtStock.Maximum = new decimal(new int[] { 99999, 0, 0, 0 });
             txtStock.Minimum = new decimal(new int[] { 0, 0, 0, 0 });
             txtStock.Name = "txtStock";
-            txtStock.Size = new Size(249, 35);
+            txtStock.Size = new Size(249, 33);
             txtStock.StateCommon.Back.Color1 = Color.White;
             txtStock.StateCommon.Border.Color1 = Color.Navy;
-            txtStock.StateCommon.Border.Rounding = 10F;
+            txtStock.StateCommon.Border.Rounding = 5F;
             txtStock.StateCommon.Content.Color1 = Color.Navy;
             txtStock.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtStock.TabIndex = 345;

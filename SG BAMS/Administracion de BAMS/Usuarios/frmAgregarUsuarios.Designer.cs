@@ -74,7 +74,7 @@
             txtNombre.Size = new Size(264, 43);
             txtNombre.StateCommon.Back.Color1 = Color.White;
             txtNombre.StateCommon.Border.Color1 = Color.Navy;
-            txtNombre.StateCommon.Border.Rounding = 15F;
+            txtNombre.StateCommon.Border.Rounding = 5F;
             txtNombre.StateCommon.Content.Color1 = Color.DimGray;
             txtNombre.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNombre.TabIndex = 18;
@@ -92,7 +92,7 @@
             txtContra.Size = new Size(264, 43);
             txtContra.StateCommon.Back.Color1 = Color.White;
             txtContra.StateCommon.Border.Color1 = Color.Navy;
-            txtContra.StateCommon.Border.Rounding = 10F;
+            txtContra.StateCommon.Border.Rounding = 5F;
             txtContra.StateCommon.Content.Color1 = Color.Black;
             txtContra.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtContra.TabIndex = 20;
@@ -166,7 +166,7 @@
             cmbRol.Size = new Size(264, 35);
             cmbRol.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbRol.StateCommon.ComboBox.Border.Color1 = Color.Navy;
-            cmbRol.StateCommon.ComboBox.Border.Rounding = 10F;
+            cmbRol.StateCommon.ComboBox.Border.Rounding = 5F;
             cmbRol.StateCommon.ComboBox.Content.Color1 = Color.Black;
             cmbRol.StateCommon.ComboBox.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbRol.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
@@ -187,7 +187,7 @@
             btmModificar.Size = new Size(143, 56);
             btmModificar.StateCommon.Back.Color1 = Color.SkyBlue;
             btmModificar.StateCommon.Back.Color2 = Color.White;
-            btmModificar.StateCommon.Border.Rounding = 30F;
+            btmModificar.StateCommon.Border.Rounding = 5F;
             btmModificar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btmModificar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btmModificar.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -210,7 +210,7 @@
             kryptonButton1.Size = new Size(133, 56);
             kryptonButton1.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonButton1.StateCommon.Back.Color2 = Color.White;
-            kryptonButton1.StateCommon.Border.Rounding = 30F;
+            kryptonButton1.StateCommon.Border.Rounding = 5F;
             kryptonButton1.StateCommon.Content.ShortText.Color1 = Color.Navy;
             kryptonButton1.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             kryptonButton1.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -259,7 +259,7 @@
             txtCorreo.Size = new Size(264, 43);
             txtCorreo.StateCommon.Back.Color1 = Color.White;
             txtCorreo.StateCommon.Border.Color1 = Color.Navy;
-            txtCorreo.StateCommon.Border.Rounding = 10F;
+            txtCorreo.StateCommon.Border.Rounding = 5F;
             txtCorreo.StateCommon.Content.Color1 = Color.Gray;
             txtCorreo.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtCorreo.TabIndex = 364;

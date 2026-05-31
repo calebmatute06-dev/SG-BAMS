@@ -58,12 +58,12 @@
             // 
             // txtBuscar
             // 
-            txtBuscar.Location = new Point(443, 171);
+            txtBuscar.Location = new Point(443, 180);
             txtBuscar.Name = "txtBuscar";
-            txtBuscar.Size = new Size(571, 39);
+            txtBuscar.Size = new Size(571, 31);
             txtBuscar.StateCommon.Back.Color1 = Color.White;
             txtBuscar.StateCommon.Border.Color1 = Color.Navy;
-            txtBuscar.StateCommon.Border.Rounding = 20F;
+            txtBuscar.StateCommon.Border.Rounding = 5F;
             txtBuscar.StateCommon.Content.Color1 = Color.Gray;
             txtBuscar.TabIndex = 113;
             txtBuscar.KeyUp += txtBuscar_KeyUp;
@@ -135,7 +135,7 @@
             btnModificar.Size = new Size(170, 60);
             btnModificar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnModificar.StateCommon.Back.Color2 = Color.White;
-            btnModificar.StateCommon.Border.Rounding = 30F;
+            btnModificar.StateCommon.Border.Rounding = 5F;
             btnModificar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnModificar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnModificar.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -158,7 +158,7 @@
             btnAgregar.Size = new Size(155, 60);
             btnAgregar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnAgregar.StateCommon.Back.Color2 = Color.White;
-            btnAgregar.StateCommon.Border.Rounding = 30F;
+            btnAgregar.StateCommon.Border.Rounding = 5F;
             btnAgregar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnAgregar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAgregar.StateNormal.Back.Color1 = Color.SkyBlue;

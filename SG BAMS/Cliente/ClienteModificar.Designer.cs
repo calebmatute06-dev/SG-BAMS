@@ -166,7 +166,7 @@
             BtnModificar.Size = new Size(141, 60);
             BtnModificar.StateCommon.Back.Color1 = Color.SkyBlue;
             BtnModificar.StateCommon.Back.Color2 = Color.White;
-            BtnModificar.StateCommon.Border.Rounding = 30F;
+            BtnModificar.StateCommon.Border.Rounding = 5F;
             BtnModificar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             BtnModificar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BtnModificar.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -189,7 +189,7 @@
             BtnSalir.Size = new Size(102, 60);
             BtnSalir.StateCommon.Back.Color1 = Color.SkyBlue;
             BtnSalir.StateCommon.Back.Color2 = Color.White;
-            BtnSalir.StateCommon.Border.Rounding = 30F;
+            BtnSalir.StateCommon.Border.Rounding = 5F;
             BtnSalir.StateCommon.Content.ShortText.Color1 = Color.Navy;
             BtnSalir.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BtnSalir.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -209,10 +209,10 @@
             txtRTN.Location = new Point(194, 353);
             txtRTN.Margin = new Padding(3, 4, 3, 4);
             txtRTN.Name = "txtRTN";
-            txtRTN.Size = new Size(259, 36);
+            txtRTN.Size = new Size(259, 34);
             txtRTN.StateCommon.Back.Color1 = Color.White;
             txtRTN.StateCommon.Border.Color1 = Color.Navy;
-            txtRTN.StateCommon.Border.Rounding = 10F;
+            txtRTN.StateCommon.Border.Rounding = 5F;
             txtRTN.StateCommon.Content.Color1 = Color.Black;
             txtRTN.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtRTN.TabIndex = 323;
@@ -225,10 +225,10 @@
             txtTelefono.Location = new Point(194, 296);
             txtTelefono.Margin = new Padding(3, 4, 3, 4);
             txtTelefono.Name = "txtTelefono";
-            txtTelefono.Size = new Size(259, 33);
+            txtTelefono.Size = new Size(259, 31);
             txtTelefono.StateCommon.Back.Color1 = Color.White;
             txtTelefono.StateCommon.Border.Color1 = Color.Navy;
-            txtTelefono.StateCommon.Border.Rounding = 10F;
+            txtTelefono.StateCommon.Border.Rounding = 5F;
             txtTelefono.TabIndex = 324;
             txtTelefono.KeyPress += txtTelefono_KeyPress;
             // 
@@ -240,10 +240,10 @@
             txtApellido.Location = new Point(194, 239);
             txtApellido.Margin = new Padding(3, 4, 3, 4);
             txtApellido.Name = "txtApellido";
-            txtApellido.Size = new Size(259, 36);
+            txtApellido.Size = new Size(259, 34);
             txtApellido.StateCommon.Back.Color1 = Color.White;
             txtApellido.StateCommon.Border.Color1 = Color.Navy;
-            txtApellido.StateCommon.Border.Rounding = 10F;
+            txtApellido.StateCommon.Border.Rounding = 5F;
             txtApellido.StateCommon.Content.Color1 = Color.Black;
             txtApellido.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtApellido.TabIndex = 325;
@@ -256,10 +256,10 @@
             txtNombre.Location = new Point(194, 179);
             txtNombre.Margin = new Padding(3, 4, 3, 4);
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(259, 36);
+            txtNombre.Size = new Size(259, 34);
             txtNombre.StateCommon.Back.Color1 = Color.White;
             txtNombre.StateCommon.Border.Color1 = Color.Navy;
-            txtNombre.StateCommon.Border.Rounding = 10F;
+            txtNombre.StateCommon.Border.Rounding = 5F;
             txtNombre.StateCommon.Content.Color1 = Color.Black;
             txtNombre.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNombre.TabIndex = 326;
@@ -269,10 +269,10 @@
             txtID.Location = new Point(194, 119);
             txtID.Margin = new Padding(3, 4, 3, 4);
             txtID.Name = "txtID";
-            txtID.Size = new Size(259, 36);
+            txtID.Size = new Size(259, 34);
             txtID.StateCommon.Back.Color1 = Color.White;
             txtID.StateCommon.Border.Color1 = Color.Navy;
-            txtID.StateCommon.Border.Rounding = 10F;
+            txtID.StateCommon.Border.Rounding = 5F;
             txtID.StateCommon.Content.Color1 = Color.Black;
             txtID.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtID.TabIndex = 327;
@@ -288,7 +288,7 @@
             cmbEstado.Size = new Size(259, 41);
             cmbEstado.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbEstado.StateCommon.ComboBox.Border.Color1 = Color.Navy;
-            cmbEstado.StateCommon.ComboBox.Border.Rounding = 20F;
+            cmbEstado.StateCommon.ComboBox.Border.Rounding = 5F;
             cmbEstado.StateCommon.ComboBox.Content.Color1 = Color.Black;
             cmbEstado.StateCommon.ComboBox.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbEstado.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
@@ -315,7 +315,7 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(483, 508);
+            label5.Location = new Point(479, 508);
             label5.Name = "label5";
             label5.Size = new Size(102, 35);
             label5.TabIndex = 346;

@@ -103,12 +103,12 @@
             cmbClientes.CueHint.CueHintText = "Seleccione un cliente";
             cmbClientes.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbClientes.DropDownWidth = 300;
-            cmbClientes.Location = new Point(187, 159);
+            cmbClientes.Location = new Point(187, 162);
             cmbClientes.Name = "cmbClientes";
-            cmbClientes.Size = new Size(259, 32);
+            cmbClientes.Size = new Size(259, 26);
             cmbClientes.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbClientes.StateCommon.ComboBox.Border.Color1 = Color.Navy;
-            cmbClientes.StateCommon.ComboBox.Border.Rounding = 10F;
+            cmbClientes.StateCommon.ComboBox.Border.Rounding = 5F;
             cmbClientes.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbClientes.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
             cmbClientes.StateCommon.Item.Content.ShortText.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -126,7 +126,7 @@
             BtnSalir.Size = new Size(102, 60);
             BtnSalir.StateCommon.Back.Color1 = Color.SkyBlue;
             BtnSalir.StateCommon.Back.Color2 = Color.White;
-            BtnSalir.StateCommon.Border.Rounding = 30F;
+            BtnSalir.StateCommon.Border.Rounding = 5F;
             BtnSalir.StateCommon.Content.ShortText.Color1 = Color.Navy;
             BtnSalir.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BtnSalir.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -149,7 +149,7 @@
             BtnAsignar.Size = new Size(141, 60);
             BtnAsignar.StateCommon.Back.Color1 = Color.SkyBlue;
             BtnAsignar.StateCommon.Back.Color2 = Color.White;
-            BtnAsignar.StateCommon.Border.Rounding = 30F;
+            BtnAsignar.StateCommon.Border.Rounding = 5F;
             BtnAsignar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             BtnAsignar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BtnAsignar.StateNormal.Back.Color1 = Color.SkyBlue;

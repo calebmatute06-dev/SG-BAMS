@@ -83,7 +83,7 @@
             btnModificar.Size = new Size(142, 64);
             btnModificar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnModificar.StateCommon.Back.Color2 = Color.White;
-            btnModificar.StateCommon.Border.Rounding = 30F;
+            btnModificar.StateCommon.Border.Rounding = 5F;
             btnModificar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnModificar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnModificar.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -97,7 +97,7 @@
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(449, 399);
+            btnSalir.Location = new Point(445, 399);
             btnSalir.Name = "btnSalir";
             btnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnSalir.OverrideDefault.Back.Color2 = Color.White;
@@ -106,7 +106,7 @@
             btnSalir.Size = new Size(125, 64);
             btnSalir.StateCommon.Back.Color1 = Color.SkyBlue;
             btnSalir.StateCommon.Back.Color2 = Color.White;
-            btnSalir.StateCommon.Border.Rounding = 30F;
+            btnSalir.StateCommon.Border.Rounding = 5F;
             btnSalir.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnSalir.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSalir.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -129,7 +129,7 @@
             btmAgregar.Size = new Size(128, 64);
             btmAgregar.StateCommon.Back.Color1 = Color.SkyBlue;
             btmAgregar.StateCommon.Back.Color2 = Color.White;
-            btmAgregar.StateCommon.Border.Rounding = 30F;
+            btmAgregar.StateCommon.Border.Rounding = 5F;
             btmAgregar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btmAgregar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btmAgregar.StateNormal.Back.Color1 = Color.SkyBlue;

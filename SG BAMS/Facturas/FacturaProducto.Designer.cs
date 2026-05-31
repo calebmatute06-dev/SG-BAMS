@@ -127,7 +127,7 @@
             BtnAceptar.Size = new Size(123, 60);
             BtnAceptar.StateCommon.Back.Color1 = Color.SkyBlue;
             BtnAceptar.StateCommon.Back.Color2 = Color.White;
-            BtnAceptar.StateCommon.Border.Rounding = 30F;
+            BtnAceptar.StateCommon.Border.Rounding = 5F;
             BtnAceptar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             BtnAceptar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BtnAceptar.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -150,7 +150,7 @@
             BtnSalir.Size = new Size(149, 60);
             BtnSalir.StateCommon.Back.Color1 = Color.SkyBlue;
             BtnSalir.StateCommon.Back.Color2 = Color.White;
-            BtnSalir.StateCommon.Border.Rounding = 30F;
+            BtnSalir.StateCommon.Border.Rounding = 5F;
             BtnSalir.StateCommon.Content.ShortText.Color1 = Color.Navy;
             BtnSalir.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BtnSalir.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -172,7 +172,7 @@
             cmbProductos.Size = new Size(298, 38);
             cmbProductos.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbProductos.StateCommon.ComboBox.Border.Color1 = Color.Navy;
-            cmbProductos.StateCommon.ComboBox.Border.Rounding = 20F;
+            cmbProductos.StateCommon.ComboBox.Border.Rounding = 5F;
             cmbProductos.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbProductos.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
             cmbProductos.StateCommon.Item.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -187,10 +187,10 @@
             txtCantidad.Location = new Point(171, 229);
             txtCantidad.Margin = new Padding(3, 4, 3, 4);
             txtCantidad.Name = "txtCantidad";
-            txtCantidad.Size = new Size(298, 36);
+            txtCantidad.Size = new Size(298, 34);
             txtCantidad.StateCommon.Back.Color1 = Color.White;
             txtCantidad.StateCommon.Border.Color1 = Color.Navy;
-            txtCantidad.StateCommon.Border.Rounding = 10F;
+            txtCantidad.StateCommon.Border.Rounding = 5F;
             txtCantidad.StateCommon.Content.Color1 = Color.Gray;
             txtCantidad.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtCantidad.TabIndex = 335;
@@ -230,7 +230,7 @@
             btnEscanear.Size = new Size(90, 37);
             btnEscanear.StateCommon.Back.Color1 = Color.SkyBlue;
             btnEscanear.StateCommon.Back.Color2 = Color.White;
-            btnEscanear.StateCommon.Border.Rounding = 20F;
+            btnEscanear.StateCommon.Border.Rounding = 5F;
             btnEscanear.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnEscanear.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnEscanear.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -247,10 +247,10 @@
             txtCodigo.Enabled = false;
             txtCodigo.Location = new Point(171, 131);
             txtCodigo.Name = "txtCodigo";
-            txtCodigo.Size = new Size(216, 33);
+            txtCodigo.Size = new Size(216, 31);
             txtCodigo.StateCommon.Back.Color1 = Color.White;
             txtCodigo.StateCommon.Border.Color1 = Color.Navy;
-            txtCodigo.StateCommon.Border.Rounding = 10F;
+            txtCodigo.StateCommon.Border.Rounding = 5F;
             txtCodigo.TabIndex = 344;
             // 
             // label2
@@ -271,7 +271,7 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(567, 335);
+            label5.Location = new Point(563, 335);
             label5.Name = "label5";
             label5.Size = new Size(102, 35);
             label5.TabIndex = 347;

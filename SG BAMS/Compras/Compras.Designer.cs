@@ -176,7 +176,7 @@
             btnCompra.Size = new Size(178, 55);
             btnCompra.StateCommon.Back.Color1 = Color.SkyBlue;
             btnCompra.StateCommon.Back.Color2 = Color.White;
-            btnCompra.StateCommon.Border.Rounding = 40F;
+            btnCompra.StateCommon.Border.Rounding = 5F;
             btnCompra.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnCompra.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnCompra.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -199,7 +199,7 @@
             btnModificarC.Size = new Size(178, 55);
             btnModificarC.StateCommon.Back.Color1 = Color.SkyBlue;
             btnModificarC.StateCommon.Back.Color2 = Color.White;
-            btnModificarC.StateCommon.Border.Rounding = 40F;
+            btnModificarC.StateCommon.Border.Rounding = 5F;
             btnModificarC.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnModificarC.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnModificarC.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -222,7 +222,7 @@
             btnEliminarC.Size = new Size(178, 55);
             btnEliminarC.StateCommon.Back.Color1 = Color.SkyBlue;
             btnEliminarC.StateCommon.Back.Color2 = Color.White;
-            btnEliminarC.StateCommon.Border.Rounding = 40F;
+            btnEliminarC.StateCommon.Border.Rounding = 5F;
             btnEliminarC.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnEliminarC.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnEliminarC.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -579,10 +579,10 @@
             txtBuscarCompra.Location = new Point(405, 214);
             txtBuscarCompra.Margin = new Padding(3, 4, 3, 4);
             txtBuscarCompra.Name = "txtBuscarCompra";
-            txtBuscarCompra.Size = new Size(384, 36);
+            txtBuscarCompra.Size = new Size(384, 34);
             txtBuscarCompra.StateCommon.Back.Color1 = Color.White;
             txtBuscarCompra.StateCommon.Border.Color1 = Color.Navy;
-            txtBuscarCompra.StateCommon.Border.Rounding = 10F;
+            txtBuscarCompra.StateCommon.Border.Rounding = 5F;
             txtBuscarCompra.StateCommon.Content.Color1 = Color.Black;
             txtBuscarCompra.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtBuscarCompra.TabIndex = 377;

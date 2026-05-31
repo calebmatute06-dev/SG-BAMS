@@ -138,7 +138,7 @@
             btnProductoNuevo.Size = new Size(198, 39);
             btnProductoNuevo.StateCommon.Back.Color1 = Color.SkyBlue;
             btnProductoNuevo.StateCommon.Back.Color2 = Color.White;
-            btnProductoNuevo.StateCommon.Border.Rounding = 20F;
+            btnProductoNuevo.StateCommon.Border.Rounding = 5F;
             btnProductoNuevo.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnProductoNuevo.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnProductoNuevo.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -161,7 +161,7 @@
             btnCancelar.Size = new Size(121, 39);
             btnCancelar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnCancelar.StateCommon.Back.Color2 = Color.White;
-            btnCancelar.StateCommon.Border.Rounding = 20F;
+            btnCancelar.StateCommon.Border.Rounding = 5F;
             btnCancelar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnCancelar.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnCancelar.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -184,7 +184,7 @@
             kryptonButton3.Size = new Size(121, 39);
             kryptonButton3.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonButton3.StateCommon.Back.Color2 = Color.White;
-            kryptonButton3.StateCommon.Border.Rounding = 20F;
+            kryptonButton3.StateCommon.Border.Rounding = 5F;
             kryptonButton3.StateCommon.Content.ShortText.Color1 = Color.Navy;
             kryptonButton3.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
             kryptonButton3.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -203,10 +203,10 @@
             numCantidad.Maximum = new decimal(new int[] { 99999, 0, 0, 0 });
             numCantidad.Minimum = new decimal(new int[] { 0, 0, 0, 0 });
             numCantidad.Name = "numCantidad";
-            numCantidad.Size = new Size(150, 32);
+            numCantidad.Size = new Size(150, 30);
             numCantidad.StateCommon.Back.Color1 = Color.White;
             numCantidad.StateCommon.Border.Color1 = Color.Navy;
-            numCantidad.StateCommon.Border.Rounding = 10F;
+            numCantidad.StateCommon.Border.Rounding = 5F;
             numCantidad.StateCommon.Content.Color1 = Color.Navy;
             numCantidad.TabIndex = 168;
             numCantidad.Value = new decimal(new int[] { 0, 0, 0, 0 });
@@ -218,10 +218,10 @@
             txtPrecio.CueHint.CueHintText = "Ingrese un precio valido";
             txtPrecio.Location = new Point(211, 296);
             txtPrecio.Name = "txtPrecio";
-            txtPrecio.Size = new Size(184, 33);
+            txtPrecio.Size = new Size(184, 31);
             txtPrecio.StateCommon.Back.Color1 = Color.White;
             txtPrecio.StateCommon.Border.Color1 = Color.Navy;
-            txtPrecio.StateCommon.Border.Rounding = 10F;
+            txtPrecio.StateCommon.Border.Rounding = 5F;
             txtPrecio.TabIndex = 212;
             txtPrecio.KeyPress += txtPrecio_KeyPress;
             txtPrecio.Leave += txtPrecio_Leave;
@@ -232,12 +232,12 @@
             cmbProductos.CueHint.CueHintText = "Seleccione o escriba el producto";
             cmbProductos.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbProductos.DropDownWidth = 300;
-            cmbProductos.Location = new Point(160, 185);
+            cmbProductos.Location = new Point(160, 189);
             cmbProductos.Name = "cmbProductos";
             cmbProductos.Size = new Size(349, 32);
             cmbProductos.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbProductos.StateCommon.ComboBox.Border.Color1 = Color.Navy;
-            cmbProductos.StateCommon.ComboBox.Border.Rounding = 10F;
+            cmbProductos.StateCommon.ComboBox.Border.Rounding = 5F;
             cmbProductos.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbProductos.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
             cmbProductos.StateCommon.Item.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -246,7 +246,7 @@
             // 
             // btnEscanear
             // 
-            btnEscanear.Location = new Point(363, 133);
+            btnEscanear.Location = new Point(364, 133);
             btnEscanear.Name = "btnEscanear";
             btnEscanear.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnEscanear.OverrideDefault.Back.Color2 = Color.White;
@@ -255,7 +255,7 @@
             btnEscanear.Size = new Size(90, 37);
             btnEscanear.StateCommon.Back.Color1 = Color.SkyBlue;
             btnEscanear.StateCommon.Back.Color2 = Color.White;
-            btnEscanear.StateCommon.Border.Rounding = 20F;
+            btnEscanear.StateCommon.Border.Rounding = 5F;
             btnEscanear.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnEscanear.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnEscanear.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -273,12 +273,12 @@
             txtCodigo.CueHint.CueHintText = "Escanee el producto";
             txtCodigo.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtCodigo.Enabled = false;
-            txtCodigo.Location = new Point(144, 137);
+            txtCodigo.Location = new Point(145, 137);
             txtCodigo.Name = "txtCodigo";
-            txtCodigo.Size = new Size(216, 36);
+            txtCodigo.Size = new Size(216, 34);
             txtCodigo.StateCommon.Back.Color1 = Color.White;
             txtCodigo.StateCommon.Border.Color1 = Color.Navy;
-            txtCodigo.StateCommon.Border.Rounding = 10F;
+            txtCodigo.StateCommon.Border.Rounding = 5F;
             txtCodigo.StateCommon.Content.Color1 = Color.Black;
             txtCodigo.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtCodigo.TabIndex = 341;

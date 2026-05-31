@@ -70,7 +70,7 @@
             btnaceptar.Size = new Size(121, 39);
             btnaceptar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnaceptar.StateCommon.Back.Color2 = Color.White;
-            btnaceptar.StateCommon.Border.Rounding = 20F;
+            btnaceptar.StateCommon.Border.Rounding = 5F;
             btnaceptar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnaceptar.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnaceptar.StateNormal.Back.Color1 = Color.SkyBlue;

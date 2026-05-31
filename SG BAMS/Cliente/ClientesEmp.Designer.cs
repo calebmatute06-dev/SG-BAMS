@@ -126,7 +126,7 @@
             BtnModificar.Size = new Size(146, 60);
             BtnModificar.StateCommon.Back.Color1 = Color.SkyBlue;
             BtnModificar.StateCommon.Back.Color2 = Color.White;
-            BtnModificar.StateCommon.Border.Rounding = 30F;
+            BtnModificar.StateCommon.Border.Rounding = 5F;
             BtnModificar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             BtnModificar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BtnModificar.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -143,13 +143,13 @@
             txtBusqueda.CueHint.Color1 = Color.DimGray;
             txtBusqueda.CueHint.CueHintText = "Busqueda por Id, Nombre, Apellido y telefono ";
             txtBusqueda.CueHint.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtBusqueda.Location = new Point(473, 195);
+            txtBusqueda.Location = new Point(473, 202);
             txtBusqueda.Margin = new Padding(3, 4, 3, 4);
             txtBusqueda.Name = "txtBusqueda";
-            txtBusqueda.Size = new Size(570, 33);
+            txtBusqueda.Size = new Size(570, 31);
             txtBusqueda.StateCommon.Back.Color1 = Color.White;
             txtBusqueda.StateCommon.Border.Color1 = Color.Navy;
-            txtBusqueda.StateCommon.Border.Rounding = 10F;
+            txtBusqueda.StateCommon.Border.Rounding = 5F;
             txtBusqueda.TabIndex = 336;
             txtBusqueda.TextChanged += txtBusqueda_TextChanged;
             // 

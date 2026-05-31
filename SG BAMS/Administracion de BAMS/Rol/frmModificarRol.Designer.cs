@@ -101,7 +101,7 @@
             txtDescri.Size = new Size(302, 40);
             txtDescri.StateCommon.Back.Color1 = Color.White;
             txtDescri.StateCommon.Border.Color1 = Color.Navy;
-            txtDescri.StateCommon.Border.Rounding = 15F;
+            txtDescri.StateCommon.Border.Rounding = 5F;
             txtDescri.StateCommon.Content.Color1 = Color.Black;
             txtDescri.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtDescri.TabIndex = 143;
@@ -117,7 +117,7 @@
             btmModificar.Size = new Size(143, 65);
             btmModificar.StateCommon.Back.Color1 = Color.SkyBlue;
             btmModificar.StateCommon.Back.Color2 = Color.White;
-            btmModificar.StateCommon.Border.Rounding = 30F;
+            btmModificar.StateCommon.Border.Rounding = 5F;
             btmModificar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btmModificar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btmModificar.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -140,7 +140,7 @@
             btmSalir.Size = new Size(143, 65);
             btmSalir.StateCommon.Back.Color1 = Color.SkyBlue;
             btmSalir.StateCommon.Back.Color2 = Color.White;
-            btmSalir.StateCommon.Border.Rounding = 30F;
+            btmSalir.StateCommon.Border.Rounding = 5F;
             btmSalir.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btmSalir.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btmSalir.StateNormal.Back.Color1 = Color.SkyBlue;

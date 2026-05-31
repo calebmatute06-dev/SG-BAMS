@@ -67,12 +67,12 @@
             // 
             // txtBuscar
             // 
-            txtBuscar.Location = new Point(614, 183);
+            txtBuscar.Location = new Point(614, 194);
             txtBuscar.Name = "txtBuscar";
-            txtBuscar.Size = new Size(679, 39);
+            txtBuscar.Size = new Size(679, 31);
             txtBuscar.StateCommon.Back.Color1 = Color.White;
             txtBuscar.StateCommon.Border.Color1 = Color.Navy;
-            txtBuscar.StateCommon.Border.Rounding = 20F;
+            txtBuscar.StateCommon.Border.Rounding = 5F;
             txtBuscar.StateCommon.Content.Color1 = Color.Gray;
             txtBuscar.TabIndex = 208;
             txtBuscar.TextChanged += txtBuscar_TextChanged;

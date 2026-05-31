@@ -51,10 +51,10 @@
             txtMonto.CueHint.CueHintText = "Cantidad deseada a pagar";
             txtMonto.Location = new Point(194, 181);
             txtMonto.Name = "txtMonto";
-            txtMonto.Size = new Size(324, 32);
+            txtMonto.Size = new Size(324, 30);
             txtMonto.StateCommon.Back.Color1 = Color.White;
             txtMonto.StateCommon.Border.Color1 = Color.Navy;
-            txtMonto.StateCommon.Border.Rounding = 10F;
+            txtMonto.StateCommon.Border.Rounding = 5F;
             txtMonto.StateCommon.Content.Color1 = Color.Gray;
             txtMonto.StateCommon.Content.Font = new Font("Arial Narrow", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtMonto.TabIndex = 169;
@@ -66,7 +66,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(141, 47);
+            label1.Location = new Point(157, 47);
             label1.Name = "label1";
             label1.Size = new Size(228, 35);
             label1.TabIndex = 168;
@@ -133,7 +133,7 @@
             // 
             // btnAceptar
             // 
-            btnAceptar.Location = new Point(56, 253);
+            btnAceptar.Location = new Point(120, 265);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnAceptar.OverrideDefault.Back.Color2 = Color.White;
@@ -142,7 +142,7 @@
             btnAceptar.Size = new Size(121, 39);
             btnAceptar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnAceptar.StateCommon.Back.Color2 = Color.White;
-            btnAceptar.StateCommon.Border.Rounding = 30F;
+            btnAceptar.StateCommon.Border.Rounding = 5F;
             btnAceptar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnAceptar.StateCommon.Content.ShortText.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAceptar.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -156,7 +156,7 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(248, 253);
+            btnCancelar.Location = new Point(264, 265);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnCancelar.OverrideDefault.Back.Color2 = Color.White;
@@ -165,7 +165,7 @@
             btnCancelar.Size = new Size(121, 39);
             btnCancelar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnCancelar.StateCommon.Back.Color2 = Color.White;
-            btnCancelar.StateCommon.Border.Rounding = 30F;
+            btnCancelar.StateCommon.Border.Rounding = 5F;
             btnCancelar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnCancelar.StateCommon.Content.ShortText.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCancelar.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -199,7 +199,7 @@
             cmbDeudores.Size = new Size(324, 38);
             cmbDeudores.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbDeudores.StateCommon.ComboBox.Border.Color1 = Color.Navy;
-            cmbDeudores.StateCommon.ComboBox.Border.Rounding = 20F;
+            cmbDeudores.StateCommon.ComboBox.Border.Rounding = 5F;
             cmbDeudores.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbDeudores.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
             cmbDeudores.StateCommon.Item.Content.ShortText.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);

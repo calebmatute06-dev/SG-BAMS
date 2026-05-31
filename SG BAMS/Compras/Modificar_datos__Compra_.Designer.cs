@@ -63,10 +63,10 @@
             txtNotaDetalle.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNotaDetalle.Location = new Point(215, 207);
             txtNotaDetalle.Name = "txtNotaDetalle";
-            txtNotaDetalle.Size = new Size(277, 36);
+            txtNotaDetalle.Size = new Size(277, 34);
             txtNotaDetalle.StateCommon.Back.Color1 = Color.White;
             txtNotaDetalle.StateCommon.Border.Color1 = Color.Navy;
-            txtNotaDetalle.StateCommon.Border.Rounding = 10F;
+            txtNotaDetalle.StateCommon.Border.Rounding = 5F;
             txtNotaDetalle.StateCommon.Content.Color1 = Color.Black;
             txtNotaDetalle.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNotaDetalle.TabIndex = 235;
@@ -94,7 +94,7 @@
             btnAceptar.Size = new Size(127, 55);
             btnAceptar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnAceptar.StateCommon.Back.Color2 = Color.White;
-            btnAceptar.StateCommon.Border.Rounding = 40F;
+            btnAceptar.StateCommon.Border.Rounding = 5F;
             btnAceptar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnAceptar.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnAceptar.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -117,7 +117,7 @@
             kryptonButton4.Size = new Size(127, 53);
             kryptonButton4.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonButton4.StateCommon.Back.Color2 = Color.White;
-            kryptonButton4.StateCommon.Border.Rounding = 40F;
+            kryptonButton4.StateCommon.Border.Rounding = 5F;
             kryptonButton4.StateCommon.Content.ShortText.Color1 = Color.Navy;
             kryptonButton4.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
             kryptonButton4.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -140,7 +140,7 @@
             kryptonButton5.Size = new Size(213, 53);
             kryptonButton5.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonButton5.StateCommon.Back.Color2 = Color.White;
-            kryptonButton5.StateCommon.Border.Rounding = 40F;
+            kryptonButton5.StateCommon.Border.Rounding = 5F;
             kryptonButton5.StateCommon.Content.ShortText.Color1 = Color.Navy;
             kryptonButton5.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
             kryptonButton5.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -275,7 +275,7 @@
             btnEliminarProducto.Size = new Size(119, 55);
             btnEliminarProducto.StateCommon.Back.Color1 = Color.SkyBlue;
             btnEliminarProducto.StateCommon.Back.Color2 = Color.White;
-            btnEliminarProducto.StateCommon.Border.Rounding = 40F;
+            btnEliminarProducto.StateCommon.Border.Rounding = 5F;
             btnEliminarProducto.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnEliminarProducto.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnEliminarProducto.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -299,7 +299,7 @@
             cmbFormaPago.Size = new Size(197, 35);
             cmbFormaPago.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbFormaPago.StateCommon.ComboBox.Border.Color1 = Color.Navy;
-            cmbFormaPago.StateCommon.ComboBox.Border.Rounding = 10F;
+            cmbFormaPago.StateCommon.ComboBox.Border.Rounding = 5F;
             cmbFormaPago.StateCommon.ComboBox.Content.Color1 = Color.Black;
             cmbFormaPago.StateCommon.ComboBox.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbFormaPago.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
@@ -319,7 +319,7 @@
             cmbProveedor.Size = new Size(312, 35);
             cmbProveedor.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbProveedor.StateCommon.ComboBox.Border.Color1 = Color.Navy;
-            cmbProveedor.StateCommon.ComboBox.Border.Rounding = 10F;
+            cmbProveedor.StateCommon.ComboBox.Border.Rounding = 5F;
             cmbProveedor.StateCommon.ComboBox.Content.Color1 = Color.Black;
             cmbProveedor.StateCommon.ComboBox.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbProveedor.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;

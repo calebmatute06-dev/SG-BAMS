@@ -134,7 +134,7 @@
             btmAgregar.Size = new Size(129, 65);
             btmAgregar.StateCommon.Back.Color1 = Color.SkyBlue;
             btmAgregar.StateCommon.Back.Color2 = Color.White;
-            btmAgregar.StateCommon.Border.Rounding = 30F;
+            btmAgregar.StateCommon.Border.Rounding = 5F;
             btmAgregar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btmAgregar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btmAgregar.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -157,7 +157,7 @@
             btmModificar.Size = new Size(143, 65);
             btmModificar.StateCommon.Back.Color1 = Color.SkyBlue;
             btmModificar.StateCommon.Back.Color2 = Color.White;
-            btmModificar.StateCommon.Border.Rounding = 30F;
+            btmModificar.StateCommon.Border.Rounding = 5F;
             btmModificar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btmModificar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btmModificar.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -180,7 +180,7 @@
             btnSalir.Size = new Size(125, 65);
             btnSalir.StateCommon.Back.Color1 = Color.SkyBlue;
             btnSalir.StateCommon.Back.Color2 = Color.White;
-            btnSalir.StateCommon.Border.Rounding = 30F;
+            btnSalir.StateCommon.Border.Rounding = 5F;
             btnSalir.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnSalir.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSalir.StateNormal.Back.Color1 = Color.SkyBlue;

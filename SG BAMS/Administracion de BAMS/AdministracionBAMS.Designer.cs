@@ -221,7 +221,7 @@
             btnVerUsuarios.Size = new Size(103, 53);
             btnVerUsuarios.StateCommon.Back.Color1 = Color.SkyBlue;
             btnVerUsuarios.StateCommon.Back.Color2 = Color.White;
-            btnVerUsuarios.StateCommon.Border.Rounding = 30F;
+            btnVerUsuarios.StateCommon.Border.Rounding = 5F;
             btnVerUsuarios.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnVerUsuarios.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnVerUsuarios.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -244,7 +244,7 @@
             btnTproducto.Size = new Size(103, 53);
             btnTproducto.StateCommon.Back.Color1 = Color.SkyBlue;
             btnTproducto.StateCommon.Back.Color2 = Color.White;
-            btnTproducto.StateCommon.Border.Rounding = 30F;
+            btnTproducto.StateCommon.Border.Rounding = 5F;
             btnTproducto.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnTproducto.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnTproducto.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -267,7 +267,7 @@
             btnRoles.Size = new Size(103, 53);
             btnRoles.StateCommon.Back.Color1 = Color.SkyBlue;
             btnRoles.StateCommon.Back.Color2 = Color.White;
-            btnRoles.StateCommon.Border.Rounding = 30F;
+            btnRoles.StateCommon.Border.Rounding = 5F;
             btnRoles.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnRoles.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnRoles.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -290,7 +290,7 @@
             kryptonButton1.Size = new Size(103, 53);
             kryptonButton1.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonButton1.StateCommon.Back.Color2 = Color.White;
-            kryptonButton1.StateCommon.Border.Rounding = 30F;
+            kryptonButton1.StateCommon.Border.Rounding = 5F;
             kryptonButton1.StateCommon.Content.ShortText.Color1 = Color.Navy;
             kryptonButton1.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             kryptonButton1.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -313,7 +313,7 @@
             btnMproducto.Size = new Size(103, 53);
             btnMproducto.StateCommon.Back.Color1 = Color.SkyBlue;
             btnMproducto.StateCommon.Back.Color2 = Color.White;
-            btnMproducto.StateCommon.Border.Rounding = 30F;
+            btnMproducto.StateCommon.Border.Rounding = 5F;
             btnMproducto.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnMproducto.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnMproducto.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -336,7 +336,7 @@
             btnMauto.Size = new Size(103, 53);
             btnMauto.StateCommon.Back.Color1 = Color.SkyBlue;
             btnMauto.StateCommon.Back.Color2 = Color.White;
-            btnMauto.StateCommon.Border.Rounding = 30F;
+            btnMauto.StateCommon.Border.Rounding = 5F;
             btnMauto.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnMauto.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnMauto.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -359,7 +359,7 @@
             btnEstado.Size = new Size(103, 53);
             btnEstado.StateCommon.Back.Color1 = Color.SkyBlue;
             btnEstado.StateCommon.Back.Color2 = Color.White;
-            btnEstado.StateCommon.Border.Rounding = 30F;
+            btnEstado.StateCommon.Border.Rounding = 5F;
             btnEstado.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnEstado.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnEstado.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -668,7 +668,7 @@
             btnClasificacion.Size = new Size(103, 53);
             btnClasificacion.StateCommon.Back.Color1 = Color.SkyBlue;
             btnClasificacion.StateCommon.Back.Color2 = Color.White;
-            btnClasificacion.StateCommon.Border.Rounding = 30F;
+            btnClasificacion.StateCommon.Border.Rounding = 5F;
             btnClasificacion.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnClasificacion.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnClasificacion.StateNormal.Back.Color1 = Color.SkyBlue;

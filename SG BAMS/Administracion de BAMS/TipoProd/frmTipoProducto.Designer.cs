@@ -134,7 +134,7 @@
             btmAgregar.Size = new Size(128, 64);
             btmAgregar.StateCommon.Back.Color1 = Color.SkyBlue;
             btmAgregar.StateCommon.Back.Color2 = Color.White;
-            btmAgregar.StateCommon.Border.Rounding = 30F;
+            btmAgregar.StateCommon.Border.Rounding = 5F;
             btmAgregar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btmAgregar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btmAgregar.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -157,7 +157,7 @@
             kryptonButton2.Size = new Size(125, 64);
             kryptonButton2.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonButton2.StateCommon.Back.Color2 = Color.White;
-            kryptonButton2.StateCommon.Border.Rounding = 30F;
+            kryptonButton2.StateCommon.Border.Rounding = 5F;
             kryptonButton2.StateCommon.Content.ShortText.Color1 = Color.Navy;
             kryptonButton2.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             kryptonButton2.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -180,7 +180,7 @@
             btnModificar.Size = new Size(142, 64);
             btnModificar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnModificar.StateCommon.Back.Color2 = Color.White;
-            btnModificar.StateCommon.Border.Rounding = 30F;
+            btnModificar.StateCommon.Border.Rounding = 5F;
             btnModificar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnModificar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnModificar.StateNormal.Back.Color1 = Color.SkyBlue;

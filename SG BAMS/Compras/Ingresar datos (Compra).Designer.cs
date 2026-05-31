@@ -182,10 +182,10 @@
             txtNotaDetalle.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNotaDetalle.Location = new Point(225, 216);
             txtNotaDetalle.Name = "txtNotaDetalle";
-            txtNotaDetalle.Size = new Size(277, 33);
+            txtNotaDetalle.Size = new Size(277, 31);
             txtNotaDetalle.StateCommon.Back.Color1 = Color.White;
             txtNotaDetalle.StateCommon.Border.Color1 = Color.Navy;
-            txtNotaDetalle.StateCommon.Border.Rounding = 10F;
+            txtNotaDetalle.StateCommon.Border.Rounding = 5F;
             txtNotaDetalle.TabIndex = 211;
             // 
             // cmbProveedor
@@ -199,7 +199,7 @@
             cmbProveedor.Size = new Size(312, 41);
             cmbProveedor.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbProveedor.StateCommon.ComboBox.Border.Color1 = Color.Navy;
-            cmbProveedor.StateCommon.ComboBox.Border.Rounding = 20F;
+            cmbProveedor.StateCommon.ComboBox.Border.Rounding = 5F;
             cmbProveedor.StateCommon.ComboBox.Content.Color1 = Color.Black;
             cmbProveedor.StateCommon.ComboBox.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbProveedor.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
@@ -220,7 +220,7 @@
             cmbFormaPago.Size = new Size(219, 41);
             cmbFormaPago.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbFormaPago.StateCommon.ComboBox.Border.Color1 = Color.Navy;
-            cmbFormaPago.StateCommon.ComboBox.Border.Rounding = 20F;
+            cmbFormaPago.StateCommon.ComboBox.Border.Rounding = 5F;
             cmbFormaPago.StateCommon.ComboBox.Content.Color1 = Color.Black;
             cmbFormaPago.StateCommon.ComboBox.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbFormaPago.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
@@ -240,7 +240,7 @@
             btnAgregar.Size = new Size(213, 53);
             btnAgregar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnAgregar.StateCommon.Back.Color2 = Color.White;
-            btnAgregar.StateCommon.Border.Rounding = 40F;
+            btnAgregar.StateCommon.Border.Rounding = 5F;
             btnAgregar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnAgregar.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnAgregar.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -263,7 +263,7 @@
             btnAceptar.Size = new Size(130, 55);
             btnAceptar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnAceptar.StateCommon.Back.Color2 = Color.White;
-            btnAceptar.StateCommon.Border.Rounding = 40F;
+            btnAceptar.StateCommon.Border.Rounding = 5F;
             btnAceptar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnAceptar.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnAceptar.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -286,7 +286,7 @@
             btnCancelar.Size = new Size(130, 55);
             btnCancelar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnCancelar.StateCommon.Back.Color2 = Color.White;
-            btnCancelar.StateCommon.Border.Rounding = 40F;
+            btnCancelar.StateCommon.Border.Rounding = 5F;
             btnCancelar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnCancelar.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnCancelar.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -309,7 +309,7 @@
             btnQuitar.Size = new Size(146, 55);
             btnQuitar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnQuitar.StateCommon.Back.Color2 = Color.White;
-            btnQuitar.StateCommon.Border.Rounding = 40F;
+            btnQuitar.StateCommon.Border.Rounding = 5F;
             btnQuitar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnQuitar.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnQuitar.StateNormal.Back.Color1 = Color.SkyBlue;

@@ -145,7 +145,7 @@
             // 
             // BtnVer
             // 
-            BtnVer.Location = new Point(1065, 792);
+            BtnVer.Location = new Point(1039, 792);
             BtnVer.Name = "BtnVer";
             BtnVer.OverrideDefault.Back.Color1 = Color.SkyBlue;
             BtnVer.OverrideDefault.Back.Color2 = Color.White;
@@ -154,7 +154,7 @@
             BtnVer.Size = new Size(86, 60);
             BtnVer.StateCommon.Back.Color1 = Color.SkyBlue;
             BtnVer.StateCommon.Back.Color2 = Color.White;
-            BtnVer.StateCommon.Border.Rounding = 30F;
+            BtnVer.StateCommon.Border.Rounding = 5F;
             BtnVer.StateCommon.Content.ShortText.Color1 = Color.Navy;
             BtnVer.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BtnVer.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -177,7 +177,7 @@
             BtnNueva.Size = new Size(224, 60);
             BtnNueva.StateCommon.Back.Color1 = Color.SkyBlue;
             BtnNueva.StateCommon.Back.Color2 = Color.White;
-            BtnNueva.StateCommon.Border.Rounding = 30F;
+            BtnNueva.StateCommon.Border.Rounding = 5F;
             BtnNueva.StateCommon.Content.ShortText.Color1 = Color.Navy;
             BtnNueva.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BtnNueva.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -191,7 +191,7 @@
             // 
             // dtpInicio
             // 
-            dtpInicio.Location = new Point(1167, 214);
+            dtpInicio.Location = new Point(1203, 247);
             dtpInicio.Margin = new Padding(3, 4, 3, 4);
             dtpInicio.Name = "dtpInicio";
             dtpInicio.Size = new Size(253, 27);
@@ -200,7 +200,7 @@
             // dtpFin
             // 
             dtpFin.CalendarForeColor = Color.Navy;
-            dtpFin.Location = new Point(1167, 282);
+            dtpFin.Location = new Point(1203, 282);
             dtpFin.Margin = new Padding(3, 4, 3, 4);
             dtpFin.Name = "dtpFin";
             dtpFin.Size = new Size(253, 27);
@@ -223,10 +223,10 @@
             txtBusqueda.Location = new Point(455, 273);
             txtBusqueda.Margin = new Padding(3, 4, 3, 4);
             txtBusqueda.Name = "txtBusqueda";
-            txtBusqueda.Size = new Size(691, 36);
+            txtBusqueda.Size = new Size(633, 34);
             txtBusqueda.StateCommon.Back.Color1 = Color.White;
             txtBusqueda.StateCommon.Border.Color1 = Color.Navy;
-            txtBusqueda.StateCommon.Border.Rounding = 10F;
+            txtBusqueda.StateCommon.Border.Rounding = 5F;
             txtBusqueda.StateCommon.Content.Color1 = Color.Gray;
             txtBusqueda.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0, true);
             txtBusqueda.TabIndex = 323;
@@ -238,7 +238,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial Narrow", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(1239, 132);
+            label3.Location = new Point(1245, 197);
             label3.Name = "label3";
             label3.Size = new Size(114, 46);
             label3.TabIndex = 324;
@@ -250,7 +250,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(1167, 180);
+            label5.Location = new Point(1131, 247);
             label5.Name = "label5";
             label5.Size = new Size(66, 29);
             label5.TabIndex = 329;
@@ -261,7 +261,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(1167, 248);
+            label6.Location = new Point(1131, 277);
             label6.Name = "label6";
             label6.Size = new Size(69, 32);
             label6.TabIndex = 330;

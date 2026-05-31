@@ -135,7 +135,7 @@
             panel3.BackColor = Color.Navy;
             panel3.Location = new Point(1, 884);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1291, 24);
+            panel3.Size = new Size(1295, 24);
             panel3.TabIndex = 69;
             // 
             // panel4
@@ -221,7 +221,7 @@
             btnExportar.Size = new Size(138, 69);
             btnExportar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnExportar.StateCommon.Back.Color2 = Color.White;
-            btnExportar.StateCommon.Border.Rounding = 30F;
+            btnExportar.StateCommon.Border.Rounding = 5F;
             btnExportar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnExportar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnExportar.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -568,10 +568,10 @@
             txtBuscar.Location = new Point(396, 194);
             txtBuscar.Margin = new Padding(3, 4, 3, 4);
             txtBuscar.Name = "txtBuscar";
-            txtBuscar.Size = new Size(417, 36);
+            txtBuscar.Size = new Size(417, 34);
             txtBuscar.StateCommon.Back.Color1 = Color.White;
             txtBuscar.StateCommon.Border.Color1 = Color.Navy;
-            txtBuscar.StateCommon.Border.Rounding = 10F;
+            txtBuscar.StateCommon.Border.Rounding = 5F;
             txtBuscar.StateCommon.Content.Color1 = Color.Black;
             txtBuscar.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtBuscar.TabIndex = 344;

@@ -169,7 +169,7 @@
             BtnAgregar.Size = new Size(272, 60);
             BtnAgregar.StateCommon.Back.Color1 = Color.SkyBlue;
             BtnAgregar.StateCommon.Back.Color2 = Color.White;
-            BtnAgregar.StateCommon.Border.Rounding = 40F;
+            BtnAgregar.StateCommon.Border.Rounding = 5F;
             BtnAgregar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             BtnAgregar.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
             BtnAgregar.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -192,7 +192,7 @@
             BtnAceptar.Size = new Size(146, 60);
             BtnAceptar.StateCommon.Back.Color1 = Color.SkyBlue;
             BtnAceptar.StateCommon.Back.Color2 = Color.White;
-            BtnAceptar.StateCommon.Border.Rounding = 40F;
+            BtnAceptar.StateCommon.Border.Rounding = 5F;
             BtnAceptar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             BtnAceptar.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
             BtnAceptar.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -206,7 +206,7 @@
             // 
             // BtnCancelar
             // 
-            BtnCancelar.Location = new Point(786, 703);
+            BtnCancelar.Location = new Point(786, 704);
             BtnCancelar.Name = "BtnCancelar";
             BtnCancelar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             BtnCancelar.OverrideDefault.Back.Color2 = Color.White;
@@ -215,7 +215,7 @@
             BtnCancelar.Size = new Size(146, 60);
             BtnCancelar.StateCommon.Back.Color1 = Color.SkyBlue;
             BtnCancelar.StateCommon.Back.Color2 = Color.White;
-            BtnCancelar.StateCommon.Border.Rounding = 40F;
+            BtnCancelar.StateCommon.Border.Rounding = 5F;
             BtnCancelar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             BtnCancelar.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
             BtnCancelar.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -252,10 +252,10 @@
             txtCliente.Location = new Point(179, 107);
             txtCliente.Margin = new Padding(3, 4, 3, 4);
             txtCliente.Name = "txtCliente";
-            txtCliente.Size = new Size(239, 36);
+            txtCliente.Size = new Size(239, 34);
             txtCliente.StateCommon.Back.Color1 = Color.White;
             txtCliente.StateCommon.Border.Color1 = Color.Navy;
-            txtCliente.StateCommon.Border.Rounding = 10F;
+            txtCliente.StateCommon.Border.Rounding = 5F;
             txtCliente.StateCommon.Content.Color1 = Color.Black;
             txtCliente.StateCommon.Content.Font = new Font("Arial Narrow", 12F);
             txtCliente.TabIndex = 321;
@@ -265,10 +265,10 @@
             txtBateria.Location = new Point(216, 461);
             txtBateria.Margin = new Padding(3, 4, 3, 4);
             txtBateria.Name = "txtBateria";
-            txtBateria.Size = new Size(112, 37);
+            txtBateria.Size = new Size(112, 35);
             txtBateria.StateCommon.Back.Color1 = Color.White;
             txtBateria.StateCommon.Border.Color1 = Color.Navy;
-            txtBateria.StateCommon.Border.Rounding = 10F;
+            txtBateria.StateCommon.Border.Rounding = 5F;
             txtBateria.StateCommon.Content.Color1 = Color.Navy;
             txtBateria.StateCommon.Content.Font = new Font("Arial Narrow", 12F);
             txtBateria.TabIndex = 321;
@@ -279,10 +279,10 @@
             txtTotal.Location = new Point(791, 573);
             txtTotal.Margin = new Padding(3, 4, 3, 4);
             txtTotal.Name = "txtTotal";
-            txtTotal.Size = new Size(110, 37);
+            txtTotal.Size = new Size(110, 35);
             txtTotal.StateCommon.Back.Color1 = Color.White;
             txtTotal.StateCommon.Border.Color1 = Color.Navy;
-            txtTotal.StateCommon.Border.Rounding = 10F;
+            txtTotal.StateCommon.Border.Rounding = 5F;
             txtTotal.StateCommon.Content.Color1 = Color.Navy;
             txtTotal.StateCommon.Content.Font = new Font("Arial Narrow", 12F);
             txtTotal.TabIndex = 321;
@@ -300,7 +300,7 @@
             cmbPago.Size = new Size(179, 38);
             cmbPago.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbPago.StateCommon.ComboBox.Border.Color1 = Color.Navy;
-            cmbPago.StateCommon.ComboBox.Border.Rounding = 20F;
+            cmbPago.StateCommon.ComboBox.Border.Rounding = 5F;
             cmbPago.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbPago.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
             cmbPago.StateCommon.Item.Content.ShortText.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -341,7 +341,7 @@
             BtnEliminar.Size = new Size(272, 60);
             BtnEliminar.StateCommon.Back.Color1 = Color.SkyBlue;
             BtnEliminar.StateCommon.Back.Color2 = Color.White;
-            BtnEliminar.StateCommon.Border.Rounding = 40F;
+            BtnEliminar.StateCommon.Border.Rounding = 5F;
             BtnEliminar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             BtnEliminar.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
             BtnEliminar.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -364,7 +364,7 @@
             btnBateria.Size = new Size(210, 39);
             btnBateria.StateCommon.Back.Color1 = Color.SkyBlue;
             btnBateria.StateCommon.Back.Color2 = Color.White;
-            btnBateria.StateCommon.Border.Rounding = 15F;
+            btnBateria.StateCommon.Border.Rounding = 5F;
             btnBateria.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnBateria.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnBateria.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -393,10 +393,10 @@
             txtRebaja.Location = new Point(791, 528);
             txtRebaja.Margin = new Padding(3, 4, 3, 4);
             txtRebaja.Name = "txtRebaja";
-            txtRebaja.Size = new Size(110, 37);
+            txtRebaja.Size = new Size(110, 35);
             txtRebaja.StateCommon.Back.Color1 = Color.White;
             txtRebaja.StateCommon.Border.Color1 = Color.Navy;
-            txtRebaja.StateCommon.Border.Rounding = 10F;
+            txtRebaja.StateCommon.Border.Rounding = 5F;
             txtRebaja.StateCommon.Content.Color1 = Color.Navy;
             txtRebaja.StateCommon.Content.Font = new Font("Arial Narrow", 12F);
             txtRebaja.TabIndex = 327;
@@ -419,10 +419,10 @@
             txtSubtotal.Location = new Point(791, 483);
             txtSubtotal.Margin = new Padding(3, 4, 3, 4);
             txtSubtotal.Name = "txtSubtotal";
-            txtSubtotal.Size = new Size(110, 37);
+            txtSubtotal.Size = new Size(110, 35);
             txtSubtotal.StateCommon.Back.Color1 = Color.White;
             txtSubtotal.StateCommon.Border.Color1 = Color.Navy;
-            txtSubtotal.StateCommon.Border.Rounding = 10F;
+            txtSubtotal.StateCommon.Border.Rounding = 5F;
             txtSubtotal.StateCommon.Content.Color1 = Color.Navy;
             txtSubtotal.StateCommon.Content.Font = new Font("Arial Narrow", 12F);
             txtSubtotal.TabIndex = 329;
@@ -445,10 +445,10 @@
             txtExento.Location = new Point(239, 616);
             txtExento.Margin = new Padding(3, 4, 3, 4);
             txtExento.Name = "txtExento";
-            txtExento.Size = new Size(158, 37);
+            txtExento.Size = new Size(158, 35);
             txtExento.StateCommon.Back.Color1 = Color.White;
             txtExento.StateCommon.Border.Color1 = Color.Navy;
-            txtExento.StateCommon.Border.Rounding = 10F;
+            txtExento.StateCommon.Border.Rounding = 5F;
             txtExento.StateCommon.Content.Color1 = Color.Navy;
             txtExento.StateCommon.Content.Font = new Font("Arial Narrow", 12F);
             txtExento.TabIndex = 332;
