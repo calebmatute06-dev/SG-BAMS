@@ -95,10 +95,8 @@
             btnCancelar.StateCommon.Border.Rounding = 5F;
             btnCancelar.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnCancelar.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
-            btnCancelar.StateDisabled.Border.Rounding = 5F;
             btnCancelar.StateNormal.Back.Color1 = Color.SkyBlue;
             btnCancelar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            btnCancelar.StateNormal.Border.Rounding = 5F;
             btnCancelar.StateTracking.Border.Rounding = 40F;
             btnCancelar.TabIndex = 253;
             btnCancelar.Values.DropDownArrowColor = Color.Empty;
@@ -122,7 +120,6 @@
             btnAceptar.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnAceptar.StateNormal.Back.Color1 = Color.SkyBlue;
             btnAceptar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            btnAceptar.StateNormal.Border.Rounding = 5F;
             btnAceptar.StateTracking.Border.Rounding = 40F;
             btnAceptar.TabIndex = 252;
             btnAceptar.Values.DropDownArrowColor = Color.Empty;
@@ -274,7 +271,7 @@
             cmbMarca.DropDownWidth = 300;
             cmbMarca.Location = new Point(181, 236);
             cmbMarca.Name = "cmbMarca";
-            cmbMarca.Size = new Size(250, 38);
+            cmbMarca.Size = new Size(250, 30);
             cmbMarca.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbMarca.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbMarca.StateCommon.ComboBox.Border.Rounding = 5F;
@@ -294,7 +291,7 @@
             cmbTipo.DropDownWidth = 300;
             cmbTipo.Location = new Point(181, 284);
             cmbTipo.Name = "cmbTipo";
-            cmbTipo.Size = new Size(250, 38);
+            cmbTipo.Size = new Size(250, 30);
             cmbTipo.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbTipo.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbTipo.StateCommon.ComboBox.Border.Rounding = 5F;
@@ -312,7 +309,7 @@
             cmbModelo.DropDownWidth = 300;
             cmbModelo.Location = new Point(181, 336);
             cmbModelo.Name = "cmbModelo";
-            cmbModelo.Size = new Size(250, 38);
+            cmbModelo.Size = new Size(250, 30);
             cmbModelo.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbModelo.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbModelo.StateCommon.ComboBox.Border.Rounding = 5F;
@@ -330,7 +327,7 @@
             cmbProveedor.DropDownWidth = 300;
             cmbProveedor.Location = new Point(181, 437);
             cmbProveedor.Name = "cmbProveedor";
-            cmbProveedor.Size = new Size(250, 38);
+            cmbProveedor.Size = new Size(250, 30);
             cmbProveedor.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbProveedor.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbProveedor.StateCommon.ComboBox.Border.Rounding = 5F;

@@ -102,7 +102,6 @@
             btnAgregar.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAgregar.StateNormal.Back.Color1 = Color.SkyBlue;
             btnAgregar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            btnAgregar.StateNormal.Border.Rounding = 5F;
             btnAgregar.StateTracking.Border.Rounding = 40F;
             btnAgregar.TabIndex = 189;
             btnAgregar.Values.DropDownArrowColor = Color.Empty;
@@ -160,7 +159,6 @@
             kryptonButton10.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             kryptonButton10.StateNormal.Back.Color1 = Color.SkyBlue;
             kryptonButton10.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            kryptonButton10.StateNormal.Border.Rounding = 5F;
             kryptonButton10.StatePressed.Back.Color1 = Color.Transparent;
             kryptonButton10.StatePressed.Back.Color2 = Color.Transparent;
             kryptonButton10.StateTracking.Border.Rounding = 40F;
