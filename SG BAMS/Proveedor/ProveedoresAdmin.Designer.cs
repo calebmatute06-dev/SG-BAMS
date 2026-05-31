@@ -35,8 +35,6 @@
             panel3 = new Panel();
             panel4 = new Panel();
             panel2 = new Panel();
-            btnModificar = new Krypton.Toolkit.KryptonButton();
-            btnAgregar = new Krypton.Toolkit.KryptonButton();
             btnRefresh = new Button();
             label10 = new Label();
             dgvProveedor = new DataGridView();
@@ -53,6 +51,8 @@
             btnProveedores = new ReaLTaiizor.Controls.NightButton();
             btnDeudores = new ReaLTaiizor.Controls.NightButton();
             btnMenu = new ReaLTaiizor.Controls.NightButton();
+            btnAgregar1 = new Krypton.Toolkit.KryptonButton();
+            btnModificar = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)dgvProveedor).BeginInit();
             SuspendLayout();
             // 
@@ -123,52 +123,6 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(1160, 24);
             panel2.TabIndex = 117;
-            // 
-            // btnModificar
-            // 
-            btnModificar.Location = new Point(749, 791);
-            btnModificar.Name = "btnModificar";
-            btnModificar.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnModificar.OverrideDefault.Back.Color2 = Color.White;
-            btnModificar.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnModificar.OverrideFocus.Back.Color2 = Color.White;
-            btnModificar.Size = new Size(170, 60);
-            btnModificar.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnModificar.StateCommon.Back.Color2 = Color.White;
-            btnModificar.StateCommon.Border.Rounding = 5F;
-            btnModificar.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnModificar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnModificar.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnModificar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            btnModificar.StatePressed.Back.Color1 = Color.Transparent;
-            btnModificar.StatePressed.Back.Color2 = Color.Transparent;
-            btnModificar.TabIndex = 320;
-            btnModificar.Values.DropDownArrowColor = Color.Empty;
-            btnModificar.Values.Text = "Modificar";
-            btnModificar.Click += btnModificar_Click;
-            // 
-            // btnAgregar
-            // 
-            btnAgregar.Location = new Point(568, 791);
-            btnAgregar.Name = "btnAgregar";
-            btnAgregar.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnAgregar.OverrideDefault.Back.Color2 = Color.White;
-            btnAgregar.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnAgregar.OverrideFocus.Back.Color2 = Color.White;
-            btnAgregar.Size = new Size(155, 60);
-            btnAgregar.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnAgregar.StateCommon.Back.Color2 = Color.White;
-            btnAgregar.StateCommon.Border.Rounding = 5F;
-            btnAgregar.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnAgregar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnAgregar.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnAgregar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            btnAgregar.StatePressed.Back.Color1 = Color.Transparent;
-            btnAgregar.StatePressed.Back.Color2 = Color.Transparent;
-            btnAgregar.TabIndex = 321;
-            btnAgregar.Values.DropDownArrowColor = Color.Empty;
-            btnAgregar.Values.Text = "Agregar";
-            btnAgregar.Click += btnAgregar_Click_1;
             // 
             // btnRefresh
             // 
@@ -492,18 +446,64 @@
             btnMenu.Text = "Menu Principal";
             btnMenu.Click += btnMenu_Click;
             // 
+            // btnAgregar1
+            // 
+            btnAgregar1.Location = new Point(575, 791);
+            btnAgregar1.Name = "btnAgregar1";
+            btnAgregar1.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnAgregar1.OverrideDefault.Back.Color2 = Color.White;
+            btnAgregar1.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnAgregar1.OverrideFocus.Back.Color2 = Color.White;
+            btnAgregar1.Size = new Size(155, 60);
+            btnAgregar1.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnAgregar1.StateCommon.Back.Color2 = Color.White;
+            btnAgregar1.StateCommon.Border.Rounding = 5F;
+            btnAgregar1.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnAgregar1.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAgregar1.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnAgregar1.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnAgregar1.StatePressed.Back.Color1 = Color.Transparent;
+            btnAgregar1.StatePressed.Back.Color2 = Color.Transparent;
+            btnAgregar1.TabIndex = 380;
+            btnAgregar1.Values.DropDownArrowColor = Color.Empty;
+            btnAgregar1.Values.Text = "Agregar";
+            btnAgregar1.Click += btnAgregar1_Click;
+            // 
+            // btnModificar
+            // 
+            btnModificar.Location = new Point(736, 791);
+            btnModificar.Name = "btnModificar";
+            btnModificar.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnModificar.OverrideDefault.Back.Color2 = Color.White;
+            btnModificar.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnModificar.OverrideFocus.Back.Color2 = Color.White;
+            btnModificar.Size = new Size(155, 60);
+            btnModificar.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnModificar.StateCommon.Back.Color2 = Color.White;
+            btnModificar.StateCommon.Border.Rounding = 5F;
+            btnModificar.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnModificar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnModificar.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnModificar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnModificar.StatePressed.Back.Color1 = Color.Transparent;
+            btnModificar.StatePressed.Back.Color2 = Color.Transparent;
+            btnModificar.TabIndex = 381;
+            btnModificar.Values.DropDownArrowColor = Color.Empty;
+            btnModificar.Values.Text = "Modificar";
+            btnModificar.Click += btnModificar_Click_1;
+            // 
             // ProveedoresAdmin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1163, 903);
+            Controls.Add(btnModificar);
+            Controls.Add(btnAgregar1);
             Controls.Add(Nombre);
             Controls.Add(dgvProveedor);
             Controls.Add(label10);
             Controls.Add(btnRefresh);
-            Controls.Add(btnModificar);
-            Controls.Add(btnAgregar);
             Controls.Add(panel2);
             Controls.Add(txtBuscar);
             Controls.Add(btnNoti);
@@ -541,8 +541,6 @@
         private Panel panel3;
         private Panel panel4;
         private Panel panel2;
-        private Krypton.Toolkit.KryptonButton btnModificar;
-        private Krypton.Toolkit.KryptonButton btnAgregar;
         private Button btnRefresh;
         private Label label10;
         private DataGridView dgvProveedor;
@@ -559,5 +557,7 @@
         private ReaLTaiizor.Controls.NightButton btnProveedores;
         private ReaLTaiizor.Controls.NightButton btnDeudores;
         private ReaLTaiizor.Controls.NightButton btnMenu;
+        private Krypton.Toolkit.KryptonButton btnAgregar1;
+        private Krypton.Toolkit.KryptonButton btnModificar;
     }
 }

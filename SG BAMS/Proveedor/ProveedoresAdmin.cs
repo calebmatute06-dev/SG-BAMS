@@ -114,7 +114,7 @@ namespace SG_BAMS.Proveedor
         /// </summary>
         /// <param name="sender">La fuente del evento.</param>
         /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
-        private void btnAgregar_Click_1(object sender, EventArgs e)
+        private void btnAgregar1_Click(object sender, EventArgs e)
         {
             AgregarProveedores agregar = new AgregarProveedores();
             agregar.ShowDialog();
@@ -127,7 +127,7 @@ namespace SG_BAMS.Proveedor
         /// </summary>
         /// <param name="sender">La fuente del evento.</param>
         /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
-        private void btnModificar_Click(object sender, EventArgs e)
+        private void btnModificar_Click_1(object sender, EventArgs e)
         {
             if (dgvProveedor.CurrentRow == null)
             {

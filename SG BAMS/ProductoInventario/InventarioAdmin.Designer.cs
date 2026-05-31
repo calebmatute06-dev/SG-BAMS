@@ -31,11 +31,9 @@
             panel4 = new Panel();
             panel3 = new Panel();
             txtBuscar = new Krypton.Toolkit.KryptonTextBox();
-            btnAgregar = new Krypton.Toolkit.KryptonButton();
             btnNoti = new Button();
             panel7 = new Panel();
             panel2 = new Panel();
-            kryptonButton10 = new Krypton.Toolkit.KryptonButton();
             dgvProductosAdmin = new DataGridView();
             label10 = new Label();
             label3 = new Label();
@@ -52,6 +50,8 @@
             btnDeudores = new ReaLTaiizor.Controls.NightButton();
             btnMenu = new ReaLTaiizor.Controls.NightButton();
             panel1 = new Panel();
+            kryptonButton10 = new Krypton.Toolkit.KryptonButton();
+            btnAgregar = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)dgvProductosAdmin).BeginInit();
             SuspendLayout();
             // 
@@ -82,31 +82,6 @@
             txtBuscar.StateCommon.Content.Color1 = Color.Gray;
             txtBuscar.TabIndex = 191;
             txtBuscar.TextChanged += txtBuscar_TextChanged;
-            // 
-            // btnAgregar
-            // 
-            btnAgregar.AutoSize = true;
-            btnAgregar.DropDownPosition = Krypton.Toolkit.VisualOrientation.Bottom;
-            btnAgregar.Location = new Point(799, 799);
-            btnAgregar.Name = "btnAgregar";
-            btnAgregar.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnAgregar.OverrideDefault.Back.Color2 = Color.White;
-            btnAgregar.OverrideDefault.Border.Rounding = 40F;
-            btnAgregar.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnAgregar.OverrideFocus.Back.Color2 = Color.White;
-            btnAgregar.Size = new Size(162, 72);
-            btnAgregar.StateCommon.Back.Color1 = Color.White;
-            btnAgregar.StateCommon.Back.Color2 = Color.White;
-            btnAgregar.StateCommon.Border.Rounding = 5F;
-            btnAgregar.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnAgregar.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnAgregar.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnAgregar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            btnAgregar.StateTracking.Border.Rounding = 40F;
-            btnAgregar.TabIndex = 189;
-            btnAgregar.Values.DropDownArrowColor = Color.Empty;
-            btnAgregar.Values.Text = "Agregar";
-            btnAgregar.Click += btnAgregar_Click;
             // 
             // btnNoti
             // 
@@ -139,33 +114,6 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(1662, 24);
             panel2.TabIndex = 192;
-            // 
-            // kryptonButton10
-            // 
-            kryptonButton10.AutoSize = true;
-            kryptonButton10.DropDownPosition = Krypton.Toolkit.VisualOrientation.Bottom;
-            kryptonButton10.Location = new Point(982, 799);
-            kryptonButton10.Name = "kryptonButton10";
-            kryptonButton10.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            kryptonButton10.OverrideDefault.Back.Color2 = Color.White;
-            kryptonButton10.OverrideDefault.Border.Rounding = 40F;
-            kryptonButton10.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            kryptonButton10.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton10.Size = new Size(173, 72);
-            kryptonButton10.StateCommon.Back.Color1 = Color.Transparent;
-            kryptonButton10.StateCommon.Back.Color2 = Color.Transparent;
-            kryptonButton10.StateCommon.Border.Rounding = 5F;
-            kryptonButton10.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            kryptonButton10.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            kryptonButton10.StateNormal.Back.Color1 = Color.SkyBlue;
-            kryptonButton10.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            kryptonButton10.StatePressed.Back.Color1 = Color.Transparent;
-            kryptonButton10.StatePressed.Back.Color2 = Color.Transparent;
-            kryptonButton10.StateTracking.Border.Rounding = 40F;
-            kryptonButton10.TabIndex = 195;
-            kryptonButton10.Values.DropDownArrowColor = Color.Empty;
-            kryptonButton10.Values.Text = "Modificar";
-            kryptonButton10.Click += kryptonButton10_Click;
             // 
             // dgvProductosAdmin
             // 
@@ -485,12 +433,60 @@
             panel1.Size = new Size(26, 896);
             panel1.TabIndex = 180;
             // 
+            // kryptonButton10
+            // 
+            kryptonButton10.Location = new Point(960, 799);
+            kryptonButton10.Name = "kryptonButton10";
+            kryptonButton10.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            kryptonButton10.OverrideDefault.Back.Color2 = Color.White;
+            kryptonButton10.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            kryptonButton10.OverrideFocus.Back.Color2 = Color.White;
+            kryptonButton10.Size = new Size(173, 72);
+            kryptonButton10.StateCommon.Back.Color1 = Color.SkyBlue;
+            kryptonButton10.StateCommon.Back.Color2 = Color.White;
+            kryptonButton10.StateCommon.Border.Rounding = 5F;
+            kryptonButton10.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            kryptonButton10.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            kryptonButton10.StateNormal.Back.Color1 = Color.SkyBlue;
+            kryptonButton10.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            kryptonButton10.StatePressed.Back.Color1 = Color.Transparent;
+            kryptonButton10.StatePressed.Back.Color2 = Color.Transparent;
+            kryptonButton10.TabIndex = 369;
+            kryptonButton10.Values.DropDownArrowColor = Color.Empty;
+            kryptonButton10.Values.Text = "Modificar";
+            kryptonButton10.Click += kryptonButton10_Click;
+            // 
+            // btnAgregar
+            // 
+            btnAgregar.Location = new Point(781, 799);
+            btnAgregar.Name = "btnAgregar";
+            btnAgregar.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnAgregar.OverrideDefault.Back.Color2 = Color.White;
+            btnAgregar.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnAgregar.OverrideFocus.Back.Color2 = Color.White;
+            btnAgregar.Size = new Size(173, 72);
+            btnAgregar.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnAgregar.StateCommon.Back.Color2 = Color.White;
+            btnAgregar.StateCommon.Border.Rounding = 5F;
+            btnAgregar.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnAgregar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAgregar.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnAgregar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnAgregar.StatePressed.Back.Color1 = Color.Transparent;
+            btnAgregar.StatePressed.Back.Color2 = Color.Transparent;
+            btnAgregar.TabIndex = 368;
+            btnAgregar.Values.DropDownArrowColor = Color.Empty;
+            btnAgregar.Values.Text = "Agregar";
+            btnAgregar.Click += btnAgregar_Click;
+            // 
             // InventarioAdmin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1652, 899);
+            Controls.Add(kryptonButton10);
+            Controls.Add(btnAgregar);
             Controls.Add(panel1);
             Controls.Add(label3);
             Controls.Add(label10);
@@ -499,10 +495,8 @@
             Controls.Add(panel4);
             Controls.Add(panel3);
             Controls.Add(txtBuscar);
-            Controls.Add(btnAgregar);
             Controls.Add(btnNoti);
             Controls.Add(panel7);
-            Controls.Add(kryptonButton10);
             Controls.Add(label6);
             Controls.Add(btnReportes);
             Controls.Add(btnPerfil);
@@ -528,11 +522,9 @@
         private Panel panel4;
         private Panel panel3;
         private Krypton.Toolkit.KryptonTextBox txtBuscar;
-        private Krypton.Toolkit.KryptonButton btnAgregar;
         private Button btnNoti;
         private Panel panel7;
         private Panel panel2;
-        private Krypton.Toolkit.KryptonButton kryptonButton10;
         private DataGridView dgvProductosAdmin;
         private Label label10;
         private Label label3;
@@ -549,5 +541,7 @@
         private ReaLTaiizor.Controls.NightButton btnDeudores;
         private ReaLTaiizor.Controls.NightButton btnMenu;
         private Panel panel1;
+        private Krypton.Toolkit.KryptonButton kryptonButton10;
+        private Krypton.Toolkit.KryptonButton btnAgregar;
     }
 }
