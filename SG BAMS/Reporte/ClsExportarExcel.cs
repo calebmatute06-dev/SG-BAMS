@@ -6,12 +6,12 @@ using ClosedXML.Excel;
 using System.Linq;
 
 /// <summary>
-/// 
+/// Clase encargada de la exportación estructurada de datos a hojas de cálculo.
 /// </summary>
 public class ClsExportarExcel
 {
     /// <summary>
-    /// Exporta el DataGridView a Excel.
+    /// Exporta el DataGridView a Excel aplicando formatos monetarios y condicionales de stock.
     /// </summary>
     /// <param name="dgv">El DataGridView.</param>
     /// <param name="tituloReporte">El título del reporte.</param>
@@ -110,8 +110,31 @@ public class ClsExportarExcel
                         {
                             celdaExcel.Value = num;
                             if (c == indiceColumnaSumar) totalGeneral += num;
+
                             if (header.Contains("PRECIO") || header.Contains("TOTAL") || header.Contains("SALDO") || header.Contains("CAPITAL") || header.Contains("MONTO") || header.Contains("ABONADO"))
+                            {
                                 celdaExcel.Style.NumberFormat.Format = "\"L. \"#,##0.00";
+                            }
+
+                            if (header.Contains("STOCK ACTUAL"))
+                            {
+                                int stock = (int)num;
+                                if (stock < 1)
+                                {
+                                    celdaExcel.Style.Fill.BackgroundColor = XLColor.FromHtml("#FFC0C0");
+                                    celdaExcel.Style.Font.FontColor = XLColor.FromHtml("#8B0000");
+                                }
+                                else if (stock < 10)
+                                {
+                                    celdaExcel.Style.Fill.BackgroundColor = XLColor.FromHtml("#FFE0C0");
+                                    celdaExcel.Style.Font.FontColor = XLColor.FromHtml("#A52A2A");
+                                }
+                                else
+                                {
+                                    celdaExcel.Style.Fill.BackgroundColor = XLColor.FromHtml("#C0FFC0");
+                                    celdaExcel.Style.Font.FontColor = XLColor.FromHtml("#006400");
+                                }
+                            }
                         }
                         else
                         {

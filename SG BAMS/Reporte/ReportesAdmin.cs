@@ -16,22 +16,10 @@ using Color = System.Drawing.Color;
 
 namespace SG_BAMS.Reporte
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class ReportesAdmin : Form
     {
-
-        /// <summary>
-        /// El objeto de reporte
-        /// </summary>
         ClsReportesDatos objReporte = new ClsReportesDatos();
 
-
-        /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="ReportesAdmin" />.
-        /// </summary>
         public ReportesAdmin()
         {
             InitializeComponent();
@@ -40,11 +28,7 @@ namespace SG_BAMS.Reporte
             this.dtpDesde.ValueChanged += new System.EventHandler(this.FiltroFecha_ValueChanged);
             this.dtpHasta.ValueChanged += new System.EventHandler(this.FiltroFecha_ValueChanged);
         }
-        /// <summary>
-        /// Maneja el evento ValueChanged del control FiltroFecha.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
+
         private void FiltroFecha_ValueChanged(object sender, EventArgs e)
         {
             this.dtpDesde.ValueChanged -= new System.EventHandler(this.FiltroFecha_ValueChanged);
@@ -73,12 +57,6 @@ namespace SG_BAMS.Reporte
             }
         }
 
-
-        /// <summary>
-        /// Maneja el evento Load del control ReportesAdmin.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void ReportesAdmin_Load(object sender, EventArgs e)
         {
             btnReportes.Enabled = false;
@@ -87,11 +65,14 @@ namespace SG_BAMS.Reporte
 
             ControlarFiltroStock(false);
 
-            dtpHasta.MaxDate = DateTime.Now;
-            dtpDesde.MaxDate = DateTime.Now;
+            dtpHasta.MaxDate = DateTime.Today;
+            dtpDesde.MaxDate = DateTime.Today;
 
-            dtpHasta.Value = DateTime.Now;
-            dtpDesde.Value = DateTime.Now.AddDays(-30);
+            dtpHasta.Value = DateTime.Today;
+            dtpDesde.Value = DateTime.Today.AddDays(-30);
+
+            this.Min.ValueChanged += new System.EventHandler(this.FiltroStock_ValueChanged);
+            this.Max.ValueChanged += new System.EventHandler(this.FiltroStock_ValueChanged);
 
             cmbReporte.SelectedIndex = 0;
 
@@ -124,9 +105,38 @@ namespace SG_BAMS.Reporte
             dgvReporte.ClearSelection();
         }
 
-        /// <summary>
-        /// Carga el reporte de ventas.
-        /// </summary>
+        private void FiltroStock_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvReporte.DataSource != null && dgvReporte.DataSource is DataTable dt)
+                {
+                    this.Min.ValueChanged -= new System.EventHandler(this.FiltroStock_ValueChanged);
+                    this.Max.ValueChanged -= new System.EventHandler(this.FiltroStock_ValueChanged);
+
+                    int valorMin = (int)Min.Value;
+                    int valorMax = (int)Max.Value;
+
+                    Max.Minimum = valorMin;
+
+                    if (sender == Min && valorMin > valorMax)
+                    {
+                        Max.Value = valorMin;
+                        valorMax = valorMin;
+                    }
+
+                    dt.DefaultView.RowFilter = string.Format("Stock_Actual >= {0} AND Stock_Actual <= {1}", valorMin, valorMax);
+
+                    this.Min.ValueChanged += new System.EventHandler(this.FiltroStock_ValueChanged);
+                    this.Max.ValueChanged += new System.EventHandler(this.FiltroStock_ValueChanged);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error al filtrar en tiempo real: " + ex.Message);
+            }
+        }
+
         private void CargarReporteVentas()
         {
             try
@@ -162,15 +172,10 @@ namespace SG_BAMS.Reporte
             }
         }
 
-        /// <summary>
-        /// Controla el filtro de stock.
-        /// </summary>
-        /// <param name="estado">si se establece en <c>true</c> [estado].</param>
         private void ControlarFiltroStock(bool estado)
         {
             Min.Enabled = estado;
             Max.Enabled = estado;
-            btnFiltro.Enabled = estado;
 
             if (estado)
             {
@@ -181,73 +186,35 @@ namespace SG_BAMS.Reporte
             {
                 Min.Value = 0;
                 Max.Value = 0;
+                Max.Minimum = 0;
                 Min.BackColor = System.Drawing.Color.LightGray;
                 Max.BackColor = System.Drawing.Color.LightGray;
             }
         }
 
-        /// <summary>
-        /// Maneja el evento CellFormatting del control dgvReporte.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="DataGridViewCellFormattingEventArgs" /> que contiene los datos del evento.</param>
-        private void dgvReporte_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (dgvReporte.Columns[e.ColumnIndex].Name == "Stock_Actual" && e.Value != null)
-            {
-                if (int.TryParse(e.Value.ToString(), out int stock))
-                {
-                    if (stock == 0)
-                    {
-                        e.CellStyle.BackColor = System.Drawing.Color.FromArgb(255, 192, 192);
-                        e.CellStyle.ForeColor = System.Drawing.Color.DarkRed;
-                    }
-                    else if (stock <= 10)
-                    {
-                        e.CellStyle.BackColor = System.Drawing.Color.FromArgb(255, 224, 192);
-                        e.CellStyle.ForeColor = System.Drawing.Color.Brown;
-                    }
-                    else
-                    {
-                        e.CellStyle.BackColor = System.Drawing.Color.FromArgb(192, 255, 192);
-                        e.CellStyle.ForeColor = System.Drawing.Color.DarkGreen;
-                    }
-                }
-            }
-            string colName = dgvReporte.Columns[e.ColumnIndex].Name;
-
-            if ((colName == "Total_Venta" || colName == "Inversion_Total" ||
-                 colName == "Monto_Credito" || colName == "Abono" ||
-                 colName == "Precio_Unitario" || colName == "Total_Venta_Esperada")
-                && e.Value != null)
-            {
-                if (decimal.TryParse(e.Value.ToString(), out decimal monto))
-                {
-                    e.Value = $"L. {monto:N2}";
-                    e.FormattingApplied = true;
-                }
-            }
-        }
-
-
-
-
-
-        /// <summary>
-        /// Maneja el evento SelectedIndexChanged del control cmbReporte.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void cmbReporte_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmbReporte.SelectedItem == null) return;
             string reporteSeleccionado = cmbReporte.SelectedItem.ToString();
 
             bool usaFechas = (reporteSeleccionado == "Ventas" || reporteSeleccionado == "Compras");
-            dtpDesde.Enabled = usaFechas;
-            dtpHasta.Enabled = usaFechas;
+            dtpDesde.Visible = usaFechas;
+            dtpHasta.Visible = usaFechas;
 
-            ControlarFiltroStock(reporteSeleccionado == "Inventario");
+            if (this.Controls.Find("label1", true).FirstOrDefault() is Label lbl1) lbl1.Visible = usaFechas;
+            if (this.Controls.Find("label3", true).FirstOrDefault() is Label lbl3) lbl3.Visible = usaFechas;
+            if (this.Controls.Find("label4", true).FirstOrDefault() is Label lbl4) lbl4.Visible = usaFechas;
+
+            bool mostrarFiltroStock = (reporteSeleccionado == "Inventario");
+            Min.Visible = mostrarFiltroStock;
+            Max.Visible = mostrarFiltroStock;
+
+            if (this.Controls.Find("label5", true).FirstOrDefault() is Label lbl5) lbl5.Visible = mostrarFiltroStock;
+            if (this.Controls.Find("label6", true).FirstOrDefault() is Label lbl6) lbl6.Visible = mostrarFiltroStock;
+            if (this.Controls.Find("label7", true).FirstOrDefault() is Label lbl7) lbl7.Visible = mostrarFiltroStock;
+            if (this.Controls.Find("label12", true).FirstOrDefault() is Label lbl12) lbl12.Visible = mostrarFiltroStock;
+
+            ControlarFiltroStock(mostrarFiltroStock);
 
             try
             {
@@ -321,24 +288,12 @@ namespace SG_BAMS.Reporte
             }
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnNoti.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void btnNoti_Click(object sender, EventArgs e)
         {
             NotificacionesAdmin notificaciones = new NotificacionesAdmin();
             notificaciones.Show();
         }
 
-
-
-        /// <summary>
-        /// Maneja el evento Click del control btnExportaar.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void btnExportaar_Click(object sender, EventArgs e)
         {
             try
@@ -360,11 +315,6 @@ namespace SG_BAMS.Reporte
             catch (Exception ex) { MessageBox.Show("Error: " + ex.Message); }
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnExportarEx.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void btnExportarEx_Click_1(object sender, EventArgs e)
         {
             if (dgvReporte.Rows.Count == 0) return;
@@ -375,67 +325,18 @@ namespace SG_BAMS.Reporte
             exportador.ExportarDataGridView(dgvReporte, seleccion, dtpDesde.Value, dtpHasta.Value);
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnLimpiar.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
-        private void btnLimpiar_Click(object sender, EventArgs e)
+        private void btnLimpiar_Click_1(object sender, EventArgs e)
         {
-            dtpHasta.Value = DateTime.Now;
-            dtpDesde.Value = DateTime.Now.AddDays(-30);
+            dtpHasta.Value = DateTime.Today;
+            dtpDesde.Value = DateTime.Today.AddDays(-30);
 
             Min.Value = 0;
             Max.Value = 0;
             ControlarFiltroStock(false);
 
-            CargarReporteVentas();
+            cmbReporte_SelectedIndexChanged(null, null);
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnAplicar.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
-        private void btnAplicar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-                if (dgvReporte.DataSource != null && dgvReporte.DataSource is DataTable dt)
-                {
-                    int valorMin = (int)Min.Value;
-                    int valorMax = (int)Max.Value;
-
-                    if (valorMin > valorMax)
-                    {
-                        MessageBox.Show("El valor mínimo no puede ser mayor al máximo.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-
-                    dt.DefaultView.RowFilter = string.Format("Stock_Actual >= {0} AND Stock_Actual <= {1}", valorMin, valorMax);
-
-                    if (dgvReporte.Rows.Count == 0)
-                    {
-                        MessageBox.Show("No hay productos con ese rango de stock.", "Sin resultados", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Primero debe cargar el Inventario para aplicar un filtro de stock.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al filtrar: " + ex.Message);
-            }
-        }
-
-        /// <summary>
-        /// Maneja el evento Click del control btnMenu.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnMenu_Click(object sender, EventArgs e)
         {
             MenuPrincipalAdm MPA = new MenuPrincipalAdm();
@@ -443,11 +344,6 @@ namespace SG_BAMS.Reporte
             this.Hide();
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnFacturas.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnFacturas_Click(object sender, EventArgs e)
         {
             FacturasAdm FA = new FacturasAdm();
@@ -455,11 +351,6 @@ namespace SG_BAMS.Reporte
             this.Hide();
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnCompra.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnCompra_Click(object sender, EventArgs e)
         {
             Compras CF = new Compras();
@@ -467,11 +358,6 @@ namespace SG_BAMS.Reporte
             this.Hide();
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnClientes.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnClientes_Click(object sender, EventArgs e)
         {
             ClientesAdm CA = new ClientesAdm();
@@ -479,11 +365,6 @@ namespace SG_BAMS.Reporte
             this.Hide();
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnInventario.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnInventario_Click(object sender, EventArgs e)
         {
             InventarioAdmin IA = new InventarioAdmin();
@@ -491,11 +372,6 @@ namespace SG_BAMS.Reporte
             this.Hide();
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnProveedores.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnProveedores_Click(object sender, EventArgs e)
         {
             ProveedoresAdmin PA = new ProveedoresAdmin();
@@ -503,11 +379,6 @@ namespace SG_BAMS.Reporte
             this.Hide();
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnDeudores.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnDeudores_Click(object sender, EventArgs e)
         {
             DeudoresAdmin DA = new DeudoresAdmin();
@@ -515,13 +386,6 @@ namespace SG_BAMS.Reporte
             this.Hide();
         }
 
-
-
-        /// <summary>
-        /// Maneja el evento Click del control btnBitacora.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnBitacora_Click(object sender, EventArgs e)
         {
             BitacoraAdmin BA = new BitacoraAdmin();
@@ -529,11 +393,6 @@ namespace SG_BAMS.Reporte
             this.Hide();
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnCerrar.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             Login.Login login = new Login.Login();
@@ -541,11 +400,6 @@ namespace SG_BAMS.Reporte
             this.Close();
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnPerfil.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnPerfil_Click(object sender, EventArgs e)
         {
             Perfil perfil = new Perfil();
@@ -558,18 +412,21 @@ namespace SG_BAMS.Reporte
             {
                 if (int.TryParse(e.Value.ToString(), out int stock))
                 {
-                    if (stock == 0)
+                    if (stock < 1)
                     {
+                        // Rojo para los que tienen menos de 1 producto (Cero unidades)
                         e.CellStyle.BackColor = System.Drawing.Color.FromArgb(255, 192, 192);
                         e.CellStyle.ForeColor = System.Drawing.Color.DarkRed;
                     }
-                    else if (stock <= 10)
+                    else if (stock < 10)
                     {
+                        // Amarillo/Café para bajo stock (Valores estrictos entre 1 y 9)
                         e.CellStyle.BackColor = System.Drawing.Color.FromArgb(255, 224, 192);
                         e.CellStyle.ForeColor = System.Drawing.Color.Brown;
                     }
                     else
                     {
+                        // Verde para existencias óptimas (A partir de 10 productos en adelante)
                         e.CellStyle.BackColor = System.Drawing.Color.FromArgb(192, 255, 192);
                         e.CellStyle.ForeColor = System.Drawing.Color.DarkGreen;
                     }
@@ -577,7 +434,7 @@ namespace SG_BAMS.Reporte
             }
 
             string[] columnasDinero = { "Total_Venta", "Inversion_Total", "Monto_Credito",
-                                 "Saldo_Pendiente", "Precio_Unitario", "Total_Venta_Esperada", "Abonado" };
+                                 "Saldo_Pendiente", "Precio_Unitario", "Total_Venta_Esperada", "Abonado", "Abono" };
 
             if (e.Value != null && columnasDinero.Contains(dgvReporte.Columns[e.ColumnIndex].Name))
             {
