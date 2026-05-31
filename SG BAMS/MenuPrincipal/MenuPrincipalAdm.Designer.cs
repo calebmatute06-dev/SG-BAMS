@@ -449,14 +449,14 @@
             // 
             // btnAdministracion
             // 
-            btnAdministracion.Location = new Point(368, 35);
+            btnAdministracion.Location = new Point(368, 25);
             btnAdministracion.Name = "btnAdministracion";
             btnAdministracion.OverrideDefault.Back.Color1 = Color.Transparent;
             btnAdministracion.OverrideDefault.Back.Color2 = Color.Transparent;
             btnAdministracion.OverrideDefault.Border.Rounding = 40F;
             btnAdministracion.OverrideFocus.Back.Color1 = Color.White;
             btnAdministracion.OverrideFocus.Back.Color2 = Color.SkyBlue;
-            btnAdministracion.Size = new Size(224, 41);
+            btnAdministracion.Size = new Size(224, 62);
             btnAdministracion.StateCommon.Back.Color1 = Color.White;
             btnAdministracion.StateCommon.Back.Color2 = Color.SkyBlue;
             btnAdministracion.StateCommon.Border.Rounding = 5F;
@@ -475,14 +475,14 @@
             // 
             // btnAsis
             // 
-            btnAsis.Location = new Point(1106, 37);
+            btnAsis.Location = new Point(1106, 27);
             btnAsis.Name = "btnAsis";
             btnAsis.OverrideDefault.Back.Color1 = Color.Transparent;
             btnAsis.OverrideDefault.Back.Color2 = Color.Transparent;
             btnAsis.OverrideDefault.Border.Rounding = 40F;
             btnAsis.OverrideFocus.Back.Color1 = Color.White;
             btnAsis.OverrideFocus.Back.Color2 = Color.SkyBlue;
-            btnAsis.Size = new Size(114, 41);
+            btnAsis.Size = new Size(114, 62);
             btnAsis.StateCommon.Back.Color1 = Color.White;
             btnAsis.StateCommon.Back.Color2 = Color.SkyBlue;
             btnAsis.StateCommon.Border.Rounding = 5F;
