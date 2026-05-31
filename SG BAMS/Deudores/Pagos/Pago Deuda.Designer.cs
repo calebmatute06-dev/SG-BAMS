@@ -52,7 +52,8 @@
             txtMonto.Location = new Point(194, 181);
             txtMonto.Name = "txtMonto";
             txtMonto.Size = new Size(324, 32);
-            txtMonto.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtMonto.StateCommon.Back.Color1 = Color.White;
+            txtMonto.StateCommon.Border.Color1 = Color.Navy;
             txtMonto.StateCommon.Border.Rounding = 10F;
             txtMonto.StateCommon.Content.Color1 = Color.Gray;
             txtMonto.StateCommon.Content.Font = new Font("Arial Narrow", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -196,7 +197,8 @@
             cmbDeudores.Location = new Point(194, 117);
             cmbDeudores.Name = "cmbDeudores";
             cmbDeudores.Size = new Size(324, 38);
-            cmbDeudores.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbDeudores.StateCommon.ComboBox.Back.Color1 = Color.White;
+            cmbDeudores.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbDeudores.StateCommon.ComboBox.Border.Rounding = 20F;
             cmbDeudores.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbDeudores.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;

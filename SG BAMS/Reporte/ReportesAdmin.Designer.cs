@@ -65,13 +65,16 @@
             btnProveedores = new ReaLTaiizor.Controls.NightButton();
             btnDeudores = new ReaLTaiizor.Controls.NightButton();
             btnMenu = new ReaLTaiizor.Controls.NightButton();
-            label11 = new Label();
             dtpDesde = new DateTimePicker();
             dtpHasta = new DateTimePicker();
             btnLimpiar = new Button();
             label12 = new Label();
+            cmbCant = new Krypton.Toolkit.KryptonComboBox();
+            label10 = new Label();
+            label13 = new Label();
             ((System.ComponentModel.ISupportInitialize)cmbReporte).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvReporte).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cmbCant).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -80,7 +83,7 @@
             label1.BackColor = Color.White;
             label1.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(677, 132);
+            label1.Location = new Point(676, 132);
             label1.Name = "label1";
             label1.Size = new Size(160, 24);
             label1.TabIndex = 271;
@@ -160,7 +163,7 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(571, 162);
+            label4.Location = new Point(570, 162);
             label4.Name = "label4";
             label4.Size = new Size(56, 22);
             label4.TabIndex = 279;
@@ -172,7 +175,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(571, 192);
+            label3.Location = new Point(570, 192);
             label3.Name = "label3";
             label3.Size = new Size(51, 22);
             label3.TabIndex = 280;
@@ -181,7 +184,7 @@
             // Min
             // 
             Min.Increment = new decimal(new int[] { 1, 0, 0, 0 });
-            Min.Location = new Point(652, 184);
+            Min.Location = new Point(627, 185);
             Min.Maximum = new decimal(new int[] { 100, 0, 0, 0 });
             Min.Minimum = new decimal(new int[] { 0, 0, 0, 0 });
             Min.Name = "Min";
@@ -198,7 +201,7 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(660, 154);
+            label5.Location = new Point(635, 155);
             label5.Name = "label5";
             label5.Size = new Size(197, 22);
             label5.TabIndex = 283;
@@ -210,7 +213,7 @@
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(615, 190);
+            label6.Location = new Point(590, 191);
             label6.Name = "label6";
             label6.Size = new Size(34, 22);
             label6.TabIndex = 284;
@@ -222,7 +225,7 @@
             label7.BackColor = Color.Transparent;
             label7.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Navy;
-            label7.Location = new Point(761, 190);
+            label7.Location = new Point(736, 191);
             label7.Name = "label7";
             label7.Size = new Size(38, 22);
             label7.TabIndex = 285;
@@ -231,7 +234,7 @@
             // Max
             // 
             Max.Increment = new decimal(new int[] { 1, 0, 0, 0 });
-            Max.Location = new Point(802, 184);
+            Max.Location = new Point(777, 185);
             Max.Maximum = new decimal(new int[] { 100, 0, 0, 0 });
             Max.Minimum = new decimal(new int[] { 0, 0, 0, 0 });
             Max.Name = "Max";
@@ -269,7 +272,7 @@
             label9.BackColor = Color.White;
             label9.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label9.ForeColor = Color.Navy;
-            label9.Location = new Point(363, 131);
+            label9.Location = new Point(365, 153);
             label9.Name = "label9";
             label9.Size = new Size(107, 24);
             label9.TabIndex = 339;
@@ -638,21 +641,9 @@
             btnMenu.Text = "Menu Principal";
             btnMenu.Click += btnMenu_Click;
             // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label11.ForeColor = Color.Navy;
-            label11.Location = new Point(333, 156);
-            label11.Name = "label11";
-            label11.RightToLeft = RightToLeft.No;
-            label11.Size = new Size(170, 22);
-            label11.TabIndex = 381;
-            label11.Text = "Seleccione una categoria";
-            // 
             // dtpDesde
             // 
-            dtpDesde.Location = new Point(636, 157);
+            dtpDesde.Location = new Point(635, 157);
             dtpDesde.Margin = new Padding(3, 4, 3, 4);
             dtpDesde.Name = "dtpDesde";
             dtpDesde.Size = new Size(253, 27);
@@ -661,7 +652,7 @@
             // dtpHasta
             // 
             dtpHasta.CalendarForeColor = Color.Navy;
-            dtpHasta.Location = new Point(636, 192);
+            dtpHasta.Location = new Point(635, 192);
             dtpHasta.Margin = new Padding(3, 4, 3, 4);
             dtpHasta.Name = "dtpHasta";
             dtpHasta.Size = new Size(253, 27);
@@ -671,7 +662,7 @@
             // 
             btnLimpiar.BackgroundImage = Properties.Resources.refresh;
             btnLimpiar.BackgroundImageLayout = ImageLayout.Stretch;
-            btnLimpiar.Location = new Point(1095, 173);
+            btnLimpiar.Location = new Point(297, 837);
             btnLimpiar.Name = "btnLimpiar";
             btnLimpiar.Size = new Size(65, 44);
             btnLimpiar.TabIndex = 384;
@@ -684,11 +675,55 @@
             label12.BackColor = Color.White;
             label12.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label12.ForeColor = Color.Navy;
-            label12.Location = new Point(678, 131);
+            label12.Location = new Point(653, 132);
             label12.Name = "label12";
             label12.Size = new Size(162, 24);
             label12.TabIndex = 385;
             label12.Text = "RANGO DE STOCK";
+            // 
+            // cmbCant
+            // 
+            cmbCant.CueHint.Color1 = Color.DimGray;
+            cmbCant.CueHint.CueHintText = "Seleccione una categoria";
+            cmbCant.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbCant.DropDownWidth = 300;
+            cmbCant.Items.AddRange(new object[] { "Buen Stock", "Bajo Stock", "Sin Stock" });
+            cmbCant.Location = new Point(944, 185);
+            cmbCant.Name = "cmbCant";
+            cmbCant.Size = new Size(216, 35);
+            cmbCant.StateActive.ComboBox.Content.Color1 = Color.Navy;
+            cmbCant.StateActive.ComboBox.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbCant.StateCommon.ComboBox.Back.Color1 = Color.White;
+            cmbCant.StateCommon.ComboBox.Border.Rounding = 10F;
+            cmbCant.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            cmbCant.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
+            cmbCant.StateCommon.Item.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbCant.StateNormal.ComboBox.Border.Rounding = 40F;
+            cmbCant.TabIndex = 386;
+            cmbCant.SelectedIndexChanged += cmbCant_SelectedIndexChanged;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.BackColor = Color.White;
+            label10.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label10.ForeColor = Color.Navy;
+            label10.Location = new Point(979, 153);
+            label10.Name = "label10";
+            label10.Size = new Size(157, 24);
+            label10.TabIndex = 387;
+            label10.Text = "CANTIDAD STOCK";
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label13.ForeColor = Color.Navy;
+            label13.Location = new Point(975, 160);
+            label13.Name = "label13";
+            label13.RightToLeft = RightToLeft.No;
+            label13.Size = new Size(0, 22);
+            label13.TabIndex = 388;
             // 
             // ReportesAdmin
             // 
@@ -696,13 +731,15 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1206, 903);
+            Controls.Add(label13);
+            Controls.Add(label10);
+            Controls.Add(cmbCant);
             Controls.Add(dtpHasta);
             Controls.Add(dtpDesde);
             Controls.Add(label3);
             Controls.Add(label4);
             Controls.Add(label1);
             Controls.Add(btnLimpiar);
-            Controls.Add(label11);
             Controls.Add(btnExportarEx);
             Controls.Add(btnExportaar);
             Controls.Add(dgvReporte);
@@ -740,6 +777,7 @@
             Load += ReportesAdmin_Load;
             ((System.ComponentModel.ISupportInitialize)cmbReporte).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvReporte).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cmbCant).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -777,10 +815,12 @@
         private ReaLTaiizor.Controls.NightButton btnProveedores;
         private ReaLTaiizor.Controls.NightButton btnDeudores;
         private ReaLTaiizor.Controls.NightButton btnMenu;
-        private Label label11;
         private DateTimePicker dtpDesde;
         private DateTimePicker dtpHasta;
         private Button btnLimpiar;
         private Label label12;
+        private Krypton.Toolkit.KryptonComboBox cmbCant;
+        private Label label10;
+        private Label label13;
     }
 }

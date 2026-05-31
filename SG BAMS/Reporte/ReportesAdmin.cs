@@ -63,6 +63,7 @@ namespace SG_BAMS.Reporte
             btnReportes.BackColor = Color.SkyBlue;
             btnReportes.ForeColor = Color.White;
 
+            cmbCant.Visible = false;
             ControlarFiltroStock(false);
 
             dtpHasta.MaxDate = DateTime.Today;
@@ -125,6 +126,7 @@ namespace SG_BAMS.Reporte
                         valorMax = valorMin;
                     }
 
+                    // El filtro por rango numérico toma prioridad si cambian los numéricos
                     dt.DefaultView.RowFilter = string.Format("Stock_Actual >= {0} AND Stock_Actual <= {1}", valorMin, valorMax);
 
                     this.Min.ValueChanged += new System.EventHandler(this.FiltroStock_ValueChanged);
@@ -197,6 +199,7 @@ namespace SG_BAMS.Reporte
             if (cmbReporte.SelectedItem == null) return;
             string reporteSeleccionado = cmbReporte.SelectedItem.ToString();
 
+            // Configuración de Filtros de Fecha (Ventas y Compras)
             bool usaFechas = (reporteSeleccionado == "Ventas" || reporteSeleccionado == "Compras");
             dtpDesde.Visible = usaFechas;
             dtpHasta.Visible = usaFechas;
@@ -205,14 +208,20 @@ namespace SG_BAMS.Reporte
             if (this.Controls.Find("label3", true).FirstOrDefault() is Label lbl3) lbl3.Visible = usaFechas;
             if (this.Controls.Find("label4", true).FirstOrDefault() is Label lbl4) lbl4.Visible = usaFechas;
 
+            // Condición para mostrar AMBOS filtros de stock simultáneamente
             bool mostrarFiltroStock = (reporteSeleccionado == "Inventario");
+
+            // Visibilidad del nuevo ComboBox y su etiqueta
+            cmbCant.Visible = mostrarFiltroStock;
+            if (this.Controls.Find("label12", true).FirstOrDefault() is Label lbl12) lbl12.Visible = mostrarFiltroStock;
+
+            // Visibilidad de los NumericUpDown y sus etiquetas de rango anteriores
             Min.Visible = mostrarFiltroStock;
             Max.Visible = mostrarFiltroStock;
-
             if (this.Controls.Find("label5", true).FirstOrDefault() is Label lbl5) lbl5.Visible = mostrarFiltroStock;
             if (this.Controls.Find("label6", true).FirstOrDefault() is Label lbl6) lbl6.Visible = mostrarFiltroStock;
             if (this.Controls.Find("label7", true).FirstOrDefault() is Label lbl7) lbl7.Visible = mostrarFiltroStock;
-            if (this.Controls.Find("label12", true).FirstOrDefault() is Label lbl12) lbl12.Visible = mostrarFiltroStock;
+            if (this.Controls.Find("label10", true).FirstOrDefault() is Label lbl10) lbl10.Visible = mostrarFiltroStock;
 
             ControlarFiltroStock(mostrarFiltroStock);
 
@@ -277,6 +286,9 @@ namespace SG_BAMS.Reporte
                             dgvReporte.Columns["Total_Venta_Esperada"].HeaderText = "Capital";
                             dgvReporte.Columns["Total_Venta_Esperada"].DefaultCellStyle.Format = "N2";
                         }
+
+                        // Al cargar inventario, respetamos el estado del combobox de categorías por si ya tiene algo marcado
+                        cmbCant_SelectedIndexChanged(null, null);
                         break;
                 }
 
@@ -333,6 +345,12 @@ namespace SG_BAMS.Reporte
             Min.Value = 0;
             Max.Value = 0;
             ControlarFiltroStock(false);
+
+            cmbCant.SelectedIndex = -1;
+            if (dgvReporte.DataSource is DataTable dt)
+            {
+                dt.DefaultView.RowFilter = string.Empty;
+            }
 
             cmbReporte_SelectedIndexChanged(null, null);
         }
@@ -431,7 +449,7 @@ namespace SG_BAMS.Reporte
             }
 
             string[] columnasDinero = { "Total_Venta", "Inversion_Total", "Monto_Credito",
-                                 "Saldo_Pendiente", "Precio_Unitario", "Total_Venta_Esperada", "Abonado", "Abono" };
+                                     "Saldo_Pendiente", "Precio_Unitario", "Total_Venta_Esperada", "Abonado", "Abono" };
 
             if (e.Value != null && columnasDinero.Contains(dgvReporte.Columns[e.ColumnIndex].Name))
             {
@@ -439,6 +457,41 @@ namespace SG_BAMS.Reporte
                 {
                     e.Value = $"L. {monto:N2}";
                     e.FormattingApplied = true;
+                }
+            }
+        }
+
+        private void cmbCant_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (dgvReporte.DataSource is DataTable dt)
+            {
+                DataView dv = dt.DefaultView;
+
+                if (cmbCant.SelectedItem == null)
+                {
+                    dv.RowFilter = string.Empty;
+                    return;
+                }
+
+                string opcion = cmbCant.SelectedItem.ToString();
+
+                switch (opcion)
+                {
+                    case "Sin Stock":
+                        dv.RowFilter = "Stock_Actual < 1";
+                        break;
+
+                    case "Bajo Stock":
+                        dv.RowFilter = "Stock_Actual >= 1 AND Stock_Actual < 10";
+                        break;
+
+                    case "Buen Stock":
+                        dv.RowFilter = "Stock_Actual >= 10";
+                        break;
+
+                    default:
+                        dv.RowFilter = string.Empty;
+                        break;
                 }
             }
         }
