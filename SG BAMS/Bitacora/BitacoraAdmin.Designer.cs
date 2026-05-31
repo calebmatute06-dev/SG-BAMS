@@ -562,9 +562,6 @@
             // 
             // txtBuscar
             // 
-            txtBuscar.CueHint.Color1 = Color.DimGray;
-            txtBuscar.CueHint.CueHintText = "Busqueda por nombre de usuario y Modulo";
-            txtBuscar.CueHint.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtBuscar.Location = new Point(396, 194);
             txtBuscar.Margin = new Padding(3, 4, 3, 4);
             txtBuscar.Name = "txtBuscar";

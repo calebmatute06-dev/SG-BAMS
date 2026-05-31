@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Globalization;
 using System.Windows.Forms;
 using QuestPDF.Fluent;
 using QuestPDF.Infrastructure;
@@ -28,6 +29,26 @@ namespace SG_BAMS.Bitacora
         ClsBitacora bitacora = new ClsBitacora();
 
         /// <summary>
+        /// Texto del placeholder para el campo de búsqueda
+        /// </summary>
+        private string placeholderTexto = "Buscar por nombre, acción o módulo...";
+
+        /// <summary>
+        /// Bandera para evitar eventos recursivos
+        /// </summary>
+        private bool isSearching = false;
+
+        /// <summary>
+        /// Indica si se está restaurando el placeholder (para evitar bucle)
+        /// </summary>
+        private bool isRestoringPlaceholder = false;
+
+        /// <summary>
+        /// Bandera para evitar bucles en los eventos de fecha
+        /// </summary>
+        private bool isUpdatingDates = false;
+
+        /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="BitacoraAdmin"/>.
         /// </summary>
         public BitacoraAdmin()
@@ -39,8 +60,42 @@ namespace SG_BAMS.Bitacora
             dtpHasta.MaxDate = DateTime.Today;
 
             txtBuscar.KeyPress += (s, e) => ClsValidaciones.ValidarBusquedaAlfanumerica(e);
+            txtBuscar.TextChanged += txtBuscar_TextChanged;
 
             
+            ConfigurarPlaceholderKrypton();
+        }
+
+        /// <summary>
+        /// Configura el placeholder en el KryptonTextBox de búsqueda.
+        /// </summary>
+        private void ConfigurarPlaceholderKrypton()
+        {
+            txtBuscar.Text = placeholderTexto;
+            txtBuscar.StateCommon.Content.Color1 = Color.Gray;
+            txtBuscar.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+
+            txtBuscar.GotFocus += (s, e) =>
+            {
+                if (txtBuscar.Text == placeholderTexto)
+                {
+                    isRestoringPlaceholder = true;
+                    txtBuscar.Text = "";
+                    txtBuscar.StateCommon.Content.Color1 = Color.Navy;
+                    isRestoringPlaceholder = false;
+                }
+            };
+
+            txtBuscar.LostFocus += (s, e) =>
+            {
+                if (string.IsNullOrWhiteSpace(txtBuscar.Text))
+                {
+                    isRestoringPlaceholder = true;
+                    txtBuscar.Text = placeholderTexto;
+                    txtBuscar.StateCommon.Content.Color1 = Color.Gray;
+                    isRestoringPlaceholder = false;
+                }
+            };
         }
 
         /// <summary>
@@ -51,8 +106,6 @@ namespace SG_BAMS.Bitacora
         /// <param name="e">Datos del evento <see cref="EventArgs"/>.</param>
         private void Bitacora_Load(object sender, EventArgs e)
         {
-            
-
             btnBitacora.Enabled = false;
             btnBitacora.BackColor = Color.SkyBlue;
             btnBitacora.ForeColor = Color.White;
@@ -86,95 +139,202 @@ namespace SG_BAMS.Bitacora
             dgvBitacora.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             
+            dgvBitacora.TabStop = false;
 
+            
+            isUpdatingDates = true;
+            dtpDesde.Value = DateTime.Today.AddDays(-30);
+            dtpHasta.Value = DateTime.Today;
+            isUpdatingDates = false;
+
+           
             bitacora.cargarDatos(dgvBitacora);
-            EjecutarBusquedaSegura();
+            EjecutarBusqueda();
             dgvBitacora.ClearSelection();
 
-            ClsMensajeGuia.ActivarK(txtBuscar);
             this.ActiveControl = null;
-
         }
 
         /// <summary>
-        /// Maneja el evento KeyUp del cuadro de texto de búsqueda.
-        /// Ejecuta la búsqueda cada vez que el usuario escribe.
+        /// Ejecuta la búsqueda en la bitácora con los filtros actuales.
+        /// Si hay texto de búsqueda, ignora el filtro de fechas y busca en todos los registros.
+        /// Si no hay texto, aplica solo el filtro de fechas.
         /// </summary>
-        /// <param name="sender">El objeto que origina el evento.</param>
-        /// <param name="e">Datos del evento <see cref="KeyEventArgs"/>.</param>
-        private void txtBuscar_KeyUp(object sender, KeyEventArgs e)
+        private void EjecutarBusqueda()
         {
-            EjecutarBusquedaSegura();
+            try
+            {
+                
+                bitacora.cargarDatos(dgvBitacora);
+
+                
+                DataTable dt = null;
+                if (dgvBitacora.DataSource is DataTable)
+                    dt = (DataTable)dgvBitacora.DataSource;
+                else if (dgvBitacora.DataSource is DataView dv)
+                    dt = dv.Table;
+
+                if (dt == null) return;
+
+                DataView dataView = dt.DefaultView;
+                var condiciones = new List<string>();
+
+                
+                string textoBusqueda = "";
+                if (txtBuscar.Text != placeholderTexto)
+                {
+                    textoBusqueda = txtBuscar.Text?.Trim() ?? "";
+                }
+
+               
+                if (!string.IsNullOrWhiteSpace(textoBusqueda))
+                {
+                    
+                    string textoSeguro = textoBusqueda
+                        .Replace("'", "''")
+                        .Replace("[", "[[]")
+                        .Replace("]", "[]]")
+                        .Replace("*", "[*]")
+                        .Replace("%", "[%]");
+
+                    var condicionesTexto = new List<string>();
+
+                    foreach (DataColumn col in dt.Columns)
+                    {
+                        if (col.DataType == typeof(string))
+                        {
+                            condicionesTexto.Add($"[{col.ColumnName}] LIKE '%{textoSeguro}%'");
+                        }
+                    }
+
+                    if (condicionesTexto.Count > 0)
+                    {
+                        condiciones.Add("(" + string.Join(" OR ", condicionesTexto) + ")");
+                    }
+                }
+                else
+                {
+                   
+                    string fechaDesde = dtpDesde.Value.Date.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+                    string fechaHasta = dtpHasta.Value.Date.AddDays(1).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+
+                   
+                    string columnaFecha = null;
+                    foreach (DataColumn col in dt.Columns)
+                    {
+                        if (col.DataType == typeof(DateTime))
+                        {
+                            columnaFecha = col.ColumnName;
+                            break;
+                        }
+                    }
+
+                    if (columnaFecha != null)
+                    {
+                        condiciones.Add($"[{columnaFecha}] >= #{fechaDesde}# AND [{columnaFecha}] < #{fechaHasta}#");
+                    }
+                }
+
+                
+                if (condiciones.Count > 0)
+                {
+                    dataView.RowFilter = string.Join(" AND ", condiciones);
+                }
+                else
+                {
+                    dataView.RowFilter = "";
+                }
+
+                dgvBitacora.DataSource = dataView;
+                dgvBitacora.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al filtrar: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Maneja el evento TextChanged del cuadro de texto de búsqueda.
+        /// </summary>
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            if (isRestoringPlaceholder) return;
+            if (txtBuscar.Text == placeholderTexto) return;
+            if (isSearching) return;
+
+            isSearching = true;
+            int cursorPosition = txtBuscar.SelectionStart;
+            EjecutarBusqueda();
+            txtBuscar.Focus();
+            txtBuscar.SelectionStart = cursorPosition;
+            isSearching = false;
         }
 
         /// <summary>
         /// Maneja el evento ValueChanged del selector de fecha inicial.
-        /// Valida que la fecha no supere el día actual ni sea posterior a la fecha final.
         /// </summary>
-        /// <param name="sender">El objeto que origina el evento.</param>
-        /// <param name="e">Datos del evento <see cref="EventArgs"/>.</param>
         private void dtpDesde_ValueChanged(object sender, EventArgs e)
         {
+            if (isUpdatingDates) return;
+            isUpdatingDates = true;
+
             if (dtpDesde.Value > DateTime.Today)
                 dtpDesde.Value = DateTime.Today;
-
             if (dtpDesde.Value > dtpHasta.Value)
                 dtpDesde.Value = dtpHasta.Value;
 
-            EjecutarBusquedaSegura();
+            isUpdatingDates = false;
+            EjecutarBusqueda();
         }
 
         /// <summary>
         /// Maneja el evento ValueChanged del selector de fecha final.
-        /// Valida que la fecha no supere el día actual ni sea anterior a la fecha inicial.
         /// </summary>
-        /// <param name="sender">El objeto que origina el evento.</param>
-        /// <param name="e">Datos del evento <see cref="EventArgs"/>.</param>
         private void dtpHasta_ValueChanged(object sender, EventArgs e)
         {
+            if (isUpdatingDates) return;
+            isUpdatingDates = true;
+
             if (dtpHasta.Value > DateTime.Today)
                 dtpHasta.Value = DateTime.Today;
-
             if (dtpHasta.Value < dtpDesde.Value)
                 dtpHasta.Value = dtpDesde.Value;
 
-            EjecutarBusquedaSegura();
-        }
-
-        /// <summary>
-        /// Ejecuta la búsqueda en la bitácora aplicando el texto ingresado y el rango de fechas seleccionado.
-        /// </summary>
-        private void EjecutarBusquedaSegura()
-        {
-            bitacora.BuscarBitacora(txtBuscar, dtpDesde.Value, dtpHasta.Value, dgvBitacora);
+            isUpdatingDates = false;
+            EjecutarBusqueda();
         }
 
         /// <summary>
         /// Maneja el evento Click del botón de actualizar.
-        /// Limpia los filtros y recarga todos los registros de la bitácora.
+        /// Restablece los filtros a los valores por defecto (últimos 30 días).
         /// </summary>
-        /// <param name="sender">El objeto que origina el evento.</param>
-        /// <param name="e">Datos del evento <see cref="EventArgs"/>.</param>
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            txtBuscar.Clear();
+            
+            isRestoringPlaceholder = true;
+            txtBuscar.Text = placeholderTexto;
+            txtBuscar.StateCommon.Content.Color1 = Color.Gray;
+            isRestoringPlaceholder = false;
 
+           
+            isUpdatingDates = true;
             dtpDesde.MaxDate = DateTime.Today;
             dtpHasta.MaxDate = DateTime.Today;
-            dtpDesde.Value = DateTime.Today;
+            dtpDesde.Value = DateTime.Today.AddDays(-30);
             dtpHasta.Value = DateTime.Today;
+            isUpdatingDates = false;
 
+            
             bitacora.cargarDatos(dgvBitacora);
-            EjecutarBusquedaSegura();
+            EjecutarBusqueda();
             dgvBitacora.ClearSelection();
         }
 
         /// <summary>
         /// Maneja el evento Click del botón de exportar.
-        /// Genera un reporte PDF con los registros visibles en la bitácora y lo abre automáticamente.
         /// </summary>
-        /// <param name="sender">El objeto que origina el evento.</param>
-        /// <param name="e">Datos del evento <see cref="EventArgs"/>.</param>
         private void btnExportar_Click(object sender, EventArgs e)
         {
             try
@@ -216,17 +376,8 @@ namespace SG_BAMS.Bitacora
             }
         }
 
-        /// <summary>
-        /// Maneja el evento Click del botón de notificaciones.
-        /// Abre el formulario de notificaciones del administrador.
-        /// </summary>
-        /// <param name="sender">El objeto que origina el evento.</param>
-        /// <param name="e">Datos del evento <see cref="EventArgs"/>.</param>
         private void btnNoti_Click(object sender, EventArgs e) => new NotificacionesAdmin().Show();
 
-        /// <summary>
-        /// Navega al menú principal del administrador.
-        /// </summary>
         private void btnMenu_Click(object sender, EventArgs e)
         {
             MenuPrincipalAdm MPA = new MenuPrincipalAdm();
@@ -234,9 +385,6 @@ namespace SG_BAMS.Bitacora
             this.Hide();
         }
 
-        /// <summary>
-        /// Navega al formulario de facturas del administrador.
-        /// </summary>
         private void btnFacturas_Click(object sender, EventArgs e)
         {
             FacturasAdm FA = new FacturasAdm();
@@ -244,9 +392,6 @@ namespace SG_BAMS.Bitacora
             this.Hide();
         }
 
-        /// <summary>
-        /// Navega al formulario de compras.
-        /// </summary>
         private void btnCompra_Click(object sender, EventArgs e)
         {
             Compras CF = new Compras();
@@ -254,9 +399,6 @@ namespace SG_BAMS.Bitacora
             this.Hide();
         }
 
-        /// <summary>
-        /// Navega al formulario de clientes del administrador.
-        /// </summary>
         private void btnClientes_Click(object sender, EventArgs e)
         {
             ClientesAdm CA = new ClientesAdm();
@@ -264,9 +406,6 @@ namespace SG_BAMS.Bitacora
             this.Hide();
         }
 
-        /// <summary>
-        /// Navega al formulario de inventario del administrador.
-        /// </summary>
         private void btnInventario_Click(object sender, EventArgs e)
         {
             InventarioAdmin IA = new InventarioAdmin();
@@ -274,9 +413,6 @@ namespace SG_BAMS.Bitacora
             this.Hide();
         }
 
-        /// <summary>
-        /// Navega al formulario de proveedores del administrador.
-        /// </summary>
         private void btnProveedores_Click(object sender, EventArgs e)
         {
             ProveedoresAdmin PA = new ProveedoresAdmin();
@@ -284,9 +420,6 @@ namespace SG_BAMS.Bitacora
             this.Hide();
         }
 
-        /// <summary>
-        /// Navega al formulario de deudores del administrador.
-        /// </summary>
         private void btnDeudores_Click(object sender, EventArgs e)
         {
             DeudoresAdmin DA = new DeudoresAdmin();
@@ -294,9 +427,6 @@ namespace SG_BAMS.Bitacora
             this.Hide();
         }
 
-        /// <summary>
-        /// Navega al formulario de reportes del administrador.
-        /// </summary>
         private void btnReportes_Click(object sender, EventArgs e)
         {
             ReportesAdmin RA = new ReportesAdmin();
@@ -304,9 +434,6 @@ namespace SG_BAMS.Bitacora
             this.Hide();
         }
 
-        /// <summary>
-        /// Cierra la sesión actual y regresa al formulario de inicio de sesión.
-        /// </summary>
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             Login.Login login = new Login.Login();
@@ -314,9 +441,6 @@ namespace SG_BAMS.Bitacora
             this.Close();
         }
 
-        /// <summary>
-        /// Abre el formulario de perfil del usuario actual.
-        /// </summary>
         private void btnPerfil_Click(object sender, EventArgs e)
         {
             Perfil perfil = new Perfil();
