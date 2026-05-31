@@ -576,9 +576,6 @@
             // 
             // txtBuscarCompra
             // 
-            txtBuscarCompra.CueHint.Color1 = Color.DimGray;
-            txtBuscarCompra.CueHint.CueHintText = "Busqueda por ID, Nombre, Proveedor y forma de pago";
-            txtBuscarCompra.CueHint.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtBuscarCompra.Location = new Point(405, 214);
             txtBuscarCompra.Margin = new Padding(3, 4, 3, 4);
             txtBuscarCompra.Name = "txtBuscarCompra";

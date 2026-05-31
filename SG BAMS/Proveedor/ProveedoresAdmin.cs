@@ -53,6 +53,7 @@ namespace SG_BAMS.Proveedor
         /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void ProveedoresAdmin_Load(object sender, EventArgs e)
         {
+            new PlaceholderTextBox(txtBuscar, "Ingrese un Nombre de Vendedor, Cliente, N.Factura, RTN");
             btnProveedores.Enabled = false;
             btnProveedores.BackColor = Color.SkyBlue;
             btnProveedores.ForeColor = Color.White;

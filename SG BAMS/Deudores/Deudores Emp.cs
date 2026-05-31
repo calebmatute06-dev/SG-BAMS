@@ -24,6 +24,16 @@ namespace SG_BAMS
         private DataTable dtDeudores;
 
         /// <summary>
+        /// Bandera para evitar el evento recursivo
+        /// </summary>
+        private bool isFiltering = false;
+
+        /// <summary>
+        /// DataView original sin filtrar
+        /// </summary>
+        private DataView dvOriginalDeudores;
+
+        /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="Deudores_Emp" />.
         /// </summary>
         public Deudores_Emp()
@@ -31,7 +41,6 @@ namespace SG_BAMS
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
 
-            
             dgvDeudores.CellDoubleClick += dgvDeudores_CellDoubleClick;
 
             CargarGridDeudores();
@@ -47,10 +56,10 @@ namespace SG_BAMS
             ClsDeuda objetoDeuda = new ClsDeuda();
             dtDeudores = objetoDeuda.ListarDeudores();
 
-            
-            DataView dv = new DataView(dtDeudores);
-            dv.RowFilter = "[Estado Deuda] = 'Activo'";
-            dgvDeudores.DataSource = dv;
+            // Guardar el DataView original con solo activos
+            dvOriginalDeudores = new DataView(dtDeudores);
+            dvOriginalDeudores.RowFilter = "[Estado Deuda] = 'Activo'";
+            dgvDeudores.DataSource = dvOriginalDeudores;
 
             dgvDeudores.ReadOnly = true;
             dgvDeudores.AllowUserToAddRows = false;
@@ -69,11 +78,15 @@ namespace SG_BAMS
         /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void txtBuscarNombre_TextChanged(object sender, EventArgs e)
         {
-            int cursor = txtBuscarNombre.SelectionStart;
-            txtBuscarNombre.Text = txtBuscarNombre.Text.ToUpper();
-            txtBuscarNombre.SelectionStart = cursor;
+            // Evitar recursión
+            if (isFiltering) return;
 
+            isFiltering = true;
+
+            // NO convertir a mayúsculas
             FiltrarDeudores();
+
+            isFiltering = false;
         }
 
         /// <summary>
@@ -81,24 +94,40 @@ namespace SG_BAMS
         /// </summary>
         private void FiltrarDeudores()
         {
-            if (dtDeudores != null)
-            {
-                string filtroNombre = txtBuscarNombre.Text
-                    .Replace("'", "''")
-                    .Replace("[", "[[]")
-                    .Replace("]", "[]]")
-                    .Trim();
+            if (dtDeudores == null || dvOriginalDeudores == null) return;
 
-                
-                string filtroCompleto = "[Estado Deuda] = 'Activo'";
-                if (!string.IsNullOrEmpty(filtroNombre))
+            try
+            {
+                string filtroNombre = txtBuscarNombre.Text.Trim();
+
+                // Si el texto de búsqueda está vacío, restaurar el DataView original
+                if (string.IsNullOrEmpty(filtroNombre))
                 {
-                    filtroCompleto += string.Format(" AND Cliente LIKE '%{0}%'", filtroNombre);
+                    // RESTAURAR EL DATAVIEW ORIGINAL
+                    dgvDeudores.DataSource = dvOriginalDeudores;
+                }
+                else
+                {
+                    // Crear un nuevo DataView filtrado
+                    DataView dvFiltrada = new DataView(dtDeudores);
+
+                    // Escapar caracteres especiales para la búsqueda
+                    string nombreBuscar = filtroNombre
+                        .Replace("'", "''")
+                        .Replace("[", "[[]")
+                        .Replace("]", "[]]");
+
+                    // Aplicar filtro completo
+                    dvFiltrada.RowFilter = $"[Estado Deuda] = 'Activo' AND Cliente LIKE '%{nombreBuscar}%'";
+                    dgvDeudores.DataSource = dvFiltrada;
                 }
 
-                DataView dv = dtDeudores.DefaultView;
-                dv.RowFilter = filtroCompleto;
-                dgvDeudores.DataSource = dv;
+                dgvDeudores.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al filtrar: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -244,6 +273,8 @@ namespace SG_BAMS
         /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void Deudores_Emp_Load(object sender, EventArgs e)
         {
+            
+            
             btnDeudores.Enabled = false;
             btnDeudores.BackColor = Color.SkyBlue;
             btnDeudores.ForeColor = Color.White;
@@ -277,7 +308,6 @@ namespace SG_BAMS
             dgvDeudores.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvDeudores.ClearSelection();
             ClsMensajeGuia.Activar(txtBuscarNombre);
-          
         }
 
         /// <summary>

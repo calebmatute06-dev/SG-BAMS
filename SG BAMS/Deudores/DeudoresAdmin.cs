@@ -237,6 +237,7 @@ namespace SG_BAMS
         /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void DeudoresAdmin_Load(object sender, EventArgs e)
         {
+           
             btnDeudores.Enabled = false;
             btnDeudores.BackColor = Color.SkyBlue;
             btnDeudores.ForeColor = Color.White;

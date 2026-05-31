@@ -1,13 +1,14 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Krypton.Toolkit;
+using Microsoft.Data.SqlClient;
 using SG_BAMS.Bitacora;
 using SG_BAMS.Facturas;
 using SG_BAMS.Proveedor;
 using SG_BAMS.Reporte;
 using System;
 using System.Data;
+using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Globalization;
 
 namespace SG_BAMS
 {
@@ -21,6 +22,11 @@ namespace SG_BAMS
         /// The datos fac
         /// </summary>
         private DataTable datosFac;
+
+        /// <summary>
+        /// Texto del placeholder para evitar filtrarlo
+        /// </summary>
+        private string placeholderText = "Ingrese un Nombre de Vendedor, Cliente, N.Factura, RTN";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FacturasAdm"/> class.
@@ -83,24 +89,30 @@ namespace SG_BAMS
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void FacturasAdm_Load(object sender, EventArgs e)
         {
+            new PlaceholderTextBox(txtBusqueda, "Ingrese un Nombre de Vendedor, Cliente, N.Factura, RTN");
 
             btnFacturas.Enabled = false;
             btnFacturas.BackColor = Color.SkyBlue;
             btnFacturas.ForeColor = Color.White;
 
+           
             await CargarFactura();
 
+            
             dtpInicio.Value = DateTime.Today;
             dtpFin.Value = DateTime.Today;
 
+           
             ClsValidaciones.ValidarRangoFechas(dtpInicio, dtpFin);
-            FiltrarDatos();
 
+            
             dtpInicio.ValueChanged += (s, ev) => ValidarYFiltrar();
             dtpFin.ValueChanged += (s, ev) => ValidarYFiltrar();
 
+            
+            ClsMensajeGuia.ActivarK(txtBusqueda);
 
-
+            
             dgvFacturas.BorderStyle = BorderStyle.None;
             dgvFacturas.BackgroundColor = Color.White;
             dgvFacturas.RowHeadersVisible = false;
@@ -128,9 +140,9 @@ namespace SG_BAMS
             dgvFacturas.RowTemplate.Height = 32;
             dgvFacturas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvFacturas.ClearSelection();
-            ClsMensajeGuia.ActivarK(txtBusqueda);
 
-
+            
+            FiltrarDatos();
         }
 
         /// <summary>
@@ -155,24 +167,39 @@ namespace SG_BAMS
 
             DataView dv = datosFac.DefaultView;
 
-            string texto = txtBusqueda.Text.Replace("'", "''").Replace("[", "[[]").Replace("]", "[]]");
+            string texto = txtBusqueda.Text.Trim();
+
+            
+            if (texto == placeholderText)
+            {
+                texto = "";
+            }
+
+            
+            string textoFiltro = !string.IsNullOrEmpty(texto) ?
+                texto.Replace("'", "''").Replace("[", "[[]").Replace("]", "[]]") : "";
+
+            
+            string fInicio = dtpInicio.Value.Date.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+            string fFin = dtpFin.Value.Date.AddDays(1).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+            string filtroFechas = $"[Fecha] >= #{fInicio}# AND [Fecha] < #{fFin}#";
 
             string rowFilter = "";
 
-
-            if (string.IsNullOrWhiteSpace(texto))
+            
+            if (!string.IsNullOrEmpty(textoFiltro))
             {
-                string fInicio = dtpInicio.Value.Date.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
-                string fFin = dtpFin.Value.Date.AddDays(1).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
-                rowFilter = $"[Fecha] >= #{fInicio}# AND [Fecha] < #{fFin}#";
+               
+                rowFilter = $"({filtroFechas}) AND (Convert([Factura], 'System.String') LIKE '%{textoFiltro}%' OR " +
+                            $"[Vendedor] LIKE '%{textoFiltro}%' OR " +
+                            $"[Cliente] LIKE '%{textoFiltro}%' OR " +
+                            $"[Método de Pago] LIKE '%{textoFiltro}%' OR " +
+                            $"[RTN Cliente] LIKE '%{textoFiltro}%')";
             }
             else
             {
-                rowFilter = $"Convert([Factura], 'System.String') LIKE '%{texto}%' OR " +
-                            $"[Vendedor] LIKE '%{texto}%' OR " +
-                            $"[Cliente] LIKE '%{texto}%' OR " +
-                            $"[Método de Pago] LIKE '%{texto}%' OR " +
-                            $"[RTN Cliente] LIKE '%{texto}%'";
+                
+                rowFilter = filtroFechas;
             }
 
             try
@@ -192,7 +219,14 @@ namespace SG_BAMS
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void txtBusqueda_TextChanged(object sender, EventArgs e) => FiltrarDatos();
+        private void txtBusqueda_TextChanged(object sender, EventArgs e)
+        {
+           
+            if (txtBusqueda.Text == placeholderText)
+                return;
+
+            FiltrarDatos();
+        }
 
         /// <summary>
         /// Handles the Click event of the BtnNueva control.
@@ -278,15 +312,12 @@ namespace SG_BAMS
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnRefrescar_Click_1(object sender, EventArgs e)
         {
-            txtBusqueda.Clear();
+            txtBusqueda.Text = "";
             dtpInicio.Value = DateTime.Today;
             dtpFin.Value = DateTime.Today;
             FiltrarDatos();
             dgvFacturas.ClearSelection();
         }
-
-
-
 
         /// <summary>
         /// Handles the Click event of the btnnotificaciones control.
@@ -298,9 +329,6 @@ namespace SG_BAMS
             NotificacionesAdmin Noti = new NotificacionesAdmin();
             Noti.Show();
         }
-
-
-
 
         /// <summary>
         /// Handles the KeyPress event of the txtBusqueda control.
@@ -318,7 +346,6 @@ namespace SG_BAMS
             MPA.Show();
             this.Hide();
         }
-
 
         private void btnCompra_Click(object sender, EventArgs e)
         {
@@ -382,7 +409,4 @@ namespace SG_BAMS
             perfil.Show();
         }
     }
-
-
-
 }

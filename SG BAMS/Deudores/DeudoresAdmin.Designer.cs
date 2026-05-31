@@ -148,7 +148,6 @@
             txtBuscarNombre.Name = "txtBuscarNombre";
             txtBuscarNombre.Size = new Size(971, 23);
             txtBuscarNombre.TabIndex = 153;
-            txtBuscarNombre.Text = "Ingrese Nombre del Cliente";
             txtBuscarNombre.TextChanged += txtBuscarNombre_TextChanged;
             txtBuscarNombre.KeyPress += txtBuscarNombre_KeyPress;
             // 

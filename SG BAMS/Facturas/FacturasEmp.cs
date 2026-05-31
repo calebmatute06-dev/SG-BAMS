@@ -8,20 +8,11 @@ using System.Globalization;
 
 namespace SG_BAMS
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class FacturasEmp : Form
     {
-        /// <summary>
-        /// The datos fac
-        /// </summary>
         private DataTable datosFac;
+        private const string PlaceholderText = "Ingrese un Nombre de Vendedor, Cliente, N.Factura, RTN";
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="FacturasEmp"/> class.
-        /// </summary>
         public FacturasEmp()
         {
             InitializeComponent();
@@ -29,9 +20,6 @@ namespace SG_BAMS
             ConfigurarGrid();
         }
 
-        /// <summary>
-        /// Configurars the grid.
-        /// </summary>
         private void ConfigurarGrid()
         {
             dgvFacturas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -42,11 +30,31 @@ namespace SG_BAMS
             dgvFacturas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             txtBusqueda.KeyPress += (s, e) => ClsValidaciones.ValidarBusquedaAlfanumerica(e);
+
+            // Configurar placeholder
+            txtBusqueda.Text = PlaceholderText;
+            txtBusqueda.StateCommon.Content.Color1 = Color.Gray;
+            txtBusqueda.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+
+            txtBusqueda.GotFocus += (s, e) =>
+            {
+                if (txtBusqueda.Text == PlaceholderText)
+                {
+                    txtBusqueda.Text = "";
+                    txtBusqueda.StateCommon.Content.Color1 = Color.Navy;
+                }
+            };
+
+            txtBusqueda.LostFocus += (s, e) =>
+            {
+                if (string.IsNullOrWhiteSpace(txtBusqueda.Text))
+                {
+                    txtBusqueda.Text = PlaceholderText;
+                    txtBusqueda.StateCommon.Content.Color1 = Color.Gray;
+                }
+            };
         }
 
-        /// <summary>
-        /// Cargars the factura.
-        /// </summary>
         private async Task CargarFactura()
         {
             try
@@ -65,7 +73,6 @@ namespace SG_BAMS
                     dgvFacturas.Columns["Rebaja"].DisplayIndex = 8;
                     dgvFacturas.Columns["Batería Vieja"].DisplayIndex = 7;
 
-
                     dgvFacturas.ClearSelection();
                 }
             }
@@ -75,13 +82,9 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Handles the Load event of the FacturasEmp control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void FacturasEmp_Load(object sender, EventArgs e)
         {
+            new PlaceholderTextBox(txtBusqueda, "Ingrese un Nombre de Vendedor, Cliente, N.Factura, RTN");
             btnFacturas.Enabled = false;
             btnFacturas.BackColor = Color.SkyBlue;
             btnFacturas.ForeColor = Color.White;
@@ -92,11 +95,12 @@ namespace SG_BAMS
             dtpFin.Value = DateTime.Today;
 
             ClsValidaciones.ValidarRangoFechas(dtpInicio, dtpFin);
-            FiltrarDatos();
 
+            
             dtpInicio.ValueChanged += (s, ev) => ValidarYFiltrar();
             dtpFin.ValueChanged += (s, ev) => ValidarYFiltrar();
 
+           
             dgvFacturas.BorderStyle = BorderStyle.None;
             dgvFacturas.BackgroundColor = Color.White;
             dgvFacturas.RowHeadersVisible = false;
@@ -124,13 +128,11 @@ namespace SG_BAMS
             dgvFacturas.RowTemplate.Height = 32;
             dgvFacturas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvFacturas.ClearSelection();
-            ClsMensajeGuia.ActivarK(txtBusqueda);
 
+            
+            FiltrarDatos();
         }
 
-        /// <summary>
-        /// Validars the y filtrar.
-        /// </summary>
         private void ValidarYFiltrar()
         {
             ClsValidaciones.ValidarRangoFechas(dtpInicio, dtpFin);
@@ -141,33 +143,37 @@ namespace SG_BAMS
             FiltrarDatos();
         }
 
-        /// <summary>
-        /// Filtrars the datos.
-        /// </summary>
         private void FiltrarDatos()
         {
             if (datosFac == null) return;
 
             DataView dv = datosFac.DefaultView;
 
-            string texto = txtBusqueda.Text.Replace("'", "''").Replace("[", "[[]").Replace("]", "[]]");
+            
+            string textoRaw = txtBusqueda.Text == PlaceholderText ? "" : txtBusqueda.Text;
+            string texto = textoRaw.Replace("'", "''").Replace("[", "[[]").Replace("]", "[]]");
+
+            
+            string fInicio = dtpInicio.Value.Date.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+            string fFin = dtpFin.Value.Date.AddDays(1).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+            string filtroFechas = $"[Fecha] >= #{fInicio}# AND [Fecha] < #{fFin}#";
 
             string rowFilter = "";
 
-
-            if (string.IsNullOrWhiteSpace(texto))
+           
+            if (!string.IsNullOrWhiteSpace(texto))
             {
-                string fInicio = dtpInicio.Value.Date.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
-                string fFin = dtpFin.Value.Date.AddDays(1).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
-                rowFilter = $"[Fecha] >= #{fInicio}# AND [Fecha] < #{fFin}#";
-            }
-            else
-            {
-                rowFilter = $"Convert([Factura], 'System.String') LIKE '%{texto}%' OR " +
+                
+                rowFilter = $"({filtroFechas}) AND (Convert([Factura], 'System.String') LIKE '%{texto}%' OR " +
                             $"[Vendedor] LIKE '%{texto}%' OR " +
                             $"[Cliente] LIKE '%{texto}%' OR " +
                             $"[Método de Pago] LIKE '%{texto}%' OR " +
-                            $"[RTN Cliente] LIKE '%{texto}%'";
+                            $"[RTN Cliente] LIKE '%{texto}%')";
+            }
+            else
+            {
+                
+                rowFilter = filtroFechas;
             }
 
             try
@@ -182,18 +188,15 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Handles the TextChanged event of the txtBusqueda control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void txtBusqueda_TextChanged(object sender, EventArgs e) => FiltrarDatos();
+        private void txtBusqueda_TextChanged(object sender, EventArgs e)
+        {
+           
+            if (txtBusqueda.Text == PlaceholderText)
+                return;
 
-        /// <summary>
-        /// Handles the Click event of the BtnNueva control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+            FiltrarDatos();
+        }
+
         private async void BtnNueva_Click(object sender, EventArgs e)
         {
             using (ClienteAgregar frmCA = new ClienteAgregar())
@@ -210,11 +213,6 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Handles the Click event of the BtnVer control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnVer_Click(object sender, EventArgs e)
         {
             if (dgvFacturas.SelectedRows.Count == 0)
@@ -228,11 +226,6 @@ namespace SG_BAMS
                 dgvFacturas_CellDoubleClick(null, null);
         }
 
-        /// <summary>
-        /// Handles the CellDoubleClick event of the dgvFacturas control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
         private async void dgvFacturas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e != null && e.RowIndex < 0) return;
@@ -253,12 +246,10 @@ namespace SG_BAMS
                         bateriaVieja = int.Parse(soloNumero);
                 }
 
+                
                 string valorCelda = dgvFacturas.CurrentRow.Cells["Rebaja"].Value?.ToString() ?? "0";
                 valorCelda = valorCelda.Replace("L.", "").Trim();
-
                 double rebaja = Convert.ToDouble(valorCelda);
-
-
 
                 FacturaVer frmFV = new FacturaVer(idFacturas, nombre_Cliente, fecha, bateriaVieja, idPago, rebaja);
                 frmFV.ShowDialog();
@@ -268,35 +259,22 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Handles the Click event of the BtnRefrescar control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnRefrescar_Click(object sender, EventArgs e)
         {
-            txtBusqueda.Clear();
+            txtBusqueda.Text = PlaceholderText;
+            txtBusqueda.StateCommon.Content.Color1 = Color.Gray;
             dtpInicio.Value = DateTime.Today;
             dtpFin.Value = DateTime.Today;
             FiltrarDatos();
+            dgvFacturas.ClearSelection();
         }
 
-        /// <summary>
-        /// Navegars a.
-        /// </summary>
-        /// <param name="formulario">The formulario.</param>
         private void NavegarA(Form formulario)
         {
             formulario.Show();
             this.Close();
         }
 
-
-        /// <summary>
-        /// Handles the Click event of the BtnNotificaciones control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnNotificaciones_Click(object sender, EventArgs e)
         {
             new NotificacionesAdmin().Show();
@@ -308,8 +286,6 @@ namespace SG_BAMS
             ME.Show();
             this.Hide();
         }
-
-       
 
         private void btnClientes_Click(object sender, EventArgs e)
         {

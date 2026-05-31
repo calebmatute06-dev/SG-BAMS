@@ -67,8 +67,6 @@
             // 
             // txtBuscar
             // 
-            txtBuscar.CueHint.Color1 = Color.Gray;
-            txtBuscar.CueHint.CueHintText = "Ingrese un Nombre, ID, Tipo, Proveedor, Modelo, Marca";
             txtBuscar.Location = new Point(614, 183);
             txtBuscar.Name = "txtBuscar";
             txtBuscar.Size = new Size(679, 39);

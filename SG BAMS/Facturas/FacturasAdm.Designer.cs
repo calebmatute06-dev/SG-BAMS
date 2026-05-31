@@ -219,16 +219,15 @@
             // 
             // txtBusqueda
             // 
-            txtBusqueda.CueHint.Color1 = Color.Gray;
-            txtBusqueda.CueHint.CueHintText = "Ingrese un Nombre de Vendedor, Cliente, N.Factura, RTN";
-            txtBusqueda.Location = new Point(629, 272);
+            txtBusqueda.CueHint.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtBusqueda.Location = new Point(629, 265);
             txtBusqueda.Margin = new Padding(3, 4, 3, 4);
             txtBusqueda.Name = "txtBusqueda";
-            txtBusqueda.Size = new Size(632, 37);
+            txtBusqueda.Size = new Size(632, 36);
             txtBusqueda.StateCommon.Back.Color1 = Color.SkyBlue;
             txtBusqueda.StateCommon.Border.Rounding = 10F;
             txtBusqueda.StateCommon.Content.Color1 = Color.Gray;
-            txtBusqueda.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtBusqueda.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0, true);
             txtBusqueda.TabIndex = 323;
             txtBusqueda.TextChanged += txtBusqueda_TextChanged;
             // 
