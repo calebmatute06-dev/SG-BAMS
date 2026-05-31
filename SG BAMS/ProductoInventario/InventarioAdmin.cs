@@ -29,6 +29,26 @@ namespace SG_BAMS
         ClsVerProducto logica = new ClsVerProducto();
 
         /// <summary>
+        /// Texto del placeholder para el campo de búsqueda
+        /// </summary>
+        private string placeholderTexto = "Buscar por nombre del producto...";
+
+        /// <summary>
+        /// Color del texto placeholder
+        /// </summary>
+        private Color placeholderColor = Color.Gray;
+
+        /// <summary>
+        /// Color del texto normal
+        /// </summary>
+        private Color textoColor = Color.Black;
+
+        /// <summary>
+        /// La última tecla del escáner
+        /// </summary>
+        private DateTime ultimaTeclaEscaner = DateTime.Now;
+
+        /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="InventarioAdmin" />.
         /// </summary>
         public InventarioAdmin()
@@ -36,6 +56,48 @@ namespace SG_BAMS
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             this.KeyPreview = true;
+            ConfigurarPlaceholder();
+        }
+
+        /// <summary>
+        /// Configura el placeholder en el TextBox de búsqueda.
+        /// </summary>
+        private void ConfigurarPlaceholder()
+        {
+            textoColor = txtBuscar.ForeColor;
+            placeholderColor = Color.Gray;
+
+            txtBuscar.Text = placeholderTexto;
+            txtBuscar.ForeColor = placeholderColor;
+
+            
+            txtBuscar.Enter += txtBuscar_Enter;
+            txtBuscar.Leave += txtBuscar_Leave;
+            txtBuscar.TextChanged += txtBuscar_TextChanged;
+        }
+
+        /// <summary>
+        /// Maneja el evento Enter del TextBox de búsqueda.
+        /// </summary>
+        private void txtBuscar_Enter(object sender, EventArgs e)
+        {
+            if (txtBuscar.Text == placeholderTexto)
+            {
+                txtBuscar.Text = "";
+                txtBuscar.ForeColor = textoColor;
+            }
+        }
+
+        /// <summary>
+        /// Maneja el evento Leave del TextBox de búsqueda.
+        /// </summary>
+        private void txtBuscar_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtBuscar.Text))
+            {
+                txtBuscar.Text = placeholderTexto;
+                txtBuscar.ForeColor = placeholderColor;
+            }
         }
 
         /// <summary>
@@ -69,7 +131,6 @@ namespace SG_BAMS
         /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void InventarioAdmin_Load(object sender, EventArgs e)
         {
-            new PlaceholderTextBox(txtBuscar, "Ingrese un Nombre de Vendedor, Cliente, N.Factura, RTN");
             btnInventario.Enabled = false;
             btnInventario.BackColor = Color.SkyBlue;
             btnInventario.ForeColor = Color.White;
@@ -103,7 +164,6 @@ namespace SG_BAMS
             dgvProductosAdmin.RowTemplate.Height = 32;
             dgvProductosAdmin.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvProductosAdmin.ClearSelection();
-            ClsMensajeGuia.ActivarK(txtBuscar);
 
             dgvProductosAdmin.CellFormatting += dgvProductosAdmin_CellFormatting;
         }
@@ -167,6 +227,12 @@ namespace SG_BAMS
         /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
+            
+            if (txtBuscar.Text == placeholderTexto || txtBuscar.ForeColor == placeholderColor)
+            {
+                return;
+            }
+
             if (string.IsNullOrWhiteSpace(txtBuscar.Text))
             {
                 CargarInventarioCompleto();
@@ -183,11 +249,6 @@ namespace SG_BAMS
             }
         }
 
-
-
-
-
-
         /// <summary>
         /// Maneja el evento Click del control btnNoti.
         /// </summary>
@@ -198,10 +259,6 @@ namespace SG_BAMS
             NotificacionesAdmin notificaciones = new NotificacionesAdmin();
             notificaciones.Show();
         }
-
-
-
-
 
         /// <summary>
         /// Maneja el evento CellDoubleClick del control dgvProductosAdmin.
@@ -243,11 +300,6 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// La última tecla del escáner
-        /// </summary>
-        private DateTime ultimaTeclaEscaner = DateTime.Now;
-
-        /// <summary>
         /// Procesa una tecla de comando.
         /// </summary>
         /// <param name="msg">Un <see cref="T:System.Windows.Forms.Message" />, pasado por referencia, que representa el mensaje Win32 a procesar.</param>
@@ -266,7 +318,9 @@ namespace SG_BAMS
 
                 if (intervalo.TotalMilliseconds < 50 || !txtBuscar.Focused)
                 {
+                    
                     txtBuscar.Text = string.Empty;
+                    txtBuscar.ForeColor = textoColor;
 
                     if (!txtBuscar.Focused) txtBuscar.Focus();
 
@@ -279,7 +333,7 @@ namespace SG_BAMS
 
             if (key == Keys.Enter)
             {
-                if (txtBuscar.Focused && !string.IsNullOrWhiteSpace(txtBuscar.Text))
+                if (txtBuscar.Focused && !string.IsNullOrWhiteSpace(txtBuscar.Text) && txtBuscar.Text != placeholderTexto)
                 {
                     dgvProductosAdmin.DataSource = logica.BuscarProductos(txtBuscar.Text.Trim());
                     txtBuscar.SelectAll();

@@ -24,12 +24,70 @@ namespace SG_BAMS
         ClsVerProducto logica = new ClsVerProducto();
 
         /// <summary>
+        /// Texto del placeholder para el campo de búsqueda
+        /// </summary>
+        private string placeholderTexto = "Buscar por nombre del producto...";
+
+        /// <summary>
+        /// Color del texto placeholder
+        /// </summary>
+        private Color placeholderColor = Color.Gray;
+
+        /// <summary>
+        /// Color del texto normal
+        /// </summary>
+        private Color textoColor = Color.Black;
+
+        /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="InventarioEmp" />.
         /// </summary>
         public InventarioEmp()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
+            ConfigurarPlaceholder();
+        }
+
+        /// <summary>
+        /// Configura el placeholder en el TextBox de búsqueda.
+        /// </summary>
+        private void ConfigurarPlaceholder()
+        {
+            textoColor = txtBuscar.ForeColor;
+            placeholderColor = Color.Gray;
+
+            
+            txtBuscar.Text = placeholderTexto;
+            txtBuscar.ForeColor = placeholderColor;
+
+            
+            txtBuscar.Enter += txtBuscar_Enter;
+            txtBuscar.Leave += txtBuscar_Leave;
+            txtBuscar.TextChanged += txtBuscar_TextChanged;
+        }
+
+        /// <summary>
+        /// Maneja el evento Enter del TextBox de búsqueda.
+        /// </summary>
+        private void txtBuscar_Enter(object sender, EventArgs e)
+        {
+            if (txtBuscar.Text == placeholderTexto)
+            {
+                txtBuscar.Text = "";
+                txtBuscar.ForeColor = textoColor;
+            }
+        }
+
+        /// <summary>
+        /// Maneja el evento Leave del TextBox de búsqueda.
+        /// </summary>
+        private void txtBuscar_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtBuscar.Text))
+            {
+                txtBuscar.Text = placeholderTexto;
+                txtBuscar.ForeColor = placeholderColor;
+            }
         }
 
         /// <summary>
@@ -39,7 +97,6 @@ namespace SG_BAMS
         /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void InventarioEmp_Load(object sender, EventArgs e)
         {
-            new PlaceholderTextBox(txtBuscar, "Ingrese un Nombre de Vendedor, Cliente, N.Factura, RTN");
             btnInventario.Enabled = false;
             btnInventario.BackColor = Color.SkyBlue;
             btnInventario.ForeColor = Color.White;
@@ -82,6 +139,13 @@ namespace SG_BAMS
         /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
+            
+            if (txtBuscar.Text == placeholderTexto || txtBuscar.ForeColor == placeholderColor)
+            {
+                return;
+            }
+
+            
             if (string.IsNullOrWhiteSpace(txtBuscar.Text))
             {
                 CargarInventarioCompleto();

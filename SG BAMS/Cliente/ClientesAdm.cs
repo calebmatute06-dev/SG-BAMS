@@ -30,6 +30,11 @@ namespace SG_BAMS
         DataTable datosCli;
 
         /// <summary>
+        /// Texto del placeholder para el campo de búsqueda
+        /// </summary>
+        private string placeholderTexto = "Buscar por nombre, apellido, RTN o teléfono...";
+
+        /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="ClientesAdm"/>.
         /// Configura el modo de selección del DataGridView y las validaciones
         /// de entrada del campo de búsqueda.
@@ -42,6 +47,38 @@ namespace SG_BAMS
             dgvClientes.MultiSelect = false;
 
             txtBusqueda.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetrasYNumeros(e);
+            txtBusqueda.TextChanged += txtBusqueda_TextChanged;
+
+            
+            ConfigurarPlaceholderKrypton();
+        }
+
+        /// <summary>
+        /// Configura el placeholder en el KryptonTextBox de búsqueda.
+        /// </summary>
+        private void ConfigurarPlaceholderKrypton()
+        {
+            txtBusqueda.Text = placeholderTexto;
+            txtBusqueda.StateCommon.Content.Color1 = Color.Gray;
+            txtBusqueda.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+
+            txtBusqueda.GotFocus += (s, e) =>
+            {
+                if (txtBusqueda.Text == placeholderTexto)
+                {
+                    txtBusqueda.Text = "";
+                    txtBusqueda.StateCommon.Content.Color1 = Color.Navy;
+                }
+            };
+
+            txtBusqueda.LostFocus += (s, e) =>
+            {
+                if (string.IsNullOrWhiteSpace(txtBusqueda.Text))
+                {
+                    txtBusqueda.Text = placeholderTexto;
+                    txtBusqueda.StateCommon.Content.Color1 = Color.Gray;
+                }
+            };
         }
 
         /// <summary>
@@ -86,31 +123,54 @@ namespace SG_BAMS
         {
             if (datosCli == null) return;
 
-            DataView dv = datosCli.DefaultView;
-            string filtroEstado = chkActivo.Checked ? "Estado <> 'Activo'" : "Estado = 'Activo'";
-
-            string textoBusqueda = txtBusqueda.ForeColor == Color.Black ? txtBusqueda.Text : "";
-
-            if (string.IsNullOrWhiteSpace(textoBusqueda))
+            try
             {
-                dv.RowFilter = filtroEstado;
+                DataView dv = datosCli.DefaultView;
+
+                var condiciones = new List<string>();
+
+                
+                string filtroEstado = chkActivo.Checked ? "Estado <> 'Activo'" : "Estado = 'Activo'";
+                condiciones.Add($"({filtroEstado})");
+
+               
+                string textoBusqueda = "";
+                if (txtBusqueda.Text != placeholderTexto &&
+                    txtBusqueda.StateCommon.Content.Color1 != Color.Gray)
+                {
+                    textoBusqueda = txtBusqueda.Text?.Trim() ?? "";
+                }
+
+               
+                if (!string.IsNullOrWhiteSpace(textoBusqueda))
+                {
+                    string textoSeguro = textoBusqueda
+                        .Replace("'", "''")
+                        .Replace("[", "[[]")
+                        .Replace("]", "[]]")
+                        .Replace("*", "[*]")
+                        .Replace("%", "[%]");
+
+                    string filtroTexto = $"(Nombre LIKE '%{textoSeguro}%' OR " +
+                                         $"Apellido LIKE '%{textoSeguro}%' OR " +
+                                         $"RTN LIKE '%{textoSeguro}%' OR " +
+                                         $"Teléfono LIKE '%{textoSeguro}%')";
+
+                    condiciones.Add(filtroTexto);
+                }
+
+                
+                string rowFilter = string.Join(" AND ", condiciones);
+
+                dv.RowFilter = rowFilter;
+                dgvClientes.DataSource = dv;
+                dgvClientes.ClearSelection();
             }
-            else
+            catch (Exception ex)
             {
-                string textoSeguro = textoBusqueda
-                    .Replace("'", "''")
-                    .Replace("[", "[[]")
-                    .Replace("]", "[]]")
-                    .Replace("*", "[*]")
-                    .Replace("%", "[%]");
-
-                dv.RowFilter = string.Format(
-                    "({0}) AND (Nombre LIKE '%{1}%' OR Apellido LIKE '%{1}%' OR RTN LIKE '%{1}%' OR Teléfono LIKE '%{1}%')",
-                    filtroEstado, textoSeguro);
+                MessageBox.Show($"Error al aplicar filtro: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            dgvClientes.DataSource = dv;
-            dgvClientes.ClearSelection();
         }
 
         /// <summary>
@@ -154,13 +214,8 @@ namespace SG_BAMS
             dgvClientes.RowTemplate.Height = 32;
             dgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvClientes.ClearSelection();
-            txtBusqueda.TextChanged -= txtBusqueda_TextChanged;
 
-            ClsMensajeGuia.ActivarK(txtBusqueda);
-            txtBusqueda.TextChanged += txtBusqueda_TextChanged;
             this.ActiveControl = null;
-
-
         }
 
         /// <summary>
@@ -224,6 +279,10 @@ namespace SG_BAMS
         /// <param name="e">Los datos del evento.</param>
         private void txtBusqueda_TextChanged(object sender, EventArgs e)
         {
+            
+            if (txtBusqueda.Text == placeholderTexto)
+                return;
+
             AplicarFiltro();
         }
 

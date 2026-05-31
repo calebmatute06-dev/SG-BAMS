@@ -50,6 +50,7 @@ namespace SG_BAMS
             dgvFacturas.AllowUserToOrderColumns = false;
 
             txtBusqueda.KeyPress += (s, e) => ClsValidaciones.ValidarBusquedaAlfanumerica(e);
+            txtBusqueda.TextChanged += txtBusqueda_TextChanged;
         }
 
         /// <summary>
@@ -89,30 +90,30 @@ namespace SG_BAMS
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void FacturasAdm_Load(object sender, EventArgs e)
         {
-            new PlaceholderTextBox(txtBusqueda, "Ingrese un Nombre de Vendedor, Cliente, N.Factura, RTN");
+            new PlaceholderTextBox(txtBusqueda, placeholderText);
 
             btnFacturas.Enabled = false;
             btnFacturas.BackColor = Color.SkyBlue;
             btnFacturas.ForeColor = Color.White;
 
-           
+
             await CargarFactura();
 
-            
+
             dtpInicio.Value = DateTime.Today;
             dtpFin.Value = DateTime.Today;
 
-           
+
             ClsValidaciones.ValidarRangoFechas(dtpInicio, dtpFin);
 
-            
+
             dtpInicio.ValueChanged += (s, ev) => ValidarYFiltrar();
             dtpFin.ValueChanged += (s, ev) => ValidarYFiltrar();
 
-            
+
             ClsMensajeGuia.ActivarK(txtBusqueda);
 
-            
+
             dgvFacturas.BorderStyle = BorderStyle.None;
             dgvFacturas.BackgroundColor = Color.White;
             dgvFacturas.RowHeadersVisible = false;
@@ -141,7 +142,7 @@ namespace SG_BAMS
             dgvFacturas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvFacturas.ClearSelection();
 
-            
+
             FiltrarDatos();
         }
 
@@ -159,51 +160,54 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Filtrars the datos.
+        /// Filtrars the datos combinando texto y rango de fechas.
+        /// Ambos filtros se aplican simultáneamente con AND.
         /// </summary>
         private void FiltrarDatos()
         {
             if (datosFac == null) return;
 
-            DataView dv = datosFac.DefaultView;
-
-            string texto = txtBusqueda.Text.Trim();
-
-            
-            if (texto == placeholderText)
-            {
-                texto = "";
-            }
-
-            
-            string textoFiltro = !string.IsNullOrEmpty(texto) ?
-                texto.Replace("'", "''").Replace("[", "[[]").Replace("]", "[]]") : "";
-
-            
-            string fInicio = dtpInicio.Value.Date.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
-            string fFin = dtpFin.Value.Date.AddDays(1).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
-            string filtroFechas = $"[Fecha] >= #{fInicio}# AND [Fecha] < #{fFin}#";
-
-            string rowFilter = "";
-
-            
-            if (!string.IsNullOrEmpty(textoFiltro))
-            {
-               
-                rowFilter = $"({filtroFechas}) AND (Convert([Factura], 'System.String') LIKE '%{textoFiltro}%' OR " +
-                            $"[Vendedor] LIKE '%{textoFiltro}%' OR " +
-                            $"[Cliente] LIKE '%{textoFiltro}%' OR " +
-                            $"[Método de Pago] LIKE '%{textoFiltro}%' OR " +
-                            $"[RTN Cliente] LIKE '%{textoFiltro}%')";
-            }
-            else
-            {
-                
-                rowFilter = filtroFechas;
-            }
-
             try
             {
+                DataView dv = datosFac.DefaultView;
+
+                
+                string texto = txtBusqueda.Text?.Trim() ?? "";
+
+                
+                if (texto == placeholderText)
+                {
+                    texto = "";
+                }
+
+                var condiciones = new List<string>();
+
+                
+                string fInicio = dtpInicio.Value.Date.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+                string fFin = dtpFin.Value.Date.AddDays(1).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+                string filtroFechas = $"[Fecha] >= #{fInicio}# AND [Fecha] < #{fFin}#";
+                condiciones.Add($"({filtroFechas})");
+
+                
+                if (!string.IsNullOrWhiteSpace(texto))
+                {
+                   
+                    string textoFiltro = texto
+                        .Replace("'", "''")
+                        .Replace("[", "[[]")
+                        .Replace("]", "[]]");
+
+                    string filtroTexto = $"(Convert([Factura], 'System.String') LIKE '%{textoFiltro}%' OR " +
+                                         $"[Vendedor] LIKE '%{textoFiltro}%' OR " +
+                                         $"[Cliente] LIKE '%{textoFiltro}%' OR " +
+                                         $"[Método de Pago] LIKE '%{textoFiltro}%' OR " +
+                                         $"[RTN Cliente] LIKE '%{textoFiltro}%')";
+
+                    condiciones.Add(filtroTexto);
+                }
+
+                string rowFilter = string.Join(" AND ", condiciones);
+
                 dv.RowFilter = rowFilter;
                 dgvFacturas.DataSource = dv;
                 dgvFacturas.ClearSelection();
@@ -221,7 +225,7 @@ namespace SG_BAMS
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void txtBusqueda_TextChanged(object sender, EventArgs e)
         {
-           
+            // Si el texto es exactamente el placeholder, no filtrar
             if (txtBusqueda.Text == placeholderText)
                 return;
 
