@@ -97,7 +97,7 @@
             // dtpFechaPedido
             // 
             dtpFechaPedido.Enabled = false;
-            dtpFechaPedido.Location = new Point(719, 152);
+            dtpFechaPedido.Location = new Point(725, 63);
             dtpFechaPedido.Name = "dtpFechaPedido";
             dtpFechaPedido.Size = new Size(293, 218);
             dtpFechaPedido.TabIndex = 87;
@@ -135,7 +135,7 @@
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Arial Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(43, 243);
+            label6.Location = new Point(142, 252);
             label6.Name = "label6";
             label6.Size = new Size(128, 28);
             label6.TabIndex = 175;
@@ -147,7 +147,7 @@
             label7.BackColor = Color.Transparent;
             label7.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Navy;
-            label7.Location = new Point(720, 420);
+            label7.Location = new Point(813, 631);
             label7.Name = "label7";
             label7.Size = new Size(51, 24);
             label7.TabIndex = 176;
@@ -155,7 +155,7 @@
             // 
             // lblTotal
             // 
-            lblTotal.Location = new Point(766, 419);
+            lblTotal.Location = new Point(859, 630);
             lblTotal.Name = "lblTotal";
             lblTotal.Size = new Size(136, 31);
             lblTotal.StateCommon.ShortText.Color1 = Color.Navy;
@@ -169,7 +169,7 @@
             label8.BackColor = Color.Transparent;
             label8.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Navy;
-            label8.Location = new Point(785, 119);
+            label8.Location = new Point(807, 36);
             label8.Name = "label8";
             label8.Size = new Size(131, 24);
             label8.TabIndex = 180;
@@ -183,7 +183,8 @@
             txtNotaDetalle.Location = new Point(225, 216);
             txtNotaDetalle.Name = "txtNotaDetalle";
             txtNotaDetalle.Size = new Size(277, 33);
-            txtNotaDetalle.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtNotaDetalle.StateCommon.Back.Color1 = Color.White;
+            txtNotaDetalle.StateCommon.Border.Color1 = Color.Navy;
             txtNotaDetalle.StateCommon.Border.Rounding = 10F;
             txtNotaDetalle.TabIndex = 211;
             // 
@@ -195,8 +196,9 @@
             cmbProveedor.DropDownWidth = 300;
             cmbProveedor.Location = new Point(225, 165);
             cmbProveedor.Name = "cmbProveedor";
-            cmbProveedor.Size = new Size(312, 38);
-            cmbProveedor.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbProveedor.Size = new Size(312, 41);
+            cmbProveedor.StateCommon.ComboBox.Back.Color1 = Color.White;
+            cmbProveedor.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbProveedor.StateCommon.ComboBox.Border.Rounding = 20F;
             cmbProveedor.StateCommon.ComboBox.Content.Color1 = Color.Black;
             cmbProveedor.StateCommon.ComboBox.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -215,8 +217,9 @@
             cmbFormaPago.DropDownWidth = 300;
             cmbFormaPago.Location = new Point(225, 115);
             cmbFormaPago.Name = "cmbFormaPago";
-            cmbFormaPago.Size = new Size(219, 38);
-            cmbFormaPago.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbFormaPago.Size = new Size(219, 41);
+            cmbFormaPago.StateCommon.ComboBox.Back.Color1 = Color.White;
+            cmbFormaPago.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbFormaPago.StateCommon.ComboBox.Border.Rounding = 20F;
             cmbFormaPago.StateCommon.ComboBox.Content.Color1 = Color.Black;
             cmbFormaPago.StateCommon.ComboBox.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -228,7 +231,7 @@
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(557, 677);
+            btnAgregar.Location = new Point(702, 677);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnAgregar.OverrideDefault.Back.Color2 = Color.White;
@@ -297,7 +300,7 @@
             // 
             // btnQuitar
             // 
-            btnQuitar.Location = new Point(403, 677);
+            btnQuitar.Location = new Point(548, 677);
             btnQuitar.Name = "btnQuitar";
             btnQuitar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnQuitar.OverrideDefault.Back.Color2 = Color.White;
@@ -382,7 +385,7 @@
             // 
             dgvIngresarCompra.BackgroundColor = Color.SkyBlue;
             dgvIngresarCompra.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvIngresarCompra.Location = new Point(45, 273);
+            dgvIngresarCompra.Location = new Point(142, 284);
             dgvIngresarCompra.Margin = new Padding(3, 4, 3, 4);
             dgvIngresarCompra.Name = "dgvIngresarCompra";
             dgvIngresarCompra.RowHeadersWidth = 51;

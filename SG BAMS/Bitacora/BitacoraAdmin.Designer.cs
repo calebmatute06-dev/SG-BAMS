@@ -42,7 +42,6 @@
             panel3 = new Panel();
             panel4 = new Panel();
             panel2 = new Panel();
-            pictureBox2 = new PictureBox();
             btnRefresh = new Button();
             dtpHasta = new DateTimePicker();
             dtpDesde = new DateTimePicker();
@@ -64,7 +63,6 @@
             btnDeudores = new ReaLTaiizor.Controls.NightButton();
             btnMenu = new ReaLTaiizor.Controls.NightButton();
             txtBuscar = new Krypton.Toolkit.KryptonTextBox();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvBitacora).BeginInit();
             SuspendLayout();
             // 
@@ -74,7 +72,7 @@
             label10.BackColor = Color.Transparent;
             label10.Font = new Font("Arial", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Navy;
-            label10.Location = new Point(659, 49);
+            label10.Location = new Point(658, 59);
             label10.Name = "label10";
             label10.Size = new Size(269, 70);
             label10.TabIndex = 90;
@@ -156,22 +154,11 @@
             panel2.Size = new Size(1285, 24);
             panel2.TabIndex = 64;
             // 
-            // pictureBox2
-            // 
-            pictureBox2.BackColor = Color.Transparent;
-            pictureBox2.BackgroundImage = Properties.Resources.pdf;
-            pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox2.Location = new Point(678, 792);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(63, 60);
-            pictureBox2.TabIndex = 37;
-            pictureBox2.TabStop = false;
-            // 
             // btnRefresh
             // 
             btnRefresh.BackgroundImage = Properties.Resources.refresh;
             btnRefresh.BackgroundImageLayout = ImageLayout.Stretch;
-            btnRefresh.Location = new Point(1186, 152);
+            btnRefresh.Location = new Point(1189, 176);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.Size = new Size(66, 67);
             btnRefresh.TabIndex = 323;
@@ -180,7 +167,7 @@
             // 
             // dtpHasta
             // 
-            dtpHasta.Location = new Point(911, 189);
+            dtpHasta.Location = new Point(914, 213);
             dtpHasta.MaxDate = new DateTime(2100, 12, 31, 0, 0, 0, 0);
             dtpHasta.MinDate = new DateTime(2025, 1, 1, 0, 0, 0, 0);
             dtpHasta.Name = "dtpHasta";
@@ -190,7 +177,7 @@
             // 
             // dtpDesde
             // 
-            dtpDesde.Location = new Point(911, 156);
+            dtpDesde.Location = new Point(914, 180);
             dtpDesde.MaxDate = new DateTime(2100, 12, 31, 0, 0, 0, 0);
             dtpDesde.MinDate = new DateTime(2025, 1, 1, 0, 0, 0, 0);
             dtpDesde.Name = "dtpDesde";
@@ -205,7 +192,7 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(833, 155);
+            label4.Location = new Point(836, 179);
             label4.Name = "label4";
             label4.Size = new Size(75, 29);
             label4.TabIndex = 328;
@@ -217,7 +204,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(835, 189);
+            label3.Location = new Point(838, 213);
             label3.Name = "label3";
             label3.Size = new Size(69, 29);
             label3.TabIndex = 328;
@@ -225,7 +212,7 @@
             // 
             // btnExportar
             // 
-            btnExportar.Location = new Point(768, 788);
+            btnExportar.Location = new Point(713, 789);
             btnExportar.Name = "btnExportar";
             btnExportar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnExportar.OverrideDefault.Back.Color2 = Color.White;
@@ -243,7 +230,7 @@
             btnExportar.StatePressed.Back.Color2 = Color.Transparent;
             btnExportar.TabIndex = 329;
             btnExportar.Values.DropDownArrowColor = Color.Empty;
-            btnExportar.Values.Text = "Exportar";
+            btnExportar.Values.Text = "PDF";
             btnExportar.Click += btnExportar_Click;
             // 
             // dgvBitacora
@@ -293,7 +280,7 @@
             label5.BackColor = Color.White;
             label5.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(309, 171);
+            label5.Location = new Point(312, 195);
             label5.Name = "label5";
             label5.Size = new Size(88, 31);
             label5.TabIndex = 331;
@@ -578,11 +565,12 @@
             txtBuscar.CueHint.Color1 = Color.DimGray;
             txtBuscar.CueHint.CueHintText = "Busqueda por nombre de usuario y Modulo";
             txtBuscar.CueHint.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtBuscar.Location = new Point(393, 170);
+            txtBuscar.Location = new Point(396, 194);
             txtBuscar.Margin = new Padding(3, 4, 3, 4);
             txtBuscar.Name = "txtBuscar";
             txtBuscar.Size = new Size(417, 36);
-            txtBuscar.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtBuscar.StateCommon.Back.Color1 = Color.White;
+            txtBuscar.StateCommon.Border.Color1 = Color.Navy;
             txtBuscar.StateCommon.Border.Rounding = 10F;
             txtBuscar.StateCommon.Content.Color1 = Color.Black;
             txtBuscar.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -603,7 +591,6 @@
             Controls.Add(dtpHasta);
             Controls.Add(dtpDesde);
             Controls.Add(btnRefresh);
-            Controls.Add(pictureBox2);
             Controls.Add(label10);
             Controls.Add(kryptonButton14);
             Controls.Add(label1);
@@ -631,7 +618,6 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Bitacora";
             Load += Bitacora_Load;
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvBitacora).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -648,7 +634,6 @@
         private Panel panel4;
         private Panel panel2;
         private Krypton.Toolkit.KryptonDataGridView dgvBitacora1;
-        private PictureBox pictureBox2;
         private Button btnRefresh;
         private DateTimePicker dtpHasta;
         private DateTimePicker dtpDesde;

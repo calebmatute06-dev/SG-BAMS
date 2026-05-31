@@ -183,7 +183,8 @@
             txtPrecio.Location = new Point(175, 207);
             txtPrecio.Name = "txtPrecio";
             txtPrecio.Size = new Size(250, 39);
-            txtPrecio.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtPrecio.StateCommon.Back.Color1 = Color.White;
+            txtPrecio.StateCommon.Border.Color1 = Color.Navy;
             txtPrecio.StateCommon.Border.Rounding = 20F;
             txtPrecio.StateCommon.Content.Color1 = Color.Navy;
             txtPrecio.TabIndex = 221;
@@ -196,7 +197,8 @@
             txtNombre.Location = new Point(175, 155);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(250, 39);
-            txtNombre.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtNombre.StateCommon.Back.Color1 = Color.White;
+            txtNombre.StateCommon.Border.Color1 = Color.Navy;
             txtNombre.StateCommon.Border.Rounding = 20F;
             txtNombre.StateCommon.Content.Color1 = Color.Navy;
             txtNombre.StateNormal.Content.Color1 = Color.Navy;
@@ -209,7 +211,8 @@
             txtID.Name = "txtID";
             txtID.ReadOnly = true;
             txtID.Size = new Size(250, 39);
-            txtID.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtID.StateCommon.Back.Color1 = Color.White;
+            txtID.StateCommon.Border.Color1 = Color.Navy;
             txtID.StateCommon.Border.Rounding = 20F;
             txtID.StateCommon.Content.Color1 = Color.Navy;
             txtID.TabIndex = 219;
@@ -293,7 +296,8 @@
             txtCodigoBarra.Location = new Point(175, 459);
             txtCodigoBarra.Name = "txtCodigoBarra";
             txtCodigoBarra.Size = new Size(250, 39);
-            txtCodigoBarra.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtCodigoBarra.StateCommon.Back.Color1 = Color.White;
+            txtCodigoBarra.StateCommon.Border.Color1 = Color.Navy;
             txtCodigoBarra.StateCommon.Border.Rounding = 20F;
             txtCodigoBarra.StateCommon.Content.Color1 = Color.Navy;
             txtCodigoBarra.TabIndex = 233;
@@ -322,7 +326,8 @@
             cmbModelo.Location = new Point(175, 357);
             cmbModelo.Name = "cmbModelo";
             cmbModelo.Size = new Size(250, 38);
-            cmbModelo.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbModelo.StateCommon.ComboBox.Back.Color1 = Color.White;
+            cmbModelo.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbModelo.StateCommon.ComboBox.Border.Rounding = 20F;
             cmbModelo.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbModelo.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
@@ -339,7 +344,8 @@
             cmbTipo.Location = new Point(175, 311);
             cmbTipo.Name = "cmbTipo";
             cmbTipo.Size = new Size(250, 38);
-            cmbTipo.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbTipo.StateCommon.ComboBox.Back.Color1 = Color.White;
+            cmbTipo.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbTipo.StateCommon.ComboBox.Border.Rounding = 20F;
             cmbTipo.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbTipo.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
@@ -356,7 +362,8 @@
             cmbMarca.Location = new Point(175, 259);
             cmbMarca.Name = "cmbMarca";
             cmbMarca.Size = new Size(250, 38);
-            cmbMarca.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbMarca.StateCommon.ComboBox.Back.Color1 = Color.White;
+            cmbMarca.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbMarca.StateCommon.ComboBox.Border.Rounding = 20F;
             cmbMarca.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbMarca.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
@@ -373,7 +380,8 @@
             cmbEstado.Location = new Point(175, 409);
             cmbEstado.Name = "cmbEstado";
             cmbEstado.Size = new Size(250, 38);
-            cmbEstado.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbEstado.StateCommon.ComboBox.Back.Color1 = Color.White;
+            cmbEstado.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbEstado.StateCommon.ComboBox.Border.Rounding = 20F;
             cmbEstado.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbEstado.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
@@ -390,7 +398,8 @@
             cmbProveedor.Location = new Point(175, 509);
             cmbProveedor.Name = "cmbProveedor";
             cmbProveedor.Size = new Size(250, 38);
-            cmbProveedor.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbProveedor.StateCommon.ComboBox.Back.Color1 = Color.White;
+            cmbProveedor.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbProveedor.StateCommon.ComboBox.Border.Rounding = 20F;
             cmbProveedor.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbProveedor.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
@@ -418,7 +427,8 @@
             txtStock.Minimum = new decimal(new int[] { 0, 0, 0, 0 });
             txtStock.Name = "txtStock";
             txtStock.Size = new Size(249, 35);
-            txtStock.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtStock.StateCommon.Back.Color1 = Color.White;
+            txtStock.StateCommon.Border.Color1 = Color.Navy;
             txtStock.StateCommon.Border.Rounding = 10F;
             txtStock.StateCommon.Content.Color1 = Color.Navy;
             txtStock.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);

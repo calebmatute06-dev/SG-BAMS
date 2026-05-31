@@ -210,10 +210,11 @@
             // 
             txtNombre.CueHint.Color1 = Color.Gray;
             txtNombre.CueHint.CueHintText = "Nombre producto";
-            txtNombre.Location = new Point(176, 132);
+            txtNombre.Location = new Point(181, 132);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(250, 39);
-            txtNombre.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtNombre.StateCommon.Back.Color1 = Color.White;
+            txtNombre.StateCommon.Border.Color1 = Color.Navy;
             txtNombre.StateCommon.Border.Rounding = 20F;
             txtNombre.StateCommon.Content.Color1 = Color.Gray;
             txtNombre.StateNormal.Content.Color1 = Color.Navy;
@@ -224,10 +225,11 @@
             // 
             txtPrecio.CueHint.Color1 = Color.Gray;
             txtPrecio.CueHint.CueHintText = "Precio del producto ingresado";
-            txtPrecio.Location = new Point(177, 184);
+            txtPrecio.Location = new Point(182, 184);
             txtPrecio.Name = "txtPrecio";
             txtPrecio.Size = new Size(250, 39);
-            txtPrecio.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtPrecio.StateCommon.Back.Color1 = Color.White;
+            txtPrecio.StateCommon.Border.Color1 = Color.Navy;
             txtPrecio.StateCommon.Border.Rounding = 20F;
             txtPrecio.StateCommon.Content.Color1 = Color.Gray;
             txtPrecio.StateNormal.Content.Color1 = Color.Navy;
@@ -238,10 +240,11 @@
             // txtCodigoBarra
             // 
             txtCodigoBarra.CueHint.CueHintText = "Ingrese o Escanee el codigo";
-            txtCodigoBarra.Location = new Point(177, 387);
+            txtCodigoBarra.Location = new Point(182, 387);
             txtCodigoBarra.Name = "txtCodigoBarra";
             txtCodigoBarra.Size = new Size(250, 39);
-            txtCodigoBarra.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtCodigoBarra.StateCommon.Back.Color1 = Color.White;
+            txtCodigoBarra.StateCommon.Border.Color1 = Color.Navy;
             txtCodigoBarra.StateCommon.Border.Rounding = 20F;
             txtCodigoBarra.StateCommon.Content.Color1 = Color.Gray;
             txtCodigoBarra.StateNormal.Content.Color1 = Color.Navy;
@@ -268,10 +271,11 @@
             cmbMarca.CueHint.CueHintText = "Seleccione marca";
             cmbMarca.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbMarca.DropDownWidth = 300;
-            cmbMarca.Location = new Point(176, 236);
+            cmbMarca.Location = new Point(181, 236);
             cmbMarca.Name = "cmbMarca";
             cmbMarca.Size = new Size(250, 38);
-            cmbMarca.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbMarca.StateCommon.ComboBox.Back.Color1 = Color.White;
+            cmbMarca.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbMarca.StateCommon.ComboBox.Border.Rounding = 20F;
             cmbMarca.StateCommon.ComboBox.Content.Color1 = Color.Gray;
             cmbMarca.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
@@ -287,10 +291,11 @@
             cmbTipo.CueHint.CueHintText = "Seleccione tipo";
             cmbTipo.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbTipo.DropDownWidth = 300;
-            cmbTipo.Location = new Point(176, 284);
+            cmbTipo.Location = new Point(181, 284);
             cmbTipo.Name = "cmbTipo";
             cmbTipo.Size = new Size(250, 38);
-            cmbTipo.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbTipo.StateCommon.ComboBox.Back.Color1 = Color.White;
+            cmbTipo.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbTipo.StateCommon.ComboBox.Border.Rounding = 20F;
             cmbTipo.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbTipo.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
@@ -304,10 +309,11 @@
             cmbModelo.CueHint.CueHintText = "Seleccione modelo";
             cmbModelo.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbModelo.DropDownWidth = 300;
-            cmbModelo.Location = new Point(176, 336);
+            cmbModelo.Location = new Point(181, 336);
             cmbModelo.Name = "cmbModelo";
             cmbModelo.Size = new Size(250, 38);
-            cmbModelo.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbModelo.StateCommon.ComboBox.Back.Color1 = Color.White;
+            cmbModelo.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbModelo.StateCommon.ComboBox.Border.Rounding = 20F;
             cmbModelo.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbModelo.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
@@ -321,10 +327,11 @@
             cmbProveedor.CueHint.CueHintText = "Seleccione Proveedor";
             cmbProveedor.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbProveedor.DropDownWidth = 300;
-            cmbProveedor.Location = new Point(176, 437);
+            cmbProveedor.Location = new Point(181, 437);
             cmbProveedor.Name = "cmbProveedor";
             cmbProveedor.Size = new Size(250, 38);
-            cmbProveedor.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbProveedor.StateCommon.ComboBox.Back.Color1 = Color.White;
+            cmbProveedor.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbProveedor.StateCommon.ComboBox.Border.Rounding = 20F;
             cmbProveedor.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbProveedor.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
@@ -347,12 +354,13 @@
             // txtStock
             // 
             txtStock.Increment = new decimal(new int[] { 1, 0, 0, 0 });
-            txtStock.Location = new Point(177, 489);
+            txtStock.Location = new Point(182, 489);
             txtStock.Maximum = new decimal(new int[] { 99999, 0, 0, 0 });
             txtStock.Minimum = new decimal(new int[] { 0, 0, 0, 0 });
             txtStock.Name = "txtStock";
             txtStock.Size = new Size(250, 35);
-            txtStock.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtStock.StateCommon.Back.Color1 = Color.White;
+            txtStock.StateCommon.Border.Color1 = Color.Navy;
             txtStock.StateCommon.Border.Rounding = 10F;
             txtStock.StateCommon.Content.Color1 = Color.Navy;
             txtStock.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);

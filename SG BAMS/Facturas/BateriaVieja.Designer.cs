@@ -61,8 +61,9 @@
             txtPrecio.Location = new Point(251, 184);
             txtPrecio.Margin = new Padding(3, 4, 3, 4);
             txtPrecio.Name = "txtPrecio";
-            txtPrecio.Size = new Size(197, 37);
-            txtPrecio.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtPrecio.Size = new Size(197, 36);
+            txtPrecio.StateCommon.Back.Color1 = Color.White;
+            txtPrecio.StateCommon.Border.Color1 = Color.Navy;
             txtPrecio.StateCommon.Border.Rounding = 10F;
             txtPrecio.StateCommon.Content.Color1 = Color.Gray;
             txtPrecio.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -78,7 +79,8 @@
             cmbBaterias.Location = new Point(251, 123);
             cmbBaterias.Name = "cmbBaterias";
             cmbBaterias.Size = new Size(197, 38);
-            cmbBaterias.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbBaterias.StateCommon.ComboBox.Back.Color1 = Color.White;
+            cmbBaterias.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbBaterias.StateCommon.ComboBox.Border.Rounding = 20F;
             cmbBaterias.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbBaterias.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
@@ -199,8 +201,9 @@
             txtCantidad.Location = new Point(251, 237);
             txtCantidad.Margin = new Padding(3, 4, 3, 4);
             txtCantidad.Name = "txtCantidad";
-            txtCantidad.Size = new Size(197, 37);
-            txtCantidad.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtCantidad.Size = new Size(197, 36);
+            txtCantidad.StateCommon.Back.Color1 = Color.White;
+            txtCantidad.StateCommon.Border.Color1 = Color.Navy;
             txtCantidad.StateCommon.Border.Rounding = 10F;
             txtCantidad.StateCommon.Content.Color1 = Color.Gray;
             txtCantidad.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -260,7 +263,8 @@
             txtTotal.Margin = new Padding(3, 4, 3, 4);
             txtTotal.Name = "txtTotal";
             txtTotal.Size = new Size(119, 37);
-            txtTotal.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtTotal.StateCommon.Back.Color1 = Color.White;
+            txtTotal.StateCommon.Border.Color1 = Color.Navy;
             txtTotal.StateCommon.Border.Rounding = 10F;
             txtTotal.StateCommon.Content.Color1 = Color.Navy;
             txtTotal.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -270,11 +274,12 @@
             // 
             // txtCantidadTotal
             // 
-            txtCantidadTotal.Location = new Point(795, 396);
+            txtCantidadTotal.Location = new Point(795, 398);
             txtCantidadTotal.Margin = new Padding(3, 4, 3, 4);
             txtCantidadTotal.Name = "txtCantidadTotal";
             txtCantidadTotal.Size = new Size(79, 37);
-            txtCantidadTotal.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtCantidadTotal.StateCommon.Back.Color1 = Color.White;
+            txtCantidadTotal.StateCommon.Border.Color1 = Color.Navy;
             txtCantidadTotal.StateCommon.Border.Rounding = 10F;
             txtCantidadTotal.StateCommon.Content.Color1 = Color.Navy;
             txtCantidadTotal.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);

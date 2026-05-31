@@ -150,7 +150,8 @@
             txtDireccion.MaxLength = 70;
             txtDireccion.Name = "txtDireccion";
             txtDireccion.Size = new Size(250, 39);
-            txtDireccion.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtDireccion.StateCommon.Back.Color1 = Color.White;
+            txtDireccion.StateCommon.Border.Color1 = Color.Navy;
             txtDireccion.StateCommon.Border.Rounding = 20F;
             txtDireccion.StateCommon.Content.Color1 = Color.Navy;
             txtDireccion.TabIndex = 202;
@@ -176,7 +177,8 @@
             txtRTN.MaxLength = 14;
             txtRTN.Name = "txtRTN";
             txtRTN.Size = new Size(250, 39);
-            txtRTN.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtRTN.StateCommon.Back.Color1 = Color.White;
+            txtRTN.StateCommon.Border.Color1 = Color.Navy;
             txtRTN.StateCommon.Border.Rounding = 20F;
             txtRTN.StateCommon.Content.Color1 = Color.Navy;
             txtRTN.TabIndex = 200;
@@ -203,7 +205,8 @@
             txtTelefono.MaxLength = 8;
             txtTelefono.Name = "txtTelefono";
             txtTelefono.Size = new Size(250, 39);
-            txtTelefono.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtTelefono.StateCommon.Back.Color1 = Color.White;
+            txtTelefono.StateCommon.Border.Color1 = Color.Navy;
             txtTelefono.StateCommon.Border.Rounding = 20F;
             txtTelefono.StateCommon.Content.Color1 = Color.Navy;
             txtTelefono.TabIndex = 197;
@@ -218,7 +221,8 @@
             txtNombre.MaxLength = 70;
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(250, 39);
-            txtNombre.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtNombre.StateCommon.Back.Color1 = Color.White;
+            txtNombre.StateCommon.Border.Color1 = Color.Navy;
             txtNombre.StateCommon.Border.Rounding = 20F;
             txtNombre.StateCommon.Content.Color1 = Color.Navy;
             txtNombre.TabIndex = 196;
@@ -268,7 +272,8 @@
             cmbClasificacion.Location = new Point(174, 443);
             cmbClasificacion.Name = "cmbClasificacion";
             cmbClasificacion.Size = new Size(250, 38);
-            cmbClasificacion.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbClasificacion.StateCommon.ComboBox.Back.Color1 = Color.White;
+            cmbClasificacion.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbClasificacion.StateCommon.ComboBox.Border.Rounding = 20F;
             cmbClasificacion.StateCommon.ComboBox.Content.Color1 = Color.Navy;
             cmbClasificacion.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
@@ -286,7 +291,8 @@
             cmbEstado.Location = new Point(171, 384);
             cmbEstado.Name = "cmbEstado";
             cmbEstado.Size = new Size(250, 38);
-            cmbEstado.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbEstado.StateCommon.ComboBox.Back.Color1 = Color.White;
+            cmbEstado.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbEstado.StateCommon.ComboBox.Border.Rounding = 20F;
             cmbEstado.StateCommon.ComboBox.Content.Color1 = Color.Navy;
             cmbEstado.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
@@ -326,7 +332,8 @@
             txtID.Location = new Point(173, 107);
             txtID.Name = "txtID";
             txtID.Size = new Size(250, 39);
-            txtID.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtID.StateCommon.Back.Color1 = Color.White;
+            txtID.StateCommon.Border.Color1 = Color.Navy;
             txtID.StateCommon.Border.Rounding = 20F;
             txtID.StateCommon.Content.Color1 = Color.Navy;
             txtID.TabIndex = 196;

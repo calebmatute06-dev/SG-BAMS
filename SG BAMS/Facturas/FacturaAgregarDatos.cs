@@ -509,5 +509,10 @@ namespace SG_BAMS
                 dgvProductos.Rows[e.RowIndex].Cells["cantidad"].Style.BackColor = Color.LightBlue;
             }
         }
+
+        private void txtExento_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

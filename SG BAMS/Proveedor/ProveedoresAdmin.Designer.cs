@@ -61,7 +61,8 @@
             txtBuscar.Location = new Point(443, 171);
             txtBuscar.Name = "txtBuscar";
             txtBuscar.Size = new Size(571, 39);
-            txtBuscar.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtBuscar.StateCommon.Back.Color1 = Color.White;
+            txtBuscar.StateCommon.Border.Color1 = Color.Navy;
             txtBuscar.StateCommon.Border.Rounding = 20F;
             txtBuscar.StateCommon.Content.Color1 = Color.Gray;
             txtBuscar.TabIndex = 113;

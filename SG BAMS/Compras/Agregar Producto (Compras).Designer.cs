@@ -204,7 +204,8 @@
             numCantidad.Minimum = new decimal(new int[] { 0, 0, 0, 0 });
             numCantidad.Name = "numCantidad";
             numCantidad.Size = new Size(150, 32);
-            numCantidad.StateCommon.Back.Color1 = Color.SkyBlue;
+            numCantidad.StateCommon.Back.Color1 = Color.White;
+            numCantidad.StateCommon.Border.Color1 = Color.Navy;
             numCantidad.StateCommon.Border.Rounding = 10F;
             numCantidad.StateCommon.Content.Color1 = Color.Navy;
             numCantidad.TabIndex = 168;
@@ -218,7 +219,8 @@
             txtPrecio.Location = new Point(211, 296);
             txtPrecio.Name = "txtPrecio";
             txtPrecio.Size = new Size(184, 33);
-            txtPrecio.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtPrecio.StateCommon.Back.Color1 = Color.White;
+            txtPrecio.StateCommon.Border.Color1 = Color.Navy;
             txtPrecio.StateCommon.Border.Rounding = 10F;
             txtPrecio.TabIndex = 212;
             txtPrecio.KeyPress += txtPrecio_KeyPress;
@@ -233,7 +235,8 @@
             cmbProductos.Location = new Point(160, 185);
             cmbProductos.Name = "cmbProductos";
             cmbProductos.Size = new Size(349, 32);
-            cmbProductos.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbProductos.StateCommon.ComboBox.Back.Color1 = Color.White;
+            cmbProductos.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbProductos.StateCommon.ComboBox.Border.Rounding = 10F;
             cmbProductos.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbProductos.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
@@ -273,7 +276,8 @@
             txtCodigo.Location = new Point(144, 137);
             txtCodigo.Name = "txtCodigo";
             txtCodigo.Size = new Size(216, 36);
-            txtCodigo.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtCodigo.StateCommon.Back.Color1 = Color.White;
+            txtCodigo.StateCommon.Border.Color1 = Color.Navy;
             txtCodigo.StateCommon.Border.Rounding = 10F;
             txtCodigo.StateCommon.Content.Color1 = Color.Black;
             txtCodigo.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);

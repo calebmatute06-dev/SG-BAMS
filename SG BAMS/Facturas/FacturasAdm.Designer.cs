@@ -85,7 +85,7 @@
             // 
             // kryptonButton14
             // 
-            kryptonButton14.Location = new Point(453, 288);
+            kryptonButton14.Location = new Point(434, 292);
             kryptonButton14.Name = "kryptonButton14";
             kryptonButton14.Size = new Size(0, 0);
             kryptonButton14.StateCommon.Border.Rounding = 100F;
@@ -191,7 +191,7 @@
             // 
             // dtpInicio
             // 
-            dtpInicio.Location = new Point(327, 219);
+            dtpInicio.Location = new Point(1167, 214);
             dtpInicio.Margin = new Padding(3, 4, 3, 4);
             dtpInicio.Name = "dtpInicio";
             dtpInicio.Size = new Size(253, 27);
@@ -200,7 +200,7 @@
             // dtpFin
             // 
             dtpFin.CalendarForeColor = Color.Navy;
-            dtpFin.Location = new Point(602, 220);
+            dtpFin.Location = new Point(1167, 282);
             dtpFin.Margin = new Padding(3, 4, 3, 4);
             dtpFin.Name = "dtpFin";
             dtpFin.Size = new Size(253, 27);
@@ -220,11 +220,12 @@
             // txtBusqueda
             // 
             txtBusqueda.CueHint.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtBusqueda.Location = new Point(629, 265);
+            txtBusqueda.Location = new Point(455, 273);
             txtBusqueda.Margin = new Padding(3, 4, 3, 4);
             txtBusqueda.Name = "txtBusqueda";
-            txtBusqueda.Size = new Size(632, 36);
-            txtBusqueda.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtBusqueda.Size = new Size(691, 36);
+            txtBusqueda.StateCommon.Back.Color1 = Color.White;
+            txtBusqueda.StateCommon.Border.Color1 = Color.Navy;
             txtBusqueda.StateCommon.Border.Rounding = 10F;
             txtBusqueda.StateCommon.Content.Color1 = Color.Gray;
             txtBusqueda.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0, true);
@@ -237,7 +238,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial Narrow", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(323, 128);
+            label3.Location = new Point(1239, 132);
             label3.Name = "label3";
             label3.Size = new Size(114, 46);
             label3.TabIndex = 324;
@@ -249,7 +250,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(327, 183);
+            label5.Location = new Point(1167, 180);
             label5.Name = "label5";
             label5.Size = new Size(66, 29);
             label5.TabIndex = 329;
@@ -260,7 +261,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(602, 183);
+            label6.Location = new Point(1167, 248);
             label6.Name = "label6";
             label6.Size = new Size(69, 32);
             label6.TabIndex = 330;
@@ -270,7 +271,7 @@
             // 
             BtnRefrescar.BackgroundImage = Properties.Resources.refresh;
             BtnRefrescar.BackgroundImageLayout = ImageLayout.Stretch;
-            BtnRefrescar.Location = new Point(1267, 276);
+            BtnRefrescar.Location = new Point(1462, 265);
             BtnRefrescar.Name = "BtnRefrescar";
             BtnRefrescar.Size = new Size(65, 44);
             BtnRefrescar.TabIndex = 331;
@@ -283,7 +284,7 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(506, 272);
+            label4.Location = new Point(332, 276);
             label4.Name = "label4";
             label4.Size = new Size(117, 32);
             label4.TabIndex = 353;

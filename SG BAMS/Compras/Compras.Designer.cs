@@ -159,7 +159,7 @@
             label10.BackColor = Color.Transparent;
             label10.Font = new Font("Arial", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Navy;
-            label10.Location = new Point(672, 35);
+            label10.Location = new Point(625, 48);
             label10.Name = "label10";
             label10.Size = new Size(289, 70);
             label10.TabIndex = 200;
@@ -580,7 +580,8 @@
             txtBuscarCompra.Margin = new Padding(3, 4, 3, 4);
             txtBuscarCompra.Name = "txtBuscarCompra";
             txtBuscarCompra.Size = new Size(384, 36);
-            txtBuscarCompra.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtBuscarCompra.StateCommon.Back.Color1 = Color.White;
+            txtBuscarCompra.StateCommon.Border.Color1 = Color.Navy;
             txtBuscarCompra.StateCommon.Border.Rounding = 10F;
             txtBuscarCompra.StateCommon.Content.Color1 = Color.Black;
             txtBuscarCompra.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);

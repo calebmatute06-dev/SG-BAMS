@@ -72,22 +72,24 @@
             // 
             // txtUsu
             // 
-            txtUsu.Location = new Point(503, 273);
+            txtUsu.Location = new Point(478, 277);
             txtUsu.Name = "txtUsu";
-            txtUsu.Size = new Size(270, 44);
-            txtUsu.StateCommon.Back.Color1 = Color.SkyBlue;
-            txtUsu.StateCommon.Border.Rounding = 20F;
+            txtUsu.Size = new Size(289, 36);
+            txtUsu.StateCommon.Back.Color1 = Color.White;
+            txtUsu.StateCommon.Border.Color1 = Color.Navy;
+            txtUsu.StateCommon.Border.Rounding = 5F;
             txtUsu.StateCommon.Content.Color1 = Color.Navy;
             txtUsu.StateCommon.Content.Font = new Font("Arial Narrow", 12.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtUsu.TabIndex = 40;
             // 
             // txtCon
             // 
-            txtCon.Location = new Point(503, 347);
+            txtCon.Location = new Point(478, 348);
             txtCon.Name = "txtCon";
-            txtCon.Size = new Size(270, 44);
-            txtCon.StateCommon.Back.Color1 = Color.SkyBlue;
-            txtCon.StateCommon.Border.Rounding = 20F;
+            txtCon.Size = new Size(289, 36);
+            txtCon.StateCommon.Back.Color1 = Color.White;
+            txtCon.StateCommon.Border.Color1 = Color.Navy;
+            txtCon.StateCommon.Border.Rounding = 5F;
             txtCon.StateCommon.Content.Color1 = Color.Navy;
             txtCon.StateCommon.Content.Font = new Font("Arial Narrow", 12.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtCon.TabIndex = 41;
@@ -188,7 +190,7 @@
             Nombre.BackColor = Color.Transparent;
             Nombre.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             Nombre.ForeColor = Color.Navy;
-            Nombre.Location = new Point(392, 283);
+            Nombre.Location = new Point(367, 280);
             Nombre.Name = "Nombre";
             Nombre.Size = new Size(107, 27);
             Nombre.TabIndex = 339;
@@ -200,7 +202,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(352, 355);
+            label1.Location = new Point(327, 352);
             label1.Name = "label1";
             label1.Size = new Size(148, 27);
             label1.TabIndex = 339;

@@ -120,7 +120,7 @@
             // 
             // kryptonButton15
             // 
-            kryptonButton15.Location = new Point(837, 799);
+            kryptonButton15.Location = new Point(809, 798);
             kryptonButton15.Name = "kryptonButton15";
             kryptonButton15.OverrideDefault.Back.Color1 = Color.SkyBlue;
             kryptonButton15.OverrideDefault.Back.Color2 = Color.White;
@@ -143,7 +143,7 @@
             // 
             // txtBuscarNombre
             // 
-            txtBuscarNombre.BackColor = Color.SkyBlue;
+            txtBuscarNombre.BackColor = Color.White;
             txtBuscarNombre.BorderStyle = BorderStyle.None;
             txtBuscarNombre.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtBuscarNombre.ForeColor = Color.Gray;
@@ -158,7 +158,8 @@
             // 
             kryptonGroup5.Location = new Point(450, 201);
             kryptonGroup5.Size = new Size(1016, 52);
-            kryptonGroup5.StateCommon.Back.Color1 = Color.SkyBlue;
+            kryptonGroup5.StateCommon.Back.Color1 = Color.White;
+            kryptonGroup5.StateCommon.Border.Color1 = Color.Navy;
             kryptonGroup5.StateCommon.Border.Rounding = 70F;
             kryptonGroup5.TabIndex = 165;
             // 
@@ -223,7 +224,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(807, 44);
+            label3.Location = new Point(793, 41);
             label3.Name = "label3";
             label3.Size = new Size(310, 68);
             label3.TabIndex = 173;

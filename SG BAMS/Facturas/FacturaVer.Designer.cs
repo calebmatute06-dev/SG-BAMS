@@ -63,10 +63,11 @@
             cmbPago.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbPago.DropDownWidth = 300;
             cmbPago.Enabled = false;
-            cmbPago.Location = new Point(232, 543);
+            cmbPago.Location = new Point(443, 583);
             cmbPago.Name = "cmbPago";
-            cmbPago.Size = new Size(167, 38);
-            cmbPago.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbPago.Size = new Size(167, 39);
+            cmbPago.StateCommon.ComboBox.Back.Color1 = Color.White;
+            cmbPago.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbPago.StateCommon.ComboBox.Border.Rounding = 20F;
             cmbPago.StateCommon.ComboBox.Content.Color1 = Color.Black;
             cmbPago.StateCommon.ComboBox.Content.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -78,11 +79,12 @@
             // 
             // txtBateriaVieja
             // 
-            txtBateriaVieja.Location = new Point(232, 489);
+            txtBateriaVieja.Location = new Point(443, 529);
             txtBateriaVieja.Margin = new Padding(3, 4, 3, 4);
             txtBateriaVieja.Name = "txtBateriaVieja";
             txtBateriaVieja.Size = new Size(197, 36);
-            txtBateriaVieja.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtBateriaVieja.StateCommon.Back.Color1 = Color.White;
+            txtBateriaVieja.StateCommon.Border.Color1 = Color.Navy;
             txtBateriaVieja.StateCommon.Border.Rounding = 10F;
             txtBateriaVieja.StateCommon.Content.Color1 = Color.Black;
             txtBateriaVieja.StateCommon.Content.Font = new Font("Arial Narrow", 12F);
@@ -94,7 +96,8 @@
             txtCliente.Margin = new Padding(3, 4, 3, 4);
             txtCliente.Name = "txtCliente";
             txtCliente.Size = new Size(249, 36);
-            txtCliente.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtCliente.StateCommon.Back.Color1 = Color.White;
+            txtCliente.StateCommon.Border.Color1 = Color.Navy;
             txtCliente.StateCommon.Border.Rounding = 10F;
             txtCliente.StateCommon.Content.Color1 = Color.Navy;
             txtCliente.StateCommon.Content.Font = new Font("Arial Narrow", 12F);
@@ -103,7 +106,7 @@
             // fechaDT
             // 
             fechaDT.Enabled = false;
-            fechaDT.Location = new Point(809, 232);
+            fechaDT.Location = new Point(777, 61);
             fechaDT.Margin = new Padding(10, 12, 10, 12);
             fechaDT.MaxSelectionCount = 1;
             fechaDT.Name = "fechaDT";
@@ -111,7 +114,7 @@
             // 
             // BtnSalir
             // 
-            BtnSalir.Location = new Point(440, 592);
+            BtnSalir.Location = new Point(49, 598);
             BtnSalir.Name = "BtnSalir";
             BtnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             BtnSalir.OverrideDefault.Back.Color2 = Color.White;
@@ -142,11 +145,12 @@
             // 
             // txtTotal
             // 
-            txtTotal.Location = new Point(809, 567);
+            txtTotal.Location = new Point(806, 615);
             txtTotal.Margin = new Padding(3, 4, 3, 4);
             txtTotal.Name = "txtTotal";
             txtTotal.Size = new Size(110, 37);
-            txtTotal.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtTotal.StateCommon.Back.Color1 = Color.White;
+            txtTotal.StateCommon.Border.Color1 = Color.Navy;
             txtTotal.StateCommon.Border.Rounding = 10F;
             txtTotal.StateCommon.Content.Color1 = Color.Navy;
             txtTotal.StateCommon.Content.Font = new Font("Arial Narrow", 12F);
@@ -167,7 +171,7 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(736, 576);
+            label2.Location = new Point(733, 624);
             label2.Name = "label2";
             label2.Size = new Size(74, 27);
             label2.TabIndex = 329;
@@ -179,7 +183,7 @@
             label7.BackColor = Color.Transparent;
             label7.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Navy;
-            label7.Location = new Point(885, 191);
+            label7.Location = new Point(881, 28);
             label7.Name = "label7";
             label7.Size = new Size(80, 27);
             label7.TabIndex = 333;
@@ -191,7 +195,7 @@
             label9.BackColor = Color.Transparent;
             label9.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label9.ForeColor = Color.Navy;
-            label9.Location = new Point(49, 551);
+            label9.Location = new Point(260, 591);
             label9.Name = "label9";
             label9.Size = new Size(183, 27);
             label9.TabIndex = 332;
@@ -203,7 +207,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(50, 497);
+            label1.Location = new Point(261, 537);
             label1.Name = "label1";
             label1.Size = new Size(159, 27);
             label1.TabIndex = 331;
@@ -262,7 +266,7 @@
             // 
             dgvFacturas.BackgroundColor = Color.SkyBlue;
             dgvFacturas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvFacturas.Location = new Point(43, 197);
+            dgvFacturas.Location = new Point(49, 226);
             dgvFacturas.Name = "dgvFacturas";
             dgvFacturas.RowHeadersWidth = 51;
             dgvFacturas.Size = new Size(721, 267);
@@ -274,7 +278,7 @@
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(771, 116);
+            label6.Location = new Point(50, 78);
             label6.Name = "label6";
             label6.Size = new Size(124, 35);
             label6.TabIndex = 346;
@@ -286,7 +290,7 @@
             lblFactura.BackColor = Color.Transparent;
             lblFactura.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblFactura.ForeColor = Color.Navy;
-            lblFactura.Location = new Point(896, 116);
+            lblFactura.Location = new Point(175, 78);
             lblFactura.Name = "lblFactura";
             lblFactura.Size = new Size(23, 35);
             lblFactura.TabIndex = 347;
@@ -294,11 +298,12 @@
             // 
             // txtSubtotal
             // 
-            txtSubtotal.Location = new Point(809, 464);
+            txtSubtotal.Location = new Point(806, 512);
             txtSubtotal.Margin = new Padding(3, 4, 3, 4);
             txtSubtotal.Name = "txtSubtotal";
             txtSubtotal.Size = new Size(110, 37);
-            txtSubtotal.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtSubtotal.StateCommon.Back.Color1 = Color.White;
+            txtSubtotal.StateCommon.Border.Color1 = Color.Navy;
             txtSubtotal.StateCommon.Border.Rounding = 10F;
             txtSubtotal.StateCommon.Content.Color1 = Color.Navy;
             txtSubtotal.StateCommon.Content.Font = new Font("Arial Narrow", 12F);
@@ -311,7 +316,7 @@
             label8.BackColor = Color.Transparent;
             label8.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label8.ForeColor = Color.Navy;
-            label8.Location = new Point(695, 479);
+            label8.Location = new Point(692, 527);
             label8.Name = "label8";
             label8.Size = new Size(113, 27);
             label8.TabIndex = 350;
@@ -319,11 +324,12 @@
             // 
             // txtRebaja
             // 
-            txtRebaja.Location = new Point(809, 516);
+            txtRebaja.Location = new Point(806, 564);
             txtRebaja.Margin = new Padding(3, 4, 3, 4);
             txtRebaja.Name = "txtRebaja";
             txtRebaja.Size = new Size(110, 37);
-            txtRebaja.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtRebaja.StateCommon.Back.Color1 = Color.White;
+            txtRebaja.StateCommon.Border.Color1 = Color.Navy;
             txtRebaja.StateCommon.Border.Rounding = 10F;
             txtRebaja.StateCommon.Content.Color1 = Color.Navy;
             txtRebaja.StateCommon.Content.Font = new Font("Arial Narrow", 12F);
@@ -336,7 +342,7 @@
             label10.BackColor = Color.Transparent;
             label10.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label10.ForeColor = Color.Navy;
-            label10.Location = new Point(662, 528);
+            label10.Location = new Point(659, 576);
             label10.Name = "label10";
             label10.Size = new Size(153, 27);
             label10.TabIndex = 348;
@@ -348,7 +354,7 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(981, 621);
+            label5.Location = new Point(965, 618);
             label5.Name = "label5";
             label5.Size = new Size(102, 35);
             label5.TabIndex = 352;

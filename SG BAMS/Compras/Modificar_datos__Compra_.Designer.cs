@@ -64,7 +64,8 @@
             txtNotaDetalle.Location = new Point(215, 207);
             txtNotaDetalle.Name = "txtNotaDetalle";
             txtNotaDetalle.Size = new Size(277, 36);
-            txtNotaDetalle.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtNotaDetalle.StateCommon.Back.Color1 = Color.White;
+            txtNotaDetalle.StateCommon.Border.Color1 = Color.Navy;
             txtNotaDetalle.StateCommon.Border.Rounding = 10F;
             txtNotaDetalle.StateCommon.Content.Color1 = Color.Black;
             txtNotaDetalle.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -130,7 +131,7 @@
             // 
             // kryptonButton5
             // 
-            kryptonButton5.Location = new Point(602, 631);
+            kryptonButton5.Location = new Point(704, 634);
             kryptonButton5.Name = "kryptonButton5";
             kryptonButton5.OverrideDefault.Back.Color1 = Color.SkyBlue;
             kryptonButton5.OverrideDefault.Back.Color2 = Color.White;
@@ -157,7 +158,7 @@
             label8.BackColor = Color.Transparent;
             label8.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Navy;
-            label8.Location = new Point(784, 115);
+            label8.Location = new Point(807, 28);
             label8.Name = "label8";
             label8.Size = new Size(131, 24);
             label8.TabIndex = 227;
@@ -165,7 +166,7 @@
             // 
             // lblTotal
             // 
-            lblTotal.Location = new Point(715, 403);
+            lblTotal.Location = new Point(807, 582);
             lblTotal.Name = "lblTotal";
             lblTotal.Size = new Size(136, 31);
             lblTotal.StateCommon.ShortText.Color1 = Color.Navy;
@@ -179,7 +180,7 @@
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Arial", 13F, FontStyle.Bold);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(48, 248);
+            label6.Location = new Point(156, 249);
             label6.Name = "label6";
             label6.Size = new Size(125, 26);
             label6.TabIndex = 224;
@@ -224,7 +225,7 @@
             // dtpFechaPedido
             // 
             dtpFechaPedido.Enabled = false;
-            dtpFechaPedido.Location = new Point(715, 143);
+            dtpFechaPedido.Location = new Point(732, 56);
             dtpFechaPedido.Name = "dtpFechaPedido";
             dtpFechaPedido.Size = new Size(293, 218);
             dtpFechaPedido.TabIndex = 217;
@@ -265,7 +266,7 @@
             // 
             // btnEliminarProducto
             // 
-            btnEliminarProducto.Location = new Point(477, 631);
+            btnEliminarProducto.Location = new Point(579, 634);
             btnEliminarProducto.Name = "btnEliminarProducto";
             btnEliminarProducto.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnEliminarProducto.OverrideDefault.Back.Color2 = Color.White;
@@ -296,7 +297,8 @@
             cmbFormaPago.Location = new Point(218, 111);
             cmbFormaPago.Name = "cmbFormaPago";
             cmbFormaPago.Size = new Size(197, 35);
-            cmbFormaPago.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbFormaPago.StateCommon.ComboBox.Back.Color1 = Color.White;
+            cmbFormaPago.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbFormaPago.StateCommon.ComboBox.Border.Rounding = 10F;
             cmbFormaPago.StateCommon.ComboBox.Content.Color1 = Color.Black;
             cmbFormaPago.StateCommon.ComboBox.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -315,7 +317,8 @@
             cmbProveedor.Location = new Point(216, 159);
             cmbProveedor.Name = "cmbProveedor";
             cmbProveedor.Size = new Size(312, 35);
-            cmbProveedor.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbProveedor.StateCommon.ComboBox.Back.Color1 = Color.White;
+            cmbProveedor.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbProveedor.StateCommon.ComboBox.Border.Rounding = 10F;
             cmbProveedor.StateCommon.ComboBox.Content.Color1 = Color.Black;
             cmbProveedor.StateCommon.ComboBox.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -341,7 +344,7 @@
             // 
             dgvProductosModificar.BackgroundColor = Color.SkyBlue;
             dgvProductosModificar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProductosModificar.Location = new Point(43, 280);
+            dgvProductosModificar.Location = new Point(151, 281);
             dgvProductosModificar.Margin = new Padding(3, 4, 3, 4);
             dgvProductosModificar.Name = "dgvProductosModificar";
             dgvProductosModificar.RowHeadersWidth = 51;

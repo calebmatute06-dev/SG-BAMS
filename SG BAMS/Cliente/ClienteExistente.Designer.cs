@@ -79,7 +79,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(94, 168);
+            label3.Location = new Point(94, 163);
             label3.Name = "label3";
             label3.Size = new Size(91, 24);
             label3.TabIndex = 182;
@@ -105,8 +105,9 @@
             cmbClientes.DropDownWidth = 300;
             cmbClientes.Location = new Point(187, 159);
             cmbClientes.Name = "cmbClientes";
-            cmbClientes.Size = new Size(259, 38);
-            cmbClientes.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbClientes.Size = new Size(259, 32);
+            cmbClientes.StateCommon.ComboBox.Back.Color1 = Color.White;
+            cmbClientes.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbClientes.StateCommon.ComboBox.Border.Rounding = 10F;
             cmbClientes.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbClientes.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;

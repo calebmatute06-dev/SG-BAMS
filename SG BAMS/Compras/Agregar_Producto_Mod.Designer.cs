@@ -59,7 +59,8 @@
             txtPrecio.Location = new Point(192, 277);
             txtPrecio.Name = "txtPrecio";
             txtPrecio.Size = new Size(176, 33);
-            txtPrecio.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtPrecio.StateCommon.Back.Color1 = Color.White;
+            txtPrecio.StateCommon.Border.Color1 = Color.Navy;
             txtPrecio.StateCommon.Border.Rounding = 10F;
             txtPrecio.TabIndex = 228;
             txtPrecio.KeyPress += txtPrecio_KeyPress;
@@ -73,7 +74,8 @@
             numCantidad.Minimum = new decimal(new int[] { 0, 0, 0, 0 });
             numCantidad.Name = "numCantidad";
             numCantidad.Size = new Size(150, 32);
-            numCantidad.StateCommon.Back.Color1 = Color.SkyBlue;
+            numCantidad.StateCommon.Back.Color1 = Color.White;
+            numCantidad.StateCommon.Border.Color1 = Color.Navy;
             numCantidad.StateCommon.Border.Rounding = 10F;
             numCantidad.StateCommon.Content.Color1 = Color.Navy;
             numCantidad.TabIndex = 227;
@@ -234,7 +236,8 @@
             cmbProductos.Location = new Point(157, 169);
             cmbProductos.Name = "cmbProductos";
             cmbProductos.Size = new Size(350, 38);
-            cmbProductos.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbProductos.StateCommon.ComboBox.Back.Color1 = Color.White;
+            cmbProductos.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbProductos.StateCommon.ComboBox.Border.Rounding = 20F;
             cmbProductos.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbProductos.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
@@ -261,7 +264,8 @@
             txtCodigo.Location = new Point(142, 124);
             txtCodigo.Name = "txtCodigo";
             txtCodigo.Size = new Size(216, 33);
-            txtCodigo.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtCodigo.StateCommon.Back.Color1 = Color.White;
+            txtCodigo.StateCommon.Border.Color1 = Color.Navy;
             txtCodigo.StateCommon.Border.Rounding = 10F;
             txtCodigo.TabIndex = 338;
             // 

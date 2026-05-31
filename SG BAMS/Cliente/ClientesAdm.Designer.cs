@@ -142,7 +142,8 @@
             txtBusqueda.Margin = new Padding(3, 4, 3, 4);
             txtBusqueda.Name = "txtBusqueda";
             txtBusqueda.Size = new Size(570, 33);
-            txtBusqueda.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtBusqueda.StateCommon.Back.Color1 = Color.White;
+            txtBusqueda.StateCommon.Border.Color1 = Color.Navy;
             txtBusqueda.StateCommon.Border.Rounding = 10F;
             txtBusqueda.TabIndex = 322;
             txtBusqueda.TextChanged += txtBusqueda_TextChanged;
