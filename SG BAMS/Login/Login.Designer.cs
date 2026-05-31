@@ -149,7 +149,7 @@
             btninicioSesion1.Size = new Size(224, 60);
             btninicioSesion1.StateCommon.Back.Color1 = Color.SkyBlue;
             btninicioSesion1.StateCommon.Back.Color2 = Color.White;
-            btninicioSesion1.StateCommon.Border.Rounding = 30F;
+            btninicioSesion1.StateCommon.Border.Rounding = 5F;
             btninicioSesion1.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btninicioSesion1.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btninicioSesion1.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -172,7 +172,7 @@
             btnsalirLogin1.Size = new Size(224, 60);
             btnsalirLogin1.StateCommon.Back.Color1 = Color.SkyBlue;
             btnsalirLogin1.StateCommon.Back.Color2 = Color.White;
-            btnsalirLogin1.StateCommon.Border.Rounding = 30F;
+            btnsalirLogin1.StateCommon.Border.Rounding = 5F;
             btnsalirLogin1.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnsalirLogin1.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnsalirLogin1.StateNormal.Back.Color1 = Color.SkyBlue;
