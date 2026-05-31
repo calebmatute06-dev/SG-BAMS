@@ -26,7 +26,7 @@ namespace SG_BAMS
         /// <summary>
         /// Texto del placeholder para evitar filtrarlo
         /// </summary>
-        private string placeholderText = "Ingrese un Nombre de Vendedor, Cliente, N.Factura, RTN";
+        private string placeholderText = "Ingrese un Nombre de Vendedor, Cliente, N.Factura, RTN y Método de Pago";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FacturasAdm"/> class.
