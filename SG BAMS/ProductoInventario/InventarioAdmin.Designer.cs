@@ -60,7 +60,7 @@
             panel4.BackColor = Color.Navy;
             panel4.Location = new Point(1, 881);
             panel4.Name = "panel4";
-            panel4.Size = new Size(1629, 21);
+            panel4.Size = new Size(1655, 21);
             panel4.TabIndex = 180;
             // 
             // panel3
@@ -86,7 +86,7 @@
             // 
             btnAgregar.AutoSize = true;
             btnAgregar.DropDownPosition = Krypton.Toolkit.VisualOrientation.Bottom;
-            btnAgregar.Location = new Point(777, 796);
+            btnAgregar.Location = new Point(799, 799);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnAgregar.OverrideDefault.Back.Color2 = Color.White;
@@ -117,7 +117,7 @@
             btnNoti.FlatAppearance.BorderSize = 0;
             btnNoti.FlatStyle = FlatStyle.Flat;
             btnNoti.ForeColor = Color.Navy;
-            btnNoti.Location = new Point(1541, 29);
+            btnNoti.Location = new Point(1568, 29);
             btnNoti.Name = "btnNoti";
             btnNoti.Size = new Size(59, 44);
             btnNoti.TabIndex = 184;
@@ -127,7 +127,7 @@
             // panel7
             // 
             panel7.BackColor = Color.Navy;
-            panel7.Location = new Point(1606, 24);
+            panel7.Location = new Point(1632, 24);
             panel7.Name = "panel7";
             panel7.Size = new Size(24, 869);
             panel7.TabIndex = 182;
@@ -137,14 +137,14 @@
             panel2.BackColor = Color.Navy;
             panel2.Location = new Point(1, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1629, 24);
+            panel2.Size = new Size(1662, 24);
             panel2.TabIndex = 192;
             // 
             // kryptonButton10
             // 
             kryptonButton10.AutoSize = true;
             kryptonButton10.DropDownPosition = Krypton.Toolkit.VisualOrientation.Bottom;
-            kryptonButton10.Location = new Point(960, 796);
+            kryptonButton10.Location = new Point(982, 799);
             kryptonButton10.Name = "kryptonButton10";
             kryptonButton10.OverrideDefault.Back.Color1 = Color.SkyBlue;
             kryptonButton10.OverrideDefault.Back.Color2 = Color.White;
@@ -172,12 +172,13 @@
             // 
             dgvProductosAdmin.BackgroundColor = Color.SkyBlue;
             dgvProductosAdmin.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProductosAdmin.Location = new Point(305, 212);
+            dgvProductosAdmin.Location = new Point(307, 212);
             dgvProductosAdmin.Name = "dgvProductosAdmin";
             dgvProductosAdmin.RowHeadersWidth = 51;
-            dgvProductosAdmin.Size = new Size(1279, 569);
+            dgvProductosAdmin.Size = new Size(1308, 569);
             dgvProductosAdmin.TabIndex = 197;
             dgvProductosAdmin.CellDoubleClick += dgvProductosAdmin_CellDoubleClick_1;
+            dgvProductosAdmin.CellFormatting += dgvProductosAdmin_CellFormatting;
             // 
             // label10
             // 
@@ -490,7 +491,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1629, 899);
+            ClientSize = new Size(1652, 899);
             Controls.Add(panel1);
             Controls.Add(label3);
             Controls.Add(label10);

@@ -414,19 +414,16 @@ namespace SG_BAMS.Reporte
                 {
                     if (stock < 1)
                     {
-                        // Rojo para los que tienen menos de 1 producto (Cero unidades)
                         e.CellStyle.BackColor = System.Drawing.Color.FromArgb(255, 192, 192);
                         e.CellStyle.ForeColor = System.Drawing.Color.DarkRed;
                     }
                     else if (stock < 10)
                     {
-                        // Amarillo/Café para bajo stock (Valores estrictos entre 1 y 9)
                         e.CellStyle.BackColor = System.Drawing.Color.FromArgb(255, 224, 192);
                         e.CellStyle.ForeColor = System.Drawing.Color.Brown;
                     }
                     else
                     {
-                        // Verde para existencias óptimas (A partir de 10 productos en adelante)
                         e.CellStyle.BackColor = System.Drawing.Color.FromArgb(192, 255, 192);
                         e.CellStyle.ForeColor = System.Drawing.Color.DarkGreen;
                     }

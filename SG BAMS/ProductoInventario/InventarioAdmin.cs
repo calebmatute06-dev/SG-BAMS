@@ -104,6 +104,8 @@ namespace SG_BAMS
             dgvProductosAdmin.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvProductosAdmin.ClearSelection();
             ClsMensajeGuia.ActivarK(txtBuscar);
+
+            dgvProductosAdmin.CellFormatting += dgvProductosAdmin_CellFormatting;
         }
 
         /// <summary>
@@ -407,6 +409,31 @@ namespace SG_BAMS
         {
             Perfil perfil = new Perfil();
             perfil.Show();
+        }
+
+        private void dgvProductosAdmin_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvProductosAdmin.Columns[e.ColumnIndex].Name == "Stock Actual" && e.Value != null)
+            {
+                if (int.TryParse(e.Value.ToString(), out int stock))
+                {
+                    if (stock < 1)
+                    {
+                        e.CellStyle.BackColor = System.Drawing.Color.FromArgb(255, 192, 192);
+                        e.CellStyle.ForeColor = System.Drawing.Color.DarkRed;
+                    }
+                    else if (stock < 10)
+                    {
+                        e.CellStyle.BackColor = System.Drawing.Color.FromArgb(255, 224, 192);
+                        e.CellStyle.ForeColor = System.Drawing.Color.Brown;
+                    }
+                    else
+                    {
+                        e.CellStyle.BackColor = System.Drawing.Color.FromArgb(192, 255, 192);
+                        e.CellStyle.ForeColor = System.Drawing.Color.DarkGreen;
+                    }
+                }
+            }
         }
     }
 }
