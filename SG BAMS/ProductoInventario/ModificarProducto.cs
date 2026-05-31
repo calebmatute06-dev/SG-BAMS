@@ -35,21 +35,13 @@ namespace SG_BAMS
 
         }
 
-        /// <summary>
-        /// Maneja el evento TextChanged del control kryptonTextBox3.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
-        private void kryptonTextBox3_TextChanged(object sender, EventArgs e)
-        {
-        }
 
         /// <summary>
         /// Maneja el evento Click del control kryptonButton20.
         /// </summary>
         /// <param name="sender">La fuente del evento.</param>
         /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
-        private void kryptonButton20_Click(object sender, EventArgs e)
+        private void btnAceptar_Click(object sender, EventArgs e)
         {
             try
             {
@@ -149,17 +141,7 @@ namespace SG_BAMS
         /// </summary>
         /// <param name="sender">La fuente del evento.</param>
         /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        /// <summary>
-        /// Maneja el evento Click del control btnsalir.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
-        private void btnsalir_Click(object sender, EventArgs e)
+        private void btnCancelar_Click_1(object sender, EventArgs e)
         {
             Close();
         }

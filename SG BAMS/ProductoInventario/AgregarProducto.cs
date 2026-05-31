@@ -34,7 +34,7 @@ namespace SG_BAMS
         /// </summary>
         /// <param name="sender">La fuente del evento.</param>
         /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
-        private void btnAceptar_Click(object sender, EventArgs e)
+        private void btnAceptar_Click_1(object sender, EventArgs e)
         {
             string nombreVal = txtNombre.Text.Trim();
 
@@ -105,14 +105,12 @@ namespace SG_BAMS
             }
         }
 
-
-
         /// <summary>
         /// Maneja el evento Click del control btnCancelar.
         /// </summary>
         /// <param name="sender">La fuente del evento.</param>
         /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void btnCancelar_Click_1(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
@@ -241,5 +239,5 @@ namespace SG_BAMS
 
         }
     }
-    
+
 }

@@ -34,8 +34,6 @@
             pictureBox7 = new PictureBox();
             pictureBox8 = new PictureBox();
             pictureBox10 = new PictureBox();
-            btnAceptar = new Krypton.Toolkit.KryptonButton();
-            btnsalir = new Krypton.Toolkit.KryptonButton();
             cmbClasificacion = new Krypton.Toolkit.KryptonComboBox();
             txtDireccion = new Krypton.Toolkit.KryptonTextBox();
             label2 = new Label();
@@ -48,6 +46,8 @@
             label4 = new Label();
             label5 = new Label();
             label8 = new Label();
+            btnCancelar = new Krypton.Toolkit.KryptonButton();
+            btnAceptar = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -111,61 +111,13 @@
             pictureBox10.TabIndex = 261;
             pictureBox10.TabStop = false;
             // 
-            // btnAceptar
-            // 
-            btnAceptar.Location = new Point(127, 413);
-            btnAceptar.Name = "btnAceptar";
-            btnAceptar.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnAceptar.OverrideDefault.Back.Color2 = Color.White;
-            btnAceptar.OverrideDefault.Border.Rounding = 40F;
-            btnAceptar.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnAceptar.OverrideFocus.Back.Color2 = Color.White;
-            btnAceptar.Size = new Size(120, 52);
-            btnAceptar.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnAceptar.StateCommon.Back.Color2 = Color.White;
-            btnAceptar.StateCommon.Border.Rounding = 40F;
-            btnAceptar.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnAceptar.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
-            btnAceptar.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnAceptar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            btnAceptar.StateNormal.Border.Rounding = 5F;
-            btnAceptar.StateTracking.Border.Rounding = 40F;
-            btnAceptar.TabIndex = 285;
-            btnAceptar.Values.DropDownArrowColor = Color.Empty;
-            btnAceptar.Values.Text = "Aceptar";
-            btnAceptar.Click += btnAceptar_Click;
-            // 
-            // btnsalir
-            // 
-            btnsalir.Location = new Point(253, 415);
-            btnsalir.Name = "btnsalir";
-            btnsalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            btnsalir.OverrideDefault.Back.Color2 = Color.White;
-            btnsalir.OverrideDefault.Border.Rounding = 40F;
-            btnsalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            btnsalir.OverrideFocus.Back.Color2 = Color.White;
-            btnsalir.Size = new Size(130, 49);
-            btnsalir.StateCommon.Back.Color1 = Color.SkyBlue;
-            btnsalir.StateCommon.Back.Color2 = Color.White;
-            btnsalir.StateCommon.Border.Rounding = 40F;
-            btnsalir.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            btnsalir.StateCommon.Content.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
-            btnsalir.StateNormal.Back.Color1 = Color.SkyBlue;
-            btnsalir.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            btnsalir.StateNormal.Border.Rounding = 5F;
-            btnsalir.StateTracking.Border.Rounding = 40F;
-            btnsalir.TabIndex = 284;
-            btnsalir.Values.DropDownArrowColor = Color.Empty;
-            btnsalir.Values.Text = "Cancelar";
-            btnsalir.Click += btnsalir_Click;
-            // 
             // cmbClasificacion
             // 
             cmbClasificacion.CueHint.CueHintText = "Selecciona una clasificacion";
             cmbClasificacion.DropDownWidth = 300;
             cmbClasificacion.Location = new Point(198, 341);
             cmbClasificacion.Name = "cmbClasificacion";
-            cmbClasificacion.Size = new Size(250, 38);
+            cmbClasificacion.Size = new Size(250, 30);
             cmbClasificacion.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbClasificacion.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbClasificacion.StateCommon.ComboBox.Border.Rounding = 5F;
@@ -320,12 +272,60 @@
             label8.TabIndex = 350;
             label8.Text = "Agregar Proveedor";
             // 
+            // btnCancelar
+            // 
+            btnCancelar.Location = new Point(245, 433);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnCancelar.OverrideDefault.Back.Color2 = Color.White;
+            btnCancelar.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnCancelar.OverrideFocus.Back.Color2 = Color.White;
+            btnCancelar.Size = new Size(135, 51);
+            btnCancelar.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnCancelar.StateCommon.Back.Color2 = Color.White;
+            btnCancelar.StateCommon.Border.Rounding = 5F;
+            btnCancelar.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnCancelar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCancelar.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnCancelar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnCancelar.StatePressed.Back.Color1 = Color.Transparent;
+            btnCancelar.StatePressed.Back.Color2 = Color.Transparent;
+            btnCancelar.TabIndex = 356;
+            btnCancelar.Values.DropDownArrowColor = Color.Empty;
+            btnCancelar.Values.Text = "Cancelar";
+            btnCancelar.Click += btnCancelar_Click;
+            // 
+            // btnAceptar
+            // 
+            btnAceptar.Location = new Point(104, 433);
+            btnAceptar.Name = "btnAceptar";
+            btnAceptar.OverrideDefault.Back.Color1 = Color.SkyBlue;
+            btnAceptar.OverrideDefault.Back.Color2 = Color.White;
+            btnAceptar.OverrideFocus.Back.Color1 = Color.SkyBlue;
+            btnAceptar.OverrideFocus.Back.Color2 = Color.White;
+            btnAceptar.Size = new Size(135, 51);
+            btnAceptar.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnAceptar.StateCommon.Back.Color2 = Color.White;
+            btnAceptar.StateCommon.Border.Rounding = 5F;
+            btnAceptar.StateCommon.Content.ShortText.Color1 = Color.Navy;
+            btnAceptar.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAceptar.StateNormal.Back.Color1 = Color.SkyBlue;
+            btnAceptar.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            btnAceptar.StatePressed.Back.Color1 = Color.Transparent;
+            btnAceptar.StatePressed.Back.Color2 = Color.Transparent;
+            btnAceptar.TabIndex = 355;
+            btnAceptar.Values.DropDownArrowColor = Color.Empty;
+            btnAceptar.Values.Text = "Aceptar";
+            btnAceptar.Click += btnAceptar_Click;
+            // 
             // AgregarProveedores
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(515, 525);
+            Controls.Add(btnCancelar);
+            Controls.Add(btnAceptar);
             Controls.Add(label8);
             Controls.Add(label5);
             Controls.Add(cmbClasificacion);
@@ -338,8 +338,6 @@
             Controls.Add(label15);
             Controls.Add(label7);
             Controls.Add(label4);
-            Controls.Add(btnAceptar);
-            Controls.Add(btnsalir);
             Controls.Add(pictureBox7);
             Controls.Add(pictureBox8);
             Controls.Add(pictureBox10);
@@ -369,8 +367,6 @@
         private PictureBox pictureBox7;
         private PictureBox pictureBox8;
         private PictureBox pictureBox10;
-        private Krypton.Toolkit.KryptonButton btnAceptar;
-        private Krypton.Toolkit.KryptonButton btnsalir;
         private Krypton.Toolkit.KryptonComboBox cmbClasificacion;
         private Krypton.Toolkit.KryptonTextBox txtDireccion;
         private Label label2;
@@ -383,5 +379,7 @@
         private Label label4;
         private Label label5;
         private Label label8;
+        private Krypton.Toolkit.KryptonButton btnCancelar;
+        private Krypton.Toolkit.KryptonButton btnAceptar;
     }
 }

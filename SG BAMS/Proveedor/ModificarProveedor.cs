@@ -76,7 +76,7 @@ namespace SG_BAMS.Proveedor
             txtRTN.KeyPress += (s, e) => ClsValidaciones.ValidarSoloNumeros(e);
             txtTelefono.KeyPress += (s, e) =>
                 ClsValidaciones.ValidarTelefonoKeyPress(txtTelefono, e);
-        
+
         }
 
         /// <summary>
@@ -84,9 +84,8 @@ namespace SG_BAMS.Proveedor
         /// </summary>
         /// <param name="sender">La fuente del evento.</param>
         /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
-        private void btnsalir_Click(object sender, EventArgs e)
+        private void btnCancelar_Click(object sender, EventArgs e)
         {
-
             this.Close();
         }
 
@@ -113,7 +112,7 @@ namespace SG_BAMS.Proveedor
         /// </summary>
         /// <param name="sender">La fuente del evento.</param>
         /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
-        private void btnAceptar_Click(object sender, EventArgs e)
+        private void btnAceptar_Click_1(object sender, EventArgs e)
         {
             string nombreNuevo = txtNombre.Text.Trim();
             string rtnNuevo = txtRTN.Text.Trim();
