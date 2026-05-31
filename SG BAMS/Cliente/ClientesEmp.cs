@@ -1,5 +1,10 @@
 ﻿using SG_BAMS.Cliente;
+using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SG_BAMS
 {
@@ -31,37 +36,6 @@ namespace SG_BAMS
 
             txtBusqueda.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetrasYNumeros(e);
             txtBusqueda.TextChanged += txtBusqueda_TextChanged;
-
-            
-            ConfigurarPlaceholderKrypton();
-        }
-
-        /// <summary>
-        /// Configura el placeholder en el KryptonTextBox de búsqueda.
-        /// </summary>
-        private void ConfigurarPlaceholderKrypton()
-        {
-            txtBusqueda.Text = placeholderTexto;
-            txtBusqueda.StateCommon.Content.Color1 = Color.Gray;
-            txtBusqueda.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-
-            txtBusqueda.GotFocus += (s, e) =>
-            {
-                if (txtBusqueda.Text == placeholderTexto)
-                {
-                    txtBusqueda.Text = "";
-                    txtBusqueda.StateCommon.Content.Color1 = Color.Navy;
-                }
-            };
-
-            txtBusqueda.LostFocus += (s, e) =>
-            {
-                if (string.IsNullOrWhiteSpace(txtBusqueda.Text))
-                {
-                    txtBusqueda.Text = placeholderTexto;
-                    txtBusqueda.StateCommon.Content.Color1 = Color.Gray;
-                }
-            };
         }
 
         /// <summary>
@@ -97,7 +71,6 @@ namespace SG_BAMS
 
         /// <summary>
         /// Aplica el filtro combinando estado y búsqueda de texto.
-        /// Ambos filtros se aplican simultáneamente con AND.
         /// </summary>
         private void AplicarFiltro()
         {
@@ -109,19 +82,15 @@ namespace SG_BAMS
 
                 var condiciones = new List<string>();
 
-                
                 string filtroEstado = chkActivo.Checked ? "Estado <> 'Activo'" : "Estado = 'Activo'";
                 condiciones.Add($"({filtroEstado})");
 
-               
-                string textoBusqueda = "";
-                if (txtBusqueda.Text != placeholderTexto &&
-                    txtBusqueda.StateCommon.Content.Color1 != Color.Gray)
+                string textoBusqueda = txtBusqueda.Text?.Trim() ?? "";
+                if (textoBusqueda == placeholderTexto)
                 {
-                    textoBusqueda = txtBusqueda.Text?.Trim() ?? "";
+                    textoBusqueda = "";
                 }
 
-               
                 if (!string.IsNullOrWhiteSpace(textoBusqueda))
                 {
                     string textoSeguro = textoBusqueda
@@ -139,7 +108,6 @@ namespace SG_BAMS
                     condiciones.Add(filtroTexto);
                 }
 
-                
                 string rowFilter = string.Join(" AND ", condiciones);
 
                 dv.RowFilter = rowFilter;
@@ -160,7 +128,6 @@ namespace SG_BAMS
         /// <param name="e">Instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void txtBusqueda_TextChanged(object sender, EventArgs e)
         {
-            
             if (txtBusqueda.Text == placeholderTexto)
                 return;
 
@@ -231,6 +198,8 @@ namespace SG_BAMS
         /// <param name="e">Instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private async void ClientesEmp_Load(object sender, EventArgs e)
         {
+            new PlaceholderTextBox(txtBusqueda, placeholderTexto);
+
             btnClientes.Enabled = false;
             btnClientes.BackColor = Color.SkyBlue;
             btnClientes.ForeColor = Color.White;
@@ -277,6 +246,11 @@ namespace SG_BAMS
             new NotificacionesAdmin().Show();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnMenu control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnMenu_Click(object sender, EventArgs e)
         {
             MenuPrincipalEmp ME = new MenuPrincipalEmp();
@@ -284,6 +258,11 @@ namespace SG_BAMS
             this.Hide();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnFacturas control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnFacturas_Click(object sender, EventArgs e)
         {
             FacturasEmp FE = new FacturasEmp();
@@ -291,6 +270,11 @@ namespace SG_BAMS
             this.Hide();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnInventario control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnInventario_Click(object sender, EventArgs e)
         {
             InventarioEmp IE = new InventarioEmp();
@@ -298,6 +282,11 @@ namespace SG_BAMS
             this.Hide();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnDeudores control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnDeudores_Click(object sender, EventArgs e)
         {
             Deudores_Emp DE = new Deudores_Emp();
@@ -305,6 +294,11 @@ namespace SG_BAMS
             this.Hide();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnCerrar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             Login.Login login = new Login.Login();
@@ -312,6 +306,11 @@ namespace SG_BAMS
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnPerfil control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnPerfil_Click(object sender, EventArgs e)
         {
             Perfil perfil = new Perfil();

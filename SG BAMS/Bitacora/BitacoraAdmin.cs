@@ -39,11 +39,6 @@ namespace SG_BAMS.Bitacora
         private bool isSearching = false;
 
         /// <summary>
-        /// Indica si se está restaurando el placeholder (para evitar bucle)
-        /// </summary>
-        private bool isRestoringPlaceholder = false;
-
-        /// <summary>
         /// Bandera para evitar bucles en los eventos de fecha
         /// </summary>
         private bool isUpdatingDates = false;
@@ -61,41 +56,6 @@ namespace SG_BAMS.Bitacora
 
             txtBuscar.KeyPress += (s, e) => ClsValidaciones.ValidarBusquedaAlfanumerica(e);
             txtBuscar.TextChanged += txtBuscar_TextChanged;
-
-            
-            ConfigurarPlaceholderKrypton();
-        }
-
-        /// <summary>
-        /// Configura el placeholder en el KryptonTextBox de búsqueda.
-        /// </summary>
-        private void ConfigurarPlaceholderKrypton()
-        {
-            txtBuscar.Text = placeholderTexto;
-            txtBuscar.StateCommon.Content.Color1 = Color.Gray;
-            txtBuscar.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-
-            txtBuscar.GotFocus += (s, e) =>
-            {
-                if (txtBuscar.Text == placeholderTexto)
-                {
-                    isRestoringPlaceholder = true;
-                    txtBuscar.Text = "";
-                    txtBuscar.StateCommon.Content.Color1 = Color.Navy;
-                    isRestoringPlaceholder = false;
-                }
-            };
-
-            txtBuscar.LostFocus += (s, e) =>
-            {
-                if (string.IsNullOrWhiteSpace(txtBuscar.Text))
-                {
-                    isRestoringPlaceholder = true;
-                    txtBuscar.Text = placeholderTexto;
-                    txtBuscar.StateCommon.Content.Color1 = Color.Gray;
-                    isRestoringPlaceholder = false;
-                }
-            };
         }
 
         /// <summary>
@@ -106,6 +66,9 @@ namespace SG_BAMS.Bitacora
         /// <param name="e">Datos del evento <see cref="EventArgs"/>.</param>
         private void Bitacora_Load(object sender, EventArgs e)
         {
+            
+            new PlaceholderTextBox(txtBuscar, placeholderTexto);
+
             btnBitacora.Enabled = false;
             btnBitacora.BackColor = Color.SkyBlue;
             btnBitacora.ForeColor = Color.White;
@@ -147,7 +110,7 @@ namespace SG_BAMS.Bitacora
             dtpHasta.Value = DateTime.Today;
             isUpdatingDates = false;
 
-           
+            
             bitacora.cargarDatos(dgvBitacora);
             EjecutarBusqueda();
             dgvBitacora.ClearSelection();
@@ -167,7 +130,6 @@ namespace SG_BAMS.Bitacora
                 
                 bitacora.cargarDatos(dgvBitacora);
 
-                
                 DataTable dt = null;
                 if (dgvBitacora.DataSource is DataTable)
                     dt = (DataTable)dgvBitacora.DataSource;
@@ -180,13 +142,15 @@ namespace SG_BAMS.Bitacora
                 var condiciones = new List<string>();
 
                 
-                string textoBusqueda = "";
-                if (txtBuscar.Text != placeholderTexto)
+                string textoBusqueda = txtBuscar.Text?.Trim() ?? "";
+
+                
+                if (textoBusqueda == placeholderTexto)
                 {
-                    textoBusqueda = txtBuscar.Text?.Trim() ?? "";
+                    textoBusqueda = "";
                 }
 
-               
+                
                 if (!string.IsNullOrWhiteSpace(textoBusqueda))
                 {
                     
@@ -214,11 +178,11 @@ namespace SG_BAMS.Bitacora
                 }
                 else
                 {
-                   
+                    
                     string fechaDesde = dtpDesde.Value.Date.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
                     string fechaHasta = dtpHasta.Value.Date.AddDays(1).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
 
-                   
+                    
                     string columnaFecha = null;
                     foreach (DataColumn col in dt.Columns)
                     {
@@ -260,7 +224,6 @@ namespace SG_BAMS.Bitacora
         /// </summary>
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
-            if (isRestoringPlaceholder) return;
             if (txtBuscar.Text == placeholderTexto) return;
             if (isSearching) return;
 
@@ -313,12 +276,9 @@ namespace SG_BAMS.Bitacora
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             
-            isRestoringPlaceholder = true;
-            txtBuscar.Text = placeholderTexto;
-            txtBuscar.StateCommon.Content.Color1 = Color.Gray;
-            isRestoringPlaceholder = false;
+            txtBuscar.Text = "";
 
-           
+            
             isUpdatingDates = true;
             dtpDesde.MaxDate = DateTime.Today;
             dtpHasta.MaxDate = DateTime.Today;

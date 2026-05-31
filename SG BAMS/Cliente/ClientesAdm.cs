@@ -48,37 +48,6 @@ namespace SG_BAMS
 
             txtBusqueda.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetrasYNumeros(e);
             txtBusqueda.TextChanged += txtBusqueda_TextChanged;
-
-            
-            ConfigurarPlaceholderKrypton();
-        }
-
-        /// <summary>
-        /// Configura el placeholder en el KryptonTextBox de búsqueda.
-        /// </summary>
-        private void ConfigurarPlaceholderKrypton()
-        {
-            txtBusqueda.Text = placeholderTexto;
-            txtBusqueda.StateCommon.Content.Color1 = Color.Gray;
-            txtBusqueda.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-
-            txtBusqueda.GotFocus += (s, e) =>
-            {
-                if (txtBusqueda.Text == placeholderTexto)
-                {
-                    txtBusqueda.Text = "";
-                    txtBusqueda.StateCommon.Content.Color1 = Color.Navy;
-                }
-            };
-
-            txtBusqueda.LostFocus += (s, e) =>
-            {
-                if (string.IsNullOrWhiteSpace(txtBusqueda.Text))
-                {
-                    txtBusqueda.Text = placeholderTexto;
-                    txtBusqueda.StateCommon.Content.Color1 = Color.Gray;
-                }
-            };
         }
 
         /// <summary>
@@ -129,19 +98,15 @@ namespace SG_BAMS
 
                 var condiciones = new List<string>();
 
-                
                 string filtroEstado = chkActivo.Checked ? "Estado <> 'Activo'" : "Estado = 'Activo'";
                 condiciones.Add($"({filtroEstado})");
 
-               
-                string textoBusqueda = "";
-                if (txtBusqueda.Text != placeholderTexto &&
-                    txtBusqueda.StateCommon.Content.Color1 != Color.Gray)
+                string textoBusqueda = txtBusqueda.Text?.Trim() ?? "";
+                if (textoBusqueda == placeholderTexto)
                 {
-                    textoBusqueda = txtBusqueda.Text?.Trim() ?? "";
+                    textoBusqueda = "";
                 }
 
-               
                 if (!string.IsNullOrWhiteSpace(textoBusqueda))
                 {
                     string textoSeguro = textoBusqueda
@@ -159,7 +124,6 @@ namespace SG_BAMS
                     condiciones.Add(filtroTexto);
                 }
 
-                
                 string rowFilter = string.Join(" AND ", condiciones);
 
                 dv.RowFilter = rowFilter;
@@ -182,6 +146,8 @@ namespace SG_BAMS
         /// <param name="e">Los datos del evento.</param>
         private async void ClientesAdm_Load(object sender, EventArgs e)
         {
+            new PlaceholderTextBox(txtBusqueda, placeholderTexto);
+
             btnClientes.Enabled = false;
             btnClientes.BackColor = Color.SkyBlue;
             btnClientes.ForeColor = Color.White;
@@ -279,7 +245,6 @@ namespace SG_BAMS
         /// <param name="e">Los datos del evento.</param>
         private void txtBusqueda_TextChanged(object sender, EventArgs e)
         {
-            
             if (txtBusqueda.Text == placeholderTexto)
                 return;
 
