@@ -167,11 +167,11 @@
             // 
             label8.AutoSize = true;
             label8.BackColor = Color.Transparent;
-            label8.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.Font = new Font("Arial", 16.2F, FontStyle.Bold);
             label8.ForeColor = Color.Navy;
-            label8.Location = new Point(218, 47);
+            label8.Location = new Point(179, 48);
             label8.Name = "label8";
-            label8.Size = new Size(323, 29);
+            label8.Size = new Size(375, 33);
             label8.TabIndex = 356;
             label8.Text = "Modificar Modelos de Auto";
             // 

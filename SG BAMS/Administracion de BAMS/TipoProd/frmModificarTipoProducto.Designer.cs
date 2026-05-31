@@ -167,11 +167,11 @@
             // 
             label8.AutoSize = true;
             label8.BackColor = Color.Transparent;
-            label8.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.Font = new Font("Arial", 16.2F, FontStyle.Bold);
             label8.ForeColor = Color.Navy;
-            label8.Location = new Point(205, 48);
+            label8.Location = new Point(165, 44);
             label8.Name = "label8";
-            label8.Size = new Size(341, 29);
+            label8.Size = new Size(395, 33);
             label8.TabIndex = 358;
             label8.Text = "Modificar Tipo de Productos";
             // 

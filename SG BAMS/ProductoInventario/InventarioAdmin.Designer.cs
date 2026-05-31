@@ -73,11 +73,12 @@
             // 
             // txtBuscar
             // 
-            txtBuscar.Location = new Point(685, 153);
+            txtBuscar.Location = new Point(686, 160);
             txtBuscar.Name = "txtBuscar";
-            txtBuscar.Size = new Size(656, 39);
-            txtBuscar.StateCommon.Back.Color1 = Color.SkyBlue;
-            txtBuscar.StateCommon.Border.Rounding = 20F;
+            txtBuscar.Size = new Size(656, 31);
+            txtBuscar.StateCommon.Back.Color1 = Color.White;
+            txtBuscar.StateCommon.Border.Color1 = Color.Navy;
+            txtBuscar.StateCommon.Border.Rounding = 5F;
             txtBuscar.StateCommon.Content.Color1 = Color.Gray;
             txtBuscar.TabIndex = 191;
             txtBuscar.TextChanged += txtBuscar_TextChanged;
@@ -94,7 +95,7 @@
             btnAgregar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnAgregar.OverrideFocus.Back.Color2 = Color.White;
             btnAgregar.Size = new Size(162, 72);
-            btnAgregar.StateCommon.Back.Color1 = Color.SkyBlue;
+            btnAgregar.StateCommon.Back.Color1 = Color.White;
             btnAgregar.StateCommon.Back.Color2 = Color.White;
             btnAgregar.StateCommon.Border.Rounding = 30F;
             btnAgregar.StateCommon.Content.ShortText.Color1 = Color.Navy;
@@ -152,8 +153,8 @@
             kryptonButton10.OverrideFocus.Back.Color1 = Color.SkyBlue;
             kryptonButton10.OverrideFocus.Back.Color2 = Color.White;
             kryptonButton10.Size = new Size(173, 72);
-            kryptonButton10.StateCommon.Back.Color1 = Color.SkyBlue;
-            kryptonButton10.StateCommon.Back.Color2 = Color.White;
+            kryptonButton10.StateCommon.Back.Color1 = Color.Transparent;
+            kryptonButton10.StateCommon.Back.Color2 = Color.Transparent;
             kryptonButton10.StateCommon.Border.Rounding = 30F;
             kryptonButton10.StateCommon.Content.ShortText.Color1 = Color.Navy;
             kryptonButton10.StateCommon.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);

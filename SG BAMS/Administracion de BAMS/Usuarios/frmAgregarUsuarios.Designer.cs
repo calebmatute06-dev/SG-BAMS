@@ -55,7 +55,7 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(123, 91);
+            label2.Location = new Point(149, 103);
             label2.Name = "label2";
             label2.Size = new Size(178, 31);
             label2.TabIndex = 2;
@@ -66,7 +66,7 @@
             txtNombre.CueHint.Color1 = Color.DimGray;
             txtNombre.CueHint.CueHintText = "Solo letras y espacios";
             txtNombre.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtNombre.Location = new Point(296, 85);
+            txtNombre.Location = new Point(322, 97);
             txtNombre.Margin = new Padding(3, 4, 3, 4);
             txtNombre.MaxLength = 70;
             txtNombre.Multiline = true;
@@ -83,7 +83,7 @@
             txtContra.CueHint.Color1 = Color.DimGray;
             txtContra.CueHint.CueHintText = "Minimo 6 caracteres";
             txtContra.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtContra.Location = new Point(296, 197);
+            txtContra.Location = new Point(322, 209);
             txtContra.Margin = new Padding(3, 4, 3, 4);
             txtContra.MaxLength = 70;
             txtContra.Multiline = true;
@@ -101,7 +101,7 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(130, 205);
+            label4.Location = new Point(156, 217);
             label4.Name = "label4";
             label4.Size = new Size(132, 31);
             label4.TabIndex = 19;
@@ -113,7 +113,7 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(130, 265);
+            label5.Location = new Point(156, 277);
             label5.Name = "label5";
             label5.Size = new Size(164, 31);
             label5.TabIndex = 21;
@@ -159,9 +159,9 @@
             cmbRol.CueHint.CueHintText = "Seleccione un Rol";
             cmbRol.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbRol.DropDownWidth = 300;
-            cmbRol.Location = new Point(296, 257);
+            cmbRol.Location = new Point(322, 269);
             cmbRol.Name = "cmbRol";
-            cmbRol.Size = new Size(264, 41);
+            cmbRol.Size = new Size(264, 35);
             cmbRol.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
             cmbRol.StateCommon.ComboBox.Border.Rounding = 10F;
             cmbRol.StateCommon.ComboBox.Content.Color1 = Color.Black;
@@ -175,7 +175,7 @@
             // 
             // btmModificar
             // 
-            btmModificar.Location = new Point(169, 324);
+            btmModificar.Location = new Point(195, 336);
             btmModificar.Name = "btmModificar";
             btmModificar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btmModificar.OverrideDefault.Back.Color2 = Color.White;
@@ -198,7 +198,7 @@
             // 
             // kryptonButton1
             // 
-            kryptonButton1.Location = new Point(365, 324);
+            kryptonButton1.Location = new Point(391, 336);
             kryptonButton1.Name = "kryptonButton1";
             kryptonButton1.OverrideDefault.Back.Color1 = Color.SkyBlue;
             kryptonButton1.OverrideDefault.Back.Color2 = Color.White;
@@ -235,11 +235,11 @@
             // 
             label8.AutoSize = true;
             label8.BackColor = Color.Transparent;
-            label8.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.Font = new Font("Arial", 16.2F, FontStyle.Bold);
             label8.ForeColor = Color.Navy;
-            label8.Location = new Point(288, 39);
+            label8.Location = new Point(276, 39);
             label8.Name = "label8";
-            label8.Size = new Size(200, 29);
+            label8.Size = new Size(234, 33);
             label8.TabIndex = 362;
             label8.Text = "Agregar Usuario";
             // 
@@ -248,7 +248,7 @@
             txtCorreo.CueHint.Color1 = Color.DimGray;
             txtCorreo.CueHint.CueHintText = "ejemplo@correo.com";
             txtCorreo.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtCorreo.Location = new Point(296, 142);
+            txtCorreo.Location = new Point(322, 154);
             txtCorreo.Margin = new Padding(3, 4, 3, 4);
             txtCorreo.MaxLength = 70;
             txtCorreo.Multiline = true;
@@ -266,7 +266,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(130, 151);
+            label3.Location = new Point(156, 163);
             label3.Name = "label3";
             label3.Size = new Size(86, 31);
             label3.TabIndex = 363;

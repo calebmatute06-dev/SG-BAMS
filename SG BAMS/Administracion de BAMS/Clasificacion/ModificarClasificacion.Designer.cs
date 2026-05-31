@@ -46,13 +46,14 @@
             // 
             label8.AutoSize = true;
             label8.BackColor = Color.Transparent;
-            label8.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.Font = new Font("Arial", 16.2F, FontStyle.Bold);
             label8.ForeColor = Color.Navy;
-            label8.Location = new Point(221, 49);
+            label8.Location = new Point(217, 50);
             label8.Name = "label8";
-            label8.Size = new Size(276, 29);
+            label8.Size = new Size(324, 33);
             label8.TabIndex = 368;
             label8.Text = "Modificar Clasificación";
+            label8.Click += label8_Click;
             // 
             // label5
             // 

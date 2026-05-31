@@ -184,11 +184,11 @@
             // 
             label3.AutoSize = true;
             label3.BackColor = Color.Transparent;
-            label3.Font = new Font("Arial Narrow", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Font = new Font("Arial", 16.2F, FontStyle.Bold);
             label3.ForeColor = Color.Navy;
             label3.Location = new Point(466, 35);
             label3.Name = "label3";
-            label3.Size = new Size(194, 35);
+            label3.Size = new Size(217, 33);
             label3.TabIndex = 342;
             label3.Text = "Registro Facial";
             // 
@@ -196,11 +196,11 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Arial Narrow", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Arial", 16.2F, FontStyle.Bold);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(104, 36);
+            label1.Location = new Point(105, 35);
             label1.Name = "label1";
-            label1.Size = new Size(122, 35);
+            label1.Size = new Size(134, 33);
             label1.TabIndex = 343;
             label1.Text = "Usuarios";
             // 

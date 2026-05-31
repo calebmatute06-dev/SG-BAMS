@@ -82,5 +82,10 @@ namespace SG_BAMS.Administracion_de_BAMS.Clasificacion
         {
             this.Close();
         }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

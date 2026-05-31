@@ -159,7 +159,7 @@ namespace SG_BAMS
             txtDescri.CueHint.Color1 = Color.DimGray;
             txtDescri.CueHint.CueHintText = "Letras y números. Sin letras sueltas.";
             txtDescri.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtDescri.Location = new Point(288, 158);
+            txtDescri.Location = new Point(291, 142);
             txtDescri.Margin = new Padding(3, 4, 3, 4);
             txtDescri.MaxLength = 70;
             txtDescri.Multiline = true;
@@ -177,7 +177,7 @@ namespace SG_BAMS
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(96, 159);
+            label2.Location = new Point(99, 143);
             label2.Name = "label2";
             label2.Size = new Size(186, 31);
             label2.TabIndex = 140;
@@ -185,7 +185,7 @@ namespace SG_BAMS
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(167, 235);
+            btnAgregar.Location = new Point(170, 219);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnAgregar.OverrideDefault.Back.Color2 = Color.White;
@@ -208,7 +208,7 @@ namespace SG_BAMS
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(357, 235);
+            btnSalir.Location = new Point(360, 219);
             btnSalir.Name = "btnSalir";
             btnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnSalir.OverrideDefault.Back.Color2 = Color.White;
@@ -233,11 +233,11 @@ namespace SG_BAMS
             // 
             label8.AutoSize = true;
             label8.BackColor = Color.Transparent;
-            label8.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.Font = new Font("Arial", 16.2F, FontStyle.Bold);
             label8.ForeColor = Color.Navy;
-            label8.Location = new Point(251, 55);
+            label8.Location = new Point(229, 59);
             label8.Name = "label8";
-            label8.Size = new Size(191, 29);
+            label8.Size = new Size(223, 33);
             label8.TabIndex = 350;
             label8.Text = "Agregar Estado";
             // 

@@ -169,11 +169,11 @@ namespace SG_BAMS
             // 
             label8.AutoSize = true;
             label8.BackColor = Color.Transparent;
-            label8.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.Font = new Font("Arial", 16.2F, FontStyle.Bold);
             label8.ForeColor = Color.Navy;
-            label8.Location = new Point(187, 52);
+            label8.Location = new Point(148, 54);
             label8.Name = "label8";
-            label8.Size = new Size(367, 29);
+            label8.Size = new Size(432, 33);
             label8.TabIndex = 352;
             label8.Text = "Agregar la marca de productos";
             // 

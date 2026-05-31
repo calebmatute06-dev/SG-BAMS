@@ -177,7 +177,7 @@
             cmbRol.DropDownWidth = 300;
             cmbRol.Location = new Point(287, 263);
             cmbRol.Name = "cmbRol";
-            cmbRol.Size = new Size(266, 41);
+            cmbRol.Size = new Size(266, 35);
             cmbRol.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
             cmbRol.StateCommon.ComboBox.Border.Rounding = 10F;
             cmbRol.StateCommon.ComboBox.Content.Color1 = Color.Black;
@@ -197,7 +197,7 @@
             cmbEstado.DropDownWidth = 300;
             cmbEstado.Location = new Point(288, 327);
             cmbEstado.Name = "cmbEstado";
-            cmbEstado.Size = new Size(269, 41);
+            cmbEstado.Size = new Size(269, 35);
             cmbEstado.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
             cmbEstado.StateCommon.ComboBox.Border.Rounding = 10F;
             cmbEstado.StateCommon.ComboBox.Content.Color1 = Color.Black;
@@ -294,11 +294,11 @@
             // 
             label8.AutoSize = true;
             label8.BackColor = Color.Transparent;
-            label8.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.Font = new Font("Arial", 16.2F, FontStyle.Bold);
             label8.ForeColor = Color.Navy;
             label8.Location = new Point(266, 45);
             label8.Name = "label8";
-            label8.Size = new Size(230, 29);
+            label8.Size = new Size(269, 33);
             label8.TabIndex = 364;
             label8.Text = "Modificar Usuarios";
             // 
