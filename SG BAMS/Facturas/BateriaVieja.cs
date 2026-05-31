@@ -90,8 +90,7 @@ namespace SG_BAMS.Facturas
             dgvBateria.RowTemplate.Height = 32;
             dgvBateria.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvBateria.ClearSelection();
-            ClsMensajeGuia.ActivarK(txtPrecio);
-            ClsMensajeGuia.ActivarK(txtCantidad);
+
         }
 
         /// <summary>

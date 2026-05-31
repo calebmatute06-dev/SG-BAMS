@@ -486,29 +486,29 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(805, 63);
+            label11.Location = new Point(843, 79);
             label11.Name = "label11";
-            label11.Size = new Size(299, 20);
+            label11.Size = new Size(261, 20);
             label11.TabIndex = 347;
-            label11.Text = "Se puede modificar el precio desde la tabla";
+            label11.Text = "La cantidad es editable desde la tabla";
             // 
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(752, 43);
+            label12.Location = new Point(782, 39);
             label12.Name = "label12";
-            label12.Size = new Size(352, 20);
+            label12.Size = new Size(319, 20);
             label12.TabIndex = 348;
-            label12.Text = "La Organización Gubernamentamental sin impuesto";
+            label12.Text = "Entidad Gubernamental No Sujeta a Impuestos";
             // 
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(852, 83);
+            label13.Location = new Point(825, 59);
             label13.Name = "label13";
-            label13.Size = new Size(252, 20);
+            label13.Size = new Size(276, 20);
             label13.TabIndex = 349;
-            label13.Text = "El monto exento no cobrar impuesto";
+            label13.Text = "El monto exento está libre de impuestos";
             // 
             // FacturaAgregarDatos
             // 

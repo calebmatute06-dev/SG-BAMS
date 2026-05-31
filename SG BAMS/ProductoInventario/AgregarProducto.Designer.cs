@@ -208,6 +208,7 @@
             // 
             // txtNombre
             // 
+            txtNombre.CueHint.Color1 = Color.Gray;
             txtNombre.CueHint.CueHintText = "Nombre producto";
             txtNombre.Location = new Point(176, 132);
             txtNombre.Name = "txtNombre";
@@ -217,11 +218,11 @@
             txtNombre.StateCommon.Content.Color1 = Color.Gray;
             txtNombre.StateNormal.Content.Color1 = Color.Navy;
             txtNombre.TabIndex = 248;
-            txtNombre.Text = "Nombre producto";
             txtNombre.KeyPress += txtNombre_KeyPress;
             // 
             // txtPrecio
             // 
+            txtPrecio.CueHint.Color1 = Color.Gray;
             txtPrecio.CueHint.CueHintText = "Precio del producto ingresado";
             txtPrecio.Location = new Point(177, 184);
             txtPrecio.Name = "txtPrecio";
@@ -263,6 +264,8 @@
             // 
             // cmbMarca
             // 
+            cmbMarca.CueHint.Color1 = Color.Gray;
+            cmbMarca.CueHint.CueHintText = "Seleccione marca";
             cmbMarca.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbMarca.DropDownWidth = 300;
             cmbMarca.Location = new Point(176, 236);
@@ -270,14 +273,18 @@
             cmbMarca.Size = new Size(250, 38);
             cmbMarca.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
             cmbMarca.StateCommon.ComboBox.Border.Rounding = 20F;
+            cmbMarca.StateCommon.ComboBox.Content.Color1 = Color.Gray;
             cmbMarca.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbMarca.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
             cmbMarca.StateCommon.Item.Content.ShortText.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbMarca.StateNormal.ComboBox.Border.Rounding = 40F;
             cmbMarca.TabIndex = 336;
+            cmbMarca.SelectedIndexChanged += cmbMarca_SelectedIndexChanged;
             // 
             // cmbTipo
             // 
+            cmbTipo.CueHint.Color1 = Color.Gray;
+            cmbTipo.CueHint.CueHintText = "Seleccione tipo";
             cmbTipo.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbTipo.DropDownWidth = 300;
             cmbTipo.Location = new Point(176, 284);
@@ -293,6 +300,8 @@
             // 
             // cmbModelo
             // 
+            cmbModelo.CueHint.Color1 = Color.Gray;
+            cmbModelo.CueHint.CueHintText = "Seleccione modelo";
             cmbModelo.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbModelo.DropDownWidth = 300;
             cmbModelo.Location = new Point(176, 336);
@@ -308,6 +317,8 @@
             // 
             // cmbProveedor
             // 
+            cmbProveedor.CueHint.Color1 = Color.Gray;
+            cmbProveedor.CueHint.CueHintText = "Seleccione Proveedor";
             cmbProveedor.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbProveedor.DropDownWidth = 300;
             cmbProveedor.Location = new Point(176, 437);

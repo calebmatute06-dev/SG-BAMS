@@ -36,6 +36,13 @@ namespace SG_BAMS.Proveedor
             txtRTN.MaxLength = 14;
             this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
             this.txtDireccion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDireccion_KeyPress);
+
+            txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
+            txtDireccion.KeyPress += (s, e) => ClsValidaciones.PermitirAlfanumerico(e);
+            txtTelefono.KeyPress += (s, e) => ClsValidaciones.ValidarSoloNumeros(e);
+            txtRTN.KeyPress += (s, e) => ClsValidaciones.ValidarSoloNumeros(e);
+            txtTelefono.KeyPress += (s, e) =>
+                ClsValidaciones.ValidarTelefonoKeyPress(txtTelefono, e);
         }
 
         /// <summary>
@@ -59,11 +66,7 @@ namespace SG_BAMS.Proveedor
             txtDireccion.KeyPress += (s, ev) => ClsValidaciones.ValidarBusquedaAlfanumerica(ev);
             txtTelefono.KeyPress += (s, ev) => ClsValidaciones.ValidarSoloNumeros(ev);
             txtRTN.KeyPress += (s, ev) => ClsValidaciones.ValidarSoloNumeros(ev);
-            ClsMensajeGuia.ActivarK(txtNombre);
-            ClsMensajeGuia.ActivarK(txtTelefono);
-            ClsMensajeGuia.ActivarK(txtDireccion);
-            ClsMensajeGuia.ActivarK(txtRTN);
-
+        
         }
 
         /// <summary>

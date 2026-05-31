@@ -7,6 +7,9 @@ namespace SG_BAMS
 {
     internal class ClsMensajeGuia
     {
+        // ===================================
+        // TEXTBOX NORMAL
+        // ===================================
         public static void Activar(TextBox txt)
         {
             string placeholder = txt.Text;
@@ -28,7 +31,8 @@ namespace SG_BAMS
 
             txt.KeyPress += (s, e) =>
             {
-                if (esPlaceholder && !char.IsControl(e.KeyChar))
+                if (esPlaceholder &&
+                    !char.IsControl(e.KeyChar))
                 {
                     txt.Text = "";
                     txt.ForeColor = Color.Black;
@@ -70,36 +74,41 @@ namespace SG_BAMS
             };
         }
 
-
-
-
-
+        // ===================================
+        // KRYPTON TEXTBOX
+        // ===================================
         public static void ActivarK(KryptonTextBox txt)
         {
-            string placeholder = txt.CueHint.CueHintText;
-            Color colorPlaceholder = txt.CueHint.Color1;
+            Color colorPlaceholder = Color.Gray;
+            Color colorEscritura = Color.Blue;
 
-            bool esPlaceholder = true;
+            // Color del mensaje guía
+            txt.CueHint.Color1 = colorPlaceholder;
 
-            txt.Text = placeholder;
-            txt.StateCommon.Content.Color1 = colorPlaceholder;
+            // Si está vacío al iniciar
+            if (string.IsNullOrWhiteSpace(txt.Text))
+            {
+                txt.StateCommon.Content.Color1 =
+                    colorPlaceholder;
+            }
 
             txt.Enter += (s, e) =>
             {
-                if (esPlaceholder)
-                {
-                    txt.SelectionStart = 0;
-                    txt.SelectionLength = 0;
-                }
+                txt.SelectionStart = 0;
+                txt.SelectionLength = 0;
             };
 
-            txt.KeyPress += (s, e) =>
+            txt.TextChanged += (s, e) =>
             {
-                if (esPlaceholder && !char.IsControl(e.KeyChar))
+                if (string.IsNullOrWhiteSpace(txt.Text))
                 {
-                    txt.Text = "";
-                    txt.StateCommon.Content.Color1 = Color.Black;
-                    esPlaceholder = false;
+                    txt.StateCommon.Content.Color1 =
+                        colorPlaceholder;
+                }
+                else
+                {
+                    txt.StateCommon.Content.Color1 =
+                        colorEscritura;
                 }
             };
 
@@ -107,37 +116,10 @@ namespace SG_BAMS
             {
                 if (string.IsNullOrWhiteSpace(txt.Text))
                 {
-                    txt.Text = placeholder;
-                    txt.StateCommon.Content.Color1 = colorPlaceholder;
-                    esPlaceholder = true;
-                }
-            };
-
-            txt.Click += (s, e) =>
-            {
-                if (esPlaceholder)
-                {
-                    txt.SelectionStart = 0;
-                    txt.SelectionLength = 0;
-                }
-            };
-
-            txt.TextChanged += (s, e) =>
-            {
-                if (!esPlaceholder &&
-                    string.IsNullOrWhiteSpace(txt.Text))
-                {
-                    txt.Text = placeholder;
-                    txt.StateCommon.Content.Color1 = colorPlaceholder;
-                    esPlaceholder = true;
-
-                    txt.SelectionStart = 0;
-                    txt.SelectionLength = 0;
+                    txt.StateCommon.Content.Color1 =
+                        colorPlaceholder;
                 }
             };
         }
-
-       
     }
-
 }

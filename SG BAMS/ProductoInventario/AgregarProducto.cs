@@ -137,9 +137,7 @@ namespace SG_BAMS
         private void AgregarProducto_Load(object sender, EventArgs e)
         {
             LlenarTodosLosCombos();
-            ClsMensajeGuia.ActivarK(txtNombre);
-            ClsMensajeGuia.ActivarK(txtPrecio);
-            ClsMensajeGuia.ActivarK(txtCodigoBarra);
+
         }
 
         /// <summary>
@@ -231,5 +229,17 @@ namespace SG_BAMS
         {
             ClsValidaciones.PermitirNumerosYDecimales(sender, e);
         }
+
+        private void cmbMarca_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbMarca.SelectedIndex == 0)
+            {
+                cmbMarca.StateCommon
+                    .ComboBox.Content.Color1 =
+                    Color.Black;
+            }
+
+        }
     }
+    
 }

@@ -161,6 +161,7 @@
             // 
             // cmbClasificacion
             // 
+            cmbClasificacion.CueHint.CueHintText = "Selecciona una clasificacion";
             cmbClasificacion.DropDownWidth = 300;
             cmbClasificacion.Location = new Point(198, 341);
             cmbClasificacion.Name = "cmbClasificacion";
@@ -186,7 +187,6 @@
             txtDireccion.StateCommon.Border.Rounding = 20F;
             txtDireccion.StateCommon.Content.Color1 = Color.Gray;
             txtDireccion.TabIndex = 297;
-            txtDireccion.Text = "Colonia, Barrio, Pueblo";
             txtDireccion.KeyPress += txtDireccion_KeyPress;
             // 
             // label2
@@ -212,7 +212,6 @@
             txtRTN.StateCommon.Border.Rounding = 20F;
             txtRTN.StateCommon.Content.Color1 = Color.Gray;
             txtRTN.TabIndex = 295;
-            txtRTN.Text = "Ingrese el RTN";
             txtRTN.KeyPress += txtRTN_KeyPress;
             // 
             // label1
@@ -230,6 +229,7 @@
             // txtTelefono
             // 
             txtTelefono.CueHint.CueHintText = "Numero que empiecen con 9,8,3,2";
+            txtTelefono.CueHint.Font = new Font("Arial Narrow", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtTelefono.Location = new Point(199, 173);
             txtTelefono.MaxLength = 8;
             txtTelefono.Name = "txtTelefono";
@@ -238,11 +238,11 @@
             txtTelefono.StateCommon.Border.Rounding = 20F;
             txtTelefono.StateCommon.Content.Color1 = Color.Gray;
             txtTelefono.TabIndex = 293;
-            txtTelefono.Text = "Numero que empiecen con 9,8,3,2";
             txtTelefono.KeyPress += txtTelefono_KeyPress;
             // 
             // txtNombre
             // 
+            txtNombre.CueHint.Color1 = Color.Gray;
             txtNombre.CueHint.CueHintText = "Nombre del proveedor";
             txtNombre.Location = new Point(199, 121);
             txtNombre.MaxLength = 70;
@@ -252,7 +252,6 @@
             txtNombre.StateCommon.Border.Rounding = 20F;
             txtNombre.StateCommon.Content.Color1 = Color.Gray;
             txtNombre.TabIndex = 292;
-            txtNombre.Text = "Nombre del proveedor";
             txtNombre.KeyPress += txtNombre_KeyPress;
             // 
             // label15

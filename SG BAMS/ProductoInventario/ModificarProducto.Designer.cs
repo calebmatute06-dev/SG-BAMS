@@ -178,6 +178,7 @@
             // 
             // txtPrecio
             // 
+            txtPrecio.CueHint.Color1 = Color.Gray;
             txtPrecio.CueHint.CueHintText = "Precio del producto ingresado";
             txtPrecio.Location = new Point(175, 207);
             txtPrecio.Name = "txtPrecio";
@@ -186,11 +187,11 @@
             txtPrecio.StateCommon.Border.Rounding = 20F;
             txtPrecio.StateCommon.Content.Color1 = Color.Navy;
             txtPrecio.TabIndex = 221;
-            txtPrecio.Text = "Precio del producto ingresado";
             txtPrecio.KeyPress += txtPrecio_KeyPress;
             // 
             // txtNombre
             // 
+            txtNombre.CueHint.Color1 = Color.Gray;
             txtNombre.CueHint.CueHintText = "Nombre producto";
             txtNombre.Location = new Point(175, 155);
             txtNombre.Name = "txtNombre";
@@ -200,7 +201,6 @@
             txtNombre.StateCommon.Content.Color1 = Color.Navy;
             txtNombre.StateNormal.Content.Color1 = Color.Navy;
             txtNombre.TabIndex = 220;
-            txtNombre.Text = "Nombre producto";
             // 
             // txtID
             // 
@@ -288,6 +288,7 @@
             // 
             // txtCodigoBarra
             // 
+            txtCodigoBarra.CueHint.Color1 = Color.Gray;
             txtCodigoBarra.CueHint.CueHintText = "Ingrese o Escanee el codigo";
             txtCodigoBarra.Location = new Point(175, 459);
             txtCodigoBarra.Name = "txtCodigoBarra";
@@ -296,7 +297,6 @@
             txtCodigoBarra.StateCommon.Border.Rounding = 20F;
             txtCodigoBarra.StateCommon.Content.Color1 = Color.Navy;
             txtCodigoBarra.TabIndex = 233;
-            txtCodigoBarra.Text = "Ingrese o Escanee el codigo";
             txtCodigoBarra.TextChanged += txtCodigoBarra_TextChanged;
             txtCodigoBarra.KeyPress += txtCodigoBarra_KeyPress;
             // 
@@ -315,6 +315,8 @@
             // 
             // cmbModelo
             // 
+            cmbModelo.CueHint.Color1 = Color.Gray;
+            cmbModelo.CueHint.CueHintText = "Seleccionar modelo";
             cmbModelo.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbModelo.DropDownWidth = 300;
             cmbModelo.Location = new Point(175, 357);
@@ -330,6 +332,8 @@
             // 
             // cmbTipo
             // 
+            cmbTipo.CueHint.Color1 = Color.Gray;
+            cmbTipo.CueHint.CueHintText = "Seleccionar tipo";
             cmbTipo.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbTipo.DropDownWidth = 300;
             cmbTipo.Location = new Point(175, 311);
@@ -345,6 +349,8 @@
             // 
             // cmbMarca
             // 
+            cmbMarca.CueHint.Color1 = Color.Gray;
+            cmbMarca.CueHint.CueHintText = "Seleccionar marca";
             cmbMarca.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbMarca.DropDownWidth = 300;
             cmbMarca.Location = new Point(175, 259);
@@ -360,6 +366,8 @@
             // 
             // cmbEstado
             // 
+            cmbEstado.CueHint.Color1 = Color.Gray;
+            cmbEstado.CueHint.CueHintText = "Seleccionar estado";
             cmbEstado.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbEstado.DropDownWidth = 300;
             cmbEstado.Location = new Point(175, 409);
@@ -375,6 +383,8 @@
             // 
             // cmbProveedor
             // 
+            cmbProveedor.CueHint.Color1 = Color.Gray;
+            cmbProveedor.CueHint.CueHintText = "seleccionar proveedor";
             cmbProveedor.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbProveedor.DropDownWidth = 300;
             cmbProveedor.Location = new Point(175, 509);

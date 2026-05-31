@@ -47,6 +47,7 @@
             // 
             // txtMonto
             // 
+            txtMonto.CueHint.Color1 = Color.Gray;
             txtMonto.CueHint.CueHintText = "Cantidad deseada a pagar";
             txtMonto.Location = new Point(194, 181);
             txtMonto.Name = "txtMonto";
@@ -56,7 +57,6 @@
             txtMonto.StateCommon.Content.Color1 = Color.Gray;
             txtMonto.StateCommon.Content.Font = new Font("Arial Narrow", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtMonto.TabIndex = 169;
-            txtMonto.Text = "Cantidad deseada a pagar";
             txtMonto.KeyPress += txtMonto_KeyPress;
             // 
             // label1
@@ -190,6 +190,8 @@
             // 
             // cmbDeudores
             // 
+            cmbDeudores.CueHint.Color1 = Color.Gray;
+            cmbDeudores.CueHint.CueHintText = "Seleccione un nombre";
             cmbDeudores.DropDownWidth = 300;
             cmbDeudores.Location = new Point(194, 117);
             cmbDeudores.Name = "cmbDeudores";

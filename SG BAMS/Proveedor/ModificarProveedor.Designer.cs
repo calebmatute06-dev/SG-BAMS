@@ -144,6 +144,7 @@
             // 
             // txtDireccion
             // 
+            txtDireccion.CueHint.Color1 = Color.Gray;
             txtDireccion.CueHint.CueHintText = "Colonia, Barrio, Pueblo";
             txtDireccion.Location = new Point(173, 269);
             txtDireccion.MaxLength = 70;
@@ -153,7 +154,6 @@
             txtDireccion.StateCommon.Border.Rounding = 20F;
             txtDireccion.StateCommon.Content.Color1 = Color.Navy;
             txtDireccion.TabIndex = 202;
-            txtDireccion.Text = "Colonia, Barrio, Pueblo";
             txtDireccion.KeyPress += txtDireccion_KeyPress;
             // 
             // label2
@@ -170,6 +170,7 @@
             // 
             // txtRTN
             // 
+            txtRTN.CueHint.Color1 = Color.Gray;
             txtRTN.CueHint.CueHintText = "Ingrese el RTN";
             txtRTN.Location = new Point(170, 325);
             txtRTN.MaxLength = 14;
@@ -179,7 +180,6 @@
             txtRTN.StateCommon.Border.Rounding = 20F;
             txtRTN.StateCommon.Content.Color1 = Color.Navy;
             txtRTN.TabIndex = 200;
-            txtRTN.Text = "Ingrese el RTN";
             txtRTN.KeyPress += txtRTN_KeyPress;
             // 
             // label1
@@ -196,8 +196,10 @@
             // 
             // txtTelefono
             // 
+            txtTelefono.CueHint.Color1 = Color.Gray;
             txtTelefono.CueHint.CueHintText = "Numero que empiecen con 9,8,3,2";
-            txtTelefono.Location = new Point(173, 213);
+            txtTelefono.CueHint.Font = new Font("Arial Narrow", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtTelefono.Location = new Point(173, 219);
             txtTelefono.MaxLength = 8;
             txtTelefono.Name = "txtTelefono";
             txtTelefono.Size = new Size(250, 39);
@@ -205,12 +207,13 @@
             txtTelefono.StateCommon.Border.Rounding = 20F;
             txtTelefono.StateCommon.Content.Color1 = Color.Navy;
             txtTelefono.TabIndex = 197;
-            txtTelefono.Text = "Numero que empiecen con 9,8,3,2";
             txtTelefono.KeyPress += txtTelefono_KeyPress;
             // 
             // txtNombre
             // 
+            txtNombre.CueHint.Color1 = Color.Gray;
             txtNombre.CueHint.CueHintText = "Nombre del proveedor";
+            txtNombre.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNombre.Location = new Point(173, 160);
             txtNombre.MaxLength = 70;
             txtNombre.Name = "txtNombre";
@@ -219,7 +222,6 @@
             txtNombre.StateCommon.Border.Rounding = 20F;
             txtNombre.StateCommon.Content.Color1 = Color.Navy;
             txtNombre.TabIndex = 196;
-            txtNombre.Text = "Nombre del proveedor";
             txtNombre.KeyPress += txtNombre_KeyPress;
             // 
             // label15
@@ -260,6 +262,8 @@
             // 
             // cmbClasificacion
             // 
+            cmbClasificacion.CueHint.Color1 = Color.Gray;
+            cmbClasificacion.CueHint.CueHintText = "Selecione una Clasificacion";
             cmbClasificacion.DropDownWidth = 300;
             cmbClasificacion.Location = new Point(174, 443);
             cmbClasificacion.Name = "cmbClasificacion";
@@ -276,6 +280,8 @@
             // 
             // cmbEstado
             // 
+            cmbEstado.CueHint.Color1 = Color.Gray;
+            cmbEstado.CueHint.CueHintText = "Selecione un estado";
             cmbEstado.DropDownWidth = 300;
             cmbEstado.Location = new Point(171, 384);
             cmbEstado.Name = "cmbEstado";

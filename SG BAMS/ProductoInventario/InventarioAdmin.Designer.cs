@@ -73,6 +73,7 @@
             // 
             // txtBuscar
             // 
+            txtBuscar.CueHint.Color1 = Color.Gray;
             txtBuscar.CueHint.CueHintText = "Ingrese un Nombre, ID, Tipo, Proveedor, Modelo, Marca";
             txtBuscar.Location = new Point(685, 153);
             txtBuscar.Name = "txtBuscar";
@@ -81,7 +82,6 @@
             txtBuscar.StateCommon.Border.Rounding = 20F;
             txtBuscar.StateCommon.Content.Color1 = Color.Gray;
             txtBuscar.TabIndex = 191;
-            txtBuscar.Text = "Ingrese un Nombre, ID, Tipo, Proveedor, Modelo, Marca";
             txtBuscar.TextChanged += txtBuscar_TextChanged;
             // 
             // btnAgregar

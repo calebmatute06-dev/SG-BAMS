@@ -55,6 +55,7 @@
             // 
             // txtPrecio
             // 
+            txtPrecio.CueHint.Color1 = Color.Gray;
             txtPrecio.CueHint.CueHintText = "Ingrese precio";
             txtPrecio.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtPrecio.Location = new Point(251, 184);
@@ -66,7 +67,6 @@
             txtPrecio.StateCommon.Content.Color1 = Color.Gray;
             txtPrecio.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtPrecio.TabIndex = 336;
-            txtPrecio.Text = "Ingrese precio";
             txtPrecio.KeyPress += txtPrecio_KeyPress;
             // 
             // cmbBaterias
@@ -193,6 +193,7 @@
             // 
             // txtCantidad
             // 
+            txtCantidad.CueHint.Color1 = Color.Gray;
             txtCantidad.CueHint.CueHintText = "Ingrese la cantidad";
             txtCantidad.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtCantidad.Location = new Point(251, 237);
@@ -204,7 +205,6 @@
             txtCantidad.StateCommon.Content.Color1 = Color.Gray;
             txtCantidad.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtCantidad.TabIndex = 345;
-            txtCantidad.Text = "Ingrese la cantidad";
             txtCantidad.KeyPress += txtCantidad_KeyPress;
             // 
             // BtnSalir

@@ -164,6 +164,8 @@
             // 
             // cmbProductos
             // 
+            cmbProductos.CueHint.Color1 = Color.Gray;
+            cmbProductos.CueHint.CueHintText = "Seleccione un Producto";
             cmbProductos.DropDownWidth = 300;
             cmbProductos.Location = new Point(171, 179);
             cmbProductos.Name = "cmbProductos";
@@ -179,17 +181,17 @@
             // 
             // txtCantidad
             // 
-            txtCantidad.CueHint.CueHintText = "Ingrese una cantidad del producto ";
+            txtCantidad.CueHint.Color1 = Color.Gray;
+            txtCantidad.CueHint.CueHintText = "Ingrese solo numeros";
             txtCantidad.Location = new Point(171, 229);
             txtCantidad.Margin = new Padding(3, 4, 3, 4);
             txtCantidad.Name = "txtCantidad";
-            txtCantidad.Size = new Size(298, 36);
+            txtCantidad.Size = new Size(298, 37);
             txtCantidad.StateCommon.Back.Color1 = Color.SkyBlue;
             txtCantidad.StateCommon.Border.Rounding = 10F;
             txtCantidad.StateCommon.Content.Color1 = Color.Gray;
             txtCantidad.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtCantidad.TabIndex = 335;
-            txtCantidad.Text = "Ingrese una cantidad del producto ";
             // 
             // lblStock
             // 

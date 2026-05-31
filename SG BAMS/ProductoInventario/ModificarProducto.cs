@@ -30,6 +30,9 @@ namespace SG_BAMS
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
+
+            txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
+
         }
 
         /// <summary>
@@ -118,9 +121,7 @@ namespace SG_BAMS
             cmbModelo.SelectedIndex = cmbModelo.FindStringExact(modeloActual?.Trim());
             cmbEstado.SelectedIndex = cmbEstado.FindStringExact(estadoActual?.Trim());
             cmbProveedor.SelectedIndex = cmbProveedor.FindStringExact(proveedorActual?.Trim());
-            ClsMensajeGuia.ActivarK(txtNombre);
-            ClsMensajeGuia.ActivarK(txtPrecio);
-            ClsMensajeGuia.ActivarK(txtCodigoBarra);
+
         }
 
         /// <summary>

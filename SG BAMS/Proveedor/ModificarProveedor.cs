@@ -69,6 +69,14 @@ namespace SG_BAMS.Proveedor
             this.txtDireccion.KeyPress += new KeyPressEventHandler(this.txtDireccion_KeyPress);
             this.txtTelefono.KeyPress += new KeyPressEventHandler(this.txtTelefono_KeyPress);
             this.txtRTN.KeyPress += new KeyPressEventHandler(this.txtRTN_KeyPress);
+
+            txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
+            txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirAlfanumerico(e);
+            txtTelefono.KeyPress += (s, e) => ClsValidaciones.ValidarSoloNumeros(e);
+            txtRTN.KeyPress += (s, e) => ClsValidaciones.ValidarSoloNumeros(e);
+            txtTelefono.KeyPress += (s, e) =>
+                ClsValidaciones.ValidarTelefonoKeyPress(txtTelefono, e);
+        
         }
 
         /// <summary>
@@ -97,10 +105,7 @@ namespace SG_BAMS.Proveedor
             cmbClasificacion.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbClasificacion.SelectedValue = _idClasificacion;
 
-            ClsMensajeGuia.ActivarK(txtNombre);
-            ClsMensajeGuia.ActivarK(txtTelefono);
-            ClsMensajeGuia.ActivarK(txtDireccion);
-            ClsMensajeGuia.ActivarK(txtRTN);
+
         }
 
         /// <summary>
