@@ -72,7 +72,8 @@
             txtNombre.Multiline = true;
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(264, 43);
-            txtNombre.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtNombre.StateCommon.Back.Color1 = Color.White;
+            txtNombre.StateCommon.Border.Color1 = Color.Navy;
             txtNombre.StateCommon.Border.Rounding = 15F;
             txtNombre.StateCommon.Content.Color1 = Color.DimGray;
             txtNombre.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -89,7 +90,8 @@
             txtContra.Multiline = true;
             txtContra.Name = "txtContra";
             txtContra.Size = new Size(264, 43);
-            txtContra.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtContra.StateCommon.Back.Color1 = Color.White;
+            txtContra.StateCommon.Border.Color1 = Color.Navy;
             txtContra.StateCommon.Border.Rounding = 10F;
             txtContra.StateCommon.Content.Color1 = Color.Black;
             txtContra.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -159,10 +161,11 @@
             cmbRol.CueHint.CueHintText = "Seleccione un Rol";
             cmbRol.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbRol.DropDownWidth = 300;
-            cmbRol.Location = new Point(322, 269);
+            cmbRol.Location = new Point(322, 270);
             cmbRol.Name = "cmbRol";
             cmbRol.Size = new Size(264, 35);
-            cmbRol.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbRol.StateCommon.ComboBox.Back.Color1 = Color.White;
+            cmbRol.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbRol.StateCommon.ComboBox.Border.Rounding = 10F;
             cmbRol.StateCommon.ComboBox.Content.Color1 = Color.Black;
             cmbRol.StateCommon.ComboBox.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -254,7 +257,8 @@
             txtCorreo.Multiline = true;
             txtCorreo.Name = "txtCorreo";
             txtCorreo.Size = new Size(264, 43);
-            txtCorreo.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtCorreo.StateCommon.Back.Color1 = Color.White;
+            txtCorreo.StateCommon.Border.Color1 = Color.Navy;
             txtCorreo.StateCommon.Border.Rounding = 10F;
             txtCorreo.StateCommon.Content.Color1 = Color.Gray;
             txtCorreo.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);

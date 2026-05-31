@@ -88,7 +88,8 @@ namespace SG_BAMS
             txtdescri.Multiline = true;
             txtdescri.Name = "txtdescri";
             txtdescri.Size = new Size(302, 38);
-            txtdescri.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtdescri.StateCommon.Back.Color1 = Color.White;
+            txtdescri.StateCommon.Border.Color1 = Color.Navy;
             txtdescri.StateCommon.Border.Rounding = 15F;
             txtdescri.StateCommon.Content.Color1 = Color.Black;
             txtdescri.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);

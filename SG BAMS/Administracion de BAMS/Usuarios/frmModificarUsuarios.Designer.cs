@@ -70,13 +70,14 @@
             txtContra.CueHint.Color1 = Color.DimGray;
             txtContra.CueHint.CueHintText = "Minimo 6 Caractares";
             txtContra.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtContra.Location = new Point(287, 203);
+            txtContra.Location = new Point(288, 203);
             txtContra.Margin = new Padding(3, 4, 3, 4);
             txtContra.MaxLength = 70;
             txtContra.Multiline = true;
             txtContra.Name = "txtContra";
             txtContra.Size = new Size(270, 40);
-            txtContra.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtContra.StateCommon.Back.Color1 = Color.White;
+            txtContra.StateCommon.Border.Color1 = Color.Navy;
             txtContra.StateCommon.Border.Rounding = 10F;
             txtContra.StateCommon.Content.Color1 = Color.Black;
             txtContra.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -105,7 +106,8 @@
             txtNombre.Multiline = true;
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(269, 41);
-            txtNombre.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtNombre.StateCommon.Back.Color1 = Color.White;
+            txtNombre.StateCommon.Border.Color1 = Color.Navy;
             txtNombre.StateCommon.Border.Rounding = 10F;
             txtNombre.StateCommon.Content.Color1 = Color.Black;
             txtNombre.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -178,7 +180,8 @@
             cmbRol.Location = new Point(287, 263);
             cmbRol.Name = "cmbRol";
             cmbRol.Size = new Size(266, 35);
-            cmbRol.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbRol.StateCommon.ComboBox.Back.Color1 = Color.White;
+            cmbRol.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbRol.StateCommon.ComboBox.Border.Rounding = 10F;
             cmbRol.StateCommon.ComboBox.Content.Color1 = Color.Black;
             cmbRol.StateCommon.ComboBox.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -198,7 +201,8 @@
             cmbEstado.Location = new Point(288, 327);
             cmbEstado.Name = "cmbEstado";
             cmbEstado.Size = new Size(269, 35);
-            cmbEstado.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
+            cmbEstado.StateCommon.ComboBox.Back.Color1 = Color.White;
+            cmbEstado.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbEstado.StateCommon.ComboBox.Border.Rounding = 10F;
             cmbEstado.StateCommon.ComboBox.Content.Color1 = Color.Black;
             cmbEstado.StateCommon.ComboBox.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -325,7 +329,8 @@
             txtCorreo.Multiline = true;
             txtCorreo.Name = "txtCorreo";
             txtCorreo.Size = new Size(270, 41);
-            txtCorreo.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtCorreo.StateCommon.Back.Color1 = Color.White;
+            txtCorreo.StateCommon.Border.Color1 = Color.Navy;
             txtCorreo.StateCommon.Border.Rounding = 10F;
             txtCorreo.StateCommon.Content.Color1 = Color.Black;
             txtCorreo.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);

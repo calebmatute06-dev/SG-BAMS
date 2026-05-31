@@ -159,13 +159,14 @@ namespace SG_BAMS
             txtDescri.CueHint.Color1 = Color.DimGray;
             txtDescri.CueHint.CueHintText = "Letras y números. Sin letras sueltas.";
             txtDescri.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtDescri.Location = new Point(291, 142);
+            txtDescri.Location = new Point(291, 143);
             txtDescri.Margin = new Padding(3, 4, 3, 4);
             txtDescri.MaxLength = 70;
             txtDescri.Multiline = true;
             txtDescri.Name = "txtDescri";
             txtDescri.Size = new Size(302, 35);
-            txtDescri.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtDescri.StateCommon.Back.Color1 = Color.White;
+            txtDescri.StateCommon.Border.Color1 = Color.Navy;
             txtDescri.StateCommon.Border.Rounding = 14F;
             txtDescri.StateCommon.Content.Color1 = Color.Black;
             txtDescri.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);

@@ -118,13 +118,14 @@
             txtDescri.CueHint.Color1 = Color.DimGray;
             txtDescri.CueHint.CueHintText = "Letras y números. Sin letras sueltas.";
             txtDescri.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtDescri.Location = new Point(330, 104);
+            txtDescri.Location = new Point(328, 107);
             txtDescri.Margin = new Padding(3, 4, 3, 4);
             txtDescri.MaxLength = 70;
             txtDescri.Multiline = true;
             txtDescri.Name = "txtDescri";
             txtDescri.Size = new Size(302, 44);
-            txtDescri.StateCommon.Back.Color1 = Color.SkyBlue;
+            txtDescri.StateCommon.Back.Color1 = Color.White;
+            txtDescri.StateCommon.Border.Color1 = Color.Navy;
             txtDescri.StateCommon.Border.Rounding = 15F;
             txtDescri.StateCommon.Content.Color1 = Color.Black;
             txtDescri.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
