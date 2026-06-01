@@ -116,10 +116,11 @@ namespace SG_BAMS.Bitacora
             EjecutarBusqueda();
             if (dgvBitacora.Columns.Count >= 4)
             {
-                dgvBitacora.Columns["Nombre"].Width = 110;   
-                dgvBitacora.Columns["Acción"].Width = 480;   
-                dgvBitacora.Columns["Modulo"].Width = 140;
-                dgvBitacora.Columns["Fecha"].Width = 100;
+                dgvBitacora.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dgvBitacora.Columns["Nombre"].FillWeight = 10;  
+                dgvBitacora.Columns["Acción"].FillWeight = 40;
+                dgvBitacora.Columns["Modulo"].FillWeight = 30;
+                dgvBitacora.Columns["Fecha"].FillWeight = 20;
             }
             dgvBitacora.ClearSelection();
 
