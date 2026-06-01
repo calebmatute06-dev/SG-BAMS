@@ -22,6 +22,8 @@ namespace SG_BAMS.Deudores
         public Información_Deudores()
         {
             InitializeComponent();
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
 
