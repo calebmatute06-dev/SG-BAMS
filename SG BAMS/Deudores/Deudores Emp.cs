@@ -233,7 +233,7 @@ namespace SG_BAMS
         /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void kryptonButton15_Click(object sender, EventArgs e)
         {
-            if (dgvDeudores.SelectedRows.Count < 0 || dgvDeudores.CurrentRow == null)
+            if (dgvDeudores.SelectedRows.Count == 0 || dgvDeudores.CurrentRow == null)
             {
                 MessageBox.Show("Por favor, seleccione una fila.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
