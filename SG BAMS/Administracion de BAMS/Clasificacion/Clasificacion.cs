@@ -106,8 +106,7 @@ namespace SG_BAMS.Administracion_de_BAMS.Clasificacion
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
-            AdministracionBAMS administracionBAMS = new AdministracionBAMS();
-            administracionBAMS.Show();
+
         }
 
         private async void Clasificacion_Load(object sender, EventArgs e)
