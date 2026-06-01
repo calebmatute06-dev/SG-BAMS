@@ -34,7 +34,7 @@ namespace SG_BAMS
             this.idRolSeleccionado = id;
             txtDescri.Text = nombreActual;
             this.MaximizeBox = false;
-            this.FormBorderStyle = FormBorderStyle.FixedSingle
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             // Restricción de entrada para permitir únicamente letras durante la escritura
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
         }
