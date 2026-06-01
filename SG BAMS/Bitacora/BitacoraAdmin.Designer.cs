@@ -268,7 +268,7 @@
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             dgvBitacora.DefaultCellStyle = dataGridViewCellStyle3;
-            dgvBitacora.Location = new Point(280, 165);
+            dgvBitacora.Location = new Point(263, 165);
             dgvBitacora.Margin = new Padding(3, 2, 3, 2);
             dgvBitacora.Name = "dgvBitacora";
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -283,7 +283,7 @@
             dataGridViewCellStyle5.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dataGridViewCellStyle5.ForeColor = Color.Navy;
             dgvBitacora.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            dgvBitacora.Size = new Size(825, 410);
+            dgvBitacora.Size = new Size(842, 410);
             dgvBitacora.TabIndex = 330;
             // 
             // label5
