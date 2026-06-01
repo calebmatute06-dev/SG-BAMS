@@ -610,8 +610,8 @@
             Controls.Add(btnDeudores);
             Controls.Add(btnMenu);
             Name = "BitacoraAdmin";
+            ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Bitacora";
             Load += Bitacora_Load;
             ((System.ComponentModel.ISupportInitialize)dgvBitacora).EndInit();
             ResumeLayout(false);

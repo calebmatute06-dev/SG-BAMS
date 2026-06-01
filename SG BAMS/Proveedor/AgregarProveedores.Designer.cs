@@ -359,8 +359,8 @@
             Controls.Add(pictureBox2);
             Margin = new Padding(3, 2, 3, 2);
             Name = "AgregarProveedores";
+            ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "AgregarProveedores";
             Load += AgregarProveedores_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();

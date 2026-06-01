@@ -346,7 +346,7 @@
             Controls.Add(pictureBox4);
             Margin = new Padding(3, 2, 3, 2);
             Name = "Agregar_Producto_Mod";
-            Text = "Agregar_Producto_Mod";
+            ShowIcon = false;
             Load += Agregar_Producto_Mod_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();

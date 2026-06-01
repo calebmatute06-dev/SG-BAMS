@@ -510,7 +510,7 @@
             Controls.Add(btnMenu);
             Margin = new Padding(3, 2, 3, 2);
             Name = "InventarioAdmin";
-            Text = "InventarioAdmin";
+            ShowIcon = false;
             Load += InventarioAdmin_Load;
             ((System.ComponentModel.ISupportInitialize)dgvProductosAdmin).EndInit();
             ResumeLayout(false);

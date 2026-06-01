@@ -356,7 +356,7 @@
             Controls.Add(btnCerrar);
             Margin = new Padding(3, 2, 3, 2);
             Name = "InventarioEmp";
-            Text = "InventarioEmp";
+            ShowIcon = false;
             Load += InventarioEmp_Load;
             ((System.ComponentModel.ISupportInitialize)dgvInventarioEmp).EndInit();
             ResumeLayout(false);

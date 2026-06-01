@@ -235,7 +235,7 @@
             Controls.Add(label2);
             Margin = new Padding(3, 2, 3, 2);
             Name = "Perfil";
-            Text = "Perfil";
+            ShowIcon = false;
             Load += Perfil_Load;
             Shown += Perfil_Shown;
             ((System.ComponentModel.ISupportInitialize)pbFotoPerfil).EndInit();

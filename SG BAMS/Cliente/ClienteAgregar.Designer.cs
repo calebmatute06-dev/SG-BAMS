@@ -312,7 +312,7 @@
             Controls.Add(panel2);
             Controls.Add(panel8);
             Name = "ClienteAgregar";
-            Text = "ClienteAgregar";
+            ShowIcon = false;
             Load += ClienteAgregar_Load;
             ResumeLayout(false);
             PerformLayout();

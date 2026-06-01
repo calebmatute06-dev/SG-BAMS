@@ -241,8 +241,8 @@
             Controls.Add(pictureBox2);
             Controls.Add(panel2);
             Name = "frmModeloAuto";
+            ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "fmrModeloAuto";
             Load += frmModeloAuto_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();

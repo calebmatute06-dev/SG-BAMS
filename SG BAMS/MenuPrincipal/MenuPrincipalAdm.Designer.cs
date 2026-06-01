@@ -844,7 +844,7 @@
             Margin = new Padding(3, 2, 3, 2);
             MinimumSize = new Size(261, 65);
             Name = "MenuPrincipalAdm";
-            Text = "dungeonForm1";
+            ShowIcon = false;
             TransparencyKey = Color.Fuchsia;
             Load += MenuPrincipalAdm_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();

@@ -257,8 +257,8 @@
             Controls.Add(pctCamara);
             Controls.Add(panel2);
             Name = "frmImagenEmpleado";
+            ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "fmrImagenEmpleado";
             Load += frmImagenEmpleado_Load;
             ((System.ComponentModel.ISupportInitialize)pctCamara).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();

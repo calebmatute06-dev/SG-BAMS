@@ -557,8 +557,8 @@
             Controls.Add(btnMenu);
             Margin = new Padding(3, 2, 3, 2);
             Name = "DeudoresAdmin";
+            ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Deudores";
             Load += DeudoresAdmin_Load;
             Shown += Deudores_Shown;
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();

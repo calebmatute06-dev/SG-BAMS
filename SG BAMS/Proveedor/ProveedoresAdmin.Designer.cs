@@ -521,8 +521,8 @@
             Controls.Add(btnMenu);
             Margin = new Padding(3, 2, 3, 2);
             Name = "ProveedoresAdmin";
+            ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "ProveedoresAdmin";
             Load += ProveedoresAdmin_Load;
             ((System.ComponentModel.ISupportInitialize)dgvProveedor).EndInit();
             ResumeLayout(false);

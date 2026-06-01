@@ -175,7 +175,7 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(482, 170);
+            label5.Location = new Point(482, 161);
             label5.Name = "label5";
             label5.Size = new Size(84, 29);
             label5.TabIndex = 354;
@@ -198,8 +198,8 @@
             Controls.Add(panel2);
             Controls.Add(label2);
             Name = "frmModificarEstado";
+            ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "frmModificarEstado";
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

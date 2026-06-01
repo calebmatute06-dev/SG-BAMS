@@ -56,9 +56,9 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(52, 216);
+            label1.Location = new Point(46, 162);
             label1.Name = "label1";
-            label1.Size = new Size(265, 27);
+            label1.Size = new Size(223, 22);
             label1.TabIndex = 344;
             label1.Text = "Confirmar Contraseña:";
             // 
@@ -68,21 +68,22 @@
             Contra.BackColor = Color.Transparent;
             Contra.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             Contra.ForeColor = Color.Navy;
-            Contra.Location = new Point(158, 147);
+            Contra.Location = new Point(138, 110);
             Contra.Name = "Contra";
-            Contra.Size = new Size(148, 27);
+            Contra.Size = new Size(125, 22);
             Contra.TabIndex = 345;
             Contra.Text = "Contraseña:";
             // 
             // btnsalir
             // 
-            btnsalir.Location = new Point(357, 298);
+            btnsalir.Location = new Point(312, 224);
+            btnsalir.Margin = new Padding(3, 2, 3, 2);
             btnsalir.Name = "btnsalir";
             btnsalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnsalir.OverrideDefault.Back.Color2 = Color.White;
             btnsalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnsalir.OverrideFocus.Back.Color2 = Color.White;
-            btnsalir.Size = new Size(224, 60);
+            btnsalir.Size = new Size(196, 45);
             btnsalir.StateCommon.Back.Color1 = Color.SkyBlue;
             btnsalir.StateCommon.Back.Color2 = Color.White;
             btnsalir.StateCommon.Border.Rounding = 5F;
@@ -99,13 +100,14 @@
             // 
             // btnConfirmar
             // 
-            btnConfirmar.Location = new Point(82, 297);
+            btnConfirmar.Location = new Point(72, 223);
+            btnConfirmar.Margin = new Padding(3, 2, 3, 2);
             btnConfirmar.Name = "btnConfirmar";
             btnConfirmar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnConfirmar.OverrideDefault.Back.Color2 = Color.White;
             btnConfirmar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnConfirmar.OverrideFocus.Back.Color2 = Color.White;
-            btnConfirmar.Size = new Size(224, 60);
+            btnConfirmar.Size = new Size(196, 45);
             btnConfirmar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnConfirmar.StateCommon.Back.Color2 = Color.White;
             btnConfirmar.StateCommon.Border.Rounding = 5F;
@@ -122,9 +124,10 @@
             // 
             // txtContraNueva
             // 
-            txtContraNueva.Location = new Point(323, 207);
+            txtContraNueva.Location = new Point(283, 155);
+            txtContraNueva.Margin = new Padding(3, 2, 3, 2);
             txtContraNueva.Name = "txtContraNueva";
-            txtContraNueva.Size = new Size(289, 36);
+            txtContraNueva.Size = new Size(253, 31);
             txtContraNueva.StateCommon.Back.Color1 = Color.White;
             txtContraNueva.StateCommon.Border.Color1 = Color.Navy;
             txtContraNueva.StateCommon.Border.Rounding = 5F;
@@ -134,9 +137,10 @@
             // 
             // txtContra
             // 
-            txtContra.Location = new Point(323, 138);
+            txtContra.Location = new Point(283, 104);
+            txtContra.Margin = new Padding(3, 2, 3, 2);
             txtContra.Name = "txtContra";
-            txtContra.Size = new Size(289, 36);
+            txtContra.Size = new Size(253, 31);
             txtContra.StateCommon.Back.Color1 = Color.White;
             txtContra.StateCommon.Border.Color1 = Color.Navy;
             txtContra.StateCommon.Border.Rounding = 5F;
@@ -147,27 +151,30 @@
             // pictureBox4
             // 
             pictureBox4.BackColor = Color.Navy;
-            pictureBox4.Location = new Point(-152, -97);
+            pictureBox4.Location = new Point(-133, -73);
+            pictureBox4.Margin = new Padding(3, 2, 3, 2);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(24, 645);
+            pictureBox4.Size = new Size(21, 484);
             pictureBox4.TabIndex = 346;
             pictureBox4.TabStop = false;
             // 
             // pictureBox2
             // 
             pictureBox2.BackColor = Color.Navy;
-            pictureBox2.Location = new Point(-152, -93);
+            pictureBox2.Location = new Point(-133, -70);
+            pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(926, 24);
+            pictureBox2.Size = new Size(810, 18);
             pictureBox2.TabIndex = 347;
             pictureBox2.TabStop = false;
             // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Navy;
-            pictureBox1.Location = new Point(-1, -3);
+            pictureBox1.Location = new Point(-1, -2);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(35, 462);
+            pictureBox1.Size = new Size(31, 346);
             pictureBox1.TabIndex = 348;
             pictureBox1.TabStop = false;
             // 
@@ -175,26 +182,29 @@
             // 
             pictureBox3.BackColor = Color.Navy;
             pictureBox3.Location = new Point(1, -1);
+            pictureBox3.Margin = new Padding(3, 2, 3, 2);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(672, 29);
+            pictureBox3.Size = new Size(588, 22);
             pictureBox3.TabIndex = 349;
             pictureBox3.TabStop = false;
             // 
             // pictureBox5
             // 
             pictureBox5.BackColor = Color.Navy;
-            pictureBox5.Location = new Point(638, -1);
+            pictureBox5.Location = new Point(558, -1);
+            pictureBox5.Margin = new Padding(3, 2, 3, 2);
             pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(35, 462);
+            pictureBox5.Size = new Size(31, 346);
             pictureBox5.TabIndex = 350;
             pictureBox5.TabStop = false;
             // 
             // pictureBox6
             // 
             pictureBox6.BackColor = Color.Navy;
-            pictureBox6.Location = new Point(-2, 421);
+            pictureBox6.Location = new Point(-2, 316);
+            pictureBox6.Margin = new Padding(3, 2, 3, 2);
             pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(675, 29);
+            pictureBox6.Size = new Size(591, 22);
             pictureBox6.TabIndex = 351;
             pictureBox6.TabStop = false;
             // 
@@ -204,9 +214,9 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(530, 383);
+            label5.Location = new Point(464, 287);
             label5.Name = "label5";
-            label5.Size = new Size(102, 35);
+            label5.Size = new Size(84, 29);
             label5.TabIndex = 352;
             label5.Text = "BAMS";
             // 
@@ -216,18 +226,18 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial", 22.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(117, 56);
+            label2.Location = new Point(102, 42);
             label2.Name = "label2";
-            label2.Size = new Size(420, 44);
+            label2.Size = new Size(336, 35);
             label2.TabIndex = 353;
             label2.Text = "Cambio de contraseña";
             // 
             // LoginNueva
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(672, 450);
+            ClientSize = new Size(588, 338);
             Controls.Add(label2);
             Controls.Add(label5);
             Controls.Add(pictureBox6);
@@ -242,8 +252,9 @@
             Controls.Add(btnConfirmar);
             Controls.Add(txtContraNueva);
             Controls.Add(txtContra);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "LoginNueva";
-            Text = "LoginNueva";
+            ShowIcon = false;
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

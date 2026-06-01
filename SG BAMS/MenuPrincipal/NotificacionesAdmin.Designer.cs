@@ -171,7 +171,7 @@
             Controls.Add(label6);
             Margin = new Padding(3, 2, 3, 2);
             Name = "NotificacionesAdmin";
-            Text = "NotificacionesAdmin";
+            ShowIcon = false;
             Load += NotificacionesAdmin_Load;
             Shown += NotificacionesAdmin_Shown;
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();

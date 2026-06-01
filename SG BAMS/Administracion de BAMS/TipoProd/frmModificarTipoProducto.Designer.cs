@@ -198,8 +198,8 @@
             Controls.Add(panel2);
             Controls.Add(label2);
             Name = "frmModificarTipoProducto";
+            ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "frmModificarTipoProducto";
             Load += frmModificarTipoProducto_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

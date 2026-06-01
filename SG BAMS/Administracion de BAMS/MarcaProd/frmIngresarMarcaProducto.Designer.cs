@@ -165,7 +165,7 @@ namespace SG_BAMS
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(482, 188);
+            label5.Location = new Point(482, 183);
             label5.Name = "label5";
             label5.Size = new Size(84, 29);
             label5.TabIndex = 347;
@@ -200,8 +200,8 @@ namespace SG_BAMS
             Controls.Add(panel2);
             Controls.Add(label2);
             Name = "frmIngresarMarcaProducto";
+            ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "fmrIngresarMarcaProducto";
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

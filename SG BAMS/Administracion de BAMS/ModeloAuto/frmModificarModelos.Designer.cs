@@ -199,8 +199,8 @@
             Controls.Add(txtDescri);
             Controls.Add(label2);
             Name = "frmModificarModelos";
+            ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "frmModificarModelos";
             Load += frmModificarModelos_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

@@ -368,8 +368,8 @@
             Controls.Add(txtNombre);
             Controls.Add(label2);
             Name = "frmModificarUsuarios";
+            ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "fmrModificarUsuarios";
             Load += fmrModificarUsuarios_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();

@@ -198,8 +198,8 @@
             Controls.Add(txtDescri);
             Controls.Add(label2);
             Name = "frmAgregarRol";
+            ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "frmAgregarRol";
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

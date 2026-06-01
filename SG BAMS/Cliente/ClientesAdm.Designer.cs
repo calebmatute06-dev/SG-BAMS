@@ -520,8 +520,8 @@
             Controls.Add(btnDeudores);
             Controls.Add(btnMenu);
             Name = "ClientesAdm";
+            ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "ClientesAdm";
             Load += ClientesAdm_Load;
             ((System.ComponentModel.ISupportInitialize)dgvClientes).EndInit();
             ResumeLayout(false);

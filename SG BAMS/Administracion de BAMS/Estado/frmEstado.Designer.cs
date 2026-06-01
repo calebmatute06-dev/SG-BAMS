@@ -241,8 +241,8 @@
             Controls.Add(pictureBox2);
             Controls.Add(panel2);
             Name = "frmEstado";
+            ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "frmEstado";
             Load += frmEstado_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();

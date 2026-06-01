@@ -438,7 +438,7 @@
             Controls.Add(pictureBox4);
             Margin = new Padding(3, 2, 3, 2);
             Name = "Ingresar_datos__Compra_";
-            Text = "Ingresar_datos__Compra_";
+            ShowIcon = false;
             Load += Ingresar_datos__Compra__Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

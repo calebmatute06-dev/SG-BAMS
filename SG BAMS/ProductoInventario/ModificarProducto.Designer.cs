@@ -508,7 +508,7 @@
             Controls.Add(pictureBox2);
             Margin = new Padding(3, 2, 3, 2);
             Name = "ModificarProducto";
-            Text = "ModificarProducto";
+            ShowIcon = false;
             Load += ModificarProducto_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

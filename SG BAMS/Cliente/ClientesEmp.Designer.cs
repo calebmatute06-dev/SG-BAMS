@@ -419,8 +419,8 @@
             Controls.Add(btnPerfil);
             Controls.Add(btnCerrar);
             Name = "ClientesEmp";
+            ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "ClientesEmp";
             Load += ClientesEmp_Load;
             ((System.ComponentModel.ISupportInitialize)dgvClientes).EndInit();
             ResumeLayout(false);

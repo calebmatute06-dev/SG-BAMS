@@ -168,7 +168,7 @@
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox2);
             Name = "Soporte";
-            Text = "Soporte";
+            ShowIcon = false;
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();

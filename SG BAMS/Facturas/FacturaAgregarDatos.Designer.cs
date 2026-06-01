@@ -567,7 +567,7 @@
             Controls.Add(panel1);
             Controls.Add(panel8);
             Name = "FacturaAgregarDatos";
-            Text = "FacturaAgregarDatos";
+            ShowIcon = false;
             Load += FacturaAgregarDatos_Load;
             ((System.ComponentModel.ISupportInitialize)cmbPago).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvProductos).EndInit();

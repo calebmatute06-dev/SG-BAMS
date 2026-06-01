@@ -700,7 +700,7 @@ namespace SG_BAMS
             Controls.Add(btnCerrar);
             Margin = new Padding(3, 2, 3, 2);
             Name = "MenuPrincipalEmp";
-            Text = "MenuPrincipalEmp";
+            ShowIcon = false;
             Load += MenuPrincipalEmp_Load;
             Shown += MenuPrincipalEmp_Shown;
             ((System.ComponentModel.ISupportInitialize)pictureBox21).EndInit();

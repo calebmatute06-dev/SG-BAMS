@@ -303,8 +303,8 @@
             Controls.Add(txtNombre);
             Controls.Add(label2);
             Name = "frmAgregarUsuarios";
+            ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "fmrAgregarUsuarios";
             Load += frmAgregarUsuarios_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();

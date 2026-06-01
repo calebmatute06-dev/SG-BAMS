@@ -242,8 +242,8 @@ namespace SG_BAMS
             Controls.Add(pictureBox2);
             Controls.Add(panel2);
             Name = "frmUsuarios";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "x";
+            ShowIcon = false;
+            StartPosition = FormStartPosition.WindowsDefaultBounds;
             Load += frmUsuarios_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

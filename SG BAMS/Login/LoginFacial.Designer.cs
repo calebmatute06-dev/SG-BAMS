@@ -178,7 +178,7 @@
             Controls.Add(pictureBox2);
             Controls.Add(picValidar);
             Name = "LoginFacial";
-            Text = "LoginFacial";
+            ShowIcon = false;
             Load += LoginFacial_Load;
             ((System.ComponentModel.ISupportInitialize)picValidar).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();

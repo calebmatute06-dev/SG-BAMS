@@ -350,7 +350,7 @@
             Controls.Add(panel2);
             Controls.Add(panel8);
             Name = "ClienteModificar";
-            Text = "ClienteModificar";
+            ShowIcon = false;
             Load += ClienteModificar_Load;
             ((System.ComponentModel.ISupportInitialize)cmbEstado).EndInit();
             ResumeLayout(false);

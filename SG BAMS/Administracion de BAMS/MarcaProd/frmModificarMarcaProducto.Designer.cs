@@ -198,8 +198,8 @@
             Controls.Add(panel2);
             Controls.Add(label2);
             Name = "frmModificarMarcaProducto";
+            ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "frmModificarMarcaProducto";
             Load += frmModificarMarcaProducto_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

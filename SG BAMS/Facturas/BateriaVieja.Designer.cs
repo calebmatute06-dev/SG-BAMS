@@ -390,7 +390,7 @@
             Controls.Add(txtPrecio);
             Margin = new Padding(3, 2, 3, 2);
             Name = "BateriaVieja";
-            Text = "BateriaVieja";
+            ShowIcon = false;
             Load += BateriaVieja_Load;
             ((System.ComponentModel.ISupportInitialize)cmbBaterias).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvBateria).EndInit();

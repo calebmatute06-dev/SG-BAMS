@@ -309,7 +309,7 @@
             Controls.Add(panel4);
             Controls.Add(panel8);
             Name = "FacturaProducto";
-            Text = "D";
+            ShowIcon = false;
             Load += FacturaProducto_Load;
             ((System.ComponentModel.ISupportInitialize)cmbProductos).EndInit();
             ResumeLayout(false);

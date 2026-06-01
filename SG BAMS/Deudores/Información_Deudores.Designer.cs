@@ -52,22 +52,24 @@
             // 
             // lblmontoinicial
             // 
-            lblmontoinicial.Location = new Point(186, 244);
+            lblmontoinicial.Location = new Point(163, 183);
+            lblmontoinicial.Margin = new Padding(3, 2, 3, 2);
             lblmontoinicial.Name = "lblmontoinicial";
-            lblmontoinicial.Size = new Size(136, 31);
+            lblmontoinicial.Size = new Size(119, 23);
             lblmontoinicial.StateCommon.ShortText.Color1 = Color.Navy;
             lblmontoinicial.TabIndex = 204;
             lblmontoinicial.Values.Text = "xxx-xxx";
             // 
             // btnaceptar
             // 
-            btnaceptar.Location = new Point(83, 317);
+            btnaceptar.Location = new Point(73, 238);
+            btnaceptar.Margin = new Padding(3, 2, 3, 2);
             btnaceptar.Name = "btnaceptar";
             btnaceptar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnaceptar.OverrideDefault.Back.Color2 = Color.White;
             btnaceptar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnaceptar.OverrideFocus.Back.Color2 = Color.White;
-            btnaceptar.Size = new Size(121, 39);
+            btnaceptar.Size = new Size(106, 29);
             btnaceptar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnaceptar.StateCommon.Back.Color2 = Color.White;
             btnaceptar.StateCommon.Border.Rounding = 5F;
@@ -88,9 +90,9 @@
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Arial", 14.25F, FontStyle.Bold);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(705, 68);
+            label6.Location = new Point(617, 51);
             label6.Name = "label6";
-            label6.Size = new Size(146, 29);
+            label6.Size = new Size(117, 22);
             label6.TabIndex = 201;
             label6.Text = "Fecha Final";
             // 
@@ -100,37 +102,40 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial", 14.25F, FontStyle.Bold);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(385, 69);
+            label4.Location = new Point(337, 52);
             label4.Name = "label4";
-            label4.Size = new Size(153, 29);
+            label4.Size = new Size(122, 22);
             label4.TabIndex = 200;
             label4.Text = "Fecha Inicio";
             // 
             // fechafinal
             // 
             fechafinal.Enabled = false;
-            fechafinal.Location = new Point(637, 103);
+            fechafinal.Location = new Point(557, 77);
+            fechafinal.Margin = new Padding(3, 2, 3, 2);
             fechafinal.MaxDate = new DateTime(2100, 12, 31, 0, 0, 0, 0);
             fechafinal.MinDate = new DateTime(2025, 1, 1, 0, 0, 0, 0);
             fechafinal.Name = "fechafinal";
-            fechafinal.Size = new Size(293, 218);
+            fechafinal.Size = new Size(230, 182);
             fechafinal.StateCheckedNormal.Day.Border.Rounding = 10F;
             fechafinal.TabIndex = 199;
             // 
             // lblnombre
             // 
-            lblnombre.Location = new Point(186, 197);
+            lblnombre.Location = new Point(163, 148);
+            lblnombre.Margin = new Padding(3, 2, 3, 2);
             lblnombre.Name = "lblnombre";
-            lblnombre.Size = new Size(136, 31);
+            lblnombre.Size = new Size(119, 23);
             lblnombre.StateCommon.ShortText.Color1 = Color.Navy;
             lblnombre.TabIndex = 198;
             lblnombre.Values.Text = "xxx-xxx";
             // 
             // lbliddeuda
             // 
-            lbliddeuda.Location = new Point(187, 149);
+            lbliddeuda.Location = new Point(164, 112);
+            lbliddeuda.Margin = new Padding(3, 2, 3, 2);
             lbliddeuda.Name = "lbliddeuda";
-            lbliddeuda.Size = new Size(129, 31);
+            lbliddeuda.Size = new Size(113, 23);
             lbliddeuda.StateCommon.ShortText.Color1 = Color.Navy;
             lbliddeuda.TabIndex = 197;
             lbliddeuda.Values.Text = "xxx-xxx";
@@ -141,9 +146,9 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(61, 244);
+            label5.Location = new Point(53, 183);
             label5.Name = "label5";
-            label5.Size = new Size(102, 24);
+            label5.Size = new Size(83, 20);
             label5.TabIndex = 196;
             label5.Text = "Monto Inicial";
             // 
@@ -153,9 +158,9 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(57, 197);
+            label3.Location = new Point(50, 148);
             label3.Name = "label3";
-            label3.Size = new Size(69, 24);
+            label3.Size = new Size(57, 20);
             label3.TabIndex = 195;
             label3.Text = "Nombre";
             // 
@@ -165,9 +170,9 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(56, 149);
+            label2.Location = new Point(49, 112);
             label2.Name = "label2";
-            label2.Size = new Size(77, 24);
+            label2.Size = new Size(63, 20);
             label2.TabIndex = 194;
             label2.Text = "ID deuda";
             // 
@@ -177,62 +182,68 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial", 17.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(41, 72);
+            label1.Location = new Point(36, 54);
             label1.Name = "label1";
-            label1.Size = new Size(289, 34);
+            label1.Size = new Size(229, 27);
             label1.TabIndex = 193;
             label1.Text = "Información deudor";
             // 
             // kryptonLabel8
             // 
-            kryptonLabel8.Location = new Point(58, 232);
+            kryptonLabel8.Location = new Point(51, 174);
+            kryptonLabel8.Margin = new Padding(3, 2, 3, 2);
             kryptonLabel8.Name = "kryptonLabel8";
-            kryptonLabel8.Size = new Size(136, 31);
+            kryptonLabel8.Size = new Size(119, 23);
             kryptonLabel8.TabIndex = 192;
             kryptonLabel8.Values.Text = "";
             // 
             // fechainicio
             // 
             fechainicio.Enabled = false;
-            fechainicio.Location = new Point(322, 103);
+            fechainicio.Location = new Point(282, 77);
+            fechainicio.Margin = new Padding(3, 2, 3, 2);
             fechainicio.MaxDate = new DateTime(2100, 12, 31, 0, 0, 0, 0);
             fechainicio.MinDate = new DateTime(2025, 1, 1, 0, 0, 0, 0);
             fechainicio.Name = "fechainicio";
-            fechainicio.Size = new Size(293, 218);
+            fechainicio.Size = new Size(230, 182);
             fechainicio.StateCheckedNormal.Day.Border.Rounding = 10F;
             fechainicio.TabIndex = 191;
             // 
             // panel1
             // 
             panel1.BackColor = Color.Navy;
-            panel1.Location = new Point(-13, 0);
+            panel1.Location = new Point(-11, 0);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1042, 24);
+            panel1.Size = new Size(912, 18);
             panel1.TabIndex = 189;
             // 
             // panel3
             // 
             panel3.BackColor = Color.Navy;
-            panel3.Location = new Point(0, 380);
+            panel3.Location = new Point(0, 285);
+            panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1051, 24);
+            panel3.Size = new Size(920, 18);
             panel3.TabIndex = 188;
             // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Navy;
             pictureBox1.Location = new Point(0, 0);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(24, 416);
+            pictureBox1.Size = new Size(21, 312);
             pictureBox1.TabIndex = 187;
             pictureBox1.TabStop = false;
             // 
             // pictureBox4
             // 
             pictureBox4.BackColor = Color.Navy;
-            pictureBox4.Location = new Point(1006, 0);
+            pictureBox4.Location = new Point(880, 0);
+            pictureBox4.Margin = new Padding(3, 2, 3, 2);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(24, 401);
+            pictureBox4.Size = new Size(21, 301);
             pictureBox4.TabIndex = 186;
             pictureBox4.TabStop = false;
             // 
@@ -242,18 +253,18 @@
             label7.BackColor = Color.Transparent;
             label7.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Navy;
-            label7.Location = new Point(909, 339);
+            label7.Location = new Point(795, 254);
             label7.Name = "label7";
-            label7.Size = new Size(102, 35);
+            label7.Size = new Size(84, 29);
             label7.TabIndex = 345;
             label7.Text = "BAMS";
             // 
             // Información_Deudores
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1029, 403);
+            ClientSize = new Size(900, 302);
             Controls.Add(label7);
             Controls.Add(lblmontoinicial);
             Controls.Add(btnaceptar);
@@ -273,8 +284,9 @@
             Controls.Add(pictureBox1);
             Controls.Add(pictureBox4);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Información_Deudores";
-            Text = "Información_Deudores";
+            ShowIcon = false;
             Load += Información_Deudores_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();

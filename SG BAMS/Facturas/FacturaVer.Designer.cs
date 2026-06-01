@@ -396,7 +396,7 @@
             Controls.Add(panel4);
             Controls.Add(panel8);
             Name = "FacturaVer";
-            Text = "FacturaVer";
+            ShowIcon = false;
             Load += FacturaVer_Load;
             ((System.ComponentModel.ISupportInitialize)cmbPago).EndInit();
             panel8.ResumeLayout(false);

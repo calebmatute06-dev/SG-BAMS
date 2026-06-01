@@ -629,7 +629,7 @@
             Controls.Add(btnMenu);
             Margin = new Padding(3, 2, 3, 2);
             Name = "Compras";
-            Text = "Compras";
+            ShowIcon = false;
             Load += Compras_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvComprasAdmin).EndInit();

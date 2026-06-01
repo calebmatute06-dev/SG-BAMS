@@ -725,8 +725,8 @@
             Controls.Add(btnDeudores);
             Controls.Add(btnMenu);
             Name = "AdministracionBAMS";
+            ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "frmAdministracion";
             Load += AdministracionBAMS_Load;
             ResumeLayout(false);
             PerformLayout();

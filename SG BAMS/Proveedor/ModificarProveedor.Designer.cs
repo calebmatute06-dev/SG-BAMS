@@ -403,8 +403,8 @@
             Controls.Add(pictureBox2);
             Margin = new Padding(3, 2, 3, 2);
             Name = "ModificarProveedor";
+            ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "ModificarProveedor";
             Load += ModificarProveedor_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

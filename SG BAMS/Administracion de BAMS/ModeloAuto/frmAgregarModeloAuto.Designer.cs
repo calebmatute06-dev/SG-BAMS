@@ -199,8 +199,8 @@ namespace SG_BAMS
             Controls.Add(txtDescri);
             Controls.Add(label2);
             Name = "frmAgregarModeloAuto";
+            ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "fmrAgregarModeloAuto";
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

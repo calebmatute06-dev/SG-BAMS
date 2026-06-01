@@ -507,7 +507,7 @@
             Controls.Add(btnPerfil);
             Controls.Add(btnCerrar);
             Name = "FacturasEmp";
-            Text = "FacturasEmp";
+            ShowIcon = false;
             Load += FacturasEmp_Load;
             ((System.ComponentModel.ISupportInitialize)dgvFacturas).EndInit();
             ResumeLayout(false);

@@ -241,8 +241,8 @@
             Controls.Add(pictureBox2);
             Controls.Add(panel2);
             Name = "frmMarcaProductos";
+            ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "fmrMarcaProductos";
             Load += frmMarcaProductos_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();

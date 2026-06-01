@@ -69,7 +69,7 @@ namespace SG_BAMS
             foreverMinimize2.DefaultLocation = true;
             foreverMinimize2.DownColor = Color.FromArgb(30, 0, 0, 0);
             foreverMinimize2.Font = new Font("Marlett", 12F);
-            foreverMinimize2.Location = new Point(529, 12);
+            foreverMinimize2.Location = new Point(520, 16);
             foreverMinimize2.Name = "foreverMinimize2";
             foreverMinimize2.OverColor = Color.FromArgb(30, 255, 255, 255);
             foreverMinimize2.Size = new Size(18, 18);
@@ -85,7 +85,7 @@ namespace SG_BAMS
             foreverClose2.DefaultLocation = true;
             foreverClose2.DownColor = Color.FromArgb(30, 0, 0, 0);
             foreverClose2.Font = new Font("Marlett", 10F);
-            foreverClose2.Location = new Point(571, 12);
+            foreverClose2.Location = new Point(568, 16);
             foreverClose2.Name = "foreverClose2";
             foreverClose2.OverColor = Color.FromArgb(30, 255, 255, 255);
             foreverClose2.Size = new Size(18, 18);
@@ -101,7 +101,7 @@ namespace SG_BAMS
             foreverMinimize1.DefaultLocation = true;
             foreverMinimize1.DownColor = Color.FromArgb(30, 0, 0, 0);
             foreverMinimize1.Font = new Font("Marlett", 12F);
-            foreverMinimize1.Location = new Point(529, 12);
+            foreverMinimize1.Location = new Point(520, 16);
             foreverMinimize1.Name = "foreverMinimize1";
             foreverMinimize1.OverColor = Color.FromArgb(30, 255, 255, 255);
             foreverMinimize1.Size = new Size(18, 18);
@@ -117,7 +117,7 @@ namespace SG_BAMS
             foreverClose1.DefaultLocation = true;
             foreverClose1.DownColor = Color.FromArgb(30, 0, 0, 0);
             foreverClose1.Font = new Font("Marlett", 10F);
-            foreverClose1.Location = new Point(571, 12);
+            foreverClose1.Location = new Point(568, 16);
             foreverClose1.Name = "foreverClose1";
             foreverClose1.OverColor = Color.FromArgb(30, 255, 255, 255);
             foreverClose1.Size = new Size(18, 18);
@@ -272,8 +272,8 @@ namespace SG_BAMS
             Controls.Add(pictureBox1);
             Controls.Add(panel2);
             Name = "frmAgregarEstado";
+            ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "frmAgregarEstado";
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

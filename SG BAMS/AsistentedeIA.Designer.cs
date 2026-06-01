@@ -43,21 +43,22 @@
             // lstIA
             // 
             lstIA.FormattingEnabled = true;
-            lstIA.Location = new Point(39, 136);
-            lstIA.Margin = new Padding(3, 4, 3, 4);
+            lstIA.ItemHeight = 15;
+            lstIA.Location = new Point(34, 102);
             lstIA.Name = "lstIA";
-            lstIA.Size = new Size(993, 544);
+            lstIA.Size = new Size(869, 409);
             lstIA.TabIndex = 0;
             // 
             // btnEnviar
             // 
-            btnEnviar.Location = new Point(750, 700);
+            btnEnviar.Location = new Point(656, 525);
+            btnEnviar.Margin = new Padding(3, 2, 3, 2);
             btnEnviar.Name = "btnEnviar";
             btnEnviar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnEnviar.OverrideDefault.Back.Color2 = Color.White;
             btnEnviar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnEnviar.OverrideFocus.Back.Color2 = Color.White;
-            btnEnviar.Size = new Size(143, 49);
+            btnEnviar.Size = new Size(125, 37);
             btnEnviar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnEnviar.StateCommon.Back.Color2 = Color.White;
             btnEnviar.StateCommon.Border.Rounding = 5F;
@@ -74,13 +75,14 @@
             // 
             // btnBorrar
             // 
-            btnBorrar.Location = new Point(901, 699);
+            btnBorrar.Location = new Point(788, 524);
+            btnBorrar.Margin = new Padding(3, 2, 3, 2);
             btnBorrar.Name = "btnBorrar";
             btnBorrar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnBorrar.OverrideDefault.Back.Color2 = Color.White;
             btnBorrar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnBorrar.OverrideFocus.Back.Color2 = Color.White;
-            btnBorrar.Size = new Size(143, 49);
+            btnBorrar.Size = new Size(125, 37);
             btnBorrar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnBorrar.StateCommon.Back.Color2 = Color.White;
             btnBorrar.StateCommon.Border.Rounding = 5F;
@@ -97,10 +99,9 @@
             // 
             // txtInfo
             // 
-            txtInfo.Location = new Point(34, 708);
-            txtInfo.Margin = new Padding(3, 4, 3, 4);
+            txtInfo.Location = new Point(30, 531);
             txtInfo.Name = "txtInfo";
-            txtInfo.Size = new Size(705, 31);
+            txtInfo.Size = new Size(617, 27);
             txtInfo.StateCommon.Back.Color1 = Color.SkyBlue;
             txtInfo.StateCommon.Border.Rounding = 5F;
             txtInfo.TabIndex = 323;
@@ -108,13 +109,14 @@
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(889, 76);
+            btnSalir.Location = new Point(778, 57);
+            btnSalir.Margin = new Padding(3, 2, 3, 2);
             btnSalir.Name = "btnSalir";
             btnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnSalir.OverrideDefault.Back.Color2 = Color.White;
             btnSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnSalir.OverrideFocus.Back.Color2 = Color.White;
-            btnSalir.Size = new Size(143, 49);
+            btnSalir.Size = new Size(125, 37);
             btnSalir.StateCommon.Back.Color1 = Color.SkyBlue;
             btnSalir.StateCommon.Back.Color2 = Color.White;
             btnSalir.StateCommon.Border.Rounding = 5F;
@@ -133,32 +135,36 @@
             // 
             panel8.BackColor = Color.Navy;
             panel8.Location = new Point(-1, 0);
+            panel8.Margin = new Padding(3, 2, 3, 2);
             panel8.Name = "panel8";
-            panel8.Size = new Size(1086, 27);
+            panel8.Size = new Size(950, 20);
             panel8.TabIndex = 333;
             // 
             // panel1
             // 
             panel1.BackColor = Color.Navy;
-            panel1.Location = new Point(-1, 761);
+            panel1.Location = new Point(-1, 571);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1086, 27);
+            panel1.Size = new Size(950, 20);
             panel1.TabIndex = 334;
             // 
             // panel3
             // 
             panel3.BackColor = Color.Navy;
             panel3.Location = new Point(-1, 0);
+            panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(23, 1267);
+            panel3.Size = new Size(20, 950);
             panel3.TabIndex = 335;
             // 
             // panel4
             // 
             panel4.BackColor = Color.Navy;
-            panel4.Location = new Point(1056, 0);
+            panel4.Location = new Point(924, 0);
+            panel4.Margin = new Padding(3, 2, 3, 2);
             panel4.Name = "panel4";
-            panel4.Size = new Size(23, 1267);
+            panel4.Size = new Size(20, 950);
             panel4.TabIndex = 336;
             // 
             // label5
@@ -167,18 +173,18 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(27, 29);
+            label5.Location = new Point(24, 22);
             label5.Name = "label5";
-            label5.Size = new Size(102, 35);
+            label5.Size = new Size(84, 29);
             label5.TabIndex = 347;
             label5.Text = "BAMS";
             // 
             // AsistentedeIA
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1078, 787);
+            ClientSize = new Size(943, 590);
             Controls.Add(label5);
             Controls.Add(panel4);
             Controls.Add(panel3);
@@ -189,10 +195,8 @@
             Controls.Add(btnBorrar);
             Controls.Add(btnEnviar);
             Controls.Add(lstIA);
-            FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 4, 3, 4);
             Name = "AsistentedeIA";
-            Text = "AsistentedeIA";
+            ShowIcon = false;
             Load += AsistentedeIA_Load;
             ResumeLayout(false);
             PerformLayout();

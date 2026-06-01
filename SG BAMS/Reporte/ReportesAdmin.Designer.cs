@@ -773,6 +773,7 @@
             Controls.Add(Min);
             Margin = new Padding(3, 2, 3, 2);
             Name = "ReportesAdmin";
+            ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = " ";
             Load += ReportesAdmin_Load;

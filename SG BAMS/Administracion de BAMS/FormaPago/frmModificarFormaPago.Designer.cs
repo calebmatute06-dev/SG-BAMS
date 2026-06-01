@@ -199,8 +199,8 @@ namespace SG_BAMS
             Controls.Add(panel2);
             Controls.Add(label2);
             Name = "frmModificarFormaPago";
+            ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "frmModificarFormaPago";
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

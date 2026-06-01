@@ -200,8 +200,8 @@ namespace SG_BAMS
             Controls.Add(txtdescri);
             Controls.Add(label2);
             Name = "frmAgregarFormaPago";
+            ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "frmAgregarFormaPago";
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

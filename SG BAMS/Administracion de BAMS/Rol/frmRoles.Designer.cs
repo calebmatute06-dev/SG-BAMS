@@ -241,8 +241,8 @@
             Controls.Add(pictureBox2);
             Controls.Add(panel2);
             Name = "frmRoles";
+            ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "frmRoles";
             Load += frmRoles_Load_1;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();

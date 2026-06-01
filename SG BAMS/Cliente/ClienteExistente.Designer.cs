@@ -197,7 +197,7 @@
             Controls.Add(panel2);
             Controls.Add(panel8);
             Name = "ClienteExistente";
-            Text = "ClienteExistente";
+            ShowIcon = false;
             Load += ClienteExistente_Load;
             ((System.ComponentModel.ISupportInitialize)cmbClientes).EndInit();
             ResumeLayout(false);

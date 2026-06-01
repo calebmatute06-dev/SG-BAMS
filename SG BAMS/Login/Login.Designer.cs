@@ -271,8 +271,8 @@
             ForeColor = SystemColors.ActiveCaptionText;
             Margin = new Padding(3, 2, 3, 2);
             Name = "Login";
+            ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Login";
             Load += Login_Load;
             ((System.ComponentModel.ISupportInitialize)picBa).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();

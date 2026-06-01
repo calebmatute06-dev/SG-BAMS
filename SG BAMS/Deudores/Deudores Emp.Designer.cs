@@ -456,7 +456,7 @@
             ForeColor = Color.SkyBlue;
             Margin = new Padding(3, 2, 3, 2);
             Name = "Deudores_Emp";
-            Text = "Deudores_Emp";
+            ShowIcon = false;
             Load += Deudores_Emp_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonGroup5.Panel).EndInit();
