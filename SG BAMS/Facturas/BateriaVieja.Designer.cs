@@ -58,10 +58,9 @@
             txtPrecio.CueHint.Color1 = Color.Gray;
             txtPrecio.CueHint.CueHintText = "Ingrese precio";
             txtPrecio.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtPrecio.Location = new Point(251, 184);
-            txtPrecio.Margin = new Padding(3, 4, 3, 4);
+            txtPrecio.Location = new Point(220, 138);
             txtPrecio.Name = "txtPrecio";
-            txtPrecio.Size = new Size(197, 34);
+            txtPrecio.Size = new Size(172, 30);
             txtPrecio.StateCommon.Back.Color1 = Color.White;
             txtPrecio.StateCommon.Border.Color1 = Color.Navy;
             txtPrecio.StateCommon.Border.Rounding = 5F;
@@ -76,9 +75,10 @@
             cmbBaterias.CueHint.CueHintText = "Ingrese el nombre";
             cmbBaterias.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbBaterias.DropDownWidth = 300;
-            cmbBaterias.Location = new Point(251, 123);
+            cmbBaterias.Location = new Point(220, 92);
+            cmbBaterias.Margin = new Padding(3, 2, 3, 2);
             cmbBaterias.Name = "cmbBaterias";
-            cmbBaterias.Size = new Size(197, 38);
+            cmbBaterias.Size = new Size(172, 26);
             cmbBaterias.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbBaterias.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbBaterias.StateCommon.ComboBox.Border.Rounding = 5F;
@@ -94,9 +94,9 @@
             Nombre.BackColor = Color.Transparent;
             Nombre.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             Nombre.ForeColor = Color.Navy;
-            Nombre.Location = new Point(130, 133);
+            Nombre.Location = new Point(114, 100);
             Nombre.Name = "Nombre";
-            Nombre.Size = new Size(105, 27);
+            Nombre.Size = new Size(90, 22);
             Nombre.TabIndex = 338;
             Nombre.Text = "Nombre:";
             // 
@@ -106,9 +106,9 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial Narrow", 30F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(338, 41);
+            label1.Location = new Point(296, 31);
             label1.Name = "label1";
-            label1.Size = new Size(271, 58);
+            label1.Size = new Size(216, 46);
             label1.TabIndex = 339;
             label1.Text = "Batería Víeja";
             // 
@@ -118,9 +118,9 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(130, 193);
+            label2.Location = new Point(114, 145);
             label2.Name = "label2";
-            label2.Size = new Size(90, 27);
+            label2.Size = new Size(77, 22);
             label2.TabIndex = 340;
             label2.Text = "Precio:";
             // 
@@ -128,21 +128,23 @@
             // 
             dgvBateria.BackgroundColor = Color.SkyBlue;
             dgvBateria.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvBateria.Location = new Point(64, 296);
+            dgvBateria.Location = new Point(56, 222);
+            dgvBateria.Margin = new Padding(3, 2, 3, 2);
             dgvBateria.Name = "dgvBateria";
             dgvBateria.RowHeadersWidth = 51;
-            dgvBateria.Size = new Size(549, 245);
+            dgvBateria.Size = new Size(480, 184);
             dgvBateria.TabIndex = 341;
             // 
             // BtnAceptar
             // 
-            BtnAceptar.Location = new Point(319, 563);
+            BtnAceptar.Location = new Point(279, 422);
+            BtnAceptar.Margin = new Padding(3, 2, 3, 2);
             BtnAceptar.Name = "BtnAceptar";
             BtnAceptar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             BtnAceptar.OverrideDefault.Back.Color2 = Color.White;
             BtnAceptar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             BtnAceptar.OverrideFocus.Back.Color2 = Color.White;
-            BtnAceptar.Size = new Size(123, 60);
+            BtnAceptar.Size = new Size(108, 45);
             BtnAceptar.StateCommon.Back.Color1 = Color.SkyBlue;
             BtnAceptar.StateCommon.Back.Color2 = Color.White;
             BtnAceptar.StateCommon.Border.Rounding = 5F;
@@ -159,13 +161,14 @@
             // 
             // BtnAgregar
             // 
-            BtnAgregar.Location = new Point(553, 177);
+            BtnAgregar.Location = new Point(484, 133);
+            BtnAgregar.Margin = new Padding(3, 2, 3, 2);
             BtnAgregar.Name = "BtnAgregar";
             BtnAgregar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             BtnAgregar.OverrideDefault.Back.Color2 = Color.White;
             BtnAgregar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             BtnAgregar.OverrideFocus.Back.Color2 = Color.White;
-            BtnAgregar.Size = new Size(138, 45);
+            BtnAgregar.Size = new Size(121, 34);
             BtnAgregar.StateCommon.Back.Color1 = Color.SkyBlue;
             BtnAgregar.StateCommon.Back.Color2 = Color.White;
             BtnAgregar.StateCommon.Border.Rounding = 5F;
@@ -187,9 +190,9 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(130, 247);
+            label3.Location = new Point(114, 185);
             label3.Name = "label3";
-            label3.Size = new Size(120, 27);
+            label3.Size = new Size(100, 22);
             label3.TabIndex = 346;
             label3.Text = "Cantidad:";
             // 
@@ -198,10 +201,9 @@
             txtCantidad.CueHint.Color1 = Color.Gray;
             txtCantidad.CueHint.CueHintText = "Ingrese la cantidad";
             txtCantidad.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtCantidad.Location = new Point(251, 237);
-            txtCantidad.Margin = new Padding(3, 4, 3, 4);
+            txtCantidad.Location = new Point(220, 178);
             txtCantidad.Name = "txtCantidad";
-            txtCantidad.Size = new Size(197, 34);
+            txtCantidad.Size = new Size(172, 30);
             txtCantidad.StateCommon.Back.Color1 = Color.White;
             txtCantidad.StateCommon.Border.Color1 = Color.Navy;
             txtCantidad.StateCommon.Border.Rounding = 5F;
@@ -212,13 +214,14 @@
             // 
             // BtnSalir
             // 
-            BtnSalir.Location = new Point(490, 563);
+            BtnSalir.Location = new Point(429, 422);
+            BtnSalir.Margin = new Padding(3, 2, 3, 2);
             BtnSalir.Name = "BtnSalir";
             BtnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             BtnSalir.OverrideDefault.Back.Color2 = Color.White;
             BtnSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
             BtnSalir.OverrideFocus.Back.Color2 = Color.White;
-            BtnSalir.Size = new Size(123, 60);
+            BtnSalir.Size = new Size(108, 45);
             BtnSalir.StateCommon.Back.Color1 = Color.SkyBlue;
             BtnSalir.StateCommon.Back.Color2 = Color.White;
             BtnSalir.StateCommon.Border.Rounding = 5F;
@@ -239,9 +242,9 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(621, 352);
+            label4.Location = new Point(543, 264);
             label4.Name = "label4";
-            label4.Size = new Size(74, 27);
+            label4.Size = new Size(63, 22);
             label4.TabIndex = 348;
             label4.Text = "Total:";
             // 
@@ -251,18 +254,17 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(618, 405);
+            label5.Location = new Point(541, 304);
             label5.Name = "label5";
-            label5.Size = new Size(181, 27);
+            label5.Size = new Size(151, 22);
             label5.TabIndex = 349;
             label5.Text = "Cantidad Total:";
             // 
             // txtTotal
             // 
-            txtTotal.Location = new Point(699, 341);
-            txtTotal.Margin = new Padding(3, 4, 3, 4);
+            txtTotal.Location = new Point(612, 256);
             txtTotal.Name = "txtTotal";
-            txtTotal.Size = new Size(119, 35);
+            txtTotal.Size = new Size(104, 31);
             txtTotal.StateCommon.Back.Color1 = Color.White;
             txtTotal.StateCommon.Border.Color1 = Color.Navy;
             txtTotal.StateCommon.Border.Rounding = 5F;
@@ -274,10 +276,9 @@
             // 
             // txtCantidadTotal
             // 
-            txtCantidadTotal.Location = new Point(795, 398);
-            txtCantidadTotal.Margin = new Padding(3, 4, 3, 4);
+            txtCantidadTotal.Location = new Point(696, 298);
             txtCantidadTotal.Name = "txtCantidadTotal";
-            txtCantidadTotal.Size = new Size(79, 35);
+            txtCantidadTotal.Size = new Size(69, 31);
             txtCantidadTotal.StateCommon.Back.Color1 = Color.White;
             txtCantidadTotal.StateCommon.Border.Color1 = Color.Navy;
             txtCantidadTotal.StateCommon.Border.Rounding = 5F;
@@ -289,13 +290,14 @@
             // 
             // BtnEliminar
             // 
-            BtnEliminar.Location = new Point(553, 235);
+            BtnEliminar.Location = new Point(484, 176);
+            BtnEliminar.Margin = new Padding(3, 2, 3, 2);
             BtnEliminar.Name = "BtnEliminar";
             BtnEliminar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             BtnEliminar.OverrideDefault.Back.Color2 = Color.White;
             BtnEliminar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             BtnEliminar.OverrideFocus.Back.Color2 = Color.White;
-            BtnEliminar.Size = new Size(138, 45);
+            BtnEliminar.Size = new Size(121, 34);
             BtnEliminar.StateCommon.Back.Color1 = Color.SkyBlue;
             BtnEliminar.StateCommon.Back.Color2 = Color.White;
             BtnEliminar.StateCommon.Border.Rounding = 5F;
@@ -314,33 +316,37 @@
             // panel1
             // 
             panel1.BackColor = Color.Navy;
-            panel1.Location = new Point(1, -11);
+            panel1.Location = new Point(1, -8);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(915, 35);
+            panel1.Size = new Size(801, 26);
             panel1.TabIndex = 353;
             // 
             // panel2
             // 
             panel2.BackColor = Color.Navy;
-            panel2.Location = new Point(1, 628);
+            panel2.Location = new Point(1, 471);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(915, 23);
+            panel2.Size = new Size(801, 17);
             panel2.TabIndex = 354;
             // 
             // panel3
             // 
             panel3.BackColor = Color.Navy;
-            panel3.Location = new Point(891, -8);
+            panel3.Location = new Point(780, -6);
+            panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(25, 656);
+            panel3.Size = new Size(22, 492);
             panel3.TabIndex = 355;
             // 
             // panel4
             // 
             panel4.BackColor = Color.Navy;
-            panel4.Location = new Point(-1, -8);
+            panel4.Location = new Point(-1, -6);
+            panel4.Margin = new Padding(3, 2, 3, 2);
             panel4.Name = "panel4";
-            panel4.Size = new Size(26, 659);
+            panel4.Size = new Size(23, 494);
             panel4.TabIndex = 356;
             // 
             // label6
@@ -349,18 +355,18 @@
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(788, 585);
+            label6.Location = new Point(690, 439);
             label6.Name = "label6";
-            label6.Size = new Size(102, 35);
+            label6.Size = new Size(84, 29);
             label6.TabIndex = 359;
             label6.Text = "BAMS";
             // 
             // BateriaVieja
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(912, 651);
+            ClientSize = new Size(798, 488);
             Controls.Add(label6);
             Controls.Add(panel4);
             Controls.Add(panel3);
@@ -382,7 +388,7 @@
             Controls.Add(Nombre);
             Controls.Add(cmbBaterias);
             Controls.Add(txtPrecio);
-            FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "BateriaVieja";
             Text = "BateriaVieja";
             Load += BateriaVieja_Load;

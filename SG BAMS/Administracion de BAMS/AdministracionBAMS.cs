@@ -48,7 +48,8 @@ namespace SG_BAMS
         /// <param name="e">Instancia de <see cref="EventArgs"/> con los datos del evento.</param>
         private void AdministracionBAMS_Load(object sender, EventArgs e)
         {
-
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
         /// <summary>

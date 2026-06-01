@@ -172,7 +172,8 @@ namespace SG_BAMS
             ClsMensajeGuia.Activar(txtTelefono);
             ClsMensajeGuia.Activar(txtApellido);
             ClsMensajeGuia.Activar(txtRTN);*/
-
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             ClsMensajeGuia.ActivarK(txtNombre);
             ClsMensajeGuia.ActivarK(txtApellido);
             ClsMensajeGuia.ActivarK(txtTelefono);

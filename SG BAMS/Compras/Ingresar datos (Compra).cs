@@ -27,7 +27,8 @@ namespace SG_BAMS
         public Ingresar_datos__Compra_()
         {
             InitializeComponent();
-
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 

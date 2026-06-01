@@ -15,6 +15,8 @@ namespace SG_BAMS.Login
         public LoginCorreo()
         {
             InitializeComponent();
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)

@@ -83,7 +83,8 @@ namespace SG_BAMS
 
             cmbRol.SelectedValue = rolInicial;
             cmbEstado.SelectedValue = estadoInicial;
-
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             btnImagen.Enabled = (rolInicial == 1 || rolInicial == 2);
             btnImagen.Visible = (rolInicial == 1 || rolInicial == 2);
 

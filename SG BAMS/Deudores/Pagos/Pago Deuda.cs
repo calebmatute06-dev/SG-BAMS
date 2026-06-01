@@ -74,6 +74,8 @@ namespace SG_BAMS
 
         private void Pago_Deuda_Load(object sender, EventArgs e)
         {
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             if (idDeudaRecibido > 0 && cmbDeudores.DataSource != null)
             {
                 DataTable dtDatos = (DataTable)cmbDeudores.DataSource;

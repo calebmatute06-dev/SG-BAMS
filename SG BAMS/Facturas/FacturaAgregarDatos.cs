@@ -73,7 +73,8 @@ namespace SG_BAMS
             await LlenarComboPago();
 
             DateTFecha.Enabled = false;
-
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             dgvProductos.Columns.Clear();
             dgvProductos.Columns.Add("id_producto", "Código");
             dgvProductos.Columns.Add("nombre_producto", "Nombre");

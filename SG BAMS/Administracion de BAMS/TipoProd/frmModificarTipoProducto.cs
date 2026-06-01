@@ -33,7 +33,8 @@ namespace SG_BAMS
             this.StartPosition = FormStartPosition.CenterScreen;
             this.idSeleccionado = id;
             txtDescri.Text = descripcionActual;
-
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirAlfanumerico(e);
         }
 

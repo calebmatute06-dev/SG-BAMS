@@ -33,7 +33,8 @@ namespace SG_BAMS
             this.StartPosition = FormStartPosition.CenterScreen;
             this.idRolSeleccionado = id;
             txtDescri.Text = nombreActual;
-
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle
             // Restricción de entrada para permitir únicamente letras durante la escritura
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
         }

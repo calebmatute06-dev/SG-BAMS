@@ -62,35 +62,39 @@
             // 
             pictureBox4.BackColor = Color.Navy;
             pictureBox4.Location = new Point(-1, 0);
+            pictureBox4.Margin = new Padding(3, 2, 3, 2);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(25, 631);
+            pictureBox4.Size = new Size(22, 473);
             pictureBox4.TabIndex = 187;
             pictureBox4.TabStop = false;
             // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Navy;
-            pictureBox1.Location = new Point(-1, 607);
+            pictureBox1.Location = new Point(-1, 455);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(519, 24);
+            pictureBox1.Size = new Size(454, 18);
             pictureBox1.TabIndex = 186;
             pictureBox1.TabStop = false;
             // 
             // pictureBox3
             // 
             pictureBox3.BackColor = Color.Navy;
-            pictureBox3.Location = new Point(491, 0);
+            pictureBox3.Location = new Point(430, 0);
+            pictureBox3.Margin = new Padding(3, 2, 3, 2);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(26, 615);
+            pictureBox3.Size = new Size(23, 461);
             pictureBox3.TabIndex = 165;
             pictureBox3.TabStop = false;
             // 
             // pictureBox2
             // 
             pictureBox2.BackColor = Color.Navy;
-            pictureBox2.Location = new Point(-1, -15);
+            pictureBox2.Location = new Point(-1, -11);
+            pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(515, 36);
+            pictureBox2.Size = new Size(451, 27);
             pictureBox2.TabIndex = 164;
             pictureBox2.TabStop = false;
             // 
@@ -98,10 +102,11 @@
             // 
             txtDireccion.CueHint.Color1 = Color.Gray;
             txtDireccion.CueHint.CueHintText = "Colonia, Barrio, Pueblo";
-            txtDireccion.Location = new Point(173, 269);
+            txtDireccion.Location = new Point(151, 202);
+            txtDireccion.Margin = new Padding(3, 2, 3, 2);
             txtDireccion.MaxLength = 70;
             txtDireccion.Name = "txtDireccion";
-            txtDireccion.Size = new Size(250, 31);
+            txtDireccion.Size = new Size(219, 27);
             txtDireccion.StateCommon.Back.Color1 = Color.White;
             txtDireccion.StateCommon.Border.Color1 = Color.Navy;
             txtDireccion.StateCommon.Border.Rounding = 5F;
@@ -115,9 +120,9 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(50, 275);
+            label2.Location = new Point(44, 206);
             label2.Name = "label2";
-            label2.Size = new Size(115, 33);
+            label2.Size = new Size(92, 26);
             label2.TabIndex = 201;
             label2.Text = "Dirección:";
             // 
@@ -125,10 +130,11 @@
             // 
             txtRTN.CueHint.Color1 = Color.Gray;
             txtRTN.CueHint.CueHintText = "Ingrese el RTN";
-            txtRTN.Location = new Point(170, 325);
+            txtRTN.Location = new Point(149, 244);
+            txtRTN.Margin = new Padding(3, 2, 3, 2);
             txtRTN.MaxLength = 14;
             txtRTN.Name = "txtRTN";
-            txtRTN.Size = new Size(250, 31);
+            txtRTN.Size = new Size(219, 27);
             txtRTN.StateCommon.Back.Color1 = Color.White;
             txtRTN.StateCommon.Border.Color1 = Color.Navy;
             txtRTN.StateCommon.Border.Rounding = 5F;
@@ -142,9 +148,9 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(41, 448);
+            label1.Location = new Point(36, 336);
             label1.Name = "label1";
-            label1.Size = new Size(143, 33);
+            label1.Size = new Size(118, 26);
             label1.TabIndex = 198;
             label1.Text = "Clasificación:";
             // 
@@ -153,10 +159,11 @@
             txtTelefono.CueHint.Color1 = Color.Gray;
             txtTelefono.CueHint.CueHintText = "Numero que empiecen con 9,8,3,2";
             txtTelefono.CueHint.Font = new Font("Arial Narrow", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtTelefono.Location = new Point(173, 219);
+            txtTelefono.Location = new Point(151, 164);
+            txtTelefono.Margin = new Padding(3, 2, 3, 2);
             txtTelefono.MaxLength = 8;
             txtTelefono.Name = "txtTelefono";
-            txtTelefono.Size = new Size(250, 31);
+            txtTelefono.Size = new Size(219, 27);
             txtTelefono.StateCommon.Back.Color1 = Color.White;
             txtTelefono.StateCommon.Border.Color1 = Color.Navy;
             txtTelefono.StateCommon.Border.Rounding = 5F;
@@ -169,10 +176,11 @@
             txtNombre.CueHint.Color1 = Color.Gray;
             txtNombre.CueHint.CueHintText = "Nombre del proveedor";
             txtNombre.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtNombre.Location = new Point(173, 160);
+            txtNombre.Location = new Point(151, 120);
+            txtNombre.Margin = new Padding(3, 2, 3, 2);
             txtNombre.MaxLength = 70;
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(250, 31);
+            txtNombre.Size = new Size(219, 27);
             txtNombre.StateCommon.Back.Color1 = Color.White;
             txtNombre.StateCommon.Border.Color1 = Color.Navy;
             txtNombre.StateCommon.Border.Rounding = 5F;
@@ -186,9 +194,9 @@
             label15.BackColor = Color.Transparent;
             label15.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label15.ForeColor = Color.Navy;
-            label15.Location = new Point(53, 328);
+            label15.Location = new Point(46, 246);
             label15.Name = "label15";
-            label15.Size = new Size(69, 33);
+            label15.Size = new Size(54, 26);
             label15.TabIndex = 194;
             label15.Text = "RTN:";
             // 
@@ -198,9 +206,9 @@
             label7.BackColor = Color.Transparent;
             label7.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Navy;
-            label7.Location = new Point(48, 219);
+            label7.Location = new Point(42, 164);
             label7.Name = "label7";
-            label7.Size = new Size(116, 33);
+            label7.Size = new Size(92, 26);
             label7.TabIndex = 193;
             label7.Text = "Télefono: ";
             // 
@@ -210,9 +218,9 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(55, 165);
+            label4.Location = new Point(48, 124);
             label4.Name = "label4";
-            label4.Size = new Size(111, 33);
+            label4.Size = new Size(86, 26);
             label4.TabIndex = 192;
             label4.Text = "Nombre: ";
             // 
@@ -221,9 +229,10 @@
             cmbClasificacion.CueHint.Color1 = Color.Gray;
             cmbClasificacion.CueHint.CueHintText = "Selecione una Clasificacion";
             cmbClasificacion.DropDownWidth = 300;
-            cmbClasificacion.Location = new Point(174, 443);
+            cmbClasificacion.Location = new Point(152, 332);
+            cmbClasificacion.Margin = new Padding(3, 2, 3, 2);
             cmbClasificacion.Name = "cmbClasificacion";
-            cmbClasificacion.Size = new Size(250, 30);
+            cmbClasificacion.Size = new Size(219, 26);
             cmbClasificacion.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbClasificacion.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbClasificacion.StateCommon.ComboBox.Border.Rounding = 5F;
@@ -240,9 +249,10 @@
             cmbEstado.CueHint.Color1 = Color.Gray;
             cmbEstado.CueHint.CueHintText = "Selecione un estado";
             cmbEstado.DropDownWidth = 300;
-            cmbEstado.Location = new Point(171, 384);
+            cmbEstado.Location = new Point(150, 288);
+            cmbEstado.Margin = new Padding(3, 2, 3, 2);
             cmbEstado.Name = "cmbEstado";
-            cmbEstado.Size = new Size(250, 30);
+            cmbEstado.Size = new Size(219, 26);
             cmbEstado.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbEstado.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbEstado.StateCommon.ComboBox.Border.Rounding = 5F;
@@ -260,9 +270,9 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(53, 384);
+            label5.Location = new Point(46, 288);
             label5.Name = "label5";
-            label5.Size = new Size(91, 33);
+            label5.Size = new Size(73, 26);
             label5.TabIndex = 239;
             label5.Text = "Estado:";
             // 
@@ -272,18 +282,19 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(56, 113);
+            label3.Location = new Point(49, 85);
             label3.Name = "label3";
-            label3.Size = new Size(44, 33);
+            label3.Size = new Size(34, 26);
             label3.TabIndex = 192;
             label3.Text = "ID:";
             // 
             // txtID
             // 
             txtID.Enabled = false;
-            txtID.Location = new Point(173, 107);
+            txtID.Location = new Point(151, 80);
+            txtID.Margin = new Padding(3, 2, 3, 2);
             txtID.Name = "txtID";
-            txtID.Size = new Size(250, 31);
+            txtID.Size = new Size(219, 27);
             txtID.StateCommon.Back.Color1 = Color.White;
             txtID.StateCommon.Border.Color1 = Color.Navy;
             txtID.StateCommon.Border.Rounding = 5F;
@@ -296,9 +307,9 @@
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Arial", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(99, 40);
+            label6.Location = new Point(87, 30);
             label6.Name = "label6";
-            label6.Size = new Size(349, 40);
+            label6.Size = new Size(279, 32);
             label6.TabIndex = 352;
             label6.Text = "Modificar Proveedor";
             // 
@@ -308,21 +319,22 @@
             label8.BackColor = Color.Transparent;
             label8.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Navy;
-            label8.Location = new Point(393, 565);
+            label8.Location = new Point(344, 424);
             label8.Name = "label8";
-            label8.Size = new Size(102, 35);
+            label8.Size = new Size(84, 29);
             label8.TabIndex = 354;
             label8.Text = "BAMS";
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(235, 525);
+            btnCancelar.Location = new Point(206, 394);
+            btnCancelar.Margin = new Padding(3, 2, 3, 2);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnCancelar.OverrideDefault.Back.Color2 = Color.White;
             btnCancelar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnCancelar.OverrideFocus.Back.Color2 = Color.White;
-            btnCancelar.Size = new Size(135, 51);
+            btnCancelar.Size = new Size(118, 38);
             btnCancelar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnCancelar.StateCommon.Back.Color2 = Color.White;
             btnCancelar.StateCommon.Border.Rounding = 5F;
@@ -339,13 +351,14 @@
             // 
             // btnAceptar
             // 
-            btnAceptar.Location = new Point(94, 525);
+            btnAceptar.Location = new Point(82, 394);
+            btnAceptar.Margin = new Padding(3, 2, 3, 2);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnAceptar.OverrideDefault.Back.Color2 = Color.White;
             btnAceptar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnAceptar.OverrideFocus.Back.Color2 = Color.White;
-            btnAceptar.Size = new Size(135, 51);
+            btnAceptar.Size = new Size(118, 38);
             btnAceptar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnAceptar.StateCommon.Back.Color2 = Color.White;
             btnAceptar.StateCommon.Border.Rounding = 5F;
@@ -362,10 +375,10 @@
             // 
             // ModificarProveedor
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(515, 629);
+            ClientSize = new Size(451, 472);
             Controls.Add(btnCancelar);
             Controls.Add(btnAceptar);
             Controls.Add(label8);
@@ -388,7 +401,7 @@
             Controls.Add(pictureBox1);
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox2);
-            FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "ModificarProveedor";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ModificarProveedor";

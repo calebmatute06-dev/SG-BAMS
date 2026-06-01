@@ -37,7 +37,8 @@ namespace SG_BAMS
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             DeterminarPermisos();
-
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             notificaciones.DrawMode = DrawMode.OwnerDrawFixed;
             notificaciones.DrawItem += new DrawItemEventHandler(Notificaciones_DrawItem);
             notificaciones.DoubleClick += new EventHandler(Notificaciones_DoubleClick);

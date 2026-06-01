@@ -24,7 +24,8 @@ namespace SG_BAMS.Reporte
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
-
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.dtpDesde.ValueChanged += new System.EventHandler(this.FiltroFecha_ValueChanged);
             this.dtpHasta.ValueChanged += new System.EventHandler(this.FiltroFecha_ValueChanged);
         }

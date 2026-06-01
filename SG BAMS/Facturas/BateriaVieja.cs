@@ -55,7 +55,8 @@ namespace SG_BAMS.Facturas
         private void BateriaVieja_Load(object sender, EventArgs e)
         {
             ConfigurarGrid();
-
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             cmbBaterias.Items.Clear();
             cmbBaterias.Items.AddRange(new string[] { "Moto", "Carro", "Camión" });
             cmbBaterias.DropDownStyle = ComboBoxStyle.DropDownList;

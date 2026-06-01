@@ -64,6 +64,8 @@ namespace SG_BAMS
             await LlenarComboCliente();
             cmbClientes.SelectedIndex = -1;
             this.ActiveControl = null;
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
         /// <summary>

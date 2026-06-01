@@ -25,7 +25,8 @@ namespace SG_BAMS
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
-
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             // Restricción para permitir únicamente la entrada de letras en el campo de descripción
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
         }

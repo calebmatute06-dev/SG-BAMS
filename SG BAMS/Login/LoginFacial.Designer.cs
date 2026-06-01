@@ -46,10 +46,9 @@
             // 
             // picValidar
             // 
-            picValidar.Location = new Point(171, 83);
-            picValidar.Margin = new Padding(3, 4, 3, 4);
+            picValidar.Location = new Point(150, 62);
             picValidar.Name = "picValidar";
-            picValidar.Size = new Size(567, 389);
+            picValidar.Size = new Size(496, 292);
             picValidar.TabIndex = 0;
             picValidar.TabStop = false;
             // 
@@ -57,26 +56,29 @@
             // 
             pictureBox4.BackColor = Color.Navy;
             pictureBox4.Location = new Point(0, 0);
+            pictureBox4.Margin = new Padding(3, 2, 3, 2);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(24, 629);
+            pictureBox4.Size = new Size(21, 472);
             pictureBox4.TabIndex = 46;
             pictureBox4.TabStop = false;
             // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Navy;
-            pictureBox1.Location = new Point(911, 0);
+            pictureBox1.Location = new Point(797, 0);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(24, 629);
+            pictureBox1.Size = new Size(21, 472);
             pictureBox1.TabIndex = 47;
             pictureBox1.TabStop = false;
             // 
             // pictureBox3
             // 
             pictureBox3.BackColor = Color.Navy;
-            pictureBox3.Location = new Point(0, 605);
+            pictureBox3.Location = new Point(0, 454);
+            pictureBox3.Margin = new Padding(3, 2, 3, 2);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(915, 24);
+            pictureBox3.Size = new Size(801, 18);
             pictureBox3.TabIndex = 49;
             pictureBox3.TabStop = false;
             // 
@@ -84,8 +86,9 @@
             // 
             pictureBox2.BackColor = Color.Navy;
             pictureBox2.Location = new Point(0, 0);
+            pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(915, 24);
+            pictureBox2.Size = new Size(801, 18);
             pictureBox2.TabIndex = 48;
             pictureBox2.TabStop = false;
             // 
@@ -94,20 +97,21 @@
             lblEstado.AutoSize = true;
             lblEstado.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblEstado.ForeColor = Color.Navy;
-            lblEstado.Location = new Point(171, 40);
+            lblEstado.Location = new Point(150, 30);
             lblEstado.Name = "lblEstado";
-            lblEstado.Size = new Size(0, 24);
+            lblEstado.Size = new Size(0, 20);
             lblEstado.TabIndex = 150;
             // 
             // btnReintentar1
             // 
-            btnReintentar1.Location = new Point(200, 513);
+            btnReintentar1.Location = new Point(175, 385);
+            btnReintentar1.Margin = new Padding(3, 2, 3, 2);
             btnReintentar1.Name = "btnReintentar1";
             btnReintentar1.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnReintentar1.OverrideDefault.Back.Color2 = Color.White;
             btnReintentar1.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnReintentar1.OverrideFocus.Back.Color2 = Color.White;
-            btnReintentar1.Size = new Size(224, 60);
+            btnReintentar1.Size = new Size(196, 45);
             btnReintentar1.StateCommon.Back.Color1 = Color.SkyBlue;
             btnReintentar1.StateCommon.Back.Color2 = Color.White;
             btnReintentar1.StateCommon.Border.Rounding = 30F;
@@ -124,13 +128,14 @@
             // 
             // btnCancelar1
             // 
-            btnCancelar1.Location = new Point(493, 513);
+            btnCancelar1.Location = new Point(431, 385);
+            btnCancelar1.Margin = new Padding(3, 2, 3, 2);
             btnCancelar1.Name = "btnCancelar1";
             btnCancelar1.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnCancelar1.OverrideDefault.Back.Color2 = Color.White;
             btnCancelar1.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnCancelar1.OverrideFocus.Back.Color2 = Color.White;
-            btnCancelar1.Size = new Size(224, 60);
+            btnCancelar1.Size = new Size(196, 45);
             btnCancelar1.StateCommon.Back.Color1 = Color.SkyBlue;
             btnCancelar1.StateCommon.Back.Color2 = Color.White;
             btnCancelar1.StateCommon.Border.Rounding = 30F;
@@ -151,18 +156,18 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(803, 567);
+            label5.Location = new Point(703, 425);
             label5.Name = "label5";
-            label5.Size = new Size(102, 35);
+            label5.Size = new Size(84, 29);
             label5.TabIndex = 345;
             label5.Text = "BAMS";
             // 
             // LoginFacial
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(934, 625);
+            ClientSize = new Size(817, 469);
             Controls.Add(label5);
             Controls.Add(btnCancelar1);
             Controls.Add(btnReintentar1);
@@ -172,8 +177,6 @@
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox2);
             Controls.Add(picValidar);
-            FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 4, 3, 4);
             Name = "LoginFacial";
             Text = "LoginFacial";
             Load += LoginFacial_Load;

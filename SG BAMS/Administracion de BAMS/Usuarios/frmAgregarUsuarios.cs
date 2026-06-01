@@ -31,7 +31,8 @@ namespace SG_BAMS
             this.StartPosition = FormStartPosition.CenterScreen;
             _ = CargarComboRoles();
             cmbRol.DropDownStyle = ComboBoxStyle.DropDownList;
-
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetrasNumerosSinEspacios(e);
         }
 

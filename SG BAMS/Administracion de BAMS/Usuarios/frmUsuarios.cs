@@ -174,7 +174,8 @@ namespace SG_BAMS
         private async void frmUsuarios_Load(object sender, EventArgs e)
         {
             await CargarGridUsuarios();
-
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             dgvUsuarios.BorderStyle = BorderStyle.None;
             dgvUsuarios.BackgroundColor = Color.White;
             dgvUsuarios.RowHeadersVisible = false;

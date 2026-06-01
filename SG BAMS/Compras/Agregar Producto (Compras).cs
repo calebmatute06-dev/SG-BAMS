@@ -88,7 +88,8 @@ namespace SG_BAMS
             numCantidad.ThousandsSeparator = true;
             ClsMensajeGuia.ActivarK(txtCodigo);
             ClsMensajeGuia.ActivarK(txtPrecio);
-            
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
 
         }
 

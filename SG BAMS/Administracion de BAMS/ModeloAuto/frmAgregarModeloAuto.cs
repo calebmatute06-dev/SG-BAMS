@@ -17,7 +17,8 @@ namespace SG_BAMS
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
-
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             // Restricción en tiempo real para asegurar que solo se ingresen caracteres alfanuméricos
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirAlfanumerico(e);
         }

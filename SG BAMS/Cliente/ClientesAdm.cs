@@ -151,7 +151,8 @@ namespace SG_BAMS
             btnClientes.Enabled = false;
             btnClientes.BackColor = Color.SkyBlue;
             btnClientes.ForeColor = Color.White;
-
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             await TablaClientes();
             dgvClientes.BorderStyle = BorderStyle.None;
             dgvClientes.BackgroundColor = Color.White;

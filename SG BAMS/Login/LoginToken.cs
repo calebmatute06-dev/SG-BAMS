@@ -19,6 +19,8 @@ namespace SG_BAMS.Login
         public LoginToken(string correo, string token)
         {
             InitializeComponent();
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             _correo = correo;
             _token = token;
         }

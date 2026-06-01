@@ -71,17 +71,19 @@
             // 
             pictureBox4.BackColor = Color.Navy;
             pictureBox4.Location = new Point(-1, 0);
+            pictureBox4.Margin = new Padding(3, 2, 3, 2);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(21, 711);
+            pictureBox4.Size = new Size(18, 533);
             pictureBox4.TabIndex = 210;
             pictureBox4.TabStop = false;
             // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Navy;
-            pictureBox1.Location = new Point(-1, 687);
+            pictureBox1.Location = new Point(-1, 515);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(515, 25);
+            pictureBox1.Size = new Size(451, 19);
             pictureBox1.TabIndex = 209;
             pictureBox1.TabStop = false;
             // 
@@ -91,27 +93,29 @@
             label8.BackColor = Color.Transparent;
             label8.Font = new Font("Arial", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Navy;
-            label8.Location = new Point(97, 41);
+            label8.Location = new Point(85, 31);
             label8.Name = "label8";
-            label8.Size = new Size(328, 40);
+            label8.Size = new Size(264, 32);
             label8.TabIndex = 206;
             label8.Text = "Modificar Producto";
             // 
             // pictureBox3
             // 
             pictureBox3.BackColor = Color.Navy;
-            pictureBox3.Location = new Point(495, 1);
+            pictureBox3.Location = new Point(433, 1);
+            pictureBox3.Margin = new Padding(3, 2, 3, 2);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(23, 709);
+            pictureBox3.Size = new Size(20, 532);
             pictureBox3.TabIndex = 204;
             pictureBox3.TabStop = false;
             // 
             // pictureBox2
             // 
             pictureBox2.BackColor = Color.Navy;
-            pictureBox2.Location = new Point(-1, -9);
+            pictureBox2.Location = new Point(-1, -7);
+            pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(515, 31);
+            pictureBox2.Size = new Size(451, 23);
             pictureBox2.TabIndex = 203;
             pictureBox2.TabStop = false;
             // 
@@ -121,9 +125,9 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(40, 413);
+            label1.Location = new Point(35, 310);
             label1.Name = "label1";
-            label1.Size = new Size(91, 33);
+            label1.Size = new Size(73, 26);
             label1.TabIndex = 222;
             label1.Text = "Estado:";
             // 
@@ -131,9 +135,10 @@
             // 
             txtPrecio.CueHint.Color1 = Color.Gray;
             txtPrecio.CueHint.CueHintText = "Precio del producto ingresado";
-            txtPrecio.Location = new Point(175, 207);
+            txtPrecio.Location = new Point(153, 155);
+            txtPrecio.Margin = new Padding(3, 2, 3, 2);
             txtPrecio.Name = "txtPrecio";
-            txtPrecio.Size = new Size(250, 31);
+            txtPrecio.Size = new Size(219, 27);
             txtPrecio.StateCommon.Back.Color1 = Color.White;
             txtPrecio.StateCommon.Border.Color1 = Color.Navy;
             txtPrecio.StateCommon.Border.Rounding = 5F;
@@ -145,9 +150,10 @@
             // 
             txtNombre.CueHint.Color1 = Color.Gray;
             txtNombre.CueHint.CueHintText = "Nombre producto";
-            txtNombre.Location = new Point(175, 155);
+            txtNombre.Location = new Point(153, 116);
+            txtNombre.Margin = new Padding(3, 2, 3, 2);
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(250, 31);
+            txtNombre.Size = new Size(219, 27);
             txtNombre.StateCommon.Back.Color1 = Color.White;
             txtNombre.StateCommon.Border.Color1 = Color.Navy;
             txtNombre.StateCommon.Border.Rounding = 5F;
@@ -158,10 +164,11 @@
             // txtID
             // 
             txtID.Enabled = false;
-            txtID.Location = new Point(175, 105);
+            txtID.Location = new Point(153, 79);
+            txtID.Margin = new Padding(3, 2, 3, 2);
             txtID.Name = "txtID";
             txtID.ReadOnly = true;
-            txtID.Size = new Size(250, 31);
+            txtID.Size = new Size(219, 27);
             txtID.StateCommon.Back.Color1 = Color.White;
             txtID.StateCommon.Border.Color1 = Color.Navy;
             txtID.StateCommon.Border.Rounding = 5F;
@@ -174,9 +181,9 @@
             label10.BackColor = Color.Transparent;
             label10.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Navy;
-            label10.Location = new Point(31, 363);
+            label10.Location = new Point(27, 272);
             label10.Name = "label10";
-            label10.Size = new Size(149, 33);
+            label10.Size = new Size(117, 26);
             label10.TabIndex = 217;
             label10.Text = "Modelo Auto:";
             // 
@@ -186,9 +193,9 @@
             label12.BackColor = Color.Transparent;
             label12.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label12.ForeColor = Color.Navy;
-            label12.Location = new Point(40, 317);
+            label12.Location = new Point(35, 238);
             label12.Name = "label12";
-            label12.Size = new Size(71, 33);
+            label12.Size = new Size(57, 26);
             label12.TabIndex = 216;
             label12.Text = "Tipo: ";
             // 
@@ -198,9 +205,9 @@
             label14.BackColor = Color.Transparent;
             label14.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label14.ForeColor = Color.Navy;
-            label14.Location = new Point(40, 265);
+            label14.Location = new Point(35, 199);
             label14.Name = "label14";
-            label14.Size = new Size(89, 33);
+            label14.Size = new Size(72, 26);
             label14.TabIndex = 215;
             label14.Text = "Marca: ";
             // 
@@ -210,9 +217,9 @@
             label7.BackColor = Color.Transparent;
             label7.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Navy;
-            label7.Location = new Point(40, 213);
+            label7.Location = new Point(35, 160);
             label7.Name = "label7";
-            label7.Size = new Size(85, 33);
+            label7.Size = new Size(68, 26);
             label7.TabIndex = 214;
             label7.Text = "Precio:";
             // 
@@ -222,9 +229,9 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(40, 161);
+            label4.Location = new Point(35, 121);
             label4.Name = "label4";
-            label4.Size = new Size(111, 33);
+            label4.Size = new Size(86, 26);
             label4.TabIndex = 213;
             label4.Text = "Nombre: ";
             // 
@@ -234,9 +241,9 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(40, 111);
+            label3.Location = new Point(35, 83);
             label3.Name = "label3";
-            label3.Size = new Size(50, 33);
+            label3.Size = new Size(39, 26);
             label3.TabIndex = 212;
             label3.Text = "ID: ";
             // 
@@ -244,9 +251,10 @@
             // 
             txtCodigoBarra.CueHint.Color1 = Color.Gray;
             txtCodigoBarra.CueHint.CueHintText = "Ingrese o Escanee el codigo";
-            txtCodigoBarra.Location = new Point(175, 459);
+            txtCodigoBarra.Location = new Point(153, 344);
+            txtCodigoBarra.Margin = new Padding(3, 2, 3, 2);
             txtCodigoBarra.Name = "txtCodigoBarra";
-            txtCodigoBarra.Size = new Size(250, 31);
+            txtCodigoBarra.Size = new Size(219, 27);
             txtCodigoBarra.StateCommon.Back.Color1 = Color.White;
             txtCodigoBarra.StateCommon.Border.Color1 = Color.Navy;
             txtCodigoBarra.StateCommon.Border.Rounding = 5F;
@@ -261,9 +269,9 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(40, 461);
+            label2.Location = new Point(35, 346);
             label2.Name = "label2";
-            label2.Size = new Size(131, 33);
+            label2.Size = new Size(104, 26);
             label2.TabIndex = 232;
             label2.Text = "Cod. Barra:";
             label2.Click += label2_Click;
@@ -274,9 +282,10 @@
             cmbModelo.CueHint.CueHintText = "Seleccionar modelo";
             cmbModelo.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbModelo.DropDownWidth = 300;
-            cmbModelo.Location = new Point(175, 357);
+            cmbModelo.Location = new Point(153, 268);
+            cmbModelo.Margin = new Padding(3, 2, 3, 2);
             cmbModelo.Name = "cmbModelo";
-            cmbModelo.Size = new Size(250, 30);
+            cmbModelo.Size = new Size(219, 26);
             cmbModelo.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbModelo.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbModelo.StateCommon.ComboBox.Border.Rounding = 5F;
@@ -292,9 +301,10 @@
             cmbTipo.CueHint.CueHintText = "Seleccionar tipo";
             cmbTipo.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbTipo.DropDownWidth = 300;
-            cmbTipo.Location = new Point(175, 311);
+            cmbTipo.Location = new Point(153, 233);
+            cmbTipo.Margin = new Padding(3, 2, 3, 2);
             cmbTipo.Name = "cmbTipo";
-            cmbTipo.Size = new Size(250, 30);
+            cmbTipo.Size = new Size(219, 26);
             cmbTipo.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbTipo.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbTipo.StateCommon.ComboBox.Border.Rounding = 5F;
@@ -310,9 +320,10 @@
             cmbMarca.CueHint.CueHintText = "Seleccionar marca";
             cmbMarca.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbMarca.DropDownWidth = 300;
-            cmbMarca.Location = new Point(175, 259);
+            cmbMarca.Location = new Point(153, 194);
+            cmbMarca.Margin = new Padding(3, 2, 3, 2);
             cmbMarca.Name = "cmbMarca";
-            cmbMarca.Size = new Size(250, 30);
+            cmbMarca.Size = new Size(219, 26);
             cmbMarca.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbMarca.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbMarca.StateCommon.ComboBox.Border.Rounding = 5F;
@@ -328,9 +339,10 @@
             cmbEstado.CueHint.CueHintText = "Seleccionar estado";
             cmbEstado.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbEstado.DropDownWidth = 300;
-            cmbEstado.Location = new Point(175, 409);
+            cmbEstado.Location = new Point(153, 307);
+            cmbEstado.Margin = new Padding(3, 2, 3, 2);
             cmbEstado.Name = "cmbEstado";
-            cmbEstado.Size = new Size(250, 30);
+            cmbEstado.Size = new Size(219, 26);
             cmbEstado.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbEstado.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbEstado.StateCommon.ComboBox.Border.Rounding = 5F;
@@ -346,9 +358,10 @@
             cmbProveedor.CueHint.CueHintText = "seleccionar proveedor";
             cmbProveedor.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbProveedor.DropDownWidth = 300;
-            cmbProveedor.Location = new Point(175, 509);
+            cmbProveedor.Location = new Point(153, 382);
+            cmbProveedor.Margin = new Padding(3, 2, 3, 2);
             cmbProveedor.Name = "cmbProveedor";
-            cmbProveedor.Size = new Size(250, 30);
+            cmbProveedor.Size = new Size(219, 26);
             cmbProveedor.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbProveedor.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbProveedor.StateCommon.ComboBox.Border.Rounding = 5F;
@@ -364,20 +377,21 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(31, 512);
+            label5.Location = new Point(27, 384);
             label5.Name = "label5";
-            label5.Size = new Size(128, 33);
+            label5.Size = new Size(100, 26);
             label5.TabIndex = 343;
             label5.Text = "Proveedor:";
             // 
             // txtStock
             // 
             txtStock.Increment = new decimal(new int[] { 1, 0, 0, 0 });
-            txtStock.Location = new Point(176, 561);
+            txtStock.Location = new Point(154, 421);
+            txtStock.Margin = new Padding(3, 2, 3, 2);
             txtStock.Maximum = new decimal(new int[] { 99999, 0, 0, 0 });
             txtStock.Minimum = new decimal(new int[] { 0, 0, 0, 0 });
             txtStock.Name = "txtStock";
-            txtStock.Size = new Size(249, 33);
+            txtStock.Size = new Size(218, 29);
             txtStock.StateCommon.Back.Color1 = Color.White;
             txtStock.StateCommon.Border.Color1 = Color.Navy;
             txtStock.StateCommon.Border.Rounding = 5F;
@@ -392,9 +406,9 @@
             label9.BackColor = Color.Transparent;
             label9.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label9.ForeColor = Color.Navy;
-            label9.Location = new Point(67, 561);
+            label9.Location = new Point(59, 421);
             label9.Name = "label9";
-            label9.Size = new Size(76, 33);
+            label9.Size = new Size(62, 26);
             label9.TabIndex = 348;
             label9.Text = "Stock:";
             // 
@@ -404,21 +418,22 @@
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(387, 645);
+            label6.Location = new Point(339, 484);
             label6.Name = "label6";
-            label6.Size = new Size(102, 35);
+            label6.Size = new Size(84, 29);
             label6.TabIndex = 349;
             label6.Text = "BAMS";
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(238, 619);
+            btnCancelar.Location = new Point(208, 464);
+            btnCancelar.Margin = new Padding(3, 2, 3, 2);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnCancelar.OverrideDefault.Back.Color2 = Color.White;
             btnCancelar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnCancelar.OverrideFocus.Back.Color2 = Color.White;
-            btnCancelar.Size = new Size(135, 51);
+            btnCancelar.Size = new Size(118, 38);
             btnCancelar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnCancelar.StateCommon.Back.Color2 = Color.White;
             btnCancelar.StateCommon.Border.Rounding = 5F;
@@ -435,13 +450,14 @@
             // 
             // btnAceptar
             // 
-            btnAceptar.Location = new Point(97, 619);
+            btnAceptar.Location = new Point(85, 464);
+            btnAceptar.Margin = new Padding(3, 2, 3, 2);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnAceptar.OverrideDefault.Back.Color2 = Color.White;
             btnAceptar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnAceptar.OverrideFocus.Back.Color2 = Color.White;
-            btnAceptar.Size = new Size(135, 51);
+            btnAceptar.Size = new Size(118, 38);
             btnAceptar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnAceptar.StateCommon.Back.Color2 = Color.White;
             btnAceptar.StateCommon.Border.Rounding = 5F;
@@ -458,10 +474,10 @@
             // 
             // ModificarProducto
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(515, 711);
+            ClientSize = new Size(451, 533);
             Controls.Add(btnCancelar);
             Controls.Add(btnAceptar);
             Controls.Add(label6);
@@ -490,7 +506,7 @@
             Controls.Add(pictureBox1);
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox2);
-            FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "ModificarProducto";
             Text = "ModificarProducto";
             Load += ModificarProducto_Load;

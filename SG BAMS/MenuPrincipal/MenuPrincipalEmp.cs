@@ -27,6 +27,8 @@ namespace SG_BAMS
         public MenuPrincipalEmp()
         {
             InitializeComponent();
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.StartPosition = FormStartPosition.CenterScreen;
 
         }

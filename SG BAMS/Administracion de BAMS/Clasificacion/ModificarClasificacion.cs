@@ -20,7 +20,8 @@ namespace SG_BAMS.Administracion_de_BAMS.Clasificacion
             this.StartPosition = FormStartPosition.CenterScreen;
             this.idSeleccionado = id;
             txtDescri.Text = descripcionActual;
-
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirAlfanumerico(e);
         }
 

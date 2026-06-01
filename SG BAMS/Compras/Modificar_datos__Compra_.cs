@@ -48,7 +48,8 @@ namespace SG_BAMS
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             this.idCompraAEditar = id;
-
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             dgvProductosModificar.CellValueChanged += dgvProductosModificar_CellValueChanged;
             dgvProductosModificar.CurrentCellDirtyStateChanged += dgvProductosModificar_CurrentCellDirtyStateChanged;
             dgvProductosModificar.CellBeginEdit += dgvProductosModificar_CellBeginEdit;

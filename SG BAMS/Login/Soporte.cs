@@ -23,6 +23,8 @@ namespace SG_BAMS.Login
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
         /// <summary>

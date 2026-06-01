@@ -32,6 +32,8 @@ namespace SG_BAMS
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this._idFormaPago = id;
             txtDescri.Text = descripcionActual;
 

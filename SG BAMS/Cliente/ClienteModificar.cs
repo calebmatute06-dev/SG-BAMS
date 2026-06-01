@@ -173,6 +173,8 @@ namespace SG_BAMS
         {
             await LlenarComboEstado();
             cmbEstado.SelectedValue = idEstadoSelec;
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             cmbEstado.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 

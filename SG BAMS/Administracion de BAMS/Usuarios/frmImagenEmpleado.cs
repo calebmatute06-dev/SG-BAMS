@@ -196,6 +196,8 @@ namespace SG_BAMS
         private void frmImagenEmpleado_Load(object sender, EventArgs e)
         {
             clsSoporte.InicializarDirectorio();
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             if (!string.IsNullOrEmpty(usuarioAsignado) && lblUsuario != null)
                 lblUsuario.Text = usuarioAsignado;
             EncenderCamara(false);

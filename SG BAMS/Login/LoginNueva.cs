@@ -18,6 +18,8 @@ namespace SG_BAMS
         public LoginNueva(string correo)
         {
             InitializeComponent();
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             _correo = correo;
         }
 

@@ -114,6 +114,8 @@ namespace SG_BAMS.Login
         public LoginFacial()
         {
             InitializeComponent();
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 

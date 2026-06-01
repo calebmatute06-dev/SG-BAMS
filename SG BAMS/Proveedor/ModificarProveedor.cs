@@ -52,6 +52,8 @@ namespace SG_BAMS.Proveedor
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             txtID.Text = idProveedor.ToString();
             txtNombre.Text = nombre;
             txtTelefono.Text = contacto;

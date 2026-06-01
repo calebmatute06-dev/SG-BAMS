@@ -48,6 +48,8 @@ namespace SG_BAMS
         public FacturaVer(int idF, string nomFac, DateTime fec, int bateriaVij, int idPago, double reb)
         {
             InitializeComponent();
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.StartPosition = FormStartPosition.CenterScreen;
             txtCliente.Text = nomFac;
             txtBateriaVieja.Text = bateriaVij.ToString();

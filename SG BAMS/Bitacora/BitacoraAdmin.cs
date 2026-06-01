@@ -66,7 +66,8 @@ namespace SG_BAMS.Bitacora
         /// <param name="e">Datos del evento <see cref="EventArgs"/>.</param>
         private void Bitacora_Load(object sender, EventArgs e)
         {
-            
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             new PlaceholderTextBox(txtBuscar, placeholderTexto);
 
             btnBitacora.Enabled = false;

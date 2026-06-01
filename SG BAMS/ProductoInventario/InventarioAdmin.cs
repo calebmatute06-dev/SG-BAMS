@@ -54,6 +54,8 @@ namespace SG_BAMS
         public InventarioAdmin()
         {
             InitializeComponent();
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.KeyPreview = true;
             ConfigurarPlaceholder();

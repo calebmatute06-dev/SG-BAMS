@@ -33,7 +33,8 @@ namespace SG_BAMS
             this.StartPosition = FormStartPosition.CenterScreen;
             this.idModeloSeleccionado = id;
             txtDescri.Text = nombreActual;
-
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             // Restricción de entrada para permitir solo caracteres alfanuméricos
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirAlfanumerico(e);
         }

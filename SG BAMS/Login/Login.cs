@@ -27,6 +27,8 @@ namespace SG_BAMS.Login
         public Login()
         {
             InitializeComponent();
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.StartPosition = FormStartPosition.CenterScreen;
             txtUsu.KeyPress += new KeyPressEventHandler(txtUsu_KeyPress);
             txtCon.KeyPress += new KeyPressEventHandler(txtCon_KeyPress);

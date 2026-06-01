@@ -52,7 +52,8 @@ namespace SG_BAMS
             this.StartPosition = FormStartPosition.CenterScreen;
 
             dgvDeudores.CellDoubleClick += dgvDeudores_CellDoubleClick;
-
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             CargarGridDeudores();
 
             this.txtBuscarNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);

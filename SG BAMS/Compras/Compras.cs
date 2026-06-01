@@ -74,7 +74,8 @@ namespace SG_BAMS
             btnComprasMenu.Enabled = false;
             btnComprasMenu.BackColor = Color.SkyBlue;
             btnComprasMenu.ForeColor = Color.White;
-
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
 
             dgvComprasAdmin.ClearSelection();
             dgvComprasAdmin.BorderStyle = BorderStyle.None;
