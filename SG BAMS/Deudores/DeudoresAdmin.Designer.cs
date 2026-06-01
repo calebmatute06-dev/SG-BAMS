@@ -144,7 +144,7 @@
             txtBuscarNombre.BorderStyle = BorderStyle.None;
             txtBuscarNombre.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtBuscarNombre.ForeColor = Color.Gray;
-            txtBuscarNombre.Location = new Point(471, 229);
+            txtBuscarNombre.Location = new Point(471, 152);
             txtBuscarNombre.Name = "txtBuscarNombre";
             txtBuscarNombre.Size = new Size(971, 23);
             txtBuscarNombre.TabIndex = 153;
@@ -153,7 +153,7 @@
             // 
             // kryptonGroup5
             // 
-            kryptonGroup5.Location = new Point(461, 223);
+            kryptonGroup5.Location = new Point(461, 146);
             kryptonGroup5.Size = new Size(1016, 34);
             kryptonGroup5.StateCommon.Back.Color1 = Color.White;
             kryptonGroup5.StateCommon.Border.Color1 = Color.Navy;
@@ -162,7 +162,7 @@
             // 
             // kryptonButton15
             // 
-            kryptonButton15.Location = new Point(825, 805);
+            kryptonButton15.Location = new Point(819, 814);
             kryptonButton15.Name = "kryptonButton15";
             kryptonButton15.OverrideDefault.Back.Color1 = Color.SkyBlue;
             kryptonButton15.OverrideDefault.Back.Color2 = Color.White;
@@ -208,7 +208,7 @@
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             dgvDeudores.DefaultCellStyle = dataGridViewCellStyle3;
-            dgvDeudores.Location = new Point(330, 271);
+            dgvDeudores.Location = new Point(339, 202);
             dgvDeudores.Name = "dgvDeudores";
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = SystemColors.Control;
@@ -222,7 +222,7 @@
             dataGridViewCellStyle5.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dataGridViewCellStyle5.ForeColor = Color.Navy;
             dgvDeudores.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            dgvDeudores.Size = new Size(1182, 496);
+            dgvDeudores.Size = new Size(1182, 583);
             dgvDeudores.TabIndex = 173;
             // 
             // label3
@@ -243,7 +243,7 @@
             Nombre.BackColor = Color.Transparent;
             Nombre.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             Nombre.ForeColor = Color.Navy;
-            Nombre.Location = new Point(358, 223);
+            Nombre.Location = new Point(358, 146);
             Nombre.Name = "Nombre";
             Nombre.Size = new Size(99, 27);
             Nombre.TabIndex = 353;

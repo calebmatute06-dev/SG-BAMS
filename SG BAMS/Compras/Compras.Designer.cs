@@ -67,7 +67,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(1006, 767);
+            label1.Location = new Point(1016, 774);
             label1.Name = "label1";
             label1.Size = new Size(0, 20);
             label1.TabIndex = 60;
@@ -143,7 +143,7 @@
             dgvComprasAdmin.AllowUserToDeleteRows = false;
             dgvComprasAdmin.BackgroundColor = Color.SkyBlue;
             dgvComprasAdmin.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvComprasAdmin.Location = new Point(309, 277);
+            dgvComprasAdmin.Location = new Point(309, 229);
             dgvComprasAdmin.MultiSelect = false;
             dgvComprasAdmin.Name = "dgvComprasAdmin";
             dgvComprasAdmin.RowHeadersWidth = 51;
@@ -167,7 +167,7 @@
             // 
             // btnCompra
             // 
-            btnCompra.Location = new Point(451, 793);
+            btnCompra.Location = new Point(461, 800);
             btnCompra.Name = "btnCompra";
             btnCompra.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnCompra.OverrideDefault.Back.Color2 = Color.White;
@@ -190,7 +190,7 @@
             // 
             // btnModificarC
             // 
-            btnModificarC.Location = new Point(649, 793);
+            btnModificarC.Location = new Point(659, 800);
             btnModificarC.Name = "btnModificarC";
             btnModificarC.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnModificarC.OverrideDefault.Back.Color2 = Color.White;
@@ -213,7 +213,7 @@
             // 
             // btnEliminarC
             // 
-            btnEliminarC.Location = new Point(854, 793);
+            btnEliminarC.Location = new Point(864, 800);
             btnEliminarC.Name = "btnEliminarC";
             btnEliminarC.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnEliminarC.OverrideDefault.Back.Color2 = Color.White;
@@ -240,7 +240,7 @@
             Nombre.BackColor = Color.Transparent;
             Nombre.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             Nombre.ForeColor = Color.Navy;
-            Nombre.Location = new Point(309, 219);
+            Nombre.Location = new Point(309, 163);
             Nombre.Name = "Nombre";
             Nombre.Size = new Size(99, 27);
             Nombre.TabIndex = 356;
@@ -252,7 +252,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(795, 229);
+            label3.Location = new Point(795, 173);
             label3.Name = "label3";
             label3.Size = new Size(69, 29);
             label3.TabIndex = 360;
@@ -264,7 +264,7 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(793, 195);
+            label4.Location = new Point(793, 139);
             label4.Name = "label4";
             label4.Size = new Size(75, 29);
             label4.TabIndex = 361;
@@ -272,7 +272,7 @@
             // 
             // dtpHasta
             // 
-            dtpHasta.Location = new Point(871, 229);
+            dtpHasta.Location = new Point(871, 173);
             dtpHasta.MaxDate = new DateTime(2100, 12, 31, 0, 0, 0, 0);
             dtpHasta.MinDate = new DateTime(2025, 1, 1, 0, 0, 0, 0);
             dtpHasta.Name = "dtpHasta";
@@ -281,7 +281,7 @@
             // 
             // dtpDesde
             // 
-            dtpDesde.Location = new Point(871, 196);
+            dtpDesde.Location = new Point(871, 140);
             dtpDesde.MaxDate = new DateTime(2100, 12, 31, 0, 0, 0, 0);
             dtpDesde.MinDate = new DateTime(2025, 1, 1, 0, 0, 0, 0);
             dtpDesde.Name = "dtpDesde";
@@ -293,7 +293,7 @@
             // 
             btnRefresh.BackgroundImage = Properties.Resources.refresh;
             btnRefresh.BackgroundImageLayout = ImageLayout.Stretch;
-            btnRefresh.Location = new Point(1147, 195);
+            btnRefresh.Location = new Point(1147, 138);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.Size = new Size(66, 67);
             btnRefresh.TabIndex = 362;
@@ -576,7 +576,7 @@
             // 
             // txtBuscarCompra
             // 
-            txtBuscarCompra.Location = new Point(405, 214);
+            txtBuscarCompra.Location = new Point(405, 158);
             txtBuscarCompra.Margin = new Padding(3, 4, 3, 4);
             txtBuscarCompra.Name = "txtBuscarCompra";
             txtBuscarCompra.Size = new Size(384, 34);

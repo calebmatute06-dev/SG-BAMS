@@ -73,7 +73,7 @@
             // 
             // txtBuscar
             // 
-            txtBuscar.Location = new Point(686, 160);
+            txtBuscar.Location = new Point(686, 142);
             txtBuscar.Name = "txtBuscar";
             txtBuscar.Size = new Size(656, 31);
             txtBuscar.StateCommon.Back.Color1 = Color.White;
@@ -119,10 +119,10 @@
             // 
             dgvProductosAdmin.BackgroundColor = Color.SkyBlue;
             dgvProductosAdmin.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProductosAdmin.Location = new Point(307, 212);
+            dgvProductosAdmin.Location = new Point(307, 188);
             dgvProductosAdmin.Name = "dgvProductosAdmin";
             dgvProductosAdmin.RowHeadersWidth = 51;
-            dgvProductosAdmin.Size = new Size(1308, 569);
+            dgvProductosAdmin.Size = new Size(1308, 591);
             dgvProductosAdmin.TabIndex = 197;
             dgvProductosAdmin.CellDoubleClick += dgvProductosAdmin_CellDoubleClick_1;
             dgvProductosAdmin.CellFormatting += dgvProductosAdmin_CellFormatting;
@@ -145,7 +145,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(581, 161);
+            label3.Location = new Point(581, 143);
             label3.Name = "label3";
             label3.Size = new Size(99, 27);
             label3.TabIndex = 355;

@@ -103,9 +103,9 @@
             // 
             BtnRefrescar.BackgroundImage = Properties.Resources.refresh;
             BtnRefrescar.BackgroundImageLayout = ImageLayout.Stretch;
-            BtnRefrescar.Location = new Point(1476, 275);
+            BtnRefrescar.Location = new Point(1476, 173);
             BtnRefrescar.Name = "BtnRefrescar";
-            BtnRefrescar.Size = new Size(65, 44);
+            BtnRefrescar.Size = new Size(65, 63);
             BtnRefrescar.TabIndex = 351;
             BtnRefrescar.UseVisualStyleBackColor = true;
             BtnRefrescar.Click += BtnRefrescar_Click;
@@ -115,7 +115,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(1138, 294);
+            label6.Location = new Point(1138, 211);
             label6.Name = "label6";
             label6.Size = new Size(49, 23);
             label6.TabIndex = 350;
@@ -126,7 +126,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(1129, 260);
+            label5.Location = new Point(1129, 177);
             label5.Name = "label5";
             label5.Size = new Size(58, 23);
             label5.TabIndex = 349;
@@ -136,18 +136,18 @@
             // 
             label3.AutoSize = true;
             label3.BackColor = Color.White;
-            label3.Font = new Font("Arial Narrow", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Font = new Font("Arial Narrow", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(1276, 208);
+            label3.Location = new Point(1276, 125);
             label3.Name = "label3";
-            label3.Size = new Size(82, 33);
+            label3.Size = new Size(114, 46);
             label3.TabIndex = 347;
             label3.Text = "Fecha";
             label3.TextAlign = ContentAlignment.TopCenter;
             // 
             // txtBusqueda
             // 
-            txtBusqueda.Location = new Point(442, 279);
+            txtBusqueda.Location = new Point(442, 196);
             txtBusqueda.Margin = new Padding(3, 4, 3, 4);
             txtBusqueda.Name = "txtBusqueda";
             txtBusqueda.Size = new Size(661, 34);
@@ -163,17 +163,17 @@
             // 
             dgvFacturas.BackgroundColor = Color.SkyBlue;
             dgvFacturas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvFacturas.Location = new Point(341, 325);
+            dgvFacturas.Location = new Point(359, 257);
             dgvFacturas.Name = "dgvFacturas";
             dgvFacturas.RowHeadersWidth = 51;
-            dgvFacturas.Size = new Size(1200, 444);
+            dgvFacturas.Size = new Size(1200, 527);
             dgvFacturas.TabIndex = 332;
             dgvFacturas.CellDoubleClick += dgvFacturas_CellDoubleClick;
             // 
             // dtpFin
             // 
             dtpFin.CalendarForeColor = Color.Navy;
-            dtpFin.Location = new Point(1193, 291);
+            dtpFin.Location = new Point(1193, 208);
             dtpFin.Margin = new Padding(3, 4, 3, 4);
             dtpFin.Name = "dtpFin";
             dtpFin.Size = new Size(259, 27);
@@ -181,7 +181,7 @@
             // 
             // dtpInicio
             // 
-            dtpInicio.Location = new Point(1193, 256);
+            dtpInicio.Location = new Point(1193, 173);
             dtpInicio.Margin = new Padding(3, 4, 3, 4);
             dtpInicio.Name = "dtpInicio";
             dtpInicio.Size = new Size(259, 27);
@@ -189,7 +189,7 @@
             // 
             // BtnNueva
             // 
-            BtnNueva.Location = new Point(762, 797);
+            BtnNueva.Location = new Point(756, 804);
             BtnNueva.Name = "BtnNueva";
             BtnNueva.OverrideDefault.Back.Color1 = Color.SkyBlue;
             BtnNueva.OverrideDefault.Back.Color2 = Color.White;
@@ -212,7 +212,7 @@
             // 
             // BtnVer
             // 
-            BtnVer.Location = new Point(1059, 797);
+            BtnVer.Location = new Point(1024, 804);
             BtnVer.Name = "BtnVer";
             BtnVer.OverrideDefault.Back.Color1 = Color.SkyBlue;
             BtnVer.OverrideDefault.Back.Color2 = Color.White;
@@ -237,17 +237,17 @@
             // 
             label10.AutoSize = true;
             label10.BackColor = Color.White;
-            label10.Font = new Font("Arial Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label10.Font = new Font("Arial", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Navy;
-            label10.Location = new Point(851, 57);
+            label10.Location = new Point(824, 57);
             label10.Name = "label10";
-            label10.Size = new Size(162, 42);
+            label10.Size = new Size(279, 70);
             label10.TabIndex = 338;
             label10.Text = "Facturas";
             // 
             // kryptonButton14
             // 
-            kryptonButton14.Location = new Point(483, 287);
+            kryptonButton14.Location = new Point(483, 204);
             kryptonButton14.Name = "kryptonButton14";
             kryptonButton14.Size = new Size(0, 0);
             kryptonButton14.StateCommon.Border.Rounding = 100F;
@@ -287,7 +287,7 @@
             Nombre.BackColor = Color.Transparent;
             Nombre.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             Nombre.ForeColor = Color.Navy;
-            Nombre.Location = new Point(339, 284);
+            Nombre.Location = new Point(339, 201);
             Nombre.Name = "Nombre";
             Nombre.Size = new Size(99, 27);
             Nombre.TabIndex = 352;

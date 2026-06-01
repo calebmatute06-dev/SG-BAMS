@@ -53,7 +53,7 @@ namespace SG_BAMS
             txtBateriaVieja.Text = bateriaVij.ToString();
             idPagoSele = idPago;
             idFac = idF;
-            fechaDT.SelectionStart = fec;
+            fechaDT.Value = fec;
             lblFactura.Text = "No." + idF.ToString();
             monto_rebaja = reb;
             
@@ -137,6 +137,8 @@ namespace SG_BAMS
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void FacturaVer_Load(object sender, EventArgs e)
         {
+            fechaDT.Enabled = false;
+
             await LlenarComboPago();
             cmbPago.SelectedValue = idPagoSele;
             await VerFacturasProductos();

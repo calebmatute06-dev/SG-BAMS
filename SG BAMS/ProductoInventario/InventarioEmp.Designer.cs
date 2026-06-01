@@ -67,7 +67,7 @@
             // 
             // txtBuscar
             // 
-            txtBuscar.Location = new Point(614, 194);
+            txtBuscar.Location = new Point(614, 146);
             txtBuscar.Name = "txtBuscar";
             txtBuscar.Size = new Size(679, 31);
             txtBuscar.StateCommon.Back.Color1 = Color.White;
@@ -113,10 +113,10 @@
             // 
             dgvInventarioEmp.BackgroundColor = Color.SkyBlue;
             dgvInventarioEmp.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvInventarioEmp.Location = new Point(311, 239);
+            dgvInventarioEmp.Location = new Point(311, 196);
             dgvInventarioEmp.Name = "dgvInventarioEmp";
             dgvInventarioEmp.RowHeadersWidth = 51;
-            dgvInventarioEmp.Size = new Size(1139, 632);
+            dgvInventarioEmp.Size = new Size(1139, 665);
             dgvInventarioEmp.TabIndex = 213;
             // 
             // label10
@@ -125,7 +125,7 @@
             label10.BackColor = Color.Transparent;
             label10.Font = new Font("Arial", 36F, FontStyle.Bold);
             label10.ForeColor = Color.Navy;
-            label10.Location = new Point(774, 53);
+            label10.Location = new Point(771, 49);
             label10.Name = "label10";
             label10.Size = new Size(317, 70);
             label10.TabIndex = 214;
@@ -137,7 +137,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(509, 195);
+            label3.Location = new Point(509, 147);
             label3.Name = "label3";
             label3.Size = new Size(99, 27);
             label3.TabIndex = 355;

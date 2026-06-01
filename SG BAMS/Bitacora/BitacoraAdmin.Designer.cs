@@ -72,7 +72,7 @@
             label10.BackColor = Color.Transparent;
             label10.Font = new Font("Arial", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Navy;
-            label10.Location = new Point(658, 59);
+            label10.Location = new Point(659, 49);
             label10.Name = "label10";
             label10.Size = new Size(269, 70);
             label10.TabIndex = 90;
@@ -158,7 +158,7 @@
             // 
             btnRefresh.BackgroundImage = Properties.Resources.refresh;
             btnRefresh.BackgroundImageLayout = ImageLayout.Stretch;
-            btnRefresh.Location = new Point(1189, 176);
+            btnRefresh.Location = new Point(1197, 137);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.Size = new Size(66, 67);
             btnRefresh.TabIndex = 323;
@@ -167,7 +167,7 @@
             // 
             // dtpHasta
             // 
-            dtpHasta.Location = new Point(914, 213);
+            dtpHasta.Location = new Point(922, 174);
             dtpHasta.MaxDate = new DateTime(2100, 12, 31, 0, 0, 0, 0);
             dtpHasta.MinDate = new DateTime(2025, 1, 1, 0, 0, 0, 0);
             dtpHasta.Name = "dtpHasta";
@@ -177,7 +177,7 @@
             // 
             // dtpDesde
             // 
-            dtpDesde.Location = new Point(914, 180);
+            dtpDesde.Location = new Point(922, 141);
             dtpDesde.MaxDate = new DateTime(2100, 12, 31, 0, 0, 0, 0);
             dtpDesde.MinDate = new DateTime(2025, 1, 1, 0, 0, 0, 0);
             dtpDesde.Name = "dtpDesde";
@@ -192,7 +192,7 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(836, 179);
+            label4.Location = new Point(844, 140);
             label4.Name = "label4";
             label4.Size = new Size(75, 29);
             label4.TabIndex = 328;
@@ -204,7 +204,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(838, 213);
+            label3.Location = new Point(846, 174);
             label3.Name = "label3";
             label3.Size = new Size(69, 29);
             label3.TabIndex = 328;
@@ -212,7 +212,7 @@
             // 
             // btnExportar
             // 
-            btnExportar.Location = new Point(713, 789);
+            btnExportar.Location = new Point(726, 792);
             btnExportar.Name = "btnExportar";
             btnExportar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnExportar.OverrideDefault.Back.Color2 = Color.White;
@@ -257,7 +257,7 @@
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             dgvBitacora.DefaultCellStyle = dataGridViewCellStyle3;
-            dgvBitacora.Location = new Point(488, 259);
+            dgvBitacora.Location = new Point(496, 220);
             dgvBitacora.Name = "dgvBitacora";
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = SystemColors.Control;
@@ -271,7 +271,7 @@
             dataGridViewCellStyle5.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dataGridViewCellStyle5.ForeColor = Color.Navy;
             dgvBitacora.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            dgvBitacora.Size = new Size(579, 491);
+            dgvBitacora.Size = new Size(579, 546);
             dgvBitacora.TabIndex = 330;
             // 
             // label5
@@ -280,7 +280,7 @@
             label5.BackColor = Color.White;
             label5.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(312, 195);
+            label5.Location = new Point(320, 156);
             label5.Name = "label5";
             label5.Size = new Size(88, 31);
             label5.TabIndex = 331;
@@ -562,7 +562,7 @@
             // 
             // txtBuscar
             // 
-            txtBuscar.Location = new Point(396, 194);
+            txtBuscar.Location = new Point(404, 155);
             txtBuscar.Margin = new Padding(3, 4, 3, 4);
             txtBuscar.Name = "txtBuscar";
             txtBuscar.Size = new Size(417, 34);

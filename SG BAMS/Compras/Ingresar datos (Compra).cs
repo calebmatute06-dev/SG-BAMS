@@ -39,6 +39,7 @@ namespace SG_BAMS
 
             dgvIngresarCompra.Columns.Clear();
 
+            dtpFechaPedido.Enabled = false;
 
             dgvIngresarCompra.Columns.Add("ID", "ID");
             dgvIngresarCompra.Columns.Add("Nombre", "Nombre");
@@ -54,8 +55,8 @@ namespace SG_BAMS
             dgvIngresarCompra.Columns[3].ReadOnly = false;
 
             LlenarCombos();
-            dtpFechaPedido.SelectionStart = DateTime.Now;
-            dtpFechaPedido.SelectionEnd = DateTime.Now;
+            dtpFechaPedido.Value = DateTime.Now;
+            dtpFechaPedido.Value = DateTime.Now;
             lblIDCompra.Text = ObtenerSiguienteID();
 
 
@@ -272,7 +273,7 @@ namespace SG_BAMS
                 ClsCompras logic = new ClsCompras();
 
                 bool exito = logic.GuardarNuevaCompra(
-                dtpFechaPedido.SelectionStart,
+                dtpFechaPedido.Value,
                 Convert.ToInt32(cmbFormaPago.SelectedValue),
                 Convert.ToInt32(cmbProveedor.SelectedValue),
                 txtNotaDetalle.Text,

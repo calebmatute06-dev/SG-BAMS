@@ -64,6 +64,8 @@ namespace SG_BAMS
             cmbProveedor.Enabled = false;
             cmbProveedor.BackColor = Color.LightGray;
 
+            dtpFechaPedido.Enabled = false;
+
 
             cmbProveedor.SelectedIndexChanged -= cmbProveedor_SelectedIndexChanged;
             cmbFormaPago.SelectedIndexChanged -= cmbFormaPago_SelectedIndexChanged;
@@ -179,8 +181,8 @@ namespace SG_BAMS
                     cmbFormaPago.SelectedValue = fila["id_tipo_forma_pago"];
                     cmbProveedor.SelectedValue = fila["id_proveedor"];
                     DateTime fecha = Convert.ToDateTime(fila["fecha_pedido"]);
-                    dtpFechaPedido.SelectionStart = fecha;
-                    dtpFechaPedido.SelectionEnd = fecha;
+                    dtpFechaPedido.Value = fecha;
+                    dtpFechaPedido.Value = fecha;
                     txtNotaDetalle.Text = fila["desc_compra"].ToString();
                 }
             }
@@ -206,7 +208,7 @@ namespace SG_BAMS
             {
                 int idProv = Convert.ToInt32(cmbProveedor.SelectedValue);
                 int idPago = Convert.ToInt32(cmbFormaPago.SelectedValue);
-                DateTime fecha = dtpFechaPedido.SelectionStart;
+                DateTime fecha = dtpFechaPedido.Value;
                 string nota = txtNotaDetalle.Text;
 
                 logic.ActualizarCabeceraCompra(idCompraAEditar, idProv, idPago, fecha, nota);

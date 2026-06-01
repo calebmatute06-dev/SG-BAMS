@@ -95,7 +95,7 @@
             // 
             // chkActivo
             // 
-            chkActivo.Location = new Point(1050, 204);
+            chkActivo.Location = new Point(1050, 156);
             chkActivo.Name = "chkActivo";
             chkActivo.Size = new Size(104, 31);
             chkActivo.StateCommon.ShortText.Color1 = Color.Navy;
@@ -108,7 +108,7 @@
             // 
             dgvClientes.BackgroundColor = Color.SkyBlue;
             dgvClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvClientes.Location = new Point(357, 261);
+            dgvClientes.Location = new Point(358, 220);
             dgvClientes.Name = "dgvClientes";
             dgvClientes.RowHeadersWidth = 51;
             dgvClientes.Size = new Size(825, 501);
@@ -117,7 +117,7 @@
             // 
             // BtnModificar
             // 
-            BtnModificar.Location = new Point(718, 792);
+            BtnModificar.Location = new Point(690, 798);
             BtnModificar.Name = "BtnModificar";
             BtnModificar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             BtnModificar.OverrideDefault.Back.Color2 = Color.White;
@@ -140,7 +140,7 @@
             // 
             // txtBusqueda
             // 
-            txtBusqueda.Location = new Point(473, 202);
+            txtBusqueda.Location = new Point(473, 154);
             txtBusqueda.Margin = new Padding(3, 4, 3, 4);
             txtBusqueda.Name = "txtBusqueda";
             txtBusqueda.Size = new Size(570, 31);
@@ -192,7 +192,7 @@
             label7.BackColor = Color.Transparent;
             label7.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label7.ForeColor = Color.Navy;
-            label7.Location = new Point(370, 204);
+            label7.Location = new Point(370, 156);
             label7.Name = "label7";
             label7.Size = new Size(99, 27);
             label7.TabIndex = 355;
@@ -204,7 +204,7 @@
             label10.BackColor = Color.Transparent;
             label10.Font = new Font("Arial", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Navy;
-            label10.Location = new Point(683, 81);
+            label10.Location = new Point(656, 55);
             label10.Name = "label10";
             label10.Size = new Size(263, 70);
             label10.TabIndex = 356;

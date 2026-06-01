@@ -130,7 +130,7 @@
             // 
             lbliddeuda.Location = new Point(187, 149);
             lbliddeuda.Name = "lbliddeuda";
-            lbliddeuda.Size = new Size(136, 31);
+            lbliddeuda.Size = new Size(129, 31);
             lbliddeuda.StateCommon.ShortText.Color1 = Color.Navy;
             lbliddeuda.TabIndex = 197;
             lbliddeuda.Values.Text = "xxx-xxx";

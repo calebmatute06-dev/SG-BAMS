@@ -254,7 +254,7 @@
             cmbReporte.Items.AddRange(new object[] { "Ventas", "Compras", "Deudores", "Inventario" });
             cmbReporte.Location = new Point(314, 185);
             cmbReporte.Name = "cmbReporte";
-            cmbReporte.Size = new Size(216, 35);
+            cmbReporte.Size = new Size(216, 33);
             cmbReporte.StateActive.ComboBox.Content.Color1 = Color.Navy;
             cmbReporte.StateActive.ComboBox.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbReporte.StateCommon.ComboBox.Back.Color1 = Color.White;
@@ -690,7 +690,7 @@
             cmbCant.Items.AddRange(new object[] { "Buen Stock", "Bajo Stock", "Sin Stock" });
             cmbCant.Location = new Point(944, 185);
             cmbCant.Name = "cmbCant";
-            cmbCant.Size = new Size(216, 35);
+            cmbCant.Size = new Size(216, 33);
             cmbCant.StateActive.ComboBox.Content.Color1 = Color.Navy;
             cmbCant.StateActive.ComboBox.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbCant.StateCommon.ComboBox.Back.Color1 = Color.White;

@@ -171,8 +171,8 @@ namespace SG_BAMS.Facturas
             y += 20;
             g.DrawLine(Pens.Black, margin, y, margin + width, y); y += 15;
 
-            double valTotal = Convert.ToDouble(datosTemp.total);
-            double valDescuento = Convert.ToDouble(datosTemp.desc);
+            double valTotal = double.Parse((string)datosTemp.total, CultureInfo.InvariantCulture);
+            double valDescuento = double.Parse((string)datosTemp.desc, CultureInfo.InvariantCulture);
             bool esGobierno = (bool)datosTemp.esGobierno;
             double montoExento = (double)datosTemp.montoExento;
 
@@ -214,7 +214,8 @@ namespace SG_BAMS.Facturas
             int xLabel = margin + 350;
             int xValor = margin + 600;
 
-            double valSubtotal = Convert.ToDouble(datosTemp.sub);
+
+            double valSubtotal = double.Parse((string)datosTemp.sub, CultureInfo.InvariantCulture);
 
             g.DrawString($"Forma de Pago: {datosTemp.pago}", fDetalles, Brushes.Black, margin, y);
 
@@ -391,7 +392,7 @@ namespace SG_BAMS.Facturas
                 g.DrawLine(Pens.Black, margin, y, margin + width, y); y += 15;
 
                
-                double valTotal = Convert.ToDouble(total);
+                double valTotal = double.Parse(total, CultureInfo.InvariantCulture);
 
                 g.DrawString($"Forma de Pago: {pago}", fDetalles, Brushes.Black, margin, y);
                 g.DrawString("Total", fDetalles, Brushes.Black, margin + 520, y);

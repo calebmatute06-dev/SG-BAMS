@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,8 @@ namespace SG_BAMS
         string nombresProductos, cantidadBateria;
         double precioBateria;
         string rtnCliente;
+
+        private static readonly CultureInfo CI = CultureInfo.InvariantCulture;
 
         public FacturaAgregarDatos(string cliente, int idCli, string rtn = "Sin RTN")
         {
@@ -69,6 +72,8 @@ namespace SG_BAMS
         {
             await LlenarComboPago();
 
+            DateTFecha.Enabled = false;
+
             dgvProductos.Columns.Clear();
             dgvProductos.Columns.Add("id_producto", "Código");
             dgvProductos.Columns.Add("nombre_producto", "Nombre");
@@ -84,7 +89,7 @@ namespace SG_BAMS
                 if (ev.RowIndex < 0 || ev.Value == null) return;
                 string col = dgvProductos.Columns[ev.ColumnIndex].Name;
                 if ((col == "precio" || col == "subtotal") &&
-                    decimal.TryParse(ev.Value.ToString(), out decimal monto))
+                   decimal.TryParse(ev.Value.ToString(), NumberStyles.Any, CI, out decimal monto))
                 {
                     ev.Value = $"L. {monto:N2}";
                     ev.FormattingApplied = true;
@@ -147,9 +152,7 @@ namespace SG_BAMS
         private double ParsearMonto(string texto)
         {
             string limpio = texto.Replace("L.", "").Replace(",", "").Trim();
-            return double.TryParse(limpio, System.Globalization.NumberStyles.Any,
-                                   System.Globalization.CultureInfo.InvariantCulture,
-                                   out double resultado) ? resultado : 0;
+            return double.TryParse(limpio, NumberStyles.Any, CI, out double resultado) ? resultado : 0;
         }
 
         private void CalcularTotal()
@@ -164,7 +167,7 @@ namespace SG_BAMS
             double rebaja = precioBateria;
             double total = acumulador - rebaja;
 
-            txtSubtotal.Text = $"L. {acumulador:N2}";
+            txtSubtotal.Text = $"L. {acumulador.ToString("N2", CI)}";
             txtRebaja.Text = $"L. {rebaja:N2}";
             txtTotal.Text = $"L. {(total < 0 ? 0 : total):N2}";
         }
@@ -279,7 +282,7 @@ namespace SG_BAMS
                 double totalFacturaReal = ParsearMonto(txtTotal.Text);
 
                 int idFactura = await objAF.AgregarFacturas(idUser, idCliente, idPago,
-                                    DateTFecha.SelectionStart, bat, precioBateria, totalFacturaReal);
+                    DateTFecha.Value, bat, precioBateria, totalFacturaReal);
 
                 if (idFactura > 0)
                 {
@@ -303,7 +306,7 @@ namespace SG_BAMS
                             objAF.ImprimirFacturaNormal(
                                 idFactura,
                                 txtCliente.Text,
-                                ParsearMonto(txtTotal.Text).ToString("N2"),
+                                ParsearMonto(txtTotal.Text).ToString("N2", CI),
                                 cmbPago.Text,
                                 dgvProductos
                             );
@@ -313,10 +316,10 @@ namespace SG_BAMS
                             objAF.ImprimirFactura(
                                 idFactura,
                                 txtCliente.Text,
-                                DateTFecha.SelectionStart.ToShortDateString(),
-                                ParsearMonto(txtSubtotal.Text).ToString("N2"),
-                                ParsearMonto(txtRebaja.Text).ToString("N2"),
-                                ParsearMonto(txtTotal.Text).ToString("N2"),
+                                DateTFecha.Value.ToShortDateString(),
+                               ParsearMonto(txtSubtotal.Text).ToString("N2", CI),
+                               ParsearMonto(txtRebaja.Text).ToString("N2", CI),   
+                               ParsearMonto(txtTotal.Text).ToString("N2", CI),
                                 cmbPago.Text,
                                 dgvProductos,
                                 SG_BAMS.Login.Login.UsuarioLogueado,
@@ -332,13 +335,14 @@ namespace SG_BAMS
                     if (formaPagoTexto.Contains("crédito") || formaPagoTexto.Contains("credito"))
                     {
                         double montoTotalReal = ParsearMonto(txtTotal.Text);
-                        bool deudaCreada = await CrearDeudaManual(idFactura, idCliente, montoTotalReal, DateTFecha.SelectionStart);
+                        bool deudaCreada = await CrearDeudaManual(idFactura, idCliente, montoTotalReal, DateTFecha.Value);
+                        DateTime fechaVenta = DateTFecha.Value;
 
                         if (deudaCreada)
                         {
                             string nombreCliente = txtCliente.Text.Trim();
                             string montoTotal = ParsearMonto(txtTotal.Text).ToString("N2");
-                            DateTime fechaVenta = DateTFecha.SelectionStart;
+                            
 
                             using (Información_Deudores frmInfo = new Información_Deudores(idFactura, nombreCliente, montoTotal, fechaVenta))
                             {

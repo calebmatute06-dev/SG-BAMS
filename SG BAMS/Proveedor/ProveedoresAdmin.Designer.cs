@@ -58,7 +58,7 @@
             // 
             // txtBuscar
             // 
-            txtBuscar.Location = new Point(443, 180);
+            txtBuscar.Location = new Point(443, 154);
             txtBuscar.Name = "txtBuscar";
             txtBuscar.Size = new Size(571, 31);
             txtBuscar.StateCommon.Back.Color1 = Color.White;
@@ -128,7 +128,7 @@
             // 
             btnRefresh.BackgroundImage = Properties.Resources.refresh;
             btnRefresh.BackgroundImageLayout = ImageLayout.Stretch;
-            btnRefresh.Location = new Point(1022, 165);
+            btnRefresh.Location = new Point(1022, 139);
             btnRefresh.Margin = new Padding(3, 4, 3, 4);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.Size = new Size(55, 51);
@@ -152,11 +152,11 @@
             // 
             dgvProveedor.BackgroundColor = Color.SkyBlue;
             dgvProveedor.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProveedor.Location = new Point(329, 235);
+            dgvProveedor.Location = new Point(329, 209);
             dgvProveedor.Margin = new Padding(3, 4, 3, 4);
             dgvProveedor.Name = "dgvProveedor";
             dgvProveedor.RowHeadersWidth = 51;
-            dgvProveedor.Size = new Size(779, 537);
+            dgvProveedor.Size = new Size(779, 576);
             dgvProveedor.TabIndex = 331;
             dgvProveedor.CellDoubleClick += dgvProveedor_CellDoubleClick_1;
             // 
@@ -166,7 +166,7 @@
             Nombre.BackColor = Color.Transparent;
             Nombre.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             Nombre.ForeColor = Color.Navy;
-            Nombre.Location = new Point(341, 181);
+            Nombre.Location = new Point(341, 155);
             Nombre.Name = "Nombre";
             Nombre.Size = new Size(99, 27);
             Nombre.TabIndex = 354;
@@ -448,7 +448,7 @@
             // 
             // btnAgregar1
             // 
-            btnAgregar1.Location = new Point(575, 791);
+            btnAgregar1.Location = new Point(563, 806);
             btnAgregar1.Name = "btnAgregar1";
             btnAgregar1.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnAgregar1.OverrideDefault.Back.Color2 = Color.White;
@@ -471,7 +471,7 @@
             // 
             // btnModificar
             // 
-            btnModificar.Location = new Point(736, 791);
+            btnModificar.Location = new Point(724, 806);
             btnModificar.Name = "btnModificar";
             btnModificar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnModificar.OverrideDefault.Back.Color2 = Color.White;

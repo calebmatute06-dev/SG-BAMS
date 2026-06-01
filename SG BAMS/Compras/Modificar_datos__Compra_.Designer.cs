@@ -39,7 +39,6 @@
             label5 = new Label();
             label3 = new Label();
             label1 = new Label();
-            dtpFechaPedido = new Krypton.Toolkit.KryptonMonthCalendar();
             panel1 = new Panel();
             panel3 = new Panel();
             pictureBox1 = new PictureBox();
@@ -49,6 +48,8 @@
             cmbProveedor = new Krypton.Toolkit.KryptonComboBox();
             label2 = new Label();
             dgvProductosModificar = new DataGridView();
+            dtpFechaPedido = new DateTimePicker();
+            label7 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cmbFormaPago).BeginInit();
@@ -85,7 +86,7 @@
             // 
             // btnAceptar
             // 
-            btnAceptar.Location = new Point(33, 632);
+            btnAceptar.Location = new Point(130, 629);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnAceptar.OverrideDefault.Back.Color2 = Color.White;
@@ -108,7 +109,7 @@
             // 
             // kryptonButton4
             // 
-            kryptonButton4.Location = new Point(166, 633);
+            kryptonButton4.Location = new Point(278, 631);
             kryptonButton4.Name = "kryptonButton4";
             kryptonButton4.OverrideDefault.Back.Color1 = Color.SkyBlue;
             kryptonButton4.OverrideDefault.Back.Color2 = Color.White;
@@ -131,7 +132,7 @@
             // 
             // kryptonButton5
             // 
-            kryptonButton5.Location = new Point(704, 634);
+            kryptonButton5.Location = new Point(563, 629);
             kryptonButton5.Name = "kryptonButton5";
             kryptonButton5.OverrideDefault.Back.Color1 = Color.SkyBlue;
             kryptonButton5.OverrideDefault.Back.Color2 = Color.White;
@@ -158,7 +159,7 @@
             label8.BackColor = Color.Transparent;
             label8.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Navy;
-            label8.Location = new Point(807, 28);
+            label8.Location = new Point(562, 111);
             label8.Name = "label8";
             label8.Size = new Size(131, 24);
             label8.TabIndex = 227;
@@ -166,9 +167,9 @@
             // 
             // lblTotal
             // 
-            lblTotal.Location = new Point(807, 582);
+            lblTotal.Location = new Point(800, 580);
             lblTotal.Name = "lblTotal";
-            lblTotal.Size = new Size(136, 31);
+            lblTotal.Size = new Size(92, 31);
             lblTotal.StateCommon.ShortText.Color1 = Color.Navy;
             lblTotal.StateCommon.ShortText.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblTotal.TabIndex = 226;
@@ -222,14 +223,6 @@
             label1.TabIndex = 220;
             label1.Text = "Modificar Compra";
             // 
-            // dtpFechaPedido
-            // 
-            dtpFechaPedido.Enabled = false;
-            dtpFechaPedido.Location = new Point(732, 56);
-            dtpFechaPedido.Name = "dtpFechaPedido";
-            dtpFechaPedido.Size = new Size(293, 218);
-            dtpFechaPedido.TabIndex = 217;
-            // 
             // panel1
             // 
             panel1.BackColor = Color.Navy;
@@ -258,7 +251,7 @@
             // pictureBox4
             // 
             pictureBox4.BackColor = Color.Navy;
-            pictureBox4.Location = new Point(1026, 5);
+            pictureBox4.Location = new Point(901, 5);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(24, 712);
             pictureBox4.TabIndex = 212;
@@ -266,7 +259,7 @@
             // 
             // btnEliminarProducto
             // 
-            btnEliminarProducto.Location = new Point(579, 634);
+            btnEliminarProducto.Location = new Point(429, 629);
             btnEliminarProducto.Name = "btnEliminarProducto";
             btnEliminarProducto.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnEliminarProducto.OverrideDefault.Back.Color2 = Color.White;
@@ -296,7 +289,7 @@
             cmbFormaPago.DropDownWidth = 300;
             cmbFormaPago.Location = new Point(218, 111);
             cmbFormaPago.Name = "cmbFormaPago";
-            cmbFormaPago.Size = new Size(197, 35);
+            cmbFormaPago.Size = new Size(197, 33);
             cmbFormaPago.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbFormaPago.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbFormaPago.StateCommon.ComboBox.Border.Rounding = 5F;
@@ -316,7 +309,7 @@
             cmbProveedor.DropDownWidth = 300;
             cmbProveedor.Location = new Point(216, 159);
             cmbProveedor.Name = "cmbProveedor";
-            cmbProveedor.Size = new Size(312, 35);
+            cmbProveedor.Size = new Size(312, 33);
             cmbProveedor.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbProveedor.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbProveedor.StateCommon.ComboBox.Border.Rounding = 5F;
@@ -334,7 +327,7 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(923, 652);
+            label2.Location = new Point(796, 27);
             label2.Name = "label2";
             label2.Size = new Size(102, 35);
             label2.TabIndex = 345;
@@ -344,7 +337,7 @@
             // 
             dgvProductosModificar.BackgroundColor = Color.SkyBlue;
             dgvProductosModificar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProductosModificar.Location = new Point(151, 281);
+            dgvProductosModificar.Location = new Point(83, 279);
             dgvProductosModificar.Margin = new Padding(3, 4, 3, 4);
             dgvProductosModificar.Name = "dgvProductosModificar";
             dgvProductosModificar.RowHeadersWidth = 51;
@@ -354,12 +347,34 @@
             dgvProductosModificar.CellValueChanged += dgvProductosModificar_CellValueChanged;
             dgvProductosModificar.CurrentCellDirtyStateChanged += dgvProductosModificar_CurrentCellDirtyStateChanged;
             // 
+            // dtpFechaPedido
+            // 
+            dtpFechaPedido.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtpFechaPedido.Location = new Point(564, 139);
+            dtpFechaPedido.Name = "dtpFechaPedido";
+            dtpFechaPedido.Size = new Size(319, 30);
+            dtpFechaPedido.TabIndex = 347;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.BackColor = Color.Transparent;
+            label7.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label7.ForeColor = Color.Navy;
+            label7.Location = new Point(749, 582);
+            label7.Name = "label7";
+            label7.Size = new Size(51, 24);
+            label7.TabIndex = 348;
+            label7.Text = "Total:";
+            // 
             // Modificar_datos__Compra_
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1049, 717);
+            ClientSize = new Size(923, 717);
+            Controls.Add(label7);
+            Controls.Add(dtpFechaPedido);
             Controls.Add(dgvProductosModificar);
             Controls.Add(label2);
             Controls.Add(cmbFormaPago);
@@ -376,7 +391,6 @@
             Controls.Add(label5);
             Controls.Add(label3);
             Controls.Add(label1);
-            Controls.Add(dtpFechaPedido);
             Controls.Add(panel1);
             Controls.Add(panel3);
             Controls.Add(pictureBox1);
@@ -407,7 +421,6 @@
         private Label label5;
         private Label label3;
         private Label label1;
-        private Krypton.Toolkit.KryptonMonthCalendar dtpFechaPedido;
         private Panel panel1;
         private Panel panel3;
         private PictureBox pictureBox1;
@@ -417,5 +430,7 @@
         private Krypton.Toolkit.KryptonComboBox cmbProveedor;
         private Label label2;
         private DataGridView dgvProductosModificar;
+        private DateTimePicker dtpFechaPedido;
+        private Label label7;
     }
 }

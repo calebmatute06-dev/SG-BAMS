@@ -81,7 +81,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(422, 48);
+            label1.Location = new Point(429, 48);
             label1.Name = "label1";
             label1.Size = new Size(492, 123);
             label1.TabIndex = 0;
