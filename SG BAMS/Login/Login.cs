@@ -13,77 +13,109 @@ using System.Windows.Forms;
 
 namespace SG_BAMS.Login
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class Login : Form
     {
-        /// <summary>
-        /// El usuario logueado
-        /// </summary>
         public static string UsuarioLogueado;
-        /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="Login" />.
-        /// </summary>
+
+        // Variables para el control de intentos
+        private int intentosFallidos = 0;
+        private const int MaxIntentos = 3;
+        private const int SegundosBloqueo = 30;
+        private System.Windows.Forms.Timer timerBloqueo;
+        private int segundosRestantes;
+
         public Login()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             txtUsu.KeyPress += new KeyPressEventHandler(txtUsu_KeyPress);
             txtCon.KeyPress += new KeyPressEventHandler(txtCon_KeyPress);
+            InicializarTimer();
         }
 
         /// <summary>
-        /// Maneja el evento Click del control btnSalir.
+        /// Inicializa el timer de bloqueo
         /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
+        private void InicializarTimer()
+        {
+            timerBloqueo = new System.Windows.Forms.Timer();
+            timerBloqueo.Interval = 1000; // 1 segundo
+            timerBloqueo.Tick += TimerBloqueo_Tick;
+        }
+
+        /// <summary>
+        /// Activa el bloqueo del formulario por 30 segundos
+        /// </summary>
+        private void ActivarBloqueo()
+        {
+            segundosRestantes = SegundosBloqueo;
+
+            txtUsu.Enabled = false;
+            txtCon.Enabled = false;
+            btninicioSesion1.Enabled = false;
+
+            lblBloqueo.Visible = true;
+            lblBloqueo.Text = $"⛔ Cuenta bloqueada. Espere {segundosRestantes} segundos...";
+
+            timerBloqueo.Start();
+        }
+
+        /// <summary>
+        /// Tick del timer: descuenta segundos y desbloquea al llegar a 0
+        /// </summary>
+        private void TimerBloqueo_Tick(object sender, EventArgs e)
+        {
+            segundosRestantes--;
+            lblBloqueo.Text = $"⛔ Cuenta bloqueada. Espere {segundosRestantes} segundos...";
+
+            if (segundosRestantes <= 0)
+            {
+                timerBloqueo.Stop();
+                DesactivarBloqueo();
+            }
+        }
+
+        /// <summary>
+        /// Desactiva el bloqueo y restaura los controles
+        /// </summary>
+        private void DesactivarBloqueo()
+        {
+            txtUsu.Enabled = true;
+            txtCon.Enabled = true;
+            btninicioSesion1.Enabled = true;
+
+            lblBloqueo.Visible = false;
+            intentosFallidos = 0;
+
+            txtUsu.Clear();
+            txtCon.Clear();
+            txtUsu.Focus();
+        }
+
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-
-        /// <summary>
-        /// Maneja el evento KeyPress del control txtUsu.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="KeyPressEventArgs" /> que contiene los datos del evento.</param>
         private void txtUsu_KeyPress(object sender, KeyPressEventArgs e)
         {
-
             ClsValidaciones.ValidarBusquedaAlfanumerica(e);
         }
 
-        /// <summary>
-        /// Maneja el evento KeyPress del control txtCon.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="KeyPressEventArgs" /> que contiene los datos del evento.</param>
         private void txtCon_KeyPress(object sender, KeyPressEventArgs e)
         {
-
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btninicioSesion1.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void btninicioSesion1_Click(object sender, EventArgs e)
         {
             if (ClsValidaciones.CampoVacio(txtUsu, "Usuario")) return;
             if (ClsValidaciones.CampoVacio(txtCon, "Contraseña")) return;
-
-
             if (!ClsValidaciones.EsPasswordValido(txtCon, "La contraseña")) return;
 
             ClsLogin login = new ClsLogin();
 
             try
             {
-
                 int rol = login.ValidarUsuario(txtUsu.Text, txtCon.Text);
                 UsuarioLogueado = login.NombreUsuario;
 
@@ -102,8 +134,7 @@ namespace SG_BAMS.Login
                             break;
                         }
 
-                        string bienvenida = rol == 1 ? "¡Bienvenido Administrador!" : "¡Bienvenido Empleado!";
-                        MessageBox.Show($"Login correcto. {bienvenida}", "Éxito",
+                        MessageBox.Show("Login correcto. ¡Bienvenido Administrador!", "Éxito",
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                         LoginFacial frmFacialAdm = new LoginFacial();
                         frmFacialAdm.UsuarioAValidar = txtUsu.Text;
@@ -125,8 +156,7 @@ namespace SG_BAMS.Login
                             break;
                         }
 
-                        string bienvenida2 = rol == 1 ? "¡Bienvenido Administrador!" : "¡Bienvenido Empleado!";
-                        MessageBox.Show($"Login correcto. {bienvenida2}", "Éxito",
+                        MessageBox.Show("Login correcto. ¡Bienvenido Empleado!", "Éxito",
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                         LoginFacial frmFacial = new LoginFacial();
                         frmFacial.UsuarioAValidar = txtUsu.Text;
@@ -134,6 +164,7 @@ namespace SG_BAMS.Login
                         frmFacial.Show();
                         this.Hide();
                         break;
+
                     case 3:
                         MessageBox.Show("Login correcto. ¡Bienvenido Soporte!", "Éxito",
                            MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -141,50 +172,51 @@ namespace SG_BAMS.Login
                         soporte.Show();
                         this.Hide();
                         break;
+
                     case -1:
-                        MessageBox.Show("El usuario está inactivo. No puede ingresar.", "Cuenta Inactiva", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("El usuario está inactivo. No puede ingresar.",
+                            "Cuenta Inactiva", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         break;
 
                     case 0:
                     default:
-                        MessageBox.Show("Usuario o contraseña incorrectos.", "Error de Acceso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        intentosFallidos++;
+                        int intentosRestantes = MaxIntentos - intentosFallidos;
+
+                        if (intentosFallidos >= MaxIntentos)
+                        {
+                            MessageBox.Show(
+                                $"Ha superado el número máximo de intentos.\nEl acceso estará bloqueado por {SegundosBloqueo} segundos.",
+                                "Acceso Bloqueado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            ActivarBloqueo();
+                        }
+                        else
+                        {
+                            MessageBox.Show(
+                                $"Usuario o contraseña incorrectos.\nIntentos restantes: {intentosRestantes}",
+                                "Error de Acceso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                         break;
                 }
-
 
                 txtCon.Clear();
                 txtCon.Focus();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error de conexión: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error de conexión: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnsalirLogin1.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void btnsalirLogin1_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        /// <summary>
-        /// La visibilidad de la contraseña
-        /// </summary>
         private bool _passwordVisible = false;
-        /// <summary>
-        /// La etiqueta del ojo
-        /// </summary>
         private Label lblOjo;
 
-        /// <summary>
-        /// Maneja el evento Load del control Login.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void Login_Load(object sender, EventArgs e)
         {
             lblOjo = new Label();
@@ -195,7 +227,6 @@ namespace SG_BAMS.Login
             lblOjo.TextAlign = ContentAlignment.MiddleCenter;
             lblOjo.Cursor = Cursors.Hand;
             lblOjo.BackColor = Color.Transparent;
-
             lblOjo.Location = new Point(
                 txtCon.Right + 5,
                 txtCon.Top + (txtCon.Height - 32) / 2
@@ -214,12 +245,15 @@ namespace SG_BAMS.Login
 
             txtCon.Parent.Controls.Add(lblOjo);
             lblOjo.BringToFront();
+
+            // Asegurarse que el label del diseñador empiece oculto
+            lblBloqueo.Visible = false;
         }
 
         private void btnOlvidar_Click(object sender, EventArgs e)
         {
-            LoginToken LT = new LoginToken();
-            LT.Show();
+            LoginCorreo LC = new LoginCorreo();
+            LC.Show();
             this.Hide();
         }
     }

@@ -42,6 +42,7 @@
             Nombre = new Label();
             label1 = new Label();
             btnOlvidar = new Button();
+            lblBloqueo = new Label();
             ((System.ComponentModel.ISupportInitialize)picBa).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -141,7 +142,7 @@
             // 
             // btninicioSesion1
             // 
-            btninicioSesion1.Location = new Point(349, 433);
+            btninicioSesion1.Location = new Point(344, 457);
             btninicioSesion1.Name = "btninicioSesion1";
             btninicioSesion1.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btninicioSesion1.OverrideDefault.Back.Color2 = Color.White;
@@ -164,7 +165,7 @@
             // 
             // btnsalirLogin1
             // 
-            btnsalirLogin1.Location = new Point(593, 434);
+            btnsalirLogin1.Location = new Point(592, 457);
             btnsalirLogin1.Name = "btnsalirLogin1";
             btnsalirLogin1.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnsalirLogin1.OverrideDefault.Back.Color2 = Color.White;
@@ -225,12 +226,23 @@
             btnOlvidar.UseVisualStyleBackColor = false;
             btnOlvidar.Click += btnOlvidar_Click;
             // 
+            // lblBloqueo
+            // 
+            lblBloqueo.AutoSize = true;
+            lblBloqueo.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblBloqueo.ForeColor = Color.Navy;
+            lblBloqueo.Location = new Point(344, 406);
+            lblBloqueo.Name = "lblBloqueo";
+            lblBloqueo.Size = new Size(0, 33);
+            lblBloqueo.TabIndex = 342;
+            // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(925, 619);
+            Controls.Add(lblBloqueo);
             Controls.Add(btnOlvidar);
             Controls.Add(label1);
             Controls.Add(Nombre);
@@ -276,5 +288,6 @@
         private Label label1;
         private Label label2;
         private Button btnOlvidar;
+        private Label lblBloqueo;
     }
 }

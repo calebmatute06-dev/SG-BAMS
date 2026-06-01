@@ -28,5 +28,12 @@ namespace SG_BAMS.Login
                 return sb.ToString();
             }
         }
+
+        public static string GenerarToken()
+        {
+            Random rnd = new Random();
+            return rnd.Next(100000, 999999).ToString();
+        }
+
     }
 }

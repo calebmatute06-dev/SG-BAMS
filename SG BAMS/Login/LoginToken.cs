@@ -13,16 +13,28 @@ namespace SG_BAMS.Login
 {
     public partial class LoginToken : Form
     {
-        public LoginToken()
+        private string _correo;
+        private string _token;
+
+        public LoginToken(string correo, string token)
         {
             InitializeComponent();
+            _correo = correo;
+            _token = token;
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            LoginNueva LN = new LoginNueva();
-            LN.Show();
-            this.Hide();
+            if (txtToken.Text.Trim() == _token)
+            {
+                LoginNueva CC = new LoginNueva(_correo);
+                CC.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Token incorrecto. Intente de nuevo.");
+            }
         }
 
         private void btnsalir_Click(object sender, EventArgs e)
