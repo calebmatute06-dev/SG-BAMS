@@ -54,7 +54,7 @@ namespace SG_BAMS
             dgvDeudores.CellDoubleClick += dgvDeudores_CellDoubleClick;
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            CargarGridDeudores();
+        
 
             this.txtBuscarNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
             this.txtBuscarNombre.TextChanged += txtBuscarNombre_TextChanged;
@@ -62,6 +62,10 @@ namespace SG_BAMS
             // Configurar eventos para el placeholder
             this.txtBuscarNombre.Enter += txtBuscarNombre_Enter;
             this.txtBuscarNombre.Leave += txtBuscarNombre_Leave;
+
+            dgvDeudores.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+
         }
 
         /// <summary>
@@ -117,7 +121,7 @@ namespace SG_BAMS
             dgvDeudores.AllowUserToAddRows = false;
             dgvDeudores.AllowUserToDeleteRows = false;
 
-            dgvDeudores.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            
             dgvDeudores.MultiSelect = false;
 
 
@@ -183,6 +187,7 @@ namespace SG_BAMS
                 dv.RowFilter = rowFilter;
                 dgvDeudores.DataSource = dv;
                 dgvDeudores.ClearSelection();
+                dgvDeudores.CurrentCell = null;
             }
             catch (Exception ex)
             {
@@ -212,6 +217,8 @@ namespace SG_BAMS
                     CargarGridDeudores();
                     txtBuscarNombre.Clear();
                 }
+
+                dgvDeudores.ClearSelection();
             }
             else
             {
@@ -226,9 +233,9 @@ namespace SG_BAMS
         /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void kryptonButton15_Click(object sender, EventArgs e)
         {
-            if (dgvDeudores.CurrentRow == null || dgvDeudores.CurrentRow.Index < 0)
+            if (dgvDeudores.SelectedRows.Count < 0 || dgvDeudores.CurrentRow == null)
             {
-                MessageBox.Show("Por favor, seleccione una fila para pagar la deuda.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Por favor, seleccione una fila.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -238,6 +245,7 @@ namespace SG_BAMS
                 if (filaSeleccionada != null)
                 {
                     ProcesarPagoDeuda(filaSeleccionada);
+                    dgvDeudores.ClearSelection();
                 }
                 else
                 {
@@ -282,6 +290,8 @@ namespace SG_BAMS
                 {
                     ProcesarPagoDeuda(filaSeleccionada);
                 }
+
+                dgvDeudores.ClearSelection();
             }
             catch (Exception ex)
             {
@@ -297,6 +307,9 @@ namespace SG_BAMS
         private void Deudores_Shown(object sender, EventArgs e)
         {
             Ayudante_UI.AplicarZoomGlobal(this);
+            CargarGridDeudores();
+            dgvDeudores.ClearSelection();
+            dgvDeudores.CurrentCell = null;
         }
 
         /// <summary>
@@ -333,6 +346,8 @@ namespace SG_BAMS
         /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void Deudores_Emp_Load(object sender, EventArgs e)
         {
+            dgvDeudores.ClearSelection();
+            
             // Configurar el placeholder para el TextBox estándar
             ConfigurarPlaceholder(txtBuscarNombre, "Buscar por nombre del cliente...");
 
@@ -340,7 +355,6 @@ namespace SG_BAMS
             btnDeudores.BackColor = Color.SkyBlue;
             btnDeudores.ForeColor = Color.White;
 
-            dgvDeudores.ClearSelection();
             dgvDeudores.BorderStyle = BorderStyle.None;
             dgvDeudores.BackgroundColor = Color.White;
             dgvDeudores.RowHeadersVisible = false;
@@ -367,7 +381,7 @@ namespace SG_BAMS
             dgvDeudores.GridColor = Color.LightGray;
             dgvDeudores.RowTemplate.Height = 32;
             dgvDeudores.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvDeudores.ClearSelection();
+           
             ClsMensajeGuia.Activar(txtBuscarNombre);
         }
 

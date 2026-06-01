@@ -130,12 +130,13 @@ namespace SG_BAMS.Proveedor
         /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void btnModificar_Click_1(object sender, EventArgs e)
         {
-            if (dgvProveedor.CurrentRow == null)
+            if (dgvProveedor.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Seleccione un proveedor.");
                 return;
             }
             ModificarProveedor(dgvProveedor.CurrentRow);
+            dgvProveedor.ClearSelection();
         }
 
         /// <summary>

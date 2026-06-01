@@ -59,6 +59,7 @@ namespace SG_BAMS
             this.StartPosition = FormStartPosition.CenterScreen;
             this.KeyPreview = true;
             ConfigurarPlaceholder();
+            
         }
 
         /// <summary>
@@ -137,6 +138,8 @@ namespace SG_BAMS
             btnInventario.BackColor = Color.SkyBlue;
             btnInventario.ForeColor = Color.White;
 
+           
+
             CargarInventarioCompleto();
 
             dgvProductosAdmin.BorderStyle = BorderStyle.None;
@@ -182,6 +185,8 @@ namespace SG_BAMS
             {
                 CargarInventarioCompleto();
             }
+
+            dgvProductosAdmin.ClearSelection();
         }
 
         /// <summary>
@@ -215,6 +220,8 @@ namespace SG_BAMS
                 {
                     CargarInventarioCompleto();
                 }
+
+                dgvProductosAdmin.ClearSelection();
             }
             else
             {
@@ -294,6 +301,8 @@ namespace SG_BAMS
                 {
                     CargarInventarioCompleto();
                 }
+
+                dgvProductosAdmin.ClearSelection();
             }
             else
             {
