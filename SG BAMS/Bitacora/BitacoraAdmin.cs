@@ -100,9 +100,9 @@ namespace SG_BAMS.Bitacora
             dgvBitacora.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dgvBitacora.GridColor = Color.LightGray;
             dgvBitacora.RowTemplate.Height = 32;
-            dgvBitacora.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvBitacora.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
 
-            
+
             dgvBitacora.TabStop = false;
 
             
@@ -114,6 +114,13 @@ namespace SG_BAMS.Bitacora
             
             bitacora.cargarDatos(dgvBitacora);
             EjecutarBusqueda();
+            if (dgvBitacora.Columns.Count >= 4)
+            {
+                dgvBitacora.Columns["Nombre"].Width = 110;   
+                dgvBitacora.Columns["Acción"].Width = 480;   
+                dgvBitacora.Columns["Modulo"].Width = 140;
+                dgvBitacora.Columns["Fecha"].Width = 100;
+            }
             dgvBitacora.ClearSelection();
 
             this.ActiveControl = null;
