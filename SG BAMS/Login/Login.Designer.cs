@@ -41,6 +41,7 @@
             btnsalirLogin1 = new Krypton.Toolkit.KryptonButton();
             Nombre = new Label();
             label1 = new Label();
+            btnOlvidar = new Button();
             ((System.ComponentModel.ISupportInitialize)picBa).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -140,7 +141,7 @@
             // 
             // btninicioSesion1
             // 
-            btninicioSesion1.Location = new Point(368, 444);
+            btninicioSesion1.Location = new Point(349, 433);
             btninicioSesion1.Name = "btninicioSesion1";
             btninicioSesion1.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btninicioSesion1.OverrideDefault.Back.Color2 = Color.White;
@@ -163,7 +164,7 @@
             // 
             // btnsalirLogin1
             // 
-            btnsalirLogin1.Location = new Point(598, 444);
+            btnsalirLogin1.Location = new Point(593, 434);
             btnsalirLogin1.Name = "btnsalirLogin1";
             btnsalirLogin1.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnsalirLogin1.OverrideDefault.Back.Color2 = Color.White;
@@ -208,12 +209,29 @@
             label1.TabIndex = 339;
             label1.Text = "Contraseña:";
             // 
+            // btnOlvidar
+            // 
+            btnOlvidar.BackColor = Color.Transparent;
+            btnOlvidar.BackgroundImageLayout = ImageLayout.None;
+            btnOlvidar.FlatAppearance.BorderSize = 0;
+            btnOlvidar.FlatStyle = FlatStyle.Flat;
+            btnOlvidar.Font = new Font("Arial", 12F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
+            btnOlvidar.ForeColor = Color.Navy;
+            btnOlvidar.Location = new Point(440, 523);
+            btnOlvidar.Name = "btnOlvidar";
+            btnOlvidar.Size = new Size(308, 42);
+            btnOlvidar.TabIndex = 341;
+            btnOlvidar.Text = "Olvidé mi contraseña";
+            btnOlvidar.UseVisualStyleBackColor = false;
+            btnOlvidar.Click += btnOlvidar_Click;
+            // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(925, 619);
+            Controls.Add(btnOlvidar);
             Controls.Add(label1);
             Controls.Add(Nombre);
             Controls.Add(btnsalirLogin1);
@@ -256,5 +274,7 @@
         private Krypton.Toolkit.KryptonButton btnsalirLogin1;
         private Label Nombre;
         private Label label1;
+        private Label label2;
+        private Button btnOlvidar;
     }
 }

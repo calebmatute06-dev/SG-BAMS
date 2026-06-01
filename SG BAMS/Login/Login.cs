@@ -83,7 +83,7 @@ namespace SG_BAMS.Login
 
             try
             {
-                
+
                 int rol = login.ValidarUsuario(txtUsu.Text, txtCon.Text);
                 UsuarioLogueado = login.NombreUsuario;
 
@@ -214,6 +214,13 @@ namespace SG_BAMS.Login
 
             txtCon.Parent.Controls.Add(lblOjo);
             lblOjo.BringToFront();
+        }
+
+        private void btnOlvidar_Click(object sender, EventArgs e)
+        {
+            LoginToken LT = new LoginToken();
+            LT.Show();
+            this.Hide();
         }
     }
 }
