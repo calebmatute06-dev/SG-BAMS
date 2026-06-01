@@ -118,7 +118,7 @@ namespace SG_BAMS.Bitacora
             {
                 dgvBitacora.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dgvBitacora.Columns["Nombre"].FillWeight = 10;  
-                dgvBitacora.Columns["Acción"].FillWeight = 50;
+                dgvBitacora.Columns["Acción"].FillWeight = 35;
                 dgvBitacora.Columns["Modulo"].FillWeight = 15;
                 dgvBitacora.Columns["Fecha"].FillWeight = 10;
             }
