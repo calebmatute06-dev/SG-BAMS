@@ -242,7 +242,7 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
                     cmd.Parameters.AddWithValue("@nombre_usuario", nombreUsuario);
                     if (idExcluir > 0)
                         cmd.Parameters.AddWithValue("@id_excluir", idExcluir);
-
+                     
                     int count = (int)await cmd.ExecuteScalarAsync();
                     return count > 0;
                 }

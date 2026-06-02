@@ -52,5 +52,32 @@ namespace SG_BAMS.Login
                 conexion.Cerrar();
             }
         }
+
+        public bool ContraIgualAntigua(string correo, string passHash)
+        {
+            string query = "SELECT COUNT(*) FROM vw_ValidarContrasena WHERE correo_usuario = @correo AND contraseña_login = @pass";
+
+            ClsConexion con = new ClsConexion();
+            try
+            {
+                con.AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand(query, con.Conectar))
+                {
+                    cmd.Parameters.AddWithValue("@correo", correo);
+                    cmd.Parameters.AddWithValue("@pass", passHash);
+                    return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al verificar contraseña: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                con.Cerrar();
+            }
+        }
+
     }
 }

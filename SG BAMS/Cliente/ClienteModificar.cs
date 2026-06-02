@@ -98,6 +98,17 @@ namespace SG_BAMS
             if (string.IsNullOrWhiteSpace(rtnReal) || rtnReal.ToUpper() == "SIN RTN")
                 rtnReal = "Sin RTN";
 
+            if (rtnReal != "Sin RTN")
+            {
+                ClsVerCliente ver = new ClsVerCliente();
+                if (ver.RTNYaExiste(rtnReal, Convert.ToInt32(txtID.Text)))
+                {
+                    MessageBox.Show("Este RTN ya está registrado para otro cliente.",
+                                    "RTN Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+
             try
             {
                 this.Cursor = Cursors.WaitCursor;

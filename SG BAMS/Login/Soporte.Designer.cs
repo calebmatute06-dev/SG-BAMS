@@ -46,29 +46,26 @@
             // 
             pictureBox4.BackColor = Color.Navy;
             pictureBox4.Location = new Point(0, 0);
-            pictureBox4.Margin = new Padding(3, 2, 3, 2);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(21, 181);
+            pictureBox4.Size = new Size(24, 241);
             pictureBox4.TabIndex = 46;
             pictureBox4.TabStop = false;
             // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Navy;
-            pictureBox1.Location = new Point(680, 0);
-            pictureBox1.Margin = new Padding(3, 2, 3, 2);
+            pictureBox1.Location = new Point(777, 0);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(21, 181);
+            pictureBox1.Size = new Size(24, 241);
             pictureBox1.TabIndex = 47;
             pictureBox1.TabStop = false;
             // 
             // pictureBox3
             // 
             pictureBox3.BackColor = Color.Navy;
-            pictureBox3.Location = new Point(0, 158);
-            pictureBox3.Margin = new Padding(3, 2, 3, 2);
+            pictureBox3.Location = new Point(0, 211);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(701, 23);
+            pictureBox3.Size = new Size(801, 31);
             pictureBox3.TabIndex = 49;
             pictureBox3.TabStop = false;
             // 
@@ -76,9 +73,8 @@
             // 
             pictureBox2.BackColor = Color.Navy;
             pictureBox2.Location = new Point(0, 0);
-            pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(701, 18);
+            pictureBox2.Size = new Size(801, 24);
             pictureBox2.TabIndex = 48;
             pictureBox2.TabStop = false;
             // 
@@ -88,9 +84,9 @@
             Nombre.BackColor = Color.Transparent;
             Nombre.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             Nombre.ForeColor = Color.Navy;
-            Nombre.Location = new Point(154, 48);
+            Nombre.Location = new Point(155, 64);
             Nombre.Name = "Nombre";
-            Nombre.Size = new Size(285, 22);
+            Nombre.Size = new Size(343, 27);
             Nombre.TabIndex = 340;
             Nombre.Text = "Menú Principal Administrador";
             // 
@@ -100,25 +96,24 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(154, 96);
+            label1.Location = new Point(162, 128);
             label1.Name = "label1";
-            label1.Size = new Size(247, 22);
+            label1.Size = new Size(294, 27);
             label1.TabIndex = 341;
             label1.Text = "Menú Principal Empleado\r\n";
             // 
             // btnVerUsuarios
             // 
-            btnVerUsuarios.Location = new Point(445, 40);
-            btnVerUsuarios.Margin = new Padding(3, 2, 3, 2);
+            btnVerUsuarios.Location = new Point(509, 53);
             btnVerUsuarios.Name = "btnVerUsuarios";
             btnVerUsuarios.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnVerUsuarios.OverrideDefault.Back.Color2 = Color.White;
             btnVerUsuarios.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnVerUsuarios.OverrideFocus.Back.Color2 = Color.White;
-            btnVerUsuarios.Size = new Size(90, 40);
+            btnVerUsuarios.Size = new Size(103, 53);
             btnVerUsuarios.StateCommon.Back.Color1 = Color.SkyBlue;
             btnVerUsuarios.StateCommon.Back.Color2 = Color.White;
-            btnVerUsuarios.StateCommon.Border.Rounding = 30F;
+            btnVerUsuarios.StateCommon.Border.Rounding = 5F;
             btnVerUsuarios.StateCommon.Content.ShortText.Color1 = Color.Navy;
             btnVerUsuarios.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnVerUsuarios.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -132,17 +127,16 @@
             // 
             // kryptonButton1
             // 
-            kryptonButton1.Location = new Point(445, 87);
-            kryptonButton1.Margin = new Padding(3, 2, 3, 2);
+            kryptonButton1.Location = new Point(509, 116);
             kryptonButton1.Name = "kryptonButton1";
             kryptonButton1.OverrideDefault.Back.Color1 = Color.SkyBlue;
             kryptonButton1.OverrideDefault.Back.Color2 = Color.White;
             kryptonButton1.OverrideFocus.Back.Color1 = Color.SkyBlue;
             kryptonButton1.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton1.Size = new Size(90, 40);
+            kryptonButton1.Size = new Size(103, 53);
             kryptonButton1.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonButton1.StateCommon.Back.Color2 = Color.White;
-            kryptonButton1.StateCommon.Border.Rounding = 30F;
+            kryptonButton1.StateCommon.Border.Rounding = 5F;
             kryptonButton1.StateCommon.Content.ShortText.Color1 = Color.Navy;
             kryptonButton1.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             kryptonButton1.StateNormal.Back.Color1 = Color.SkyBlue;
@@ -156,9 +150,10 @@
             // 
             // Soporte
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(701, 182);
+            BackColor = Color.White;
+            ClientSize = new Size(801, 243);
             Controls.Add(kryptonButton1);
             Controls.Add(btnVerUsuarios);
             Controls.Add(label1);
@@ -167,6 +162,7 @@
             Controls.Add(pictureBox1);
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox2);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Soporte";
             ShowIcon = false;
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();

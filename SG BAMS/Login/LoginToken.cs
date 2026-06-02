@@ -13,23 +13,23 @@ namespace SG_BAMS.Login
 {
     public partial class LoginToken : Form
     {
-        private string _correo;
-        private string _token;
+        private string correo;
+        private string token;
 
         public LoginToken(string correo, string token)
         {
             InitializeComponent();
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            _correo = correo;
-            _token = token;
+            correo = correo;
+            token = token;
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            if (txtToken.Text.Trim() == _token)
+            if (txtToken.Text.Trim() == token)
             {
-                LoginNueva CC = new LoginNueva(_correo);
+                LoginNueva CC = new LoginNueva(correo);
                 CC.Show();
                 this.Hide();
             }

@@ -36,7 +36,7 @@ namespace SG_BAMS
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
+            txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirAlfanumerico(e);
         }
 
         /// <summary>

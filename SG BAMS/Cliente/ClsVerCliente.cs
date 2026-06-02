@@ -50,6 +50,31 @@ namespace SG_BAMS.Cliente
             return tablaC;
         }
 
+        public bool RTNYaExiste(string rtn, int idClienteActual = 0)
+        {
+            try
+            {
+                AbrirConexion();
+                string query = "SELECT COUNT(*) FROM vista_lista_clientes WHERE RTN = @rtn AND ID <> @id";
+
+                using (SqlCommand cmd = new SqlCommand(query, Conectar))
+                {
+                    cmd.Parameters.AddWithValue("@rtn", rtn);
+                    cmd.Parameters.AddWithValue("@id", idClienteActual);
+                    return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al verificar RTN: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                Cerrar();
+            }
+        }
+
 
 
     }

@@ -19,7 +19,7 @@ namespace SG_BAMS
             // see https://aka.ms/applicationconfiguration.
             clsSoporte.InicializarDirectorio();
             ApplicationConfiguration.Initialize();
-            Application.Run(new AdministracionBAMS());
+            Application.Run(new Login.Login());
         }
     }
 } 
