@@ -49,6 +49,7 @@ namespace SG_BAMS
         public Deudores_Emp()
         {
             InitializeComponent();
+            CargarGridDeudores();
             this.StartPosition = FormStartPosition.CenterScreen;
 
             dgvDeudores.CellDoubleClick += dgvDeudores_CellDoubleClick;
@@ -218,7 +219,7 @@ namespace SG_BAMS
                     txtBuscarNombre.Clear();
                 }
 
-                dgvDeudores.ClearSelection();
+               
             }
             else
             {
@@ -289,6 +290,7 @@ namespace SG_BAMS
                 if (filaSeleccionada != null)
                 {
                     ProcesarPagoDeuda(filaSeleccionada);
+                    dgvDeudores.ClearSelection();
                 }
 
                 dgvDeudores.ClearSelection();

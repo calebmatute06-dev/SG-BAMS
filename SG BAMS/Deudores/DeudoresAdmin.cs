@@ -242,6 +242,7 @@ namespace SG_BAMS
             {
                 DataRowView filaSeleccionada = (DataRowView)dgvDeudores.Rows[e.RowIndex].DataBoundItem;
                 ProcesarPagoDeuda(filaSeleccionada);
+                dgvDeudores.ClearSelection();
             }
             catch (Exception ex)
             {
@@ -268,6 +269,7 @@ namespace SG_BAMS
                 if (filaSeleccionada != null)
                 {
                     ProcesarPagoDeuda(filaSeleccionada);
+                    dgvDeudores.ClearSelection();
                 }
                 else
                 {
