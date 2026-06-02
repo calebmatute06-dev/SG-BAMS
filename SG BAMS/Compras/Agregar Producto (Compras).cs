@@ -1,101 +1,58 @@
 ﻿using System.Data;
 using System.Globalization;
+using System.Windows.Forms;
+using Krypton.Toolkit;
 
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    /// Formulario para agregar un producto a una compra.
     /// </summary>
-    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class Agregar_Producto__Compras_ : Form
     {
-        /// <summary>
-        /// Obtiene o establece el identificador seleccionado.
-        /// </summary>
-        /// <value>
-        /// El identificador seleccionado.
-        /// </value>
+        /// <summary>Identificador seleccionado.</summary>
         public string IdSeleccionado { get; set; }
-        /// <summary>
-        /// Obtiene o establece el nombre seleccionado.
-        /// </summary>
-        /// <value>
-        /// El nombre seleccionado.
-        /// </value>
+        /// <summary>Nombre seleccionado.</summary>
         public string NombreSeleccionado { get; set; }
-        /// <summary>
-        /// Obtiene o establece la cantidad seleccionada.
-        /// </summary>
-        /// <value>
-        /// La cantidad seleccionada.
-        /// </value>
+        /// <summary>Cantidad seleccionada.</summary>
         public int CantidadSeleccionada { get; set; }
-        /// <summary>
-        /// Obtiene o establece el precio seleccionado.
-        /// </summary>
-        /// <value>
-        /// El precio seleccionado.
-        /// </value>
+        /// <summary>Precio seleccionado.</summary>
         public decimal PrecioSeleccionado { get; set; }
 
-        /// <summary>
-        /// Identificador del proveedor
-        /// </summary>
         private int _idProveedor;
-
+        private PlaceholderTextBox phCodigo;
+        private PlaceholderTextBox phPrecio;
+        private PlaceholderComboBox phProductos;  
+        private DateTime ultimaTeclaEscaner = DateTime.Now;
 
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="Agregar_Producto__Compras_"/>.
+        /// Constructor que recibe el ID del proveedor.
         /// </summary>
-        /// <param name="idProv">El identificador del proveedor.</param>
+        /// <param name="idProv">ID del proveedor.</param>
         public Agregar_Producto__Compras_(int idProv)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             this._idProveedor = idProv;
-
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control kryptonLabel1.
-        /// </summary>
-        /// <param name="sender">Origen del evento.</param>
-        /// <param name="e">Instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
-        private void kryptonLabel1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        /// <summary>
-        /// Maneja el evento Click del control kryptonLabel4.
-        /// </summary>
-        /// <param name="sender">Origen del evento.</param>
-        /// <param name="e">Instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
-        private void kryptonLabel4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        /// <summary>
-        /// Maneja el evento Load del formulario Agregar_Producto__Compras_.
-        /// </summary>
-        /// <param name="sender">Origen del evento.</param>
-        /// <param name="e">Instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void Agregar_Producto__Compras__Load(object sender, EventArgs e)
         {
             LlenarComboProductos();
             numCantidad.DecimalPlaces = 0;
             numCantidad.ThousandsSeparator = true;
-            ClsMensajeGuia.ActivarK(txtCodigo);
-            ClsMensajeGuia.ActivarK(txtPrecio);
+
+           
+            phCodigo = new PlaceholderTextBox(txtCodigo, "Código de barras");
+            phPrecio = new PlaceholderTextBox(txtPrecio, "0.00");
+
+            
+            phProductos = new PlaceholderComboBox(cmbProductos, "Seleccione o escriba el producto");
+
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-
         }
 
-        /// <summary>
-        /// Llena el combo de productos.
-        /// </summary>
         private void LlenarComboProductos()
         {
             try
@@ -117,16 +74,13 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control kryptonButton3.
-        /// </summary>
-        /// <param name="sender">Origen del evento.</param>
-        /// <param name="e">Instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void kryptonButton3_Click(object sender, EventArgs e)
         {
-            if (cmbProductos.SelectedValue == null || cmbProductos.SelectedIndex == -1)
+            
+            if (phProductos.IsPlaceholderActive || cmbProductos.SelectedIndex == -1)
             {
                 MessageBox.Show("Debe seleccionar un producto de la lista.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cmbProductos.Focus();
                 return;
             }
 
@@ -137,8 +91,11 @@ namespace SG_BAMS
                 return;
             }
 
-            if (!ClsValidaciones.EsNumeroDecimalValido(txtPrecio, "El precio", out decimal precioAux))
+            string precioReal = phPrecio.GetRealValue().Trim();
+            if (string.IsNullOrWhiteSpace(precioReal) || !decimal.TryParse(precioReal, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal precioAux) || precioAux <= 0)
             {
+                MessageBox.Show("El precio debe ser un valor numérico válido mayor a cero.", "Precio Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtPrecio.Focus();
                 return;
             }
 
@@ -151,21 +108,8 @@ namespace SG_BAMS
             this.Close();
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnCancelar.
-        /// </summary>
-        /// <param name="sender">Origen del evento.</param>
-        /// <param name="e">Instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        private void btnCancelar_Click(object sender, EventArgs e) => this.Close();
 
-        /// <summary>
-        /// Maneja el evento Click del control kryptonButton1.
-        /// </summary>
-        /// <param name="sender">Origen del evento.</param>
-        /// <param name="e">Instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
             using (AgregarProducto frmCrear = new AgregarProducto())
@@ -182,55 +126,28 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Maneja el evento KeyPress del control txtPrecio.
-        /// </summary>
-        /// <param name="sender">Origen del evento.</param>
-        /// <param name="e">Instancia de <see cref="KeyPressEventArgs"/> que contiene los datos del evento.</param>
         private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
         {
             ClsValidaciones.PermitirNumerosYDecimales(sender, e);
         }
 
-        /// <summary>
-        /// Maneja el evento Leave del control txtPrecio.
-        /// </summary>
-        /// <param name="sender">Origen del evento.</param>
-        /// <param name="e">Instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void txtPrecio_Leave(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(txtPrecio.Text))
+            string precioReal = phPrecio.GetRealValue().Trim();
+            if (!string.IsNullOrWhiteSpace(precioReal))
             {
-                if (decimal.TryParse(txtPrecio.Text, out decimal valor))
+                if (decimal.TryParse(precioReal, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal valor))
                 {
                     txtPrecio.Text = valor.ToString("N2", CultureInfo.InvariantCulture);
                 }
             }
         }
 
-        /// <summary>
-        /// Maneja el evento KeyPress del control numCantidad.
-        /// </summary>
-        /// <param name="sender">Origen del evento.</param>
-        /// <param name="e">Instancia de <see cref="KeyPressEventArgs"/> que contiene los datos del evento.</param>
         private void numCantidad_KeyPress(object sender, KeyPressEventArgs e)
         {
             ClsValidaciones.ValidarSoloNumeros(e);
         }
 
-        /// <summary>
-        /// Última tecla detectada del escáner
-        /// </summary>
-        private DateTime ultimaTeclaEscaner = DateTime.Now;
-
-        /// <summary>
-        /// Procesa una tecla de comando.
-        /// </summary>
-        /// <param name="msg">Mensaje de Windows que se va a procesar.</param>
-        /// <param name="keyData">Tecla que se va a procesar.</param>
-        /// <returns>
-        /// true si la tecla fue procesada; de lo contrario, false.
-        /// </returns>
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             Keys key = keyData & Keys.KeyCode;
@@ -252,7 +169,6 @@ namespace SG_BAMS
 
                 char c = (char)key;
                 txtCodigo.AppendText(c.ToString().ToLower());
-
                 return true;
             }
 
@@ -260,9 +176,10 @@ namespace SG_BAMS
             {
                 if (!cmbProductos.Focused && !numCantidad.Focused && !txtPrecio.Focused)
                 {
-                    if (!string.IsNullOrWhiteSpace(txtCodigo.Text))
+                    string codigoReal = phCodigo.GetRealValue().Trim();
+                    if (!string.IsNullOrWhiteSpace(codigoReal))
                     {
-                        BuscarProductoPorCodigo(txtCodigo.Text.Trim());
+                        BuscarProductoPorCodigo(codigoReal);
                         return true;
                     }
                 }
@@ -271,10 +188,6 @@ namespace SG_BAMS
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        /// <summary>
-        /// Busca el producto por código.
-        /// </summary>
-        /// <param name="codigo">El código.</param>
         private void BuscarProductoPorCodigo(string codigo)
         {
             try
@@ -283,7 +196,6 @@ namespace SG_BAMS
                 DataTable dt = objCompras.ObtenerProductosPorProveedor(_idProveedor);
 
                 bool encontrado = false;
-
                 foreach (DataRow row in dt.Rows)
                 {
                     if (row["codigo_barra"].ToString().Trim() == codigo.Trim())
@@ -308,16 +220,14 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnEscanear.
-        /// </summary>
-        /// <param name="sender">Origen del evento.</param>
-        /// <param name="e">Instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnEscanear_Click(object sender, EventArgs e)
         {
             txtCodigo.Clear();
             txtCodigo.Focus();
             txtCodigo.StateCommon.Back.Color1 = Color.SkyBlue;
         }
+
+        private void kryptonLabel1_Click(object sender, EventArgs e) { }
+        private void kryptonLabel4_Click(object sender, EventArgs e) { }
     }
 }

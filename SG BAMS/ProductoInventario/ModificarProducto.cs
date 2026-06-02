@@ -1,13 +1,8 @@
 ﻿using Microsoft.Data.SqlClient;
 using SG_BAMS.ProductoInventario;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SG_BAMS
@@ -23,6 +18,15 @@ namespace SG_BAMS
         /// </summary>
         public string marcaActual, tipoActual, modeloActual, estadoActual, proveedorActual;
 
+        private PlaceholderTextBox phNombre;
+        private PlaceholderTextBox phPrecio;
+        private PlaceholderTextBox phCodigoBarra;
+        private PlaceholderComboBox phMarca;
+        private PlaceholderComboBox phTipo;
+        private PlaceholderComboBox phModelo;
+        private PlaceholderComboBox phEstado;
+        private PlaceholderComboBox phProveedor;
+
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="ModificarProducto" />.
         /// </summary>
@@ -33,9 +37,7 @@ namespace SG_BAMS
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
-
         }
-
 
         /// <summary>
         /// Maneja el evento Click del control kryptonButton20.
@@ -44,27 +46,84 @@ namespace SG_BAMS
         /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+            // Obtener valores reales (sin placeholder)
+            string nombreReal = phNombre.GetRealValue().Trim();
+            string precioReal = phPrecio.GetRealValue().Trim();
+            string codigoReal = phCodigoBarra.GetRealValue().Trim();
+
+            // Guardar textos originales
+            string originalNombre = txtNombre.Text;
+            string originalPrecio = txtPrecio.Text;
+            string originalCodigo = txtCodigoBarra.Text;
+
+            // Asignar valores reales temporalmente para que ClsValidaciones funcione
+            txtNombre.Text = nombreReal;
+            txtPrecio.Text = precioReal;
+            txtCodigoBarra.Text = codigoReal;
+
+            bool valido = true;
+
+            // Validaciones usando ClsValidaciones
+            if (!ClsValidaciones.EsAlfanumericoValido(txtNombre, "Nombre del Producto"))
+                valido = false;
+            else
+            {
+                string precioLimpio = txtPrecio.Text.Replace("Lps", "").Replace("L.", "").Replace("$", "").Trim();
+                if (!ClsValidaciones.ValidarPrecio(precioLimpio))
+                    valido = false;
+                else if (!ClsValidaciones.ValidarCodigoBarra(txtCodigoBarra.Text))
+                    valido = false;
+                else if (phMarca.IsPlaceholderActive || cmbMarca.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Seleccione una marca válida.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    valido = false;
+                }
+                else if (phTipo.IsPlaceholderActive || cmbTipo.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Seleccione un tipo válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    valido = false;
+                }
+                else if (phModelo.IsPlaceholderActive || cmbModelo.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Seleccione un modelo válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    valido = false;
+                }
+                else if (phEstado.IsPlaceholderActive || cmbEstado.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Seleccione un estado válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    valido = false;
+                }
+                else if (phProveedor.IsPlaceholderActive || cmbProveedor.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Seleccione un proveedor válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    valido = false;
+                }
+            }
+
+            // Restaurar textos originales
+            txtNombre.Text = originalNombre;
+            txtPrecio.Text = originalPrecio;
+            txtCodigoBarra.Text = originalCodigo;
+
+            if (!valido) return;
+
             try
             {
-                if (!ClsValidaciones.EsAlfanumericoValido(txtNombre, "Nombre del Producto")) return;
-                string precioLimpio = txtPrecio.Text.Replace("Lps", "").Replace("L.", "").Replace("$", "").Trim();
-                if (!ClsValidaciones.ValidarPrecio(precioLimpio)) return;
-                if (!ClsValidaciones.ValidarCodigoBarra(txtCodigoBarra.Text)) return;
-
                 int idActual = Convert.ToInt32(txtID.Text);
-                string nombreNuevo = txtNombre.Text.Trim();
-                string codigoNuevo = txtCodigoBarra.Text.Trim();
+                string nombreNuevo = nombreReal;
+                string codigoNuevo = codigoReal;
                 int idMarca = Convert.ToInt32(cmbMarca.SelectedValue);
                 int idProveedor = Convert.ToInt32(cmbProveedor.SelectedValue);
                 int stockNuevo = Convert.ToInt32(txtStock.Value);
+                decimal precioNumerico = Convert.ToDecimal(precioReal);
 
                 ClsActualizarProducto logica = new ClsActualizarProducto();
 
                 if (logica.ExisteProductoEnOtros(idActual, nombreNuevo, idMarca, idProveedor))
                 {
                     MessageBox.Show("Este producto con esta marca ya está registrado para el proveedor seleccionado.\n\n" +
-                    "Si es un proveedor distinto, sí puede usar el mismo nombre.",
-                    "Producto Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                                    "Si es un proveedor distinto, sí puede usar el mismo nombre.",
+                                    "Producto Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     txtNombre.Focus();
                     return;
                 }
@@ -84,7 +143,7 @@ namespace SG_BAMS
                     Convert.ToInt32(cmbTipo.SelectedValue),
                     Convert.ToInt32(cmbModelo.SelectedValue),
                     Convert.ToInt32(cmbEstado.SelectedValue),
-                    Convert.ToDecimal(precioLimpio),
+                    precioNumerico,
                     codigoNuevo,
                     idProveedor,
                     stockNuevo
@@ -115,6 +174,16 @@ namespace SG_BAMS
             cmbEstado.SelectedIndex = cmbEstado.FindStringExact(estadoActual?.Trim());
             cmbProveedor.SelectedIndex = cmbProveedor.FindStringExact(proveedorActual?.Trim());
 
+            // Inicializar placeholders después de cargar los combos y asignar valores actuales
+            phNombre = new PlaceholderTextBox(txtNombre, "Nombre del producto");
+            phPrecio = new PlaceholderTextBox(txtPrecio, "Precio del producto");
+            phCodigoBarra = new PlaceholderTextBox(txtCodigoBarra, "Ingrese o escanee el código");
+
+            phMarca = new PlaceholderComboBox(cmbMarca, "Seleccione marca");
+            phTipo = new PlaceholderComboBox(cmbTipo, "Seleccione tipo");
+            phModelo = new PlaceholderComboBox(cmbModelo, "Seleccione modelo");
+            phEstado = new PlaceholderComboBox(cmbEstado, "Seleccione estado");
+            phProveedor = new PlaceholderComboBox(cmbProveedor, "Seleccione proveedor");
         }
 
         /// <summary>
@@ -154,7 +223,6 @@ namespace SG_BAMS
         /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void txtCodigoBarra_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         /// <summary>
@@ -204,7 +272,6 @@ namespace SG_BAMS
         /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void label2_Click(object sender, EventArgs e)
         {
-
         }
 
         /// <summary>

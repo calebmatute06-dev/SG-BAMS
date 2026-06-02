@@ -1,16 +1,10 @@
 ﻿using SG_BAMS.Administracion_de_BAMS.Estado;
 using SG_BAMS.Login;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Collections.Specialized.BitVector32;
 
 namespace SG_BAMS.Proveedor
 {
@@ -24,6 +18,12 @@ namespace SG_BAMS.Proveedor
         /// El proveedor
         /// </summary>
         ClsProveedor proveedor = new ClsProveedor();
+
+        private PlaceholderTextBox phNombre;
+        private PlaceholderTextBox phDireccion;
+        private PlaceholderTextBox phTelefono;
+        private PlaceholderTextBox phRTN;
+        private PlaceholderComboBox phClasificacion;
 
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="AgregarProveedores"/>.
@@ -57,7 +57,6 @@ namespace SG_BAMS.Proveedor
             proveedor.CargarComboClasificacion(cmbClasificacion);
             cmbClasificacion.DropDownStyle = ComboBoxStyle.DropDownList;
 
-
             txtNombre.KeyPress += (s, ev) =>
             {
                 if (!char.IsLetter(ev.KeyChar) && !char.IsWhiteSpace(ev.KeyChar) && !char.IsControl(ev.KeyChar) && ev.KeyChar != '&')
@@ -69,6 +68,12 @@ namespace SG_BAMS.Proveedor
             txtTelefono.KeyPress += (s, ev) => ClsValidaciones.ValidarSoloNumeros(ev);
             txtRTN.KeyPress += (s, ev) => ClsValidaciones.ValidarSoloNumeros(ev);
 
+            // Inicializar placeholders después de cargar el combo
+            phNombre = new PlaceholderTextBox(txtNombre, "Nombre del proveedor");
+            phDireccion = new PlaceholderTextBox(txtDireccion, "Colonia, Barrio, Pueblo");
+            phTelefono = new PlaceholderTextBox(txtTelefono, "Número que empiece con 9,8,3,2");
+            phRTN = new PlaceholderTextBox(txtRTN, "Ingrese el RTN");
+            phClasificacion = new PlaceholderComboBox(cmbClasificacion, "Seleccione una clasificación");
         }
 
         /// <summary>
@@ -103,81 +108,99 @@ namespace SG_BAMS.Proveedor
         /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            string nombre = txtNombre.Text.Trim();
+            // Obtener valores reales (sin placeholder)
+            string nombreReal = phNombre.GetRealValue().Trim();
+            string direccionReal = phDireccion.GetRealValue().Trim();
+            string telefonoReal = phTelefono.GetRealValue().Trim();
+            string rtnReal = phRTN.GetRealValue().Trim();
 
+            // Guardar textos originales
+            string originalNombre = txtNombre.Text;
+            string originalDireccion = txtDireccion.Text;
+            string originalTelefono = txtTelefono.Text;
+            string originalRTN = txtRTN.Text;
 
-            if (string.IsNullOrWhiteSpace(nombre))
+            // Asignar valores reales temporalmente para que las validaciones funcionen
+            txtNombre.Text = nombreReal;
+            txtDireccion.Text = direccionReal;
+            txtTelefono.Text = telefonoReal;
+            txtRTN.Text = rtnReal;
+
+            bool valido = true;
+
+            // Validaciones manuales del nombre
+            if (string.IsNullOrWhiteSpace(nombreReal))
             {
                 MessageBox.Show("El nombre del proveedor no puede estar vacío.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtNombre.Focus();
-                return;
+                valido = false;
             }
-
-
-            if (!Regex.IsMatch(nombre, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s&]+$"))
+            else if (!Regex.IsMatch(nombreReal, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s&]+$"))
             {
                 MessageBox.Show("El nombre solo puede contener letras y el carácter '&'.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtNombre.Focus();
-                return;
+                valido = false;
             }
-
-
-            if (nombre.Contains("  "))
+            else if (nombreReal.Contains("  "))
             {
                 MessageBox.Show("El nombre no puede contener espacios dobles.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtNombre.Focus();
-                return;
+                valido = false;
             }
-
-
-            if (Regex.IsMatch(nombre, @"(.)\1{2,}", RegexOptions.IgnoreCase))
+            else if (Regex.IsMatch(nombreReal, @"(.)\1{2,}", RegexOptions.IgnoreCase))
             {
                 MessageBox.Show("El nombre no puede tener más de dos letras repetidas consecutivamente.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtNombre.Focus();
-                return;
+                valido = false;
             }
-
-
-            if (Regex.IsMatch(nombre, @"([a-zA-ZñÑáéíóúÁÉÍÓÚ])\s\1", RegexOptions.IgnoreCase))
+            else if (Regex.IsMatch(nombreReal, @"([a-zA-ZñÑáéíóúÁÉÍÓÚ])\s\1", RegexOptions.IgnoreCase))
             {
                 MessageBox.Show("El nombre contiene una secuencia de letras repetidas no válida (ejemplo: 'a a').", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtNombre.Focus();
-                return;
+                valido = false;
             }
-
-
-            if (nombre.Length >= 2 && nombre[0] == nombre[1])
+            else if (nombreReal.Length >= 2 && nombreReal[0] == nombreReal[1])
             {
                 MessageBox.Show("El nombre no puede iniciar con dos letras iguales.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtNombre.Focus();
-                return;
+                valido = false;
             }
 
-
-            if (ClsValidaciones.CampoVacio(txtDireccion, "Dirección")) return;
-            if (!ClsValidaciones.EsTelefonoHondurasValido(txtTelefono)) return;
-            if (!ClsValidaciones.EsRTNValido(txtRTN)) return;
-
-            if (cmbClasificacion.SelectedValue == null)
+            // Validaciones usando ClsValidaciones
+            if (valido && ClsValidaciones.CampoVacio(txtDireccion, "Dirección"))
+                valido = false;
+            else if (valido && !ClsValidaciones.EsTelefonoHondurasValido(txtTelefono))
+                valido = false;
+            else if (valido && !ClsValidaciones.EsRTNValido(txtRTN))
+                valido = false;
+            else if (valido && (phClasificacion.IsPlaceholderActive || cmbClasificacion.SelectedValue == null))
             {
                 MessageBox.Show("Debe seleccionar una clasificación.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                valido = false;
             }
 
-            if (proveedor.ExisteNombreProveedor(nombre))
+            // Validaciones de duplicados
+            if (valido && proveedor.ExisteNombreProveedor(nombreReal))
             {
                 MessageBox.Show("El nombre del proveedor ya existe.", "Nombre Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtNombre.Focus();
-                return;
+                valido = false;
             }
 
-
-            if (proveedor.ExisteRtnProveedor(txtRTN.Text.Trim()))
+            if (valido && proveedor.ExisteRtnProveedor(rtnReal))
             {
                 MessageBox.Show("El RTN ingresado ya pertenece a otro proveedor.", "RTN Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtRTN.Focus();
-                return;
+                valido = false;
             }
+
+            // Restaurar textos originales
+            txtNombre.Text = originalNombre;
+            txtDireccion.Text = originalDireccion;
+            txtTelefono.Text = originalTelefono;
+            txtRTN.Text = originalRTN;
+
+            if (!valido) return;
 
             try
             {
@@ -185,10 +208,10 @@ namespace SG_BAMS.Proveedor
                 int idUsuario = new ClsPasarUsuario().IdUsuario();
 
                 proveedor.AgregarProveedor(
-                    nombre,
-                    txtTelefono.Text.Trim(),
-                    txtDireccion.Text.Trim(),
-                    txtRTN.Text.Trim(),
+                    nombreReal,
+                    telefonoReal,
+                    direccionReal,
+                    rtnReal,
                     idClasificacion,
                     idUsuario
                 );
@@ -252,7 +275,6 @@ namespace SG_BAMS.Proveedor
         /// <param name="e">La instancia <see cref="KeyPressEventArgs"/> que contiene los datos del evento.</param>
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
-
             if (!char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != '&')
             {
                 e.Handled = true;
@@ -279,7 +301,6 @@ namespace SG_BAMS.Proveedor
         /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void label7_Click(object sender, EventArgs e)
         {
-
         }
     }
 }

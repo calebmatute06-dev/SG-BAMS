@@ -1,13 +1,8 @@
 ﻿using Microsoft.Data.SqlClient;
 using SG_BAMS.Facturas;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SG_BAMS
@@ -44,6 +39,10 @@ namespace SG_BAMS
         /// </summary>
         private DateTime ultimaTeclaEscaner = DateTime.Now;
 
+        private PlaceholderTextBox phCodigo;
+        private PlaceholderComboBox phProductos;
+        private PlaceholderTextBox phCantidad;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="FacturaProducto"/> class.
         /// </summary>
@@ -67,7 +66,7 @@ namespace SG_BAMS
                 cmbProductos.DisplayMember = "NombreCompleto";
                 cmbProductos.ValueMember = "ID";
                 cmbProductos.DataSource = dt;
-                cmbProductos.DropDownStyle = ComboBoxStyle.DropDown; 
+                cmbProductos.DropDownStyle = ComboBoxStyle.DropDown;
                 cmbProductos.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 cmbProductos.AutoCompleteSource = AutoCompleteSource.ListItems;
 
@@ -89,10 +88,14 @@ namespace SG_BAMS
             await LlenarComboProductos();
             cmbProductos.SelectedIndex = -1;
             lblNumero.Text = "0";
+
+            phCodigo = new PlaceholderTextBox(txtCodigo, "Código de barras");
+            phProductos = new PlaceholderComboBox(cmbProductos, "Seleccione o escriba un producto");
+            phCantidad = new PlaceholderTextBox(txtCantidad, "Cantidad");
+
             txtCantidad.KeyPress += (s, ev) => ClsValidaciones.ValidarSoloNumeros(ev);
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-
         }
 
         /// <summary>
@@ -121,8 +124,6 @@ namespace SG_BAMS
             txtCantidad.Clear();
         }
 
-
-
         /// <summary>
         /// Processes a command key.
         /// </summary>
@@ -140,7 +141,6 @@ namespace SG_BAMS
                 return base.ProcessCmdKey(ref msg, keyData);
             }
 
-
             if ((key >= Keys.D0 && key <= Keys.Z) || (key >= Keys.NumPad0 && key <= Keys.NumPad9))
             {
                 TimeSpan intervalo = DateTime.Now - ultimaTeclaEscaner;
@@ -151,21 +151,21 @@ namespace SG_BAMS
                     txtCodigo.Text = "";
                 }
 
-
                 string tecla = new KeysConverter().ConvertToString(key);
-
-
                 txtCodigo.AppendText(tecla);
                 return true;
             }
 
             if (key == Keys.Enter)
             {
-                if (!cmbProductos.Focused && !txtCantidad.Focused && !string.IsNullOrWhiteSpace(txtCodigo.Text))
+                if (!cmbProductos.Focused && !txtCantidad.Focused)
                 {
-
-                    BuscarProductoPorCodigo(txtCodigo.Text.Trim());
-                    return true;
+                    string codigoReal = phCodigo.GetRealValue().Trim();
+                    if (!string.IsNullOrWhiteSpace(codigoReal))
+                    {
+                        BuscarProductoPorCodigo(codigoReal);
+                        return true;
+                    }
                 }
             }
 
@@ -179,7 +179,6 @@ namespace SG_BAMS
         private void BuscarProductoPorCodigo(string codigo)
         {
             bool encontrado = false;
-
             string codigoBusqueda = codigo.ToUpper();
 
             foreach (DataRowView fila in cmbProductos.Items)
@@ -210,22 +209,32 @@ namespace SG_BAMS
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnAceptar_Click(object sender, EventArgs e)
         {
-            if (cmbProductos.SelectedIndex == -1)
+            if (phProductos.IsPlaceholderActive || cmbProductos.SelectedIndex == -1)
             {
                 MessageBox.Show("Por favor, seleccione un producto.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 cmbProductos.Focus();
                 return;
             }
 
-            if (ClsValidaciones.CampoVacio(txtCantidad, "Cantidad")) return;
+            string cantidadReal = phCantidad.GetRealValue().Trim();
+            string originalCantidad = txtCantidad.Text;
+            txtCantidad.Text = cantidadReal;
 
-            if (!int.TryParse(txtCantidad.Text.Trim(), out int cantidad) || cantidad <= 0)
+            bool valido = true;
+            if (ClsValidaciones.CampoVacio(txtCantidad, "Cantidad"))
+                valido = false;
+            else if (!int.TryParse(txtCantidad.Text, out int cantidad) || cantidad <= 0)
             {
                 MessageBox.Show("Ingrese una cantidad válida mayor a 0.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                valido = false;
             }
 
-            if (!int.TryParse(lblNumero.Text, out int stock) || cantidad > stock)
+            txtCantidad.Text = originalCantidad;
+            if (!valido) return;
+
+            int cantidadFinal = int.Parse(cantidadReal);
+
+            if (!int.TryParse(lblNumero.Text, out int stock) || cantidadFinal > stock)
             {
                 MessageBox.Show($"Stock insuficiente. Solo hay {lblNumero.Text} unidades disponibles.", "Inventario", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -245,7 +254,7 @@ namespace SG_BAMS
             DataRowView filaSeleccionada = (DataRowView)cmbProductos.SelectedItem;
             double precio = Convert.ToDouble(filaSeleccionada.Row["precio_venta"]);
 
-            FormularioFactura.SetProducto(idProdu, cmbProductos.Text, cantidad);
+            FormularioFactura.SetProducto(idProdu, cmbProductos.Text, cantidadFinal);
             this.StockSeleccionado = stock;
             this.PrecioSeleccionado = precio;
             this.DialogResult = DialogResult.OK;

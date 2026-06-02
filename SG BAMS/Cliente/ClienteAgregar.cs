@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SG_BAMS.Cliente;
 using SG_BAMS.Facturas;
+using Krypton.Toolkit;
 
 namespace SG_BAMS
 {
@@ -32,6 +30,12 @@ namespace SG_BAMS
         /// El nombre y apellido del cliente concatenados.
         /// </value>
         public string NombreDelCliente { get; private set; }
+
+        
+        private PlaceholderTextBox phNombre;
+        private PlaceholderTextBox phApellido;
+        private PlaceholderTextBox phTelefono;
+        private PlaceholderTextBox phRTN;
 
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="ClienteAgregar"/>.
@@ -60,49 +64,62 @@ namespace SG_BAMS
         /// <param name="e">Los datos del evento.</param>
         private async void btnAgregar_Click(object sender, EventArgs e)
         {
-            if (!ClsValidaciones.EsNombrePersonalValido(txtNombre.TextBox, "El Nombre") ||
-                !ClsValidaciones.EsNombrePersonalValido(txtApellido.TextBox, "El Apellido"))
-            {
-                return;
-            }
+           
+            string nombreReal = phNombre.GetRealValue().Trim();
+            string apellidoReal = phApellido.GetRealValue().Trim();
+            string telefonoReal = phTelefono.GetRealValue().Trim();
+            string rtnReal = phRTN.GetRealValue().Trim();
 
-            if (!ClsValidaciones.EsTelefonoHondurasValido(txtTelefono.TextBox))
-            {
-                return;
-            }
+           
+            string originalNombre = txtNombre.Text;
+            string originalApellido = txtApellido.Text;
+            string originalTelefono = txtTelefono.Text;
+            string originalRTN = txtRTN.Text;
 
-            string rtn = txtRTN.Text.Trim();
+            
+            txtNombre.Text = nombreReal;
+            txtApellido.Text = apellidoReal;
+            txtTelefono.Text = telefonoReal;
+            txtRTN.Text = rtnReal;
 
-            if (!string.IsNullOrWhiteSpace(rtn))
-            {
-                if (!ClsValidaciones.EsRTNValido(txtRTN.TextBox))
-                {
-                    return;
-                }
-            }
-            else
-            {
-                rtn = "Sin RTN";
-            }
+           
+            bool valido = true;
 
+            if (!ClsValidaciones.EsNombrePersonalValido(txtNombre, "El Nombre"))
+                valido = false;
+            else if (!ClsValidaciones.EsNombrePersonalValido(txtApellido, "El Apellido"))
+                valido = false;
+            else if (!ClsValidaciones.EsTelefonoHondurasValido(txtTelefono))
+                valido = false;
+            else if (!string.IsNullOrWhiteSpace(rtnReal) && !ClsValidaciones.EsRTNValido(txtRTN))
+                valido = false;
+
+            
+            txtNombre.Text = originalNombre;
+            txtApellido.Text = originalApellido;
+            txtTelefono.Text = originalTelefono;
+            txtRTN.Text = originalRTN;
+
+            if (!valido) return;
+
+            
+            if (string.IsNullOrWhiteSpace(rtnReal))
+                rtnReal = "Sin RTN";
+
+           
             try
             {
                 this.Cursor = Cursors.WaitCursor;
                 ClsAgregarClientes objAC = new ClsAgregarClientes();
 
-                int id = await objAC.AgregarClientes(
-                    txtNombre.Text.Trim(),
-                    txtApellido.Text.Trim(),
-                    txtTelefono.Text.Trim(),
-                    rtn
-                );
+                int id = await objAC.AgregarClientes(nombreReal, apellidoReal, telefonoReal, rtnReal);
 
                 if (id > 0)
                 {
                     this.IdClienteGenerado = id;
-                    this.NombreDelCliente = $"{txtNombre.Text.Trim()} {txtApellido.Text.Trim()}";
+                    this.NombreDelCliente = $"{nombreReal} {apellidoReal}";
 
-                    using (FacturaAgregarDatos frmFact = new FacturaAgregarDatos(this.NombreDelCliente, this.IdClienteGenerado, rtn))
+                    using (FacturaAgregarDatos frmFact = new FacturaAgregarDatos(this.NombreDelCliente, this.IdClienteGenerado, rtnReal))
                     {
                         this.Hide();
                         frmFact.ShowDialog();
@@ -163,22 +180,21 @@ namespace SG_BAMS
 
         /// <summary>
         /// Maneja el evento Load del formulario <c>ClienteAgregar</c>.
-        /// Se ejecuta al cargar el formulario; reservado para inicializaciones futuras.
+        /// Inicializa los placeholders y los guarda en las variables de instancia.
         /// </summary>
         /// <param name="sender">El objeto que originó el evento.</param>
         /// <param name="e">Los datos del evento.</param>
-        private void ClienteAgregar_Load(object sender, EventArgs e) {
-            /*ClsMensajeGuia.Activar(txtNombre);
-            ClsMensajeGuia.Activar(txtTelefono);
-            ClsMensajeGuia.Activar(txtApellido);
-            ClsMensajeGuia.Activar(txtRTN);*/
-            this.MaximizeBox = false;
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            ClsMensajeGuia.ActivarK(txtNombre);
-            ClsMensajeGuia.ActivarK(txtApellido);
-            ClsMensajeGuia.ActivarK(txtTelefono);
-            ClsMensajeGuia.ActivarK(txtRTN);
-            this.ActiveControl = null;
+        private void ClienteAgregar_Load(object sender, EventArgs e)
+        {
+            phNombre = new PlaceholderTextBox(txtNombre, "Solo letras y espacios");
+            phApellido = new PlaceholderTextBox(txtApellido, "Solo letras y espacios");
+            phTelefono = new PlaceholderTextBox(txtTelefono, "Debe comenzar con 2,3,7,8 o 9");
+            phRTN = new PlaceholderTextBox(txtRTN, "14 Digitos numericos minimo");
+        }
+
+        private void txtTelefono_TextChanged(object sender, EventArgs e)
+        {
+            // Sin implementación por ahora
         }
     }
 }

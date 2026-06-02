@@ -53,10 +53,9 @@
             // 
             // kryptonLabel6
             // 
-            kryptonLabel6.Location = new Point(60, 145);
-            kryptonLabel6.Margin = new Padding(3, 2, 3, 2);
+            kryptonLabel6.Location = new Point(69, 193);
             kryptonLabel6.Name = "kryptonLabel6";
-            kryptonLabel6.Size = new Size(86, 23);
+            kryptonLabel6.Size = new Size(98, 31);
             kryptonLabel6.StateCommon.ShortText.Color1 = Color.Navy;
             kryptonLabel6.StateCommon.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
             kryptonLabel6.TabIndex = 122;
@@ -66,37 +65,33 @@
             // 
             panel1.BackColor = Color.Navy;
             panel1.Location = new Point(-1, 0);
-            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(485, 18);
+            panel1.Size = new Size(554, 24);
             panel1.TabIndex = 116;
             // 
             // panel3
             // 
             panel3.BackColor = Color.Navy;
-            panel3.Location = new Point(10, 308);
-            panel3.Margin = new Padding(3, 2, 3, 2);
+            panel3.Location = new Point(11, 411);
             panel3.Name = "panel3";
-            panel3.Size = new Size(482, 18);
+            panel3.Size = new Size(551, 24);
             panel3.TabIndex = 115;
             // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Navy;
             pictureBox1.Location = new Point(-1, 1);
-            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(21, 325);
+            pictureBox1.Size = new Size(24, 433);
             pictureBox1.TabIndex = 114;
             pictureBox1.TabStop = false;
             // 
             // pictureBox4
             // 
             pictureBox4.BackColor = Color.Navy;
-            pictureBox4.Location = new Point(463, 1);
-            pictureBox4.Margin = new Padding(3, 2, 3, 2);
+            pictureBox4.Location = new Point(529, 1);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(21, 314);
+            pictureBox4.Size = new Size(24, 419);
             pictureBox4.TabIndex = 113;
             pictureBox4.TabStop = false;
             // 
@@ -106,18 +101,17 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(96, 42);
+            label1.Location = new Point(110, 56);
             label1.Name = "label1";
-            label1.Size = new Size(248, 32);
+            label1.Size = new Size(307, 40);
             label1.TabIndex = 149;
             label1.Text = "Agregar Producto";
             // 
             // kryptonLabel1
             // 
-            kryptonLabel1.Location = new Point(60, 184);
-            kryptonLabel1.Margin = new Padding(3, 2, 3, 2);
+            kryptonLabel1.Location = new Point(69, 245);
             kryptonLabel1.Name = "kryptonLabel1";
-            kryptonLabel1.Size = new Size(94, 23);
+            kryptonLabel1.Size = new Size(108, 31);
             kryptonLabel1.StateCommon.ShortText.Color1 = Color.Navy;
             kryptonLabel1.StateCommon.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
             kryptonLabel1.TabIndex = 151;
@@ -125,10 +119,9 @@
             // 
             // kryptonLabel2
             // 
-            kryptonLabel2.Location = new Point(61, 222);
-            kryptonLabel2.Margin = new Padding(3, 2, 3, 2);
+            kryptonLabel2.Location = new Point(70, 296);
             kryptonLabel2.Name = "kryptonLabel2";
-            kryptonLabel2.Size = new Size(129, 23);
+            kryptonLabel2.Size = new Size(147, 31);
             kryptonLabel2.StateCommon.ShortText.Color1 = Color.Navy;
             kryptonLabel2.StateCommon.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
             kryptonLabel2.TabIndex = 152;
@@ -136,14 +129,13 @@
             // 
             // btnProductoNuevo
             // 
-            btnProductoNuevo.Location = new Point(284, 274);
-            btnProductoNuevo.Margin = new Padding(3, 2, 3, 2);
+            btnProductoNuevo.Location = new Point(325, 365);
             btnProductoNuevo.Name = "btnProductoNuevo";
             btnProductoNuevo.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnProductoNuevo.OverrideDefault.Back.Color2 = Color.White;
             btnProductoNuevo.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnProductoNuevo.OverrideFocus.Back.Color2 = Color.White;
-            btnProductoNuevo.Size = new Size(173, 29);
+            btnProductoNuevo.Size = new Size(198, 39);
             btnProductoNuevo.StateCommon.Back.Color1 = Color.SkyBlue;
             btnProductoNuevo.StateCommon.Back.Color2 = Color.White;
             btnProductoNuevo.StateCommon.Border.Rounding = 5F;
@@ -160,14 +152,13 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(140, 274);
-            btnCancelar.Margin = new Padding(3, 2, 3, 2);
+            btnCancelar.Location = new Point(160, 365);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnCancelar.OverrideDefault.Back.Color2 = Color.White;
             btnCancelar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnCancelar.OverrideFocus.Back.Color2 = Color.White;
-            btnCancelar.Size = new Size(106, 29);
+            btnCancelar.Size = new Size(121, 39);
             btnCancelar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnCancelar.StateCommon.Back.Color2 = Color.White;
             btnCancelar.StateCommon.Border.Rounding = 5F;
@@ -184,14 +175,13 @@
             // 
             // kryptonButton3
             // 
-            kryptonButton3.Location = new Point(29, 274);
-            kryptonButton3.Margin = new Padding(3, 2, 3, 2);
+            kryptonButton3.Location = new Point(33, 365);
             kryptonButton3.Name = "kryptonButton3";
             kryptonButton3.OverrideDefault.Back.Color1 = Color.SkyBlue;
             kryptonButton3.OverrideDefault.Back.Color2 = Color.White;
             kryptonButton3.OverrideFocus.Back.Color1 = Color.SkyBlue;
             kryptonButton3.OverrideFocus.Back.Color2 = Color.White;
-            kryptonButton3.Size = new Size(106, 29);
+            kryptonButton3.Size = new Size(121, 39);
             kryptonButton3.StateCommon.Back.Color1 = Color.SkyBlue;
             kryptonButton3.StateCommon.Back.Color2 = Color.White;
             kryptonButton3.StateCommon.Border.Rounding = 5F;
@@ -209,12 +199,11 @@
             // numCantidad
             // 
             numCantidad.Increment = new decimal(new int[] { 1, 0, 0, 0 });
-            numCantidad.Location = new Point(153, 184);
-            numCantidad.Margin = new Padding(3, 2, 3, 2);
+            numCantidad.Location = new Point(175, 245);
             numCantidad.Maximum = new decimal(new int[] { 99999, 0, 0, 0 });
             numCantidad.Minimum = new decimal(new int[] { 0, 0, 0, 0 });
             numCantidad.Name = "numCantidad";
-            numCantidad.Size = new Size(131, 26);
+            numCantidad.Size = new Size(150, 30);
             numCantidad.StateCommon.Back.Color1 = Color.White;
             numCantidad.StateCommon.Border.Color1 = Color.Navy;
             numCantidad.StateCommon.Border.Rounding = 5F;
@@ -225,12 +214,9 @@
             // 
             // txtPrecio
             // 
-            txtPrecio.CueHint.Color1 = Color.DimGray;
-            txtPrecio.CueHint.CueHintText = "Ingrese un precio valido";
-            txtPrecio.Location = new Point(185, 222);
-            txtPrecio.Margin = new Padding(3, 2, 3, 2);
+            txtPrecio.Location = new Point(211, 296);
             txtPrecio.Name = "txtPrecio";
-            txtPrecio.Size = new Size(161, 27);
+            txtPrecio.Size = new Size(184, 31);
             txtPrecio.StateCommon.Back.Color1 = Color.White;
             txtPrecio.StateCommon.Border.Color1 = Color.Navy;
             txtPrecio.StateCommon.Border.Rounding = 5F;
@@ -240,14 +226,10 @@
             // 
             // cmbProductos
             // 
-            cmbProductos.CueHint.Color1 = Color.DimGray;
-            cmbProductos.CueHint.CueHintText = "Seleccione o escriba el producto";
-            cmbProductos.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbProductos.DropDownWidth = 300;
-            cmbProductos.Location = new Point(140, 142);
-            cmbProductos.Margin = new Padding(3, 2, 3, 2);
+            cmbProductos.Location = new Point(160, 189);
             cmbProductos.Name = "cmbProductos";
-            cmbProductos.Size = new Size(305, 26);
+            cmbProductos.Size = new Size(349, 30);
             cmbProductos.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbProductos.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbProductos.StateCommon.ComboBox.Border.Rounding = 5F;
@@ -259,14 +241,13 @@
             // 
             // btnEscanear
             // 
-            btnEscanear.Location = new Point(318, 100);
-            btnEscanear.Margin = new Padding(3, 2, 3, 2);
+            btnEscanear.Location = new Point(363, 133);
             btnEscanear.Name = "btnEscanear";
             btnEscanear.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnEscanear.OverrideDefault.Back.Color2 = Color.White;
             btnEscanear.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnEscanear.OverrideFocus.Back.Color2 = Color.White;
-            btnEscanear.Size = new Size(79, 28);
+            btnEscanear.Size = new Size(90, 37);
             btnEscanear.StateCommon.Back.Color1 = Color.SkyBlue;
             btnEscanear.StateCommon.Back.Color2 = Color.White;
             btnEscanear.StateCommon.Border.Rounding = 5F;
@@ -283,14 +264,10 @@
             // 
             // txtCodigo
             // 
-            txtCodigo.CueHint.Color1 = Color.DimGray;
-            txtCodigo.CueHint.CueHintText = "Escanee el producto";
-            txtCodigo.CueHint.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtCodigo.Enabled = false;
-            txtCodigo.Location = new Point(127, 103);
-            txtCodigo.Margin = new Padding(3, 2, 3, 2);
+            txtCodigo.Location = new Point(145, 137);
             txtCodigo.Name = "txtCodigo";
-            txtCodigo.Size = new Size(189, 30);
+            txtCodigo.Size = new Size(216, 34);
             txtCodigo.StateCommon.Back.Color1 = Color.White;
             txtCodigo.StateCommon.Border.Color1 = Color.Navy;
             txtCodigo.StateCommon.Border.Rounding = 5F;
@@ -300,10 +277,9 @@
             // 
             // kryptonLabel3
             // 
-            kryptonLabel3.Location = new Point(54, 104);
-            kryptonLabel3.Margin = new Padding(3, 2, 3, 2);
+            kryptonLabel3.Location = new Point(62, 139);
             kryptonLabel3.Name = "kryptonLabel3";
-            kryptonLabel3.Size = new Size(80, 23);
+            kryptonLabel3.Size = new Size(91, 31);
             kryptonLabel3.StateCommon.ShortText.Color1 = Color.Navy;
             kryptonLabel3.StateCommon.ShortText.Font = new Font("Arial", 12F, FontStyle.Bold);
             kryptonLabel3.TabIndex = 340;
@@ -315,18 +291,18 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(373, 24);
+            label5.Location = new Point(426, 32);
             label5.Name = "label5";
-            label5.Size = new Size(84, 29);
+            label5.Size = new Size(102, 35);
             label5.TabIndex = 345;
             label5.Text = "BAMS";
             // 
             // Agregar_Producto__Compras_
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(482, 324);
+            ClientSize = new Size(551, 432);
             Controls.Add(label5);
             Controls.Add(btnEscanear);
             Controls.Add(txtCodigo);
@@ -345,7 +321,6 @@
             Controls.Add(panel3);
             Controls.Add(pictureBox1);
             Controls.Add(pictureBox4);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "Agregar_Producto__Compras_";
             ShowIcon = false;
             Load += Agregar_Producto__Compras__Load;

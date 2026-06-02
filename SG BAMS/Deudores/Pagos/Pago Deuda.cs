@@ -12,6 +12,10 @@ namespace SG_BAMS
         private string nombreRecibido = "";
         private int idDeudaRecibido = 0;
 
+        // Placeholders
+        private PlaceholderTextBox phMonto;
+        private PlaceholderComboBox phDeudores;
+
         public Pago_Deuda()
         {
             InitializeComponent();
@@ -50,20 +54,14 @@ namespace SG_BAMS
                 cmbDeudores.ValueMember = "ID";
                 cmbDeudores.DisplayMember = "ClienteDetalle";
 
-                
                 cmbDeudores.DropDownStyle = ComboBoxStyle.DropDownList;
                 cmbDeudores.AutoCompleteMode = AutoCompleteMode.None;
 
-                
                 if (cmbDeudores is KryptonComboBox kryptonCombo)
                 {
-                    
                     kryptonCombo.StateCommon.ComboBox.Back.Color1 = Color.SkyBlue;
-                    
                     kryptonCombo.StateCommon.ComboBox.Border.Color1 = Color.SkyBlue;
-                    
                     kryptonCombo.StateCommon.ComboBox.Content.Color1 = Color.Navy;
-                    
                     kryptonCombo.StateCommon.ComboBox.Content.Font = new Font("Segoe UI", 10, FontStyle.Bold);
                 }
 
@@ -76,6 +74,11 @@ namespace SG_BAMS
         {
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            // Inicializar placeholders
+            phMonto = new PlaceholderTextBox(txtMonto, "Cantidad deseada a pagar");
+            phDeudores = new PlaceholderComboBox(cmbDeudores, "Seleccione un nombre");
+
             if (idDeudaRecibido > 0 && cmbDeudores.DataSource != null)
             {
                 DataTable dtDatos = (DataTable)cmbDeudores.DataSource;
@@ -85,7 +88,7 @@ namespace SG_BAMS
                     {
                         cmbDeudores.SelectedIndex = i;
                         cmbDeudores.Enabled = false;
-                        
+
                         if (cmbDeudores is KryptonComboBox kc)
                         {
                             kc.StateDisabled.ComboBox.Back.Color1 = Color.SkyBlue;
@@ -101,18 +104,28 @@ namespace SG_BAMS
                 if (indiceEncontrado == -1) indiceEncontrado = cmbDeudores.FindString(nombreRecibido);
                 cmbDeudores.SelectedIndex = indiceEncontrado;
             }
-
-            
         }
 
         private async void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (cmbDeudores.SelectedValue == null ||
-                !decimal.TryParse(txtMonto.Text, out decimal montoPago) ||
+            // Validar selección real en ComboBox (no placeholder)
+            if (phDeudores.IsPlaceholderActive || cmbDeudores.SelectedValue == null)
+            {
+                MessageBox.Show("Por favor, seleccione un deudor válido.",
+                                "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cmbDeudores.Focus();
+                return;
+            }
+
+            // Obtener valor real del monto (sin placeholder)
+            string montoReal = phMonto.GetRealValue().Trim();
+            if (string.IsNullOrWhiteSpace(montoReal) ||
+                !decimal.TryParse(montoReal, out decimal montoPago) ||
                 montoPago <= 0)
             {
-                MessageBox.Show("Por favor, selecciona un deudor y escribe un monto válido mayor a cero.",
+                MessageBox.Show("Por favor, escriba un monto válido mayor a cero.",
                                 "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtMonto.Focus();
                 return;
             }
 
@@ -122,7 +135,7 @@ namespace SG_BAMS
             if (montoPago > saldoPendiente)
             {
                 MessageBox.Show($"El monto ingresado (L {montoPago:N2}) supera el saldo pendiente (L {saldoPendiente:N2}).",
-                "Error de saldo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                "Error de saldo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -136,10 +149,7 @@ namespace SG_BAMS
             }
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        private void btnCancelar_Click(object sender, EventArgs e) => this.Close();
 
         private void txtMonto_KeyPress(object sender, KeyPressEventArgs e) { }
         private void label2_Click(object sender, EventArgs e) { }

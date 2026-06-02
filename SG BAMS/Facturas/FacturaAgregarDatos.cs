@@ -6,13 +6,9 @@ using SG_BAMS.Facturas;
 using SG_BAMS.Login;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SG_BAMS
@@ -26,6 +22,10 @@ namespace SG_BAMS
         string rtnCliente;
 
         private static readonly CultureInfo CI = CultureInfo.InvariantCulture;
+
+        // Placeholders
+        private PlaceholderComboBox phPago;
+        private PlaceholderTextBox phExento;
 
         public FacturaAgregarDatos(string cliente, int idCli, string rtn = "Sin RTN")
         {
@@ -72,6 +72,10 @@ namespace SG_BAMS
         {
             await LlenarComboPago();
 
+            // Inicializar placeholders
+            phPago = new PlaceholderComboBox(cmbPago, "Seleccione una forma de pago");
+            phExento = new PlaceholderTextBox(txtExento, "0");
+
             DateTFecha.Enabled = false;
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -84,7 +88,6 @@ namespace SG_BAMS
             dgvProductos.Columns.Add("stock_max", "StockMax");
             dgvProductos.Columns["stock_max"].Visible = false;
 
-            // Formato L. en columnas de precio
             dgvProductos.CellFormatting += (s, ev) =>
             {
                 if (ev.RowIndex < 0 || ev.Value == null) return;
@@ -147,9 +150,6 @@ namespace SG_BAMS
             dgvProductos.ClearSelection();
         }
 
-        /// <summary>
-        /// Limpia el texto con formato L. y lo convierte a double de forma segura.
-        /// </summary>
         private double ParsearMonto(string texto)
         {
             string limpio = texto.Replace("L.", "").Replace(",", "").Trim();
@@ -237,11 +237,14 @@ namespace SG_BAMS
         private async void BtnAceptar_Click(object sender, EventArgs e)
         {
             if (ClsValidaciones.CampoVacio(txtCliente, "Cliente")) return;
-            if (cmbPago.SelectedIndex == -1)
+
+            // Validar forma de pago usando placeholder
+            if (phPago.IsPlaceholderActive || cmbPago.SelectedIndex == -1)
             {
                 MessageBox.Show("Seleccione una forma de pago.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
             if (dgvProductos.Rows.Count == 0)
             {
                 MessageBox.Show("Debe agregar al menos un producto.", "Factura Vacía", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -255,10 +258,12 @@ namespace SG_BAMS
                 return;
             }
 
+            // Obtener valor real del monto exento (sin placeholder)
+            string montoExentoTexto = phExento.GetRealValue().Trim();
             double montoExento = 0;
-            if (!string.IsNullOrWhiteSpace(txtExento.Text))
+            if (!string.IsNullOrWhiteSpace(montoExentoTexto))
             {
-                if (!double.TryParse(txtExento.Text, out montoExento) || montoExento < 0)
+                if (!double.TryParse(montoExentoTexto, NumberStyles.Any, CI, out montoExento) || montoExento < 0)
                 {
                     MessageBox.Show("El monto exento ingresado no es válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -319,7 +324,7 @@ namespace SG_BAMS
                                 txtCliente.Text,
                                 DateTFecha.Value.ToShortDateString(),
                                ParsearMonto(txtSubtotal.Text).ToString("N2", CI),
-                               ParsearMonto(txtRebaja.Text).ToString("N2", CI),   
+                               ParsearMonto(txtRebaja.Text).ToString("N2", CI),
                                ParsearMonto(txtTotal.Text).ToString("N2", CI),
                                 cmbPago.Text,
                                 dgvProductos,
@@ -343,7 +348,6 @@ namespace SG_BAMS
                         {
                             string nombreCliente = txtCliente.Text.Trim();
                             string montoTotal = ParsearMonto(txtTotal.Text).ToString("N2");
-                            
 
                             using (Información_Deudores frmInfo = new Información_Deudores(idFactura, nombreCliente, montoTotal, fechaVenta))
                             {
@@ -479,6 +483,9 @@ namespace SG_BAMS
             else
             {
                 txtExento.Enabled = true;
+                // Si se habilita, el placeholder se gestionará automáticamente
+                if (string.IsNullOrWhiteSpace(txtExento.Text))
+                    txtExento.Text = "";
             }
         }
 
@@ -496,6 +503,8 @@ namespace SG_BAMS
             else
             {
                 txtExento.ReadOnly = false;
+                if (string.IsNullOrWhiteSpace(txtExento.Text))
+                    txtExento.Text = "";
             }
         }
 
@@ -517,7 +526,6 @@ namespace SG_BAMS
 
         private void txtExento_TextChanged_1(object sender, EventArgs e)
         {
-
         }
     }
 }

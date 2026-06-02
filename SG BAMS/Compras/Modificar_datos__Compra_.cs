@@ -9,40 +9,22 @@ using System.Windows.Forms;
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    /// Formulario para modificar una compra existente.
     /// </summary>
-    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class Modificar_datos__Compra_ : Form
     {
-        /// <summary>
-        /// La tabla de respaldo
-        /// </summary>
         private DataTable dtRespaldo;
-        /// <summary>
-        /// Indica si hubo cambios
-        /// </summary>
         private bool huboCambios = false;
-        /// <summary>
-        /// El valor antes del cambio
-        /// </summary>
         private object valorAntesDeCambio;
-        /// <summary>
-        /// El identificador de la compra a editar
-        /// </summary>
         private int idCompraAEditar;
-        /// <summary>
-        /// La lógica de negocio
-        /// </summary>
         private ClsModificarCompras logic = new ClsModificarCompras();
-        /// <summary>
-        /// La lista de elementos eliminados
-        /// </summary>
         private List<int> listaEliminados = new List<int>();
 
-        /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="Modificar_datos__Compra_"/>.
-        /// </summary>
-        /// <param name="id">El identificador.</param>
+        // Placeholders
+        private PlaceholderTextBox phNotaDetalle;
+        private PlaceholderComboBox phProveedor;
+        private PlaceholderComboBox phFormaPago;
+
         public Modificar_datos__Compra_(int id)
         {
             InitializeComponent();
@@ -55,18 +37,12 @@ namespace SG_BAMS
             dgvProductosModificar.CellBeginEdit += dgvProductosModificar_CellBeginEdit;
         }
 
-        /// <summary>
-        /// Maneja el evento Load del control Modificar_datos__Compra_.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void Modificar_datos__Compra__Load(object sender, EventArgs e)
         {
             cmbProveedor.Enabled = false;
             cmbProveedor.BackColor = Color.LightGray;
 
             dtpFechaPedido.Enabled = false;
-
 
             cmbProveedor.SelectedIndexChanged -= cmbProveedor_SelectedIndexChanged;
             cmbFormaPago.SelectedIndexChanged -= cmbFormaPago_SelectedIndexChanged;
@@ -89,41 +65,41 @@ namespace SG_BAMS
             cmbProveedor.SelectedIndexChanged += cmbProveedor_SelectedIndexChanged;
             cmbFormaPago.SelectedIndexChanged += cmbFormaPago_SelectedIndexChanged;
 
+            // Placeholder para la nota
+            phNotaDetalle = new PlaceholderTextBox(txtNotaDetalle, "Solo letras y espacios");
+
+            // Placeholders para los ComboBox (después de cargar datos)
+            phProveedor = new PlaceholderComboBox(cmbProveedor, "Seleccione un proveedor");
+            phFormaPago = new PlaceholderComboBox(cmbFormaPago, "Seleccione una forma de pago");
+
+            // Configuración visual del DataGridView (sin cambios)
             dgvProductosModificar.BorderStyle = BorderStyle.None;
             dgvProductosModificar.BackgroundColor = Color.White;
             dgvProductosModificar.RowHeadersVisible = false;
             dgvProductosModificar.EnableHeadersVisualStyles = false;
             dgvProductosModificar.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-
             dgvProductosModificar.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
             dgvProductosModificar.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
             dgvProductosModificar.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
             dgvProductosModificar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgvProductosModificar.ColumnHeadersHeight = 28;
-
             dgvProductosModificar.DefaultCellStyle.BackColor = Color.White;
             dgvProductosModificar.DefaultCellStyle.ForeColor = Color.Navy;
             dgvProductosModificar.DefaultCellStyle.Font = new Font("Segoe UI", 10);
             dgvProductosModificar.DefaultCellStyle.Padding = new Padding(3);
             dgvProductosModificar.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 245, 255);
             dgvProductosModificar.AlternatingRowsDefaultCellStyle.ForeColor = Color.Navy;
-
             dgvProductosModificar.DefaultCellStyle.SelectionBackColor = Color.DeepSkyBlue;
             dgvProductosModificar.DefaultCellStyle.SelectionForeColor = Color.White;
-
             dgvProductosModificar.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dgvProductosModificar.GridColor = Color.LightGray;
             dgvProductosModificar.RowTemplate.Height = 32;
             dgvProductosModificar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvProductosModificar.ClearSelection();
 
-            ClsMensajeGuia.ActivarK(txtNotaDetalle);
             this.ActiveControl = null;
         }
 
-        /// <summary>
-        /// Actualiza el total general.
-        /// </summary>
         private void ActualizarTotalGeneral()
         {
             decimal total = 0;
@@ -135,9 +111,6 @@ namespace SG_BAMS
             lblTotal.Text = $"Total: L. {total:N2}";
         }
 
-        /// <summary>
-        /// Configura la edición de la cuadrícula.
-        /// </summary>
         private void ConfigurarEdicionGrid()
         {
             if (dgvProductosModificar.Columns.Contains("ID")) dgvProductosModificar.Columns["ID"].ReadOnly = true;
@@ -150,9 +123,6 @@ namespace SG_BAMS
             if (dgvProductosModificar.Columns.Contains("Subtotal")) dgvProductosModificar.Columns["Subtotal"].DefaultCellStyle.Format = "\"L. \"#,##0.00";
         }
 
-        /// <summary>
-        /// Llena los combos.
-        /// </summary>
         private void LlenarCombos()
         {
             try
@@ -168,9 +138,6 @@ namespace SG_BAMS
             catch (Exception ex) { MessageBox.Show("Error al llenar listas: " + ex.Message); }
         }
 
-        /// <summary>
-        /// Carga los datos de cabecera.
-        /// </summary>
         private void CargarDatosCabecera()
         {
             try
@@ -183,20 +150,15 @@ namespace SG_BAMS
                     cmbProveedor.SelectedValue = fila["id_proveedor"];
                     DateTime fecha = Convert.ToDateTime(fila["fecha_pedido"]);
                     dtpFechaPedido.Value = fecha;
-                    dtpFechaPedido.Value = fecha;
                     txtNotaDetalle.Text = fila["desc_compra"].ToString();
                 }
             }
             catch (Exception ex) { MessageBox.Show("Error al cargar datos: " + ex.Message); }
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnAceptar.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+            // Validar proveedor (el combo está deshabilitado, pero por seguridad)
             if (cmbProveedor.SelectedValue == null || cmbProveedor.SelectedIndex == -1)
             {
                 MessageBox.Show("Por favor, seleccione un proveedor válido de la lista",
@@ -210,7 +172,8 @@ namespace SG_BAMS
                 int idProv = Convert.ToInt32(cmbProveedor.SelectedValue);
                 int idPago = Convert.ToInt32(cmbFormaPago.SelectedValue);
                 DateTime fecha = dtpFechaPedido.Value;
-                string nota = txtNotaDetalle.Text;
+                // Obtener valor real de la nota (sin placeholder)
+                string nota = phNotaDetalle.GetRealValue();
 
                 logic.ActualizarCabeceraCompra(idCompraAEditar, idProv, idPago, fecha, nota);
 
@@ -239,16 +202,10 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnEliminarProducto.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnEliminarProducto_Click(object sender, EventArgs e)
         {
             if (dgvProductosModificar.CurrentRow == null || dgvProductosModificar.CurrentRow.IsNewRow) return;
 
-           
             int filasConDatos = 0;
             foreach (DataGridViewRow fila in dgvProductosModificar.Rows)
             {
@@ -285,11 +242,6 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control kryptonButton5.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void kryptonButton5_Click(object sender, EventArgs e)
         {
             if (cmbProveedor.SelectedValue == null) return;
@@ -307,11 +259,6 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control kryptonButton4.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void kryptonButton4_Click(object sender, EventArgs e)
         {
             if (!huboCambios) { this.Close(); return; }
@@ -322,24 +269,9 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Maneja el evento SelectedIndexChanged del control cmbProveedor.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void cmbProveedor_SelectedIndexChanged(object sender, EventArgs e) => huboCambios = true;
-        /// <summary>
-        /// Maneja el evento SelectedIndexChanged del control cmbFormaPago.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void cmbFormaPago_SelectedIndexChanged(object sender, EventArgs e) => huboCambios = true;
 
-        /// <summary>
-        /// Maneja el evento CellValueChanged del control dgvProductosModificar.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="DataGridViewCellEventArgs"/> que contiene los datos del evento.</param>
         private void dgvProductosModificar_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
@@ -372,11 +304,6 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Maneja el evento CellBeginEdit del control dgvProductosModificar.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="DataGridViewCellCancelEventArgs"/> que contiene los datos del evento.</param>
         private void dgvProductosModificar_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -385,11 +312,6 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Maneja el evento CurrentCellDirtyStateChanged del control dgvProductosModificar.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void dgvProductosModificar_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
             if (dgvProductosModificar.IsCurrentCellDirty)
