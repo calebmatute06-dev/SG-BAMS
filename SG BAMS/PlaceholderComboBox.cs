@@ -3,19 +3,15 @@ using System.Drawing;
 using System.Windows.Forms;
 
 /// <summary>
-/// Implementa un comportamiento de placeholder para un KryptonComboBox.
+/// Agrega comportamiento de placeholder a un KryptonComboBox.
 /// </summary>
 public class PlaceholderComboBox
 {
     private KryptonComboBox cmb;
     private string placeholder;
     private bool isPlaceholderActive;
+    private bool isLoading = false;
 
-    /// <summary>
-    /// Inicializa una nueva instancia del placeholder para ComboBox.
-    /// </summary>
-    /// <param name="comboBox">Control al que se aplica el placeholder.</param>
-    /// <param name="textoGuia">Texto de ayuda que se muestra cuando está vacío y sin selección.</param>
     public PlaceholderComboBox(KryptonComboBox comboBox, string textoGuia)
     {
         cmb = comboBox;
@@ -40,15 +36,18 @@ public class PlaceholderComboBox
         cmb.SelectedIndexChanged += OnSelectedIndexChanged;
         cmb.TextUpdate += OnTextUpdate;
         cmb.DropDown += OnDropDown;
+        cmb.DataSourceChanged += OnDataSourceChanged;
     }
 
     private void Entrar(object sender, System.EventArgs e)
     {
         if (isPlaceholderActive && cmb.Text == placeholder)
         {
+            isLoading = true;
             cmb.Text = "";
             cmb.StateCommon.ComboBox.Content.Color1 = Color.Black;
             isPlaceholderActive = false;
+            isLoading = false;
         }
     }
 
@@ -56,9 +55,11 @@ public class PlaceholderComboBox
     {
         if (cmb.SelectedIndex == -1 && string.IsNullOrWhiteSpace(cmb.Text))
         {
+            isLoading = true;
             cmb.Text = placeholder;
             cmb.StateCommon.ComboBox.Content.Color1 = Color.Gray;
             isPlaceholderActive = true;
+            isLoading = false;
         }
         else
         {
@@ -69,9 +70,9 @@ public class PlaceholderComboBox
 
     private void OnSelectedIndexChanged(object sender, System.EventArgs e)
     {
+        if (isLoading) return;
         if (cmb.SelectedIndex != -1)
         {
-          
             if (isPlaceholderActive)
             {
                 cmb.StateCommon.ComboBox.Content.Color1 = Color.Black;
@@ -80,18 +81,20 @@ public class PlaceholderComboBox
         }
         else
         {
-            
             if (string.IsNullOrWhiteSpace(cmb.Text))
             {
+                isLoading = true;
                 cmb.Text = placeholder;
                 cmb.StateCommon.ComboBox.Content.Color1 = Color.Gray;
                 isPlaceholderActive = true;
+                isLoading = false;
             }
         }
     }
 
     private void OnTextUpdate(object sender, System.EventArgs e)
     {
+        if (isLoading) return;
         if (isPlaceholderActive && cmb.Text != placeholder)
         {
             isPlaceholderActive = false;
@@ -101,12 +104,28 @@ public class PlaceholderComboBox
 
     private void OnDropDown(object sender, System.EventArgs e)
     {
-      
         if (isPlaceholderActive && cmb.Text == placeholder)
         {
+            isLoading = true;
             cmb.Text = "";
             cmb.StateCommon.ComboBox.Content.Color1 = Color.Black;
             isPlaceholderActive = false;
+            isLoading = false;
+        }
+    }
+
+    private void OnDataSourceChanged(object sender, System.EventArgs e)
+    {
+        if (cmb.DataSource != null && cmb.Items.Count > 0)
+        {
+            if (cmb.SelectedIndex == -1 && string.IsNullOrWhiteSpace(cmb.Text))
+            {
+                isLoading = true;
+                cmb.Text = placeholder;
+                cmb.StateCommon.ComboBox.Content.Color1 = Color.Gray;
+                isPlaceholderActive = true;
+                isLoading = false;
+            }
         }
     }
 

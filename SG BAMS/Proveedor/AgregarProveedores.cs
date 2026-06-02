@@ -56,6 +56,7 @@ namespace SG_BAMS.Proveedor
         {
             proveedor.CargarComboClasificacion(cmbClasificacion);
             cmbClasificacion.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbClasificacion.SelectedIndex = -1;
 
             txtNombre.KeyPress += (s, ev) =>
             {
@@ -68,7 +69,6 @@ namespace SG_BAMS.Proveedor
             txtTelefono.KeyPress += (s, ev) => ClsValidaciones.ValidarSoloNumeros(ev);
             txtRTN.KeyPress += (s, ev) => ClsValidaciones.ValidarSoloNumeros(ev);
 
-            // Inicializar placeholders después de cargar el combo
             phNombre = new PlaceholderTextBox(txtNombre, "Nombre del proveedor");
             phDireccion = new PlaceholderTextBox(txtDireccion, "Colonia, Barrio, Pueblo");
             phTelefono = new PlaceholderTextBox(txtTelefono, "Número que empiece con 9,8,3,2");
@@ -108,19 +108,16 @@ namespace SG_BAMS.Proveedor
         /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            // Obtener valores reales (sin placeholder)
             string nombreReal = phNombre.GetRealValue().Trim();
             string direccionReal = phDireccion.GetRealValue().Trim();
             string telefonoReal = phTelefono.GetRealValue().Trim();
             string rtnReal = phRTN.GetRealValue().Trim();
 
-            // Guardar textos originales
             string originalNombre = txtNombre.Text;
             string originalDireccion = txtDireccion.Text;
             string originalTelefono = txtTelefono.Text;
             string originalRTN = txtRTN.Text;
 
-            // Asignar valores reales temporalmente para que las validaciones funcionen
             txtNombre.Text = nombreReal;
             txtDireccion.Text = direccionReal;
             txtTelefono.Text = telefonoReal;
@@ -128,7 +125,6 @@ namespace SG_BAMS.Proveedor
 
             bool valido = true;
 
-            // Validaciones manuales del nombre
             if (string.IsNullOrWhiteSpace(nombreReal))
             {
                 MessageBox.Show("El nombre del proveedor no puede estar vacío.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -166,20 +162,18 @@ namespace SG_BAMS.Proveedor
                 valido = false;
             }
 
-            // Validaciones usando ClsValidaciones
             if (valido && ClsValidaciones.CampoVacio(txtDireccion, "Dirección"))
                 valido = false;
             else if (valido && !ClsValidaciones.EsTelefonoHondurasValido(txtTelefono))
                 valido = false;
             else if (valido && !ClsValidaciones.EsRTNValido(txtRTN))
                 valido = false;
-            else if (valido && (phClasificacion.IsPlaceholderActive || cmbClasificacion.SelectedValue == null))
+            else if (valido && cmbClasificacion.SelectedValue == null)
             {
                 MessageBox.Show("Debe seleccionar una clasificación.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 valido = false;
             }
 
-            // Validaciones de duplicados
             if (valido && proveedor.ExisteNombreProveedor(nombreReal))
             {
                 MessageBox.Show("El nombre del proveedor ya existe.", "Nombre Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -194,7 +188,6 @@ namespace SG_BAMS.Proveedor
                 valido = false;
             }
 
-            // Restaurar textos originales
             txtNombre.Text = originalNombre;
             txtDireccion.Text = originalDireccion;
             txtTelefono.Text = originalTelefono;

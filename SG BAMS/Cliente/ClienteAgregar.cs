@@ -31,7 +31,6 @@ namespace SG_BAMS
         /// </value>
         public string NombreDelCliente { get; private set; }
 
-        
         private PlaceholderTextBox phNombre;
         private PlaceholderTextBox phApellido;
         private PlaceholderTextBox phTelefono;
@@ -64,49 +63,38 @@ namespace SG_BAMS
         /// <param name="e">Los datos del evento.</param>
         private async void btnAgregar_Click(object sender, EventArgs e)
         {
-           
             string nombreReal = phNombre.GetRealValue().Trim();
             string apellidoReal = phApellido.GetRealValue().Trim();
             string telefonoReal = phTelefono.GetRealValue().Trim();
             string rtnReal = phRTN.GetRealValue().Trim();
 
-           
-            string originalNombre = txtNombre.Text;
-            string originalApellido = txtApellido.Text;
-            string originalTelefono = txtTelefono.Text;
-            string originalRTN = txtRTN.Text;
-
-            
-            txtNombre.Text = nombreReal;
-            txtApellido.Text = apellidoReal;
-            txtTelefono.Text = telefonoReal;
-            txtRTN.Text = rtnReal;
-
-           
             bool valido = true;
 
-            if (!ClsValidaciones.EsNombrePersonalValido(txtNombre, "El Nombre"))
-                valido = false;
-            else if (!ClsValidaciones.EsNombrePersonalValido(txtApellido, "El Apellido"))
-                valido = false;
-            else if (!ClsValidaciones.EsTelefonoHondurasValido(txtTelefono))
-                valido = false;
-            else if (!string.IsNullOrWhiteSpace(rtnReal) && !ClsValidaciones.EsRTNValido(txtRTN))
-                valido = false;
+            using (var tempNombre = new KryptonTextBox())
+            using (var tempApellido = new KryptonTextBox())
+            using (var tempTelefono = new KryptonTextBox())
+            using (var tempRTN = new KryptonTextBox())
+            {
+                tempNombre.Text = nombreReal;
+                tempApellido.Text = apellidoReal;
+                tempTelefono.Text = telefonoReal;
+                tempRTN.Text = rtnReal;
 
-            
-            txtNombre.Text = originalNombre;
-            txtApellido.Text = originalApellido;
-            txtTelefono.Text = originalTelefono;
-            txtRTN.Text = originalRTN;
+                if (!ClsValidaciones.EsNombrePersonalValido(tempNombre, "El Nombre"))
+                    valido = false;
+                else if (!ClsValidaciones.EsNombrePersonalValido(tempApellido, "El Apellido"))
+                    valido = false;
+                else if (!ClsValidaciones.EsTelefonoHondurasValido(tempTelefono))
+                    valido = false;
+                else if (!string.IsNullOrWhiteSpace(rtnReal) && !ClsValidaciones.EsRTNValido(tempRTN))
+                    valido = false;
+            }
 
             if (!valido) return;
 
-            
             if (string.IsNullOrWhiteSpace(rtnReal))
                 rtnReal = "Sin RTN";
 
-           
             try
             {
                 this.Cursor = Cursors.WaitCursor;
@@ -194,7 +182,6 @@ namespace SG_BAMS
 
         private void txtTelefono_TextChanged(object sender, EventArgs e)
         {
-            // Sin implementación por ahora
         }
     }
 }

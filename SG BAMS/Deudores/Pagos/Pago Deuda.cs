@@ -12,7 +12,6 @@ namespace SG_BAMS
         private string nombreRecibido = "";
         private int idDeudaRecibido = 0;
 
-        // Placeholders
         private PlaceholderTextBox phMonto;
         private PlaceholderComboBox phDeudores;
 
@@ -75,7 +74,6 @@ namespace SG_BAMS
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
 
-            // Inicializar placeholders
             phMonto = new PlaceholderTextBox(txtMonto, "Cantidad deseada a pagar");
             phDeudores = new PlaceholderComboBox(cmbDeudores, "Seleccione un nombre");
 
@@ -108,7 +106,7 @@ namespace SG_BAMS
 
         private async void btnAceptar_Click(object sender, EventArgs e)
         {
-            // Validar selección real en ComboBox (no placeholder)
+            // Validar selección real del deudor
             if (phDeudores.IsPlaceholderActive || cmbDeudores.SelectedValue == null)
             {
                 MessageBox.Show("Por favor, seleccione un deudor válido.",
@@ -117,14 +115,21 @@ namespace SG_BAMS
                 return;
             }
 
-            // Obtener valor real del monto (sin placeholder)
+            // Obtener valor real del monto
             string montoReal = phMonto.GetRealValue().Trim();
-            if (string.IsNullOrWhiteSpace(montoReal) ||
-                !decimal.TryParse(montoReal, out decimal montoPago) ||
-                montoPago <= 0)
+            string originalMonto = txtMonto.Text;
+            txtMonto.Text = montoReal;
+
+            bool montoValido = ClsValidaciones.EsNumeroDecimalValido(txtMonto, "El monto", out decimal montoPago);
+
+            txtMonto.Text = originalMonto; // restaurar
+
+            if (!montoValido) return;
+
+            
+            if (montoPago <= 0)
             {
-                MessageBox.Show("Por favor, escriba un monto válido mayor a cero.",
-                                "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("El monto debe ser mayor a cero.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtMonto.Focus();
                 return;
             }

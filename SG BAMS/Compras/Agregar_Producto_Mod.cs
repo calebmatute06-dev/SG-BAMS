@@ -10,32 +10,21 @@ namespace SG_BAMS
     /// </summary>
     public partial class Agregar_Producto_Mod : Form
     {
-        /// <summary>Identificador de la compra actual.</summary>
         public string IdCompraActual { get; set; }
-
-        /// <summary>Identificador seleccionado.</summary>
         public string IdSeleccionado { get; set; }
-        /// <summary>Nombre seleccionado.</summary>
         public string NombreSeleccionado { get; set; }
-        /// <summary>Cantidad seleccionada.</summary>
         public int CantidadSeleccionada { get; set; }
-        /// <summary>Precio seleccionado.</summary>
         public decimal PrecioSeleccionado { get; set; }
 
         private ClsConexion conexion = new ClsConexion();
         private int _idProveedor;
 
-       
         private PlaceholderTextBox phCodigo;
         private PlaceholderTextBox phPrecio;
         private PlaceholderComboBox phProductos;
 
         private DateTime ultimaTeclaEscaner = DateTime.Now;
 
-        /// <summary>
-        /// Constructor que recibe el ID del proveedor.
-        /// </summary>
-        /// <param name="idProv">ID del proveedor.</param>
         public Agregar_Producto_Mod(int idProv)
         {
             InitializeComponent();
@@ -67,7 +56,6 @@ namespace SG_BAMS
             numCantidad.DecimalPlaces = 0;
             numCantidad.ThousandsSeparator = true;
 
-            
             phCodigo = new PlaceholderTextBox(txtCodigo, "Escanee el producto");
             phPrecio = new PlaceholderTextBox(txtPrecio, "Ingrese un precio válido");
             phProductos = new PlaceholderComboBox(cmbProductos, "Seleccione o escriba un producto");
@@ -77,7 +65,6 @@ namespace SG_BAMS
 
         private void kryptonButton3_Click(object sender, EventArgs e)
         {
-            
             if (phProductos.IsPlaceholderActive || cmbProductos.SelectedIndex == -1)
             {
                 MessageBox.Show("Por favor, seleccione un producto válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -92,7 +79,6 @@ namespace SG_BAMS
                 return;
             }
 
-            
             string precioReal = phPrecio.GetRealValue().Trim();
             if (string.IsNullOrWhiteSpace(precioReal) ||
                 !decimal.TryParse(precioReal, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal precioFinal) ||
@@ -151,14 +137,7 @@ namespace SG_BAMS
 
         private void txtPrecio_Leave(object sender, EventArgs e)
         {
-            string precioReal = phPrecio.GetRealValue().Trim();
-            if (!string.IsNullOrWhiteSpace(precioReal))
-            {
-                if (decimal.TryParse(precioReal, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal valor))
-                {
-                    txtPrecio.Text = valor.ToString("N2", CultureInfo.InvariantCulture);
-                }
-            }
+           
         }
 
         private void numCantidad_KeyPress(object sender, KeyPressEventArgs e)

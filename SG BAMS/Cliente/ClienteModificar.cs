@@ -16,11 +16,11 @@ namespace SG_BAMS
         private ClsConexion objCl = new ClsConexion();
         private int idEstadoSelec;
 
-        // Referencias a los placeholders
         private PlaceholderTextBox phNombre;
         private PlaceholderTextBox phApellido;
         private PlaceholderTextBox phTelefono;
         private PlaceholderTextBox phRTN;
+        private PlaceholderComboBox phEstado;
 
         /// <summary>
         /// Constructor para modificar un cliente existente.
@@ -61,52 +61,40 @@ namespace SG_BAMS
 
         private async void BtnModificar_Click(object sender, EventArgs e)
         {
-            
             string nombreReal = phNombre.GetRealValue().Trim();
             string apellidoReal = phApellido.GetRealValue().Trim();
             string telefonoReal = phTelefono.GetRealValue().Trim();
             string rtnReal = phRTN.GetRealValue().Trim();
 
             
-            string originalNombre = txtNombre.Text;
-            string originalApellido = txtApellido.Text;
-            string originalTelefono = txtTelefono.Text;
-            string originalRTN = txtRTN.Text;
-
-            
-            txtNombre.Text = nombreReal;
-            txtApellido.Text = apellidoReal;
-            txtTelefono.Text = telefonoReal;
-            txtRTN.Text = rtnReal;
-
             bool valido = true;
-
-            
-            if (!ClsValidaciones.EsNombrePersonalValido(txtNombre, "Nombre"))
-                valido = false;
-            else if (!ClsValidaciones.EsNombrePersonalValido(txtApellido, "Apellido"))
-                valido = false;
-            else if (!ClsValidaciones.EsTelefonoHondurasValido(txtTelefono))
-                valido = false;
-            else if (!ClsValidaciones.ValidarSeleccion(cmbEstado, "el estado del cliente"))
-                valido = false;
-
-           
-            if (valido && !string.IsNullOrWhiteSpace(rtnReal) && rtnReal.ToUpper() != "SIN RTN")
+            using (var tempNombre = new KryptonTextBox())
+            using (var tempApellido = new KryptonTextBox())
+            using (var tempTelefono = new KryptonTextBox())
+            using (var tempRTN = new KryptonTextBox())
             {
-                if (!ClsValidaciones.EsRTNValido(txtRTN))
+                tempNombre.Text = nombreReal;
+                tempApellido.Text = apellidoReal;
+                tempTelefono.Text = telefonoReal;
+                tempRTN.Text = rtnReal;
+
+                if (!ClsValidaciones.EsNombrePersonalValido(tempNombre, "Nombre"))
+                    valido = false;
+                else if (!ClsValidaciones.EsNombrePersonalValido(tempApellido, "Apellido"))
+                    valido = false;
+                else if (!ClsValidaciones.EsTelefonoHondurasValido(tempTelefono))
+                    valido = false;
+                else if (phEstado.IsPlaceholderActive || cmbEstado.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Seleccione un estado válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    valido = false;
+                }
+                else if (!string.IsNullOrWhiteSpace(rtnReal) && rtnReal.ToUpper() != "SIN RTN" && !ClsValidaciones.EsRTNValido(tempRTN))
                     valido = false;
             }
 
-            
-            txtNombre.Text = originalNombre;
-            txtApellido.Text = originalApellido;
-            txtTelefono.Text = originalTelefono;
-            txtRTN.Text = originalRTN;
-
             if (!valido) return;
 
-            
             if (string.IsNullOrWhiteSpace(rtnReal) || rtnReal.ToUpper() == "SIN RTN")
                 rtnReal = "Sin RTN";
 
@@ -172,11 +160,11 @@ namespace SG_BAMS
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             cmbEstado.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            
             phNombre = new PlaceholderTextBox(txtNombre, "Solo letras y espacios");
             phApellido = new PlaceholderTextBox(txtApellido, "Solo letras y espacios");
             phTelefono = new PlaceholderTextBox(txtTelefono, "Debe comenzar con 2,3,7,8 o 9");
             phRTN = new PlaceholderTextBox(txtRTN, "14 Digitos numericos minimo");
+            phEstado = new PlaceholderComboBox(cmbEstado, "Seleccione un estado");
         }
 
         private void BtnSalir_Click(object sender, EventArgs e) => this.Close();

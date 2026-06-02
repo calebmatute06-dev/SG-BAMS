@@ -1,13 +1,8 @@
 ﻿using Microsoft.Data.SqlClient;
 using SG_BAMS.Cliente;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SG_BAMS
@@ -19,6 +14,8 @@ namespace SG_BAMS
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class ClienteExistente : Form
     {
+        private PlaceholderComboBox phClientes;
+
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="ClienteExistente"/>
         /// y centra el formulario en la pantalla.
@@ -46,6 +43,7 @@ namespace SG_BAMS
 
                 cmbClientes.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 cmbClientes.AutoCompleteSource = AutoCompleteSource.ListItems;
+                cmbClientes.DropDownStyle = ComboBoxStyle.DropDownList;
             }
             catch (Exception ex)
             {
@@ -63,7 +61,9 @@ namespace SG_BAMS
         {
             await LlenarComboCliente();
             cmbClientes.SelectedIndex = -1;
-            this.ActiveControl = null;
+
+            phClientes = new PlaceholderComboBox(cmbClientes, "Seleccione un cliente");
+
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
@@ -78,6 +78,12 @@ namespace SG_BAMS
         /// <param name="e">Los datos del evento.</param>
         private void BtnAsignar_Click(object sender, EventArgs e)
         {
+            if (phClientes.IsPlaceholderActive || cmbClientes.SelectedIndex == -1)
+            {
+                MessageBox.Show("Por favor, seleccione un cliente de la lista.", "Selección Requerida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (!ClsValidaciones.ValidarSeleccion(cmbClientes, "la lista de clientes"))
                 return;
 
