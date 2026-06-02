@@ -17,7 +17,6 @@ public class PlaceholderComboBox
         cmb = comboBox;
         placeholder = textoGuia;
 
-        
         if (string.IsNullOrWhiteSpace(cmb.Text) && cmb.SelectedIndex == -1)
         {
             cmb.Text = placeholder;
@@ -30,7 +29,6 @@ public class PlaceholderComboBox
             isPlaceholderActive = false;
         }
 
-        
         cmb.Enter += Entrar;
         cmb.Leave += Salir;
         cmb.SelectedIndexChanged += OnSelectedIndexChanged;
@@ -127,6 +125,19 @@ public class PlaceholderComboBox
                 isLoading = false;
             }
         }
+    }
+
+    /// <summary>
+    /// Fuerza la activación del placeholder independientemente del estado actual.
+    /// </summary>
+    public void Activar()
+    {
+        isLoading = true;
+        cmb.SelectedIndex = -1;
+        cmb.Text = placeholder;
+        cmb.StateCommon.ComboBox.Content.Color1 = Color.Gray;
+        isPlaceholderActive = true;
+        isLoading = false;
     }
 
     /// <summary>

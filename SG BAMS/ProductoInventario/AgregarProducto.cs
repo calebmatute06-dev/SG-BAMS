@@ -39,14 +39,12 @@ namespace SG_BAMS
         /// </summary>
         private void btnAceptar_Click_1(object sender, EventArgs e)
         {
-            
             string nombreReal = phNombre.GetRealValue().Trim();
             string precioReal = phPrecio.GetRealValue().Trim();
             string codigoReal = phCodigoBarra.GetRealValue().Trim();
 
             bool valido = true;
 
-          
             if (string.IsNullOrWhiteSpace(nombreReal) || nombreReal.Length < 3)
             {
                 MessageBox.Show("El nombre del producto debe tener al menos 3 caracteres.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -61,7 +59,6 @@ namespace SG_BAMS
             }
             else
             {
-               
                 using (var tempNombre = new KryptonTextBox())
                 {
                     tempNombre.Text = nombreReal;
@@ -70,7 +67,6 @@ namespace SG_BAMS
                 }
             }
 
-           
             if (valido)
             {
                 using (var tempPrecio = new KryptonTextBox())
@@ -81,7 +77,6 @@ namespace SG_BAMS
                 }
             }
 
-           
             if (valido)
             {
                 using (var tempCodigo = new KryptonTextBox())
@@ -170,8 +165,6 @@ namespace SG_BAMS
         /// </summary>
         private void AgregarProducto_Load(object sender, EventArgs e)
         {
-            LlenarTodosLosCombos();
-
             phNombre = new PlaceholderTextBox(txtNombre, "Nombre del producto");
             phPrecio = new PlaceholderTextBox(txtPrecio, "Precio del producto");
             phCodigoBarra = new PlaceholderTextBox(txtCodigoBarra, "Ingrese o escanee el código");
@@ -180,6 +173,14 @@ namespace SG_BAMS
             phTipo = new PlaceholderComboBox(cmbTipo, "Seleccione tipo");
             phModelo = new PlaceholderComboBox(cmbModelo, "Seleccione modelo");
             phProveedor = new PlaceholderComboBox(cmbProveedor, "Seleccione proveedor");
+
+            LlenarTodosLosCombos();
+
+            // Forzar placeholder después del bind
+            phMarca.Activar();
+            phTipo.Activar();
+            phModelo.Activar();
+            phProveedor.Activar();
         }
 
         /// <summary>
@@ -255,7 +256,6 @@ namespace SG_BAMS
             }
         }
 
-        
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e) { }
         private void txtCodigoBarra_TextChanged(object sender, EventArgs e) { }
     }

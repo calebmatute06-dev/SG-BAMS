@@ -18,13 +18,12 @@ namespace SG_BAMS
         private PlaceholderTextBox phNombre;
         private PlaceholderTextBox phCorreo;
         private PlaceholderTextBox phContra;
+        private PlaceholderComboBox phRol;
 
         public frmAgregarUsuarios()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
-            _ = CargarComboRoles();
-            cmbRol.DropDownStyle = ComboBoxStyle.DropDownList;
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetrasNumerosSinEspacios(e);
@@ -41,8 +40,10 @@ namespace SG_BAMS
                 cmbRol.DataSource = dt;
                 cmbRol.DisplayMember = "descripcion_rol";
                 cmbRol.ValueMember = "id_rol_usuario";
-                cmbRol.SelectedIndex = -1;
                 cmbRol.SelectedIndexChanged += cmbRol_SelectedIndexChanged;
+
+                
+                phRol.Activar();
             }
             catch (Exception ex)
             {
@@ -52,35 +53,40 @@ namespace SG_BAMS
 
         private void cmbRol_SelectedIndexChanged(object sender, EventArgs e) { }
 
-        private void frmAgregarUsuarios_Load(object sender, EventArgs e)
+        private async void frmAgregarUsuarios_Load(object sender, EventArgs e)
         {
+           
             phNombre = new PlaceholderTextBox(txtNombre, "Nombre de usuario");
             phCorreo = new PlaceholderTextBox(txtCorreo, "Correo electrónico");
             phContra = new PlaceholderTextBox(txtContra, "Contraseña");
+            phRol = new PlaceholderComboBox(cmbRol, "Seleccione un rol");
+
+            
+            cmbRol.DropDownStyle = ComboBoxStyle.DropDown;
+
+            
+            await CargarComboRoles();
         }
 
         private async void btmModificar_Click(object sender, EventArgs e)
         {
-            
             string nombreReal = phNombre.GetRealValue().Trim();
             string correoReal = phCorreo.GetRealValue().Trim();
             string contraReal = phContra.GetRealValue().Trim();
 
-          
             using (var tempNombre = new TextBox { Text = nombreReal })
             {
                 if (!ClsValidaciones.EsNombreUsuarioValido(tempNombre, "Nombre de Usuario"))
                     return;
             }
 
-          
             using (var tempContra = new TextBox { Text = contraReal })
             {
                 if (!ClsValidaciones.EsPasswordValido(tempContra, "Contraseña"))
                     return;
             }
 
-            if (cmbRol.SelectedIndex == -1)
+            if (phRol.IsPlaceholderActive || cmbRol.SelectedIndex == -1)
             {
                 MessageBox.Show("Debe seleccionar un Rol.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
