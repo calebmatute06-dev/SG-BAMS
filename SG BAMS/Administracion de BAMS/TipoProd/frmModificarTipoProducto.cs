@@ -1,12 +1,5 @@
 ﻿using SG_BAMS.Administracion_de_BAMS.TipoProd;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SG_BAMS
@@ -14,13 +7,10 @@ namespace SG_BAMS
     /// <summary>
     /// Representa la interfaz de usuario para la modificación de una categoría o tipo de producto existente.
     /// </summary>
-    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmModificarTipoProducto : Form
     {
-        /// <summary>
-        /// Almacena el identificador único del tipo de producto seleccionado para su edición.
-        /// </summary>
         private int idSeleccionado;
+        private PlaceholderTextBox phDescri;
 
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="frmModificarTipoProducto"/>.
@@ -38,38 +28,36 @@ namespace SG_BAMS
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirAlfanumerico(e);
         }
 
-        /// <summary>
-        /// Prepara el formulario al cargarse, estableciendo el enfoque y la posición del cursor en el campo de texto.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void frmModificarTipoProducto_Load(object sender, EventArgs e)
         {
+            phDescri = new PlaceholderTextBox(txtDescri, "Ingrese el tipo de producto");
             txtDescri.Focus();
             txtDescri.SelectionStart = txtDescri.Text.Length;
         }
 
-        /// <summary>
-        /// Procesa la actualización del tipo de producto de forma asíncrona tras validar los datos.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private async void btnModificar_Click(object sender, EventArgs e)
         {
-            if (!ClsValidaciones.EsAlfanumericoValido(txtDescri, "Tipo de Producto"))
+           
+            string nombreReal = phDescri.GetRealValue().Trim();
+
+           
+            using (var temp = new TextBox { Text = nombreReal })
             {
-                return;
+                if (!ClsValidaciones.EsAlfanumericoValido(temp, "Tipo de Producto"))
+                    return;
             }
 
-            if (!ClsValidaciones.ValidarNombreUnico(
-                    control: txtDescri,
-                    tabla: "Tipo_producto",
-                    columnaNombre: "descripcion_producto",
-                    nombreCampo: "Tipo de Producto",
-                    idExcluir: 0,
-                    idColumna: "id_tipo_producto"))
+           
+            using (var temp = new TextBox { Text = nombreReal })
             {
-                return;
+                if (!ClsValidaciones.ValidarNombreUnico(
+                        control: temp,
+                        tabla: "Tipo_producto",
+                        columnaNombre: "descripcion_producto",
+                        nombreCampo: "Tipo de Producto",
+                        idExcluir: idSeleccionado,
+                        idColumna: "id_tipo_producto"))
+                    return;
             }
 
             try
@@ -78,14 +66,12 @@ namespace SG_BAMS
                 btnModificar.Enabled = false;
 
                 clsTipoProducto objetoTipo = new clsTipoProducto();
-
-                bool exito = await objetoTipo.ModificarTipoProductoAsync(idSeleccionado, txtDescri.Text.Trim());
+                bool exito = await objetoTipo.ModificarTipoProductoAsync(idSeleccionado, nombreReal);
 
                 if (exito)
                 {
                     MessageBox.Show("Tipo de producto actualizado correctamente.", "SG-BAMS",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
@@ -102,11 +88,6 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Cierra el formulario de edición sin aplicar cambios.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();

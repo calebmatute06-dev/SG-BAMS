@@ -1,13 +1,5 @@
 ﻿using SG_BAMS.Administracion_de_BAMS.Estado;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SG_BAMS
@@ -15,18 +7,16 @@ namespace SG_BAMS
     /// <summary>
     /// Representa la ventana para modificar un estado existente en el sistema.
     /// </summary>
-    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmModificarEstado : Form
     {
-        /// <summary>
-        /// El identificador del estado.
-        /// </summary>
-        int idEstado;
+        private int idEstado;
+        private PlaceholderTextBox phDescri;
+
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="frmModificarEstado"/>.
         /// </summary>
-        /// <param name="id">El identificador del registro.</param>
-        /// <param name="descripcionActual">La descripción actual del estado.</param>
+        /// <param name="id">Identificador del estado a modificar.</param>
+        /// <param name="descripcionActual">Descripción actual del estado.</param>
         public frmModificarEstado(int id, string descripcionActual)
         {
             InitializeComponent();
@@ -35,44 +25,42 @@ namespace SG_BAMS
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.idEstado = id;
             txtDescri.Text = descripcionActual;
-
-            this.txtDescri.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescri_KeyPress);
+            this.txtDescri.KeyPress += new KeyPressEventHandler(this.txtDescri_KeyPress);
         }
 
+        private void frmModificarEstado_Load(object sender, EventArgs e)
+        {
+            phDescri = new PlaceholderTextBox(txtDescri, "Ingrese la descripción del estado");
+        }
 
-
-        /// <summary>
-        /// Maneja el evento KeyPress del control txtDescri.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia de <see cref="KeyPressEventArgs"/> que contiene los datos del evento.</param>
         private void txtDescri_KeyPress(object sender, KeyPressEventArgs e)
         {
-
             ClsValidaciones.PermitirSoloLetras(e);
         }
 
-        /// <summary>
-        /// Maneja el evento Click del botón modificar de forma asíncrona.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private async void btnModificar_Click(object sender, EventArgs e)
         {
+            
+            string descripcionReal = phDescri.GetRealValue().Trim();
 
-            if (!ClsValidaciones.EsNombrePersonalValido(txtDescri.TextBox, "Descripción del Estado"))
+            
+            using (var temp = new TextBox { Text = descripcionReal })
             {
-                return;
+                if (!ClsValidaciones.EsNombrePersonalValido(temp, "Descripción del Estado"))
+                    return;
             }
-            if (!ClsValidaciones.ValidarNombreUnico(
-                    control: txtDescri,
-                    tabla: "Estado",
-                    columnaNombre: "descripcion_estado",
-                    nombreCampo: "Tipo de Estado",
-                    idExcluir: 0,
-                    idColumna: "id_estado"))
+
+           
+            using (var temp = new TextBox { Text = descripcionReal })
             {
-                return;
+                if (!ClsValidaciones.ValidarNombreUnico(
+                        control: temp,
+                        tabla: "Estado",
+                        columnaNombre: "descripcion_estado",
+                        nombreCampo: "Tipo de Estado",
+                        idExcluir: idEstado,
+                        idColumna: "id_estado"))
+                    return;
             }
 
             try
@@ -81,9 +69,7 @@ namespace SG_BAMS
                 btnModificar.Enabled = false;
 
                 clsEstado objetoEstado = new clsEstado();
-
-
-                bool exito = await objetoEstado.ModificarEstadoAsync(idEstado, txtDescri.Text.Trim());
+                bool exito = await objetoEstado.ModificarEstadoAsync(idEstado, descripcionReal);
 
                 if (exito)
                 {
@@ -105,17 +91,9 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Maneja el evento Click del botón cancelar o salir.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
-
-
     }
 }

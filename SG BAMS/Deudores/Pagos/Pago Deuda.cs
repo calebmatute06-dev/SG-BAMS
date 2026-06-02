@@ -6,6 +6,9 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// Formulario para registrar pagos de deudas.
+    /// </summary>
     public partial class Pago_Deuda : Form
     {
         private ClsDeudas objetoDeudas = new ClsDeudas();
@@ -15,6 +18,9 @@ namespace SG_BAMS
         private PlaceholderTextBox phMonto;
         private PlaceholderComboBox phDeudores;
 
+        /// <summary>
+        /// Inicializa una nueva instancia del formulario <see cref="Pago_Deuda"/>.
+        /// </summary>
         public Pago_Deuda()
         {
             InitializeComponent();
@@ -23,6 +29,11 @@ namespace SG_BAMS
             ConfigurarFormulario();
         }
 
+        /// <summary>
+        /// Inicializa una nueva instancia del formulario <see cref="Pago_Deuda"/> con datos específicos.
+        /// </summary>
+        /// <param name="nombre">Nombre del deudor.</param>
+        /// <param name="idDeuda">Identificador de la deuda.</param>
         public Pago_Deuda(string nombre, int idDeuda)
         {
             InitializeComponent();
@@ -33,6 +44,9 @@ namespace SG_BAMS
             ConfigurarFormulario();
         }
 
+        /// <summary>
+        /// Registra los eventos del formulario.
+        /// </summary>
         private void RegistrarEventos()
         {
             if (this.txtMonto != null)
@@ -41,6 +55,9 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Configura el ComboBox de deudores cargando los datos.
+        /// </summary>
         private void ConfigurarFormulario()
         {
             DataTable dtDeudores = objetoDeudas.ObtenerDeudoresActivos();
@@ -69,6 +86,11 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Maneja el evento Load del formulario.
+        /// </summary>
+        /// <param name="sender">Origen del evento.</param>
+        /// <param name="e">Datos del evento.</param>
         private void Pago_Deuda_Load(object sender, EventArgs e)
         {
             this.MaximizeBox = false;
@@ -104,9 +126,13 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Maneja el evento Click del botón Aceptar.
+        /// </summary>
+        /// <param name="sender">Origen del evento.</param>
+        /// <param name="e">Datos del evento.</param>
         private async void btnAceptar_Click(object sender, EventArgs e)
         {
-            // Validar selección real del deudor
             if (phDeudores.IsPlaceholderActive || cmbDeudores.SelectedValue == null)
             {
                 MessageBox.Show("Por favor, seleccione un deudor válido.",
@@ -115,18 +141,18 @@ namespace SG_BAMS
                 return;
             }
 
-            // Obtener valor real del monto
             string montoReal = phMonto.GetRealValue().Trim();
-            string originalMonto = txtMonto.Text;
-            txtMonto.Text = montoReal;
 
-            bool montoValido = ClsValidaciones.EsNumeroDecimalValido(txtMonto, "El monto", out decimal montoPago);
-
-            txtMonto.Text = originalMonto; // restaurar
+            bool montoValido;
+            decimal montoPago = 0;
+            using (var tempMonto = new KryptonTextBox())
+            {
+                tempMonto.Text = montoReal;
+                montoValido = ClsValidaciones.EsNumeroDecimalValido(tempMonto, "El monto", out montoPago);
+            }
 
             if (!montoValido) return;
 
-            
             if (montoPago <= 0)
             {
                 MessageBox.Show("El monto debe ser mayor a cero.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -154,9 +180,21 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Maneja el evento Click del botón Cancelar.
+        /// </summary>
+        /// <param name="sender">Origen del evento.</param>
+        /// <param name="e">Datos del evento.</param>
         private void btnCancelar_Click(object sender, EventArgs e) => this.Close();
 
+        /// <summary>
+        /// Maneja el evento KeyPress del campo txtMonto (vacío, pero necesario para evitar eventos no deseados).
+        /// </summary>
         private void txtMonto_KeyPress(object sender, KeyPressEventArgs e) { }
+
+        /// <summary>
+        /// Maneja el evento Click del label2 (sin implementación).
+        /// </summary>
         private void label2_Click(object sender, EventArgs e) { }
     }
 }

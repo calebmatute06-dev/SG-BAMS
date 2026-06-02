@@ -9,35 +9,31 @@ using System.Globalization;
 namespace SG_BAMS.Facturas
 {
     /// <summary>
-    /// 
+    /// Formulario para registrar baterías viejas y calcular descuentos.
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class BateriaVieja : Form
     {
+        private double limiteFactura;
+
+        private PlaceholderTextBox phPrecio;
+        private PlaceholderTextBox phCantidad;
+        private PlaceholderComboBox phBaterias;
+
         /// <summary>
-        /// Gets the total dinero bateria.
+        /// Obtiene el monto total de descuento por baterías.
         /// </summary>
-        /// <value>
-        /// The total dinero bateria.
-        /// </value>
         public double TotalDineroBateria { get; private set; }
+
         /// <summary>
-        /// Gets the total cantidad bateria.
+        /// Obtiene la cantidad total de baterías.
         /// </summary>
-        /// <value>
-        /// The total cantidad bateria.
-        /// </value>
         public string TotalCantidadBateria { get; private set; }
 
         /// <summary>
-        /// The limite factura
+        /// Inicializa una nueva instancia del formulario <see cref="BateriaVieja"/>.
         /// </summary>
-        private double limiteFactura;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BateriaVieja"/> class.
-        /// </summary>
-        /// <param name="montoFactura">The monto factura.</param>
+        /// <param name="montoFactura">Monto total de la factura para validar descuento.</param>
         public BateriaVieja(double montoFactura)
         {
             InitializeComponent();
@@ -47,23 +43,26 @@ namespace SG_BAMS.Facturas
             this.limiteFactura = montoFactura;
         }
 
-        /// <summary>
-        /// Handles the Load event of the BateriaVieja control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BateriaVieja_Load(object sender, EventArgs e)
         {
             ConfigurarGrid();
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+           
             cmbBaterias.Items.Clear();
             cmbBaterias.Items.AddRange(new string[] { "Moto", "Carro", "Camión" });
             cmbBaterias.DropDownStyle = ComboBoxStyle.DropDownList;
 
+            
+            phPrecio = new PlaceholderTextBox(txtPrecio, "Precio de la batería");
+            phCantidad = new PlaceholderTextBox(txtCantidad, "Cantidad");
+            phBaterias = new PlaceholderComboBox(cmbBaterias, "Seleccione tipo");
+
             txtTotal.ReadOnly = true;
             txtCantidadTotal.ReadOnly = true;
 
+            
             dgvBateria.BorderStyle = BorderStyle.None;
             dgvBateria.BackgroundColor = Color.White;
             dgvBateria.RowHeadersVisible = false;
@@ -91,12 +90,8 @@ namespace SG_BAMS.Facturas
             dgvBateria.RowTemplate.Height = 32;
             dgvBateria.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvBateria.ClearSelection();
-
         }
 
-        /// <summary>
-        /// Configurars the grid.
-        /// </summary>
         private void ConfigurarGrid()
         {
             dgvBateria.Columns.Clear();
@@ -107,7 +102,6 @@ namespace SG_BAMS.Facturas
 
             dgvBateria.Columns["nombre"].ReadOnly = true;
             dgvBateria.Columns["subtotal"].ReadOnly = true;
-
 
             dgvBateria.CellValueChanged += dgvBateria_CellValueChanged;
             dgvBateria.CurrentCellDirtyStateChanged += dgvBateria_CurrentCellDirtyStateChanged;
@@ -127,43 +121,58 @@ namespace SG_BAMS.Facturas
             };
         }
 
-        /// <summary>
-        /// Handles the Click event of the Agregar control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void Agregar_Click(object sender, EventArgs e)
         {
-            if (cmbBaterias.SelectedIndex == -1)
+            
+            if (phBaterias.IsPlaceholderActive || cmbBaterias.SelectedIndex == -1)
             {
                 MessageBox.Show("Seleccione un tipo de batería.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cmbBaterias.Focus();
                 return;
             }
 
-            if (ClsValidaciones.CampoVacio(txtPrecio, "Precio") || ClsValidaciones.CampoVacio(txtCantidad, "Cantidad")) return;
+            
+            string precioReal = phPrecio.GetRealValue().Trim();
+            string cantidadReal = phCantidad.GetRealValue().Trim();
 
-            if (!double.TryParse(txtPrecio.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out double precio) || precio <= 0)
+            
+            bool precioValido;
+            double precio = 0;
+            using (var tempPrecio = new KryptonTextBox())
             {
-                MessageBox.Show("Precio inválido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                tempPrecio.Text = precioReal;
+                precioValido = !ClsValidaciones.CampoVacio(tempPrecio, "Precio");
+                if (precioValido && !double.TryParse(tempPrecio.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out precio) || precio <= 0)
+                {
+                    MessageBox.Show("Precio inválido. Debe ser un número mayor a cero.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    precioValido = false;
+                }
             }
 
-            if (!int.TryParse(txtCantidad.Text, out int cant) || cant <= 0)
+            if (!precioValido) return;
+
+            
+            bool cantidadValida;
+            int cantidad = 0;
+            using (var tempCantidad = new KryptonTextBox())
             {
-                MessageBox.Show("Cantidad inválida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                tempCantidad.Text = cantidadReal;
+                cantidadValida = !ClsValidaciones.CampoVacio(tempCantidad, "Cantidad");
+                if (cantidadValida && (!int.TryParse(tempCantidad.Text, out cantidad) || cantidad <= 0))
+                {
+                    MessageBox.Show("Cantidad inválida. Debe ser un número entero mayor a cero.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    cantidadValida = false;
+                }
             }
 
-            double subtotal = Math.Round(precio * cant, 2);
-            dgvBateria.Rows.Add(cmbBaterias.Text, precio.ToString("N2"), cant, subtotal.ToString("N2"));
+            if (!cantidadValida) return;
 
+            double subtotal = Math.Round(precio * cantidad, 2);
+            dgvBateria.Rows.Add(cmbBaterias.Text, precio.ToString("N2"), cantidad, subtotal.ToString("N2"));
             CalcularTotales();
             LimpiarCamposEntrada();
         }
 
-        /// <summary>
-        /// Limpiars the campos entrada.
-        /// </summary>
         private void LimpiarCamposEntrada()
         {
             cmbBaterias.SelectedIndex = -1;
@@ -172,9 +181,6 @@ namespace SG_BAMS.Facturas
             txtPrecio.Focus();
         }
 
-        /// <summary>
-        /// Calculars the totales.
-        /// </summary>
         private void CalcularTotales()
         {
             double totalDinero = 0;
@@ -184,7 +190,6 @@ namespace SG_BAMS.Facturas
             {
                 if (row.Cells["subtotal"].Value != null)
                     totalDinero += Convert.ToDouble(row.Cells["subtotal"].Value);
-
                 if (row.Cells["cantidad"].Value != null)
                     totalProductos += Convert.ToInt32(row.Cells["cantidad"].Value);
             }
@@ -193,11 +198,6 @@ namespace SG_BAMS.Facturas
             txtCantidadTotal.Text = totalProductos.ToString();
         }
 
-        /// <summary>
-        /// Handles the Click event of the BtnAceptar control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnAceptar_Click(object sender, EventArgs e)
         {
             if (dgvBateria.Rows.Count == 0)
@@ -223,11 +223,6 @@ namespace SG_BAMS.Facturas
             this.Close();
         }
 
-        /// <summary>
-        /// Handles the Click event of the BtnEliminar control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
             if (dgvBateria.CurrentRow != null)
@@ -237,31 +232,17 @@ namespace SG_BAMS.Facturas
             }
         }
 
-
-
-        /// <summary>
-        /// Handles the CurrentCellDirtyStateChanged event of the dgvBateria control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void dgvBateria_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
-
             if (dgvBateria.IsCurrentCellDirty)
             {
                 dgvBateria.CommitEdit(DataGridViewDataErrorContexts.Commit);
             }
         }
 
-        /// <summary>
-        /// Handles the CellValueChanged event of the dgvBateria control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
         private void dgvBateria_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
-
 
             if (dgvBateria.Columns[e.ColumnIndex].Name == "precio" || dgvBateria.Columns[e.ColumnIndex].Name == "cantidad")
             {
@@ -270,10 +251,8 @@ namespace SG_BAMS.Facturas
                     var row = dgvBateria.Rows[e.RowIndex];
                     double precio = Convert.ToDouble(row.Cells["precio"].Value ?? 0);
                     int cantidad = Convert.ToInt32(row.Cells["cantidad"].Value ?? 0);
-
                     double subtotal = Math.Round(precio * cantidad, 2);
                     row.Cells["subtotal"].Value = subtotal.ToString("N2");
-
                     CalcularTotales();
                 }
                 catch
@@ -284,31 +263,16 @@ namespace SG_BAMS.Facturas
             }
         }
 
-        /// <summary>
-        /// Handles the KeyPress event of the txtPrecio control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
         private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
         {
             ClsValidaciones.PermitirNumerosYDecimales(sender, e);
         }
 
-        /// <summary>
-        /// Handles the KeyPress event of the txtCantidad control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
         private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
         {
             ClsValidaciones.ValidarSoloNumeros(e);
         }
 
-        /// <summary>
-        /// Handles the Click event of the BtnSalir control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnSalir_Click(object sender, EventArgs e) => this.Close();
     }
 }

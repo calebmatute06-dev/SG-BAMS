@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Krypton.Toolkit;
+using Microsoft.Data.SqlClient;
 using SG_BAMS.Facturas;
 using System;
 using System.Data;
@@ -8,35 +9,10 @@ using System.Windows.Forms;
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    /// Formulario para seleccionar un producto y agregarlo a la factura.
     /// </summary>
-    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class FacturaProducto : Form
     {
-        /// <summary>
-        /// Gets or sets the stock seleccionado.
-        /// </summary>
-        /// <value>
-        /// The stock seleccionado.
-        /// </value>
-        public int StockSeleccionado { get; set; }
-        /// <summary>
-        /// Gets or sets the precio seleccionado.
-        /// </summary>
-        /// <value>
-        /// The precio seleccionado.
-        /// </value>
-        public double PrecioSeleccionado { get; set; }
-        /// <summary>
-        /// Gets or sets the formulario factura.
-        /// </summary>
-        /// <value>
-        /// The formulario factura.
-        /// </value>
-        public FacturaAgregarDatos FormularioFactura { get; set; }
-        /// <summary>
-        /// The ultima tecla escaner
-        /// </summary>
         private DateTime ultimaTeclaEscaner = DateTime.Now;
 
         private PlaceholderTextBox phCodigo;
@@ -44,7 +20,22 @@ namespace SG_BAMS
         private PlaceholderTextBox phCantidad;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FacturaProducto"/> class.
+        /// Obtiene el stock disponible del producto seleccionado.
+        /// </summary>
+        public int StockSeleccionado { get; set; }
+
+        /// <summary>
+        /// Obtiene el precio de venta del producto seleccionado.
+        /// </summary>
+        public double PrecioSeleccionado { get; set; }
+
+        /// <summary>
+        /// Referencia al formulario padre de factura.
+        /// </summary>
+        public FacturaAgregarDatos FormularioFactura { get; set; }
+
+        /// <summary>
+        /// Inicializa una nueva instancia del formulario.
         /// </summary>
         public FacturaProducto()
         {
@@ -52,9 +43,6 @@ namespace SG_BAMS
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
-        /// <summary>
-        /// Llenars the combo productos.
-        /// </summary>
         private async Task LlenarComboProductos()
         {
             ClsAgregarProductos ap = new ClsAgregarProductos();
@@ -78,11 +66,6 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Handles the Load event of the FacturaProducto control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void FacturaProducto_Load(object sender, EventArgs e)
         {
             await LlenarComboProductos();
@@ -98,9 +81,6 @@ namespace SG_BAMS
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
-        /// <summary>
-        /// Actualizars the stock.
-        /// </summary>
         private void ActualizarStock()
         {
             if (cmbProductos.SelectedItem != null && cmbProductos.SelectedItem is DataRowView fila)
@@ -113,25 +93,12 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Handles the SelectedIndexChanged event of the cmbProductos control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void cmbProductos_SelectedIndexChanged(object sender, EventArgs e)
         {
             ActualizarStock();
             txtCantidad.Clear();
         }
 
-        /// <summary>
-        /// Processes a command key.
-        /// </summary>
-        /// <param name="msg">A <see cref="T:System.Windows.Forms.Message" />, passed by reference, that represents the Win32 message to process.</param>
-        /// <param name="keyData">One of the <see cref="T:System.Windows.Forms.Keys" /> values that represents the key to process.</param>
-        /// <returns>
-        ///   <see langword="true" /> if the keystroke was processed and consumed by the control; otherwise, <see langword="false" /> to allow further processing.
-        /// </returns>
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             Keys key = keyData & Keys.KeyCode;
@@ -172,10 +139,6 @@ namespace SG_BAMS
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        /// <summary>
-        /// Buscars the producto por codigo.
-        /// </summary>
-        /// <param name="codigo">The codigo.</param>
         private void BuscarProductoPorCodigo(string codigo)
         {
             bool encontrado = false;
@@ -202,11 +165,6 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Handles the Click event of the BtnAceptar control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnAceptar_Click(object sender, EventArgs e)
         {
             if (phProductos.IsPlaceholderActive || cmbProductos.SelectedIndex == -1)
@@ -217,22 +175,28 @@ namespace SG_BAMS
             }
 
             string cantidadReal = phCantidad.GetRealValue().Trim();
-            string originalCantidad = txtCantidad.Text;
-            txtCantidad.Text = cantidadReal;
 
-            bool valido = true;
-            if (ClsValidaciones.CampoVacio(txtCantidad, "Cantidad"))
-                valido = false;
-            else if (!int.TryParse(txtCantidad.Text, out int cantidad) || cantidad <= 0)
+           
+            bool cantidadValida;
+            int cantidadFinal = 0;
+            using (var tempCantidad = new KryptonTextBox())
             {
-                MessageBox.Show("Ingrese una cantidad válida mayor a 0.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                valido = false;
+                tempCantidad.Text = cantidadReal;
+                if (ClsValidaciones.CampoVacio(tempCantidad, "Cantidad"))
+                    cantidadValida = false;
+                else if (!int.TryParse(tempCantidad.Text, out int cant) || cant <= 0)
+                {
+                    MessageBox.Show("Ingrese una cantidad válida mayor a 0.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    cantidadValida = false;
+                }
+                else
+                {
+                    cantidadFinal = cant;
+                    cantidadValida = true;
+                }
             }
 
-            txtCantidad.Text = originalCantidad;
-            if (!valido) return;
-
-            int cantidadFinal = int.Parse(cantidadReal);
+            if (!cantidadValida) return;
 
             if (!int.TryParse(lblNumero.Text, out int stock) || cantidadFinal > stock)
             {
@@ -261,11 +225,6 @@ namespace SG_BAMS
             this.Close();
         }
 
-        /// <summary>
-        /// Handles the Click event of the btnEscanear control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnEscanear_Click(object sender, EventArgs e)
         {
             txtCodigo.Clear();
@@ -273,11 +232,6 @@ namespace SG_BAMS
             this.Focus();
         }
 
-        /// <summary>
-        /// Handles the Click event of the BtnSalir control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnSalir_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;

@@ -1,12 +1,5 @@
 ﻿using SG_BAMS.Administracion_de_BAMS.MarcaProd;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SG_BAMS
@@ -14,9 +7,10 @@ namespace SG_BAMS
     /// <summary>
     /// Representa la interfaz de usuario para ingresar una nueva marca de producto al sistema.
     /// </summary>
-    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmIngresarMarcaProducto : Form
     {
+        private PlaceholderTextBox phDescri;
+
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="frmIngresarMarcaProducto"/>.
         /// </summary>
@@ -26,49 +20,51 @@ namespace SG_BAMS
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-
-            // Restringe la entrada en tiempo real a caracteres alfanuméricos
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirAlfanumerico(e);
         }
 
-        /// <summary>
-        /// Maneja el evento Click del botón agregar de forma asíncrona.
-        /// Valida la entrada y procede con la inserción en la base de datos.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
+        private void frmIngresarMarcaProducto_Load(object sender, EventArgs e)
+        {
+            phDescri = new PlaceholderTextBox(txtDescri, "Ingrese el nombre de la marca");
+        }
+
         private async void btnAgregar_Click(object sender, EventArgs e)
         {
+            
+            string descripcionReal = phDescri.GetRealValue().Trim();
 
-            if (!ClsValidaciones.EsAlfanumericoValido(txtDescri, "Nombre de la Marca"))
+            
+            using (var temp = new TextBox { Text = descripcionReal })
             {
-                return;
+                if (!ClsValidaciones.EsAlfanumericoValido(temp, "Nombre de la Marca"))
+                    return;
             }
-            if (!ClsValidaciones.ValidarNombreUnico(
-                    control: txtDescri,
-                    tabla: "Marca_producto",
-                    columnaNombre: "nombre_marca",
-                    nombreCampo: "Tipo de Marca Producto",
-                    idExcluir: 0,
-                    idColumna: "id_marca_producto"))
+
+           
+            using (var temp = new TextBox { Text = descripcionReal })
             {
-                return;
+                if (!ClsValidaciones.ValidarNombreUnico(
+                        control: temp,
+                        tabla: "Marca_producto",
+                        columnaNombre: "nombre_marca",
+                        nombreCampo: "Tipo de Marca Producto",
+                        idExcluir: 0,
+                        idColumna: "id_marca_producto"))
+                    return;
             }
+
             try
             {
                 this.Cursor = Cursors.WaitCursor;
                 btnAgregar.Enabled = false;
 
                 clsMarca objetoMarca = new clsMarca();
-
-
-                bool exito = await objetoMarca.InsertarMarcaAsync(txtDescri.Text.Trim());
+                bool exito = await objetoMarca.InsertarMarcaAsync(descripcionReal);
 
                 if (exito)
                 {
                     MessageBox.Show("Marca agregada con éxito.", "SG-BAMS",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
@@ -85,11 +81,6 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Maneja el evento Click del botón salir para cerrar el formulario.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();

@@ -1,52 +1,32 @@
 ﻿using SG_BAMS.Administracion_de_BAMS.FormaPago;
 using SG_BAMS.Login;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SG_BAMS.Proveedor
 {
     /// <summary>
-    /// 
+    /// Formulario para modificar los datos de un proveedor existente.
     /// </summary>
-    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class ModificarProveedor : Form
     {
-        /// <summary>
-        /// El proveedor
-        /// </summary>
-        ClsProveedor proveedor = new ClsProveedor();
+        private ClsProveedor proveedor = new ClsProveedor();
 
-        /// <summary>
-        /// El identificador del estado
-        /// </summary>
         private int _idEstado;
-        /// <summary>
-        /// El identificador de la clasificación
-        /// </summary>
         private int _idClasificacion;
-        /// <summary>
-        /// El nombre original
-        /// </summary>
         private string _nombreOriginal;
 
-        /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="ModificarProveedor" />.
-        /// </summary>
-        /// <param name="idProveedor">El identificador del proveedor.</param>
-        /// <param name="nombre">El nombre.</param>
-        /// <param name="contacto">El contacto.</param>
-        /// <param name="direccion">La dirección.</param>
-        /// <param name="rtn">El RTN.</param>
-        /// <param name="idEstado">El identificador del estado.</param>
-        /// <param name="idClasificacion">El identificador de la clasificación.</param>
+       
+        private PlaceholderTextBox phNombre;
+        private PlaceholderTextBox phTelefono;
+        private PlaceholderTextBox phDireccion;
+        private PlaceholderTextBox phRTN;
+        private PlaceholderComboBox phEstado;
+        private PlaceholderComboBox phClasificacion;
+
         public ModificarProveedor(int idProveedor, string nombre, string contacto,
             string direccion, string rtn, int idEstado, int idClasificacion)
         {
@@ -76,118 +56,102 @@ namespace SG_BAMS.Proveedor
             txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirAlfanumerico(e);
             txtTelefono.KeyPress += (s, e) => ClsValidaciones.ValidarSoloNumeros(e);
             txtRTN.KeyPress += (s, e) => ClsValidaciones.ValidarSoloNumeros(e);
-            txtTelefono.KeyPress += (s, e) =>
-                ClsValidaciones.ValidarTelefonoKeyPress(txtTelefono, e);
-
+            txtTelefono.KeyPress += (s, e) => ClsValidaciones.ValidarTelefonoKeyPress(txtTelefono, e);
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnsalir.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        private void btnCancelar_Click(object sender, EventArgs e) => this.Close();
 
-        /// <summary>
-        /// Maneja el evento Load del control ModificarProveedor.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void ModificarProveedor_Load(object sender, EventArgs e)
         {
             proveedor.CargarComboEstado(cmbEstado);
             proveedor.CargarComboClasificacion(cmbClasificacion);
 
+            
+            cmbEstado.DropDownStyle = ComboBoxStyle.DropDown;
+            cmbClasificacion.DropDownStyle = ComboBoxStyle.DropDown;
             cmbEstado.SelectedValue = _idEstado;
-            cmbEstado.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbClasificacion.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbClasificacion.SelectedValue = _idClasificacion;
 
-
+            
+            phNombre = new PlaceholderTextBox(txtNombre, "Nombre del proveedor");
+            phTelefono = new PlaceholderTextBox(txtTelefono, "Número que empiece con 9,8,3,2");
+            phDireccion = new PlaceholderTextBox(txtDireccion, "Colonia, Barrio, Pueblo");
+            phRTN = new PlaceholderTextBox(txtRTN, "Ingrese el RTN");
+            phEstado = new PlaceholderComboBox(cmbEstado, "Seleccione un estado");
+            phClasificacion = new PlaceholderComboBox(cmbClasificacion, "Seleccione una clasificación");
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnAceptar.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void btnAceptar_Click_1(object sender, EventArgs e)
         {
-            string nombreNuevo = txtNombre.Text.Trim();
-            string rtnNuevo = txtRTN.Text.Trim();
+            
+            string nombreReal = phNombre.GetRealValue().Trim();
+            string telefonoReal = phTelefono.GetRealValue().Trim();
+            string direccionReal = phDireccion.GetRealValue().Trim();
+            string rtnReal = phRTN.GetRealValue().Trim();
             int idProveedor = Convert.ToInt32(txtID.Text);
 
-            if (string.IsNullOrWhiteSpace(nombreNuevo))
+            
+            if (string.IsNullOrWhiteSpace(nombreReal))
             {
                 MessageBox.Show("El nombre del proveedor no puede estar vacío.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtNombre.Focus();
                 return;
             }
-
-            if (!Regex.IsMatch(nombreNuevo, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s&]+$"))
+            if (!Regex.IsMatch(nombreReal, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s&]+$"))
             {
                 MessageBox.Show("El nombre solo puede contener letras y el carácter '&'.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtNombre.Focus();
                 return;
             }
-
-
-            if (nombreNuevo.Contains("  "))
+            if (nombreReal.Contains("  "))
             {
                 MessageBox.Show("El nombre no puede contener espacios dobles.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtNombre.Focus();
                 return;
             }
-
-
-            if (Regex.IsMatch(nombreNuevo, @"(.)\1{2,}", RegexOptions.IgnoreCase))
+            if (Regex.IsMatch(nombreReal, @"(.)\1{2,}", RegexOptions.IgnoreCase))
             {
                 MessageBox.Show("El nombre no puede tener más de dos letras repetidas consecutivamente.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtNombre.Focus();
                 return;
             }
-
-
-            if (Regex.IsMatch(nombreNuevo, @"([a-zA-ZñÑáéíóúÁÉÍÓÚ])\s\1", RegexOptions.IgnoreCase))
+            if (Regex.IsMatch(nombreReal, @"([a-zA-ZñÑáéíóúÁÉÍÓÚ])\s\1", RegexOptions.IgnoreCase))
             {
                 MessageBox.Show("El nombre contiene una secuencia de letras repetidas no válida (ejemplo: 'a a').", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtNombre.Focus();
                 return;
             }
 
+            
+            if (ClsValidaciones.CampoVacio(new TextBox { Text = direccionReal }, "Dirección")) return;
 
-            if (ClsValidaciones.CampoVacio(txtDireccion, "Dirección")) return;
-
-
-            if (txtDireccion.Text.Contains("  "))
+            if (direccionReal.Contains("  "))
             {
                 MessageBox.Show("La dirección no puede contener espacios dobles.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtDireccion.Focus();
                 return;
             }
 
-            if (!ClsValidaciones.EsTelefonoHondurasValido(txtTelefono)) return;
-            if (!ClsValidaciones.EsRTNValido(txtRTN)) return;
+            if (!ClsValidaciones.EsTelefonoHondurasValido(new TextBox { Text = telefonoReal })) return;
+            if (!ClsValidaciones.EsRTNValido(new TextBox { Text = rtnReal })) return;
 
-            if (cmbEstado.SelectedValue == null || cmbClasificacion.SelectedValue == null)
+           
+            if (phEstado.IsPlaceholderActive || cmbEstado.SelectedValue == null ||
+                phClasificacion.IsPlaceholderActive || cmbClasificacion.SelectedValue == null)
             {
                 MessageBox.Show("Asegúrese de seleccionar el Estado y la Clasificación.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-
-            if (nombreNuevo != _nombreOriginal && proveedor.ExisteNombreProveedor(nombreNuevo))
+            
+            if (nombreReal != _nombreOriginal && proveedor.ExisteNombreProveedor(nombreReal))
             {
                 MessageBox.Show("El nuevo nombre ya pertenece a otro proveedor.", "Nombre Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtNombre.Focus();
                 return;
             }
 
-
-            if (proveedor.ExisteRtnProveedorModificar(rtnNuevo, idProveedor))
+            if (proveedor.ExisteRtnProveedorModificar(rtnReal, idProveedor))
             {
                 MessageBox.Show("El RTN ingresado ya pertenece a otro proveedor registrado.", "RTN Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtRTN.Focus();
@@ -202,17 +166,16 @@ namespace SG_BAMS.Proveedor
 
                 proveedor.ModificarProveedor(
                     idProveedor,
-                    nombreNuevo,
-                    txtTelefono.Text.Trim(),
-                    txtDireccion.Text.Trim(),
-                    rtnNuevo,
+                    nombreReal,
+                    telefonoReal,
+                    direccionReal,
+                    rtnReal,
                     idEstado,
                     idClasificacion,
                     idUsuario
                 );
 
                 MessageBox.Show("Proveedor modificado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 ProveedoresAdmin admin = new ProveedoresAdmin();
                 admin.Show();
                 this.Dispose();
@@ -223,83 +186,44 @@ namespace SG_BAMS.Proveedor
             }
         }
 
-        /// <summary>
-        /// Maneja el evento KeyPress del control txtNombre.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="KeyPressEventArgs" /> que contiene los datos del evento.</param>
+        
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != '&')
-            {
                 e.Handled = true;
-            }
         }
 
-        /// <summary>
-        /// Maneja el evento KeyPress del control txtDireccion.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="KeyPressEventArgs" /> que contiene los datos del evento.</param>
         private void txtDireccion_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && !char.IsControl(e.KeyChar))
-            {
                 e.Handled = true;
-            }
         }
 
-        /// <summary>
-        /// Maneja el evento KeyPress del control txtTelefono.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="KeyPressEventArgs" /> que contiene los datos del evento.</param>
         private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (char.IsControl(e.KeyChar)) return;
             if (!char.IsDigit(e.KeyChar)) { e.Handled = true; return; }
-
             if (txtTelefono.SelectionStart == 0)
             {
                 char[] validos = { '2', '3', '8', '9' };
                 if (!validos.Contains(e.KeyChar)) { e.Handled = true; return; }
             }
-
             if (txtTelefono.Text.Length >= 3)
             {
                 int pos = txtTelefono.SelectionStart;
                 string t = txtTelefono.Text;
                 if (pos >= 3 && t[pos - 1] == e.KeyChar && t[pos - 2] == e.KeyChar && t[pos - 3] == e.KeyChar)
-                {
                     e.Handled = true;
-                }
             }
         }
 
-        /// <summary>
-        /// Maneja el evento KeyPress del control txtRTN.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="KeyPressEventArgs" /> que contiene los datos del evento.</param>
         private void txtRTN_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
                 e.Handled = true;
-            }
         }
 
-        /// <summary>
-        /// Maneja el evento SelectedIndexChanged del control cmbEstado.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void cmbEstado_SelectedIndexChanged(object sender, EventArgs e) { }
-        /// <summary>
-        /// Maneja el evento SelectedIndexChanged del control cmbClasificacion.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void cmbClasificacion_SelectedIndexChanged(object sender, EventArgs e) { }
     }
 }

@@ -1,13 +1,8 @@
 ﻿using SG_BAMS.Administracion_de_BAMS.Usuarios;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SG_BAMS
@@ -15,37 +10,18 @@ namespace SG_BAMS
     /// <summary>
     /// Clase que gestiona la interfaz de usuario para la modificación de registros de usuarios existentes.
     /// </summary>
-    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmModificarUsuarios : Form
     {
-        /// <summary>
-        /// El identificador del usuario seleccionado para modificar.
-        /// </summary>
         private int idUsuarioSeleccionado;
-
-        /// <summary>
-        /// El rol inicial del usuario cargado.
-        /// </summary>
         private int rolInicial;
-
-        /// <summary>
-        /// El estado inicial del usuario cargado.
-        /// </summary>
         private int estadoInicial;
-
-        /// <summary>
-        /// El nombre original del usuario antes de cualquier modificación.
-        /// Se usa para renombrar los archivos de rostro si el nombre cambia.
-        /// </summary>
         private string nombreOriginal;
 
-        /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="frmModificarUsuarios" />.
-        /// </summary>
-        /// <param name="id">El identificador del usuario.</param>
-        /// <param name="nombre">El nombre del usuario.</param>
-        /// <param name="rol">El identificador del rol.</param>
-        /// <param name="estado">El identificador del estado.</param>
+       
+        private PlaceholderTextBox phNombre;
+        private PlaceholderTextBox phCorreo;
+        private PlaceholderTextBox phContra;
+
         public frmModificarUsuarios(int id, string nombre, int rol, int estado, string correo)
         {
             InitializeComponent();
@@ -60,7 +36,6 @@ namespace SG_BAMS
             this.nombreOriginal = nombre;
             txtNombre.Text = nombre;
             txtCorreo.Text = correo;
-            
 
             cmbRol.SelectedIndexChanged += (s, e) =>
             {
@@ -72,11 +47,6 @@ namespace SG_BAMS
             };
         }
 
-        /// <summary>
-        /// Maneja el evento Load del control frmModificarUsuarios.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia de <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private async void fmrModificarUsuarios_Load(object sender, EventArgs e)
         {
             await CargarCombos();
@@ -88,12 +58,12 @@ namespace SG_BAMS
             btnImagen.Enabled = (rolInicial == 1 || rolInicial == 2);
             btnImagen.Visible = (rolInicial == 1 || rolInicial == 2);
 
+            
+            phNombre = new PlaceholderTextBox(txtNombre, "Nombre de usuario");
+            phCorreo = new PlaceholderTextBox(txtCorreo, "Correo electrónico");
+            phContra = new PlaceholderTextBox(txtContra, "Nueva contraseña (opcional)");
         }
 
-        /// <summary>
-        /// Carga de forma asíncrona los datos de los ComboBox de roles y estados.
-        /// </summary>
-        /// <returns>Una tarea que representa la operación de carga.</returns>
         private async Task CargarCombos()
         {
             try
@@ -117,17 +87,10 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Renombra los archivos de rostro del usuario cuando su nombre de usuario cambia,
-        /// para que el reconocimiento facial siga funcionando con el nuevo nombre.
-        /// </summary>
-        /// <param name="nombreViejo">Nombre original del usuario.</param>
-        /// <param name="nombreNuevo">Nuevo nombre del usuario.</param>
         private void RenombrarArchivosRostro(string nombreViejo, string nombreNuevo)
         {
             try
             {
-                
                 var archivos = Directory.GetFiles(clsSoporte.DirectorioRostros, "*.jpg")
                     .Where(f =>
                     {
@@ -143,7 +106,6 @@ namespace SG_BAMS
                 foreach (string archivoViejo in archivos)
                 {
                     string nombreArchivo = Path.GetFileName(archivoViejo);
-                    
                     string nombreArchivoNuevo = nombreNuevo +
                         nombreArchivo.Substring(nombreViejo.Length);
                     string rutaNueva = Path.Combine(clsSoporte.DirectorioRostros, nombreArchivoNuevo);
@@ -158,7 +120,6 @@ namespace SG_BAMS
             }
             catch (Exception ex)
             {
-                
                 MessageBox.Show(
                     $"El usuario se actualizó correctamente, pero ocurrió un error " +
                     $"al renombrar los archivos de reconocimiento facial:\n\n{ex.Message}\n\n" +
@@ -169,20 +130,28 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btmModificar realizando las validaciones pertinentes.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia de <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private async void btmModificar_Click_1(object sender, EventArgs e)
         {
            
-            if (!ClsValidaciones.EsNombreUsuarioValido(txtNombre.TextBox, "Nombre de Usuario"))
-                return;
+            string nombreReal = phNombre.GetRealValue().Trim();
+            string correoReal = phCorreo.GetRealValue().Trim();
+            string contraReal = phContra.GetRealValue().Trim();
 
-            if (!string.IsNullOrWhiteSpace(txtContra.Text))
+            
+            using (var tempNombre = new TextBox { Text = nombreReal })
             {
-                if (!ClsValidaciones.EsPasswordValido(txtContra, "Contraseña")) return;
+                if (!ClsValidaciones.EsNombreUsuarioValido(tempNombre, "Nombre de Usuario"))
+                    return;
+            }
+
+            
+            if (!string.IsNullOrWhiteSpace(contraReal))
+            {
+                using (var tempContra = new TextBox { Text = contraReal })
+                {
+                    if (!ClsValidaciones.EsPasswordValido(tempContra, "Contraseña"))
+                        return;
+                }
             }
 
             if (cmbRol.SelectedIndex == -1 || cmbEstado.SelectedIndex == -1)
@@ -198,10 +167,7 @@ namespace SG_BAMS
                 btmModificar.Enabled = false;
 
                 clsUsuario objetoUsuario = new clsUsuario();
-                string nombreNuevo = txtNombre.Text.Trim();
-
-                
-                bool existe = await objetoUsuario.ExisteUsuarioAsync(nombreNuevo, idUsuarioSeleccionado);
+                bool existe = await objetoUsuario.ExisteUsuarioAsync(nombreReal, idUsuarioSeleccionado);
                 if (existe)
                 {
                     MessageBox.Show("El nombre de usuario ya está en uso. Por favor elija otro.",
@@ -216,28 +182,26 @@ namespace SG_BAMS
 
                 bool exito = await objetoUsuario.ModificarUsuarioAsync(
                     idUsuarioSeleccionado,
-                    nombreNuevo,
-                    txtContra.Text,  
+                    nombreReal,
+                    contraReal, 
                     idRol,
                     idEstado,
                     imagenByte,
-                    txtCorreo.Text
+                    correoReal
                 );
 
                 if (exito)
                 {
-                    
                     bool nombreCambio = !string.Equals(
-                        nombreOriginal, nombreNuevo,
+                        nombreOriginal, nombreReal,
                         StringComparison.OrdinalIgnoreCase);
 
                     if (nombreCambio)
-                        RenombrarArchivosRostro(nombreOriginal, nombreNuevo);
+                        RenombrarArchivosRostro(nombreOriginal, nombreReal);
 
                     MessageBox.Show("Usuario actualizado con éxito.", "SG-BAMS",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
@@ -254,24 +218,15 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnSalir.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia de <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnImagen para la gestión de biometría.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia de <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void btnImagen_Click_1(object sender, EventArgs e)
         {
-            frmImagenEmpleado agregarImagen = new frmImagenEmpleado(txtNombre.Text);
+            
+            frmImagenEmpleado agregarImagen = new frmImagenEmpleado(phNombre.GetRealValue().Trim());
             agregarImagen.ShowDialog();
         }
     }

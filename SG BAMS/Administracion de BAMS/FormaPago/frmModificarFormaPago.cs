@@ -1,13 +1,5 @@
 ﻿using SG_BAMS.Administracion_de_BAMS.FormaPago;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SG_BAMS
@@ -15,13 +7,10 @@ namespace SG_BAMS
     /// <summary>
     /// Representa la interfaz de usuario para modificar una forma de pago existente.
     /// </summary>
-    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmModificarFormaPago : Form
     {
-        /// <summary>
-        /// El identificador único de la forma de pago a modificar.
-        /// </summary>
         private int _idFormaPago;
+        private PlaceholderTextBox phDescri;
 
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="frmModificarFormaPago"/>.
@@ -36,43 +25,39 @@ namespace SG_BAMS
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this._idFormaPago = id;
             txtDescri.Text = descripcionActual;
-
-            // Validación en tiempo real para permitir solo letras mientras se escribe
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control pictureBox16.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
-        private void pictureBox16_Click(object sender, EventArgs e)
+        private void frmModificarFormaPago_Load(object sender, EventArgs e)
         {
-            // Espacio para lógica adicional de imagen si es necesario
+            phDescri = new PlaceholderTextBox(txtDescri, "Ingrese la descripción de la forma de pago");
         }
 
-        /// <summary>
-        /// Maneja el evento Click del botón modificar de forma asíncrona.
-        /// Realiza la validación del campo y actualiza el registro en la base de datos.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
+        private void pictureBox16_Click(object sender, EventArgs e) { }
+
         private async void btnModificar_Click(object sender, EventArgs e)
         {
-            if (!ClsValidaciones.EsNombrePersonalValido(txtDescri.TextBox, "Descripción de Forma de Pago"))
+           
+            string descripcionReal = phDescri.GetRealValue().Trim();
+
+            
+            using (var temp = new TextBox { Text = descripcionReal })
             {
-                return;
+                if (!ClsValidaciones.EsNombrePersonalValido(temp, "Descripción de Forma de Pago"))
+                    return;
             }
 
-            if (!ClsValidaciones.ValidarNombreUnico(
-                    control: txtDescri,
-                    tabla: "Tipo_Forma_de_pago",
-                    columnaNombre: "descripcion_forma_pago",
-                    nombreCampo: "Tipo de Forma de Pago",
-                    idExcluir: 0,
-                    idColumna: "id_tipo_forma_pago"))
+            
+            using (var temp = new TextBox { Text = descripcionReal })
             {
-                return;
+                if (!ClsValidaciones.ValidarNombreUnico(
+                        control: temp,
+                        tabla: "Tipo_Forma_de_pago",
+                        columnaNombre: "descripcion_forma_pago",
+                        nombreCampo: "Tipo de Forma de Pago",
+                        idExcluir: _idFormaPago,
+                        idColumna: "id_tipo_forma_pago"))
+                    return;
             }
 
             try
@@ -81,14 +66,12 @@ namespace SG_BAMS
                 btnModificar.Enabled = false;
 
                 clsFormaPago objetoFP = new clsFormaPago();
-
-                bool exito = await objetoFP.ModificarFormaPagoAsync(_idFormaPago, txtDescri.Text.Trim());
+                bool exito = await objetoFP.ModificarFormaPagoAsync(_idFormaPago, descripcionReal);
 
                 if (exito)
                 {
                     MessageBox.Show("Forma de pago actualizada correctamente.", "SG-BAMS",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
@@ -105,11 +88,6 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Maneja el evento Click del botón salir para cerrar el formulario actual.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();

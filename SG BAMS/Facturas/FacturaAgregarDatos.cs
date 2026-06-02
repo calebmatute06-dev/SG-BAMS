@@ -13,20 +13,29 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// Formulario para agregar una nueva factura con sus productos, descuentos y forma de pago.
+    /// </summary>
     public partial class FacturaAgregarDatos : Form
     {
-        int idCliente, cantidades;
+        private int idCliente, cantidades;
         public int idProducto;
-        string nombresProductos, cantidadBateria;
-        double precioBateria;
-        string rtnCliente;
+        private string nombresProductos, cantidadBateria;
+        private double precioBateria;
+        private string rtnCliente;
 
         private static readonly CultureInfo CI = CultureInfo.InvariantCulture;
 
-        // Placeholders
+        
         private PlaceholderComboBox phPago;
         private PlaceholderTextBox phExento;
 
+        /// <summary>
+        /// Constructor que recibe los datos del cliente.
+        /// </summary>
+        /// <param name="cliente">Nombre completo del cliente.</param>
+        /// <param name="idCli">Identificador del cliente.</param>
+        /// <param name="rtn">RTN del cliente (opcional).</param>
         public FacturaAgregarDatos(string cliente, int idCli, string rtn = "Sin RTN")
         {
             InitializeComponent();
@@ -36,6 +45,12 @@ namespace SG_BAMS
             rtnCliente = string.IsNullOrWhiteSpace(rtn) ? "Sin RTN" : rtn;
         }
 
+        /// <summary>
+        /// Establece los datos del producto que será agregado a la factura.
+        /// </summary>
+        /// <param name="idProd">ID del producto.</param>
+        /// <param name="nombreProd">Nombre del producto.</param>
+        /// <param name="cantidadProd">Cantidad seleccionada.</param>
         public void SetProducto(int idProd, string nombreProd, int cantidadProd)
         {
             idProducto = idProd;
@@ -43,6 +58,9 @@ namespace SG_BAMS
             cantidades = cantidadProd;
         }
 
+        /// <summary>
+        /// Constructor por defecto.
+        /// </summary>
         public FacturaAgregarDatos()
         {
             InitializeComponent();
@@ -51,6 +69,9 @@ namespace SG_BAMS
             rtnCliente = "Sin RTN";
         }
 
+        /// <summary>
+        /// Carga las formas de pago en el ComboBox.
+        /// </summary>
         private async Task LlenarComboPago()
         {
             ClsAgregarFactura AF = new ClsAgregarFactura();
@@ -72,7 +93,6 @@ namespace SG_BAMS
         {
             await LlenarComboPago();
 
-            // Inicializar placeholders
             phPago = new PlaceholderComboBox(cmbPago, "Seleccione una forma de pago");
             phExento = new PlaceholderTextBox(txtExento, "0");
 
@@ -238,7 +258,6 @@ namespace SG_BAMS
         {
             if (ClsValidaciones.CampoVacio(txtCliente, "Cliente")) return;
 
-            // Validar forma de pago usando placeholder
             if (phPago.IsPlaceholderActive || cmbPago.SelectedIndex == -1)
             {
                 MessageBox.Show("Seleccione una forma de pago.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -258,7 +277,6 @@ namespace SG_BAMS
                 return;
             }
 
-            // Obtener valor real del monto exento (sin placeholder)
             string montoExentoTexto = phExento.GetRealValue().Trim();
             double montoExento = 0;
             if (!string.IsNullOrWhiteSpace(montoExentoTexto))
@@ -483,7 +501,6 @@ namespace SG_BAMS
             else
             {
                 txtExento.Enabled = true;
-                // Si se habilita, el placeholder se gestionará automáticamente
                 if (string.IsNullOrWhiteSpace(txtExento.Text))
                     txtExento.Text = "";
             }
