@@ -182,7 +182,6 @@
             txtPrecio.StateCommon.Content.Color1 = Color.Gray;
             txtPrecio.StateNormal.Content.Color1 = Color.Navy;
             txtPrecio.TabIndex = 249;
-            txtPrecio.Text = "Precio del producto ingresado";
             txtPrecio.KeyPress += txtPrecio_KeyPress;
             // 
             // txtCodigoBarra
@@ -196,7 +195,6 @@
             txtCodigoBarra.StateCommon.Content.Color1 = Color.Gray;
             txtCodigoBarra.StateNormal.Content.Color1 = Color.Navy;
             txtCodigoBarra.TabIndex = 260;
-            txtCodigoBarra.Text = "Ingrese o Escanee el codigo";
             txtCodigoBarra.TextChanged += txtCodigoBarra_TextChanged;
             txtCodigoBarra.KeyPress += txtCodigoBarra_KeyPress;
             // 
