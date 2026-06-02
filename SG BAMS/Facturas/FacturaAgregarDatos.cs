@@ -325,18 +325,6 @@ namespace SG_BAMS
 
                     if (imprimir == DialogResult.Yes)
                     {
-                        if (chkNormal.Checked)
-                        {
-                            objAF.ImprimirFacturaNormal(
-                                idFactura,
-                                txtCliente.Text,
-                                ParsearMonto(txtTotal.Text).ToString("N2", CI),
-                                cmbPago.Text,
-                                dgvProductos
-                            );
-                        }
-                        else
-                        {
                             objAF.ImprimirFactura(
                                 idFactura,
                                 txtCliente.Text,
@@ -351,7 +339,7 @@ namespace SG_BAMS
                                 montoExento,
                                 rtnCliente
                             );
-                        }
+                        
                     }
 
                     string formaPagoTexto = cmbPago.Text.ToLower();
@@ -510,20 +498,7 @@ namespace SG_BAMS
 
         private void label5_Click(object sender, EventArgs e) { }
 
-        private void chkNormal_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkNormal.Checked)
-            {
-                txtExento.ReadOnly = true;
-                txtExento.Text = "0";
-            }
-            else
-            {
-                txtExento.ReadOnly = false;
-                if (string.IsNullOrWhiteSpace(txtExento.Text))
-                    txtExento.Text = "";
-            }
-        }
+       
 
         private void dgvProductos_CellClick(object sender, DataGridViewCellEventArgs e)
         {

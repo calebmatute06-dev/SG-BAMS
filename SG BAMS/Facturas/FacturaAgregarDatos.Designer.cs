@@ -56,7 +56,6 @@
             chkGobierno = new Krypton.Toolkit.KryptonCheckBox();
             txtExento = new Krypton.Toolkit.KryptonTextBox();
             label10 = new Label();
-            chkNormal = new Krypton.Toolkit.KryptonCheckBox();
             label5 = new Label();
             label11 = new Label();
             label12 = new Label();
@@ -300,7 +299,7 @@
             // 
             dgvProductos.BackgroundColor = Color.SkyBlue;
             dgvProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProductos.Location = new Point(113, 164);
+            dgvProductos.Location = new Point(121, 162);
             dgvProductos.Name = "dgvProductos";
             dgvProductos.RowHeadersWidth = 51;
             dgvProductos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -455,18 +454,6 @@
             label10.TabIndex = 331;
             label10.Text = "Monto Exento:";
             // 
-            // chkNormal
-            // 
-            chkNormal.Location = new Point(466, 368);
-            chkNormal.Name = "chkNormal";
-            chkNormal.Size = new Size(301, 39);
-            chkNormal.StateCommon.LongText.Color1 = Color.Navy;
-            chkNormal.StateNormal.ShortText.Color1 = Color.Navy;
-            chkNormal.StateNormal.ShortText.Font = new Font("Arial Narrow", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            chkNormal.TabIndex = 333;
-            chkNormal.Values.Text = "Factura Normal";
-            chkNormal.CheckedChanged += chkNormal_CheckedChanged;
-            // 
             // label5
             // 
             label5.AutoSize = true;
@@ -525,7 +512,6 @@
             Controls.Add(label12);
             Controls.Add(label11);
             Controls.Add(dgvProductos);
-            Controls.Add(chkNormal);
             Controls.Add(label5);
             Controls.Add(txtExento);
             Controls.Add(label10);
@@ -593,7 +579,6 @@
         private Krypton.Toolkit.KryptonCheckBox chkGobierno;
         private Krypton.Toolkit.KryptonTextBox txtExento;
         private Label label10;
-        private Krypton.Toolkit.KryptonCheckBox chkNormal;
         private Label label5;
         private Label label11;
         private Label label12;
