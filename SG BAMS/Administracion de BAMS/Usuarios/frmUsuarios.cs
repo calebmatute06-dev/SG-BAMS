@@ -108,6 +108,7 @@ namespace SG_BAMS
                 {
                     _ = CargarGridUsuarios();
                 }
+                dgvUsuarios.ClearSelection();
             }
             else
             {
@@ -124,6 +125,7 @@ namespace SG_BAMS
         {
             frmAgregarUsuarios agregarUsuario = new frmAgregarUsuarios();
             agregarUsuario.Show();
+            dgvUsuarios.ClearSelection();
         }
 
         /// <summary>
@@ -149,6 +151,7 @@ namespace SG_BAMS
                 {
                     _ = CargarGridUsuarios();
                 }
+                dgvUsuarios.ClearSelection();
             }
             else
             {

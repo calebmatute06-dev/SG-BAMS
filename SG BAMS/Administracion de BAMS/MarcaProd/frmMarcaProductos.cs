@@ -108,6 +108,7 @@ namespace SG_BAMS
             {
                 _ = CargarGridMarcas();
             }
+            dgvMarcas.ClearSelection();
         }
 
         /// <summary>
@@ -155,6 +156,7 @@ namespace SG_BAMS
         {
             frmIngresarMarcaProducto agregarMproducto = new frmIngresarMarcaProducto();
             agregarMproducto.Show();
+            dgvMarcas.ClearSelection();
         }
 
         /// <summary>
@@ -182,6 +184,7 @@ namespace SG_BAMS
 
                         _ = CargarGridMarcas();
                     }
+                    dgvMarcas.ClearSelection();
                 }
                 catch (Exception ex)
                 {

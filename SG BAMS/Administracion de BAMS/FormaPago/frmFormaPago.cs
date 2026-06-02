@@ -123,6 +123,7 @@ namespace SG_BAMS
                         _ = CargarGridFormasPago();
                     }
                 }
+                dgvFormasPago.ClearSelection();
             }
             else
             {
@@ -139,6 +140,7 @@ namespace SG_BAMS
         {
             frmAgregarFormaPago agregarFpago = new frmAgregarFormaPago();
             agregarFpago.Show();
+            dgvFormasPago.ClearSelection();
         }
 
         /// <summary>
@@ -159,6 +161,7 @@ namespace SG_BAMS
                     {
                         _ = CargarGridFormasPago();
                     }
+                    dgvFormasPago.ClearSelection();
                 }
             }
             else

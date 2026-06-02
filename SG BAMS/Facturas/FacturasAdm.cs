@@ -249,9 +249,10 @@ namespace SG_BAMS
                     dtpInicio.Value = DateTime.Today;
                     dtpFin.Value = DateTime.Today;
                     FiltrarDatos();
-                    dgvFacturas.ClearSelection();
+                   
                 }
             }
+            dgvFacturas.ClearSelection();
         }
 
         /// <summary>
@@ -270,6 +271,7 @@ namespace SG_BAMS
 
             if (dgvFacturas.CurrentRow != null)
                 dgvFacturas_CellDoubleClick(null, null);
+            dgvFacturas.ClearSelection();
         }
 
         /// <summary>
@@ -307,6 +309,7 @@ namespace SG_BAMS
 
                 await CargarFactura();
                 FiltrarDatos();
+                dgvFacturas.ClearSelection();
             }
         }
 

@@ -103,6 +103,7 @@ namespace SG_BAMS
             {
                 _ = CargarGridModelos();
             }
+            dgvModelos.ClearSelection();
         }
 
 
@@ -124,6 +125,7 @@ namespace SG_BAMS
                 {
                     _ = CargarGridModelos();
                 }
+                dgvModelos.ClearSelection();
             }
             else
             {
@@ -140,6 +142,7 @@ namespace SG_BAMS
         private void dgvModelos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             btnModificar_Click(sender, e);
+            dgvModelos.ClearSelection();
         }
 
         /// <summary>

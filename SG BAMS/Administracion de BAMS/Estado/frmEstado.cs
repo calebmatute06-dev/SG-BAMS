@@ -118,6 +118,7 @@ namespace SG_BAMS
                 {
                     _ = CargarGridEstados();
                 }
+                dgvEstados.ClearSelection();
             }
             else
             {
@@ -138,6 +139,7 @@ namespace SG_BAMS
             {
                 _ = CargarGridEstados();
             }
+            dgvEstados.ClearSelection();
         }
 
         /// <summary>
@@ -159,6 +161,7 @@ namespace SG_BAMS
                 {
                     _ = CargarGridEstados();
                 }
+                dgvEstados.ClearSelection();
             }
             else
             {

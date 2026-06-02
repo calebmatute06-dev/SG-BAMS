@@ -213,6 +213,7 @@ namespace SG_BAMS
                     {
                         await TablaClientes();
                     }
+                    dgvClientes.ClearSelection();
                 }
                 catch (Exception ex)
                 {
@@ -236,6 +237,7 @@ namespace SG_BAMS
                 return;
             }
             dgvClientes_CellDoubleClick(null, null);
+            dgvClientes.ClearSelection();
         }
 
         /// <summary>

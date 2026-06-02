@@ -67,6 +67,7 @@ namespace SG_BAMS.Administracion_de_BAMS.Clasificacion
                 {
                     _ = CargarGridClasi();
                 }
+                dgvClasificacion.ClearSelection();
             }
             else
             {
@@ -81,6 +82,7 @@ namespace SG_BAMS.Administracion_de_BAMS.Clasificacion
             {
                 _ = CargarGridClasi();
             }
+            dgvClasificacion.ClearSelection();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -96,6 +98,7 @@ namespace SG_BAMS.Administracion_de_BAMS.Clasificacion
                 {
                     _ = CargarGridClasi();
                 }
+                dgvClasificacion.ClearSelection();
             }
             else
             {

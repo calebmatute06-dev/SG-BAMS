@@ -87,6 +87,7 @@ namespace SG_BAMS
                 {
                     _ = CargarGridTipos();
                 }
+                dgvTipoProducto.ClearSelection();
             }
             else
             {
@@ -103,6 +104,7 @@ namespace SG_BAMS
         {
             frnAgregarTipoProducto agregarTproducto = new frnAgregarTipoProducto();
             agregarTproducto.Show();
+            dgvTipoProducto.ClearSelection();
         }
 
         /// <summary>
@@ -123,6 +125,7 @@ namespace SG_BAMS
                 {
                     _ = CargarGridTipos();
                 }
+                dgvTipoProducto.ClearSelection();
             }
             else
             {

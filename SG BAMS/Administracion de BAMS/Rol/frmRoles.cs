@@ -106,6 +106,7 @@ namespace SG_BAMS
                 {
                     _ = CargarGridRoles();
                 }
+                dgvRoles.ClearSelection();
             }
         }
 
@@ -123,6 +124,7 @@ namespace SG_BAMS
             {
                 _ = CargarGridRoles();
             }
+            dgvRoles.ClearSelection();
         }
 
         /// <summary>
@@ -143,6 +145,7 @@ namespace SG_BAMS
                 {
                     _ = CargarGridRoles();
                 }
+                dgvRoles.ClearSelection();
             }
             else
             {

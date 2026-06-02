@@ -30,7 +30,7 @@ namespace SG_BAMS.Login
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.StartPosition = FormStartPosition.CenterScreen;
-            txtUsu.KeyPress += new KeyPressEventHandler(txtUsu_KeyPress);
+         
             txtCon.KeyPress += new KeyPressEventHandler(txtCon_KeyPress);
             InicializarTimer();
         }
@@ -99,10 +99,7 @@ namespace SG_BAMS.Login
             this.Close();
         }
 
-        private void txtUsu_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            ClsValidaciones.ValidarBusquedaAlfanumerica(e);
-        }
+        
 
         private void txtCon_KeyPress(object sender, KeyPressEventArgs e)
         {
