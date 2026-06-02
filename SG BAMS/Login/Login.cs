@@ -245,13 +245,13 @@ namespace SG_BAMS.Login
             txtCon.Parent.Controls.Add(lblOjo);
             lblOjo.BringToFront();
 
-            // Asegurarse que el label del diseñador empiece oculto
+           
             lblBloqueo.Visible = false;
         }
 
         private void btnOlvidar_Click(object sender, EventArgs e)
         {
-            LoginCorreo LC = new LoginCorreo();
+            LoginCorreo LC = new LoginCorreo(txtUsu.Text.Trim());
             LC.Show();
             this.Hide();
         }

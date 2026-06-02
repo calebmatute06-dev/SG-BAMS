@@ -20,7 +20,7 @@ namespace SG_BAMS
             InitializeComponent();
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            correo = correo;
+            this.correo = correo;
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)

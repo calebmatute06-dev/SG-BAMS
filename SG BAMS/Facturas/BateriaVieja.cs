@@ -105,9 +105,16 @@ namespace SG_BAMS.Facturas
 
             dgvBateria.CellValueChanged += dgvBateria_CellValueChanged;
             dgvBateria.CurrentCellDirtyStateChanged += dgvBateria_CurrentCellDirtyStateChanged;
+          
 
             dgvBateria.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvBateria.AllowUserToAddRows = false;
+
+            dgvBateria.EditingControlShowing += (s, e) => {
+                if (dgvBateria.CurrentCell?.OwningColumn.Name == "cantidad")
+                    e.Control.KeyPress += (obj, ev) => { if (ev.KeyChar == '-' || char.IsLetter(ev.KeyChar)) ev.Handled = true; };
+            };
+
             dgvBateria.CellFormatting += (s, ev) =>
             {
                 if (ev.RowIndex < 0 || ev.Value == null) return;
@@ -119,6 +126,8 @@ namespace SG_BAMS.Facturas
                     ev.FormattingApplied = true;
                 }
             };
+
+           
         }
 
         private void Agregar_Click(object sender, EventArgs e)

@@ -21,8 +21,8 @@ namespace SG_BAMS.Login
             InitializeComponent();
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            correo = correo;
-            token = token;
+            this.correo = correo;
+            this.token = token;
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
