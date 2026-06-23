@@ -306,6 +306,14 @@ namespace SG_BAMS
                 return false;
             }
 
+            if (Regex.IsMatch(pass, @"[^\x20-\x7E]"))
+            {
+                MessageBox.Show($"{nombreCampo} solo puede contener letras, números y caracteres estándar.",
+                    "Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                control.Focus();
+                return false;
+            }
+
             if (Regex.IsMatch(pass, @"(.)\1{2,}"))
             {
                 MessageBox.Show(
@@ -590,14 +598,7 @@ namespace SG_BAMS
         }
         // Agregar dentro de la clase ClsValidaciones
 
-        /// <summary>
-        /// Permite solo letras y números (sin espacios) en el KeyPress.
-        /// </summary>
-        public static void PermitirSoloLetrasNumerosSinEspacios(KeyPressEventArgs e)
-        {
-            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
-                e.Handled = true;
-        }
+        
 
         /// <summary>
         /// Valida que el nombre de usuario no tenga espacios, solo alfanumérico,
@@ -626,17 +627,17 @@ namespace SG_BAMS
                 return false;
             }
 
-            if (textoTrim.Contains(" "))
+            if (Regex.IsMatch(textoTrim, @"\s{2,}"))
             {
-                MessageBox.Show($"El campo '{nombreCampo}' no puede contener espacios.",
+                MessageBox.Show($"El campo '{nombreCampo}' no puede contener dobles espacios.",
                     "Formato inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
             }
 
-            if (!Regex.IsMatch(textoTrim, @"^[a-zA-Z0-9]+$"))
+            if (!Regex.IsMatch(textoTrim, @"^[a-zA-Z0-9\s]+$"))
             {
-                MessageBox.Show($"{nombreCampo} solo puede contener letras y números (sin espacios ni caracteres especiales).",
+                MessageBox.Show($"{nombreCampo} solo puede contener letras, números y espacios simples.",
                     "Formato inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
@@ -710,5 +711,146 @@ namespace SG_BAMS
                 conexion.Cerrar();
             }
         }
+
+
+
+        /// <summary>
+        /// Valida que el texto del control sea un correo electrónico válido:
+        /// formato correcto, sin espacios, dominio real, sin caracteres repetidos excesivos
+        /// y longitud dentro del rango permitido.
+        /// </summary>
+        public static bool ValidacionCorreo(Control control, string nombreCampo = "Correo electrónico")
+        {
+            string texto = control.Text;
+
+            if (string.IsNullOrWhiteSpace(texto))
+            {
+                MessageBox.Show($"El campo '{nombreCampo}' es obligatorio.",
+                    "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                control.Focus();
+                return false;
+            }
+
+            string correo = texto.Trim();
+
+            if (correo.Contains(" "))
+            {
+                MessageBox.Show($"El campo '{nombreCampo}' no puede contener espacios.",
+                    "Formato Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                control.Focus();
+                return false;
+            }
+
+
+            if (!Regex.IsMatch(correo, @"^[a-zA-Z0-9]+([._][a-zA-Z0-9]+)*@[a-zA-Z0-9]+([.\-][a-zA-Z0-9]+)*\.[a-zA-Z]{2,}$"))
+            {
+                MessageBox.Show($"El formato de '{nombreCampo}' no es válido (ej: usuario@dominio.com).",
+                    "Formato Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                control.Focus();
+                return false;
+            }
+
+            if (correo.Count(c => c == '@') != 1)
+            {
+                MessageBox.Show($"'{nombreCampo}' debe contener exactamente un símbolo '@'.",
+                    "Formato Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                control.Focus();
+                return false;
+            }
+
+            string[] partes = correo.Split('@');
+            string usuario = partes[0];
+            string dominio = partes[1];
+
+            if (usuario.Length < 6 || usuario.Length > 30)
+            {
+                MessageBox.Show($"El usuario del '{nombreCampo}' debe tener entre 6 y 30 caracteres.",
+                    "Longitud", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                control.Focus();
+                return false;
+            }
+
+            if (Regex.IsMatch(usuario, @"^[.\-_]|[.\-_]$"))
+            {
+                MessageBox.Show($"El usuario del '{nombreCampo}' no puede iniciar ni terminar con '.', '-' o '_'.",
+                    "Formato Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                control.Focus();
+                return false;
+            }
+
+            if (Regex.IsMatch(dominio, @"^[.\-]|[.\-]$"))
+            {
+                MessageBox.Show($"El dominio del '{nombreCampo}' no puede iniciar ni terminar con '.' o '-'.",
+                    "Formato Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                control.Focus();
+                return false;
+            }
+
+            string extension = dominio.Contains(".")
+                ? dominio.Substring(dominio.LastIndexOf('.') + 1).ToLower()
+                : "";
+
+            if (extension.Length < 2)
+            {
+                MessageBox.Show($"La extensión del dominio en '{nombreCampo}' debe tener al menos 2 letras (ej: .com, .hn).",
+                    "Dominio Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                control.Focus();
+                return false;
+            }
+
+            string[] extensionesValidas =
+            {
+                "com", "net", "org", "edu", "gov", "mil",
+                "io", "co", "app", "ai", "info", "biz",
+                "hn", "mx", "gt", "sv", "ni", "cr", "pa",
+                "ve", "ec", "pe", "cl", "ar", "br",
+                "us", "ca", "es", "fr", "de", "uk", "eu"
+            };
+
+            if (!extensionesValidas.Contains(extension))
+            {
+                DialogResult respuesta = MessageBox.Show(
+                    $"La extensión '.{extension}' no es común.\n\n¿Está seguro que el correo es correcto?",
+                    "Extensión Inusual",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (respuesta == DialogResult.No)
+                {
+                    control.Focus();
+                    return false;
+                }
+            }
+
+            string[] partesDominio = dominio.Split('.');
+            string nombreDominio = partesDominio[partesDominio.Length - 2].ToLower();
+
+            string[] dominiosConocidos =
+            {
+                 "gmail", "yahoo", "outlook", "hotmail", "icloud",
+                "live", "msn", "aol", "protonmail", "zoho"
+             };
+    
+            if (!dominiosConocidos.Contains(nombreDominio))
+            {
+                DialogResult respuesta = MessageBox.Show(
+                    $"El proveedor '{nombreDominio}.{extension}' no es un servicio de correo reconocido.\n\n" +
+                    "¿Está seguro que el correo es correcto?",
+                    "Proveedor Inusual",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (respuesta == DialogResult.No)
+                {
+                    control.Focus();
+                    return false;
+                }
+            }
+
+            
+
+            return true;
+        }
+
     }
 }

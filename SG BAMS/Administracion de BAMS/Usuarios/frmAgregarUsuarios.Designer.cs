@@ -251,6 +251,8 @@
             txtCorreo.StateCommon.Content.Color1 = Color.Gray;
             txtCorreo.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtCorreo.TabIndex = 364;
+           
+            txtCorreo.KeyPress += txtCorreo_KeyPress;
             // 
             // label3
             // 

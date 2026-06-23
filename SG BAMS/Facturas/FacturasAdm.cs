@@ -406,9 +406,18 @@ namespace SG_BAMS
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
-            Login.Login login = new Login.Login();
-            login.Show();
-            this.Close();
+            DialogResult resultado = MessageBox.Show(
+           "¿Está seguro que desea cerrar sesión?",
+           "Confirmación",
+           MessageBoxButtons.YesNo,
+           MessageBoxIcon.Question);
+
+            if (resultado == DialogResult.Yes)
+            {
+                Login.Login login = new Login.Login();
+                login.Show();
+                this.Close();
+            }
         }
 
         private void btnPerfil_Click(object sender, EventArgs e)

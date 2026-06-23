@@ -387,9 +387,18 @@ namespace SG_BAMS
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnCerrar_Click(object sender, EventArgs e)
         {
-            Login.Login login = new Login.Login();
-            login.Show();
-            this.Close();
+            DialogResult resultado = MessageBox.Show(
+           "¿Está seguro que desea cerrar sesión?",
+           "Confirmación",
+           MessageBoxButtons.YesNo,
+           MessageBoxIcon.Question);
+
+            if (resultado == DialogResult.Yes)
+            {
+                Login.Login login = new Login.Login();
+                login.Show();
+                this.Close();
+            }
         }
 
         /// <summary>

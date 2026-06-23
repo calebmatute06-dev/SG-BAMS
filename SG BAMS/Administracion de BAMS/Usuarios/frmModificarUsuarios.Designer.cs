@@ -320,6 +320,8 @@
             txtCorreo.StateCommon.Content.Color1 = Color.Black;
             txtCorreo.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtCorreo.TabIndex = 366;
+            txtCorreo.TextChanged += txtCorreo_TextChanged;
+            txtCorreo.KeyPress += txtCorreo_KeyPress;
             // 
             // frmModificarUsuarios
             // 

@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace SG_BAMS
@@ -26,7 +27,7 @@ namespace SG_BAMS
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetrasNumerosSinEspacios(e);
+
         }
 
         private async Task CargarComboRoles()
@@ -42,7 +43,7 @@ namespace SG_BAMS
                 cmbRol.ValueMember = "id_rol_usuario";
                 cmbRol.SelectedIndexChanged += cmbRol_SelectedIndexChanged;
 
-                
+
                 phRol.Activar();
             }
             catch (Exception ex)
@@ -55,16 +56,16 @@ namespace SG_BAMS
 
         private async void frmAgregarUsuarios_Load(object sender, EventArgs e)
         {
-           
+
             phNombre = new PlaceholderTextBox(txtNombre, "Nombre de usuario");
             phCorreo = new PlaceholderTextBox(txtCorreo, "Correo electrónico");
             phContra = new PlaceholderTextBox(txtContra, "Contraseña");
             phRol = new PlaceholderComboBox(cmbRol, "Seleccione un rol");
 
-            
+
             cmbRol.DropDownStyle = ComboBoxStyle.DropDown;
 
-            
+
             await CargarComboRoles();
         }
 
@@ -79,6 +80,15 @@ namespace SG_BAMS
                 if (!ClsValidaciones.EsNombreUsuarioValido(tempNombre, "Nombre de Usuario"))
                     return;
             }
+
+
+            using (var tempCorreo = new TextBox { Text = correoReal })
+            {
+                if (!ClsValidaciones.ValidacionCorreo(tempCorreo))
+                    return;
+            }
+
+
 
             using (var tempContra = new TextBox { Text = contraReal })
             {
@@ -105,6 +115,15 @@ namespace SG_BAMS
                     MessageBox.Show("El nombre de usuario ya está en uso. Por favor elija otro.",
                         "Usuario duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtNombre.Focus();
+                    return;
+                }
+
+                bool correoExiste = await objetoUsuario.ExisteCorreo(correoReal);
+                if (correoExiste)
+                {
+                    MessageBox.Show("El correo ya está registrado. Por favor use otro.",
+                        "Correo duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtCorreo.Focus();
                     return;
                 }
 
@@ -178,5 +197,15 @@ namespace SG_BAMS
         private void kryptonButton1_Click(object sender, EventArgs e) => this.Close();
 
         private void txtContra_TextChanged(object sender, EventArgs e) { }
+
+        private void txtCorreo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !Regex.IsMatch(e.KeyChar.ToString(), @"^[a-zA-Z0-9@._]$"))
+            {
+                e.Handled = true;
+            }
+        }
+
+       
     }
 }

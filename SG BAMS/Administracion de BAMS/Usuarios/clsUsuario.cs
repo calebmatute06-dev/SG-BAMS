@@ -256,5 +256,55 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
                 Cerrar();
             }
         }
+
+        public async Task<bool> ExisteCorreo(string correo)
+        {
+            try
+            {
+                AbrirConexion();
+
+                string query = "SELECT COUNT(*) FROM v_DetalleUsuarios WHERE Correo = @correo";
+
+                using (SqlCommand cmd = new SqlCommand(query, Conectar))
+                {
+                    cmd.Parameters.AddWithValue("@correo", correo);
+                    int count = (int)await cmd.ExecuteScalarAsync();
+                    return count > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al verificar correo: " + ex.Message);
+            }
+            finally
+            {
+                Cerrar();
+            }
+        }
+
+        public bool CorreoModificar(string correo, int idUsuarioActual = 0)
+        {
+            try
+            {
+                AbrirConexion();
+                string query = "SELECT COUNT(*) FROM v_DetalleUsuarios WHERE Correo = @correo AND id_usuario <> @id";
+
+                using (SqlCommand cmd = new SqlCommand(query, Conectar))
+                {
+                    cmd.Parameters.AddWithValue("@correo", correo);
+                    cmd.Parameters.AddWithValue("@id", idUsuarioActual);
+                    return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al verificar correo: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                Cerrar();
+            }
+        }
     }
 }

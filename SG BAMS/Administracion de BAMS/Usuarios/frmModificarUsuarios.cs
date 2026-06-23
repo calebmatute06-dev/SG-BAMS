@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace SG_BAMS
@@ -17,7 +18,7 @@ namespace SG_BAMS
         private int estadoInicial;
         private string nombreOriginal;
 
-       
+
         private PlaceholderTextBox phNombre;
         private PlaceholderTextBox phCorreo;
         private PlaceholderTextBox phContra;
@@ -28,7 +29,7 @@ namespace SG_BAMS
             this.StartPosition = FormStartPosition.CenterScreen;
             cmbRol.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbEstado.DropDownStyle = ComboBoxStyle.DropDownList;
-            txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetrasNumerosSinEspacios(e);
+
 
             this.idUsuarioSeleccionado = id;
             this.rolInicial = rol;
@@ -58,7 +59,7 @@ namespace SG_BAMS
             btnImagen.Enabled = (rolInicial == 1 || rolInicial == 2);
             btnImagen.Visible = (rolInicial == 1 || rolInicial == 2);
 
-            
+
             phNombre = new PlaceholderTextBox(txtNombre, "Nombre de usuario");
             phCorreo = new PlaceholderTextBox(txtCorreo, "Correo electrónico");
             phContra = new PlaceholderTextBox(txtContra, "Nueva contraseña (opcional)");
@@ -132,19 +133,24 @@ namespace SG_BAMS
 
         private async void btmModificar_Click_1(object sender, EventArgs e)
         {
-           
+
             string nombreReal = phNombre.GetRealValue().Trim();
             string correoReal = phCorreo.GetRealValue().Trim();
             string contraReal = phContra.GetRealValue().Trim();
 
-            
+
             using (var tempNombre = new TextBox { Text = nombreReal })
             {
                 if (!ClsValidaciones.EsNombreUsuarioValido(tempNombre, "Nombre de Usuario"))
                     return;
             }
 
-            
+            using (var tempCorreo = new TextBox { Text = correoReal })
+            {
+                if (!ClsValidaciones.ValidacionCorreo(tempCorreo))
+                    return;
+            }
+
             if (!string.IsNullOrWhiteSpace(contraReal))
             {
                 using (var tempContra = new TextBox { Text = contraReal })
@@ -176,6 +182,16 @@ namespace SG_BAMS
                     return;
                 }
 
+                if (objetoUsuario.CorreoModificar(correoReal, idUsuarioSeleccionado))
+                {
+                    MessageBox.Show("El correo ya está registrado por otro usuario. Por favor use otro.",
+                        "Correo duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtCorreo.Focus();
+                    return;
+                }
+
+
+
                 int idRol = (int)cmbRol.SelectedValue;
                 int idEstado = (int)cmbEstado.SelectedValue;
                 byte[] imagenByte = null;
@@ -183,7 +199,7 @@ namespace SG_BAMS
                 bool exito = await objetoUsuario.ModificarUsuarioAsync(
                     idUsuarioSeleccionado,
                     nombreReal,
-                    contraReal, 
+                    contraReal,
                     idRol,
                     idEstado,
                     imagenByte,
@@ -225,9 +241,22 @@ namespace SG_BAMS
 
         private void btnImagen_Click_1(object sender, EventArgs e)
         {
-            
+
             frmImagenEmpleado agregarImagen = new frmImagenEmpleado(phNombre.GetRealValue().Trim());
             agregarImagen.ShowDialog();
+        }
+
+        private void txtCorreo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !Regex.IsMatch(e.KeyChar.ToString(), @"^[a-zA-Z0-9@._]$"))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtCorreo_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
