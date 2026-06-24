@@ -43,14 +43,28 @@ namespace SG_BAMS
         /// </summary>
         private void ConfigurarGrid()
         {
-            dgvFacturas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvFacturas.MultiSelect = false;
-            dgvFacturas.AllowUserToAddRows = false;
-            dgvFacturas.ReadOnly = true;
-            dgvFacturas.AllowUserToOrderColumns = false;
+            try
+            {
+                dgvFacturas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dgvFacturas.MultiSelect = false;
+                dgvFacturas.AllowUserToAddRows = false;
+                dgvFacturas.ReadOnly = true;
+                dgvFacturas.AllowUserToOrderColumns = false;
 
-            txtBusqueda.KeyPress += (s, e) => ClsValidaciones.ValidarBusquedaAlfanumerica(e);
-            txtBusqueda.TextChanged += txtBusqueda_TextChanged;
+                txtBusqueda.KeyPress += (s, e) => ClsValidaciones.ValidarBusquedaAlfanumerica(e);
+                txtBusqueda.TextChanged += txtBusqueda_TextChanged;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "No se pudo conectar a la base de datos.\n\n" +
+                    $"Detalle: {ex.Message}",
+                    "Error de Conexión",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+            
         }
 
         /// <summary>
@@ -157,6 +171,7 @@ namespace SG_BAMS
                     "Error de Conexión",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
+                return;
             }
         }
 

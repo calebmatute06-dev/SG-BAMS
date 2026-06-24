@@ -42,9 +42,9 @@ namespace SG_BAMS.Facturas
             
             
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return null;
+                throw new Exception("Error en la base de datos: " + ex.Message);
             }
             finally
             {
