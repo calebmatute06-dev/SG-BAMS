@@ -45,7 +45,7 @@ namespace SG_BAMS
         /// <param name="bateriaVij">The bateria vij.</param>
         /// <param name="idPago">The identifier pago.</param>
         /// <param name="reb">The reb.</param>
-        public FacturaVer(int idF, string nomFac, DateTime fec, int bateriaVij, int idPago, double reb)
+        public FacturaVer(int idF, string nomFac, DateTime fec, int bateriaVij, int idPago, double reb, string ven)
         {
             InitializeComponent();
             this.MaximizeBox = false;
@@ -58,8 +58,8 @@ namespace SG_BAMS
             fechaDT.Value = fec;
             lblFactura.Text = "No." + idF.ToString();
             monto_rebaja = reb;
-            
-
+            txtVendedor.Text = ven;
+           
         }
         /// <summary>
         /// Initializes a new instance of the <see cref="FacturaVer"/> class.

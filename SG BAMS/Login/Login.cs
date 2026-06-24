@@ -30,7 +30,7 @@ namespace SG_BAMS.Login
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.StartPosition = FormStartPosition.CenterScreen;
-         
+
             txtCon.KeyPress += new KeyPressEventHandler(txtCon_KeyPress);
             InicializarTimer();
         }
@@ -52,7 +52,7 @@ namespace SG_BAMS.Login
         {
             segundosRestantes = SegundosBloqueo;
 
-            txtUsu.Enabled = false;
+            txtUsuCorr.Enabled = false;
             txtCon.Enabled = false;
             btninicioSesion1.Enabled = false;
 
@@ -82,16 +82,16 @@ namespace SG_BAMS.Login
         /// </summary>
         private void DesactivarBloqueo()
         {
-            txtUsu.Enabled = true;
+            txtUsuCorr.Enabled = true;
             txtCon.Enabled = true;
             btninicioSesion1.Enabled = true;
 
             lblBloqueo.Visible = false;
             intentosFallidos = 0;
 
-            txtUsu.Clear();
+            txtUsuCorr.Clear();
             txtCon.Clear();
-            txtUsu.Focus();
+            txtUsuCorr.Focus();
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -99,7 +99,7 @@ namespace SG_BAMS.Login
             this.Close();
         }
 
-        
+
 
         private void txtCon_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -107,7 +107,7 @@ namespace SG_BAMS.Login
 
         private void btninicioSesion1_Click(object sender, EventArgs e)
         {
-            if (ClsValidaciones.CampoVacio(txtUsu, "Usuario")) return;
+            if (ClsValidaciones.CampoVacio(txtUsuCorr, "Usuario")) return;
             if (ClsValidaciones.CampoVacio(txtCon, "Contraseña")) return;
             if (!ClsValidaciones.EsPasswordValido(txtCon, "La contraseña")) return;
 
@@ -115,7 +115,7 @@ namespace SG_BAMS.Login
 
             try
             {
-                int rol = login.ValidarUsuario(txtUsu.Text, txtCon.Text);
+                int rol = login.ValidarUsuario(txtUsuCorr.Text, txtCon.Text);
                 UsuarioLogueado = login.NombreUsuario;
 
                 switch (rol)
@@ -245,15 +245,20 @@ namespace SG_BAMS.Login
             txtCon.Parent.Controls.Add(lblOjo);
             lblOjo.BringToFront();
 
-           
+
             lblBloqueo.Visible = false;
         }
 
         private void btnOlvidar_Click(object sender, EventArgs e)
         {
-            LoginCorreo LC = new LoginCorreo(txtUsu.Text.Trim());
+            LoginCorreo LC = new LoginCorreo(txtUsuCorr.Text.Trim());
             LC.Show();
             this.Hide();
+        }
+
+        private void Nombre_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

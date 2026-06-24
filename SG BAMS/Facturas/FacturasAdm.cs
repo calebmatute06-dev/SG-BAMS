@@ -90,6 +90,8 @@ namespace SG_BAMS
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void FacturasAdm_Load(object sender, EventArgs e)
         {
+
+
             new PlaceholderTextBox(txtBusqueda, placeholderText);
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -97,54 +99,65 @@ namespace SG_BAMS
             btnFacturas.BackColor = Color.SkyBlue;
             btnFacturas.ForeColor = Color.White;
 
-
-            await CargarFactura();
-
-
-            dtpInicio.Value = DateTime.Today;
-            dtpFin.Value = DateTime.Today;
+            try
+            {
+                await CargarFactura();
 
 
-            ClsValidaciones.ValidarRangoFechas(dtpInicio, dtpFin);
+                dtpInicio.Value = DateTime.Today;
+                dtpFin.Value = DateTime.Today;
 
 
-            dtpInicio.ValueChanged += (s, ev) => ValidarYFiltrar();
-            dtpFin.ValueChanged += (s, ev) => ValidarYFiltrar();
+                ClsValidaciones.ValidarRangoFechas(dtpInicio, dtpFin);
 
 
-            ClsMensajeGuia.ActivarK(txtBusqueda);
+                dtpInicio.ValueChanged += (s, ev) => ValidarYFiltrar();
+                dtpFin.ValueChanged += (s, ev) => ValidarYFiltrar();
 
 
-            dgvFacturas.BorderStyle = BorderStyle.None;
-            dgvFacturas.BackgroundColor = Color.White;
-            dgvFacturas.RowHeadersVisible = false;
-            dgvFacturas.EnableHeadersVisualStyles = false;
-            dgvFacturas.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-
-            dgvFacturas.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
-            dgvFacturas.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
-            dgvFacturas.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
-            dgvFacturas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgvFacturas.ColumnHeadersHeight = 28;
-
-            dgvFacturas.DefaultCellStyle.BackColor = Color.White;
-            dgvFacturas.DefaultCellStyle.ForeColor = Color.Navy;
-            dgvFacturas.DefaultCellStyle.Font = new Font("Segoe UI", 10);
-            dgvFacturas.DefaultCellStyle.Padding = new Padding(3);
-            dgvFacturas.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 245, 255);
-            dgvFacturas.AlternatingRowsDefaultCellStyle.ForeColor = Color.Navy;
-
-            dgvFacturas.DefaultCellStyle.SelectionBackColor = Color.DeepSkyBlue;
-            dgvFacturas.DefaultCellStyle.SelectionForeColor = Color.White;
-
-            dgvFacturas.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgvFacturas.GridColor = Color.LightGray;
-            dgvFacturas.RowTemplate.Height = 32;
-            dgvFacturas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvFacturas.ClearSelection();
+                ClsMensajeGuia.ActivarK(txtBusqueda);
 
 
-            FiltrarDatos();
+                dgvFacturas.BorderStyle = BorderStyle.None;
+                dgvFacturas.BackgroundColor = Color.White;
+                dgvFacturas.RowHeadersVisible = false;
+                dgvFacturas.EnableHeadersVisualStyles = false;
+                dgvFacturas.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+
+                dgvFacturas.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
+                dgvFacturas.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
+                dgvFacturas.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+                dgvFacturas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+                dgvFacturas.ColumnHeadersHeight = 28;
+
+                dgvFacturas.DefaultCellStyle.BackColor = Color.White;
+                dgvFacturas.DefaultCellStyle.ForeColor = Color.Navy;
+                dgvFacturas.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+                dgvFacturas.DefaultCellStyle.Padding = new Padding(3);
+                dgvFacturas.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 245, 255);
+                dgvFacturas.AlternatingRowsDefaultCellStyle.ForeColor = Color.Navy;
+
+                dgvFacturas.DefaultCellStyle.SelectionBackColor = Color.DeepSkyBlue;
+                dgvFacturas.DefaultCellStyle.SelectionForeColor = Color.White;
+
+                dgvFacturas.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+                dgvFacturas.GridColor = Color.LightGray;
+                dgvFacturas.RowTemplate.Height = 32;
+                dgvFacturas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dgvFacturas.ClearSelection();
+
+
+                FiltrarDatos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "No se pudo conectar a la base de datos.\n\n" +
+                    $"Detalle: {ex.Message}",
+                    "Error de Conexión",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
 
         /// <summary>
@@ -289,6 +302,7 @@ namespace SG_BAMS
                 string nombre_Cliente = dgvFacturas.CurrentRow.Cells["Cliente"].Value.ToString();
                 DateTime fecha = Convert.ToDateTime(dgvFacturas.CurrentRow.Cells["Fecha"].Value);
                 int idPago = Convert.ToInt32(dgvFacturas.CurrentRow.Cells["ID Método de Pago"].Value);
+                string Vendedor = dgvFacturas.CurrentRow.Cells["Vendedor"].Value.ToString();
 
                 int bateriaVieja = 0;
                 var valorBateria = dgvFacturas.CurrentRow.Cells["Batería Vieja"].Value?.ToString();
@@ -304,7 +318,7 @@ namespace SG_BAMS
 
                 double rebaja = Convert.ToDouble(valorCelda);
 
-                FacturaVer frmFV = new FacturaVer(idFacturas, nombre_Cliente, fecha, bateriaVieja, idPago, rebaja);
+                FacturaVer frmFV = new FacturaVer(idFacturas, nombre_Cliente, fecha, bateriaVieja, idPago, rebaja, Vendedor);
                 frmFV.ShowDialog();
 
                 await CargarFactura();

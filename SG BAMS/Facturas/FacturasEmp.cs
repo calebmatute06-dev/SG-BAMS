@@ -275,6 +275,7 @@ namespace SG_BAMS
                 string nombre_Cliente = dgvFacturas.CurrentRow.Cells["Cliente"].Value.ToString();
                 DateTime fecha = Convert.ToDateTime(dgvFacturas.CurrentRow.Cells["Fecha"].Value);
                 int idPago = Convert.ToInt32(dgvFacturas.CurrentRow.Cells["ID Método de Pago"].Value);
+                string Vendedor = dgvFacturas.CurrentRow.Cells["Vendedor"].Value.ToString();
 
                 int bateriaVieja = 0;
                 var valorBateria = dgvFacturas.CurrentRow.Cells["Batería Vieja"].Value?.ToString();
@@ -289,7 +290,7 @@ namespace SG_BAMS
                 valorCelda = valorCelda.Replace("L.", "").Trim();
                 double rebaja = Convert.ToDouble(valorCelda);
 
-                FacturaVer frmFV = new FacturaVer(idFacturas, nombre_Cliente, fecha, bateriaVieja, idPago, rebaja);
+                FacturaVer frmFV = new FacturaVer(idFacturas, nombre_Cliente, fecha, bateriaVieja, idPago, rebaja, Vendedor);
                 frmFV.ShowDialog();
 
                 await CargarFactura();

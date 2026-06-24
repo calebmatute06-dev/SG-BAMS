@@ -30,7 +30,7 @@ namespace SG_BAMS.Login
         /// -1 si está inactivo, 0 si las credenciales son incorrectas.
         /// </returns>
         /// <exception cref="System.Exception">Error al validar el usuario.</exception>
-        public int ValidarUsuario(string usuario, string contra)
+        public int ValidarUsuario(string usuario_correo, string contra)
         {
             int rol = 0;
             try
@@ -40,15 +40,16 @@ namespace SG_BAMS.Login
 
                 AbrirConexion();
 
-                
+
                 string query = @"
-                    SELECT ID_Rol_Usuario, ID_Estado, ID_Usuario, NombreUsuario
-                    FROM credenciales_usuario
-                    WHERE Correo = @usuario COLLATE Latin1_General_CS_AS
-                      AND Contraseña = @contra";
+                SELECT ID_Rol_Usuario, ID_Estado, ID_Usuario, NombreUsuario
+                FROM credenciales_usuario
+                WHERE (Correo = @usuario_correo 
+                   OR NombreUsuario = @usuario_correo COLLATE Latin1_General_CS_AS)
+                  AND Contraseña = @contra";
 
                 SqlCommand cmd = new SqlCommand(query, Conectar);
-                cmd.Parameters.AddWithValue("@usuario", usuario);
+                cmd.Parameters.AddWithValue("@usuario_correo", usuario_correo);
                 cmd.Parameters.AddWithValue("@contra", contraHasheada);
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
