@@ -146,7 +146,7 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
             try
             {
 
-                string passwordHasheado = ClsSeguridad.HashSHA256(password);
+                string passwordHasheado = string.IsNullOrWhiteSpace(password)? null: ClsSeguridad.HashSHA256(password);
 
                 AbrirConexion();
 

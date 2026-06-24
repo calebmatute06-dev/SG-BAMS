@@ -133,7 +133,7 @@ namespace SG_BAMS
 
         private async void btmModificar_Click_1(object sender, EventArgs e)
         {
-
+            
             string nombreReal = phNombre.GetRealValue().Trim();
             string correoReal = phCorreo.GetRealValue().Trim();
             string contraReal = phContra.GetRealValue().Trim();
@@ -199,7 +199,7 @@ namespace SG_BAMS
                 bool exito = await objetoUsuario.ModificarUsuarioAsync(
                     idUsuarioSeleccionado,
                     nombreReal,
-                    contraReal,
+                    string.IsNullOrWhiteSpace(contraReal) ? null : contraReal,
                     idRol,
                     idEstado,
                     imagenByte,

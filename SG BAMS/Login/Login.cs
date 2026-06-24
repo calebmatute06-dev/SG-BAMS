@@ -253,7 +253,7 @@ namespace SG_BAMS.Login
         {
             LoginCorreo LC = new LoginCorreo(txtUsuCorr.Text.Trim());
             LC.Show();
-            this.Hide();
+           
         }
 
         private void Nombre_Click(object sender, EventArgs e)

@@ -64,9 +64,7 @@ namespace SG_BAMS.Login
 
         private void btnsalir_Click(object sender, EventArgs e)
         {
-            Login LG = new Login();
-            LG.Show();
-            this.Hide();
+            this.Close();
         }
 
 
