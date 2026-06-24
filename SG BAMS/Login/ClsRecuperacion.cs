@@ -34,12 +34,13 @@ namespace SG_BAMS.Login
 
         public bool ActualizarContrasena(string correo, string nuevaContrasena)
         {
+            string passHash = ClsSeguridad.HashSHA256(nuevaContrasena);
             try
             {
                 conexion.AbrirConexion();
                 string query = "UPDATE credenciales_usuario SET Contraseña = @pass WHERE Correo = @correo";
                 SqlCommand cmd = new SqlCommand(query, conexion.Conectar);
-                cmd.Parameters.AddWithValue("@pass", nuevaContrasena);
+                cmd.Parameters.AddWithValue("@pass", passHash);
                 cmd.Parameters.AddWithValue("@correo", correo);
                 return cmd.ExecuteNonQuery() > 0;
             }
@@ -53,15 +54,15 @@ namespace SG_BAMS.Login
             }
         }
 
-        public bool ContraIgualAntigua(string correo, string passHash)
+        public bool ContraIgualAntigua(string correo, string contraant)
         {
-            string query = "SELECT COUNT(*) FROM vw_ValidarContrasena WHERE correo_usuario = @correo AND contraseña_login = @pass";
+            string passHash = ClsSeguridad.HashSHA256(contraant);
 
-            ClsConexion con = new ClsConexion();
             try
             {
-                con.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand(query, con.Conectar))
+                conexion.AbrirConexion();
+                string query = "SELECT COUNT(*) FROM vw_ValidarContrasena WHERE correo_usuario = @correo AND contraseña_login = @pass";
+                using (SqlCommand cmd = new SqlCommand(query, conexion.Conectar))
                 {
                     cmd.Parameters.AddWithValue("@correo", correo);
                     cmd.Parameters.AddWithValue("@pass", passHash);
@@ -75,7 +76,7 @@ namespace SG_BAMS.Login
             }
             finally
             {
-                con.Cerrar();
+                conexion.Cerrar();
             }
         }
 

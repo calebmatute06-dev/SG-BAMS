@@ -48,10 +48,10 @@ namespace SG_BAMS
                 return;
             }
 
-            string passHash = ClsSeguridad.HashSHA256(pass1);
+            
             ClsRecuperacion rec = new ClsRecuperacion();
 
-            if (rec.ContraIgualAntigua(correo, passHash))
+            if (rec.ContraIgualAntigua(correo, pass1))
             {
                 MessageBox.Show("La nueva contraseña no puede ser igual a la actual.",
                                 "Contraseña repetida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -61,7 +61,7 @@ namespace SG_BAMS
                 return;
             }
 
-            if (rec.ActualizarContrasena(correo, passHash))
+            if (rec.ActualizarContrasena(correo, pass1))
             {
                 MessageBox.Show("Contraseña actualizada correctamente.");
                 Login.Login LG = new Login.Login();

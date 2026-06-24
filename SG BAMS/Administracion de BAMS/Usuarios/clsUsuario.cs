@@ -145,10 +145,8 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
         {
             try
             {
-               
-                string passwordFinal = string.IsNullOrWhiteSpace(password)
-                    ? null
-                    : ClsSeguridad.HashSHA256(password.Trim());
+
+                string passwordHasheado = ClsSeguridad.HashSHA256(password);
 
                 AbrirConexion();
 
@@ -162,7 +160,7 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
 
 
                     SqlParameter paramPass = new SqlParameter("@contraseña_login", SqlDbType.VarChar, 64);
-                    paramPass.Value = (object)passwordFinal ?? DBNull.Value;
+                    paramPass.Value = (object)passwordHasheado ?? DBNull.Value;
                     cmd.Parameters.Add(paramPass);
 
                     cmd.Parameters.AddWithValue("@id_rol_usuario", idRol);
