@@ -9,44 +9,54 @@ using Microsoft.Data.SqlClient;
 namespace SG_BAMS.Reporte
 {
     /// <summary>
-    /// 
+    /// Clase de acceso a datos para reportes del sistema BAMS.
     /// </summary>
     internal class ClsReportesDatos
     {
+        private readonly ClsConexion db = new ClsConexion();
 
         /// <summary>
-        /// La base de datos
+        /// Obtiene el reporte de ventas en un rango de fechas.
         /// </summary>
-        private ClsConexion db = new ClsConexion();
-
-        /// <summary>
-        /// Reporte de ventas.
-        /// </summary>
-        /// <param name="desde">La fecha desde.</param>
-        /// <param name="hasta">La fecha hasta.</param>
-        /// <returns></returns>
+        /// <param name="desde">Fecha inicial del período.</param>
+        /// <param name="hasta">Fecha final del período.</param>
+        /// <returns>DataTable con los resultados de ventas.</returns>
         public DataTable ReporteVentas(DateTime desde, DateTime hasta)
         {
-            string query = $"SELECT * FROM Vista_Reporte_Ventas_Final WHERE Fecha BETWEEN '{desde:yyyy-MM-dd}' AND '{hasta:yyyy-MM-dd}'";
-            return EjecutarConsulta(query);
+            string query = "SELECT * FROM Vista_Reporte_Ventas_Final WHERE Fecha BETWEEN @fechaInicio AND @fechaFin";
+
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@fechaInicio", desde),
+                new SqlParameter("@fechaFin", hasta)
+            };
+
+            return EjecutarConsultaParametrizada(query, parametros);
         }
 
         /// <summary>
-        /// Reporte de compras.
+        /// Obtiene el reporte de compras en un rango de fechas.
         /// </summary>
-        /// <param name="desde">La fecha desde.</param>
-        /// <param name="hasta">La fecha hasta.</param>
-        /// <returns></returns>
+        /// <param name="desde">Fecha inicial del período.</param>
+        /// <param name="hasta">Fecha final del período.</param>
+        /// <returns>DataTable con los resultados de compras.</returns>
         public DataTable ReporteCompras(DateTime desde, DateTime hasta)
         {
-            string query = $"SELECT * FROM Vista_Reporte_Compras_Final WHERE Fecha BETWEEN '{desde:yyyy-MM-dd}' AND '{hasta:yyyy-MM-dd}'";
-            return EjecutarConsulta(query);
+            string query = "SELECT * FROM Vista_Reporte_Compras_Final WHERE Fecha BETWEEN @fechaInicio AND @fechaFin";
+
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@fechaInicio", desde),
+                new SqlParameter("@fechaFin", hasta)
+            };
+
+            return EjecutarConsultaParametrizada(query, parametros);
         }
 
         /// <summary>
-        /// Reporte de deudores.
+        /// Obtiene el reporte de deudores.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>DataTable con los resultados de deudores.</returns>
         public DataTable ReporteDeudores()
         {
             string query = "SELECT * FROM Vista_Reporte_Deudores_Final";
@@ -54,9 +64,9 @@ namespace SG_BAMS.Reporte
         }
 
         /// <summary>
-        /// Reporte de inventario.
+        /// Obtiene el reporte de inventario.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>DataTable con los resultados de inventario.</returns>
         public DataTable ReporteInventario()
         {
             string query = "SELECT * FROM Vista_Reporte_Inventario_Final";
@@ -64,19 +74,56 @@ namespace SG_BAMS.Reporte
         }
 
         /// <summary>
-        /// Ejecuta la consulta.
+        /// Ejecuta una consulta SQL simple sin parámetros.
         /// </summary>
-        /// <param name="query">La consulta.</param>
-        /// <returns></returns>
-        /// <exception cref="System.Exception">Error al consultar la base de datos: " + ex.Message</exception>
+        /// <param name="query">La consulta SQL a ejecutar.</param>
+        /// <returns>DataTable con los resultados de la consulta.</returns>
         private DataTable EjecutarConsulta(string query)
         {
             DataTable dt = new DataTable();
             try
             {
                 db.AbrirConexion();
-                SqlDataAdapter da = new SqlDataAdapter(query, db.Conectar);
-                da.Fill(dt);
+                using (SqlDataAdapter da = new SqlDataAdapter(query, db.Conectar))
+                {
+                    da.Fill(dt);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al consultar la base de datos: " + ex.Message);
+            }
+            finally
+            {
+                db.Cerrar();
+            }
+            return dt;
+        }
+
+        /// <summary>
+        /// Ejecuta una consulta SQL con parámetros para prevenir inyección SQL.
+        /// </summary>
+        /// <param name="query">La consulta SQL con parámetros (@parametro).</param>
+        /// <param name="parametros">Array de parámetros SQL.</param>
+        /// <returns>DataTable con los resultados de la consulta.</returns>
+        private DataTable EjecutarConsultaParametrizada(string query, SqlParameter[] parametros)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                db.AbrirConexion();
+                using (SqlCommand comando = new SqlCommand(query, db.Conectar))
+                {
+                    if (parametros?.Length > 0)
+                    {
+                        comando.Parameters.AddRange(parametros);
+                    }
+
+                    using (SqlDataAdapter da = new SqlDataAdapter(comando))
+                    {
+                        da.Fill(dt);
+                    }
+                }
             }
             catch (Exception ex)
             {
