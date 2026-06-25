@@ -153,9 +153,9 @@ namespace SG_BAMS
 
             if (!montoValido) return;
 
-            if (montoPago <= 0)
+            if (montoPago < 100)
             {
-                MessageBox.Show("El monto debe ser mayor a cero.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("El monto debe ser mayor a cien.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtMonto.Focus();
                 return;
             }

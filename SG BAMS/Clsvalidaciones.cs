@@ -54,13 +54,56 @@ namespace SG_BAMS
         {
             valorResultado = 0;
             string texto = control.Text.Trim();
-            bool esValido = decimal.TryParse(texto,
-                NumberStyles.Number | NumberStyles.AllowThousands | NumberStyles.AllowDecimalPoint,
-                CultureInfo.InvariantCulture, out valorResultado);
 
-            if (!esValido)
-                esValido = decimal.TryParse(texto, NumberStyles.Currency,
-                    CultureInfo.CurrentCulture, out valorResultado);
+            if (string.IsNullOrWhiteSpace(texto))
+            {
+                MessageBox.Show($"El campo '{nombreCampo}' no puede estar vacío.",
+                    "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                control.Focus();
+                return false;
+            }
+
+            CultureInfo ci = CultureInfo.CurrentCulture;
+            string decimalSep = ci.NumberFormat.NumberDecimalSeparator; 
+            string thousandSep = ci.NumberFormat.NumberGroupSeparator;  
+
+            if (!Regex.IsMatch(texto, @"^[\d\.,]+$"))
+            {
+                MessageBox.Show($"{nombreCampo} solo puede contener números, comas y puntos.",
+                    "Formato Incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                control.Focus();
+                return false;
+            }
+
+            int lastComa = texto.LastIndexOf(',');
+            int lastDot = texto.LastIndexOf('.');
+            char decimalChar;
+
+            if (lastComa == -1 && lastDot == -1)
+                decimalChar = decimalSep[0];
+            else if (lastComa > lastDot)
+                decimalChar = ',';
+            else
+                decimalChar = '.';
+
+            int countDecimal = texto.Count(c => c == decimalChar);
+            if (countDecimal > 1)
+            {
+                MessageBox.Show($"{nombreCampo} tiene múltiples separadores decimales.",
+                    "Formato Incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                control.Focus();
+                return false;
+            }
+
+            char thousandChar = (decimalChar == ',') ? '.' : ',';
+            string normalized = texto.Replace(thousandChar.ToString(), "");
+
+            if (decimalChar != decimalSep[0])
+                normalized = normalized.Replace(decimalChar.ToString(), decimalSep);
+
+            bool esValido = decimal.TryParse(normalized,
+                NumberStyles.Number | NumberStyles.AllowDecimalPoint,
+                ci, out valorResultado);
 
             if (!esValido || valorResultado <= 0)
             {
@@ -69,6 +112,7 @@ namespace SG_BAMS
                 control.Focus();
                 return false;
             }
+
             return true;
         }
 
@@ -77,17 +121,8 @@ namespace SG_BAMS
         /// </summary>
         public static void ValidarDecimales(Control control, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar)
-                && e.KeyChar != '.' && e.KeyChar != ',')
-            {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != '.')
                 e.Handled = true;
-            }
-
-            if ((e.KeyChar == '.' || e.KeyChar == ',')
-                && (control.Text.Contains(".") || control.Text.Contains(",")))
-            {
-                e.Handled = true;
-            }
         }
 
         /// <summary>
