@@ -224,7 +224,6 @@ namespace SG_BAMS
         {
             txtCodigo.Clear();
             txtCodigo.Focus();
-            txtCodigo.StateCommon.Back.Color1 = Color.SkyBlue;
         }
 
         private void kryptonLabel1_Click(object sender, EventArgs e) { }

@@ -391,6 +391,18 @@ namespace SG_BAMS
             return true;
         }
 
+        public static void ForzarCodigoBarraKeyPress(KeyPressEventArgs e)
+        {
+            if (char.IsLetter(e.KeyChar))
+            {
+                e.KeyChar = char.ToUpper(e.KeyChar);
+            }
+            else if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
         /// <summary>
         /// Restringe el KeyPress de un campo de teléfono: solo dígitos y primer dígito con prefijo hondureño válido.
         /// </summary>

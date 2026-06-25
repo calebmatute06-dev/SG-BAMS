@@ -83,9 +83,9 @@
             label1.BackColor = Color.White;
             label1.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(592, 99);
+            label1.Location = new Point(677, 132);
             label1.Name = "label1";
-            label1.Size = new Size(126, 20);
+            label1.Size = new Size(160, 24);
             label1.TabIndex = 271;
             label1.Text = "RANGO DE FECHA";
             // 
@@ -95,9 +95,9 @@
             label8.BackColor = Color.Transparent;
             label8.Font = new Font("Arial", 36F, FontStyle.Bold);
             label8.ForeColor = Color.Navy;
-            label8.Location = new Point(401, 28);
+            label8.Location = new Point(458, 37);
             label8.Name = "label8";
-            label8.Size = new Size(387, 56);
+            label8.Size = new Size(481, 70);
             label8.TabIndex = 269;
             label8.Text = "Reportes BAMS";
             // 
@@ -110,10 +110,9 @@
             btnNoti.FlatAppearance.BorderSize = 0;
             btnNoti.FlatStyle = FlatStyle.Flat;
             btnNoti.ForeColor = Color.Navy;
-            btnNoti.Location = new Point(963, 28);
-            btnNoti.Margin = new Padding(3, 2, 3, 2);
+            btnNoti.Location = new Point(1101, 37);
             btnNoti.Name = "btnNoti";
-            btnNoti.Size = new Size(52, 33);
+            btnNoti.Size = new Size(59, 44);
             btnNoti.TabIndex = 259;
             btnNoti.UseVisualStyleBackColor = false;
             btnNoti.Click += btnNoti_Click;
@@ -121,46 +120,41 @@
             // panel8
             // 
             panel8.BackColor = Color.Navy;
-            panel8.Location = new Point(234, 16);
-            panel8.Margin = new Padding(3, 2, 3, 2);
+            panel8.Location = new Point(267, 21);
             panel8.Name = "panel8";
-            panel8.Size = new Size(21, 664);
+            panel8.Size = new Size(24, 885);
             panel8.TabIndex = 256;
             // 
             // panel5
             // 
             panel5.BackColor = Color.Navy;
             panel5.Location = new Point(0, 0);
-            panel5.Margin = new Padding(3, 2, 3, 2);
             panel5.Name = "panel5";
-            panel5.Size = new Size(21, 678);
+            panel5.Size = new Size(24, 904);
             panel5.TabIndex = 255;
             // 
             // panel3
             // 
             panel3.BackColor = Color.Navy;
-            panel3.Location = new Point(4, 662);
-            panel3.Margin = new Padding(3, 2, 3, 2);
+            panel3.Location = new Point(5, 883);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1288, 18);
+            panel3.Size = new Size(1472, 24);
             panel3.TabIndex = 257;
             // 
             // panel4
             // 
             panel4.BackColor = Color.Navy;
-            panel4.Location = new Point(1035, 17);
-            panel4.Margin = new Padding(3, 2, 3, 2);
+            panel4.Location = new Point(1183, 23);
             panel4.Name = "panel4";
-            panel4.Size = new Size(21, 652);
+            panel4.Size = new Size(24, 869);
             panel4.TabIndex = 254;
             // 
             // panel2
             // 
             panel2.BackColor = Color.Navy;
-            panel2.Location = new Point(4, 0);
-            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Location = new Point(5, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1288, 18);
+            panel2.Size = new Size(1472, 24);
             panel2.TabIndex = 253;
             // 
             // label4
@@ -169,9 +163,9 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(499, 122);
+            label4.Location = new Point(570, 163);
             label4.Name = "label4";
-            label4.Size = new Size(48, 20);
+            label4.Size = new Size(56, 22);
             label4.TabIndex = 279;
             label4.Text = "Desde:";
             // 
@@ -181,21 +175,20 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(499, 144);
+            label3.Location = new Point(570, 192);
             label3.Name = "label3";
-            label3.Size = new Size(44, 20);
+            label3.Size = new Size(51, 22);
             label3.TabIndex = 280;
             label3.Text = "Hasta:";
             // 
             // Min
             // 
             Min.Increment = new decimal(new int[] { 1, 0, 0, 0 });
-            Min.Location = new Point(549, 139);
-            Min.Margin = new Padding(3, 2, 3, 2);
+            Min.Location = new Point(627, 185);
             Min.Maximum = new decimal(new int[] { 100, 0, 0, 0 });
             Min.Minimum = new decimal(new int[] { 0, 0, 0, 0 });
             Min.Name = "Min";
-            Min.Size = new Size(91, 26);
+            Min.Size = new Size(104, 30);
             Min.StateCommon.Back.Color1 = Color.White;
             Min.StateCommon.Border.Rounding = 5F;
             Min.StateCommon.Content.Color1 = Color.Navy;
@@ -208,9 +201,9 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(556, 116);
+            label5.Location = new Point(635, 155);
             label5.Name = "label5";
-            label5.Size = new Size(173, 20);
+            label5.Size = new Size(197, 22);
             label5.TabIndex = 283;
             label5.Text = "Seleccione un rango de stock";
             // 
@@ -220,9 +213,9 @@
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(516, 143);
+            label6.Location = new Point(590, 191);
             label6.Name = "label6";
-            label6.Size = new Size(27, 17);
+            label6.Size = new Size(34, 22);
             label6.TabIndex = 284;
             label6.Text = "Min";
             // 
@@ -232,21 +225,20 @@
             label7.BackColor = Color.Transparent;
             label7.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Navy;
-            label7.Location = new Point(644, 143);
+            label7.Location = new Point(736, 191);
             label7.Name = "label7";
-            label7.Size = new Size(31, 17);
+            label7.Size = new Size(38, 22);
             label7.TabIndex = 285;
             label7.Text = "Max";
             // 
             // Max
             // 
             Max.Increment = new decimal(new int[] { 1, 0, 0, 0 });
-            Max.Location = new Point(680, 139);
-            Max.Margin = new Padding(3, 2, 3, 2);
+            Max.Location = new Point(777, 185);
             Max.Maximum = new decimal(new int[] { 100, 0, 0, 0 });
             Max.Minimum = new decimal(new int[] { 0, 0, 0, 0 });
             Max.Name = "Max";
-            Max.Size = new Size(91, 26);
+            Max.Size = new Size(104, 30);
             Max.StateCommon.Back.Color1 = Color.White;
             Max.StateCommon.Border.Rounding = 5F;
             Max.StateCommon.Content.Color1 = Color.Navy;
@@ -260,10 +252,9 @@
             cmbReporte.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbReporte.DropDownWidth = 300;
             cmbReporte.Items.AddRange(new object[] { "Ventas", "Compras", "Deudores", "Inventario" });
-            cmbReporte.Location = new Point(275, 139);
-            cmbReporte.Margin = new Padding(3, 2, 3, 2);
+            cmbReporte.Location = new Point(314, 185);
             cmbReporte.Name = "cmbReporte";
-            cmbReporte.Size = new Size(189, 29);
+            cmbReporte.Size = new Size(216, 33);
             cmbReporte.StateActive.ComboBox.Content.Color1 = Color.Navy;
             cmbReporte.StateActive.ComboBox.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbReporte.StateCommon.ComboBox.Back.Color1 = Color.White;
@@ -281,9 +272,9 @@
             label9.BackColor = Color.White;
             label9.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label9.ForeColor = Color.Navy;
-            label9.Location = new Point(319, 115);
+            label9.Location = new Point(365, 153);
             label9.Name = "label9";
-            label9.Size = new Size(86, 20);
+            label9.Size = new Size(107, 24);
             label9.TabIndex = 339;
             label9.Text = "CATEGORÍA";
             // 
@@ -311,9 +302,9 @@
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             dgvReporte.DefaultCellStyle = dataGridViewCellStyle3;
-            dgvReporte.Location = new Point(273, 175);
-            dgvReporte.Margin = new Padding(3, 2, 3, 2);
+            dgvReporte.Location = new Point(312, 233);
             dgvReporte.Name = "dgvReporte";
+            dgvReporte.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = SystemColors.Control;
             dataGridViewCellStyle4.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -327,20 +318,19 @@
             dataGridViewCellStyle5.ForeColor = Color.Navy;
             dgvReporte.RowsDefaultCellStyle = dataGridViewCellStyle5;
             dgvReporte.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvReporte.Size = new Size(742, 443);
+            dgvReporte.Size = new Size(848, 591);
             dgvReporte.TabIndex = 174;
             dgvReporte.CellFormatting += dgvReporte_CellFormatting_1;
             // 
             // btnExportaar
             // 
-            btnExportaar.Location = new Point(938, 626);
-            btnExportaar.Margin = new Padding(3, 2, 3, 2);
+            btnExportaar.Location = new Point(1072, 835);
             btnExportaar.Name = "btnExportaar";
             btnExportaar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnExportaar.OverrideDefault.Back.Color2 = Color.White;
             btnExportaar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnExportaar.OverrideFocus.Back.Color2 = Color.White;
-            btnExportaar.Size = new Size(77, 31);
+            btnExportaar.Size = new Size(88, 41);
             btnExportaar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnExportaar.StateCommon.Back.Color2 = Color.White;
             btnExportaar.StateCommon.Border.Rounding = 10F;
@@ -357,14 +347,13 @@
             // 
             // btnExportarEx
             // 
-            btnExportarEx.Location = new Point(844, 628);
-            btnExportarEx.Margin = new Padding(3, 2, 3, 2);
+            btnExportarEx.Location = new Point(965, 837);
             btnExportarEx.Name = "btnExportarEx";
             btnExportarEx.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnExportarEx.OverrideDefault.Back.Color2 = Color.White;
             btnExportarEx.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnExportarEx.OverrideFocus.Back.Color2 = Color.White;
-            btnExportarEx.Size = new Size(77, 30);
+            btnExportarEx.Size = new Size(88, 40);
             btnExportarEx.StateCommon.Back.Color1 = Color.SkyBlue;
             btnExportarEx.StateCommon.Back.Color2 = Color.White;
             btnExportarEx.StateCommon.Border.Rounding = 10F;
@@ -384,9 +373,9 @@
             label2.AutoSize = true;
             label2.Font = new Font("Arial", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(69, 39);
+            label2.Location = new Point(79, 52);
             label2.Name = "label2";
-            label2.Size = new Size(117, 41);
+            label2.Size = new Size(151, 51);
             label2.TabIndex = 368;
             label2.Text = "BAMS";
             // 
@@ -399,15 +388,16 @@
             btnReportes.HoverBackColor = Color.SkyBlue;
             btnReportes.HoverForeColor = Color.White;
             btnReportes.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-            btnReportes.Location = new Point(12, 457);
-            btnReportes.MinimumSize = new Size(144, 47);
+            btnReportes.Location = new Point(14, 609);
+            btnReportes.Margin = new Padding(3, 4, 3, 4);
+            btnReportes.MinimumSize = new Size(165, 63);
             btnReportes.Name = "btnReportes";
             btnReportes.NormalBackColor = Color.SkyBlue;
             btnReportes.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
             btnReportes.PressedBackColor = Color.Navy;
             btnReportes.PressedForeColor = Color.White;
             btnReportes.Radius = 20;
-            btnReportes.Size = new Size(215, 47);
+            btnReportes.Size = new Size(246, 63);
             btnReportes.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             btnReportes.TabIndex = 369;
             btnReportes.Text = "Reportes";
@@ -421,15 +411,16 @@
             btnPerfil.HoverBackColor = Color.Navy;
             btnPerfil.HoverForeColor = Color.White;
             btnPerfil.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-            btnPerfil.Location = new Point(12, 609);
-            btnPerfil.MinimumSize = new Size(144, 47);
+            btnPerfil.Location = new Point(14, 812);
+            btnPerfil.Margin = new Padding(3, 4, 3, 4);
+            btnPerfil.MinimumSize = new Size(165, 63);
             btnPerfil.Name = "btnPerfil";
             btnPerfil.NormalBackColor = Color.Navy;
             btnPerfil.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
             btnPerfil.PressedBackColor = Color.Navy;
             btnPerfil.PressedForeColor = Color.White;
             btnPerfil.Radius = 20;
-            btnPerfil.Size = new Size(215, 47);
+            btnPerfil.Size = new Size(246, 63);
             btnPerfil.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             btnPerfil.TabIndex = 378;
             btnPerfil.Text = "Perfil";
@@ -444,15 +435,16 @@
             btnCerrar.HoverBackColor = Color.Navy;
             btnCerrar.HoverForeColor = Color.White;
             btnCerrar.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-            btnCerrar.Location = new Point(12, 559);
-            btnCerrar.MinimumSize = new Size(144, 47);
+            btnCerrar.Location = new Point(14, 745);
+            btnCerrar.Margin = new Padding(3, 4, 3, 4);
+            btnCerrar.MinimumSize = new Size(165, 63);
             btnCerrar.Name = "btnCerrar";
             btnCerrar.NormalBackColor = Color.Navy;
             btnCerrar.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
             btnCerrar.PressedBackColor = Color.Navy;
             btnCerrar.PressedForeColor = Color.White;
             btnCerrar.Radius = 20;
-            btnCerrar.Size = new Size(215, 47);
+            btnCerrar.Size = new Size(246, 63);
             btnCerrar.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             btnCerrar.TabIndex = 377;
             btnCerrar.Text = "Cerrar Sesión";
@@ -467,15 +459,16 @@
             btnBitacora.HoverBackColor = Color.Navy;
             btnBitacora.HoverForeColor = Color.White;
             btnBitacora.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-            btnBitacora.Location = new Point(12, 508);
-            btnBitacora.MinimumSize = new Size(144, 47);
+            btnBitacora.Location = new Point(14, 677);
+            btnBitacora.Margin = new Padding(3, 4, 3, 4);
+            btnBitacora.MinimumSize = new Size(165, 63);
             btnBitacora.Name = "btnBitacora";
             btnBitacora.NormalBackColor = Color.Navy;
             btnBitacora.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
             btnBitacora.PressedBackColor = Color.Navy;
             btnBitacora.PressedForeColor = Color.White;
             btnBitacora.Radius = 20;
-            btnBitacora.Size = new Size(215, 47);
+            btnBitacora.Size = new Size(246, 63);
             btnBitacora.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             btnBitacora.TabIndex = 376;
             btnBitacora.Text = "Bitácora";
@@ -490,15 +483,16 @@
             btnFacturas.HoverBackColor = Color.Navy;
             btnFacturas.HoverForeColor = Color.White;
             btnFacturas.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-            btnFacturas.Location = new Point(12, 152);
-            btnFacturas.MinimumSize = new Size(144, 47);
+            btnFacturas.Location = new Point(14, 203);
+            btnFacturas.Margin = new Padding(3, 4, 3, 4);
+            btnFacturas.MinimumSize = new Size(165, 63);
             btnFacturas.Name = "btnFacturas";
             btnFacturas.NormalBackColor = Color.Navy;
             btnFacturas.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
             btnFacturas.PressedBackColor = Color.Navy;
             btnFacturas.PressedForeColor = Color.White;
             btnFacturas.Radius = 20;
-            btnFacturas.Size = new Size(215, 47);
+            btnFacturas.Size = new Size(246, 63);
             btnFacturas.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             btnFacturas.TabIndex = 375;
             btnFacturas.Text = "Facturas";
@@ -513,15 +507,16 @@
             btnCompra.HoverBackColor = Color.Navy;
             btnCompra.HoverForeColor = Color.White;
             btnCompra.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-            btnCompra.Location = new Point(12, 202);
-            btnCompra.MinimumSize = new Size(144, 47);
+            btnCompra.Location = new Point(14, 269);
+            btnCompra.Margin = new Padding(3, 4, 3, 4);
+            btnCompra.MinimumSize = new Size(165, 63);
             btnCompra.Name = "btnCompra";
             btnCompra.NormalBackColor = Color.Navy;
             btnCompra.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
             btnCompra.PressedBackColor = Color.Navy;
             btnCompra.PressedForeColor = Color.White;
             btnCompra.Radius = 20;
-            btnCompra.Size = new Size(215, 47);
+            btnCompra.Size = new Size(246, 63);
             btnCompra.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             btnCompra.TabIndex = 374;
             btnCompra.Text = "Compras";
@@ -536,15 +531,16 @@
             btnClientes.HoverBackColor = Color.Navy;
             btnClientes.HoverForeColor = Color.White;
             btnClientes.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-            btnClientes.Location = new Point(12, 252);
-            btnClientes.MinimumSize = new Size(144, 47);
+            btnClientes.Location = new Point(14, 336);
+            btnClientes.Margin = new Padding(3, 4, 3, 4);
+            btnClientes.MinimumSize = new Size(165, 63);
             btnClientes.Name = "btnClientes";
             btnClientes.NormalBackColor = Color.Navy;
             btnClientes.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
             btnClientes.PressedBackColor = Color.Navy;
             btnClientes.PressedForeColor = Color.White;
             btnClientes.Radius = 20;
-            btnClientes.Size = new Size(215, 47);
+            btnClientes.Size = new Size(246, 63);
             btnClientes.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             btnClientes.TabIndex = 373;
             btnClientes.Text = "Clientes";
@@ -559,15 +555,16 @@
             btnInventario.HoverBackColor = Color.Navy;
             btnInventario.HoverForeColor = Color.White;
             btnInventario.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-            btnInventario.Location = new Point(12, 303);
-            btnInventario.MinimumSize = new Size(144, 47);
+            btnInventario.Location = new Point(14, 404);
+            btnInventario.Margin = new Padding(3, 4, 3, 4);
+            btnInventario.MinimumSize = new Size(165, 63);
             btnInventario.Name = "btnInventario";
             btnInventario.NormalBackColor = Color.Navy;
             btnInventario.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
             btnInventario.PressedBackColor = Color.Navy;
             btnInventario.PressedForeColor = Color.White;
             btnInventario.Radius = 20;
-            btnInventario.Size = new Size(215, 47);
+            btnInventario.Size = new Size(246, 63);
             btnInventario.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             btnInventario.TabIndex = 372;
             btnInventario.Text = "Inventario";
@@ -582,15 +579,16 @@
             btnProveedores.HoverBackColor = Color.Navy;
             btnProveedores.HoverForeColor = Color.White;
             btnProveedores.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-            btnProveedores.Location = new Point(12, 354);
-            btnProveedores.MinimumSize = new Size(144, 47);
+            btnProveedores.Location = new Point(14, 472);
+            btnProveedores.Margin = new Padding(3, 4, 3, 4);
+            btnProveedores.MinimumSize = new Size(165, 63);
             btnProveedores.Name = "btnProveedores";
             btnProveedores.NormalBackColor = Color.Navy;
             btnProveedores.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
             btnProveedores.PressedBackColor = Color.Navy;
             btnProveedores.PressedForeColor = Color.White;
             btnProveedores.Radius = 20;
-            btnProveedores.Size = new Size(215, 47);
+            btnProveedores.Size = new Size(246, 63);
             btnProveedores.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             btnProveedores.TabIndex = 371;
             btnProveedores.Text = "Proveedores";
@@ -605,15 +603,16 @@
             btnDeudores.HoverBackColor = Color.Navy;
             btnDeudores.HoverForeColor = Color.White;
             btnDeudores.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-            btnDeudores.Location = new Point(12, 406);
-            btnDeudores.MinimumSize = new Size(144, 47);
+            btnDeudores.Location = new Point(14, 541);
+            btnDeudores.Margin = new Padding(3, 4, 3, 4);
+            btnDeudores.MinimumSize = new Size(165, 63);
             btnDeudores.Name = "btnDeudores";
             btnDeudores.NormalBackColor = Color.Navy;
             btnDeudores.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
             btnDeudores.PressedBackColor = Color.Navy;
             btnDeudores.PressedForeColor = Color.White;
             btnDeudores.Radius = 20;
-            btnDeudores.Size = new Size(215, 47);
+            btnDeudores.Size = new Size(246, 63);
             btnDeudores.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             btnDeudores.TabIndex = 370;
             btnDeudores.Text = "Deudores";
@@ -628,15 +627,16 @@
             btnMenu.HoverBackColor = Color.Navy;
             btnMenu.HoverForeColor = Color.White;
             btnMenu.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-            btnMenu.Location = new Point(12, 99);
-            btnMenu.MinimumSize = new Size(144, 47);
+            btnMenu.Location = new Point(14, 132);
+            btnMenu.Margin = new Padding(3, 4, 3, 4);
+            btnMenu.MinimumSize = new Size(165, 63);
             btnMenu.Name = "btnMenu";
             btnMenu.NormalBackColor = Color.Navy;
             btnMenu.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
             btnMenu.PressedBackColor = Color.Navy;
             btnMenu.PressedForeColor = Color.White;
             btnMenu.Radius = 20;
-            btnMenu.Size = new Size(215, 47);
+            btnMenu.Size = new Size(246, 63);
             btnMenu.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             btnMenu.TabIndex = 379;
             btnMenu.Text = "Menu Principal";
@@ -644,27 +644,28 @@
             // 
             // dtpDesde
             // 
-            dtpDesde.Location = new Point(556, 118);
+            dtpDesde.Location = new Point(635, 157);
+            dtpDesde.Margin = new Padding(3, 4, 3, 4);
             dtpDesde.Name = "dtpDesde";
-            dtpDesde.Size = new Size(222, 23);
+            dtpDesde.Size = new Size(253, 27);
             dtpDesde.TabIndex = 382;
             // 
             // dtpHasta
             // 
             dtpHasta.CalendarForeColor = Color.Navy;
-            dtpHasta.Location = new Point(556, 144);
+            dtpHasta.Location = new Point(635, 192);
+            dtpHasta.Margin = new Padding(3, 4, 3, 4);
             dtpHasta.Name = "dtpHasta";
-            dtpHasta.Size = new Size(222, 23);
+            dtpHasta.Size = new Size(253, 27);
             dtpHasta.TabIndex = 383;
             // 
             // btnLimpiar
             // 
             btnLimpiar.BackgroundImage = Properties.Resources.refresh;
             btnLimpiar.BackgroundImageLayout = ImageLayout.Stretch;
-            btnLimpiar.Location = new Point(260, 628);
-            btnLimpiar.Margin = new Padding(3, 2, 3, 2);
+            btnLimpiar.Location = new Point(297, 837);
             btnLimpiar.Name = "btnLimpiar";
-            btnLimpiar.Size = new Size(57, 33);
+            btnLimpiar.Size = new Size(65, 44);
             btnLimpiar.TabIndex = 384;
             btnLimpiar.UseVisualStyleBackColor = true;
             btnLimpiar.Click += btnLimpiar_Click_1;
@@ -675,9 +676,9 @@
             label12.BackColor = Color.White;
             label12.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label12.ForeColor = Color.Navy;
-            label12.Location = new Point(571, 99);
+            label12.Location = new Point(653, 132);
             label12.Name = "label12";
-            label12.Size = new Size(127, 20);
+            label12.Size = new Size(162, 24);
             label12.TabIndex = 385;
             label12.Text = "RANGO DE STOCK";
             // 
@@ -688,10 +689,9 @@
             cmbCant.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbCant.DropDownWidth = 300;
             cmbCant.Items.AddRange(new object[] { "Buen Stock", "Bajo Stock", "Sin Stock" });
-            cmbCant.Location = new Point(826, 139);
-            cmbCant.Margin = new Padding(3, 2, 3, 2);
+            cmbCant.Location = new Point(944, 185);
             cmbCant.Name = "cmbCant";
-            cmbCant.Size = new Size(189, 29);
+            cmbCant.Size = new Size(216, 33);
             cmbCant.StateActive.ComboBox.Content.Color1 = Color.Navy;
             cmbCant.StateActive.ComboBox.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbCant.StateCommon.ComboBox.Back.Color1 = Color.White;
@@ -709,9 +709,9 @@
             label10.BackColor = Color.White;
             label10.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Navy;
-            label10.Location = new Point(857, 115);
+            label10.Location = new Point(979, 153);
             label10.Name = "label10";
-            label10.Size = new Size(124, 20);
+            label10.Size = new Size(157, 24);
             label10.TabIndex = 387;
             label10.Text = "CANTIDAD STOCK";
             // 
@@ -720,18 +720,18 @@
             label13.AutoSize = true;
             label13.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label13.ForeColor = Color.Navy;
-            label13.Location = new Point(853, 120);
+            label13.Location = new Point(975, 160);
             label13.Name = "label13";
             label13.RightToLeft = RightToLeft.No;
-            label13.Size = new Size(0, 20);
+            label13.Size = new Size(0, 22);
             label13.TabIndex = 388;
             // 
             // ReportesAdmin
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1055, 677);
+            ClientSize = new Size(1206, 903);
             Controls.Add(label13);
             Controls.Add(label10);
             Controls.Add(cmbCant);
@@ -771,7 +771,6 @@
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(Min);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "ReportesAdmin";
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;

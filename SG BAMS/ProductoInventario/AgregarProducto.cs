@@ -208,6 +208,9 @@ namespace SG_BAMS
         /// </summary>
         private void txtCodigoBarra_KeyPress(object sender, KeyPressEventArgs e)
         {
+
+            ClsValidaciones.ForzarCodigoBarraKeyPress(e);
+
             if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
