@@ -44,14 +44,14 @@ namespace SG_BAMS
         /// </summary>
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-           
+
             string nombreReal = phNombre.GetRealValue().Trim();
             string precioReal = phPrecio.GetRealValue().Trim();
             string codigoReal = phCodigoBarra.GetRealValue().Trim();
 
             bool valido = true;
 
-            
+
             using (var tempNombre = new KryptonTextBox())
             {
                 tempNombre.Text = nombreReal;
@@ -59,7 +59,7 @@ namespace SG_BAMS
                     valido = false;
             }
 
-           
+
             if (valido)
             {
                 string precioLimpio = precioReal.Replace("Lps", "").Replace("L.", "").Replace("$", "").Trim();
@@ -71,7 +71,7 @@ namespace SG_BAMS
                 }
             }
 
-           
+
             if (valido)
             {
                 using (var tempCodigo = new KryptonTextBox())
@@ -173,7 +173,7 @@ namespace SG_BAMS
             cmbEstado.SelectedIndex = cmbEstado.FindStringExact(estadoActual?.Trim());
             cmbProveedor.SelectedIndex = cmbProveedor.FindStringExact(proveedorActual?.Trim());
 
-            
+
             phNombre = new PlaceholderTextBox(txtNombre, "Nombre del producto");
             phPrecio = new PlaceholderTextBox(txtPrecio, "Precio del producto");
             phCodigoBarra = new PlaceholderTextBox(txtCodigoBarra, "Ingrese o escanee el código");
@@ -197,12 +197,47 @@ namespace SG_BAMS
                 llenar.ConfigurarComboBox(cmbTipo, "Tipo");
                 llenar.ConfigurarComboBox(cmbModelo, "Modelo");
                 llenar.ConfigurarComboBox(cmbEstado, "Estado");
-                llenar.ConfigurarComboBox(cmbProveedor, "Proveedor");
+
+                int idProvActual = ObtenerIdProveedorPorNombre(proveedorActual);
+                llenar.ConfigurarComboBox(cmbProveedor, "Proveedor", idProvActual);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar los datos: " + ex.Message);
             }
+        }
+
+        private int ObtenerIdProveedorPorNombre(string nombreProv)
+        {
+            if (string.IsNullOrWhiteSpace(nombreProv)) return 0;
+
+            int idFound = 0;
+            ClsConexion conexionTemp = new ClsConexion();
+            string query = "SELECT id_proveedor FROM Proveedor WHERE nombre_proveedor = @nombre";
+
+            try
+            {
+                conexionTemp.AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand(query, conexionTemp.Conectar))
+                {
+                    cmd.Parameters.AddWithValue("@nombre", nombreProv.Trim());
+                    object result = cmd.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        idFound = Convert.ToInt32(result);
+                    }
+                }
+            }
+            catch
+            {
+                return 0;
+            }
+            finally
+            {
+                conexionTemp.Cerrar();
+            }
+
+            return idFound;
         }
 
         /// <summary>

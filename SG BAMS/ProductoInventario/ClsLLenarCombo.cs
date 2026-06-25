@@ -23,9 +23,14 @@ namespace SG_BAMS.ProductoInventario
         /// <param name="tipoTabla">El tipo de tabla.</param>
         public void ConfigurarComboBox(KryptonComboBox combo, string tipoTabla)
         {
-            DataTable dt = ObtenerDatosCombo(tipoTabla);
+            ConfigurarComboBox(combo, tipoTabla, 0);
+        }
+
+        public void ConfigurarComboBox(KryptonComboBox combo, string tipoTabla, int idProveedorActual)
+        {
+            DataTable dt = ObtenerDatosCombo(tipoTabla, idProveedorActual);
             combo.DataSource = dt;
- 
+
 
             switch (tipoTabla)
             {
@@ -50,8 +55,8 @@ namespace SG_BAMS.ProductoInventario
                     combo.ValueMember = "id_proveedor";
                     break;
             }
-         
-           // combo.SelectedIndex = -1;
+
+            // combo.SelectedIndex = -1;
             combo.SelectedIndex = 0;
         }
 
@@ -66,6 +71,11 @@ namespace SG_BAMS.ProductoInventario
         /// Error al obtener datos para " + tabla + ": " + ex.Message
         /// </exception>
         private DataTable ObtenerDatosCombo(string tabla)
+        {
+            return ObtenerDatosCombo(tabla, 0);
+        }
+
+        private DataTable ObtenerDatosCombo(string tabla, int idProveedorActual)
         {
             DataTable dt = new DataTable();
             string query = "";
@@ -85,7 +95,7 @@ namespace SG_BAMS.ProductoInventario
                     query = "SELECT id_estado, descripcion_estado FROM Estado";
                     break;
                 case "Proveedor":
-                    query = "SELECT id_proveedor, nombre_proveedor FROM Proveedor";
+                    query = "SELECT id_proveedor, nombre_proveedor FROM Proveedor WHERE id_estado = 1 OR id_proveedor = @idProveedorActual";
                     break;
                 default:
                     throw new Exception("La tabla solicitada no está configurada.");
@@ -96,6 +106,11 @@ namespace SG_BAMS.ProductoInventario
                 conexion.AbrirConexion();
                 using (SqlCommand cmd = new SqlCommand(query, conexion.Conectar))
                 {
+                    if (tabla == "Proveedor")
+                    {
+                        cmd.Parameters.AddWithValue("@idProveedorActual", idProveedorActual);
+                    }
+
                     using (SqlDataReader leer = cmd.ExecuteReader())
                     {
                         dt.Load(leer);
