@@ -104,7 +104,7 @@ namespace SG_BAMS.Bitacora
                         header.Cell().Element(Encabezado).Text("Nombre").Bold();
                         header.Cell().Element(Encabezado).Text("Acción").Bold();
                         header.Cell().Element(Encabezado).Text("Módulo").Bold();
-                        header.Cell().Element(Encabezado).Text("Fecha").Bold();
+                        header.Cell().Element(Encabezado).Text("Fecha y Hora").Bold();
                     });
 
                     foreach (var item in _datos)
