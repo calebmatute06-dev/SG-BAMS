@@ -211,21 +211,17 @@ namespace SG_BAMS
         {
             if (string.IsNullOrWhiteSpace(nombreProv)) return 0;
 
-            int idFound = 0;
             ClsConexion conexionTemp = new ClsConexion();
-            string query = "SELECT id_proveedor FROM Proveedor WHERE nombre_proveedor = @nombre";
-
             try
             {
                 conexionTemp.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand(query, conexionTemp.Conectar))
+                using (SqlCommand cmd = new SqlCommand("sp_Proveedor_ObtenerIdPorNombre", conexionTemp.Conectar))
                 {
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@nombre", nombreProv.Trim());
                     object result = cmd.ExecuteScalar();
                     if (result != null && result != DBNull.Value)
-                    {
-                        idFound = Convert.ToInt32(result);
-                    }
+                        return Convert.ToInt32(result);
                 }
             }
             catch
@@ -236,8 +232,7 @@ namespace SG_BAMS
             {
                 conexionTemp.Cerrar();
             }
-
-            return idFound;
+            return 0;
         }
 
         /// <summary>

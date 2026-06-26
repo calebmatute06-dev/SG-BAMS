@@ -174,7 +174,7 @@ namespace SG_BAMS
                 {
                     int cantidad = Convert.ToInt32(fila["STOCK"]);
                     if (cantidad == 0) sinStock++;
-                    else if (cantidad < 5) bajoStock++;
+                    else if (cantidad <= 9) bajoStock++;
                     else conStock++;
                 }
 

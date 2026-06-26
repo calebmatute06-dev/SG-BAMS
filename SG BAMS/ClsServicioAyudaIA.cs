@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -13,24 +14,21 @@ namespace SG_BAMS
     /// <summary>
     /// Servicio de IA con soporte de manual de usuario y contexto de base de datos.
     /// Utiliza fragmentación (chunking) para manejar manuales extensos.
+    /// Todas las consultas SQL usan Procedimientos Almacenados.
     /// </summary>
     internal class ClsServicioAyudaIA
     {
-       
         private readonly HttpClient _client;
-        private readonly string _apiKey = "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";  
+        private readonly string _apiKey = "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";
         private readonly string _url = "https://api.groq.com/openai/v1/chat/completions";
         private readonly string _modelo = "llama-3.1-8b-instant";
 
-        
         private readonly string _cadenaConexion =
             "Data Source=AutoBattDB.mssql.somee.com;" +
             "Initial Catalog=AutoBattDB;" +
             "User ID=exobonnie_SQLLogin_1;" +
             "Password=w6et2uoghs;" +
             "TrustServerCertificate=True;";
-
-        
 
         /// <summary>Fragmentos del manual para búsqueda por relevancia.</summary>
         private List<string> _chunks = new List<string>();
@@ -47,19 +45,15 @@ namespace SG_BAMS
         /// <summary>Cuántos fragmentos enviar al modelo por consulta.</summary>
         private const int MAX_CHUNKS_POR_CONSULTA = 3;
 
-        
         private readonly List<object> _historial = new List<object>();
-        private const int MAX_HISTORIAL = 10; // pares usuario/asistente
+        private const int MAX_HISTORIAL = 10;
 
-        
         public ClsServicioAyudaIA()
         {
             _client = new HttpClient();
             _client.Timeout = TimeSpan.FromSeconds(60);
             _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {_apiKey}");
         }
-
-        
 
         /// <summary>
         /// Carga un archivo de manual (.txt o .pdf) y lo divide en fragmentos.
@@ -88,12 +82,10 @@ namespace SG_BAMS
             if (string.IsNullOrWhiteSpace(textoCompleto))
                 throw new Exception("El archivo está vacío o no se pudo leer.");
 
-           
             textoCompleto = LimpiarTexto(textoCompleto);
             _chunks = Fragmentar(textoCompleto, TAMANO_CHUNK);
             NombreManualCargado = Path.GetFileName(rutaArchivo);
 
-           
             _historial.Clear();
 
             return _chunks.Count;
@@ -102,7 +94,6 @@ namespace SG_BAMS
         /// <summary>Lee texto de un PDF usando UglyToad.PdfPig.</summary>
         private string LeerPdf(string ruta)
         {
-           
             try
             {
                 var sb = new StringBuilder();
@@ -111,7 +102,7 @@ namespace SG_BAMS
                     foreach (var pagina in documento.GetPages())
                     {
                         sb.AppendLine(pagina.Text);
-                        sb.AppendLine(); // separador entre páginas
+                        sb.AppendLine();
                     }
                 }
                 return sb.ToString();
@@ -125,7 +116,6 @@ namespace SG_BAMS
         /// <summary>Limpia espacios y saltos de línea innecesarios del texto.</summary>
         private string LimpiarTexto(string texto)
         {
-           
             while (texto.Contains("\r\n\r\n\r\n"))
                 texto = texto.Replace("\r\n\r\n\r\n", "\r\n\r\n");
             while (texto.Contains("\n\n\n"))
@@ -149,14 +139,12 @@ namespace SG_BAMS
                 string p = parrafo.Trim();
                 if (string.IsNullOrEmpty(p)) continue;
 
-                
                 if (chunkActual.Length + p.Length > tamano && chunkActual.Length > 0)
                 {
                     resultado.Add(chunkActual.ToString().Trim());
                     chunkActual.Clear();
                 }
 
-                
                 if (p.Length > tamano)
                 {
                     for (int i = 0; i < p.Length; i += tamano)
@@ -187,9 +175,6 @@ namespace SG_BAMS
             _historial.Clear();
         }
 
-       
-        
-
         /// <summary>
         /// Busca los fragmentos del manual más relevantes para la pregunta dada.
         /// Usa coincidencia de palabras clave (simple pero efectivo para manuales).
@@ -198,7 +183,6 @@ namespace SG_BAMS
         {
             if (_chunks.Count == 0) return "";
 
-           
             string[] stopwords = { "el", "la", "los", "las", "un", "una", "de", "en",
                                    "que", "es", "se", "del", "al", "por", "con", "para",
                                    "como", "qué", "cómo", "cuál", "cuáles", "me", "te",
@@ -210,7 +194,6 @@ namespace SG_BAMS
                 .Distinct()
                 .ToArray();
 
-           
             var puntuados = _chunks
                 .Select((chunk, idx) =>
                 {
@@ -235,14 +218,11 @@ namespace SG_BAMS
 
             if (puntuados.Count == 0)
             {
-               
                 return string.Join("\n\n---\n\n", _chunks.Take(MAX_CHUNKS_POR_CONSULTA));
             }
 
             return string.Join("\n\n---\n\n", puntuados.Select(x => x.Chunk));
         }
-
-      
 
         /// <summary>
         /// Envía una pregunta al asistente de IA con contexto del manual y la BD.
@@ -253,33 +233,27 @@ namespace SG_BAMS
         {
             try
             {
-                
                 string fragmentosManual = BuscarFragmentosRelevantes(pregunta);
                 string contextoBD = ObtenerContextoBD();
 
-               
                 string sistemaPrompt = ConstruirSistemaPrompt(fragmentosManual, contextoBD);
 
-             
                 _historial.Add(new { role = "user", content = pregunta });
 
-                
                 TruncaHistorial();
 
-                
                 var mensajes = new List<object>
                 {
                     new { role = "system", content = sistemaPrompt }
                 };
                 mensajes.AddRange(_historial);
 
-               
                 var cuerpo = new
                 {
                     model = _modelo,
                     messages = mensajes,
                     max_tokens = 1024,
-                    temperature = 0.3  
+                    temperature = 0.3
                 };
 
                 var json = JsonConvert.SerializeObject(cuerpo);
@@ -287,10 +261,9 @@ namespace SG_BAMS
                 var respuesta = await _client.PostAsync(_url, contenido);
                 var resultado = await respuesta.Content.ReadAsStringAsync();
 
-              
                 if ((int)respuesta.StatusCode == 429)
                 {
-                    _historial.RemoveAt(_historial.Count - 1); 
+                    _historial.RemoveAt(_historial.Count - 1);
                     return "⚠️ Límite de solicitudes alcanzado. Espera unos segundos e intenta de nuevo.";
                 }
 
@@ -300,11 +273,9 @@ namespace SG_BAMS
                     return $"❌ Error de API ({(int)respuesta.StatusCode}):\n{resultado}";
                 }
 
-              
                 dynamic data = JsonConvert.DeserializeObject(resultado);
                 string textoRespuesta = data.choices[0].message.content.ToString();
 
-              
                 _historial.Add(new { role = "assistant", content = textoRespuesta });
 
                 return textoRespuesta;
@@ -356,15 +327,13 @@ namespace SG_BAMS
         {
             int maxMensajes = MAX_HISTORIAL * 2;
             while (_historial.Count > maxMensajes)
-                _historial.RemoveAt(0); 
+                _historial.RemoveAt(0);
         }
 
         /// <summary>Limpia el historial de conversación.</summary>
         public void LimpiarHistorial() => _historial.Clear();
 
-       
-
-        /// <summary>Obtiene datos relevantes de la base de datos.</summary>
+        /// <summary>Obtiene datos relevantes de la base de datos usando PA.</summary>
         private string ObtenerContextoBD()
         {
             var sb = new StringBuilder();
@@ -376,13 +345,13 @@ namespace SG_BAMS
                     con.Open();
 
                     sb.AppendLine("=== INVENTARIO Y PRODUCTOS ===");
-                    sb.AppendLine(EjecutarConsulta(con, "SELECT TOP 10 * FROM Vista_Productos"));
+                    sb.AppendLine(EjecutarPA(con, "sp_Productos_Listar"));
 
                     sb.AppendLine("=== RANKING DE MÁS VENDIDOS ===");
-                    sb.AppendLine(EjecutarConsulta(con, "SELECT TOP 10 * FROM Vista_Productos_Mas_Vendido"));
+                    sb.AppendLine(EjecutarPA(con, "sp_Grafico_ProductosMasVendidosDetalle"));
 
                     sb.AppendLine("=== ESTADO DE DEUDAS Y SALDOS ===");
-                    sb.AppendLine(EjecutarConsulta(con, "SELECT TOP 10 * FROM Vista_Deudas"));
+                    sb.AppendLine(EjecutarPA(con, "sp_Deudas_Listar"));
                 }
             }
             catch (Exception ex)
@@ -393,22 +362,25 @@ namespace SG_BAMS
             return sb.ToString();
         }
 
-        /// <summary>Ejecuta una consulta SQL y devuelve el resultado como texto.</summary>
-        private string EjecutarConsulta(SqlConnection con, string query)
+        /// <summary>Ejecuta un PA y devuelve el resultado como texto.</summary>
+        private string EjecutarPA(SqlConnection con, string nombrePA)
         {
             var sb = new StringBuilder();
 
             try
             {
-                using (var cmd = new SqlCommand(query, con))
-                using (var reader = cmd.ExecuteReader())
+                using (var cmd = new SqlCommand(nombrePA, con))
                 {
-                    while (reader.Read())
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        var fila = new StringBuilder();
-                        for (int i = 0; i < reader.FieldCount; i++)
-                            fila.Append($"{reader.GetName(i)}: {reader[i]}  |  ");
-                        sb.AppendLine(fila.ToString());
+                        while (reader.Read())
+                        {
+                            var fila = new StringBuilder();
+                            for (int i = 0; i < reader.FieldCount; i++)
+                                fila.Append($"{reader.GetName(i)}: {reader[i]}  |  ");
+                            sb.AppendLine(fila.ToString());
+                        }
                     }
                 }
             }
@@ -419,8 +391,6 @@ namespace SG_BAMS
 
             return sb.Length > 0 ? sb.ToString() : "(Sin datos)";
         }
-
-   
 
         /// <summary>
         /// Devuelve estadísticas del manual cargado.

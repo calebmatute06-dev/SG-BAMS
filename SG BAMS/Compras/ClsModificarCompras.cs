@@ -4,83 +4,58 @@ using Microsoft.Data.SqlClient;
 
 namespace SG_BAMS.ProductoInventario
 {
-    /// <summary>
-    /// 
-    /// </summary>
     internal class ClsModificarCompras
     {
-        /// <summary>
-        /// La conexión
-        /// </summary>
-        private ClsConexion conexion = new ClsConexion();
+        private readonly ClsConexion conexion = new ClsConexion();
 
-        /// <summary>
-        /// Lista las formas de pago.
-        /// </summary>
-        /// <returns></returns>
-        /// <exception cref="System.Exception">Error al listar formas de pago: " + ex.Message</exception>
         public DataTable ListarFormasPago()
         {
             DataTable dt = new DataTable();
             try
             {
                 conexion.AbrirConexion();
-                string query = "SELECT id_tipo_forma_pago, descripcion_forma_pago FROM Tipo_Forma_de_pago";
-                SqlDataAdapter da = new SqlDataAdapter(query, conexion.Conectar);
-                da.Fill(dt);
+                using (SqlCommand cmd = new SqlCommand("sp_FormasPago_Listar", conexion.Conectar))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        da.Fill(dt);
+                }
             }
             catch (Exception ex) { throw new Exception("Error al listar formas de pago: " + ex.Message); }
             finally { conexion.Cerrar(); }
             return dt;
         }
 
-        /// <summary>
-        /// Lista los proveedores activos.
-        /// </summary>
-        /// <returns></returns>
-        /// <exception cref="System.Exception">Error al listar proveedores: " + ex.Message</exception>
         public DataTable ListarProveedoresActivos()
         {
             DataTable dt = new DataTable();
             try
             {
                 conexion.AbrirConexion();
-                string query = "SELECT id_proveedor, nombre_proveedor FROM Proveedor WHERE id_estado = 1";
-                SqlDataAdapter da = new SqlDataAdapter(query, conexion.Conectar);
-                da.Fill(dt);
+                using (SqlCommand cmd = new SqlCommand("sp_Proveedores_Activos", conexion.Conectar))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        da.Fill(dt);
+                }
             }
             catch (Exception ex) { throw new Exception("Error al listar proveedores: " + ex.Message); }
             finally { conexion.Cerrar(); }
             return dt;
         }
 
-        /// <summary>
-        /// Obtiene el detalle de la compra.
-        /// </summary>
-        /// <param name="idCompra">El identificador de la compra.</param>
-        /// <returns></returns>
-        /// <exception cref="System.Exception">Error al obtener detalle: " + ex.Message</exception>
         public DataTable ObtenerDetalleCompra(int idCompra)
         {
             DataTable dt = new DataTable();
             try
             {
                 conexion.AbrirConexion();
-                string query = @"SELECT 
-                                    CP.id_producto AS [ID], 
-                                    P.nombre_producto AS [Producto], 
-                                    CP.cantidad AS [Cantidad], 
-                                    CP.precio_costo_unitario AS [Precio],
-                                    (CP.cantidad * CP.precio_costo_unitario) AS [Subtotal]
-                                 FROM Compra_producto CP
-                                 INNER JOIN Producto P ON CP.id_producto = P.id_producto
-                                 WHERE CP.id_compra = @id";
-
-                using (SqlCommand cmd = new SqlCommand(query, conexion.Conectar))
+                using (SqlCommand cmd = new SqlCommand("sp_Compra_ListarProductos", conexion.Conectar))
                 {
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@id", idCompra);
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(dt);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        da.Fill(dt);
                 }
             }
             catch (Exception ex) { throw new Exception("Error al obtener detalle: " + ex.Message); }
@@ -88,24 +63,18 @@ namespace SG_BAMS.ProductoInventario
             return dt;
         }
 
-        /// <summary>
-        /// Obtiene la cabecera de la compra.
-        /// </summary>
-        /// <param name="idCompra">El identificador de la compra.</param>
-        /// <returns></returns>
-        /// <exception cref="System.Exception">Error en cabecera: " + ex.Message</exception>
         public DataTable ObtenerCabeceraCompra(int idCompra)
         {
             DataTable dt = new DataTable();
             try
             {
                 conexion.AbrirConexion();
-                string query = "SELECT id_proveedor, id_tipo_forma_pago, fecha_pedido, desc_compra FROM Compra WHERE id_compra = @id";
-                using (SqlCommand cmd = new SqlCommand(query, conexion.Conectar))
+                using (SqlCommand cmd = new SqlCommand("sp_Compra_ObtenerCabecera", conexion.Conectar))
                 {
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@id", idCompra);
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(dt);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        da.Fill(dt);
                 }
             }
             catch (Exception ex) { throw new Exception("Error en cabecera: " + ex.Message); }
@@ -113,14 +82,6 @@ namespace SG_BAMS.ProductoInventario
             return dt;
         }
 
-        /// <summary>
-        /// Guarda los cambios del detalle.
-        /// </summary>
-        /// <param name="idCompra">El identificador de la compra.</param>
-        /// <param name="idProd">El identificador del producto.</param>
-        /// <param name="cant">La cantidad.</param>
-        /// <param name="precio">El precio.</param>
-        /// <exception cref="System.Exception">Error al procesar producto " + idProd + ": " + ex.Message</exception>
         public void GuardarCambiosDetalle(int idCompra, int idProd, int cant, decimal precio)
         {
             try
@@ -140,40 +101,25 @@ namespace SG_BAMS.ProductoInventario
             finally { conexion.Cerrar(); }
         }
 
-        /// <summary>
-        /// Actualiza la cabecera de la compra.
-        /// </summary>
-        /// <param name="idCompra">El identificador de la compra.</param>
-        /// <param name="idProv">El identificador del proveedor.</param>
-        /// <param name="idPago">El identificador del pago.</param>
-        /// <param name="fecha">La fecha.</param>
-        /// <param name="nota">La nota.</param>
         public void ActualizarCabeceraCompra(int idCompra, int idProv, int idPago, DateTime fecha, string nota)
         {
             try
             {
                 conexion.AbrirConexion();
-                string query = @"UPDATE Compra SET id_proveedor = @idProv, id_tipo_forma_pago = @idPago, 
-                                 fecha_pedido = @fecha, desc_compra = @nota WHERE id_compra = @idC";
-
-                using (SqlCommand cmd = new SqlCommand(query, conexion.Conectar))
+                using (SqlCommand cmd = new SqlCommand("sp_Compra_ActualizarCabecera", conexion.Conectar))
                 {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idC", idCompra);
                     cmd.Parameters.AddWithValue("@idProv", idProv);
                     cmd.Parameters.AddWithValue("@idPago", idPago);
                     cmd.Parameters.AddWithValue("@fecha", fecha);
                     cmd.Parameters.AddWithValue("@nota", nota);
-                    cmd.Parameters.AddWithValue("@idC", idCompra);
                     cmd.ExecuteNonQuery();
                 }
             }
             finally { conexion.Cerrar(); }
         }
 
-        /// <summary>
-        /// Elimina el producto de la base de datos.
-        /// </summary>
-        /// <param name="idCompra">El identificador de la compra.</param>
-        /// <param name="idProd">El identificador del producto.</param>
         public void EliminarProductoDeBD(int idCompra, int idProd)
         {
             try
@@ -190,55 +136,31 @@ namespace SG_BAMS.ProductoInventario
             finally { conexion.Cerrar(); }
         }
 
-        /// <summary>
-        /// Revierte el stock del producto nuevo.
-        /// </summary>
-        /// <param name="idCompra">El identificador de la compra.</param>
-        /// <param name="idProd">El identificador del producto.</param>
-        /// <param name="cant">La cantidad.</param>
         public void RevertirStockProductoNuevo(int idCompra, int idProd, int cant)
         {
             try
             {
                 conexion.AbrirConexion();
-                string sql = @"
-                    UPDATE Inventario SET stock = stock - @cant WHERE id_producto = @idP;
-                    DELETE FROM Compra_producto WHERE id_compra = @idC AND id_producto = @idP;";
-
-                using (SqlCommand cmd = new SqlCommand(sql, conexion.Conectar))
+                using (SqlCommand cmd = new SqlCommand("sp_Compra_RevertirStockEliminarProducto", conexion.Conectar))
                 {
-                    cmd.Parameters.AddWithValue("@cant", cant);
-                    cmd.Parameters.AddWithValue("@idP", idProd);
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@idC", idCompra);
+                    cmd.Parameters.AddWithValue("@idP", idProd);
+                    cmd.Parameters.AddWithValue("@cant", cant);
                     cmd.ExecuteNonQuery();
                 }
             }
             finally { conexion.Cerrar(); }
         }
 
-        /// <summary>
-        /// Elimina la compra completa.
-        /// </summary>
-        /// <param name="idCompra">El identificador de la compra.</param>
-        /// <returns></returns>
-        /// <exception cref="System.Exception">Error al eliminar la compra y ajustar stock: " + ex.Message</exception>
         public bool EliminarCompraCompleta(int idCompra)
         {
             try
             {
                 conexion.AbrirConexion();
-                string sql = @"
-            UPDATE I
-            SET I.stock = I.stock - CP.cantidad
-            FROM Inventario I
-            INNER JOIN Compra_producto CP ON I.id_producto = CP.id_producto
-            WHERE CP.id_compra = @id;
-
-            DELETE FROM Compra_producto WHERE id_compra = @id;
-            DELETE FROM Compra WHERE id_compra = @id;";
-
-                using (SqlCommand cmd = new SqlCommand(sql, conexion.Conectar))
+                using (SqlCommand cmd = new SqlCommand("sp_Compra_EliminarCompleta", conexion.Conectar))
                 {
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@id", idCompra);
                     int filasAfectadas = cmd.ExecuteNonQuery();
                     return filasAfectadas > 0;

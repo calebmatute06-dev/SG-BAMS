@@ -4,34 +4,21 @@ using Microsoft.Data.SqlClient;
 
 namespace SG_BAMS
 {
-
     /// <summary>
-    /// 
+    /// Clase para listar deudores usando solo Procedimientos Almacenados.
     /// </summary>
-    /// <seealso cref="SG_BAMS.ClsConexion" />
     internal class ClsDeuda : ClsConexion
     {
-        /// <summary>
-        /// Lista los deudores.
-        /// </summary>
-        /// <returns></returns>
-        /// <exception cref="System.Exception">Error al listar deudores: " + ex.Message</exception>
         public DataTable ListarDeudores()
         {
             DataTable tablaDeudores = new DataTable();
-
             try
             {
-
                 AbrirConexion();
-
-
-                string query = "SELECT * FROM vista_lista_deudores";
-
-
-                using (SqlCommand comando = new SqlCommand(query, Conectar))
+                using (SqlCommand cmd = new SqlCommand("sp_vista_lista_deudores", Conectar))
                 {
-                    using (SqlDataAdapter adaptador = new SqlDataAdapter(comando))
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataAdapter adaptador = new SqlDataAdapter(cmd))
                     {
                         adaptador.Fill(tablaDeudores);
                     }
@@ -43,10 +30,8 @@ namespace SG_BAMS
             }
             finally
             {
-
                 Cerrar();
             }
-
             return tablaDeudores;
         }
     }

@@ -6,37 +6,24 @@ using System.Threading.Tasks;
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    /// Clase para gestionar notificaciones usando solo Procedimientos Almacenados.
     /// </summary>
-    /// <seealso cref="SG_BAMS.ClsConexion" />
     internal class ClsNotificaciones : ClsConexion
     {
-        /// <summary>
-        /// Lista las notificaciones.
-        /// </summary>
-        /// <param name="esAdmin">si se establece en <c>true</c> [es admin].</param>
-        /// <returns></returns>
-        /// <exception cref="System.Exception">Error al cargar notificaciones: " + ex.Message</exception>
         public DataTable ListarNotificaciones(bool esAdmin)
         {
             DataTable tablaDatos = new DataTable();
             try
             {
                 AbrirConexion();
-
-
-                string query = "SELECT * FROM Notificaciones WHERE leida = 0";
-
-                if (!esAdmin)
+                using (SqlCommand cmd = new SqlCommand("sp_Notificaciones_Listar", Conectar))
                 {
-                    query += " AND solo_admin = 0";
-                }
-
-                query += " ORDER BY fecha DESC";
-
-                using (SqlDataAdapter adaptador = new SqlDataAdapter(query, Conectar))
-                {
-                    adaptador.Fill(tablaDatos);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@esAdmin", esAdmin ? 1 : 0);
+                    using (SqlDataAdapter adaptador = new SqlDataAdapter(cmd))
+                    {
+                        adaptador.Fill(tablaDatos);
+                    }
                 }
             }
             catch (Exception ex)
@@ -50,22 +37,16 @@ namespace SG_BAMS
             return tablaDatos;
         }
 
-        /// <summary>
-        /// Marca la notificación como leída.
-        /// </summary>
-        /// <param name="idNotificacion">El identificador de la notificación.</param>
-        /// <returns></returns>
         public async Task<bool> MarcarComoLeida(int idNotificacion)
         {
             try
             {
                 AbrirConexion();
-                string query = "UPDATE Notificaciones SET leida = 1 WHERE id_notificacion = @id";
-
-                using (SqlCommand comando = new SqlCommand(query, Conectar))
+                using (SqlCommand cmd = new SqlCommand("sp_Notificaciones_MarcarLeida", Conectar))
                 {
-                    comando.Parameters.AddWithValue("@id", idNotificacion);
-                    int filasAfectadas = await comando.ExecuteNonQueryAsync();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@id", idNotificacion);
+                    int filasAfectadas = await cmd.ExecuteNonQueryAsync();
                     return filasAfectadas > 0;
                 }
             }

@@ -6,36 +6,27 @@ using System.Threading.Tasks;
 namespace SG_BAMS.MenuPrincipal
 {
     /// <summary>
-    /// 
+    /// Clase para obtener últimas ventas usando solo Procedimientos Almacenados.
     /// </summary>
-    /// <seealso cref="SG_BAMS.ClsConexion" />
     internal class ClsUltimasVentas : ClsConexion
     {
-        /// <summary>
-        /// Obtiene las ventas recientes.
-        /// </summary>
-        /// <returns></returns>
         public async Task<DataTable> ObtenerVentasRecientes()
         {
             DataTable tablaVentas = new DataTable();
             try
             {
                 AbrirConexion();
-
-
-                string sqlQuery = "SELECT * FROM vista_ultimas_ventas";
-
-                using (SqlCommand sqlCommand = new SqlCommand(sqlQuery, Conectar))
+                using (SqlCommand cmd = new SqlCommand("sp_vista_ultimas_ventas", Conectar))
                 {
-                    using (SqlDataReader sqlReader = await sqlCommand.ExecuteReaderAsync())
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                     {
-                        tablaVentas.Load(sqlReader);
+                        tablaVentas.Load(reader);
                     }
                 }
             }
             catch (Exception)
             {
-
                 return null;
             }
             finally

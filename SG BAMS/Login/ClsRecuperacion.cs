@@ -1,9 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
 
 namespace SG_BAMS.Login
 {
@@ -16,11 +13,13 @@ namespace SG_BAMS.Login
             try
             {
                 conexion.AbrirConexion();
-                string query = "SELECT COUNT(*) FROM credenciales_usuario WHERE Correo = @correo";
-                SqlCommand cmd = new SqlCommand(query, conexion.Conectar);
-                cmd.Parameters.AddWithValue("@correo", correo);
-                int resultado = (int)cmd.ExecuteScalar();
-                return resultado > 0;
+                using (SqlCommand cmd = new SqlCommand("sp_Recuperacion_VerificarCorreo", conexion.Conectar))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@correo", correo);
+                    int resultado = (int)cmd.ExecuteScalar();
+                    return resultado > 0;
+                }
             }
             catch (Exception ex)
             {
@@ -38,11 +37,13 @@ namespace SG_BAMS.Login
             try
             {
                 conexion.AbrirConexion();
-                string query = "UPDATE credenciales_usuario SET Contraseña = @pass WHERE Correo = @correo";
-                SqlCommand cmd = new SqlCommand(query, conexion.Conectar);
-                cmd.Parameters.AddWithValue("@pass", passHash);
-                cmd.Parameters.AddWithValue("@correo", correo);
-                return cmd.ExecuteNonQuery() > 0;
+                using (SqlCommand cmd = new SqlCommand("sp_Recuperacion_ActualizarContrasena", conexion.Conectar))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@pass", passHash);
+                    cmd.Parameters.AddWithValue("@correo", correo);
+                    return cmd.ExecuteNonQuery() > 0;
+                }
             }
             catch (Exception ex)
             {
@@ -57,13 +58,12 @@ namespace SG_BAMS.Login
         public bool ContraIgualAntigua(string correo, string contraant)
         {
             string passHash = ClsSeguridad.HashSHA256(contraant);
-
             try
             {
                 conexion.AbrirConexion();
-                string query = "SELECT COUNT(*) FROM vw_ValidarContrasena WHERE correo_usuario = @correo AND contraseña_login = @pass";
-                using (SqlCommand cmd = new SqlCommand(query, conexion.Conectar))
+                using (SqlCommand cmd = new SqlCommand("sp_Recuperacion_VerificarContrasena", conexion.Conectar))
                 {
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@correo", correo);
                     cmd.Parameters.AddWithValue("@pass", passHash);
                     return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
@@ -79,6 +79,5 @@ namespace SG_BAMS.Login
                 conexion.Cerrar();
             }
         }
-
     }
 }

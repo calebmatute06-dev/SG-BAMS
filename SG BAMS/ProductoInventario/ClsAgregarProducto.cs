@@ -5,27 +5,14 @@ using Microsoft.Data.SqlClient;
 namespace SG_BAMS.ProductoInventario
 {
     /// <summary>
-    /// 
+    /// Clase para agregar productos usando solo Procedimientos Almacenados.
     /// </summary>
     internal class ClsAgregarProducto
     {
-        /// <summary>
-        /// La conexión a la base de datos
-        /// </summary>
-        private ClsConexion conexion = new ClsConexion();
+        private readonly ClsConexion conexion = new ClsConexion();
 
-        /// <summary>
-        /// Ejecuta la inserción del producto.
-        /// </summary>
-        /// <param name="nombre">El nombre del producto.</param>
-        /// <param name="idMarca">El identificador de la marca.</param>
-        /// <param name="idTipo">El identificador del tipo.</param>
-        /// <param name="idModelo">El identificador del modelo.</param>
-        /// <param name="precio">El precio del producto.</param>
-        /// <param name="codBarra">El código de barras.</param>
-        /// <param name="idProveedor">El identificador del proveedor.</param>
-        /// <param name="stock">La cantidad en stock.</param>
-        public void EjecutarInsercion(string nombre, int idMarca, int idTipo, int idModelo, decimal precio, string codBarra, int idProveedor, int stock)
+        public void EjecutarInsercion(string nombre, int idMarca, int idTipo, int idModelo,
+            decimal precio, string codBarra, int idProveedor, int stock)
         {
             try
             {
@@ -33,7 +20,6 @@ namespace SG_BAMS.ProductoInventario
                 using (SqlCommand cmd = new SqlCommand("PA_insertar_producto", conexion.Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-
                     cmd.Parameters.AddWithValue("@nombre_producto", nombre);
                     cmd.Parameters.AddWithValue("@id_marca_producto", idMarca);
                     cmd.Parameters.AddWithValue("@id_tipo_producto", idTipo);
@@ -42,68 +28,46 @@ namespace SG_BAMS.ProductoInventario
                     cmd.Parameters.AddWithValue("@codigo_barra", codBarra);
                     cmd.Parameters.AddWithValue("@id_proveedor", idProveedor);
                     cmd.Parameters.AddWithValue("@stock", stock);
-
                     cmd.ExecuteNonQuery();
                 }
             }
             finally { conexion.Cerrar(); }
         }
 
-        /// <summary>
-        /// Verifica si el producto existe para la marca y proveedor dados.
-        /// </summary>
-        /// <param name="nombre">El nombre del producto.</param>
-        /// <param name="idMarca">El identificador de la marca.</param>
-        /// <param name="idProveedor">El identificador del proveedor.</param>
-        /// <returns></returns>
         public bool ExisteProductoMarcaProveedor(string nombre, int idMarca, int idProveedor)
         {
-            int conteo = 0;
-            string sql = @"SELECT COUNT(*) 
-                           FROM Producto p
-                           INNER JOIN Proveedor_Producto pp ON p.id_producto = pp.id_producto
-                           WHERE p.nombre_producto = @nombre 
-                           AND p.id_marca_producto = @idMarca 
-                           AND pp.id_proveedor = @idProv";
-
             try
             {
                 conexion.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand(sql, conexion.Conectar))
+                using (SqlCommand cmd = new SqlCommand("sp_Producto_ExisteEnOtros", conexion.Conectar))
                 {
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@nombre", nombre);
                     cmd.Parameters.AddWithValue("@idMarca", idMarca);
-                    cmd.Parameters.AddWithValue("@idProv", idProveedor);
-                    conteo = Convert.ToInt32(cmd.ExecuteScalar());
+                    cmd.Parameters.AddWithValue("@idProveedor", idProveedor);
+                    cmd.Parameters.AddWithValue("@id", 0);
+                    int conteo = Convert.ToInt32(cmd.ExecuteScalar());
+                    return conteo > 0;
                 }
             }
             finally { conexion.Cerrar(); }
-
-            return conteo > 0;
         }
 
-        /// <summary>
-        /// Verifica si el código de barras ya existe.
-        /// </summary>
-        /// <param name="codigo">El código de barras.</param>
-        /// <returns></returns>
         public bool ExisteCodigoBarra(string codigo)
         {
-            int conteo = 0;
-            string sql = "SELECT COUNT(*) FROM Producto WHERE codigo_barra = @codigo";
-
             try
             {
                 conexion.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand(sql, conexion.Conectar))
+                using (SqlCommand cmd = new SqlCommand("sp_Producto_ExisteCodigoEnOtros", conexion.Conectar))
                 {
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@codigo", codigo);
-                    conteo = Convert.ToInt32(cmd.ExecuteScalar());
+                    cmd.Parameters.AddWithValue("@id", 0);
+                    int conteo = Convert.ToInt32(cmd.ExecuteScalar());
+                    return conteo > 0;
                 }
             }
             finally { conexion.Cerrar(); }
-
-            return conteo > 0;
         }
     }
 }

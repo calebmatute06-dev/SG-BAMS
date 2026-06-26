@@ -3,32 +3,25 @@ using System.Data;
 using Microsoft.Data.SqlClient;
 using System.Threading.Tasks;
 
-
 namespace SG_BAMS.MenuPrincipal
 {
     /// <summary>
-    /// 
+    /// Clase para obtener datos del gráfico de stock usando solo Procedimientos Almacenados.
     /// </summary>
-    /// <seealso cref="SG_BAMS.ClsConexion" />
     internal class ClsGraficoStock : ClsConexion
     {
-        /// <summary>
-        /// Obtiene los datos para el gráfico.
-        /// </summary>
-        /// <returns></returns>
         public async Task<DataTable> ObtenerDatosGrafico()
         {
             DataTable tablaDatos = new DataTable();
             try
             {
                 AbrirConexion();
-                string sqlQuery = "SELECT * FROM vista_stock_productos";
-
-                using (SqlCommand sqlCommand = new SqlCommand(sqlQuery, Conectar))
+                using (SqlCommand cmd = new SqlCommand("sp_vista_stock_productos", Conectar))
                 {
-                    using (SqlDataReader sqlReader = await sqlCommand.ExecuteReaderAsync())
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                     {
-                        tablaDatos.Load(sqlReader);
+                        tablaDatos.Load(reader);
                     }
                 }
             }

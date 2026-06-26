@@ -195,20 +195,17 @@ namespace SG_BAMS
             try
             {
                 objCl.AbrirConexion();
-
-                string query = "SELECT *  FROM Tipo_Forma_de_pago";
-
-
-                using (SqlCommand cmd = new SqlCommand(query, objCl.Conectar))
-                using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                using (SqlCommand cmd = new SqlCommand("sp_FormasPago_Listar", objCl.Conectar))
                 {
-                    DataTable dt = new DataTable();
-                    dt.Load(reader);
-
-
-                    cmbPago.DisplayMember = "descripcion_forma_pago";
-                    cmbPago.ValueMember = "id_tipo_forma_pago";
-                    cmbPago.DataSource = dt;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                    {
+                        DataTable dt = new DataTable();
+                        dt.Load(reader);
+                        cmbPago.DisplayMember = "descripcion_forma_pago";
+                        cmbPago.ValueMember = "id_tipo_forma_pago";
+                        cmbPago.DataSource = dt;
+                    }
                 }
             }
             catch (Exception ex)
@@ -218,7 +215,6 @@ namespace SG_BAMS
             finally
             {
                 objCl.Cerrar();
-
             }
         }
 

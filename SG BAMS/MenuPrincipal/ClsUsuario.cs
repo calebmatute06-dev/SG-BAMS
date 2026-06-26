@@ -1,32 +1,26 @@
 ﻿using Microsoft.Data.SqlClient;
 using SG_BAMS;
 using System.Data;
-using System.IO;
+using System.Threading.Tasks;
+
 /// <summary>
-/// 
+/// Clase para gestión de usuarios usando solo Procedimientos Almacenados.
 /// </summary>
 internal class ClsUsuario : ClsConexion
 {
-    /// <summary>
-    /// Obtiene el perfil desde la vista.
-    /// </summary>
-    /// <param name="nombreUsuario">El nombre del usuario.</param>
-    /// <returns></returns>
     public async Task<DataTable> ObtenerPerfilDesdeVista(string nombreUsuario)
     {
         DataTable tablaUsuario = new DataTable();
         try
         {
             AbrirConexion();
-
-            string consultaSql = "SELECT nombre_usuario, descripcion_rol, imagen_usuario FROM vista_perfil_usuario WHERE nombre_usuario = @usuario";
-
-            using (SqlCommand comandoSql = new SqlCommand(consultaSql, Conectar))
+            using (SqlCommand cmd = new SqlCommand("sp_Usuario_ObtenerPerfil", Conectar))
             {
-                comandoSql.Parameters.AddWithValue("@usuario", nombreUsuario);
-                using (SqlDataReader lectorDatos = await comandoSql.ExecuteReaderAsync())
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@usuario", nombreUsuario);
+                using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                 {
-                    tablaUsuario.Load(lectorDatos);
+                    tablaUsuario.Load(reader);
                 }
             }
         }
@@ -34,37 +28,26 @@ internal class ClsUsuario : ClsConexion
         return tablaUsuario;
     }
 
-    /// <summary>
-    /// Actualiza la foto del usuario.
-    /// </summary>
-    /// <param name="nombreUsuario">El nombre del usuario.</param>
-    /// <param name="imagenBytes">Los bytes de la imagen.</param>
-    /// <exception cref="System.Exception">Error al subir imagen a Somee: " + ex.Message</exception>
     public async Task ActualizarFotoUsuario(string nombreUsuario, byte[] imagenBytes)
     {
         try
         {
             AbrirConexion();
-
-            string consultaSql = "UPDATE Usuario SET imagen_usuario = @foto WHERE nombre_usuario = @usuario";
-
-            using (SqlCommand comandoSql = new SqlCommand(consultaSql, Conectar))
+            using (SqlCommand cmd = new SqlCommand("sp_Usuario_ActualizarFoto", Conectar))
             {
-
-                comandoSql.Parameters.Add("@foto", SqlDbType.VarBinary).Value = imagenBytes;
-                comandoSql.Parameters.AddWithValue("@usuario", nombreUsuario);
-
-                await comandoSql.ExecuteNonQueryAsync();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@usuario", nombreUsuario);
+                cmd.Parameters.Add("@foto", SqlDbType.VarBinary).Value = imagenBytes;
+                await cmd.ExecuteNonQueryAsync();
             }
         }
         catch (Exception ex)
         {
-            throw new Exception("Error al subir imagen a Somee: " + ex.Message);
+            throw new Exception("Error al subir imagen: " + ex.Message);
         }
         finally
         {
             Cerrar();
         }
     }
-
 }

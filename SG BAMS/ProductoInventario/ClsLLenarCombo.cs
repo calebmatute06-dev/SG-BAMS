@@ -1,26 +1,17 @@
 ﻿using System;
 using System.Data;
 using Microsoft.Data.SqlClient;
-using System.Windows.Forms;
 using Krypton.Toolkit;
 
 namespace SG_BAMS.ProductoInventario
 {
     /// <summary>
-    /// 
+    /// Clase para llenar ComboBox usando solo Procedimientos Almacenados.
     /// </summary>
     public class ClsLlenarCombo
     {
-        /// <summary>
-        /// La conexión a la base de datos
-        /// </summary>
-        private ClsConexion conexion = new ClsConexion();
+        private readonly ClsConexion conexion = new ClsConexion();
 
-        /// <summary>
-        /// Configura el ComboBox.
-        /// </summary>
-        /// <param name="combo">El combo a configurar.</param>
-        /// <param name="tipoTabla">El tipo de tabla.</param>
         public void ConfigurarComboBox(KryptonComboBox combo, string tipoTabla)
         {
             ConfigurarComboBox(combo, tipoTabla, 0);
@@ -30,7 +21,6 @@ namespace SG_BAMS.ProductoInventario
         {
             DataTable dt = ObtenerDatosCombo(tipoTabla, idProveedorActual);
             combo.DataSource = dt;
-
 
             switch (tipoTabla)
             {
@@ -56,20 +46,9 @@ namespace SG_BAMS.ProductoInventario
                     break;
             }
 
-            // combo.SelectedIndex = -1;
             combo.SelectedIndex = 0;
         }
 
-        /// <summary>
-        /// Obtiene los datos del combo.
-        /// </summary>
-        /// <param name="tabla">La tabla.</param>
-        /// <returns></returns>
-        /// <exception cref="System.Exception">
-        /// La tabla solicitada no está configurada.
-        /// or
-        /// Error al obtener datos para " + tabla + ": " + ex.Message
-        /// </exception>
         private DataTable ObtenerDatosCombo(string tabla)
         {
             return ObtenerDatosCombo(tabla, 0);
@@ -78,24 +57,24 @@ namespace SG_BAMS.ProductoInventario
         private DataTable ObtenerDatosCombo(string tabla, int idProveedorActual)
         {
             DataTable dt = new DataTable();
-            string query = "";
+            string nombrePA;
 
             switch (tabla)
             {
                 case "Marca":
-                    query = "SELECT id_marca_producto, nombre_marca FROM Marca_producto";
+                    nombrePA = "sp_Combo_Marcas";
                     break;
                 case "Tipo":
-                    query = "SELECT id_tipo_producto,descripcion_producto FROM Tipo_producto";
+                    nombrePA = "sp_Combo_Tipos";
                     break;
                 case "Modelo":
-                    query = "SELECT id_modelo_auto, nombre_modelo_auto FROM Modelo_de_auto";
+                    nombrePA = "sp_Combo_Modelos";
                     break;
                 case "Estado":
-                    query = "SELECT id_estado, descripcion_estado FROM Estado";
+                    nombrePA = "sp_Combo_Estados";
                     break;
                 case "Proveedor":
-                    query = "SELECT id_proveedor, nombre_proveedor FROM Proveedor WHERE id_estado = 1 OR id_proveedor = @idProveedorActual";
+                    nombrePA = "sp_Combo_ProveedoresActivos";
                     break;
                 default:
                     throw new Exception("La tabla solicitada no está configurada.");
@@ -104,8 +83,10 @@ namespace SG_BAMS.ProductoInventario
             try
             {
                 conexion.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand(query, conexion.Conectar))
+                using (SqlCommand cmd = new SqlCommand(nombrePA, conexion.Conectar))
                 {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
                     if (tabla == "Proveedor")
                     {
                         cmd.Parameters.AddWithValue("@idProveedorActual", idProveedorActual);

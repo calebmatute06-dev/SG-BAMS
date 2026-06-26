@@ -1,15 +1,17 @@
 ﻿using Krypton.Toolkit;
+using System;
+using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System;
 using System.Windows.Forms;
 
 namespace SG_BAMS
 {
     /// <summary>
     /// Clase centralizada de validaciones reutilizables para controles de formulario.
+    /// Todas las consultas SQL usan Procedimientos Almacenados.
     /// </summary>
     public static class ClsValidaciones
     {
@@ -64,8 +66,8 @@ namespace SG_BAMS
             }
 
             CultureInfo ci = CultureInfo.CurrentCulture;
-            string decimalSep = ci.NumberFormat.NumberDecimalSeparator; 
-            string thousandSep = ci.NumberFormat.NumberGroupSeparator;  
+            string decimalSep = ci.NumberFormat.NumberDecimalSeparator;
+            string thousandSep = ci.NumberFormat.NumberGroupSeparator;
 
             if (!Regex.IsMatch(texto, @"^[\d\.,]+$"))
             {
@@ -557,12 +559,8 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Verifica que el RTN no esté duplicado en la tabla indicada (Cliente o Proveedor).
-        /// El RTN es único globalmente: ningún proveedor puede compartirlo sin importar su clasificación.
+        /// Verifica que el RTN no esté duplicado usando PA.
         /// </summary>
-        /// <param name="control">Control que contiene el RTN.</param>
-        /// <param name="tablaOrigen">"cliente" o "proveedor".</param>
-        /// <param name="idExcluir">ID del registro actual al editar (0 para nuevos registros).</param>
         public static bool ValidarRTNUnico(Control control, string tablaOrigen, int idExcluir = 0)
         {
             string rtnBusqueda = control.Text.Trim();
@@ -575,48 +573,21 @@ namespace SG_BAMS
                 return false;
             }
 
-            string nombreTabla = "";
-            string columnaRtn = "";
-            string columnaId = "";
-
-            if (tablaOrigen.Equals("cliente", StringComparison.OrdinalIgnoreCase))
-            {
-                nombreTabla = "Cliente";
-                columnaRtn = "rtn_cliente";
-                columnaId = "id_cliente";
-            }
-            else if (tablaOrigen.Equals("proveedor", StringComparison.OrdinalIgnoreCase))
-            {
-                nombreTabla = "Proveedor";
-                columnaRtn = "rtn_proveedor";
-                columnaId = "id_proveedor";
-            }
-            else return true;
-
-            // Consulta indestructible: Quita espacios y guiones en la BD antes de comparar
-            string sql = $@"SELECT COUNT(*) FROM {nombreTabla} 
-                    WHERE REPLACE(REPLACE({columnaRtn}, ' ', ''), '-', '') = @rtn 
-                    AND {columnaId} <> @idExcluir";
-
             ClsConexion conexion = new ClsConexion();
             try
             {
                 conexion.AbrirConexion();
-                using (var cmd = new Microsoft.Data.SqlClient.SqlCommand(sql, conexion.Conectar))
+                using (var cmd = new Microsoft.Data.SqlClient.SqlCommand("sp_ValidarRTNUnico", conexion.Conectar))
                 {
-                    // Usamos AddWithValue para evitar conflictos estrictos entre VARCHAR y NVARCHAR
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@rtn", rtnBusqueda);
+                    cmd.Parameters.AddWithValue("@tablaOrigen", tablaOrigen.ToLower());
                     cmd.Parameters.AddWithValue("@idExcluir", idExcluir);
-
                     int conteo = Convert.ToInt32(cmd.ExecuteScalar());
-
                     if (conteo > 0)
                     {
-                        MessageBox.Show(
-                            $"El RTN '{rtnBusqueda}' ya se encuentra registrado en el sistema.",
-                            "RTN Duplicado",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Warning);
+                        MessageBox.Show($"El RTN '{rtnBusqueda}' ya se encuentra registrado.", "RTN Duplicado",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         control.Focus();
                         return false;
                     }
@@ -643,9 +614,6 @@ namespace SG_BAMS
             if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
                 e.Handled = true;
         }
-        // Agregar dentro de la clase ClsValidaciones
-
-        
 
         /// <summary>
         /// Valida que el nombre de usuario no tenga espacios, solo alfanumérico,
@@ -700,17 +668,12 @@ namespace SG_BAMS
 
             return true;
         }
+
         /// <summary>
-        /// Valida que un nombre no esté duplicado en una tabla específica.
+        /// Valida que un nombre no esté duplicado en una tabla específica usando PA.
         /// </summary>
-        /// <param name="control">Control que contiene el nombre.</param>
-        /// <param name="tabla">Nombre de la tabla (ej. "Tipo_producto", "Marca_producto").</param>
-        /// <param name="columnaNombre">Nombre de la columna que almacena el nombre (ej. "descripcion_forma_pago").</param>
-        /// <param name="nombreCampo">Nombre amigable del campo para el mensaje (ej. "Tipo de Producto").</param>
-        /// <param name="idExcluir">ID del registro actual cuando se modifica (0 para nuevos registros).</param>
-        /// <param name="idColumna">Nombre de la columna de ID (por defecto "id_tipo_producto" o el que corresponda).</param>
-        /// <returns>True si el nombre es único, False si ya existe.</returns>
-        public static bool ValidarNombreUnico(Control control, string tabla, string columnaNombre, string nombreCampo, int idExcluir = 0, string idColumna = "id")
+        public static bool ValidarNombreUnico(Control control, string tabla, string columnaNombre,
+            string nombreCampo, int idExcluir = 0, string idColumna = "id")
         {
             string nombre = control.Text.Trim();
 
@@ -722,21 +685,19 @@ namespace SG_BAMS
                 return false;
             }
 
-            string sql = $@"
-            SELECT COUNT(*) FROM {tabla}
-            WHERE LTRIM(RTRIM({columnaNombre})) = @nombre
-            AND {idColumna} <> @idExcluir";
-
             ClsConexion conexion = new ClsConexion();
             try
             {
                 conexion.AbrirConexion();
-                using (var cmd = new Microsoft.Data.SqlClient.SqlCommand(sql, conexion.Conectar))
+                using (var cmd = new Microsoft.Data.SqlClient.SqlCommand("sp_ValidarNombreUnico", conexion.Conectar))
                 {
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@nombre", nombre);
+                    cmd.Parameters.AddWithValue("@tabla", tabla);
+                    cmd.Parameters.AddWithValue("@columnaNombre", columnaNombre);
                     cmd.Parameters.AddWithValue("@idExcluir", idExcluir);
+                    cmd.Parameters.AddWithValue("@idColumna", idColumna);
                     int conteo = Convert.ToInt32(cmd.ExecuteScalar());
-
                     if (conteo > 0)
                     {
                         MessageBox.Show($"El {nombreCampo.ToLower()} '{nombre}' ya se encuentra registrado.",
@@ -759,12 +720,8 @@ namespace SG_BAMS
             }
         }
 
-
-
         /// <summary>
-        /// Valida que el texto del control sea un correo electrónico válido:
-        /// formato correcto, sin espacios, dominio real, sin caracteres repetidos excesivos
-        /// y longitud dentro del rango permitido.
+        /// Valida que el texto del control sea un correo electrónico válido.
         /// </summary>
         public static bool ValidacionCorreo(Control control, string nombreCampo = "Correo electrónico")
         {
@@ -787,7 +744,6 @@ namespace SG_BAMS
                 control.Focus();
                 return false;
             }
-
 
             if (!Regex.IsMatch(correo, @"^[a-zA-Z0-9]+([._][a-zA-Z0-9]+)*@[a-zA-Z0-9]+([.\-][a-zA-Z0-9]+)*\.[a-zA-Z]{2,}$"))
             {
@@ -874,10 +830,10 @@ namespace SG_BAMS
 
             string[] dominiosConocidos =
             {
-                 "gmail", "yahoo", "outlook", "hotmail", "icloud",
+                "gmail", "yahoo", "outlook", "hotmail", "icloud",
                 "live", "msn", "aol", "protonmail", "zoho"
-             };
-    
+            };
+
             if (!dominiosConocidos.Contains(nombreDominio))
             {
                 DialogResult respuesta = MessageBox.Show(
@@ -894,10 +850,7 @@ namespace SG_BAMS
                 }
             }
 
-            
-
             return true;
         }
-
     }
 }

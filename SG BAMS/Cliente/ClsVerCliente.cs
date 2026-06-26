@@ -1,43 +1,29 @@
 ﻿using Microsoft.Data.SqlClient;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SG_BAMS.Cliente
 {
     /// <summary>
-    /// 
+    /// Clase para visualizar clientes usando solo Procedimientos Almacenados.
     /// </summary>
-    /// <seealso cref="SG_BAMS.ClsConexion" />
     internal class ClsVerCliente : ClsConexion
     {
-        /// <summary>
-        /// Consulta la tabla de clientes.
-        /// </summary>
-        /// <returns></returns>
         public async Task<DataTable> VerClienteTabla()
         {
             DataTable tablaC = new DataTable();
-
             try
             {
                 AbrirConexion();
-
-                string sqlQuery = "SELECT * FROM vista_lista_clientes ";
-
-                using (SqlCommand sqlCommand = new SqlCommand(sqlQuery, Conectar))
+                using (SqlCommand cmd = new SqlCommand("sp_Clientes_ListarTodos", Conectar))
                 {
-                    using (SqlDataReader sqlReader = await sqlCommand.ExecuteReaderAsync())
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                     {
-                        tablaC.Load(sqlReader);
+                        tablaC.Load(reader);
                     }
-
                 }
-
-
             }
             catch (Exception)
             {
@@ -55,10 +41,9 @@ namespace SG_BAMS.Cliente
             try
             {
                 AbrirConexion();
-                string query = "SELECT COUNT(*) FROM vista_lista_clientes WHERE RTN = @rtn AND ID <> @id";
-
-                using (SqlCommand cmd = new SqlCommand(query, Conectar))
+                using (SqlCommand cmd = new SqlCommand("sp_Cliente_VerificarRTN", Conectar))
                 {
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@rtn", rtn);
                     cmd.Parameters.AddWithValue("@id", idClienteActual);
                     return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
@@ -74,9 +59,5 @@ namespace SG_BAMS.Cliente
                 Cerrar();
             }
         }
-
-
-
     }
-
 }

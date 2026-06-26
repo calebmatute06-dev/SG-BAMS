@@ -5,31 +5,21 @@ using Microsoft.Data.SqlClient;
 namespace SG_BAMS.ProductoInventario
 {
     /// <summary>
-    /// 
+    /// Clase para mostrar compras usando solo Procedimientos Almacenados.
     /// </summary>
     internal class ClsMostrarCompras
     {
-        /// <summary>
-        /// La conexión
-        /// </summary>
-        private ClsConexion conexion = new ClsConexion();
+        private readonly ClsConexion conexion = new ClsConexion();
 
-        /// <summary>
-        /// Lista las compras.
-        /// </summary>
-        /// <returns></returns>
-        /// <exception cref="System.Exception">Error al obtener las compras desde la base de datos: " + ex.Message</exception>
         public DataTable ListarCompras()
         {
             DataTable dt = new DataTable();
             try
             {
                 conexion.AbrirConexion();
-
-                string query = "SELECT * FROM Vista_ListadoCompras";
-
-                using (SqlCommand cmd = new SqlCommand(query, conexion.Conectar))
+                using (SqlCommand cmd = new SqlCommand("sp_Vista_ListadoCompras", conexion.Conectar))
                 {
+                    cmd.CommandType = CommandType.StoredProcedure;
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dt);

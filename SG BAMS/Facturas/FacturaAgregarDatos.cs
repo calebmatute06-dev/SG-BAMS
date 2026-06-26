@@ -5,10 +5,10 @@ using SG_BAMS.Deudores;
 using SG_BAMS.Facturas;
 using SG_BAMS.Login;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SG_BAMS
@@ -26,16 +26,9 @@ namespace SG_BAMS
 
         private static readonly CultureInfo CI = CultureInfo.InvariantCulture;
 
-        
         private PlaceholderComboBox phPago;
         private PlaceholderTextBox phExento;
 
-        /// <summary>
-        /// Constructor que recibe los datos del cliente.
-        /// </summary>
-        /// <param name="cliente">Nombre completo del cliente.</param>
-        /// <param name="idCli">Identificador del cliente.</param>
-        /// <param name="rtn">RTN del cliente (opcional).</param>
         public FacturaAgregarDatos(string cliente, int idCli, string rtn = "Sin RTN")
         {
             InitializeComponent();
@@ -45,12 +38,6 @@ namespace SG_BAMS
             rtnCliente = string.IsNullOrWhiteSpace(rtn) ? "Sin RTN" : rtn;
         }
 
-        /// <summary>
-        /// Establece los datos del producto que será agregado a la factura.
-        /// </summary>
-        /// <param name="idProd">ID del producto.</param>
-        /// <param name="nombreProd">Nombre del producto.</param>
-        /// <param name="cantidadProd">Cantidad seleccionada.</param>
         public void SetProducto(int idProd, string nombreProd, int cantidadProd)
         {
             idProducto = idProd;
@@ -58,9 +45,6 @@ namespace SG_BAMS
             cantidades = cantidadProd;
         }
 
-        /// <summary>
-        /// Constructor por defecto.
-        /// </summary>
         public FacturaAgregarDatos()
         {
             InitializeComponent();
@@ -69,9 +53,6 @@ namespace SG_BAMS
             rtnCliente = "Sin RTN";
         }
 
-        /// <summary>
-        /// Carga las formas de pago en el ComboBox.
-        /// </summary>
         private async Task LlenarComboPago()
         {
             ClsAgregarFactura AF = new ClsAgregarFactura();
@@ -205,52 +186,29 @@ namespace SG_BAMS
 
         private async Task<bool> CrearDeudaManual(int idFactura, int idCliente, double montoTotal, DateTime fechaVenta)
         {
+            ClsConexion conexion = new ClsConexion();
             try
             {
-                using (SqlConnection conn = new SqlConnection("Data Source = AutoBattDB.mssql.somee.com; Initial catalog = AutoBattDB; User ID = exobonnie_SQLLogin_1; Password = w6et2uoghs; TrustServerCertificate=True;"))
+                conexion.AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_Deuda_CrearOActualizar", conexion.Conectar))
                 {
-                    await conn.OpenAsync();
-
-                    string checkQuery = "SELECT COUNT(*) FROM Deuda WHERE id_factura = @idFactura";
-                    using (SqlCommand checkCmd = new SqlCommand(checkQuery, conn))
-                    {
-                        checkCmd.Parameters.AddWithValue("@idFactura", idFactura);
-                        int existe = (int)await checkCmd.ExecuteScalarAsync();
-                        DateTime fechaFin = fechaVenta.AddDays(30);
-
-                        if (existe > 0)
-                        {
-                            string updateQuery = "UPDATE Deuda SET monto_inicial = @monto WHERE id_factura = @idFactura";
-                            using (SqlCommand updateCmd = new SqlCommand(updateQuery, conn))
-                            {
-                                updateCmd.Parameters.AddWithValue("@monto", montoTotal);
-                                updateCmd.Parameters.AddWithValue("@idFactura", idFactura);
-                                int rows = await updateCmd.ExecuteNonQueryAsync();
-                                return rows > 0;
-                            }
-                        }
-                        else
-                        {
-                            string insertQuery = @"INSERT INTO Deuda (id_cliente, fecha_inicio, fecha_fin, id_estado, monto_inicial, id_factura) 
-                                                  VALUES (@idCliente, @fechaInicio, @fechaFin, 1, @monto, @idFactura)";
-                            using (SqlCommand insertCmd = new SqlCommand(insertQuery, conn))
-                            {
-                                insertCmd.Parameters.AddWithValue("@idCliente", idCliente);
-                                insertCmd.Parameters.AddWithValue("@fechaInicio", fechaVenta);
-                                insertCmd.Parameters.AddWithValue("@fechaFin", fechaFin);
-                                insertCmd.Parameters.AddWithValue("@monto", montoTotal);
-                                insertCmd.Parameters.AddWithValue("@idFactura", idFactura);
-                                int rows = await insertCmd.ExecuteNonQueryAsync();
-                                return rows > 0;
-                            }
-                        }
-                    }
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idFactura", idFactura);
+                    cmd.Parameters.AddWithValue("@idCliente", idCliente);
+                    cmd.Parameters.AddWithValue("@monto", montoTotal);
+                    cmd.Parameters.AddWithValue("@fechaVenta", fechaVenta);
+                    await cmd.ExecuteNonQueryAsync();
+                    return true;
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al crear/actualizar deuda: " + ex.Message);
                 return false;
+            }
+            finally
+            {
+                conexion.Cerrar();
             }
         }
 
@@ -325,21 +283,20 @@ namespace SG_BAMS
 
                     if (imprimir == DialogResult.Yes)
                     {
-                            objAF.ImprimirFactura(
-                                idFactura,
-                                txtCliente.Text,
-                                DateTFecha.Value.ToShortDateString(),
-                               ParsearMonto(txtSubtotal.Text).ToString("N2", CI),
-                               ParsearMonto(txtRebaja.Text).ToString("N2", CI),
-                               ParsearMonto(txtTotal.Text).ToString("N2", CI),
-                                cmbPago.Text,
-                                dgvProductos,
-                                SG_BAMS.Login.Login.UsuarioLogueado,
-                                chkGobierno.Checked,
-                                montoExento,
-                                rtnCliente
-                            );
-                        
+                        objAF.ImprimirFactura(
+                            idFactura,
+                            txtCliente.Text,
+                            DateTFecha.Value.ToShortDateString(),
+                            ParsearMonto(txtSubtotal.Text).ToString("N2", CI),
+                            ParsearMonto(txtRebaja.Text).ToString("N2", CI),
+                            ParsearMonto(txtTotal.Text).ToString("N2", CI),
+                            cmbPago.Text,
+                            dgvProductos,
+                            SG_BAMS.Login.Login.UsuarioLogueado,
+                            chkGobierno.Checked,
+                            montoExento,
+                            rtnCliente
+                        );
                     }
 
                     string formaPagoTexto = cmbPago.Text.ToLower();
@@ -497,8 +454,6 @@ namespace SG_BAMS
         private void DateTFecha_DateChanged(object sender, DateRangeEventArgs e) { }
 
         private void label5_Click(object sender, EventArgs e) { }
-
-       
 
         private void dgvProductos_CellClick(object sender, DataGridViewCellEventArgs e)
         {

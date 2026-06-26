@@ -6,35 +6,24 @@ using System.Threading.Tasks;
 namespace SG_BAMS.MenuPrincipal
 {
     /// <summary>
-    /// 
+    /// Clase para obtener contadores de productos usando solo Procedimientos Almacenados.
     /// </summary>
-    /// <seealso cref="SG_BAMS.ClsConexion" />
     internal class ClsContadorProducto : ClsConexion
     {
-        /// <summary>
-        /// Obtiene el total de productos.
-        /// </summary>
-        /// <returns></returns>
         public async Task<int> ObtenerTotalProductos()
         {
             try
             {
                 AbrirConexion();
-
-
-                string sqlQuery = "SELECT COUNT(*) FROM Producto WHERE id_estado = 1";
-
-                using (SqlCommand sqlCommand = new SqlCommand(sqlQuery, Conectar))
+                using (SqlCommand cmd = new SqlCommand("sp_Producto_TotalActivos", Conectar))
                 {
-
-                    object resultadoConsulta = await sqlCommand.ExecuteScalarAsync();
-
-                    return resultadoConsulta != null ? Convert.ToInt32(resultadoConsulta) : 0;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    object resultado = await cmd.ExecuteScalarAsync();
+                    return resultado != null ? Convert.ToInt32(resultado) : 0;
                 }
             }
             catch (Exception)
             {
-
                 return -1;
             }
             finally

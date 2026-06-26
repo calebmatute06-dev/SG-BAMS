@@ -5,33 +5,24 @@ using System.Threading.Tasks;
 
 namespace SG_BAMS.MenuPrincipal
 {
-
     /// <summary>
-    /// 
+    /// Clase para obtener contadores de deuda usando solo Procedimientos Almacenados.
     /// </summary>
-    /// <seealso cref="SG_BAMS.ClsConexion" />
     internal class ClsContadorDeuda : ClsConexion
     {
-
-
         /// <summary>
-        /// Obtiene el total de deudores.
+        /// Obtiene el total de deudores activos usando PA.
         /// </summary>
-        /// <returns></returns>
         public async Task<int> ObtenerTotalDeudores()
         {
             try
             {
                 AbrirConexion();
-
-
-                string sqlQuery = "SELECT COUNT(DISTINCT id_cliente) FROM Deuda WHERE id_estado = 1";
-
-                using (SqlCommand sqlCommand = new SqlCommand(sqlQuery, Conectar))
+                using (SqlCommand cmd = new SqlCommand("sp_Deuda_TotalDeudores", Conectar))
                 {
-
-                    object resultadoConsulta = await sqlCommand.ExecuteScalarAsync();
-                    return resultadoConsulta != null ? Convert.ToInt32(resultadoConsulta) : 0;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    object resultado = await cmd.ExecuteScalarAsync();
+                    return resultado != null ? Convert.ToInt32(resultado) : 0;
                 }
             }
             catch (Exception)

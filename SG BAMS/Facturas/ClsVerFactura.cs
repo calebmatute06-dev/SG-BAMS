@@ -1,46 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Data.SqlClient;
-using System.Data.SqlClient;
-using System.Threading.Tasks;
 using System.Data;
+using Microsoft.Data.SqlClient;
+using System.Threading.Tasks;
 
 namespace SG_BAMS.Facturas
 {
     /// <summary>
-    /// 
+    /// Clase para visualizar facturas usando solo Procedimientos Almacenados.
     /// </summary>
-    /// <seealso cref="SG_BAMS.ClsConexion" />
-    internal class ClsVerFactura:ClsConexion
+    internal class ClsVerFactura : ClsConexion
     {
-
-        /// <summary>
-        /// Vers the facturas.
-        /// </summary>
-        /// <returns></returns>
         public async Task<DataTable> VerFacturas()
         {
             DataTable tablaFac = new DataTable();
-
-            try 
+            try
             {
                 AbrirConexion();
-
-                string sqlQuery = "SELECT * FROM vista_detalle_facturas ";
-
-                using (SqlCommand sqlCommand = new SqlCommand(sqlQuery,Conectar))
+                using (SqlCommand cmd = new SqlCommand("sp_vista_detalle_facturas", Conectar))
                 {
-                    using (SqlDataReader sqlReader = await sqlCommand.ExecuteReaderAsync())
-                    { 
-                        tablaFac.Load(sqlReader);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                    {
+                        tablaFac.Load(reader);
                     }
-
                 }
-            
-            
             }
             catch (Exception ex)
             {
@@ -52,7 +35,5 @@ namespace SG_BAMS.Facturas
             }
             return tablaFac;
         }
-
-
     }
 }
