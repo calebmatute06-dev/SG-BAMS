@@ -112,7 +112,7 @@ namespace SG_BAMS.Bitacora
                         table.Cell().Element(Celda).Text(item.Nombre ?? "");
                         table.Cell().Element(Celda).Text(item.Accion ?? "");
                         table.Cell().Element(Celda).Text(item.Modulo ?? "");
-                        table.Cell().Element(Celda).Text(item.Fecha.ToString("dd/MM/yyyy"));
+                        table.Cell().Element(Celda).Text(item.Fecha.ToString("dd/MM/yyyy HH:mm:ss"));
                     }
 
                     static IContainer Encabezado(IContainer c) =>
