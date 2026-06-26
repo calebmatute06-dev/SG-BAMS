@@ -103,5 +103,33 @@ namespace SG_BAMS
             finally { Cerrar(); }
             return tablaVentas;
         }
+
+        public async Task<bool> ClienteTieneDeudaActiva(int idCliente)
+        {
+            try
+            {
+                AbrirConexion();
+                string query = @"SELECT COUNT(*) 
+                         FROM Deuda 
+                         WHERE id_cliente = @id_cliente 
+                           AND id_estado = 1";
+                using (SqlCommand cmd = new SqlCommand(query, Conectar))
+                {
+                    cmd.Parameters.AddWithValue("@id_cliente", idCliente);
+                    object resultado = await cmd.ExecuteScalarAsync();
+                    return resultado != null && Convert.ToInt32(resultado) > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error en ClienteTieneDeudaActiva: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                Cerrar();
+            }
+        }
+
     }
 }

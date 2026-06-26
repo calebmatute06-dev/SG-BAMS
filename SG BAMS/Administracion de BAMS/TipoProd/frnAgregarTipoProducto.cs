@@ -22,6 +22,7 @@ namespace SG_BAMS
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirAlfanumerico(e);
+            phDescri = new PlaceholderTextBox(txtDescri, "Ingrese el tipo de producto");
         }
 
         private void frnAgregarTipoProducto_Load(object sender, EventArgs e)

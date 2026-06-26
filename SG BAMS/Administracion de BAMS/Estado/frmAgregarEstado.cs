@@ -22,6 +22,7 @@ namespace SG_BAMS
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.txtDescri.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescri_KeyPress);
+            phDescri = new PlaceholderTextBox(txtDescri, "Ingrese la descripción del estado");
         }
 
         private void frmAgregarEstado_Load(object sender, EventArgs e)

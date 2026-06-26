@@ -263,6 +263,26 @@ namespace SG_BAMS
 
                 double totalFacturaReal = ParsearMonto(txtTotal.Text);
 
+                string formaPagoTexto = cmbPago.Text.ToLower();
+
+                if (formaPagoTexto.Contains("crédito") || formaPagoTexto.Contains("credito"))
+                {
+                    ClsDeudas objDeudas = new ClsDeudas();
+                    bool tieneDeudaActiva = await objDeudas.ClienteTieneDeudaActiva(idCliente);
+
+                    if (tieneDeudaActiva)
+                    {
+                        MessageBox.Show(
+                            $"El cliente '{txtCliente.Text.Trim()}' ya tiene una deuda activa pendiente de pago.\n\n" +
+                            "No es posible generar una nueva factura a crédito hasta que la deuda anterior sea cancelada.",
+                            "Crédito Bloqueado",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+                        return;
+                    }
+                }
+
+
                 int idFactura = await objAF.AgregarFacturas(idUser, idCliente, idPago,
                     DateTFecha.Value, bat, precioBateria, totalFacturaReal);
 
@@ -298,8 +318,6 @@ namespace SG_BAMS
                             rtnCliente
                         );
                     }
-
-                    string formaPagoTexto = cmbPago.Text.ToLower();
 
                     if (formaPagoTexto.Contains("crédito") || formaPagoTexto.Contains("credito"))
                     {

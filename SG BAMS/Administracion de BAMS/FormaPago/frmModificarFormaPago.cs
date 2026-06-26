@@ -26,6 +26,7 @@ namespace SG_BAMS
             this._idFormaPago = id;
             txtDescri.Text = descripcionActual;
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
+            phDescri = new PlaceholderTextBox(txtDescri, "Ingrese la descripción de la forma de pago");
         }
 
         private void frmModificarFormaPago_Load(object sender, EventArgs e)

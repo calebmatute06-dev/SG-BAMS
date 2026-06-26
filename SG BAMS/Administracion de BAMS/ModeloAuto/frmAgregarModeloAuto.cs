@@ -21,6 +21,7 @@ namespace SG_BAMS
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirAlfanumerico(e);
+            phDescri = new PlaceholderTextBox(txtDescri, "Ingrese el nombre del modelo de auto");
         }
 
         private void frmAgregarModeloAuto_Load(object sender, EventArgs e)

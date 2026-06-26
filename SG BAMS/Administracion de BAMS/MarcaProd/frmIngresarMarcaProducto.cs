@@ -21,6 +21,7 @@ namespace SG_BAMS
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirAlfanumerico(e);
+            phDescri = new PlaceholderTextBox(txtDescri, "Ingrese el nombre de la marca");
         }
 
         private void frmIngresarMarcaProducto_Load(object sender, EventArgs e)

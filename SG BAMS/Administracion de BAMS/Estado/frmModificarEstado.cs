@@ -26,6 +26,7 @@ namespace SG_BAMS
             this.idEstado = id;
             txtDescri.Text = descripcionActual;
             this.txtDescri.KeyPress += new KeyPressEventHandler(this.txtDescri_KeyPress);
+            phDescri = new PlaceholderTextBox(txtDescri, "Ingrese la descripción del estado");
         }
 
         private void frmModificarEstado_Load(object sender, EventArgs e)

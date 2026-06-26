@@ -21,6 +21,7 @@ namespace SG_BAMS
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
+            phDescri = new PlaceholderTextBox(txtDescri, "Ingrese el nombre del rol");
         }
 
         private void frmAgregarRol_Load(object sender, EventArgs e)
