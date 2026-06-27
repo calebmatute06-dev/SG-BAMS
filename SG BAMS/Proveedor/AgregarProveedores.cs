@@ -37,7 +37,7 @@ namespace SG_BAMS.Proveedor
             cmbClasificacion.DropDownStyle = ComboBoxStyle.DropDown;
             cmbClasificacion.SelectedIndex = -1;
 
-            phNombre = new PlaceholderTextBox(txtNombre, "Nombre del proveedor");
+            phNombre = new PlaceholderTextBox(txtNombre, "Ingrese el Nombre del proveedor");
             phDireccion = new PlaceholderTextBox(txtDireccion, "Colonia, Barrio, Pueblo");
             phTelefono = new PlaceholderTextBox(txtTelefono, "Número que empiece con 9,8,3,2");
             phRTN = new PlaceholderTextBox(txtRTN, "Ingrese el RTN");

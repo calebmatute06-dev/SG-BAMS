@@ -60,8 +60,8 @@ namespace SG_BAMS
             btnImagen.Visible = (rolInicial == 1 || rolInicial == 2);
 
 
-            phNombre = new PlaceholderTextBox(txtNombre, "Nombre de usuario");
-            phCorreo = new PlaceholderTextBox(txtCorreo, "Correo electrónico");
+            phNombre = new PlaceholderTextBox(txtNombre, "Ingrese el Nombre del usuario");
+            phCorreo = new PlaceholderTextBox(txtCorreo, "Ingrese el Correo electrónico");
             phContra = new PlaceholderTextBox(txtContra, "Nueva contraseña (opcional)");
         }
 

@@ -165,8 +165,8 @@ namespace SG_BAMS
         /// </summary>
         private void AgregarProducto_Load(object sender, EventArgs e)
         {
-            phNombre = new PlaceholderTextBox(txtNombre, "Nombre del producto");
-            phPrecio = new PlaceholderTextBox(txtPrecio, "Precio del producto");
+            phNombre = new PlaceholderTextBox(txtNombre, "Ingrese elNombre del producto");
+            phPrecio = new PlaceholderTextBox(txtPrecio, "Ingrese Precio del producto");
             phCodigoBarra = new PlaceholderTextBox(txtCodigoBarra, "Ingrese o escanee el código");
 
             phMarca = new PlaceholderComboBox(cmbMarca, "Seleccione marca");

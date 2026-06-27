@@ -16,6 +16,7 @@ namespace SG_BAMS.Login
         private string correo;
         private string token;
 
+
         public LoginToken(string correo, string token)
         {
             InitializeComponent();
@@ -23,6 +24,7 @@ namespace SG_BAMS.Login
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.correo = correo;
             this.token = token;
+
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)

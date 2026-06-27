@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
+
 /// <summary>
 /// Implementa un comportamiento de placeholder para un KryptonTextBox.
 /// </summary>
@@ -10,12 +11,15 @@ public class PlaceholderTextBox
     private KryptonTextBox txt;
     private string placeholder;
 
+
+
     /// <summary>
     /// Inicializa una nueva instancia del placeholder.
     /// </summary>
     /// <param name="textbox">Control al que se aplica el placeholder.</param>
     /// <param name="textoGuia">Texto de ayuda que se muestra cuando está vacío.</param>
-    public PlaceholderTextBox(KryptonTextBox textbox, string textoGuia)
+   
+public PlaceholderTextBox(KryptonTextBox textbox, string textoGuia)
     {
         txt = textbox;
         placeholder = textoGuia;

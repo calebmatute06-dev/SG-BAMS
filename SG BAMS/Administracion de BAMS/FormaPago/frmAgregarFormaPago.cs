@@ -21,12 +21,12 @@ namespace SG_BAMS
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             txtdescri.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
-            phDescri = new PlaceholderTextBox(txtdescri, "Ingrese la descripción de la forma de pago");
+            phDescri = new PlaceholderTextBox(txtdescri, "Ingrese el nuevo metodo de pago");
         }
 
         private void frmAgregarFormaPago_Load(object sender, EventArgs e)
         {
-            phDescri = new PlaceholderTextBox(txtdescri, "Ingrese la descripción de la forma de pago");
+            phDescri = new PlaceholderTextBox(txtdescri, "Ingrese el nuevo metodo de pago");
         }
 
         private async void btnAgregar_Click(object sender, EventArgs e)

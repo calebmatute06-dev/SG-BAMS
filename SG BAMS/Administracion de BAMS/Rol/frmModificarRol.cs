@@ -26,12 +26,12 @@ namespace SG_BAMS
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
-            phDescri = new PlaceholderTextBox(txtDescri, "Ingrese el nombre del rol");
+            phDescri = new PlaceholderTextBox(txtDescri, "IEscriba el nombre del rol");
         }
 
         private void frmModificarRol_Load(object sender, EventArgs e)
         {
-            phDescri = new PlaceholderTextBox(txtDescri, "Ingrese el nombre del rol");
+            phDescri = new PlaceholderTextBox(txtDescri, "Escriba el nombre del rol");
         }
 
         private async void btmModificar_Click(object sender, EventArgs e)

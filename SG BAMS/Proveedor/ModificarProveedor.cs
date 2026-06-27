@@ -73,7 +73,7 @@ namespace SG_BAMS.Proveedor
             cmbClasificacion.SelectedValue = _idClasificacion;
 
             
-            phNombre = new PlaceholderTextBox(txtNombre, "Nombre del proveedor");
+            phNombre = new PlaceholderTextBox(txtNombre, "Ingrese el Nombre del proveedor");
             phTelefono = new PlaceholderTextBox(txtTelefono, "Número que empiece con 9,8,3,2");
             phDireccion = new PlaceholderTextBox(txtDireccion, "Colonia, Barrio, Pueblo");
             phRTN = new PlaceholderTextBox(txtRTN, "Ingrese el RTN");

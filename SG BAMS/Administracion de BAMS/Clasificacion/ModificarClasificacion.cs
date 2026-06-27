@@ -30,7 +30,7 @@ namespace SG_BAMS.Administracion_de_BAMS.Clasificacion
 
         private void ModificarClasificacion_Load(object sender, EventArgs e)
         {
-            phDescri = new PlaceholderTextBox(txtDescri, "Ingrese la clasificación");
+            phDescri = new PlaceholderTextBox(txtDescri, "Ingrese una clasificación");
             txtDescri.Focus();
             txtDescri.SelectionStart = txtDescri.Text.Length;
         }

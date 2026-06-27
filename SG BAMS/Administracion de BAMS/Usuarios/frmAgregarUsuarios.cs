@@ -57,9 +57,9 @@ namespace SG_BAMS
         private async void frmAgregarUsuarios_Load(object sender, EventArgs e)
         {
 
-            phNombre = new PlaceholderTextBox(txtNombre, "Nombre de usuario");
-            phCorreo = new PlaceholderTextBox(txtCorreo, "Correo electrónico");
-            phContra = new PlaceholderTextBox(txtContra, "Contraseña");
+            phNombre = new PlaceholderTextBox(txtNombre, "Ingrese el Nombre del usuario");
+            phCorreo = new PlaceholderTextBox(txtCorreo, "Ingrese el Correo electrónico");
+            phContra = new PlaceholderTextBox(txtContra, "Ingrese la Contraseña");
             phRol = new PlaceholderComboBox(cmbRol, "Seleccione un rol");
 
 

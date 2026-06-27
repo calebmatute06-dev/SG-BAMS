@@ -31,7 +31,7 @@ namespace SG_BAMS
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.Load += new EventHandler(frmFormasPago_Load);
+           
         }
 
         /// <summary>
@@ -39,12 +39,7 @@ namespace SG_BAMS
         /// </summary>
         /// <param name="sender">La fuente del evento.</param>
         /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
-        private async void frmFormasPago_Load(object sender, EventArgs e)
-        {
-            await CargarGridFormasPago();
-            this.Load += async (s, e) => await CargarGridFormasPago();
-        }
-
+        /// 
         /// <summary>
         /// Carga los datos desde la base de datos al control DataGridView de forma asíncrona.
         /// </summary>
@@ -99,9 +94,13 @@ namespace SG_BAMS
         /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btmAgregar2_Click(object sender, EventArgs e)
         {
-            frmAgregarFormaPago AgregarFpago = new frmAgregarFormaPago();
-            AgregarFpago.Show();
-            this.Close();
+    using (frmAgregarFormaPago AgregarFpago = new frmAgregarFormaPago())
+    {
+        if (AgregarFpago.ShowDialog() == DialogResult.OK)
+        {
+            _ = CargarGridFormasPago();
+        }
+    }
         }
 
         /// <summary>
@@ -139,7 +138,7 @@ namespace SG_BAMS
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmAgregarFormaPago agregarFpago = new frmAgregarFormaPago();
-            agregarFpago.Show();
+            agregarFpago.ShowDialog();
             dgvFormasPago.ClearSelection();
         }
 
@@ -185,8 +184,9 @@ namespace SG_BAMS
         /// </summary>
         /// <param name="sender">La fuente del evento.</param>
         /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
-        private void frmFormaPago_Load(object sender, EventArgs e)
+        private async void frmFormaPago_Load(object sender, EventArgs e)
         {
+            
             dgvFormasPago.BorderStyle = BorderStyle.None;
             dgvFormasPago.BackgroundColor = Color.White;
             dgvFormasPago.RowHeadersVisible = false;
@@ -214,6 +214,8 @@ namespace SG_BAMS
             dgvFormasPago.RowTemplate.Height = 32;
             dgvFormasPago.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvFormasPago.ClearSelection();
+
+            await CargarGridFormasPago();
         }
     }
 }

@@ -16,6 +16,8 @@ namespace SG_BAMS.Login
     public partial class Login : Form
     {
         public static string UsuarioLogueado;
+        private PlaceholderTextBox phUsuario;
+       
 
         // Variables para el control de intentos
         private int intentosFallidos = 0;
@@ -32,6 +34,7 @@ namespace SG_BAMS.Login
             this.StartPosition = FormStartPosition.CenterScreen;
 
             txtCon.KeyPress += new KeyPressEventHandler(txtCon_KeyPress);
+            phUsuario = new PlaceholderTextBox(txtUsuCorr, "Ingrese Usuario o Correo valido");
             InicializarTimer();
         }
 
@@ -107,8 +110,16 @@ namespace SG_BAMS.Login
 
         private void btninicioSesion1_Click(object sender, EventArgs e)
         {
+
             if (ClsValidaciones.CampoVacio(txtUsuCorr, "Usuario")) return;
             if (ClsValidaciones.CampoVacio(txtCon, "Contraseña")) return;
+            if (placeholderPassword)
+            {
+                MessageBox.Show("Ingrese una contraseña.", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtCon.Focus();
+                return;
+            }
             if (!ClsValidaciones.EsPasswordValido(txtCon, "La contraseña")) return;
 
             ClsLogin login = new ClsLogin();
@@ -215,9 +226,19 @@ namespace SG_BAMS.Login
 
         private bool _passwordVisible = false;
         private Label lblOjo;
+        private bool placeholderPassword = true;
+        private const string textoPlaceholder = "Ingrese su contraseña";
 
         private void Login_Load(object sender, EventArgs e)
         {
+            phUsuario = new PlaceholderTextBox(txtUsuCorr, "Ingrese Usuario o Correo valido");
+            txtCon.Text = textoPlaceholder;
+            txtCon.ForeColor = Color.Gray;
+            txtCon.UseSystemPasswordChar = false;
+
+            txtCon.Enter += TxtCon_Enter;
+            txtCon.Leave += TxtCon_Leave;
+
             lblOjo = new Label();
             lblOjo.Text = "👁";
             lblOjo.Font = new Font("Arial", 13);
@@ -231,12 +252,22 @@ namespace SG_BAMS.Login
                 txtCon.Top + (txtCon.Height - 32) / 2
             );
 
-            _passwordVisible = false;
-            txtCon.UseSystemPasswordChar = true;
+            if (!placeholderPassword)
+            {
+                txtCon.UseSystemPasswordChar = true;
+            }
+            else
+            {
+                txtCon.UseSystemPasswordChar = false;
+            }
+
             lblOjo.Text = "👁";
+
 
             lblOjo.Click += (s, ev) =>
             {
+                if (placeholderPassword)
+                    return;
                 _passwordVisible = !_passwordVisible;
                 txtCon.UseSystemPasswordChar = !_passwordVisible;
                 lblOjo.Text = _passwordVisible ? "🙈" : "👁";
@@ -247,6 +278,10 @@ namespace SG_BAMS.Login
 
 
             lblBloqueo.Visible = false;
+
+
+
+
         }
 
         private void btnOlvidar_Click(object sender, EventArgs e)
@@ -260,5 +295,30 @@ namespace SG_BAMS.Login
         {
 
         }
+        private void TxtCon_Enter(object sender, EventArgs e)
+        {
+            if (placeholderPassword)
+            {
+                txtCon.Clear();
+                txtCon.ForeColor = Color.Black;
+
+                if (!_passwordVisible)
+                    txtCon.UseSystemPasswordChar = true;
+
+                placeholderPassword = false;
+            }
+        }
+        private void TxtCon_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtCon.Text))
+            {
+                txtCon.Text = textoPlaceholder;
+                txtCon.ForeColor = Color.Gray;
+                txtCon.UseSystemPasswordChar = false;
+                placeholderPassword = true;
+            }
+        }
     }
+
+
 }

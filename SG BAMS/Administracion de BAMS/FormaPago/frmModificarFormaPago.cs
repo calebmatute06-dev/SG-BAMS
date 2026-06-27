@@ -26,12 +26,12 @@ namespace SG_BAMS
             this._idFormaPago = id;
             txtDescri.Text = descripcionActual;
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
-            phDescri = new PlaceholderTextBox(txtDescri, "Ingrese la descripción de la forma de pago");
+            phDescri = new PlaceholderTextBox(txtDescri, "Ingrese el nuevo metodo de pago");
         }
 
         private void frmModificarFormaPago_Load(object sender, EventArgs e)
         {
-            phDescri = new PlaceholderTextBox(txtDescri, "Ingrese la descripción de la forma de pago");
+            phDescri = new PlaceholderTextBox(txtDescri, "Ingrese el nuevo metodo de pago");
         }
 
         private void pictureBox16_Click(object sender, EventArgs e) { }

@@ -12,7 +12,7 @@ namespace SG_BAMS.Login
 {
     public partial class LoginCorreo : Form
     {
-
+      
         private string correo;
         public LoginCorreo(string correom)
         {
@@ -20,11 +20,13 @@ namespace SG_BAMS.Login
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             correo = correom;
+
         }
 
         private void LoginCorreo_Load(object sender, EventArgs e)
         {
             txtCorreo.Text = correo;
+            txtCorreo.StateCommon.Content.Color1 = Color.Black;
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)

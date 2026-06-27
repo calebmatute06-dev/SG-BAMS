@@ -14,6 +14,8 @@ namespace SG_BAMS
     public partial class LoginNueva : Form
     {
         private string correo;
+        private PlaceholderTextBox phContra;
+        private PlaceholderTextBox phContraNueva;
 
         public LoginNueva(string correo)
         {
@@ -21,14 +23,15 @@ namespace SG_BAMS
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.correo = correo;
+           phContra = new PlaceholderTextBox(txtContra, "Ingrese la contraseña Nueva");
+           phContraNueva = new PlaceholderTextBox(txtContraNueva, "Confirme la contraseña Nueva");
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            string pass1 = txtContra.Text.Trim();
-            string pass2 = txtContraNueva.Text.Trim();
+            string pass1 = phContra.GetRealValue().Trim();
+            string pass2 = phContraNueva.GetRealValue().Trim();
 
-            
 
             if (string.IsNullOrEmpty(pass1) || string.IsNullOrEmpty(pass2))
             {

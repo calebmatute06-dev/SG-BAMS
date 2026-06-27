@@ -188,7 +188,7 @@ namespace SG_BAMS
             phNombre = new PlaceholderTextBox(txtNombre, "Solo letras y espacios");
             phApellido = new PlaceholderTextBox(txtApellido, "Solo letras y espacios");
             phTelefono = new PlaceholderTextBox(txtTelefono, "Debe comenzar con 2,3,7,8 o 9");
-            phRTN = new PlaceholderTextBox(txtRTN, "14 Digitos numericos minimo");
+            phRTN = new PlaceholderTextBox(txtRTN, "Ingrese el RTN(opcional)");
         }
 
         private void txtTelefono_TextChanged(object sender, EventArgs e)

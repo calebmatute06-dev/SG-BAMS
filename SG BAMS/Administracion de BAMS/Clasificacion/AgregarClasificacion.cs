@@ -22,7 +22,7 @@ namespace SG_BAMS.Administracion_de_BAMS.Clasificacion
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirAlfanumerico(e);
-            phDescri = new PlaceholderTextBox(txtDescri, "Ingrese la clasificación");
+            phDescri = new PlaceholderTextBox(txtDescri, "Ingrese una nueva clasificación");
         }
 
         /// <summary>
