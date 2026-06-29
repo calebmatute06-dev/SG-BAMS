@@ -290,7 +290,7 @@ namespace SG_BAMS
                         }
 
                         DialogResult respuesta = MessageBox.Show(
-                            $"El cliente '{txtCliente.Text.Trim()}' ya tiene una deuda activa:\n\n" +
+                            $"El cliente '{txtCliente.Text.Trim()}' tiene una deuda activa:\n\n" +
                             $"{detalleDeudas}" +
                             "¿Desea generar la factura de todas formas?",
                             "Advertencia de Crédito",
