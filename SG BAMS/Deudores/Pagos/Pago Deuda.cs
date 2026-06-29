@@ -138,6 +138,8 @@ namespace SG_BAMS
                 return;
             }
 
+            decimal totalProductos = 0;
+
             foreach (DataRow row in dtProductos.Rows)
             {
                 string producto = row["Producto"].ToString();
@@ -145,11 +147,18 @@ namespace SG_BAMS
                 decimal precio = Convert.ToDecimal(row["PrecioUnitario"]);
                 decimal total = Convert.ToDecimal(row["total"]);
 
+                totalProductos += total;
+
                 string linea = $"{cantidad}x {producto,-25}  |  L {precio:N2} c/u    |  Total: L {total:N2}";
                 lstProductos.Items.Add(linea);
             }
+
             decimal saldoPendiente = await objetoDeudas.ObtenerSaldo(idDeuda);
+            decimal saldoPagado = totalProductos - saldoPendiente;
+
+            lstProductos.Items.Add($"{"Total de compra:",-35}  L {totalProductos:N2}");
             lstProductos.Items.Add("──────────────────────────────────────────────────────────────────────────────────────────────────────────");
+            lstProductos.Items.Add($"{"Saldo pagado:",-35}  L {saldoPagado:N2}");
             lstProductos.Items.Add($"{"Saldo pendiente:",-35}  L {saldoPendiente:N2}");
         }
         /// <summary>
