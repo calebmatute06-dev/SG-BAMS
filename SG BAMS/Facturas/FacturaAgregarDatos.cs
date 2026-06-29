@@ -272,13 +272,33 @@ namespace SG_BAMS
 
                     if (tieneDeudaActiva)
                     {
-                        MessageBox.Show(
-                            $"El cliente '{txtCliente.Text.Trim()}' ya tiene una deuda activa pendiente de pago.\n\n" +
-                            "No es posible generar una nueva factura a crédito hasta que la deuda anterior sea cancelada.",
-                            "Crédito Bloqueado",
-                            MessageBoxButtons.OK,
+                        DataTable dtDeudas = await Task.Run(() => objDeudas.ObtenerDeudasPorCliente(idCliente));
+
+                        string detalleDeudas = "";
+                        if (dtDeudas != null && dtDeudas.Rows.Count > 0)
+                        {
+                            foreach (DataRow row in dtDeudas.Rows)
+                            {
+                                int idDeuda = Convert.ToInt32(row["IdDeuda"]);
+                                decimal saldo = Convert.ToDecimal(row["Saldo"]);
+                                string fechaInicio = Convert.ToDateTime(row["FechaInicio"]).ToString("dd/MM/yyyy");
+                                string fechaFin = Convert.ToDateTime(row["FechaFin"]).ToString("dd/MM/yyyy");
+
+                                detalleDeudas += $"• Deuda #{idDeuda}  |  Desde: {fechaInicio}  →  Hasta: {fechaFin}\n";
+                                detalleDeudas += $"  Saldo pendiente: L {saldo:N2}\n\n";
+                            }
+                        }
+
+                        DialogResult respuesta = MessageBox.Show(
+                            $"El cliente '{txtCliente.Text.Trim()}' ya tiene una deuda activa:\n\n" +
+                            $"{detalleDeudas}" +
+                            "¿Desea generar la factura de todas formas?",
+                            "Advertencia de Crédito",
+                            MessageBoxButtons.YesNo,
                             MessageBoxIcon.Warning);
-                        return;
+
+                        if (respuesta == DialogResult.No)
+                            return;
                     }
                 }
 

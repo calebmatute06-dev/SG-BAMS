@@ -91,7 +91,7 @@ namespace SG_BAMS
         /// </summary>
         /// <param name="sender">Origen del evento.</param>
         /// <param name="e">Datos del evento.</param>
-        private void Pago_Deuda_Load(object sender, EventArgs e)
+        private async void Pago_Deuda_Load(object sender, EventArgs e)
         {
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -114,6 +114,7 @@ namespace SG_BAMS
                             kc.StateDisabled.ComboBox.Back.Color1 = Color.SkyBlue;
                             kc.StateDisabled.ComboBox.Content.Color1 = Color.Navy;
                         }
+                        await CargarProductosDeudor(idDeudaRecibido);
                         return;
                     }
                 }
@@ -125,7 +126,32 @@ namespace SG_BAMS
                 cmbDeudores.SelectedIndex = indiceEncontrado;
             }
         }
+        private async Task CargarProductosDeudor(int idDeuda)
+        {
+            lstProductos.Items.Clear();
 
+            DataTable dtProductos = await Task.Run(() => objetoDeudas.ObtenerProductosPorDeuda(idDeuda));
+
+            if (dtProductos == null || dtProductos.Rows.Count == 0)
+            {
+                lstProductos.Items.Add("Sin productos registrados.");
+                return;
+            }
+
+            foreach (DataRow row in dtProductos.Rows)
+            {
+                string producto = row["Producto"].ToString();
+                int cantidad = Convert.ToInt32(row["Cantidad"]);
+                decimal precio = Convert.ToDecimal(row["PrecioUnitario"]);
+                decimal total = Convert.ToDecimal(row["total"]);
+
+                string linea = $"{cantidad}x {producto,-25}  |  L {precio:N2} c/u    |  Total: L {total:N2}";
+                lstProductos.Items.Add(linea);
+            }
+            decimal saldoPendiente = await objetoDeudas.ObtenerSaldo(idDeuda);
+            lstProductos.Items.Add("──────────────────────────────────────────────────────────────────────────────────────────────────────────");
+            lstProductos.Items.Add($"{"Saldo pendiente:",-35}  L {saldoPendiente:N2}");
+        }
         /// <summary>
         /// Maneja el evento Click del botón Aceptar.
         /// </summary>

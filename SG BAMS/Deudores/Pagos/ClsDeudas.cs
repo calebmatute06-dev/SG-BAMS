@@ -103,7 +103,55 @@ namespace SG_BAMS
             finally { Cerrar(); }
             return tablaVentas;
         }
-
+        public DataTable ObtenerProductosPorDeuda(int idDeuda)
+        {
+            DataTable tablaProductos = new DataTable();
+            try
+            {
+                AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_ObtenerProductosPorDeuda", Conectar))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@IDDeuda", SqlDbType.Int).Value = idDeuda;
+                    using (SqlDataAdapter adaptador = new SqlDataAdapter(cmd))
+                    {
+                        adaptador.Fill(tablaProductos);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error en ObtenerProductosPorDeuda: " + ex.Message);
+            }
+            finally
+            {
+                Cerrar();
+            }
+            return tablaProductos;
+        }
+        public DataTable ObtenerDeudasPorCliente(int idCliente)
+        {
+            DataTable tablaDeudas = new DataTable();
+            try
+            {
+                AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_ObtenerDeudasPorCliente", Conectar))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@id_cliente", SqlDbType.Int).Value = idCliente;
+                    using (SqlDataAdapter adaptador = new SqlDataAdapter(cmd))
+                    {
+                        adaptador.Fill(tablaDeudas);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error en ObtenerDeudasPorCliente: " + ex.Message);
+            }
+            finally { Cerrar(); }
+            return tablaDeudas;
+        }
         public async Task<bool> ClienteTieneDeudaActiva(int idCliente)
         {
             try
