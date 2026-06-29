@@ -138,7 +138,7 @@ namespace SG_BAMS
                 return;
             }
 
-            decimal totalProductos = 0;
+            decimal totalBruto = 0;
 
             foreach (DataRow row in dtProductos.Rows)
             {
@@ -147,18 +147,27 @@ namespace SG_BAMS
                 decimal precio = Convert.ToDecimal(row["PrecioUnitario"]);
                 decimal total = Convert.ToDecimal(row["total"]);
 
-                totalProductos += total;
+                totalBruto += total;
 
                 string linea = $"{cantidad}x {producto,-25}  |  L {precio:N2} c/u    |  Total: L {total:N2}";
                 lstProductos.Items.Add(linea);
             }
 
-            decimal saldoPendiente = await objetoDeudas.ObtenerSaldo(idDeuda);
-            decimal saldoPagado = totalProductos - saldoPendiente;
+            DataRow detalle = await Task.Run(() => objetoDeudas.ObtenerSaldoDetalle(idDeuda));
+            decimal descuento = detalle != null ? Convert.ToDecimal(detalle["Descuento"]) : 0;
+            decimal saldoPagado = detalle != null ? Convert.ToDecimal(detalle["SaldoPagado"]) : 0;
+            decimal saldoPendiente = detalle != null ? Convert.ToDecimal(detalle["SaldoPendiente"]) : 0;
+            
+            lstProductos.Items.Add($"{"Subtotal productos:",-35}     L {totalBruto:N2}");
 
-            lstProductos.Items.Add($"{"Total de compra:",-35}  L {totalProductos:N2}");
+            if (descuento > 0)
+                lstProductos.Items.Add($"{"Descuento batería:",-35}     -L {descuento:N2}");
+
+            lstProductos.Items.Add($"{"Total de compra:",-35}       L {totalBruto - descuento:N2}");
+
             lstProductos.Items.Add("──────────────────────────────────────────────────────────────────────────────────────────────────────────");
-            lstProductos.Items.Add($"{"Saldo pagado:",-35}  L {saldoPagado:N2}");
+            
+            lstProductos.Items.Add($"{"Saldo pagado:",-35}   L {saldoPagado:N2}");
             lstProductos.Items.Add($"{"Saldo pendiente:",-35}  L {saldoPendiente:N2}");
         }
         /// <summary>
@@ -196,7 +205,8 @@ namespace SG_BAMS
             }
 
             int idDeudaFinal = Convert.ToInt32(cmbDeudores.SelectedValue);
-            decimal saldoPendiente = await objetoDeudas.ObtenerSaldo(idDeudaFinal);
+            DataRow detalle = await Task.Run(() => objetoDeudas.ObtenerSaldoDetalle(idDeudaFinal));
+            decimal saldoPendiente = detalle != null ? Convert.ToDecimal(detalle["SaldoPendiente"]) : 0;
 
             if (montoPago > saldoPendiente)
             {

@@ -35,30 +35,29 @@ namespace SG_BAMS
             }
         }
 
-        public async Task<decimal> ObtenerSaldo(int idDeuda)
+        public DataRow ObtenerSaldoDetalle(int idDeuda)
         {
-            decimal saldo = 0;
             try
             {
                 AbrirConexion();
                 using (SqlCommand cmd = new SqlCommand("sp_Deuda_ObtenerSaldo", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@id_deuda", idDeuda);
-                    object result = await cmd.ExecuteScalarAsync();
-                    if (result != null && result != DBNull.Value)
-                        saldo = Convert.ToDecimal(result);
+                    cmd.Parameters.Add("@id_deuda", SqlDbType.Int).Value = idDeuda;
+                    DataTable dt = new DataTable();
+                    using (SqlDataAdapter adaptador = new SqlDataAdapter(cmd))
+                    {
+                        adaptador.Fill(dt);
+                    }
+                    return dt.Rows.Count > 0 ? dt.Rows[0] : null;
                 }
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine("Error en ObtenerSaldo: " + ex.Message);
+                System.Diagnostics.Debug.WriteLine("Error en ObtenerSaldoDetalle: " + ex.Message);
+                return null;
             }
-            finally
-            {
-                Cerrar();
-            }
-            return saldo;
+            finally { Cerrar(); }
         }
 
         public DataTable ObtenerDeudoresActivos()
