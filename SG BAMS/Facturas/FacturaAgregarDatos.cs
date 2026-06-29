@@ -265,7 +265,7 @@ namespace SG_BAMS
 
                 string formaPagoTexto = cmbPago.Text.ToLower();
 
-                if (formaPagoTexto.Contains("crédito") || formaPagoTexto.Contains("credito"))
+                if (formaPagoTexto.Contains("crédito") || formaPagoTexto.Contains("credito") || formaPagoTexto.Contains("efectivo") || formaPagoTexto.Contains("tarjeta"))
                 {
                     ClsDeudas objDeudas = new ClsDeudas();
                     bool tieneDeudaActiva = await objDeudas.ClienteTieneDeudaActiva(idCliente);
