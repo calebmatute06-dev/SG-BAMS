@@ -157,13 +157,10 @@ namespace SG_BAMS
             try
             {
                 AbrirConexion();
-                string query = @"SELECT COUNT(*) 
-                         FROM Deuda 
-                         WHERE id_cliente = @id_cliente 
-                           AND id_estado = 1";
-                using (SqlCommand cmd = new SqlCommand(query, Conectar))
+                using (SqlCommand cmd = new SqlCommand("sp_ClienteTieneDeudaActiva", Conectar))
                 {
-                    cmd.Parameters.AddWithValue("@id_cliente", idCliente);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@id_cliente", SqlDbType.Int).Value = idCliente;
                     object resultado = await cmd.ExecuteScalarAsync();
                     return resultado != null && Convert.ToInt32(resultado) > 0;
                 }
