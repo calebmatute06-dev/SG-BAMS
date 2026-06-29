@@ -215,9 +215,9 @@
             // 
             lstProductos.FormattingEnabled = true;
             lstProductos.ItemHeight = 15;
-            lstProductos.Location = new Point(154, 161);
+            lstProductos.Location = new Point(79, 161);
             lstProductos.Name = "lstProductos";
-            lstProductos.Size = new Size(347, 109);
+            lstProductos.Size = new Size(422, 109);
             lstProductos.TabIndex = 347;
             // 
             // Pago_Deuda
