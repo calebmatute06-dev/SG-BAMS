@@ -8,6 +8,7 @@ using System;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -28,6 +29,20 @@ namespace SG_BAMS
 
         private PlaceholderComboBox phPago;
         private PlaceholderTextBox phExento;
+
+        /// <summary>
+        /// Acumula los caracteres enviados por el lector de código de barras
+        /// hasta que se detecta un Enter que dispara la búsqueda del producto.
+        /// </summary>
+        private StringBuilder _bufferScanner = new StringBuilder();
+
+        /// <summary>
+        /// Registra el momento de la última tecla recibida para distinguir
+        /// entre entrada del scanner (menor a 100ms) y escritura manual (mayor a 100ms).
+        /// </summary>
+        private DateTime _ultimaTecla = DateTime.MinValue;
+
+
 
         public FacturaAgregarDatos(string cliente, int idCli, string rtn = "Sin RTN")
         {
@@ -512,5 +527,110 @@ namespace SG_BAMS
         private void txtExento_TextChanged_1(object sender, EventArgs e)
         {
         }
+
+        /// <summary>
+        /// Busca un producto por código de barras usando ObtenerProductoPorCodigoBarra.
+        /// Si el producto ya existe en el DataGridView notifica al usuario que puede
+        /// modificar la cantidad directamente en la tabla. Si no existe lo agrega
+        /// como fila nueva y recalcula el total de la factura.
+        /// </summary>
+        /// <param name="codigo">Código de barras capturado por el scanner.</param>
+        private async Task BuscarYAgregarProductoPorCodigo(string codigo)
+        {
+            try
+            {
+                ClsAgregarProductos objAP = new ClsAgregarProductos();
+                DataRow prod = await objAP.ObtenerProductoPorCodigoBarra(codigo);
+
+                if (prod == null)
+                {
+                    MessageBox.Show($"El producto con código [{codigo}] no existe o no esta agregado aún.",
+                        "BAMS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int idProd = Convert.ToInt32(prod["id_producto"]);
+                string nombre = prod["nombre_producto"].ToString();
+                double precio = Convert.ToDouble(prod["precio_venta"]);
+                int stock = Convert.ToInt32(prod["stock"]);
+
+                // Verificar si ya existe en el DGV
+                foreach (DataGridViewRow row in dgvProductos.Rows)
+                {
+                    if (row.IsNewRow) continue;
+                    if (Convert.ToInt32(row.Cells["id_producto"].Value) == idProd)
+                    {
+                        MessageBox.Show("Este producto ya fue agregado. Puede cambiar la cantidad directamente en la tabla.",
+                            "Producto Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                }
+
+                if (stock <= 0)
+                {
+                    MessageBox.Show("El producto no tiene stock disponible.",
+                        "Sin Stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                dgvProductos.Rows.Add(idProd, nombre, 1, precio, precio, stock);
+                dgvProductos.ClearSelection();
+                dgvProductos.Rows[dgvProductos.Rows.Count - 1].Selected = true;
+                CalcularTotal();
+                ActualizarEstadoBotonAceptar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al buscar producto por código: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Sobrescribe el procesamiento de teclas a nivel de mensaje de Windows.
+        /// Es más bajo nivel que KeyDown, por lo que intercepta el Enter del scanner
+        /// antes de que llegue a cualquier botón o control del formulario,
+        /// evitando que dispare acciones no deseadas como cerrar o navegar hacia atrás.
+        /// </summary>
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            Keys key = keyData & Keys.KeyCode;
+
+            // Si el foco está en un control donde el usuario escribe, no interceptar
+            if (this.ActiveControl is TextBox || this.ActiveControl is ComboBox)
+                return base.ProcessCmdKey(ref msg, keyData);
+
+            // Acumular caracteres alfanuméricos del scanner
+            if ((key >= Keys.D0 && key <= Keys.D9) ||
+                (key >= Keys.A && key <= Keys.Z) ||
+                (key >= Keys.NumPad0 && key <= Keys.NumPad9))
+            {
+                TimeSpan intervalo = DateTime.Now - _ultimaTecla;
+                if (intervalo.TotalMilliseconds > 100)
+                    _bufferScanner.Clear();
+
+                _ultimaTecla = DateTime.Now;
+
+                string caracter = new KeysConverter().ConvertToString(key);
+                _bufferScanner.Append(caracter);
+                return true; // consumir la tecla, no pasa a ningún control
+            }
+
+            // Enter del scanner: buscar producto y bloquear completamente
+            if (key == Keys.Enter)
+            {
+                _ultimaTecla = DateTime.Now;
+                string codigo = _bufferScanner.ToString().Trim();
+                _bufferScanner.Clear();
+
+                if (!string.IsNullOrEmpty(codigo))
+                    _ = BuscarYAgregarProductoPorCodigo(codigo);
+
+                return true; // bloquea el Enter para que no llegue a ningún botón
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
     }
 }
