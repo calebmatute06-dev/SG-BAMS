@@ -145,7 +145,7 @@ namespace SG_BAMS.Bitacora
                     foreach (DataColumn col in dt.Columns)
                     {
                         if (col.DataType == typeof(string))
-                            condicionesTexto.Add($"[{col.ColumnName}] LIKE '%{textoSeguro}%'");
+                            condicionesTexto.Add($"[{col.ColumnName}] LIKE '{textoSeguro}%'");
                     }
                     if (condicionesTexto.Count > 0)
                         condiciones.Add("(" + string.Join(" OR ", condicionesTexto) + ")");
