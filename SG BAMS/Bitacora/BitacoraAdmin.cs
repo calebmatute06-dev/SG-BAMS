@@ -150,27 +150,24 @@ namespace SG_BAMS.Bitacora
                     if (condicionesTexto.Count > 0)
                         condiciones.Add("(" + string.Join(" OR ", condicionesTexto) + ")");
                 }
-                else
+
+                string fechaDesde = dtpDesde.Value.Date.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+                string fechaHasta = dtpHasta.Value.Date.AddDays(1).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+                string columnaFecha = null;
+                foreach (DataColumn col in dt.Columns)
                 {
-                    string fechaDesde = dtpDesde.Value.Date.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
-                    string fechaHasta = dtpHasta.Value.Date.AddDays(1).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
-                    string columnaFecha = null;
-                    foreach (DataColumn col in dt.Columns)
+                    if (col.DataType == typeof(DateTime))
                     {
-                        if (col.DataType == typeof(DateTime))
-                        {
-                            columnaFecha = col.ColumnName;
-                            break;
-                        }
+                        columnaFecha = col.ColumnName;
+                        break;
                     }
-                    if (columnaFecha != null)
-                        condiciones.Add($"[{columnaFecha}] >= #{fechaDesde}# AND [{columnaFecha}] < #{fechaHasta}#");
                 }
+                if (columnaFecha != null)
+                    condiciones.Add($"[{columnaFecha}] >= #{fechaDesde}# AND [{columnaFecha}] < #{fechaHasta}#");
 
                 dataView.RowFilter = condiciones.Count > 0 ? string.Join(" AND ", condiciones) : "";
                 dgvBitacora.DataSource = dataView;
 
-                // Re-aplicar header después del filtro
                 if (dgvBitacora.Columns.Contains("Fecha"))
                     dgvBitacora.Columns["Fecha"].HeaderText = "Fecha y Hora";
 
