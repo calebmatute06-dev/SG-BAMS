@@ -9,7 +9,7 @@ namespace SG_BAMS.ProductoInventario
     /// </summary>
     internal class ClsAgregarProducto
     {
-        private readonly ClsConexion conexion = new ClsConexion();
+        private readonly ClsRepositorioBaseDatos conexion = new ClsRepositorioBaseDatos();
 
         public void EjecutarInsercion(string nombre, int idMarca, int idTipo, int idModelo,
             decimal precio, string codBarra, int idProveedor, int stock)

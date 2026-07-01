@@ -8,7 +8,7 @@ namespace SG_BAMS.MenuPrincipal
     /// <summary>
     /// Clase para obtener contadores de deuda usando solo Procedimientos Almacenados.
     /// </summary>
-    internal class ClsContadorDeuda : ClsConexion
+    internal class ClsContadorDeuda : ClsRepositorioBaseDatos
     {
         /// <summary>
         /// Obtiene el total de deudores activos usando PA.

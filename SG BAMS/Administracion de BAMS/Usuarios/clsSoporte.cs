@@ -16,7 +16,7 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
     /// Proporciona servicios de soporte técnico para la gestión de usuarios, incluyendo procesamiento de imágenes con Emgu CV y consultas a la base de datos.
     /// </summary>
     /// <seealso cref="SG_BAMS.ClsConexion" />
-    internal class clsSoporte : ClsConexion
+    internal class clsSoporte : ClsRepositorioBaseDatos
     {
         /// <summary>
         /// Ruta absoluta del directorio donde se almacenan las imágenes de los rostros capturados.

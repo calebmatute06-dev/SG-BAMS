@@ -8,7 +8,7 @@ namespace SG_BAMS.MenuPrincipal
     /// <summary>
     /// Clase para obtener contadores de productos usando solo Procedimientos Almacenados.
     /// </summary>
-    internal class ClsContadorProducto : ClsConexion
+    internal class ClsContadorProducto : ClsRepositorioBaseDatos
     {
         public async Task<int> ObtenerTotalProductos()
         {

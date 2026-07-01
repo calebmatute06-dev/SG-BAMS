@@ -9,7 +9,7 @@ namespace SG_BAMS.Proveedor
     /// Clase de acceso a datos para Proveedores.
     /// Solo usa Procedimientos Almacenados.
     /// </summary>
-    internal class ClsProveedor : ClsConexion
+    internal class ClsProveedor : ClsRepositorioBaseDatos
     {
         /// <summary>
         /// Carga los datos en el DataGridView usando PA.

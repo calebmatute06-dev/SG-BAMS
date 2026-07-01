@@ -9,7 +9,7 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
     /// <summary>
     /// Clase para gestión de usuarios usando solo Procedimientos Almacenados.
     /// </summary>
-    internal class clsUsuario : ClsConexion
+    internal class clsUsuario : ClsRepositorioBaseDatos
     {
         public async Task<DataTable> LeerUsuariosAsync()
         {

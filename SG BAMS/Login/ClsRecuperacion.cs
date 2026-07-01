@@ -6,7 +6,7 @@ namespace SG_BAMS.Login
 {
     public class ClsRecuperacion
     {
-        ClsConexion conexion = new ClsConexion();
+        ClsRepositorioBaseDatos conexion = new ClsRepositorioBaseDatos();
 
         public bool VerificarCorreo(string correo)
         {

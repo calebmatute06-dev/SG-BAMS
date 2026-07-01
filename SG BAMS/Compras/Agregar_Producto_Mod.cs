@@ -16,7 +16,7 @@ namespace SG_BAMS
         public int CantidadSeleccionada { get; set; }
         public decimal PrecioSeleccionado { get; set; }
 
-        private ClsConexion conexion = new ClsConexion();
+        private ClsRepositorioBaseDatos conexion = new ClsRepositorioBaseDatos();
         private int _idProveedor;
 
         private PlaceholderTextBox phCodigo;

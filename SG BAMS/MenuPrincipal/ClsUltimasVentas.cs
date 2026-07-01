@@ -8,7 +8,7 @@ namespace SG_BAMS.MenuPrincipal
     /// <summary>
     /// Clase para obtener últimas ventas usando solo Procedimientos Almacenados.
     /// </summary>
-    internal class ClsUltimasVentas : ClsConexion
+    internal class ClsUltimasVentas : ClsRepositorioBaseDatos
     {
         public async Task<DataTable> ObtenerVentasRecientes()
         {

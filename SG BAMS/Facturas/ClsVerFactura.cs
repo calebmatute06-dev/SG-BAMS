@@ -8,7 +8,7 @@ namespace SG_BAMS.Facturas
     /// <summary>
     /// Clase para visualizar facturas usando solo Procedimientos Almacenados.
     /// </summary>
-    internal class ClsVerFactura : ClsConexion
+    internal class ClsVerFactura : ClsRepositorioBaseDatos
     {
         public async Task<DataTable> VerFacturas()
         {

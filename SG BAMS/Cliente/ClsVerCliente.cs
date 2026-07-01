@@ -8,7 +8,7 @@ namespace SG_BAMS.Cliente
     /// <summary>
     /// Clase para visualizar clientes usando solo Procedimientos Almacenados.
     /// </summary>
-    internal class ClsVerCliente : ClsConexion
+    internal class ClsVerCliente : ClsRepositorioBaseDatos
     {
         public async Task<DataTable> VerClienteTabla()
         {

@@ -13,7 +13,7 @@ namespace SG_BAMS
     /// </summary>
     public partial class ClienteModificar : Form
     {
-        private ClsConexion objCl = new ClsConexion();
+        private ClsRepositorioBaseDatos objCl = new ClsRepositorioBaseDatos();
         private int idEstadoSelec;
 
         private PlaceholderTextBox phNombre;

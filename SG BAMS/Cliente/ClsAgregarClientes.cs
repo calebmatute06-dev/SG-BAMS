@@ -8,7 +8,7 @@ namespace SG_BAMS.Cliente
     /// <summary>
     /// Clase para agregar clientes usando solo Procedimientos Almacenados.
     /// </summary>
-    internal class ClsAgregarClientes : ClsConexion
+    internal class ClsAgregarClientes : ClsRepositorioBaseDatos
     {
         public async Task<int> AgregarClientes(string nombre, string apellido, string telefono, string RTN)
         {

@@ -16,7 +16,7 @@ namespace SG_BAMS.Facturas
     /// 
     /// </summary>
     /// <seealso cref="SG_BAMS.ClsConexion" />
-    internal class ClsAgregarFactura : ClsConexion
+    internal class ClsAgregarFactura : ClsRepositorioBaseDatos
     {
         /// <summary>
         /// Agregars the facturas.

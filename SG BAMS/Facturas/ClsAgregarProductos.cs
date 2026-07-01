@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SG_BAMS.Facturas
 {
-    internal class ClsAgregarProductos : ClsConexion
+    internal class ClsAgregarProductos : ClsRepositorioBaseDatos
     {
         public async Task GuardarProductoFactura(int idFactura, int idProducto, int cantidad, double PrecioHistoria)
         {
@@ -24,7 +24,7 @@ namespace SG_BAMS.Facturas
 
         public async Task<DataRow> ObtenerProductoPorCodigoBarra(string codigoBarra)
         {
-            ClsConexion objConexion = new ClsConexion();
+            ClsRepositorioBaseDatos objConexion = new ClsRepositorioBaseDatos();
             try
             {
                 objConexion.AbrirConexion();

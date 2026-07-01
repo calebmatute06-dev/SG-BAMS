@@ -9,7 +9,7 @@ namespace SG_BAMS
     /// </summary>
     public class ClsCargaCombos
     {
-        private readonly ClsConexion conexion = new ClsConexion();
+        private readonly ClsRepositorioBaseDatos conexion = new ClsRepositorioBaseDatos();
 
         private DataTable EjecutarPA(string nombrePA)
         {

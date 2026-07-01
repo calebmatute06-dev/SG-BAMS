@@ -7,7 +7,7 @@ namespace SG_BAMS
     /// <summary>
     /// Clase para listar deudores usando solo Procedimientos Almacenados.
     /// </summary>
-    internal class ClsDeuda : ClsConexion
+    internal class ClsDeuda : ClsRepositorioBaseDatos
     {
         public DataTable ListarDeudores()
         {

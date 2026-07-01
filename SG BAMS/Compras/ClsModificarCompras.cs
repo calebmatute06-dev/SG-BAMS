@@ -6,7 +6,7 @@ namespace SG_BAMS.ProductoInventario
 {
     internal class ClsModificarCompras
     {
-        private readonly ClsConexion conexion = new ClsConexion();
+        private readonly ClsRepositorioBaseDatos conexion = new ClsRepositorioBaseDatos();
 
         public DataTable ListarFormasPago()
         {

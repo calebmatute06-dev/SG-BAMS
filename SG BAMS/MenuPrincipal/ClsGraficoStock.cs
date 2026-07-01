@@ -8,7 +8,7 @@ namespace SG_BAMS.MenuPrincipal
     /// <summary>
     /// Clase para obtener datos del gráfico de stock usando solo Procedimientos Almacenados.
     /// </summary>
-    internal class ClsGraficoStock : ClsConexion
+    internal class ClsGraficoStock : ClsRepositorioBaseDatos
     {
         public async Task<DataTable> ObtenerDatosGrafico()
         {

@@ -573,7 +573,7 @@ namespace SG_BAMS
                 return false;
             }
 
-            ClsConexion conexion = new ClsConexion();
+            ClsRepositorioBaseDatos conexion = new ClsRepositorioBaseDatos();
             try
             {
                 conexion.AbrirConexion();
@@ -685,7 +685,7 @@ namespace SG_BAMS
                 return false;
             }
 
-            ClsConexion conexion = new ClsConexion();
+            ClsRepositorioBaseDatos conexion = new ClsRepositorioBaseDatos();
             try
             {
                 conexion.AbrirConexion();

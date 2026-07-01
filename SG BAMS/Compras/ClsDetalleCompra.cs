@@ -9,7 +9,7 @@ namespace SG_BAMS.ProductoInventario
     /// </summary>
     internal class ClsDetalleCompra
     {
-        private readonly ClsConexion conexion = new ClsConexion();
+        private readonly ClsRepositorioBaseDatos conexion = new ClsRepositorioBaseDatos();
 
         public DataTable ListarProductosDeCompra(int id)
         {

@@ -8,7 +8,7 @@ namespace SG_BAMS
     /// <summary>
     /// Clase para gestión de deudas usando solo Procedimientos Almacenados.
     /// </summary>
-    public class ClsDeudas : ClsConexion
+    public class ClsDeudas : ClsRepositorioBaseDatos
     {
         public async Task<bool> InsertarPago(int idDeuda, decimal montoPago, DateTime fechaPago)
         {

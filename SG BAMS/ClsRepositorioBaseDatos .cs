@@ -12,7 +12,7 @@ namespace SG_BAMS
     /// <summary>
     /// 
     /// </summary>
-    public class ClsConexion
+    public class ClsRepositorioBaseDatos
     {
         /// <summary>
         /// La cadena de conexión

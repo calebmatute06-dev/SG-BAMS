@@ -8,7 +8,7 @@ namespace SG_BAMS.Cliente
     /// <summary>
     /// Clase para modificar clientes usando solo Procedimientos Almacenados.
     /// </summary>
-    internal class ClsModificarCliente : ClsConexion
+    internal class ClsModificarCliente : ClsRepositorioBaseDatos
     {
         public async Task<int> ModificarClientes(int idCliente, string nombre, string apellido, string telefono, string RTN, int idEstado)
         {

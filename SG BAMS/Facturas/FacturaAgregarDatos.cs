@@ -201,7 +201,7 @@ namespace SG_BAMS
 
         private async Task<bool> CrearDeudaManual(int idFactura, int idCliente, double montoTotal, DateTime fechaVenta)
         {
-            ClsConexion conexion = new ClsConexion();
+            ClsRepositorioBaseDatos conexion = new ClsRepositorioBaseDatos();
             try
             {
                 conexion.AbrirConexion();

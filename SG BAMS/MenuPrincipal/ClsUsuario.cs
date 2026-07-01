@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 /// <summary>
 /// Clase para gestión de usuarios usando solo Procedimientos Almacenados.
 /// </summary>
-internal class ClsUsuario : ClsConexion
+internal class ClsUsuario : ClsRepositorioBaseDatos
 {
     public async Task<DataTable> ObtenerPerfilDesdeVista(string nombreUsuario)
     {

@@ -8,7 +8,7 @@ namespace SG_BAMS.MenuPrincipal
     /// <summary>
     /// Clase para obtener contadores de clientes usando solo Procedimientos Almacenados.
     /// </summary>
-    internal class Clscontador_cliente : ClsConexion
+    internal class Clscontador_cliente : ClsRepositorioBaseDatos
     {
         /// <summary>
         /// Obtiene el total de clientes activos usando PA.

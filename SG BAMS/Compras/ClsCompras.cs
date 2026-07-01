@@ -10,7 +10,7 @@ namespace SG_BAMS
     {
         public DataTable ObtenerProductosPorProveedor(int idProv)
         {
-            ClsConexion conexion = new ClsConexion();
+            ClsRepositorioBaseDatos conexion = new ClsRepositorioBaseDatos();
             DataTable dt = new DataTable();
             try
             {
@@ -38,7 +38,7 @@ namespace SG_BAMS
 
         public bool ValidarProductoEnCompra(string idCompra, int idProducto)
         {
-            ClsConexion conexion = new ClsConexion();
+            ClsRepositorioBaseDatos conexion = new ClsRepositorioBaseDatos();
             try
             {
                 conexion.AbrirConexion();
@@ -62,7 +62,7 @@ namespace SG_BAMS
 
         public void AgregarDetalleACompraExistente(string idCompra, int idProducto, int cantidad, decimal precio)
         {
-            ClsConexion conexion = new ClsConexion();
+            ClsRepositorioBaseDatos conexion = new ClsRepositorioBaseDatos();
             try
             {
                 conexion.AbrirConexion();
@@ -95,7 +95,7 @@ namespace SG_BAMS
 
         public bool GuardarNuevaCompra(DateTime fecha, int idPago, int idProv, string nota, List<DetalleCompra> detalles)
         {
-            ClsConexion conexion = new ClsConexion();
+            ClsRepositorioBaseDatos conexion = new ClsRepositorioBaseDatos();
             conexion.AbrirConexion();
             SqlTransaction transaccion = conexion.Conectar.BeginTransaction();
 

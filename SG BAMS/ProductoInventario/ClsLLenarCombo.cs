@@ -10,7 +10,7 @@ namespace SG_BAMS.ProductoInventario
     /// </summary>
     public class ClsLlenarCombo
     {
-        private readonly ClsConexion conexion = new ClsConexion();
+        private readonly ClsRepositorioBaseDatos conexion = new ClsRepositorioBaseDatos();
 
         public void ConfigurarComboBox(KryptonComboBox combo, string tipoTabla)
         {

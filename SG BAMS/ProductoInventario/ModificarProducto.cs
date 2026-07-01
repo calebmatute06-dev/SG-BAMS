@@ -211,7 +211,7 @@ namespace SG_BAMS
         {
             if (string.IsNullOrWhiteSpace(nombreProv)) return 0;
 
-            ClsConexion conexionTemp = new ClsConexion();
+            ClsRepositorioBaseDatos conexionTemp = new ClsRepositorioBaseDatos();
             try
             {
                 conexionTemp.AbrirConexion();

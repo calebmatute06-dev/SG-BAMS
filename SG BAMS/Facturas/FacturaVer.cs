@@ -191,7 +191,7 @@ namespace SG_BAMS
         /// </summary>
         private async Task LlenarComboPago()
         {
-            ClsConexion objCl = new ClsConexion();
+            ClsRepositorioBaseDatos objCl = new ClsRepositorioBaseDatos();
             try
             {
                 objCl.AbrirConexion();

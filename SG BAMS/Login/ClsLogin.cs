@@ -7,7 +7,7 @@ namespace SG_BAMS.Login
     /// <summary>
     /// Clase encargada de la validación de credenciales usando solo PA.
     /// </summary>
-    internal class ClsLogin : ClsConexion
+    internal class ClsLogin : ClsRepositorioBaseDatos
     {
         public static int idusuario;
         public string NombreUsuario { get; set; }

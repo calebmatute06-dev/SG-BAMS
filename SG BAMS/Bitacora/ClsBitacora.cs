@@ -7,7 +7,7 @@ namespace SG_BAMS.Bitacora
     /// <summary>
     /// Clase para operaciones de bitácora usando solo Procedimientos Almacenados.
     /// </summary>
-    internal class ClsBitacora : ClsConexion
+    internal class ClsBitacora : ClsRepositorioBaseDatos
     {
         public void cargarDatos(System.Windows.Forms.DataGridView dgvBitacora)
         {

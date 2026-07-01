@@ -9,7 +9,7 @@ namespace SG_BAMS.ProductoInventario
     /// </summary>
     internal class ClsVerProducto
     {
-        private readonly ClsConexion conexion = new ClsConexion();
+        private readonly ClsRepositorioBaseDatos conexion = new ClsRepositorioBaseDatos();
 
         /// <summary>
         /// Muestra el listado completo de productos usando PA.
@@ -45,7 +45,7 @@ namespace SG_BAMS.ProductoInventario
         /// </summary>
         public DataTable BuscarProductos(string filtro)
         {
-            ClsConexion conexion = new ClsConexion();
+            ClsRepositorioBaseDatos conexion = new ClsRepositorioBaseDatos();
             DataTable dt = new DataTable();
             try
             {

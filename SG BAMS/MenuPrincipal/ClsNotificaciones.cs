@@ -8,7 +8,7 @@ namespace SG_BAMS
     /// <summary>
     /// Clase para gestionar notificaciones usando solo Procedimientos Almacenados.
     /// </summary>
-    internal class ClsNotificaciones : ClsConexion
+    internal class ClsNotificaciones : ClsRepositorioBaseDatos
     {
         public DataTable ListarNotificaciones(bool esAdmin)
         {

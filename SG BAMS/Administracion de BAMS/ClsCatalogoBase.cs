@@ -9,7 +9,7 @@ namespace SG_BAMS.Administracion_de_BAMS
     /// Clase base para catálogos simples (Leer, Insertar, Modificar).
     /// Centraliza la lógica CRUD repetida en los 7 catálogos de administración.
     /// </summary>
-    internal abstract class ClsCatalogoBase : ClsConexion
+    internal abstract class ClsCatalogoBase : ClsRepositorioBaseDatos
     {
         // Nombres de SPs y parámetros — cada subclase los define
         protected abstract string SpLeer { get; }

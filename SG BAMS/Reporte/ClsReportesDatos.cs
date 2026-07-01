@@ -10,7 +10,7 @@ namespace SG_BAMS.Reporte
     /// </summary>
     internal class ClsReportesDatos
     {
-        private readonly ClsConexion db = new ClsConexion();
+        private readonly ClsRepositorioBaseDatos db = new ClsRepositorioBaseDatos();
 
         /// <summary>
         /// Obtiene el reporte de ventas en un rango de fechas.

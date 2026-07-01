@@ -8,7 +8,7 @@ namespace SG_BAMS.Facturas
     /// <summary>
     /// Clase para visualizar productos de factura usando solo PA.
     /// </summary>
-    internal class ClsVerFacturaProducto : ClsConexion
+    internal class ClsVerFacturaProducto : ClsRepositorioBaseDatos
     {
         public async Task<DataTable> VerFacturasProducto(int idfacturas)
         {

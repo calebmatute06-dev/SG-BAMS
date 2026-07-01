@@ -8,7 +8,7 @@ namespace SG_BAMS
     /// <summary>
     /// Clase para obtener datos del gráfico de ventas usando solo Procedimientos Almacenados.
     /// </summary>
-    internal class ClsGraficoVentas : ClsConexion
+    internal class ClsGraficoVentas : ClsRepositorioBaseDatos
     {
         public async Task<DataTable> ObtenerProductosMasVendidos()
         {
