@@ -70,7 +70,7 @@ namespace SG_BAMS
 
         private async Task LlenarComboPago()
         {
-            ClsAgregarFactura AF = new ClsAgregarFactura();
+            ClsFactura AF = new ClsFactura();
             try
             {
                 DataTable dt = await AF.ObtenerFormasPago();
@@ -189,7 +189,8 @@ namespace SG_BAMS
             txtTotal.Text = $"L. {(total < 0 ? 0 : total):N2}";
         }
 
-        private void txtExento_TextChanged(object sender, EventArgs e) { }
+        private void txtExento_TextChanged(object sender, EventArgs e) {
+        }
 
         private void txtExento_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -269,8 +270,8 @@ namespace SG_BAMS
             try
             {
                 ClsPasarUsuario objPU = new ClsPasarUsuario();
-                ClsAgregarFactura objAF = new ClsAgregarFactura();
-                ClsAgregarProductos objAP = new ClsAgregarProductos();
+                ClsFactura objAFP = new ClsFactura();
+                
 
                 int idUser = objPU.IdUsuario();
                 int idPago = Convert.ToInt32(cmbPago.SelectedValue);
@@ -318,7 +319,7 @@ namespace SG_BAMS
                 }
 
 
-                int idFactura = await objAF.AgregarFacturas(idUser, idCliente, idPago,
+                int idFactura = await objAFP.AgregarFacturas(idUser, idCliente, idPago,
                     DateTFecha.Value, bat, precioBateria, totalFacturaReal);
 
                 if (idFactura > 0)
@@ -329,7 +330,7 @@ namespace SG_BAMS
                         int idPr = Convert.ToInt32(fila.Cells["id_producto"].Value);
                         int cant = Convert.ToInt32(fila.Cells["cantidad"].Value);
                         double precio = Convert.ToDouble(fila.Cells["precio"].Value);
-                        await objAP.GuardarProductoFactura(idFactura, idPr, cant, precio);
+                        await objAFP.GuardarProductoFactura(idFactura, idPr, cant, precio);
                     }
 
                     DialogResult imprimir = MessageBox.Show(
@@ -338,7 +339,7 @@ namespace SG_BAMS
 
                     if (imprimir == DialogResult.Yes)
                     {
-                        objAF.ImprimirFactura(
+                        objAFP.ImprimirFactura(
                             idFactura,
                             txtCliente.Text,
                             DateTFecha.Value.ToShortDateString(),
@@ -539,7 +540,7 @@ namespace SG_BAMS
         {
             try
             {
-                ClsAgregarProductos objAP = new ClsAgregarProductos();
+                ClsFactura objAP = new ClsFactura();
                 DataRow prod = await objAP.ObtenerProductoPorCodigoBarra(codigo);
 
                 if (prod == null)

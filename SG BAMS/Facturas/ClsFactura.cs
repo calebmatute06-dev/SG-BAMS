@@ -12,11 +12,7 @@ using System.Windows.Forms;
 
 namespace SG_BAMS.Facturas
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <seealso cref="SG_BAMS.ClsConexion" />
-    internal class ClsAgregarFactura : ClsRepositorioBaseDatos
+    internal class ClsFactura : ClsRepositorioBaseDatos
     {
         /// <summary>
         /// Agregars the facturas.
@@ -69,6 +65,69 @@ namespace SG_BAMS.Facturas
             {
                 AbrirConexion();
                 using (SqlCommand cmd = new SqlCommand("sp_FormasPago_Listar", Conectar))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                    {
+                        dt.Load(reader);
+                    }
+                }
+                return dt;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                Cerrar();
+            }
+        }
+
+        public async Task GuardarProductoFactura(int idFactura, int idProducto, int cantidad, double PrecioHistoria)
+        {
+            AbrirConexion();
+            using (SqlCommand cmd = new SqlCommand("PA_insertar_factura_producto", Conectar))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id_factura", idFactura);
+                cmd.Parameters.AddWithValue("@id_producto", idProducto);
+                cmd.Parameters.AddWithValue("@cantidad", cantidad);
+                cmd.Parameters.AddWithValue("@precio_historia", PrecioHistoria);
+                await cmd.ExecuteNonQueryAsync();
+            }
+            Cerrar();
+        }
+
+        public async Task<DataRow> ObtenerProductoPorCodigoBarra(string codigoBarra)
+        {
+            ClsRepositorioBaseDatos objConexion = new ClsRepositorioBaseDatos();
+            try
+            {
+                objConexion.AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_Producto_ObtenerPorCodigoBarra", objConexion.Conectar))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@codigo", codigoBarra.Trim());
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    await Task.Run(() => da.Fill(dt));
+                    return dt.Rows.Count > 0 ? dt.Rows[0] : null;
+                }
+            }
+            finally
+            {
+                objConexion.Cerrar();
+            }
+        }
+
+        public async Task<DataTable> ObtenerStockProductos()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_Producto_ListarConStock", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
@@ -178,36 +237,36 @@ namespace SG_BAMS.Facturas
 
             double impExonerado, impExento, impGravado, isv15, totalFinal;
 
-            
+
             double baseConDescuento = Math.Max(valTotal, 0);
 
             if (esGobierno)
             {
-                
+
                 impExonerado = Math.Round(baseConDescuento / 1.15, 2);
                 impExento = 0;
                 impGravado = 0;
                 isv15 = 0;
-                totalFinal = impExonerado; 
+                totalFinal = impExonerado;
             }
             else
             {
-             
+
                 double exentoConISV = Math.Min(montoExento, baseConDescuento);
                 double gravadoConISV = baseConDescuento - exentoConISV;
 
-               
+
                 impExento = Math.Round(exentoConISV / 1.15, 2);
 
-            
+
                 impGravado = Math.Round(gravadoConISV / 1.15, 2);
 
-            
+
                 isv15 = Math.Round(gravadoConISV - impGravado, 2);
 
                 impExonerado = 0;
 
-              
+
                 totalFinal = Math.Round(impExento + gravadoConISV, 2);
             }
 
@@ -325,12 +384,5 @@ namespace SG_BAMS.Facturas
 
             return resultado.Trim();
         }
-
-       
-
-
     }
-
-
-
 }

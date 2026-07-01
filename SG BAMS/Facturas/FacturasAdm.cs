@@ -74,7 +74,7 @@ namespace SG_BAMS
         {
             try
             {
-                ClsVerFactura objFac = new ClsVerFactura();
+                ClsDetalleFactura objFac = new ClsDetalleFactura();
                 datosFac = await objFac.VerFacturas();
 
                 if (datosFac != null)

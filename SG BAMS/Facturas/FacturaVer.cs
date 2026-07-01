@@ -77,7 +77,7 @@ namespace SG_BAMS
         private async Task VerFacturasProductos()
         {
 
-            ClsVerFacturaProducto objVFP = new ClsVerFacturaProducto();
+            ClsDetalleFactura objVFP = new ClsDetalleFactura();
             datosCli = await objVFP.VerFacturasProducto(idFac);
 
             if (datosCli != null)

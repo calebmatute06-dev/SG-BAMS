@@ -45,7 +45,7 @@ namespace SG_BAMS
 
         private async Task LlenarComboProductos()
         {
-            ClsAgregarProductos ap = new ClsAgregarProductos();
+            ClsFactura ap = new ClsFactura();
             try
             {
                 DataTable dt = await ap.ObtenerStockProductos();
