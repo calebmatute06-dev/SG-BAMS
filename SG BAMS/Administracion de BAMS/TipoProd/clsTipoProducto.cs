@@ -1,86 +1,18 @@
-﻿using Microsoft.Data.SqlClient;
-using System;
-using System.Data;
-using System.Threading.Tasks;
+﻿using SG_BAMS.Administracion_de_BAMS;
 
 namespace SG_BAMS.Administracion_de_BAMS.TipoProd
 {
-    /// <summary>
-    /// Clase para gestión de tipos de producto usando solo Procedimientos Almacenados.
-    /// </summary>
-    internal class clsTipoProducto : ClsConexion
+    internal class clsTipoProducto : ClsCatalogoBase
     {
-        public async Task<DataTable> LeerTiposProductoAsync()
-        {
-            DataTable tabla = new DataTable();
-            try
-            {
-                AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_TipoProducto_Detalle", Conectar))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
-                    {
-                        tabla.Load(reader);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener los tipos de producto: " + ex.Message);
-            }
-            finally
-            {
-                Cerrar();
-            }
-            return tabla;
-        }
+        protected override string SpLeer => "sp_TipoProducto_Detalle";
+        protected override string SpInsertar => "PA_insertar_tipo_producto";
+        protected override string SpModificar => "PA_actualizar_tipo_producto";
+        protected override string ParamDescripcion => "@descripcion_producto";
+        protected override string ParamId => "@id_tipo_producto";
+        protected override string NombreCatalogo => "los tipos de producto";
 
-        public async Task<bool> InsertarTipoProductoAsync(string descripcion)
-        {
-            try
-            {
-                AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("PA_insertar_tipo_producto", Conectar))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@descripcion_producto", descripcion);
-                    int filasAfectadas = await cmd.ExecuteNonQueryAsync();
-                    return filasAfectadas > 0;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al insertar tipo de producto: " + ex.Message);
-            }
-            finally
-            {
-                Cerrar();
-            }
-        }
-
-        public async Task<bool> ModificarTipoProductoAsync(int id, string nuevaDescripcion)
-        {
-            try
-            {
-                AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("PA_actualizar_tipo_producto", Conectar))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@id_tipo_producto", id);
-                    cmd.Parameters.AddWithValue("@descripcion_producto", nuevaDescripcion);
-                    int filasAfectadas = await cmd.ExecuteNonQueryAsync();
-                    return filasAfectadas > 0;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al actualizar el tipo de producto: " + ex.Message);
-            }
-            finally
-            {
-                Cerrar();
-            }
-        }
+        public System.Threading.Tasks.Task<System.Data.DataTable> LeerTiposProductoAsync() => LeerAsync();
+        public System.Threading.Tasks.Task<bool> InsertarTipoProductoAsync(string desc) => InsertarAsync(desc);
+        public System.Threading.Tasks.Task<bool> ModificarTipoProductoAsync(int id, string desc) => ModificarAsync(id, desc);
     }
 }
