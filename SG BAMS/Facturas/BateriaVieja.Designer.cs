@@ -127,6 +127,7 @@
             dgvBateria.RowHeadersWidth = 51;
             dgvBateria.Size = new Size(549, 245);
             dgvBateria.TabIndex = 341;
+            dgvBateria.EditingControlShowing += dgvBateria_EditingControlShowing;
             // 
             // BtnAceptar
             // 

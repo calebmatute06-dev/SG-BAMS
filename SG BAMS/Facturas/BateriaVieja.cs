@@ -49,12 +49,12 @@ namespace SG_BAMS.Facturas
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
 
-           
+
             cmbBaterias.Items.Clear();
             cmbBaterias.Items.AddRange(new string[] { "Moto", "Carro", "Camión" });
             cmbBaterias.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            
+
             phPrecio = new PlaceholderTextBox(txtPrecio, "Precio de la batería");
             phCantidad = new PlaceholderTextBox(txtCantidad, "Cantidad");
             phBaterias = new PlaceholderComboBox(cmbBaterias, "Seleccione tipo");
@@ -62,7 +62,7 @@ namespace SG_BAMS.Facturas
             txtTotal.ReadOnly = true;
             txtCantidadTotal.ReadOnly = true;
 
-            
+
             dgvBateria.BorderStyle = BorderStyle.None;
             dgvBateria.BackgroundColor = Color.White;
             dgvBateria.RowHeadersVisible = false;
@@ -105,34 +105,45 @@ namespace SG_BAMS.Facturas
 
             dgvBateria.CellValueChanged += dgvBateria_CellValueChanged;
             dgvBateria.CurrentCellDirtyStateChanged += dgvBateria_CurrentCellDirtyStateChanged;
-          
+
 
             dgvBateria.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvBateria.AllowUserToAddRows = false;
 
-            dgvBateria.EditingControlShowing += (s, e) => {
-                if (dgvBateria.CurrentCell?.OwningColumn.Name == "cantidad")
-                    e.Control.KeyPress += (obj, ev) => { if (ev.KeyChar == '-' || char.IsLetter(ev.KeyChar)) ev.Handled = true; };
-            };
+            dgvBateria.EditingControlShowing += dgvBateria_EditingControlShowing;
 
             dgvBateria.CellFormatting += (s, ev) =>
             {
                 if (ev.RowIndex < 0 || ev.Value == null) return;
                 string col = dgvBateria.Columns[ev.ColumnIndex].Name;
-                if ((col == "precio" || col == "subtotal") &&
-                    decimal.TryParse(ev.Value.ToString(), out decimal monto))
+                if ((col == "precio" || col == "subtotal"))
                 {
-                    ev.Value = $"L. {monto:N2}";
-                    ev.FormattingApplied = true;
+
+                    string puro = ev.Value.ToString().Replace("L.", "").Replace(",", "").Trim();
+                    if (decimal.TryParse(puro, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal monto))
+                    {
+                        ev.Value = $"L. {monto:N2}";
+                        ev.FormattingApplied = true;
+                    }
                 }
             };
 
-           
+
+        }
+
+        private void CantidadGrid_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ClsValidaciones.ValidarSoloNumeros(e);
+        }
+
+        private void PrecioGrid_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ClsValidaciones.PermitirNumerosYDecimales(sender, e);
         }
 
         private void Agregar_Click(object sender, EventArgs e)
         {
-            
+
             if (phBaterias.IsPlaceholderActive || cmbBaterias.SelectedIndex == -1)
             {
                 MessageBox.Show("Seleccione un tipo de batería.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -140,27 +151,36 @@ namespace SG_BAMS.Facturas
                 return;
             }
 
-            
+
             string precioReal = phPrecio.GetRealValue().Trim();
             string cantidadReal = phCantidad.GetRealValue().Trim();
 
-            
+
+
             bool precioValido;
             double precio = 0;
             using (var tempPrecio = new KryptonTextBox())
             {
                 tempPrecio.Text = precioReal;
                 precioValido = !ClsValidaciones.CampoVacio(tempPrecio, "Precio");
-                if (precioValido && !double.TryParse(tempPrecio.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out precio) || precio <= 0)
+
+                if (precioValido)
                 {
-                    MessageBox.Show("Precio inválido. Debe ser un número mayor a cero.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    precioValido = false;
+                    precio = ClsValidaciones.ParsearMontoInteligente(tempPrecio.Text.Trim());
+
+                    if (precio <= 0)
+                    {
+                        MessageBox.Show("Precio inválido. Debe ser un número mayor a cero.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        precioValido = false;
+                    }
                 }
             }
 
+
+
             if (!precioValido) return;
 
-            
+
             bool cantidadValida;
             int cantidad = 0;
             using (var tempCantidad = new KryptonTextBox())
@@ -198,9 +218,19 @@ namespace SG_BAMS.Facturas
             foreach (DataGridViewRow row in dgvBateria.Rows)
             {
                 if (row.Cells["subtotal"].Value != null)
-                    totalDinero += Convert.ToDouble(row.Cells["subtotal"].Value);
+                {
+                    string subtotalStr = row.Cells["subtotal"].Value.ToString().Replace("L.", "").Replace(",", "").Trim();
+                    if (double.TryParse(subtotalStr, NumberStyles.Any, CultureInfo.InvariantCulture, out double subtotalVal))
+                    {
+                        totalDinero += subtotalVal;
+                    }
+                }
+
                 if (row.Cells["cantidad"].Value != null)
-                    totalProductos += Convert.ToInt32(row.Cells["cantidad"].Value);
+                {
+                    int.TryParse(row.Cells["cantidad"].Value.ToString(), out int cantVal);
+                    totalProductos += cantVal;
+                }
             }
 
             txtTotal.Text = $"L. {totalDinero:N2}";
@@ -258,10 +288,27 @@ namespace SG_BAMS.Facturas
                 try
                 {
                     var row = dgvBateria.Rows[e.RowIndex];
-                    double precio = Convert.ToDouble(row.Cells["precio"].Value ?? 0);
-                    int cantidad = Convert.ToInt32(row.Cells["cantidad"].Value ?? 0);
+
+
+                    string precioRaw = row.Cells["precio"].Value?.ToString() ?? "0";
+                    double precio = ClsValidaciones.ParsearMontoInteligente(precioRaw);
+
+                    string cantidadRaw = row.Cells["cantidad"].Value?.ToString() ?? "0";
+                    if (!int.TryParse(cantidadRaw, out int cantidad))
+                    {
+                        cantidad = 0;
+                    }
+
                     double subtotal = Math.Round(precio * cantidad, 2);
+
+                 
+                    dgvBateria.CellValueChanged -= dgvBateria_CellValueChanged;
+
+                    row.Cells["precio"].Value = precio.ToString("N2");
                     row.Cells["subtotal"].Value = subtotal.ToString("N2");
+
+                    dgvBateria.CellValueChanged += dgvBateria_CellValueChanged;
+
                     CalcularTotales();
                 }
                 catch
@@ -271,7 +318,6 @@ namespace SG_BAMS.Facturas
                 }
             }
         }
-
         private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
         {
             ClsValidaciones.PermitirNumerosYDecimales(sender, e);
@@ -283,5 +329,30 @@ namespace SG_BAMS.Facturas
         }
 
         private void BtnSalir_Click(object sender, EventArgs e) => this.Close();
+
+        private void dgvBateria_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            TextBox txtControl = e.Control as TextBox;
+
+            if (dgvBateria.CurrentCell?.OwningColumn.Name == "cantidad")
+            {
+                if (txtControl != null)
+                {
+                    txtControl.KeyPress -= CantidadGrid_KeyPress;
+                    txtControl.KeyPress += CantidadGrid_KeyPress;
+                }
+            }
+            else if (dgvBateria.CurrentCell?.OwningColumn.Name == "precio")
+            {
+                if (txtControl != null)
+                {
+                    // Quitamos el formato visual para que edites el número limpio
+                    txtControl.Text = txtControl.Text.Replace("L.", "").Replace(",", "").Trim();
+
+                    txtControl.KeyPress -= PrecioGrid_KeyPress;
+                    txtControl.KeyPress += PrecioGrid_KeyPress;
+                }
+            }
+        }
     }
 }

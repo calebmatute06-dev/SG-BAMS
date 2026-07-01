@@ -429,29 +429,91 @@ namespace SG_BAMS
         /// </summary>
         public static void PermitirNumerosYDecimales(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ','
-                && !char.IsControl(e.KeyChar))
+            if (char.IsControl(e.KeyChar)) return;
+            if (char.IsDigit(e.KeyChar)) return;
+
+            if (e.KeyChar != '.' && e.KeyChar != ',')
             {
                 e.Handled = true;
                 return;
             }
 
-            if (sender is Control control)
+            if (!(sender is Control control))
             {
-                string texto = control.Text;
+                e.Handled = true;
+                return;
+            }
 
-                if ((e.KeyChar == '.' || e.KeyChar == ',') && string.IsNullOrEmpty(texto))
+            string texto = control.Text;
+
+            if (string.IsNullOrEmpty(texto))
+            {
+                e.Handled = true;
+                return;
+            }
+
+            if (e.KeyChar == '.')
+            {
+              
+                if (texto.Contains("."))
                 {
                     e.Handled = true;
-                    return;
                 }
-
-                if (e.KeyChar == '.' && texto.Contains("."))
-                    e.Handled = true;
-
-                if (e.KeyChar == ',' && texto.Contains("."))
-                    e.Handled = true;
+                return;
             }
+
+            if (e.KeyChar == ',')
+            {
+              
+                if (texto.Contains("."))
+                {
+                    e.Handled = true;
+                }
+                
+            }
+        }
+
+        /// <summary>
+        /// Interpreta un texto numérico decidiendo si la coma es separador de miles
+        /// o decimal, según la cantidad de dígitos que la siguen.
+        /// </summary>
+        public static double ParsearMontoInteligente(string texto)
+        {
+            if (string.IsNullOrWhiteSpace(texto)) return 0;
+
+            texto = texto.Replace("L.", "").Replace(" ", "").Trim();
+
+            bool tienePunto = texto.Contains(".");
+            bool tieneComa = texto.Contains(",");
+            string resultado;
+
+            if (tienePunto && tieneComa)
+            {
+                int posPunto = texto.LastIndexOf('.');
+                int posComa = texto.LastIndexOf(',');
+
+                resultado = posComa > posPunto
+                    ? texto.Replace(".", "").Replace(",", ".")   
+                    : texto.Replace(",", "");                    
+            }
+            else if (tieneComa)
+            {
+                int posComa = texto.LastIndexOf(',');
+                int digitosDespues = texto.Length - posComa - 1;
+
+                resultado = digitosDespues == 3
+                    ? texto.Replace(",", "")       
+                    : texto.Replace(",", ".");     
+            }
+            else
+            {
+                resultado = texto;
+            }
+
+            if (resultado.EndsWith(".")) resultado += "0";
+
+            double.TryParse(resultado, NumberStyles.Any, CultureInfo.InvariantCulture, out double valor);
+            return valor;
         }
 
         /// <summary>
