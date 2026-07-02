@@ -24,6 +24,38 @@ namespace SG_BAMS
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
+        private async void VerificarNotificacionesAhora()
+        {
+            try
+            {
+                var noti = new ClsNotificaciones();
+                var dt = noti.ListarNotificaciones(true);
+
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    ToastNotificacion.MostrarResumen(dt);
+                }
+                else
+                {
+                    ToastNotificacion.Mostrar("Centro de Notificaciones", "Sin notificaciones nuevas", 4);
+                }
+            }
+            catch { }
+        }
+
+        private async void VerificarNotificacionesAlCargar()
+        {
+            try
+            {
+                var noti = new ClsNotificaciones();
+                var dt = noti.ListarNotificaciones(true);
+
+                if (dt != null && dt.Rows.Count > 0)
+                    ToastNotificacion.MostrarResumen(dt);
+            }
+            catch { }
+        }
+
         private async Task ActualizarLabelClientes()
         {
             int total = await dashboard.ObtenerTotalClientes();
@@ -52,13 +84,11 @@ namespace SG_BAMS
                 chartStock.Legends.Clear();
                 chartStock.ChartAreas[0].Position.Auto = true;
 
-                int sinStock = 0;
-                int bajoStock = 0;
-                int conStock = 0;
+                int sinStock = 0, bajoStock = 0, conStock = 0;
 
                 foreach (DataRow fila in tablaStock.Rows)
                 {
-                    int cantidad = Convert.ToInt32(fila["STOCK"]);
+                    int cantidad = Convert.ToInt32(fila["Stock"]);
                     if (cantidad == 0) sinStock++;
                     else if (cantidad < 10) bajoStock++;
                     else conStock++;
@@ -136,7 +166,7 @@ namespace SG_BAMS
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al separar barras: " + ex.Message);
+                MessageBox.Show("Error al cargar gráfico: " + ex.Message);
             }
         }
 
@@ -146,6 +176,8 @@ namespace SG_BAMS
             btnMenu.BackColor = Color.SkyBlue;
             btnMenu.ForeColor = Color.White;
 
+            VerificarNotificacionesAlCargar();
+
             await ActualizarLabelClientes();
             await ActualizarLabelDeudores();
             await ActualizarLabelProductos();
@@ -153,12 +185,7 @@ namespace SG_BAMS
             await CargarGraficoMasVendidos();
         }
 
-        private void btnadmin_Click(object sender, EventArgs e)
-        {
-            NotificacionesAdmin admin = new NotificacionesAdmin();
-            admin.Show();
-        }
-
+        private void btnadmin_Click(object sender, EventArgs e) { NotificacionesAdmin admin = new NotificacionesAdmin(); admin.Show(); }
         private void btninventario2_Click(object sender, EventArgs e) { InventarioAdmin Invad = new InventarioAdmin(); Invad.Show(); this.Hide(); }
         private void btninventario3_Click(object sender, EventArgs e) { InventarioAdmin Invad = new InventarioAdmin(); Invad.Show(); this.Hide(); }
         private void btndeudores2_Click(object sender, EventArgs e) { DeudoresAdmin Deu = new DeudoresAdmin(); Deu.Show(); this.Hide(); }
@@ -185,10 +212,6 @@ namespace SG_BAMS
             }
         }
 
-        private void btnPerfil_Click_1(object sender, EventArgs e)
-        {
-            Perfil perfil = new Perfil();
-            perfil.Show();
-        }
+        private void btnPerfil_Click_1(object sender, EventArgs e) { Perfil perfil = new Perfil(); perfil.Show(); }
     }
 }
