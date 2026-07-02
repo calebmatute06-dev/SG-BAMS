@@ -16,7 +16,7 @@ namespace SG_BAMS
     /// Utiliza fragmentación (chunking) para manejar manuales extensos.
     /// Todas las consultas SQL usan Procedimientos Almacenados.
     /// </summary>
-    internal class ClsServicioAyudaIA
+    internal class ClsServicioAyudaIA : ClsRepositorioBaseDatos
     {
         private readonly HttpClient _client;
         private readonly string _apiKey = "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";

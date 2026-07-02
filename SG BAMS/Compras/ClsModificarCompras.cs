@@ -4,17 +4,17 @@ using Microsoft.Data.SqlClient;
 
 namespace SG_BAMS.ProductoInventario
 {
-    internal class ClsModificarCompras
+    internal class ClsModificarCompras : ClsRepositorioBaseDatos
     {
-        private readonly ClsRepositorioBaseDatos conexion = new ClsRepositorioBaseDatos();
+        
 
         public DataTable ListarFormasPago()
         {
             DataTable dt = new DataTable();
             try
             {
-                conexion.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_FormasPago_Listar", conexion.Conectar))
+                AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_FormasPago_Listar", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
@@ -22,7 +22,7 @@ namespace SG_BAMS.ProductoInventario
                 }
             }
             catch (Exception ex) { throw new Exception("Error al listar formas de pago: " + ex.Message); }
-            finally { conexion.Cerrar(); }
+            finally { Cerrar(); }
             return dt;
         }
 
@@ -31,8 +31,8 @@ namespace SG_BAMS.ProductoInventario
             DataTable dt = new DataTable();
             try
             {
-                conexion.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_Proveedores_Activos", conexion.Conectar))
+                AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_Proveedores_Activos", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
@@ -40,7 +40,7 @@ namespace SG_BAMS.ProductoInventario
                 }
             }
             catch (Exception ex) { throw new Exception("Error al listar proveedores: " + ex.Message); }
-            finally { conexion.Cerrar(); }
+            finally { Cerrar(); }
             return dt;
         }
 
@@ -49,8 +49,8 @@ namespace SG_BAMS.ProductoInventario
             DataTable dt = new DataTable();
             try
             {
-                conexion.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_Compra_ListarProductos", conexion.Conectar))
+                AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_Compra_ListarProductos", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@id", idCompra);
@@ -59,7 +59,7 @@ namespace SG_BAMS.ProductoInventario
                 }
             }
             catch (Exception ex) { throw new Exception("Error al obtener detalle: " + ex.Message); }
-            finally { conexion.Cerrar(); }
+            finally { Cerrar(); }
             return dt;
         }
 
@@ -68,8 +68,8 @@ namespace SG_BAMS.ProductoInventario
             DataTable dt = new DataTable();
             try
             {
-                conexion.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_Compra_ObtenerCabecera", conexion.Conectar))
+                AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_Compra_ObtenerCabecera", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@id", idCompra);
@@ -78,7 +78,7 @@ namespace SG_BAMS.ProductoInventario
                 }
             }
             catch (Exception ex) { throw new Exception("Error en cabecera: " + ex.Message); }
-            finally { conexion.Cerrar(); }
+            finally { Cerrar(); }
             return dt;
         }
 
@@ -86,8 +86,8 @@ namespace SG_BAMS.ProductoInventario
         {
             try
             {
-                conexion.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_ActualizarDetalleCompra", conexion.Conectar))
+                AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_ActualizarDetalleCompra", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@id_compra", idCompra);
@@ -98,15 +98,15 @@ namespace SG_BAMS.ProductoInventario
                 }
             }
             catch (Exception ex) { throw new Exception("Error al procesar producto " + idProd + ": " + ex.Message); }
-            finally { conexion.Cerrar(); }
+            finally { Cerrar(); }
         }
 
         public void ActualizarCabeceraCompra(int idCompra, int idProv, int idPago, DateTime fecha, string nota)
         {
             try
             {
-                conexion.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_Compra_ActualizarCabecera", conexion.Conectar))
+                AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_Compra_ActualizarCabecera", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@idC", idCompra);
@@ -117,15 +117,15 @@ namespace SG_BAMS.ProductoInventario
                     cmd.ExecuteNonQuery();
                 }
             }
-            finally { conexion.Cerrar(); }
+            finally { Cerrar(); }
         }
 
         public void EliminarProductoDeBD(int idCompra, int idProd)
         {
             try
             {
-                conexion.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_EliminarProductoDeCompra", conexion.Conectar))
+                AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_EliminarProductoDeCompra", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@id_compra", idCompra);
@@ -133,15 +133,15 @@ namespace SG_BAMS.ProductoInventario
                     cmd.ExecuteNonQuery();
                 }
             }
-            finally { conexion.Cerrar(); }
+            finally { Cerrar(); }
         }
 
         public void RevertirStockProductoNuevo(int idCompra, int idProd, int cant)
         {
             try
             {
-                conexion.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_Compra_RevertirStockEliminarProducto", conexion.Conectar))
+                AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_Compra_RevertirStockEliminarProducto", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@idC", idCompra);
@@ -150,15 +150,15 @@ namespace SG_BAMS.ProductoInventario
                     cmd.ExecuteNonQuery();
                 }
             }
-            finally { conexion.Cerrar(); }
+            finally { Cerrar(); }
         }
 
         public bool EliminarCompraCompleta(int idCompra)
         {
             try
             {
-                conexion.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_Compra_EliminarCompleta", conexion.Conectar))
+                AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_Compra_EliminarCompleta", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@id", idCompra);
@@ -172,7 +172,7 @@ namespace SG_BAMS.ProductoInventario
             }
             finally
             {
-                conexion.Cerrar();
+                Cerrar();
             }
         }
     }

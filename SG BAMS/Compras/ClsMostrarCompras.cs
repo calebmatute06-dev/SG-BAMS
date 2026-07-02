@@ -7,17 +7,17 @@ namespace SG_BAMS.ProductoInventario
     /// <summary>
     /// Clase para mostrar compras usando solo Procedimientos Almacenados.
     /// </summary>
-    internal class ClsMostrarCompras
+    internal class ClsMostrarCompras : ClsRepositorioBaseDatos
     {
-        private readonly ClsRepositorioBaseDatos conexion = new ClsRepositorioBaseDatos();
+        
 
         public DataTable ListarCompras()
         {
             DataTable dt = new DataTable();
             try
             {
-                conexion.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_Vista_ListadoCompras", conexion.Conectar))
+                AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_Vista_ListadoCompras", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
@@ -32,7 +32,7 @@ namespace SG_BAMS.ProductoInventario
             }
             finally
             {
-                conexion.Cerrar();
+                Cerrar();
             }
             return dt;
         }

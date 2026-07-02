@@ -7,17 +7,17 @@ namespace SG_BAMS
     /// <summary>
     /// Clase para cargar combos usando solo Procedimientos Almacenados.
     /// </summary>
-    public class ClsCargaCombos
+    public class ClsCargaCombos : ClsRepositorioBaseDatos
     {
-        private readonly ClsRepositorioBaseDatos conexion = new ClsRepositorioBaseDatos();
+        
 
         private DataTable EjecutarPA(string nombrePA)
         {
             DataTable dt = new DataTable();
             try
             {
-                conexion.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand(nombrePA, conexion.Conectar))
+                AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand(nombrePA, Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
@@ -32,7 +32,7 @@ namespace SG_BAMS
             }
             finally
             {
-                conexion.Cerrar();
+                Cerrar();
             }
             return dt;
         }

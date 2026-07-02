@@ -7,17 +7,17 @@ namespace SG_BAMS.ProductoInventario
     /// <summary>
     /// Clase para obtener detalles de compra usando solo PA.
     /// </summary>
-    internal class ClsDetalleCompra
+    internal class ClsDetalleCompra : ClsRepositorioBaseDatos
     {
-        private readonly ClsRepositorioBaseDatos conexion = new ClsRepositorioBaseDatos();
+        
 
         public DataTable ListarProductosDeCompra(int id)
         {
             DataTable dt = new DataTable();
             try
             {
-                conexion.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_Compra_ListarProductos", conexion.Conectar))
+                AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_Compra_ListarProductos", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@id", id);
@@ -33,7 +33,7 @@ namespace SG_BAMS.ProductoInventario
             }
             finally
             {
-                conexion.Cerrar();
+                Cerrar();
             }
             return dt;
         }

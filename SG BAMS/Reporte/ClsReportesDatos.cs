@@ -8,9 +8,9 @@ namespace SG_BAMS.Reporte
     /// Clase de acceso a datos para reportes del sistema BAMS.
     /// Solo usa Procedimientos Almacenados.
     /// </summary>
-    internal class ClsReportesDatos
+    internal class ClsReportesDatos : ClsRepositorioBaseDatos
     {
-        private readonly ClsRepositorioBaseDatos db = new ClsRepositorioBaseDatos();
+        
 
         /// <summary>
         /// Obtiene el reporte de ventas en un rango de fechas.
@@ -60,8 +60,8 @@ namespace SG_BAMS.Reporte
             DataTable dt = new DataTable();
             try
             {
-                db.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand(nombrePA, db.Conectar))
+                AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand(nombrePA, Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -82,7 +82,7 @@ namespace SG_BAMS.Reporte
             }
             finally
             {
-                db.Cerrar();
+                Cerrar();
             }
             return dt;
         }

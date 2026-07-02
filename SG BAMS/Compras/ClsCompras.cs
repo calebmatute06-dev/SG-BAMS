@@ -6,16 +6,16 @@ using SG_BAMS.Login;
 
 namespace SG_BAMS
 {
-    public class ClsCompras
+    public class ClsCompras : ClsRepositorioBaseDatos
     {
         public DataTable ObtenerProductosPorProveedor(int idProv)
         {
-            ClsRepositorioBaseDatos conexion = new ClsRepositorioBaseDatos();
+            
             DataTable dt = new DataTable();
             try
             {
-                conexion.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_Compras_ProductosPorProveedor", conexion.Conectar))
+                AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_Compras_ProductosPorProveedor", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@idProv", idProv);
@@ -32,7 +32,7 @@ namespace SG_BAMS
             }
             finally
             {
-                conexion.Cerrar();
+                Cerrar();
             }
         }
 

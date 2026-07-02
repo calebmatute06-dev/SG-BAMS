@@ -8,9 +8,9 @@ namespace SG_BAMS.ProductoInventario
     /// <summary>
     /// Clase para llenar ComboBox usando solo Procedimientos Almacenados.
     /// </summary>
-    public class ClsLlenarCombo
+    public class ClsLlenarCombo : ClsRepositorioBaseDatos
     {
-        private readonly ClsRepositorioBaseDatos conexion = new ClsRepositorioBaseDatos();
+        
 
         public void ConfigurarComboBox(KryptonComboBox combo, string tipoTabla)
         {
@@ -82,8 +82,8 @@ namespace SG_BAMS.ProductoInventario
 
             try
             {
-                conexion.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand(nombrePA, conexion.Conectar))
+                AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand(nombrePA, Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -104,7 +104,7 @@ namespace SG_BAMS.ProductoInventario
             }
             finally
             {
-                conexion.Cerrar();
+                Cerrar();
             }
             return dt;
         }

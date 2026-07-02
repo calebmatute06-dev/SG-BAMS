@@ -7,9 +7,10 @@ namespace SG_BAMS.ProductoInventario
     /// <summary>
     /// Clase para visualizar productos usando solo Procedimientos Almacenados.
     /// </summary>
-    internal class ClsVerProducto
+    internal class ClsVerProducto : ClsRepositorioBaseDatos
     {
-        private readonly ClsRepositorioBaseDatos conexion = new ClsRepositorioBaseDatos();
+        
+
 
         /// <summary>
         /// Muestra el listado completo de productos usando PA.
@@ -19,8 +20,8 @@ namespace SG_BAMS.ProductoInventario
             DataTable tabla = new DataTable();
             try
             {
-                conexion.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_Vista_Productos_Detallada", conexion.Conectar))
+                AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_Vista_Productos_Detallada", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     using (SqlDataReader leer = cmd.ExecuteReader())
@@ -35,7 +36,7 @@ namespace SG_BAMS.ProductoInventario
             }
             finally
             {
-                conexion.Cerrar();
+                Cerrar();
             }
             return tabla;
         }
@@ -45,12 +46,12 @@ namespace SG_BAMS.ProductoInventario
         /// </summary>
         public DataTable BuscarProductos(string filtro)
         {
-            ClsRepositorioBaseDatos conexion = new ClsRepositorioBaseDatos();
+           
             DataTable dt = new DataTable();
             try
             {
-                conexion.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_BuscarProductos", conexion.Conectar))
+                AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_BuscarProductos", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@filtro", filtro);
@@ -66,7 +67,7 @@ namespace SG_BAMS.ProductoInventario
             }
             finally
             {
-                conexion.Cerrar();
+                Cerrar();
             }
             return dt;
         }

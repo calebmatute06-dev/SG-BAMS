@@ -7,17 +7,17 @@ namespace SG_BAMS.ProductoInventario
     /// <summary>
     /// Clase para actualizar productos usando solo Procedimientos Almacenados.
     /// </summary>
-    internal class ClsActualizarProducto
+    internal class ClsActualizarProducto : ClsRepositorioBaseDatos
     {
-        private readonly ClsRepositorioBaseDatos conexion = new ClsRepositorioBaseDatos();
+        
 
         public void EjecutarActualizacion(int id, string nombre, int idMarca, int idTipo,
             int idModelo, int idEstado, decimal precio, string codBarra, int idProveedor, int stock)
         {
             try
             {
-                conexion.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("PA_actualizar_producto", conexion.Conectar))
+                AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("PA_actualizar_producto", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@id_producto", id);
@@ -39,7 +39,7 @@ namespace SG_BAMS.ProductoInventario
             }
             finally
             {
-                conexion.Cerrar();
+                Cerrar();
             }
         }
 
@@ -47,8 +47,8 @@ namespace SG_BAMS.ProductoInventario
         {
             try
             {
-                conexion.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_Producto_ExisteEnOtros", conexion.Conectar))
+                AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_Producto_ExisteEnOtros", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@nombre", nombre);
@@ -59,15 +59,15 @@ namespace SG_BAMS.ProductoInventario
                     return conteo > 0;
                 }
             }
-            finally { conexion.Cerrar(); }
+            finally { Cerrar(); }
         }
 
         public bool ExisteCodigoEnOtros(int idActual, string codigo)
         {
             try
             {
-                conexion.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_Producto_ExisteCodigoEnOtros", conexion.Conectar))
+                AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_Producto_ExisteCodigoEnOtros", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@codigo", codigo);
@@ -76,7 +76,7 @@ namespace SG_BAMS.ProductoInventario
                     return conteo > 0;
                 }
             }
-            finally { conexion.Cerrar(); }
+            finally { Cerrar(); }
         }
     }
 }
