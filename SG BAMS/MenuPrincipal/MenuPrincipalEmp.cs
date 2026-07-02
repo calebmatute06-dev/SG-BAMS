@@ -332,16 +332,6 @@ namespace SG_BAMS
 
 
 
-        /// <summary>
-        /// Maneja el evento Click del control btnAsis.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
-        private void btnAsis_Click(object sender, EventArgs e)
-        {
-            AsistentedeIA AIA = new AsistentedeIA();
-            AIA.ShowDialog();
-        }
 
 
 

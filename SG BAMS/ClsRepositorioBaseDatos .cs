@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Configuration;
 using Microsoft.Data.SqlClient;
 
 namespace SG_BAMS
@@ -17,11 +18,7 @@ namespace SG_BAMS
         /// <summary>
         /// La cadena de conexión
         /// </summary>
-        private String CadenaConexion = "Data Source = AutoBattDB.mssql.somee.com; " +
-                                        "Initial catalog = AutoBattDB; " +
-                                        "User ID = exobonnie_SQLLogin_1; " +
-                                        "Password = w6et2uoghs;" +
-                                        "TrustServerCertificate=True;";
+        private String CadenaConexion = ConfigurationManager.ConnectionStrings["AutoBattDB"].ConnectionString;
         /// <summary>
         /// La conexión
         /// </summary>
