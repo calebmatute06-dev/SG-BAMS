@@ -22,7 +22,6 @@ namespace SG_BAMS
                                         "User ID = exobonnie_SQLLogin_1; " +
                                         "Password = w6et2uoghs;" +
                                         "TrustServerCertificate=True;";
-
         /// <summary>
         /// La conexión
         /// </summary>
