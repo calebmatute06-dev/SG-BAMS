@@ -27,7 +27,7 @@ namespace SG_BAMS
         /// <summary>
         /// La lógica de negocio
         /// </summary>
-        ClsVerProducto logica = new ClsVerProducto();
+        ClsProducto logica = new ClsProducto();
 
         /// <summary>
         /// Texto del placeholder para el campo de búsqueda

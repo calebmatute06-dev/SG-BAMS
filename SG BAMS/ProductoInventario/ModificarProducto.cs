@@ -118,7 +118,7 @@ namespace SG_BAMS
                 int stockNuevo = Convert.ToInt32(txtStock.Value);
                 decimal precioNumerico = Convert.ToDecimal(precioReal);
 
-                ClsActualizarProducto logica = new ClsActualizarProducto();
+                ClsProducto logica = new ClsProducto();
 
                 if (logica.ExisteProductoEnOtros(idActual, nombreReal, idMarca, idProveedor))
                 {

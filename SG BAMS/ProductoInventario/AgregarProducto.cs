@@ -100,7 +100,7 @@ namespace SG_BAMS
 
             try
             {
-                ClsAgregarProducto logicaInsertar = new ClsAgregarProducto();
+                ClsProducto logicaInsertar = new ClsProducto();
                 int idMarca = (int)cmbMarca.SelectedValue;
                 int idProveedor = (int)cmbProveedor.SelectedValue;
                 int stockInicial = decimal.ToInt32(txtStock.Value);
