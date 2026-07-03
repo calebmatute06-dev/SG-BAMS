@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using SG_BAMS.Cliente;
 using SG_BAMS.Facturas;
+using SG_BAMS.Facturas.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,53 +15,43 @@ using System.Windows.Forms;
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class FacturaVer : Form
     {
         /// <summary>
-        /// The identifier fac
+        /// DTO con los datos de la factura que se está visualizando.
+        /// Reemplaza los campos sueltos (idFac, idPagoSele, monto_rebaja) que
+        /// antes venían por el constructor.
         /// </summary>
-        int idFac;
+        private FacturaDTO facturaDTO;
+
         /// <summary>
         /// The datos cli
         /// </summary>
         DataTable datosCli;
-        /// <summary>
-        /// The identifier pago sele
-        /// </summary>
-        int idPagoSele;
-        /// <summary>
-        /// The monto rebaja
-        /// </summary>
-        double monto_rebaja;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FacturaVer"/> class.
         /// </summary>
-        /// <param name="idF">The identifier f.</param>
-        /// <param name="nomFac">The nom fac.</param>
-        /// <param name="fec">The fec.</param>
-        /// <param name="bateriaVij">The bateria vij.</param>
-        /// <param name="idPago">The identifier pago.</param>
-        /// <param name="reb">The reb.</param>
-        public FacturaVer(int idF, string nomFac, DateTime fec, int bateriaVij, int idPago, double reb, string ven)
+        /// <param name="dto">Datos de la factura a visualizar.</param>
+        public FacturaVer(FacturaDTO dto)
         {
             InitializeComponent();
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.StartPosition = FormStartPosition.CenterScreen;
-            txtCliente.Text = nomFac;
-            txtBateriaVieja.Text = bateriaVij.ToString();
-            idPagoSele = idPago;
-            idFac = idF;
-            fechaDT.Value = fec;
-            lblFactura.Text = "No." + idF.ToString();
-            monto_rebaja = reb;
-            txtVendedor.Text = ven;
-           
+
+            facturaDTO = dto;
+
+            txtCliente.Text = facturaDTO.NombreCliente;
+            txtBateriaVieja.Text = facturaDTO.CantidadBateriaVieja.ToString();
+            fechaDT.Value = facturaDTO.Fecha;
+            lblFactura.Text = "No." + facturaDTO.IdFactura;
+            txtVendedor.Text = facturaDTO.Vendedor;
         }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="FacturaVer"/> class.
         /// </summary>
@@ -68,7 +59,6 @@ namespace SG_BAMS
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
-
         }
 
         /// <summary>
@@ -76,9 +66,8 @@ namespace SG_BAMS
         /// </summary>
         private async Task VerFacturasProductos()
         {
-
             ClsDetalleFactura objVFP = new ClsDetalleFactura();
-            datosCli = await objVFP.VerFacturasProducto(idFac);
+            datosCli = await objVFP.VerFacturasProducto(facturaDTO.IdFactura);
 
             if (datosCli != null)
             {
@@ -102,7 +91,6 @@ namespace SG_BAMS
                 dgvFacturas.Columns["Cantidad"].HeaderText = "Cantidad";
                 dgvFacturas.Columns["Precio"].HeaderText = "Precio";
                 dgvFacturas.Columns["Subtotal"].HeaderText = "Subtotal";
-
             }
         }
 
@@ -113,7 +101,6 @@ namespace SG_BAMS
         {
             double acumulador = 0;
 
-            
             for (int i = 0; i < dgvFacturas.Rows.Count; i++)
             {
                 if (dgvFacturas.Rows[i].Cells["Subtotal"].Value != null)
@@ -122,8 +109,7 @@ namespace SG_BAMS
                 }
             }
 
-           
-            double rebaja = monto_rebaja;
+            double rebaja = facturaDTO.RebajaBateria;
 
             double total = acumulador - rebaja;
 
@@ -135,14 +121,12 @@ namespace SG_BAMS
         /// <summary>
         /// Handles the Load event of the FacturaVer control.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void FacturaVer_Load(object sender, EventArgs e)
         {
             fechaDT.Enabled = false;
 
             await LlenarComboPago();
-            cmbPago.SelectedValue = idPagoSele;
+            cmbPago.SelectedValue = facturaDTO.IdFormaPago;
             await VerFacturasProductos();
             txtBateriaVieja.ReadOnly = true;
             txtCliente.ReadOnly = true;
@@ -152,7 +136,6 @@ namespace SG_BAMS
             dgvFacturas.ReadOnly = true;
             dgvFacturas.AllowUserToOrderColumns = false;
             dgvFacturas.AllowUserToAddRows = false;
-
 
             dgvFacturas.BorderStyle = BorderStyle.None;
             dgvFacturas.BackgroundColor = Color.White;
@@ -181,9 +164,6 @@ namespace SG_BAMS
             dgvFacturas.RowTemplate.Height = 32;
             dgvFacturas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvFacturas.ClearSelection();
-
-
-
         }
 
         /// <summary>
@@ -221,8 +201,6 @@ namespace SG_BAMS
         /// <summary>
         /// Handles the Click event of the BtnSalir control.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnSalir_Click(object sender, EventArgs e)
         {
             this.Close();

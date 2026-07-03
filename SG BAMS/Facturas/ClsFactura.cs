@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using SG_BAMS.Facturas.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,22 +10,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+ 
 namespace SG_BAMS.Facturas
 {
     internal class ClsFactura : ClsRepositorioBaseDatos
     {
         /// <summary>
-        /// Agregars the facturas.
+        /// Agrega una factura a partir de los datos contenidos en el DTO.
         /// </summary>
-        /// <param name="idusuario">The idusuario.</param>
-        /// <param name="idcliente">The idcliente.</param>
-        /// <param name="pago">The pago.</param>
-        /// <param name="fecha">The fecha.</param>
-        /// <param name="bateria">The bateria.</param>
-        /// <param name="rebaja">The rebaja.</param>
-        /// <returns></returns>
-        public async Task<int> AgregarFacturas(int idusuario, int idcliente, int pago, DateTime fecha, int bateria, double rebaja, double totalFactura)
+        /// <param name="dto">Datos completos de la factura a registrar.</param>
+        /// <returns>El id de la factura creada, o 0 si falló.</returns>
+        public async Task<int> AgregarFacturas(FacturaDTO dto)
         {
             try
             {
@@ -32,13 +28,13 @@ namespace SG_BAMS.Facturas
                 using (SqlCommand cmd = new SqlCommand("PA_insertar_factura", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@id_usuario", idusuario);
-                    cmd.Parameters.AddWithValue("@id_cliente", idcliente);
-                    cmd.Parameters.AddWithValue("@id_tipo_forma_pago", pago);
-                    cmd.Parameters.AddWithValue("@fecha_venta", fecha);
-                    cmd.Parameters.AddWithValue("@bateria_vieja", bateria);
-                    cmd.Parameters.AddWithValue("@manejo_rebaja", rebaja);
-                    cmd.Parameters.AddWithValue("@total_factura", totalFactura);
+                    cmd.Parameters.AddWithValue("@id_usuario", dto.IdUsuario);
+                    cmd.Parameters.AddWithValue("@id_cliente", dto.IdCliente);
+                    cmd.Parameters.AddWithValue("@id_tipo_forma_pago", dto.IdFormaPago);
+                    cmd.Parameters.AddWithValue("@fecha_venta", dto.Fecha);
+                    cmd.Parameters.AddWithValue("@bateria_vieja", dto.CantidadBateriaVieja);
+                    cmd.Parameters.AddWithValue("@manejo_rebaja", dto.RebajaBateria);
+                    cmd.Parameters.AddWithValue("@total_factura", dto.Total);
                     int idFactura = Convert.ToInt32(await cmd.ExecuteScalarAsync());
                     return idFactura;
                 }
@@ -53,7 +49,7 @@ namespace SG_BAMS.Facturas
                 Cerrar();
             }
         }
-
+ 
         /// <summary>
         /// Obteners the formas pago.
         /// </summary>
@@ -83,7 +79,10 @@ namespace SG_BAMS.Facturas
                 Cerrar();
             }
         }
-
+ 
+        /// <summary>
+        /// Se mantiene igual: guarda un producto individual de la factura.
+        /// </summary>
         public async Task GuardarProductoFactura(int idFactura, int idProducto, int cantidad, double PrecioHistoria)
         {
             AbrirConexion();
@@ -98,7 +97,22 @@ namespace SG_BAMS.Facturas
             }
             Cerrar();
         }
-
+ 
+        /// <summary>
+        /// Nuevo: guarda todo el detalle de una factura de una sola vez,
+        /// a partir de la lista de DetalleDTO. Reusa GuardarProductoFactura
+        /// para no duplicar la lógica de conexión.
+        /// </summary>
+        /// <param name="idFactura">Id de la factura ya creada.</param>
+        /// <param name="detalle">Lista de líneas de producto del DTO.</param>
+        public async Task GuardarDetalleFactura(int idFactura, List<DetalleDTO> detalle)
+        {
+            foreach (var item in detalle)
+            {
+                await GuardarProductoFactura(idFactura, item.IdProducto, item.Cantidad, item.Precio);
+            }
+        }
+ 
         public async Task<DataRow> ObtenerProductoPorCodigoBarra(string codigoBarra)
         {
             ClsRepositorioBaseDatos objConexion = new ClsRepositorioBaseDatos();
@@ -120,7 +134,7 @@ namespace SG_BAMS.Facturas
                 objConexion.Cerrar();
             }
         }
-
+ 
         public async Task<DataTable> ObtenerStockProductos()
         {
             DataTable dt = new DataTable();
@@ -146,27 +160,17 @@ namespace SG_BAMS.Facturas
                 Cerrar();
             }
         }
-
+ 
         /// <summary>
         /// The datos temporary
         /// </summary>
         private dynamic datosTemp;
-
+ 
         /// <summary>
-        /// Imprimirs the factura.
+        /// Imprimirs the factura. Se mantiene igual: no forma parte del DTO
+        /// porque construye directamente el documento de impresión a partir
+        /// de strings ya formateados por la pantalla.
         /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <param name="cliente">The cliente.</param>
-        /// <param name="fecha">The fecha.</param>
-        /// <param name="sub">The sub.</param>
-        /// <param name="desc">The desc.</param>
-        /// <param name="total">The total.</param>
-        /// <param name="pago">The pago.</param>
-        /// <param name="dgv">The DGV.</param>
-        /// <param name="nombreVendedor">The nombre vendedor.</param>
-        /// <param name="esGobierno">if set to <c>true</c> [es gobierno].</param>
-        /// <param name="montoExento">The monto exento.</param>
-        /// <param name="rtnCliente">The RTN cliente.</param>
         public void ImprimirFactura(int id, string cliente, string fecha, string sub, string desc, string total,
             string pago, DataGridView dgv, string nombreVendedor, bool esGobierno = false, double montoExento = 0, string rtnCliente = "Sin RTN")
         {
@@ -176,48 +180,43 @@ namespace SG_BAMS.Facturas
             PrintPreviewDialog ppd = new PrintPreviewDialog { Document = pd };
             ppd.ShowDialog();
         }
-
-        /// <summary>
-        /// Disenoes the factura final.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="PrintPageEventArgs"/> instance containing the event data.</param>
+ 
         private void DisenoFacturaFinal(object sender, PrintPageEventArgs e)
         {
             Graphics g = e.Graphics;
             CultureInfo hn = new CultureInfo("es-HN");
-
+ 
             Font fEmpresa = new Font("Arial", 16, FontStyle.Bold);
             Font fDetalles = new Font("Arial", 10, FontStyle.Regular);
             Font fEncabezado = new Font("Arial", 11, FontStyle.Bold);
             Font fTotales = new Font("Arial", 11, FontStyle.Bold);
             Font fPie = new Font("Arial", 11, FontStyle.Bold | FontStyle.Italic);
-
+ 
             int y = 40;
             int margin = 50;
             int width = e.PageBounds.Width - (margin * 2);
-
+ 
             g.DrawString("VENTA DE BATERÍAS MATUTE", fEmpresa, Brushes.Black, margin, y); y += 30;
             g.DrawString("GRODSBIN ISAIAS MATUTE AGUILAR", fEncabezado, Brushes.Black, margin, y); y += 25;
             g.DrawString("Col. Gilberto Rodriguez, Una Cuadra de Cuerpo de Bomberos", fDetalles, Brushes.Black, margin, y); y += 20;
             g.DrawString("Talanga, Francisco Morazán, Honduras, C. A.", fDetalles, Brushes.Black, margin, y); y += 20;
             g.DrawString("Tel: 9651-2489  E-mail: matuteaguilarg@gmail.com", fDetalles, Brushes.Black, margin, y); y += 20;
             g.DrawString("R.T.N. 08201979002910", fDetalles, Brushes.Black, margin, y); y += 40;
-
+ 
             g.DrawString($"Factura N.{datosTemp.id}", fEncabezado, Brushes.Black, margin, y);
             g.DrawString("CLIENTE", fEncabezado, Brushes.Black, margin + 300, y); y += 25;
             g.DrawString($"FECHA: {datosTemp.fecha}", fDetalles, Brushes.Black, margin, y);
             g.DrawString(datosTemp.cliente.ToUpper(), fDetalles, Brushes.Black, margin + 300, y); y += 20;
             g.DrawString($"Vendedor: {datosTemp.nombreVendedor}", fDetalles, Brushes.Black, margin, y);
             g.DrawString($"R.T.N.: {datosTemp.rtnCliente}", fDetalles, Brushes.Black, margin + 300, y); y += 40;
-
+ 
             g.DrawLine(Pens.Black, margin, y, margin + width, y); y += 10;
             g.DrawString("Descripción", fEncabezado, Brushes.Black, margin, y);
             g.DrawString("Cantidad", fEncabezado, Brushes.Black, margin + 280, y);
             g.DrawString("Precio unidad", fEncabezado, Brushes.Black, margin + 420, y);
             g.DrawString("Subtotal", fEncabezado, Brushes.Black, margin + 600, y); y += 25;
             g.DrawLine(Pens.Black, margin, y, margin + width, y); y += 15;
-
+ 
             foreach (DataGridViewRow fila in datosTemp.dgv.Rows)
             {
                 if (fila.IsNewRow) continue;
@@ -229,20 +228,18 @@ namespace SG_BAMS.Facturas
             }
             y += 20;
             g.DrawLine(Pens.Black, margin, y, margin + width, y); y += 15;
-
+ 
             double valTotal = double.Parse((string)datosTemp.total, CultureInfo.InvariantCulture);
             double valDescuento = double.Parse((string)datosTemp.desc, CultureInfo.InvariantCulture);
             bool esGobierno = (bool)datosTemp.esGobierno;
             double montoExento = (double)datosTemp.montoExento;
-
+ 
             double impExonerado, impExento, impGravado, isv15, totalFinal;
-
-
+ 
             double baseConDescuento = Math.Max(valTotal, 0);
-
+ 
             if (esGobierno)
             {
-
                 impExonerado = Math.Round(baseConDescuento / 1.15, 2);
                 impExento = 0;
                 impGravado = 0;
@@ -251,126 +248,107 @@ namespace SG_BAMS.Facturas
             }
             else
             {
-
                 double exentoConISV = Math.Min(montoExento, baseConDescuento);
                 double gravadoConISV = baseConDescuento - exentoConISV;
-
-
+ 
                 impExento = Math.Round(exentoConISV / 1.15, 2);
-
-
                 impGravado = Math.Round(gravadoConISV / 1.15, 2);
-
-
                 isv15 = Math.Round(gravadoConISV - impGravado, 2);
-
                 impExonerado = 0;
-
-
+ 
                 totalFinal = Math.Round(impExento + gravadoConISV, 2);
             }
-
+ 
             int xLabel = margin + 350;
             int xValor = margin + 600;
-
-
+ 
             double valSubtotal = double.Parse((string)datosTemp.sub, CultureInfo.InvariantCulture);
-
+ 
             g.DrawString($"Forma de Pago: {datosTemp.pago}", fDetalles, Brushes.Black, margin, y);
-
+ 
             g.DrawString("SUBTOTAL", fDetalles, Brushes.Black, xLabel, y);
             g.DrawString($"L. {valSubtotal.ToString("N2", hn)}", fDetalles, Brushes.Black, xValor, y); y += 20;
-
+ 
             g.DrawString("IMPORTE EXONERADO", fDetalles, Brushes.Black, xLabel, y);
             g.DrawString($"L. {impExonerado.ToString("N2", hn)}", fDetalles, Brushes.Black, xValor, y); y += 20;
-
+ 
             g.DrawString("IMPORTE EXENTO", fDetalles, Brushes.Black, xLabel, y);
             g.DrawString($"L. {impExento.ToString("N2", hn)}", fDetalles, Brushes.Black, xValor, y); y += 20;
-
+ 
             g.DrawString("IMPORTE GRAVADO", fDetalles, Brushes.Black, xLabel, y);
             g.DrawString($"L. {impGravado.ToString("N2", hn)}", fDetalles, Brushes.Black, xValor, y); y += 20;
-
+ 
             g.DrawString("DESCUENTOS Y REBAJAS", fDetalles, Brushes.Black, xLabel, y);
             g.DrawString($"L. {valDescuento.ToString("N2", hn)}", fDetalles, Brushes.Black, xValor, y); y += 20;
-
+ 
             g.DrawString("15% ISV", fDetalles, Brushes.Black, xLabel, y);
             g.DrawString($"L. {isv15.ToString("N2", hn)}", fDetalles, Brushes.Black, xValor, y); y += 25;
-
+ 
             g.DrawString("TOTAL", fTotales, Brushes.Black, xLabel, y);
             g.DrawString($"L. {totalFinal.ToString("N2", hn)}", fTotales, Brushes.Black, xValor, y);
-
+ 
             y += 40;
-
+ 
             g.DrawString($"SON: {NumeroALetras(totalFinal)}", fEncabezado, Brushes.Black, margin, y);
-
+ 
             y += 60;
-
+ 
             string frase = "LA FACTURA ES BENEFICIO DE TODOS EXIJALA";
             SizeF size = g.MeasureString(frase, fPie);
             g.DrawString(frase, fPie, Brushes.Black, (e.PageBounds.Width - size.Width) / 2, y);
         }
-
-        /// <summary>
-        /// Numeroes a letras.
-        /// </summary>
-        /// <param name="total">The total.</param>
-        /// <returns></returns>
+ 
         private string NumeroALetras(double total)
         {
             if (total < 0) total = 0;
             long entero = (long)Math.Round(total, MidpointRounding.AwayFromZero);
             return $"{EnteroALetras(entero)} LEMPIRAS";
         }
-
-        /// <summary>
-        /// Enteroes a letras.
-        /// </summary>
-        /// <param name="numero">The numero.</param>
-        /// <returns></returns>
+ 
         private string EnteroALetras(long numero)
         {
             if (numero == 0) return "CERO";
             if (numero < 0) return "MENOS " + EnteroALetras(-numero);
-
+ 
             string[] unidades = {
                 "", "UN", "DOS", "TRES", "CUATRO", "CINCO", "SEIS", "SIETE", "OCHO", "NUEVE",
                 "DIEZ", "ONCE", "DOCE", "TRECE", "CATORCE", "QUINCE",
                 "DIECISÉIS", "DIECISIETE", "DIECIOCHO", "DIECINUEVE"
             };
-
+ 
             string[] decenas = {
                 "", "DIEZ", "VEINTE", "TREINTA", "CUARENTA", "CINCUENTA",
                 "SESENTA", "SETENTA", "OCHENTA", "NOVENTA"
             };
-
+ 
             string[] centenas = {
                 "", "CIENTO", "DOSCIENTOS", "TRESCIENTOS", "CUATROCIENTOS",
                 "QUINIENTOS", "SEISCIENTOS", "SETECIENTOS", "OCHOCIENTOS", "NOVECIENTOS"
             };
-
+ 
             string resultado = "";
-
+ 
             if (numero >= 1_000_000)
             {
                 long millones = numero / 1_000_000;
                 resultado += (millones == 1 ? "UN MILLÓN " : EnteroALetras(millones) + " MILLONES ");
                 numero %= 1_000_000;
             }
-
+ 
             if (numero >= 1_000)
             {
                 long miles = numero / 1_000;
                 resultado += (miles == 1 ? "MIL " : EnteroALetras(miles) + " MIL ");
                 numero %= 1_000;
             }
-
+ 
             if (numero >= 100)
             {
                 int c = (int)(numero / 100);
                 resultado += (numero == 100 ? "CIEN " : centenas[c] + " ");
                 numero %= 100;
             }
-
+ 
             if (numero >= 20)
             {
                 int d = (int)(numero / 10);
@@ -381,7 +359,7 @@ namespace SG_BAMS.Facturas
             {
                 resultado += unidades[numero] + " ";
             }
-
+ 
             return resultado.Trim();
         }
     }

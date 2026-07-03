@@ -3,6 +3,7 @@ using SG_BAMS.Administracion_de_BAMS.FormaPago;
 using SG_BAMS.Cliente;
 using SG_BAMS.Deudores;
 using SG_BAMS.Facturas;
+using SG_BAMS.Facturas.DTO;
 using SG_BAMS.Login;
 using System;
 using System.Data;
@@ -41,8 +42,6 @@ namespace SG_BAMS
         /// entre entrada del scanner (menor a 100ms) y escritura manual (mayor a 100ms).
         /// </summary>
         private DateTime _ultimaTecla = DateTime.MinValue;
-
-
 
         public FacturaAgregarDatos(string cliente, int idCli, string rtn = "Sin RTN")
         {
@@ -189,7 +188,8 @@ namespace SG_BAMS
             txtTotal.Text = $"L. {(total < 0 ? 0 : total):N2}";
         }
 
-        private void txtExento_TextChanged(object sender, EventArgs e) {
+        private void txtExento_TextChanged(object sender, EventArgs e)
+        {
         }
 
         private void txtExento_KeyPress(object sender, KeyPressEventArgs e)
@@ -271,13 +271,10 @@ namespace SG_BAMS
             {
                 ClsPasarUsuario objPU = new ClsPasarUsuario();
                 ClsFactura objAFP = new ClsFactura();
-                
 
                 int idUser = objPU.IdUsuario();
                 int idPago = Convert.ToInt32(cmbPago.SelectedValue);
                 int.TryParse(txtBateria.Text, out int bat);
-
-                double totalFacturaReal = ParsearMonto(txtTotal.Text);
 
                 string formaPagoTexto = cmbPago.Text.ToLower();
 
@@ -318,20 +315,39 @@ namespace SG_BAMS
                     }
                 }
 
+                // --- Armado del DTO con todos los datos de la pantalla ---
+                FacturaDTO facturaDTO = new FacturaDTO
+                {
+                    IdUsuario = idUser,
+                    IdCliente = idCliente,
+                    IdFormaPago = idPago,
+                    Fecha = DateTFecha.Value,
+                    CantidadBateriaVieja = bat,
+                    RebajaBateria = precioBateria,
+                    MontoExento = montoExento,
+                    EsGobierno = chkGobierno.Checked,
+                    RtnCliente = rtnCliente,
+                    NombreCliente = txtCliente.Text
+                };
 
-                int idFactura = await objAFP.AgregarFacturas(idUser, idCliente, idPago,
-                    DateTFecha.Value, bat, precioBateria, totalFacturaReal);
+                foreach (DataGridViewRow fila in dgvProductos.Rows)
+                {
+                    if (fila.IsNewRow) continue;
+                    facturaDTO.Detalle.Add(new DetalleDTO
+                    {
+                        IdProducto = Convert.ToInt32(fila.Cells["id_producto"].Value),
+                        NombreProducto = fila.Cells["nombre_producto"].Value.ToString(),
+                        Cantidad = Convert.ToInt32(fila.Cells["cantidad"].Value),
+                        Precio = Convert.ToDouble(fila.Cells["precio"].Value)
+                    });
+                }
+
+                // --- Un solo objeto viaja a la capa de datos ---
+                int idFactura = await objAFP.AgregarFacturas(facturaDTO);
 
                 if (idFactura > 0)
                 {
-                    foreach (DataGridViewRow fila in dgvProductos.Rows)
-                    {
-                        if (fila.IsNewRow) continue;
-                        int idPr = Convert.ToInt32(fila.Cells["id_producto"].Value);
-                        int cant = Convert.ToInt32(fila.Cells["cantidad"].Value);
-                        double precio = Convert.ToDouble(fila.Cells["precio"].Value);
-                        await objAFP.GuardarProductoFactura(idFactura, idPr, cant, precio);
-                    }
+                    await objAFP.GuardarDetalleFactura(idFactura, facturaDTO.Detalle);
 
                     DialogResult imprimir = MessageBox.Show(
                         "¿Desea imprimir la factura?", "Imprimir",
@@ -341,32 +357,30 @@ namespace SG_BAMS
                     {
                         objAFP.ImprimirFactura(
                             idFactura,
-                            txtCliente.Text,
-                            DateTFecha.Value.ToShortDateString(),
+                            facturaDTO.NombreCliente,
+                            facturaDTO.Fecha.ToShortDateString(),
                             ParsearMonto(txtSubtotal.Text).ToString("N2", CI),
                             ParsearMonto(txtRebaja.Text).ToString("N2", CI),
                             ParsearMonto(txtTotal.Text).ToString("N2", CI),
                             cmbPago.Text,
                             dgvProductos,
                             SG_BAMS.Login.Login.UsuarioLogueado,
-                            chkGobierno.Checked,
-                            montoExento,
-                            rtnCliente
+                            facturaDTO.EsGobierno,
+                            facturaDTO.MontoExento,
+                            facturaDTO.RtnCliente
                         );
                     }
 
                     if (formaPagoTexto.Contains("crédito") || formaPagoTexto.Contains("credito"))
                     {
-                        double montoTotalReal = ParsearMonto(txtTotal.Text);
-                        bool deudaCreada = await CrearDeudaManual(idFactura, idCliente, montoTotalReal, DateTFecha.Value);
-                        DateTime fechaVenta = DateTFecha.Value;
+                        bool deudaCreada = await CrearDeudaManual(idFactura, facturaDTO.IdCliente, facturaDTO.Total, facturaDTO.Fecha);
 
                         if (deudaCreada)
                         {
-                            string nombreCliente = txtCliente.Text.Trim();
-                            string montoTotal = ParsearMonto(txtTotal.Text).ToString("N2");
+                            string nombreCliente = facturaDTO.NombreCliente.Trim();
+                            string montoTotal = facturaDTO.Total.ToString("N2");
 
-                            using (Información_Deudores frmInfo = new Información_Deudores(idFactura, nombreCliente, montoTotal, fechaVenta))
+                            using (Información_Deudores frmInfo = new Información_Deudores(idFactura, nombreCliente, montoTotal, facturaDTO.Fecha))
                             {
                                 frmInfo.ShowDialog();
                             }
@@ -555,7 +569,6 @@ namespace SG_BAMS
                 double precio = Convert.ToDouble(prod["precio_venta"]);
                 int stock = Convert.ToInt32(prod["stock"]);
 
-                // Verificar si ya existe en el DGV
                 foreach (DataGridViewRow row in dgvProductos.Rows)
                 {
                     if (row.IsNewRow) continue;
@@ -589,19 +602,14 @@ namespace SG_BAMS
 
         /// <summary>
         /// Sobrescribe el procesamiento de teclas a nivel de mensaje de Windows.
-        /// Es más bajo nivel que KeyDown, por lo que intercepta el Enter del scanner
-        /// antes de que llegue a cualquier botón o control del formulario,
-        /// evitando que dispare acciones no deseadas como cerrar o navegar hacia atrás.
         /// </summary>
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             Keys key = keyData & Keys.KeyCode;
 
-            // Si el foco está en un control donde el usuario escribe, no interceptar
             if (this.ActiveControl is TextBox || this.ActiveControl is ComboBox)
                 return base.ProcessCmdKey(ref msg, keyData);
 
-            // Acumular caracteres alfanuméricos del scanner
             if ((key >= Keys.D0 && key <= Keys.D9) ||
                 (key >= Keys.A && key <= Keys.Z) ||
                 (key >= Keys.NumPad0 && key <= Keys.NumPad9))
@@ -614,10 +622,9 @@ namespace SG_BAMS
 
                 string caracter = new KeysConverter().ConvertToString(key);
                 _bufferScanner.Append(caracter);
-                return true; // consumir la tecla, no pasa a ningún control
+                return true;
             }
 
-            // Enter del scanner: buscar producto y bloquear completamente
             if (key == Keys.Enter)
             {
                 _ultimaTecla = DateTime.Now;
@@ -627,11 +634,10 @@ namespace SG_BAMS
                 if (!string.IsNullOrEmpty(codigo))
                     _ = BuscarYAgregarProductoPorCodigo(codigo);
 
-                return true; // bloquea el Enter para que no llegue a ningún botón
+                return true;
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
         }
-
     }
 }

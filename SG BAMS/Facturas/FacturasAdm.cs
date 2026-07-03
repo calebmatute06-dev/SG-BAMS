@@ -2,6 +2,7 @@
 using Microsoft.Data.SqlClient;
 using SG_BAMS.Bitacora;
 using SG_BAMS.Facturas;
+using SG_BAMS.Facturas.DTO;
 using SG_BAMS.Proveedor;
 using SG_BAMS.Reporte;
 using System;
@@ -13,7 +14,7 @@ using System.Windows.Forms;
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class FacturasAdm : Form
@@ -64,7 +65,6 @@ namespace SG_BAMS
                     MessageBoxIcon.Error);
                 return;
             }
-            
         }
 
         /// <summary>
@@ -100,12 +100,8 @@ namespace SG_BAMS
         /// <summary>
         /// Handles the Load event of the FacturasAdm control.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void FacturasAdm_Load(object sender, EventArgs e)
         {
-
-
             new PlaceholderTextBox(txtBusqueda, placeholderText);
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -117,20 +113,15 @@ namespace SG_BAMS
             {
                 await CargarFactura();
 
-
                 dtpInicio.Value = DateTime.Today;
                 dtpFin.Value = DateTime.Today;
 
-
                 ClsValidaciones.ValidarRangoFechas(dtpInicio, dtpFin);
-
 
                 dtpInicio.ValueChanged += (s, ev) => ValidarYFiltrar();
                 dtpFin.ValueChanged += (s, ev) => ValidarYFiltrar();
 
-
                 ClsMensajeGuia.ActivarK(txtBusqueda);
-
 
                 dgvFacturas.BorderStyle = BorderStyle.None;
                 dgvFacturas.BackgroundColor = Color.White;
@@ -159,7 +150,6 @@ namespace SG_BAMS
                 dgvFacturas.RowTemplate.Height = 32;
                 dgvFacturas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dgvFacturas.ClearSelection();
-
 
                 FiltrarDatos();
             }
@@ -200,10 +190,8 @@ namespace SG_BAMS
             {
                 DataView dv = datosFac.DefaultView;
 
-                
                 string texto = txtBusqueda.Text?.Trim() ?? "";
 
-                
                 if (texto == placeholderText)
                 {
                     texto = "";
@@ -211,16 +199,13 @@ namespace SG_BAMS
 
                 var condiciones = new List<string>();
 
-                
                 string fInicio = dtpInicio.Value.Date.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
                 string fFin = dtpFin.Value.Date.AddDays(1).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
                 string filtroFechas = $"[Fecha] >= #{fInicio}# AND [Fecha] < #{fFin}#";
                 condiciones.Add($"({filtroFechas})");
 
-                
                 if (!string.IsNullOrWhiteSpace(texto))
                 {
-                   
                     string textoFiltro = texto
                         .Replace("'", "''")
                         .Replace("[", "[[]")
@@ -250,11 +235,8 @@ namespace SG_BAMS
         /// <summary>
         /// Handles the TextChanged event of the txtBusqueda control.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void txtBusqueda_TextChanged(object sender, EventArgs e)
         {
-            // Si el texto es exactamente el placeholder, no filtrar
             if (txtBusqueda.Text == placeholderText)
                 return;
 
@@ -264,8 +246,6 @@ namespace SG_BAMS
         /// <summary>
         /// Handles the Click event of the BtnNueva control.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void BtnNueva_Click(object sender, EventArgs e)
         {
             using (ClienteAgregar frmCA = new ClienteAgregar())
@@ -277,7 +257,6 @@ namespace SG_BAMS
                     dtpInicio.Value = DateTime.Today;
                     dtpFin.Value = DateTime.Today;
                     FiltrarDatos();
-                   
                 }
             }
             dgvFacturas.ClearSelection();
@@ -286,8 +265,6 @@ namespace SG_BAMS
         /// <summary>
         /// Handles the Click event of the BtnVer control.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnVer_Click(object sender, EventArgs e)
         {
             if (dgvFacturas.SelectedRows.Count == 0)
@@ -304,21 +281,15 @@ namespace SG_BAMS
 
         /// <summary>
         /// Handles the CellDoubleClick event of the dgvFacturas control.
+        /// Arma el FacturaDTO a partir de la fila seleccionada, en vez de
+        /// pasar 7 parámetros sueltos al constructor de FacturaVer.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
         private async void dgvFacturas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e != null && e.RowIndex < 0) return;
 
             if (dgvFacturas.CurrentRow != null)
             {
-                int idFacturas = Convert.ToInt32(dgvFacturas.CurrentRow.Cells["Factura"].Value);
-                string nombre_Cliente = dgvFacturas.CurrentRow.Cells["Cliente"].Value.ToString();
-                DateTime fecha = Convert.ToDateTime(dgvFacturas.CurrentRow.Cells["Fecha"].Value);
-                int idPago = Convert.ToInt32(dgvFacturas.CurrentRow.Cells["ID Método de Pago"].Value);
-                string Vendedor = dgvFacturas.CurrentRow.Cells["Vendedor"].Value.ToString();
-
                 int bateriaVieja = 0;
                 var valorBateria = dgvFacturas.CurrentRow.Cells["Batería Vieja"].Value?.ToString();
                 if (!string.IsNullOrEmpty(valorBateria) && valorBateria != "No dejó")
@@ -330,10 +301,20 @@ namespace SG_BAMS
 
                 string valorCelda = dgvFacturas.CurrentRow.Cells["Rebaja"].Value?.ToString() ?? "0";
                 valorCelda = valorCelda.Replace("L.", "").Trim();
-
                 double rebaja = Convert.ToDouble(valorCelda);
 
-                FacturaVer frmFV = new FacturaVer(idFacturas, nombre_Cliente, fecha, bateriaVieja, idPago, rebaja, Vendedor);
+                FacturaDTO facturaDTO = new FacturaDTO
+                {
+                    IdFactura = Convert.ToInt32(dgvFacturas.CurrentRow.Cells["Factura"].Value),
+                    NombreCliente = dgvFacturas.CurrentRow.Cells["Cliente"].Value.ToString(),
+                    Fecha = Convert.ToDateTime(dgvFacturas.CurrentRow.Cells["Fecha"].Value),
+                    IdFormaPago = Convert.ToInt32(dgvFacturas.CurrentRow.Cells["ID Método de Pago"].Value),
+                    Vendedor = dgvFacturas.CurrentRow.Cells["Vendedor"].Value.ToString(),
+                    CantidadBateriaVieja = bateriaVieja,
+                    RebajaBateria = rebaja
+                };
+
+                FacturaVer frmFV = new FacturaVer(facturaDTO);
                 frmFV.ShowDialog();
 
                 await CargarFactura();
@@ -345,8 +326,6 @@ namespace SG_BAMS
         /// <summary>
         /// Handles the 1 event of the BtnRefrescar_Click control.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnRefrescar_Click_1(object sender, EventArgs e)
         {
             txtBusqueda.Text = "";
@@ -359,8 +338,6 @@ namespace SG_BAMS
         /// <summary>
         /// Handles the Click event of the btnnotificaciones control.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnnotificaciones_Click(object sender, EventArgs e)
         {
             NotificacionesAdmin Noti = new NotificacionesAdmin();
@@ -370,8 +347,6 @@ namespace SG_BAMS
         /// <summary>
         /// Handles the KeyPress event of the txtBusqueda control.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
         private void txtBusqueda_KeyPress(object sender, KeyPressEventArgs e)
         {
             ClsValidaciones.ValidarBusquedaAlfanumerica(e);

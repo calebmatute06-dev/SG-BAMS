@@ -1,4 +1,5 @@
 ﻿using SG_BAMS.Facturas;
+using SG_BAMS.Facturas.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,7 +11,7 @@ using System.Globalization;
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class FacturasEmp : Form
@@ -86,12 +87,9 @@ namespace SG_BAMS
         /// <summary>
         /// Handles the Load event of the FacturasEmp control.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void FacturasEmp_Load(object sender, EventArgs e)
         {
             new PlaceholderTextBox(txtBusqueda, PlaceholderText);
-
             btnFacturas.Enabled = false;
             btnFacturas.BackColor = Color.SkyBlue;
             btnFacturas.ForeColor = Color.White;
@@ -164,6 +162,7 @@ namespace SG_BAMS
                 DataView dv = datosFac.DefaultView;
 
                 string texto = txtBusqueda.Text?.Trim() ?? "";
+
                 if (texto == PlaceholderText)
                 {
                     texto = "";
@@ -209,8 +208,6 @@ namespace SG_BAMS
         /// <summary>
         /// Handles the TextChanged event of the txtBusqueda control.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void txtBusqueda_TextChanged(object sender, EventArgs e)
         {
             if (txtBusqueda.Text == PlaceholderText)
@@ -222,8 +219,6 @@ namespace SG_BAMS
         /// <summary>
         /// Handles the Click event of the BtnNueva control.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void BtnNueva_Click(object sender, EventArgs e)
         {
             using (ClienteAgregar frmCA = new ClienteAgregar())
@@ -235,6 +230,7 @@ namespace SG_BAMS
                     dtpInicio.Value = DateTime.Today;
                     dtpFin.Value = DateTime.Today;
                     FiltrarDatos();
+
                     dgvFacturas.ClearSelection();
                 }
             }
@@ -244,8 +240,6 @@ namespace SG_BAMS
         /// <summary>
         /// Handles the Click event of the BtnVer control.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnVer_Click(object sender, EventArgs e)
         {
             if (dgvFacturas.SelectedRows.Count == 0)
@@ -262,21 +256,15 @@ namespace SG_BAMS
 
         /// <summary>
         /// Handles the CellDoubleClick event of the dgvFacturas control.
+        /// Arma el FacturaDTO a partir de la fila seleccionada, en vez de
+        /// pasar 7 parámetros sueltos al constructor de FacturaVer.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
         private async void dgvFacturas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e != null && e.RowIndex < 0) return;
 
             if (dgvFacturas.CurrentRow != null)
             {
-                int idFacturas = Convert.ToInt32(dgvFacturas.CurrentRow.Cells["Factura"].Value);
-                string nombre_Cliente = dgvFacturas.CurrentRow.Cells["Cliente"].Value.ToString();
-                DateTime fecha = Convert.ToDateTime(dgvFacturas.CurrentRow.Cells["Fecha"].Value);
-                int idPago = Convert.ToInt32(dgvFacturas.CurrentRow.Cells["ID Método de Pago"].Value);
-                string Vendedor = dgvFacturas.CurrentRow.Cells["Vendedor"].Value.ToString();
-
                 int bateriaVieja = 0;
                 var valorBateria = dgvFacturas.CurrentRow.Cells["Batería Vieja"].Value?.ToString();
                 if (!string.IsNullOrEmpty(valorBateria) && valorBateria != "No dejó")
@@ -290,7 +278,18 @@ namespace SG_BAMS
                 valorCelda = valorCelda.Replace("L.", "").Trim();
                 double rebaja = Convert.ToDouble(valorCelda);
 
-                FacturaVer frmFV = new FacturaVer(idFacturas, nombre_Cliente, fecha, bateriaVieja, idPago, rebaja, Vendedor);
+                FacturaDTO facturaDTO = new FacturaDTO
+                {
+                    IdFactura = Convert.ToInt32(dgvFacturas.CurrentRow.Cells["Factura"].Value),
+                    NombreCliente = dgvFacturas.CurrentRow.Cells["Cliente"].Value.ToString(),
+                    Fecha = Convert.ToDateTime(dgvFacturas.CurrentRow.Cells["Fecha"].Value),
+                    IdFormaPago = Convert.ToInt32(dgvFacturas.CurrentRow.Cells["ID Método de Pago"].Value),
+                    Vendedor = dgvFacturas.CurrentRow.Cells["Vendedor"].Value.ToString(),
+                    CantidadBateriaVieja = bateriaVieja,
+                    RebajaBateria = rebaja
+                };
+
+                FacturaVer frmFV = new FacturaVer(facturaDTO);
                 frmFV.ShowDialog();
 
                 await CargarFactura();
@@ -302,8 +301,6 @@ namespace SG_BAMS
         /// <summary>
         /// Handles the Click event of the BtnRefrescar control.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnRefrescar_Click(object sender, EventArgs e)
         {
             txtBusqueda.Text = "";
@@ -316,7 +313,6 @@ namespace SG_BAMS
         /// <summary>
         /// Navegars the a.
         /// </summary>
-        /// <param name="formulario">The formulario.</param>
         private void NavegarA(Form formulario)
         {
             formulario.Show();
@@ -326,8 +322,6 @@ namespace SG_BAMS
         /// <summary>
         /// Handles the Click event of the BtnNotificaciones control.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnNotificaciones_Click(object sender, EventArgs e)
         {
             new NotificacionesAdmin().Show();
@@ -336,8 +330,6 @@ namespace SG_BAMS
         /// <summary>
         /// Handles the Click event of the btnMenu control.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnMenu_Click(object sender, EventArgs e)
         {
             MenuPrincipalEmp ME = new MenuPrincipalEmp();
@@ -348,8 +340,6 @@ namespace SG_BAMS
         /// <summary>
         /// Handles the Click event of the btnClientes control.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnClientes_Click(object sender, EventArgs e)
         {
             ClientesEmp CE = new ClientesEmp();
@@ -360,8 +350,6 @@ namespace SG_BAMS
         /// <summary>
         /// Handles the Click event of the btnInventario control.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnInventario_Click(object sender, EventArgs e)
         {
             InventarioEmp IE = new InventarioEmp();
@@ -372,8 +360,6 @@ namespace SG_BAMS
         /// <summary>
         /// Handles the Click event of the btnDeudores control.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnDeudores_Click(object sender, EventArgs e)
         {
             Deudores_Emp DE = new Deudores_Emp();
@@ -384,15 +370,13 @@ namespace SG_BAMS
         /// <summary>
         /// Handles the Click event of the btnCerrar control.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             DialogResult resultado = MessageBox.Show(
-           "¿Está seguro que desea cerrar sesión?",
-           "Confirmación",
-           MessageBoxButtons.YesNo,
-           MessageBoxIcon.Question);
+            "¿Está seguro que desea cerrar sesión?",
+            "Confirmación",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question);
 
             if (resultado == DialogResult.Yes)
             {
@@ -405,8 +389,6 @@ namespace SG_BAMS
         /// <summary>
         /// Handles the Click event of the btnPerfil control.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnPerfil_Click(object sender, EventArgs e)
         {
             Perfil perfil = new Perfil();
