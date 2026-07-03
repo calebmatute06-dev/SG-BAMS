@@ -57,7 +57,7 @@ namespace SG_BAMS
         /// </summary>
         private async Task TablaClientes()
         {
-            ClsVerCliente objC = new ClsVerCliente();
+            ClsCliente objC = new ClsCliente();
             datosCli = await objC.VerClienteTabla();
 
             if (datosCli != null)

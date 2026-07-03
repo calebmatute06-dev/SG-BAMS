@@ -32,7 +32,7 @@ namespace SG_BAMS
         /// </summary>
         private async Task LlenarComboCliente()
         {
-            ClsAgregarClientes objAC = new ClsAgregarClientes();
+            ClsCliente objAC = new ClsCliente();
             try
             {
                 DataTable dt = await objAC.ObtenerClientes();

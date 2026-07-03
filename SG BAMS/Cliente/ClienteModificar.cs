@@ -100,7 +100,7 @@ namespace SG_BAMS
 
             if (rtnReal != "Sin RTN")
             {
-                ClsVerCliente ver = new ClsVerCliente();
+                ClsCliente ver = new ClsCliente();
                 if (ver.RTNYaExiste(rtnReal, Convert.ToInt32(txtID.Text)))
                 {
                     MessageBox.Show("Este RTN ya está registrado para otro cliente.",
@@ -112,7 +112,7 @@ namespace SG_BAMS
             try
             {
                 this.Cursor = Cursors.WaitCursor;
-                ClsModificarCliente objMC = new ClsModificarCliente();
+                ClsCliente objMC = new ClsCliente();
 
                 int filasActualizadas = await objMC.ModificarClientes(
                     Convert.ToInt32(txtID.Text),
@@ -149,7 +149,7 @@ namespace SG_BAMS
 
         private async Task LlenarComboEstado()
         {
-            ClsModificarCliente MC = new ClsModificarCliente();
+            ClsCliente MC = new ClsCliente();
             try
             {
                 DataTable dt = await MC.ObtenerEstados();

@@ -97,7 +97,7 @@ namespace SG_BAMS
 
             if (rtnReal != "Sin RTN")
             {
-                ClsVerCliente ver = new ClsVerCliente();
+                ClsCliente ver = new ClsCliente();
                 if (ver.RTNYaExiste(rtnReal))
                 {
                     MessageBox.Show("Este RTN ya está registrado para otro cliente.",
@@ -109,7 +109,7 @@ namespace SG_BAMS
             try
             {
                 this.Cursor = Cursors.WaitCursor;
-                ClsAgregarClientes objAC = new ClsAgregarClientes();
+                ClsCliente objAC = new ClsCliente();
 
                 int id = await objAC.AgregarClientes(nombreReal, apellidoReal, telefonoReal, rtnReal);
 
