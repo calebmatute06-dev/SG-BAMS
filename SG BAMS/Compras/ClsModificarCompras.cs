@@ -1,13 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using Microsoft.Data.SqlClient;
+using SG_BAMS.ComprasDTO;
 
 namespace SG_BAMS.ProductoInventario
 {
     internal class ClsModificarCompras : ClsRepositorioBaseDatos
     {
-        
-
         public DataTable ListarFormasPago()
         {
             DataTable dt = new DataTable();
@@ -82,6 +82,9 @@ namespace SG_BAMS.ProductoInventario
             return dt;
         }
 
+        /// <summary>
+        /// Se mantiene igual: actualiza un único producto del detalle.
+        /// </summary>
         public void GuardarCambiosDetalle(int idCompra, int idProd, int cant, decimal precio)
         {
             try
@@ -101,7 +104,26 @@ namespace SG_BAMS.ProductoInventario
             finally { Cerrar(); }
         }
 
-        public void ActualizarCabeceraCompra(int idCompra, int idProv, int idPago, DateTime fecha, string nota)
+        /// <summary>
+        /// Nuevo: actualiza todo el detalle de una compra de una sola vez,
+        /// a partir de la lista de DetalleCompraDTO. Reusa GuardarCambiosDetalle
+        /// para no duplicar la lógica de conexión.
+        /// </summary>
+        public void ActualizarDetalleCompra(int idCompra, List<DetalleCompraDTO> detalle)
+        {
+            foreach (var item in detalle)
+            {
+                GuardarCambiosDetalle(idCompra, item.IdProducto, item.Cantidad, item.Precio);
+            }
+        }
+
+        /// <summary>
+        /// Actualiza la cabecera de una compra existente a partir del CompraDTO.
+        /// Antes recibía 5 parámetros sueltos (idCompra, idProv, idPago, fecha, nota);
+        /// ahora recibe un único objeto que agrupa todo eso.
+        /// </summary>
+        /// <param name="compra">Datos de cabecera a actualizar (debe traer IdCompra).</param>
+        public void ActualizarCabeceraCompra(CompraDTO compra)
         {
             try
             {
@@ -109,11 +131,11 @@ namespace SG_BAMS.ProductoInventario
                 using (SqlCommand cmd = new SqlCommand("sp_Compra_ActualizarCabecera", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@idC", idCompra);
-                    cmd.Parameters.AddWithValue("@idProv", idProv);
-                    cmd.Parameters.AddWithValue("@idPago", idPago);
-                    cmd.Parameters.AddWithValue("@fecha", fecha);
-                    cmd.Parameters.AddWithValue("@nota", nota);
+                    cmd.Parameters.AddWithValue("@idC", compra.IdCompra);
+                    cmd.Parameters.AddWithValue("@idProv", compra.IdProveedor);
+                    cmd.Parameters.AddWithValue("@idPago", compra.IdFormaPago);
+                    cmd.Parameters.AddWithValue("@fecha", compra.Fecha);
+                    cmd.Parameters.AddWithValue("@nota", compra.Nota);
                     cmd.ExecuteNonQuery();
                 }
             }

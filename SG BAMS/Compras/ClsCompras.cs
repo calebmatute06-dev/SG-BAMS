@@ -3,6 +3,7 @@ using Microsoft.Data.SqlClient;
 using System.Collections.Generic;
 using System.Data;
 using SG_BAMS.Login;
+using SG_BAMS.ComprasDTO;
 
 namespace SG_BAMS
 {
@@ -10,7 +11,6 @@ namespace SG_BAMS
     {
         public DataTable ObtenerProductosPorProveedor(int idProv)
         {
-            
             DataTable dt = new DataTable();
             try
             {
@@ -86,24 +86,21 @@ namespace SG_BAMS
             }
         }
 
-        public class DetalleCompra
-        {
-            public int IdProducto { get; set; }
-            public int Cantidad { get; set; }
-            public decimal Precio { get; set; }
-        }
-
-        public bool GuardarNuevaCompra(DateTime fecha, int idPago, int idProv, string nota, List<DetalleCompra> detalles)
+        /// <summary>
+        /// Registra una compra nueva completa (cabecera + detalle) a partir del CompraDTO.
+        /// Antes recibía 5 parámetros sueltos (fecha, idPago, idProv, nota, detalles);
+        /// ahora recibe un único objeto que agrupa todo eso.
+        /// </summary>
+        /// <param name="compra">Datos completos de la compra a registrar.</param>
+        public bool GuardarNuevaCompra(CompraDTO compra)
         {
             ClsRepositorioBaseDatos conexion = new ClsRepositorioBaseDatos();
             conexion.AbrirConexion();
             SqlTransaction transaccion = conexion.Conectar.BeginTransaction();
-
             try
             {
                 ClsPasarUsuario obtenerUsuario = new ClsPasarUsuario();
                 int idUsuario = obtenerUsuario.IdUsuario();
-
                 if (idUsuario == 0)
                     throw new Exception("No se ha iniciado sesión o no se pudo obtener el ID del usuario.");
 
@@ -112,14 +109,14 @@ namespace SG_BAMS
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@idU", idUsuario);
-                    cmd.Parameters.AddWithValue("@fecha", fecha);
-                    cmd.Parameters.AddWithValue("@idPag", idPago);
-                    cmd.Parameters.AddWithValue("@idProv", idProv);
-                    cmd.Parameters.AddWithValue("@desc", (object)nota ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@fecha", compra.Fecha);
+                    cmd.Parameters.AddWithValue("@idPag", compra.IdFormaPago);
+                    cmd.Parameters.AddWithValue("@idProv", compra.IdProveedor);
+                    cmd.Parameters.AddWithValue("@desc", (object)compra.Nota ?? DBNull.Value);
                     idCompra = Convert.ToInt32(cmd.ExecuteScalar());
                 }
 
-                foreach (var item in detalles)
+                foreach (var item in compra.Detalle)
                 {
                     using (SqlCommand cmd = new SqlCommand("sp_Compras_InsertarDetalle", conexion.Conectar, transaccion))
                     {

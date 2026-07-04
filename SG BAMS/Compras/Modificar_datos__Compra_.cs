@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using SG_BAMS.ProductoInventario;
+using SG_BAMS.ComprasDTO;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -32,6 +33,7 @@ namespace SG_BAMS
             this.idCompraAEditar = id;
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
             dgvProductosModificar.CellValueChanged += dgvProductosModificar_CellValueChanged;
             dgvProductosModificar.CurrentCellDirtyStateChanged += dgvProductosModificar_CurrentCellDirtyStateChanged;
             dgvProductosModificar.CellBeginEdit += dgvProductosModificar_CellBeginEdit;
@@ -41,7 +43,6 @@ namespace SG_BAMS
         {
             cmbProveedor.Enabled = false;
             cmbProveedor.BackColor = Color.LightGray;
-
             dtpFechaPedido.Enabled = false;
 
             cmbProveedor.SelectedIndexChanged -= cmbProveedor_SelectedIndexChanged;
@@ -51,7 +52,6 @@ namespace SG_BAMS
 
             DataTable dtOriginal = logic.ObtenerDetalleCompra(idCompraAEditar);
             dgvProductosModificar.DataSource = dtOriginal;
-
             if (dtOriginal != null)
             {
                 dtRespaldo = dtOriginal.Copy();
@@ -60,8 +60,8 @@ namespace SG_BAMS
             ConfigurarEdicionGrid();
             CargarDatosCabecera();
             ActualizarTotalGeneral();
-
             huboCambios = false;
+
             cmbProveedor.SelectedIndexChanged += cmbProveedor_SelectedIndexChanged;
             cmbFormaPago.SelectedIndexChanged += cmbFormaPago_SelectedIndexChanged;
 
@@ -78,11 +78,13 @@ namespace SG_BAMS
             dgvProductosModificar.RowHeadersVisible = false;
             dgvProductosModificar.EnableHeadersVisualStyles = false;
             dgvProductosModificar.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+
             dgvProductosModificar.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
             dgvProductosModificar.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
             dgvProductosModificar.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
             dgvProductosModificar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgvProductosModificar.ColumnHeadersHeight = 28;
+
             dgvProductosModificar.DefaultCellStyle.BackColor = Color.White;
             dgvProductosModificar.DefaultCellStyle.ForeColor = Color.Navy;
             dgvProductosModificar.DefaultCellStyle.Font = new Font("Segoe UI", 10);
@@ -91,6 +93,7 @@ namespace SG_BAMS
             dgvProductosModificar.AlternatingRowsDefaultCellStyle.ForeColor = Color.Navy;
             dgvProductosModificar.DefaultCellStyle.SelectionBackColor = Color.DeepSkyBlue;
             dgvProductosModificar.DefaultCellStyle.SelectionForeColor = Color.White;
+
             dgvProductosModificar.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dgvProductosModificar.GridColor = Color.LightGray;
             dgvProductosModificar.RowTemplate.Height = 32;
@@ -118,7 +121,6 @@ namespace SG_BAMS
             if (dgvProductosModificar.Columns.Contains("Subtotal")) dgvProductosModificar.Columns["Subtotal"].ReadOnly = true;
             if (dgvProductosModificar.Columns.Contains("Cantidad")) dgvProductosModificar.Columns["Cantidad"].ReadOnly = false;
             if (dgvProductosModificar.Columns.Contains("Precio")) dgvProductosModificar.Columns["Precio"].ReadOnly = false;
-
             if (dgvProductosModificar.Columns.Contains("Precio")) dgvProductosModificar.Columns["Precio"].DefaultCellStyle.Format = "\"L. \"#,##0.00";
             if (dgvProductosModificar.Columns.Contains("Subtotal")) dgvProductosModificar.Columns["Subtotal"].DefaultCellStyle.Format = "\"L. \"#,##0.00";
         }
@@ -162,20 +164,24 @@ namespace SG_BAMS
             if (cmbProveedor.SelectedValue == null || cmbProveedor.SelectedIndex == -1)
             {
                 MessageBox.Show("Por favor, seleccione un proveedor válido de la lista",
-                                "BAMS - Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    "BAMS - Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 cmbProveedor.Focus();
                 return;
             }
 
             try
             {
-                int idProv = Convert.ToInt32(cmbProveedor.SelectedValue);
-                int idPago = Convert.ToInt32(cmbFormaPago.SelectedValue);
-                DateTime fecha = dtpFechaPedido.Value;
-                // Obtener valor real de la nota (sin placeholder)
-                string nota = phNotaDetalle.GetRealValue();
+                // --- Armado del CompraDTO con los datos de cabecera ---
+                CompraDTO compraDTO = new CompraDTO
+                {
+                    IdCompra = idCompraAEditar,
+                    IdProveedor = Convert.ToInt32(cmbProveedor.SelectedValue),
+                    IdFormaPago = Convert.ToInt32(cmbFormaPago.SelectedValue),
+                    Fecha = dtpFechaPedido.Value,
+                    Nota = phNotaDetalle.GetRealValue()
+                };
 
-                logic.ActualizarCabeceraCompra(idCompraAEditar, idProv, idPago, fecha, nota);
+                logic.ActualizarCabeceraCompra(compraDTO);
 
                 foreach (int idEliminado in listaEliminados)
                 {
@@ -186,12 +192,17 @@ namespace SG_BAMS
                 {
                     if (fila.Cells["ID"].Value != null && fila.Cells["ID"].Value != DBNull.Value)
                     {
-                        int idProd = Convert.ToInt32(fila.Cells["ID"].Value);
-                        int cant = Convert.ToInt32(fila.Cells["Cantidad"].Value);
-                        decimal precio = Convert.ToDecimal(fila.Cells["Precio"].Value);
-                        logic.GuardarCambiosDetalle(idCompraAEditar, idProd, cant, precio);
+                        compraDTO.Detalle.Add(new DetalleCompraDTO
+                        {
+                            IdProducto = Convert.ToInt32(fila.Cells["ID"].Value),
+                            Cantidad = Convert.ToInt32(fila.Cells["Cantidad"].Value),
+                            Precio = Convert.ToDecimal(fila.Cells["Precio"].Value)
+                        });
                     }
                 }
+
+                // --- Un solo objeto (su lista Detalle) viaja a la capa de datos ---
+                logic.ActualizarDetalleCompra(compraDTO.IdCompra, compraDTO.Detalle);
 
                 MessageBox.Show("¡Datos de compra, productos e inventario actualizados con éxito!");
                 this.Close();
@@ -249,6 +260,7 @@ namespace SG_BAMS
             using (Agregar_Producto_Mod frm = new Agregar_Producto_Mod((int)cmbProveedor.SelectedValue))
             {
                 frm.IdCompraActual = idCompraAEditar.ToString();
+
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     huboCambios = true;
@@ -270,6 +282,7 @@ namespace SG_BAMS
         }
 
         private void cmbProveedor_SelectedIndexChanged(object sender, EventArgs e) => huboCambios = true;
+
         private void cmbFormaPago_SelectedIndexChanged(object sender, EventArgs e) => huboCambios = true;
 
         private void dgvProductosModificar_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -277,7 +290,6 @@ namespace SG_BAMS
             if (e.RowIndex < 0) return;
 
             string nombreCol = dgvProductosModificar.Columns[e.ColumnIndex].Name;
-
             if (nombreCol == "Cantidad" || nombreCol == "Precio")
             {
                 huboCambios = true;
