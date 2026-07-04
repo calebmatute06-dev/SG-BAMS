@@ -60,18 +60,20 @@
             // pictureBox4
             // 
             pictureBox4.BackColor = Color.Navy;
-            pictureBox4.Location = new Point(-10, 0);
+            pictureBox4.Location = new Point(-9, 0);
+            pictureBox4.Margin = new Padding(3, 2, 3, 2);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(33, 587);
+            pictureBox4.Size = new Size(29, 440);
             pictureBox4.TabIndex = 254;
             pictureBox4.TabStop = false;
             // 
             // pictureBox3
             // 
             pictureBox3.BackColor = Color.Navy;
-            pictureBox3.Location = new Point(501, 0);
+            pictureBox3.Location = new Point(438, 0);
+            pictureBox3.Margin = new Padding(3, 2, 3, 2);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(15, 587);
+            pictureBox3.Size = new Size(13, 440);
             pictureBox3.TabIndex = 239;
             pictureBox3.TabStop = false;
             // 
@@ -79,44 +81,49 @@
             // 
             pictureBox2.BackColor = Color.Navy;
             pictureBox2.Location = new Point(0, 0);
+            pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(515, 15);
+            pictureBox2.Size = new Size(451, 11);
             pictureBox2.TabIndex = 238;
             pictureBox2.TabStop = false;
             // 
             // pictureBox7
             // 
             pictureBox7.BackColor = Color.Navy;
-            pictureBox7.Location = new Point(0, 500);
+            pictureBox7.Location = new Point(0, 375);
+            pictureBox7.Margin = new Padding(3, 2, 3, 2);
             pictureBox7.Name = "pictureBox7";
-            pictureBox7.Size = new Size(522, 25);
+            pictureBox7.Size = new Size(457, 19);
             pictureBox7.TabIndex = 276;
             pictureBox7.TabStop = false;
             // 
             // pictureBox8
             // 
             pictureBox8.BackColor = Color.Navy;
-            pictureBox8.Location = new Point(490, 0);
+            pictureBox8.Location = new Point(429, 0);
+            pictureBox8.Margin = new Padding(3, 2, 3, 2);
             pictureBox8.Name = "pictureBox8";
-            pictureBox8.Size = new Size(32, 587);
+            pictureBox8.Size = new Size(28, 440);
             pictureBox8.TabIndex = 262;
             pictureBox8.TabStop = false;
             // 
             // pictureBox10
             // 
             pictureBox10.BackColor = Color.Navy;
-            pictureBox10.Location = new Point(-1, -3);
+            pictureBox10.Location = new Point(-1, -2);
+            pictureBox10.Margin = new Padding(3, 2, 3, 2);
             pictureBox10.Name = "pictureBox10";
-            pictureBox10.Size = new Size(515, 25);
+            pictureBox10.Size = new Size(451, 19);
             pictureBox10.TabIndex = 261;
             pictureBox10.TabStop = false;
             // 
             // cmbClasificacion
             // 
             cmbClasificacion.DropDownWidth = 300;
-            cmbClasificacion.Location = new Point(198, 341);
+            cmbClasificacion.Location = new Point(173, 256);
+            cmbClasificacion.Margin = new Padding(3, 2, 3, 2);
             cmbClasificacion.Name = "cmbClasificacion";
-            cmbClasificacion.Size = new Size(250, 30);
+            cmbClasificacion.Size = new Size(219, 26);
             cmbClasificacion.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbClasificacion.StateCommon.ComboBox.Border.Color1 = Color.Navy;
             cmbClasificacion.StateCommon.ComboBox.Border.Rounding = 5F;
@@ -130,10 +137,11 @@
             // 
             // txtDireccion
             // 
-            txtDireccion.Location = new Point(199, 229);
+            txtDireccion.Location = new Point(174, 172);
+            txtDireccion.Margin = new Padding(3, 2, 3, 2);
             txtDireccion.MaxLength = 70;
             txtDireccion.Name = "txtDireccion";
-            txtDireccion.Size = new Size(250, 31);
+            txtDireccion.Size = new Size(219, 27);
             txtDireccion.StateCommon.Back.Color1 = Color.White;
             txtDireccion.StateCommon.Border.Color1 = Color.Navy;
             txtDireccion.StateCommon.Border.Rounding = 5F;
@@ -147,18 +155,19 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(64, 236);
+            label2.Location = new Point(56, 177);
             label2.Name = "label2";
-            label2.Size = new Size(115, 33);
+            label2.Size = new Size(92, 26);
             label2.TabIndex = 296;
             label2.Text = "Dirección:";
             // 
             // txtRTN
             // 
-            txtRTN.Location = new Point(199, 284);
+            txtRTN.Location = new Point(174, 213);
+            txtRTN.Margin = new Padding(3, 2, 3, 2);
             txtRTN.MaxLength = 14;
             txtRTN.Name = "txtRTN";
-            txtRTN.Size = new Size(250, 31);
+            txtRTN.Size = new Size(219, 27);
             txtRTN.StateCommon.Back.Color1 = Color.White;
             txtRTN.StateCommon.Border.Color1 = Color.Navy;
             txtRTN.StateCommon.Border.Rounding = 5F;
@@ -172,19 +181,20 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(57, 347);
+            label1.Location = new Point(50, 260);
             label1.Name = "label1";
-            label1.Size = new Size(143, 33);
+            label1.Size = new Size(118, 26);
             label1.TabIndex = 294;
             label1.Text = "Clasificación:";
             // 
             // txtTelefono
             // 
             txtTelefono.CueHint.Font = new Font("Arial Narrow", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtTelefono.Location = new Point(199, 173);
+            txtTelefono.Location = new Point(174, 130);
+            txtTelefono.Margin = new Padding(3, 2, 3, 2);
             txtTelefono.MaxLength = 8;
             txtTelefono.Name = "txtTelefono";
-            txtTelefono.Size = new Size(250, 31);
+            txtTelefono.Size = new Size(219, 27);
             txtTelefono.StateCommon.Back.Color1 = Color.White;
             txtTelefono.StateCommon.Border.Color1 = Color.Navy;
             txtTelefono.StateCommon.Border.Rounding = 5F;
@@ -194,10 +204,11 @@
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(199, 121);
+            txtNombre.Location = new Point(174, 91);
+            txtNombre.Margin = new Padding(3, 2, 3, 2);
             txtNombre.MaxLength = 70;
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(250, 31);
+            txtNombre.Size = new Size(219, 27);
             txtNombre.StateCommon.Back.Color1 = Color.White;
             txtNombre.StateCommon.Border.Color1 = Color.Navy;
             txtNombre.StateCommon.Border.Rounding = 5F;
@@ -211,9 +222,9 @@
             label15.BackColor = Color.Transparent;
             label15.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label15.ForeColor = Color.Navy;
-            label15.Location = new Point(64, 291);
+            label15.Location = new Point(56, 218);
             label15.Name = "label15";
-            label15.Size = new Size(69, 33);
+            label15.Size = new Size(54, 26);
             label15.TabIndex = 290;
             label15.Text = "RTN:";
             // 
@@ -223,9 +234,9 @@
             label7.BackColor = Color.Transparent;
             label7.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Navy;
-            label7.Location = new Point(64, 180);
+            label7.Location = new Point(56, 135);
             label7.Name = "label7";
-            label7.Size = new Size(116, 33);
+            label7.Size = new Size(92, 26);
             label7.TabIndex = 289;
             label7.Text = "Teléfono: ";
             label7.Click += label7_Click;
@@ -236,9 +247,9 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial Narrow", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(64, 127);
+            label4.Location = new Point(56, 95);
             label4.Name = "label4";
-            label4.Size = new Size(111, 33);
+            label4.Size = new Size(86, 26);
             label4.TabIndex = 288;
             label4.Text = "Nombre: ";
             // 
@@ -248,9 +259,9 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(386, 461);
+            label5.Location = new Point(338, 346);
             label5.Name = "label5";
-            label5.Size = new Size(102, 35);
+            label5.Size = new Size(84, 29);
             label5.TabIndex = 345;
             label5.Text = "BAMS";
             // 
@@ -260,21 +271,22 @@
             label8.BackColor = Color.Transparent;
             label8.Font = new Font("Arial", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Navy;
-            label8.Location = new Point(109, 51);
+            label8.Location = new Point(95, 38);
             label8.Name = "label8";
-            label8.Size = new Size(328, 40);
+            label8.Size = new Size(263, 32);
             label8.TabIndex = 350;
             label8.Text = "Agregar Proveedor";
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(245, 433);
+            btnCancelar.Location = new Point(214, 325);
+            btnCancelar.Margin = new Padding(3, 2, 3, 2);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnCancelar.OverrideDefault.Back.Color2 = Color.White;
             btnCancelar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnCancelar.OverrideFocus.Back.Color2 = Color.White;
-            btnCancelar.Size = new Size(135, 51);
+            btnCancelar.Size = new Size(118, 38);
             btnCancelar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnCancelar.StateCommon.Back.Color2 = Color.White;
             btnCancelar.StateCommon.Border.Rounding = 5F;
@@ -291,13 +303,14 @@
             // 
             // btnAceptar
             // 
-            btnAceptar.Location = new Point(104, 433);
+            btnAceptar.Location = new Point(91, 325);
+            btnAceptar.Margin = new Padding(3, 2, 3, 2);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnAceptar.OverrideDefault.Back.Color2 = Color.White;
             btnAceptar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnAceptar.OverrideFocus.Back.Color2 = Color.White;
-            btnAceptar.Size = new Size(135, 51);
+            btnAceptar.Size = new Size(118, 38);
             btnAceptar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnAceptar.StateCommon.Back.Color2 = Color.White;
             btnAceptar.StateCommon.Border.Rounding = 5F;
@@ -314,10 +327,10 @@
             // 
             // AgregarProveedores
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(515, 525);
+            ClientSize = new Size(451, 394);
             Controls.Add(btnCancelar);
             Controls.Add(btnAceptar);
             Controls.Add(label8);
@@ -338,6 +351,8 @@
             Controls.Add(pictureBox4);
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox2);
+            Margin = new Padding(3, 2, 3, 2);
+            MaximizeBox = false;
             Name = "AgregarProveedores";
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
