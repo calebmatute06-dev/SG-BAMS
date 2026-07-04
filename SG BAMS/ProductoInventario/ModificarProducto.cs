@@ -1,6 +1,7 @@
 ﻿using Krypton.Toolkit;
 using Microsoft.Data.SqlClient;
 using SG_BAMS.ProductoInventario;
+using SG_BAMS.ProductoInventario.DTO;
 using System;
 using System.Data;
 using System.Drawing;
@@ -14,9 +15,11 @@ namespace SG_BAMS
     public partial class ModificarProducto : Form
     {
         /// <summary>
-        /// Valores actuales de las propiedades externas (recibidas desde el listado).
+        /// Datos del producto a modificar, recibidos desde el listado (InventarioAdmin/InventarioEmp).
+        /// Reemplaza los campos públicos sueltos (marcaActual, tipoActual, etc.) que se llenaban
+        /// desde afuera después de crear el formulario.
         /// </summary>
-        public string marcaActual, tipoActual, modeloActual, estadoActual, proveedorActual;
+        private readonly ProductoDTO _dto;
 
         private PlaceholderTextBox phNombre;
         private PlaceholderTextBox phPrecio;
@@ -29,6 +32,7 @@ namespace SG_BAMS
 
         /// <summary>
         /// Inicializa una nueva instancia del formulario.
+        /// Se mantiene para que el Diseñador de Visual Studio pueda seguir abriendo el formulario.
         /// </summary>
         public ModificarProducto()
         {
@@ -37,6 +41,15 @@ namespace SG_BAMS
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirAlfanumerico(e);
+        }
+
+        /// <summary>
+        /// Inicializa el formulario con los datos del producto que se va a modificar.
+        /// </summary>
+        /// <param name="dto">Datos del producto seleccionado en el listado.</param>
+        public ModificarProducto(ProductoDTO dto) : this()
+        {
+            _dto = dto;
         }
 
         /// <summary>
@@ -137,18 +150,21 @@ namespace SG_BAMS
                     return;
                 }
 
-                logica.EjecutarActualizacion(
-                    idActual,
-                    nombreReal,
-                    idMarca,
-                    Convert.ToInt32(cmbTipo.SelectedValue),
-                    Convert.ToInt32(cmbModelo.SelectedValue),
-                    Convert.ToInt32(cmbEstado.SelectedValue),
-                    precioNumerico,
-                    codigoReal,
-                    idProveedor,
-                    stockNuevo
-                );
+                ProductoDTO dtoActualizado = new ProductoDTO
+                {
+                    IdProducto = idActual,
+                    Nombre = nombreReal,
+                    IdMarca = idMarca,
+                    IdTipo = Convert.ToInt32(cmbTipo.SelectedValue),
+                    IdModelo = Convert.ToInt32(cmbModelo.SelectedValue),
+                    IdEstado = Convert.ToInt32(cmbEstado.SelectedValue),
+                    Precio = precioNumerico,
+                    CodigoBarra = codigoReal,
+                    IdProveedor = idProveedor,
+                    Stock = stockNuevo
+                };
+
+                logica.EjecutarActualizacion(dtoActualizado);
 
                 MessageBox.Show("¡Producto actualizado correctamente!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;
@@ -165,13 +181,22 @@ namespace SG_BAMS
         /// </summary>
         private void ModificarProducto_Load(object sender, EventArgs e)
         {
+            if (_dto != null)
+            {
+                txtID.Text = _dto.IdProducto.ToString();
+                txtNombre.Text = _dto.Nombre;
+                txtPrecio.Text = _dto.Precio.ToString();
+                txtCodigoBarra.Text = _dto.CodigoBarra;
+                txtStock.Value = _dto.Stock;
+            }
+
             LlenarCombosModificar();
 
-            cmbMarca.SelectedIndex = cmbMarca.FindStringExact(marcaActual?.Trim());
-            cmbTipo.SelectedIndex = cmbTipo.FindStringExact(tipoActual?.Trim());
-            cmbModelo.SelectedIndex = cmbModelo.FindStringExact(modeloActual?.Trim());
-            cmbEstado.SelectedIndex = cmbEstado.FindStringExact(estadoActual?.Trim());
-            cmbProveedor.SelectedIndex = cmbProveedor.FindStringExact(proveedorActual?.Trim());
+            cmbMarca.SelectedIndex = cmbMarca.FindStringExact(_dto?.MarcaActual?.Trim());
+            cmbTipo.SelectedIndex = cmbTipo.FindStringExact(_dto?.TipoActual?.Trim());
+            cmbModelo.SelectedIndex = cmbModelo.FindStringExact(_dto?.ModeloActual?.Trim());
+            cmbEstado.SelectedIndex = cmbEstado.FindStringExact(_dto?.EstadoActual?.Trim());
+            cmbProveedor.SelectedIndex = cmbProveedor.FindStringExact(_dto?.ProveedorActual?.Trim());
 
 
             phNombre = new PlaceholderTextBox(txtNombre, "Ingrese Nombre del producto");
@@ -198,7 +223,7 @@ namespace SG_BAMS
                 llenar.ConfigurarComboBox(cmbModelo, "Modelo");
                 llenar.ConfigurarComboBox(cmbEstado, "Estado");
 
-                int idProvActual = ObtenerIdProveedorPorNombre(proveedorActual);
+                int idProvActual = ObtenerIdProveedorPorNombre(_dto?.ProveedorActual);
                 llenar.ConfigurarComboBox(cmbProveedor, "Proveedor", idProvActual);
             }
             catch (Exception ex)

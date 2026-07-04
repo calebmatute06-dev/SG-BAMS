@@ -3,6 +3,7 @@ using SG_BAMS.Administracion_de_BAMS.MarcaProd;
 using SG_BAMS.Bitacora;
 using SG_BAMS.Login;
 using SG_BAMS.ProductoInventario;
+using SG_BAMS.ProductoInventario.DTO;
 using SG_BAMS.Proveedor;
 using SG_BAMS.Reporte;
 using System;
@@ -60,7 +61,7 @@ namespace SG_BAMS
             this.StartPosition = FormStartPosition.CenterScreen;
             this.KeyPreview = true;
             ConfigurarPlaceholder();
-            
+
         }
 
         /// <summary>
@@ -74,7 +75,7 @@ namespace SG_BAMS
             txtBuscar.Text = placeholderTexto;
             txtBuscar.ForeColor = placeholderColor;
 
-            
+
             txtBuscar.Enter += txtBuscar_Enter;
             txtBuscar.Leave += txtBuscar_Leave;
             txtBuscar.TextChanged += txtBuscar_TextChanged;
@@ -139,7 +140,7 @@ namespace SG_BAMS
             btnInventario.BackColor = Color.SkyBlue;
             btnInventario.ForeColor = Color.White;
 
-           
+
 
             CargarInventarioCompleto();
 
@@ -199,26 +200,7 @@ namespace SG_BAMS
         {
             if (dgvProductosAdmin.SelectedRows.Count > 0)
             {
-                ModificarProducto frmMod = new ModificarProducto();
-
-                frmMod.txtID.Text = dgvProductosAdmin.CurrentRow.Cells["ID"].Value.ToString();
-                frmMod.txtNombre.Text = dgvProductosAdmin.CurrentRow.Cells["Producto"].Value.ToString();
-
-                string precio = dgvProductosAdmin.CurrentRow.Cells["Precio Venta"].Value.ToString();
-                frmMod.txtPrecio.Text = precio.Replace("L.", "").Trim();
-
-                frmMod.txtCodigoBarra.Text = dgvProductosAdmin.CurrentRow.Cells["Codigo Barra"].Value.ToString();
-
-                if (dgvProductosAdmin.CurrentRow.Cells["Stock Actual"].Value != DBNull.Value)
-                {
-                    frmMod.txtStock.Value = Convert.ToDecimal(dgvProductosAdmin.CurrentRow.Cells["Stock Actual"].Value);
-                }
-
-                frmMod.proveedorActual = dgvProductosAdmin.CurrentRow.Cells["Proveedor"].Value.ToString();
-                frmMod.marcaActual = dgvProductosAdmin.CurrentRow.Cells["Marca"].Value.ToString();
-                frmMod.tipoActual = dgvProductosAdmin.CurrentRow.Cells["Tipo"].Value.ToString();
-                frmMod.modeloActual = dgvProductosAdmin.CurrentRow.Cells["Modelo Auto"].Value.ToString();
-                frmMod.estadoActual = dgvProductosAdmin.CurrentRow.Cells["Estado"].Value.ToString();
+                ModificarProducto frmMod = new ModificarProducto(ArmarProductoDTODesdeFila());
 
                 if (frmMod.ShowDialog() == DialogResult.OK)
                 {
@@ -234,13 +216,42 @@ namespace SG_BAMS
         }
 
         /// <summary>
+        /// Arma un ProductoDTO a partir de la fila actualmente seleccionada en el grid.
+        /// Reemplaza el llenado manual de campos sueltos del formulario ModificarProducto.
+        /// </summary>
+        private ProductoDTO ArmarProductoDTODesdeFila()
+        {
+            string precio = dgvProductosAdmin.CurrentRow.Cells["Precio Venta"].Value.ToString();
+
+            var dto = new ProductoDTO
+            {
+                IdProducto = Convert.ToInt32(dgvProductosAdmin.CurrentRow.Cells["ID"].Value),
+                Nombre = dgvProductosAdmin.CurrentRow.Cells["Producto"].Value.ToString(),
+                Precio = Convert.ToDecimal(precio.Replace("L.", "").Trim()),
+                CodigoBarra = dgvProductosAdmin.CurrentRow.Cells["Codigo Barra"].Value.ToString(),
+                ProveedorActual = dgvProductosAdmin.CurrentRow.Cells["Proveedor"].Value.ToString(),
+                MarcaActual = dgvProductosAdmin.CurrentRow.Cells["Marca"].Value.ToString(),
+                TipoActual = dgvProductosAdmin.CurrentRow.Cells["Tipo"].Value.ToString(),
+                ModeloActual = dgvProductosAdmin.CurrentRow.Cells["Modelo Auto"].Value.ToString(),
+                EstadoActual = dgvProductosAdmin.CurrentRow.Cells["Estado"].Value.ToString()
+            };
+
+            if (dgvProductosAdmin.CurrentRow.Cells["Stock Actual"].Value != DBNull.Value)
+            {
+                dto.Stock = Convert.ToInt32(dgvProductosAdmin.CurrentRow.Cells["Stock Actual"].Value);
+            }
+
+            return dto;
+        }
+
+        /// <summary>
         /// Maneja el evento TextChanged del control txtBuscar.
         /// </summary>
         /// <param name="sender">La fuente del evento.</param>
         /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
-            
+
             if (txtBuscar.Text == placeholderTexto || txtBuscar.ForeColor == placeholderColor)
             {
                 return;
@@ -284,22 +295,7 @@ namespace SG_BAMS
 
             if (dgvProductosAdmin.SelectedRows.Count > 0)
             {
-                ModificarProducto frmMod = new ModificarProducto();
-
-                frmMod.txtID.Text = dgvProductosAdmin.CurrentRow.Cells["ID"].Value.ToString();
-                frmMod.txtNombre.Text = dgvProductosAdmin.CurrentRow.Cells["Producto"].Value.ToString();
-                frmMod.txtPrecio.Text = dgvProductosAdmin.CurrentRow.Cells["Precio Venta"].Value.ToString().Replace("L.", "").Trim();
-                frmMod.txtCodigoBarra.Text = dgvProductosAdmin.CurrentRow.Cells["Codigo Barra"].Value.ToString();
-                if (dgvProductosAdmin.CurrentRow.Cells["Stock Actual"].Value != DBNull.Value)
-                {
-                    frmMod.txtStock.Value = Convert.ToDecimal(dgvProductosAdmin.CurrentRow.Cells["Stock Actual"].Value);
-                }
-
-                frmMod.marcaActual = dgvProductosAdmin.CurrentRow.Cells["Marca"].Value.ToString();
-                frmMod.tipoActual = dgvProductosAdmin.CurrentRow.Cells["Tipo"].Value.ToString();
-                frmMod.modeloActual = dgvProductosAdmin.CurrentRow.Cells["Modelo Auto"].Value.ToString();
-                frmMod.proveedorActual = dgvProductosAdmin.CurrentRow.Cells["Proveedor"].Value.ToString();
-                frmMod.estadoActual = dgvProductosAdmin.CurrentRow.Cells["Estado"].Value.ToString();
+                ModificarProducto frmMod = new ModificarProducto(ArmarProductoDTODesdeFila());
 
                 if (frmMod.ShowDialog() == DialogResult.OK)
                 {
@@ -333,7 +329,7 @@ namespace SG_BAMS
 
                 if (intervalo.TotalMilliseconds < 50 || !txtBuscar.Focused)
                 {
-                    
+
                     txtBuscar.Text = string.Empty;
                     txtBuscar.ForeColor = textoColor;
 

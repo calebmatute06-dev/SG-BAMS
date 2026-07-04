@@ -2,6 +2,7 @@
 using Microsoft.Data.SqlClient;
 using SG_BAMS.Facturas;
 using SG_BAMS.ProductoInventario;
+using SG_BAMS.ProductoInventario.DTO;
 using System;
 using System.Data;
 using System.Drawing;
@@ -121,16 +122,19 @@ namespace SG_BAMS
                     return;
                 }
 
-                logicaInsertar.EjecutarInsercion(
-                    nombreReal,
-                    idMarca,
-                    (int)cmbTipo.SelectedValue,
-                    (int)cmbModelo.SelectedValue,
-                    decimal.Parse(precioReal),
-                    codigoReal,
-                    idProveedor,
-                    stockInicial
-                );
+                ProductoDTO productoDTO = new ProductoDTO
+                {
+                    Nombre = nombreReal,
+                    IdMarca = idMarca,
+                    IdTipo = (int)cmbTipo.SelectedValue,
+                    IdModelo = (int)cmbModelo.SelectedValue,
+                    Precio = decimal.Parse(precioReal),
+                    CodigoBarra = codigoReal,
+                    IdProveedor = idProveedor,
+                    Stock = stockInicial
+                };
+
+                logicaInsertar.EjecutarInsercion(productoDTO);
 
                 MessageBox.Show("¡Producto y stock guardados exitosamente!", "Éxito");
                 this.DialogResult = DialogResult.OK;

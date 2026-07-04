@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using Microsoft.Data.SqlClient;
+using SG_BAMS.ProductoInventario.DTO;
 
 namespace SG_BAMS.ProductoInventario
 {
@@ -74,10 +75,11 @@ namespace SG_BAMS.ProductoInventario
         }
 
         /// <summary>
-        /// Inserta un nuevo producto usando solo Procedimientos Almacenados.
+        /// Inserta un nuevo producto usando solo Procedimientos Almacenados,
+        /// a partir de los datos contenidos en el DTO.
         /// </summary>
-        public void EjecutarInsercion(string nombre, int idMarca, int idTipo, int idModelo,
-            decimal precio, string codBarra, int idProveedor, int stock)
+        /// <param name="dto">Datos del producto a registrar.</param>
+        public void EjecutarInsercion(ProductoDTO dto)
         {
             try
             {
@@ -86,14 +88,14 @@ namespace SG_BAMS.ProductoInventario
                 using (SqlCommand cmd = new SqlCommand("PA_insertar_producto", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@nombre_producto", nombre);
-                    cmd.Parameters.AddWithValue("@id_marca_producto", idMarca);
-                    cmd.Parameters.AddWithValue("@id_tipo_producto", idTipo);
-                    cmd.Parameters.AddWithValue("@id_modelo_auto", idModelo);
-                    cmd.Parameters.Add("@precio_venta", SqlDbType.Money).Value = precio;
-                    cmd.Parameters.AddWithValue("@codigo_barra", codBarra);
-                    cmd.Parameters.AddWithValue("@id_proveedor", idProveedor);
-                    cmd.Parameters.AddWithValue("@stock", stock);
+                    cmd.Parameters.AddWithValue("@nombre_producto", dto.Nombre);
+                    cmd.Parameters.AddWithValue("@id_marca_producto", dto.IdMarca);
+                    cmd.Parameters.AddWithValue("@id_tipo_producto", dto.IdTipo);
+                    cmd.Parameters.AddWithValue("@id_modelo_auto", dto.IdModelo);
+                    cmd.Parameters.Add("@precio_venta", SqlDbType.Money).Value = dto.Precio;
+                    cmd.Parameters.AddWithValue("@codigo_barra", dto.CodigoBarra);
+                    cmd.Parameters.AddWithValue("@id_proveedor", dto.IdProveedor);
+                    cmd.Parameters.AddWithValue("@stock", dto.Stock);
 
                     cmd.ExecuteNonQuery();
                 }
@@ -104,10 +106,11 @@ namespace SG_BAMS.ProductoInventario
             }
         }
         /// <summary>
-        /// Actualiza un producto usando solo Procedimientos Almacenados.
+        /// Actualiza un producto usando solo Procedimientos Almacenados,
+        /// a partir de los datos contenidos en el DTO.
         /// </summary>
-        public void EjecutarActualizacion(int id, string nombre, int idMarca, int idTipo,
-            int idModelo, int idEstado, decimal precio, string codBarra, int idProveedor, int stock)
+        /// <param name="dto">Datos actualizados del producto, incluyendo su IdProducto.</param>
+        public void EjecutarActualizacion(ProductoDTO dto)
         {
             try
             {
@@ -116,16 +119,16 @@ namespace SG_BAMS.ProductoInventario
                 using (SqlCommand cmd = new SqlCommand("PA_actualizar_producto", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@id_producto", id);
-                    cmd.Parameters.AddWithValue("@nombre_producto", nombre);
-                    cmd.Parameters.AddWithValue("@id_marca_producto", idMarca);
-                    cmd.Parameters.AddWithValue("@id_tipo_producto", idTipo);
-                    cmd.Parameters.AddWithValue("@id_modelo_auto", idModelo);
-                    cmd.Parameters.AddWithValue("@id_estado", idEstado);
-                    cmd.Parameters.Add("@precio_venta", SqlDbType.Money).Value = precio;
-                    cmd.Parameters.AddWithValue("@codigo_barra", codBarra);
-                    cmd.Parameters.AddWithValue("@id_proveedor", idProveedor);
-                    cmd.Parameters.AddWithValue("@stock", stock);
+                    cmd.Parameters.AddWithValue("@id_producto", dto.IdProducto);
+                    cmd.Parameters.AddWithValue("@nombre_producto", dto.Nombre);
+                    cmd.Parameters.AddWithValue("@id_marca_producto", dto.IdMarca);
+                    cmd.Parameters.AddWithValue("@id_tipo_producto", dto.IdTipo);
+                    cmd.Parameters.AddWithValue("@id_modelo_auto", dto.IdModelo);
+                    cmd.Parameters.AddWithValue("@id_estado", dto.IdEstado);
+                    cmd.Parameters.Add("@precio_venta", SqlDbType.Money).Value = dto.Precio;
+                    cmd.Parameters.AddWithValue("@codigo_barra", dto.CodigoBarra);
+                    cmd.Parameters.AddWithValue("@id_proveedor", dto.IdProveedor);
+                    cmd.Parameters.AddWithValue("@stock", dto.Stock);
 
                     cmd.ExecuteNonQuery();
                 }
