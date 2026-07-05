@@ -209,7 +209,7 @@ namespace SG_BAMS
         private void btninventario3_Click(object sender, EventArgs e) { InventarioEmp invemp = new InventarioEmp(); invemp.Show(); this.Hide(); }
         private async void btndeudores2_Click(object sender, EventArgs e) { Deudores_Emp deudoresForm = new Deudores_Emp(); deudoresForm.Show(); await ActualizarLabelDeudores(); this.Hide(); }
         private async void btnclientes2_Click(object sender, EventArgs e) { ClientesEmp clienemp = new ClientesEmp(); clienemp.Show(); await ActualizarLabelClientes(); this.Hide(); }
-        private void btnnotificaciones_Click(object sender, EventArgs e) { NotificacionesAdmin notif = new NotificacionesAdmin(); notif.Show(); }
+        private void btnnotificaciones_Click(object sender, EventArgs e) { NotificacionesAdmin notif = new NotificacionesAdmin(); notif.ShowDialog(); }
         private void btnFacturas_Click(object sender, EventArgs e) { FacturasEmp FE = new FacturasEmp(); FE.Show(); this.Hide(); }
         private void btnClientes_Click(object sender, EventArgs e) { ClientesEmp CE = new ClientesEmp(); CE.Show(); this.Hide(); }
         private void btnInventario_Click(object sender, EventArgs e) { InventarioEmp IE = new InventarioEmp(); IE.Show(); this.Hide(); }
@@ -227,6 +227,6 @@ namespace SG_BAMS
             }
         }
 
-        private void btnPerfil_Click(object sender, EventArgs e) { Perfil perfil = new Perfil(); perfil.Show(); }
+        private void btnPerfil_Click(object sender, EventArgs e) { Perfil perfil = new Perfil(); perfil.ShowDialog(); }
     }
 }

@@ -377,18 +377,33 @@ namespace SG_BAMS
 
                         if (deudaCreada)
                         {
-                            string nombreCliente = facturaDTO.NombreCliente.Trim();
-                            string montoTotal = facturaDTO.Total.ToString("N2");
+                            MessageBox.Show("Redirigiendo a Deudores...", "SG-BAMS",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                            using (Información_Deudores frmInfo = new Información_Deudores(idFactura, nombreCliente, montoTotal, facturaDTO.Fecha))
+                           
+                            for (int i = Application.OpenForms.Count - 1; i >= 0; i--)
                             {
-                                frmInfo.ShowDialog();
+                                var frm = Application.OpenForms[i];
+                                if (frm is FacturasAdm || frm is FacturasEmp || frm is ClienteAgregar || frm is ClienteExistente)
+                                {
+                                    frm.Close();
+                                }
                             }
+
+                            this.Hide();
+
+                            if (ClsLogin.RolUsuario == 1)
+                                new DeudoresAdmin().Show();
+                            else
+                                new Deudores_Emp().Show();
+
+                            this.Close();
+                            return;
                         }
                         else
                         {
-                            MessageBox.Show("Error al crear la deuda. El monto no se registró correctamente.",
-                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Error al crear la deuda.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
                         }
                     }
 
@@ -543,13 +558,6 @@ namespace SG_BAMS
         {
         }
 
-        /// <summary>
-        /// Busca un producto por código de barras usando ObtenerProductoPorCodigoBarra.
-        /// Si el producto ya existe en el DataGridView notifica al usuario que puede
-        /// modificar la cantidad directamente en la tabla. Si no existe lo agrega
-        /// como fila nueva y recalcula el total de la factura.
-        /// </summary>
-        /// <param name="codigo">Código de barras capturado por el scanner.</param>
         private async Task BuscarYAgregarProductoPorCodigo(string codigo)
         {
             try
@@ -600,9 +608,6 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Sobrescribe el procesamiento de teclas a nivel de mensaje de Windows.
-        /// </summary>
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             Keys key = keyData & Keys.KeyCode;

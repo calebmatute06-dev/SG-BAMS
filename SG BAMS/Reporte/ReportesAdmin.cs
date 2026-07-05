@@ -304,7 +304,7 @@ namespace SG_BAMS.Reporte
         private void btnNoti_Click(object sender, EventArgs e)
         {
             NotificacionesAdmin notificaciones = new NotificacionesAdmin();
-            notificaciones.Show();
+            notificaciones.ShowDialog();
         }
 
         private void btnExportaar_Click(object sender, EventArgs e)
@@ -431,7 +431,7 @@ namespace SG_BAMS.Reporte
         private void btnPerfil_Click(object sender, EventArgs e)
         {
             Perfil perfil = new Perfil();
-            perfil.Show();
+            perfil.ShowDialog();
         }
 
         private void dgvReporte_CellFormatting_1(object sender, DataGridViewCellFormattingEventArgs e)

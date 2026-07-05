@@ -281,7 +281,7 @@ namespace SG_BAMS
         private void btnNoti_Click(object sender, EventArgs e)
         {
             NotificacionesAdmin notificaciones = new NotificacionesAdmin();
-            notificaciones.Show();
+            notificaciones.ShowDialog();
         }
 
         /// <summary>
@@ -482,7 +482,7 @@ namespace SG_BAMS
         private void btnPerfil_Click(object sender, EventArgs e)
         {
             Perfil perfil = new Perfil();
-            perfil.Show();
+            perfil.ShowDialog();
         }
 
         private void dgvProductosAdmin_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

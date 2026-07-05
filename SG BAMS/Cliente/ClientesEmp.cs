@@ -257,7 +257,7 @@ namespace SG_BAMS
         /// <param name="e">Instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnNoti_Click(object sender, EventArgs e)
         {
-            new NotificacionesAdmin().Show();
+            new NotificacionesAdmin().ShowDialog();
         }
 
         /// <summary>
@@ -337,7 +337,7 @@ namespace SG_BAMS
         private void btnPerfil_Click(object sender, EventArgs e)
         {
             Perfil perfil = new Perfil();
-            perfil.Show();
+            perfil.ShowDialog();
         }
     }
 }

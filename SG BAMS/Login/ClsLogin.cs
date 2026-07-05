@@ -12,9 +12,12 @@ namespace SG_BAMS.Login
         public static int idusuario;
         public string NombreUsuario { get; set; }
 
+        public static int RolUsuario;
+
         public int ValidarUsuario(string usuario_correo, string contra)
         {
             int rol = 0;
+            RolUsuario = rol;
             try
             {
                 string contraHasheada = ClsSeguridad.HashSHA256(contra);

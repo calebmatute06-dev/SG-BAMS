@@ -197,7 +197,7 @@ namespace SG_BAMS
         private void btnNoti_Click(object sender, EventArgs e)
         {
             NotificacionesAdmin notificacionesAdmin = new NotificacionesAdmin();
-            notificacionesAdmin.Show();
+            notificacionesAdmin.ShowDialog();
         }
 
         /// <summary>
@@ -279,7 +279,7 @@ namespace SG_BAMS
         private void btnPerfil_Click(object sender, EventArgs e)
         {
             Perfil perfil = new Perfil();
-            perfil.Show();
+            perfil.ShowDialog();
         }
     }
 }

@@ -265,7 +265,7 @@ namespace SG_BAMS.Bitacora
             }
         }
 
-        private void btnNoti_Click(object sender, EventArgs e) => new NotificacionesAdmin().Show();
+        private void btnNoti_Click(object sender, EventArgs e) => new NotificacionesAdmin().ShowDialog();
 
         private void btnMenu_Click(object sender, EventArgs e) { MenuPrincipalAdm MPA = new MenuPrincipalAdm(); MPA.Show(); this.Hide(); }
         private void btnFacturas_Click(object sender, EventArgs e) { FacturasAdm FA = new FacturasAdm(); FA.Show(); this.Hide(); }
@@ -286,6 +286,6 @@ namespace SG_BAMS.Bitacora
             }
         }
 
-        private void btnPerfil_Click(object sender, EventArgs e) { Perfil perfil = new Perfil(); perfil.Show(); }
+        private void btnPerfil_Click(object sender, EventArgs e) { Perfil perfil = new Perfil(); perfil.ShowDialog(); }
     }
 }

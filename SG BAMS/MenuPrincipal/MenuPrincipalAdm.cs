@@ -219,7 +219,7 @@ namespace SG_BAMS
             await CargarGraficoMasVendidos();
         }
 
-        private void btnadmin_Click(object sender, EventArgs e) { NotificacionesAdmin admin = new NotificacionesAdmin(); admin.Show(); }
+        private void btnadmin_Click(object sender, EventArgs e) { NotificacionesAdmin admin = new NotificacionesAdmin(); admin.ShowDialog(); }
         private void btninventario2_Click(object sender, EventArgs e) { InventarioAdmin Invad = new InventarioAdmin(); Invad.Show(); this.Hide(); }
         private void btninventario3_Click(object sender, EventArgs e) { InventarioAdmin Invad = new InventarioAdmin(); Invad.Show(); this.Hide(); }
         private void btndeudores2_Click(object sender, EventArgs e) { DeudoresAdmin Deu = new DeudoresAdmin(); Deu.Show(); this.Hide(); }
@@ -246,6 +246,6 @@ namespace SG_BAMS
             }
         }
 
-        private void btnPerfil_Click_1(object sender, EventArgs e) { Perfil perfil = new Perfil(); perfil.Show(); }
+        private void btnPerfil_Click_1(object sender, EventArgs e) { Perfil perfil = new Perfil(); perfil.ShowDialog(); }
     }
 }

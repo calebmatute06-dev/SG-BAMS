@@ -283,7 +283,7 @@ namespace SG_BAMS
         /// </summary>
         /// <param name="sender">El objeto que originó el evento.</param>
         /// <param name="e">Los datos del evento.</param>
-        private void btnNoti_Click(object sender, EventArgs e) => new NotificacionesAdmin().Show();
+        private void btnNoti_Click(object sender, EventArgs e) => new NotificacionesAdmin().ShowDialog();
 
         /// <summary>
         /// Maneja el evento CellContentClick del DataGridView <c>dgvClientes</c>.
@@ -429,7 +429,7 @@ namespace SG_BAMS
         private void btnPerfil_Click(object sender, EventArgs e)
         {
             Perfil perfil = new Perfil();
-            perfil.Show();
+            perfil.ShowDialog();
         }
     }
 }
