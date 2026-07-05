@@ -1,5 +1,6 @@
 ﻿using SG_BAMS.Administracion_de_BAMS.Estado;
 using SG_BAMS.Login;
+using SG_BAMS.Proveedor.DTO;
 using System;
 using System.Data;
 using System.Drawing;
@@ -13,7 +14,6 @@ namespace SG_BAMS.Proveedor
     public partial class AgregarProveedores : Form
     {
         private ClsProveedor proveedor = new ClsProveedor();
-
         private PlaceholderTextBox phNombre;
         private PlaceholderTextBox phDireccion;
         private PlaceholderTextBox phTelefono;
@@ -33,7 +33,7 @@ namespace SG_BAMS.Proveedor
         private void AgregarProveedores_Load(object sender, EventArgs e)
         {
             proveedor.CargarComboClasificacion(cmbClasificacion);
-            
+
             cmbClasificacion.DropDownStyle = ComboBoxStyle.DropDown;
             cmbClasificacion.SelectedIndex = -1;
 
@@ -81,17 +81,20 @@ namespace SG_BAMS.Proveedor
                 return;
             if (!ClsValidaciones.EsRTNValido(new TextBox { Text = rtnReal }))
                 return;
+
             if (phClasificacion.IsPlaceholderActive || cmbClasificacion.SelectedValue == null)
             {
                 MessageBox.Show("Debe seleccionar una clasificación.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
             if (proveedor.ExisteNombreProveedor(nombreReal))
             {
                 MessageBox.Show("El nombre del proveedor ya existe.", "Nombre Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtNombre.Focus();
                 return;
             }
+
             if (proveedor.ExisteRtnProveedor(rtnReal))
             {
                 MessageBox.Show("El RTN ingresado ya pertenece a otro proveedor.", "RTN Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -101,17 +104,18 @@ namespace SG_BAMS.Proveedor
 
             try
             {
-                int idClasificacion = Convert.ToInt32(cmbClasificacion.SelectedValue);
-                int idUsuario = new ClsPasarUsuario().IdUsuario();
+                // --- Armado del DTO con todos los datos de la pantalla ---
+                ProveedorDTO proveedorDTO = new ProveedorDTO
+                {
+                    Nombre = nombreReal,
+                    Contacto = telefonoReal,
+                    Direccion = direccionReal,
+                    Rtn = rtnReal,
+                    IdClasificacion = Convert.ToInt32(cmbClasificacion.SelectedValue),
+                    IdUsuario = new ClsPasarUsuario().IdUsuario()
+                };
 
-                proveedor.AgregarProveedor(
-                    nombreReal,
-                    telefonoReal,
-                    direccionReal,
-                    rtnReal,
-                    idClasificacion,
-                    idUsuario
-                );
+                proveedor.AgregarProveedor(proveedorDTO);
 
                 MessageBox.Show("Proveedor agregado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ProveedoresAdmin admin = new ProveedoresAdmin();
@@ -128,11 +132,13 @@ namespace SG_BAMS.Proveedor
         {
             if (char.IsControl(e.KeyChar)) return;
             if (!char.IsDigit(e.KeyChar)) { e.Handled = true; return; }
+
             if (txtTelefono.SelectionStart == 0)
             {
                 char[] validos = { '2', '3', '8', '9' };
                 if (!validos.Contains(e.KeyChar)) e.Handled = true;
             }
+
             if (txtTelefono.Text.Length >= 3)
             {
                 int pos = txtTelefono.SelectionStart;

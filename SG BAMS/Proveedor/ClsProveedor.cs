@@ -2,6 +2,7 @@
 using System.Data;
 using Microsoft.Data.SqlClient;
 using Krypton.Toolkit;
+using SG_BAMS.Proveedor.DTO;
 
 namespace SG_BAMS.Proveedor
 {
@@ -149,23 +150,25 @@ namespace SG_BAMS.Proveedor
         }
 
         /// <summary>
-        /// Agrega un proveedor usando PA.
+        /// Agrega un proveedor a partir de los datos contenidos en el DTO.
+        /// Antes recibía 6 parámetros sueltos (nombre, contacto, direccion, rtn,
+        /// idClasificacion, idUsuario); ahora recibe un único objeto.
         /// </summary>
-        public void AgregarProveedor(string nombre, string contacto, string direccion, string rtn,
-            int idClasificacion, int idUsuario)
+        /// <param name="proveedor">Datos completos del proveedor a registrar.</param>
+        public void AgregarProveedor(ProveedorDTO proveedor)
         {
             try
             {
                 AbrirConexion();
-                SetUsuarioEnSesion(idUsuario);
+                SetUsuarioEnSesion(proveedor.IdUsuario);
                 using (SqlCommand cmd = new SqlCommand("sp_proveedor_insertar", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@nombre_proveedor", nombre);
-                    cmd.Parameters.AddWithValue("@contacto_proveedor", contacto);
-                    cmd.Parameters.AddWithValue("@direccion_proveedor", direccion);
-                    cmd.Parameters.AddWithValue("@rtn_proveedor", rtn);
-                    cmd.Parameters.AddWithValue("@id_clasificacion_proveedor", idClasificacion);
+                    cmd.Parameters.AddWithValue("@nombre_proveedor", proveedor.Nombre);
+                    cmd.Parameters.AddWithValue("@contacto_proveedor", proveedor.Contacto);
+                    cmd.Parameters.AddWithValue("@direccion_proveedor", proveedor.Direccion);
+                    cmd.Parameters.AddWithValue("@rtn_proveedor", proveedor.Rtn);
+                    cmd.Parameters.AddWithValue("@id_clasificacion_proveedor", proveedor.IdClasificacion);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -207,25 +210,27 @@ namespace SG_BAMS.Proveedor
         }
 
         /// <summary>
-        /// Modifica un proveedor usando PA.
+        /// Modifica un proveedor a partir de los datos contenidos en el DTO.
+        /// Antes recibía 8 parámetros sueltos; ahora recibe un único objeto
+        /// (debe traer IdProveedor).
         /// </summary>
-        public void ModificarProveedor(int idProveedor, string nombre, string contacto, string direccion,
-            string rtn, int idEstado, int idClasificacion, int idUsuario)
+        /// <param name="proveedor">Datos completos a actualizar.</param>
+        public void ModificarProveedor(ProveedorDTO proveedor)
         {
             try
             {
                 AbrirConexion();
-                SetUsuarioEnSesion(idUsuario);
+                SetUsuarioEnSesion(proveedor.IdUsuario);
                 using (SqlCommand cmd = new SqlCommand("sp_proveedor_actualizar", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@id_proveedor", idProveedor);
-                    cmd.Parameters.AddWithValue("@nombre_proveedor", nombre);
-                    cmd.Parameters.AddWithValue("@contacto_proveedor", contacto);
-                    cmd.Parameters.AddWithValue("@direccion_proveedor", direccion);
-                    cmd.Parameters.AddWithValue("@rtn_proveedor", rtn);
-                    cmd.Parameters.AddWithValue("@id_estado", idEstado);
-                    cmd.Parameters.AddWithValue("@id_clasificacion_proveedor", idClasificacion);
+                    cmd.Parameters.AddWithValue("@id_proveedor", proveedor.IdProveedor);
+                    cmd.Parameters.AddWithValue("@nombre_proveedor", proveedor.Nombre);
+                    cmd.Parameters.AddWithValue("@contacto_proveedor", proveedor.Contacto);
+                    cmd.Parameters.AddWithValue("@direccion_proveedor", proveedor.Direccion);
+                    cmd.Parameters.AddWithValue("@rtn_proveedor", proveedor.Rtn);
+                    cmd.Parameters.AddWithValue("@id_estado", proveedor.IdEstado);
+                    cmd.Parameters.AddWithValue("@id_clasificacion_proveedor", proveedor.IdClasificacion);
                     cmd.ExecuteNonQuery();
                 }
             }

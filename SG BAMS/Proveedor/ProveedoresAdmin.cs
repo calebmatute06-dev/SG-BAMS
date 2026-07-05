@@ -1,4 +1,7 @@
-﻿using System;
+﻿using SG_BAMS.Bitacora;
+using SG_BAMS.Proveedor.DTO;
+using SG_BAMS.Reporte;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,13 +10,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SG_BAMS.Bitacora;
-using SG_BAMS.Reporte;
 
 namespace SG_BAMS.Proveedor
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class ProveedoresAdmin : Form
@@ -24,7 +25,7 @@ namespace SG_BAMS.Proveedor
         ClsProveedor proveedor = new ClsProveedor();
 
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="ProveedoresAdmin" />.
+        /// Inicializa una nueva instancia de la clase <see cref="ProveedoresAdmin"/>.
         /// </summary>
         public ProveedoresAdmin()
         {
@@ -40,26 +41,21 @@ namespace SG_BAMS.Proveedor
                     e.Handled = true;
                 }
             };
-
             proveedor.cargarDatos(dgvProveedor);
             dgvProveedor.ClearSelection();
-
-
         }
 
         /// <summary>
         /// Maneja el evento Load del control ProveedoresAdmin.
         /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void ProveedoresAdmin_Load(object sender, EventArgs e)
         {
             new PlaceholderTextBox(txtBuscar, "Ingrese un Nombre de Vendedor, Cliente, N.Factura, RTN");
             btnProveedores.Enabled = false;
             btnProveedores.BackColor = Color.SkyBlue;
             btnProveedores.ForeColor = Color.White;
-
             proveedor.cargarDatos(dgvProveedor);
+
             dgvProveedor.Columns["idProveedor"].Visible = false;
             dgvProveedor.Columns["idClasificacion"].Visible = false;
             dgvProveedor.Columns["idEstado"].Visible = false;
@@ -73,7 +69,6 @@ namespace SG_BAMS.Proveedor
             dgvProveedor.RowHeadersVisible = false;
             dgvProveedor.EnableHeadersVisualStyles = false;
             dgvProveedor.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-
             dgvProveedor.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
             dgvProveedor.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
             dgvProveedor.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
@@ -86,7 +81,6 @@ namespace SG_BAMS.Proveedor
             dgvProveedor.DefaultCellStyle.Padding = new Padding(3);
             dgvProveedor.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 245, 255);
             dgvProveedor.AlternatingRowsDefaultCellStyle.ForeColor = Color.Navy;
-
             dgvProveedor.DefaultCellStyle.SelectionBackColor = Color.DeepSkyBlue;
             dgvProveedor.DefaultCellStyle.SelectionForeColor = Color.White;
 
@@ -95,16 +89,13 @@ namespace SG_BAMS.Proveedor
             dgvProveedor.RowTemplate.Height = 32;
             dgvProveedor.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvProveedor.ClearSelection();
+
             ClsMensajeGuia.ActivarK(txtBuscar);
-
-
         }
 
         /// <summary>
         /// Maneja el evento KeyUp del control txtBuscar.
         /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="KeyEventArgs" /> que contiene los datos del evento.</param>
         private void txtBuscar_KeyUp(object sender, KeyEventArgs e)
         {
             proveedor.BuscarProveedor(txtBuscar, dgvProveedor);
@@ -113,8 +104,6 @@ namespace SG_BAMS.Proveedor
         /// <summary>
         /// Maneja el evento Click del control btnAgregar.
         /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void btnAgregar1_Click(object sender, EventArgs e)
         {
             AgregarProveedores agregar = new AgregarProveedores();
@@ -126,8 +115,6 @@ namespace SG_BAMS.Proveedor
         /// <summary>
         /// Maneja el evento Click del control btnModificar.
         /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void btnModificar_Click_1(object sender, EventArgs e)
         {
             if (dgvProveedor.SelectedRows.Count == 0)
@@ -135,42 +122,39 @@ namespace SG_BAMS.Proveedor
                 MessageBox.Show("Seleccione un proveedor.");
                 return;
             }
-            ModificarProveedor(dgvProveedor.CurrentRow);
+
+            AbrirModificarProveedor(dgvProveedor.CurrentRow);
             dgvProveedor.ClearSelection();
         }
 
         /// <summary>
         /// Maneja el evento Click del control btnRefresh.
         /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             txtBuscar.Clear();
             proveedor.cargarDatos(dgvProveedor);
         }
 
-
-
         /// <summary>
         /// Maneja el evento CellDoubleClick del control dgvProveedor.
         /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="DataGridViewCellEventArgs" /> que contiene los datos del evento.</param>
         private void dgvProveedor_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow fila = dgvProveedor.Rows[e.RowIndex];
-                ModificarProveedor(fila);
+                AbrirModificarProveedor(fila);
             }
         }
 
         /// <summary>
-        /// Modifica el proveedor.
+        /// Arma el ProveedorDTO a partir de la fila seleccionada y abre la
+        /// pantalla de modificación. Antes se pasaban 7 parámetros sueltos
+        /// al constructor de ModificarProveedor; ahora viaja un solo objeto.
         /// </summary>
-        /// <param name="fila">La fila.</param>
-        private void ModificarProveedor(DataGridViewRow fila)
+        /// <param name="fila">La fila seleccionada del grid.</param>
+        private void AbrirModificarProveedor(DataGridViewRow fila)
         {
             if (fila == null)
             {
@@ -178,17 +162,19 @@ namespace SG_BAMS.Proveedor
                 return;
             }
 
-            int idProveedor = Convert.ToInt32(fila.Cells["idProveedor"].Value);
-            string nombre = fila.Cells["Nombre"].Value.ToString();
-            string contacto = fila.Cells["Contacto"].Value.ToString();
-            string direccion = fila.Cells["Dirección"].Value.ToString();
-            string rtn = fila.Cells["RTN"].Value.ToString();
-            int idEstado = Convert.ToInt32(fila.Cells["idEstado"].Value);
-            int idClasificacion = Convert.ToInt32(fila.Cells["idClasificacion"].Value);
+            ProveedorDTO proveedorDTO = new ProveedorDTO
+            {
+                IdProveedor = Convert.ToInt32(fila.Cells["idProveedor"].Value),
+                Nombre = fila.Cells["Nombre"].Value.ToString(),
+                Contacto = fila.Cells["Contacto"].Value.ToString(),
+                Direccion = fila.Cells["Dirección"].Value.ToString(),
+                Rtn = fila.Cells["RTN"].Value.ToString(),
+                IdEstado = Convert.ToInt32(fila.Cells["idEstado"].Value),
+                IdClasificacion = Convert.ToInt32(fila.Cells["idClasificacion"].Value)
+            };
 
-            ModificarProveedor frm = new ModificarProveedor(idProveedor, nombre, contacto, direccion, rtn, idEstado, idClasificacion);
+            ModificarProveedor frm = new ModificarProveedor(proveedorDTO);
             frm.ShowDialog();
-
             proveedor.cargarDatos(dgvProveedor);
             dgvProveedor.ClearSelection();
         }
@@ -196,33 +182,23 @@ namespace SG_BAMS.Proveedor
         /// <summary>
         /// Maneja el evento Click del control btnNoti.
         /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void btnNoti_Click(object sender, EventArgs e)
         {
             NotificacionesAdmin notificaciones = new NotificacionesAdmin();
             notificaciones.Show();
         }
 
-
         /// <summary>
         /// Maneja el evento CellDoubleClick del control dgvProveedor.
         /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="DataGridViewCellEventArgs" /> que contiene los datos del evento.</param>
         private void dgvProveedor_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
-                ModificarProveedor(dgvProveedor.Rows[e.RowIndex]);
+                AbrirModificarProveedor(dgvProveedor.Rows[e.RowIndex]);
             }
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnMenu.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnMenu_Click(object sender, EventArgs e)
         {
             MenuPrincipalAdm MPA = new MenuPrincipalAdm();
@@ -230,11 +206,6 @@ namespace SG_BAMS.Proveedor
             this.Hide();
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnFacturas.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnFacturas_Click(object sender, EventArgs e)
         {
             FacturasAdm FA = new FacturasAdm();
@@ -242,11 +213,6 @@ namespace SG_BAMS.Proveedor
             this.Hide();
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnCompra.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnCompra_Click(object sender, EventArgs e)
         {
             Compras CF = new Compras();
@@ -254,11 +220,6 @@ namespace SG_BAMS.Proveedor
             this.Hide();
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnClientes.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnClientes_Click(object sender, EventArgs e)
         {
             ClientesAdm CA = new ClientesAdm();
@@ -266,11 +227,6 @@ namespace SG_BAMS.Proveedor
             this.Hide();
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnInventario.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnInventario_Click(object sender, EventArgs e)
         {
             InventarioAdmin IA = new InventarioAdmin();
@@ -278,12 +234,6 @@ namespace SG_BAMS.Proveedor
             this.Hide();
         }
 
-
-        /// <summary>
-        /// Maneja el evento Click del control btnDeudores.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnDeudores_Click(object sender, EventArgs e)
         {
             DeudoresAdmin DA = new DeudoresAdmin();
@@ -291,11 +241,6 @@ namespace SG_BAMS.Proveedor
             this.Hide();
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnReportes.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnReportes_Click(object sender, EventArgs e)
         {
             ReportesAdmin RA = new ReportesAdmin();
@@ -303,11 +248,6 @@ namespace SG_BAMS.Proveedor
             this.Hide();
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnBitacora.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnBitacora_Click(object sender, EventArgs e)
         {
             BitacoraAdmin BA = new BitacoraAdmin();
@@ -315,18 +255,13 @@ namespace SG_BAMS.Proveedor
             this.Hide();
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnCerrar.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             DialogResult resultado = MessageBox.Show(
-           "¿Está seguro que desea cerrar sesión?",
-           "Confirmación",
-           MessageBoxButtons.YesNo,
-           MessageBoxIcon.Question);
+                "¿Está seguro que desea cerrar sesión?",
+                "Confirmación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
 
             if (resultado == DialogResult.Yes)
             {
@@ -336,11 +271,6 @@ namespace SG_BAMS.Proveedor
             }
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnPerfil.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnPerfil_Click(object sender, EventArgs e)
         {
             Perfil perfil = new Perfil();
