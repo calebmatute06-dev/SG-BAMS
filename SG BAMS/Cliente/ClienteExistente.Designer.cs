@@ -44,7 +44,7 @@
             // panel3
             // 
             panel3.BackColor = Color.Navy;
-            panel3.Location = new Point(544, 0);
+            panel3.Location = new Point(782, 0);
             panel3.Name = "panel3";
             panel3.Size = new Size(25, 355);
             panel3.TabIndex = 176;
@@ -54,15 +54,15 @@
             panel1.BackColor = Color.Navy;
             panel1.Location = new Point(22, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(547, 24);
+            panel1.Size = new Size(785, 24);
             panel1.TabIndex = 171;
             // 
             // panel2
             // 
             panel2.BackColor = Color.Navy;
-            panel2.Location = new Point(-2, 331);
+            panel2.Location = new Point(-2, 247);
             panel2.Name = "panel2";
-            panel2.Size = new Size(571, 24);
+            panel2.Size = new Size(809, 24);
             panel2.TabIndex = 170;
             // 
             // panel8
@@ -79,7 +79,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(94, 163);
+            label3.Location = new Point(56, 155);
             label3.Name = "label3";
             label3.Size = new Size(91, 24);
             label3.TabIndex = 182;
@@ -91,7 +91,7 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(146, 59);
+            label4.Location = new Point(218, 52);
             label4.Name = "label4";
             label4.Size = new Size(319, 44);
             label4.TabIndex = 331;
@@ -100,27 +100,27 @@
             // cmbClientes
             // 
             cmbClientes.DropDownWidth = 300;
-            cmbClientes.Location = new Point(187, 163);
+            cmbClientes.Location = new Point(152, 150);
             cmbClientes.Name = "cmbClientes";
-            cmbClientes.Size = new Size(259, 30);
+            cmbClientes.Size = new Size(418, 36);
             cmbClientes.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbClientes.StateCommon.ComboBox.Border.Color1 = Color.Navy;
-            cmbClientes.StateCommon.ComboBox.Border.Rounding = 5F;
+            cmbClientes.StateCommon.ComboBox.Border.Rounding = 15F;
             cmbClientes.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             cmbClientes.StateCommon.Item.Content.ShortText.Color1 = Color.Navy;
-            cmbClientes.StateCommon.Item.Content.ShortText.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbClientes.StateCommon.Item.Content.ShortText.Font = new Font("Arial Narrow", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbClientes.StateNormal.ComboBox.Border.Rounding = 40F;
             cmbClientes.TabIndex = 333;
             // 
             // BtnSalir
             // 
-            BtnSalir.Location = new Point(307, 236);
+            BtnSalir.Location = new Point(618, 171);
             BtnSalir.Name = "BtnSalir";
             BtnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             BtnSalir.OverrideDefault.Back.Color2 = Color.White;
             BtnSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
             BtnSalir.OverrideFocus.Back.Color2 = Color.White;
-            BtnSalir.Size = new Size(102, 60);
+            BtnSalir.Size = new Size(141, 60);
             BtnSalir.StateCommon.Back.Color1 = Color.SkyBlue;
             BtnSalir.StateCommon.Back.Color2 = Color.White;
             BtnSalir.StateCommon.Border.Rounding = 5F;
@@ -137,7 +137,7 @@
             // 
             // BtnAsignar
             // 
-            BtnAsignar.Location = new Point(131, 236);
+            BtnAsignar.Location = new Point(618, 86);
             BtnAsignar.Name = "BtnAsignar";
             BtnAsignar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             BtnAsignar.OverrideDefault.Back.Color2 = Color.White;
@@ -164,7 +164,7 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(437, 293);
+            label5.Location = new Point(25, 27);
             label5.Name = "label5";
             label5.Size = new Size(102, 35);
             label5.TabIndex = 346;
@@ -175,7 +175,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(569, 355);
+            ClientSize = new Size(806, 271);
             Controls.Add(label5);
             Controls.Add(BtnSalir);
             Controls.Add(BtnAsignar);

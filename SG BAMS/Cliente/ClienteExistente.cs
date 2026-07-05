@@ -41,9 +41,9 @@ namespace SG_BAMS
                 cmbClientes.ValueMember = "ID";
                 cmbClientes.DataSource = dt;
 
+                cmbClientes.DropDownStyle = ComboBoxStyle.DropDown;
                 cmbClientes.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 cmbClientes.AutoCompleteSource = AutoCompleteSource.ListItems;
-                cmbClientes.DropDownStyle = ComboBoxStyle.DropDownList;
             }
             catch (Exception ex)
             {

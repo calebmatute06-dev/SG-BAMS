@@ -30,6 +30,8 @@ public class PlaceholderComboBox
         }
 
         cmb.Enter += Entrar;
+        cmb.Click += Entrar;
+        cmb.KeyDown += OnKeyDown;  
         cmb.Leave += Salir;
         cmb.SelectedIndexChanged += OnSelectedIndexChanged;
         cmb.TextUpdate += OnTextUpdate;
@@ -37,12 +39,24 @@ public class PlaceholderComboBox
         cmb.DataSourceChanged += OnDataSourceChanged;
     }
 
+    private void OnKeyDown(object sender, KeyEventArgs e)
+    {
+        if (isPlaceholderActive && cmb.Text == placeholder)
+        {
+            isLoading = true;
+            cmb.Text = "";
+            cmb.StateCommon.ComboBox.Content.Color1 = Color.Black;
+            isPlaceholderActive = false;
+            isLoading = false;
+        }
+    }
     private void Entrar(object sender, System.EventArgs e)
     {
         if (isPlaceholderActive && cmb.Text == placeholder)
         {
             isLoading = true;
             cmb.Text = "";
+            cmb.SelectionStart = 0;   
             cmb.StateCommon.ComboBox.Content.Color1 = Color.Black;
             isPlaceholderActive = false;
             isLoading = false;

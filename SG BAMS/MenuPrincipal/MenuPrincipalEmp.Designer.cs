@@ -386,7 +386,7 @@ namespace SG_BAMS
             legend1.BackColor = Color.SkyBlue;
             legend1.Name = "Legend1";
             chartStock1.Legends.Add(legend1);
-            chartStock1.Location = new Point(805, 509);
+            chartStock1.Location = new Point(791, 509);
             chartStock1.Name = "chartStock1";
             chartStock1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.EarthTones;
             series1.ChartArea = "ChartArea1";
@@ -394,7 +394,7 @@ namespace SG_BAMS
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             chartStock1.Series.Add(series1);
-            chartStock1.Size = new Size(391, 215);
+            chartStock1.Size = new Size(425, 215);
             chartStock1.TabIndex = 101;
             chartStock1.Text = "chart1";
             // 

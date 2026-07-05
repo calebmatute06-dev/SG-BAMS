@@ -63,7 +63,7 @@
             // panel3
             // 
             panel3.BackColor = Color.Navy;
-            panel3.Location = new Point(665, 0);
+            panel3.Location = new Point(675, 0);
             panel3.Name = "panel3";
             panel3.Size = new Size(25, 400);
             panel3.TabIndex = 256;
@@ -79,7 +79,7 @@
             // panel4
             // 
             panel4.BackColor = Color.Navy;
-            panel4.Location = new Point(2, 376);
+            panel4.Location = new Point(2, 307);
             panel4.Name = "panel4";
             panel4.Size = new Size(688, 24);
             panel4.TabIndex = 257;
@@ -118,7 +118,7 @@
             // 
             // BtnAceptar
             // 
-            BtnAceptar.Location = new Point(151, 299);
+            BtnAceptar.Location = new Point(528, 149);
             BtnAceptar.Name = "BtnAceptar";
             BtnAceptar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             BtnAceptar.OverrideDefault.Back.Color2 = Color.White;
@@ -141,13 +141,13 @@
             // 
             // BtnSalir
             // 
-            BtnSalir.Location = new Point(297, 299);
+            BtnSalir.Location = new Point(528, 229);
             BtnSalir.Name = "BtnSalir";
             BtnSalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             BtnSalir.OverrideDefault.Back.Color2 = Color.White;
             BtnSalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
             BtnSalir.OverrideFocus.Back.Color2 = Color.White;
-            BtnSalir.Size = new Size(149, 60);
+            BtnSalir.Size = new Size(122, 60);
             BtnSalir.StateCommon.Back.Color1 = Color.SkyBlue;
             BtnSalir.StateCommon.Back.Color2 = Color.White;
             BtnSalir.StateCommon.Border.Rounding = 5F;
@@ -267,7 +267,7 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(563, 335);
+            label5.Location = new Point(22, 25);
             label5.Name = "label5";
             label5.Size = new Size(102, 35);
             label5.TabIndex = 347;
@@ -278,7 +278,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(686, 400);
+            ClientSize = new Size(698, 331);
             Controls.Add(label5);
             Controls.Add(label2);
             Controls.Add(btnEscanear);

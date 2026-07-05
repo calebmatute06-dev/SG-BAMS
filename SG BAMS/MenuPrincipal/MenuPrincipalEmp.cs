@@ -123,33 +123,36 @@ namespace SG_BAMS
                 Legend leyenda = chartStock1.Legends.Add("Leyenda");
                 leyenda.BackColor = Color.Transparent;
                 leyenda.Docking = Docking.Bottom;
-                leyenda.Font = new Font("Segoe UI", 9f, FontStyle.Bold);
+                leyenda.Font = new Font("Segoe UI", 7.5f, FontStyle.Regular);
+                leyenda.LegendStyle = LegendStyle.Table;
+                leyenda.TableStyle = LegendTableStyle.Wide;
+                leyenda.Alignment = StringAlignment.Center;
 
-                var seriePastel = chartStock1.Series.Add("StockSeries");
-                seriePastel.ChartType = SeriesChartType.Pie;
-                seriePastel.IsValueShownAsLabel = true;
-                seriePastel.Font = new Font("Segoe UI", 10f, FontStyle.Bold);
-                seriePastel["PieLabelStyle"] = "Inside";
+                var serie = chartStock1.Series.Add("StockSeries");
+                serie.ChartType = SeriesChartType.Doughnut;
+                serie["DoughnutRadius"] = "65";
+                serie.IsValueShownAsLabel = true;
+                serie.Font = new Font("Segoe UI", 10f, FontStyle.Bold);
+                serie["PieLabelStyle"] = "Outside";
+                serie["PieLineColor"] = "Gray";
 
-                int p1 = seriePastel.Points.AddY(sinStock);
-                seriePastel.Points[p1].Color = Color.FromArgb(210, 50, 50);
-                seriePastel.Points[p1].LegendText = $"Sin Stock ({sinStock})";
-                seriePastel.Points[p1].Label = sinStock > 0 ? sinStock.ToString() : "";
-                seriePastel.Points[p1].LabelForeColor = Color.White;
+                int p1 = serie.Points.AddY(sinStock);
+                serie.Points[p1].Color = ColorTranslator.FromHtml("#E74C3C");
+                serie.Points[p1].LegendText = $"Sin Stock ({sinStock})";
+                serie.Points[p1].Label = sinStock > 0 ? sinStock.ToString() : "";
 
-                int p2 = seriePastel.Points.AddY(bajoStock);
-                seriePastel.Points[p2].Color = Color.FromArgb(220, 180, 0);
-                seriePastel.Points[p2].LegendText = $"Bajo Stock ({bajoStock})";
-                seriePastel.Points[p2].Label = bajoStock > 0 ? bajoStock.ToString() : "";
-                seriePastel.Points[p2].LabelForeColor = Color.Black;
+                int p2 = serie.Points.AddY(bajoStock);
+                serie.Points[p2].Color = ColorTranslator.FromHtml("#F39C12");
+                serie.Points[p2].LegendText = $"Bajo Stock ({bajoStock})";
+                serie.Points[p2].Label = bajoStock > 0 ? bajoStock.ToString() : "";
 
-                int p3 = seriePastel.Points.AddY(conStock);
-                seriePastel.Points[p3].Color = Color.FromArgb(50, 160, 60);
-                seriePastel.Points[p3].LegendText = $"Con Stock ({conStock})";
-                seriePastel.Points[p3].Label = conStock > 0 ? conStock.ToString() : "";
-                seriePastel.Points[p3].LabelForeColor = Color.White;
+                int p3 = serie.Points.AddY(conStock);
+                serie.Points[p3].Color = ColorTranslator.FromHtml("#27AE60");
+                serie.Points[p3].LegendText = $"Con Stock ({conStock})";
+                serie.Points[p3].Label = conStock > 0 ? conStock.ToString() : "";
 
-                chartStock1.BackColor = Color.SkyBlue;
+                serie.BorderColor = Color.White;
+                serie.BorderWidth = 2;
             }
         }
 
@@ -169,6 +172,35 @@ namespace SG_BAMS
 
             ClsTemas.CargarPreferencia();
             ClsTemas.AplicarTema(this);
+
+
+            dgvVentas.BorderStyle = BorderStyle.None;
+            dgvVentas.BackgroundColor = Color.White;
+            dgvVentas.RowHeadersVisible = false;
+            dgvVentas.EnableHeadersVisualStyles = false;
+            dgvVentas.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+
+            dgvVentas.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
+            dgvVentas.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
+            dgvVentas.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgvVentas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvVentas.ColumnHeadersHeight = 28;
+
+            dgvVentas.DefaultCellStyle.BackColor = Color.White;
+            dgvVentas.DefaultCellStyle.ForeColor = Color.Navy;
+            dgvVentas.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dgvVentas.DefaultCellStyle.Padding = new Padding(3);
+            dgvVentas.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 245, 255);
+            dgvVentas.AlternatingRowsDefaultCellStyle.ForeColor = Color.Navy;
+
+            dgvVentas.DefaultCellStyle.SelectionBackColor = Color.DeepSkyBlue;
+            dgvVentas.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            dgvVentas.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvVentas.GridColor = Color.LightGray;
+            dgvVentas.RowTemplate.Height = 32;
+            dgvVentas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvVentas.ClearSelection();
         }
 
         private void MenuPrincipalEmp_Shown(object sender, EventArgs e) { Ayudante_UI.AplicarZoomGlobal(this); }

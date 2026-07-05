@@ -396,14 +396,14 @@
             legend1.BackColor = Color.SkyBlue;
             legend1.Name = "Legend1";
             chartMasVendidos.Legends.Add(legend1);
-            chartMasVendidos.Location = new Point(831, 471);
+            chartMasVendidos.Location = new Point(822, 471);
             chartMasVendidos.Name = "chartMasVendidos";
             chartMasVendidos.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             chartMasVendidos.Series.Add(series1);
-            chartMasVendidos.Size = new Size(416, 197);
+            chartMasVendidos.Size = new Size(425, 197);
             chartMasVendidos.TabIndex = 63;
             chartMasVendidos.Text = "chart1";
             // 
