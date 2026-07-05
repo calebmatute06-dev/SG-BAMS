@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SG_BAMS.Cliente;
+using SG_BAMS.Cliente.DTO;
 using SG_BAMS.Facturas;
 using Krypton.Toolkit;
 
@@ -111,7 +112,15 @@ namespace SG_BAMS
                 this.Cursor = Cursors.WaitCursor;
                 ClsCliente objAC = new ClsCliente();
 
-                int id = await objAC.AgregarClientes(nombreReal, apellidoReal, telefonoReal, rtnReal);
+                ClienteDTO clienteDTO = new ClienteDTO
+                {
+                    Nombre = nombreReal,
+                    Apellido = apellidoReal,
+                    Telefono = telefonoReal,
+                    RTN = rtnReal
+                };
+
+                int id = await objAC.AgregarClientes(clienteDTO);
 
                 if (id > 0)
                 {

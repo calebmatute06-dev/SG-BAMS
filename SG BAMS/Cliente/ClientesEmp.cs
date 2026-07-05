@@ -1,4 +1,5 @@
 ﻿using SG_BAMS.Cliente;
+using SG_BAMS.Cliente.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -164,7 +165,17 @@ namespace SG_BAMS
                     string rtn = dgvClientes.CurrentRow.Cells[4].Value?.ToString() ?? "";
                     int idEstado = Convert.ToInt32(dgvClientes.CurrentRow.Cells[5].Value);
 
-                    ClienteModificar frmMo = new ClienteModificar(idCliente, nombre, apellido, telefono, rtn, idEstado);
+                    ClienteDTO clienteDTO = new ClienteDTO
+                    {
+                        IdCliente = idCliente,
+                        Nombre = nombre,
+                        Apellido = apellido,
+                        Telefono = telefono,
+                        RTN = rtn,
+                        IdEstado = idEstado
+                    };
+
+                    ClienteModificar frmMo = new ClienteModificar(clienteDTO);
                     frmMo.ShowDialog();
 
                     await TablaClientes();

@@ -1,4 +1,5 @@
 ﻿using SG_BAMS.Cliente;
+using SG_BAMS.Cliente.DTO;
 using System;
 using System.Data;
 using System.Threading.Tasks;
@@ -14,7 +15,12 @@ namespace SG_BAMS
     public partial class ClienteModificar : Form
     {
         private ClsRepositorioBaseDatos objCl = new ClsRepositorioBaseDatos();
-        private int idEstadoSelec;
+
+        /// <summary>
+        /// Datos del cliente a modificar, recibidos desde el listado (ClientesAdm/ClientesEmp).
+        /// Reemplaza los 6 parámetros sueltos que antes recibía el constructor.
+        /// </summary>
+        private readonly ClienteDTO _dto;
 
         private PlaceholderTextBox phNombre;
         private PlaceholderTextBox phApellido;
@@ -25,23 +31,18 @@ namespace SG_BAMS
         /// <summary>
         /// Constructor para modificar un cliente existente.
         /// </summary>
-        /// <param name="idCliente">ID del cliente.</param>
-        /// <param name="nombreCliente">Nombre actual.</param>
-        /// <param name="apellidoCliente">Apellido actual.</param>
-        /// <param name="telefonoCliente">Teléfono actual.</param>
-        /// <param name="rtnCliente">RTN actual.</param>
-        /// <param name="idEstado">ID del estado actual.</param>
-        public ClienteModificar(int idCliente, string nombreCliente, string apellidoCliente,
-            string telefonoCliente, string rtnCliente, int idEstado)
+        /// <param name="dto">Datos actuales del cliente seleccionado en el listado.</param>
+        public ClienteModificar(ClienteDTO dto)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
-            txtID.Text = idCliente.ToString();
-            txtNombre.Text = nombreCliente;
-            txtApellido.Text = apellidoCliente;
-            txtTelefono.Text = telefonoCliente;
-            txtRTN.Text = rtnCliente;
-            idEstadoSelec = idEstado;
+
+            _dto = dto;
+            txtID.Text = dto.IdCliente.ToString();
+            txtNombre.Text = dto.Nombre;
+            txtApellido.Text = dto.Apellido;
+            txtTelefono.Text = dto.Telefono;
+            txtRTN.Text = dto.RTN;
 
             txtTelefono.MaxLength = 8;
             txtRTN.MaxLength = 14;
@@ -54,6 +55,10 @@ namespace SG_BAMS
             txtTelefono.KeyPress += (s, e) => ClsValidaciones.ValidarTelefonoKeyPress(txtTelefono, e);
         }
 
+        /// <summary>
+        /// Constructor sin parámetros, necesario para que el Diseñador de
+        /// Visual Studio pueda seguir abriendo el formulario.
+        /// </summary>
         public ClienteModificar()
         {
             InitializeComponent();
@@ -66,7 +71,7 @@ namespace SG_BAMS
             string telefonoReal = phTelefono.GetRealValue().Trim();
             string rtnReal = phRTN.GetRealValue().Trim();
 
-            
+
             bool valido = true;
             using (var tempNombre = new KryptonTextBox())
             using (var tempApellido = new KryptonTextBox())
@@ -114,14 +119,17 @@ namespace SG_BAMS
                 this.Cursor = Cursors.WaitCursor;
                 ClsCliente objMC = new ClsCliente();
 
-                int filasActualizadas = await objMC.ModificarClientes(
-                    Convert.ToInt32(txtID.Text),
-                    nombreReal,
-                    apellidoReal,
-                    telefonoReal,
-                    rtnReal,
-                    Convert.ToInt32(cmbEstado.SelectedValue)
-                );
+                ClienteDTO dtoActualizado = new ClienteDTO
+                {
+                    IdCliente = Convert.ToInt32(txtID.Text),
+                    Nombre = nombreReal,
+                    Apellido = apellidoReal,
+                    Telefono = telefonoReal,
+                    RTN = rtnReal,
+                    IdEstado = Convert.ToInt32(cmbEstado.SelectedValue)
+                };
+
+                int filasActualizadas = await objMC.ModificarClientes(dtoActualizado);
 
                 if (filasActualizadas > 0)
                 {
@@ -166,7 +174,7 @@ namespace SG_BAMS
         private async void ClienteModificar_Load(object sender, EventArgs e)
         {
             await LlenarComboEstado();
-            cmbEstado.SelectedValue = idEstadoSelec;
+            cmbEstado.SelectedValue = _dto?.IdEstado ?? 0;
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             cmbEstado.DropDownStyle = ComboBoxStyle.DropDownList;

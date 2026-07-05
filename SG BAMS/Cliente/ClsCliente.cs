@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using SG_BAMS.Cliente.DTO;
 using System;
 using System.Data;
 using System.Threading.Tasks;
@@ -11,7 +12,11 @@ namespace SG_BAMS.Cliente
     /// </summary>
     internal class ClsCliente : ClsRepositorioBaseDatos
     {
-        public async Task<int> AgregarClientes(string nombre, string apellido, string telefono, string RTN)
+        /// <summary>
+        /// Registra un cliente nuevo a partir de los datos del DTO.
+        /// </summary>
+        /// <param name="dto">Datos del cliente a registrar.</param>
+        public async Task<int> AgregarClientes(ClienteDTO dto)
         {
             try
             {
@@ -19,10 +24,10 @@ namespace SG_BAMS.Cliente
                 using (SqlCommand cmd = new SqlCommand("PA_insertar_cliente", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@nombre_cliente", nombre);
-                    cmd.Parameters.AddWithValue("@apellido_cliente", apellido);
-                    cmd.Parameters.AddWithValue("@telefono_cliente", telefono);
-                    cmd.Parameters.AddWithValue("@rtn_cliente", RTN);
+                    cmd.Parameters.AddWithValue("@nombre_cliente", dto.Nombre);
+                    cmd.Parameters.AddWithValue("@apellido_cliente", dto.Apellido);
+                    cmd.Parameters.AddWithValue("@telefono_cliente", dto.Telefono);
+                    cmd.Parameters.AddWithValue("@rtn_cliente", dto.RTN);
                     object result = await cmd.ExecuteScalarAsync();
                     if (result != null && result != DBNull.Value)
                         return Convert.ToInt32(result);
@@ -40,7 +45,11 @@ namespace SG_BAMS.Cliente
             }
         }
 
-        public async Task<int> ModificarClientes(int idCliente, string nombre, string apellido, string telefono, string RTN, int idEstado)
+        /// <summary>
+        /// Actualiza un cliente existente a partir de los datos del DTO.
+        /// </summary>
+        /// <param name="dto">Datos actualizados del cliente, incluyendo su IdCliente.</param>
+        public async Task<int> ModificarClientes(ClienteDTO dto)
         {
             try
             {
@@ -48,12 +57,12 @@ namespace SG_BAMS.Cliente
                 using (SqlCommand cmd = new SqlCommand("PA_actualizar_cliente", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@id_cliente", idCliente);
-                    cmd.Parameters.AddWithValue("@nombre_cliente", nombre);
-                    cmd.Parameters.AddWithValue("@apellido_cliente", apellido);
-                    cmd.Parameters.AddWithValue("@telefono_cliente", telefono);
-                    cmd.Parameters.AddWithValue("@rtn_cliente", RTN);
-                    cmd.Parameters.AddWithValue("@id_estado", idEstado);
+                    cmd.Parameters.AddWithValue("@id_cliente", dto.IdCliente);
+                    cmd.Parameters.AddWithValue("@nombre_cliente", dto.Nombre);
+                    cmd.Parameters.AddWithValue("@apellido_cliente", dto.Apellido);
+                    cmd.Parameters.AddWithValue("@telefono_cliente", dto.Telefono);
+                    cmd.Parameters.AddWithValue("@rtn_cliente", dto.RTN);
+                    cmd.Parameters.AddWithValue("@id_estado", dto.IdEstado);
                     int filasAfectadas = await cmd.ExecuteNonQueryAsync();
                     return filasAfectadas;
                 }

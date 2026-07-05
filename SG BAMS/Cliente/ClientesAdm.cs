@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using SG_BAMS.Bitacora;
 using SG_BAMS.Cliente;
+using SG_BAMS.Cliente.DTO;
 using SG_BAMS.Proveedor;
 using SG_BAMS.Reporte;
 using System;
@@ -207,7 +208,17 @@ namespace SG_BAMS
                     string rtnCliente = dgvClientes.CurrentRow.Cells[4].Value?.ToString() ?? "";
                     int idEstado = Convert.ToInt32(dgvClientes.CurrentRow.Cells[5].Value);
 
-                    ClienteModificar frmMo = new ClienteModificar(idCliente, nombreCliente, apellidoCliente, telefonoCliente, rtnCliente, idEstado);
+                    ClienteDTO clienteDTO = new ClienteDTO
+                    {
+                        IdCliente = idCliente,
+                        Nombre = nombreCliente,
+                        Apellido = apellidoCliente,
+                        Telefono = telefonoCliente,
+                        RTN = rtnCliente,
+                        IdEstado = idEstado
+                    };
+
+                    ClienteModificar frmMo = new ClienteModificar(clienteDTO);
 
                     if (frmMo.ShowDialog() == DialogResult.OK || frmMo.DialogResult == DialogResult.Cancel)
                     {
