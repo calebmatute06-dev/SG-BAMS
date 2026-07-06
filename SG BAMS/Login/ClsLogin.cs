@@ -10,14 +10,12 @@ namespace SG_BAMS.Login
     internal class ClsLogin : ClsRepositorioBaseDatos
     {
         public static int idusuario;
-        public string NombreUsuario { get; set; }
-
         public static int RolUsuario;
+        public string NombreUsuario { get; set; }
 
         public int ValidarUsuario(string usuario_correo, string contra)
         {
             int rol = 0;
-            RolUsuario = rol;
             try
             {
                 string contraHasheada = ClsSeguridad.HashSHA256(contra);
@@ -39,6 +37,7 @@ namespace SG_BAMS.Login
                                 rol = Convert.ToInt32(reader["ID_Rol_Usuario"]);
                                 idusuario = Convert.ToInt32(reader["ID_Usuario"]);
                                 NombreUsuario = reader["NombreUsuario"].ToString();
+                                RolUsuario = rol;
                             }
                             else
                             {

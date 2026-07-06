@@ -392,7 +392,7 @@ namespace SG_BAMS
 
                             this.Hide();
 
-                            if (ClsLogin.RolUsuario == 1)
+                            if (ClsLogin.RolUsuario == 1 || ClsLogin.RolUsuario == 3)
                                 new DeudoresAdmin().Show();
                             else
                                 new Deudores_Emp().Show();
