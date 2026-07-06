@@ -4,6 +4,8 @@ using System;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
+using SG_BAMS.Deudores;
+using System.Threading.Tasks;
 
 namespace SG_BAMS
 {
@@ -76,7 +78,7 @@ namespace SG_BAMS
         /// </summary>
         /// <param name="sender">El objeto que originó el evento.</param>
         /// <param name="e">Los datos del evento.</param>
-        private void BtnAsignar_Click(object sender, EventArgs e)
+        private async void BtnAsignar_Click(object sender, EventArgs e)
         {
             if (phClientes.IsPlaceholderActive || cmbClientes.SelectedIndex == -1)
             {
@@ -97,6 +99,45 @@ namespace SG_BAMS
                         string rtnValor = drv["rtn_cliente"]?.ToString()?.Trim();
                         if (!string.IsNullOrWhiteSpace(rtnValor) && rtnValor != "Sin RTN")
                             rtn = rtnValor;
+                    }
+
+                    ClsDeudas objDeudas = new ClsDeudas();
+                    bool tieneDeuda = await objDeudas.ClienteTieneDeudaActiva(idCliente);
+
+                    if (tieneDeuda)
+                    {
+                        string detalleDeudas = "";
+
+                        try
+                        {
+                            DataTable dtDeudas = await Task.Run(() => objDeudas.ObtenerDeudasPorCliente(idCliente));
+
+                            if (dtDeudas != null && dtDeudas.Rows.Count > 0)
+                            {
+                                foreach (DataRow row in dtDeudas.Rows)
+                                {
+                                    int idDeuda = Convert.ToInt32(row["IdDeuda"]);
+                                    decimal saldo = Convert.ToDecimal(row["Saldo"]);
+                                    string fechaInicio = Convert.ToDateTime(row["FechaInicio"]).ToString("dd/MM/yyyy");
+                                    string fechaFin = Convert.ToDateTime(row["FechaFin"]).ToString("dd/MM/yyyy");
+
+                                    detalleDeudas += $"• Deuda #{idDeuda}  |  Desde: {fechaInicio}  →  Hasta: {fechaFin}\n";
+                                    detalleDeudas += $"  Saldo pendiente: L {saldo:N2}\n\n";
+                                }
+                            }
+                        }
+                        catch { }
+
+                        DialogResult respuesta = MessageBox.Show(
+                            $"El cliente '{cmbClientes.Text.Trim()}' tiene una deuda activa:\n\n" +
+                            $"{detalleDeudas}" +
+                            "¿Desea continuar con la factura de todas formas?",
+                            "Advertencia de Crédito",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Warning);
+
+                        if (respuesta == DialogResult.No)
+                            return;
                     }
 
                     using (FacturaAgregarDatos frmFA = new FacturaAgregarDatos(cmbClientes.Text, idCliente, rtn))
