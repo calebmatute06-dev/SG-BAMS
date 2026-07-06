@@ -89,6 +89,32 @@ namespace SG_BAMS
         }
 
 
+        private void AbrirOEnfocarDialogo<T>(Func<T> creadorFormulario, Action<T> accionesPostDialogo) where T : Form
+        {
+            T formExistente = Application.OpenForms.Cast<Form>().OfType<T>().FirstOrDefault();
+
+            if (formExistente != null)
+            {
+                if (formExistente.WindowState == FormWindowState.Minimized)
+                {
+                    formExistente.WindowState = FormWindowState.Normal;
+                }
+                formExistente.BringToFront();
+                formExistente.Focus();
+            }
+            else
+            {
+                using (T nuevoForm = creadorFormulario())
+                {
+                    if (nuevoForm.ShowDialog() == DialogResult.OK)
+                    {
+                        accionesPostDialogo(nuevoForm);
+                    }
+                }
+            }
+        }
+
+
         /// <summary>
         /// Abre el formulario de creación de modelo y actualiza el grid si la operación fue exitosa.
         /// </summary>
@@ -96,13 +122,10 @@ namespace SG_BAMS
         /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            frmAgregarModeloAuto agregarMauto = new frmAgregarModeloAuto();
-
-
-            if (agregarMauto.ShowDialog() == DialogResult.OK)
-            {
-                _ = CargarGridModelos();
-            }
+            AbrirOEnfocarDialogo(
+                () => new frmAgregarModeloAuto(),
+                (f) => _ = CargarGridModelos()
+            );
             dgvModelos.ClearSelection();
         }
 
@@ -119,12 +142,10 @@ namespace SG_BAMS
                 int id = Convert.ToInt32(dgvModelos.CurrentRow.Cells["id_modelo_auto"].Value);
                 string nombre = dgvModelos.CurrentRow.Cells["nombre_modelo_auto"].Value.ToString();
 
-                frmModificarModelos frmMod = new frmModificarModelos(id, nombre);
-
-                if (frmMod.ShowDialog() == DialogResult.OK)
-                {
-                    _ = CargarGridModelos();
-                }
+                AbrirOEnfocarDialogo(
+                    () => new frmModificarModelos(id, nombre),
+                    (f) => _ = CargarGridModelos()
+                );
                 dgvModelos.ClearSelection();
             }
             else
@@ -141,7 +162,22 @@ namespace SG_BAMS
         /// <param name="e">La instancia de <see cref="DataGridViewCellEventArgs"/> que contiene los datos del evento.</param>
         private void dgvModelos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            btnModificar_Click(sender, e);
+            if (dgvModelos.CurrentRow != null && dgvModelos.SelectedRows.Count > 0)
+            {
+                int id = Convert.ToInt32(dgvModelos.CurrentRow.Cells["id_modelo_auto"].Value);
+                string nombre = dgvModelos.CurrentRow.Cells["nombre_modelo_auto"].Value.ToString();
+
+                AbrirOEnfocarDialogo(
+                    () => new frmModificarModelos(id, nombre),
+                    (f) => _ = CargarGridModelos()
+                );
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione una fila completa de la lista.", "Validación",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
             dgvModelos.ClearSelection();
         }
 

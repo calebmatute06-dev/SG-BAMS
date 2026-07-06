@@ -92,6 +92,32 @@ namespace SG_BAMS
         }
 
 
+        private void AbrirOEnfocarDialogo<T>(Func<T> creadorFormulario, Action<T> accionesPostDialogo) where T : Form
+        {
+            T formExistente = Application.OpenForms.Cast<Form>().OfType<T>().FirstOrDefault();
+
+            if (formExistente != null)
+            {
+                if (formExistente.WindowState == FormWindowState.Minimized)
+                {
+                    formExistente.WindowState = FormWindowState.Normal;
+                }
+                formExistente.BringToFront();
+                formExistente.Focus();
+            }
+            else
+            {
+                using (T nuevoForm = creadorFormulario())
+                {
+                    if (nuevoForm.ShowDialog() == DialogResult.OK)
+                    {
+                        accionesPostDialogo(nuevoForm);
+                    }
+                }
+            }
+        }
+
+
         /// <summary>
         /// Permite abrir el formulario de edición al hacer doble clic sobre una fila del listado.
         /// </summary>
@@ -99,16 +125,17 @@ namespace SG_BAMS
         /// <param name="e">La instancia de <see cref="DataGridViewCellEventArgs"/> que contiene los datos del evento.</param>
         private void dgvMarcas_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            int id = Convert.ToInt32(dgvMarcas.CurrentRow.Cells["id_marca_producto"].Value);
-            string nombre = dgvMarcas.CurrentRow.Cells["nombre_marca"].Value.ToString();
-
-            frmModificarMarcaProducto frm = new frmModificarMarcaProducto(id, nombre);
-
-            if (frm.ShowDialog() == DialogResult.OK)
+            if (dgvMarcas.CurrentRow != null && dgvMarcas.SelectedRows.Count > 0)
             {
-                _ = CargarGridMarcas();
+                int id = Convert.ToInt32(dgvMarcas.CurrentRow.Cells["id_marca_producto"].Value);
+                string nombre = dgvMarcas.CurrentRow.Cells["nombre_marca"].Value.ToString();
+
+                AbrirOEnfocarDialogo(
+                    () => new frmModificarMarcaProducto(id, nombre),
+                    (f) => _ = CargarGridMarcas()
+                );
+                dgvMarcas.ClearSelection();
             }
-            dgvMarcas.ClearSelection();
         }
 
         /// <summary>
@@ -147,6 +174,9 @@ namespace SG_BAMS
             dgvMarcas.ClearSelection();
         }
 
+
+
+
         /// <summary>
         /// Abre el formulario para registrar una nueva marca de producto.
         /// </summary>
@@ -154,8 +184,10 @@ namespace SG_BAMS
         /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            frmIngresarMarcaProducto agregarMproducto = new frmIngresarMarcaProducto();
-            agregarMproducto.Show();
+            AbrirOEnfocarDialogo(
+                () => new frmIngresarMarcaProducto(),
+                (f) => _ = CargarGridMarcas()
+            );
             dgvMarcas.ClearSelection();
         }
 
@@ -166,24 +198,17 @@ namespace SG_BAMS
         /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnModificar_Click(object sender, EventArgs e)
         {
-
             if (dgvMarcas.CurrentRow != null && dgvMarcas.SelectedRows.Count > 0)
             {
                 try
                 {
-
                     int id = Convert.ToInt32(dgvMarcas.CurrentRow.Cells["id_marca_producto"].Value);
                     string nombre = dgvMarcas.CurrentRow.Cells["nombre_marca"].Value.ToString();
 
-
-                    frmModificarMarcaProducto frm = new frmModificarMarcaProducto(id, nombre);
-
-
-                    if (frm.ShowDialog() == DialogResult.OK)
-                    {
-
-                        _ = CargarGridMarcas();
-                    }
+                    AbrirOEnfocarDialogo(
+                        () => new frmModificarMarcaProducto(id, nombre),
+                        (f) => _ = CargarGridMarcas()
+                    );
                     dgvMarcas.ClearSelection();
                 }
                 catch (Exception ex)

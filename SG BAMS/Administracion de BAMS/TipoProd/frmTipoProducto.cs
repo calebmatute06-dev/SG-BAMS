@@ -69,6 +69,32 @@ namespace SG_BAMS
             }
         }
 
+        private void AbrirOEnfocarDialogo<T>(Func<T> creadorFormulario, Action<T> accionesPostDialogo) where T : Form
+        {
+            T formExistente = Application.OpenForms.Cast<Form>().OfType<T>().FirstOrDefault();
+
+            if (formExistente != null)
+            {
+                if (formExistente.WindowState == FormWindowState.Minimized)
+                {
+                    formExistente.WindowState = FormWindowState.Normal;
+                }
+                formExistente.BringToFront();
+                formExistente.Focus();
+            }
+            else
+            {
+                using (T nuevoForm = creadorFormulario())
+                {
+                    if (nuevoForm.ShowDialog() == DialogResult.OK)
+                    {
+                        accionesPostDialogo(nuevoForm);
+                    }
+                }
+            }
+        }
+
+
         /// <summary>
         /// Abre el formulario de edición al realizar doble clic sobre un registro del grid.
         /// </summary>
@@ -76,23 +102,22 @@ namespace SG_BAMS
         /// <param name="e">La instancia de <see cref="DataGridViewCellEventArgs"/> que contiene los datos del evento.</param>
         private void dgvTipoProducto_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvTipoProducto.SelectedRows.Count > 0)
+            if (dgvTipoProducto.CurrentRow != null && dgvTipoProducto.SelectedRows.Count > 0)
             {
                 int id = Convert.ToInt32(dgvTipoProducto.CurrentRow.Cells["id_tipo_producto"].Value);
                 string descripcion = dgvTipoProducto.CurrentRow.Cells["nombre_tipo_producto"].Value.ToString();
 
-                frmModificarTipoProducto ModificarTProducto = new frmModificarTipoProducto(id, descripcion);
-
-                if (ModificarTProducto.ShowDialog() == DialogResult.OK)
-                {
-                    _ = CargarGridTipos();
-                }
-                dgvTipoProducto.ClearSelection();
+                AbrirOEnfocarDialogo(
+                    () => new frmModificarTipoProducto(id, descripcion),
+                    (f) => _ = CargarGridTipos()
+                );
             }
             else
             {
-                MessageBox.Show("Por favor, seleccione un tipo de producto de la lista.");
+                MessageBox.Show("Por favor, seleccione una fila completa de la lista.", "Validación",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            dgvTipoProducto.ClearSelection();
         }
 
         /// <summary>
@@ -102,8 +127,10 @@ namespace SG_BAMS
         /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btmAgregar_Click(object sender, EventArgs e)
         {
-            frnAgregarTipoProducto agregarTproducto = new frnAgregarTipoProducto();
-            agregarTproducto.Show();
+            AbrirOEnfocarDialogo(
+                () => new frnAgregarTipoProducto(),
+                (f) => _ = CargarGridTipos() 
+            );
             dgvTipoProducto.ClearSelection();
         }
 
@@ -114,17 +141,15 @@ namespace SG_BAMS
         /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            if (dgvTipoProducto.SelectedRows.Count > 0)
+            if (dgvTipoProducto.CurrentRow != null && dgvTipoProducto.SelectedRows.Count > 0)
             {
                 int id = Convert.ToInt32(dgvTipoProducto.SelectedRows[0].Cells["id_tipo_producto"].Value);
                 string descripcion = dgvTipoProducto.SelectedRows[0].Cells["nombre_tipo_producto"].Value.ToString();
 
-                frmModificarTipoProducto ModificarTProducto = new frmModificarTipoProducto(id, descripcion);
-
-                if (ModificarTProducto.ShowDialog() == DialogResult.OK)
-                {
-                    _ = CargarGridTipos();
-                }
+                AbrirOEnfocarDialogo(
+                    () => new frmModificarTipoProducto(id, descripcion),
+                    (f) => _ = CargarGridTipos()
+                );
                 dgvTipoProducto.ClearSelection();
             }
             else

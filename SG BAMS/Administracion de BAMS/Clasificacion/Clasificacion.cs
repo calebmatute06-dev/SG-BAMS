@@ -54,6 +54,31 @@ namespace SG_BAMS.Administracion_de_BAMS.Clasificacion
             }
         }
 
+        private void AbrirOEnfocarDialogo<T>(Func<T> creadorFormulario, Action<T> accionesPostDialogo) where T : Form
+        {
+            T formExistente = Application.OpenForms.Cast<Form>().OfType<T>().FirstOrDefault();
+
+            if (formExistente != null)
+            {
+                if (formExistente.WindowState == FormWindowState.Minimized)
+                {
+                    formExistente.WindowState = FormWindowState.Normal;
+                }
+                formExistente.BringToFront();
+                formExistente.Focus();
+            }
+            else
+            {
+                using (T nuevoForm = creadorFormulario())
+                {
+                    if (nuevoForm.ShowDialog() == DialogResult.OK)
+                    {
+                        accionesPostDialogo(nuevoForm);
+                    }
+                }
+            }
+        }
+
         private void dgvClasificacion_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvClasificacion.SelectedRows.Count > 0)
@@ -61,12 +86,11 @@ namespace SG_BAMS.Administracion_de_BAMS.Clasificacion
                 int id = Convert.ToInt32(dgvClasificacion.CurrentRow.Cells["id_clasificacion_proveedor"].Value);
                 string descripcion = dgvClasificacion.CurrentRow.Cells["clasificacion_proveedor"].Value.ToString();
 
-                ModificarClasificacion modificarClasificacion = new ModificarClasificacion(id, descripcion);
+                AbrirOEnfocarDialogo(
+                    () => new ModificarClasificacion(id, descripcion),
+                    (f) => _ = CargarGridClasi()
+                );
 
-                if (modificarClasificacion.ShowDialog() == DialogResult.OK)
-                {
-                    _ = CargarGridClasi();
-                }
                 dgvClasificacion.ClearSelection();
             }
             else
@@ -77,11 +101,11 @@ namespace SG_BAMS.Administracion_de_BAMS.Clasificacion
 
         private void btmAgregar_Click(object sender, EventArgs e)
         {
-            AgregarClasificacion agregarClasificacion = new AgregarClasificacion();
-            if (agregarClasificacion.ShowDialog() == DialogResult.OK)
-            {
-                _ = CargarGridClasi();
-            }
+            AbrirOEnfocarDialogo(
+                () => new AgregarClasificacion(),
+                (f) => _ = CargarGridClasi()
+            );
+
             dgvClasificacion.ClearSelection();
         }
 
@@ -92,12 +116,11 @@ namespace SG_BAMS.Administracion_de_BAMS.Clasificacion
                 int id = Convert.ToInt32(dgvClasificacion.SelectedRows[0].Cells["id_clasificacion_proveedor"].Value);
                 string descripcion = dgvClasificacion.SelectedRows[0].Cells["clasificacion_proveedor"].Value.ToString();
 
-                ModificarClasificacion modificarClasificacion = new ModificarClasificacion(id, descripcion);
+                AbrirOEnfocarDialogo(
+                    () => new ModificarClasificacion(id, descripcion),
+                    (f) => _ = CargarGridClasi()
+                );
 
-                if (modificarClasificacion.ShowDialog() == DialogResult.OK)
-                {
-                    _ = CargarGridClasi();
-                }
                 dgvClasificacion.ClearSelection();
             }
             else

@@ -88,6 +88,33 @@ namespace SG_BAMS
             dgvRoles.ClearSelection();
         }
 
+
+        private void AbrirOEnfocarDialogo<T>(Func<T> creadorFormulario, Action<T> accionesPostDialogo) where T : Form
+        {
+            T formExistente = Application.OpenForms.Cast<Form>().OfType<T>().FirstOrDefault();
+
+            if (formExistente != null)
+            {
+                if (formExistente.WindowState == FormWindowState.Minimized)
+                {
+                    formExistente.WindowState = FormWindowState.Normal;
+                }
+                formExistente.BringToFront();
+                formExistente.Focus();
+            }
+            else
+            {
+                using (T nuevoForm = creadorFormulario())
+                {
+                    if (nuevoForm.ShowDialog() == DialogResult.OK)
+                    {
+                        accionesPostDialogo(nuevoForm);
+                    }
+                }
+            }
+        }
+
+
         /// <summary>
         /// Permite abrir el formulario de modificación al hacer doble clic sobre un registro.
         /// </summary>
@@ -95,19 +122,22 @@ namespace SG_BAMS
         /// <param name="e">La instancia de <see cref="DataGridViewCellEventArgs"/> que contiene los datos del evento.</param>
         private void dgvRoles_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvRoles.CurrentRow != null)
+            if (dgvRoles.CurrentRow != null && dgvRoles.SelectedRows.Count > 0)
             {
                 int id = Convert.ToInt32(dgvRoles.CurrentRow.Cells["id_rol_usuario"].Value);
                 string nombre = dgvRoles.CurrentRow.Cells["descripcion_rol"].Value.ToString();
 
-                frmModificarRol frmMod = new frmModificarRol(id, nombre);
-
-                if (frmMod.ShowDialog() == DialogResult.OK)
-                {
-                    _ = CargarGridRoles();
-                }
-                dgvRoles.ClearSelection();
+                AbrirOEnfocarDialogo(
+                    () => new frmModificarRol(id, nombre),
+                    (f) => _ = CargarGridRoles()
+                );
             }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione una fila completa de la lista.", "Validación",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            dgvRoles.ClearSelection();
         }
 
         /// <summary>
@@ -117,13 +147,10 @@ namespace SG_BAMS
         /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btmAgregar_Click(object sender, EventArgs e)
         {
-            frmAgregarRol agregarRol = new frmAgregarRol();
-
-            // Si se cierra con OK (éxito), se recarga el grid
-            if (agregarRol.ShowDialog() == DialogResult.OK)
-            {
-                _ = CargarGridRoles();
-            }
+            AbrirOEnfocarDialogo(
+                () => new frmAgregarRol(),
+                (f) => _ = CargarGridRoles()
+            );
             dgvRoles.ClearSelection();
         }
 
@@ -139,12 +166,10 @@ namespace SG_BAMS
                 int id = Convert.ToInt32(dgvRoles.CurrentRow.Cells["id_rol_usuario"].Value);
                 string nombre = dgvRoles.CurrentRow.Cells["descripcion_rol"].Value.ToString();
 
-                frmModificarRol frmMod = new frmModificarRol(id, nombre);
-
-                if (frmMod.ShowDialog() == DialogResult.OK)
-                {
-                    _ = CargarGridRoles();
-                }
+                AbrirOEnfocarDialogo(
+                    () => new frmModificarRol(id, nombre),
+                    (f) => _ = CargarGridRoles()
+                );
                 dgvRoles.ClearSelection();
             }
             else

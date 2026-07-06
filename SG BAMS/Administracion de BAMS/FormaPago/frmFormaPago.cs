@@ -87,6 +87,32 @@ namespace SG_BAMS
             dgvFormasPago.ClearSelection();
         }
 
+        private void AbrirOEnfocarDialogo<T>(Func<T> creadorFormulario, Action<T> accionesPostDialogo) where T : Form
+        {
+            T formExistente = Application.OpenForms.Cast<Form>().OfType<T>().FirstOrDefault();
+
+            if (formExistente != null)
+            {
+                if (formExistente.WindowState == FormWindowState.Minimized)
+                {
+                    formExistente.WindowState = FormWindowState.Normal;
+                }
+                formExistente.BringToFront();
+                formExistente.Focus();
+            }
+            else
+            {
+                using (T nuevoForm = creadorFormulario())
+                {
+                    if (nuevoForm.ShowDialog() == DialogResult.OK)
+                    {
+                        accionesPostDialogo(nuevoForm);
+                    }
+                }
+            }
+        }
+
+
         /// <summary>
         /// Maneja el evento de clic para abrir el formulario de creación de una nueva forma de pago.
         /// </summary>
@@ -94,13 +120,11 @@ namespace SG_BAMS
         /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btmAgregar2_Click(object sender, EventArgs e)
         {
-    using (frmAgregarFormaPago AgregarFpago = new frmAgregarFormaPago())
-    {
-        if (AgregarFpago.ShowDialog() == DialogResult.OK)
-        {
-            _ = CargarGridFormasPago();
-        }
-    }
+            AbrirOEnfocarDialogo(
+                () => new frmAgregarFormaPago(),
+                (f) => _ = CargarGridFormasPago()
+            );
+            dgvFormasPago.ClearSelection();
         }
 
         /// <summary>
@@ -115,13 +139,10 @@ namespace SG_BAMS
                 int id = Convert.ToInt32(dgvFormasPago.CurrentRow.Cells["id_tipo_forma_pago"].Value);
                 string descripcion = dgvFormasPago.CurrentRow.Cells["descripcion_forma_pago"].Value.ToString();
 
-                using (frmModificarFormaPago frmModificar = new frmModificarFormaPago(id, descripcion))
-                {
-                    if (frmModificar.ShowDialog() == DialogResult.OK)
-                    {
-                        _ = CargarGridFormasPago();
-                    }
-                }
+                AbrirOEnfocarDialogo(
+                    () => new frmModificarFormaPago(id, descripcion),
+                    (f) => _ = CargarGridFormasPago()
+                );
                 dgvFormasPago.ClearSelection();
             }
             else
@@ -137,8 +158,10 @@ namespace SG_BAMS
         /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            frmAgregarFormaPago agregarFpago = new frmAgregarFormaPago();
-            agregarFpago.ShowDialog();
+            AbrirOEnfocarDialogo(
+                () => new frmAgregarFormaPago(),
+                (f) => _ = CargarGridFormasPago()
+            );
             dgvFormasPago.ClearSelection();
         }
 
@@ -154,14 +177,11 @@ namespace SG_BAMS
                 int id = Convert.ToInt32(dgvFormasPago.CurrentRow.Cells["id_tipo_forma_pago"].Value);
                 string descripcion = dgvFormasPago.CurrentRow.Cells["descripcion_forma_pago"].Value.ToString();
 
-                using (frmModificarFormaPago frmModificar = new frmModificarFormaPago(id, descripcion))
-                {
-                    if (frmModificar.ShowDialog() == DialogResult.OK)
-                    {
-                        _ = CargarGridFormasPago();
-                    }
-                    dgvFormasPago.ClearSelection();
-                }
+                AbrirOEnfocarDialogo(
+                    () => new frmModificarFormaPago(id, descripcion),
+                    (f) => _ = CargarGridFormasPago()
+                );
+                dgvFormasPago.ClearSelection();
             }
             else
             {

@@ -99,6 +99,34 @@ namespace SG_BAMS
             dgvEstados.ClearSelection();
         }
 
+
+        private void AbrirOEnfocarDialogo<T>(Func<T> creadorFormulario, Action<T> accionesPostDialogo) where T : Form
+        {
+            T formExistente = Application.OpenForms.Cast<Form>().OfType<T>().FirstOrDefault();
+
+            if (formExistente != null)
+            {
+                if (formExistente.WindowState == FormWindowState.Minimized)
+                {
+                    formExistente.WindowState = FormWindowState.Normal;
+                }
+                formExistente.BringToFront();
+                formExistente.Focus();
+            }
+            else
+            {
+                using (T nuevoForm = creadorFormulario())
+                {
+                    if (nuevoForm.ShowDialog() == DialogResult.OK)
+                    {
+                        accionesPostDialogo(nuevoForm);
+                    }
+                }
+            }
+        }
+
+
+
         /// <summary>
         /// Maneja el evento de doble clic en el contenido de una celda para modificar el registro.
         /// </summary>
@@ -108,16 +136,14 @@ namespace SG_BAMS
         {
             if (dgvEstados.SelectedRows.Count > 0)
             {
-
                 int id = Convert.ToInt32(dgvEstados.CurrentRow.Cells["id_estado"].Value);
                 string descripcion = dgvEstados.CurrentRow.Cells["descripcion_estado"].Value.ToString();
 
-                frmModificarEstado frmMod = new frmModificarEstado(id, descripcion);
+                AbrirOEnfocarDialogo(
+                    () => new frmModificarEstado(id, descripcion),
+                    (f) => _ = CargarGridEstados()
+                );
 
-                if (frmMod.ShowDialog() == DialogResult.OK)
-                {
-                    _ = CargarGridEstados();
-                }
                 dgvEstados.ClearSelection();
             }
             else
@@ -133,12 +159,11 @@ namespace SG_BAMS
         /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            frmAgregarEstado frm = new frmAgregarEstado();
+            AbrirOEnfocarDialogo(
+                () => new frmAgregarEstado(),
+                (f) => _ = CargarGridEstados()
+            );
 
-            if (frm.ShowDialog() == DialogResult.OK)
-            {
-                _ = CargarGridEstados();
-            }
             dgvEstados.ClearSelection();
         }
 
@@ -151,16 +176,14 @@ namespace SG_BAMS
         {
             if (dgvEstados.SelectedRows.Count > 0)
             {
-
                 int id = Convert.ToInt32(dgvEstados.CurrentRow.Cells["id_estado"].Value);
                 string descripcion = dgvEstados.CurrentRow.Cells["descripcion_estado"].Value.ToString();
 
-                frmModificarEstado frmMod = new frmModificarEstado(id, descripcion);
+                AbrirOEnfocarDialogo(
+                    () => new frmModificarEstado(id, descripcion),
+                    (f) => _ = CargarGridEstados()
+                );
 
-                if (frmMod.ShowDialog() == DialogResult.OK)
-                {
-                    _ = CargarGridEstados();
-                }
                 dgvEstados.ClearSelection();
             }
             else

@@ -85,6 +85,32 @@ namespace SG_BAMS
             dgvUsuarios.ClearSelection();
         }
 
+        private void AbrirOEnfocarDialogo<T>(Func<T> creadorFormulario, Action<T> accionesPostDialogo) where T : Form
+        {
+            T formExistente = Application.OpenForms.Cast<Form>().OfType<T>().FirstOrDefault();
+
+            if (formExistente != null)
+            {
+                if (formExistente.WindowState == FormWindowState.Minimized)
+                {
+                    formExistente.WindowState = FormWindowState.Normal;
+                }
+                formExistente.BringToFront();
+                formExistente.Focus();
+            }
+            else
+            {
+                using (T nuevoForm = creadorFormulario())
+                {
+                    if (nuevoForm.ShowDialog() == DialogResult.OK)
+                    {
+                        accionesPostDialogo(nuevoForm);
+                    }
+                }
+            }
+        }
+
+
         /// <summary>
         /// Maneja el evento de doble clic en una celda para abrir el formulario de edición del usuario seleccionado.
         /// </summary>
@@ -92,28 +118,24 @@ namespace SG_BAMS
         /// <param name="e">Instancia de <see cref="DataGridViewCellEventArgs"/> con los datos del evento.</param>
         private void dgvUsuarios_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvUsuarios.SelectedRows.Count > 0)
+            if (dgvUsuarios.CurrentRow != null && dgvUsuarios.SelectedRows.Count > 0)
             {
                 int id = Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["id_usuario"].Value);
                 string nombre = dgvUsuarios.CurrentRow.Cells["nombre_usuario"].Value.ToString();
-
                 int idRol = Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["id_rol_usuario"].Value);
                 int idEstado = Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["id_estado"].Value);
-
                 string correo = dgvUsuarios.CurrentRow.Cells["Correo"].Value.ToString();
 
-                frmModificarUsuarios frmMod = new frmModificarUsuarios(id, nombre, idRol, idEstado, correo);
-
-                if (frmMod.ShowDialog() == DialogResult.OK)
-                {
-                    _ = CargarGridUsuarios();
-                }
-                dgvUsuarios.ClearSelection();
+                AbrirOEnfocarDialogo(
+                    () => new frmModificarUsuarios(id, nombre, idRol, idEstado, correo),
+                    (f) => _ = CargarGridUsuarios()
+                );
             }
             else
             {
-                MessageBox.Show("Por favor, seleccione un usuario de la lista.");
+                MessageBox.Show("Por favor, seleccione una fila completa de la lista.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            dgvUsuarios.ClearSelection();
         }
 
         /// <summary>
@@ -123,8 +145,10 @@ namespace SG_BAMS
         /// <param name="e">Instancia de <see cref="EventArgs"/> con los datos del evento.</param>
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            frmAgregarUsuarios agregarUsuario = new frmAgregarUsuarios();
-            agregarUsuario.Show();
+            AbrirOEnfocarDialogo(
+                () => new frmAgregarUsuarios(),
+                (f) => _ = CargarGridUsuarios()
+            );
             dgvUsuarios.ClearSelection();
         }
 
@@ -135,22 +159,18 @@ namespace SG_BAMS
         /// <param name="e">Instancia de <see cref="EventArgs"/> con los datos del evento.</param>
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            if (dgvUsuarios.SelectedRows.Count > 0)
+            if (dgvUsuarios.CurrentRow != null && dgvUsuarios.SelectedRows.Count > 0)
             {
                 int id = Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["id_usuario"].Value);
                 string nombre = dgvUsuarios.CurrentRow.Cells["nombre_usuario"].Value.ToString();
-
                 int idRol = Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["id_rol_usuario"].Value);
                 int idEstado = Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["id_estado"].Value);
-
                 string correo = dgvUsuarios.CurrentRow.Cells["Correo"].Value.ToString();
 
-                frmModificarUsuarios frmMod = new frmModificarUsuarios(id, nombre, idRol, idEstado, correo);
-
-                if (frmMod.ShowDialog() == DialogResult.OK)
-                {
-                    _ = CargarGridUsuarios();
-                }
+                AbrirOEnfocarDialogo(
+                    () => new frmModificarUsuarios(id, nombre, idRol, idEstado, correo),
+                    (f) => _ = CargarGridUsuarios()
+                );
                 dgvUsuarios.ClearSelection();
             }
             else

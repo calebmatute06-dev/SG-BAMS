@@ -30,6 +30,26 @@ namespace SG_BAMS
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
+        private void AbrirOEnfocarFormulario<T>(Func<T> creadorFormulario) where T : Form
+        {
+            T formExistente = Application.OpenForms.Cast<Form>().OfType<T>().FirstOrDefault();
+
+            if (formExistente != null)
+            {
+                if (formExistente.WindowState == FormWindowState.Minimized)
+                {
+                    formExistente.WindowState = FormWindowState.Normal;
+                }
+                formExistente.BringToFront();
+                formExistente.Focus();
+            }
+            else
+            {
+                T nuevoForm = creadorFormulario();
+                nuevoForm.Show();
+            }
+        }
+
         /// <summary>
         /// Maneja el evento Click del botón de notificaciones para abrir el panel de alertas administrativas.
         /// </summary>
@@ -59,8 +79,7 @@ namespace SG_BAMS
         /// <param name="e">Instancia de <see cref="EventArgs"/> con los datos del evento.</param>
         private void btnVerUsuarios_Click(object sender, EventArgs e)
         {
-            frmUsuarios usuarios = new frmUsuarios();
-            usuarios.Show();
+            AbrirOEnfocarFormulario(() => new frmUsuarios());
         }
 
         /// <summary>
@@ -70,8 +89,7 @@ namespace SG_BAMS
         /// <param name="e">Instancia de <see cref="EventArgs"/> con los datos del evento.</param>
         private void btnRoles_Click(object sender, EventArgs e)
         {
-            frmRoles verRoles = new frmRoles();
-            verRoles.Show();
+            AbrirOEnfocarFormulario(() => new frmRoles());
         }
 
         /// <summary>
@@ -81,8 +99,7 @@ namespace SG_BAMS
         /// <param name="e">Instancia de <see cref="EventArgs"/> con los datos del evento.</param>
         private void btnTproducto_Click_1(object sender, EventArgs e)
         {
-            frmTipoProducto verTproducto = new frmTipoProducto();
-            verTproducto.Show();
+            AbrirOEnfocarFormulario(() => new frmTipoProducto());
         }
 
         /// <summary>
@@ -92,8 +109,7 @@ namespace SG_BAMS
         /// <param name="e">Instancia de <see cref="EventArgs"/> con los datos del evento.</param>
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
-            frmFormaPago verFormaPago = new frmFormaPago();
-            verFormaPago.Show();
+            AbrirOEnfocarFormulario(() => new frmFormaPago());
         }
 
         /// <summary>
@@ -103,8 +119,7 @@ namespace SG_BAMS
         /// <param name="e">Instancia de <see cref="EventArgs"/> con los datos del evento.</param>
         private void btnEstado_Click(object sender, EventArgs e)
         {
-            frmEstado verEstado = new frmEstado();
-            verEstado.Show();
+            AbrirOEnfocarFormulario(() => new frmEstado());
         }
 
         /// <summary>
@@ -114,8 +129,7 @@ namespace SG_BAMS
         /// <param name="e">Instancia de <see cref="EventArgs"/> con los datos del evento.</param>
         private void btnMproducto_Click_1(object sender, EventArgs e)
         {
-            frmMarcaProductos verMproducto = new frmMarcaProductos();
-            verMproducto.Show();
+            AbrirOEnfocarFormulario(() => new frmMarcaProductos());
         }
 
         /// <summary>
@@ -125,8 +139,7 @@ namespace SG_BAMS
         /// <param name="e">Instancia de <see cref="EventArgs"/> con los datos del evento.</param>
         private void btnMauto_Click(object sender, EventArgs e)
         {
-            frmModeloAuto verMauto = new frmModeloAuto();
-            verMauto.Show();
+            AbrirOEnfocarFormulario(() => new frmModeloAuto());
         }
 
         /// <summary>
@@ -271,8 +284,7 @@ namespace SG_BAMS
 
         private void btnClasificacion_Click(object sender, EventArgs e)
         {
-            Clasificacion clasificacion = new Clasificacion();
-            clasificacion.Show();
+            AbrirOEnfocarFormulario(() => new Clasificacion());
         }
     }
 }
