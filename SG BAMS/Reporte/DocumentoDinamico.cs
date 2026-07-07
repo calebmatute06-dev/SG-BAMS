@@ -6,186 +6,193 @@ using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
 
-/// <summary>
-/// 
-/// </summary>
-public class DocumentoDinamico : IDocument
+namespace SG_BAMS.Reporte
 {
-    /// <summary>
-    /// El DataGridView
-    /// </summary>
-    private DataGridView _dgv;
-    /// <summary>
-    /// El título de cabecera
-    /// </summary>
-    private string _tituloCabecera;
-    /// <summary>
-    /// La fecha desde
-    /// </summary>
-    private DateTime _desde;
-    /// <summary>
-    /// La fecha hasta
-    /// </summary>
-    private DateTime _hasta;
+
+
 
     /// <summary>
-    /// Inicializa una nueva instancia de la clase <see cref="DocumentoDinamico" />.
+    /// 
     /// </summary>
-    /// <param name="dgv">El DataGridView.</param>
-    /// <param name="tituloCabecera">El título de cabecera.</param>
-    /// <param name="desde">La fecha desde.</param>
-    /// <param name="hasta">La fecha hasta.</param>
-    public DocumentoDinamico(DataGridView dgv, string tituloCabecera, DateTime desde, DateTime hasta)
+    ///
+    public class DocumentoDinamico : IDocument
     {
-        _dgv = dgv;
-        _tituloCabecera = tituloCabecera;
-        _desde = desde;
-        _hasta = hasta;
-    }
+        /// <summary>
+        /// El DataGridView
+        /// </summary>
+        private DataGridView _dgv;
+        /// <summary>
+        /// El título de cabecera
+        /// </summary>
+        private string _tituloCabecera;
+        /// <summary>
+        /// La fecha desde
+        /// </summary>
+        private DateTime _desde;
+        /// <summary>
+        /// La fecha hasta
+        /// </summary>
+        private DateTime _hasta;
 
-    /// <summary>
-    /// Configura el contenido del documento especificando su estructura de diseño y elementos visuales.
-    /// </summary>
-    /// <param name="container">El contenedor del documento utilizado para definir el contenido a través de FluentAPI.</param>
-    public void Compose(IDocumentContainer container)
-    {
-        decimal totalGeneral = 0;
-        int indiceColumna = -1;
-
-        string titulo = _tituloCabecera.ToUpper();
-
-        if (titulo.Contains("VENTAS"))
-            indiceColumna = 5;
-        else if (titulo.Contains("COMPRAS"))
-            indiceColumna = 6;
-        else if (titulo.Contains("DEUDORES"))
-            indiceColumna = 6;
-        else if (titulo.Contains("INVENTARIO"))
+        /// <summary>
+        /// Inicializa una nueva instancia de la clase <see cref="DocumentoDinamico" />.
+        /// </summary>
+        /// <param name="dgv">El DataGridView.</param>
+        /// <param name="tituloCabecera">El título de cabecera.</param>
+        /// <param name="desde">La fecha desde.</param>
+        /// <param name="hasta">La fecha hasta.</param>
+        public DocumentoDinamico(DataGridView dgv, string tituloCabecera, DateTime desde, DateTime hasta)
         {
-
-            indiceColumna = _dgv.Columns.Count - 1;
+            _dgv = dgv;
+            _tituloCabecera = tituloCabecera;
+            _desde = desde;
+            _hasta = hasta;
         }
 
-        if (indiceColumna != -1 && _dgv.Columns.Count > indiceColumna)
+        /// <summary>
+        /// Configura el contenido del documento especificando su estructura de diseño y elementos visuales.
+        /// </summary>
+        /// <param name="container">El contenedor del documento utilizado para definir el contenido a través de FluentAPI.</param>
+        public void Compose(IDocumentContainer container)
         {
-            foreach (DataGridViewRow row in _dgv.Rows)
+            decimal totalGeneral = 0;
+            int indiceColumna = -1;
+
+            string titulo = _tituloCabecera.ToUpper();
+
+            if (titulo.Contains("VENTAS"))
+                indiceColumna = 5;
+            else if (titulo.Contains("COMPRAS"))
+                indiceColumna = 6;
+            else if (titulo.Contains("DEUDORES"))
+                indiceColumna = 6;
+            else if (titulo.Contains("INVENTARIO"))
             {
-                if (!row.IsNewRow && row.Cells[indiceColumna].Value != null)
+
+                indiceColumna = _dgv.Columns.Count - 1;
+            }
+
+            if (indiceColumna != -1 && _dgv.Columns.Count > indiceColumna)
+            {
+                foreach (DataGridViewRow row in _dgv.Rows)
                 {
-                    if (decimal.TryParse(row.Cells[indiceColumna].Value.ToString(), out decimal valor))
-                        totalGeneral += valor;
+                    if (!row.IsNewRow && row.Cells[indiceColumna].Value != null)
+                    {
+                        if (decimal.TryParse(row.Cells[indiceColumna].Value.ToString(), out decimal valor))
+                            totalGeneral += valor;
+                    }
                 }
             }
-        }
 
-        container.Page(page =>
-        {
-            page.Margin(1, Unit.Centimetre);
-            page.PageColor(Colors.White);
-            page.Size(PageSizes.A4.Landscape());
-
-            page.Header().Column(col =>
+            container.Page(page =>
             {
-                col.Item().Text($"SISTEMA BAMS - {_tituloCabecera.ToUpper()}").FontSize(20).SemiBold().FontColor(Colors.Blue.Medium);
+                page.Margin(1, Unit.Centimetre);
+                page.PageColor(Colors.White);
+                page.Size(PageSizes.A4.Landscape());
 
-                if (titulo.Contains("VENTAS") || titulo.Contains("COMPRAS"))
+                page.Header().Column(col =>
                 {
-                    col.Item().Text($"Rango del reporte: {_desde:dd/MM/yyyy} al {_hasta:dd/MM/yyyy}")
-                        .FontSize(12).Italic().FontColor(Colors.Grey.Darken2);
-                }
-                else if (titulo.Contains("INVENTARIO"))
-                {
-                    col.Item().Text($"Estado actual del stock al: {DateTime.Now:dd/MM/yyyy}")
-                        .FontSize(12).Italic().FontColor(Colors.Grey.Darken2);
-                }
-            });
+                    col.Item().Text($"SISTEMA BAMS - {_tituloCabecera.ToUpper()}").FontSize(20).SemiBold().FontColor(Colors.Blue.Medium);
 
-            page.Content().PaddingVertical(10).Column(col =>
-            {
-                col.Item().Table(table =>
-                {
-                    table.ColumnsDefinition(columns =>
+                    if (titulo.Contains("VENTAS") || titulo.Contains("COMPRAS"))
                     {
-                        for (int i = 0; i < _dgv.Columns.Count; i++) columns.RelativeColumn();
-                    });
-
-                    table.Header(header =>
+                        col.Item().Text($"Rango del reporte: {_desde:dd/MM/yyyy} al {_hasta:dd/MM/yyyy}")
+                            .FontSize(12).Italic().FontColor(Colors.Grey.Darken2);
+                    }
+                    else if (titulo.Contains("INVENTARIO"))
                     {
-                        foreach (DataGridViewColumn c in _dgv.Columns)
-                        {
-                            header.Cell().Background(Colors.Grey.Lighten3).Padding(5).Text(c.HeaderText).SemiBold().FontSize(10);
-                        }
-                    });
-
-                    foreach (DataGridViewRow row in _dgv.Rows)
-                    {
-                        if (!row.IsNewRow)
-                        {
-                            foreach (DataGridViewCell cell in row.Cells)
-                            {
-                                string valorTexto = cell.Value is DateTime fecha ? fecha.ToString("dd/MM/yyyy") : cell.Value?.ToString() ?? "";
-                                string nombreColumna = _dgv.Columns[cell.ColumnIndex].Name;
-                                var celda = table.Cell().BorderBottom(1).BorderColor(Colors.Grey.Lighten4).Padding(5);
-
-                                if (nombreColumna == "Stock_Actual" && int.TryParse(valorTexto, out int stock))
-                                {
-                                    if (stock == 0) celda.Background("#FFC0C0").Text(valorTexto).FontColor("#8B0000").Bold();
-                                    else if (stock <= 10) celda.Background("#FFE0C0").Text(valorTexto).FontColor("#A52A2A");
-                                    else celda.Background("#C0FFC0").Text(valorTexto).FontColor("#006400");
-                                }
-                                else
-                                {
-                                    string[] columnasDinero = { "Total_Venta", "Inversion_Total", "Monto_Credito",
-                                    "Saldo_Pendiente", "Precio_Unitario", "Total_Venta_Esperada", "Abonado" };
-
-                                    if (columnasDinero.Contains(nombreColumna) && decimal.TryParse(valorTexto, out decimal monto))
-                                        celda.Text($"L. {monto:N2}").FontSize(9);
-                                    else
-                                        celda.Text(valorTexto).FontSize(9);
-                                }
-                            }
-                        }
+                        col.Item().Text($"Estado actual del stock al: {DateTime.Now:dd/MM/yyyy}")
+                            .FontSize(12).Italic().FontColor(Colors.Grey.Darken2);
                     }
                 });
 
-                if (indiceColumna != -1)
+                page.Content().PaddingVertical(10).Column(col =>
                 {
-                    col.Item().PaddingTop(10).AlignRight().Table(tTotal =>
+                    col.Item().Table(table =>
                     {
-                        tTotal.ColumnsDefinition(c =>
+                        table.ColumnsDefinition(columns =>
                         {
-                            c.RelativeColumn();
-                            c.ConstantColumn(160);
+                            for (int i = 0; i < _dgv.Columns.Count; i++) columns.RelativeColumn();
                         });
 
-                        string etiqueta = "TOTAL GENERAL:";
-                        string tituloUpper = _tituloCabecera.ToUpper();
+                        table.Header(header =>
+                        {
+                            foreach (DataGridViewColumn c in _dgv.Columns)
+                            {
+                                header.Cell().Background(Colors.Grey.Lighten3).Padding(5).Text(c.HeaderText).SemiBold().FontSize(10);
+                            }
+                        });
 
-                        if (tituloUpper.Contains("VENTAS"))
-                            etiqueta = "TOTAL VENTAS:";
-                        else if (tituloUpper.Contains("COMPRAS"))
-                            etiqueta = "TOTAL EN COMPRAS:";
-                        else if (tituloUpper.Contains("DEUDORES"))
-                            etiqueta = "TOTAL SALDO PENDIENTE:";
-                        else if (tituloUpper.Contains("INVENTARIO"))
-                            etiqueta = "CAPITAL TOTAL EN STOCK:";
+                        foreach (DataGridViewRow row in _dgv.Rows)
+                        {
+                            if (!row.IsNewRow)
+                            {
+                                foreach (DataGridViewCell cell in row.Cells)
+                                {
+                                    string valorTexto = cell.Value is DateTime fecha ? fecha.ToString("dd/MM/yyyy") : cell.Value?.ToString() ?? "";
+                                    string nombreColumna = _dgv.Columns[cell.ColumnIndex].Name;
+                                    var celda = table.Cell().BorderBottom(1).BorderColor(Colors.Grey.Lighten4).Padding(5);
 
-                        tTotal.Cell().Padding(5).AlignRight().Text(etiqueta).SemiBold().FontSize(12);
+                                    if (nombreColumna == "Stock_Actual" && int.TryParse(valorTexto, out int stock))
+                                    {
+                                        if (stock == 0) celda.Background("#FFC0C0").Text(valorTexto).FontColor("#8B0000").Bold();
+                                        else if (stock <= 10) celda.Background("#FFE0C0").Text(valorTexto).FontColor("#A52A2A");
+                                        else celda.Background("#C0FFC0").Text(valorTexto).FontColor("#006400");
+                                    }
+                                    else
+                                    {
+                                        string[] columnasDinero = { "Total_Venta", "Inversion_Total", "Monto_Credito",
+                                        "Saldo_Pendiente", "Precio_Unitario", "Total_Venta_Esperada", "Abonado" };
 
-                        tTotal.Cell().Background(Colors.Grey.Lighten4).Border(1).BorderColor(Colors.Grey.Lighten2)
-                            .Padding(5).AlignCenter().Text($"L. {totalGeneral:N2}").SemiBold().FontSize(12).FontColor(Colors.Blue.Medium);
+                                        if (columnasDinero.Contains(nombreColumna) && decimal.TryParse(valorTexto, out decimal monto))
+                                            celda.Text($"L. {monto:N2}").FontSize(9);
+                                        else
+                                            celda.Text(valorTexto).FontSize(9);
+                                    }
+                                }
+                            }
+                        }
                     });
-                }
-            });
 
-            page.Footer().PaddingTop(5).Row(row =>
-            {
-                row.RelativeItem().Column(c =>
-                {
-                    c.Item().Text($"Generado el: {DateTime.Now:dd/MM/yyyy} - {DateTime.Now:hh:mm:ss tt}").FontSize(8).FontColor(Colors.Grey.Medium);
+                    if (indiceColumna != -1)
+                    {
+                        col.Item().PaddingTop(10).AlignRight().Table(tTotal =>
+                        {
+                            tTotal.ColumnsDefinition(c =>
+                            {
+                                c.RelativeColumn();
+                                c.ConstantColumn(160);
+                            });
+
+                            string etiqueta = "TOTAL GENERAL:";
+                            string tituloUpper = _tituloCabecera.ToUpper();
+
+                            if (tituloUpper.Contains("VENTAS"))
+                                etiqueta = "TOTAL VENTAS:";
+                            else if (tituloUpper.Contains("COMPRAS"))
+                                etiqueta = "TOTAL EN COMPRAS:";
+                            else if (tituloUpper.Contains("DEUDORES"))
+                                etiqueta = "TOTAL SALDO PENDIENTE:";
+                            else if (tituloUpper.Contains("INVENTARIO"))
+                                etiqueta = "CAPITAL TOTAL EN STOCK:";
+
+                            tTotal.Cell().Padding(5).AlignRight().Text(etiqueta).SemiBold().FontSize(12);
+
+                            tTotal.Cell().Background(Colors.Grey.Lighten4).Border(1).BorderColor(Colors.Grey.Lighten2)
+                                .Padding(5).AlignCenter().Text($"L. {totalGeneral:N2}").SemiBold().FontSize(12).FontColor(Colors.Blue.Medium);
+                        });
+                    }
                 });
-                row.RelativeItem().AlignRight().Text(x => { x.Span("Pág ").FontSize(8); x.CurrentPageNumber().FontSize(8); });
+
+                page.Footer().PaddingTop(5).Row(row =>
+                {
+                    row.RelativeItem().Column(c =>
+                    {
+                        c.Item().Text($"Generado el: {DateTime.Now:dd/MM/yyyy} - {DateTime.Now:hh:mm:ss tt}").FontSize(8).FontColor(Colors.Grey.Medium);
+                    });
+                    row.RelativeItem().AlignRight().Text(x => { x.Span("Pág ").FontSize(8); x.CurrentPageNumber().FontSize(8); });
+                });
             });
-        });
+        }
     }
 }
