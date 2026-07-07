@@ -8,9 +8,6 @@ using QuestPDF.Infrastructure;
 
 namespace SG_BAMS.Reporte
 {
-
-
-
     /// <summary>
     /// 
     /// </summary>
