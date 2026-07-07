@@ -59,7 +59,7 @@ namespace SG_BAMS
 
                 if (!string.IsNullOrEmpty(usuarioLogueado))
                 {
-                    ClsUsuario objUsuario = new ClsUsuario();
+                    ClsPerfil objUsuario = new ClsPerfil();
                     DataTable datos = await objUsuario.ObtenerPerfilDesdeVista(usuarioLogueado);
 
                     if (datos.Rows.Count > 0)
@@ -130,7 +130,7 @@ namespace SG_BAMS
 
                     string usuarioLogueado = SG_BAMS.Login.Login.UsuarioLogueado;
 
-                    ClsUsuario objUsuario = new ClsUsuario();
+                    ClsPerfil objUsuario = new ClsPerfil();
                     await objUsuario.ActualizarFotoUsuario(usuarioLogueado, imagenBytes);
 
 

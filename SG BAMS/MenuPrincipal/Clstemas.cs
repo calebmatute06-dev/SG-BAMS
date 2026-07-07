@@ -3,144 +3,146 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
 
-/// <summary>
-/// 
-/// </summary>
-public static class ClsTemas
+
+
+namespace SG_BAMS.MenuPrincipal
 {
-    /// <summary>
-    /// The modo oscuro enabled
-    /// </summary>
-    public static bool modoOscuroEnabled = false;
-    /// <summary>
-    /// The ruta archivo
-    /// </summary>
-    private static string rutaArchivo = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "config_tema_krypton_fix.txt");
-
-    /// <summary>
-    /// The color fondo negro
-    /// </summary>
-    private static Color colorFondoNegro = Color.FromArgb(25, 25, 25);
-    /// <summary>
-    /// The color texto blanco
-    /// </summary>
-    private static Color colorTextoBlanco = Color.White;
-
-    /// <summary>
-    /// Guardars the preferencia.
-    /// </summary>
-    /// <param name="estado">if set to <c>true</c> [estado].</param>
-    public static void GuardarPreferencia(bool estado)
+    public static class ClsTemas
     {
-        try { modoOscuroEnabled = estado; File.WriteAllText(rutaArchivo, estado.ToString()); } catch { }
-    }
+        /// <summary>
+        /// The modo oscuro enabled
+        /// </summary>
+        public static bool modoOscuroEnabled = false;
+        /// <summary>
+        /// The ruta archivo
+        /// </summary>
+        private static string rutaArchivo = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "config_tema_krypton_fix.txt");
 
-    /// <summary>
-    /// Cargars the preferencia.
-    /// </summary>
-    public static void CargarPreferencia()
-    {
-        try { if (File.Exists(rutaArchivo)) bool.TryParse(File.ReadAllText(rutaArchivo), out modoOscuroEnabled); } catch { }
-    }
+        /// <summary>
+        /// The color fondo negro
+        /// </summary>
+        private static Color colorFondoNegro = Color.FromArgb(25, 25, 25);
+        /// <summary>
+        /// The color texto blanco
+        /// </summary>
+        private static Color colorTextoBlanco = Color.White;
 
-    /// <summary>
-    /// Aplicars the tema.
-    /// </summary>
-    /// <param name="formulario">The formulario.</param>
-    public static void AplicarTema(Form formulario)
-    {
-        formulario.BackColor = modoOscuroEnabled ? colorFondoNegro : SystemColors.Control;
-
-        foreach (Control objetoControl in formulario.Controls)
+        /// <summary>
+        /// Guardars the preferencia.
+        /// </summary>
+        /// <param name="estado">if set to <c>true</c> [estado].</param>
+        public static void GuardarPreferencia(bool estado)
         {
-            ProcesarEstiloCapa(objetoControl, modoOscuroEnabled);
+            try { modoOscuroEnabled = estado; File.WriteAllText(rutaArchivo, estado.ToString()); } catch { }
         }
-    }
 
-    /// <summary>
-    /// Procesars the estilo capa.
-    /// </summary>
-    /// <param name="objetoControl">The objeto control.</param>
-    /// <param name="esOscuro">if set to <c>true</c> [es oscuro].</param>
-    private static void ProcesarEstiloCapa(Control objetoControl, bool esOscuro)
-    {
-        
-        if (objetoControl.Name == "kryptonButton11" || objetoControl is Button)
+        /// <summary>
+        /// Cargars the preferencia.
+        /// </summary>
+        public static void CargarPreferencia()
         {
-            if (esOscuro)
+            try { if (File.Exists(rutaArchivo)) bool.TryParse(File.ReadAllText(rutaArchivo), out modoOscuroEnabled); } catch { }
+        }
+
+        /// <summary>
+        /// Aplicars the tema.
+        /// </summary>
+        /// <param name="formulario">The formulario.</param>
+        public static void AplicarTema(Form formulario)
+        {
+            formulario.BackColor = modoOscuroEnabled ? colorFondoNegro : SystemColors.Control;
+
+            foreach (Control objetoControl in formulario.Controls)
             {
-                objetoControl.BackColor = Color.White;
-                objetoControl.ForeColor = Color.Black;
+                ProcesarEstiloCapa(objetoControl, modoOscuroEnabled);
+            }
+        }
 
-                
-                if (objetoControl.GetType().Name.Contains("KryptonButton"))
+        /// <summary>
+        /// Procesars the estilo capa.
+        /// </summary>
+        /// <param name="objetoControl">The objeto control.</param>
+        /// <param name="esOscuro">if set to <c>true</c> [es oscuro].</param>
+        private static void ProcesarEstiloCapa(Control objetoControl, bool esOscuro)
+        {
+
+            if (objetoControl.Name == "kryptonButton11" || objetoControl is Button)
+            {
+                if (esOscuro)
                 {
-                    try
+                    objetoControl.BackColor = Color.White;
+                    objetoControl.ForeColor = Color.Black;
+
+
+                    if (objetoControl.GetType().Name.Contains("KryptonButton"))
                     {
-                        dynamic kBtn = objetoControl;
-                        
-                        kBtn.StateCommon.Back.Color1 = Color.White;
-                        kBtn.StateCommon.Back.Color2 = Color.White;
-                        kBtn.StateCommon.Content.ShortText.Color1 = Color.Black;
+                        try
+                        {
+                            dynamic kBtn = objetoControl;
 
-                       
-                        kBtn.StateTracking.Back.Color1 = Color.White;
-                        kBtn.StateTracking.Back.Color2 = Color.White;
-                        kBtn.StateTracking.Content.ShortText.Color1 = Color.Black;
+                            kBtn.StateCommon.Back.Color1 = Color.White;
+                            kBtn.StateCommon.Back.Color2 = Color.White;
+                            kBtn.StateCommon.Content.ShortText.Color1 = Color.Black;
 
-                       
-                        kBtn.StatePressed.Back.Color1 = Color.White;
-                        kBtn.StatePressed.Back.Color2 = Color.White;
+
+                            kBtn.StateTracking.Back.Color1 = Color.White;
+                            kBtn.StateTracking.Back.Color2 = Color.White;
+                            kBtn.StateTracking.Content.ShortText.Color1 = Color.Black;
+
+
+                            kBtn.StatePressed.Back.Color1 = Color.White;
+                            kBtn.StatePressed.Back.Color2 = Color.White;
+                        }
+                        catch { }
                     }
-                    catch { }
+                }
+                else
+                {
+
+                    objetoControl.BackColor = SystemColors.ControlLight;
+                    objetoControl.ForeColor = SystemColors.ControlText;
+
+                    if (objetoControl.GetType().Name.Contains("KryptonButton"))
+                    {
+                        try
+                        {
+                            dynamic kBtn = objetoControl;
+
+                            kBtn.StateCommon.Back.Color1 = Color.Empty;
+                            kBtn.StateTracking.Back.Color1 = Color.Empty;
+                            kBtn.StateCommon.Content.ShortText.Color1 = Color.Empty;
+                        }
+                        catch { }
+                    }
                 }
             }
-            else
-            {
-                
-                objetoControl.BackColor = SystemColors.ControlLight;
-                objetoControl.ForeColor = SystemColors.ControlText;
 
-                if (objetoControl.GetType().Name.Contains("KryptonButton"))
+
+            else if (objetoControl is Label || objetoControl is CheckBox || objetoControl is RadioButton)
+            {
+                objetoControl.ForeColor = esOscuro ? colorTextoBlanco : SystemColors.ControlText;
+            }
+
+
+            else if (objetoControl is TextBox || objetoControl is ComboBox)
+            {
+                objetoControl.BackColor = esOscuro ? Color.FromArgb(45, 45, 48) : Color.White;
+                objetoControl.ForeColor = esOscuro ? colorTextoBlanco : Color.Black;
+            }
+
+
+            else if (objetoControl is Panel || objetoControl is GroupBox)
+            {
+                if (objetoControl.BackColor == SystemColors.Control)
                 {
-                    try
-                    {
-                        dynamic kBtn = objetoControl;
-                        
-                        kBtn.StateCommon.Back.Color1 = Color.Empty;
-                        kBtn.StateTracking.Back.Color1 = Color.Empty;
-                        kBtn.StateCommon.Content.ShortText.Color1 = Color.Empty;
-                    }
-                    catch { }
+                    objetoControl.BackColor = esOscuro ? colorFondoNegro : SystemColors.Control;
                 }
             }
-        }
 
-        
-        else if (objetoControl is Label || objetoControl is CheckBox || objetoControl is RadioButton)
-        {
-            objetoControl.ForeColor = esOscuro ? colorTextoBlanco : SystemColors.ControlText;
-        }
-
-        
-        else if (objetoControl is TextBox || objetoControl is ComboBox)
-        {
-            objetoControl.BackColor = esOscuro ? Color.FromArgb(45, 45, 48) : Color.White;
-            objetoControl.ForeColor = esOscuro ? colorTextoBlanco : Color.Black;
-        }
-
-        
-        else if (objetoControl is Panel || objetoControl is GroupBox)
-        {
-            if (objetoControl.BackColor == SystemColors.Control)
+            foreach (Control hijo in objetoControl.Controls)
             {
-                objetoControl.BackColor = esOscuro ? colorFondoNegro : SystemColors.Control;
+                ProcesarEstiloCapa(hijo, esOscuro);
             }
-        }
-
-        foreach (Control hijo in objetoControl.Controls)
-        {
-            ProcesarEstiloCapa(hijo, esOscuro);
         }
     }
 }
