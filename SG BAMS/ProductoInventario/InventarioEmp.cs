@@ -58,11 +58,11 @@ namespace SG_BAMS
             textoColor = txtBuscar.ForeColor;
             placeholderColor = Color.Gray;
 
-            
+
             txtBuscar.Text = placeholderTexto;
             txtBuscar.ForeColor = placeholderColor;
 
-            
+
             txtBuscar.Enter += txtBuscar_Enter;
             txtBuscar.Leave += txtBuscar_Leave;
             txtBuscar.TextChanged += txtBuscar_TextChanged;
@@ -141,13 +141,13 @@ namespace SG_BAMS
         /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
-            
+
             if (txtBuscar.Text == placeholderTexto || txtBuscar.ForeColor == placeholderColor)
             {
                 return;
             }
 
-            
+
             if (string.IsNullOrWhiteSpace(txtBuscar.Text))
             {
                 CargarInventarioCompleto();
@@ -280,6 +280,13 @@ namespace SG_BAMS
         {
             Perfil perfil = new Perfil();
             perfil.ShowDialog();
+        }
+
+        private void BtnFiltros_Click(object sender, EventArgs e)
+        {
+            Filtros fil = new Filtros();
+            if (fil.ShowDialog() == DialogResult.OK)
+                logica.AplicarFiltro(dgvInventarioEmp, fil.FiltroSeleccionado);
         }
     }
 }

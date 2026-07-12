@@ -1,7 +1,8 @@
-﻿using System;
-using System.Data;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using SG_BAMS.ProductoInventario.DTO;
+using System;
+using System.Data;
+using static SG_BAMS.ProductoInventario.DTO.ProductoDTO;
 
 namespace SG_BAMS.ProductoInventario
 {
@@ -233,6 +234,42 @@ namespace SG_BAMS.ProductoInventario
             {
                 Cerrar();
             }
+        }
+
+        /// <summary>
+        /// Aplica un filtro en memoria al DataGridView del inventario.
+        /// </summary>
+        public void AplicarFiltro(DataGridView grid, FiltroInventarioDTO filtro)
+        {
+            DataView vista = ObtenerVista(grid);
+            if (vista == null || filtro == null) return;
+
+            vista.RowFilter = ConstruirCondicion(filtro);
+        }
+
+        private DataView ObtenerVista(DataGridView grid)
+        {
+            if (grid.DataSource is DataTable tabla) return tabla.DefaultView;
+            if (grid.DataSource is DataView vista) return vista;
+            return null;
+        }
+
+        private string ConstruirCondicion(FiltroInventarioDTO filtro)
+        {
+            var condiciones = new List<string>();
+
+            AgregarCondicion(condiciones, "Marca", filtro.Marca);
+            AgregarCondicion(condiciones, "Tipo", filtro.TipoProducto);
+            AgregarCondicion(condiciones, "[Modelo Auto]", filtro.ModeloAuto);
+            AgregarCondicion(condiciones, "Proveedor", filtro.Proveedor);
+
+            return string.Join(" AND ", condiciones);
+        }
+
+        private void AgregarCondicion(List<string> condiciones, string columna, string valor)
+        {
+            if (string.IsNullOrEmpty(valor)) return;
+            condiciones.Add($"{columna} = '{valor.Replace("'", "''")}'");
         }
     }
 }
