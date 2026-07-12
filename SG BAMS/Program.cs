@@ -20,7 +20,7 @@ namespace SG_BAMS
             // see https://aka.ms/applicationconfiguration.
             clsSoporte.InicializarDirectorio();
             ApplicationConfiguration.Initialize();
-            Application.Run(new Filtros());
+            Application.Run(new InventarioAdmin());
         }
     }
 } 

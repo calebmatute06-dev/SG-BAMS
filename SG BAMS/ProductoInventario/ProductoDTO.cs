@@ -29,12 +29,6 @@ namespace SG_BAMS.ProductoInventario.DTO
         public string EstadoActual { get; set; }
         public string ProveedorActual { get; set; }
 
-        public class FiltroInventarioDTO
-        {
-            public string Marca { get; set; }
-            public string TipoProducto { get; set; }
-            public string ModeloAuto { get; set; }
-            public string Proveedor { get; set; }
-        }
+        
     }
 }
