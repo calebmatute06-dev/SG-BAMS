@@ -510,11 +510,6 @@ namespace SG_BAMS
             }
         }
 
-        private void BtnFiltros_Click(object sender, EventArgs e)
-        {
-            Filtros fil = new Filtros();
-            if (fil.ShowDialog() == DialogResult.OK)
-                logica.AplicarFiltro(dgvProductosAdmin, fil.FiltroSeleccionado);
-        }
+        
     }
 }

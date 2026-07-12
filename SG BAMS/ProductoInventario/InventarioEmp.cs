@@ -282,11 +282,6 @@ namespace SG_BAMS
             perfil.ShowDialog();
         }
 
-        private void BtnFiltros_Click(object sender, EventArgs e)
-        {
-            Filtros fil = new Filtros();
-            if (fil.ShowDialog() == DialogResult.OK)
-                logica.AplicarFiltro(dgvInventarioEmp, fil.FiltroSeleccionado);
-        }
+       
     }
 }

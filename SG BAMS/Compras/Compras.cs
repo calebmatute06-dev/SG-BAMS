@@ -70,7 +70,7 @@ namespace SG_BAMS
         /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void Compras_Load(object sender, EventArgs e)
         {
-            new PlaceholderTextBox(txtBuscarCompra, "Ingrese un Nombre de Vendedor, Cliente, N.Factura, RTN");
+            new PlaceholderTextBox(txtBuscarCompra, "Ingrese un Nombre de Comprador,  Forma de pago, N.Compra");
             btnComprasMenu.Enabled = false;
             btnComprasMenu.BackColor = Color.SkyBlue;
             btnComprasMenu.ForeColor = Color.White;

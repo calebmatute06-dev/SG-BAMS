@@ -46,7 +46,6 @@
             panel1 = new Panel();
             btnPerfil = new ReaLTaiizor.Controls.NightButton();
             btnCerrar = new ReaLTaiizor.Controls.NightButton();
-            BtnFiltros = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)dgvInventarioEmp).BeginInit();
             SuspendLayout();
             // 
@@ -68,7 +67,7 @@
             // 
             // txtBuscar
             // 
-            txtBuscar.Location = new Point(553, 147);
+            txtBuscar.Location = new Point(617, 147);
             txtBuscar.Name = "txtBuscar";
             txtBuscar.Size = new Size(679, 31);
             txtBuscar.StateCommon.Back.Color1 = Color.White;
@@ -138,7 +137,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(448, 151);
+            label3.Location = new Point(512, 151);
             label3.Name = "label3";
             label3.Size = new Size(99, 27);
             label3.TabIndex = 355;
@@ -330,36 +329,12 @@
             btnCerrar.Text = "Cerrar Sesión";
             btnCerrar.Click += btnCerrar_Click;
             // 
-            // BtnFiltros
-            // 
-            BtnFiltros.Location = new Point(1261, 136);
-            BtnFiltros.Name = "BtnFiltros";
-            BtnFiltros.OverrideDefault.Back.Color1 = Color.SkyBlue;
-            BtnFiltros.OverrideDefault.Back.Color2 = Color.White;
-            BtnFiltros.OverrideFocus.Back.Color1 = Color.SkyBlue;
-            BtnFiltros.OverrideFocus.Back.Color2 = Color.White;
-            BtnFiltros.Size = new Size(137, 42);
-            BtnFiltros.StateCommon.Back.Color1 = Color.SkyBlue;
-            BtnFiltros.StateCommon.Back.Color2 = Color.White;
-            BtnFiltros.StateCommon.Border.Rounding = 5F;
-            BtnFiltros.StateCommon.Content.ShortText.Color1 = Color.Navy;
-            BtnFiltros.StateCommon.Content.ShortText.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            BtnFiltros.StateNormal.Back.Color1 = Color.SkyBlue;
-            BtnFiltros.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            BtnFiltros.StatePressed.Back.Color1 = Color.Transparent;
-            BtnFiltros.StatePressed.Back.Color2 = Color.Transparent;
-            BtnFiltros.TabIndex = 400;
-            BtnFiltros.Values.DropDownArrowColor = Color.Empty;
-            BtnFiltros.Values.Text = "Filtrar";
-            BtnFiltros.Click += BtnFiltros_Click;
-            // 
             // InventarioEmp
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1491, 905);
-            Controls.Add(BtnFiltros);
             Controls.Add(panel1);
             Controls.Add(label2);
             Controls.Add(btnFacturas);
@@ -405,6 +380,5 @@
         private Panel panel1;
         private ReaLTaiizor.Controls.NightButton btnPerfil;
         private ReaLTaiizor.Controls.NightButton btnCerrar;
-        private Krypton.Toolkit.KryptonButton BtnFiltros;
     }
 }
