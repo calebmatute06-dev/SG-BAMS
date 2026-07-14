@@ -240,9 +240,24 @@ namespace SG_BAMS
         private void btnCompra_Click(object sender, EventArgs e) { Compras CF = new Compras(); CF.Show(); this.Close(); }
         private void btnClientes_Click(object sender, EventArgs e) { ClientesAdm CA = new ClientesAdm(); CA.Show(); this.Close(); }
         private void btnInventario_Click(object sender, EventArgs e) { InventarioAdmin IA = new InventarioAdmin(); IA.Show(); this.Close(); }
-        private void btnProveedores_Click(object sender, EventArgs e) { ProveedoresAdmin PA = new ProveedoresAdmin(); PA.Show(); this.Close(); }
+        private void btnProveedores_Click(object sender, EventArgs e)
+        {
+            var PA = new ProveedoresAdmin(
+                new ProveedorRepository(),
+                new EstadoRepository(),
+                new ClasificacionRepository());
+            PA.Show();
+            this.Hide();
+        }
         private void btnReportes_Click(object sender, EventArgs e) { ReportesAdmin RA = new ReportesAdmin(); RA.Show(); this.Close(); }
-        private void btnBitacora_Click(object sender, EventArgs e) { BitacoraAdmin BA = new BitacoraAdmin(); BA.Show(); this.Close(); }
+        private void btnBitacora_Click(object sender, EventArgs e) {
+            var Bi = new BitacoraAdmin(
+               new BitacoraRepository(),
+               new FiltroBitacoraService(),
+               new ReporteBitacoraPdfExportador());
+            Bi.Show();
+            this.Hide();
+        }
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {

@@ -412,7 +412,10 @@ namespace SG_BAMS
         /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnProveedores_Click(object sender, EventArgs e)
         {
-            ProveedoresAdmin PA = new ProveedoresAdmin();
+            var PA = new ProveedoresAdmin(
+                new ProveedorRepository(),
+                new EstadoRepository(),
+                new ClasificacionRepository());
             PA.Show();
             this.Hide();
         }
@@ -448,8 +451,11 @@ namespace SG_BAMS
         /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnBitacora_Click(object sender, EventArgs e)
         {
-            BitacoraAdmin BA = new BitacoraAdmin();
-            BA.Show();
+            var Bi = new BitacoraAdmin(
+                new BitacoraRepository(),
+                new FiltroBitacoraService(),
+                new ReporteBitacoraPdfExportador());
+            Bi.Show();
             this.Hide();
         }
 

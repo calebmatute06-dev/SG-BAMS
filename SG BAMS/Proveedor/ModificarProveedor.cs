@@ -3,23 +3,25 @@ using SG_BAMS.Login;
 using SG_BAMS.Proveedor.DTO;
 using System;
 using System.Data;
-using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace SG_BAMS.Proveedor
 {
     /// <summary>
-    /// Formulario para modificar los datos de un proveedor existente.
+    /// Formulario para modificar los datos de un proveedor existente. Única
+    /// responsabilidad: capturar y validar el formato de los datos editados,
+    /// y delegar en IProveedorRepository la verificación de duplicados y la
+    /// actualización.
     /// </summary>
     public partial class ModificarProveedor : Form
     {
-        private ClsProveedor proveedor = new ClsProveedor();
+        private readonly IProveedorRepository _repositorio;
+        private readonly IEstadoRepository _estadoRepositorio;
+        private readonly IClasificacionRepository _clasificacionRepositorio;
 
         /// <summary>
         /// DTO con los datos del proveedor que se está editando.
-        /// Reemplaza los campos sueltos (_idEstado, _idClasificacion) que
-        /// antes venían por el constructor.
         /// </summary>
         private ProveedorDTO proveedorDTO;
 
@@ -33,15 +35,22 @@ namespace SG_BAMS.Proveedor
         private PlaceholderComboBox phClasificacion;
 
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="ModificarProveedor"/>.
+        /// Crea el formulario recibiendo el proveedor a editar y sus dependencias por inyección.
         /// </summary>
         /// <param name="dto">Datos del proveedor a modificar (debe traer IdProveedor).</param>
-        public ModificarProveedor(ProveedorDTO dto)
+        public ModificarProveedor(ProveedorDTO dto,
+                                   IProveedorRepository repositorio,
+                                   IEstadoRepository estadoRepositorio,
+                                   IClasificacionRepository clasificacionRepositorio)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            _repositorio = repositorio;
+            _estadoRepositorio = estadoRepositorio;
+            _clasificacionRepositorio = clasificacionRepositorio;
 
             proveedorDTO = dto;
 
@@ -71,8 +80,15 @@ namespace SG_BAMS.Proveedor
 
         private void ModificarProveedor_Load(object sender, EventArgs e)
         {
-            proveedor.CargarComboEstado(cmbEstado);
-            proveedor.CargarComboClasificacion(cmbClasificacion);
+            DataTable estados = _estadoRepositorio.ObtenerEstados();
+            cmbEstado.DataSource = estados;
+            cmbEstado.DisplayMember = "descripcion_estado";
+            cmbEstado.ValueMember = "id_estado";
+
+            DataTable clasificaciones = _clasificacionRepositorio.ObtenerClasificaciones();
+            cmbClasificacion.DataSource = clasificaciones;
+            cmbClasificacion.DisplayMember = "clasificacion_proveedor";
+            cmbClasificacion.ValueMember = "id_clasificacion_proveedor";
 
             cmbEstado.DropDownStyle = ComboBoxStyle.DropDown;
             cmbClasificacion.DropDownStyle = ComboBoxStyle.DropDown;
@@ -95,77 +111,25 @@ namespace SG_BAMS.Proveedor
             string rtnReal = phRTN.GetRealValue().Trim();
             int idProveedor = Convert.ToInt32(txtID.Text);
 
-            if (string.IsNullOrWhiteSpace(nombreReal))
-            {
-                MessageBox.Show("El nombre del proveedor no puede estar vacío.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtNombre.Focus();
+            if (!ValidarFormato(nombreReal, direccionReal, telefonoReal, rtnReal))
                 return;
-            }
-
-            if (!Regex.IsMatch(nombreReal, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s&]+$"))
-            {
-                MessageBox.Show("El nombre solo puede contener letras y el carácter '&'.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtNombre.Focus();
-                return;
-            }
-
-            if (nombreReal.Contains("  "))
-            {
-                MessageBox.Show("El nombre no puede contener espacios dobles.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtNombre.Focus();
-                return;
-            }
-
-            if (Regex.IsMatch(nombreReal, @"(.)\1{2,}", RegexOptions.IgnoreCase))
-            {
-                MessageBox.Show("El nombre no puede tener más de dos letras repetidas consecutivamente.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtNombre.Focus();
-                return;
-            }
-
-            if (Regex.IsMatch(nombreReal, @"([a-zA-ZñÑáéíóúÁÉÍÓÚ])\s\1", RegexOptions.IgnoreCase))
-            {
-                MessageBox.Show("El nombre contiene una secuencia de letras repetidas no válida (ejemplo: 'a a').", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtNombre.Focus();
-                return;
-            }
-
-            if (ClsValidaciones.CampoVacio(new TextBox { Text = direccionReal }, "Dirección")) return;
-
-            if (direccionReal.Contains("  "))
-            {
-                MessageBox.Show("La dirección no puede contener espacios dobles.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtDireccion.Focus();
-                return;
-            }
-
-            if (!ClsValidaciones.EsTelefonoHondurasValido(new TextBox { Text = telefonoReal })) return;
-            if (!ClsValidaciones.EsRTNValido(new TextBox { Text = rtnReal })) return;
-
-            if (phEstado.IsPlaceholderActive || cmbEstado.SelectedValue == null ||
-                phClasificacion.IsPlaceholderActive || cmbClasificacion.SelectedValue == null)
-            {
-                MessageBox.Show("Asegúrese de seleccionar el Estado y la Clasificación.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (nombreReal != _nombreOriginal && proveedor.ExisteNombreProveedor(nombreReal))
-            {
-                MessageBox.Show("El nuevo nombre ya pertenece a otro proveedor.", "Nombre Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtNombre.Focus();
-                return;
-            }
-
-            if (proveedor.ExisteRtnProveedorModificar(rtnReal, idProveedor))
-            {
-                MessageBox.Show("El RTN ingresado ya pertenece a otro proveedor registrado.", "RTN Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtRTN.Focus();
-                return;
-            }
 
             try
             {
-                // --- Actualizar el DTO con los valores editados en pantalla ---
+                if (nombreReal != _nombreOriginal && _repositorio.ExisteNombre(nombreReal))
+                {
+                    MessageBox.Show("El nuevo nombre ya pertenece a otro proveedor.", "Nombre Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtNombre.Focus();
+                    return;
+                }
+
+                if (_repositorio.ExisteRtnExcluyendo(rtnReal, idProveedor))
+                {
+                    MessageBox.Show("El RTN ingresado ya pertenece a otro proveedor registrado.", "RTN Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtRTN.Focus();
+                    return;
+                }
+
                 proveedorDTO.Nombre = nombreReal;
                 proveedorDTO.Contacto = telefonoReal;
                 proveedorDTO.Direccion = direccionReal;
@@ -174,17 +138,79 @@ namespace SG_BAMS.Proveedor
                 proveedorDTO.IdClasificacion = Convert.ToInt32(cmbClasificacion.SelectedValue);
                 proveedorDTO.IdUsuario = new ClsPasarUsuario().IdUsuario();
 
-                proveedor.ModificarProveedor(proveedorDTO);
+                _repositorio.Modificar(proveedorDTO);
 
                 MessageBox.Show("Proveedor modificado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ProveedoresAdmin admin = new ProveedoresAdmin();
-                admin.Show();
-                this.Dispose();
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al modificar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        /// <summary>
+        /// Valida el formato y las reglas de negocio sobre los campos editados
+        /// (no consulta la base de datos).
+        /// </summary>
+        private bool ValidarFormato(string nombre, string direccion, string telefono, string rtn)
+        {
+            if (string.IsNullOrWhiteSpace(nombre))
+            {
+                MessageBox.Show("El nombre del proveedor no puede estar vacío.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNombre.Focus();
+                return false;
+            }
+
+            if (!Regex.IsMatch(nombre, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s&]+$"))
+            {
+                MessageBox.Show("El nombre solo puede contener letras y el carácter '&'.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNombre.Focus();
+                return false;
+            }
+
+            if (nombre.Contains("  "))
+            {
+                MessageBox.Show("El nombre no puede contener espacios dobles.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNombre.Focus();
+                return false;
+            }
+
+            if (Regex.IsMatch(nombre, @"(.)\1{2,}", RegexOptions.IgnoreCase))
+            {
+                MessageBox.Show("El nombre no puede tener más de dos letras repetidas consecutivamente.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNombre.Focus();
+                return false;
+            }
+
+            if (Regex.IsMatch(nombre, @"([a-zA-ZñÑáéíóúÁÉÍÓÚ])\s\1", RegexOptions.IgnoreCase))
+            {
+                MessageBox.Show("El nombre contiene una secuencia de letras repetidas no válida (ejemplo: 'a a').", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNombre.Focus();
+                return false;
+            }
+
+            if (ClsValidaciones.CampoVacio(new TextBox { Text = direccion }, "Dirección")) return false;
+
+            if (direccion.Contains("  "))
+            {
+                MessageBox.Show("La dirección no puede contener espacios dobles.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtDireccion.Focus();
+                return false;
+            }
+
+            if (!ClsValidaciones.EsTelefonoHondurasValido(new TextBox { Text = telefono })) return false;
+            if (!ClsValidaciones.EsRTNValido(new TextBox { Text = rtn })) return false;
+
+            if (phEstado.IsPlaceholderActive || cmbEstado.SelectedValue == null ||
+                phClasificacion.IsPlaceholderActive || cmbClasificacion.SelectedValue == null)
+            {
+                MessageBox.Show("Asegúrese de seleccionar el Estado y la Clasificación.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
         }
 
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)

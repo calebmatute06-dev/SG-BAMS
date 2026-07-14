@@ -2,34 +2,35 @@
 using SG_BAMS.Proveedor.DTO;
 using SG_BAMS.Reporte;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SG_BAMS.Proveedor
 {
     /// <summary>
-    ///
+    /// Formulario de listado y administración de proveedores. Única responsabilidad:
+    /// mostrar la grilla y coordinar la apertura de los formularios de alta/edición,
+    /// delegando toda la lógica de datos en IProveedorRepository, IEstadoRepository
+    /// e IClasificacionRepository.
     /// </summary>
-    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class ProveedoresAdmin : Form
     {
-        /// <summary>
-        /// El proveedor
-        /// </summary>
-        ClsProveedor proveedor = new ClsProveedor();
+        private readonly IProveedorRepository _repositorio;
+        private readonly IEstadoRepository _estadoRepositorio;
+        private readonly IClasificacionRepository _clasificacionRepositorio;
 
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="ProveedoresAdmin"/>.
+        /// Crea el formulario recibiendo sus dependencias por inyección.
         /// </summary>
-        public ProveedoresAdmin()
+        public ProveedoresAdmin(IProveedorRepository repositorio,
+                                 IEstadoRepository estadoRepositorio,
+                                 IClasificacionRepository clasificacionRepositorio)
         {
             InitializeComponent();
+            _repositorio = repositorio;
+            _estadoRepositorio = estadoRepositorio;
+            _clasificacionRepositorio = clasificacionRepositorio;
+
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -41,24 +42,27 @@ namespace SG_BAMS.Proveedor
                     e.Handled = true;
                 }
             };
-            proveedor.cargarDatos(dgvProveedor);
-            dgvProveedor.ClearSelection();
+            // La carga de datos ocurre solo en el evento Load (ver ProveedoresAdmin_Load).
         }
 
-        /// <summary>
-        /// Maneja el evento Load del control ProveedoresAdmin.
-        /// </summary>
         private void ProveedoresAdmin_Load(object sender, EventArgs e)
         {
             new PlaceholderTextBox(txtBuscar, "Ingrese un Nombre de Vendedor, Cliente, N.Factura, RTN");
             btnProveedores.Enabled = false;
             btnProveedores.BackColor = Color.SkyBlue;
             btnProveedores.ForeColor = Color.White;
-            proveedor.cargarDatos(dgvProveedor);
 
-            dgvProveedor.Columns["idProveedor"].Visible = false;
-            dgvProveedor.Columns["idClasificacion"].Visible = false;
-            dgvProveedor.Columns["idEstado"].Visible = false;
+            ConfigurarGrilla();
+            CargarDatos();
+
+            ClsMensajeGuia.ActivarK(txtBuscar);
+        }
+
+        /// <summary>
+        /// Aplica el estilo visual y la configuración de columnas de la grilla.
+        /// </summary>
+        private void ConfigurarGrilla()
+        {
             dgvProveedor.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvProveedor.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvProveedor.AllowUserToAddRows = false;
@@ -87,34 +91,52 @@ namespace SG_BAMS.Proveedor
             dgvProveedor.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dgvProveedor.GridColor = Color.LightGray;
             dgvProveedor.RowTemplate.Height = 32;
-            dgvProveedor.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvProveedor.ClearSelection();
-
-            ClsMensajeGuia.ActivarK(txtBuscar);
         }
 
         /// <summary>
-        /// Maneja el evento KeyUp del control txtBuscar.
+        /// Carga los proveedores en la grilla y oculta las columnas técnicas (IDs).
         /// </summary>
+        private void CargarDatos()
+        {
+            try
+            {
+                dgvProveedor.DataSource = _repositorio.ObtenerProveedores();
+
+                if (dgvProveedor.Columns.Contains("idProveedor"))
+                    dgvProveedor.Columns["idProveedor"].Visible = false;
+                if (dgvProveedor.Columns.Contains("idClasificacion"))
+                    dgvProveedor.Columns["idClasificacion"].Visible = false;
+                if (dgvProveedor.Columns.Contains("idEstado"))
+                    dgvProveedor.Columns["idEstado"].Visible = false;
+
+                dgvProveedor.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void txtBuscar_KeyUp(object sender, KeyEventArgs e)
         {
-            proveedor.BuscarProveedor(txtBuscar, dgvProveedor);
+            try
+            {
+                dgvProveedor.DataSource = _repositorio.Buscar(txtBuscar.Text.Trim());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al buscar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnAgregar.
-        /// </summary>
         private void btnAgregar1_Click(object sender, EventArgs e)
         {
-            AgregarProveedores agregar = new AgregarProveedores();
+            AgregarProveedores agregar = new AgregarProveedores(_repositorio, _clasificacionRepositorio);
             agregar.ShowDialog();
-            proveedor.cargarDatos(dgvProveedor);
+            CargarDatos();
             dgvProveedor.ClearSelection();
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnModificar.
-        /// </summary>
         private void btnModificar_Click_1(object sender, EventArgs e)
         {
             if (dgvProveedor.SelectedRows.Count == 0)
@@ -127,33 +149,22 @@ namespace SG_BAMS.Proveedor
             dgvProveedor.ClearSelection();
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnRefresh.
-        /// </summary>
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             txtBuscar.Clear();
-            proveedor.cargarDatos(dgvProveedor);
+            CargarDatos();
         }
 
-        /// <summary>
-        /// Maneja el evento CellDoubleClick del control dgvProveedor.
-        /// </summary>
-        private void dgvProveedor_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvProveedor_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
-            {
-                DataGridViewRow fila = dgvProveedor.Rows[e.RowIndex];
-                AbrirModificarProveedor(fila);
-            }
+                AbrirModificarProveedor(dgvProveedor.Rows[e.RowIndex]);
         }
 
         /// <summary>
-        /// Arma el ProveedorDTO a partir de la fila seleccionada y abre la
-        /// pantalla de modificación. Antes se pasaban 7 parámetros sueltos
-        /// al constructor de ModificarProveedor; ahora viaja un solo objeto.
+        /// Arma el ProveedorDTO a partir de la fila seleccionada y abre
+        /// la pantalla de modificación, refrescando la grilla al cerrarse.
         /// </summary>
-        /// <param name="fila">La fila seleccionada del grid.</param>
         private void AbrirModificarProveedor(DataGridViewRow fila)
         {
             if (fila == null)
@@ -162,7 +173,7 @@ namespace SG_BAMS.Proveedor
                 return;
             }
 
-            ProveedorDTO proveedorDTO = new ProveedorDTO
+            ProveedorDTO dto = new ProveedorDTO
             {
                 IdProveedor = Convert.ToInt32(fila.Cells["idProveedor"].Value),
                 Nombre = fila.Cells["Nombre"].Value.ToString(),
@@ -173,85 +184,32 @@ namespace SG_BAMS.Proveedor
                 IdClasificacion = Convert.ToInt32(fila.Cells["idClasificacion"].Value)
             };
 
-            ModificarProveedor frm = new ModificarProveedor(proveedorDTO);
+            ModificarProveedor frm = new ModificarProveedor(dto, _repositorio, _estadoRepositorio, _clasificacionRepositorio);
             frm.ShowDialog();
-            proveedor.cargarDatos(dgvProveedor);
-            dgvProveedor.ClearSelection();
+            CargarDatos();
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnNoti.
-        /// </summary>
         private void btnNoti_Click(object sender, EventArgs e)
         {
             NotificacionesAdmin notificaciones = new NotificacionesAdmin();
             notificaciones.ShowDialog();
         }
 
-        /// <summary>
-        /// Maneja el evento CellDoubleClick del control dgvProveedor.
-        /// </summary>
-        private void dgvProveedor_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                AbrirModificarProveedor(dgvProveedor.Rows[e.RowIndex]);
-            }
-        }
-
-        private void btnMenu_Click(object sender, EventArgs e)
-        {
-            MenuPrincipalAdm MPA = new MenuPrincipalAdm();
-            MPA.Show();
-            this.Hide();
-        }
-
-        private void btnFacturas_Click(object sender, EventArgs e)
-        {
-            FacturasAdm FA = new FacturasAdm();
-            FA.Show();
-            this.Hide();
-        }
-
-        private void btnCompra_Click(object sender, EventArgs e)
-        {
-            Compras CF = new Compras();
-            CF.Show();
-            this.Hide();
-        }
-
-        private void btnClientes_Click(object sender, EventArgs e)
-        {
-            ClientesAdm CA = new ClientesAdm();
-            CA.Show();
-            this.Hide();
-        }
-
-        private void btnInventario_Click(object sender, EventArgs e)
-        {
-            InventarioAdmin IA = new InventarioAdmin();
-            IA.Show();
-            this.Hide();
-        }
-
-        private void btnDeudores_Click(object sender, EventArgs e)
-        {
-            DeudoresAdmin DA = new DeudoresAdmin();
-            DA.Show();
-            this.Hide();
-        }
-
-        private void btnReportes_Click(object sender, EventArgs e)
-        {
-            ReportesAdmin RA = new ReportesAdmin();
-            RA.Show();
-            this.Hide();
-        }
+        private void btnMenu_Click(object sender, EventArgs e) { MenuPrincipalAdm MPA = new MenuPrincipalAdm(); MPA.Show(); this.Hide(); }
+        private void btnFacturas_Click(object sender, EventArgs e) { FacturasAdm FA = new FacturasAdm(); FA.Show(); this.Hide(); }
+        private void btnCompra_Click(object sender, EventArgs e) { Compras CF = new Compras(); CF.Show(); this.Hide(); }
+        private void btnClientes_Click(object sender, EventArgs e) { ClientesAdm CA = new ClientesAdm(); CA.Show(); this.Hide(); }
+        private void btnInventario_Click(object sender, EventArgs e) { InventarioAdmin IA = new InventarioAdmin(); IA.Show(); this.Hide(); }
+        private void btnDeudores_Click(object sender, EventArgs e) { DeudoresAdmin DA = new DeudoresAdmin(); DA.Show(); this.Hide(); }
+        private void btnReportes_Click(object sender, EventArgs e) { ReportesAdmin RA = new ReportesAdmin(); RA.Show(); this.Hide(); }
 
         private void btnBitacora_Click(object sender, EventArgs e)
         {
-            BitacoraAdmin BA = new BitacoraAdmin();
-            BA.Show();
+            var Bi = new BitacoraAdmin(
+                new BitacoraRepository(),
+                new FiltroBitacoraService(),
+                new ReporteBitacoraPdfExportador());
+            Bi.Show();
             this.Hide();
         }
 

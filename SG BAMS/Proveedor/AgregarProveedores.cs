@@ -3,26 +3,35 @@ using SG_BAMS.Login;
 using SG_BAMS.Proveedor.DTO;
 using System;
 using System.Data;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace SG_BAMS.Proveedor
 {
     /// <summary>
-    /// Formulario para agregar un nuevo proveedor al sistema.
+    /// Formulario para agregar un nuevo proveedor al sistema. Única responsabilidad:
+    /// capturar y validar el formato de los datos en pantalla, y delegar en
+    /// IProveedorRepository la verificación de duplicados y el guardado.
     /// </summary>
     public partial class AgregarProveedores : Form
     {
-        private ClsProveedor proveedor = new ClsProveedor();
+        private readonly IProveedorRepository _repositorio;
+        private readonly IClasificacionRepository _clasificacionRepositorio;
+
         private PlaceholderTextBox phNombre;
         private PlaceholderTextBox phDireccion;
         private PlaceholderTextBox phTelefono;
         private PlaceholderTextBox phRTN;
         private PlaceholderComboBox phClasificacion;
 
-        public AgregarProveedores()
+        /// <summary>
+        /// Crea el formulario recibiendo sus dependencias por inyección.
+        /// </summary>
+        public AgregarProveedores(IProveedorRepository repositorio, IClasificacionRepository clasificacionRepositorio)
         {
             InitializeComponent();
+            _repositorio = repositorio;
+            _clasificacionRepositorio = clasificacionRepositorio;
+
             this.StartPosition = FormStartPosition.CenterScreen;
             txtTelefono.MaxLength = 8;
             txtRTN.MaxLength = 14;
@@ -32,8 +41,10 @@ namespace SG_BAMS.Proveedor
 
         private void AgregarProveedores_Load(object sender, EventArgs e)
         {
-            proveedor.CargarComboClasificacion(cmbClasificacion);
-
+            DataTable clasificaciones = _clasificacionRepositorio.ObtenerClasificaciones();
+            cmbClasificacion.DataSource = clasificaciones;
+            cmbClasificacion.DisplayMember = "clasificacion_proveedor";
+            cmbClasificacion.ValueMember = "id_clasificacion_proveedor";
             cmbClasificacion.DropDownStyle = ComboBoxStyle.DropDown;
             cmbClasificacion.SelectedIndex = -1;
 
@@ -57,14 +68,7 @@ namespace SG_BAMS.Proveedor
 
         private void btnCancelar_Click(object sender, EventArgs e) => this.Close();
 
-        private void cmbClasificacion_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbClasificacion.SelectedIndex != -1 && cmbClasificacion.SelectedItem is DataRowView drv)
-            {
-                int idClasificacion = Convert.ToInt32(drv["id_clasificacion_proveedor"]);
-                string nombreClasificacion = drv["clasificacion_proveedor"].ToString();
-            }
-        }
+        private void cmbClasificacion_SelectedIndexChanged(object sender, EventArgs e) { }
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
@@ -73,38 +77,25 @@ namespace SG_BAMS.Proveedor
             string telefonoReal = phTelefono.GetRealValue().Trim();
             string rtnReal = phRTN.GetRealValue().Trim();
 
-            if (!ClsValidaciones.EsNombrePersonalValido(new TextBox { Text = nombreReal }, "Nombre del proveedor"))
+            if (!ValidarFormato(nombreReal, direccionReal, telefonoReal, rtnReal))
                 return;
-            if (ClsValidaciones.CampoVacio(new TextBox { Text = direccionReal }, "Dirección"))
-                return;
-            if (!ClsValidaciones.EsTelefonoHondurasValido(new TextBox { Text = telefonoReal }))
-                return;
-            if (!ClsValidaciones.EsRTNValido(new TextBox { Text = rtnReal }))
-                return;
-
-            if (phClasificacion.IsPlaceholderActive || cmbClasificacion.SelectedValue == null)
-            {
-                MessageBox.Show("Debe seleccionar una clasificación.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (proveedor.ExisteNombreProveedor(nombreReal))
-            {
-                MessageBox.Show("El nombre del proveedor ya existe.", "Nombre Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtNombre.Focus();
-                return;
-            }
-
-            if (proveedor.ExisteRtnProveedor(rtnReal))
-            {
-                MessageBox.Show("El RTN ingresado ya pertenece a otro proveedor.", "RTN Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtRTN.Focus();
-                return;
-            }
 
             try
             {
-                // --- Armado del DTO con todos los datos de la pantalla ---
+                if (_repositorio.ExisteNombre(nombreReal))
+                {
+                    MessageBox.Show("El nombre del proveedor ya existe.", "Nombre Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtNombre.Focus();
+                    return;
+                }
+
+                if (_repositorio.ExisteRtn(rtnReal))
+                {
+                    MessageBox.Show("El RTN ingresado ya pertenece a otro proveedor.", "RTN Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtRTN.Focus();
+                    return;
+                }
+
                 ProveedorDTO proveedorDTO = new ProveedorDTO
                 {
                     Nombre = nombreReal,
@@ -115,17 +106,35 @@ namespace SG_BAMS.Proveedor
                     IdUsuario = new ClsPasarUsuario().IdUsuario()
                 };
 
-                proveedor.AgregarProveedor(proveedorDTO);
+                _repositorio.Agregar(proveedorDTO);
 
                 MessageBox.Show("Proveedor agregado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ProveedoresAdmin admin = new ProveedoresAdmin();
-                admin.Show();
-                this.Dispose();
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al guardar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        /// <summary>
+        /// Valida el formato de los campos ingresados (no consulta la base de datos).
+        /// </summary>
+        private bool ValidarFormato(string nombre, string direccion, string telefono, string rtn)
+        {
+            if (!ClsValidaciones.EsNombrePersonalValido(new TextBox { Text = nombre }, "Nombre del proveedor")) return false;
+            if (ClsValidaciones.CampoVacio(new TextBox { Text = direccion }, "Dirección")) return false;
+            if (!ClsValidaciones.EsTelefonoHondurasValido(new TextBox { Text = telefono })) return false;
+            if (!ClsValidaciones.EsRTNValido(new TextBox { Text = rtn })) return false;
+
+            if (phClasificacion.IsPlaceholderActive || cmbClasificacion.SelectedValue == null)
+            {
+                MessageBox.Show("Debe seleccionar una clasificación.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
         }
 
         private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
