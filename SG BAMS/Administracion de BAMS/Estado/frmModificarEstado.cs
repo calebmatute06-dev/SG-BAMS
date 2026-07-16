@@ -1,38 +1,46 @@
-﻿using SG_BAMS.Administracion_de_BAMS.Estado;
+﻿using SG_BAMS.Administracion_de_BAMS;
+using SG_BAMS.Administracion_de_BAMS.Estado;
 using System;
 using System.Windows.Forms;
 
 namespace SG_BAMS
 {
     /// <summary>
-    /// Representa la ventana para modificar un estado existente en el sistema.
+    /// Formulario para modificar un estado existente en el sistema.
+    /// DIP: recibe ICatalogoRepository inyectado, no instancia clsEstado directamente.
+    /// SRP: única responsabilidad — capturar y validar datos para actualizar un estado.
     /// </summary>
     public partial class frmModificarEstado : Form
     {
-        private int idEstado;
-        private PlaceholderTextBox phDescri;
+        private readonly ICatalogoRepository _repositorio;
+        private readonly int _idEstado;
+        private PlaceholderTextBox _phDescri;
 
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="frmModificarEstado"/>.
+        /// Constructor que recibe el repositorio por inyección de dependencias.
         /// </summary>
-        /// <param name="id">Identificador del estado a modificar.</param>
-        /// <param name="descripcionActual">Descripción actual del estado.</param>
-        public frmModificarEstado(int id, string descripcionActual)
+        public frmModificarEstado(int id, string descripcionActual, ICatalogoRepository repositorio)
         {
             InitializeComponent();
+            _repositorio = repositorio ?? throw new ArgumentNullException(nameof(repositorio));
+            _idEstado = id;
+
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.idEstado = id;
+
             txtDescri.Text = descripcionActual;
-            this.txtDescri.KeyPress += new KeyPressEventHandler(this.txtDescri_KeyPress);
-            phDescri = new PlaceholderTextBox(txtDescri, "Ingrese la descripción del estado");
+            this.txtDescri.KeyPress += txtDescri_KeyPress;
+
+            // Placeholder registrado una sola vez — evita el doble registro del original
+            _phDescri = new PlaceholderTextBox(txtDescri, "Ingrese la descripción del estado");
         }
 
-        private void frmModificarEstado_Load(object sender, EventArgs e)
-        {
-            phDescri = new PlaceholderTextBox(txtDescri, "Ingrese la descripción del estado");
-        }
+        /// <summary>
+        /// Constructor sin parámetros para compatibilidad con código existente.
+        /// </summary>
+        public frmModificarEstado(int id, string descripcionActual)
+            : this(id, descripcionActual, new clsEstado()) { }
 
         private void txtDescri_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -41,17 +49,14 @@ namespace SG_BAMS
 
         private async void btnModificar_Click(object sender, EventArgs e)
         {
-            
-            string descripcionReal = phDescri.GetRealValue().Trim();
+            string descripcionReal = _phDescri.GetRealValue().Trim();
 
-            
             using (var temp = new TextBox { Text = descripcionReal })
             {
                 if (!ClsValidaciones.EsNombrePersonalValido(temp, "Descripción del Estado"))
                     return;
             }
 
-           
             using (var temp = new TextBox { Text = descripcionReal })
             {
                 if (!ClsValidaciones.ValidarNombreUnico(
@@ -59,7 +64,7 @@ namespace SG_BAMS
                         tabla: "Estado",
                         columnaNombre: "descripcion_estado",
                         nombreCampo: "Tipo de Estado",
-                        idExcluir: idEstado,
+                        idExcluir: _idEstado,
                         idColumna: "id_estado"))
                     return;
             }
@@ -69,21 +74,20 @@ namespace SG_BAMS
                 this.Cursor = Cursors.WaitCursor;
                 btnModificar.Enabled = false;
 
-                clsEstado objetoEstado = new clsEstado();
-                bool exito = await objetoEstado.ModificarEstadoAsync(idEstado, descripcionReal);
+                bool exito = await _repositorio.ModificarAsync(_idEstado, descripcionReal);
 
                 if (exito)
                 {
                     MessageBox.Show("Estado actualizado con éxito.", "SG-BAMS",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al actualizar: " + ex.Message, "Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al actualizar: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -92,9 +96,6 @@ namespace SG_BAMS
             }
         }
 
-        private void kryptonButton1_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        private void kryptonButton1_Click(object sender, EventArgs e) => this.Close();
     }
 }

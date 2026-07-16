@@ -1,57 +1,60 @@
-﻿using SG_BAMS.Administracion_de_BAMS.Estado;
+﻿using SG_BAMS.Administracion_de_BAMS;
+using SG_BAMS.Administracion_de_BAMS.Estado;
 using System;
 using System.Windows.Forms;
 
 namespace SG_BAMS
 {
     /// <summary>
-    /// Representa la ventana para agregar un nuevo estado al sistema.
+    /// Formulario para agregar un nuevo estado al sistema.
+    /// DIP: recibe ICatalogoRepository inyectado, no instancia clsEstado directamente.
+    /// SRP: única responsabilidad — capturar y validar datos para crear un estado.
     /// </summary>
-    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmAgregarEstado : Form
     {
-        private PlaceholderTextBox phDescri;
+        private readonly ICatalogoRepository _repositorio;
+        private PlaceholderTextBox _phDescri;
 
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="frmAgregarEstado"/>.
+        /// Constructor que recibe el repositorio por inyección de dependencias.
         /// </summary>
-        public frmAgregarEstado()
+        public frmAgregarEstado(ICatalogoRepository repositorio)
         {
             InitializeComponent();
+            _repositorio = repositorio ?? throw new ArgumentNullException(nameof(repositorio));
+
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.txtDescri.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescri_KeyPress);
-            phDescri = new PlaceholderTextBox(txtDescri, "Ingrese la descripción del estado");
+
+            this.txtDescri.KeyPress += txtDescri_KeyPress;
+
+            // Placeholder registrado una sola vez aquí — evita el doble registro del original
+            _phDescri = new PlaceholderTextBox(txtDescri, "Ingrese la descripción del estado");
         }
 
-        private void frmAgregarEstado_Load(object sender, EventArgs e)
-        {
-            phDescri = new PlaceholderTextBox(txtDescri, "Ingrese la descripción del estado");
-        }
-
-        private void pictureBox16_Click(object sender, EventArgs e) { }
-
-        private void btnCerrarSesion_Click(object sender, EventArgs e) => this.Close();
+        /// <summary>
+        /// Constructor sin parámetros para compatibilidad con código existente.
+        /// </summary>
+        public frmAgregarEstado() : this(new clsEstado()) { }
 
         private void txtDescri_KeyPress(object sender, KeyPressEventArgs e)
         {
             ClsValidaciones.PermitirSoloLetras(e);
         }
 
+        private void btnCerrarSesion_Click(object sender, EventArgs e) => this.Close();
+
         private async void btnAgregar_Click(object sender, EventArgs e)
         {
-          
-            string descripcionReal = phDescri.GetRealValue().Trim();
+            string descripcionReal = _phDescri.GetRealValue().Trim();
 
-            
             using (var temp = new TextBox { Text = descripcionReal })
             {
                 if (!ClsValidaciones.EsNombrePersonalValido(temp, "Descripción del Estado"))
                     return;
             }
 
-            
             using (var temp = new TextBox { Text = descripcionReal })
             {
                 if (!ClsValidaciones.ValidarNombreUnico(
@@ -69,20 +72,20 @@ namespace SG_BAMS
                 this.Cursor = Cursors.WaitCursor;
                 btnAgregar.Enabled = false;
 
-                clsEstado objetoEstado = new clsEstado();
-                bool exito = await objetoEstado.InsertarEstadoAsync(descripcionReal);
+                bool exito = await _repositorio.InsertarAsync(descripcionReal);
 
                 if (exito)
                 {
                     MessageBox.Show("Estado registrado correctamente.", "SG-BAMS",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al registrar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al registrar: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {

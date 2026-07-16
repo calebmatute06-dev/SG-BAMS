@@ -640,7 +640,7 @@ namespace SG_BAMS
     /// OCP: el código existente no necesita modificarse — ClsValidaciones sigue siendo válido
     /// pero ahora delega a las clases especializadas en lugar de contener toda la lógica.
     /// </summary>
-    public static class ClsValidaciones
+    public static partial class ClsValidaciones
     {
         // --- Texto ---
         public static bool EsNombrePersonalValido(TextBox txt, string campo) =>

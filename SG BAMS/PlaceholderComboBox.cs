@@ -4,166 +4,152 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
-    public class PlaceholderComboBox
-    {
-        private KryptonComboBox cmb;
-        private string placeholder;
-        private bool isPlaceholderActive;
-        private bool isLoading = false;
+    // ============================================================
+    // PlaceholderComboBox — ISP + OCP (corrección de la versión anterior)
+    // ============================================================
+    // PROBLEMA DETECTADO EN LA REVISIÓN:
+    //   PlaceholderComboBox no implementaba IPlaceholder.
+    //   Si un formulario declaraba:
+    //       private IPlaceholder _phEstado;
+    //   no podía asignarle un PlaceholderComboBox, solo un PlaceholderTextBox.
+    //   Esto rompía el polimorfismo esperado del ISP.
+    //
+    // CORRECCIÓN: PlaceholderComboBox ahora implementa IPlaceholder,
+    //   igual que PlaceholderTextBox, de modo que los formularios pueden
+    //   tratar ambos controles a través de la misma abstracción.
+    // ============================================================
 
+    /// <summary>
+    /// Adaptador que añade comportamiento de placeholder a un KryptonComboBox.
+    /// SRP: única responsabilidad — gestionar el estado de placeholder de un combo.
+    /// ISP: implementa IPlaceholder, el mismo contrato que PlaceholderTextBox.
+    /// OCP: abierto para extensión; si se necesita soporte para otro combo
+    ///      (p.ej. ComboBox nativo), se crea una nueva clase que implemente IPlaceholder.
+    /// </summary>
+    public class PlaceholderComboBox : IPlaceholder
+    {
+        private readonly KryptonComboBox _cmb;
+        private readonly string _placeholder;
+        private bool _isPlaceholderActive;
+        private bool _isLoading;
+
+        private static readonly Color ColorPlaceholder = Color.Gray;
+        private static readonly Color ColorTextoNormal = Color.Black;
+
+        /// <summary>
+        /// Inicializa el adaptador vinculando el KryptonComboBox con su texto de placeholder.
+        /// </summary>
+        /// <param name="comboBox">Control combo al que se le aplica el placeholder.</param>
+        /// <param name="textoGuia">Texto orientativo que se muestra cuando no hay selección.</param>
         public PlaceholderComboBox(KryptonComboBox comboBox, string textoGuia)
         {
-            cmb = comboBox;
-            placeholder = textoGuia;
+            _cmb = comboBox;
+            _placeholder = textoGuia;
 
-            if (string.IsNullOrWhiteSpace(cmb.Text) && cmb.SelectedIndex == -1)
-            {
-                cmb.Text = placeholder;
-                cmb.StateCommon.ComboBox.Content.Color1 = Color.Gray;
-                isPlaceholderActive = true;
-            }
-            else
-            {
-                cmb.StateCommon.ComboBox.Content.Color1 = Color.Black;
-                isPlaceholderActive = false;
-            }
+            _cmb.Enter += Entrar;
+            _cmb.Click += Entrar;
+            _cmb.KeyDown += OnKeyDown;
+            _cmb.Leave += Salir;
+            _cmb.SelectedIndexChanged += OnSelectedIndexChanged;
+            _cmb.TextUpdate += OnTextUpdate;
+            _cmb.DropDown += OnDropDown;
+            _cmb.DataSourceChanged += OnDataSourceChanged;
 
-            cmb.Enter += Entrar;
-            cmb.Click += Entrar;
-            cmb.KeyDown += OnKeyDown;
-            cmb.Leave += Salir;
-            cmb.SelectedIndexChanged += OnSelectedIndexChanged;
-            cmb.TextUpdate += OnTextUpdate;
-            cmb.DropDown += OnDropDown;
-            cmb.DataSourceChanged += OnDataSourceChanged;
+            Activar();
         }
+
+        // ---- IPlaceholder ----
+
+        /// <inheritdoc/>
+        public bool IsPlaceholderActive => _isPlaceholderActive;
+
+        /// <inheritdoc/>
+        public void Activar()
+        {
+            _isLoading = true;
+            _cmb.SelectedIndex = -1;
+            _cmb.Text = _placeholder;
+            _cmb.StateCommon.ComboBox.Content.Color1 = ColorPlaceholder;
+            _isPlaceholderActive = true;
+            _isLoading = false;
+        }
+
+        /// <inheritdoc/>
+        public string GetRealValue()
+        {
+            return _isPlaceholderActive ? string.Empty : _cmb.Text;
+        }
+
+        // ---- Manejadores de eventos ----
 
         private void OnKeyDown(object sender, KeyEventArgs e)
         {
-            if (isPlaceholderActive && cmb.Text == placeholder)
-            {
-                isLoading = true;
-                cmb.Text = "";
-                cmb.StateCommon.ComboBox.Content.Color1 = Color.Black;
-                isPlaceholderActive = false;
-                isLoading = false;
-            }
+            if (_isPlaceholderActive && _cmb.Text == _placeholder)
+                LimpiarPlaceholder();
         }
+
         private void Entrar(object sender, System.EventArgs e)
         {
-            if (isPlaceholderActive && cmb.Text == placeholder)
-            {
-                isLoading = true;
-                cmb.Text = "";
-                cmb.SelectionStart = 0;
-                cmb.StateCommon.ComboBox.Content.Color1 = Color.Black;
-                isPlaceholderActive = false;
-                isLoading = false;
-            }
+            if (_isPlaceholderActive && _cmb.Text == _placeholder)
+                LimpiarPlaceholder();
         }
 
         private void Salir(object sender, System.EventArgs e)
         {
-            if (cmb.SelectedIndex == -1 && string.IsNullOrWhiteSpace(cmb.Text))
-            {
-                isLoading = true;
-                cmb.Text = placeholder;
-                cmb.StateCommon.ComboBox.Content.Color1 = Color.Gray;
-                isPlaceholderActive = true;
-                isLoading = false;
-            }
+            if (_cmb.SelectedIndex == -1 && string.IsNullOrWhiteSpace(_cmb.Text))
+                Activar();
             else
-            {
-                cmb.StateCommon.ComboBox.Content.Color1 = Color.Black;
-                isPlaceholderActive = false;
-            }
+                PonerTextoNormal();
         }
 
         private void OnSelectedIndexChanged(object sender, System.EventArgs e)
         {
-            if (isLoading) return;
-            if (cmb.SelectedIndex != -1)
-            {
-                if (isPlaceholderActive)
-                {
-                    cmb.StateCommon.ComboBox.Content.Color1 = Color.Black;
-                    isPlaceholderActive = false;
-                }
-            }
-            else
-            {
-                if (string.IsNullOrWhiteSpace(cmb.Text))
-                {
-                    isLoading = true;
-                    cmb.Text = placeholder;
-                    cmb.StateCommon.ComboBox.Content.Color1 = Color.Gray;
-                    isPlaceholderActive = true;
-                    isLoading = false;
-                }
-            }
+            if (_isLoading) return;
+
+            if (_cmb.SelectedIndex != -1)
+                PonerTextoNormal();
+            else if (string.IsNullOrWhiteSpace(_cmb.Text))
+                Activar();
         }
 
         private void OnTextUpdate(object sender, System.EventArgs e)
         {
-            if (isLoading) return;
-            if (isPlaceholderActive && cmb.Text != placeholder)
-            {
-                isPlaceholderActive = false;
-                cmb.StateCommon.ComboBox.Content.Color1 = Color.Black;
-            }
+            if (_isLoading) return;
+            if (_isPlaceholderActive && _cmb.Text != _placeholder)
+                PonerTextoNormal();
         }
 
         private void OnDropDown(object sender, System.EventArgs e)
         {
-            if (isPlaceholderActive && cmb.Text == placeholder)
-            {
-                isLoading = true;
-                cmb.Text = "";
-                cmb.StateCommon.ComboBox.Content.Color1 = Color.Black;
-                isPlaceholderActive = false;
-                isLoading = false;
-            }
+            if (_isPlaceholderActive && _cmb.Text == _placeholder)
+                LimpiarPlaceholder();
         }
 
         private void OnDataSourceChanged(object sender, System.EventArgs e)
         {
-            if (cmb.DataSource != null && cmb.Items.Count > 0)
+            if (_cmb.DataSource != null && _cmb.Items.Count > 0)
             {
-                if (cmb.SelectedIndex == -1 && string.IsNullOrWhiteSpace(cmb.Text))
-                {
-                    isLoading = true;
-                    cmb.Text = placeholder;
-                    cmb.StateCommon.ComboBox.Content.Color1 = Color.Gray;
-                    isPlaceholderActive = true;
-                    isLoading = false;
-                }
+                if (_cmb.SelectedIndex == -1 && string.IsNullOrWhiteSpace(_cmb.Text))
+                    Activar();
             }
         }
 
-        /// <summary>
-        /// Fuerza la activación del placeholder independientemente del estado actual.
-        /// </summary>
-        public void Activar()
+        // ---- Helpers privados ----
+
+        private void LimpiarPlaceholder()
         {
-            isLoading = true;
-            cmb.SelectedIndex = -1;
-            cmb.Text = placeholder;
-            cmb.StateCommon.ComboBox.Content.Color1 = Color.Gray;
-            isPlaceholderActive = true;
-            isLoading = false;
+            _isLoading = true;
+            _cmb.Text = string.Empty;
+            _cmb.SelectionStart = 0;
+            PonerTextoNormal();
+            _isPlaceholderActive = false;
+            _isLoading = false;
         }
 
-        /// <summary>
-        /// Devuelve el valor real del ComboBox (sin placeholder).
-        /// </summary>
-        public string GetRealValue()
+        private void PonerTextoNormal()
         {
-            return isPlaceholderActive ? string.Empty : cmb.Text;
+            _cmb.StateCommon.ComboBox.Content.Color1 = ColorTextoNormal;
+            _isPlaceholderActive = false;
         }
-
-        /// <summary>
-        /// Indica si el placeholder está activo.
-        /// </summary>
-        public bool IsPlaceholderActive => isPlaceholderActive;
     }
 }
