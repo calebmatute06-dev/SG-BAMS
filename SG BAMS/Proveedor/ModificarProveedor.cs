@@ -73,7 +73,7 @@ namespace SG_BAMS.Proveedor
             txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirAlfanumerico(e);
             txtTelefono.KeyPress += (s, e) => ClsValidaciones.ValidarSoloNumeros(e);
             txtRTN.KeyPress += (s, e) => ClsValidaciones.ValidarSoloNumeros(e);
-            txtTelefono.KeyPress += (s, e) => ClsValidaciones.ValidarTelefonoKeyPress(txtTelefono, e);
+            txtTelefono.KeyPress += (s, e) => ClsValidaciones.ValidarTelefonoKeyPress(e);
         }
 
         private void btnCancelar_Click(object sender, EventArgs e) => this.Close();

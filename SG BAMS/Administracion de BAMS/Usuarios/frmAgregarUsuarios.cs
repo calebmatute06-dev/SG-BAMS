@@ -9,33 +9,43 @@ using System.Windows.Forms;
 namespace SG_BAMS
 {
     /// <summary>
-    /// Interfaz de usuario para la creación de nuevos usuarios, incluyendo la asignación de roles y el registro facial obligatorio para roles administrativos.
+    /// Interfaz de usuario para la creación de nuevos usuarios.
+    /// DIP: depende de IUsuarioRepository, no de clsUsuario directamente.
+    /// SRP: única responsabilidad — capturar y validar datos para crear un usuario.
     /// </summary>
     public partial class frmAgregarUsuarios : Form
     {
+        private readonly IUsuarioRepository _usuarioRepository;
         private DataTable dtRoles;
-        private List<string> listaOriginalRoles = new List<string>();
 
         private PlaceholderTextBox phNombre;
         private PlaceholderTextBox phCorreo;
         private PlaceholderTextBox phContra;
         private PlaceholderComboBox phRol;
 
-        public frmAgregarUsuarios()
+        /// <summary>
+        /// Constructor que recibe el repositorio por inyección de dependencias.
+        /// </summary>
+        public frmAgregarUsuarios(IUsuarioRepository usuarioRepository)
         {
             InitializeComponent();
+            _usuarioRepository = usuarioRepository;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-
         }
 
-        private async Task CargarComboRoles()
+        /// <summary>
+        /// Constructor sin parámetros para compatibilidad con el diseñador y formularios existentes.
+        /// Crea la dependencia internamente como fallback.
+        /// </summary>
+        public frmAgregarUsuarios() : this(new clsUsuario()) { }
+
+        private async System.Threading.Tasks.Task CargarComboRoles()
         {
             try
             {
-                clsUsuario objetoUsuario = new clsUsuario();
-                DataTable dt = await objetoUsuario.ListarRolesAsync();
+                DataTable dt = await _usuarioRepository.ListarRolesAsync();
 
                 cmbRol.SelectedIndexChanged -= cmbRol_SelectedIndexChanged;
                 cmbRol.DataSource = dt;
@@ -43,12 +53,11 @@ namespace SG_BAMS
                 cmbRol.ValueMember = "id_rol_usuario";
                 cmbRol.SelectedIndexChanged += cmbRol_SelectedIndexChanged;
 
-
                 phRol.Activar();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -56,15 +65,12 @@ namespace SG_BAMS
 
         private async void frmAgregarUsuarios_Load(object sender, EventArgs e)
         {
-
             phNombre = new PlaceholderTextBox(txtNombre, "Ingrese el Nombre del usuario");
             phCorreo = new PlaceholderTextBox(txtCorreo, "Ingrese el Correo electrónico");
             phContra = new PlaceholderTextBox(txtContra, "Ingrese la Contraseña");
             phRol = new PlaceholderComboBox(cmbRol, "Seleccione un rol");
 
-
             cmbRol.DropDownStyle = ComboBoxStyle.DropDown;
-
 
             await CargarComboRoles();
         }
@@ -81,14 +87,11 @@ namespace SG_BAMS
                     return;
             }
 
-
             using (var tempCorreo = new TextBox { Text = correoReal })
             {
                 if (!ClsValidaciones.ValidacionCorreo(tempCorreo))
                     return;
             }
-
-
 
             using (var tempContra = new TextBox { Text = contraReal })
             {
@@ -107,9 +110,7 @@ namespace SG_BAMS
                 this.Cursor = Cursors.WaitCursor;
                 btmModificar.Enabled = false;
 
-                clsUsuario objetoUsuario = new clsUsuario();
-
-                bool existe = await objetoUsuario.ExisteUsuarioAsync(nombreReal);
+                bool existe = await _usuarioRepository.ExisteUsuarioAsync(nombreReal);
                 if (existe)
                 {
                     MessageBox.Show("El nombre de usuario ya está en uso. Por favor elija otro.",
@@ -118,7 +119,7 @@ namespace SG_BAMS
                     return;
                 }
 
-                bool correoExiste = await objetoUsuario.ExisteCorreo(correoReal);
+                bool correoExiste = await _usuarioRepository.ExisteCorreoAsync(correoReal);
                 if (correoExiste)
                 {
                     MessageBox.Show("El correo ya está registrado. Por favor use otro.",
@@ -128,19 +129,14 @@ namespace SG_BAMS
                 }
 
                 int idRol = (int)cmbRol.SelectedValue;
-                byte[] imagenByte = null;
 
-                bool exito = await objetoUsuario.InsertarUsuarioAsync(
-                    nombreReal,
-                    contraReal,
-                    idRol,
-                    imagenByte,
-                    correoReal
-                );
+                bool exito = await _usuarioRepository.InsertarUsuarioAsync(
+                    nombreReal, contraReal, idRol, null, correoReal);
 
                 if (exito)
                 {
-                    MessageBox.Show("Usuario guardado exitosamente.", "SG-BAMS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Usuario guardado exitosamente.", "SG-BAMS",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     if (idRol == 1 || idRol == 2)
                     {
@@ -151,7 +147,7 @@ namespace SG_BAMS
                             frmImagenEmpleado agregarImagen = new frmImagenEmpleado(nombreReal);
                             agregarImagen.ShowDialog();
 
-                            var archivos = Directory.GetFiles(clsSoporte.DirectorioRostros, "*.jpg")
+                            var archivos = Directory.GetFiles(DetectorRostroService.DirectorioRostros, "*.jpg")
                                 .Where(f => Path.GetFileNameWithoutExtension(f) == nombreReal ||
                                             Path.GetFileNameWithoutExtension(f).StartsWith(nombreReal + "_"))
                                 .ToList();
@@ -168,13 +164,10 @@ namespace SG_BAMS
                                     "Si cancelas, el usuario quedará guardado pero NO podrá iniciar sesión hasta que registre su rostro.",
                                     "Registro facial requerido",
                                     MessageBoxButtons.YesNo,
-                                    MessageBoxIcon.Warning
-                                );
+                                    MessageBoxIcon.Warning);
 
                                 if (respuesta == DialogResult.Yes)
-                                {
                                     break;
-                                }
                             }
                         }
                     }
@@ -185,7 +178,8 @@ namespace SG_BAMS
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocurrió un error: " + ex.Message, "Error de Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocurrió un error: " + ex.Message, "Error de Sistema",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -201,11 +195,7 @@ namespace SG_BAMS
         private void txtCorreo_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !Regex.IsMatch(e.KeyChar.ToString(), @"^[a-zA-Z0-9@._]$"))
-            {
                 e.Handled = true;
-            }
         }
-
-       
     }
 }

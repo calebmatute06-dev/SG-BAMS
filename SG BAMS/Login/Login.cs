@@ -132,7 +132,7 @@ namespace SG_BAMS.Login
                 switch (rol)
                 {
                     case 1:
-                        var archivos = Directory.GetFiles(clsSoporte.DirectorioRostros, "*.jpg")
+                        var archivos = Directory.GetFiles(DetectorRostroService.DirectorioRostros, "*.jpg")
                             .Where(f => Path.GetFileNameWithoutExtension(f) == UsuarioLogueado ||
                                         Path.GetFileNameWithoutExtension(f).StartsWith(UsuarioLogueado + "_"))
                             .ToList();
@@ -154,7 +154,7 @@ namespace SG_BAMS.Login
                         break;
 
                     case 2:
-                        var archivos2 = Directory.GetFiles(clsSoporte.DirectorioRostros, "*.jpg")
+                        var archivos2 = Directory.GetFiles(DetectorRostroService.DirectorioRostros, "*.jpg")
                             .Where(f => Path.GetFileNameWithoutExtension(f) == UsuarioLogueado ||
                                         Path.GetFileNameWithoutExtension(f).StartsWith(UsuarioLogueado + "_"))
                             .ToList();

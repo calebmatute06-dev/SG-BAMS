@@ -40,7 +40,7 @@ namespace SG_BAMS
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
-            clsSoporte.InicializarDirectorio();
+            DetectorRostroService.InicializarDirectorioEstatico();
             usuarioAsignado = nombreUsuario;
 
             try
@@ -158,7 +158,7 @@ namespace SG_BAMS
                 return;
             }
 
-            var archivos = Directory.GetFiles(clsSoporte.DirectorioRostros, "*.jpg")
+            var archivos = Directory.GetFiles(DetectorRostroService.DirectorioRostros, "*.jpg")
                     .Where(f => Path.GetFileNameWithoutExtension(f) == usuarioAsignado ||
                     Path.GetFileNameWithoutExtension(f).StartsWith(usuarioAsignado + "_"))
                     .ToList();
@@ -195,7 +195,7 @@ namespace SG_BAMS
         /// </summary>
         private void frmImagenEmpleado_Load(object sender, EventArgs e)
         {
-            clsSoporte.InicializarDirectorio();
+            DetectorRostroService.InicializarDirectorioEstatico();
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             if (!string.IsNullOrEmpty(usuarioAsignado) && lblUsuario != null)
@@ -377,7 +377,7 @@ namespace SG_BAMS
 
             string nombreArchivo = lblUsuario.Text;
 
-            var archivosExistentes = Directory.GetFiles(clsSoporte.DirectorioRostros, "*.jpg")
+            var archivosExistentes = Directory.GetFiles(DetectorRostroService.DirectorioRostros, "*.jpg")
                 .Where(f => Path.GetFileNameWithoutExtension(f).StartsWith(nombreArchivo))
                 .ToList();
 
@@ -457,7 +457,7 @@ namespace SG_BAMS
                                                     {
                                                         string angulo = (fotosTomadas % fotosAnguloRequeridas + 1).ToString();
                                                         string nombreFoto = $"{nombreArchivo}_{fotosActuales + fotosTomadas + 1}_a{angulo}_{DateTime.Now.Ticks}.jpg";
-                                                        string path = Path.Combine(clsSoporte.DirectorioRostros, nombreFoto);
+                                                        string path = Path.Combine(DetectorRostroService.DirectorioRostros, nombreFoto);
 
                                                         rostroProcesado.Save(path);
                                                         fotosTomadas++;
@@ -535,7 +535,7 @@ namespace SG_BAMS
             string nombreUsuario = lblUsuario.Text;
             try
             {
-                var archivos = Directory.GetFiles(clsSoporte.DirectorioRostros, "*.jpg")
+                var archivos = Directory.GetFiles(DetectorRostroService.DirectorioRostros, "*.jpg")
                     .Where(f => Path.GetFileNameWithoutExtension(f).StartsWith(nombreUsuario)).ToList();
 
                 if (archivos.Count == 0)

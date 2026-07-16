@@ -134,7 +134,7 @@ namespace SG_BAMS.Login
                 return;
             }
 
-            var todosLosArchivos = Directory.GetFiles(clsSoporte.DirectorioRostros, "*.jpg").ToList();
+            var todosLosArchivos = Directory.GetFiles(DetectorRostroService.DirectorioRostros, "*.jpg").ToList();
             if (todosLosArchivos.Count == 0)
             {
                 MessageBox.Show("No hay registros faciales registrados en el sistema.", "Sin registros",
