@@ -5,19 +5,7 @@ using System.Threading.Tasks;
 
 namespace SG_BAMS.Administracion_de_BAMS
 {
-    // ============================================================
-    // ClsCatalogoBase — SRP + OCP + DIP
-    // ============================================================
-    // CAMBIO RESPECTO A LA VERSION ANTERIOR:
-    //   Ahora implementa ICatalogoRepository explícitamente.
-    //   Esto permite que los formularios declaren su dependencia
-    //   como ICatalogoRepository en lugar de ClsCatalogoBase,
-    //   completando el ciclo DIP en la capa de datos.
-    //
-    // Los métodos LeerAsync / InsertarAsync / ModificarAsync
-    // son exactamente iguales a antes — no hay cambio de lógica,
-    // solo se añade la implementación de la interfaz.
-    // ============================================================
+    
 
     /// <summary>
     /// Clase base para catálogos simples (Leer, Insertar, Modificar).

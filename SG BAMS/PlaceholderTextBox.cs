@@ -5,23 +5,7 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
-    // ============================================================
-    // APLICACIÓN DE SOLID A PlaceholderTextBox
-    // ============================================================
-    // ANTES: la clase estaba directamente acoplada a KryptonTextBox
-    // sin ninguna abstracción, violando OCP (no se podía extender
-    // para otros tipos de TextBox sin modificar la clase) y DIP
-    // (dependía de una implementación concreta, no de una interfaz).
-    //
-    // DESPUÉS:
-    //   IPlaceholder — ISP: contrato mínimo para cualquier control
-    //                  que soporte comportamiento de placeholder.
-    //   PlaceholderTextBox — implementa IPlaceholder y sigue siendo
-    //                  el adaptador concreto para KryptonTextBox.
-    //   OCP: si en el futuro se necesita soporte para un TextBox
-    //        nativo o de otra librería, se crea una nueva clase que
-    //        implemente IPlaceholder sin tocar PlaceholderTextBox.
-    // ============================================================
+    
 
     /// <summary>
     /// Contrato mínimo que debe cumplir cualquier control con comportamiento de placeholder.

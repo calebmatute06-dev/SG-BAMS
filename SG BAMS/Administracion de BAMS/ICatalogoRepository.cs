@@ -3,23 +3,7 @@ using System.Threading.Tasks;
 
 namespace SG_BAMS.Administracion_de_BAMS
 {
-    // ============================================================
-    // ICatalogoRepository — ISP + DIP
-    // ============================================================
-    // Contrato mínimo para todos los catálogos simples del sistema:
-    // Clasificación, Estado, FormaPago, Marca, ModeloAuto, Rol,
-    // TipoProducto.
-    //
-    // ISP: define solo las 3 operaciones que realmente comparten
-    //      todos los catálogos (Leer, Insertar, Modificar).
-    //      Si un catálogo necesitara operaciones adicionales,
-    //      extendería con una interfaz más específica, sin romper
-    //      a los demás consumidores.
-    //
-    // DIP: los formularios frmCatalogoBase y sus subclases
-    //      dependen de esta abstracción, no de clsClasificacion
-    //      ni de ninguna implementación concreta.
-    // ============================================================
+    
 
     /// <summary>
     /// Contrato de acceso a datos para catálogos simples (Leer, Insertar, Modificar).

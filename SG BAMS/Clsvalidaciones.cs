@@ -4,25 +4,7 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
-    // ============================================================
-    // APLICACIÓN DE SRP A ClsValidaciones
-    // ============================================================
-    // ANTES: una sola clase con 25+ métodos de validación mezclando
-    // texto, números, RTN, correo, contraseña, teléfono y fechas.
-    //
-    // DESPUÉS: se divide en 5 clases especializadas, cada una con
-    // una única responsabilidad de validación por dominio:
-    //
-    //   ValidacionesTexto     — nombres, alfanuméricos, usuario
-    //   ValidacionesNumericas — decimales, precios, rangos
-    //   ValidacionesContacto  — teléfono, correo, RTN
-    //   ValidacionesSeguridad — contraseñas
-    //   ValidacionesFechas    — rangos de fecha
-    //
-    // La clase ClsValidaciones se mantiene como fachada estática
-    // (OCP + compatibilidad hacia atrás) que delega a las clases
-    // especializadas sin modificar las firmas existentes.
-    // ============================================================
+    
 
     /// <summary>
     /// Validaciones de campos de texto y nombres.

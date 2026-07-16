@@ -5,34 +5,7 @@ using System.Windows.Forms;
 
 namespace SG_BAMS.Administracion_de_BAMS
 {
-    // ============================================================
-    // frmCatalogoBase — SRP + OCP + DRY + DIP
-    // ============================================================
-    // PROBLEMA DETECTADO EN LA REVISIÓN:
-    //   Los 7 formularios de catálogo (Clasificacion.cs, frmEstado.cs,
-    //   frmFormaPago.cs, frmMarcaProductos.cs, frmModeloAuto.cs,
-    //   frmRoles.cs, frmTipoProducto.cs) contenían lógica idéntica:
-    //     - CargarGrid()
-    //     - AbrirOEnfocarDialogo<T>()
-    //     - Configuración del DataGridView
-    //     - Manejo de botones Agregar / Modificar / Salir
-    //
-    //   Y todos instanciaban su repositorio directamente en el form,
-    //   violando DIP.
-    //
-    // SOLUCIÓN:
-    //   frmCatalogoBase centraliza toda esa lógica común.
-    //   Cada formulario de catálogo hereda esta clase y solo define:
-    //     - El repositorio (ICatalogoRepository) → DIP
-    //     - Los nombres de columnas de su DataGrid → SRP
-    //     - Cómo crear sus formularios Agregar/Modificar → OCP
-    //
-    // NOTA PARA EL DISEÑADOR DE WINFORMS:
-    //   Las subclases deben tener un DataGridView llamado "dgv"
-    //   y los botones estándar: btnAgregar, btnModificar, btnSalir.
-    //   Si el nombre difiere en algún form existente, se puede
-    //   sobrescribir ConfigurarControles() en la subclase.
-    // ============================================================
+    
 
     /// <summary>
     /// Formulario base para todos los catálogos simples del sistema.

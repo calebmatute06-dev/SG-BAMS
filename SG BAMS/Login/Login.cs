@@ -19,7 +19,6 @@ namespace SG_BAMS.Login
         private PlaceholderTextBox phUsuario;
        
 
-        // Variables para el control de intentos
         private int intentosFallidos = 0;
         private const int MaxIntentos = 3;
         private const int SegundosBloqueo = 30;

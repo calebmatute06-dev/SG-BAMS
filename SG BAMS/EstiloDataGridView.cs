@@ -3,28 +3,7 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
-    // ============================================================
-    // EstiloDataGridView — DRY + SRP
-    // ============================================================
-    // PROBLEMA DETECTADO EN LA REVISIÓN:
-    //   El bloque de ~20 líneas que aplica el estilo visual al
-    //   DataGridView (fondo blanco, encabezado azul, fuente Segoe UI,
-    //   filas alternas, altura 32px, etc.) estaba copiado
-    //   literalmente en:
-    //     - frmUsuarios.cs
-    //     - frmEstado.cs
-    //     - Clasificacion.cs
-    //     - frmFormaPago.cs
-    //     - frmMarcaProductos.cs
-    //     - frmModeloAuto.cs
-    //     - frmRoles.cs
-    //     - frmTipoProducto.cs
-    //
-    // DRY: un solo lugar para el estilo. Si cambia el diseño
-    //      visual, se modifica aquí y aplica a todos.
-    // SRP: los formularios solo se responsabilizan de su lógica;
-    //      el estilo del grid es responsabilidad de esta clase.
-    // ============================================================
+    
 
     /// <summary>
     /// Clase estática que centraliza el estilo visual de los DataGridView del sistema.

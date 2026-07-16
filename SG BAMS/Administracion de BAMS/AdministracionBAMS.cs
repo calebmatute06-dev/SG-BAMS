@@ -9,17 +9,7 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
-    // ============================================================
-    // AdministracionBAMS — CORREGIDO
-    // ============================================================
-    // PROBLEMA: el otro chat inyectaba repositorios en frmRoles,
-    // frmTipoProducto, frmFormaPago, frmMarcaProductos, frmModeloAuto
-    // y frmEstado, pero esos formularios AÚN NO tienen ese constructor.
-    // Solo Clasificacion.cs y frmUsuarios ya tienen DIP aplicado.
-    //
-    // SOLUCIÓN: solo inyectamos donde ya existe el constructor.
-    // Los demás usan su constructor vacío original.
-    // ============================================================
+    
 
     public partial class AdministracionBAMS : Form
     {

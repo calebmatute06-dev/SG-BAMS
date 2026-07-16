@@ -4,20 +4,7 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
-    // ============================================================
-    // PlaceholderComboBox — ISP + OCP (corrección de la versión anterior)
-    // ============================================================
-    // PROBLEMA DETECTADO EN LA REVISIÓN:
-    //   PlaceholderComboBox no implementaba IPlaceholder.
-    //   Si un formulario declaraba:
-    //       private IPlaceholder _phEstado;
-    //   no podía asignarle un PlaceholderComboBox, solo un PlaceholderTextBox.
-    //   Esto rompía el polimorfismo esperado del ISP.
-    //
-    // CORRECCIÓN: PlaceholderComboBox ahora implementa IPlaceholder,
-    //   igual que PlaceholderTextBox, de modo que los formularios pueden
-    //   tratar ambos controles a través de la misma abstracción.
-    // ============================================================
+    
 
     /// <summary>
     /// Adaptador que añade comportamiento de placeholder a un KryptonComboBox.
