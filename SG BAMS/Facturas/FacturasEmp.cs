@@ -20,6 +20,9 @@ namespace SG_BAMS
         /// The datos fac
         /// </summary>
         private DataTable datosFac;
+        private readonly ClsDetalleFactura detalleFactura;
+        private readonly FiltroFacturasService filtroService = new FiltroFacturasService();
+        private readonly NavegacionService navegacion = new NavegacionService();
 
         /// <summary>
         /// Texto del placeholder para evitar filtrarlo
@@ -29,12 +32,18 @@ namespace SG_BAMS
         /// <summary>
         /// Initializes a new instance of the <see cref="FacturasEmp"/> class.
         /// </summary>
-        public FacturasEmp()
+
+        public FacturasEmp() : this(new ClsDetalleFactura())
+        {
+        }
+
+        internal FacturasEmp(ClsDetalleFactura detalleFactura)
         {
             InitializeComponent();
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.StartPosition = FormStartPosition.CenterScreen;
+            this.detalleFactura = detalleFactura;
             ConfigurarGrid();
         }
 
@@ -61,8 +70,8 @@ namespace SG_BAMS
         {
             try
             {
-                ClsDetalleFactura objFac = new ClsDetalleFactura();
-                datosFac = await objFac.VerFacturas();
+                datosFac = await detalleFactura.VerFacturas();
+
 
                 if (datosFac != null)
                 {
@@ -104,33 +113,7 @@ namespace SG_BAMS
             dtpInicio.ValueChanged += (s, ev) => ValidarYFiltrar();
             dtpFin.ValueChanged += (s, ev) => ValidarYFiltrar();
 
-            dgvFacturas.BorderStyle = BorderStyle.None;
-            dgvFacturas.BackgroundColor = Color.White;
-            dgvFacturas.RowHeadersVisible = false;
-            dgvFacturas.EnableHeadersVisualStyles = false;
-            dgvFacturas.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-
-            dgvFacturas.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
-            dgvFacturas.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
-            dgvFacturas.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
-            dgvFacturas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgvFacturas.ColumnHeadersHeight = 28;
-
-            dgvFacturas.DefaultCellStyle.BackColor = Color.White;
-            dgvFacturas.DefaultCellStyle.ForeColor = Color.Navy;
-            dgvFacturas.DefaultCellStyle.Font = new Font("Segoe UI", 10);
-            dgvFacturas.DefaultCellStyle.Padding = new Padding(3);
-            dgvFacturas.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 245, 255);
-            dgvFacturas.AlternatingRowsDefaultCellStyle.ForeColor = Color.Navy;
-
-            dgvFacturas.DefaultCellStyle.SelectionBackColor = Color.DeepSkyBlue;
-            dgvFacturas.DefaultCellStyle.SelectionForeColor = Color.White;
-
-            dgvFacturas.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgvFacturas.GridColor = Color.LightGray;
-            dgvFacturas.RowTemplate.Height = 32;
-            dgvFacturas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvFacturas.ClearSelection();
+            EstiloDataGridView.Aplicar(dgvFacturas);
 
             FiltrarDatos();
         }
@@ -159,43 +142,11 @@ namespace SG_BAMS
 
             try
             {
-                DataView dv = datosFac.DefaultView;
-
                 string texto = txtBusqueda.Text?.Trim() ?? "";
+                if (texto == PlaceholderText) texto = "";
 
-                if (texto == PlaceholderText)
-                {
-                    texto = "";
-                }
+                DataView dv = filtroService.Filtrar(datosFac, texto, dtpInicio.Value, dtpFin.Value);
 
-                var condiciones = new List<string>();
-
-                if (!string.IsNullOrWhiteSpace(texto))
-                {
-                    string textoFiltro = texto
-                        .Replace("'", "''")
-                        .Replace("[", "[[]")
-                        .Replace("]", "[]]");
-
-                    string filtroTexto = $"(Convert([Factura], 'System.String') LIKE '%{textoFiltro}%' OR " +
-                                         $"[Vendedor] LIKE '%{textoFiltro}%' OR " +
-                                         $"[Cliente] LIKE '%{textoFiltro}%' OR " +
-                                         $"[Método de Pago] LIKE '%{textoFiltro}%' OR " +
-                                         $"[RTN Cliente] LIKE '%{textoFiltro}%')";
-
-                    condiciones.Add(filtroTexto);
-                }
-                else
-                {
-                    string fInicio = dtpInicio.Value.Date.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
-                    string fFin = dtpFin.Value.Date.AddDays(1).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
-                    string filtroFechas = $"[Fecha] >= #{fInicio}# AND [Fecha] < #{fFin}#";
-                    condiciones.Add($"({filtroFechas})");
-                }
-
-                string rowFilter = condiciones.Count > 0 ? string.Join(" AND ", condiciones) : "";
-
-                dv.RowFilter = rowFilter;
                 dgvFacturas.DataSource = dv;
                 dgvFacturas.ClearSelection();
             }
@@ -310,14 +261,7 @@ namespace SG_BAMS
             dgvFacturas.ClearSelection();
         }
 
-        /// <summary>
-        /// Navegars the a.
-        /// </summary>
-        private void NavegarA(Form formulario)
-        {
-            formulario.Show();
-            this.Close();
-        }
+        
 
         /// <summary>
         /// Handles the Click event of the BtnNotificaciones control.
@@ -327,45 +271,13 @@ namespace SG_BAMS
             new NotificacionesAdmin().ShowDialog();
         }
 
-        /// <summary>
-        /// Handles the Click event of the btnMenu control.
-        /// </summary>
-        private void btnMenu_Click(object sender, EventArgs e)
-        {
-            MenuPrincipalEmp ME = new MenuPrincipalEmp();
-            ME.Show();
-            this.Hide();
-        }
+        private void btnMenu_Click(object sender, EventArgs e) => navegacion.IrA(this, new MenuPrincipalEmp());
 
-        /// <summary>
-        /// Handles the Click event of the btnClientes control.
-        /// </summary>
-        private void btnClientes_Click(object sender, EventArgs e)
-        {
-            ClientesEmp CE = new ClientesEmp();
-            CE.Show();
-            this.Hide();
-        }
+        private void btnClientes_Click(object sender, EventArgs e) => navegacion.IrA(this, new ClientesEmp());
 
-        /// <summary>
-        /// Handles the Click event of the btnInventario control.
-        /// </summary>
-        private void btnInventario_Click(object sender, EventArgs e)
-        {
-            InventarioEmp IE = new InventarioEmp();
-            IE.Show();
-            this.Hide();
-        }
+        private void btnInventario_Click(object sender, EventArgs e) => navegacion.IrA(this, new InventarioEmp());
 
-        /// <summary>
-        /// Handles the Click event of the btnDeudores control.
-        /// </summary>
-        private void btnDeudores_Click(object sender, EventArgs e)
-        {
-            Deudores_Emp DE = new Deudores_Emp();
-            DE.Show();
-            this.Hide();
-        }
+        private void btnDeudores_Click(object sender, EventArgs e) => navegacion.IrA(this, new Deudores_Emp());
 
         /// <summary>
         /// Handles the Click event of the btnCerrar control.

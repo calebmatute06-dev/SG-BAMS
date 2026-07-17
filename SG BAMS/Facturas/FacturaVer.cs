@@ -26,6 +26,8 @@ namespace SG_BAMS
         /// antes venían por el constructor.
         /// </summary>
         private FacturaDTO facturaDTO;
+        private readonly ClsFactura FAC = new ClsFactura();
+        private readonly ClsDetalleFactura detalleFactura = new ClsDetalleFactura();
 
         /// <summary>
         /// The datos cli
@@ -36,7 +38,11 @@ namespace SG_BAMS
         /// Initializes a new instance of the <see cref="FacturaVer"/> class.
         /// </summary>
         /// <param name="dto">Datos de la factura a visualizar.</param>
-        public FacturaVer(FacturaDTO dto)
+        public FacturaVer(FacturaDTO dto) : this(dto, new ClsDetalleFactura())
+        {
+        }
+
+        internal FacturaVer(FacturaDTO dto, ClsDetalleFactura detalleFactura)
         {
             InitializeComponent();
             this.MaximizeBox = false;
@@ -44,6 +50,7 @@ namespace SG_BAMS
             this.StartPosition = FormStartPosition.CenterScreen;
 
             facturaDTO = dto;
+            this.detalleFactura = detalleFactura;
 
             txtCliente.Text = facturaDTO.NombreCliente;
             txtBateriaVieja.Text = facturaDTO.CantidadBateriaVieja.ToString();
@@ -66,8 +73,7 @@ namespace SG_BAMS
         /// </summary>
         private async Task VerFacturasProductos()
         {
-            ClsDetalleFactura objVFP = new ClsDetalleFactura();
-            datosCli = await objVFP.VerFacturasProducto(facturaDTO.IdFactura);
+            datosCli = await detalleFactura.VerFacturasProducto(facturaDTO.IdFactura);
 
             if (datosCli != null)
             {
@@ -83,6 +89,7 @@ namespace SG_BAMS
                         ev.FormattingApplied = true;
                     }
                 };
+                LlenarDetalleDesdeGrid();
                 CalcularTotal();
 
                 dgvFacturas.Columns["ID_Factura"].Visible = false;
@@ -99,27 +106,13 @@ namespace SG_BAMS
         /// </summary>
         private void CalcularTotal()
         {
-            double acumulador = 0;
-
-            for (int i = 0; i < dgvFacturas.Rows.Count; i++)
-            {
-                if (dgvFacturas.Rows[i].Cells["Subtotal"].Value != null)
-                {
-                    acumulador += Convert.ToDouble(dgvFacturas.Rows[i].Cells["Subtotal"].Value);
-                }
-            }
-
-            double rebaja = facturaDTO.RebajaBateria;
-
-            double total = acumulador - rebaja;
-
-            txtSubtotal.Text = $"L. {acumulador:N2}";
-            txtRebaja.Text = $"L. {rebaja:N2}";
-            txtTotal.Text = $"L. {(total < 0 ? 0 : total):N2}";
+            txtSubtotal.Text = $"L. {facturaDTO.Subtotal:N2}";
+            txtRebaja.Text = $"L. {facturaDTO.RebajaBateria:N2}";
+            txtTotal.Text = $"L. {facturaDTO.Total:N2}";
         }
 
         /// <summary>
-        /// Handles the Load event of the FacturaVer control.
+        /// Handles the Load event of the FacturaVer control. 
         /// </summary>
         private async void FacturaVer_Load(object sender, EventArgs e)
         {
@@ -137,33 +130,7 @@ namespace SG_BAMS
             dgvFacturas.AllowUserToOrderColumns = false;
             dgvFacturas.AllowUserToAddRows = false;
 
-            dgvFacturas.BorderStyle = BorderStyle.None;
-            dgvFacturas.BackgroundColor = Color.White;
-            dgvFacturas.RowHeadersVisible = false;
-            dgvFacturas.EnableHeadersVisualStyles = false;
-            dgvFacturas.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-
-            dgvFacturas.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
-            dgvFacturas.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
-            dgvFacturas.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
-            dgvFacturas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgvFacturas.ColumnHeadersHeight = 28;
-
-            dgvFacturas.DefaultCellStyle.BackColor = Color.White;
-            dgvFacturas.DefaultCellStyle.ForeColor = Color.Navy;
-            dgvFacturas.DefaultCellStyle.Font = new Font("Segoe UI", 10);
-            dgvFacturas.DefaultCellStyle.Padding = new Padding(3);
-            dgvFacturas.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 245, 255);
-            dgvFacturas.AlternatingRowsDefaultCellStyle.ForeColor = Color.Navy;
-
-            dgvFacturas.DefaultCellStyle.SelectionBackColor = Color.DeepSkyBlue;
-            dgvFacturas.DefaultCellStyle.SelectionForeColor = Color.White;
-
-            dgvFacturas.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgvFacturas.GridColor = Color.LightGray;
-            dgvFacturas.RowTemplate.Height = 32;
-            dgvFacturas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvFacturas.ClearSelection();
+            EstiloDataGridView.Aplicar(dgvFacturas);
         }
 
         /// <summary>
@@ -171,30 +138,30 @@ namespace SG_BAMS
         /// </summary>
         private async Task LlenarComboPago()
         {
-            ClsRepositorioBaseDatos objCl = new ClsRepositorioBaseDatos();
             try
             {
-                objCl.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_FormasPago_Listar", objCl.Conectar))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
-                    {
-                        DataTable dt = new DataTable();
-                        dt.Load(reader);
-                        cmbPago.DisplayMember = "descripcion_forma_pago";
-                        cmbPago.ValueMember = "id_tipo_forma_pago";
-                        cmbPago.DataSource = dt;
-                    }
-                }
+                DataTable dt = await FAC.ObtenerFormasPago();
+                cmbPago.DisplayMember = "descripcion_forma_pago";
+                cmbPago.ValueMember = "id_tipo_forma_pago";
+                cmbPago.DataSource = dt;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al llenar ComboBox: " + ex.Message);
             }
-            finally
+        }
+
+        private void LlenarDetalleDesdeGrid()
+        {
+            facturaDTO.Detalle.Clear();
+
+            foreach (DataRow fila in datosCli.Rows)
             {
-                objCl.Cerrar();
+                facturaDTO.Detalle.Add(new DetalleDTO
+                {
+                    Cantidad = Convert.ToInt32(fila["Cantidad"]),
+                    Precio = Convert.ToDouble(fila["Precio"])
+                });
             }
         }
 
