@@ -19,6 +19,8 @@ namespace SG_BAMS.Facturas.DTO
 
         public double Precio { get; set; }
 
+        public int Stock { get; set; }
+
         /// <summary>
         /// Calculado, nunca se asigna manualmente ni se guarda en BD.
         /// </summary>

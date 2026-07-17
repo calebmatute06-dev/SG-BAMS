@@ -3,71 +3,38 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
-    
-
-    /// <summary>
-    /// Clase estática que centraliza el estilo visual de los DataGridView del sistema.
-    /// DRY: elimina el bloque de estilos repetido en todos los formularios de catálogo.
-    /// SRP: única responsabilidad — aplicar el tema visual corporativo de SG-BAMS a un grid.
-    /// </summary>
-    public static class EstiloDataGridView
+    internal class EstiloDataGridView()
     {
-        // Colores centralizados — si cambia el diseño, solo se modifica aquí
-        private static readonly Color ColorEncabezadoFondo = Color.SkyBlue;
-        private static readonly Color ColorEncabezadoTexto = Color.Navy;
-        private static readonly Color ColorFilaNormal = Color.White;
-        private static readonly Color ColorFilaAlterna = Color.FromArgb(230, 245, 255);
-        private static readonly Color ColorTextoNormal = Color.Navy;
-        private static readonly Color ColorSeleccionFondo = Color.DeepSkyBlue;
-        private static readonly Color ColorSeleccionTexto = Color.White;
-        private static readonly Color ColorBorde = Color.LightGray;
-
-        private static readonly Font FuenteEncabezado = new Font("Segoe UI", 10, FontStyle.Bold);
-        private static readonly Font FuenteCelda = new Font("Segoe UI", 10);
-
-        /// <summary>
-        /// Aplica el estilo visual corporativo de SG-BAMS al DataGridView indicado.
-        /// Llamar al final del evento Load del formulario, después de cargar los datos.
-        /// </summary>
-        /// <param name="dgv">El DataGridView al que se aplica el estilo.</param>
-        public static void Aplicar(DataGridView dgv)
+        public static void Aplicar(DataGridView grid)
         {
-            // Borde y fondo
-            dgv.BorderStyle = BorderStyle.None;
-            dgv.BackgroundColor = ColorFilaNormal;
-            dgv.RowHeadersVisible = false;
+            grid.BorderStyle = BorderStyle.None;
+            grid.BackgroundColor = Color.White;
+            grid.RowHeadersVisible = false;
+            grid.EnableHeadersVisualStyles = false;
+            grid.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
 
-            // Encabezado
-            dgv.EnableHeadersVisualStyles = false;
-            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dgv.ColumnHeadersDefaultCellStyle.BackColor = ColorEncabezadoFondo;
-            dgv.ColumnHeadersDefaultCellStyle.ForeColor = ColorEncabezadoTexto;
-            dgv.ColumnHeadersDefaultCellStyle.Font = FuenteEncabezado;
-            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgv.ColumnHeadersHeight = 28;
+            grid.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
+            grid.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
+            grid.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            grid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            grid.ColumnHeadersHeight = 28;
 
-            // Celdas normales
-            dgv.DefaultCellStyle.BackColor = ColorFilaNormal;
-            dgv.DefaultCellStyle.ForeColor = ColorTextoNormal;
-            dgv.DefaultCellStyle.Font = FuenteCelda;
-            dgv.DefaultCellStyle.Padding = new Padding(3);
+            grid.DefaultCellStyle.BackColor = Color.White;
+            grid.DefaultCellStyle.ForeColor = Color.Navy;
+            grid.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            grid.DefaultCellStyle.Padding = new Padding(3);
+            grid.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 245, 255);
+            grid.AlternatingRowsDefaultCellStyle.ForeColor = Color.Navy;
 
-            // Filas alternas
-            dgv.AlternatingRowsDefaultCellStyle.BackColor = ColorFilaAlterna;
-            dgv.AlternatingRowsDefaultCellStyle.ForeColor = ColorTextoNormal;
+            grid.DefaultCellStyle.SelectionBackColor = Color.DeepSkyBlue;
+            grid.DefaultCellStyle.SelectionForeColor = Color.White;
 
-            // Selección
-            dgv.DefaultCellStyle.SelectionBackColor = ColorSeleccionFondo;
-            dgv.DefaultCellStyle.SelectionForeColor = ColorSeleccionTexto;
-
-            // Borde de celdas y filas
-            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgv.GridColor = ColorBorde;
-            dgv.RowTemplate.Height = 32;
-
-            // Columnas
-            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgv.ClearSelection();
+            grid.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            grid.GridColor = Color.LightGray;
+            grid.RowTemplate.Height = 32;
+            grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            grid.ClearSelection();
         }
+
     }
 }

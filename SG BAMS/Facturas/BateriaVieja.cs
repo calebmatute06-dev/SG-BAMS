@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.Globalization;
+using System.Collections.Generic;
 
 namespace SG_BAMS.Facturas
 {
@@ -15,6 +16,7 @@ namespace SG_BAMS.Facturas
     public partial class BateriaVieja : Form
     {
         private double limiteFactura;
+        private readonly ICalculadoraBateriaVieja calculadora;
 
         private PlaceholderTextBox phPrecio;
         private PlaceholderTextBox phCantidad;
@@ -34,13 +36,19 @@ namespace SG_BAMS.Facturas
         /// Inicializa una nueva instancia del formulario <see cref="BateriaVieja"/>.
         /// </summary>
         /// <param name="montoFactura">Monto total de la factura para validar descuento.</param>
-        public BateriaVieja(double montoFactura)
+        public BateriaVieja(double montoFactura) : this(montoFactura, new CalculadoraBateriaVieja())
+        {
+        }
+
+        
+        internal BateriaVieja(double montoFactura, ICalculadoraBateriaVieja calculadora)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             System.Threading.Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
             System.Threading.Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
             this.limiteFactura = montoFactura;
+            this.calculadora = calculadora;
         }
 
         private void BateriaVieja_Load(object sender, EventArgs e)
@@ -49,11 +57,9 @@ namespace SG_BAMS.Facturas
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
 
-
             cmbBaterias.Items.Clear();
             cmbBaterias.Items.AddRange(new string[] { "Moto", "Carro", "Camión" });
             cmbBaterias.DropDownStyle = ComboBoxStyle.DropDownList;
-
 
             phPrecio = new PlaceholderTextBox(txtPrecio, "Precio de la batería");
             phCantidad = new PlaceholderTextBox(txtCantidad, "Cantidad");
@@ -62,34 +68,7 @@ namespace SG_BAMS.Facturas
             txtTotal.ReadOnly = true;
             txtCantidadTotal.ReadOnly = true;
 
-
-            dgvBateria.BorderStyle = BorderStyle.None;
-            dgvBateria.BackgroundColor = Color.White;
-            dgvBateria.RowHeadersVisible = false;
-            dgvBateria.EnableHeadersVisualStyles = false;
-            dgvBateria.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-
-            dgvBateria.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
-            dgvBateria.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
-            dgvBateria.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
-            dgvBateria.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgvBateria.ColumnHeadersHeight = 28;
-
-            dgvBateria.DefaultCellStyle.BackColor = Color.White;
-            dgvBateria.DefaultCellStyle.ForeColor = Color.Navy;
-            dgvBateria.DefaultCellStyle.Font = new Font("Segoe UI", 10);
-            dgvBateria.DefaultCellStyle.Padding = new Padding(3);
-            dgvBateria.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 245, 255);
-            dgvBateria.AlternatingRowsDefaultCellStyle.ForeColor = Color.Navy;
-
-            dgvBateria.DefaultCellStyle.SelectionBackColor = Color.DeepSkyBlue;
-            dgvBateria.DefaultCellStyle.SelectionForeColor = Color.White;
-
-            dgvBateria.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgvBateria.GridColor = Color.LightGray;
-            dgvBateria.RowTemplate.Height = 32;
-            dgvBateria.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvBateria.ClearSelection();
+            EstiloDataGridView.Aplicar(dgvBateria);
         }
 
         private void ConfigurarGrid()
@@ -212,29 +191,31 @@ namespace SG_BAMS.Facturas
 
         private void CalcularTotales()
         {
-            double totalDinero = 0;
-            int totalProductos = 0;
+            var items = new List<BateriaItem>();
 
             foreach (DataGridViewRow row in dgvBateria.Rows)
             {
-                if (row.Cells["subtotal"].Value != null)
+                double precio = 0;
+                int cantidad = 0;
+
+                if (row.Cells["precio"].Value != null)
                 {
-                    string subtotalStr = row.Cells["subtotal"].Value.ToString().Replace("L.", "").Replace(",", "").Trim();
-                    if (double.TryParse(subtotalStr, NumberStyles.Any, CultureInfo.InvariantCulture, out double subtotalVal))
-                    {
-                        totalDinero += subtotalVal;
-                    }
+                    string precioStr = row.Cells["precio"].Value.ToString().Replace("L.", "").Replace(",", "").Trim();
+                    double.TryParse(precioStr, NumberStyles.Any, CultureInfo.InvariantCulture, out precio);
                 }
 
                 if (row.Cells["cantidad"].Value != null)
                 {
-                    int.TryParse(row.Cells["cantidad"].Value.ToString(), out int cantVal);
-                    totalProductos += cantVal;
+                    int.TryParse(row.Cells["cantidad"].Value.ToString(), out cantidad);
                 }
+
+                items.Add(new BateriaItem { Precio = precio, Cantidad = cantidad });
             }
 
-            txtTotal.Text = $"L. {totalDinero:N2}";
-            txtCantidadTotal.Text = totalProductos.ToString();
+            ResultadoCalculoBateria resultado = calculadora.CalcularTotales(items);
+
+            txtTotal.Text = $"L. {resultado.TotalDinero:N2}";
+            txtCantidadTotal.Text = resultado.TotalCantidad.ToString();
         }
 
         private void BtnAceptar_Click(object sender, EventArgs e)
@@ -248,7 +229,7 @@ namespace SG_BAMS.Facturas
             string limpio = txtTotal.Text.Replace("L.", "").Replace(",", "").Trim();
             double totalBateria = double.Parse(limpio, CultureInfo.InvariantCulture);
 
-            if (totalBateria >= limiteFactura)
+            if (calculadora.ExcedeLimite(totalBateria, limiteFactura))
             {
                 MessageBox.Show($"El descuento (L. {totalBateria:N2}) no puede ser igual o mayor al total de los productos (L. {limiteFactura:N2}).",
                                 "Monto Excedido", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -346,7 +327,7 @@ namespace SG_BAMS.Facturas
             {
                 if (txtControl != null)
                 {
-                    // Quitamos el formato visual para que edites el número limpio
+                    
                     txtControl.Text = txtControl.Text.Replace("L.", "").Replace(",", "").Trim();
 
                     txtControl.KeyPress -= PrecioGrid_KeyPress;

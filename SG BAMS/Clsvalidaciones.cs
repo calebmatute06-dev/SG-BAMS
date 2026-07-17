@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -832,6 +833,24 @@ namespace SG_BAMS
             texto = texto.Replace(",", "").Trim();
             return double.TryParse(texto, System.Globalization.NumberStyles.Any,
                 System.Globalization.CultureInfo.InvariantCulture, out double r) ? r : 0;
+        }
+
+        public static double ParsearMontoMoneda(string texto)
+        {
+            if (string.IsNullOrWhiteSpace(texto))
+                return 0;
+
+            texto = texto.Replace("L.", "")
+                         .Replace(",", "")
+                         .Trim();
+
+            return double.TryParse(
+                texto,
+                NumberStyles.Any,
+                CultureInfo.InvariantCulture,
+                out double resultado)
+                    ? resultado
+                    : 0;
         }
 
         /// <summary>

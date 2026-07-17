@@ -1,10 +1,12 @@
 ﻿using Krypton.Toolkit;
 using Microsoft.Data.SqlClient;
 using SG_BAMS.Facturas;
+using SG_BAMS.Facturas.DTO;
 using System;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Threading.Tasks;
 
 namespace SG_BAMS
 {
@@ -18,21 +20,11 @@ namespace SG_BAMS
         private PlaceholderTextBox phCodigo;
         private PlaceholderComboBox phProductos;
         private PlaceholderTextBox phCantidad;
+        private readonly ClsFactura AF = new ClsFactura();
 
-        /// <summary>
-        /// Obtiene el stock disponible del producto seleccionado.
-        /// </summary>
-        public int StockSeleccionado { get; set; }
-
-        /// <summary>
-        /// Obtiene el precio de venta del producto seleccionado.
-        /// </summary>
-        public double PrecioSeleccionado { get; set; }
-
-        /// <summary>
-        /// Referencia al formulario padre de factura.
-        /// </summary>
-        public FacturaAgregarDatos FormularioFactura { get; set; }
+       
+        
+        public DetalleDTO ProductoSeleccionado { get; private set; }
 
         /// <summary>
         /// Inicializa una nueva instancia del formulario.
@@ -45,10 +37,10 @@ namespace SG_BAMS
 
         private async Task LlenarComboProductos()
         {
-            ClsFactura ap = new ClsFactura();
+        
             try
             {
-                DataTable dt = await ap.ObtenerStockProductos();
+                DataTable dt = await AF.ObtenerStockProductos();
 
                 cmbProductos.DataSource = null;
                 cmbProductos.DisplayMember = "NombreCompleto";
@@ -130,7 +122,7 @@ namespace SG_BAMS
                     string codigoReal = phCodigo.GetRealValue().Trim();
                     if (!string.IsNullOrWhiteSpace(codigoReal))
                     {
-                        BuscarProductoPorCodigo(codigoReal);
+                        _ = BuscarProductoPorCodigo(codigoReal);
                         return true;
                     }
                 }
@@ -139,91 +131,117 @@ namespace SG_BAMS
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        private void BuscarProductoPorCodigo(string codigo)
+        private async Task BuscarProductoPorCodigo(string codigo)
         {
-            bool encontrado = false;
-            string codigoBusqueda = codigo.ToUpper();
+            DataRow prod = await AF.ObtenerProductoPorCodigoBarra(codigo);
 
-            foreach (DataRowView fila in cmbProductos.Items)
-            {
-                string codFila = fila.Row["codigo_barra"].ToString().Trim().ToUpper();
-
-                if (codFila == codigoBusqueda)
-                {
-                    cmbProductos.SelectedItem = fila;
-                    encontrado = true;
-                    txtCantidad.Focus();
-                    break;
-                }
-            }
-
-            if (!encontrado)
+            if (prod == null)
             {
                 MessageBox.Show($"El producto con código [{codigo}] no existe o no tiene stock.", "BAMS");
                 txtCodigo.Clear();
                 txtCodigo.Focus();
+                return;
             }
+
+            int idProd = Convert.ToInt32(prod["id_producto"]);
+            cmbProductos.SelectedValue = idProd;
+            txtCantidad.Focus();
         }
 
         private void BtnAceptar_Click(object sender, EventArgs e)
         {
+            if (!ValidarProductoSeleccionado())
+                return;
+
+            if (!ValidarCantidad(out int cantidad))
+                return;
+
+            if (!ValidarStock(cantidad))
+                return;
+
+           
+
+            ConfirmarProducto(cantidad);
+        }
+
+        private bool ValidarProductoSeleccionado()
+        {
             if (phProductos.IsPlaceholderActive || cmbProductos.SelectedIndex == -1)
             {
-                MessageBox.Show("Por favor, seleccione un producto.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(
+                    "Por favor, seleccione un producto.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
                 cmbProductos.Focus();
-                return;
+                return false;
             }
+
+            return true;
+        }
+
+        private bool ValidarCantidad(out int cantidadFinal)
+        {
+            cantidadFinal = 0;
 
             string cantidadReal = phCantidad.GetRealValue().Trim();
 
-           
-            bool cantidadValida;
-            int cantidadFinal = 0;
             using (var tempCantidad = new KryptonTextBox())
             {
                 tempCantidad.Text = cantidadReal;
+
                 if (ClsValidaciones.CampoVacio(tempCantidad, "Cantidad"))
-                    cantidadValida = false;
-                else if (!int.TryParse(tempCantidad.Text, out int cant) || cant <= 0)
-                {
-                    MessageBox.Show("Ingrese una cantidad válida mayor a 0.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    cantidadValida = false;
-                }
-                else
-                {
-                    cantidadFinal = cant;
-                    cantidadValida = true;
-                }
-            }
+                    return false;
 
-            if (!cantidadValida) return;
-
-            if (!int.TryParse(lblNumero.Text, out int stock) || cantidadFinal > stock)
-            {
-                MessageBox.Show($"Stock insuficiente. Solo hay {lblNumero.Text} unidades disponibles.", "Inventario", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            int idProdu = Convert.ToInt32(cmbProductos.SelectedValue);
-            foreach (DataGridViewRow fila in FormularioFactura.dgvProductos.Rows)
-            {
-                if (fila.IsNewRow) continue;
-                if (fila.Cells["id_producto"].Value != null && Convert.ToInt32(fila.Cells["id_producto"].Value) == idProdu)
+                if (!int.TryParse(tempCantidad.Text, out cantidadFinal) || cantidadFinal <= 0)
                 {
-                    MessageBox.Show("Este producto ya fue agregado. Modifique la cantidad en la tabla.", "Producto Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
+                    MessageBox.Show(
+                        "Ingrese una cantidad válida mayor a 0.",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return false;
                 }
             }
 
-            DataRowView filaSeleccionada = (DataRowView)cmbProductos.SelectedItem;
-            double precio = Convert.ToDouble(filaSeleccionada.Row["precio_venta"]);
-
-            FormularioFactura.SetProducto(idProdu, cmbProductos.Text, cantidadFinal);
-            this.StockSeleccionado = stock;
-            this.PrecioSeleccionado = precio;
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            return true;
         }
+        private bool ValidarStock(int cantidad)
+        {
+            if (!int.TryParse(lblNumero.Text, out int stock) || cantidad > stock)
+            {
+                MessageBox.Show(
+                    $"Stock insuficiente. Solo hay {lblNumero.Text} unidades disponibles.",
+                    "Inventario",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return false;
+            }
+
+            return true;
+        }
+
+        private void ConfirmarProducto(int cantidad)
+        {
+            DataRowView filaSeleccionada = (DataRowView)cmbProductos.SelectedItem;
+
+            ProductoSeleccionado = new DetalleDTO
+            {
+                IdProducto = Convert.ToInt32(cmbProductos.SelectedValue),
+                NombreProducto = cmbProductos.Text,
+                Cantidad = cantidad,
+                Precio = Convert.ToDouble(filaSeleccionada.Row["precio_venta"]),
+                Stock = Convert.ToInt32(lblNumero.Text)
+            };
+
+
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
 
         private void btnEscanear_Click(object sender, EventArgs e)
         {

@@ -34,5 +34,34 @@ namespace SG_BAMS
             }
             return tablaDeudores;
         }
+
+
+        public async Task<bool> CrearDeudaManual(int idFactura, int idCliente, double montoTotal, DateTime fechaVenta)
+        {
+            ClsRepositorioBaseDatos conexion = new ClsRepositorioBaseDatos();
+            try
+            {
+                conexion.AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_Deuda_CrearOActualizar", conexion.Conectar))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idFactura", idFactura);
+                    cmd.Parameters.AddWithValue("@idCliente", idCliente);
+                    cmd.Parameters.AddWithValue("@monto", montoTotal);
+                    cmd.Parameters.AddWithValue("@fechaVenta", fechaVenta);
+                    await cmd.ExecuteNonQueryAsync();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al crear/actualizar deuda: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                conexion.Cerrar();
+            }
+        }
     }
 }

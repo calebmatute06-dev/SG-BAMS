@@ -62,5 +62,7 @@ namespace SG_BAMS.Facturas
             }
             return tablaFacProd;
         }
+
+
     }
 }
