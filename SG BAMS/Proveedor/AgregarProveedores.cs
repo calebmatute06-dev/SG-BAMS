@@ -7,11 +7,6 @@ using System.Windows.Forms;
 
 namespace SG_BAMS.Proveedor
 {
-    /// <summary>
-    /// Formulario para agregar un nuevo proveedor al sistema. Única responsabilidad:
-    /// capturar y validar el formato de los datos en pantalla, y delegar en
-    /// IProveedorRepository la verificación de duplicados y el guardado.
-    /// </summary>
     public partial class AgregarProveedores : Form
     {
         private readonly IProveedorRepository _repositorio;
@@ -23,9 +18,6 @@ namespace SG_BAMS.Proveedor
         private PlaceholderTextBox phRTN;
         private PlaceholderComboBox phClasificacion;
 
-        /// <summary>
-        /// Crea el formulario recibiendo sus dependencias por inyección.
-        /// </summary>
         public AgregarProveedores(IProveedorRepository repositorio, IClasificacionRepository clasificacionRepositorio)
         {
             InitializeComponent();
@@ -103,7 +95,7 @@ namespace SG_BAMS.Proveedor
                     Direccion = direccionReal,
                     Rtn = rtnReal,
                     IdClasificacion = Convert.ToInt32(cmbClasificacion.SelectedValue),
-                    IdUsuario = new ClsPasarUsuario().IdUsuario()
+                    IdUsuario = ClsLogin.idusuario
                 };
 
                 _repositorio.Agregar(proveedorDTO);
@@ -118,9 +110,6 @@ namespace SG_BAMS.Proveedor
             }
         }
 
-        /// <summary>
-        /// Valida el formato de los campos ingresados (no consulta la base de datos).
-        /// </summary>
         private bool ValidarFormato(string nombre, string direccion, string telefono, string rtn)
         {
             if (!ClsValidaciones.EsNombrePersonalValido(new TextBox { Text = nombre }, "Nombre del proveedor")) return false;

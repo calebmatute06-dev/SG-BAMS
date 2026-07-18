@@ -28,7 +28,6 @@ namespace SG_BAMS
 
 
         private readonly ClsFactura AF = new ClsFactura();
-        private readonly ClsPasarUsuario objPU = new ClsPasarUsuario();
         private readonly ClsDeudas DE = new ClsDeudas();
         private readonly ClsDeuda DEM = new ClsDeuda();
         private readonly ServicioEscaneoBarras Escanner = new ServicioEscaneoBarras();
@@ -324,7 +323,7 @@ namespace SG_BAMS
 
         private FacturaDTO ConstruirFacturaDTO(double montoExento)
         {
-            int idUser = objPU.IdUsuario();
+            int idUser = ClsLogin.idusuario;
             int idPago = Convert.ToInt32(cmbPago.SelectedValue);
             int.TryParse(txtBateria.Text, out int bat);
 

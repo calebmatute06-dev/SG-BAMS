@@ -8,21 +8,12 @@ using System.Windows.Forms;
 
 namespace SG_BAMS.Proveedor
 {
-    /// <summary>
-    /// Formulario para modificar los datos de un proveedor existente. Única
-    /// responsabilidad: capturar y validar el formato de los datos editados,
-    /// y delegar en IProveedorRepository la verificación de duplicados y la
-    /// actualización.
-    /// </summary>
     public partial class ModificarProveedor : Form
     {
         private readonly IProveedorRepository _repositorio;
         private readonly IEstadoRepository _estadoRepositorio;
         private readonly IClasificacionRepository _clasificacionRepositorio;
 
-        /// <summary>
-        /// DTO con los datos del proveedor que se está editando.
-        /// </summary>
         private ProveedorDTO proveedorDTO;
 
         private string _nombreOriginal;
@@ -34,10 +25,6 @@ namespace SG_BAMS.Proveedor
         private PlaceholderComboBox phEstado;
         private PlaceholderComboBox phClasificacion;
 
-        /// <summary>
-        /// Crea el formulario recibiendo el proveedor a editar y sus dependencias por inyección.
-        /// </summary>
-        /// <param name="dto">Datos del proveedor a modificar (debe traer IdProveedor).</param>
         public ModificarProveedor(ProveedorDTO dto,
                                    IProveedorRepository repositorio,
                                    IEstadoRepository estadoRepositorio,
@@ -136,7 +123,7 @@ namespace SG_BAMS.Proveedor
                 proveedorDTO.Rtn = rtnReal;
                 proveedorDTO.IdEstado = Convert.ToInt32(cmbEstado.SelectedValue);
                 proveedorDTO.IdClasificacion = Convert.ToInt32(cmbClasificacion.SelectedValue);
-                proveedorDTO.IdUsuario = new ClsPasarUsuario().IdUsuario();
+                proveedorDTO.IdUsuario = ClsLogin.idusuario;
 
                 _repositorio.Modificar(proveedorDTO);
 
@@ -150,10 +137,6 @@ namespace SG_BAMS.Proveedor
             }
         }
 
-        /// <summary>
-        /// Valida el formato y las reglas de negocio sobre los campos editados
-        /// (no consulta la base de datos).
-        /// </summary>
         private bool ValidarFormato(string nombre, string direccion, string telefono, string rtn)
         {
             if (string.IsNullOrWhiteSpace(nombre))

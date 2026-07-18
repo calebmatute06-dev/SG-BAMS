@@ -1,53 +1,63 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SG_BAMS.Login
 {
     /// <summary>
-    /// 
+    /// Formulario de soporte que permite elegir entre vista de Administrador o Empleado.
     /// </summary>
-    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class Soporte : Form
     {
+        private readonly INavegacionFormsService _navegacionForms;
+
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="Soporte"/>.
+        /// Constructor sin parámetros para compatibilidad con código existente.
         /// </summary>
-        public Soporte()
+        public Soporte() : this(new NavegacionFormsService(
+            new ServicioCorreo(new ConfiguracionCorreo()),
+            new ServicioSeguridad()))
+        {
+        }
+
+        /// <summary>
+        /// Constructor principal con inyección de dependencias.
+        /// 
+        /// DIP: Recibe INavegacionFormsService en lugar de instanciar
+        /// MenuPrincipalAdm o MenuPrincipalEmp directamente.
+        /// </summary>
+        /// <param name="navegacionForms">Servicio de navegación entre formularios.</param>
+        /// <exception cref="ArgumentNullException">Si navegacionForms es nulo.</exception>
+        public Soporte(INavegacionFormsService navegacionForms)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            _navegacionForms = navegacionForms ?? throw new ArgumentNullException(nameof(navegacionForms));
         }
 
         /// <summary>
-        /// Maneja el evento Click del control btnVerUsuarios.
+        /// Evento Click del botón "Ver como Administrador".
+        /// 
+        /// DIP: La navegación se delega en INavegacionFormsService.IrA<T>()
+        /// en lugar de hacer "new MenuPrincipalAdm()" directamente.
         /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnVerUsuarios_Click(object sender, EventArgs e)
         {
-            MenuPrincipalAdm menuPrincipalAdm = new MenuPrincipalAdm();
-            menuPrincipalAdm.Show();
+            _navegacionForms.IrA<MenuPrincipalAdm>();
             this.Hide();
         }
 
         /// <summary>
-        /// Maneja el evento Click del control kryptonButton1.
+        /// Evento Click del botón "Ver como Empleado".
+        /// 
+        /// DIP: La navegación se delega en INavegacionFormsService.IrA<T>()
+        /// en lugar de hacer "new MenuPrincipalEmp()" directamente.
         /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
-            MenuPrincipalEmp menuPrincipalEmp = new MenuPrincipalEmp();
-            menuPrincipalEmp.Show();
+            _navegacionForms.IrA<MenuPrincipalEmp>();
             this.Hide();
         }
     }

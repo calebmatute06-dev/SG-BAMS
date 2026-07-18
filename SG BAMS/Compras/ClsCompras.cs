@@ -86,12 +86,6 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Registra una compra nueva completa (cabecera + detalle) a partir del CompraDTO.
-        /// Antes recibía 5 parámetros sueltos (fecha, idPago, idProv, nota, detalles);
-        /// ahora recibe un único objeto que agrupa todo eso.
-        /// </summary>
-        /// <param name="compra">Datos completos de la compra a registrar.</param>
         public bool GuardarNuevaCompra(CompraDTO compra)
         {
             ClsRepositorioBaseDatos conexion = new ClsRepositorioBaseDatos();
@@ -99,8 +93,7 @@ namespace SG_BAMS
             SqlTransaction transaccion = conexion.Conectar.BeginTransaction();
             try
             {
-                ClsPasarUsuario obtenerUsuario = new ClsPasarUsuario();
-                int idUsuario = obtenerUsuario.IdUsuario();
+                int idUsuario = ClsLogin.idusuario;
                 if (idUsuario == 0)
                     throw new Exception("No se ha iniciado sesión o no se pudo obtener el ID del usuario.");
 

@@ -12,23 +12,10 @@ using SG_BAMS.MenuPrincipal;
 
 namespace SG_BAMS
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class Perfil : Form
     {
-        /// <summary>
-        /// Obtiene o establece el usuario actual.
-        /// </summary>
-        /// <value>
-        /// El usuario actual.
-        /// </value>
         public string UsuarioActual { get; set; }
 
-        /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="Perfil"/>.
-        /// </summary>
         public Perfil()
         {
             InitializeComponent();
@@ -37,26 +24,21 @@ namespace SG_BAMS
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
-        /// <summary>
-        /// Maneja el evento Load del control Perfil.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private async void Perfil_Load(object sender, EventArgs e)
         {
             await CargarDatosUsuario();
-
-
         }
 
-        /// <summary>
-        /// Carga los datos del usuario.
-        /// </summary>
         private async Task CargarDatosUsuario()
         {
             try
             {
-                string usuarioLogueado = SG_BAMS.Login.Login.UsuarioLogueado;
+                // Usa el nombre completo para buscar en la BD
+                string usuarioLogueado = SG_BAMS.Login.Login.UsuarioLogueadoCompleto;
+
+                // Si está vacío, intenta con el nombre recortado
+                if (string.IsNullOrEmpty(usuarioLogueado))
+                    usuarioLogueado = SG_BAMS.Login.Login.UsuarioLogueado;
 
                 if (!string.IsNullOrEmpty(usuarioLogueado))
                 {
@@ -67,16 +49,12 @@ namespace SG_BAMS
                     {
                         DataRow fila = datos.Rows[0];
 
-
                         label4.Text = fila["nombre_usuario"].ToString();
                         label5.Text = fila["descripcion_rol"].ToString();
-
 
                         if (fila["imagen_usuario"] != DBNull.Value)
                         {
                             byte[] imagenBytes = (byte[])fila["imagen_usuario"];
-
-
                             using (MemoryStream ms = new MemoryStream(imagenBytes))
                             {
                                 pbFotoPerfil.Image = Image.FromStream(ms);
@@ -91,31 +69,15 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control kryptonButton1.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private async void kryptonButton1_Click(object sender, EventArgs e)
         {
-
         }
 
-        /// <summary>
-        /// Maneja el evento Shown del control Perfil.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void Perfil_Shown(object sender, EventArgs e)
         {
             Ayudante_UI.AplicarZoomGlobal(this);
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnimagen.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private async void btnimagen_Click(object sender, EventArgs e)
         {
             OpenFileDialog selectorImagen = new OpenFileDialog();
@@ -125,15 +87,14 @@ namespace SG_BAMS
             {
                 try
                 {
-
                     byte[] imagenBytes = File.ReadAllBytes(selectorImagen.FileName);
 
-
-                    string usuarioLogueado = SG_BAMS.Login.Login.UsuarioLogueado;
+                    string usuarioLogueado = SG_BAMS.Login.Login.UsuarioLogueadoCompleto;
+                    if (string.IsNullOrEmpty(usuarioLogueado))
+                        usuarioLogueado = SG_BAMS.Login.Login.UsuarioLogueado;
 
                     ClsPerfil objUsuario = new ClsPerfil();
                     await objUsuario.ActualizarFotoUsuario(usuarioLogueado, imagenBytes);
-
 
                     using (MemoryStream ms = new MemoryStream(imagenBytes))
                     {
@@ -149,11 +110,6 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnsalir1.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnsalir1_Click(object sender, EventArgs e)
         {
             this.Close();

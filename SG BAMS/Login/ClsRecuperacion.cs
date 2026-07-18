@@ -4,16 +4,39 @@ using System.Data;
 
 namespace SG_BAMS.Login
 {
+    /// <summary>
+    /// Clase responsable de las operaciones de recuperación de contraseña contra la BD.
+    /// </summary>
     public class ClsRecuperacion
     {
-        ClsRepositorioBaseDatos conexion = new ClsRepositorioBaseDatos();
+        private readonly ClsRepositorioBaseDatos _conexion;
+        private readonly IServicioSeguridad _servicioSeguridad;
 
+        /// <summary>
+        /// Constructor sin parámetros para compatibilidad.
+        /// </summary>
+        public ClsRecuperacion() : this(new ClsRepositorioBaseDatos(), new ServicioSeguridad())
+        {
+        }
+
+        /// <summary>
+        /// Constructor principal con inyección de dependencias.
+        /// </summary>
+        public ClsRecuperacion(ClsRepositorioBaseDatos conexion, IServicioSeguridad servicioSeguridad)
+        {
+            _conexion = conexion ?? throw new ArgumentNullException(nameof(conexion));
+            _servicioSeguridad = servicioSeguridad ?? throw new ArgumentNullException(nameof(servicioSeguridad));
+        }
+
+        /// <summary>
+        /// Verifica si un correo electrónico existe en la base de datos.
+        /// </summary>
         public bool VerificarCorreo(string correo)
         {
             try
             {
-                conexion.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_Recuperacion_VerificarCorreo", conexion.Conectar))
+                _conexion.AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_Recuperacion_VerificarCorreo", _conexion.Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@correo", correo);
@@ -27,22 +50,27 @@ namespace SG_BAMS.Login
             }
             finally
             {
-                conexion.Cerrar();
+                _conexion.Cerrar();
             }
         }
 
-        public bool ActualizarContrasena(string correo, string nuevaContrasena)
+        /// <summary>
+        /// Actualiza la contraseña de un usuario en la base de datos.
+        /// La contraseña se hashea antes de enviarla al SP.
+        /// </summary>
+        public void ActualizarContrasena(string correo, string nuevaContrasena)
         {
-            string passHash = ClsSeguridad.HashSHA256(nuevaContrasena);
+            string passHash = _servicioSeguridad.HashSHA256(nuevaContrasena);
             try
             {
-                conexion.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_Recuperacion_ActualizarContrasena", conexion.Conectar))
+                _conexion.AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_Recuperacion_ActualizarContrasena", _conexion.Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@pass", passHash);
                     cmd.Parameters.AddWithValue("@correo", correo);
-                    return cmd.ExecuteNonQuery() > 0;
+
+                    cmd.ExecuteNonQuery();
                 }
             }
             catch (Exception ex)
@@ -51,17 +79,20 @@ namespace SG_BAMS.Login
             }
             finally
             {
-                conexion.Cerrar();
+                _conexion.Cerrar();
             }
         }
 
+        /// <summary>
+        /// Verifica si la contraseña ingresada es igual a la contraseña actual del usuario.
+        /// </summary>
         public bool ContraIgualAntigua(string correo, string contraant)
         {
-            string passHash = ClsSeguridad.HashSHA256(contraant);
+            string passHash = _servicioSeguridad.HashSHA256(contraant);
             try
             {
-                conexion.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_Recuperacion_VerificarContrasena", conexion.Conectar))
+                _conexion.AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_Recuperacion_VerificarContrasena", _conexion.Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@correo", correo);
@@ -71,12 +102,11 @@ namespace SG_BAMS.Login
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al verificar contraseña: " + ex.Message);
-                return false;
+                throw new Exception("Error al verificar contraseña: " + ex.Message);
             }
             finally
             {
-                conexion.Cerrar();
+                _conexion.Cerrar();
             }
         }
     }

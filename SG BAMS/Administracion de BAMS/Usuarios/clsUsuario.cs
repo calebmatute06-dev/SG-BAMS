@@ -3,17 +3,37 @@ using SG_BAMS.Login;
 using System;
 using System.Data;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace SG_BAMS.Administracion_de_BAMS.Usuarios
 {
     /// <summary>
     /// Repositorio de usuarios: maneja exclusivamente el acceso a datos de la entidad Usuario.
-    /// SRP: una sola responsabilidad — persistencia de usuarios.
-    /// DIP: implementa IUsuarioRepository para que los formularios dependan de la abstracción.
+    /// 
+    /// PRINCIPIOS SOLID APLICADOS:
+    /// - SRP: Una sola responsabilidad — persistencia de usuarios.
+    /// - DIP: Implementa IUsuarioRepository y recibe IServicioSeguridad por constructor
+    ///   en lugar de llamar a ClsSeguridad estático.
     /// </summary>
     internal class clsUsuario : ClsRepositorioBaseDatos, IUsuarioRepository
     {
+        private readonly IServicioSeguridad _servicioSeguridad;
+
+        /// <summary>
+        /// Constructor sin parámetros para compatibilidad con código existente.
+        /// </summary>
+        public clsUsuario() : this(new ServicioSeguridad())
+        {
+        }
+
+        /// <summary>
+        /// Constructor principal con inyección de dependencias.
+        /// </summary>
+        /// <param name="servicioSeguridad">Servicio de seguridad para hashing.</param>
+        public clsUsuario(IServicioSeguridad servicioSeguridad)
+        {
+            _servicioSeguridad = servicioSeguridad ?? throw new ArgumentNullException(nameof(servicioSeguridad));
+        }
+
         /// <summary>
         /// Obtiene la lista completa de usuarios registrados en el sistema.
         /// </summary>
@@ -51,7 +71,8 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
         {
             try
             {
-                string passwordHasheado = ClsSeguridad.HashSHA256(password);
+                // Usa el servicio inyectado en lugar de ClsSeguridad.HashSHA256()
+                string passwordHasheado = _servicioSeguridad.HashSHA256(password);
                 AbrirConexion();
                 using (SqlCommand cmd = new SqlCommand("PA_insertar_usuario", Conectar))
                 {
@@ -115,9 +136,10 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
         {
             try
             {
+
                 string passwordHasheado = string.IsNullOrWhiteSpace(password)
                     ? null
-                    : ClsSeguridad.HashSHA256(password);
+                    : _servicioSeguridad.HashSHA256(password);
 
                 AbrirConexion();
                 using (SqlCommand cmd = new SqlCommand("PA_actualizar_usuario", Conectar))
@@ -183,7 +205,6 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
 
         /// <summary>
         /// Verifica si ya existe un usuario con el nombre dado.
-        /// El parámetro idExcluir permite excluir el registro actual al modificar.
         /// </summary>
         public async Task<bool> ExisteUsuarioAsync(string nombreUsuario, int idExcluir = 0)
         {
@@ -237,8 +258,6 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
 
         /// <summary>
         /// Verifica si el correo ya está en uso por otro usuario distinto al actual (modificación).
-        /// A diferencia de ExisteCorreoAsync, este método excluye al usuario que se está editando.
-        /// El error se propaga como excepción para ser manejado en la capa de presentación.
         /// </summary>
         public bool CorreoModificar(string correo, int idUsuarioActual = 0)
         {

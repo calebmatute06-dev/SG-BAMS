@@ -11,16 +11,27 @@ namespace SG_BAMS
     internal static class Program
     {
         /// <summary>
-        /// The main entry point for the application.
+        /// Punto de entrada principal de la aplicación.
+        /// Composition Root: único lugar donde se instancian clases concretas.
         /// </summary>
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
             clsSoporte.InicializarDirectorio();
             ApplicationConfiguration.Initialize();
-            Application.Run(new Login.Login());
+
+            IGeneradorToken generadorToken = new GeneradorTokenCriptografico();
+            IServicioSeguridad servicioSeguridad = new ServicioSeguridad(generadorToken);
+            ClsRepositorioBaseDatos repositorio = new ClsRepositorioBaseDatos();
+            ClsRecuperacion recuperacion = new ClsRecuperacion(repositorio, servicioSeguridad);
+            IRecuperacionService recuperacionService = new RecuperacionService(recuperacion);
+            ILoginService loginService = new LoginService(recuperacionService);
+            IConfiguracionCorreo configCorreo = new ConfiguracionCorreo();
+            IServicioCorreo servicioCorreo = new ServicioCorreo(configCorreo);
+            ISesionUsuarioService sesionUsuario = SesionUsuarioService.Instancia;
+            IRepositorioRostros repositorioRostros = new RepositorioRostros(DetectorRostroService.DirectorioRostros);
+
+            Application.Run(new Login.Login(loginService, servicioCorreo, servicioSeguridad, sesionUsuario, repositorioRostros));
         }
     }
-} 
+}
