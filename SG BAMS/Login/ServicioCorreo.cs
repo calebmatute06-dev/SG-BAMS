@@ -5,30 +5,28 @@ using System;
 namespace SG_BAMS.Login
 {
     /// <summary>
-    /// Implementación del servicio de correo usando MailKit y SMTP de Gmail.
-    /// Ya no depende de ClsCorreo. Usa IConfiguracionCorreo para obtener
-    /// los datos del servidor.
+    /// Implementación del servicio de envío de correos electrónicos utilizando MailKit.
+    /// Construye y envía mensajes a través del servidor SMTP configurado.
     /// </summary>
     public class ServicioCorreo : IServicioCorreo
     {
-        private readonly IConfiguracionCorreo _config;
+        private readonly IConfiguracionCorreo config;
 
         /// <summary>
-        /// Constructor que recibe la configuración por inyección de dependencias.
+        /// Constructor del servicio de correo.
         /// </summary>
-        /// <param name="config">Configuración del servidor de correo.</param>
+        /// <param name="config">Configuración del servidor de correo electrónico.</param>
         /// <exception cref="ArgumentNullException">Si config es nulo.</exception>
         public ServicioCorreo(IConfiguracionCorreo config)
         {
-            _config = config ?? throw new ArgumentNullException(nameof(config));
+            this.config = config ?? throw new ArgumentNullException(nameof(config));
         }
 
         /// <summary>
-        /// Envía un token de recuperación de contraseña al correo especificado.
-        /// Orquesta la construcción del mensaje y su posterior envío.
+        /// Envía un token de recuperación de contraseña a la dirección de correo especificada.
         /// </summary>
         /// <param name="correoDestino">Dirección de correo del destinatario.</param>
-        /// <param name="token">Token de recuperación a enviar.</param>
+        /// <param name="token">Token de recuperación a enviar en el cuerpo del mensaje.</param>
         /// <exception cref="ArgumentException">Si correoDestino o token son nulos o vacíos.</exception>
         public void EnviarToken(string correoDestino, string token)
         {
@@ -42,16 +40,15 @@ namespace SG_BAMS.Login
         }
 
         /// <summary>
-        /// Construye el mensaje MIME con el token de recuperación.
-        /// SRP: Responsabilidad exclusiva de construir el MimeMessage.
+        /// Construye el mensaje MIME con el token de recuperación de contraseña.
         /// </summary>
-        /// <param name="correoDestino">Destinatario del correo.</param>
+        /// <param name="correoDestino">Dirección de correo del destinatario.</param>
         /// <param name="token">Token a incluir en el cuerpo del mensaje.</param>
-        /// <returns>Mensaje MIME listo para enviar.</returns>
+        /// <returns>Mensaje MIME configurado y listo para enviar.</returns>
         private MimeMessage ConstruirMensaje(string correoDestino, string token)
         {
             var mensaje = new MimeMessage();
-            mensaje.From.Add(new MailboxAddress(_config.NombreRemitente, _config.Remitente));
+            mensaje.From.Add(new MailboxAddress(config.NombreRemitente, config.Remitente));
             mensaje.To.Add(new MailboxAddress(string.Empty, correoDestino));
             mensaje.Subject = "Token de recuperación - BAMS";
 
@@ -64,16 +61,15 @@ namespace SG_BAMS.Login
         }
 
         /// <summary>
-        /// Realiza la conexión SMTP y envía el mensaje.
-        /// SRP: Responsabilidad exclusiva del envío vía SMTP.
+        /// Establece la conexión con el servidor SMTP y envía el mensaje.
         /// </summary>
         /// <param name="mensaje">Mensaje MIME a enviar.</param>
         private void EnviarMensaje(MimeMessage mensaje)
         {
             using (var cliente = new SmtpClient())
             {
-                cliente.Connect(_config.ServidorSmtp, _config.Puerto, _config.UsarSsl);
-                cliente.Authenticate(_config.Usuario, _config.Contrasena);
+                cliente.Connect(config.ServidorSmtp, config.Puerto, config.UsarSsl);
+                cliente.Authenticate(config.Usuario, config.Contrasena);
                 cliente.Send(mensaje);
                 cliente.Disconnect(true);
             }

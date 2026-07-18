@@ -5,22 +5,24 @@ using System.Windows.Forms;
 namespace SG_BAMS.Login
 {
     /// <summary>
-    /// Implementación de INavegacionFormsService para el flujo de login.
+    /// Implementación del servicio de navegación entre formularios del sistema.
+    /// Gestiona la apertura, cierre y transición entre las pantallas del flujo de login.
     /// </summary>
     public class NavegacionFormsService : INavegacionFormsService
     {
-        private readonly IServicioCorreo _servicioCorreo;
-        private readonly IServicioSeguridad _servicioSeguridad;
+        private readonly IServicioCorreo servicioCorreo;
+        private readonly IServicioSeguridad servicioSeguridad;
 
         /// <summary>
-        /// Constructor.
+        /// Constructor del servicio de navegación.
         /// </summary>
-        /// <param name="servicioCorreo">Servicio de envío de correos.</param>
-        /// <param name="servicioSeguridad">Servicio de seguridad.</param>
+        /// <param name="servicioCorreo">Servicio de envío de correos electrónicos.</param>
+        /// <param name="servicioSeguridad">Servicio de operaciones de seguridad.</param>
+        /// <exception cref="ArgumentNullException">Si algún servicio es nulo.</exception>
         public NavegacionFormsService(IServicioCorreo servicioCorreo, IServicioSeguridad servicioSeguridad)
         {
-            _servicioCorreo = servicioCorreo ?? throw new ArgumentNullException(nameof(servicioCorreo));
-            _servicioSeguridad = servicioSeguridad ?? throw new ArgumentNullException(nameof(servicioSeguridad));
+            this.servicioCorreo = servicioCorreo ?? throw new ArgumentNullException(nameof(servicioCorreo));
+            this.servicioSeguridad = servicioSeguridad ?? throw new ArgumentNullException(nameof(servicioSeguridad));
         }
 
         /// <inheritdoc/>
@@ -42,14 +44,14 @@ namespace SG_BAMS.Login
             else
             {
                 IRecuperacionService recuperacionService = new RecuperacionService(
-                    new ClsRecuperacion(new ClsRepositorioBaseDatos(), _servicioSeguridad));
+                    new ClsRecuperacion(new ClsRepositorioBaseDatos(), servicioSeguridad));
 
                 ILoginService loginService = new LoginService(recuperacionService);
 
                 Login nuevoLogin = new Login(
                     loginService,
-                    _servicioCorreo,
-                    _servicioSeguridad,
+                    servicioCorreo,
+                    servicioSeguridad,
                     SesionUsuarioService.Instancia,
                     new RepositorioRostros(DetectorRostroService.DirectorioRostros));
 

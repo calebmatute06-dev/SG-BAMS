@@ -6,23 +6,35 @@ using System.Threading.Tasks;
 namespace SG_BAMS.MenuPrincipal
 {
     /// <summary>
-    /// Clase unificada para alimentar el panel principal (Dashboard).
-    /// Consolida: ClsContadorCliente, ClsContadorDeuda, ClsContadorProducto,
-    /// ClsGraficoStock, ClsGraficoVentas, ClsUltimasVentas.
+    /// Implementación de IDashboardService que proporciona contadores y gráficos
+    /// para el panel principal (Dashboard).
     /// </summary>
-    internal class ClsDashboard : ClsRepositorioBaseDatos
+    internal class ClsDashboard : IDashboardService
     {
-        // ========== CONTADORES ==========
+        private readonly ClsRepositorioBaseDatos _repositorio;
 
         /// <summary>
-        /// Obtiene el total de clientes activos.
+        /// Constructor con inyección de dependencias.
+        /// 
+        /// DIP: Recibe el repositorio por constructor en lugar de heredarlo
+        /// o instanciarlo con "new".
         /// </summary>
+        /// <param name="repositorio">Repositorio de base de datos.</param>
+        /// <exception cref="ArgumentNullException">Si repositorio es nulo.</exception>
+        public ClsDashboard(ClsRepositorioBaseDatos repositorio)
+        {
+            _repositorio = repositorio ?? throw new ArgumentNullException(nameof(repositorio));
+        }
+
+
+
+        /// <inheritdoc/>
         public async Task<int> ObtenerTotalClientes()
         {
             try
             {
-                AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_Cliente_TotalActivos", Conectar))
+                _repositorio.AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_Cliente_TotalActivos", _repositorio.Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     object resultado = await cmd.ExecuteScalarAsync();
@@ -35,19 +47,17 @@ namespace SG_BAMS.MenuPrincipal
             }
             finally
             {
-                Cerrar();
+                _repositorio.Cerrar();
             }
         }
 
-        /// <summary>
-        /// Obtiene el total de deudores activos.
-        /// </summary>
+        /// <inheritdoc/>
         public async Task<int> ObtenerTotalDeudores()
         {
             try
             {
-                AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_Deuda_TotalDeudores", Conectar))
+                _repositorio.AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_Deuda_TotalDeudores", _repositorio.Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     object resultado = await cmd.ExecuteScalarAsync();
@@ -60,19 +70,17 @@ namespace SG_BAMS.MenuPrincipal
             }
             finally
             {
-                Cerrar();
+                _repositorio.Cerrar();
             }
         }
 
-        /// <summary>
-        /// Obtiene el total de productos activos.
-        /// </summary>
+        /// <inheritdoc/>
         public async Task<int> ObtenerTotalProductos()
         {
             try
             {
-                AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_Producto_TotalActivos", Conectar))
+                _repositorio.AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_Producto_TotalActivos", _repositorio.Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     object resultado = await cmd.ExecuteScalarAsync();
@@ -85,22 +93,19 @@ namespace SG_BAMS.MenuPrincipal
             }
             finally
             {
-                Cerrar();
+                _repositorio.Cerrar();
             }
         }
 
-        // ========== GRÁFICOS ==========
 
-        /// <summary>
-        /// Obtiene los datos del gráfico de stock.
-        /// </summary>
+        /// <inheritdoc/>
         public async Task<DataTable> ObtenerDatosGraficoStock()
         {
             DataTable tablaDatos = new DataTable();
             try
             {
-                AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_vista_stock_productos", Conectar))
+                _repositorio.AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_vista_stock_productos", _repositorio.Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
@@ -115,21 +120,19 @@ namespace SG_BAMS.MenuPrincipal
             }
             finally
             {
-                Cerrar();
+                _repositorio.Cerrar();
             }
             return tablaDatos;
         }
 
-        /// <summary>
-        /// Obtiene los productos más vendidos para el gráfico.
-        /// </summary>
+        /// <inheritdoc/>
         public async Task<DataTable> ObtenerProductosMasVendidos()
         {
             DataTable tablaVentas = new DataTable();
             try
             {
-                AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_vista_productos_mas_vendidos", Conectar))
+                _repositorio.AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_vista_productos_mas_vendidos", _repositorio.Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
@@ -144,21 +147,19 @@ namespace SG_BAMS.MenuPrincipal
             }
             finally
             {
-                Cerrar();
+                _repositorio.Cerrar();
             }
             return tablaVentas;
         }
 
-        /// <summary>
-        /// Obtiene las últimas ventas registradas.
-        /// </summary>
+        /// <inheritdoc/>
         public async Task<DataTable> ObtenerVentasRecientes()
         {
             DataTable tablaVentas = new DataTable();
             try
             {
-                AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_vista_ultimas_ventas", Conectar))
+                _repositorio.AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_vista_ultimas_ventas", _repositorio.Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
@@ -173,7 +174,7 @@ namespace SG_BAMS.MenuPrincipal
             }
             finally
             {
-                Cerrar();
+                _repositorio.Cerrar();
             }
             return tablaVentas;
         }

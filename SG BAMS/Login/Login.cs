@@ -5,7 +5,9 @@ using System.Windows.Forms;
 namespace SG_BAMS.Login
 {
     /// <summary>
-    /// Formulario principal de inicio de sesión.
+    /// Formulario principal de inicio de sesión del sistema BAMS.
+    /// Gestiona la autenticación de usuarios, el bloqueo por intentos fallidos
+    /// y la navegación hacia los formularios correspondientes según el rol.
     /// </summary>
     public partial class Login : Form
     {
@@ -21,18 +23,15 @@ namespace SG_BAMS.Login
             private set => SesionUsuarioService.Instancia.NombreCompleto = value;
         }
 
-        private readonly ILoginService _loginService;
-        private readonly IServicioCorreo _servicioCorreo;
-        private readonly IServicioSeguridad _servicioSeguridad;
-        private readonly ISesionUsuarioService _sesionUsuario;
-        private readonly ControlBloqueoIntentos _controlBloqueo;
-        private PasswordToggleHelper _passwordToggle;
-        private readonly NavegadorPostLogin _navegadorPostLogin;
-        private PlaceholderTextBox _phUsuario;
+        private readonly ILoginService loginService;
+        private readonly IServicioCorreo servicioCorreo;
+        private readonly IServicioSeguridad servicioSeguridad;
+        private readonly ISesionUsuarioService sesionUsuario;
+        private readonly ControlBloqueoIntentos controlBloqueo;
+        private PasswordToggleHelper passwordToggle;
+        private readonly NavegadorPostLogin navegadorPostLogin;
+        private PlaceholderTextBox phUsuario;
 
-        /// <summary>
-        /// Constructor sin parámetros para compatibilidad con código existente.
-        /// </summary>
         public Login() : this(
             new LoginService(),
             new ServicioCorreo(new ConfiguracionCorreo()),
@@ -42,9 +41,6 @@ namespace SG_BAMS.Login
         {
         }
 
-        /// <summary>
-        /// Constructor principal con inyección de dependencias.
-        /// </summary>
         public Login(
             ILoginService loginService,
             IServicioCorreo servicioCorreo,
@@ -57,29 +53,23 @@ namespace SG_BAMS.Login
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.StartPosition = FormStartPosition.CenterScreen;
 
-            _loginService = loginService ?? throw new ArgumentNullException(nameof(loginService));
-            _servicioCorreo = servicioCorreo ?? throw new ArgumentNullException(nameof(servicioCorreo));
-            _servicioSeguridad = servicioSeguridad ?? throw new ArgumentNullException(nameof(servicioSeguridad));
-            _sesionUsuario = sesionUsuario ?? throw new ArgumentNullException(nameof(sesionUsuario));
+            this.loginService = loginService ?? throw new ArgumentNullException(nameof(loginService));
+            this.servicioCorreo = servicioCorreo ?? throw new ArgumentNullException(nameof(servicioCorreo));
+            this.servicioSeguridad = servicioSeguridad ?? throw new ArgumentNullException(nameof(servicioSeguridad));
+            this.sesionUsuario = sesionUsuario ?? throw new ArgumentNullException(nameof(sesionUsuario));
 
-
-            _controlBloqueo = new ControlBloqueoIntentos(3, 30, lblBloqueo,
+            controlBloqueo = new ControlBloqueoIntentos(3, 30, lblBloqueo,
                 txtUsuCorr, txtCon, btninicioSesion1);
 
- 
-            _navegadorPostLogin = new NavegadorPostLogin(repositorioRostros);
+            navegadorPostLogin = new NavegadorPostLogin(repositorioRostros);
 
             txtCon.KeyPress += new KeyPressEventHandler(txtCon_KeyPress);
-            _phUsuario = new PlaceholderTextBox(txtUsuCorr, "Ingrese Usuario o Correo valido");
+            phUsuario = new PlaceholderTextBox(txtUsuCorr, "Ingrese Usuario o Correo valido");
         }
 
-        /// <summary>
-        /// Evento Load del formulario.
-        /// </summary>
         private void Login_Load(object sender, EventArgs e)
         {
-
-            _passwordToggle = new PasswordToggleHelper(txtCon, txtCon.Parent);
+            passwordToggle = new PasswordToggleHelper(txtCon, txtCon.Parent);
             lblBloqueo.Visible = false;
         }
 
@@ -87,17 +77,12 @@ namespace SG_BAMS.Login
 
         private void txtCon_KeyPress(object sender, KeyPressEventArgs e) { }
 
-        /// <summary>
-        /// Evento Click del botón Iniciar Sesión.
-        /// Delega autenticación a ILoginService, bloqueo a ControlBloqueoIntentos,
-        /// y navegación a NavegadorPostLogin.
-        /// </summary>
         private void btninicioSesion1_Click(object sender, EventArgs e)
         {
             if (ClsValidaciones.CampoVacio(txtUsuCorr, "Usuario")) return;
             if (ClsValidaciones.CampoVacio(txtCon, "Contraseña")) return;
 
-            if (_passwordToggle != null && _passwordToggle.EsPlaceholder)
+            if (passwordToggle != null && passwordToggle.EsPlaceholder)
             {
                 MessageBox.Show("Ingrese una contraseña.", "Aviso",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -109,22 +94,19 @@ namespace SG_BAMS.Login
 
             try
             {
+                int rol = loginService.ValidarUsuario(txtUsuCorr.Text, txtCon.Text);
+                string nombreUsuario = loginService.ObtenerNombreUsuario();
+                string nombreCompleto = loginService.ObtenerNombreCompleto();
 
-                int rol = _loginService.ValidarUsuario(txtUsuCorr.Text, txtCon.Text);
-                string nombreUsuario = _loginService.ObtenerNombreUsuario();
-                string nombreCompleto = _loginService.ObtenerNombreCompleto();
+                sesionUsuario.NombreUsuario = nombreUsuario;
+                sesionUsuario.NombreCompleto = nombreCompleto;
+                sesionUsuario.RolUsuario = rol;
 
-
-                _sesionUsuario.NombreUsuario = nombreUsuario;
-                _sesionUsuario.NombreCompleto = nombreCompleto;
-                _sesionUsuario.RolUsuario = rol;
-
-
-                bool loginExitoso = _navegadorPostLogin.Navegar(rol, this, nombreUsuario);
+                bool loginExitoso = navegadorPostLogin.Navegar(rol, this, nombreUsuario);
 
                 if (!loginExitoso && rol == 0)
                 {
-                    bool bloqueado = _controlBloqueo.RegistrarIntentoFallido();
+                    bool bloqueado = controlBloqueo.RegistrarIntentoFallido();
 
                     if (bloqueado)
                     {
@@ -135,7 +117,7 @@ namespace SG_BAMS.Login
                     else
                     {
                         MessageBox.Show(
-                            $"Usuario o contraseña incorrectos.\nIntentos restantes: {_controlBloqueo.IntentosRestantes}",
+                            $"Usuario o contraseña incorrectos.\nIntentos restantes: {controlBloqueo.IntentosRestantes}",
                             "Error de Acceso", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
@@ -152,23 +134,16 @@ namespace SG_BAMS.Login
 
         private void btnsalirLogin1_Click(object sender, EventArgs e) => Application.Exit();
 
-        /// <summary>
-        /// Evento Click del botón "Olvidé mi contraseña".
-        /// Abre el formulario de recuperación inyectando las dependencias necesarias.
-        /// 
-        /// DIP: Crea IRecuperacionService con sus dependencias concretas
-        /// y las inyecta en LoginCorreo.
-        /// </summary>
         private void btnOlvidar_Click(object sender, EventArgs e)
         {
             IRecuperacionService recuperacionService = new RecuperacionService(
-                new ClsRecuperacion(new ClsRepositorioBaseDatos(), _servicioSeguridad));
+                new ClsRecuperacion(new ClsRepositorioBaseDatos(), servicioSeguridad));
 
             LoginCorreo formularioCorreo = new LoginCorreo(
                 txtUsuCorr.Text.Trim(),
                 recuperacionService,
-                _servicioSeguridad,
-                _servicioCorreo);
+                servicioSeguridad,
+                servicioCorreo);
 
             formularioCorreo.Show();
         }

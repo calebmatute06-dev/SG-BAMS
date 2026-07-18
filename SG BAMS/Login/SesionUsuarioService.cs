@@ -3,17 +3,19 @@
 namespace SG_BAMS.Login
 {
     /// <summary>
-    /// Implementación de ISesionUsuarioService como singleton.
-    /// Mantiene el estado de la sesión del usuario actual de forma centralizada.
-    /// Reemplaza las variables estáticas UsuarioLogueado y UsuarioLogueadoCompleto.
+    /// Implementación del servicio de sesión del usuario actual.
+    /// Utiliza el patrón Singleton para mantener el estado de la sesión
+    /// de forma centralizada y accesible desde toda la aplicación.
     /// </summary>
     public class SesionUsuarioService : ISesionUsuarioService
     {
-        private static readonly Lazy<SesionUsuarioService> _instancia =
+        private static readonly Lazy<SesionUsuarioService> instancia =
             new Lazy<SesionUsuarioService>(() => new SesionUsuarioService());
 
-        /// <summary>Instancia singleton del servicio de sesión.</summary>
-        public static SesionUsuarioService Instancia => _instancia.Value;
+        /// <summary>
+        /// Instancia única del servicio de sesión (Singleton).
+        /// </summary>
+        public static SesionUsuarioService Instancia => instancia.Value;
 
         /// <inheritdoc/>
         public string NombreUsuario { get; set; }
@@ -30,10 +32,13 @@ namespace SG_BAMS.Login
         /// <inheritdoc/>
         public bool EstaAutenticado => !string.IsNullOrEmpty(NombreUsuario);
 
+        /// <summary>
+        /// Constructor privado para garantizar el patrón Singleton.
+        /// </summary>
         private SesionUsuarioService() { }
 
         /// <summary>
-        /// Limpia los datos de sesión al cerrar sesión.
+        /// Elimina todos los datos de la sesión actual al cerrar sesión.
         /// </summary>
         public void CerrarSesion()
         {

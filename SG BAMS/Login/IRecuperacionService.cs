@@ -6,14 +6,14 @@
     public interface IRecuperacionService
     {
         /// <summary>
-        /// Verifica si un correo electrónico existe en la base de datos.
+        /// Verifica si un correo electrónico está registrado en el sistema.
         /// </summary>
-        /// <param name="correo">Correo a verificar.</param>
-        /// <returns>True si el correo está registrado.</returns>
+        /// <param name="correo">Correo electrónico a verificar.</param>
+        /// <returns>True si el correo existe en la base de datos.</returns>
         bool VerificarCorreo(string correo);
 
         /// <summary>
-        /// Verifica si la contraseña ingresada es igual a la contraseña actual del usuario.
+        /// Verifica si la contraseña ingresada coincide con la contraseña actual del usuario.
         /// </summary>
         /// <param name="correo">Correo del usuario.</param>
         /// <param name="contrasena">Contraseña a comparar en texto plano.</param>
@@ -22,11 +22,11 @@
 
         /// <summary>
         /// Actualiza la contraseña de un usuario en la base de datos.
-        /// La contraseña se hashea internamente antes de enviarla al SP.
+        /// La contraseña se hashea internamente antes de ser almacenada.
         /// </summary>
         /// <param name="correo">Correo del usuario.</param>
         /// <param name="nuevaContrasena">Nueva contraseña en texto plano.</param>
-        /// <returns>True si la actualización fue exitosa.</returns>
+        /// <returns>True si la actualización se realizó correctamente.</returns>
         bool ActualizarContrasena(string correo, string nuevaContrasena);
     }
 }

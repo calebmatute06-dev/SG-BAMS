@@ -5,18 +5,19 @@ using SG_BAMS.Login;
 namespace SG_BAMS
 {
     /// <summary>
-    /// Formulario para establecer una nueva contraseña después de validar el token.
+    /// Formulario para establecer una nueva contraseña después de validar el token
+    /// de recuperación. Permite al usuario ingresar y confirmar su nueva contraseña.
     /// </summary>
     public partial class LoginNueva : Form
     {
-        private readonly string _correo;
-        private readonly IRecuperacionService _recuperacionService;
-        private readonly INavegacionFormsService _navegacionForms;
+        private readonly string correo;
+        private readonly IRecuperacionService recuperacionService;
+        private readonly INavegacionFormsService navegacionForms;
         private PlaceholderTextBox phContra;
         private PlaceholderTextBox phContraNueva;
 
         /// <summary>
-        /// Constructor con inyección de dependencias.
+        /// Constructor principal del formulario de nueva contraseña.
         /// </summary>
         /// <param name="correo">Correo del usuario que va a cambiar su contraseña.</param>
         /// <param name="recuperacionService">Servicio de recuperación de contraseña.</param>
@@ -31,9 +32,9 @@ namespace SG_BAMS
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
 
-            _correo = correo ?? throw new ArgumentNullException(nameof(correo));
-            _recuperacionService = recuperacionService ?? throw new ArgumentNullException(nameof(recuperacionService));
-            _navegacionForms = navegacionForms ?? throw new ArgumentNullException(nameof(navegacionForms));
+            this.correo = correo ?? throw new ArgumentNullException(nameof(correo));
+            this.recuperacionService = recuperacionService ?? throw new ArgumentNullException(nameof(recuperacionService));
+            this.navegacionForms = navegacionForms ?? throw new ArgumentNullException(nameof(navegacionForms));
 
             phContra = new PlaceholderTextBox(txtContra, "Ingrese la contraseña Nueva");
             phContraNueva = new PlaceholderTextBox(txtContraNueva, "Confirme la contraseña Nueva");
@@ -41,7 +42,8 @@ namespace SG_BAMS
 
         /// <summary>
         /// Evento Click del botón Confirmar.
-        /// Valida que las contraseñas coincidan y delega la actualización a IRecuperacionService.
+        /// Valida que las contraseñas coincidan, verifica que no sea igual a la anterior
+        /// y actualiza la contraseña en la base de datos.
         /// </summary>
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
@@ -66,7 +68,7 @@ namespace SG_BAMS
                 return;
             }
 
-            if (_recuperacionService.EsContrasenaActual(_correo, pass1))
+            if (recuperacionService.EsContrasenaActual(correo, pass1))
             {
                 MessageBox.Show("La nueva contraseña no puede ser igual a la actual.",
                                 "Contraseña repetida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -76,13 +78,13 @@ namespace SG_BAMS
                 return;
             }
 
-            if (_recuperacionService.ActualizarContrasena(_correo, pass1))
+            if (recuperacionService.ActualizarContrasena(correo, pass1))
             {
                 MessageBox.Show("Contraseña actualizada correctamente.",
                     "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                _navegacionForms.NavegarAlLogin();
-                _navegacionForms.CerrarFormulario(this);
+                navegacionForms.NavegarAlLogin();
+                navegacionForms.CerrarFormulario(this);
             }
             else
             {
@@ -92,13 +94,12 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Evento Click del botón Salir.
-        /// DIP: La navegación se delega en INavegacionFormsService.
+        /// Evento Click del botón Salir. Regresa al formulario de inicio de sesión.
         /// </summary>
         private void btnsalir_Click(object sender, EventArgs e)
         {
-            _navegacionForms.NavegarAlLogin();
-            _navegacionForms.CerrarFormulario(this);
+            navegacionForms.NavegarAlLogin();
+            navegacionForms.CerrarFormulario(this);
         }
     }
 }

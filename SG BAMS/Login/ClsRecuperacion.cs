@@ -5,15 +5,16 @@ using System.Data;
 namespace SG_BAMS.Login
 {
     /// <summary>
-    /// Clase responsable de las operaciones de recuperación de contraseña contra la BD.
+    /// Clase responsable de las operaciones de recuperación de contraseña
+    /// contra la base de datos utilizando procedimientos almacenados.
     /// </summary>
     public class ClsRecuperacion
     {
-        private readonly ClsRepositorioBaseDatos _conexion;
-        private readonly IServicioSeguridad _servicioSeguridad;
+        private readonly ClsRepositorioBaseDatos conexion;
+        private readonly IServicioSeguridad servicioSeguridad;
 
         /// <summary>
-        /// Constructor sin parámetros para compatibilidad.
+        /// Constructor sin parámetros para compatibilidad con código existente.
         /// </summary>
         public ClsRecuperacion() : this(new ClsRepositorioBaseDatos(), new ServicioSeguridad())
         {
@@ -21,22 +22,29 @@ namespace SG_BAMS.Login
 
         /// <summary>
         /// Constructor principal con inyección de dependencias.
+        /// Cumple DIP al recibir las dependencias en lugar de instanciarlas.
         /// </summary>
+        /// <param name="conexion">Repositorio de base de datos.</param>
+        /// <param name="servicioSeguridad">Servicio de seguridad para hashing.</param>
+        /// <exception cref="ArgumentNullException">Si algún parámetro es nulo.</exception>
         public ClsRecuperacion(ClsRepositorioBaseDatos conexion, IServicioSeguridad servicioSeguridad)
         {
-            _conexion = conexion ?? throw new ArgumentNullException(nameof(conexion));
-            _servicioSeguridad = servicioSeguridad ?? throw new ArgumentNullException(nameof(servicioSeguridad));
+            this.conexion = conexion ?? throw new ArgumentNullException(nameof(conexion));
+            this.servicioSeguridad = servicioSeguridad ?? throw new ArgumentNullException(nameof(servicioSeguridad));
         }
 
         /// <summary>
         /// Verifica si un correo electrónico existe en la base de datos.
         /// </summary>
+        /// <param name="correo">Correo electrónico a verificar.</param>
+        /// <returns>True si el correo está registrado en el sistema.</returns>
+        /// <exception cref="Exception">Si ocurre un error de base de datos.</exception>
         public bool VerificarCorreo(string correo)
         {
             try
             {
-                _conexion.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_Recuperacion_VerificarCorreo", _conexion.Conectar))
+                conexion.AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_Recuperacion_VerificarCorreo", conexion.Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@correo", correo);
@@ -50,21 +58,25 @@ namespace SG_BAMS.Login
             }
             finally
             {
-                _conexion.Cerrar();
+                conexion.Cerrar();
             }
         }
 
         /// <summary>
         /// Actualiza la contraseña de un usuario en la base de datos.
-        /// La contraseña se hashea antes de enviarla al SP.
+        /// La contraseña se hashea con SHA256 antes de enviarla al procedimiento almacenado.
+        /// Si no se lanza excepción, se asume que la operación fue exitosa.
         /// </summary>
+        /// <param name="correo">Correo del usuario.</param>
+        /// <param name="nuevaContrasena">Nueva contraseña en texto plano.</param>
+        /// <exception cref="Exception">Si ocurre un error de base de datos.</exception>
         public void ActualizarContrasena(string correo, string nuevaContrasena)
         {
-            string passHash = _servicioSeguridad.HashSHA256(nuevaContrasena);
+            string passHash = servicioSeguridad.HashSHA256(nuevaContrasena);
             try
             {
-                _conexion.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_Recuperacion_ActualizarContrasena", _conexion.Conectar))
+                conexion.AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_Recuperacion_ActualizarContrasena", conexion.Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@pass", passHash);
@@ -79,20 +91,24 @@ namespace SG_BAMS.Login
             }
             finally
             {
-                _conexion.Cerrar();
+                conexion.Cerrar();
             }
         }
 
         /// <summary>
         /// Verifica si la contraseña ingresada es igual a la contraseña actual del usuario.
         /// </summary>
-        public bool ContraIgualAntigua(string correo, string contraant)
+        /// <param name="correo">Correo del usuario.</param>
+        /// <param name="contrasenaAnterior">Contraseña a comparar en texto plano (se hashea internamente).</param>
+        /// <returns>True si la contraseña coincide con la actual.</returns>
+        /// <exception cref="Exception">Si ocurre un error de base de datos.</exception>
+        public bool ContraIgualAntigua(string correo, string contrasenaAnterior)
         {
-            string passHash = _servicioSeguridad.HashSHA256(contraant);
+            string passHash = servicioSeguridad.HashSHA256(contrasenaAnterior);
             try
             {
-                _conexion.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_Recuperacion_VerificarContrasena", _conexion.Conectar))
+                conexion.AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_Recuperacion_VerificarContrasena", conexion.Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@correo", correo);
@@ -106,7 +122,7 @@ namespace SG_BAMS.Login
             }
             finally
             {
-                _conexion.Cerrar();
+                conexion.Cerrar();
             }
         }
     }

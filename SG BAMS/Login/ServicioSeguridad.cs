@@ -5,26 +5,26 @@ using System.Text;
 namespace SG_BAMS.Login
 {
     /// <summary>
-    /// Implementación de IServicioSeguridad que proporciona generación de tokens
-    /// criptográficamente seguros y hashing SHA256.
+    /// Implementación del servicio de seguridad del sistema.
+    /// Proporciona generación de tokens criptográficamente seguros y hashing SHA256.
     /// </summary>
     public class ServicioSeguridad : IServicioSeguridad
     {
-        private readonly IGeneradorToken _generadorToken;
+        private readonly IGeneradorToken generadorToken;
 
         /// <summary>
-        /// Constructor que recibe el generador de tokens por inyección.
+        /// Constructor principal que recibe el generador de tokens.
         /// </summary>
-        /// <param name="generadorToken">Generador de tokens (criptográfico por defecto).</param>
+        /// <param name="generadorToken">Generador de tokens criptográficos.</param>
         /// <exception cref="ArgumentNullException">Si generadorToken es nulo.</exception>
         public ServicioSeguridad(IGeneradorToken generadorToken)
         {
-            _generadorToken = generadorToken ?? throw new ArgumentNullException(nameof(generadorToken));
+            this.generadorToken = generadorToken ?? throw new ArgumentNullException(nameof(generadorToken));
         }
 
         /// <summary>
         /// Constructor sin parámetros para compatibilidad con código existente.
-        /// Usa GeneradorTokenCriptografico por defecto.
+        /// Utiliza el generador de tokens criptográfico por defecto.
         /// </summary>
         public ServicioSeguridad() : this(new GeneradorTokenCriptografico())
         {
@@ -33,7 +33,7 @@ namespace SG_BAMS.Login
         /// <inheritdoc/>
         public string GenerarToken()
         {
-            return _generadorToken.GenerarToken();
+            return generadorToken.GenerarToken();
         }
 
         /// <inheritdoc/>

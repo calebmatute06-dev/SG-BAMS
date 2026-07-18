@@ -6,31 +6,29 @@ using Krypton.Toolkit;
 namespace SG_BAMS.Login
 {
     /// <summary>
-    /// Componente reutilizable para mostrar/ocultar contraseña con ícono de ojo.
-    /// Soporta tanto TextBox estándar como KryptonTextBox.
-    /// 
-    /// PRINCIPIOS SOLID APLICADOS:
-    /// - SRP: Única responsabilidad de gestionar la visibilidad de la contraseña.
-    /// - OCP: Se puede reutilizar en cualquier formulario sin modificar.
+    /// Componente reutilizable para mostrar y ocultar la contraseña mediante un ícono de ojo.
+    /// Compatible con controles TextBox estándar y KryptonTextBox.
     /// </summary>
     public class PasswordToggleHelper
     {
-        private readonly Control _txtPassword;
-        private readonly Label _lblOjo;
-        private bool _passwordVisible;
-        private bool _esPlaceholder;
-        private const string TEXTO_PLACEHOLDER = "Ingrese su contraseña";
+        private readonly Control txtPassword;
+        private readonly Label lblOjo;
+        private bool passwordVisible;
+        private bool esPlaceholder;
+        private const string TextoPlaceholder = "Ingrese su contraseña";
 
         /// <summary>
-        /// Constructor que acepta cualquier Control (TextBox o KryptonTextBox).
+        /// Constructor del componente. Agrega un ícono de ojo junto al campo de contraseña
+        /// que permite alternar la visibilidad del texto.
         /// </summary>
         /// <param name="txtPassword">Control de contraseña (TextBox o KryptonTextBox).</param>
-        /// <param name="contenedor">Control contenedor donde se agregará el label del ojo.</param>
+        /// <param name="contenedor">Control contenedor donde se agregará el ícono del ojo.</param>
+        /// <exception cref="ArgumentNullException">Si txtPassword es nulo.</exception>
         public PasswordToggleHelper(Control txtPassword, Control contenedor)
         {
-            _txtPassword = txtPassword ?? throw new ArgumentNullException(nameof(txtPassword));
+            this.txtPassword = txtPassword ?? throw new ArgumentNullException(nameof(txtPassword));
 
-            _lblOjo = new Label
+            lblOjo = new Label
             {
                 Text = "👁",
                 Font = new Font("Arial", 13),
@@ -44,66 +42,91 @@ namespace SG_BAMS.Login
                     txtPassword.Top + (txtPassword.Height - 32) / 2)
             };
 
-            _lblOjo.Click += (s, ev) =>
+            lblOjo.Click += (s, ev) =>
             {
-                if (_esPlaceholder) return;
+                if (esPlaceholder) return;
                 ToggleVisibilidad();
             };
 
-            contenedor.Controls.Add(_lblOjo);
-            _lblOjo.BringToFront();
+            contenedor.Controls.Add(lblOjo);
+            lblOjo.BringToFront();
 
             ConfigurarPlaceholder();
         }
 
+        /// <summary>
+        /// Configura el comportamiento de placeholder en el campo de contraseña.
+        /// Muestra un texto guía cuando el campo está vacío.
+        /// </summary>
         private void ConfigurarPlaceholder()
         {
-            _esPlaceholder = true;
-            SetText(TEXTO_PLACEHOLDER);
+            esPlaceholder = true;
+            SetText(TextoPlaceholder);
             SetForeColor(Color.Gray);
             SetUseSystemPasswordChar(false);
 
-            _txtPassword.Enter += (s, ev) =>
+            this.txtPassword.Enter += (s, ev) =>
             {
-                if (_esPlaceholder)
+                if (esPlaceholder)
                 {
                     SetText("");
                     SetForeColor(Color.Black);
-                    SetUseSystemPasswordChar(!_passwordVisible);
-                    _esPlaceholder = false;
+                    SetUseSystemPasswordChar(!passwordVisible);
+                    esPlaceholder = false;
                 }
             };
 
-            _txtPassword.Leave += (s, ev) =>
+            this.txtPassword.Leave += (s, ev) =>
             {
                 if (string.IsNullOrWhiteSpace(GetText()))
                 {
-                    SetText(TEXTO_PLACEHOLDER);
+                    SetText(TextoPlaceholder);
                     SetForeColor(Color.Gray);
                     SetUseSystemPasswordChar(false);
-                    _esPlaceholder = true;
+                    esPlaceholder = true;
                 }
             };
         }
 
+        /// <summary>
+        /// Alterna la visibilidad de la contraseña entre texto plano y oculto.
+        /// </summary>
         private void ToggleVisibilidad()
         {
-            _passwordVisible = !_passwordVisible;
-            SetUseSystemPasswordChar(!_passwordVisible);
-            _lblOjo.Text = _passwordVisible ? "🙈" : "👁";
+            passwordVisible = !passwordVisible;
+            SetUseSystemPasswordChar(!passwordVisible);
+            lblOjo.Text = passwordVisible ? "🙈" : "👁";
         }
 
-        public bool EsPlaceholder => _esPlaceholder;
+        /// <summary>
+        /// Indica si el campo de contraseña está mostrando el texto guía (placeholder).
+        /// </summary>
+        public bool EsPlaceholder => esPlaceholder;
 
-        private string GetText() => _txtPassword.Text;
-        private void SetText(string text) => _txtPassword.Text = text;
-        private void SetForeColor(Color color) => _txtPassword.ForeColor = color;
+        /// <summary>
+        /// Obtiene el texto actual del campo de contraseña.
+        /// </summary>
+        private string GetText() => txtPassword.Text;
 
+        /// <summary>
+        /// Establece el texto del campo de contraseña.
+        /// </summary>
+        private void SetText(string text) => txtPassword.Text = text;
+
+        /// <summary>
+        /// Establece el color del texto del campo de contraseña.
+        /// </summary>
+        private void SetForeColor(Color color) => txtPassword.ForeColor = color;
+
+        /// <summary>
+        /// Configura si el campo debe mostrar la contraseña como caracteres ocultos.
+        /// Soporta tanto TextBox estándar como KryptonTextBox.
+        /// </summary>
         private void SetUseSystemPasswordChar(bool usePasswordChar)
         {
-            if (_txtPassword is KryptonTextBox ktb)
+            if (txtPassword is KryptonTextBox ktb)
                 ktb.UseSystemPasswordChar = usePasswordChar;
-            else if (_txtPassword is TextBox tb)
+            else if (txtPassword is TextBox tb)
                 tb.UseSystemPasswordChar = usePasswordChar;
         }
     }

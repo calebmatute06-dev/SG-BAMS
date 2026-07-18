@@ -1,49 +1,80 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
+using SG_BAMS.Login;
 using SG_BAMS.MenuPrincipal;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// Formulario para visualizar y modificar el perfil del usuario logueado.
+    /// </summary>
     public partial class Perfil : Form
     {
-        public string UsuarioActual { get; set; }
+        private readonly IPerfilService _perfilService;
+        private readonly ISesionUsuarioService _sesionUsuario;
 
-        public Perfil()
+        /// <summary>
+        /// Constructor sin parámetros para compatibilidad.
+        /// </summary>
+        public Perfil() : this(
+            new ClsPerfil(new ClsRepositorioBaseDatos()),
+            SesionUsuarioService.Instancia)
+        {
+        }
+
+        /// <summary>
+        /// Constructor principal con inyección de dependencias.
+        /// 
+        /// DIP: Recibe IPerfilService e ISesionUsuarioService en lugar de
+        /// instanciar ClsPerfil o usar Login.UsuarioLogueado estático.
+        /// </summary>
+        /// <param name="perfilService">Servicio de perfil de usuario.</param>
+        /// <param name="sesionUsuario">Servicio de sesión del usuario.</param>
+        /// <exception cref="ArgumentNullException">Si algún servicio es nulo.</exception>
+        public Perfil(IPerfilService perfilService, ISesionUsuarioService sesionUsuario)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            _perfilService = perfilService ?? throw new ArgumentNullException(nameof(perfilService));
+            _sesionUsuario = sesionUsuario ?? throw new ArgumentNullException(nameof(sesionUsuario));
         }
+
+        /// <summary>
+        /// Propiedad para compatibilidad con código existente.
+        /// </summary>
+        public string UsuarioActual { get; set; }
 
         private async void Perfil_Load(object sender, EventArgs e)
         {
             await CargarDatosUsuario();
         }
 
+        /// <summary>
+        /// Carga los datos del perfil desde el servicio inyectado.
+        /// 
+        /// DIP: Usa ISesionUsuarioService en lugar de SesionUsuarioService.Instancia directo.
+        /// DRY: Usa ConversorImagenService para convertir bytes a imagen.
+        /// </summary>
         private async Task CargarDatosUsuario()
         {
             try
             {
-                // Usa el nombre completo para buscar en la BD
-                string usuarioLogueado = SG_BAMS.Login.Login.UsuarioLogueadoCompleto;
 
-                // Si está vacío, intenta con el nombre recortado
+                string usuarioLogueado = _sesionUsuario.NombreCompleto;
+
                 if (string.IsNullOrEmpty(usuarioLogueado))
-                    usuarioLogueado = SG_BAMS.Login.Login.UsuarioLogueado;
+                    usuarioLogueado = _sesionUsuario.NombreUsuario;
 
                 if (!string.IsNullOrEmpty(usuarioLogueado))
                 {
-                    ClsPerfil objUsuario = new ClsPerfil();
-                    DataTable datos = await objUsuario.ObtenerPerfilDesdeVista(usuarioLogueado);
+                    DataTable datos = await _perfilService.ObtenerPerfilDesdeVista(usuarioLogueado);
 
                     if (datos.Rows.Count > 0)
                     {
@@ -55,10 +86,8 @@ namespace SG_BAMS
                         if (fila["imagen_usuario"] != DBNull.Value)
                         {
                             byte[] imagenBytes = (byte[])fila["imagen_usuario"];
-                            using (MemoryStream ms = new MemoryStream(imagenBytes))
-                            {
-                                pbFotoPerfil.Image = Image.FromStream(ms);
-                            }
+
+                            pbFotoPerfil.Image = ConversorImagenService.BytesAImagen(imagenBytes);
                         }
                     }
                 }
@@ -78,6 +107,12 @@ namespace SG_BAMS
             Ayudante_UI.AplicarZoomGlobal(this);
         }
 
+        /// <summary>
+        /// Evento Click del botón para cambiar la imagen de perfil.
+        /// 
+        /// DIP: Usa IPerfilService e ISesionUsuarioService inyectados.
+        /// DRY: Usa ConversorImagenService para convertir bytes a imagen.
+        /// </summary>
         private async void btnimagen_Click(object sender, EventArgs e)
         {
             OpenFileDialog selectorImagen = new OpenFileDialog();
@@ -89,17 +124,14 @@ namespace SG_BAMS
                 {
                     byte[] imagenBytes = File.ReadAllBytes(selectorImagen.FileName);
 
-                    string usuarioLogueado = SG_BAMS.Login.Login.UsuarioLogueadoCompleto;
+
+                    string usuarioLogueado = _sesionUsuario.NombreCompleto;
                     if (string.IsNullOrEmpty(usuarioLogueado))
-                        usuarioLogueado = SG_BAMS.Login.Login.UsuarioLogueado;
+                        usuarioLogueado = _sesionUsuario.NombreUsuario;
 
-                    ClsPerfil objUsuario = new ClsPerfil();
-                    await objUsuario.ActualizarFotoUsuario(usuarioLogueado, imagenBytes);
+                    await _perfilService.ActualizarFotoUsuario(usuarioLogueado, imagenBytes);
 
-                    using (MemoryStream ms = new MemoryStream(imagenBytes))
-                    {
-                        pbFotoPerfil.Image = Image.FromStream(ms);
-                    }
+                    pbFotoPerfil.Image = ConversorImagenService.BytesAImagen(imagenBytes);
 
                     MessageBox.Show("Imagen de perfil actualizada correctamente.");
                 }

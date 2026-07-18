@@ -9,13 +9,13 @@ namespace SG_BAMS.Login
     /// </summary>
     public class ControlBloqueoIntentos
     {
-        private int _intentosFallidos;
-        private readonly int _maxIntentos;
-        private readonly int _segundosBloqueo;
-        private int _segundosRestantes;
-        private readonly System.Windows.Forms.Timer _timerBloqueo;
-        private readonly Control[] _controlesABloquear;
-        private readonly Label _lblBloqueo;
+        private int intentosFallidos;
+        private readonly int maxIntentos;
+        private readonly int segundosBloqueo;
+        private int segundosRestantes;
+        private readonly System.Windows.Forms.Timer timerBloqueo;
+        private readonly Control[] controlesABloquear;
+        private readonly Label lblBloqueo;
 
         /// <summary>Evento que se dispara cuando el bloqueo finaliza.</summary>
         public event EventHandler BloqueoFinalizado;
@@ -24,30 +24,33 @@ namespace SG_BAMS.Login
         public event Action<string> EstadoBloqueoCambiado;
 
         /// <summary>
-        /// Constructor.
+        /// Constructor que inicializa el control de bloqueo.
         /// </summary>
-        /// <param name="maxIntentos">Número máximo de intentos antes de bloquear.</param>
+        /// <param name="maxIntentos">Número máximo de intentos fallidos antes de bloquear.</param>
         /// <param name="segundosBloqueo">Duración del bloqueo en segundos.</param>
-        /// <param name="lblBloqueo">Label para mostrar el estado del bloqueo.</param>
-        /// <param name="controlesABloquear">Controles a deshabilitar durante el bloqueo.</param>
+        /// <param name="lblBloqueo">Label donde se muestra el estado del bloqueo.</param>
+        /// <param name="controlesABloquear">Controles que se deshabilitarán durante el bloqueo.</param>
         public ControlBloqueoIntentos(int maxIntentos, int segundosBloqueo, Label lblBloqueo, params Control[] controlesABloquear)
         {
-            _maxIntentos = maxIntentos;
-            _segundosBloqueo = segundosBloqueo;
-            _lblBloqueo = lblBloqueo;
-            _controlesABloquear = controlesABloquear;
+            this.maxIntentos = maxIntentos;
+            this.segundosBloqueo = segundosBloqueo;
+            this.lblBloqueo = lblBloqueo;
+            this.controlesABloquear = controlesABloquear;
 
-            _timerBloqueo = new System.Windows.Forms.Timer { Interval = 1000 };
-            _timerBloqueo.Tick += TimerBloqueo_Tick;
+            timerBloqueo = new System.Windows.Forms.Timer { Interval = 1000 };
+            timerBloqueo.Tick += TimerBloqueoTick;
         }
 
-        /// <summary>Registra un intento fallido. Retorna true si se activó el bloqueo.</summary>
+        /// <summary>
+        /// Registra un intento fallido de inicio de sesión.
+        /// Si se alcanza el máximo de intentos, activa el bloqueo.
+        /// </summary>
+        /// <returns>True si se activó el bloqueo, false en caso contrario.</returns>
         public bool RegistrarIntentoFallido()
         {
-            _intentosFallidos++;
-            int intentosRestantes = _maxIntentos - _intentosFallidos;
+            intentosFallidos++;
 
-            if (_intentosFallidos >= _maxIntentos)
+            if (intentosFallidos >= maxIntentos)
             {
                 ActivarBloqueo();
                 return true;
@@ -56,57 +59,72 @@ namespace SG_BAMS.Login
             return false;
         }
 
-        /// <summary>Obtiene los intentos restantes antes del bloqueo.</summary>
-        public int IntentosRestantes => _maxIntentos - _intentosFallidos;
+        /// <summary>Obtiene el número de intentos restantes antes del bloqueo.</summary>
+        public int IntentosRestantes => maxIntentos - intentosFallidos;
 
-        /// <summary>Reinicia el contador de intentos fallidos.</summary>
+        /// <summary>Reinicia el contador de intentos fallidos a cero.</summary>
         public void ReiniciarIntentos()
         {
-            _intentosFallidos = 0;
+            intentosFallidos = 0;
         }
 
-        /// <summary>Indica si el bloqueo está activo.</summary>
-        public bool EstaBloqueado => _timerBloqueo.Enabled;
+        /// <summary>Indica si el bloqueo está actualmente activo.</summary>
+        public bool EstaBloqueado => timerBloqueo.Enabled;
 
+        /// <summary>
+        /// Activa el bloqueo: deshabilita los controles, muestra el label
+        /// de bloqueo e inicia el temporizador.
+        /// </summary>
         private void ActivarBloqueo()
         {
-            _segundosRestantes = _segundosBloqueo;
+            segundosRestantes = segundosBloqueo;
 
-            foreach (var control in _controlesABloquear)
+            foreach (var control in controlesABloquear)
                 control.Enabled = false;
 
-            _lblBloqueo.Visible = true;
+            lblBloqueo.Visible = true;
             ActualizarTextoBloqueo();
-            _timerBloqueo.Start();
+            timerBloqueo.Start();
         }
 
-        private void TimerBloqueo_Tick(object sender, EventArgs e)
+        /// <summary>
+        /// Evento Tick del temporizador. Descuenta un segundo y verifica
+        /// si el bloqueo debe finalizar.
+        /// </summary>
+        private void TimerBloqueoTick(object sender, EventArgs e)
         {
-            _segundosRestantes--;
+            segundosRestantes--;
             ActualizarTextoBloqueo();
 
-            if (_segundosRestantes <= 0)
+            if (segundosRestantes <= 0)
             {
-                _timerBloqueo.Stop();
+                timerBloqueo.Stop();
                 DesactivarBloqueo();
             }
         }
 
+        /// <summary>
+        /// Desactiva el bloqueo: restaura los controles, oculta el label
+        /// y reinicia el contador de intentos.
+        /// </summary>
         private void DesactivarBloqueo()
         {
-            foreach (var control in _controlesABloquear)
+            foreach (var control in controlesABloquear)
                 control.Enabled = true;
 
-            _lblBloqueo.Visible = false;
-            _intentosFallidos = 0;
+            lblBloqueo.Visible = false;
+            intentosFallidos = 0;
 
             BloqueoFinalizado?.Invoke(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Actualiza el texto del label de bloqueo con los segundos restantes.
+        /// </summary>
         private void ActualizarTextoBloqueo()
         {
-            string texto = $"⛔ Cuenta bloqueada. Espere {_segundosRestantes} segundos...";
-            _lblBloqueo.Text = texto;
+            string texto = $"⛔ Cuenta bloqueada. Espere {segundosRestantes} segundos...";
+            lblBloqueo.Text = texto;
             EstadoBloqueoCambiado?.Invoke(texto);
         }
     }

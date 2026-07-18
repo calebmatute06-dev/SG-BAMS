@@ -17,24 +17,19 @@ namespace SG_BAMS.Login
 {
     /// <summary>
     /// Formulario de validación de identidad mediante reconocimiento facial.
-    /// Utiliza EmguCV y LBPH para comparar el rostro capturado por la cámara
-    /// contra las imágenes de entrenamiento del usuario a validar.
-    /// 
-    /// PRINCIPIO SOLID APLICADO:
-    /// - SRP (Single Responsibility): Este formulario tiene una única responsabilidad:
-    ///   validar la identidad del usuario mediante reconocimiento facial.
-    ///   No maneja autenticación por credenciales ni lógica de negocio.
+    /// Utiliza EmguCV y el algoritmo LBPH para comparar el rostro capturado
+    /// por la cámara contra las imágenes de entrenamiento del usuario.
     /// </summary>
     public partial class LoginFacial : Form
     {
         /// <summary>
         /// Nombre del usuario que se debe validar facialmente.
-        /// Debe coincidir exactamente con el nombre base de los archivos de imagen.
+        /// Debe coincidir con el nombre base de los archivos de imagen en el directorio de rostros.
         /// </summary>
         public string UsuarioAValidar { get; set; }
 
         /// <summary>
-        /// Rol asignado al usuario (1=Administrador, 2=Empleado).
+        /// Rol asignado al usuario. 1 = Administrador, 2 = Empleado.
         /// </summary>
         public int RolAsignado { get; set; }
 
@@ -43,21 +38,21 @@ namespace SG_BAMS.Login
         private CascadeClassifier faceDetector = new CascadeClassifier("haarcascade_frontalface_default.xml");
 
         private int contadorExito = 0;
-        private const int VOTOS_PARA_VALIDAR = 8;
-        private const double UMBRAL_DISTANCIA_BASE = 95;
-        private const double UMBRAL_POCA_LUZ = 110;
-        private const double UMBRAL_LUZ_INTENSA = 100;
+        private const int VotosParaValidar = 8;
+        private const double UmbralDistanciaBase = 95;
+        private const double UmbralPocaLuz = 110;
+        private const double UmbralLuzIntensa = 100;
 
         private Dictionary<int, string> etiquetaANombre = new Dictionary<int, string>();
         private int etiquetaUsuarioValido = -1;
         private int totalUsuariosEnModelo = 0;
 
         private CancellationTokenSource cts;
-        private volatile bool _procesando = false;
+        private volatile bool procesando = false;
         private System.Windows.Forms.Timer timerCamara;
         private List<double> historialDistancias = new List<double>();
         private List<int> historialEtiquetas = new List<int>();
-        private const int HISTORIAL_SIZE = 8;
+        private const int HistorialSize = 8;
 
         /// <summary>
         /// Constructor del formulario de reconocimiento facial.
@@ -71,11 +66,11 @@ namespace SG_BAMS.Login
         }
 
         /// <summary>
-        /// Evento Load del formulario. Carga el modelo facial y prepara la cámara.
+        /// Evento Load del formulario. Carga el modelo facial, entrena el reconocedor
+        /// e inicia la captura de video desde la cámara.
         /// </summary>
         private void LoginFacial_Load(object sender, EventArgs e)
         {
-            // Depuración: muestra qué usuarios hay en el directorio de rostros
             DepurarDirectorioRostros();
 
             if (!File.Exists("haarcascade_frontalface_default.xml"))
@@ -134,8 +129,8 @@ namespace SG_BAMS.Login
         }
 
         /// <summary>
-        /// Método de depuración para verificar qué usuarios hay en el directorio de rostros.
-        /// Útil para diagnosticar problemas de coincidencia de nombres.
+        /// Método de diagnóstico que imprime en la consola de salida los usuarios
+        /// encontrados en el directorio de rostros. Útil para verificar coincidencias de nombres.
         /// </summary>
         private void DepurarDirectorioRostros()
         {
@@ -178,7 +173,7 @@ namespace SG_BAMS.Login
         }
 
         /// <summary>
-        /// Regresa al formulario de login principal.
+        /// Regresa al formulario principal de inicio de sesión.
         /// </summary>
         private void RegresarAlLogin()
         {
@@ -197,13 +192,8 @@ namespace SG_BAMS.Login
 
         /// <summary>
         /// Entrena el modelo LBPH con todos los usuarios registrados en el sistema.
-        /// Busca al usuario a validar y le asigna una etiqueta para su identificación.
+        /// Asigna una etiqueta única a cada usuario para su identificación.
         /// </summary>
-        /// <param name="todosLosArchivos">Lista de archivos de imágenes faciales.</param>
-        /// <exception cref="Exception">
-        /// Si no se encuentra la etiqueta para el usuario a validar, con detalles
-        /// de diagnóstico que incluyen el usuario buscado y los usuarios encontrados.
-        /// </exception>
         private void EntrenarModeloConTodosLosUsuarios(List<string> todosLosArchivos)
         {
             var rostros = new List<Image<Gray, byte>>();
@@ -227,7 +217,6 @@ namespace SG_BAMS.Login
                 int etiqueta = etiquetaActual++;
                 etiquetaANombre[etiqueta] = nombreUsuario;
 
-                // Comparación case-insensitive para mayor tolerancia
                 if (string.Equals(nombreUsuario, UsuarioAValidar, StringComparison.OrdinalIgnoreCase))
                     etiquetaUsuarioValido = etiqueta;
 
@@ -248,7 +237,7 @@ namespace SG_BAMS.Login
                     $"Usuarios encontrados en el modelo: {usuariosEncontrados}\n" +
                     $"Total de usuarios en el modelo: {totalUsuariosEnModelo}\n\n" +
                     $"Verifica que:\n" +
-                    $"1. El nombre de usuario coincida EXACTAMENTE con el nombre base de los archivos de imagen\n" +
+                    $"1. El nombre de usuario coincida exactamente con el nombre base de los archivos de imagen\n" +
                     $"2. Las imágenes estén en: {DetectorRostroService.DirectorioRostros}\n" +
                     $"3. El formato del archivo sea: NOMBREUSUARIO_numero.jpg (ej: JuanPerez_1.jpg)");
             }
@@ -269,20 +258,20 @@ namespace SG_BAMS.Login
         /// Agrega variantes de una imagen (original, flip horizontal, brillo alto, brillo bajo)
         /// para mejorar el entrenamiento del modelo.
         /// </summary>
-        private void AgregarConVariantes(Image<Gray, byte> base_,
+        private void AgregarConVariantes(Image<Gray, byte> imagenBase,
             List<Image<Gray, byte>> lista, List<int> etiquetas, int etiqueta)
         {
             void Add(Image<Gray, byte> img) { lista.Add(img); etiquetas.Add(etiqueta); }
 
-            Add(base_);
-            Add(base_.Flip(FlipType.Horizontal));
+            Add(imagenBase);
+            Add(imagenBase.Flip(FlipType.Horizontal));
 
-            var brilloAlto = base_.Clone(); brilloAlto._Mul(1.4); Add(brilloAlto);
-            var brilloBajo = base_.Clone(); brilloBajo._Mul(0.7); Add(brilloBajo);
+            var brilloAlto = imagenBase.Clone(); brilloAlto._Mul(1.4); Add(brilloAlto);
+            var brilloBajo = imagenBase.Clone(); brilloBajo._Mul(0.7); Add(brilloBajo);
         }
 
         /// <summary>
-        /// Inicia la captura de video desde la cámara predeterminada.
+        /// Inicia la captura de video desde la cámara predeterminada del sistema.
         /// </summary>
         private void IniciarCamara()
         {
@@ -295,11 +284,11 @@ namespace SG_BAMS.Login
         }
 
         /// <summary>
-        /// Tick del timer de la cámara. Captura un frame y lo procesa en segundo plano.
+        /// Evento Tick del temporizador de la cámara. Captura un frame y lo procesa.
         /// </summary>
         private void TimerCamara_Tick(object sender, EventArgs e)
         {
-            if (camara == null || _procesando) return;
+            if (camara == null || procesando) return;
 
             Mat m = new Mat();
             camara.Read(m);
@@ -311,12 +300,12 @@ namespace SG_BAMS.Login
                 picValidar.Image = frameUI.ToBitmap();
             }
 
-            _procesando = true;
+            procesando = true;
             var token = cts.Token;
             Task.Run(() =>
             {
                 try { if (!token.IsCancellationRequested) ProcesarFrame(m); }
-                finally { m.Dispose(); _procesando = false; }
+                finally { m.Dispose(); procesando = false; }
             }, token);
         }
 
@@ -346,7 +335,6 @@ namespace SG_BAMS.Login
         /// Procesa un frame de la cámara: detecta rostros, los compara con el modelo
         /// entrenado y determina si coincide con el usuario a validar.
         /// </summary>
-        /// <param name="m">Frame capturado por la cámara.</param>
         private void ProcesarFrame(Mat m)
         {
             try
@@ -394,9 +382,9 @@ namespace SG_BAMS.Login
 
                         historialDistancias.Add(distancia);
                         historialEtiquetas.Add(resultado.Label);
-                        if (historialDistancias.Count > HISTORIAL_SIZE)
+                        if (historialDistancias.Count > HistorialSize)
                             historialDistancias.RemoveAt(0);
-                        if (historialEtiquetas.Count > HISTORIAL_SIZE)
+                        if (historialEtiquetas.Count > HistorialSize)
                             historialEtiquetas.RemoveAt(0);
 
                         double distanciaPromedio = CalcularDistanciaPromedio();
@@ -404,9 +392,9 @@ namespace SG_BAMS.Login
 
                         MCvScalar media = CvInvoke.Mean(rostroProcesado.Mat);
                         double brillo = media.V0;
-                        double umbralActual = UMBRAL_DISTANCIA_BASE;
-                        if (brillo < 70) umbralActual = UMBRAL_POCA_LUZ;
-                        else if (brillo > 180) umbralActual = UMBRAL_LUZ_INTENSA;
+                        double umbralActual = UmbralDistanciaBase;
+                        if (brillo < 70) umbralActual = UmbralPocaLuz;
+                        else if (brillo > 180) umbralActual = UmbralLuzIntensa;
 
                         bool coincide = etiquetaFrecuente == etiquetaUsuarioValido &&
                                         distanciaPromedio < umbralActual &&
@@ -417,8 +405,8 @@ namespace SG_BAMS.Login
                         if (coincide)
                         {
                             contadorExito++;
-                            ActualizarEstado($"Verificando... ({contadorExito}/{VOTOS_PARA_VALIDAR})", Color.DodgerBlue);
-                            if (contadorExito >= VOTOS_PARA_VALIDAR)
+                            ActualizarEstado($"Verificando... ({contadorExito}/{VotosParaValidar})", Color.DodgerBlue);
+                            if (contadorExito >= VotosParaValidar)
                                 this.Invoke(new Action(() => Finalizar(DialogResult.OK)));
                         }
                         else
@@ -465,7 +453,7 @@ namespace SG_BAMS.Login
         }
 
         /// <summary>
-        /// Actualiza el texto y color de la etiqueta de estado en la UI.
+        /// Actualiza el texto y color de la etiqueta de estado en la interfaz de usuario.
         /// </summary>
         private void ActualizarEstado(string texto, Color color)
         {
@@ -478,7 +466,6 @@ namespace SG_BAMS.Login
         /// <summary>
         /// Finaliza el proceso de reconocimiento facial y navega al menú correspondiente.
         /// </summary>
-        /// <param name="resultado">DialogResult.OK si la validación fue exitosa.</param>
         private void Finalizar(DialogResult resultado)
         {
             cts?.Cancel();
@@ -512,7 +499,7 @@ namespace SG_BAMS.Login
         }
 
         /// <summary>
-        /// Evento que se ejecuta al cerrar el formulario. Libera los recursos de la cámara.
+        /// Libera los recursos de la cámara al cerrar el formulario.
         /// </summary>
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
@@ -527,12 +514,12 @@ namespace SG_BAMS.Login
         }
 
         /// <summary>
-        /// Evento Click del botón Cancelar. Regresa al formulario de login.
+        /// Evento Click del botón Cancelar. Regresa al formulario de inicio de sesión.
         /// </summary>
         private void btnCancelar1_Click(object sender, EventArgs e) => RegresarAlLogin();
 
         /// <summary>
-        /// Evento Click del botón Reintentar. Reinicia el contador y el historial de escaneo.
+        /// Evento Click del botón Reintentar. Reinicia el contador de éxito y el historial.
         /// </summary>
         private void btnReintentar1_Click(object sender, EventArgs e)
         {

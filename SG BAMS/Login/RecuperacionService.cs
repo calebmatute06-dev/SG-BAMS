@@ -3,19 +3,22 @@
 namespace SG_BAMS.Login
 {
     /// <summary>
-    /// Implementación de IRecuperacionService que utiliza ClsRecuperacion
-    /// internamente para las operaciones de base de datos.
+    /// Implementación del servicio de recuperación de contraseña.
+    /// Orquesta las operaciones de verificación y actualización de contraseñas
+    /// delegando el acceso a datos en la clase ClsRecuperacion.
     /// </summary>
     public class RecuperacionService : IRecuperacionService
     {
-        private readonly ClsRecuperacion _recuperacion;
+        private readonly ClsRecuperacion recuperacion;
 
         /// <summary>
-        /// Constructor.
+        /// Constructor del servicio de recuperación.
         /// </summary>
+        /// <param name="recuperacion">Instancia de ClsRecuperacion para acceso a datos.</param>
+        /// <exception cref="ArgumentNullException">Si recuperacion es nulo.</exception>
         public RecuperacionService(ClsRecuperacion recuperacion)
         {
-            _recuperacion = recuperacion ?? throw new ArgumentNullException(nameof(recuperacion));
+            this.recuperacion = recuperacion ?? throw new ArgumentNullException(nameof(recuperacion));
         }
 
         /// <inheritdoc/>
@@ -24,7 +27,7 @@ namespace SG_BAMS.Login
             if (string.IsNullOrWhiteSpace(correo))
                 return false;
 
-            return _recuperacion.VerificarCorreo(correo);
+            return recuperacion.VerificarCorreo(correo);
         }
 
         /// <inheritdoc/>
@@ -33,7 +36,7 @@ namespace SG_BAMS.Login
             if (string.IsNullOrWhiteSpace(correo) || string.IsNullOrWhiteSpace(contrasena))
                 return false;
 
-            return _recuperacion.ContraIgualAntigua(correo, contrasena);
+            return recuperacion.ContraIgualAntigua(correo, contrasena);
         }
 
         /// <inheritdoc/>
@@ -44,7 +47,7 @@ namespace SG_BAMS.Login
 
             try
             {
-                _recuperacion.ActualizarContrasena(correo, nuevaContrasena);
+                recuperacion.ActualizarContrasena(correo, nuevaContrasena);
 
                 return true;
             }

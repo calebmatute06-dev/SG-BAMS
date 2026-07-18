@@ -3,8 +3,8 @@
 namespace SG_BAMS.Login
 {
     /// <summary>
-    /// Implementación de IValidadorTokenService que compara tokens en memoria.
-    /// Comparación case-sensitive exacta.
+    /// Implementación del validador de tokens que compara los valores en memoria.
+    /// Realiza una comparación exacta entre el token ingresado y el token generado.
     /// </summary>
     public class ValidadorTokenEnMemoria : IValidadorTokenService
     {

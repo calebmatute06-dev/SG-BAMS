@@ -5,11 +5,18 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
-    public class ToastNotificacion : Form
+    /// <summary>
+    /// Implementación de IToastService como formulario toast.
+    /// Muestra notificaciones temporales en pantalla.
+    /// </summary>
+    public class ToastNotificacion : Form, IToastService
     {
         private System.Windows.Forms.Timer timer;
 
-        public ToastNotificacion(string titulo, string mensaje, int segundos = 5)
+        /// <summary>
+        /// Constructor privado para crear un toast individual.
+        /// </summary>
+        private ToastNotificacion(string titulo, string mensaje, int segundos = 5)
         {
             this.FormBorderStyle = FormBorderStyle.None;
             this.ShowInTaskbar = false;
@@ -21,7 +28,6 @@ namespace SG_BAMS
             var area = Screen.PrimaryScreen.WorkingArea;
             this.Location = new Point((area.Width - this.Width) / 2, 40);
 
-            // Borde izquierdo de color
             var panelColor = new Panel
             {
                 Size = new Size(5, this.Height),
@@ -57,33 +63,31 @@ namespace SG_BAMS
             timer.Start();
         }
 
-        public static void Mostrar(string titulo, string mensaje, int segundos = 5)
+        /// <summary>
+        /// Constructor público sin parámetros para inyección y compatibilidad.
+        /// </summary>
+        public ToastNotificacion()
+        {
+        }
+
+        /// <inheritdoc/>
+        public void Mostrar(string titulo, string mensaje, int segundos = 5)
         {
             var toast = new ToastNotificacion(titulo, mensaje, segundos);
             toast.Show();
         }
 
-        public static void MostrarResumen(DataTable notificaciones)
+        /// <inheritdoc/>
+        public void MostrarResumen(DataTable notificaciones)
         {
             if (notificaciones == null || notificaciones.Rows.Count == 0) return;
 
-            int total = notificaciones.Rows.Count;
-            int criticas = 0, warnings = 0, info = 0;
+            string mensaje = ResumenNotificacionesBuilder.Construir(notificaciones);
 
-            foreach (DataRow row in notificaciones.Rows)
+            if (!string.IsNullOrEmpty(mensaje))
             {
-                string tipo = row["tipo"].ToString().ToLower();
-                if (tipo == "danger") criticas++;
-                else if (tipo == "warning") warnings++;
-                else info++;
+                Mostrar("Notificaciones", mensaje, 8);
             }
-
-            string mensaje = $"Tienes {total} notificación(es) pendiente(s)";
-            if (criticas > 0) mensaje += $"  |  🛑 {criticas}";
-            if (warnings > 0) mensaje += $"  |  ⚠️ {warnings}";
-            if (info > 0) mensaje += $"  |  ℹ️ {info}";
-
-            Mostrar("Notificaciones", mensaje, 8);
         }
 
         protected override void Dispose(bool disposing)

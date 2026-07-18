@@ -3,17 +3,17 @@
 namespace SG_BAMS.Login
 {
     /// <summary>
-    /// Define el contrato para la acción a ejecutar después de un login exitoso.
-    /// Permite polimorfismo por rol en lugar de un switch gigante.
+    /// Define el contrato para la acción a ejecutar después de un inicio de sesión exitoso.
+    /// Cada implementación representa el comportamiento específico para un rol de usuario.
     /// </summary>
     public interface IAccionPostLogin
     {
         /// <summary>
-        /// Ejecuta la acción correspondiente al rol después del login exitoso.
+        /// Ejecuta la acción correspondiente al rol después del inicio de sesión exitoso.
         /// </summary>
-        /// <param name="formularioActual">Formulario de login actual (para ocultarlo).</param>
-        /// <param name="nombreUsuario">Nombre del usuario autenticado.</param>
-        /// <param name="rol">Rol del usuario.</param>
+        /// <param name="formularioActual">Formulario de login actual, que será ocultado.</param>
+        /// <param name="nombreUsuario">Nombre del usuario que inició sesión.</param>
+        /// <param name="rol">Identificador del rol del usuario.</param>
         void Ejecutar(Form formularioActual, string nombreUsuario, int rol);
     }
 }

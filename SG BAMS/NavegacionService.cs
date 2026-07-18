@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SG_BAMS
 {
-    internal class NavegacionService
+    public class NavegacionService
     {
         public void IrA(Form origen, Form destino)
         {
