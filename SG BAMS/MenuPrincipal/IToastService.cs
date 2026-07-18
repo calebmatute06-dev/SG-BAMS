@@ -3,22 +3,22 @@
 namespace SG_BAMS
 {
     /// <summary>
-    /// Define el contrato para el servicio de notificaciones toast.
+    /// Define el contrato para el servicio de notificaciones tipo toast en pantalla.
     /// </summary>
     public interface IToastService
     {
         /// <summary>
-        /// Muestra un toast con título y mensaje.
+        /// Muestra una notificación temporal en pantalla con un título y mensaje personalizados.
         /// </summary>
-        /// <param name="titulo">Título del toast.</param>
-        /// <param name="mensaje">Mensaje del toast.</param>
-        /// <param name="segundos">Duración en segundos.</param>
+        /// <param name="titulo">Título de la notificación.</param>
+        /// <param name="mensaje">Contenido del mensaje a mostrar.</param>
+        /// <param name="segundos">Tiempo de duración en pantalla. Valor predeterminado: 5 segundos.</param>
         void Mostrar(string titulo, string mensaje, int segundos = 5);
 
         /// <summary>
-        /// Muestra un toast con el resumen de notificaciones.
+        /// Muestra una notificación con el resumen de notificaciones pendientes.
         /// </summary>
-        /// <param name="notificaciones">DataTable de notificaciones.</param>
+        /// <param name="notificaciones">DataTable con las notificaciones a resumir.</param>
         void MostrarResumen(DataTable notificaciones);
     }
 }

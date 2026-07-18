@@ -7,8 +7,16 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// Formulario de menú principal para usuarios con rol Empleado.
+    /// Proporciona acceso a las funciones permitidas para este rol: inventario,
+    /// facturas, clientes, deudores y notificaciones.
+    /// </summary>
     public partial class MenuPrincipalEmp : MenuPrincipalBase
     {
+        /// <summary>
+        /// Constructor sin parámetros para compatibilidad con código existente.
+        /// </summary>
         public MenuPrincipalEmp() : this(
             new ClsDashboard(new ClsRepositorioBaseDatos()),
             new ClsNotificaciones(new ClsRepositorioBaseDatos()),
@@ -21,6 +29,15 @@ namespace SG_BAMS
         {
         }
 
+        /// <summary>
+        /// Constructor principal que recibe todas las dependencias necesarias.
+        /// </summary>
+        /// <param name="dashboard">Servicio de dashboard con contadores y gráficos.</param>
+        /// <param name="notificacionesService">Servicio de gestión de notificaciones.</param>
+        /// <param name="chartBuilder">Servicio de construcción de gráficos.</param>
+        /// <param name="servicioCerrarSesion">Servicio de cierre de sesión.</param>
+        /// <param name="navegacion">Servicio de navegación entre formularios.</param>
+        /// <param name="toastService">Servicio de notificaciones toast.</param>
         public MenuPrincipalEmp(
             IDashboardService dashboard,
             INotificacionesService notificacionesService,
@@ -36,8 +53,13 @@ namespace SG_BAMS
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
+        /// <inheritdoc/>
         protected override bool EsAdmin => false;
 
+        /// <summary>
+        /// Evento Load del formulario. Inicializa el dashboard, aplica el tema
+        /// configurado y carga las ventas recientes.
+        /// </summary>
         private async void MenuPrincipalEmp_Load(object sender, EventArgs e)
         {
             ConfigurarBotonMenuActivo(btnMenu);

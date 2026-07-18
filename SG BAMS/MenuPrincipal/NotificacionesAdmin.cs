@@ -7,19 +7,20 @@ using SG_BAMS.Login;
 namespace SG_BAMS
 {
     /// <summary>
-    /// Formulario para visualizar y gestionar notificaciones.
+    /// Formulario para visualizar y gestionar las notificaciones del sistema.
+    /// Permite al usuario ver el detalle de cada notificación y marcarlas como leídas.
     /// </summary>
     public partial class NotificacionesAdmin : Form
     {
-        private readonly INotificacionesService _notificacionesService;
-        private readonly ISesionUsuarioService _sesionUsuario;
-        private readonly NotificacionListBoxRenderer _listBoxRenderer;
+        private readonly INotificacionesService notificacionesService;
+        private readonly ISesionUsuarioService sesionUsuario;
+        private readonly NotificacionListBoxRenderer listBoxRenderer;
         private bool esAdministrador;
         private HashSet<int> notificacionesLeidas = new HashSet<int>();
         private int contadorNoLeidas = 0;
 
         /// <summary>
-        /// Constructor sin parámetros para compatibilidad.
+        /// Constructor sin parámetros para compatibilidad con código existente.
         /// </summary>
         public NotificacionesAdmin() : this(
             new ClsNotificaciones(),
@@ -28,13 +29,10 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Constructor principal con inyección de dependencias.
-        /// 
-        /// DIP: Recibe INotificacionesService e ISesionUsuarioService.
-        /// SRP: El renderizado se delega en NotificacionListBoxRenderer.
+        /// Constructor principal que recibe los servicios necesarios.
         /// </summary>
-        /// <param name="notificacionesService">Servicio de notificaciones.</param>
-        /// <param name="sesionUsuario">Servicio de sesión del usuario.</param>
+        /// <param name="notificacionesService">Servicio de gestión de notificaciones.</param>
+        /// <param name="sesionUsuario">Servicio de sesión del usuario actual.</param>
         /// <exception cref="ArgumentNullException">Si algún servicio es nulo.</exception>
         public NotificacionesAdmin(
             INotificacionesService notificacionesService,
@@ -45,19 +43,21 @@ namespace SG_BAMS
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
 
-            _notificacionesService = notificacionesService ?? throw new ArgumentNullException(nameof(notificacionesService));
-            _sesionUsuario = sesionUsuario ?? throw new ArgumentNullException(nameof(sesionUsuario));
+            this.notificacionesService = notificacionesService ?? throw new ArgumentNullException(nameof(notificacionesService));
+            this.sesionUsuario = sesionUsuario ?? throw new ArgumentNullException(nameof(sesionUsuario));
 
-
-            _listBoxRenderer = new NotificacionListBoxRenderer(notificacionesLeidas);
+            listBoxRenderer = new NotificacionListBoxRenderer(notificacionesLeidas);
 
             DeterminarPermisos();
 
             notificaciones.DrawMode = DrawMode.OwnerDrawFixed;
-            notificaciones.DrawItem += _listBoxRenderer.DrawItem;
+            notificaciones.DrawItem += listBoxRenderer.DrawItem;
             notificaciones.DoubleClick += Notificaciones_DoubleClick;
         }
 
+        /// <summary>
+        /// Evento Load del formulario. Carga las notificaciones en el ListBox.
+        /// </summary>
         private void NotificacionesAdmin_Load(object sender, EventArgs e)
         {
             CargarListBox();
@@ -65,26 +65,22 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Determina los permisos del usuario usando el servicio de sesión inyectado.
-        /// 
-        /// DIP: Usa ISesionUsuarioService en lugar de Login.UsuarioLogueado estático.
+        /// Determina los permisos del usuario actual basándose en el servicio de sesión.
         /// </summary>
         private void DeterminarPermisos()
         {
-            string usuarioActivo = _sesionUsuario.NombreUsuario;
+            string usuarioActivo = sesionUsuario.NombreUsuario;
             this.esAdministrador = true;
         }
 
         /// <summary>
-        /// Carga el ListBox con las notificaciones.
-        /// 
-        /// DIP: Usa el servicio inyectado en lugar de "new ClsNotificaciones()".
+        /// Carga la lista de notificaciones desde el servicio y las muestra en el ListBox.
         /// </summary>
         private void CargarListBox()
         {
             try
             {
-                DataTable dtNotificaciones = _notificacionesService.ListarNotificaciones(esAdministrador);
+                DataTable dtNotificaciones = notificacionesService.ListarNotificaciones(esAdministrador);
 
                 if (dtNotificaciones != null)
                 {
@@ -103,6 +99,9 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Actualiza el contador visual de notificaciones no leídas.
+        /// </summary>
         private void ActualizarLabelContador()
         {
             cantidadnotificaciones.Text = contadorNoLeidas.ToString();
@@ -110,9 +109,7 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Evento DoubleClick en una notificación.
-        /// 
-        /// DIP: Usa el servicio inyectado para marcar como leída.
+        /// Evento DoubleClick en una notificación. Muestra el detalle y la marca como leída.
         /// </summary>
         private async void Notificaciones_DoubleClick(object sender, EventArgs e)
         {
@@ -127,7 +124,7 @@ namespace SG_BAMS
 
                 if (!notificacionesLeidas.Contains(idNotificacion))
                 {
-                    bool exito = await _notificacionesService.MarcarComoLeida(idNotificacion);
+                    bool exito = await notificacionesService.MarcarComoLeida(idNotificacion);
 
                     if (exito)
                     {
@@ -146,6 +143,10 @@ namespace SG_BAMS
         private void NotificacionesAdmin_Shown(object sender, EventArgs e) => Ayudante_UI.AplicarZoomGlobal(this);
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e) { }
         private void listBox1_MouseClick(object sender, MouseEventArgs e) { }
+
+        /// <summary>
+        /// Evento Click del botón Salir. Cierra el formulario de notificaciones.
+        /// </summary>
         private void btnsalir1_Click(object sender, EventArgs e) => this.Close();
     }
 }

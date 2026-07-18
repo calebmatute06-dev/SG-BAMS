@@ -3,16 +3,16 @@
 namespace SG_BAMS
 {
     /// <summary>
-    /// Constructor de texto de resumen para notificaciones.
-    /// Extraído de ToastNotificacion para cumplir SRP.
+    /// Constructor de texto de resumen para notificaciones del sistema.
+    /// Genera un mensaje formateado con el conteo de notificaciones por tipo.
     /// </summary>
     public static class ResumenNotificacionesBuilder
     {
         /// <summary>
-        /// Construye un texto de resumen a partir de un DataTable de notificaciones.
+        /// Construye un texto de resumen a partir de los datos de notificaciones.
         /// </summary>
-        /// <param name="notificaciones">DataTable con las notificaciones (debe tener columna "tipo").</param>
-        /// <returns>Texto de resumen formateado, o string.Empty si no hay notificaciones.</returns>
+        /// <param name="notificaciones">DataTable con las notificaciones. Debe contener la columna "tipo".</param>
+        /// <returns>Texto de resumen formateado con el conteo por categoría, o cadena vacía si no hay notificaciones.</returns>
         public static string Construir(DataTable notificaciones)
         {
             if (notificaciones == null || notificaciones.Rows.Count == 0)

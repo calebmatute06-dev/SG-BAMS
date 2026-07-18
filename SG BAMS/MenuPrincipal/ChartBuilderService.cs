@@ -7,8 +7,9 @@ using System.Windows.Forms.DataVisualization.Charting;
 namespace SG_BAMS.MenuPrincipal
 {
     /// <summary>
-    /// Implementación de IChartBuilderService para construir gráficos del dashboard.
-    /// Centraliza la configuración visual que estaba duplicada en MenuPrincipalAdm y MenuPrincipalEmp.
+    /// Servicio de construcción de gráficos para el panel de dashboard.
+    /// Centraliza la configuración visual y el estilizado de los gráficos
+    /// de stock y productos más vendidos.
     /// </summary>
     public class ChartBuilderService : IChartBuilderService
     {

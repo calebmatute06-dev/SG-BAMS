@@ -6,29 +6,29 @@ using System.Threading.Tasks;
 namespace SG_BAMS.MenuPrincipal
 {
     /// <summary>
-    /// Implementación de IPerfilService para gestionar el perfil de usuario.
+    /// Implementación del servicio de perfil de usuario.
+    /// Gestiona la obtención de datos del perfil y la actualización de la foto
+    /// mediante procedimientos almacenados.
     /// </summary>
     internal class ClsPerfil : IPerfilService
     {
-        private readonly ClsRepositorioBaseDatos _repositorio;
+        private readonly ClsRepositorioBaseDatos repositorio;
 
         /// <summary>
-        /// Constructor sin parámetros para compatibilidad.
+        /// Constructor sin parámetros para compatibilidad con código existente.
         /// </summary>
         public ClsPerfil() : this(new ClsRepositorioBaseDatos())
         {
         }
 
         /// <summary>
-        /// Constructor principal con inyección de dependencias.
-        /// 
-        /// DIP: Recibe el repositorio por constructor en lugar de heredarlo.
+        /// Constructor principal que recibe el repositorio de base de datos.
         /// </summary>
-        /// <param name="repositorio">Repositorio de base de datos.</param>
+        /// <param name="repositorio">Repositorio de base de datos para ejecutar las consultas.</param>
         /// <exception cref="ArgumentNullException">Si repositorio es nulo.</exception>
         public ClsPerfil(ClsRepositorioBaseDatos repositorio)
         {
-            _repositorio = repositorio ?? throw new ArgumentNullException(nameof(repositorio));
+            this.repositorio = repositorio ?? throw new ArgumentNullException(nameof(repositorio));
         }
 
         /// <inheritdoc/>
@@ -37,8 +37,8 @@ namespace SG_BAMS.MenuPrincipal
             DataTable tablaUsuario = new DataTable();
             try
             {
-                _repositorio.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_Usuario_ObtenerPerfil", _repositorio.Conectar))
+                repositorio.AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_Usuario_ObtenerPerfil", repositorio.Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@usuario", nombreUsuario);
@@ -50,7 +50,7 @@ namespace SG_BAMS.MenuPrincipal
             }
             finally
             {
-                _repositorio.Cerrar();
+                repositorio.Cerrar();
             }
             return tablaUsuario;
         }
@@ -60,8 +60,8 @@ namespace SG_BAMS.MenuPrincipal
         {
             try
             {
-                _repositorio.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_Usuario_ActualizarFoto", _repositorio.Conectar))
+                repositorio.AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_Usuario_ActualizarFoto", repositorio.Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@usuario", nombreUsuario);
@@ -75,7 +75,7 @@ namespace SG_BAMS.MenuPrincipal
             }
             finally
             {
-                _repositorio.Cerrar();
+                repositorio.Cerrar();
             }
         }
     }

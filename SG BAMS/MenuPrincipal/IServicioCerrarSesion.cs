@@ -3,15 +3,15 @@
 namespace SG_BAMS.MenuPrincipal
 {
     /// <summary>
-    /// Define el contrato para el servicio de cierre de sesión.
-    /// Centraliza la lógica duplicada de confirmación de cierre de sesión.
+    /// Define el contrato para el servicio de cierre de sesión del sistema.
     /// </summary>
     public interface IServicioCerrarSesion
     {
         /// <summary>
-        /// Muestra confirmación y cierra sesión si el usuario acepta.
+        /// Solicita confirmación al usuario y, si acepta, cierra la sesión actual
+        /// regresando al formulario de inicio de sesión.
         /// </summary>
-        /// <param name="formularioActual">Formulario a cerrar tras confirmar.</param>
+        /// <param name="formularioActual">Formulario que será cerrado después de confirmar el cierre de sesión.</param>
         void CerrarSesion(Form formularioActual);
     }
 }

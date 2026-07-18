@@ -10,8 +10,16 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// Formulario de menú principal para usuarios con rol Administrador.
+    /// Proporciona acceso a todas las funciones del sistema: inventario, facturas,
+    /// clientes, proveedores, deudores, reportes, bitácora y administración.
+    /// </summary>
     public partial class MenuPrincipalAdm : MenuPrincipalBase
     {
+        /// <summary>
+        /// Constructor sin parámetros para compatibilidad con código existente.
+        /// </summary>
         public MenuPrincipalAdm() : this(
             new ClsDashboard(new ClsRepositorioBaseDatos()),
             new ClsNotificaciones(new ClsRepositorioBaseDatos()),
@@ -24,6 +32,15 @@ namespace SG_BAMS
         {
         }
 
+        /// <summary>
+        /// Constructor principal que recibe todas las dependencias necesarias.
+        /// </summary>
+        /// <param name="dashboard">Servicio de dashboard con contadores y gráficos.</param>
+        /// <param name="notificacionesService">Servicio de gestión de notificaciones.</param>
+        /// <param name="chartBuilder">Servicio de construcción de gráficos.</param>
+        /// <param name="servicioCerrarSesion">Servicio de cierre de sesión.</param>
+        /// <param name="navegacion">Servicio de navegación entre formularios.</param>
+        /// <param name="toastService">Servicio de notificaciones toast.</param>
         public MenuPrincipalAdm(
             IDashboardService dashboard,
             INotificacionesService notificacionesService,
@@ -39,8 +56,12 @@ namespace SG_BAMS
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
+        /// <inheritdoc/>
         protected override bool EsAdmin => true;
 
+        /// <summary>
+        /// Evento Load del formulario. Inicializa el dashboard con contadores y gráficos.
+        /// </summary>
         private async void MenuPrincipalAdm_Load(object sender, EventArgs e)
         {
             ConfigurarBotonMenuActivo(btnMenu);

@@ -6,16 +6,19 @@ using System.Windows.Forms;
 namespace SG_BAMS
 {
     /// <summary>
-    /// Implementación de IToastService como formulario toast.
-    /// Muestra notificaciones temporales en pantalla.
+    /// Implementación del servicio de notificaciones toast.
+    /// Muestra mensajes temporales en pantalla con formato visual personalizado.
     /// </summary>
     public class ToastNotificacion : Form, IToastService
     {
         private System.Windows.Forms.Timer timer;
 
         /// <summary>
-        /// Constructor privado para crear un toast individual.
+        /// Constructor privado que crea y configura un toast individual.
         /// </summary>
+        /// <param name="titulo">Título de la notificación.</param>
+        /// <param name="mensaje">Contenido del mensaje.</param>
+        /// <param name="segundos">Duración en pantalla en segundos.</param>
         private ToastNotificacion(string titulo, string mensaje, int segundos = 5)
         {
             this.FormBorderStyle = FormBorderStyle.None;
@@ -64,7 +67,7 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Constructor público sin parámetros para inyección y compatibilidad.
+        /// Constructor público sin parámetros requerido para inyección de dependencias.
         /// </summary>
         public ToastNotificacion()
         {
@@ -90,6 +93,9 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Libera los recursos del temporizador al cerrar el formulario.
+        /// </summary>
         protected override void Dispose(bool disposing)
         {
             if (disposing)

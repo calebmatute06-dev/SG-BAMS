@@ -6,35 +6,30 @@ using System.Threading.Tasks;
 namespace SG_BAMS.MenuPrincipal
 {
     /// <summary>
-    /// Implementación de IDashboardService que proporciona contadores y gráficos
-    /// para el panel principal (Dashboard).
+    /// Implementación del servicio de dashboard que proporciona contadores
+    /// y datos para los gráficos del panel principal.
     /// </summary>
     internal class ClsDashboard : IDashboardService
     {
-        private readonly ClsRepositorioBaseDatos _repositorio;
+        private readonly ClsRepositorioBaseDatos repositorio;
 
         /// <summary>
-        /// Constructor con inyección de dependencias.
-        /// 
-        /// DIP: Recibe el repositorio por constructor en lugar de heredarlo
-        /// o instanciarlo con "new".
+        /// Constructor del servicio de dashboard.
         /// </summary>
-        /// <param name="repositorio">Repositorio de base de datos.</param>
+        /// <param name="repositorio">Repositorio de base de datos para ejecutar las consultas.</param>
         /// <exception cref="ArgumentNullException">Si repositorio es nulo.</exception>
         public ClsDashboard(ClsRepositorioBaseDatos repositorio)
         {
-            _repositorio = repositorio ?? throw new ArgumentNullException(nameof(repositorio));
+            this.repositorio = repositorio ?? throw new ArgumentNullException(nameof(repositorio));
         }
-
-
 
         /// <inheritdoc/>
         public async Task<int> ObtenerTotalClientes()
         {
             try
             {
-                _repositorio.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_Cliente_TotalActivos", _repositorio.Conectar))
+                repositorio.AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_Cliente_TotalActivos", repositorio.Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     object resultado = await cmd.ExecuteScalarAsync();
@@ -47,7 +42,7 @@ namespace SG_BAMS.MenuPrincipal
             }
             finally
             {
-                _repositorio.Cerrar();
+                repositorio.Cerrar();
             }
         }
 
@@ -56,8 +51,8 @@ namespace SG_BAMS.MenuPrincipal
         {
             try
             {
-                _repositorio.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_Deuda_TotalDeudores", _repositorio.Conectar))
+                repositorio.AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_Deuda_TotalDeudores", repositorio.Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     object resultado = await cmd.ExecuteScalarAsync();
@@ -70,7 +65,7 @@ namespace SG_BAMS.MenuPrincipal
             }
             finally
             {
-                _repositorio.Cerrar();
+                repositorio.Cerrar();
             }
         }
 
@@ -79,8 +74,8 @@ namespace SG_BAMS.MenuPrincipal
         {
             try
             {
-                _repositorio.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_Producto_TotalActivos", _repositorio.Conectar))
+                repositorio.AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_Producto_TotalActivos", repositorio.Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     object resultado = await cmd.ExecuteScalarAsync();
@@ -93,10 +88,9 @@ namespace SG_BAMS.MenuPrincipal
             }
             finally
             {
-                _repositorio.Cerrar();
+                repositorio.Cerrar();
             }
         }
-
 
         /// <inheritdoc/>
         public async Task<DataTable> ObtenerDatosGraficoStock()
@@ -104,8 +98,8 @@ namespace SG_BAMS.MenuPrincipal
             DataTable tablaDatos = new DataTable();
             try
             {
-                _repositorio.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_vista_stock_productos", _repositorio.Conectar))
+                repositorio.AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_vista_stock_productos", repositorio.Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
@@ -120,7 +114,7 @@ namespace SG_BAMS.MenuPrincipal
             }
             finally
             {
-                _repositorio.Cerrar();
+                repositorio.Cerrar();
             }
             return tablaDatos;
         }
@@ -131,8 +125,8 @@ namespace SG_BAMS.MenuPrincipal
             DataTable tablaVentas = new DataTable();
             try
             {
-                _repositorio.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_vista_productos_mas_vendidos", _repositorio.Conectar))
+                repositorio.AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_vista_productos_mas_vendidos", repositorio.Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
@@ -147,7 +141,7 @@ namespace SG_BAMS.MenuPrincipal
             }
             finally
             {
-                _repositorio.Cerrar();
+                repositorio.Cerrar();
             }
             return tablaVentas;
         }
@@ -158,8 +152,8 @@ namespace SG_BAMS.MenuPrincipal
             DataTable tablaVentas = new DataTable();
             try
             {
-                _repositorio.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_vista_ultimas_ventas", _repositorio.Conectar))
+                repositorio.AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_vista_ultimas_ventas", repositorio.Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
@@ -174,7 +168,7 @@ namespace SG_BAMS.MenuPrincipal
             }
             finally
             {
-                _repositorio.Cerrar();
+                repositorio.Cerrar();
             }
             return tablaVentas;
         }

@@ -6,30 +6,28 @@ using System.Threading.Tasks;
 namespace SG_BAMS
 {
     /// <summary>
-    /// Implementación de INotificacionesService para gestionar notificaciones
-    /// usando procedimientos almacenados.
+    /// Implementación del servicio de notificaciones que utiliza procedimientos
+    /// almacenados para listar y marcar como leídas las notificaciones del sistema.
     /// </summary>
     internal class ClsNotificaciones : INotificacionesService
     {
-        private readonly ClsRepositorioBaseDatos _repositorio;
+        private readonly ClsRepositorioBaseDatos repositorio;
 
         /// <summary>
-        /// Constructor sin parámetros para compatibilidad.
+        /// Constructor sin parámetros para compatibilidad con código existente.
         /// </summary>
         public ClsNotificaciones() : this(new ClsRepositorioBaseDatos())
         {
         }
 
         /// <summary>
-        /// Constructor principal con inyección de dependencias.
-        /// 
-        /// DIP: Recibe el repositorio por constructor en lugar de heredarlo.
+        /// Constructor principal que recibe el repositorio de base de datos.
         /// </summary>
-        /// <param name="repositorio">Repositorio de base de datos.</param>
+        /// <param name="repositorio">Repositorio de base de datos para ejecutar las consultas.</param>
         /// <exception cref="ArgumentNullException">Si repositorio es nulo.</exception>
         public ClsNotificaciones(ClsRepositorioBaseDatos repositorio)
         {
-            _repositorio = repositorio ?? throw new ArgumentNullException(nameof(repositorio));
+            this.repositorio = repositorio ?? throw new ArgumentNullException(nameof(repositorio));
         }
 
         /// <inheritdoc/>
@@ -38,8 +36,8 @@ namespace SG_BAMS
             DataTable tablaDatos = new DataTable();
             try
             {
-                _repositorio.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_Notificaciones_Listar", _repositorio.Conectar))
+                repositorio.AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_Notificaciones_Listar", repositorio.Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@esAdmin", esAdmin ? 1 : 0);
@@ -55,7 +53,7 @@ namespace SG_BAMS
             }
             finally
             {
-                _repositorio.Cerrar();
+                repositorio.Cerrar();
             }
             return tablaDatos;
         }
@@ -65,8 +63,8 @@ namespace SG_BAMS
         {
             try
             {
-                _repositorio.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_Notificaciones_MarcarLeida", _repositorio.Conectar))
+                repositorio.AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_Notificaciones_MarcarLeida", repositorio.Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@id", idNotificacion);
@@ -80,7 +78,7 @@ namespace SG_BAMS
             }
             finally
             {
-                _repositorio.Cerrar();
+                repositorio.Cerrar();
             }
         }
     }
