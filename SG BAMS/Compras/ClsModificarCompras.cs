@@ -2,66 +2,48 @@
 using System.Collections.Generic;
 using System.Data;
 using Microsoft.Data.SqlClient;
+using SG_BAMS.ComprasContratos;
 using SG_BAMS.ComprasDTO;
 
 namespace SG_BAMS.ProductoInventario
 {
-    internal class ClsModificarCompras : ClsRepositorioBaseDatos
+    internal class ClsModificarCompras : ClsRepositorioBaseDatos, IModificarComprasRepository
     {
-        public DataTable ListarFormasPago()
+        private readonly ICargaCombosRepository _combos;
+        private readonly IDetalleCompraRepository _detalleCompra;
+
+        /// <summary>
+        /// Constructor por defecto para compatibilidad con el diseñador:
+        /// usa las implementaciones reales de catálogos y detalle.
+        /// </summary>
+        public ClsModificarCompras() : this(new ClsCargaCombos(), new ClsDetalleCompra()) { }
+
+        /// <summary>
+        /// Constructor con inyección de dependencias.
+        /// </summary>
+        public ClsModificarCompras(ICargaCombosRepository combos, IDetalleCompraRepository detalleCompra)
         {
-            DataTable dt = new DataTable();
-            try
-            {
-                AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_FormasPago_Listar", Conectar))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                        da.Fill(dt);
-                }
-            }
-            catch (Exception ex) { throw new Exception("Error al listar formas de pago: " + ex.Message); }
-            finally { Cerrar(); }
-            return dt;
+            _combos = combos;
+            _detalleCompra = detalleCompra;
         }
 
-        public DataTable ListarProveedoresActivos()
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_Proveedores_Activos", Conectar))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                        da.Fill(dt);
-                }
-            }
-            catch (Exception ex) { throw new Exception("Error al listar proveedores: " + ex.Message); }
-            finally { Cerrar(); }
-            return dt;
-        }
+        /// <summary>
+        /// Delegado a ICargaCombosRepository: ya no reimplementa esta
+        /// consulta (antes duplicaba exactamente ClsCargaCombos.ListarFormasPago).
+        /// </summary>
+        public DataTable ListarFormasPago() => _combos.ListarFormasPago();
 
-        public DataTable ObtenerDetalleCompra(int idCompra)
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_Compra_ListarProductos", Conectar))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@id", idCompra);
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                        da.Fill(dt);
-                }
-            }
-            catch (Exception ex) { throw new Exception("Error al obtener detalle: " + ex.Message); }
-            finally { Cerrar(); }
-            return dt;
-        }
+        /// <summary>
+        /// Delegado a ICargaCombosRepository, mismo motivo que ListarFormasPago.
+        /// </summary>
+        public DataTable ListarProveedoresActivos() => _combos.ListarProveedoresActivos();
+
+        /// <summary>
+        /// Delegado a IDetalleCompraRepository: ya no reimplementa la
+        /// consulta a sp_Compra_ListarProductos (antes duplicaba
+        /// ClsDetalleCompra.ListarProductosDeCompra).
+        /// </summary>
+        public DataTable ObtenerDetalleCompra(int idCompra) => _detalleCompra.ListarProductosDeCompra(idCompra);
 
         public DataTable ObtenerCabeceraCompra(int idCompra)
         {
@@ -84,6 +66,8 @@ namespace SG_BAMS.ProductoInventario
 
         /// <summary>
         /// Se mantiene igual: actualiza un único producto del detalle.
+        /// Se sigue exponiendo por si algún flujo necesita actualizar un
+        /// solo producto de forma aislada.
         /// </summary>
         public void GuardarCambiosDetalle(int idCompra, int idProd, int cant, decimal precio)
         {
@@ -105,24 +89,45 @@ namespace SG_BAMS.ProductoInventario
         }
 
         /// <summary>
-        /// Nuevo: actualiza todo el detalle de una compra de una sola vez,
-        /// a partir de la lista de DetalleCompraDTO. Reusa GuardarCambiosDetalle
-        /// para no duplicar la lógica de conexión.
+        /// Actualiza todo el detalle de una compra en una única transacción.
+        /// Antes cada línea abría y cerraba su propia conexión (llamando a
+        /// GuardarCambiosDetalle en un bucle); ahora, si una línea falla,
+        /// se revierten todas, evitando datos inconsistentes.
         /// </summary>
         public void ActualizarDetalleCompra(int idCompra, List<DetalleCompraDTO> detalle)
         {
-            foreach (var item in detalle)
+            AbrirConexion();
+            SqlTransaction transaccion = Conectar.BeginTransaction();
+            try
             {
-                GuardarCambiosDetalle(idCompra, item.IdProducto, item.Cantidad, item.Precio);
+                foreach (var item in detalle)
+                {
+                    using (SqlCommand cmd = new SqlCommand("sp_ActualizarDetalleCompra", Conectar, transaccion))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@id_compra", idCompra);
+                        cmd.Parameters.AddWithValue("@id_producto", item.IdProducto);
+                        cmd.Parameters.AddWithValue("@nueva_cantidad", item.Cantidad);
+                        cmd.Parameters.AddWithValue("@nuevo_precio", item.Precio);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                transaccion.Commit();
+            }
+            catch (Exception ex)
+            {
+                transaccion.Rollback();
+                throw new Exception("Error al actualizar el detalle de la compra: " + ex.Message);
+            }
+            finally
+            {
+                Cerrar();
             }
         }
 
         /// <summary>
         /// Actualiza la cabecera de una compra existente a partir del CompraDTO.
-        /// Antes recibía 5 parámetros sueltos (idCompra, idProv, idPago, fecha, nota);
-        /// ahora recibe un único objeto que agrupa todo eso.
         /// </summary>
-        /// <param name="compra">Datos de cabecera a actualizar (debe traer IdCompra).</param>
         public void ActualizarCabeceraCompra(CompraDTO compra)
         {
             try
@@ -185,7 +190,8 @@ namespace SG_BAMS.ProductoInventario
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@id", idCompra);
                     int filasAfectadas = cmd.ExecuteNonQuery();
-                    return filasAfectadas > 0;
+
+                    return filasAfectadas > 0 || filasAfectadas == -1;
                 }
             }
             catch (Exception ex)

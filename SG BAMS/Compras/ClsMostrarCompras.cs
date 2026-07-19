@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Data;
 using Microsoft.Data.SqlClient;
+using SG_BAMS.ComprasContratos;
 
 namespace SG_BAMS.ProductoInventario
 {
     /// <summary>
     /// Clase para mostrar compras usando solo Procedimientos Almacenados.
     /// </summary>
-    internal class ClsMostrarCompras : ClsRepositorioBaseDatos
+    internal class ClsMostrarCompras : ClsRepositorioBaseDatos, IMostrarComprasRepository
     {
-        
-
         public DataTable ListarCompras()
         {
             DataTable dt = new DataTable();

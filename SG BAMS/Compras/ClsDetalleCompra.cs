@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Data;
 using Microsoft.Data.SqlClient;
+using SG_BAMS.ComprasContratos;
 
 namespace SG_BAMS.ProductoInventario
 {
     /// <summary>
     /// Clase para obtener detalles de compra usando solo PA.
+    /// Es la única fuente de esta consulta: ClsModificarCompras delega
+    /// aquí en lugar de reimplementar la misma consulta (antes ambas
+    /// clases llamaban a sp_Compra_ListarProductos por separado).
     /// </summary>
-    internal class ClsDetalleCompra : ClsRepositorioBaseDatos
+    internal class ClsDetalleCompra : ClsRepositorioBaseDatos, IDetalleCompraRepository
     {
-        
-
-        public DataTable ListarProductosDeCompra(int id)
+        public DataTable ListarProductosDeCompra(int idCompra)
         {
             DataTable dt = new DataTable();
             try
@@ -20,7 +22,7 @@ namespace SG_BAMS.ProductoInventario
                 using (SqlCommand cmd = new SqlCommand("sp_Compra_ListarProductos", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@id", idCompra);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dt);

@@ -2,13 +2,30 @@
 using Microsoft.Data.SqlClient;
 using System.Collections.Generic;
 using System.Data;
-using SG_BAMS.Login;
+using SG_BAMS.ComprasContratos;
 using SG_BAMS.ComprasDTO;
 
 namespace SG_BAMS
 {
-    public class ClsCompras : ClsRepositorioBaseDatos
+    public class ClsCompras : ClsRepositorioBaseDatos, IComprasRepository
     {
+        private readonly IUsuarioSesion _usuarioSesion;
+
+        /// <summary>
+        /// Constructor por defecto para compatibilidad con el diseñador y
+        /// con código existente: usa la implementación real de sesión.
+        /// </summary>
+        public ClsCompras() : this(new UsuarioSesionActual()) { }
+
+        /// <summary>
+        /// Constructor con inyección de dependencias: permite sustituir
+        /// cómo se obtiene el usuario en sesión (por ejemplo, en pruebas).
+        /// </summary>
+        public ClsCompras(IUsuarioSesion usuarioSesion)
+        {
+            _usuarioSesion = usuarioSesion;
+        }
+
         public DataTable ObtenerProductosPorProveedor(int idProv)
         {
             DataTable dt = new DataTable();
@@ -38,11 +55,10 @@ namespace SG_BAMS
 
         public bool ValidarProductoEnCompra(string idCompra, int idProducto)
         {
-            ClsRepositorioBaseDatos conexion = new ClsRepositorioBaseDatos();
             try
             {
-                conexion.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_Compras_ValidarProducto", conexion.Conectar))
+                AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_Compras_ValidarProducto", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@idC", idCompra);
@@ -56,17 +72,16 @@ namespace SG_BAMS
             }
             finally
             {
-                conexion.Cerrar();
+                Cerrar();
             }
         }
 
         public void AgregarDetalleACompraExistente(string idCompra, int idProducto, int cantidad, decimal precio)
         {
-            ClsRepositorioBaseDatos conexion = new ClsRepositorioBaseDatos();
             try
             {
-                conexion.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_Compras_AgregarDetalle", conexion.Conectar))
+                AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_Compras_AgregarDetalle", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@idC", idCompra);
@@ -82,23 +97,28 @@ namespace SG_BAMS
             }
             finally
             {
-                conexion.Cerrar();
+                Cerrar();
             }
         }
 
+        /// <summary>
+        /// Registra una compra nueva completa (cabecera + detalle) a partir del CompraDTO.
+        /// Usa la conexión heredada de ClsRepositorioBaseDatos en lugar de crear una
+        /// segunda instancia, y recibe el usuario en sesión por inyección (IUsuarioSesion)
+        /// en vez de instanciar ClsPasarUsuario directamente.
+        /// </summary>
         public bool GuardarNuevaCompra(CompraDTO compra)
         {
-            ClsRepositorioBaseDatos conexion = new ClsRepositorioBaseDatos();
-            conexion.AbrirConexion();
-            SqlTransaction transaccion = conexion.Conectar.BeginTransaction();
+            AbrirConexion();
+            SqlTransaction transaccion = Conectar.BeginTransaction();
             try
             {
-                int idUsuario = ClsLogin.idusuario;
+                int idUsuario = _usuarioSesion.IdUsuario();
                 if (idUsuario == 0)
                     throw new Exception("No se ha iniciado sesión o no se pudo obtener el ID del usuario.");
 
                 int idCompra;
-                using (SqlCommand cmd = new SqlCommand("sp_Compras_InsertarCabecera", conexion.Conectar, transaccion))
+                using (SqlCommand cmd = new SqlCommand("sp_Compras_InsertarCabecera", Conectar, transaccion))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@idU", idUsuario);
@@ -111,7 +131,7 @@ namespace SG_BAMS
 
                 foreach (var item in compra.Detalle)
                 {
-                    using (SqlCommand cmd = new SqlCommand("sp_Compras_InsertarDetalle", conexion.Conectar, transaccion))
+                    using (SqlCommand cmd = new SqlCommand("sp_Compras_InsertarDetalle", Conectar, transaccion))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@idC", idCompra);
@@ -132,7 +152,7 @@ namespace SG_BAMS
             }
             finally
             {
-                conexion.Cerrar();
+                Cerrar();
             }
         }
     }

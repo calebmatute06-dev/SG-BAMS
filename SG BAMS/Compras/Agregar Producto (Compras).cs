@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Windows.Forms;
 using Krypton.Toolkit;
+using SG_BAMS.ComprasContratos;
 
 namespace SG_BAMS
 {
@@ -20,20 +21,30 @@ namespace SG_BAMS
         public decimal PrecioSeleccionado { get; set; }
 
         private int _idProveedor;
+        private readonly IComprasRepository comprasRepo;
         private PlaceholderTextBox phCodigo;
         private PlaceholderTextBox phPrecio;
-        private PlaceholderComboBox phProductos;  
+        private PlaceholderComboBox phProductos;
         private DateTime ultimaTeclaEscaner = DateTime.Now;
 
         /// <summary>
-        /// Constructor que recibe el ID del proveedor.
+        /// Constructor que recibe el ID del proveedor. Se mantiene igual
+        /// para no romper ningún punto del código que ya lo llama así;
+        /// usa la implementación real de la dependencia.
         /// </summary>
         /// <param name="idProv">ID del proveedor.</param>
-        public Agregar_Producto__Compras_(int idProv)
+        public Agregar_Producto__Compras_(int idProv) : this(idProv, new ClsCompras()) { }
+
+        /// <summary>
+        /// Constructor con inyección de dependencias (DIP): recibe
+        /// IComprasRepository en lugar de crear ClsCompras internamente.
+        /// </summary>
+        public Agregar_Producto__Compras_(int idProv, IComprasRepository comprasRepo)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             this._idProveedor = idProv;
+            this.comprasRepo = comprasRepo;
         }
 
         private void Agregar_Producto__Compras__Load(object sender, EventArgs e)
@@ -42,11 +53,11 @@ namespace SG_BAMS
             numCantidad.DecimalPlaces = 0;
             numCantidad.ThousandsSeparator = true;
 
-           
+
             phCodigo = new PlaceholderTextBox(txtCodigo, "Código de barras");
             phPrecio = new PlaceholderTextBox(txtPrecio, "0.00");
 
-            
+
             phProductos = new PlaceholderComboBox(cmbProductos, "Seleccione o escriba el producto");
 
             this.MaximizeBox = false;
@@ -57,8 +68,7 @@ namespace SG_BAMS
         {
             try
             {
-                ClsCompras objCompras = new ClsCompras();
-                DataTable dt = objCompras.ObtenerProductosPorProveedor(_idProveedor);
+                DataTable dt = comprasRepo.ObtenerProductosPorProveedor(_idProveedor);
 
                 cmbProductos.DataSource = dt;
                 cmbProductos.DisplayMember = "DisplayFull";
@@ -76,7 +86,7 @@ namespace SG_BAMS
 
         private void kryptonButton3_Click(object sender, EventArgs e)
         {
-            
+
             if (phProductos.IsPlaceholderActive || cmbProductos.SelectedIndex == -1)
             {
                 MessageBox.Show("Debe seleccionar un producto de la lista.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -192,8 +202,7 @@ namespace SG_BAMS
         {
             try
             {
-                ClsCompras objCompras = new ClsCompras();
-                DataTable dt = objCompras.ObtenerProductosPorProveedor(_idProveedor);
+                DataTable dt = comprasRepo.ObtenerProductosPorProveedor(_idProveedor);
 
                 bool encontrado = false;
                 foreach (DataRow row in dt.Rows)

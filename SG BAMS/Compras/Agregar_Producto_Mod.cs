@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Windows.Forms;
 using Krypton.Toolkit;
+using SG_BAMS.ComprasContratos;
 
 namespace SG_BAMS
 {
@@ -18,6 +19,7 @@ namespace SG_BAMS
 
         private ClsRepositorioBaseDatos conexion = new ClsRepositorioBaseDatos();
         private int _idProveedor;
+        private readonly IComprasRepository comprasRepo;
 
         private PlaceholderTextBox phCodigo;
         private PlaceholderTextBox phPrecio;
@@ -25,21 +27,32 @@ namespace SG_BAMS
 
         private DateTime ultimaTeclaEscaner = DateTime.Now;
 
-        public Agregar_Producto_Mod(int idProv)
+        /// <summary>
+        /// Constructor original: se mantiene igual para no romper ningún
+        /// punto del código que ya lo llama así; usa la implementación
+        /// real de la dependencia.
+        /// </summary>
+        public Agregar_Producto_Mod(int idProv) : this(idProv, new ClsCompras()) { }
+
+        /// <summary>
+        /// Constructor con inyección de dependencias (DIP): recibe
+        /// IComprasRepository en lugar de crear ClsCompras internamente.
+        /// </summary>
+        public Agregar_Producto_Mod(int idProv, IComprasRepository comprasRepo)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this._idProveedor = idProv;
+            this.comprasRepo = comprasRepo;
         }
 
         private void Agregar_Producto_Mod_Load(object sender, EventArgs e)
         {
             try
             {
-                ClsCompras objCompras = new ClsCompras();
-                cmbProductos.DataSource = objCompras.ObtenerProductosPorProveedor(_idProveedor);
+                cmbProductos.DataSource = comprasRepo.ObtenerProductosPorProveedor(_idProveedor);
                 cmbProductos.DisplayMember = "DisplayFull";
                 cmbProductos.ValueMember = "id_producto";
 
@@ -91,17 +104,16 @@ namespace SG_BAMS
 
             try
             {
-                ClsCompras objCompras = new ClsCompras();
                 int idProd = Convert.ToInt32(cmbProductos.SelectedValue);
 
-                if (objCompras.ValidarProductoEnCompra(IdCompraActual, idProd))
+                if (comprasRepo.ValidarProductoEnCompra(IdCompraActual, idProd))
                 {
                     MessageBox.Show("Este producto ya está incluido en la compra.\nModifique la cantidad en la pantalla anterior\n(dando doble click sobre la celda precio o cantidad).",
                                     "Producto Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
 
-                objCompras.AgregarDetalleACompraExistente(IdCompraActual, idProd, (int)numCantidad.Value, precioFinal);
+                comprasRepo.AgregarDetalleACompraExistente(IdCompraActual, idProd, (int)numCantidad.Value, precioFinal);
 
                 IdSeleccionado = idProd.ToString();
                 NombreSeleccionado = cmbProductos.Text;
@@ -137,7 +149,7 @@ namespace SG_BAMS
 
         private void txtPrecio_Leave(object sender, EventArgs e)
         {
-           
+
         }
 
         private void numCantidad_KeyPress(object sender, KeyPressEventArgs e)
@@ -187,8 +199,7 @@ namespace SG_BAMS
         {
             try
             {
-                ClsCompras objCompras = new ClsCompras();
-                DataTable dt = objCompras.ObtenerProductosPorProveedor(_idProveedor);
+                DataTable dt = comprasRepo.ObtenerProductosPorProveedor(_idProveedor);
 
                 bool encontrado = false;
                 foreach (DataRow row in dt.Rows)

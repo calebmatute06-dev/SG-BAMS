@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using SG_BAMS.ProductoInventario;
 using SG_BAMS.ComprasDTO;
+using SG_BAMS.ComprasContratos;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -18,7 +19,7 @@ namespace SG_BAMS
         private bool huboCambios = false;
         private object valorAntesDeCambio;
         private int idCompraAEditar;
-        private ClsModificarCompras logic = new ClsModificarCompras();
+        private readonly IModificarComprasRepository logic;
         private List<int> listaEliminados = new List<int>();
 
         // Placeholders
@@ -26,8 +27,18 @@ namespace SG_BAMS
         private PlaceholderComboBox phProveedor;
         private PlaceholderComboBox phFormaPago;
 
-        public Modificar_datos__Compra_(int id)
+        /// <summary>
+        /// Constructor por defecto para compatibilidad con el diseñador:
+        /// usa la implementación real de la dependencia.
+        /// </summary>
+        public Modificar_datos__Compra_(int id) : this(id, new ClsModificarCompras()) { }
+
+        /// <summary>
+        /// Constructor con inyección de dependencias.
+        /// </summary>
+        public Modificar_datos__Compra_(int id, IModificarComprasRepository logic)
         {
+            this.logic = logic;
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             this.idCompraAEditar = id;
@@ -50,6 +61,10 @@ namespace SG_BAMS
 
             LlenarCombos();
 
+            phNotaDetalle = new PlaceholderTextBox(txtNotaDetalle, "Solo letras y espacios");
+            phProveedor = new PlaceholderComboBox(cmbProveedor, "Seleccione un proveedor");
+            phFormaPago = new PlaceholderComboBox(cmbFormaPago, "Seleccione una forma de pago");
+
             DataTable dtOriginal = logic.ObtenerDetalleCompra(idCompraAEditar);
             dgvProductosModificar.DataSource = dtOriginal;
             if (dtOriginal != null)
@@ -65,40 +80,7 @@ namespace SG_BAMS
             cmbProveedor.SelectedIndexChanged += cmbProveedor_SelectedIndexChanged;
             cmbFormaPago.SelectedIndexChanged += cmbFormaPago_SelectedIndexChanged;
 
-            // Placeholder para la nota
-            phNotaDetalle = new PlaceholderTextBox(txtNotaDetalle, "Solo letras y espacios");
-
-            // Placeholders para los ComboBox (después de cargar datos)
-            phProveedor = new PlaceholderComboBox(cmbProveedor, "Seleccione un proveedor");
-            phFormaPago = new PlaceholderComboBox(cmbFormaPago, "Seleccione una forma de pago");
-
-            // Configuración visual del DataGridView (sin cambios)
-            dgvProductosModificar.BorderStyle = BorderStyle.None;
-            dgvProductosModificar.BackgroundColor = Color.White;
-            dgvProductosModificar.RowHeadersVisible = false;
-            dgvProductosModificar.EnableHeadersVisualStyles = false;
-            dgvProductosModificar.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-
-            dgvProductosModificar.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
-            dgvProductosModificar.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
-            dgvProductosModificar.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
-            dgvProductosModificar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgvProductosModificar.ColumnHeadersHeight = 28;
-
-            dgvProductosModificar.DefaultCellStyle.BackColor = Color.White;
-            dgvProductosModificar.DefaultCellStyle.ForeColor = Color.Navy;
-            dgvProductosModificar.DefaultCellStyle.Font = new Font("Segoe UI", 10);
-            dgvProductosModificar.DefaultCellStyle.Padding = new Padding(3);
-            dgvProductosModificar.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 245, 255);
-            dgvProductosModificar.AlternatingRowsDefaultCellStyle.ForeColor = Color.Navy;
-            dgvProductosModificar.DefaultCellStyle.SelectionBackColor = Color.DeepSkyBlue;
-            dgvProductosModificar.DefaultCellStyle.SelectionForeColor = Color.White;
-
-            dgvProductosModificar.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgvProductosModificar.GridColor = Color.LightGray;
-            dgvProductosModificar.RowTemplate.Height = 32;
-            dgvProductosModificar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvProductosModificar.ClearSelection();
+            EstiloDataGridView.Aplicar(dgvProductosModificar);
 
             this.ActiveControl = null;
         }
@@ -161,10 +143,11 @@ namespace SG_BAMS
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             // Validar proveedor (el combo está deshabilitado, pero por seguridad)
-            if (cmbProveedor.SelectedValue == null || cmbProveedor.SelectedIndex == -1)
+            bool proveedorSeleccionado = cmbProveedor.SelectedValue != null && cmbProveedor.SelectedIndex != -1;
+            var validacion = ComprasDominio.ValidarProveedorSeleccionado(proveedorSeleccionado);
+            if (!validacion.EsValido)
             {
-                MessageBox.Show("Por favor, seleccione un proveedor válido de la lista",
-                    "BAMS - Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(validacion.Mensaje, "BAMS - Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 cmbProveedor.Focus();
                 return;
             }
@@ -237,12 +220,7 @@ namespace SG_BAMS
                 int idAEliminar = Convert.ToInt32(dgvProductosModificar.CurrentRow.Cells["ID"].Value);
                 int cant = Convert.ToInt32(dgvProductosModificar.CurrentRow.Cells["Cantidad"].Value);
 
-                bool esNuevoSesion = true;
-                if (dtRespaldo != null)
-                {
-                    foreach (DataRow r in dtRespaldo.Rows)
-                        if ((int)r["ID"] == idAEliminar) { esNuevoSesion = false; break; }
-                }
+                bool esNuevoSesion = ComprasDominio.EsProductoDeSesionActual(dtRespaldo, idAEliminar);
 
                 if (esNuevoSesion) logic.RevertirStockProductoNuevo(idCompraAEditar, idAEliminar, cant);
                 else listaEliminados.Add(idAEliminar);
@@ -295,9 +273,11 @@ namespace SG_BAMS
                 huboCambios = true;
                 var fila = dgvProductosModificar.Rows[e.RowIndex];
 
-                if (!decimal.TryParse(fila.Cells[e.ColumnIndex].Value?.ToString(), out decimal nuevoValor) || nuevoValor <= 0)
+                decimal.TryParse(fila.Cells[e.ColumnIndex].Value?.ToString(), out decimal nuevoValor);
+                var validacion = ComprasDominio.ValidarCantidadOPrecio($"El valor en '{nombreCol}'", nuevoValor);
+                if (!validacion.EsValido)
                 {
-                    MessageBox.Show($"El valor en '{nombreCol}' debe ser un número mayor a cero.", "BAMS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(validacion.Mensaje, "BAMS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                     dgvProductosModificar.CellValueChanged -= dgvProductosModificar_CellValueChanged;
                     fila.Cells[e.ColumnIndex].Value = valorAntesDeCambio;

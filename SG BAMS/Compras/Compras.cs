@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using SG_BAMS.Bitacora;
+using SG_BAMS.ComprasContratos;
 using SG_BAMS.ProductoInventario;
 using SG_BAMS.Proveedor;
 using SG_BAMS.Reporte;
@@ -16,58 +17,37 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class Compras : Form
     {
-        /// <summary>
-        /// La lógica de negocio
-        /// </summary>
-        private ClsModificarCompras logic = new ClsModificarCompras();
-        /// <summary>
-        /// La lógica de consulta
-        /// </summary>
-        private ClsMostrarCompras consultaLogic = new ClsMostrarCompras();
-        /// <summary>
-        /// La tabla de datos de compras
-        /// </summary>
-        private DataTable dtCompras;
+        private readonly IModificarComprasRepository logic;
+        private readonly IMostrarComprasRepository consultaLogic;
+        private DataTable dtCompras = new DataTable();
 
-        /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="Compras" />.
-        /// </summary>
-        public Compras()
+        public Compras() : this(new ClsModificarCompras(), new ClsMostrarCompras()) { }
+
+        public Compras(IModificarComprasRepository logic, IMostrarComprasRepository consultaLogic)
         {
+            this.logic = logic;
+            this.consultaLogic = consultaLogic;
+
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
-            CargarCompras();
-
 
             dtpDesde.MaxDate = DateTime.Today;
             dtpHasta.MaxDate = DateTime.Today;
 
-
-            dtpDesde.Value = DateTime.Today.AddDays(-7);
+            dtpDesde.Value = DateTime.Today.AddMonths(-1);
             dtpHasta.Value = DateTime.Today;
 
+            CargarCompras();
 
             txtBuscarCompra.TextChanged += (s, e) => FiltrarCompras();
             txtBuscarCompra.KeyPress += (s, e) => ClsValidaciones.ValidarBusquedaAlfanumerica(e);
-
 
             dtpDesde.ValueChanged += dtpDesde_ValueChanged;
             dtpHasta.ValueChanged += dtpHasta_ValueChanged;
         }
 
-
-
-        /// <summary>
-        /// Maneja el evento Load del control Compras.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void Compras_Load(object sender, EventArgs e)
         {
             new PlaceholderTextBox(txtBuscarCompra, "Ingrese un Nombre de Comprador,  Forma de pago, N.Compra");
@@ -112,15 +92,13 @@ namespace SG_BAMS
             this.ActiveControl = null;
         }
 
-        /// <summary>
-        /// Carga las compras.
-        /// </summary>
         public void CargarCompras()
         {
             try
             {
                 dtCompras = consultaLogic.ListarCompras();
-                dgvComprasAdmin.DataSource = dtCompras;
+                // Enlazamos directamente a la vista por defecto para mantener la reactividad activa
+                dgvComprasAdmin.DataSource = dtCompras.DefaultView;
                 dgvComprasAdmin.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dgvComprasAdmin.ClearSelection();
             }
@@ -130,27 +108,18 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Filtra las compras combinando criterios de texto y rango de fechas.
-        /// Ambos filtros se aplican simultáneamente con AND.
-        /// </summary>
         private void FiltrarCompras()
         {
-            if (dtCompras == null) return;
+            if (dtCompras == null || dtCompras.Rows.Count == 0) return;
 
-            DataView dv = dtCompras.DefaultView;
-
-            // Obtener el texto y verificar si es el placeholder
             string texto = txtBuscarCompra.Text?.Trim() ?? "";
 
-            // Si el texto es exactamente el placeholder, tratarlo como vacío
-            if (texto == "Ingrese un Nombre de Vendedor, Cliente, N.Factura, RTN")
+            if (texto == "Ingrese un Nombre de Vendedor, Cliente, N.Factura, RTN" || texto == "Ingrese un Nombre de Comprador,  Forma de pago, N.Compra")
             {
                 texto = "";
             }
             else
             {
-                // Escapar caracteres especiales para el filtro
                 texto = texto
                     .Replace("'", "''")
                     .Replace("[", "[[]")
@@ -160,7 +129,6 @@ namespace SG_BAMS
 
             var condiciones = new List<string>();
 
-            // 1. Construir filtro de texto si hay algo escrito
             if (!string.IsNullOrWhiteSpace(texto))
             {
                 var condicionesTexto = new List<string>();
@@ -173,7 +141,6 @@ namespace SG_BAMS
                     else if (col.DataType == typeof(int) || col.DataType == typeof(decimal) ||
                              col.DataType == typeof(double) || col.DataType == typeof(long))
                     {
-                        // Solo agregar filtro numérico si el texto puede ser un número
                         if (decimal.TryParse(texto, out _))
                             condicionesTexto.Add($"CONVERT([{col.ColumnName}], System.String) LIKE '%{texto}%'");
                     }
@@ -185,7 +152,6 @@ namespace SG_BAMS
                 }
             }
 
-            // 2. Construir siempre el filtro de fechas
             string fDesde = dtpDesde.Value.Date.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
             string fHasta = dtpHasta.Value.Date.AddDays(1).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
 
@@ -205,15 +171,14 @@ namespace SG_BAMS
                 condiciones.Add("(" + string.Join(" OR ", condicionesFecha) + ")");
             }
 
-            // 3. Combinar todas las condiciones con AND
             string rowFilter = condiciones.Count > 0
                 ? string.Join(" AND ", condiciones)
                 : string.Empty;
 
             try
             {
-                dv.RowFilter = rowFilter;
-                dgvComprasAdmin.DataSource = dv;
+                // Se altera directamente la propiedad RowFilter del origen enlazado
+                dtCompras.DefaultView.RowFilter = rowFilter;
                 dgvComprasAdmin.ClearSelection();
             }
             catch (Exception ex)
@@ -223,31 +188,16 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Maneja el evento TextChanged del control txtBuscarCompra.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void txtBuscarCompra_TextChanged(object sender, EventArgs e)
         {
             FiltrarCompras();
         }
 
-        /// <summary>
-        /// Maneja el evento KeyPress del control txtBuscarCompra.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="KeyPressEventArgs"/> que contiene los datos del evento.</param>
         private void txtBuscarCompra_KeyPress(object sender, KeyPressEventArgs e)
         {
             ClsValidaciones.ValidarBusquedaAlfanumerica(e);
         }
 
-        /// <summary>
-        /// Maneja el evento ValueChanged del control dtpDesde.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void dtpDesde_ValueChanged(object sender, EventArgs e)
         {
             if (dtpDesde.Value > DateTime.Today)
@@ -259,11 +209,6 @@ namespace SG_BAMS
             FiltrarCompras();
         }
 
-        /// <summary>
-        /// Maneja el evento ValueChanged del control dtpHasta.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void dtpHasta_ValueChanged(object sender, EventArgs e)
         {
             if (dtpHasta.Value > DateTime.Today)
@@ -275,24 +220,17 @@ namespace SG_BAMS
             FiltrarCompras();
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnRefresh — restablece los filtros.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnRefresh_Click_1(object sender, EventArgs e)
         {
             txtBuscarCompra.Clear();
-
 
             dtpDesde.ValueChanged -= dtpDesde_ValueChanged;
             dtpHasta.ValueChanged -= dtpHasta_ValueChanged;
 
             dtpDesde.MaxDate = DateTime.Today;
             dtpHasta.MaxDate = DateTime.Today;
-            dtpDesde.Value = DateTime.Today.AddDays(-7);
+            dtpDesde.Value = DateTime.Today.AddMonths(-1);
             dtpHasta.Value = DateTime.Today;
-
 
             dtpDesde.ValueChanged += dtpDesde_ValueChanged;
             dtpHasta.ValueChanged += dtpHasta_ValueChanged;
@@ -302,36 +240,17 @@ namespace SG_BAMS
             dgvComprasAdmin.ClearSelection();
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnNoti.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnNoti_Click(object sender, EventArgs e)
         {
             NotificacionesAdmin notificacionesAdmin = new NotificacionesAdmin();
             notificacionesAdmin.ShowDialog();
         }
 
-
-
-
-
-        /// <summary>
-        /// Maneja el evento CellContentDoubleClick del control dgvComprasAdmin.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="DataGridViewCellEventArgs"/> que contiene los datos del evento.</param>
         private void dgvComprasAdmin_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
 
-        /// <summary>
-        /// Maneja el evento CellDoubleClick del control dgvComprasAdmin.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="DataGridViewCellEventArgs"/> que contiene los datos del evento.</param>
         private void dgvComprasAdmin_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
@@ -351,11 +270,6 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnNuevaCompra.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnCompra_Click_1(object sender, EventArgs e)
         {
             Ingresar_datos__Compra_ frmNuevaCompra = new Ingresar_datos__Compra_();
@@ -365,11 +279,6 @@ namespace SG_BAMS
             txtBuscarCompra.Clear();
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnModificarC.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnModificarC_Click(object sender, EventArgs e)
         {
             if (dgvComprasAdmin.SelectedRows.Count > 0)
@@ -388,11 +297,6 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Maneja el evento Click del control btnEliminarC.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnEliminarC_Click(object sender, EventArgs e)
         {
             if (dgvComprasAdmin.SelectedRows.Count > 0)
@@ -412,10 +316,10 @@ namespace SG_BAMS
                         {
                             MessageBox.Show("Compra eliminada correctamente.", "BAMS",
                                             MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            // Limpieza e invocación directa secuencial sin romper el puntero DataSource
                             CargarCompras();
                             FiltrarCompras();
-                            txtBuscarCompra.Clear();
-                            dgvComprasAdmin.ClearSelection();
                         }
                     }
                     catch (Exception ex)
@@ -515,6 +419,5 @@ namespace SG_BAMS
             Perfil perfil = new Perfil();
             perfil.ShowDialog();
         }
-
     }
 }

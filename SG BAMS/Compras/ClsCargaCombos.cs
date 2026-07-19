@@ -1,16 +1,18 @@
 ﻿using Microsoft.Data.SqlClient;
 using System;
 using System.Data;
+using SG_BAMS.ComprasContratos;
 
 namespace SG_BAMS
 {
     /// <summary>
     /// Clase para cargar combos usando solo Procedimientos Almacenados.
+    /// Único punto de verdad para catálogos de Compras: ClsModificarCompras
+    /// e Ingresar_datos__Compra_ deben consumir esta clase (vía
+    /// ICargaCombosRepository) en lugar de reimplementar estas consultas.
     /// </summary>
-    public class ClsCargaCombos : ClsRepositorioBaseDatos
+    public class ClsCargaCombos : ClsRepositorioBaseDatos, ICargaCombosRepository
     {
-        
-
         private DataTable EjecutarPA(string nombrePA)
         {
             DataTable dt = new DataTable();
