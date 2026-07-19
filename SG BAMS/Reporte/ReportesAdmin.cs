@@ -357,41 +357,21 @@ namespace SG_BAMS.Reporte
             notificaciones.ShowDialog();
         }
 
-        private void btnMenu_Click(object sender, EventArgs e)
-        {
-            Form menuPrincipal = Application.OpenForms["MenuPrincipalAdm"] ?? Application.OpenForms["AdministracionBAMS"];
-            if (menuPrincipal != null) _servicioNavegacion.IrA(this, menuPrincipal);
-        }
+        // =========================================================================
+        // SECCIÓN DE NAVEGACIÓN ADAPTADA EXACTAMENTE A LA OTRA INTERFAZ
+        // =========================================================================
 
-        private void btnFacturas_Click(object sender, EventArgs e)
-        {
-            Form frm = Application.OpenForms["FacturasAdmin"];
-            if (frm != null) _servicioNavegacion.IrA(this, frm);
-        }
+        private void btnMenu_Click(object sender, EventArgs e) => _servicioNavegacion.IrA(this, new MenuPrincipalAdm());
 
-        private void btnCompra_Click(object sender, EventArgs e)
-        {
-            Form frm = Application.OpenForms["ComprasAdmin"];
-            if (frm != null) _servicioNavegacion.IrA(this, frm);
-        }
+        private void btnFacturas_Click(object sender, EventArgs e) => _servicioNavegacion.IrA(this, new FacturasAdm());
 
-        private void btnClientes_Click(object sender, EventArgs e)
-        {
-            Form frm = Application.OpenForms["ClientesAdmin"];
-            if (frm != null) _servicioNavegacion.IrA(this, frm);
-        }
+        private void btnCompra_Click(object sender, EventArgs e) => _servicioNavegacion.IrA(this, new Compras());
 
-        private void btnInventario_Click(object sender, EventArgs e)
-        {
-            Form frm = Application.OpenForms["InventarioAdmin"];
-            if (frm != null) _servicioNavegacion.IrA(this, frm);
-        }
+        private void btnClientes_Click(object sender, EventArgs e) => _servicioNavegacion.IrA(this, new ClientesAdm());
 
-        private void btnDeudores_Click(object sender, EventArgs e)
-        {
-            Form frm = Application.OpenForms["DeudoresAdmin"];
-            if (frm != null) _servicioNavegacion.IrA(this, frm);
-        }
+        private void btnInventario_Click(object sender, EventArgs e) => _servicioNavegacion.IrA(this, new InventarioAdmin());
+
+        private void btnDeudores_Click(object sender, EventArgs e) => _servicioNavegacion.IrA(this, new DeudoresAdmin());
 
         private void btnProveedores_Click(object sender, EventArgs e)
         {
