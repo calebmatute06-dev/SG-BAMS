@@ -1,46 +1,34 @@
-﻿using Microsoft.Data.SqlClient;
-using SG_BAMS.Administracion_de_BAMS.FormaPago;
-using SG_BAMS.Login;
-using SG_BAMS.Proveedor;
-using SG_BAMS.ComprasDTO;
-using SG_BAMS.ComprasContratos;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
+using Microsoft.Data.SqlClient;
+using SG_BAMS.Administracion_de_BAMS.FormaPago;
+using SG_BAMS.ComprasContratos;
+using SG_BAMS.ComprasDTO;
+using SG_BAMS.Login;
+using SG_BAMS.Proveedor;
 
 namespace SG_BAMS
 {
-    /// <summary>
-    /// Proporciona la interfaz de usuario para registrar la entrada de datos de una nueva compra.
-    /// Permite gestionar productos, proveedores y calcular totales dinámicamente.
-    /// </summary>
     public partial class Ingresar_datos__Compra_ : Form
     {
         private readonly IComprasRepository logic;
         private readonly ICargaCombosRepository combos;
-
-        // Placeholders
+        private readonly NavegacionService _navegacion;
         private PlaceholderTextBox phNotaDetalle;
         private PlaceholderComboBox phProveedor;
         private PlaceholderComboBox phFormaPago;
-
         private object valorOriginal;
 
-        /// <summary>
-        /// Constructor por defecto para compatibilidad con el diseñador:
-        /// usa las implementaciones reales de cada dependencia.
-        /// </summary>
-        public Ingresar_datos__Compra_() : this(new ClsCompras(), new ClsCargaCombos()) { }
+        public Ingresar_datos__Compra_() : this(new ClsCompras(), new ClsCargaCombos(), new NavegacionService()) { }
 
-        /// <summary>
-        /// Constructor con inyección de dependencias.
-        /// </summary>
-        public Ingresar_datos__Compra_(IComprasRepository logic, ICargaCombosRepository combos)
+        public Ingresar_datos__Compra_(IComprasRepository logic, ICargaCombosRepository combos, NavegacionService navegacion)
         {
             this.logic = logic;
             this.combos = combos;
+            this._navegacion = navegacion;
             InitializeComponent();
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -62,12 +50,12 @@ namespace SG_BAMS
             dgvIngresarCompra.Columns[2].ReadOnly = false;
             dgvIngresarCompra.Columns[3].ReadOnly = false;
 
+            EstiloDataGridView.Aplicar(dgvIngresarCompra);
+
             LlenarCombos();
 
             dtpFechaPedido.Value = DateTime.Now;
             lblIDCompra.Text = ObtenerSiguienteID();
-
-            EstiloDataGridView.Aplicar(dgvIngresarCompra);
 
             dgvIngresarCompra.CellFormatting += (s, ev) =>
             {
@@ -204,7 +192,6 @@ namespace SG_BAMS
 
             try
             {
-                // --- Armado del CompraDTO con todos los datos de la pantalla ---
                 CompraDTO compraDTO = new CompraDTO
                 {
                     IdProveedor = Convert.ToInt32(cmbProveedor.SelectedValue),
@@ -226,7 +213,6 @@ namespace SG_BAMS
                     }
                 }
 
-                // --- Un solo objeto viaja a la capa de datos, a través de la dependencia inyectada ---
                 bool exito = logic.GuardarNuevaCompra(compraDTO);
 
                 if (exito)

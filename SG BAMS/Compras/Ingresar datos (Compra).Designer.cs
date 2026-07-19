@@ -366,6 +366,10 @@
             // 
             // dgvIngresarCompra
             // 
+            dgvIngresarCompra.AllowUserToAddRows = false;
+            dgvIngresarCompra.AllowUserToDeleteRows = false;
+            dgvIngresarCompra.AllowUserToResizeColumns = false;
+            dgvIngresarCompra.AllowUserToResizeRows = false;
             dgvIngresarCompra.BackgroundColor = Color.SkyBlue;
             dgvIngresarCompra.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvIngresarCompra.Location = new Point(85, 285);

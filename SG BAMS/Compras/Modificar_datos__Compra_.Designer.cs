@@ -325,6 +325,10 @@
             // 
             // dgvProductosModificar
             // 
+            dgvProductosModificar.AllowUserToAddRows = false;
+            dgvProductosModificar.AllowUserToDeleteRows = false;
+            dgvProductosModificar.AllowUserToResizeColumns = false;
+            dgvProductosModificar.AllowUserToResizeRows = false;
             dgvProductosModificar.BackgroundColor = Color.SkyBlue;
             dgvProductosModificar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvProductosModificar.Location = new Point(83, 279);

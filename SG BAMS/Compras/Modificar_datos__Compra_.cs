@@ -1,44 +1,35 @@
-﻿using Microsoft.Data.SqlClient;
-using SG_BAMS.ProductoInventario;
-using SG_BAMS.ComprasDTO;
-using SG_BAMS.ComprasContratos;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
+using Microsoft.Data.SqlClient;
+using SG_BAMS.ComprasContratos;
+using SG_BAMS.ComprasDTO;
+using SG_BAMS.ProductoInventario;
 
 namespace SG_BAMS
 {
-    /// <summary>
-    /// Formulario para modificar una compra existente.
-    /// </summary>
     public partial class Modificar_datos__Compra_ : Form
     {
+        private readonly IModificarComprasRepository logic;
+        private readonly NavegacionService _navegacion;
         private DataTable dtRespaldo;
         private bool huboCambios = false;
         private object valorAntesDeCambio;
         private int idCompraAEditar;
-        private readonly IModificarComprasRepository logic;
         private List<int> listaEliminados = new List<int>();
 
-        // Placeholders
         private PlaceholderTextBox phNotaDetalle;
         private PlaceholderComboBox phProveedor;
         private PlaceholderComboBox phFormaPago;
 
-        /// <summary>
-        /// Constructor por defecto para compatibilidad con el diseñador:
-        /// usa la implementación real de la dependencia.
-        /// </summary>
-        public Modificar_datos__Compra_(int id) : this(id, new ClsModificarCompras()) { }
+        public Modificar_datos__Compra_(int id) : this(id, new ClsModificarCompras(), new NavegacionService()) { }
 
-        /// <summary>
-        /// Constructor con inyección de dependencias.
-        /// </summary>
-        public Modificar_datos__Compra_(int id, IModificarComprasRepository logic)
+        public Modificar_datos__Compra_(int id, IModificarComprasRepository logic, NavegacionService navegacion)
         {
             this.logic = logic;
+            this._navegacion = navegacion;
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             this.idCompraAEditar = id;
@@ -72,6 +63,8 @@ namespace SG_BAMS
                 dtRespaldo = dtOriginal.Copy();
             }
 
+            EstiloDataGridView.Aplicar(dgvProductosModificar);
+
             ConfigurarEdicionGrid();
             CargarDatosCabecera();
             ActualizarTotalGeneral();
@@ -79,8 +72,6 @@ namespace SG_BAMS
 
             cmbProveedor.SelectedIndexChanged += cmbProveedor_SelectedIndexChanged;
             cmbFormaPago.SelectedIndexChanged += cmbFormaPago_SelectedIndexChanged;
-
-            EstiloDataGridView.Aplicar(dgvProductosModificar);
 
             this.ActiveControl = null;
         }
@@ -142,7 +133,6 @@ namespace SG_BAMS
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            // Validar proveedor (el combo está deshabilitado, pero por seguridad)
             bool proveedorSeleccionado = cmbProveedor.SelectedValue != null && cmbProveedor.SelectedIndex != -1;
             var validacion = ComprasDominio.ValidarProveedorSeleccionado(proveedorSeleccionado);
             if (!validacion.EsValido)
@@ -154,7 +144,6 @@ namespace SG_BAMS
 
             try
             {
-                // --- Armado del CompraDTO con los datos de cabecera ---
                 CompraDTO compraDTO = new CompraDTO
                 {
                     IdCompra = idCompraAEditar,
@@ -184,7 +173,6 @@ namespace SG_BAMS
                     }
                 }
 
-                // --- Un solo objeto (su lista Detalle) viaja a la capa de datos ---
                 logic.ActualizarDetalleCompra(compraDTO.IdCompra, compraDTO.Detalle);
 
                 MessageBox.Show("¡Datos de compra, productos e inventario actualizados con éxito!");
