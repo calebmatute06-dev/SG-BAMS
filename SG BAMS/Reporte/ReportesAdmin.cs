@@ -1,16 +1,11 @@
-﻿using QuestPDF.Fluent;
-using QuestPDF.Infrastructure;
-using SG_BAMS.Bitacora;
+﻿using SG_BAMS.Bitacora;
 using SG_BAMS.Proveedor;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Color = System.Drawing.Color;
 
@@ -18,43 +13,51 @@ namespace SG_BAMS.Reporte
 {
     public partial class ReportesAdmin : Form
     {
-        ClsReportesDatos objReporte = new ClsReportesDatos();
+        private readonly IReportesRepository _repositorio;
+        private readonly IExportadorReporte _exportadorExcel;
+        private readonly IExportadorReporte _exportadorPdf;
+        private readonly ServicioFiltroStock _filtroStock;
+        private readonly NavegacionService _servicioNavegacion;
+
+        private DataTable _datosActuales;
+        private ReporteTipo _tipoActual;
 
         public ReportesAdmin()
         {
+            QuestPDF.Settings.License = QuestPDF.Infrastructure.LicenseType.Community;
+
+            _repositorio = new ClsReportesDatos();
+            _exportadorExcel = new ExportadorExcelReporte();
+            _exportadorPdf = new ExportadorPdfReporte();
+            _filtroStock = new ServicioFiltroStock();
+            _servicioNavegacion = new NavegacionService();
+
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.dtpDesde.ValueChanged += new System.EventHandler(this.FiltroFecha_ValueChanged);
-            this.dtpHasta.ValueChanged += new System.EventHandler(this.FiltroFecha_ValueChanged);
+            this.dtpDesde.ValueChanged += FiltroFecha_ValueChanged;
+            this.dtpHasta.ValueChanged += FiltroFecha_ValueChanged;
         }
 
         private void FiltroFecha_ValueChanged(object sender, EventArgs e)
         {
-            this.dtpDesde.ValueChanged -= new System.EventHandler(this.FiltroFecha_ValueChanged);
-            this.dtpHasta.ValueChanged -= new System.EventHandler(this.FiltroFecha_ValueChanged);
+            this.dtpDesde.ValueChanged -= FiltroFecha_ValueChanged;
+            this.dtpHasta.ValueChanged -= FiltroFecha_ValueChanged;
 
             if (dtpDesde.Value.Date > dtpHasta.Value.Date)
             {
-                if (sender == dtpDesde)
-                {
-                    dtpDesde.Value = dtpHasta.Value;
-                }
-                else if (sender == dtpHasta)
-                {
-                    dtpHasta.Value = dtpDesde.Value;
-                }
+                if (sender == dtpDesde) dtpDesde.Value = dtpHasta.Value;
+                else if (sender == dtpHasta) dtpHasta.Value = dtpDesde.Value;
             }
 
-            this.dtpDesde.ValueChanged += new System.EventHandler(this.FiltroFecha_ValueChanged);
-            this.dtpHasta.ValueChanged += new System.EventHandler(this.FiltroFecha_ValueChanged);
+            this.dtpDesde.ValueChanged += FiltroFecha_ValueChanged;
+            this.dtpHasta.ValueChanged += FiltroFecha_ValueChanged;
 
-            string reporte = cmbReporte.SelectedItem?.ToString();
-
-            if (reporte == "Ventas" || reporte == "Compras")
+            if (ReporteConfig.TryDesdeTexto(cmbReporte.SelectedItem?.ToString(), out ReporteTipo tipo)
+                && (tipo == ReporteTipo.Ventas || tipo == ReporteTipo.Compras))
             {
-                cmbReporte_SelectedIndexChanged(null, null);
+                CargarReporte(tipo);
             }
         }
 
@@ -63,115 +66,169 @@ namespace SG_BAMS.Reporte
             btnReportes.Enabled = false;
             btnReportes.BackColor = Color.SkyBlue;
             btnReportes.ForeColor = Color.White;
-
             cmbCant.Visible = false;
             ControlarFiltroStock(false);
-
             dtpHasta.MaxDate = DateTime.Today;
             dtpDesde.MaxDate = DateTime.Today;
-
             dtpHasta.Value = DateTime.Today;
             dtpDesde.Value = DateTime.Today.AddDays(-30);
 
-            this.Min.ValueChanged += new System.EventHandler(this.FiltroStock_ValueChanged);
-            this.Max.ValueChanged += new System.EventHandler(this.FiltroStock_ValueChanged);
+            this.Min.ValueChanged += FiltroStock_ValueChanged;
+            this.Max.ValueChanged += FiltroStock_ValueChanged;
+
+            EstilizarGrilla();
 
             cmbReporte.SelectedIndex = 0;
+            dgvReporte.ClearSelection();
+        }
 
+        private void EstilizarGrilla()
+        {
             dgvReporte.BorderStyle = BorderStyle.None;
             dgvReporte.BackgroundColor = Color.White;
             dgvReporte.RowHeadersVisible = false;
             dgvReporte.EnableHeadersVisualStyles = false;
             dgvReporte.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-
             dgvReporte.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
             dgvReporte.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
             dgvReporte.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
             dgvReporte.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgvReporte.ColumnHeadersHeight = 28;
-
             dgvReporte.DefaultCellStyle.BackColor = Color.White;
             dgvReporte.DefaultCellStyle.ForeColor = Color.Navy;
             dgvReporte.DefaultCellStyle.Font = new Font("Segoe UI", 10);
             dgvReporte.DefaultCellStyle.Padding = new Padding(3);
             dgvReporte.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 245, 255);
             dgvReporte.AlternatingRowsDefaultCellStyle.ForeColor = Color.Navy;
-
             dgvReporte.DefaultCellStyle.SelectionBackColor = Color.DeepSkyBlue;
             dgvReporte.DefaultCellStyle.SelectionForeColor = Color.White;
-
             dgvReporte.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dgvReporte.GridColor = Color.LightGray;
             dgvReporte.RowTemplate.Height = 32;
             dgvReporte.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvReporte.ClearSelection();
         }
 
-        private void FiltroStock_ValueChanged(object sender, EventArgs e)
+        private void cmbReporte_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbReporte.SelectedItem == null) return;
+            if (!ReporteConfig.TryDesdeTexto(cmbReporte.SelectedItem.ToString(), out ReporteTipo tipo)) return;
+
+            ConfigurarVisibilidadControles(tipo);
+            CargarReporte(tipo);
+        }
+
+        private void ConfigurarVisibilidadControles(ReporteTipo tipo)
+        {
+            bool usaFechas = tipo == ReporteTipo.Ventas || tipo == ReporteTipo.Compras;
+            dtpDesde.Visible = usaFechas;
+            dtpHasta.Visible = usaFechas;
+            MostrarControl("label1", usaFechas);
+            MostrarControl("label3", usaFechas);
+            MostrarControl("label4", usaFechas);
+
+            bool mostrarFiltroStock = tipo == ReporteTipo.Inventario;
+            cmbCant.Visible = mostrarFiltroStock;
+            MostrarControl("label12", mostrarFiltroStock);
+            Min.Visible = mostrarFiltroStock;
+            Max.Visible = mostrarFiltroStock;
+            MostrarControl("label5", mostrarFiltroStock);
+            MostrarControl("label6", mostrarFiltroStock);
+            MostrarControl("label7", mostrarFiltroStock);
+            MostrarControl("label10", mostrarFiltroStock);
+
+            ControlarFiltroStock(mostrarFiltroStock);
+        }
+
+        private void MostrarControl(string nombre, bool visible)
+        {
+            if (this.Controls.Find(nombre, true).FirstOrDefault() is Label lbl) lbl.Visible = visible;
+        }
+
+        private void CargarReporte(ReporteTipo tipo)
         {
             try
             {
-                if (dgvReporte.DataSource != null && dgvReporte.DataSource is DataTable dt)
-                {
-                    this.Min.ValueChanged -= new System.EventHandler(this.FiltroStock_ValueChanged);
-                    this.Max.ValueChanged -= new System.EventHandler(this.FiltroStock_ValueChanged);
+                DataTable datos = ObtenerDatos(tipo);
 
-                    int valorMin = (int)Min.Value;
-                    int valorMax = (int)Max.Value;
+                if (tipo == ReporteTipo.Inventario) AgregarColumnaCapital(datos);
 
-                    Max.Minimum = valorMin;
+                _datosActuales = datos;
+                _tipoActual = tipo;
 
-                    if (sender == Min && valorMin > valorMax)
-                    {
-                        Max.Value = valorMin;
-                        valorMax = valorMin;
-                    }
-
-                    // El filtro por rango numérico toma prioridad si cambian los numéricos
-                    dt.DefaultView.RowFilter = string.Format("Stock_Actual >= {0} AND Stock_Actual <= {1}", valorMin, valorMax);
-
-                    this.Min.ValueChanged += new System.EventHandler(this.FiltroStock_ValueChanged);
-                    this.Max.ValueChanged += new System.EventHandler(this.FiltroStock_ValueChanged);
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("Error al filtrar en tiempo real: " + ex.Message);
-            }
-        }
-
-        private void CargarReporteVentas()
-        {
-            try
-            {
-                DataTable datos = objReporte.ReporteVentas(dtpDesde.Value, dtpHasta.Value);
                 dgvReporte.DataSource = datos;
+                AplicarRenombresYOrden(tipo, datos);
 
-                if (dgvReporte.Columns.Contains("Telefono"))
-                {
-                    dgvReporte.Columns["Telefono"].HeaderText = "Teléfono";
-                }
-
-                if (dgvReporte.Columns.Contains("Metodo_Pago"))
-                {
-                    dgvReporte.Columns["Metodo_Pago"].HeaderText = "Método de Pago";
-                }
-
-                if (dgvReporte.Columns.Contains("Total_Venta"))
-                {
-                    dgvReporte.Columns["Total_Venta"].HeaderText = "Total";
-                }
-
-                if (dgvReporte.Columns.Contains("Recibio_Chatarra"))
-                {
-                    dgvReporte.Columns["Recibio_Chatarra"].HeaderText = "Bateria Vieja";
-                }
+                if (tipo == ReporteTipo.Inventario) cmbCant_SelectedIndexChanged(null, null);
 
                 dgvReporte.AutoResizeColumns();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar el reporte de ventas: " + ex.Message, "Error BAMS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al cargar el reporte: " + ex.Message, "Error BAMS",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private DataTable ObtenerDatos(ReporteTipo tipo)
+        {
+            switch (tipo)
+            {
+                case ReporteTipo.Ventas: return _repositorio.ReporteVentas(dtpDesde.Value, dtpHasta.Value);
+                case ReporteTipo.Compras: return _repositorio.ReporteCompras(dtpDesde.Value, dtpHasta.Value);
+                case ReporteTipo.Deudores: return _repositorio.ReporteDeudores();
+                case ReporteTipo.Inventario: return _repositorio.ReporteInventario();
+                default: throw new ArgumentOutOfRangeException(nameof(tipo), tipo, null);
+            }
+        }
+
+        private void AgregarColumnaCapital(DataTable datos)
+        {
+            if (!datos.Columns.Contains("Total_Venta_Esperada"))
+            {
+                DataColumn colTotal = new DataColumn("Total_Venta_Esperada", typeof(decimal))
+                {
+                    Expression = "Stock_Actual * Precio_Unitario"
+                };
+                datos.Columns.Add(colTotal);
+            }
+        }
+
+        private void AplicarRenombresYOrden(ReporteTipo tipo, DataTable datos)
+        {
+            var config = ReporteConfig.Obtener(tipo);
+
+            foreach (var renombre in config.RenombresColumnas)
+            {
+                if (dgvReporte.Columns.Contains(renombre.Key))
+                    dgvReporte.Columns[renombre.Key].HeaderText = renombre.Value;
+            }
+
+            if (!string.IsNullOrEmpty(config.ColumnaOrden) && dgvReporte.Columns.Contains(config.ColumnaOrden))
+            {
+                dgvReporte.Sort(
+                    dgvReporte.Columns[config.ColumnaOrden],
+                    config.OrdenDescendente ? ListSortDirection.Descending : ListSortDirection.Ascending);
+            }
+        }
+
+        private void dgvReporte_CellFormatting_1(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.Value == null) return;
+
+            var config = ReporteConfig.Obtener(_tipoActual);
+            string nombreColumna = dgvReporte.Columns[e.ColumnIndex].Name;
+
+            if (nombreColumna == config.ColumnaStock && int.TryParse(e.Value.ToString(), out int stock))
+            {
+                var nivel = ServicioColorStock.Evaluar(stock);
+                var (fondo, letra) = ServicioColorStock.ColoresWinForms(nivel);
+                e.CellStyle.BackColor = fondo;
+                e.CellStyle.ForeColor = letra;
+            }
+            else if (config.ColumnasMonetarias.Contains(nombreColumna) && decimal.TryParse(e.Value.ToString(), out decimal monto))
+            {
+                e.Value = $"L. {monto:N2}";
+                e.FormattingApplied = true;
             }
         }
 
@@ -179,126 +236,119 @@ namespace SG_BAMS.Reporte
         {
             Min.Enabled = estado;
             Max.Enabled = estado;
-
             if (estado)
             {
-                Min.BackColor = System.Drawing.Color.White;
-                Max.BackColor = System.Drawing.Color.White;
+                Min.BackColor = Color.White;
+                Max.BackColor = Color.White;
             }
             else
             {
                 Min.Value = 0;
                 Max.Value = 0;
                 Max.Minimum = 0;
-                Min.BackColor = System.Drawing.Color.LightGray;
-                Max.BackColor = System.Drawing.Color.LightGray;
+                Min.BackColor = Color.LightGray;
+                Max.BackColor = Color.LightGray;
             }
         }
 
-        private void cmbReporte_SelectedIndexChanged(object sender, EventArgs e)
+        private void FiltroStock_ValueChanged(object sender, EventArgs e)
         {
-            if (cmbReporte.SelectedItem == null) return;
-            string reporteSeleccionado = cmbReporte.SelectedItem.ToString();
-
-            // Configuración de Filtros de Fecha (Ventas y Compras)
-            bool usaFechas = (reporteSeleccionado == "Ventas" || reporteSeleccionado == "Compras");
-            dtpDesde.Visible = usaFechas;
-            dtpHasta.Visible = usaFechas;
-
-            if (this.Controls.Find("label1", true).FirstOrDefault() is Label lbl1) lbl1.Visible = usaFechas;
-            if (this.Controls.Find("label3", true).FirstOrDefault() is Label lbl3) lbl3.Visible = usaFechas;
-            if (this.Controls.Find("label4", true).FirstOrDefault() is Label lbl4) lbl4.Visible = usaFechas;
-
-            // Condición para mostrar AMBOS filtros de stock simultáneamente
-            bool mostrarFiltroStock = (reporteSeleccionado == "Inventario");
-
-            // Visibilidad del nuevo ComboBox y su etiqueta
-            cmbCant.Visible = mostrarFiltroStock;
-            if (this.Controls.Find("label12", true).FirstOrDefault() is Label lbl12) lbl12.Visible = mostrarFiltroStock;
-
-            // Visibilidad de los NumericUpDown y sus etiquetas de rango anteriores
-            Min.Visible = mostrarFiltroStock;
-            Max.Visible = mostrarFiltroStock;
-            if (this.Controls.Find("label5", true).FirstOrDefault() is Label lbl5) lbl5.Visible = mostrarFiltroStock;
-            if (this.Controls.Find("label6", true).FirstOrDefault() is Label lbl6) lbl6.Visible = mostrarFiltroStock;
-            if (this.Controls.Find("label7", true).FirstOrDefault() is Label lbl7) lbl7.Visible = mostrarFiltroStock;
-            if (this.Controls.Find("label10", true).FirstOrDefault() is Label lbl10) lbl10.Visible = mostrarFiltroStock;
-
-            ControlarFiltroStock(mostrarFiltroStock);
-
             try
             {
-                DataTable datos = new DataTable();
+                if (!(dgvReporte.DataSource is DataTable dt)) return;
 
-                switch (reporteSeleccionado)
+                this.Min.ValueChanged -= FiltroStock_ValueChanged;
+                this.Max.ValueChanged -= FiltroStock_ValueChanged;
+
+                int valorMin = (int)Min.Value;
+                int valorMax = (int)Max.Value;
+                Max.Minimum = valorMin;
+                if (sender == Min && valorMin > valorMax)
                 {
-                    case "Ventas":
-                        datos = objReporte.ReporteVentas(dtpDesde.Value, dtpHasta.Value);
-                        dgvReporte.DataSource = datos;
-                        if (dgvReporte.Columns.Contains("Telefono")) dgvReporte.Columns["Telefono"].HeaderText = "Teléfono";
-                        if (dgvReporte.Columns.Contains("Metodo_Pago")) dgvReporte.Columns["Metodo_Pago"].HeaderText = "Método de Pago";
-                        if (dgvReporte.Columns.Contains("Total_Venta")) dgvReporte.Columns["Total_Venta"].HeaderText = "Total";
-                        if (dgvReporte.Columns.Contains("Recibio_Chatarra")) dgvReporte.Columns["Recibio_Chatarra"].HeaderText = "Bateria Vieja";
-                        break;
-
-                    case "Compras":
-                        datos = objReporte.ReporteCompras(dtpDesde.Value, dtpHasta.Value);
-                        dgvReporte.DataSource = datos;
-                        if (dgvReporte.Columns.Contains("Inversion_Total")) dgvReporte.Columns["Inversion_Total"].HeaderText = "Total";
-                        if (dgvReporte.Columns.Contains("RTN_Proveedor")) dgvReporte.Columns["RTN_Proveedor"].HeaderText = "RTN";
-                        if (dgvReporte.Columns.Contains("Telefono_Proveedor")) dgvReporte.Columns["Telefono_Proveedor"].HeaderText = "Teléfono";
-                        break;
-
-                    case "Deudores":
-                        datos = objReporte.ReporteDeudores();
-                        dgvReporte.DataSource = datos;
-                        if (dgvReporte.Columns.Contains("Fecha_Inicio")) dgvReporte.Columns["Fecha_Inicio"].HeaderText = "Fecha de Inicio";
-                        if (dgvReporte.Columns.Contains("Monto_Credito")) dgvReporte.Columns["Monto_Credito"].HeaderText = "Monto Deuda";
-                        if (dgvReporte.Columns.Contains("Saldo_Pendiente"))
-                        {
-                            dgvReporte.Columns["Saldo_Pendiente"].HeaderText = "Saldo a Cobrar";
-                            dgvReporte.Sort(dgvReporte.Columns["Saldo_Pendiente"], System.ComponentModel.ListSortDirection.Descending);
-                        }
-                        break;
-
-                    case "Inventario":
-                        datos = objReporte.ReporteInventario();
-
-                        if (!datos.Columns.Contains("Total_Venta_Esperada"))
-                        {
-                            DataColumn colTotal = new DataColumn("Total_Venta_Esperada", typeof(decimal));
-                            colTotal.Expression = "Stock_Actual * Precio_Unitario";
-                            datos.Columns.Add(colTotal);
-                        }
-
-                        dgvReporte.DataSource = datos;
-
-                        if (dgvReporte.Columns.Contains("Stock_Actual"))
-                        {
-                            dgvReporte.Columns["Stock_Actual"].HeaderText = "Stock Actual";
-                            dgvReporte.Sort(dgvReporte.Columns["Stock_Actual"], System.ComponentModel.ListSortDirection.Descending);
-                        }
-
-                        if (dgvReporte.Columns.Contains("Precio_Unitario"))
-                            dgvReporte.Columns["Precio_Unitario"].HeaderText = "Precio Venta";
-
-                        if (dgvReporte.Columns.Contains("Total_Venta_Esperada"))
-                        {
-                            dgvReporte.Columns["Total_Venta_Esperada"].HeaderText = "Capital";
-                            dgvReporte.Columns["Total_Venta_Esperada"].DefaultCellStyle.Format = "N2";
-                        }
-
-                        // Al cargar inventario, respetamos el estado del combobox de categorías por si ya tiene algo marcado
-                        cmbCant_SelectedIndexChanged(null, null);
-                        break;
+                    Max.Value = valorMin;
+                    valorMax = valorMin;
                 }
 
-                dgvReporte.AutoResizeColumns();
+                cmbCant.SelectedIndexChanged -= cmbCant_SelectedIndexChanged;
+                cmbCant.SelectedIndex = -1;
+                cmbCant.SelectedIndexChanged += cmbCant_SelectedIndexChanged;
+
+                dt.DefaultView.RowFilter = _filtroStock.PorRango(valorMin, valorMax);
+
+                this.Min.ValueChanged += FiltroStock_ValueChanged;
+                this.Max.ValueChanged += FiltroStock_ValueChanged;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar el reporte: " + ex.Message, "Error BAMS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Debug.WriteLine("Error al filtrar en tiempo real: " + ex.Message);
             }
+        }
+
+        private void cmbCant_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!(dgvReporte.DataSource is DataTable dt)) return;
+
+            if (cmbCant.SelectedItem == null)
+            {
+                dt.DefaultView.RowFilter = string.Empty;
+                return;
+            }
+
+            CategoriaStock categoria = MapearCategoria(cmbCant.SelectedItem.ToString());
+            dt.DefaultView.RowFilter = _filtroStock.PorCategoria(categoria);
+        }
+
+        private CategoriaStock MapearCategoria(string opcion)
+        {
+            switch (opcion)
+            {
+                case "Sin Stock": return CategoriaStock.SinStock;
+                case "Bajo Stock": return CategoriaStock.BajoStock;
+                case "Buen Stock": return CategoriaStock.BuenStock;
+                default: return CategoriaStock.Todos;
+            }
+        }
+
+        private void btnExportaar_Click(object sender, EventArgs e)
+        {
+            ExportarYAbrir(_exportadorPdf, "PDF");
+        }
+
+        private void btnExportarEx_Click_1(object sender, EventArgs e)
+        {
+            ExportarYAbrir(_exportadorExcel, "Excel");
+        }
+
+        private void ExportarYAbrir(IExportadorReporte exportador, string formato)
+        {
+            DataTable datosVisibles = ObtenerDatosVisibles();
+            if (datosVisibles == null || datosVisibles.Rows.Count == 0)
+            {
+                MessageBox.Show("No hay datos.", "BAMS");
+                return;
+            }
+
+            try
+            {
+                string ruta = exportador.Exportar(datosVisibles, _tipoActual, dtpDesde.Value, dtpHasta.Value);
+                AbrirArchivo(ruta);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al exportar a {formato}: " + ex.Message, "BAMS");
+            }
+        }
+
+        private DataTable ObtenerDatosVisibles()
+        {
+            if (dgvReporte.DataSource is DataTable dt) return dt.DefaultView.ToTable();
+            return _datosActuales;
+        }
+
+        private void AbrirArchivo(string ruta)
+        {
+            if (string.IsNullOrEmpty(ruta)) return;
+            Process.Start(new ProcessStartInfo { FileName = ruta, UseShellExecute = true });
         }
 
         private void btnNoti_Click(object sender, EventArgs e)
@@ -307,88 +357,40 @@ namespace SG_BAMS.Reporte
             notificaciones.ShowDialog();
         }
 
-        private void btnExportaar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                QuestPDF.Settings.License = LicenseType.Community;
-                if (dgvReporte.Rows.Count == 0)
-                {
-                    MessageBox.Show("No hay datos.", "BAMS"); return;
-                }
-
-                string seleccion = cmbReporte.SelectedItem?.ToString() ?? "REPORTE";
-                string rutaTemp = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"Reporte_{seleccion}_{DateTime.Now:yyyyMMdd}.pdf");
-
-                var documento = new DocumentoDinamico(dgvReporte, $"REPORTE DE {seleccion}", dtpDesde.Value, dtpHasta.Value);
-                documento.GeneratePdf(rutaTemp);
-
-                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo { FileName = rutaTemp, UseShellExecute = true });
-            }
-            catch (Exception ex) { MessageBox.Show("Error: " + ex.Message); }
-        }
-
-        private void btnExportarEx_Click_1(object sender, EventArgs e)
-        {
-            if (dgvReporte.Rows.Count == 0) return;
-
-            string seleccion = cmbReporte.SelectedItem?.ToString() ?? "GENERAL";
-
-            ClsExportarExcel exportador = new ClsExportarExcel();
-            exportador.ExportarDataGridView(dgvReporte, seleccion, dtpDesde.Value, dtpHasta.Value);
-        }
-
-        private void btnLimpiar_Click_1(object sender, EventArgs e)
-        {
-            dtpHasta.Value = DateTime.Today;
-            dtpDesde.Value = DateTime.Today.AddDays(-30);
-
-            Min.Value = 0;
-            Max.Value = 0;
-            ControlarFiltroStock(false);
-
-            cmbCant.SelectedIndex = -1;
-            if (dgvReporte.DataSource is DataTable dt)
-            {
-                dt.DefaultView.RowFilter = string.Empty;
-            }
-
-            cmbReporte_SelectedIndexChanged(null, null);
-        }
-
         private void btnMenu_Click(object sender, EventArgs e)
         {
-            MenuPrincipalAdm MPA = new MenuPrincipalAdm();
-            MPA.Show();
-            this.Hide();
+            Form menuPrincipal = Application.OpenForms["MenuPrincipalAdm"] ?? Application.OpenForms["AdministracionBAMS"];
+            if (menuPrincipal != null) _servicioNavegacion.IrA(this, menuPrincipal);
         }
 
         private void btnFacturas_Click(object sender, EventArgs e)
         {
-            FacturasAdm FA = new FacturasAdm();
-            FA.Show();
-            this.Hide();
+            Form frm = Application.OpenForms["FacturasAdmin"];
+            if (frm != null) _servicioNavegacion.IrA(this, frm);
         }
 
         private void btnCompra_Click(object sender, EventArgs e)
         {
-            Compras CF = new Compras();
-            CF.Show();
-            this.Hide();
+            Form frm = Application.OpenForms["ComprasAdmin"];
+            if (frm != null) _servicioNavegacion.IrA(this, frm);
         }
 
         private void btnClientes_Click(object sender, EventArgs e)
         {
-            ClientesAdm CA = new ClientesAdm();
-            CA.Show();
-            this.Hide();
+            Form frm = Application.OpenForms["ClientesAdmin"];
+            if (frm != null) _servicioNavegacion.IrA(this, frm);
         }
 
         private void btnInventario_Click(object sender, EventArgs e)
         {
-            InventarioAdmin IA = new InventarioAdmin();
-            IA.Show();
-            this.Hide();
+            Form frm = Application.OpenForms["InventarioAdmin"];
+            if (frm != null) _servicioNavegacion.IrA(this, frm);
+        }
+
+        private void btnDeudores_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms["DeudoresAdmin"];
+            if (frm != null) _servicioNavegacion.IrA(this, frm);
         }
 
         private void btnProveedores_Click(object sender, EventArgs e)
@@ -397,15 +399,7 @@ namespace SG_BAMS.Reporte
                 new ProveedorRepository(),
                 new EstadoRepository(),
                 new ClasificacionRepository());
-            PA.Show();
-            this.Hide();
-        }
-
-        private void btnDeudores_Click(object sender, EventArgs e)
-        {
-            DeudoresAdmin DA = new DeudoresAdmin();
-            DA.Show();
-            this.Hide();
+            _servicioNavegacion.IrA(this, PA);
         }
 
         private void btnBitacora_Click(object sender, EventArgs e)
@@ -414,17 +408,16 @@ namespace SG_BAMS.Reporte
                 new BitacoraRepository(),
                 new FiltroBitacoraService(),
                 new ReporteBitacoraPdfExportador());
-            Bi.Show();
-            this.Hide();
+            _servicioNavegacion.IrA(this, Bi);
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             DialogResult resultado = MessageBox.Show(
-           "¿Está seguro que desea cerrar sesión?",
-           "Confirmación",
-           MessageBoxButtons.YesNo,
-           MessageBoxIcon.Question);
+                "¿Está seguro que desea cerrar sesión?",
+                "Confirmación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
 
             if (resultado == DialogResult.Yes)
             {
@@ -440,76 +433,21 @@ namespace SG_BAMS.Reporte
             perfil.ShowDialog();
         }
 
-        private void dgvReporte_CellFormatting_1(object sender, DataGridViewCellFormattingEventArgs e)
+        private void btnLimpiar_Click_1(object sender, EventArgs e)
         {
-            if (dgvReporte.Columns[e.ColumnIndex].Name == "Stock_Actual" && e.Value != null)
-            {
-                if (int.TryParse(e.Value.ToString(), out int stock))
-                {
-                    if (stock < 1)
-                    {
-                        e.CellStyle.BackColor = System.Drawing.Color.FromArgb(255, 192, 192);
-                        e.CellStyle.ForeColor = System.Drawing.Color.DarkRed;
-                    }
-                    else if (stock < 10)
-                    {
-                        e.CellStyle.BackColor = System.Drawing.Color.FromArgb(255, 224, 192);
-                        e.CellStyle.ForeColor = System.Drawing.Color.Brown;
-                    }
-                    else
-                    {
-                        e.CellStyle.BackColor = System.Drawing.Color.FromArgb(192, 255, 192);
-                        e.CellStyle.ForeColor = System.Drawing.Color.DarkGreen;
-                    }
-                }
-            }
+            dtpHasta.Value = DateTime.Today;
+            dtpDesde.Value = DateTime.Today.AddDays(-30);
+            Min.Value = 0;
+            Max.Value = 0;
+            ControlarFiltroStock(false);
+            cmbCant.SelectedIndex = -1;
 
-            string[] columnasDinero = { "Total_Venta", "Inversion_Total", "Monto_Credito",
-                                     "Saldo_Pendiente", "Precio_Unitario", "Total_Venta_Esperada", "Abonado", "Abono" };
-
-            if (e.Value != null && columnasDinero.Contains(dgvReporte.Columns[e.ColumnIndex].Name))
-            {
-                if (decimal.TryParse(e.Value.ToString(), out decimal monto))
-                {
-                    e.Value = $"L. {monto:N2}";
-                    e.FormattingApplied = true;
-                }
-            }
-        }
-
-        private void cmbCant_SelectedIndexChanged(object sender, EventArgs e)
-        {
             if (dgvReporte.DataSource is DataTable dt)
             {
-                DataView dv = dt.DefaultView;
-
-                if (cmbCant.SelectedItem == null)
-                {
-                    dv.RowFilter = string.Empty;
-                    return;
-                }
-
-                string opcion = cmbCant.SelectedItem.ToString();
-
-                switch (opcion)
-                {
-                    case "Sin Stock":
-                        dv.RowFilter = "Stock_Actual < 1";
-                        break;
-
-                    case "Bajo Stock":
-                        dv.RowFilter = "Stock_Actual >= 1 AND Stock_Actual < 10";
-                        break;
-
-                    case "Buen Stock":
-                        dv.RowFilter = "Stock_Actual >= 10";
-                        break;
-
-                    default:
-                        dv.RowFilter = string.Empty;
-                        break;
-                }
+                dt.DefaultView.RowFilter = string.Empty;
             }
+
+            cmbReporte_SelectedIndexChanged(null, null);
         }
     }
 }
