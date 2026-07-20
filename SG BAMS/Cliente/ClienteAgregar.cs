@@ -1,23 +1,36 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using Krypton.Toolkit;
 using SG_BAMS.Cliente;
 using SG_BAMS.Cliente.DTO;
 using SG_BAMS.Facturas;
+using SG_BAMS.Login;
+using System;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SG_BAMS
 {
     /// <summary>
     /// Formulario para registrar un nuevo cliente en el sistema.
-    /// Solo depende de IClienteRepository (no necesita el catálogo de Estados,
-    /// por eso no depende de IEstadoClienteRepository — ISP).
+    /// Permite ingresar los datos personales del cliente y redirige
+    /// automáticamente al formulario de agregar factura al completar el registro.
     /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class ClienteAgregar : Form
     {
-        private readonly IClienteRepository _repositorio;
-        private readonly ClienteDominio _dominio;
-
+        /// <summary>
+        /// Obtiene el identificador único generado para el cliente recién registrado.
+        /// </summary>
+        /// <value>
+        /// El ID del cliente generado por la base de datos.
+        /// </value>
         public int IdClienteGenerado { get; private set; }
+
+        /// <summary>
+        /// Obtiene el nombre completo del cliente recién registrado.
+        /// </summary>
+        /// <value>
+        /// El nombre y apellido del cliente concatenados.
+        /// </value>
         public string NombreDelCliente { get; private set; }
 
         private PlaceholderTextBox phNombre;
@@ -26,13 +39,13 @@ namespace SG_BAMS
         private PlaceholderTextBox phRTN;
 
         /// <summary>
-        /// Crea el formulario recibiendo el repositorio por inyección.
+        /// Inicializa una nueva instancia de la clase <see cref="ClienteAgregar"/>.
+        /// Configura la posición del formulario, las longitudes máximas de los campos
+        /// y las validaciones de entrada por teclado.
         /// </summary>
-        public ClienteAgregar(IClienteRepository repositorio)
+        public ClienteAgregar()
         {
             InitializeComponent();
-            _repositorio = repositorio;
-            _dominio = new ClienteDominio(repositorio);
             this.StartPosition = FormStartPosition.CenterScreen;
 
             txtTelefono.MaxLength = 8;
@@ -43,6 +56,13 @@ namespace SG_BAMS
             txtRTN.KeyPress += (s, e) => ClsValidaciones.ValidarSoloNumeros(e);
         }
 
+        /// <summary>
+        /// Maneja el evento Click del botón <c>btnAgregar</c>.
+        /// Valida los campos del formulario, registra el nuevo cliente en la base de datos
+        /// y abre el formulario de factura si el registro fue exitoso.
+        /// </summary>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private async void btnAgregar_Click(object sender, EventArgs e)
         {
             string nombreReal = phNombre.GetRealValue().Trim();
@@ -50,25 +70,48 @@ namespace SG_BAMS
             string telefonoReal = phTelefono.GetRealValue().Trim();
             string rtnReal = phRTN.GetRealValue().Trim();
 
-            var formatoValido = _dominio.ValidarFormato(nombreReal, apellidoReal, telefonoReal, rtnReal);
-            if (!formatoValido.EsValido)
+            bool valido = true;
+
+            using (var tempNombre = new KryptonTextBox())
+            using (var tempApellido = new KryptonTextBox())
+            using (var tempTelefono = new KryptonTextBox())
+            using (var tempRTN = new KryptonTextBox())
             {
-                MessageBox.Show(formatoValido.Mensaje, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                tempNombre.Text = nombreReal;
+                tempApellido.Text = apellidoReal;
+                tempTelefono.Text = telefonoReal;
+                tempRTN.Text = rtnReal;
+
+                if (!ClsValidaciones.EsNombrePersonalValido(tempNombre, "El Nombre"))
+                    valido = false;
+                else if (!ClsValidaciones.EsNombrePersonalValido(tempApellido, "El Apellido"))
+                    valido = false;
+                else if (!ClsValidaciones.EsTelefonoHondurasValido(tempTelefono))
+                    valido = false;
+                else if (!string.IsNullOrWhiteSpace(rtnReal) && !ClsValidaciones.EsRTNValido(tempRTN))
+                    valido = false;
             }
 
-            rtnReal = _dominio.NormalizarRTN(rtnReal);
+            if (!valido) return;
+
+            if (string.IsNullOrWhiteSpace(rtnReal))
+                rtnReal = "Sin RTN";
+
+            if (rtnReal != "Sin RTN")
+            {
+                ClsCliente ver = new ClsCliente();
+                if (ver.RTNYaExiste(rtnReal))
+                {
+                    MessageBox.Show("Este RTN ya está registrado para otro cliente.",
+                                    "RTN Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
 
             try
             {
-                var rtnValido = await _dominio.ValidarRTNDuplicado(rtnReal);
-                if (!rtnValido.EsValido)
-                {
-                    MessageBox.Show(rtnValido.Mensaje, "RTN Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
                 this.Cursor = Cursors.WaitCursor;
+                ClsCliente objAC = new ClsCliente();
 
                 ClienteDTO clienteDTO = new ClienteDTO
                 {
@@ -78,7 +121,7 @@ namespace SG_BAMS
                     RTN = rtnReal
                 };
 
-                int id = await _repositorio.AgregarClientes(clienteDTO);
+                int id = await objAC.AgregarClientes(clienteDTO);
 
                 if (id > 0)
                 {
@@ -105,14 +148,28 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Maneja el evento KeyPress del campo <c>txtTelefono</c>.
+        /// Aplica validación en tiempo real para permitir únicamente
+        /// caracteres válidos en un número de teléfono hondureño.
+        /// </summary>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento de teclado.</param>
         private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
         {
             ClsValidaciones.ValidarTelefonoKeyPress(txtTelefono, e);
         }
 
+        /// <summary>
+        /// Maneja el evento Click del botón <c>BtnExistente</c>.
+        /// Abre el formulario de búsqueda de clientes existentes y cierra
+        /// el formulario actual si se seleccionó un cliente correctamente.
+        /// </summary>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private void BtnExistente_Click(object sender, EventArgs e)
         {
-            using (ClienteExistente frmCE = new ClienteExistente(_repositorio))
+            using (ClienteExistente frmCE = new ClienteExistente())
             {
                 if (frmCE.ShowDialog() == DialogResult.OK)
                 {
@@ -122,8 +179,20 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Maneja el evento Click del botón <c>BtnSalir</c>.
+        /// Cierra el formulario actual sin guardar cambios.
+        /// </summary>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private void BtnSalir_Click(object sender, EventArgs e) => this.Close();
 
+        /// <summary>
+        /// Maneja el evento Load del formulario <c>ClienteAgregar</c>.
+        /// Inicializa los placeholders y los guarda en las variables de instancia.
+        /// </summary>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private void ClienteAgregar_Load(object sender, EventArgs e)
         {
             phNombre = new PlaceholderTextBox(txtNombre, "Solo letras y espacios");

@@ -9,19 +9,16 @@ using Krypton.Toolkit;
 namespace SG_BAMS
 {
     /// <summary>
-    /// Formulario para modificar los datos de un cliente existente.
-    /// Recibe dos dependencias específicas en vez de una sola interfaz "gorda" (ISP):
-    /// IClienteRepository para el CRUD, e IEstadoClienteRepository únicamente
-    /// para llenar el combo de estados.
+    /// Formulario para modificar los datos de un cliente existente en el sistema.
+    /// Permite editar nombre, apellido, teléfono, RTN y estado del cliente.
     /// </summary>
     public partial class ClienteModificar : Form
     {
-        private readonly IClienteRepository _repositorio;
-        private readonly IEstadoClienteRepository _estadoRepositorio;
-        private readonly ClienteDominio _dominio;
+        private ClsRepositorioBaseDatos objCl = new ClsRepositorioBaseDatos();
 
         /// <summary>
         /// Datos del cliente a modificar, recibidos desde el listado (ClientesAdm/ClientesEmp).
+        /// Reemplaza los 6 parámetros sueltos que antes recibía el constructor.
         /// </summary>
         private readonly ClienteDTO _dto;
 
@@ -32,21 +29,15 @@ namespace SG_BAMS
         private PlaceholderComboBox phEstado;
 
         /// <summary>
-        /// Constructor para modificar un cliente existente, recibiendo ambos repositorios por inyección.
-        /// En la práctica ClienteRepository implementa las dos interfaces, así que en el
-        /// sitio de llamada se puede pasar la misma instancia dos veces: cada parámetro
-        /// sigue dependiendo únicamente del subconjunto de métodos que realmente usa.
+        /// Constructor para modificar un cliente existente.
         /// </summary>
-        public ClienteModificar(ClienteDTO dto, IClienteRepository repositorio, IEstadoClienteRepository estadoRepositorio)
+        /// <param name="dto">Datos actuales del cliente seleccionado en el listado.</param>
+        public ClienteModificar(ClienteDTO dto)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
 
             _dto = dto;
-            _repositorio = repositorio;
-            _estadoRepositorio = estadoRepositorio;
-            _dominio = new ClienteDominio(repositorio);
-
             txtID.Text = dto.IdCliente.ToString();
             txtNombre.Text = dto.Nombre;
             txtApellido.Text = dto.Apellido;
@@ -80,31 +71,53 @@ namespace SG_BAMS
             string telefonoReal = phTelefono.GetRealValue().Trim();
             string rtnReal = phRTN.GetRealValue().Trim();
 
-            var formatoValido = _dominio.ValidarFormato(nombreReal, apellidoReal, telefonoReal, rtnReal);
-            if (!formatoValido.EsValido)
+
+            bool valido = true;
+            using (var tempNombre = new KryptonTextBox())
+            using (var tempApellido = new KryptonTextBox())
+            using (var tempTelefono = new KryptonTextBox())
+            using (var tempRTN = new KryptonTextBox())
             {
-                MessageBox.Show(formatoValido.Mensaje, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                tempNombre.Text = nombreReal;
+                tempApellido.Text = apellidoReal;
+                tempTelefono.Text = telefonoReal;
+                tempRTN.Text = rtnReal;
+
+                if (!ClsValidaciones.EsNombrePersonalValido(tempNombre, "Nombre"))
+                    valido = false;
+                else if (!ClsValidaciones.EsNombrePersonalValido(tempApellido, "Apellido"))
+                    valido = false;
+                else if (!ClsValidaciones.EsTelefonoHondurasValido(tempTelefono))
+                    valido = false;
+                else if (phEstado.IsPlaceholderActive || cmbEstado.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Seleccione un estado válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    valido = false;
+                }
+                else if (!string.IsNullOrWhiteSpace(rtnReal) && rtnReal.ToUpper() != "SIN RTN" && !ClsValidaciones.EsRTNValido(tempRTN))
+                    valido = false;
             }
 
-            if (phEstado.IsPlaceholderActive || cmbEstado.SelectedIndex == -1)
-            {
-                MessageBox.Show("Seleccione un estado válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            if (!valido) return;
 
-            rtnReal = _dominio.NormalizarRTN(rtnReal);
+            if (string.IsNullOrWhiteSpace(rtnReal) || rtnReal.ToUpper() == "SIN RTN")
+                rtnReal = "Sin RTN";
+
+            if (rtnReal != "Sin RTN")
+            {
+                ClsCliente ver = new ClsCliente();
+                if (ver.RTNYaExiste(rtnReal, Convert.ToInt32(txtID.Text)))
+                {
+                    MessageBox.Show("Este RTN ya está registrado para otro cliente.",
+                                    "RTN Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
 
             try
             {
-                var rtnValido = await _dominio.ValidarRTNDuplicado(rtnReal, Convert.ToInt32(txtID.Text));
-                if (!rtnValido.EsValido)
-                {
-                    MessageBox.Show(rtnValido.Mensaje, "RTN Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
                 this.Cursor = Cursors.WaitCursor;
+                ClsCliente objMC = new ClsCliente();
 
                 ClienteDTO dtoActualizado = new ClienteDTO
                 {
@@ -116,7 +129,7 @@ namespace SG_BAMS
                     IdEstado = Convert.ToInt32(cmbEstado.SelectedValue)
                 };
 
-                int filasActualizadas = await _repositorio.ModificarClientes(dtoActualizado);
+                int filasActualizadas = await objMC.ModificarClientes(dtoActualizado);
 
                 if (filasActualizadas > 0)
                 {
@@ -144,9 +157,10 @@ namespace SG_BAMS
 
         private async Task LlenarComboEstado()
         {
+            ClsCliente MC = new ClsCliente();
             try
             {
-                DataTable dt = await _estadoRepositorio.ObtenerEstados();
+                DataTable dt = await MC.ObtenerEstados();
                 cmbEstado.DataSource = dt;
                 cmbEstado.DisplayMember = "descripcion_estado";
                 cmbEstado.ValueMember = "id_estado";

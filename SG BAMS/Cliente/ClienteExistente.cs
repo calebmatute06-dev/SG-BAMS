@@ -1,37 +1,45 @@
-﻿using SG_BAMS.Cliente;
+﻿using Microsoft.Data.SqlClient;
+using SG_BAMS.Cliente;
+using SG_BAMS.Deudores;
+using SG_BAMS.Facturas;
+using SG_BAMS.Login;
 using System;
 using System.Data;
-using System.Windows.Forms;
-using SG_BAMS.Deudores;
+using System.Drawing;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SG_BAMS
 {
     /// <summary>
     /// Formulario para seleccionar un cliente ya registrado en el sistema
     /// y asignarle una nueva factura.
-    /// Solo depende de IClienteRepository (no necesita el catálogo de Estados — ISP).
     /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class ClienteExistente : Form
     {
-        private readonly IClienteRepository _repositorio;
         private PlaceholderComboBox phClientes;
 
         /// <summary>
-        /// Crea el formulario recibiendo el repositorio por inyección.
+        /// Inicializa una nueva instancia de la clase <see cref="ClienteExistente"/>
+        /// y centra el formulario en la pantalla.
         /// </summary>
-        public ClienteExistente(IClienteRepository repositorio)
+        public ClienteExistente()
         {
             InitializeComponent();
-            _repositorio = repositorio;
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
+        /// <summary>
+        /// Carga de forma asíncrona la lista de clientes registrados
+        /// en el control ComboBox, configurando el autocompletado.
+        /// </summary>
         private async Task LlenarComboCliente()
         {
+            ClsCliente objAC = new ClsCliente();
             try
             {
-                DataTable dt = await _repositorio.ObtenerClientes();
+                DataTable dt = await objAC.ObtenerClientes();
 
                 cmbClientes.DisplayMember = "Nombre Completo";
                 cmbClientes.ValueMember = "ID";
@@ -47,6 +55,12 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Maneja el evento Load del formulario <c>ClienteExistente</c>.
+        /// Carga la lista de clientes en el ComboBox y limpia la selección inicial.
+        /// </summary>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private async void ClienteExistente_Load(object sender, EventArgs e)
         {
             await LlenarComboCliente();
@@ -58,6 +72,14 @@ namespace SG_BAMS
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
+        /// <summary>
+        /// Maneja el evento Click del botón <c>BtnAsignar</c>.
+        /// Valida que se haya seleccionado un cliente, recupera su RTN
+        /// y abre el formulario de agregar factura asociado al cliente seleccionado.
+        /// Si la factura se confirma, cierra el formulario actual con resultado OK.
+        /// </summary>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private async void BtnAsignar_Click(object sender, EventArgs e)
         {
             if (phClientes.IsPlaceholderActive || cmbClientes.SelectedIndex == -1)
@@ -145,6 +167,12 @@ namespace SG_BAMS
             }
         }
 
+        /// <summary>
+        /// Maneja el evento Click del botón <c>BtnSalir</c>.
+        /// Cierra el formulario actual sin realizar ninguna acción.
+        /// </summary>
+        /// <param name="sender">El objeto que originó el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private void BtnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
