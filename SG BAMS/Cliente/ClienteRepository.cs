@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿
+using Microsoft.Data.SqlClient;
 using SG_BAMS.Cliente.DTO;
 using System;
 using System.Data;
@@ -7,15 +8,15 @@ using System.Threading.Tasks;
 namespace SG_BAMS.Cliente
 {
     /// <summary>
-    /// Clase para la gestión de clientes usando solo Procedimientos Almacenados.
-    /// Consolida las operaciones de alta, modificación y consulta.
+    /// Acceso a datos de clientes usando exclusivamente Procedimientos Almacenados.
+    /// Implementa dos interfaces pequeñas y específicas (ISP) en lugar de una sola
+    /// interfaz "gorda": IClienteRepository para el CRUD de clientes, e
+    /// IEstadoClienteRepository para el catálogo de Estados. Ninguna de las dos
+    /// conoce MessageBox ni ningún elemento de la capa de presentación —
+    /// las excepciones se relanzan para que el formulario decida cómo mostrarlas.
     /// </summary>
-    internal class ClsCliente : ClsRepositorioBaseDatos
+    internal class ClienteRepository : ClsRepositorioBaseDatos, IClienteRepository, IEstadoClienteRepository
     {
-        /// <summary>
-        /// Registra un cliente nuevo a partir de los datos del DTO.
-        /// </summary>
-        /// <param name="dto">Datos del cliente a registrar.</param>
         public async Task<int> AgregarClientes(ClienteDTO dto)
         {
             try
@@ -36,8 +37,7 @@ namespace SG_BAMS.Cliente
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al insertar cliente: " + ex.Message);
-                return 0;
+                throw new Exception("Error al insertar cliente: " + ex.Message, ex);
             }
             finally
             {
@@ -45,10 +45,6 @@ namespace SG_BAMS.Cliente
             }
         }
 
-        /// <summary>
-        /// Actualiza un cliente existente a partir de los datos del DTO.
-        /// </summary>
-        /// <param name="dto">Datos actualizados del cliente, incluyendo su IdCliente.</param>
         public async Task<int> ModificarClientes(ClienteDTO dto)
         {
             try
@@ -63,14 +59,12 @@ namespace SG_BAMS.Cliente
                     cmd.Parameters.AddWithValue("@telefono_cliente", dto.Telefono);
                     cmd.Parameters.AddWithValue("@rtn_cliente", dto.RTN);
                     cmd.Parameters.AddWithValue("@id_estado", dto.IdEstado);
-                    int filasAfectadas = await cmd.ExecuteNonQueryAsync();
-                    return filasAfectadas;
+                    return await cmd.ExecuteNonQueryAsync();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
-                return 0;
+                throw new Exception("Error al modificar cliente: " + ex.Message, ex);
             }
             finally
             {
@@ -92,16 +86,16 @@ namespace SG_BAMS.Cliente
                         tablaC.Load(reader);
                     }
                 }
+                return tablaC;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return null;
+                throw new Exception("Error al obtener el listado de clientes: " + ex.Message, ex);
             }
             finally
             {
                 Cerrar();
             }
-            return tablaC;
         }
 
         public async Task<DataTable> ObtenerClientes()
@@ -120,7 +114,7 @@ namespace SG_BAMS.Cliente
                 }
                 return dt;
             }
-            catch (Exception)
+            catch
             {
                 throw;
             }
@@ -129,6 +123,32 @@ namespace SG_BAMS.Cliente
                 Cerrar();
             }
         }
+
+        public async Task<bool> RTNYaExiste(string rtn, int idClienteActual = 0)
+        {
+            try
+            {
+                AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_Cliente_VerificarRTN", Conectar))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@rtn", rtn);
+                    cmd.Parameters.AddWithValue("@id", idClienteActual);
+                    object resultado = await cmd.ExecuteScalarAsync();
+                    return Convert.ToInt32(resultado) > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al verificar RTN: " + ex.Message, ex);
+            }
+            finally
+            {
+                Cerrar();
+            }
+        }
+
+        // ---- IEstadoClienteRepository ----
 
         public async Task<DataTable> ObtenerEstados()
         {
@@ -146,33 +166,9 @@ namespace SG_BAMS.Cliente
                 }
                 return dt;
             }
-            catch (Exception)
+            catch
             {
                 throw;
-            }
-            finally
-            {
-                Cerrar();
-            }
-        }
-
-        public bool RTNYaExiste(string rtn, int idClienteActual = 0)
-        {
-            try
-            {
-                AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_Cliente_VerificarRTN", Conectar))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@rtn", rtn);
-                    cmd.Parameters.AddWithValue("@id", idClienteActual);
-                    return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al verificar RTN: " + ex.Message);
-                return false;
             }
             finally
             {

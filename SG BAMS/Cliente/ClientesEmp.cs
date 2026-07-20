@@ -1,7 +1,6 @@
 ﻿using SG_BAMS.Cliente;
 using SG_BAMS.Cliente.DTO;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Threading.Tasks;
@@ -10,11 +9,17 @@ using System.Windows.Forms;
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    /// Formulario de consulta y modificación de clientes para el rol de empleado.
+    /// Depende únicamente de IClienteRepository (ISP: no necesita el catálogo
+    /// de Estados) y delega el armado del filtro en Clientefiltroservice,
+    /// compartido con ClientesAdm para eliminar la duplicación que existía antes.
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class ClientesEmp : Form
     {
+        private readonly IClienteRepository _repositorio;
+        private readonly ClienteFiltroService _filtroService = new ClienteFiltroService();
+
         /// <summary>
         /// Datos de clientes
         /// </summary>
@@ -26,11 +31,14 @@ namespace SG_BAMS
         private string placeholderTexto = "Buscar por nombre, apellido, RTN o teléfono...";
 
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="ClientesEmp"/>.
+        /// Inicializa una nueva instancia de la clase <see cref="ClientesEmp"/>,
+        /// recibiendo el repositorio de clientes por inyección de dependencias.
         /// </summary>
-        public ClientesEmp()
+        /// <param name="repositorio">Repositorio de clientes inyectado (ClienteRepository en producción).</param>
+        public ClientesEmp(IClienteRepository repositorio)
         {
             InitializeComponent();
+            _repositorio = repositorio;
             this.StartPosition = FormStartPosition.CenterScreen;
             dgvClientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvClientes.MultiSelect = false;
@@ -40,12 +48,11 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Carga la tabla de clientes.
+        /// Carga la tabla de clientes desde el repositorio inyectado.
         /// </summary>
         private async Task TablaClientes()
         {
-            ClsCliente objC = new ClsCliente();
-            datosCli = await objC.VerClienteTabla();
+            datosCli = await _repositorio.VerClienteTabla();
 
             if (datosCli != null)
             {
@@ -71,7 +78,9 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Aplica el filtro combinando estado y búsqueda de texto.
+        /// Aplica el filtro combinando estado y búsqueda de texto, delegando
+        /// el armado del RowFilter en ClienteFiltroService (mismo servicio
+        /// que usa ClientesAdm, ya no hay lógica de filtro duplicada).
         /// </summary>
         private void AplicarFiltro()
         {
@@ -80,38 +89,7 @@ namespace SG_BAMS
             try
             {
                 DataView dv = datosCli.DefaultView;
-
-                var condiciones = new List<string>();
-
-                string filtroEstado = chkActivo.Checked ? "Estado <> 'Activo'" : "Estado = 'Activo'";
-                condiciones.Add($"({filtroEstado})");
-
-                string textoBusqueda = txtBusqueda.Text?.Trim() ?? "";
-                if (textoBusqueda == placeholderTexto)
-                {
-                    textoBusqueda = "";
-                }
-
-                if (!string.IsNullOrWhiteSpace(textoBusqueda))
-                {
-                    string textoSeguro = textoBusqueda
-                        .Replace("'", "''")
-                        .Replace("[", "[[]")
-                        .Replace("]", "[]]")
-                        .Replace("*", "[*]")
-                        .Replace("%", "[%]");
-
-                    string filtroTexto = $"(Nombre LIKE '%{textoSeguro}%' OR " +
-                                         $"Apellido LIKE '%{textoSeguro}%' OR " +
-                                         $"RTN LIKE '%{textoSeguro}%' OR " +
-                                         $"Teléfono LIKE '%{textoSeguro}%')";
-
-                    condiciones.Add(filtroTexto);
-                }
-
-                string rowFilter = string.Join(" AND ", condiciones);
-
-                dv.RowFilter = rowFilter;
+                dv.RowFilter = _filtroService.ConstruirRowFilter(chkActivo.Checked, txtBusqueda.Text, placeholderTexto);
                 dgvClientes.DataSource = dv;
                 dgvClientes.ClearSelection();
             }
@@ -147,6 +125,9 @@ namespace SG_BAMS
 
         /// <summary>
         /// Maneja el evento CellDoubleClick del control dgvClientes.
+        /// Abre ClienteModificar pasándole el mismo repositorio dos veces
+        /// (IClienteRepository e IEstadoClienteRepository — ISP), porque
+        /// ClienteRepository implementa ambas interfaces.
         /// </summary>
         /// <param name="sender">Origen del evento.</param>
         /// <param name="e">Instancia de <see cref="DataGridViewCellEventArgs"/> que contiene los datos del evento.</param>
@@ -175,7 +156,10 @@ namespace SG_BAMS
                         IdEstado = idEstado
                     };
 
-                    ClienteModificar frmMo = new ClienteModificar(clienteDTO);
+                    // Cast explícito necesario: _repositorio está declarado como
+                    // IClienteRepository, y el compilador no infiere que el objeto real
+                    // (ClienteRepository) también implementa IEstadoClienteRepository.
+                    ClienteModificar frmMo = new ClienteModificar(clienteDTO, _repositorio, (IEstadoClienteRepository)_repositorio);
                     frmMo.ShowDialog();
 
                     await TablaClientes();

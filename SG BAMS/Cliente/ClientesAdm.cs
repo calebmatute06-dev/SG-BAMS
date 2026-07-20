@@ -1,16 +1,12 @@
-﻿using Microsoft.Data.SqlClient;
-using SG_BAMS.Bitacora;
+﻿using SG_BAMS.Bitacora;
 using SG_BAMS.Cliente;
 using SG_BAMS.Cliente.DTO;
 using SG_BAMS.Proveedor;
 using SG_BAMS.Reporte;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -20,10 +16,15 @@ namespace SG_BAMS
     /// Formulario de administración de clientes. Permite visualizar, buscar,
     /// filtrar y modificar los clientes registrados en el sistema, así como
     /// navegar hacia otros módulos del panel administrativo.
+    /// Depende únicamente de IClienteRepository (ISP: no necesita el catálogo
+    /// de Estados) y delega el armado del filtro en Clientefiltroservice (SRP/DRY).
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class ClientesAdm : Form
     {
+        private readonly IClienteRepository _repositorio;
+        private readonly ClienteFiltroService _filtroService = new ClienteFiltroService();
+
         /// <summary>
         /// Almacena los datos de la tabla de clientes obtenidos desde la base de datos,
         /// utilizados como fuente para el filtrado y visualización en el DataGridView.
@@ -36,13 +37,16 @@ namespace SG_BAMS
         private string placeholderTexto = "Buscar por nombre, apellido, RTN o teléfono...";
 
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="ClientesAdm"/>.
+        /// Inicializa una nueva instancia de la clase <see cref="ClientesAdm"/>,
+        /// recibiendo el repositorio de clientes por inyección de dependencias.
         /// Configura el modo de selección del DataGridView y las validaciones
         /// de entrada del campo de búsqueda.
         /// </summary>
-        public ClientesAdm()
+        /// <param name="repositorio">Repositorio de clientes inyectado (ClienteRepository en producción).</param>
+        public ClientesAdm(IClienteRepository repositorio)
         {
             InitializeComponent();
+            _repositorio = repositorio;
             this.StartPosition = FormStartPosition.CenterScreen;
             dgvClientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvClientes.MultiSelect = false;
@@ -52,14 +56,13 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Carga de forma asíncrona los datos de clientes desde la base de datos,
+        /// Carga de forma asíncrona los datos de clientes desde el repositorio,
         /// configura los encabezados de columnas del DataGridView, oculta columnas
         /// internas y aplica el filtro activo.
         /// </summary>
         private async Task TablaClientes()
         {
-            ClsCliente objC = new ClsCliente();
-            datosCli = await objC.VerClienteTabla();
+            datosCli = await _repositorio.VerClienteTabla();
 
             if (datosCli != null)
             {
@@ -87,7 +90,8 @@ namespace SG_BAMS
         /// <summary>
         /// Aplica un filtro combinado al DataGridView según el texto ingresado
         /// en el campo de búsqueda y el estado del checkbox de activos/inactivos.
-        /// Filtra por nombre, apellido, RTN y teléfono del cliente.
+        /// El armado del RowFilter se delega en ClienteFiltroService, compartido
+        /// con ClientesEmp para eliminar la duplicación que existía antes.
         /// </summary>
         private void AplicarFiltro()
         {
@@ -96,38 +100,7 @@ namespace SG_BAMS
             try
             {
                 DataView dv = datosCli.DefaultView;
-
-                var condiciones = new List<string>();
-
-                string filtroEstado = chkActivo.Checked ? "Estado <> 'Activo'" : "Estado = 'Activo'";
-                condiciones.Add($"({filtroEstado})");
-
-                string textoBusqueda = txtBusqueda.Text?.Trim() ?? "";
-                if (textoBusqueda == placeholderTexto)
-                {
-                    textoBusqueda = "";
-                }
-
-                if (!string.IsNullOrWhiteSpace(textoBusqueda))
-                {
-                    string textoSeguro = textoBusqueda
-                        .Replace("'", "''")
-                        .Replace("[", "[[]")
-                        .Replace("]", "[]]")
-                        .Replace("*", "[*]")
-                        .Replace("%", "[%]");
-
-                    string filtroTexto = $"(Nombre LIKE '%{textoSeguro}%' OR " +
-                                         $"Apellido LIKE '%{textoSeguro}%' OR " +
-                                         $"RTN LIKE '%{textoSeguro}%' OR " +
-                                         $"Teléfono LIKE '%{textoSeguro}%')";
-
-                    condiciones.Add(filtroTexto);
-                }
-
-                string rowFilter = string.Join(" AND ", condiciones);
-
-                dv.RowFilter = rowFilter;
+                dv.RowFilter = _filtroService.ConstruirRowFilter(chkActivo.Checked, txtBusqueda.Text, placeholderTexto);
                 dgvClientes.DataSource = dv;
                 dgvClientes.ClearSelection();
             }
@@ -189,7 +162,10 @@ namespace SG_BAMS
         /// <summary>
         /// Maneja el evento CellDoubleClick del DataGridView <c>dgvClientes</c>.
         /// Obtiene los datos del cliente en la fila seleccionada y abre el formulario
-        /// de modificación. Recarga la tabla al cerrar el formulario.
+        /// de modificación, pasándole el mismo repositorio ya inyectado en este
+        /// formulario (dos veces, porque ClienteModificar necesita tanto
+        /// IClienteRepository como IEstadoClienteRepository — ISP). Recarga la
+        /// tabla al cerrar el formulario.
         /// </summary>
         /// <param name="sender">El objeto que originó el evento.</param>
         /// <param name="e">Los datos del evento de celda del DataGridView.</param>
@@ -218,7 +194,13 @@ namespace SG_BAMS
                         IdEstado = idEstado
                     };
 
-                    ClienteModificar frmMo = new ClienteModificar(clienteDTO);
+                    // _repositorio (ClienteRepository) implementa tanto IClienteRepository
+                    // como IEstadoClienteRepository, pero la variable está declarada como
+                    // IClienteRepository, así que el compilador no sabe que también es
+                    // IEstadoClienteRepository. Se necesita un cast explícito para el
+                    // tercer parámetro; cada parámetro del constructor de ClienteModificar
+                    // sigue tipado a la interfaz mínima que realmente necesita (ISP).
+                    ClienteModificar frmMo = new ClienteModificar(clienteDTO, _repositorio, (IEstadoClienteRepository)_repositorio);
 
                     if (frmMo.ShowDialog() == DialogResult.OK || frmMo.DialogResult == DialogResult.Cancel)
                     {
