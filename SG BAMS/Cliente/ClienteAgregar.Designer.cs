@@ -298,6 +298,7 @@
             Controls.Add(panel2);
             Controls.Add(panel8);
             Margin = new Padding(3, 4, 3, 4);
+            MaximizeBox = false;
             Name = "ClienteAgregar";
             ShowIcon = false;
             Load += ClienteAgregar_Load;
