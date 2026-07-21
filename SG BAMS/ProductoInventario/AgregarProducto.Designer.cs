@@ -429,7 +429,7 @@
             Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             Name = "AgregarProducto";
-            Text = "AgregarProducto";
+            ShowIcon = false;
             Load += AgregarProducto_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
