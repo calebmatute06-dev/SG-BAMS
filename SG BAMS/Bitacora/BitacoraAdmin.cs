@@ -249,7 +249,7 @@ public partial class BitacoraAdmin : Form
     private void btnMenu_Click(object sender, EventArgs e) { new MenuPrincipalAdm().Show(); Hide(); }
     private void btnFacturas_Click(object sender, EventArgs e) { new FacturasAdm().Show(); Hide(); }
     private void btnCompra_Click(object sender, EventArgs e) { new Compras().Show(); Hide(); }
-    private void btnClientes_Click(object sender, EventArgs e) { new ClientesAdm().Show(); Hide(); }
+    private void btnClientes_Click(object sender, EventArgs e) { new ClientesAdm(new Cliente.ClienteRepository()).Show(); Hide(); }
     private void btnInventario_Click(object sender, EventArgs e) { new InventarioAdmin(new ProductoInventario.ProductoRepository(), new ProductoInventario.ComboRepository()).Show(); Hide(); }
     private void btnProveedores_Click(object sender, EventArgs e)
     {

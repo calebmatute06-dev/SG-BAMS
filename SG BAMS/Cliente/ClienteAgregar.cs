@@ -13,24 +13,22 @@ namespace SG_BAMS
     /// Formulario para registrar un nuevo cliente en el sistema.
     /// Permite ingresar los datos personales del cliente y redirige
     /// automáticamente al formulario de agregar factura al completar el registro.
+    /// Única responsabilidad de esta clase: coordinar la interacción con el usuario;
+    /// el acceso a datos se recibe por inyección (ver auditoría SOLID, hallazgos CA01-CA03).
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class ClienteAgregar : Form
     {
+        private readonly IClienteRepository clienteRepositorio;
+
         /// <summary>
         /// Obtiene el identificador único generado para el cliente recién registrado.
         /// </summary>
-        /// <value>
-        /// El ID del cliente generado por la base de datos.
-        /// </value>
         public int IdClienteGenerado { get; private set; }
 
         /// <summary>
         /// Obtiene el nombre completo del cliente recién registrado.
         /// </summary>
-        /// <value>
-        /// El nombre y apellido del cliente concatenados.
-        /// </value>
         public string NombreDelCliente { get; private set; }
 
         private PlaceholderTextBox phNombre;
@@ -39,13 +37,14 @@ namespace SG_BAMS
         private PlaceholderTextBox phRTN;
 
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="ClienteAgregar"/>.
-        /// Configura la posición del formulario, las longitudes máximas de los campos
-        /// y las validaciones de entrada por teclado.
+        /// Inicializa una nueva instancia de la clase <see cref="ClienteAgregar"/>,
+        /// recibiendo su dependencia de acceso a datos por inyección.
         /// </summary>
-        public ClienteAgregar()
+        /// <param name="clienteRepositorio">Acceso a datos de clientes.</param>
+        public ClienteAgregar(IClienteRepository clienteRepositorio)
         {
             InitializeComponent();
+            this.clienteRepositorio = clienteRepositorio;
             this.StartPosition = FormStartPosition.CenterScreen;
 
             txtTelefono.MaxLength = 8;
@@ -53,18 +52,33 @@ namespace SG_BAMS
 
             txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
             txtApellido.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
-            txtRTN.KeyPress += (s, e) => ClsValidaciones.ValidarSoloNumeros(e);
+            txtTelefono.KeyPress += txtTelefono_KeyPress;
+            txtRTN.KeyPress += txtRTN_KeyPress;
         }
 
         /// <summary>
         /// Maneja el evento Click del botón <c>btnAgregar</c>.
-        /// Valida los campos del formulario, registra el nuevo cliente en la base de datos
-        /// y abre el formulario de factura si el registro fue exitoso.
+        /// Orquesta los pasos independientes: validar formato, verificar RTN duplicado
+        /// y guardar (ver hallazgo CA02).
         /// </summary>
-        /// <param name="sender">El objeto que originó el evento.</param>
-        /// <param name="e">Los datos del evento.</param>
         private async void btnAgregar_Click(object sender, EventArgs e)
         {
+            if (!ValidarFormulario(out ClienteDTO clienteDTO))
+                return;
+
+            if (!await ValidarRTNDuplicado(clienteDTO.RTN, 0))
+                return;
+
+            await GuardarClienteYContinuar(clienteDTO);
+        }
+
+        /// <summary>
+        /// Valida el formato de todos los campos y arma el DTO si son válidos.
+        /// </summary>
+        private bool ValidarFormulario(out ClienteDTO clienteDTO)
+        {
+            clienteDTO = null;
+
             string nombreReal = phNombre.GetRealValue().Trim();
             string apellidoReal = phApellido.GetRealValue().Trim();
             string telefonoReal = phTelefono.GetRealValue().Trim();
@@ -92,43 +106,64 @@ namespace SG_BAMS
                     valido = false;
             }
 
-            if (!valido) return;
+            if (!valido) return false;
 
             if (string.IsNullOrWhiteSpace(rtnReal))
                 rtnReal = "Sin RTN";
 
-            if (rtnReal != "Sin RTN")
+            clienteDTO = new ClienteDTO
             {
-                ClsCliente ver = new ClsCliente();
-                if (ver.RTNYaExiste(rtnReal))
-                {
-                    MessageBox.Show("Este RTN ya está registrado para otro cliente.",
-                                    "RTN Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-            }
+                Nombre = nombreReal,
+                Apellido = apellidoReal,
+                Telefono = telefonoReal,
+                RTN = rtnReal
+            };
+
+            return true;
+        }
+
+        /// <summary>
+        /// Verifica que el RTN ingresado (si lo hay) no esté registrado para otro cliente.
+        /// </summary>
+        private async Task<bool> ValidarRTNDuplicado(string rtn, int idClienteActual)
+        {
+            if (rtn == "Sin RTN") return true;
 
             try
             {
-                this.Cursor = Cursors.WaitCursor;
-                ClsCliente objAC = new ClsCliente();
-
-                ClienteDTO clienteDTO = new ClienteDTO
+                bool existe = await Task.Run(() => clienteRepositorio.RTNYaExiste(rtn, idClienteActual));
+                if (existe)
                 {
-                    Nombre = nombreReal,
-                    Apellido = apellidoReal,
-                    Telefono = telefonoReal,
-                    RTN = rtnReal
-                };
+                    MessageBox.Show("Este RTN ya está registrado para otro cliente.",
+                                    "RTN Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al verificar el RTN: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
 
-                int id = await objAC.AgregarClientes(clienteDTO);
+        /// <summary>
+        /// Persiste el cliente ya validado y continúa el flujo hacia Agregar Factura.
+        /// </summary>
+        private async Task GuardarClienteYContinuar(ClienteDTO clienteDTO)
+        {
+            try
+            {
+                this.Cursor = Cursors.WaitCursor;
+
+                int id = await clienteRepositorio.AgregarClientes(clienteDTO);
 
                 if (id > 0)
                 {
                     this.IdClienteGenerado = id;
-                    this.NombreDelCliente = $"{nombreReal} {apellidoReal}";
+                    this.NombreDelCliente = $"{clienteDTO.Nombre} {clienteDTO.Apellido}";
 
-                    using (FacturaAgregarDatos frmFact = new FacturaAgregarDatos(this.NombreDelCliente, this.IdClienteGenerado, rtnReal))
+                    using (FacturaAgregarDatos frmFact = new FacturaAgregarDatos(this.NombreDelCliente, this.IdClienteGenerado, clienteDTO.RTN))
                     {
                         this.Hide();
                         frmFact.ShowDialog();
@@ -150,11 +185,7 @@ namespace SG_BAMS
 
         /// <summary>
         /// Maneja el evento KeyPress del campo <c>txtTelefono</c>.
-        /// Aplica validación en tiempo real para permitir únicamente
-        /// caracteres válidos en un número de teléfono hondureño.
         /// </summary>
-        /// <param name="sender">El objeto que originó el evento.</param>
-        /// <param name="e">Los datos del evento de teclado.</param>
         private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
         {
             ClsValidaciones.ValidarTelefonoKeyPress(txtTelefono, e);
@@ -162,14 +193,12 @@ namespace SG_BAMS
 
         /// <summary>
         /// Maneja el evento Click del botón <c>BtnExistente</c>.
-        /// Abre el formulario de búsqueda de clientes existentes y cierra
-        /// el formulario actual si se seleccionó un cliente correctamente.
+        /// Abre el formulario de búsqueda de clientes existentes, pasándole sus propias
+        /// dependencias inyectadas.
         /// </summary>
-        /// <param name="sender">El objeto que originó el evento.</param>
-        /// <param name="e">Los datos del evento.</param>
         private void BtnExistente_Click(object sender, EventArgs e)
         {
-            using (ClienteExistente frmCE = new ClienteExistente())
+            using (ClienteExistente frmCE = new ClienteExistente(new ClienteRepository(), new DeudasRepository()))
             {
                 if (frmCE.ShowDialog() == DialogResult.OK)
                 {
@@ -181,18 +210,12 @@ namespace SG_BAMS
 
         /// <summary>
         /// Maneja el evento Click del botón <c>BtnSalir</c>.
-        /// Cierra el formulario actual sin guardar cambios.
         /// </summary>
-        /// <param name="sender">El objeto que originó el evento.</param>
-        /// <param name="e">Los datos del evento.</param>
         private void BtnSalir_Click(object sender, EventArgs e) => this.Close();
 
         /// <summary>
         /// Maneja el evento Load del formulario <c>ClienteAgregar</c>.
-        /// Inicializa los placeholders y los guarda en las variables de instancia.
         /// </summary>
-        /// <param name="sender">El objeto que originó el evento.</param>
-        /// <param name="e">Los datos del evento.</param>
         private void ClienteAgregar_Load(object sender, EventArgs e)
         {
             phNombre = new PlaceholderTextBox(txtNombre, "Solo letras y espacios");

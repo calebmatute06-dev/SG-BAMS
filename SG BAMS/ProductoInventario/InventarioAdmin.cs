@@ -329,7 +329,7 @@ namespace SG_BAMS
         /// <summary>
         /// Maneja el evento Click del control btnClientes.
         /// </summary>
-        private void btnClientes_Click(object sender, EventArgs e) => _navegacion.IrA(this, new ClientesAdm());
+        private void btnClientes_Click(object sender, EventArgs e) => _navegacion.IrA(this, new ClientesAdm(new Cliente.ClienteRepository()));
 
         /// <summary>
         /// Maneja el evento Click del control btnProveedores.

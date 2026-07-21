@@ -107,7 +107,7 @@ namespace SG_BAMS
 
         private void btnClientes_Click(object sender, EventArgs e)
         {
-            new ClientesAdm().Show();
+            new ClientesAdm(new Cliente.ClienteRepository()).Show();
             this.Hide();
         }
 

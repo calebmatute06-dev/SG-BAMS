@@ -7,15 +7,16 @@ using System.Threading.Tasks;
 namespace SG_BAMS.Cliente
 {
     /// <summary>
-    /// Clase para la gestión de clientes usando solo Procedimientos Almacenados.
-    /// Consolida las operaciones de alta, modificación y consulta.
+    /// Implementación de acceso a datos del catálogo de clientes sobre SQL Server,
+    /// usando solo Procedimientos Almacenados. Única responsabilidad: ejecutar las
+    /// operaciones de datos de cliente. No muestra mensajes de interfaz — todos los
+    /// métodos propagan la excepción de forma consistente y es la capa de presentación
+    /// la que decide cómo informarla (ver auditoría SOLID, hallazgos CLI02/CLI03).
+    /// Reemplaza a la antigua clase ClsCliente.
     /// </summary>
-    internal class ClsCliente : ClsRepositorioBaseDatos
+    internal class ClienteRepository : ClsRepositorioBaseDatos, IClienteRepository
     {
-        /// <summary>
-        /// Registra un cliente nuevo a partir de los datos del DTO.
-        /// </summary>
-        /// <param name="dto">Datos del cliente a registrar.</param>
+        /// <inheritdoc />
         public async Task<int> AgregarClientes(ClienteDTO dto)
         {
             try
@@ -29,15 +30,12 @@ namespace SG_BAMS.Cliente
                     cmd.Parameters.AddWithValue("@telefono_cliente", dto.Telefono);
                     cmd.Parameters.AddWithValue("@rtn_cliente", dto.RTN);
                     object result = await cmd.ExecuteScalarAsync();
-                    if (result != null && result != DBNull.Value)
-                        return Convert.ToInt32(result);
-                    return 0;
+                    return (result != null && result != DBNull.Value) ? Convert.ToInt32(result) : 0;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al insertar cliente: " + ex.Message);
-                return 0;
+                throw new ApplicationException("Error al insertar cliente.", ex);
             }
             finally
             {
@@ -45,10 +43,7 @@ namespace SG_BAMS.Cliente
             }
         }
 
-        /// <summary>
-        /// Actualiza un cliente existente a partir de los datos del DTO.
-        /// </summary>
-        /// <param name="dto">Datos actualizados del cliente, incluyendo su IdCliente.</param>
+        /// <inheritdoc />
         public async Task<int> ModificarClientes(ClienteDTO dto)
         {
             try
@@ -63,14 +58,12 @@ namespace SG_BAMS.Cliente
                     cmd.Parameters.AddWithValue("@telefono_cliente", dto.Telefono);
                     cmd.Parameters.AddWithValue("@rtn_cliente", dto.RTN);
                     cmd.Parameters.AddWithValue("@id_estado", dto.IdEstado);
-                    int filasAfectadas = await cmd.ExecuteNonQueryAsync();
-                    return filasAfectadas;
+                    return await cmd.ExecuteNonQueryAsync();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
-                return 0;
+                throw new ApplicationException("Error al modificar cliente.", ex);
             }
             finally
             {
@@ -78,6 +71,7 @@ namespace SG_BAMS.Cliente
             }
         }
 
+        /// <inheritdoc />
         public async Task<DataTable> VerClienteTabla()
         {
             DataTable tablaC = new DataTable();
@@ -93,9 +87,9 @@ namespace SG_BAMS.Cliente
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return null;
+                throw new ApplicationException("Error al listar clientes.", ex);
             }
             finally
             {
@@ -104,6 +98,7 @@ namespace SG_BAMS.Cliente
             return tablaC;
         }
 
+        /// <inheritdoc />
         public async Task<DataTable> ObtenerClientes()
         {
             DataTable dt = new DataTable();
@@ -120,9 +115,9 @@ namespace SG_BAMS.Cliente
                 }
                 return dt;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw new ApplicationException("Error al obtener clientes.", ex);
             }
             finally
             {
@@ -130,6 +125,7 @@ namespace SG_BAMS.Cliente
             }
         }
 
+        /// <inheritdoc />
         public async Task<DataTable> ObtenerEstados()
         {
             DataTable dt = new DataTable();
@@ -146,9 +142,9 @@ namespace SG_BAMS.Cliente
                 }
                 return dt;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw new ApplicationException("Error al obtener estados.", ex);
             }
             finally
             {
@@ -156,6 +152,7 @@ namespace SG_BAMS.Cliente
             }
         }
 
+        /// <inheritdoc />
         public bool RTNYaExiste(string rtn, int idClienteActual = 0)
         {
             try
@@ -171,8 +168,7 @@ namespace SG_BAMS.Cliente
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al verificar RTN: " + ex.Message);
-                return false;
+                throw new ApplicationException("Error al verificar RTN.", ex);
             }
             finally
             {

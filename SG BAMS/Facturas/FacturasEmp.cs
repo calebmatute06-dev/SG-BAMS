@@ -172,7 +172,7 @@ namespace SG_BAMS
         /// </summary>
         private async void BtnNueva_Click(object sender, EventArgs e)
         {
-            using (ClienteAgregar frmCA = new ClienteAgregar())
+            using (ClienteAgregar frmCA = new ClienteAgregar(new Cliente.ClienteRepository()))
             {
                 if (frmCA.ShowDialog() == DialogResult.OK)
                 {
@@ -273,7 +273,7 @@ namespace SG_BAMS
 
         private void btnMenu_Click(object sender, EventArgs e) => navegacion.IrA(this, new MenuPrincipalEmp());
 
-        private void btnClientes_Click(object sender, EventArgs e) => navegacion.IrA(this, new ClientesEmp());
+        private void btnClientes_Click(object sender, EventArgs e) => navegacion.IrA(this, new ClientesEmp(new Cliente.ClienteRepository()));
 
         private void btnInventario_Click(object sender, EventArgs e) => navegacion.IrA(this, new InventarioEmp(new ProductoInventario.ProductoRepository()));
 

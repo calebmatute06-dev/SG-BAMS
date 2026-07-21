@@ -367,7 +367,7 @@ namespace SG_BAMS.Reporte
 
         private void btnCompra_Click(object sender, EventArgs e) => _servicioNavegacion.IrA(this, new Compras());
 
-        private void btnClientes_Click(object sender, EventArgs e) => _servicioNavegacion.IrA(this, new ClientesAdm());
+        private void btnClientes_Click(object sender, EventArgs e) => _servicioNavegacion.IrA(this, new ClientesAdm(new Cliente.ClienteRepository()));
 
         private void btnInventario_Click(object sender, EventArgs e)
         {

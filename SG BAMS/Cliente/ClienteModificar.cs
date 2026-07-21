@@ -11,16 +11,18 @@ namespace SG_BAMS
     /// <summary>
     /// Formulario para modificar los datos de un cliente existente en el sistema.
     /// Permite editar nombre, apellido, teléfono, RTN y estado del cliente.
+    /// Única responsabilidad de esta clase: coordinar la interacción con el usuario;
+    /// el acceso a datos se recibe por inyección (ver auditoría SOLID, hallazgos CM01-CM04).
     /// </summary>
     public partial class ClienteModificar : Form
     {
-        private ClsRepositorioBaseDatos objCl = new ClsRepositorioBaseDatos();
+        private readonly IClienteRepository clienteRepositorio;
 
         /// <summary>
         /// Datos del cliente a modificar, recibidos desde el listado (ClientesAdm/ClientesEmp).
         /// Reemplaza los 6 parámetros sueltos que antes recibía el constructor.
         /// </summary>
-        private readonly ClienteDTO _dto;
+        private readonly ClienteDTO dto;
 
         private PlaceholderTextBox phNombre;
         private PlaceholderTextBox phApellido;
@@ -29,15 +31,18 @@ namespace SG_BAMS
         private PlaceholderComboBox phEstado;
 
         /// <summary>
-        /// Constructor para modificar un cliente existente.
+        /// Constructor para modificar un cliente existente, recibiendo su dependencia
+        /// de acceso a datos por inyección.
         /// </summary>
+        /// <param name="clienteRepositorio">Acceso a datos de clientes.</param>
         /// <param name="dto">Datos actuales del cliente seleccionado en el listado.</param>
-        public ClienteModificar(ClienteDTO dto)
+        public ClienteModificar(IClienteRepository clienteRepositorio, ClienteDTO dto)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
 
-            _dto = dto;
+            this.clienteRepositorio = clienteRepositorio;
+            this.dto = dto;
             txtID.Text = dto.IdCliente.ToString();
             txtNombre.Text = dto.Nombre;
             txtApellido.Text = dto.Apellido;
@@ -56,21 +61,32 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Constructor sin parámetros, necesario para que el Diseñador de
-        /// Visual Studio pueda seguir abriendo el formulario.
+        /// Maneja el evento Click del botón <c>BtnModificar</c>.
+        /// Orquesta los pasos independientes: validar formato, verificar RTN duplicado
+        /// y guardar (ver hallazgo CM03).
         /// </summary>
-        public ClienteModificar()
-        {
-            InitializeComponent();
-        }
-
         private async void BtnModificar_Click(object sender, EventArgs e)
         {
+            if (!ValidarFormulario(out ClienteDTO dtoActualizado))
+                return;
+
+            if (!await ValidarRTNDuplicado(dtoActualizado.RTN, dtoActualizado.IdCliente))
+                return;
+
+            await GuardarCambios(dtoActualizado);
+        }
+
+        /// <summary>
+        /// Valida el formato de todos los campos y arma el DTO actualizado si son válidos.
+        /// </summary>
+        private bool ValidarFormulario(out ClienteDTO dtoActualizado)
+        {
+            dtoActualizado = null;
+
             string nombreReal = phNombre.GetRealValue().Trim();
             string apellidoReal = phApellido.GetRealValue().Trim();
             string telefonoReal = phTelefono.GetRealValue().Trim();
             string rtnReal = phRTN.GetRealValue().Trim();
-
 
             bool valido = true;
             using (var tempNombre = new KryptonTextBox())
@@ -98,38 +114,59 @@ namespace SG_BAMS
                     valido = false;
             }
 
-            if (!valido) return;
+            if (!valido) return false;
 
             if (string.IsNullOrWhiteSpace(rtnReal) || rtnReal.ToUpper() == "SIN RTN")
                 rtnReal = "Sin RTN";
 
-            if (rtnReal != "Sin RTN")
+            dtoActualizado = new ClienteDTO
             {
-                ClsCliente ver = new ClsCliente();
-                if (ver.RTNYaExiste(rtnReal, Convert.ToInt32(txtID.Text)))
-                {
-                    MessageBox.Show("Este RTN ya está registrado para otro cliente.",
-                                    "RTN Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-            }
+                IdCliente = Convert.ToInt32(txtID.Text),
+                Nombre = nombreReal,
+                Apellido = apellidoReal,
+                Telefono = telefonoReal,
+                RTN = rtnReal,
+                IdEstado = Convert.ToInt32(cmbEstado.SelectedValue)
+            };
+
+            return true;
+        }
+
+        /// <summary>
+        /// Verifica que el RTN ingresado (si lo hay) no esté registrado para otro cliente.
+        /// </summary>
+        private async Task<bool> ValidarRTNDuplicado(string rtn, int idClienteActual)
+        {
+            if (rtn == "Sin RTN") return true;
 
             try
             {
-                this.Cursor = Cursors.WaitCursor;
-                ClsCliente objMC = new ClsCliente();
-
-                ClienteDTO dtoActualizado = new ClienteDTO
+                bool existe = await Task.Run(() => clienteRepositorio.RTNYaExiste(rtn, idClienteActual));
+                if (existe)
                 {
-                    IdCliente = Convert.ToInt32(txtID.Text),
-                    Nombre = nombreReal,
-                    Apellido = apellidoReal,
-                    Telefono = telefonoReal,
-                    RTN = rtnReal,
-                    IdEstado = Convert.ToInt32(cmbEstado.SelectedValue)
-                };
+                    MessageBox.Show("Este RTN ya está registrado para otro cliente.",
+                                    "RTN Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al verificar el RTN: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
 
-                int filasActualizadas = await objMC.ModificarClientes(dtoActualizado);
+        /// <summary>
+        /// Persiste los cambios ya validados.
+        /// </summary>
+        private async Task GuardarCambios(ClienteDTO dtoActualizado)
+        {
+            try
+            {
+                this.Cursor = Cursors.WaitCursor;
+
+                int filasActualizadas = await clienteRepositorio.ModificarClientes(dtoActualizado);
 
                 if (filasActualizadas > 0)
                 {
@@ -157,10 +194,9 @@ namespace SG_BAMS
 
         private async Task LlenarComboEstado()
         {
-            ClsCliente MC = new ClsCliente();
             try
             {
-                DataTable dt = await MC.ObtenerEstados();
+                DataTable dt = await clienteRepositorio.ObtenerEstados();
                 cmbEstado.DataSource = dt;
                 cmbEstado.DisplayMember = "descripcion_estado";
                 cmbEstado.ValueMember = "id_estado";
@@ -174,7 +210,7 @@ namespace SG_BAMS
         private async void ClienteModificar_Load(object sender, EventArgs e)
         {
             await LlenarComboEstado();
-            cmbEstado.SelectedValue = _dto?.IdEstado ?? 0;
+                cmbEstado.SelectedValue = dto?.IdEstado ?? 0;
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             cmbEstado.DropDownStyle = ComboBoxStyle.DropDownList;

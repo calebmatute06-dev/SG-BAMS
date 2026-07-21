@@ -255,7 +255,7 @@ namespace SG_BAMS
         // Implementación del servicio unificado de navegación siguiendo el formato enviado por captura
         private void btnMenu_Click(object sender, EventArgs e) => _navegacion.IrA(this, new MenuPrincipalAdm());
         private void btnFacturas_Click(object sender, EventArgs e) => _navegacion.IrA(this, new FacturasAdm());
-        private void btnClientes_Click(object sender, EventArgs e) => _navegacion.IrA(this, new ClientesAdm());
+        private void btnClientes_Click(object sender, EventArgs e) => _navegacion.IrA(this, new ClientesAdm(new Cliente.ClienteRepository()));
         private void btnInventario_Click(object sender, EventArgs e)
         {
             InventarioAdmin IA = new InventarioAdmin(new ProductoInventario.ProductoRepository(), new ProductoInventario.ComboRepository());

@@ -218,7 +218,7 @@ namespace SG_BAMS
         private void btnMenu_Click(object sender, EventArgs e) => _navegacion.IrA(this, new MenuPrincipalAdm());
         private void btnFacturas_Click(object sender, EventArgs e) => _navegacion.IrA(this, new FacturasAdm());
         private void btnCompra_Click(object sender, EventArgs e) => _navegacion.IrA(this, new Compras());
-        private void btnClientes_Click(object sender, EventArgs e) => _navegacion.IrA(this, new ClientesAdm());
+        private void btnClientes_Click(object sender, EventArgs e) => _navegacion.IrA(this, new ClientesAdm(new Cliente.ClienteRepository()));
         private void btnInventario_Click(object sender, EventArgs e) => _navegacion.IrA(this, new InventarioAdmin(new ProductoInventario.ProductoRepository(), new ProductoInventario.ComboRepository()));
         private void btnProveedores_Click(object sender, EventArgs e)
         {

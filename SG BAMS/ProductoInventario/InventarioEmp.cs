@@ -180,7 +180,7 @@ namespace SG_BAMS
         /// <summary>
         /// Maneja el evento Click del control btnClientes.
         /// </summary>
-        private void btnClientes_Click(object sender, EventArgs e) => _navegacion.IrA(this, new ClientesEmp());
+        private void btnClientes_Click(object sender, EventArgs e) => _navegacion.IrA(this, new ClientesEmp(new Cliente.ClienteRepository()));
 
 
 

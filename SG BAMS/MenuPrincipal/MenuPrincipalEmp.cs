@@ -75,7 +75,7 @@ namespace SG_BAMS
         private void btninventario2_Click(object sender, EventArgs e) { InventarioEmp invemp = new InventarioEmp(new ProductoInventario.ProductoRepository()); invemp.Show(); this.Hide(); }
         private void btninventario3_Click(object sender, EventArgs e) { InventarioEmp invemp = new InventarioEmp(new ProductoInventario.ProductoRepository()); invemp.Show(); this.Hide(); }
         private void btnFacturas_Click(object sender, EventArgs e) => NavegarA<FacturasEmp>();
-        private void btnClientes_Click(object sender, EventArgs e) => NavegarA<ClientesEmp>();
+        private void btnClientes_Click(object sender, EventArgs e) { ClientesEmp CE = new ClientesEmp(new Cliente.ClienteRepository()); CE.Show(); this.Hide(); }
         private void btnInventario_Click(object sender, EventArgs e) { InventarioEmp IE = new InventarioEmp(new ProductoInventario.ProductoRepository()); IE.Show(); this.Hide(); }
         private void btnDeudores_Click(object sender, EventArgs e) { Deudores_Emp DE = new Deudores_Emp(new DeudaRepository()); DE.Show(); this.Hide(); }
         private void btnVentas_Click(object sender, EventArgs e) => NavegarA<FacturasEmp>();
@@ -89,7 +89,7 @@ namespace SG_BAMS
 
         private async void btnclientes2_Click(object sender, EventArgs e)
         {
-            ClientesEmp clienemp = new ClientesEmp();
+            ClientesEmp clienemp = new ClientesEmp(new Cliente.ClienteRepository());
             clienemp.Show();
             await ActualizarLabelClientes(label7);
             this.Hide();
