@@ -53,7 +53,6 @@ namespace SG_BAMS
             txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
             txtApellido.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
             txtTelefono.KeyPress += txtTelefono_KeyPress;
-            txtRTN.KeyPress += txtRTN_KeyPress;
         }
 
         /// <summary>
