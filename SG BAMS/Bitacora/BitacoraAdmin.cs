@@ -250,7 +250,7 @@ public partial class BitacoraAdmin : Form
     private void btnFacturas_Click(object sender, EventArgs e) { new FacturasAdm().Show(); Hide(); }
     private void btnCompra_Click(object sender, EventArgs e) { new Compras().Show(); Hide(); }
     private void btnClientes_Click(object sender, EventArgs e) { new ClientesAdm().Show(); Hide(); }
-    private void btnInventario_Click(object sender, EventArgs e) { new InventarioAdmin().Show(); Hide(); }
+    private void btnInventario_Click(object sender, EventArgs e) { new InventarioAdmin(new ProductoInventario.ProductoRepository(), new ProductoInventario.ComboRepository()).Show(); Hide(); }
     private void btnProveedores_Click(object sender, EventArgs e)
     {
         var PA = new ProveedoresAdmin(
@@ -260,7 +260,7 @@ public partial class BitacoraAdmin : Form
         PA.Show();
         this.Hide();
     }
-    private void btnDeudores_Click(object sender, EventArgs e) { new DeudoresAdmin().Show(); Hide(); }
+    private void btnDeudores_Click(object sender, EventArgs e) { new DeudoresAdmin(new DeudaRepository()).Show(); Hide(); }
     private void btnReportes_Click(object sender, EventArgs e) { new ReportesAdmin().Show(); Hide(); }
 
     private void btnCerrar_Click(object sender, EventArgs e)

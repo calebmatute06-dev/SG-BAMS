@@ -291,7 +291,7 @@ namespace SG_BAMS
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnInventario_Click(object sender, EventArgs e)
         {
-            InventarioEmp IE = new InventarioEmp();
+            InventarioEmp IE = new InventarioEmp(new ProductoInventario.ProductoRepository());
             IE.Show();
             this.Hide();
         }
@@ -303,7 +303,7 @@ namespace SG_BAMS
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnDeudores_Click(object sender, EventArgs e)
         {
-            Deudores_Emp DE = new Deudores_Emp();
+            Deudores_Emp DE = new Deudores_Emp(new DeudaRepository());
             DE.Show();
             this.Hide();
         }

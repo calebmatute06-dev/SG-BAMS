@@ -2,24 +2,40 @@
 using SG_BAMS.Proveedor;
 using SG_BAMS.Reporte;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 
 namespace SG_BAMS
 {
+    /// <summary>
+    /// Listado y gestión de pagos de deudores (perfil Administrador).
+    /// Única responsabilidad: coordinar la grilla y la apertura del formulario de pago,
+    /// delegando el acceso a datos en IDeudaRepository (inyectado) y la construcción del
+    /// filtro en FiltroDeudoresService (ver auditoría SOLID, hallazgos DAD01-DAD05).
+    /// </summary>
     public partial class DeudoresAdmin : Form
     {
+        private readonly IDeudaRepository _deudaRepositorio;
+        private readonly FiltroDeudoresService _filtroService = new FiltroDeudoresService();
+        private readonly NavegacionService _navegacion = new NavegacionService();
+
         private DataTable dtDeudores;
         private bool isFiltering = false;
         private string placeholderTexto = "Buscar por nombre del cliente...";
         private Color placeholderColor = Color.Gray;
         private Color textoColor = Color.Black;
 
-        public DeudoresAdmin()
+        /// <summary>
+        /// Inicializa una nueva instancia de <see cref="DeudoresAdmin"/>, recibiendo su
+        /// dependencia de acceso a datos por inyección.
+        /// </summary>
+        /// <param name="deudaRepositorio">Acceso a datos del listado de deudores.</param>
+        public DeudoresAdmin(IDeudaRepository deudaRepositorio)
         {
             InitializeComponent();
+            _deudaRepositorio = deudaRepositorio;
+
             this.StartPosition = FormStartPosition.CenterScreen;
             CargarGridDeudores();
             this.MaximizeBox = false;
@@ -63,8 +79,7 @@ namespace SG_BAMS
 
         public void CargarGridDeudores()
         {
-            ClsDeuda objetoDeuda = new ClsDeuda();
-            dtDeudores = objetoDeuda.ListarDeudores();
+            dtDeudores = _deudaRepositorio.ListarDeudores();
 
             dgvDeudores.DataSource = dtDeudores;
             dgvDeudores.ReadOnly = true;
@@ -76,33 +91,22 @@ namespace SG_BAMS
             FiltrarDeudores();
         }
 
+        /// <summary>
+        /// Aplica a la grilla el RowFilter construido por FiltroDeudoresService.
+        /// La lógica de armado del filtro ya no vive en el formulario (ver hallazgo DAD02).
+        /// </summary>
         private void FiltrarDeudores()
         {
             if (dtDeudores == null) return;
 
             try
             {
-                DataView dv = dtDeudores.DefaultView;
                 string filtroNombre = txtBuscarNombre.Text?.Trim() ?? "";
-
                 if (filtroNombre == placeholderTexto || txtBuscarNombre.ForeColor == placeholderColor)
                     filtroNombre = "";
 
-                var condiciones = new List<string>();
-                condiciones.Add("[Estado Deuda] = 'Activo'");
-
-                if (!string.IsNullOrWhiteSpace(filtroNombre))
-                {
-                    string nombreBuscar = filtroNombre
-                        .Replace("'", "''")
-                        .Replace("[", "[[]")
-                        .Replace("]", "[]]");
-
-                    condiciones.Add($"Cliente LIKE '%{nombreBuscar}%'");
-                }
-
-                string rowFilter = string.Join(" AND ", condiciones);
-                dv.RowFilter = rowFilter;
+                DataView dv = dtDeudores.DefaultView;
+                dv.RowFilter = _filtroService.ConstruirRowFilter(filtroNombre);
                 dgvDeudores.DataSource = dv;
                 dgvDeudores.ClearSelection();
             }
@@ -122,6 +126,9 @@ namespace SG_BAMS
 
         private void kryptonButton12_Click(object sender, EventArgs e) => FiltrarDeudores();
 
+        /// <summary>
+        /// Decide si corresponde abrir el formulario de pago para la fila seleccionada.
+        /// </summary>
         private void ProcesarPagoDeuda(DataRowView fila)
         {
             if (fila == null) return;
@@ -130,18 +137,17 @@ namespace SG_BAMS
             string nombreCliente = fila["Cliente"].ToString().Trim();
             string estadoDeuda = fila["Estado Deuda"].ToString().Trim();
 
-            if (estadoDeuda.Equals("Activo", StringComparison.OrdinalIgnoreCase))
-            {
-                Pago_Deuda pagDe = new Pago_Deuda(nombreCliente, idDeuda);
-                if (pagDe.ShowDialog() == DialogResult.OK)
-                {
-                    CargarGridDeudores();
-                    txtBuscarNombre.Clear();
-                }
-            }
-            else
+            if (!ReglaPagoDeudaService.PuedeRegistrarPago(estadoDeuda))
             {
                 MessageBox.Show($"La deuda de {nombreCliente} ya no está activa.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            Pago_Deuda pagDe = new Pago_Deuda(new DeudasRepository(), nombreCliente, idDeuda);
+            if (pagDe.ShowDialog() == DialogResult.OK)
+            {
+                CargarGridDeudores();
+                txtBuscarNombre.Clear();
             }
         }
 
@@ -204,59 +210,32 @@ namespace SG_BAMS
             btnDeudores.BackColor = Color.SkyBlue;
             btnDeudores.ForeColor = Color.White;
 
-            dgvDeudores.ClearSelection();
-            dgvDeudores.BorderStyle = BorderStyle.None;
-            dgvDeudores.BackgroundColor = Color.White;
-            dgvDeudores.RowHeadersVisible = false;
-            dgvDeudores.EnableHeadersVisualStyles = false;
-            dgvDeudores.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            EstiloDataGridView.Aplicar(dgvDeudores);
 
-            dgvDeudores.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
-            dgvDeudores.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
-            dgvDeudores.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
-            dgvDeudores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgvDeudores.ColumnHeadersHeight = 28;
-
-            dgvDeudores.DefaultCellStyle.BackColor = Color.White;
-            dgvDeudores.DefaultCellStyle.ForeColor = Color.Navy;
-            dgvDeudores.DefaultCellStyle.Font = new Font("Segoe UI", 10);
-            dgvDeudores.DefaultCellStyle.Padding = new Padding(3);
-            dgvDeudores.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 245, 255);
-            dgvDeudores.AlternatingRowsDefaultCellStyle.ForeColor = Color.Navy;
-
-            dgvDeudores.DefaultCellStyle.SelectionBackColor = Color.DeepSkyBlue;
-            dgvDeudores.DefaultCellStyle.SelectionForeColor = Color.White;
-
-            dgvDeudores.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgvDeudores.GridColor = Color.LightGray;
-            dgvDeudores.RowTemplate.Height = 32;
-            dgvDeudores.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvDeudores.ClearSelection();
             ClsMensajeGuia.Activar(txtBuscarNombre);
         }
 
-        private void btnMenu_Click(object sender, EventArgs e) { MenuPrincipalAdm MPA = new MenuPrincipalAdm(); MPA.Show(); this.Close(); }
-        private void btnFacturas_Click(object sender, EventArgs e) { FacturasAdm FA = new FacturasAdm(); FA.Show(); this.Close(); }
-        private void btnCompra_Click(object sender, EventArgs e) { Compras CF = new Compras(); CF.Show(); this.Close(); }
-        private void btnClientes_Click(object sender, EventArgs e) { ClientesAdm CA = new ClientesAdm(); CA.Show(); this.Close(); }
-        private void btnInventario_Click(object sender, EventArgs e) { InventarioAdmin IA = new InventarioAdmin(); IA.Show(); this.Close(); }
+        private void btnMenu_Click(object sender, EventArgs e) => _navegacion.IrA(this, new MenuPrincipalAdm());
+        private void btnFacturas_Click(object sender, EventArgs e) => _navegacion.IrA(this, new FacturasAdm());
+        private void btnCompra_Click(object sender, EventArgs e) => _navegacion.IrA(this, new Compras());
+        private void btnClientes_Click(object sender, EventArgs e) => _navegacion.IrA(this, new ClientesAdm());
+        private void btnInventario_Click(object sender, EventArgs e) => _navegacion.IrA(this, new InventarioAdmin(new ProductoInventario.ProductoRepository(), new ProductoInventario.ComboRepository()));
         private void btnProveedores_Click(object sender, EventArgs e)
         {
             var PA = new ProveedoresAdmin(
                 new ProveedorRepository(),
                 new EstadoRepository(),
                 new ClasificacionRepository());
-            PA.Show();
-            this.Hide();
+            _navegacion.IrA(this, PA);
         }
-        private void btnReportes_Click(object sender, EventArgs e) { ReportesAdmin RA = new ReportesAdmin(); RA.Show(); this.Close(); }
-        private void btnBitacora_Click(object sender, EventArgs e) {
+        private void btnReportes_Click(object sender, EventArgs e) => _navegacion.IrA(this, new ReportesAdmin());
+        private void btnBitacora_Click(object sender, EventArgs e)
+        {
             var Bi = new BitacoraAdmin(
                new BitacoraRepository(),
                new FiltroBitacoraService(),
                new ReporteBitacoraPdfExportador());
-            Bi.Show();
-            this.Hide();
+            _navegacion.IrA(this, Bi);
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)

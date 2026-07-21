@@ -29,6 +29,6 @@ namespace SG_BAMS.ProductoInventario.DTO
         public string EstadoActual { get; set; }
         public string ProveedorActual { get; set; }
 
-        
+
     }
 }

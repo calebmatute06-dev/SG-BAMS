@@ -122,7 +122,7 @@ namespace SG_BAMS
 
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
-            using (AgregarProducto frmCrear = new AgregarProducto())
+            using (AgregarProducto frmCrear = new AgregarProducto(new ProductoInventario.ProductoRepository(), new ProductoInventario.ComboRepository()))
             {
                 if (frmCrear.ShowDialog() == DialogResult.OK)
                 {

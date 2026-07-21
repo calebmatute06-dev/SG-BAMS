@@ -275,9 +275,9 @@ namespace SG_BAMS
 
         private void btnClientes_Click(object sender, EventArgs e) => navegacion.IrA(this, new ClientesEmp());
 
-        private void btnInventario_Click(object sender, EventArgs e) => navegacion.IrA(this, new InventarioEmp());
+        private void btnInventario_Click(object sender, EventArgs e) => navegacion.IrA(this, new InventarioEmp(new ProductoInventario.ProductoRepository()));
 
-        private void btnDeudores_Click(object sender, EventArgs e) => navegacion.IrA(this, new Deudores_Emp());
+        private void btnDeudores_Click(object sender, EventArgs e) => navegacion.IrA(this, new Deudores_Emp(new DeudaRepository()));
 
         /// <summary>
         /// Handles the Click event of the btnCerrar control.

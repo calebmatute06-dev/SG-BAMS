@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Data;
+using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 
 namespace SG_BAMS
 {
     /// <summary>
-    /// Clase para listar deudores usando solo Procedimientos Almacenados.
+    /// Implementación de acceso a datos para el listado de deudores y la creación/actualización
+    /// automática de deudas, usando solo Procedimientos Almacenados.
+    /// Reemplaza a la antigua clase ClsDeuda (ver auditoría SOLID).
     /// </summary>
-    internal class ClsDeuda : ClsRepositorioBaseDatos
+    internal class DeudaRepository : ClsRepositorioBaseDatos, IDeudaRepository
     {
+        /// <inheritdoc />
         public DataTable ListarDeudores()
         {
             DataTable tablaDeudores = new DataTable();
@@ -26,7 +30,7 @@ namespace SG_BAMS
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al listar deudores: " + ex.Message);
+                throw new ApplicationException("Error al listar deudores.", ex);
             }
             finally
             {
@@ -35,14 +39,13 @@ namespace SG_BAMS
             return tablaDeudores;
         }
 
-
+        /// <inheritdoc />
         public async Task<bool> CrearDeudaManual(int idFactura, int idCliente, double montoTotal, DateTime fechaVenta)
         {
-            ClsRepositorioBaseDatos conexion = new ClsRepositorioBaseDatos();
             try
             {
-                conexion.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_Deuda_CrearOActualizar", conexion.Conectar))
+                AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("sp_Deuda_CrearOActualizar", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@idFactura", idFactura);
@@ -53,14 +56,13 @@ namespace SG_BAMS
                     return true;
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show("Error al crear/actualizar deuda: " + ex.Message);
                 return false;
             }
             finally
             {
-                conexion.Cerrar();
+                Cerrar();
             }
         }
     }

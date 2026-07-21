@@ -28,8 +28,8 @@ namespace SG_BAMS
 
 
         private readonly ClsFactura AF = new ClsFactura();
-        private readonly ClsDeudas DE = new ClsDeudas();
-        private readonly ClsDeuda DEM = new ClsDeuda();
+        private readonly IDeudasRepository DE = new DeudasRepository();
+        private readonly IDeudaRepository DEM = new DeudaRepository();
         private readonly ServicioEscaneoBarras Escanner = new ServicioEscaneoBarras();
         private static readonly CultureInfo CI = CultureInfo.InvariantCulture;
         private readonly BusquedaProductoService busquedaProducto;
@@ -375,7 +375,7 @@ namespace SG_BAMS
 
         private async Task<bool> GestionarCreditoSiAplica(int idFactura, FacturaDTO facturaDTO)
         {
-            ClsDeuda DEM = new ClsDeuda();
+            IDeudaRepository DEM = new DeudaRepository();
             string formaPagoTexto = cmbPago.Text.ToLower();
             if (!formaPagoTexto.Contains("crédito") && !formaPagoTexto.Contains("credito")) return false;
 
@@ -399,9 +399,9 @@ namespace SG_BAMS
             this.Hide();
 
             if (ClsLogin.RolUsuario == 1 || ClsLogin.RolUsuario == 3)
-                new DeudoresAdmin().Show();
+                new DeudoresAdmin(new DeudaRepository()).Show();
             else
-                new Deudores_Emp().Show();
+                new Deudores_Emp(new DeudaRepository()).Show();
 
             this.Close();
             return true;

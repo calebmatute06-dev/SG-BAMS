@@ -19,6 +19,8 @@ namespace SG_BAMS
         /// Reemplaza los campos públicos sueltos (marcaActual, tipoActual, etc.) que se llenaban
         /// desde afuera después de crear el formulario.
         /// </summary>
+        private readonly IProductoRepository _productoRepositorio;
+        private readonly IComboRepository _comboRepositorio;
         private readonly ProductoDTO _dto;
 
         private PlaceholderTextBox phNombre;
@@ -31,25 +33,24 @@ namespace SG_BAMS
         private PlaceholderComboBox phProveedor;
 
         /// <summary>
-        /// Inicializa una nueva instancia del formulario.
-        /// Se mantiene para que el Diseñador de Visual Studio pueda seguir abriendo el formulario.
+        /// Inicializa el formulario con los datos del producto que se va a modificar,
+        /// recibiendo sus dependencias de acceso a datos por inyección
+        /// (ver auditoría SOLID, hallazgo relacionado con ClsProducto/ClsLlenarCombo).
         /// </summary>
-        public ModificarProducto()
+        /// <param name="productoRepositorio">Acceso a datos de productos.</param>
+        /// <param name="comboRepositorio">Acceso a datos de los catálogos de combo.</param>
+        /// <param name="dto">Datos del producto seleccionado en el listado.</param>
+        public ModificarProducto(IProductoRepository productoRepositorio, IComboRepository comboRepositorio, ProductoDTO dto)
         {
             InitializeComponent();
+            _productoRepositorio = productoRepositorio;
+            _comboRepositorio = comboRepositorio;
+            _dto = dto;
+
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             txtNombre.KeyPress += (s, e) => ClsValidaciones.PermitirAlfanumerico(e);
-        }
-
-        /// <summary>
-        /// Inicializa el formulario con los datos del producto que se va a modificar.
-        /// </summary>
-        /// <param name="dto">Datos del producto seleccionado en el listado.</param>
-        public ModificarProducto(ProductoDTO dto) : this()
-        {
-            _dto = dto;
         }
 
         /// <summary>
@@ -131,9 +132,7 @@ namespace SG_BAMS
                 int stockNuevo = Convert.ToInt32(txtStock.Value);
                 decimal precioNumerico = Convert.ToDecimal(precioReal);
 
-                ClsProducto logica = new ClsProducto();
-
-                if (logica.ExisteProductoEnOtros(idActual, nombreReal, idMarca, idProveedor))
+                if (_productoRepositorio.ExisteProductoDuplicado(nombreReal, idMarca, idProveedor, idActual))
                 {
                     MessageBox.Show("Este producto con esta marca ya está registrado para el proveedor seleccionado.\n\n" +
                                     "Si es un proveedor distinto, sí puede usar el mismo nombre.",
@@ -142,7 +141,7 @@ namespace SG_BAMS
                     return;
                 }
 
-                if (logica.ExisteCodigoEnOtros(idActual, codigoReal))
+                if (_productoRepositorio.ExisteCodigoBarraDuplicado(codigoReal, idActual))
                 {
                     MessageBox.Show("El código de barras ya está asignado a otro producto.",
                                     "Código Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Stop);
@@ -164,7 +163,7 @@ namespace SG_BAMS
                     Stock = stockNuevo
                 };
 
-                logica.EjecutarActualizacion(dtoActualizado);
+                _productoRepositorio.EjecutarActualizacion(dtoActualizado);
 
                 MessageBox.Show("¡Producto actualizado correctamente!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;
@@ -215,16 +214,15 @@ namespace SG_BAMS
         /// </summary>
         public void LlenarCombosModificar()
         {
-            ClsLlenarCombo llenar = new ClsLlenarCombo();
             try
             {
-                llenar.ConfigurarComboBox(cmbMarca, "Marca");
-                llenar.ConfigurarComboBox(cmbTipo, "Tipo");
-                llenar.ConfigurarComboBox(cmbModelo, "Modelo");
-                llenar.ConfigurarComboBox(cmbEstado, "Estado");
+                ComboBoxConfigurator.Configurar(cmbMarca, _comboRepositorio, "Marca");
+                ComboBoxConfigurator.Configurar(cmbTipo, _comboRepositorio, "Tipo");
+                ComboBoxConfigurator.Configurar(cmbModelo, _comboRepositorio, "Modelo");
+                ComboBoxConfigurator.Configurar(cmbEstado, _comboRepositorio, "Estado");
 
                 int idProvActual = ObtenerIdProveedorPorNombre(_dto?.ProveedorActual);
-                llenar.ConfigurarComboBox(cmbProveedor, "Proveedor", idProvActual);
+                ComboBoxConfigurator.Configurar(cmbProveedor, _comboRepositorio, "Proveedor", idProvActual);
             }
             catch (Exception ex)
             {

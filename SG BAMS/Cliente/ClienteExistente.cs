@@ -103,7 +103,7 @@ namespace SG_BAMS
                             rtn = rtnValor;
                     }
 
-                    ClsDeudas objDeudas = new ClsDeudas();
+                    IDeudasRepository objDeudas = new DeudasRepository();
                     bool tieneDeuda = await objDeudas.ClienteTieneDeudaActiva(idCliente);
 
                     if (tieneDeuda)

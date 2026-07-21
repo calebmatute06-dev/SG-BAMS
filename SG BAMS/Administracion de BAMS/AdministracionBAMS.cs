@@ -113,7 +113,7 @@ namespace SG_BAMS
 
         private void btnInventario_Click(object sender, EventArgs e)
         {
-            new InventarioAdmin().Show();
+            new InventarioAdmin(new ProductoInventario.ProductoRepository(), new ProductoInventario.ComboRepository()).Show();
             this.Hide();
         }
 
@@ -128,7 +128,7 @@ namespace SG_BAMS
 
         private void btnDeudores_Click(object sender, EventArgs e)
         {
-            new DeudoresAdmin().Show();
+            new DeudoresAdmin(new DeudaRepository()).Show();
             this.Hide();
         }
 

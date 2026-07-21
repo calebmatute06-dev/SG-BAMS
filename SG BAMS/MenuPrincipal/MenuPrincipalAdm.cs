@@ -73,17 +73,17 @@ namespace SG_BAMS
             await CargarGraficoMasVendidos(chartMasVendidos);
         }
 
-        private void btninventario2_Click(object sender, EventArgs e) => NavegarA<InventarioAdmin>();
-        private void btninventario3_Click(object sender, EventArgs e) => NavegarA<InventarioAdmin>();
-        private void btndeudores2_Click(object sender, EventArgs e) => NavegarA<DeudoresAdmin>();
+        private void btninventario2_Click(object sender, EventArgs e) { InventarioAdmin Invad = new InventarioAdmin(new ProductoInventario.ProductoRepository(), new ProductoInventario.ComboRepository()); Invad.Show(); this.Hide(); }
+        private void btninventario3_Click(object sender, EventArgs e) { InventarioAdmin Invad = new InventarioAdmin(new ProductoInventario.ProductoRepository(), new ProductoInventario.ComboRepository()); Invad.Show(); this.Hide(); }
+        private void btndeudores2_Click(object sender, EventArgs e) { DeudoresAdmin Deu = new DeudoresAdmin(new DeudaRepository()); Deu.Show(); this.Hide(); }
         private void btnclientes2_Click(object sender, EventArgs e) => NavegarA<ClientesAdm>();
         private void btnAdministracion_Click(object sender, EventArgs e) => NavegarA<AdministracionBAMS>();
-        private void btnProd_Click(object sender, EventArgs e) => NavegarA<InventarioAdmin>();
+        private void btnProd_Click(object sender, EventArgs e) { InventarioAdmin Invad = new InventarioAdmin(new ProductoInventario.ProductoRepository(), new ProductoInventario.ComboRepository()); Invad.Show(); this.Hide(); }
         private void btnFacturas_Click(object sender, EventArgs e) => NavegarA<FacturasAdm>();
         private void btnCompra_Click(object sender, EventArgs e) => NavegarA<Compras>();
         private void btnClientes_Click_1(object sender, EventArgs e) => NavegarA<ClientesAdm>();
-        private void btnInventario_Click(object sender, EventArgs e) => NavegarA<InventarioAdmin>();
-        private void btnDeudores_Click(object sender, EventArgs e) => NavegarA<DeudoresAdmin>();
+        private void btnInventario_Click(object sender, EventArgs e) { InventarioAdmin IA = new InventarioAdmin(new ProductoInventario.ProductoRepository(), new ProductoInventario.ComboRepository()); IA.Show(); this.Hide(); }
+        private void btnDeudores_Click(object sender, EventArgs e) { DeudoresAdmin DA = new DeudoresAdmin(new DeudaRepository()); DA.Show(); this.Hide(); }
         private void btnReportes_Click(object sender, EventArgs e) => NavegarA<ReportesAdmin>();
 
         private void btnProveedores_Click(object sender, EventArgs e)

@@ -138,7 +138,7 @@ namespace SG_BAMS
 
         private void btnProductoNuevo_Click(object sender, EventArgs e)
         {
-            AgregarProducto agregarProducto = new AgregarProducto();
+            AgregarProducto agregarProducto = new AgregarProducto(new ProductoInventario.ProductoRepository(), new ProductoInventario.ComboRepository());
             agregarProducto.Show();
         }
 

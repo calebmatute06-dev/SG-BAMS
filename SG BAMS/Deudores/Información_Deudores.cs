@@ -64,37 +64,14 @@ namespace SG_BAMS.Deudores
         /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnaceptar_Click(object sender, EventArgs e)
         {
-            List<Form> formulariosACerrar = new List<Form>();
+            var navegacion = new NavegacionService();
 
-            foreach (Form frm in Application.OpenForms)
-            {
-
-                if (frm is FacturaAgregarDatos || frm.Name == "FacturasAdm")
-                {
-                    formulariosACerrar.Add(frm);
-                }
-            }
-
-
-            foreach (Form frm in formulariosACerrar)
-            {
-                frm.Close();
-            }
-
-
-            Form deudoresAbierto = Application.OpenForms["Deudores"];
-
-            if (deudoresAbierto != null)
-            {
-                deudoresAbierto.BringToFront();
-            }
-            else
-            {
-
-                DeudoresAdmin deudores = new DeudoresAdmin();
-                deudores.Show();
-            }
-
+            // Antes este formulario recorría Application.OpenForms a mano para decidir qué
+            // ventanas cerrar y si ya había una ventana de Deudores abierta. Esa responsabilidad
+            // ahora vive en NavegacionService (ver auditoría SOLID, hallazgo IND01).
+            navegacion.CerrarFormulariosDe<FacturaAgregarDatos>();
+            navegacion.CerrarFormularioPorNombre("FacturasAdm");
+            navegacion.MostrarOTraerAlFrente("Deudores", () => new DeudoresAdmin(new DeudaRepository()));
 
             MessageBox.Show("Datos confirmados. Redirigiendo a Deudores.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();

@@ -1,9 +1,5 @@
 ﻿using SG_BAMS.Login;
 using SG_BAMS.MenuPrincipal;
-using System;
-using System.Drawing;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace SG_BAMS
 {
@@ -76,20 +72,19 @@ namespace SG_BAMS
 
         private void MenuPrincipalEmp_Shown(object sender, EventArgs e) => Ayudante_UI.AplicarZoomGlobal(this);
 
-        private void btninventario2_Click(object sender, EventArgs e) => NavegarA<InventarioEmp>();
-        private void btninventario3_Click(object sender, EventArgs e) => NavegarA<InventarioEmp>();
+        private void btninventario2_Click(object sender, EventArgs e) { InventarioEmp invemp = new InventarioEmp(new ProductoInventario.ProductoRepository()); invemp.Show(); this.Hide(); }
+        private void btninventario3_Click(object sender, EventArgs e) { InventarioEmp invemp = new InventarioEmp(new ProductoInventario.ProductoRepository()); invemp.Show(); this.Hide(); }
         private void btnFacturas_Click(object sender, EventArgs e) => NavegarA<FacturasEmp>();
         private void btnClientes_Click(object sender, EventArgs e) => NavegarA<ClientesEmp>();
-        private void btnInventario_Click(object sender, EventArgs e) => NavegarA<InventarioEmp>();
-        private void btnDeudores_Click(object sender, EventArgs e) => NavegarA<Deudores_Emp>();
+        private void btnInventario_Click(object sender, EventArgs e) { InventarioEmp IE = new InventarioEmp(new ProductoInventario.ProductoRepository()); IE.Show(); this.Hide(); }
+        private void btnDeudores_Click(object sender, EventArgs e) { Deudores_Emp DE = new Deudores_Emp(new DeudaRepository()); DE.Show(); this.Hide(); }
         private void btnVentas_Click(object sender, EventArgs e) => NavegarA<FacturasEmp>();
 
-        private async void btndeudores2_Click(object sender, EventArgs e)
+        private async void btndeudores2_Click(object sender, EventArgs e) { Deudores_Emp deudoresForm = new Deudores_Emp(new DeudaRepository()); deudoresForm.Show(); await ActualizarLabelDeudores(); this.Hide(); }
+        private async Task ActualizarLabelDeudores()
         {
-            Deudores_Emp deudoresForm = new Deudores_Emp();
-            deudoresForm.Show();
-            await ActualizarLabelDeudores(label6);
-            this.Hide();
+            int totalDeudores = await dashboard.ObtenerTotalDeudores();
+            label6.Text = totalDeudores != -1 ? totalDeudores.ToString() : "0";
         }
 
         private async void btnclientes2_Click(object sender, EventArgs e)

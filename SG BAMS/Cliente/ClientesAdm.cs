@@ -340,7 +340,7 @@ namespace SG_BAMS
         /// <param name="e">Los datos del evento.</param>
         private void btnInventario_Click(object sender, EventArgs e)
         {
-            InventarioAdmin IA = new InventarioAdmin();
+            InventarioAdmin IA = new InventarioAdmin(new ProductoInventario.ProductoRepository(), new ProductoInventario.ComboRepository());
             IA.Show();
             this.Hide();
         }
@@ -369,7 +369,7 @@ namespace SG_BAMS
         /// <param name="e">Los datos del evento.</param>
         private void btnDeudores_Click(object sender, EventArgs e)
         {
-            DeudoresAdmin DA = new DeudoresAdmin();
+            DeudoresAdmin DA = new DeudoresAdmin(new DeudaRepository());
             DA.Show();
             this.Hide();
         }

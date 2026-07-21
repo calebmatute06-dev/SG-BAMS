@@ -1,21 +1,24 @@
 ﻿using Krypton.Toolkit;
-using Microsoft.Data.SqlClient;
-using SG_BAMS.Facturas;
 using SG_BAMS.ProductoInventario;
 using SG_BAMS.ProductoInventario.DTO;
 using System;
-using System.Data;
 using System.Drawing;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace SG_BAMS
 {
     /// <summary>
     /// Formulario para agregar un nuevo producto al inventario.
+    /// Única responsabilidad de esta clase: coordinar la interacción con el usuario.
+    /// Toda la validación de formato delega en ClsValidaciones y todo el acceso a datos
+    /// delega en IProductoRepository / IComboRepository, recibidos por inyección
+    /// (ver auditoría SOLID, hallazgos AGP01-AGP04).
     /// </summary>
     public partial class AgregarProducto : Form
     {
+        private readonly IProductoRepository _productoRepositorio;
+        private readonly IComboRepository _comboRepositorio;
+
         private PlaceholderTextBox phNombre;
         private PlaceholderTextBox phPrecio;
         private PlaceholderComboBox phMarca;
@@ -27,113 +30,149 @@ namespace SG_BAMS
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="AgregarProducto"/>.
         /// </summary>
-        public AgregarProducto()
+        /// <param name="productoRepositorio">Acceso a datos de productos.</param>
+        /// <param name="comboRepositorio">Acceso a datos de los catálogos de combo.</param>
+        public AgregarProducto(IProductoRepository productoRepositorio, IComboRepository comboRepositorio)
         {
             InitializeComponent();
+            _productoRepositorio = productoRepositorio;
+            _comboRepositorio = comboRepositorio;
+
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
         /// <summary>
         /// Maneja el evento Click del botón Aceptar.
+        /// Orquesta los tres pasos independientes: validar formato, validar duplicados y guardar.
         /// </summary>
         private void btnAceptar_Click_1(object sender, EventArgs e)
         {
+            if (!ValidarFormulario(out ProductoDTO productoDTO))
+                return;
+
+            if (!ValidarDuplicados(productoDTO))
+                return;
+
+            GuardarProducto(productoDTO);
+        }
+
+        /// <summary>
+        /// Valida el formato de todos los campos del formulario y arma el DTO si son válidos.
+        /// Única responsabilidad: validación de formato (delega en ClsValidaciones).
+        /// </summary>
+        private bool ValidarFormulario(out ProductoDTO productoDTO)
+        {
+            productoDTO = null;
+
+            if (!ValidarNombreProducto())
+                return false;
+
+            if (!ClsValidaciones.ValidarPrecio(txtPrecio, "Precio"))
+                return false;
+
+            if (!ClsValidaciones.ValidarCodigoBarra(txtCodigoBarra))
+                return false;
+
+            if (!ValidarComboSeleccionado(cmbMarca, phMarca, "la Marca"))
+                return false;
+
+            if (!ValidarComboSeleccionado(cmbTipo, phTipo, "el Tipo de Producto"))
+                return false;
+
+            if (!ValidarComboSeleccionado(cmbModelo, phModelo, "el Modelo de Auto"))
+                return false;
+
+            if (!ValidarComboSeleccionado(cmbProveedor, phProveedor, "el Proveedor"))
+                return false;
+
+            productoDTO = new ProductoDTO
+            {
+                Nombre = phNombre.GetRealValue().Trim(),
+                IdMarca = (int)cmbMarca.SelectedValue,
+                IdTipo = (int)cmbTipo.SelectedValue,
+                IdModelo = (int)cmbModelo.SelectedValue,
+                Precio = decimal.Parse(phPrecio.GetRealValue().Trim()),
+                CodigoBarra = phCodigoBarra.GetRealValue().Trim(),
+                IdProveedor = (int)cmbProveedor.SelectedValue,
+                Stock = decimal.ToInt32(txtStock.Value)
+            };
+
+            return true;
+        }
+
+        /// <summary>
+        /// Valida que un combo tenga una selección real (no el placeholder ni -1).
+        /// Muestra un mensaje claro indicando qué campo falta seleccionar.
+        /// </summary>
+        private bool ValidarComboSeleccionado(Krypton.Toolkit.KryptonComboBox cmb, PlaceholderComboBox placeholder, string nombreCampo)
+        {
+            if (placeholder.IsPlaceholderActive || cmb.SelectedIndex == -1)
+            {
+                MessageBox.Show($"Debe seleccionar {nombreCampo} antes de continuar.",
+                                "Campo requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cmb.Focus();
+                return false;
+            }
+
+            return ClsValidaciones.ValidarSeleccion(cmb, nombreCampo);
+        }
+
+        /// <summary>
+        /// Valida el nombre del producto usando el valor real (sin placeholder).
+        /// </summary>
+        private bool ValidarNombreProducto()
+        {
+            if (phNombre.IsPlaceholderActive || string.IsNullOrWhiteSpace(phNombre.GetRealValue()))
+            {
+                MessageBox.Show("El campo 'Nombre del Producto' es obligatorio.", "Validación",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNombre.Focus();
+                return false;
+            }
+
             string nombreReal = phNombre.GetRealValue().Trim();
-            string precioReal = phPrecio.GetRealValue().Trim();
-            string codigoReal = phCodigoBarra.GetRealValue().Trim();
 
-            bool valido = true;
+            using (var tempNombre = new KryptonTextBox())
+            {
+                tempNombre.Text = nombreReal;
+                return ClsValidaciones.EsAlfanumericoValido(tempNombre, "Nombre del Producto", minLength: 3, maxLength: 100);
+            }
+        }
 
-            if (string.IsNullOrWhiteSpace(nombreReal) || nombreReal.Length < 3)
+        /// <summary>
+        /// Verifica que el producto y el código de barra no estén duplicados.
+        /// Única responsabilidad: reglas de duplicado (delega la consulta en IProductoRepository).
+        /// </summary>
+        private bool ValidarDuplicados(ProductoDTO productoDTO)
+        {
+            if (_productoRepositorio.ExisteProductoDuplicado(productoDTO.Nombre, productoDTO.IdMarca, productoDTO.IdProveedor))
             {
-                MessageBox.Show("El nombre del producto debe tener al menos 3 caracteres.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtNombre.Focus();
-                valido = false;
-            }
-            else if (!Regex.IsMatch(nombreReal, @"^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\s&]+$"))
-            {
-                MessageBox.Show("El nombre solo permite letras, números, espacios y el símbolo '&'.", "Formato Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtNombre.Focus();
-                valido = false;
-            }
-            else
-            {
-                using (var tempNombre = new KryptonTextBox())
-                {
-                    tempNombre.Text = nombreReal;
-                    if (!ClsValidaciones.EsAlfanumericoValido(tempNombre, "Nombre del Producto"))
-                        valido = false;
-                }
+                MessageBox.Show("Este producto con esta marca ya está registrado para el proveedor seleccionado.\n\n" +
+                                "Si es un proveedor distinto, sí puede usar el mismo nombre.",
+                                "Producto Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return false;
             }
 
-            if (valido)
+            if (_productoRepositorio.ExisteCodigoBarraDuplicado(productoDTO.CodigoBarra))
             {
-                using (var tempPrecio = new KryptonTextBox())
-                {
-                    tempPrecio.Text = precioReal;
-                    if (!ClsValidaciones.ValidarPrecio(tempPrecio.Text))
-                        valido = false;
-                }
+                MessageBox.Show("El código de barras ya pertenece a otro producto en el sistema.",
+                                "Código Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                txtCodigoBarra.Focus();
+                return false;
             }
 
-            if (valido)
-            {
-                using (var tempCodigo = new KryptonTextBox())
-                {
-                    tempCodigo.Text = codigoReal;
-                    if (!ClsValidaciones.ValidarCodigoBarra(tempCodigo.Text))
-                        valido = false;
-                }
-            }
+            return true;
+        }
 
-            if (valido && (phMarca.IsPlaceholderActive || cmbMarca.SelectedIndex == -1 || !ClsValidaciones.ValidarSeleccion(cmbMarca, "la Marca")))
-                valido = false;
-            else if (valido && (phTipo.IsPlaceholderActive || cmbTipo.SelectedIndex == -1 || !ClsValidaciones.ValidarSeleccion(cmbTipo, "el Tipo de Producto")))
-                valido = false;
-            else if (valido && (phModelo.IsPlaceholderActive || cmbModelo.SelectedIndex == -1 || !ClsValidaciones.ValidarSeleccion(cmbModelo, "el Modelo de Auto")))
-                valido = false;
-            else if (valido && (phProveedor.IsPlaceholderActive || cmbProveedor.SelectedIndex == -1 || !ClsValidaciones.ValidarSeleccion(cmbProveedor, "el Proveedor")))
-                valido = false;
-
-            if (!valido) return;
-
+        /// <summary>
+        /// Persiste el producto ya validado. Única responsabilidad: guardar y cerrar el formulario.
+        /// </summary>
+        private void GuardarProducto(ProductoDTO productoDTO)
+        {
             try
             {
-                ClsProducto logicaInsertar = new ClsProducto();
-                int idMarca = (int)cmbMarca.SelectedValue;
-                int idProveedor = (int)cmbProveedor.SelectedValue;
-                int stockInicial = decimal.ToInt32(txtStock.Value);
-
-                if (logicaInsertar.ExisteProductoMarcaProveedor(nombreReal, idMarca, idProveedor))
-                {
-                    MessageBox.Show("Este producto con esta marca ya está registrado para el proveedor seleccionado.\n\n" +
-                                    "Si es un proveedor distinto, sí puede usar el mismo nombre.",
-                                    "Producto Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    return;
-                }
-
-                if (logicaInsertar.ExisteCodigoBarra(codigoReal))
-                {
-                    MessageBox.Show("El código de barras ya pertenece a otro producto en el sistema.",
-                                    "Código Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    txtCodigoBarra.Focus();
-                    return;
-                }
-
-                ProductoDTO productoDTO = new ProductoDTO
-                {
-                    Nombre = nombreReal,
-                    IdMarca = idMarca,
-                    IdTipo = (int)cmbTipo.SelectedValue,
-                    IdModelo = (int)cmbModelo.SelectedValue,
-                    Precio = decimal.Parse(precioReal),
-                    CodigoBarra = codigoReal,
-                    IdProveedor = idProveedor,
-                    Stock = stockInicial
-                };
-
-                logicaInsertar.EjecutarInsercion(productoDTO);
+                _productoRepositorio.EjecutarInsercion(productoDTO);
 
                 MessageBox.Show("¡Producto y stock guardados exitosamente!", "Éxito");
                 this.DialogResult = DialogResult.OK;
@@ -187,18 +226,16 @@ namespace SG_BAMS
         }
 
         /// <summary>
-        /// Llena todos los ComboBox del formulario.
+        /// Llena todos los ComboBox del formulario delegando en ComboBoxConfigurator + IComboRepository.
         /// </summary>
         private void LlenarTodosLosCombos()
         {
-            ClsLlenarCombo llenar = new ClsLlenarCombo();
-
             try
             {
-                llenar.ConfigurarComboBox(cmbMarca, "Marca");
-                llenar.ConfigurarComboBox(cmbTipo, "Tipo");
-                llenar.ConfigurarComboBox(cmbModelo, "Modelo");
-                llenar.ConfigurarComboBox(cmbProveedor, "Proveedor");
+                ComboBoxConfigurator.Configurar(cmbMarca, _comboRepositorio, "Marca");
+                ComboBoxConfigurator.Configurar(cmbTipo, _comboRepositorio, "Tipo");
+                ComboBoxConfigurator.Configurar(cmbModelo, _comboRepositorio, "Modelo");
+                ComboBoxConfigurator.Configurar(cmbProveedor, _comboRepositorio, "Proveedor");
             }
             catch (Exception ex)
             {

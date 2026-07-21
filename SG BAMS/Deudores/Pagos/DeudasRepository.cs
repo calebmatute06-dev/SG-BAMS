@@ -1,15 +1,21 @@
 ﻿using System;
 using System.Data;
-using Microsoft.Data.SqlClient;
 using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
 
 namespace SG_BAMS
 {
     /// <summary>
-    /// Clase para gestión de deudas usando solo Procedimientos Almacenados.
+    /// Implementación de acceso a datos para pagos y consultas de deudas, usando solo
+    /// Procedimientos Almacenados. Única responsabilidad: ejecutar las operaciones de datos.
+    /// No muestra mensajes de interfaz (a diferencia de la antigua ClsDeudas, que mezclaba
+    /// acceso a datos con MessageBox — ver auditoría SOLID, hallazgo CDS01/CDS03); los errores
+    /// se degradan de forma silenciosa y es responsabilidad del formulario decidir cómo
+    /// informarlos al usuario.
     /// </summary>
-    public class ClsDeudas : ClsRepositorioBaseDatos
+    internal class DeudasRepository : ClsRepositorioBaseDatos, IDeudasRepository
     {
+        /// <inheritdoc />
         public async Task<bool> InsertarPago(int idDeuda, decimal montoPago, DateTime fechaPago)
         {
             try
@@ -35,6 +41,7 @@ namespace SG_BAMS
             }
         }
 
+        /// <inheritdoc />
         public DataRow ObtenerSaldoDetalle(int idDeuda)
         {
             try
@@ -52,14 +59,14 @@ namespace SG_BAMS
                     return dt.Rows.Count > 0 ? dt.Rows[0] : null;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                System.Diagnostics.Debug.WriteLine("Error en ObtenerSaldoDetalle: " + ex.Message);
                 return null;
             }
             finally { Cerrar(); }
         }
 
+        /// <inheritdoc />
         public DataTable ObtenerDeudoresActivos()
         {
             DataTable tablaDeudores = new DataTable();
@@ -75,14 +82,15 @@ namespace SG_BAMS
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                System.Windows.Forms.MessageBox.Show("Error al cargar deudores: " + ex.Message);
+                // Se degrada a una tabla vacía; el formulario decide cómo informarlo.
             }
             finally { Cerrar(); }
             return tablaDeudores;
         }
 
+        /// <inheritdoc />
         public DataTable ObtenerUltimasVentas()
         {
             DataTable tablaVentas = new DataTable();
@@ -102,6 +110,8 @@ namespace SG_BAMS
             finally { Cerrar(); }
             return tablaVentas;
         }
+
+        /// <inheritdoc />
         public DataTable ObtenerProductosPorDeuda(int idDeuda)
         {
             DataTable tablaProductos = new DataTable();
@@ -118,16 +128,15 @@ namespace SG_BAMS
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine("Error en ObtenerProductosPorDeuda: " + ex.Message);
-            }
+            catch (Exception) { }
             finally
             {
                 Cerrar();
             }
             return tablaProductos;
         }
+
+        /// <inheritdoc />
         public DataTable ObtenerDeudasPorCliente(int idCliente)
         {
             DataTable tablaDeudas = new DataTable();
@@ -144,13 +153,12 @@ namespace SG_BAMS
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine("Error en ObtenerDeudasPorCliente: " + ex.Message);
-            }
+            catch (Exception) { }
             finally { Cerrar(); }
             return tablaDeudas;
         }
+
+        /// <inheritdoc />
         public async Task<bool> ClienteTieneDeudaActiva(int idCliente)
         {
             try
@@ -164,9 +172,8 @@ namespace SG_BAMS
                     return resultado != null && Convert.ToInt32(resultado) > 0;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                System.Diagnostics.Debug.WriteLine("Error en ClienteTieneDeudaActiva: " + ex.Message);
                 return false;
             }
             finally
@@ -174,8 +181,5 @@ namespace SG_BAMS
                 Cerrar();
             }
         }
-
-
-
     }
 }

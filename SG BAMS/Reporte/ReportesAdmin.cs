@@ -369,9 +369,20 @@ namespace SG_BAMS.Reporte
 
         private void btnClientes_Click(object sender, EventArgs e) => _servicioNavegacion.IrA(this, new ClientesAdm());
 
-        private void btnInventario_Click(object sender, EventArgs e) => _servicioNavegacion.IrA(this, new InventarioAdmin());
+        private void btnInventario_Click(object sender, EventArgs e)
+        {
+            InventarioAdmin IA = new InventarioAdmin(new ProductoInventario.ProductoRepository(), new ProductoInventario.ComboRepository());
+            IA.Show();
+            this.Hide();
+        }
 
-        private void btnDeudores_Click(object sender, EventArgs e) => _servicioNavegacion.IrA(this, new DeudoresAdmin());
+        private void btnDeudores_Click(object sender, EventArgs e)
+        {
+            DeudoresAdmin DA = new DeudoresAdmin(new DeudaRepository());
+            DA.Show();
+            this.Hide();
+        }
+
 
         private void btnProveedores_Click(object sender, EventArgs e)
         {

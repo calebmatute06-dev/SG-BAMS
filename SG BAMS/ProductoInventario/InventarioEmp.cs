@@ -1,27 +1,20 @@
-﻿using Microsoft.Data.SqlClient;
-using SG_BAMS.ProductoInventario;
+﻿using SG_BAMS.ProductoInventario;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SG_BAMS
 {
     /// <summary>
-    /// 
+    /// Listado de productos del inventario (perfil Empleado, solo lectura).
+    /// Única responsabilidad: mostrar y filtrar el listado, delegando el acceso a datos
+    /// en IProductoRepository recibido por inyección (ver auditoría SOLID, hallazgos IEM01-IEM03).
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class InventarioEmp : Form
     {
-        /// <summary>
-        /// La lógica de negocio
-        /// </summary>
-        ClsProducto logica = new ClsProducto();
+        private readonly IProductoRepository _productoRepositorio;
+        private readonly NavegacionService _navegacion = new NavegacionService();
 
         /// <summary>
         /// Texto del placeholder para el campo de búsqueda
@@ -39,11 +32,15 @@ namespace SG_BAMS
         private Color textoColor = Color.Black;
 
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="InventarioEmp" />.
+        /// Inicializa una nueva instancia de la clase <see cref="InventarioEmp" />,
+        /// recibiendo su dependencia de acceso a datos por inyección.
         /// </summary>
-        public InventarioEmp()
+        /// <param name="productoRepositorio">Acceso a datos de productos.</param>
+        public InventarioEmp(IProductoRepository productoRepositorio)
         {
             InitializeComponent();
+            _productoRepositorio = productoRepositorio;
+
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -95,8 +92,6 @@ namespace SG_BAMS
         /// <summary>
         /// Maneja el evento Load del control InventarioEmp.
         /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void InventarioEmp_Load(object sender, EventArgs e)
         {
             btnInventario.Enabled = false;
@@ -104,41 +99,15 @@ namespace SG_BAMS
             btnInventario.ForeColor = Color.White;
 
             CargarInventarioCompleto();
-            dgvInventarioEmp.BorderStyle = BorderStyle.None;
-            dgvInventarioEmp.BackgroundColor = Color.White;
-            dgvInventarioEmp.RowHeadersVisible = false;
-            dgvInventarioEmp.EnableHeadersVisualStyles = false;
-            dgvInventarioEmp.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
 
-            dgvInventarioEmp.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
-            dgvInventarioEmp.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
-            dgvInventarioEmp.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
-            dgvInventarioEmp.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgvInventarioEmp.ColumnHeadersHeight = 28;
-
-            dgvInventarioEmp.DefaultCellStyle.BackColor = Color.White;
-            dgvInventarioEmp.DefaultCellStyle.ForeColor = Color.Navy;
-            dgvInventarioEmp.DefaultCellStyle.Font = new Font("Segoe UI", 10);
-            dgvInventarioEmp.DefaultCellStyle.Padding = new Padding(3);
-            dgvInventarioEmp.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 245, 255);
-            dgvInventarioEmp.AlternatingRowsDefaultCellStyle.ForeColor = Color.Navy;
-
-            dgvInventarioEmp.DefaultCellStyle.SelectionBackColor = Color.DeepSkyBlue;
-            dgvInventarioEmp.DefaultCellStyle.SelectionForeColor = Color.White;
-
-            dgvInventarioEmp.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgvInventarioEmp.GridColor = Color.LightGray;
-            dgvInventarioEmp.RowTemplate.Height = 32;
+            EstiloDataGridView.Aplicar(dgvInventarioEmp);
             dgvInventarioEmp.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvInventarioEmp.ClearSelection();
-
         }
 
         /// <summary>
         /// Maneja el evento TextChanged del control txtBuscar.
         /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
 
@@ -156,7 +125,7 @@ namespace SG_BAMS
 
             try
             {
-                dgvInventarioEmp.DataSource = logica.BuscarProductos(txtBuscar.Text.Trim());
+                dgvInventarioEmp.DataSource = _productoRepositorio.BuscarProductos(txtBuscar.Text.Trim());
             }
             catch (Exception ex)
             {
@@ -171,7 +140,7 @@ namespace SG_BAMS
         {
             try
             {
-                dgvInventarioEmp.DataSource = logica.MostrarProductosCompleto();
+                dgvInventarioEmp.DataSource = _productoRepositorio.MostrarProductosCompleto();
                 dgvInventarioEmp.ReadOnly = true;
                 dgvInventarioEmp.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 dgvInventarioEmp.AllowUserToAddRows = false;
@@ -192,8 +161,6 @@ namespace SG_BAMS
         /// <summary>
         /// Maneja el evento Click del control btnNoti.
         /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs" /> que contiene los datos del evento.</param>
         private void btnNoti_Click(object sender, EventArgs e)
         {
             NotificacionesAdmin notificacionesAdmin = new NotificacionesAdmin();
@@ -203,58 +170,29 @@ namespace SG_BAMS
         /// <summary>
         /// Maneja el evento Click del control btnMenu.
         /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
-        private void btnMenu_Click(object sender, EventArgs e)
-        {
-            MenuPrincipalEmp ME = new MenuPrincipalEmp();
-            ME.Show();
-            this.Hide();
-        }
+        private void btnMenu_Click(object sender, EventArgs e) => _navegacion.IrA(this, new MenuPrincipalEmp());
 
         /// <summary>
         /// Maneja el evento Click del control btnFacturas.
         /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
-        private void btnFacturas_Click(object sender, EventArgs e)
-        {
-            FacturasEmp FE = new FacturasEmp();
-            FE.Show();
-            this.Hide();
-        }
+        private void btnFacturas_Click(object sender, EventArgs e) => _navegacion.IrA(this, new FacturasEmp());
 
         /// <summary>
         /// Maneja el evento Click del control btnClientes.
         /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
-        private void btnClientes_Click(object sender, EventArgs e)
-        {
-            ClientesEmp CE = new ClientesEmp();
-            CE.Show();
-            this.Hide();
-        }
+        private void btnClientes_Click(object sender, EventArgs e) => _navegacion.IrA(this, new ClientesEmp());
 
 
 
         /// <summary>
         /// Maneja el evento Click del control btnDeudores.
         /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
-        private void btnDeudores_Click(object sender, EventArgs e)
-        {
-            Deudores_Emp DE = new Deudores_Emp();
-            DE.Show();
-            this.Hide();
-        }
+        private void btnDeudores_Click(object sender, EventArgs e) =>
+            _navegacion.IrA(this, new Deudores_Emp(new DeudaRepository()));
 
         /// <summary>
         /// Maneja el evento Click del control btnCerrar.
         /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             DialogResult resultado = MessageBox.Show(
@@ -274,14 +212,12 @@ namespace SG_BAMS
         /// <summary>
         /// Maneja el evento Click del control btnPerfil.
         /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnPerfil_Click(object sender, EventArgs e)
         {
             Perfil perfil = new Perfil();
             perfil.ShowDialog();
         }
 
-       
+
     }
 }
