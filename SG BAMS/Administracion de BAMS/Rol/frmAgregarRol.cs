@@ -1,4 +1,5 @@
-﻿using SG_BAMS.Administracion_de_BAMS.Rol;
+﻿using SG_BAMS.Administracion_de_BAMS;
+using SG_BAMS.Administracion_de_BAMS.Rol;
 using System;
 using System.Windows.Forms;
 
@@ -6,17 +7,18 @@ namespace SG_BAMS
 {
     /// <summary>
     /// Representa la interfaz de usuario para el registro de nuevos roles de usuario en el sistema.
+    /// DIP: recibe ICatalogoRepository inyectado, no instancia clsRol directamente.
     /// </summary>
     public partial class frmAgregarRol : Form
     {
+        private readonly ICatalogoRepository _repositorio;
         private PlaceholderTextBox phDescri;
 
-        /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="frmAgregarRol"/>.
-        /// </summary>
-        public frmAgregarRol()
+        public frmAgregarRol(ICatalogoRepository repositorio)
         {
             InitializeComponent();
+            _repositorio = repositorio ?? throw new ArgumentNullException(nameof(repositorio));
+
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -24,20 +26,18 @@ namespace SG_BAMS
             phDescri = new PlaceholderTextBox(txtDescri, "Escriba el nombre del rol");
         }
 
-        private void frmAgregarRol_Load(object sender, EventArgs e)
-        {
-            phDescri = new PlaceholderTextBox(txtDescri, "Escriba el nombre del rol");
-        }
+        /// <summary>
+        /// Constructor sin parámetros para compatibilidad con el diseñador de WinForms.
+        /// </summary>
+        public frmAgregarRol() : this(new clsRol()) { }
 
         private void pictureBox16_Click(object sender, EventArgs e) { }
         private void label1_Click(object sender, EventArgs e) { }
 
         private async void btmAgregar_Click(object sender, EventArgs e)
         {
-            
             string nombreReal = phDescri.GetRealValue().Trim();
 
-           
             using (var temp = new TextBox { Text = nombreReal })
             {
                 if (!ClsValidaciones.EsNombrePersonalValido(temp, "Nombre del Rol"))
@@ -61,8 +61,7 @@ namespace SG_BAMS
                 this.Cursor = Cursors.WaitCursor;
                 btmAgregar.Enabled = false;
 
-                clsRol objetoRol = new clsRol();
-                bool exito = await objetoRol.InsertarRolAsync(nombreReal);
+                bool exito = await _repositorio.InsertarAsync(nombreReal);
 
                 if (exito)
                 {

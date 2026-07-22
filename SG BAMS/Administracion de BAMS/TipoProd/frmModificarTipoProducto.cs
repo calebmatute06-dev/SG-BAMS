@@ -1,4 +1,5 @@
-﻿using SG_BAMS.Administracion_de_BAMS.TipoProd;
+﻿using SG_BAMS.Administracion_de_BAMS;
+using SG_BAMS.Administracion_de_BAMS.TipoProd;
 using System;
 using System.Windows.Forms;
 
@@ -6,48 +7,49 @@ namespace SG_BAMS
 {
     /// <summary>
     /// Representa la interfaz de usuario para la modificación de una categoría o tipo de producto existente.
+    /// DIP: recibe ICatalogoRepository inyectado, no instancia clsTipoProducto directamente.
     /// </summary>
     public partial class frmModificarTipoProducto : Form
     {
-        private int idSeleccionado;
+        private readonly ICatalogoRepository _repositorio;
+        private readonly int idSeleccionado;
         private PlaceholderTextBox phDescri;
 
-        /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="frmModificarTipoProducto"/>.
-        /// </summary>
-        /// <param name="id">El identificador único del tipo de producto.</param>
-        /// <param name="descripcionActual">La descripción actual que se cargará en el control de texto.</param>
-        public frmModificarTipoProducto(int id, string descripcionActual)
+        public frmModificarTipoProducto(int id, string descripcionActual, ICatalogoRepository repositorio)
         {
             InitializeComponent();
+            _repositorio = repositorio ?? throw new ArgumentNullException(nameof(repositorio));
             this.StartPosition = FormStartPosition.CenterScreen;
             this.idSeleccionado = id;
             txtDescri.Text = descripcionActual;
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirAlfanumerico(e);
+            phDescri = new PlaceholderTextBox(txtDescri, "Ingrese el tipo de producto");
         }
+
+        /// <summary>
+        /// Constructor de compatibilidad sin repositorio explícito (usa clsTipoProducto por defecto).
+        /// </summary>
+        public frmModificarTipoProducto(int id, string descripcionActual)
+            : this(id, descripcionActual, new clsTipoProducto()) { }
 
         private void frmModificarTipoProducto_Load(object sender, EventArgs e)
         {
-            phDescri = new PlaceholderTextBox(txtDescri, "Ingrese el tipo de producto");
             txtDescri.Focus();
             txtDescri.SelectionStart = txtDescri.Text.Length;
         }
 
         private async void btnModificar_Click(object sender, EventArgs e)
         {
-           
             string nombreReal = phDescri.GetRealValue().Trim();
 
-           
             using (var temp = new TextBox { Text = nombreReal })
             {
                 if (!ClsValidaciones.EsAlfanumericoValido(temp, "Tipo de Producto"))
                     return;
             }
 
-           
             using (var temp = new TextBox { Text = nombreReal })
             {
                 if (!ClsValidaciones.ValidarNombreUnico(
@@ -65,8 +67,7 @@ namespace SG_BAMS
                 this.Cursor = Cursors.WaitCursor;
                 btnModificar.Enabled = false;
 
-                clsTipoProducto objetoTipo = new clsTipoProducto();
-                bool exito = await objetoTipo.ModificarTipoProductoAsync(idSeleccionado, nombreReal);
+                bool exito = await _repositorio.ModificarAsync(idSeleccionado, nombreReal);
 
                 if (exito)
                 {

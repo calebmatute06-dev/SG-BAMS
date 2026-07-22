@@ -1,4 +1,5 @@
-﻿using SG_BAMS.Administracion_de_BAMS.ModeloAuto;
+﻿using SG_BAMS.Administracion_de_BAMS;
+using SG_BAMS.Administracion_de_BAMS.ModeloAuto;
 using System;
 using System.Windows.Forms;
 
@@ -6,17 +7,18 @@ namespace SG_BAMS
 {
     /// <summary>
     /// Representa la interfaz de usuario para registrar un nuevo modelo de automóvil en el sistema.
+    /// DIP: recibe ICatalogoRepository inyectado, no instancia clsModeloAuto directamente.
     /// </summary>
     public partial class frmAgregarModeloAuto : Form
     {
+        private readonly ICatalogoRepository _repositorio;
         private PlaceholderTextBox phDescri;
 
-        /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="frmAgregarModeloAuto"/>.
-        /// </summary>
-        public frmAgregarModeloAuto()
+        public frmAgregarModeloAuto(ICatalogoRepository repositorio)
         {
             InitializeComponent();
+            _repositorio = repositorio ?? throw new ArgumentNullException(nameof(repositorio));
+
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -24,24 +26,21 @@ namespace SG_BAMS
             phDescri = new PlaceholderTextBox(txtDescri, "Ingrese el nombre del modelo de auto");
         }
 
-        private void frmAgregarModeloAuto_Load(object sender, EventArgs e)
-        {
-            phDescri = new PlaceholderTextBox(txtDescri, "Ingrese el nombre del modelo de auto");
-        }
+        /// <summary>
+        /// Constructor sin parámetros para compatibilidad con el diseñador de WinForms.
+        /// </summary>
+        public frmAgregarModeloAuto() : this(new clsModeloAuto()) { }
 
         private async void btnAgregar_Click_1(object sender, EventArgs e)
         {
-           
             string nombreReal = phDescri.GetRealValue().Trim();
 
-            
             using (var temp = new TextBox { Text = nombreReal })
             {
                 if (!ClsValidaciones.EsAlfanumericoValido(temp, "Nombre del Modelo de Auto"))
                     return;
             }
 
-            
             using (var temp = new TextBox { Text = nombreReal })
             {
                 if (!ClsValidaciones.ValidarNombreUnico(
@@ -59,8 +58,7 @@ namespace SG_BAMS
                 this.Cursor = Cursors.WaitCursor;
                 if (btnAgregar != null) btnAgregar.Enabled = false;
 
-                clsModeloAuto objetoModelo = new clsModeloAuto();
-                bool exito = await objetoModelo.InsertarModeloAutoAsync(nombreReal);
+                bool exito = await _repositorio.InsertarAsync(nombreReal);
 
                 if (exito)
                 {

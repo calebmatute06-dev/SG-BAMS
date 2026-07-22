@@ -1,4 +1,5 @@
-﻿using SG_BAMS.Administracion_de_BAMS.FormaPago;
+﻿using SG_BAMS.Administracion_de_BAMS;
+using SG_BAMS.Administracion_de_BAMS.FormaPago;
 using System;
 using System.Windows.Forms;
 
@@ -6,17 +7,18 @@ namespace SG_BAMS
 {
     /// <summary>
     /// Representa la ventana para agregar una nueva forma de pago al sistema.
+    /// DIP: recibe ICatalogoRepository inyectado, no instancia clsFormaPago directamente.
     /// </summary>
     public partial class frmAgregarFormaPago : Form
     {
+        private readonly ICatalogoRepository _repositorio;
         private PlaceholderTextBox phDescri;
 
-        /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="frmAgregarFormaPago"/>.
-        /// </summary>
-        public frmAgregarFormaPago()
+        public frmAgregarFormaPago(ICatalogoRepository repositorio)
         {
             InitializeComponent();
+            _repositorio = repositorio ?? throw new ArgumentNullException(nameof(repositorio));
+
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -24,24 +26,21 @@ namespace SG_BAMS
             phDescri = new PlaceholderTextBox(txtdescri, "Ingrese el nuevo metodo de pago");
         }
 
-        private void frmAgregarFormaPago_Load(object sender, EventArgs e)
-        {
-            phDescri = new PlaceholderTextBox(txtdescri, "Ingrese el nuevo metodo de pago");
-        }
+        /// <summary>
+        /// Constructor sin parámetros para compatibilidad con el diseñador de WinForms.
+        /// </summary>
+        public frmAgregarFormaPago() : this(new clsFormaPago()) { }
 
         private async void btnAgregar_Click(object sender, EventArgs e)
         {
-            
             string descripcionReal = phDescri.GetRealValue().Trim();
 
-            
             using (var temp = new TextBox { Text = descripcionReal })
             {
                 if (!ClsValidaciones.EsNombrePersonalValido(temp, "Descripción de Forma de Pago"))
                     return;
             }
 
-            
             using (var temp = new TextBox { Text = descripcionReal })
             {
                 if (!ClsValidaciones.ValidarNombreUnico(
@@ -59,8 +58,7 @@ namespace SG_BAMS
                 this.Cursor = Cursors.WaitCursor;
                 btnAgregar.Enabled = false;
 
-                clsFormaPago objetoFP = new clsFormaPago();
-                bool insertado = await objetoFP.InsertarFormaPagoAsync(descripcionReal);
+                bool insertado = await _repositorio.InsertarAsync(descripcionReal);
 
                 if (insertado)
                 {

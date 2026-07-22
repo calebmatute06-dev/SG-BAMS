@@ -1,59 +1,71 @@
-﻿using SG_BAMS.Administracion_de_BAMS.FormaPago;
+﻿using SG_BAMS.Administracion_de_BAMS;
+using SG_BAMS.Administracion_de_BAMS.FormaPago;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SG_BAMS
 {
+    // ============================================================
+    // frmFormaPago — MIGRADO A DIP (igual patrón que Clasificacion/Estado)
+    // ============================================================
+    // PROBLEMA ANTERIOR:
+    //   clsFormaPago objetoFP = new clsFormaPago(); → viola DIP.
+    //   El formulario estaba acoplado a la implementación concreta
+    //   en vez de depender de la abstracción ICatalogoRepository.
+    //
+    // CORRECCIÓN:
+    //   - Inyecta ICatalogoRepository por constructor (DIP)
+    //   - Constructor sin parámetros para el diseñador de WinForms
+    //   - Usa EstiloDataGridView.Aplicar() en vez del bloque de estilos duplicado
+    //   - Delega la apertura de Agregar/Modificar pasando el mismo repositorio
+    // ============================================================
+
     /// <summary>
     /// Representa la interfaz de usuario para la visualización y administración de las formas de pago.
+    /// DIP: recibe ICatalogoRepository inyectado, no instancia clsFormaPago directamente.
     /// </summary>
-    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmFormaPago : Form
     {
-        /// <summary>
-        /// Instancia de la clase lógica de negocio para las formas de pago.
-        /// </summary>
-        clsFormaPago objetoFP = new clsFormaPago();
+        private readonly ICatalogoRepository _repositorio;
 
-        /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="frmFormaPago"/>.
-        /// </summary>
-        public frmFormaPago()
+        public frmFormaPago(ICatalogoRepository repositorio)
         {
             InitializeComponent();
+            _repositorio = repositorio;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-           
         }
 
         /// <summary>
-        /// Maneja el evento de carga inicial para llenar el listado de formas de pago de manera asíncrona.
+        /// Constructor sin parámetros para compatibilidad con el diseñador de WinForms
+        /// y con el código existente que abre este formulario sin inyección explícita.
         /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
-        /// 
-        /// <summary>
-        /// Carga los datos desde la base de datos al control DataGridView de forma asíncrona.
-        /// </summary>
-        private async Task CargarGridFormasPago()
+        public frmFormaPago() : this(new clsFormaPago()) { }
+
+        private async System.Threading.Tasks.Task CargarGridFormasPago()
         {
             try
             {
                 this.Cursor = Cursors.WaitCursor;
 
-                DataTable dt = await objetoFP.LeerFormasPagoAsync();
+                dgvFormasPago.DataSource = await _repositorio.LeerAsync();
 
-                dgvFormasPago.DataSource = dt;
+                if (dgvFormasPago.Columns.Contains("id_tipo_forma_pago"))
+                    dgvFormasPago.Columns["id_tipo_forma_pago"].Visible = false;
 
-                ConfigurarDisenoGrid();
+                if (dgvFormasPago.Columns.Contains("descripcion_forma_pago"))
+                    dgvFormasPago.Columns["descripcion_forma_pago"].HeaderText = "Método de Pago";
+
+                if (dgvFormasPago.Columns.Contains("total_uso_facturas"))
+                    dgvFormasPago.Columns["total_uso_facturas"].HeaderText = "Uso en Facturas";
+
+                dgvFormasPago.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dgvFormasPago.AllowUserToAddRows = false;
+                dgvFormasPago.ReadOnly = true;
+                dgvFormasPago.ClearSelection();
+
+                EstiloDataGridView.Aplicar(dgvFormasPago);
             }
             catch (Exception ex)
             {
@@ -66,176 +78,63 @@ namespace SG_BAMS
             }
         }
 
-        /// <summary>
-        /// Aplica configuraciones visuales, encabezados y visibilidad de columnas al DataGridView.
-        /// </summary>
-        private void ConfigurarDisenoGrid()
+        private async void frmFormaPago_Load(object sender, EventArgs e)
         {
-            if (dgvFormasPago.Columns.Contains("id_tipo_forma_pago"))
-                dgvFormasPago.Columns["id_tipo_forma_pago"].Visible = false;
-
-            if (dgvFormasPago.Columns.Contains("descripcion_forma_pago"))
-                dgvFormasPago.Columns["descripcion_forma_pago"].HeaderText = "Método de Pago";
-
-            if (dgvFormasPago.Columns.Contains("total_uso_facturas"))
-                dgvFormasPago.Columns["total_uso_facturas"].HeaderText = "Uso en Facturas";
-
-            dgvFormasPago.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvFormasPago.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvFormasPago.AllowUserToAddRows = false;
-            dgvFormasPago.ReadOnly = true;
-            dgvFormasPago.ClearSelection();
+            await CargarGridFormasPago();
         }
 
-        private void AbrirOEnfocarDialogo<T>(Func<T> creadorFormulario, Action<T> accionesPostDialogo) where T : Form
-        {
-            T formExistente = Application.OpenForms.Cast<Form>().OfType<T>().FirstOrDefault();
-
-            if (formExistente != null)
-            {
-                if (formExistente.WindowState == FormWindowState.Minimized)
-                {
-                    formExistente.WindowState = FormWindowState.Normal;
-                }
-                formExistente.BringToFront();
-                formExistente.Focus();
-            }
-            else
-            {
-                using (T nuevoForm = creadorFormulario())
-                {
-                    if (nuevoForm.ShowDialog() == DialogResult.OK)
-                    {
-                        accionesPostDialogo(nuevoForm);
-                    }
-                }
-            }
-        }
-
-
-        /// <summary>
-        /// Maneja el evento de clic para abrir el formulario de creación de una nueva forma de pago.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
-        private void btmAgregar2_Click(object sender, EventArgs e)
-        {
-            AbrirOEnfocarDialogo(
-                () => new frmAgregarFormaPago(),
-                (f) => _ = CargarGridFormasPago()
-            );
-            dgvFormasPago.ClearSelection();
-        }
-
-        /// <summary>
-        /// Permite editar una forma de pago al realizar doble clic sobre una celda del listado.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia de <see cref="DataGridViewCellEventArgs"/> que contiene los datos del evento.</param>
         private void dgvFormasPago_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvFormasPago.SelectedRows.Count > 0)
-            {
-                int id = Convert.ToInt32(dgvFormasPago.CurrentRow.Cells["id_tipo_forma_pago"].Value);
-                string descripcion = dgvFormasPago.CurrentRow.Cells["descripcion_forma_pago"].Value.ToString();
-
-                AbrirOEnfocarDialogo(
-                    () => new frmModificarFormaPago(id, descripcion),
-                    (f) => _ = CargarGridFormasPago()
-                );
-                dgvFormasPago.ClearSelection();
-            }
+                AbrirModificar();
             else
-            {
                 MessageBox.Show("Por favor, seleccione una fila para editar.");
-            }
         }
 
-        /// <summary>
-        /// Abre la ventana para agregar un nuevo registro de forma de pago.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
+        private void btmAgregar2_Click(object sender, EventArgs e)
+        {
+            AbrirAgregar();
+        }
+
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            AbrirOEnfocarDialogo(
-                () => new frmAgregarFormaPago(),
-                (f) => _ = CargarGridFormasPago()
-            );
-            dgvFormasPago.ClearSelection();
+            AbrirAgregar();
         }
 
-        /// <summary>
-        /// Abre la ventana de modificación para el elemento seleccionado en la lista.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnModificar_Click(object sender, EventArgs e)
         {
             if (dgvFormasPago.SelectedRows.Count > 0)
-            {
-                int id = Convert.ToInt32(dgvFormasPago.CurrentRow.Cells["id_tipo_forma_pago"].Value);
-                string descripcion = dgvFormasPago.CurrentRow.Cells["descripcion_forma_pago"].Value.ToString();
-
-                AbrirOEnfocarDialogo(
-                    () => new frmModificarFormaPago(id, descripcion),
-                    (f) => _ = CargarGridFormasPago()
-                );
-                dgvFormasPago.ClearSelection();
-            }
+                AbrirModificar();
             else
-            {
                 MessageBox.Show("Por favor, seleccione una fila para editar.");
-            }
         }
 
-        /// <summary>
-        /// Cierra el formulario actual.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        /// <summary>
-        /// Configura la apariencia visual detallada del DataGridView al cargar el formulario.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
-        private async void frmFormaPago_Load(object sender, EventArgs e)
+        private void AbrirAgregar()
         {
-            
-            dgvFormasPago.BorderStyle = BorderStyle.None;
-            dgvFormasPago.BackgroundColor = Color.White;
-            dgvFormasPago.RowHeadersVisible = false;
-            dgvFormasPago.EnableHeadersVisualStyles = false;
-            dgvFormasPago.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-
-            dgvFormasPago.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
-            dgvFormasPago.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
-            dgvFormasPago.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
-            dgvFormasPago.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgvFormasPago.ColumnHeadersHeight = 28;
-
-            dgvFormasPago.DefaultCellStyle.BackColor = Color.White;
-            dgvFormasPago.DefaultCellStyle.ForeColor = Color.Navy;
-            dgvFormasPago.DefaultCellStyle.Font = new Font("Segoe UI", 10);
-            dgvFormasPago.DefaultCellStyle.Padding = new Padding(3);
-            dgvFormasPago.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 245, 255);
-            dgvFormasPago.AlternatingRowsDefaultCellStyle.ForeColor = Color.Navy;
-
-            dgvFormasPago.DefaultCellStyle.SelectionBackColor = Color.DeepSkyBlue;
-            dgvFormasPago.DefaultCellStyle.SelectionForeColor = Color.White;
-
-            dgvFormasPago.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgvFormasPago.GridColor = Color.LightGray;
-            dgvFormasPago.RowTemplate.Height = 32;
-            dgvFormasPago.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            using (var frm = new frmAgregarFormaPago(_repositorio))
+            {
+                if (frm.ShowDialog() == DialogResult.OK)
+                    _ = CargarGridFormasPago();
+            }
             dgvFormasPago.ClearSelection();
+        }
 
-            await CargarGridFormasPago();
+        private void AbrirModificar()
+        {
+            int id = Convert.ToInt32(dgvFormasPago.CurrentRow.Cells["id_tipo_forma_pago"].Value);
+            string descripcion = dgvFormasPago.CurrentRow.Cells["descripcion_forma_pago"].Value.ToString();
+
+            using (var frm = new frmModificarFormaPago(id, descripcion, _repositorio))
+            {
+                if (frm.ShowDialog() == DialogResult.OK)
+                    _ = CargarGridFormasPago();
+            }
+            dgvFormasPago.ClearSelection();
         }
     }
 }

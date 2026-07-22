@@ -1,4 +1,5 @@
-﻿using SG_BAMS.Administracion_de_BAMS.Rol;
+﻿using SG_BAMS.Administracion_de_BAMS;
+using SG_BAMS.Administracion_de_BAMS.Rol;
 using System;
 using System.Windows.Forms;
 
@@ -6,47 +7,49 @@ namespace SG_BAMS
 {
     /// <summary>
     /// Representa la interfaz de usuario para la modificación de un rol de usuario existente.
+    /// DIP: recibe ICatalogoRepository inyectado, no instancia clsRol directamente.
     /// </summary>
     public partial class frmModificarRol : Form
     {
-        private int idRolSeleccionado;
+        private readonly ICatalogoRepository _repositorio;
+        private readonly int idRolSeleccionado;
         private PlaceholderTextBox phDescri;
 
-        /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="frmModificarRol"/>.
-        /// </summary>
-        /// <param name="id">El identificador único del rol.</param>
-        /// <param name="nombreActual">El nombre actual del rol que se cargará en el campo de texto.</param>
-        public frmModificarRol(int id, string nombreActual)
+        public frmModificarRol(int id, string nombreActual, ICatalogoRepository repositorio)
         {
             InitializeComponent();
+            _repositorio = repositorio ?? throw new ArgumentNullException(nameof(repositorio));
             this.StartPosition = FormStartPosition.CenterScreen;
             this.idRolSeleccionado = id;
             txtDescri.Text = nombreActual;
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirSoloLetras(e);
-            phDescri = new PlaceholderTextBox(txtDescri, "IEscriba el nombre del rol");
+            phDescri = new PlaceholderTextBox(txtDescri, "Escriba el nombre del rol");
         }
+
+        /// <summary>
+        /// Constructor de compatibilidad sin repositorio explícito (usa clsRol por defecto).
+        /// </summary>
+        public frmModificarRol(int id, string nombreActual)
+            : this(id, nombreActual, new clsRol()) { }
 
         private void frmModificarRol_Load(object sender, EventArgs e)
         {
-            phDescri = new PlaceholderTextBox(txtDescri, "Escriba el nombre del rol");
+            txtDescri.Focus();
+            txtDescri.SelectionStart = txtDescri.Text.Length;
         }
 
         private async void btmModificar_Click(object sender, EventArgs e)
         {
-            
             string nombreReal = phDescri.GetRealValue().Trim();
 
-            
             using (var temp = new TextBox { Text = nombreReal })
             {
                 if (!ClsValidaciones.EsNombrePersonalValido(temp, "Nombre del Rol"))
                     return;
             }
 
-           
             using (var temp = new TextBox { Text = nombreReal })
             {
                 if (!ClsValidaciones.ValidarNombreUnico(
@@ -64,8 +67,7 @@ namespace SG_BAMS
                 this.Cursor = Cursors.WaitCursor;
                 btmModificar.Enabled = false;
 
-                clsRol objetoRol = new clsRol();
-                bool exito = await objetoRol.ModificarRolAsync(idRolSeleccionado, nombreReal);
+                bool exito = await _repositorio.ModificarAsync(idRolSeleccionado, nombreReal);
 
                 if (exito)
                 {

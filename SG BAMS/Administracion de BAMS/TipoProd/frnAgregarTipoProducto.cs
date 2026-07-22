@@ -1,4 +1,5 @@
-﻿using SG_BAMS.Administracion_de_BAMS.TipoProd;
+﻿using SG_BAMS.Administracion_de_BAMS;
+using SG_BAMS.Administracion_de_BAMS.TipoProd;
 using System;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -7,17 +8,18 @@ namespace SG_BAMS
 {
     /// <summary>
     /// Interfaz de usuario para el registro de nuevas categorías o tipos de productos en el sistema.
+    /// DIP: recibe ICatalogoRepository inyectado, no instancia clsTipoProducto directamente.
     /// </summary>
     public partial class frnAgregarTipoProducto : Form
     {
+        private readonly ICatalogoRepository _repositorio;
         private PlaceholderTextBox phDescri;
 
-        /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="frnAgregarTipoProducto"/>.
-        /// </summary>
-        public frnAgregarTipoProducto()
+        public frnAgregarTipoProducto(ICatalogoRepository repositorio)
         {
             InitializeComponent();
+            _repositorio = repositorio ?? throw new ArgumentNullException(nameof(repositorio));
+
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -25,17 +27,15 @@ namespace SG_BAMS
             phDescri = new PlaceholderTextBox(txtDescri, "Ingrese el tipo de producto");
         }
 
-        private void frnAgregarTipoProducto_Load(object sender, EventArgs e)
-        {
-            phDescri = new PlaceholderTextBox(txtDescri, "Ingrese el tipo de producto");
-        }
+        /// <summary>
+        /// Constructor sin parámetros para compatibilidad con el diseñador de WinForms.
+        /// </summary>
+        public frnAgregarTipoProducto() : this(new clsTipoProducto()) { }
 
         private async void btnAgregar_Click_1(object sender, EventArgs e)
         {
-            
             string descripcionReal = phDescri.GetRealValue().Trim();
 
-           
             using (var temp = new TextBox { Text = descripcionReal })
             {
                 if (!ClsValidaciones.EsAlfanumericoValido(temp, "Tipo de Producto"))
@@ -50,7 +50,6 @@ namespace SG_BAMS
                 return;
             }
 
-            
             using (var temp = new TextBox { Text = descripcionReal })
             {
                 if (!ClsValidaciones.ValidarNombreUnico(
@@ -68,8 +67,7 @@ namespace SG_BAMS
                 this.Cursor = Cursors.WaitCursor;
                 btnAgregar.Enabled = false;
 
-                clsTipoProducto objetoTipo = new clsTipoProducto();
-                bool exito = await objetoTipo.InsertarTipoProductoAsync(descripcionReal);
+                bool exito = await _repositorio.InsertarAsync(descripcionReal);
 
                 if (exito)
                 {

@@ -1,4 +1,5 @@
-﻿using SG_BAMS.Administracion_de_BAMS.ModeloAuto;
+﻿using SG_BAMS.Administracion_de_BAMS;
+using SG_BAMS.Administracion_de_BAMS.ModeloAuto;
 using System;
 using System.Windows.Forms;
 
@@ -6,37 +7,41 @@ namespace SG_BAMS
 {
     /// <summary>
     /// Representa la interfaz de usuario para la modificación de un modelo de vehículo existente.
+    /// DIP: recibe ICatalogoRepository inyectado, no instancia clsModeloAuto directamente.
     /// </summary>
     public partial class frmModificarModelos : Form
     {
-        private int idModeloSeleccionado;
+        private readonly ICatalogoRepository _repositorio;
+        private readonly int idModeloSeleccionado;
         private PlaceholderTextBox phDescri;
 
-        /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="frmModificarModelos"/>.
-        /// </summary>
-        /// <param name="id">El identificador único del modelo.</param>
-        /// <param name="nombreActual">El nombre actual del modelo para mostrar en el campo de edición.</param>
-        public frmModificarModelos(int id, string nombreActual)
+        public frmModificarModelos(int id, string nombreActual, ICatalogoRepository repositorio)
         {
             InitializeComponent();
+            _repositorio = repositorio ?? throw new ArgumentNullException(nameof(repositorio));
             this.StartPosition = FormStartPosition.CenterScreen;
             this.idModeloSeleccionado = id;
             txtDescri.Text = nombreActual;
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             txtDescri.KeyPress += (s, e) => ClsValidaciones.PermitirAlfanumerico(e);
+            phDescri = new PlaceholderTextBox(txtDescri, "Ingrese el nombre del modelo");
         }
+
+        /// <summary>
+        /// Constructor de compatibilidad sin repositorio explícito (usa clsModeloAuto por defecto).
+        /// </summary>
+        public frmModificarModelos(int id, string nombreActual)
+            : this(id, nombreActual, new clsModeloAuto()) { }
 
         private void frmModificarModelos_Load(object sender, EventArgs e)
         {
-            phDescri = new PlaceholderTextBox(txtDescri, "Ingrese el nombre del modelo");
             txtDescri.Focus();
+            txtDescri.SelectionStart = txtDescri.Text.Length;
         }
 
         private async void btnModificar_Click_1(object sender, EventArgs e)
         {
-            
             string nombreReal = phDescri.GetRealValue().Trim();
 
             using (var temp = new TextBox { Text = nombreReal })
@@ -45,7 +50,6 @@ namespace SG_BAMS
                     return;
             }
 
-            
             using (var temp = new TextBox { Text = nombreReal })
             {
                 if (!ClsValidaciones.ValidarNombreUnico(
@@ -63,8 +67,7 @@ namespace SG_BAMS
                 this.Cursor = Cursors.WaitCursor;
                 btnModificar.Enabled = false;
 
-                clsModeloAuto objetoModelo = new clsModeloAuto();
-                bool exito = await objetoModelo.ModificarModeloAutoAsync(idModeloSeleccionado, nombreReal);
+                bool exito = await _repositorio.ModificarAsync(idModeloSeleccionado, nombreReal);
 
                 if (exito)
                 {

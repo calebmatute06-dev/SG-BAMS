@@ -1,47 +1,48 @@
-﻿using SG_BAMS.Administracion_de_BAMS.TipoProd;
+﻿using SG_BAMS.Administracion_de_BAMS;
+using SG_BAMS.Administracion_de_BAMS.TipoProd;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SG_BAMS
 {
+    // ============================================================
+    // NOTA DE CORRECCIÓN ADICIONAL:
+    // El constructor original llamaba a CargarGridTipos() sin await
+    // (fire-and-forget) Y el evento Load (frmTipoProducto_Load_1)
+    // también la llamaba, cargando el grid dos veces en cada apertura.
+    // Se dejó una sola carga, en el manejador de Load conectado por
+    // el Diseñador.
+    // ============================================================
+
     /// <summary>
     /// Interfaz de usuario para la visualización y gestión de las categorías de productos (Tipos de Producto).
+    /// DIP: recibe ICatalogoRepository inyectado, no instancia clsTipoProducto directamente.
     /// </summary>
-    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class frmTipoProducto : Form
     {
-        /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="frmTipoProducto"/>.
-        /// </summary>
-        public frmTipoProducto()
+        private readonly ICatalogoRepository _repositorio;
+
+        public frmTipoProducto(ICatalogoRepository repositorio)
         {
             InitializeComponent();
+            _repositorio = repositorio;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            CargarGridTipos();
         }
 
         /// <summary>
-        /// Obtiene de forma asíncrona los tipos de productos y los carga en el DataGridView.
+        /// Constructor sin parámetros para compatibilidad con el diseñador de WinForms.
         /// </summary>
-        /// <returns>Una tarea que representa la operación asíncrona.</returns>
-        private async Task CargarGridTipos()
+        public frmTipoProducto() : this(new clsTipoProducto()) { }
+
+        private async System.Threading.Tasks.Task CargarGridTipos()
         {
             try
             {
                 this.Cursor = Cursors.WaitCursor;
 
-                clsTipoProducto objetoTipo = new clsTipoProducto();
-
-                dgvTipoProducto.DataSource = await objetoTipo.LeerTiposProductoAsync();
+                dgvTipoProducto.DataSource = await _repositorio.LeerAsync();
 
                 if (dgvTipoProducto.Columns.Contains("nombre_tipo_producto"))
                     dgvTipoProducto.Columns["nombre_tipo_producto"].HeaderText = "Tipo de Producto";
@@ -52,12 +53,12 @@ namespace SG_BAMS
                 if (dgvTipoProducto.Columns.Contains("cantidad_productos_asociados"))
                     dgvTipoProducto.Columns["cantidad_productos_asociados"].HeaderText = "Cantidad";
 
-                dgvTipoProducto.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dgvTipoProducto.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 dgvTipoProducto.AllowUserToAddRows = false;
                 dgvTipoProducto.ReadOnly = true;
                 dgvTipoProducto.ClearSelection();
 
+                EstiloDataGridView.Aplicar(dgvTipoProducto);
             }
             catch (Exception ex)
             {
@@ -69,139 +70,55 @@ namespace SG_BAMS
             }
         }
 
-        private void AbrirOEnfocarDialogo<T>(Func<T> creadorFormulario, Action<T> accionesPostDialogo) where T : Form
+        private async void frmTipoProducto_Load_1(object sender, EventArgs e)
         {
-            T formExistente = Application.OpenForms.Cast<Form>().OfType<T>().FirstOrDefault();
-
-            if (formExistente != null)
-            {
-                if (formExistente.WindowState == FormWindowState.Minimized)
-                {
-                    formExistente.WindowState = FormWindowState.Normal;
-                }
-                formExistente.BringToFront();
-                formExistente.Focus();
-            }
-            else
-            {
-                using (T nuevoForm = creadorFormulario())
-                {
-                    if (nuevoForm.ShowDialog() == DialogResult.OK)
-                    {
-                        accionesPostDialogo(nuevoForm);
-                    }
-                }
-            }
+            await CargarGridTipos();
         }
 
-
-        /// <summary>
-        /// Abre el formulario de edición al realizar doble clic sobre un registro del grid.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia de <see cref="DataGridViewCellEventArgs"/> que contiene los datos del evento.</param>
         private void dgvTipoProducto_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvTipoProducto.CurrentRow != null && dgvTipoProducto.SelectedRows.Count > 0)
-            {
-                int id = Convert.ToInt32(dgvTipoProducto.CurrentRow.Cells["id_tipo_producto"].Value);
-                string descripcion = dgvTipoProducto.CurrentRow.Cells["nombre_tipo_producto"].Value.ToString();
-
-                AbrirOEnfocarDialogo(
-                    () => new frmModificarTipoProducto(id, descripcion),
-                    (f) => _ = CargarGridTipos()
-                );
-            }
+                AbrirModificar();
             else
-            {
                 MessageBox.Show("Por favor, seleccione una fila completa de la lista.", "Validación",
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            dgvTipoProducto.ClearSelection();
+        }
+
+        private void btmAgregar_Click(object sender, EventArgs e)
+        {
+            using (var frm = new frnAgregarTipoProducto(_repositorio))
+            {
+                if (frm.ShowDialog() == DialogResult.OK)
+                    _ = CargarGridTipos();
             }
             dgvTipoProducto.ClearSelection();
         }
 
-        /// <summary>
-        /// Dirige al usuario al formulario para agregar un nuevo tipo de producto.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
-        private void btmAgregar_Click(object sender, EventArgs e)
-        {
-            AbrirOEnfocarDialogo(
-                () => new frnAgregarTipoProducto(),
-                (f) => _ = CargarGridTipos() 
-            );
-            dgvTipoProducto.ClearSelection();
-        }
-
-        /// <summary>
-        /// Abre el formulario de modificación para el registro actualmente seleccionado.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void btnModificar_Click(object sender, EventArgs e)
         {
             if (dgvTipoProducto.CurrentRow != null && dgvTipoProducto.SelectedRows.Count > 0)
-            {
-                int id = Convert.ToInt32(dgvTipoProducto.SelectedRows[0].Cells["id_tipo_producto"].Value);
-                string descripcion = dgvTipoProducto.SelectedRows[0].Cells["nombre_tipo_producto"].Value.ToString();
-
-                AbrirOEnfocarDialogo(
-                    () => new frmModificarTipoProducto(id, descripcion),
-                    (f) => _ = CargarGridTipos()
-                );
-                dgvTipoProducto.ClearSelection();
-            }
+                AbrirModificar();
             else
-            {
-                MessageBox.Show("Por favor, seleccione una fila completa de la lista.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+                MessageBox.Show("Por favor, seleccione una fila completa de la lista.", "Aviso",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
-        /// <summary>
-        /// Cierra el formulario actual.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
         private void kryptonButton2_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        /// <summary>
-        /// Configura el diseño visual y carga los datos del grid al iniciar el formulario.
-        /// </summary>
-        /// <param name="sender">La fuente del evento.</param>
-        /// <param name="e">La instancia de <see cref="EventArgs"/> que contiene los datos del evento.</param>
-        private async void frmTipoProducto_Load_1(object sender, EventArgs e)
+        private void AbrirModificar()
         {
-            await CargarGridTipos();
-            dgvTipoProducto.BorderStyle = BorderStyle.None;
-            dgvTipoProducto.BackgroundColor = Color.White;
-            dgvTipoProducto.RowHeadersVisible = false;
-            dgvTipoProducto.EnableHeadersVisualStyles = false;
-            dgvTipoProducto.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            int id = Convert.ToInt32(dgvTipoProducto.CurrentRow.Cells["id_tipo_producto"].Value);
+            string descripcion = dgvTipoProducto.CurrentRow.Cells["nombre_tipo_producto"].Value.ToString();
 
-            dgvTipoProducto.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
-            dgvTipoProducto.ColumnHeadersDefaultCellStyle.ForeColor = Color.Navy;
-            dgvTipoProducto.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
-            dgvTipoProducto.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgvTipoProducto.ColumnHeadersHeight = 28;
-
-            dgvTipoProducto.DefaultCellStyle.BackColor = Color.White;
-            dgvTipoProducto.DefaultCellStyle.ForeColor = Color.Navy;
-            dgvTipoProducto.DefaultCellStyle.Font = new Font("Segoe UI", 10);
-            dgvTipoProducto.DefaultCellStyle.Padding = new Padding(3);
-            dgvTipoProducto.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 245, 255);
-            dgvTipoProducto.AlternatingRowsDefaultCellStyle.ForeColor = Color.Navy;
-
-            dgvTipoProducto.DefaultCellStyle.SelectionBackColor = Color.DeepSkyBlue;
-            dgvTipoProducto.DefaultCellStyle.SelectionForeColor = Color.White;
-
-            dgvTipoProducto.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgvTipoProducto.GridColor = Color.LightGray;
-            dgvTipoProducto.RowTemplate.Height = 32;
-            dgvTipoProducto.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            using (var frm = new frmModificarTipoProducto(id, descripcion, _repositorio))
+            {
+                if (frm.ShowDialog() == DialogResult.OK)
+                    _ = CargarGridTipos();
+            }
             dgvTipoProducto.ClearSelection();
         }
     }
