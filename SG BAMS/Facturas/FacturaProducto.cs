@@ -10,34 +10,31 @@ using System.Threading.Tasks;
 
 namespace SG_BAMS
 {
-    /// <summary>
-    /// Formulario para seleccionar un producto y agregarlo a la factura.
-    /// </summary>
     public partial class FacturaProducto : Form
     {
-        private DateTime ultimaTeclaEscaner = DateTime.Now;
+        private readonly ServicioEscaneoBarras _servicioEscaneo = new ServicioEscaneoBarras();
 
         private PlaceholderTextBox phCodigo;
         private PlaceholderComboBox phProductos;
         private PlaceholderTextBox phCantidad;
         private readonly ClsFactura AF = new ClsFactura();
 
-       
-        
         public DetalleDTO ProductoSeleccionado { get; private set; }
 
-        /// <summary>
-        /// Inicializa una nueva instancia del formulario.
-        /// </summary>
         public FacturaProducto()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
+
+            _servicioEscaneo.CodigoEscaneado += async (codigo) =>
+            {
+                txtCodigo.Text = codigo;
+                await BuscarProductoPorCodigo(codigo);
+            };
         }
 
         private async Task LlenarComboProductos()
         {
-        
             try
             {
                 DataTable dt = await AF.ObtenerStockProductos();
@@ -68,9 +65,15 @@ namespace SG_BAMS
             phProductos = new PlaceholderComboBox(cmbProductos, "Seleccione o escriba un producto");
             phCantidad = new PlaceholderTextBox(txtCantidad, "Cantidad");
 
+            txtCodigo.ReadOnly = true;
+            txtCodigo.TabStop = false;
+
             txtCantidad.KeyPress += (s, ev) => ClsValidaciones.ValidarSoloNumeros(ev);
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            this.ActiveControl = null;
+            this.Focus();
         }
 
         private void ActualizarStock()
@@ -100,32 +103,9 @@ namespace SG_BAMS
                 return base.ProcessCmdKey(ref msg, keyData);
             }
 
-            if ((key >= Keys.D0 && key <= Keys.Z) || (key >= Keys.NumPad0 && key <= Keys.NumPad9))
+            if (_servicioEscaneo.ProcesarTecla(key))
             {
-                TimeSpan intervalo = DateTime.Now - ultimaTeclaEscaner;
-                ultimaTeclaEscaner = DateTime.Now;
-
-                if (intervalo.TotalMilliseconds > 100)
-                {
-                    txtCodigo.Text = "";
-                }
-
-                string tecla = new KeysConverter().ConvertToString(key);
-                txtCodigo.AppendText(tecla);
                 return true;
-            }
-
-            if (key == Keys.Enter)
-            {
-                if (!cmbProductos.Focused && !txtCantidad.Focused)
-                {
-                    string codigoReal = phCodigo.GetRealValue().Trim();
-                    if (!string.IsNullOrWhiteSpace(codigoReal))
-                    {
-                        _ = BuscarProductoPorCodigo(codigoReal);
-                        return true;
-                    }
-                }
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
@@ -139,7 +119,8 @@ namespace SG_BAMS
             {
                 MessageBox.Show($"El producto con código [{codigo}] no existe o no tiene stock.", "BAMS");
                 txtCodigo.Clear();
-                txtCodigo.Focus();
+                this.ActiveControl = null;
+                this.Focus();
                 return;
             }
 
@@ -158,8 +139,6 @@ namespace SG_BAMS
 
             if (!ValidarStock(cantidad))
                 return;
-
-           
 
             ConfirmarProducto(cantidad);
         }
@@ -208,6 +187,7 @@ namespace SG_BAMS
 
             return true;
         }
+
         private bool ValidarStock(int cantidad)
         {
             if (!int.TryParse(lblNumero.Text, out int stock) || cantidad > stock)
@@ -237,16 +217,14 @@ namespace SG_BAMS
                 Stock = Convert.ToInt32(lblNumero.Text)
             };
 
-
             DialogResult = DialogResult.OK;
             Close();
         }
 
-
         private void btnEscanear_Click(object sender, EventArgs e)
         {
             txtCodigo.Clear();
-            txtCodigo.StateCommon.Back.Color1 = Color.SkyBlue;
+            this.ActiveControl = null;
             this.Focus();
         }
 

@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Windows.Forms;
 using Krypton.Toolkit;
 using SG_BAMS.ComprasContratos;
+using SG_BAMS.Facturas;
 
 namespace SG_BAMS
 {
@@ -25,19 +26,16 @@ namespace SG_BAMS
         private PlaceholderTextBox phCodigo;
         private PlaceholderTextBox phPrecio;
         private PlaceholderComboBox phProductos;
-        private DateTime ultimaTeclaEscaner = DateTime.Now;
+
+        private readonly ServicioEscaneoBarras _servicioEscaneo = new ServicioEscaneoBarras();
 
         /// <summary>
-        /// Constructor que recibe el ID del proveedor. Se mantiene igual
-        /// para no romper ningún punto del código que ya lo llama así;
-        /// usa la implementación real de la dependencia.
+        /// Constructor que recibe el ID del proveedor.
         /// </summary>
-        /// <param name="idProv">ID del proveedor.</param>
         public Agregar_Producto__Compras_(int idProv) : this(idProv, new ClsCompras()) { }
 
         /// <summary>
-        /// Constructor con inyección de dependencias (DIP): recibe
-        /// IComprasRepository en lugar de crear ClsCompras internamente.
+        /// Constructor con inyección de dependencias (DIP).
         /// </summary>
         public Agregar_Producto__Compras_(int idProv, IComprasRepository comprasRepo)
         {
@@ -45,6 +43,12 @@ namespace SG_BAMS
             this.StartPosition = FormStartPosition.CenterScreen;
             this._idProveedor = idProv;
             this.comprasRepo = comprasRepo;
+
+            _servicioEscaneo.CodigoEscaneado += (codigo) =>
+            {
+                txtCodigo.Text = codigo;
+                BuscarProductoPorCodigo(codigo);
+            };
         }
 
         private void Agregar_Producto__Compras__Load(object sender, EventArgs e)
@@ -53,15 +57,18 @@ namespace SG_BAMS
             numCantidad.DecimalPlaces = 0;
             numCantidad.ThousandsSeparator = true;
 
-
             phCodigo = new PlaceholderTextBox(txtCodigo, "Código de barras");
             phPrecio = new PlaceholderTextBox(txtPrecio, "0.00");
-
-
             phProductos = new PlaceholderComboBox(cmbProductos, "Seleccione o escriba el producto");
+
+            txtCodigo.ReadOnly = true;
+            txtCodigo.TabStop = false;
 
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            this.ActiveControl = null;
+            this.Focus();
         }
 
         private void LlenarComboProductos()
@@ -86,7 +93,6 @@ namespace SG_BAMS
 
         private void kryptonButton3_Click(object sender, EventArgs e)
         {
-
             if (phProductos.IsPlaceholderActive || cmbProductos.SelectedIndex == -1)
             {
                 MessageBox.Show("Debe seleccionar un producto de la lista.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -167,32 +173,9 @@ namespace SG_BAMS
                 return base.ProcessCmdKey(ref msg, keyData);
             }
 
-            if ((key >= Keys.D0 && key <= Keys.Z) || (key >= Keys.NumPad0 && key <= Keys.NumPad9))
+            if (_servicioEscaneo.ProcesarTecla(key))
             {
-                TimeSpan intervalo = DateTime.Now - ultimaTeclaEscaner;
-                ultimaTeclaEscaner = DateTime.Now;
-
-                if (intervalo.TotalMilliseconds > 100)
-                {
-                    txtCodigo.Text = "";
-                }
-
-                char c = (char)key;
-                txtCodigo.AppendText(c.ToString().ToLower());
                 return true;
-            }
-
-            if (key == Keys.Enter)
-            {
-                if (!cmbProductos.Focused && !numCantidad.Focused && !txtPrecio.Focused)
-                {
-                    string codigoReal = phCodigo.GetRealValue().Trim();
-                    if (!string.IsNullOrWhiteSpace(codigoReal))
-                    {
-                        BuscarProductoPorCodigo(codigoReal);
-                        return true;
-                    }
-                }
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
@@ -220,7 +203,8 @@ namespace SG_BAMS
                 {
                     MessageBox.Show($"El código [{codigo}] no está asociado a este proveedor.", "BAMS");
                     txtCodigo.Clear();
-                    txtCodigo.Focus();
+                    this.ActiveControl = null;
+                    this.Focus();
                 }
             }
             catch (Exception ex)
@@ -232,7 +216,8 @@ namespace SG_BAMS
         private void btnEscanear_Click(object sender, EventArgs e)
         {
             txtCodigo.Clear();
-            txtCodigo.Focus();
+            this.ActiveControl = null;
+            this.Focus();
         }
 
         private void kryptonLabel1_Click(object sender, EventArgs e) { }
