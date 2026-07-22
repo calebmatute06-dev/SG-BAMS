@@ -7,30 +7,31 @@ using System.Windows.Forms;
 
 namespace SG_BAMS.Proveedor
 {
-
     /// <summary>
-    /// Formulario de listado y administración de proveedores. Única responsabilidad:
-    /// mostrar la grilla y coordinar la apertura de los formularios de alta/edición,
-    /// delegando toda la lógica de datos en IProveedorRepository, IEstadoRepository
-    /// e IClasificacionRepository.
+    /// Formulario de listado y administración de proveedores.
+    /// Muestra la grilla de proveedores y coordina la apertura de los formularios
+    /// de alta y edición, delegando la lógica de datos en los repositorios.
     /// </summary>
     public partial class ProveedoresAdmin : Form
     {
-        private readonly IProveedorRepository _repositorio;
-        private readonly IEstadoRepository _estadoRepositorio;
-        private readonly IClasificacionRepository _clasificacionRepositorio;
+        private readonly IProveedorRepository repositorio;
+        private readonly IEstadoRepository estadoRepositorio;
+        private readonly IClasificacionRepository clasificacionRepositorio;
 
         /// <summary>
-        /// Crea el formulario recibiendo sus dependencias por inyección.
+        /// Constructor del formulario de administración de proveedores.
         /// </summary>
+        /// <param name="repositorio">Repositorio de proveedores.</param>
+        /// <param name="estadoRepositorio">Repositorio de estados.</param>
+        /// <param name="clasificacionRepositorio">Repositorio de clasificaciones.</param>
         public ProveedoresAdmin(IProveedorRepository repositorio,
                                  IEstadoRepository estadoRepositorio,
                                  IClasificacionRepository clasificacionRepositorio)
         {
             InitializeComponent();
-            _repositorio = repositorio;
-            _estadoRepositorio = estadoRepositorio;
-            _clasificacionRepositorio = clasificacionRepositorio;
+            this.repositorio = repositorio;
+            this.estadoRepositorio = estadoRepositorio;
+            this.clasificacionRepositorio = clasificacionRepositorio;
 
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MaximizeBox = false;
@@ -43,9 +44,11 @@ namespace SG_BAMS.Proveedor
                     e.Handled = true;
                 }
             };
-            // La carga de datos ocurre solo en el evento Load (ver ProveedoresAdmin_Load).
         }
 
+        /// <summary>
+        /// Evento Load del formulario. Configura la grilla y carga los datos iniciales.
+        /// </summary>
         private void ProveedoresAdmin_Load(object sender, EventArgs e)
         {
             new PlaceholderTextBox(txtBuscar, "Ingrese un Nombre de Vendedor, Cliente, N.Factura, RTN");
@@ -60,7 +63,7 @@ namespace SG_BAMS.Proveedor
         }
 
         /// <summary>
-        /// Aplica el estilo visual y la configuración de columnas de la grilla.
+        /// Aplica el estilo visual y la configuración de columnas a la grilla de proveedores.
         /// </summary>
         private void ConfigurarGrilla()
         {
@@ -95,13 +98,13 @@ namespace SG_BAMS.Proveedor
         }
 
         /// <summary>
-        /// Carga los proveedores en la grilla y oculta las columnas técnicas (IDs).
+        /// Carga los proveedores en la grilla y oculta las columnas técnicas.
         /// </summary>
         private void CargarDatos()
         {
             try
             {
-                dgvProveedor.DataSource = _repositorio.ObtenerProveedores();
+                dgvProveedor.DataSource = repositorio.ObtenerProveedores();
 
                 if (dgvProveedor.Columns.Contains("idProveedor"))
                     dgvProveedor.Columns["idProveedor"].Visible = false;
@@ -118,11 +121,14 @@ namespace SG_BAMS.Proveedor
             }
         }
 
+        /// <summary>
+        /// Filtra los proveedores según el texto ingresado en el campo de búsqueda.
+        /// </summary>
         private void txtBuscar_KeyUp(object sender, KeyEventArgs e)
         {
             try
             {
-                dgvProveedor.DataSource = _repositorio.Buscar(txtBuscar.Text.Trim());
+                dgvProveedor.DataSource = repositorio.Buscar(txtBuscar.Text.Trim());
             }
             catch (Exception ex)
             {
@@ -130,14 +136,20 @@ namespace SG_BAMS.Proveedor
             }
         }
 
+        /// <summary>
+        /// Abre el formulario de agregar proveedor y refresca la grilla al cerrar.
+        /// </summary>
         private void btnAgregar1_Click(object sender, EventArgs e)
         {
-            AgregarProveedores agregar = new AgregarProveedores(_repositorio, _clasificacionRepositorio);
+            AgregarProveedores agregar = new AgregarProveedores(repositorio, clasificacionRepositorio);
             agregar.ShowDialog();
             CargarDatos();
             dgvProveedor.ClearSelection();
         }
 
+        /// <summary>
+        /// Abre el formulario de modificar proveedor para la fila seleccionada.
+        /// </summary>
         private void btnModificar_Click_1(object sender, EventArgs e)
         {
             if (dgvProveedor.SelectedRows.Count == 0)
@@ -150,12 +162,18 @@ namespace SG_BAMS.Proveedor
             dgvProveedor.ClearSelection();
         }
 
+        /// <summary>
+        /// Limpia el campo de búsqueda y refresca la grilla.
+        /// </summary>
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             txtBuscar.Clear();
             CargarDatos();
         }
 
+        /// <summary>
+        /// Abre el formulario de modificación al hacer doble clic en una fila.
+        /// </summary>
         private void dgvProveedor_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -163,8 +181,7 @@ namespace SG_BAMS.Proveedor
         }
 
         /// <summary>
-        /// Arma el ProveedorDTO a partir de la fila seleccionada y abre
-        /// la pantalla de modificación, refrescando la grilla al cerrarse.
+        /// Construye el DTO a partir de la fila seleccionada y abre el formulario de modificación.
         /// </summary>
         private void AbrirModificarProveedor(DataGridViewRow fila)
         {
@@ -185,11 +202,14 @@ namespace SG_BAMS.Proveedor
                 IdClasificacion = Convert.ToInt32(fila.Cells["idClasificacion"].Value)
             };
 
-            ModificarProveedor frm = new ModificarProveedor(dto, _repositorio, _estadoRepositorio, _clasificacionRepositorio);
+            ModificarProveedor frm = new ModificarProveedor(dto, repositorio, estadoRepositorio, clasificacionRepositorio);
             frm.ShowDialog();
             CargarDatos();
         }
 
+        /// <summary>
+        /// Abre el formulario de notificaciones.
+        /// </summary>
         private void btnNoti_Click(object sender, EventArgs e)
         {
             NotificacionesAdmin notificaciones = new NotificacionesAdmin();
@@ -203,10 +223,11 @@ namespace SG_BAMS.Proveedor
         private void btnInventario_Click(object sender, EventArgs e) { InventarioAdmin IA = new InventarioAdmin(new ProductoInventario.ProductoRepository(), new ProductoInventario.ComboRepository()); IA.Show(); this.Hide(); }
         private void btnDeudores_Click(object sender, EventArgs e) { DeudoresAdmin DA = new DeudoresAdmin(new DeudaRepository()); DA.Show(); this.Hide(); }
         private void btnReportes_Click(object sender, EventArgs e) { ReportesAdmin RA = new ReportesAdmin(); RA.Show(); this.Hide(); }
-
         private void btnBitacora_Click(object sender, EventArgs e) { BitacoraAdmin BA = new BitacoraAdmin(); BA.Show(); this.Hide(); }
 
-
+        /// <summary>
+        /// Cierra la sesión actual y regresa al formulario de inicio de sesión.
+        /// </summary>
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             DialogResult resultado = MessageBox.Show(
@@ -223,6 +244,9 @@ namespace SG_BAMS.Proveedor
             }
         }
 
+        /// <summary>
+        /// Abre el formulario de perfil de usuario.
+        /// </summary>
         private void btnPerfil_Click(object sender, EventArgs e)
         {
             Perfil perfil = new Perfil();

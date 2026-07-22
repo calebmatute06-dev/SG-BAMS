@@ -5,7 +5,7 @@ using Microsoft.Data.SqlClient;
 namespace SG_BAMS.Proveedor
 {
     /// <summary>
-    /// Implementación de acceso a datos para el catálogo de estados de proveedor.
+    /// Implementación del repositorio de estados de proveedor sobre SQL Server.
     /// </summary>
     internal class EstadoRepository : ClsRepositorioBaseDatos, IEstadoRepository
     {

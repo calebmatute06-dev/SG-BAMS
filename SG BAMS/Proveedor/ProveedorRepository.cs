@@ -6,9 +6,8 @@ using SG_BAMS.Proveedor.DTO;
 namespace SG_BAMS.Proveedor
 {
     /// <summary>
-    /// Implementación de acceso a datos de proveedores sobre SQL Server.
-    /// Única responsabilidad: ejecutar las operaciones de datos de proveedor,
-    /// sin conocer nada sobre controles de interfaz gráfica.
+    /// Implementación del repositorio de proveedores sobre SQL Server.
+    /// Ejecuta las operaciones de datos sin conocer detalles de la interfaz gráfica.
     /// </summary>
     internal class ProveedorRepository : ClsRepositorioBaseDatos, IProveedorRepository
     {
@@ -146,7 +145,6 @@ namespace SG_BAMS.Proveedor
             try
             {
                 AbrirConexion();
-                SetUsuarioEnSesion(proveedor.IdUsuario);
                 using (SqlCommand cmd = new SqlCommand("sp_proveedor_insertar", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -174,7 +172,6 @@ namespace SG_BAMS.Proveedor
             try
             {
                 AbrirConexion();
-                SetUsuarioEnSesion(proveedor.IdUsuario);
                 using (SqlCommand cmd = new SqlCommand("sp_proveedor_actualizar", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -195,20 +192,6 @@ namespace SG_BAMS.Proveedor
             finally
             {
                 Cerrar();
-            }
-        }
-
-        /// <summary>
-        /// Establece el usuario en sesión para el contexto de auditoría en base de datos.
-        /// Uso interno exclusivo de las operaciones de escritura de este repositorio.
-        /// </summary>
-        private void SetUsuarioEnSesion(int idUsuario)
-        {
-            using (SqlCommand ctx = new SqlCommand(
-                "EXEC sp_set_session_context @key=N'id_usuario', @value=@id;", Conectar))
-            {
-                ctx.Parameters.AddWithValue("@id", idUsuario);
-                ctx.ExecuteNonQuery();
             }
         }
     }

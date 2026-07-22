@@ -5,7 +5,7 @@ using Microsoft.Data.SqlClient;
 namespace SG_BAMS.Proveedor
 {
     /// <summary>
-    /// Implementación de acceso a datos para el catálogo de clasificaciones de proveedor.
+    /// Implementación del repositorio de clasificaciones de proveedor sobre SQL Server.
     /// </summary>
     internal class ClasificacionRepository : ClsRepositorioBaseDatos, IClasificacionRepository
     {

@@ -7,10 +7,13 @@ using System.Windows.Forms;
 
 namespace SG_BAMS.Proveedor
 {
+    /// <summary>
+    /// Formulario para agregar un nuevo proveedor al sistema.
+    /// </summary>
     public partial class AgregarProveedores : Form
     {
-        private readonly IProveedorRepository _repositorio;
-        private readonly IClasificacionRepository _clasificacionRepositorio;
+        private readonly IProveedorRepository repositorio;
+        private readonly IClasificacionRepository clasificacionRepositorio;
 
         private PlaceholderTextBox phNombre;
         private PlaceholderTextBox phDireccion;
@@ -21,8 +24,8 @@ namespace SG_BAMS.Proveedor
         public AgregarProveedores(IProveedorRepository repositorio, IClasificacionRepository clasificacionRepositorio)
         {
             InitializeComponent();
-            _repositorio = repositorio;
-            _clasificacionRepositorio = clasificacionRepositorio;
+            this.repositorio = repositorio;
+            this.clasificacionRepositorio = clasificacionRepositorio;
 
             this.StartPosition = FormStartPosition.CenterScreen;
             txtTelefono.MaxLength = 8;
@@ -33,7 +36,7 @@ namespace SG_BAMS.Proveedor
 
         private void AgregarProveedores_Load(object sender, EventArgs e)
         {
-            DataTable clasificaciones = _clasificacionRepositorio.ObtenerClasificaciones();
+            DataTable clasificaciones = clasificacionRepositorio.ObtenerClasificaciones();
             cmbClasificacion.DataSource = clasificaciones;
             cmbClasificacion.DisplayMember = "clasificacion_proveedor";
             cmbClasificacion.ValueMember = "id_clasificacion_proveedor";
@@ -57,9 +60,7 @@ namespace SG_BAMS.Proveedor
         }
 
         private void btnsalir_Click(object sender, EventArgs e) => this.Close();
-
         private void btnCancelar_Click(object sender, EventArgs e) => this.Close();
-
         private void cmbClasificacion_SelectedIndexChanged(object sender, EventArgs e) { }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -69,19 +70,19 @@ namespace SG_BAMS.Proveedor
             string telefonoReal = phTelefono.GetRealValue().Trim();
             string rtnReal = phRTN.GetRealValue().Trim();
 
-            if (!ValidarFormato(nombreReal, direccionReal, telefonoReal, rtnReal))
+            if (!ValidarFormulario())
                 return;
 
             try
             {
-                if (_repositorio.ExisteNombre(nombreReal))
+                if (repositorio.ExisteNombre(nombreReal))
                 {
                     MessageBox.Show("El nombre del proveedor ya existe.", "Nombre Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtNombre.Focus();
                     return;
                 }
 
-                if (_repositorio.ExisteRtn(rtnReal))
+                if (repositorio.ExisteRtn(rtnReal))
                 {
                     MessageBox.Show("El RTN ingresado ya pertenece a otro proveedor.", "RTN Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtRTN.Focus();
@@ -95,10 +96,10 @@ namespace SG_BAMS.Proveedor
                     Direccion = direccionReal,
                     Rtn = rtnReal,
                     IdClasificacion = Convert.ToInt32(cmbClasificacion.SelectedValue),
-                    IdUsuario = ClsLogin.idusuario
+                    IdUsuario = SesionUsuarioService.Instancia.IdUsuario
                 };
 
-                _repositorio.Agregar(proveedorDTO);
+                repositorio.Agregar(proveedorDTO);
 
                 MessageBox.Show("Proveedor agregado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;
@@ -110,12 +111,22 @@ namespace SG_BAMS.Proveedor
             }
         }
 
-        private bool ValidarFormato(string nombre, string direccion, string telefono, string rtn)
+        /// <summary>
+        /// Valida todos los campos del formulario delegando en ClsValidaciones.
+        /// </summary>
+        private bool ValidarFormulario()
         {
-            if (!ClsValidaciones.EsNombrePersonalValido(new TextBox { Text = nombre }, "Nombre del proveedor")) return false;
-            if (ClsValidaciones.CampoVacio(new TextBox { Text = direccion }, "Dirección")) return false;
-            if (!ClsValidaciones.EsTelefonoHondurasValido(new TextBox { Text = telefono })) return false;
-            if (!ClsValidaciones.EsRTNValido(new TextBox { Text = rtn })) return false;
+            if (ClsValidaciones.CampoVacio(txtNombre, "Nombre del proveedor"))
+                return false;
+
+            if (ClsValidaciones.CampoVacio(txtDireccion, "Dirección"))
+                return false;
+
+            if (ClsValidaciones.CampoVacio(txtTelefono, "Teléfono"))
+                return false;
+
+            if (ClsValidaciones.CampoVacio(txtRTN, "RTN"))
+                return false;
 
             if (phClasificacion.IsPlaceholderActive || cmbClasificacion.SelectedValue == null)
             {
@@ -135,14 +146,6 @@ namespace SG_BAMS.Proveedor
             {
                 char[] validos = { '2', '3', '8', '9' };
                 if (!validos.Contains(e.KeyChar)) e.Handled = true;
-            }
-
-            if (txtTelefono.Text.Length >= 3)
-            {
-                int pos = txtTelefono.SelectionStart;
-                string t = txtTelefono.Text;
-                if (pos >= 3 && t[pos - 1] == e.KeyChar && t[pos - 2] == e.KeyChar && t[pos - 3] == e.KeyChar)
-                    e.Handled = true;
             }
         }
 
