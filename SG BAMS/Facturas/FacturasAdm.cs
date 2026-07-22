@@ -305,14 +305,8 @@ namespace SG_BAMS
             navegacion.IrA(this, PA);
         }
 
-        private void btnBitacora_Click(object sender, EventArgs e)
-        {
-            var Bi = new BitacoraAdmin(
-                new BitacoraRepository(),
-                new FiltroBitacoraService(),
-                new ReporteBitacoraPdfExportador());
-            navegacion.IrA(this, Bi);
-        }
+        private void btnBitacora_Click(object sender, EventArgs e) => navegacion.IrA(this, new BitacoraAdmin());
+
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {

@@ -17,6 +17,7 @@ namespace SG_BAMS
     /// </summary>
     public partial class MenuPrincipalAdm : MenuPrincipalBase
     {
+        private readonly NavegacionService navegacion = new NavegacionService();
         /// <summary>
         /// Constructor sin parámetros para compatibilidad con código existente.
         /// </summary>
@@ -96,15 +97,8 @@ namespace SG_BAMS
             this.Hide();
         }
 
-        private void btnBitacora_Click(object sender, EventArgs e)
-        {
-            var Bi = new BitacoraAdmin(
-                new BitacoraRepository(),
-                new FiltroBitacoraService(),
-                new ReporteBitacoraPdfExportador());
-            Bi.Show();
-            this.Hide();
-        }
+        private void btnBitacora_Click(object sender, EventArgs e) => navegacion.IrA(this, new BitacoraAdmin());
+
 
         private void btnadmin_Click(object sender, EventArgs e) => AbrirNotificaciones();
         private void btnCerrar_Click(object sender, EventArgs e) => CerrarSesion();

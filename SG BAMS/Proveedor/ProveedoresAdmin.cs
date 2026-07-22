@@ -7,6 +7,7 @@ using System.Windows.Forms;
 
 namespace SG_BAMS.Proveedor
 {
+
     /// <summary>
     /// Formulario de listado y administración de proveedores. Única responsabilidad:
     /// mostrar la grilla y coordinar la apertura de los formularios de alta/edición,
@@ -203,15 +204,8 @@ namespace SG_BAMS.Proveedor
         private void btnDeudores_Click(object sender, EventArgs e) { DeudoresAdmin DA = new DeudoresAdmin(new DeudaRepository()); DA.Show(); this.Hide(); }
         private void btnReportes_Click(object sender, EventArgs e) { ReportesAdmin RA = new ReportesAdmin(); RA.Show(); this.Hide(); }
 
-        private void btnBitacora_Click(object sender, EventArgs e)
-        {
-            var Bi = new BitacoraAdmin(
-                new BitacoraRepository(),
-                new FiltroBitacoraService(),
-                new ReporteBitacoraPdfExportador());
-            Bi.Show();
-            this.Hide();
-        }
+        private void btnBitacora_Click(object sender, EventArgs e) { BitacoraAdmin BA = new BitacoraAdmin(); BA.Show(); this.Hide(); }
+
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {

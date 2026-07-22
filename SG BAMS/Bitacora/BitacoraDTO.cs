@@ -1,15 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 
-namespace SG_BAMS.Bitacora;
-
-/// <summary>
-/// Registro inmutable que representa una entrada de la bitácora del sistema.
-/// Se modela como <c>record</c> porque es un objeto de solo lectura una vez creado
-/// (Value Object), no una entidad con identidad mutable.
-/// </summary>
-/// <param name="Nombre">Nombre del usuario que realizó la acción.</param>
-/// <param name="Accion">Acción ejecutada.</param>
-/// <param name="Modulo">Módulo del sistema donde ocurrió la acción.</param>
-/// <param name="Fecha">Fecha y hora del registro.</param>
-public sealed record BitacoraDTO(string Nombre, string Accion, string Modulo, DateTime Fecha);
+namespace SG_BAMS.Bitacora
+{
+    /// <summary>
+    /// Objeto de transferencia de datos que representa un registro de la bitácora.
+    /// </summary>
+    public class BitacoraDTO
+    {
+        public string Nombre { get; set; }
+        public string Accion { get; set; }
+        public string Modulo { get; set; }
+        public DateTime Fecha { get; set; }
+    }
+}

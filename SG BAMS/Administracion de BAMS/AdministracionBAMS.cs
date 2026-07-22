@@ -140,10 +140,7 @@ namespace SG_BAMS
 
         private void btnBitacora_Click(object sender, EventArgs e)
         {
-            new BitacoraAdmin(
-                new BitacoraRepository(),
-                new FiltroBitacoraService(),
-                new ReporteBitacoraPdfExportador()).Show();
+            new ReportesAdmin().Show();
             this.Hide();
         }
 

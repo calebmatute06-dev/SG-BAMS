@@ -19,6 +19,8 @@ namespace SG_BAMS.Reporte
         private readonly ServicioFiltroStock _filtroStock;
         private readonly NavegacionService _servicioNavegacion;
 
+
+
         private DataTable _datosActuales;
         private ReporteTipo _tipoActual;
 
@@ -393,14 +395,8 @@ namespace SG_BAMS.Reporte
             _servicioNavegacion.IrA(this, PA);
         }
 
-        private void btnBitacora_Click(object sender, EventArgs e)
-        {
-            var Bi = new BitacoraAdmin(
-                new BitacoraRepository(),
-                new FiltroBitacoraService(),
-                new ReporteBitacoraPdfExportador());
-            _servicioNavegacion.IrA(this, Bi);
-        }
+        private void btnBitacora_Click(object sender, EventArgs e) => _servicioNavegacion.IrA(this, new BitacoraAdmin());
+
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {

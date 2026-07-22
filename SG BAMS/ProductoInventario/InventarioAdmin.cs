@@ -357,14 +357,8 @@ namespace SG_BAMS
         /// <summary>
         /// Maneja el evento Click del control btnBitacora.
         /// </summary>
-        private void btnBitacora_Click(object sender, EventArgs e)
-        {
-            var Bi = new BitacoraAdmin(
-                new BitacoraRepository(),
-                new FiltroBitacoraService(),
-                new ReporteBitacoraPdfExportador());
-            _navegacion.IrA(this, Bi);
-        }
+        private void btnBitacora_Click(object sender, EventArgs e) => _navegacion.IrA(this, new BitacoraAdmin());
+
 
         /// <summary>
         /// Maneja el evento Click del control btnCerrar.

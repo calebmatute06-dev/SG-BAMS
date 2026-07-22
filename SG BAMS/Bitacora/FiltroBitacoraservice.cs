@@ -9,7 +9,7 @@ namespace SG_BAMS.Bitacora;
 /// Es una operación puramente en memoria (CPU-bound), por lo que
 /// no requiere async/await: no realiza E/S.
 /// </summary>
-internal sealed class FiltroBitacoraService : IFiltroBitacora
+internal sealed class FiltroBitacoraservice : IFiltroBitacora
 {
     /// <inheritdoc />
     public string ConstruirFiltro(DataTable dt, string textoBusqueda, DateTime desde, DateTime hasta)

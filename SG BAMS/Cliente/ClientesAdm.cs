@@ -240,14 +240,8 @@ namespace SG_BAMS
         private void btnDeudores_Click(object sender, EventArgs e) => navegacion.IrA(this, new DeudoresAdmin(new DeudaRepository()));
         private void btnReportes_Click(object sender, EventArgs e) => navegacion.IrA(this, new ReportesAdmin());
 
-        private void btnBitacora_Click(object sender, EventArgs e)
-        {
-            var Bi = new BitacoraAdmin(
-                new BitacoraRepository(),
-                new FiltroBitacoraService(),
-                new ReporteBitacoraPdfExportador());
-            navegacion.IrA(this, Bi);
-        }
+        private void btnBitacora_Click(object sender, EventArgs e) => navegacion.IrA(this, new BitacoraAdmin());
+
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
