@@ -239,7 +239,7 @@
             label7.Size = new Size(92, 26);
             label7.TabIndex = 289;
             label7.Text = "Teléfono: ";
-            label7.Click += label7_Click;
+            //label7.Click += label7_Click;
             // 
             // label4
             // 

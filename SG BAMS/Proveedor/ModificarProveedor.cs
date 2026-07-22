@@ -207,7 +207,6 @@ namespace SG_BAMS.Proveedor
                 e.Handled = true;
         }
 
-        private void cmbEstado_SelectedIndexChanged(object sender, EventArgs e) { }
-        private void cmbClasificacion_SelectedIndexChanged(object sender, EventArgs e) { }
+
     }
 }

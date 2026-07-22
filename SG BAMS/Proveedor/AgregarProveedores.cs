@@ -167,6 +167,6 @@ namespace SG_BAMS.Proveedor
                 e.Handled = true;
         }
 
-        private void label7_Click(object sender, EventArgs e) { }
+
     }
 }

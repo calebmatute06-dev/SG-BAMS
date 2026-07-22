@@ -221,7 +221,7 @@
             cmbClasificacion.StateCommon.Item.Content.ShortText.Font = new Font("Arial Narrow", 12F);
             cmbClasificacion.StateNormal.ComboBox.Border.Rounding = 40F;
             cmbClasificacion.TabIndex = 236;
-            cmbClasificacion.SelectedIndexChanged += cmbClasificacion_SelectedIndexChanged;
+
             // 
             // cmbEstado
             // 
@@ -238,7 +238,7 @@
             cmbEstado.StateCommon.Item.Content.ShortText.Font = new Font("Arial Narrow", 12F);
             cmbEstado.StateNormal.ComboBox.Border.Rounding = 40F;
             cmbEstado.TabIndex = 240;
-            cmbEstado.SelectedIndexChanged += cmbEstado_SelectedIndexChanged;
+
             // 
             // label5
             // 
