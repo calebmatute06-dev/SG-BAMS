@@ -35,7 +35,7 @@ namespace SG_BAMS
         public Pago_Deuda(IDeudasRepository deudasRepositorio, string nombre = "", int idDeuda = 0)
         {
             InitializeComponent();
-            this.deudasRepositorio = deudasRepositorio;   
+            this.deudasRepositorio = deudasRepositorio;
             resumenService = new ResumenPagoService(deudasRepositorio);
 
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -215,9 +215,7 @@ namespace SG_BAMS
                 montoValido = ClsValidaciones.EsNumeroDecimalValido(tempMonto, "El monto", out montoPago);
             }
 
-            if (!montoValido) return false;
-
-            if (!montoValido) return false;
+            if (!montoValido) return false;   // Línea duplicada eliminada
 
             if (deuda > 100)
             {

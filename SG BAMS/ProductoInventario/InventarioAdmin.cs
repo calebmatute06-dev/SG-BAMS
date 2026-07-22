@@ -18,9 +18,9 @@ namespace SG_BAMS
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class InventarioAdmin : Form
     {
-        private readonly IProductoRepository _productoRepositorio;
-        private readonly IComboRepository _comboRepositorio;
-        private readonly NavegacionService _navegacion = new NavegacionService();
+        private readonly IProductoRepository productoRepositorio;
+        private readonly IComboRepository comboRepositorio;
+        private readonly NavegacionService navegacion = new NavegacionService();
 
         /// <summary>
         /// Texto del placeholder para el campo de búsqueda
@@ -51,15 +51,14 @@ namespace SG_BAMS
         public InventarioAdmin(IProductoRepository productoRepositorio, IComboRepository comboRepositorio)
         {
             InitializeComponent();
-            _productoRepositorio = productoRepositorio;
-            _comboRepositorio = comboRepositorio;
+            this.productoRepositorio = productoRepositorio;
+            this.comboRepositorio = comboRepositorio;
 
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.KeyPreview = true;
             ConfigurarPlaceholder();
-
         }
 
         /// <summary>
@@ -72,7 +71,6 @@ namespace SG_BAMS
 
             txtBuscar.Text = placeholderTexto;
             txtBuscar.ForeColor = placeholderColor;
-
 
             txtBuscar.Enter += txtBuscar_Enter;
             txtBuscar.Leave += txtBuscar_Leave;
@@ -110,7 +108,7 @@ namespace SG_BAMS
         {
             try
             {
-                dgvProductosAdmin.DataSource = _productoRepositorio.MostrarProductosCompleto();
+                dgvProductosAdmin.DataSource = productoRepositorio.MostrarProductosCompleto();
                 dgvProductosAdmin.ReadOnly = true;
                 dgvProductosAdmin.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 dgvProductosAdmin.AllowUserToAddRows = false;
@@ -150,7 +148,7 @@ namespace SG_BAMS
         /// </summary>
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            AgregarProducto frm = new AgregarProducto(_productoRepositorio, _comboRepositorio);
+            AgregarProducto frm = new AgregarProducto(productoRepositorio, comboRepositorio);
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 CargarInventarioCompleto();
@@ -166,7 +164,7 @@ namespace SG_BAMS
         {
             if (dgvProductosAdmin.SelectedRows.Count > 0)
             {
-                ModificarProducto frmMod = new ModificarProducto(_productoRepositorio, _comboRepositorio, ArmarProductoDTODesdeFila());
+                ModificarProducto frmMod = new ModificarProducto(productoRepositorio, comboRepositorio, ArmarProductoDTODesdeFila());
 
                 if (frmMod.ShowDialog() == DialogResult.OK)
                 {
@@ -215,7 +213,6 @@ namespace SG_BAMS
         /// </summary>
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
-
             if (txtBuscar.Text == placeholderTexto || txtBuscar.ForeColor == placeholderColor)
             {
                 return;
@@ -229,7 +226,7 @@ namespace SG_BAMS
 
             try
             {
-                dgvProductosAdmin.DataSource = _productoRepositorio.BuscarProductos(txtBuscar.Text.Trim());
+                dgvProductosAdmin.DataSource = productoRepositorio.BuscarProductos(txtBuscar.Text.Trim());
             }
             catch (Exception ex)
             {
@@ -255,7 +252,7 @@ namespace SG_BAMS
 
             if (dgvProductosAdmin.SelectedRows.Count > 0)
             {
-                ModificarProducto frmMod = new ModificarProducto(_productoRepositorio, _comboRepositorio, ArmarProductoDTODesdeFila());
+                ModificarProducto frmMod = new ModificarProducto(productoRepositorio, comboRepositorio, ArmarProductoDTODesdeFila());
 
                 if (frmMod.ShowDialog() == DialogResult.OK)
                 {
@@ -284,7 +281,6 @@ namespace SG_BAMS
 
                 if (intervalo.TotalMilliseconds < 50 || !txtBuscar.Focused)
                 {
-
                     txtBuscar.Text = string.Empty;
                     txtBuscar.ForeColor = textoColor;
 
@@ -301,7 +297,7 @@ namespace SG_BAMS
             {
                 if (txtBuscar.Focused && !string.IsNullOrWhiteSpace(txtBuscar.Text) && txtBuscar.Text != placeholderTexto)
                 {
-                    dgvProductosAdmin.DataSource = _productoRepositorio.BuscarProductos(txtBuscar.Text.Trim());
+                    dgvProductosAdmin.DataSource = productoRepositorio.BuscarProductos(txtBuscar.Text.Trim());
                     txtBuscar.SelectAll();
 
                     return true;
@@ -314,22 +310,22 @@ namespace SG_BAMS
         /// <summary>
         /// Maneja el evento Click del control btnMenu.
         /// </summary>
-        private void btnMenu_Click(object sender, EventArgs e) => _navegacion.IrA(this, new MenuPrincipalAdm());
+        private void btnMenu_Click(object sender, EventArgs e) => navegacion.IrA(this, new MenuPrincipalAdm());
 
         /// <summary>
         /// Maneja el evento Click del control btnFacturas.
         /// </summary>
-        private void btnFacturas_Click(object sender, EventArgs e) => _navegacion.IrA(this, new FacturasAdm());
+        private void btnFacturas_Click(object sender, EventArgs e) => navegacion.IrA(this, new FacturasAdm());
 
         /// <summary>
         /// Maneja el evento Click del control btnCompra.
         /// </summary>
-        private void btnCompra_Click(object sender, EventArgs e) => _navegacion.IrA(this, new Compras());
+        private void btnCompra_Click(object sender, EventArgs e) => navegacion.IrA(this, new Compras());
 
         /// <summary>
         /// Maneja el evento Click del control btnClientes.
         /// </summary>
-        private void btnClientes_Click(object sender, EventArgs e) => _navegacion.IrA(this, new ClientesAdm(new Cliente.ClienteRepository()));
+        private void btnClientes_Click(object sender, EventArgs e) => navegacion.IrA(this, new ClientesAdm(new Cliente.ClienteRepository()));
 
         /// <summary>
         /// Maneja el evento Click del control btnProveedores.
@@ -340,25 +336,24 @@ namespace SG_BAMS
                 new ProveedorRepository(),
                 new EstadoRepository(),
                 new ClasificacionRepository());
-            _navegacion.IrA(this, PA);
+            navegacion.IrA(this, PA);
         }
 
         /// <summary>
         /// Maneja el evento Click del control btnDeudores.
         /// </summary>
         private void btnDeudores_Click(object sender, EventArgs e) =>
-            _navegacion.IrA(this, new DeudoresAdmin(new DeudaRepository()));
+            navegacion.IrA(this, new DeudoresAdmin(new DeudaRepository()));
 
         /// <summary>
         /// Maneja el evento Click del control btnReportes.
         /// </summary>
-        private void btnReportes_Click(object sender, EventArgs e) => _navegacion.IrA(this, new ReportesAdmin());
+        private void btnReportes_Click(object sender, EventArgs e) => navegacion.IrA(this, new ReportesAdmin());
 
         /// <summary>
         /// Maneja el evento Click del control btnBitacora.
         /// </summary>
-        private void btnBitacora_Click(object sender, EventArgs e) => _navegacion.IrA(this, new BitacoraAdmin());
-
+        private void btnBitacora_Click(object sender, EventArgs e) => navegacion.IrA(this, new BitacoraAdmin());
 
         /// <summary>
         /// Maneja el evento Click del control btnCerrar.
@@ -412,7 +407,5 @@ namespace SG_BAMS
                 }
             }
         }
-
-
     }
 }

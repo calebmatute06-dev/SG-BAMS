@@ -13,8 +13,8 @@ namespace SG_BAMS
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class InventarioEmp : Form
     {
-        private readonly IProductoRepository _productoRepositorio;
-        private readonly NavegacionService _navegacion = new NavegacionService();
+        private readonly IProductoRepository productoRepositorio;
+        private readonly NavegacionService navegacion = new NavegacionService();
 
         /// <summary>
         /// Texto del placeholder para el campo de búsqueda
@@ -39,7 +39,7 @@ namespace SG_BAMS
         public InventarioEmp(IProductoRepository productoRepositorio)
         {
             InitializeComponent();
-            _productoRepositorio = productoRepositorio;
+            this.productoRepositorio = productoRepositorio;
 
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MaximizeBox = false;
@@ -55,10 +55,8 @@ namespace SG_BAMS
             textoColor = txtBuscar.ForeColor;
             placeholderColor = Color.Gray;
 
-
             txtBuscar.Text = placeholderTexto;
             txtBuscar.ForeColor = placeholderColor;
-
 
             txtBuscar.Enter += txtBuscar_Enter;
             txtBuscar.Leave += txtBuscar_Leave;
@@ -110,12 +108,10 @@ namespace SG_BAMS
         /// </summary>
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
-
             if (txtBuscar.Text == placeholderTexto || txtBuscar.ForeColor == placeholderColor)
             {
                 return;
             }
-
 
             if (string.IsNullOrWhiteSpace(txtBuscar.Text))
             {
@@ -125,7 +121,7 @@ namespace SG_BAMS
 
             try
             {
-                dgvInventarioEmp.DataSource = _productoRepositorio.BuscarProductos(txtBuscar.Text.Trim());
+                dgvInventarioEmp.DataSource = productoRepositorio.BuscarProductos(txtBuscar.Text.Trim());
             }
             catch (Exception ex)
             {
@@ -140,7 +136,7 @@ namespace SG_BAMS
         {
             try
             {
-                dgvInventarioEmp.DataSource = _productoRepositorio.MostrarProductosCompleto();
+                dgvInventarioEmp.DataSource = productoRepositorio.MostrarProductosCompleto();
                 dgvInventarioEmp.ReadOnly = true;
                 dgvInventarioEmp.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 dgvInventarioEmp.AllowUserToAddRows = false;
@@ -157,7 +153,6 @@ namespace SG_BAMS
             }
         }
 
-
         /// <summary>
         /// Maneja el evento Click del control btnNoti.
         /// </summary>
@@ -170,25 +165,23 @@ namespace SG_BAMS
         /// <summary>
         /// Maneja el evento Click del control btnMenu.
         /// </summary>
-        private void btnMenu_Click(object sender, EventArgs e) => _navegacion.IrA(this, new MenuPrincipalEmp());
+        private void btnMenu_Click(object sender, EventArgs e) => navegacion.IrA(this, new MenuPrincipalEmp());
 
         /// <summary>
         /// Maneja el evento Click del control btnFacturas.
         /// </summary>
-        private void btnFacturas_Click(object sender, EventArgs e) => _navegacion.IrA(this, new FacturasEmp());
+        private void btnFacturas_Click(object sender, EventArgs e) => navegacion.IrA(this, new FacturasEmp());
 
         /// <summary>
         /// Maneja el evento Click del control btnClientes.
         /// </summary>
-        private void btnClientes_Click(object sender, EventArgs e) => _navegacion.IrA(this, new ClientesEmp(new Cliente.ClienteRepository()));
-
-
+        private void btnClientes_Click(object sender, EventArgs e) => navegacion.IrA(this, new ClientesEmp(new Cliente.ClienteRepository()));
 
         /// <summary>
         /// Maneja el evento Click del control btnDeudores.
         /// </summary>
         private void btnDeudores_Click(object sender, EventArgs e) =>
-            _navegacion.IrA(this, new Deudores_Emp(new DeudaRepository()));
+            navegacion.IrA(this, new Deudores_Emp(new DeudaRepository()));
 
         /// <summary>
         /// Maneja el evento Click del control btnCerrar.
@@ -217,7 +210,5 @@ namespace SG_BAMS
             Perfil perfil = new Perfil();
             perfil.ShowDialog();
         }
-
-
     }
 }

@@ -16,9 +16,9 @@ namespace SG_BAMS
     /// </summary>
     public partial class DeudoresAdmin : Form
     {
-        private readonly IDeudaRepository _deudaRepositorio;
-        private readonly FiltroDeudoresService _filtroService = new FiltroDeudoresService();
-        private readonly NavegacionService _navegacion = new NavegacionService();
+        private readonly IDeudaRepository deudaRepositorio;
+        private readonly FiltroDeudoresService filtroService = new FiltroDeudoresService();
+        private readonly NavegacionService navegacion = new NavegacionService();
 
         private DataTable dtDeudores;
         private bool isFiltering = false;
@@ -34,7 +34,7 @@ namespace SG_BAMS
         public DeudoresAdmin(IDeudaRepository deudaRepositorio)
         {
             InitializeComponent();
-            _deudaRepositorio = deudaRepositorio;
+            this.deudaRepositorio = deudaRepositorio;
 
             this.StartPosition = FormStartPosition.CenterScreen;
             CargarGridDeudores();
@@ -79,7 +79,7 @@ namespace SG_BAMS
 
         public void CargarGridDeudores()
         {
-            dtDeudores = _deudaRepositorio.ListarDeudores();
+            dtDeudores = deudaRepositorio.ListarDeudores();
 
             dgvDeudores.DataSource = dtDeudores;
             dgvDeudores.ReadOnly = true;
@@ -106,7 +106,7 @@ namespace SG_BAMS
                     filtroNombre = "";
 
                 DataView dv = dtDeudores.DefaultView;
-                dv.RowFilter = _filtroService.ConstruirRowFilter(filtroNombre);
+                dv.RowFilter = filtroService.ConstruirRowFilter(filtroNombre);
                 dgvDeudores.DataSource = dv;
                 dgvDeudores.ClearSelection();
             }
@@ -215,22 +215,21 @@ namespace SG_BAMS
             ClsMensajeGuia.Activar(txtBuscarNombre);
         }
 
-        private void btnMenu_Click(object sender, EventArgs e) => _navegacion.IrA(this, new MenuPrincipalAdm());
-        private void btnFacturas_Click(object sender, EventArgs e) => _navegacion.IrA(this, new FacturasAdm());
-        private void btnCompra_Click(object sender, EventArgs e) => _navegacion.IrA(this, new Compras());
-        private void btnClientes_Click(object sender, EventArgs e) => _navegacion.IrA(this, new ClientesAdm(new Cliente.ClienteRepository()));
-        private void btnInventario_Click(object sender, EventArgs e) => _navegacion.IrA(this, new InventarioAdmin(new ProductoInventario.ProductoRepository(), new ProductoInventario.ComboRepository()));
+        private void btnMenu_Click(object sender, EventArgs e) => navegacion.IrA(this, new MenuPrincipalAdm());
+        private void btnFacturas_Click(object sender, EventArgs e) => navegacion.IrA(this, new FacturasAdm());
+        private void btnCompra_Click(object sender, EventArgs e) => navegacion.IrA(this, new Compras());
+        private void btnClientes_Click(object sender, EventArgs e) => navegacion.IrA(this, new ClientesAdm(new Cliente.ClienteRepository()));
+        private void btnInventario_Click(object sender, EventArgs e) => navegacion.IrA(this, new InventarioAdmin(new ProductoInventario.ProductoRepository(), new ProductoInventario.ComboRepository()));
         private void btnProveedores_Click(object sender, EventArgs e)
         {
             var PA = new ProveedoresAdmin(
                 new ProveedorRepository(),
                 new EstadoRepository(),
                 new ClasificacionRepository());
-            _navegacion.IrA(this, PA);
+            navegacion.IrA(this, PA);
         }
-        private void btnReportes_Click(object sender, EventArgs e) => _navegacion.IrA(this, new ReportesAdmin());
-        private void btnBitacora_Click(object sender, EventArgs e) => _navegacion.IrA(this, new BitacoraAdmin());
-
+        private void btnReportes_Click(object sender, EventArgs e) => navegacion.IrA(this, new ReportesAdmin());
+        private void btnBitacora_Click(object sender, EventArgs e) => navegacion.IrA(this, new BitacoraAdmin());
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {

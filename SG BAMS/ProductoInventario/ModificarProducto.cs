@@ -19,9 +19,9 @@ namespace SG_BAMS
         /// Reemplaza los campos públicos sueltos (marcaActual, tipoActual, etc.) que se llenaban
         /// desde afuera después de crear el formulario.
         /// </summary>
-        private readonly IProductoRepository _productoRepositorio;
-        private readonly IComboRepository _comboRepositorio;
-        private readonly ProductoDTO _dto;
+        private readonly IProductoRepository productoRepositorio;
+        private readonly IComboRepository comboRepositorio;
+        private readonly ProductoDTO dto;
 
         private PlaceholderTextBox phNombre;
         private PlaceholderTextBox phPrecio;
@@ -43,9 +43,9 @@ namespace SG_BAMS
         public ModificarProducto(IProductoRepository productoRepositorio, IComboRepository comboRepositorio, ProductoDTO dto)
         {
             InitializeComponent();
-            _productoRepositorio = productoRepositorio;
-            _comboRepositorio = comboRepositorio;
-            _dto = dto;
+            this.productoRepositorio = productoRepositorio;
+            this.comboRepositorio = comboRepositorio;
+            this.dto = dto;
 
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MaximizeBox = false;
@@ -58,13 +58,11 @@ namespace SG_BAMS
         /// </summary>
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-
             string nombreReal = phNombre.GetRealValue().Trim();
             string precioReal = phPrecio.GetRealValue().Trim();
             string codigoReal = phCodigoBarra.GetRealValue().Trim();
 
             bool valido = true;
-
 
             using (var tempNombre = new KryptonTextBox())
             {
@@ -72,7 +70,6 @@ namespace SG_BAMS
                 if (!ClsValidaciones.EsAlfanumericoValido(tempNombre, "Nombre del Producto"))
                     valido = false;
             }
-
 
             if (valido)
             {
@@ -84,7 +81,6 @@ namespace SG_BAMS
                         valido = false;
                 }
             }
-
 
             if (valido)
             {
@@ -132,7 +128,7 @@ namespace SG_BAMS
                 int stockNuevo = Convert.ToInt32(txtStock.Value);
                 decimal precioNumerico = Convert.ToDecimal(precioReal);
 
-                if (_productoRepositorio.ExisteProductoDuplicado(nombreReal, idMarca, idProveedor, idActual))
+                if (productoRepositorio.ExisteProductoDuplicado(nombreReal, idMarca, idProveedor, idActual))
                 {
                     MessageBox.Show("Este producto con esta marca ya está registrado para el proveedor seleccionado.\n\n" +
                                     "Si es un proveedor distinto, sí puede usar el mismo nombre.",
@@ -141,7 +137,7 @@ namespace SG_BAMS
                     return;
                 }
 
-                if (_productoRepositorio.ExisteCodigoBarraDuplicado(codigoReal, idActual))
+                if (productoRepositorio.ExisteCodigoBarraDuplicado(codigoReal, idActual))
                 {
                     MessageBox.Show("El código de barras ya está asignado a otro producto.",
                                     "Código Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Stop);
@@ -163,7 +159,7 @@ namespace SG_BAMS
                     Stock = stockNuevo
                 };
 
-                _productoRepositorio.EjecutarActualizacion(dtoActualizado);
+                productoRepositorio.EjecutarActualizacion(dtoActualizado);
 
                 MessageBox.Show("¡Producto actualizado correctamente!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;
@@ -180,23 +176,22 @@ namespace SG_BAMS
         /// </summary>
         private void ModificarProducto_Load(object sender, EventArgs e)
         {
-            if (_dto != null)
+            if (dto != null)
             {
-                txtID.Text = _dto.IdProducto.ToString();
-                txtNombre.Text = _dto.Nombre;
-                txtPrecio.Text = _dto.Precio.ToString();
-                txtCodigoBarra.Text = _dto.CodigoBarra;
-                txtStock.Value = _dto.Stock;
+                txtID.Text = dto.IdProducto.ToString();
+                txtNombre.Text = dto.Nombre;
+                txtPrecio.Text = dto.Precio.ToString();
+                txtCodigoBarra.Text = dto.CodigoBarra;
+                txtStock.Value = dto.Stock;
             }
 
             LlenarCombosModificar();
 
-            cmbMarca.SelectedIndex = cmbMarca.FindStringExact(_dto?.MarcaActual?.Trim());
-            cmbTipo.SelectedIndex = cmbTipo.FindStringExact(_dto?.TipoActual?.Trim());
-            cmbModelo.SelectedIndex = cmbModelo.FindStringExact(_dto?.ModeloActual?.Trim());
-            cmbEstado.SelectedIndex = cmbEstado.FindStringExact(_dto?.EstadoActual?.Trim());
-            cmbProveedor.SelectedIndex = cmbProveedor.FindStringExact(_dto?.ProveedorActual?.Trim());
-
+            cmbMarca.SelectedIndex = cmbMarca.FindStringExact(dto?.MarcaActual?.Trim());
+            cmbTipo.SelectedIndex = cmbTipo.FindStringExact(dto?.TipoActual?.Trim());
+            cmbModelo.SelectedIndex = cmbModelo.FindStringExact(dto?.ModeloActual?.Trim());
+            cmbEstado.SelectedIndex = cmbEstado.FindStringExact(dto?.EstadoActual?.Trim());
+            cmbProveedor.SelectedIndex = cmbProveedor.FindStringExact(dto?.ProveedorActual?.Trim());
 
             phNombre = new PlaceholderTextBox(txtNombre, "Ingrese Nombre del producto");
             phPrecio = new PlaceholderTextBox(txtPrecio, "Ingrese Precio del producto");
@@ -216,13 +211,13 @@ namespace SG_BAMS
         {
             try
             {
-                ComboBoxConfigurator.Configurar(cmbMarca, _comboRepositorio, "Marca");
-                ComboBoxConfigurator.Configurar(cmbTipo, _comboRepositorio, "Tipo");
-                ComboBoxConfigurator.Configurar(cmbModelo, _comboRepositorio, "Modelo");
-                ComboBoxConfigurator.Configurar(cmbEstado, _comboRepositorio, "Estado");
+                ComboBoxConfigurator.Configurar(cmbMarca, comboRepositorio, "Marca");
+                ComboBoxConfigurator.Configurar(cmbTipo, comboRepositorio, "Tipo");
+                ComboBoxConfigurator.Configurar(cmbModelo, comboRepositorio, "Modelo");
+                ComboBoxConfigurator.Configurar(cmbEstado, comboRepositorio, "Estado");
 
-                int idProvActual = ObtenerIdProveedorPorNombre(_dto?.ProveedorActual);
-                ComboBoxConfigurator.Configurar(cmbProveedor, _comboRepositorio, "Proveedor", idProvActual);
+                int idProvActual = ObtenerIdProveedorPorNombre(dto?.ProveedorActual);
+                ComboBoxConfigurator.Configurar(cmbProveedor, comboRepositorio, "Proveedor", idProvActual);
             }
             catch (Exception ex)
             {

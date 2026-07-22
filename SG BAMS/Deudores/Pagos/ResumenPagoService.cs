@@ -11,11 +11,11 @@ namespace SG_BAMS
     /// </summary>
     public class ResumenPagoService
     {
-        private readonly IDeudasRepository _repositorio;
+        private readonly IDeudasRepository repositorio;
 
         public ResumenPagoService(IDeudasRepository repositorio)
         {
-            _repositorio = repositorio;
+            this.repositorio = repositorio;
         }
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace SG_BAMS
         {
             var resumen = new ResumenPagoDeudaDTO();
 
-            DataTable dtProductos = _repositorio.ObtenerProductosPorDeuda(idDeuda);
+            DataTable dtProductos = repositorio.ObtenerProductosPorDeuda(idDeuda);
             if (dtProductos != null)
             {
                 foreach (DataRow row in dtProductos.Rows)
@@ -42,7 +42,7 @@ namespace SG_BAMS
                 }
             }
 
-            DataRow detalle = _repositorio.ObtenerSaldoDetalle(idDeuda);
+            DataRow detalle = repositorio.ObtenerSaldoDetalle(idDeuda);
             resumen.Descuento = detalle != null ? Convert.ToDecimal(detalle["Descuento"]) : 0;
             resumen.SaldoPagado = detalle != null ? Convert.ToDecimal(detalle["SaldoPagado"]) : 0;
             resumen.SaldoPendiente = detalle != null ? Convert.ToDecimal(detalle["SaldoPendiente"]) : 0;

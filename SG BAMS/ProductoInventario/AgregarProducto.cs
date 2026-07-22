@@ -16,8 +16,8 @@ namespace SG_BAMS
     /// </summary>
     public partial class AgregarProducto : Form
     {
-        private readonly IProductoRepository _productoRepositorio;
-        private readonly IComboRepository _comboRepositorio;
+        private readonly IProductoRepository productoRepositorio;
+        private readonly IComboRepository comboRepositorio;
 
         private PlaceholderTextBox phNombre;
         private PlaceholderTextBox phPrecio;
@@ -35,8 +35,8 @@ namespace SG_BAMS
         public AgregarProducto(IProductoRepository productoRepositorio, IComboRepository comboRepositorio)
         {
             InitializeComponent();
-            _productoRepositorio = productoRepositorio;
-            _comboRepositorio = comboRepositorio;
+            this.productoRepositorio = productoRepositorio;
+            this.comboRepositorio = comboRepositorio;
 
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -146,7 +146,7 @@ namespace SG_BAMS
         /// </summary>
         private bool ValidarDuplicados(ProductoDTO productoDTO)
         {
-            if (_productoRepositorio.ExisteProductoDuplicado(productoDTO.Nombre, productoDTO.IdMarca, productoDTO.IdProveedor))
+            if (productoRepositorio.ExisteProductoDuplicado(productoDTO.Nombre, productoDTO.IdMarca, productoDTO.IdProveedor))
             {
                 MessageBox.Show("Este producto con esta marca ya está registrado para el proveedor seleccionado.\n\n" +
                                 "Si es un proveedor distinto, sí puede usar el mismo nombre.",
@@ -154,7 +154,7 @@ namespace SG_BAMS
                 return false;
             }
 
-            if (_productoRepositorio.ExisteCodigoBarraDuplicado(productoDTO.CodigoBarra))
+            if (productoRepositorio.ExisteCodigoBarraDuplicado(productoDTO.CodigoBarra))
             {
                 MessageBox.Show("El código de barras ya pertenece a otro producto en el sistema.",
                                 "Código Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Stop);
@@ -172,7 +172,7 @@ namespace SG_BAMS
         {
             try
             {
-                _productoRepositorio.EjecutarInsercion(productoDTO);
+                productoRepositorio.EjecutarInsercion(productoDTO);
 
                 MessageBox.Show("¡Producto y stock guardados exitosamente!", "Éxito");
                 this.DialogResult = DialogResult.OK;
@@ -232,10 +232,10 @@ namespace SG_BAMS
         {
             try
             {
-                ComboBoxConfigurator.Configurar(cmbMarca, _comboRepositorio, "Marca");
-                ComboBoxConfigurator.Configurar(cmbTipo, _comboRepositorio, "Tipo");
-                ComboBoxConfigurator.Configurar(cmbModelo, _comboRepositorio, "Modelo");
-                ComboBoxConfigurator.Configurar(cmbProveedor, _comboRepositorio, "Proveedor");
+                ComboBoxConfigurator.Configurar(cmbMarca, comboRepositorio, "Marca");
+                ComboBoxConfigurator.Configurar(cmbTipo, comboRepositorio, "Tipo");
+                ComboBoxConfigurator.Configurar(cmbModelo, comboRepositorio, "Modelo");
+                ComboBoxConfigurator.Configurar(cmbProveedor, comboRepositorio, "Proveedor");
             }
             catch (Exception ex)
             {
