@@ -4,6 +4,7 @@ using SG_BAMS.Proveedor.DTO;
 using System;
 using System.Data;
 using System.Windows.Forms;
+using Krypton.Toolkit;
 
 namespace SG_BAMS.Proveedor
 {
@@ -117,17 +118,34 @@ namespace SG_BAMS.Proveedor
         private bool ValidarFormulario()
         {
 
-            if (!ClsValidaciones.EsNombrePersonalValido(txtNombre, "Nombre del proveedor"))
-                return false;
+            string nombreReal = phNombre.GetRealValue().Trim();
+            string direccionReal = phDireccion.GetRealValue().Trim();
+            string telefonoReal = phTelefono.GetRealValue().Trim();
+            string rtnReal = phRTN.GetRealValue().Trim();
 
-            if (!ClsValidaciones.EsAlfanumericoValido(txtDireccion, "Dirección"))
-                return false;
+            bool valido = true;
 
-            if (!ClsValidaciones.EsTelefonoHondurasValido(txtTelefono))
-                return false;
+            using (var tempNombre = new KryptonTextBox())
+            using (var tempDireccion = new KryptonTextBox())
+            using (var tempTelefono = new KryptonTextBox())
+            using (var tempRTN = new KryptonTextBox())
+            {
+                tempNombre.Text = nombreReal;
+                tempDireccion.Text = direccionReal;
+                tempTelefono.Text = telefonoReal;
+                tempRTN.Text = rtnReal;
 
-            if (!ClsValidaciones.EsRTNValido(txtRTN))
-                return false;
+                if (!ClsValidaciones.EsNombrePersonalValido(tempNombre, "Nombre del proveedor"))
+                    valido = false;
+                else if (!ClsValidaciones.EsAlfanumericoValido(tempDireccion, "Dirección"))
+                    valido = false;
+                else if (!ClsValidaciones.EsTelefonoHondurasValido(tempTelefono))
+                    valido = false;
+                else if (!ClsValidaciones.EsRTNValido(tempRTN))
+                    valido = false;
+            }
+
+            if (!valido) return false;
 
             if (phClasificacion.IsPlaceholderActive || cmbClasificacion.SelectedValue == null)
             {

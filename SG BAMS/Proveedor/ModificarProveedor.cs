@@ -1,4 +1,5 @@
-﻿using SG_BAMS.Administracion_de_BAMS.FormaPago;
+﻿using Krypton.Toolkit;
+using SG_BAMS.Administracion_de_BAMS.FormaPago;
 using SG_BAMS.Login;
 using SG_BAMS.Proveedor.DTO;
 using System;
@@ -153,21 +154,36 @@ namespace SG_BAMS.Proveedor
         /// </summary>
         private bool ValidarFormulario()
         {
+            string nombreReal = phNombre.GetRealValue().Trim();
+            string direccionReal = phDireccion.GetRealValue().Trim();
+            string telefonoReal = phTelefono.GetRealValue().Trim();
+            string rtnReal = phRTN.GetRealValue().Trim();
 
-            if (!ClsValidaciones.EsNombrePersonalValido(txtNombre, "Nombre del proveedor"))
-                return false;
+            bool valido = true;
 
-            if (!ClsValidaciones.EsAlfanumericoValido(txtDireccion, "Dirección"))
-                return false;
+            using (var tempNombre = new KryptonTextBox())
+            using (var tempDireccion = new KryptonTextBox())
+            using (var tempTelefono = new KryptonTextBox())
+            using (var tempRTN = new KryptonTextBox())
+            {
+                tempNombre.Text = nombreReal;
+                tempDireccion.Text = direccionReal;
+                tempTelefono.Text = telefonoReal;
+                tempRTN.Text = rtnReal;
 
-            if (!ClsValidaciones.EsTelefonoHondurasValido(txtTelefono))
-                return false;
+                if (!ClsValidaciones.EsNombrePersonalValido(tempNombre, "Nombre del proveedor"))
+                    valido = false;
+                else if (!ClsValidaciones.EsAlfanumericoValido(tempDireccion, "Dirección"))
+                    valido = false;
+                else if (!ClsValidaciones.EsTelefonoHondurasValido(tempTelefono))
+                    valido = false;
+                else if (!ClsValidaciones.EsRTNValido(tempRTN))
+                    valido = false;
+            }
 
-            if (!ClsValidaciones.EsRTNValido(txtRTN))
-                return false;
+            if (!valido) return false;
 
-            if (cmbEstado.SelectedValue == null ||
-               cmbClasificacion.SelectedValue == null)
+            if (cmbEstado.SelectedValue == null || cmbClasificacion.SelectedValue == null)
             {
                 MessageBox.Show("Asegúrese de seleccionar el Estado y la Clasificación.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
