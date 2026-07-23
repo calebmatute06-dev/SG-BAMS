@@ -197,11 +197,6 @@ namespace SG_BAMS
             phPrecio = new PlaceholderTextBox(txtPrecio, "Ingrese Precio del producto");
             phCodigoBarra = new PlaceholderTextBox(txtCodigoBarra, "Ingrese o escanee el código");
 
-            phMarca = new PlaceholderComboBox(cmbMarca, "Seleccione marca");
-            phTipo = new PlaceholderComboBox(cmbTipo, "Seleccione tipo");
-            phModelo = new PlaceholderComboBox(cmbModelo, "Seleccione modelo");
-            phEstado = new PlaceholderComboBox(cmbEstado, "Seleccione estado");
-            phProveedor = new PlaceholderComboBox(cmbProveedor, "Seleccione proveedor");
         }
 
         /// <summary>

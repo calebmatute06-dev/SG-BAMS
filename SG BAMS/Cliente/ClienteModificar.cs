@@ -219,7 +219,6 @@ namespace SG_BAMS
             phApellido = new PlaceholderTextBox(txtApellido, "Solo letras y espacios");
             phTelefono = new PlaceholderTextBox(txtTelefono, "Debe comenzar con 2,3,7,8 o 9");
             phRTN = new PlaceholderTextBox(txtRTN, "Ingrese RTN(opcional)");
-            phEstado = new PlaceholderComboBox(cmbEstado, "Seleccione un estado");
         }
 
         private void BtnSalir_Click(object sender, EventArgs e) => this.Close();

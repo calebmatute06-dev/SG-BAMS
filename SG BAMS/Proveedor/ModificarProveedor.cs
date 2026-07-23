@@ -96,8 +96,6 @@ namespace SG_BAMS.Proveedor
             phTelefono = new PlaceholderTextBox(txtTelefono, "Número que empiece con 9,8,3,2");
             phDireccion = new PlaceholderTextBox(txtDireccion, "Colonia, Barrio, Pueblo");
             phRTN = new PlaceholderTextBox(txtRTN, "Ingrese el RTN");
-            phEstado = new PlaceholderComboBox(cmbEstado, "Seleccione un estado");
-            phClasificacion = new PlaceholderComboBox(cmbClasificacion, "Seleccione una clasificación");
         }
 
         /// <summary>
