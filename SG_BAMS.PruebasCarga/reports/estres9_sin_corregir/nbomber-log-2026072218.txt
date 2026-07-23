@@ -1,0 +1,11 @@
+2026-07-22 18:47:53.665 -06:00 [INF] [ThreadId:1] NBomber 6.5.0 started a new session: 2026-07-23_00-47-53_cf66ea9d
+2026-07-22 18:47:53.763 -06:00 [INF] [ThreadId:1] NBomber started as single node
+2026-07-22 18:47:53.768 -06:00 [INF] [ThreadId:1] License validation....
+2026-07-22 18:47:53.769 -06:00 [WRN] [ThreadId:1] THIS VERSION IS FREE ONLY FOR PERSONAL USE. You can't use it for an organization.
+2026-07-22 18:47:54.054 -06:00 [INF] [ThreadId:1] Reports folder: C:\Users\grods\OneDrive\Escritorio\Proyecto Desarrollo de Software\SG_BAMS.PruebasCarga\bin\Debug\net8.0-windows\reports/estres9_sin_corregir
+2026-07-22 18:47:54.055 -06:00 [INF] [ThreadId:1] Plugins: no plugins were loaded
+2026-07-22 18:47:54.056 -06:00 [INF] [ThreadId:1] Reporting sinks: no reporting sinks were loaded
+2026-07-22 18:47:54.057 -06:00 [INF] [ThreadId:1] Starting init...
+2026-07-22 18:47:54.076 -06:00 [INF] [ThreadId:1] Target scenarios: Estres9_AgregarLeerModificar_SINCorregir
+2026-07-22 18:47:54.081 -06:00 [INF] [ThreadId:1] Init finished
+2026-07-22 18:47:54.375 -06:00 [INF] [ThreadId:1] Starting bombing...

@@ -1,0 +1,11 @@
+2026-07-21 01:22:23.033 -06:00 [INF] [ThreadId:1] NBomber 6.5.0 started a new session: 2026-07-21_07-22-22_a0fdf1e5
+2026-07-21 01:22:23.144 -06:00 [INF] [ThreadId:1] NBomber started as single node
+2026-07-21 01:22:23.151 -06:00 [INF] [ThreadId:1] License validation....
+2026-07-21 01:22:23.153 -06:00 [WRN] [ThreadId:1] THIS VERSION IS FREE ONLY FOR PERSONAL USE. You can't use it for an organization.
+2026-07-21 01:22:23.210 -06:00 [INF] [ThreadId:1] Reports folder: C:\Users\grods\OneDrive\Escritorio\Proyecto Desarrollo de Software\SG_BAMS.PruebasCarga\bin\Debug\net8.0-windows\reports/reportes_ventas_datos_30
+2026-07-21 01:22:23.211 -06:00 [INF] [ThreadId:1] Plugins: no plugins were loaded
+2026-07-21 01:22:23.212 -06:00 [INF] [ThreadId:1] Reporting sinks: no reporting sinks were loaded
+2026-07-21 01:22:23.212 -06:00 [INF] [ThreadId:1] Starting init...
+2026-07-21 01:22:23.227 -06:00 [INF] [ThreadId:1] Target scenarios: Reportes_Ventas_Datos
+2026-07-21 01:22:23.230 -06:00 [INF] [ThreadId:1] Init finished
+2026-07-21 01:22:23.272 -06:00 [INF] [ThreadId:1] Starting bombing...

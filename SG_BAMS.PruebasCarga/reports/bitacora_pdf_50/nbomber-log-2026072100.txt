@@ -1,0 +1,11 @@
+2026-07-21 00:58:57.069 -06:00 [INF] [ThreadId:1] NBomber 6.5.0 started a new session: 2026-07-21_06-58-56_6178f91d
+2026-07-21 00:58:57.240 -06:00 [INF] [ThreadId:1] NBomber started as single node
+2026-07-21 00:58:57.250 -06:00 [INF] [ThreadId:1] License validation....
+2026-07-21 00:58:57.257 -06:00 [WRN] [ThreadId:1] THIS VERSION IS FREE ONLY FOR PERSONAL USE. You can't use it for an organization.
+2026-07-21 00:58:57.339 -06:00 [INF] [ThreadId:1] Reports folder: C:\Users\grods\OneDrive\Escritorio\Proyecto Desarrollo de Software\SG_BAMS.PruebasCarga\bin\Debug\net8.0-windows\reports/bitacora_pdf_50
+2026-07-21 00:58:57.342 -06:00 [INF] [ThreadId:1] Plugins: no plugins were loaded
+2026-07-21 00:58:57.343 -06:00 [INF] [ThreadId:1] Reporting sinks: no reporting sinks were loaded
+2026-07-21 00:58:57.344 -06:00 [INF] [ThreadId:1] Starting init...
+2026-07-21 00:58:57.364 -06:00 [INF] [ThreadId:1] Target scenarios: Bitacora_PDF
+2026-07-21 00:58:57.369 -06:00 [INF] [ThreadId:1] Init finished
+2026-07-21 00:58:57.434 -06:00 [INF] [ThreadId:1] Starting bombing...

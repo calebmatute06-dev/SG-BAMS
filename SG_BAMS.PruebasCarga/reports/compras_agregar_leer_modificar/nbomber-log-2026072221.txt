@@ -1,0 +1,11 @@
+2026-07-22 21:58:35.377 -06:00 [INF] [ThreadId:1] NBomber 6.5.0 started a new session: 2026-07-23_03-58-35_f72effc9
+2026-07-22 21:58:35.497 -06:00 [INF] [ThreadId:1] NBomber started as single node
+2026-07-22 21:58:35.504 -06:00 [INF] [ThreadId:1] License validation....
+2026-07-22 21:58:35.506 -06:00 [WRN] [ThreadId:1] THIS VERSION IS FREE ONLY FOR PERSONAL USE. You can't use it for an organization.
+2026-07-22 21:58:35.586 -06:00 [INF] [ThreadId:1] Reports folder: C:\Users\grods\OneDrive\Escritorio\Proyecto Desarrollo de Software\SG_BAMS.PruebasCarga\bin\Debug\net8.0-windows\reports/compras_agregar_leer_modificar
+2026-07-22 21:58:35.588 -06:00 [INF] [ThreadId:1] Plugins: no plugins were loaded
+2026-07-22 21:58:35.589 -06:00 [INF] [ThreadId:1] Reporting sinks: no reporting sinks were loaded
+2026-07-22 21:58:35.590 -06:00 [INF] [ThreadId:1] Starting init...
+2026-07-22 21:58:35.605 -06:00 [INF] [ThreadId:1] Target scenarios: Compras_Agregar, Compras_Leer, Compras_Modificar
+2026-07-22 21:58:35.609 -06:00 [INF] [ThreadId:1] Init finished
+2026-07-22 21:58:35.656 -06:00 [INF] [ThreadId:1] Starting bombing...

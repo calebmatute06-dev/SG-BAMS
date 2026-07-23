@@ -1,0 +1,106 @@
+2026-07-22 15:31:19.684 -06:00 [INF] [ThreadId:1] NBomber 6.5.0 started a new session: 2026-07-22_21-31-19_801cbfa2
+2026-07-22 15:31:19.909 -06:00 [INF] [ThreadId:1] NBomber started as single node
+2026-07-22 15:31:19.936 -06:00 [INF] [ThreadId:1] License validation....
+2026-07-22 15:31:19.940 -06:00 [WRN] [ThreadId:1] THIS VERSION IS FREE ONLY FOR PERSONAL USE. You can't use it for an organization.
+2026-07-22 15:31:20.045 -06:00 [INF] [ThreadId:1] Reports folder: C:\Users\grods\OneDrive\Escritorio\Proyecto Desarrollo de Software\SG_BAMS.PruebasCarga\bin\Debug\net8.0-windows\reports/facturas_leer_agregar_500
+2026-07-22 15:31:20.049 -06:00 [INF] [ThreadId:1] Plugins: no plugins were loaded
+2026-07-22 15:31:20.051 -06:00 [INF] [ThreadId:1] Reporting sinks: no reporting sinks were loaded
+2026-07-22 15:31:20.052 -06:00 [INF] [ThreadId:1] Starting init...
+2026-07-22 15:31:20.077 -06:00 [INF] [ThreadId:1] Target scenarios: Facturas_Leer, Facturas_Agregar
+2026-07-22 15:31:20.083 -06:00 [INF] [ThreadId:1] Init finished
+2026-07-22 15:31:20.158 -06:00 [INF] [ThreadId:1] Starting bombing...
+2026-07-22 15:31:59.604 -06:00 [INF] [ThreadId:16] Waiting on scenarios completion...
+2026-07-22 15:35:26.622 -06:00 [ERR] [ThreadId:32] Unhandled exception for Scenario: 0
+System.InvalidOperationException: Valor de tiempo de espera caducado. El período de tiempo de espera expiró antes de obtener una conexión del grupo. Esto puede suceder porque todas las conexiones de la agrupación estaban en uso y se alcanzó el máximo tamaño del grupo.
+   at Microsoft.Data.Common.ADP.ExceptionWithStackTrace(Exception e)
+--- End of stack trace from previous location ---
+   at ClsFacturaOptimizado.AgregarFacturas(FacturaDTO dto, CancellationToken cancellationToken) in C:\Users\grods\OneDrive\Escritorio\Proyecto Desarrollo de Software\SG_BAMS.PruebasCarga\Program.cs:line 166
+   at ClsFacturaOptimizado.AgregarFacturas(FacturaDTO dto, CancellationToken cancellationToken) in C:\Users\grods\OneDrive\Escritorio\Proyecto Desarrollo de Software\SG_BAMS.PruebasCarga\Program.cs:line 225
+   at Program.<>c__DisplayClass0_0.<<<Main>$>b__2>d.MoveNext() in C:\Users\grods\OneDrive\Escritorio\Proyecto Desarrollo de Software\SG_BAMS.PruebasCarga\Program.cs:line 90
+--- End of stack trace from previous location ---
+   at NBomber.FSharp.Scenario.typedRun@69-1.MoveNext()
+   at NBomber.Domain.Scheduler.ScenarioActor.clo@72-1.MoveNext()
+2026-07-22 15:35:28.828 -06:00 [ERR] [ThreadId:14] Unhandled exception for Scenario: 0
+System.InvalidOperationException: Valor de tiempo de espera caducado. El período de tiempo de espera expiró antes de obtener una conexión del grupo. Esto puede suceder porque todas las conexiones de la agrupación estaban en uso y se alcanzó el máximo tamaño del grupo.
+   at Microsoft.Data.Common.ADP.ExceptionWithStackTrace(Exception e)
+--- End of stack trace from previous location ---
+   at ClsFacturaOptimizado.AgregarFacturas(FacturaDTO dto, CancellationToken cancellationToken) in C:\Users\grods\OneDrive\Escritorio\Proyecto Desarrollo de Software\SG_BAMS.PruebasCarga\Program.cs:line 166
+   at ClsFacturaOptimizado.AgregarFacturas(FacturaDTO dto, CancellationToken cancellationToken) in C:\Users\grods\OneDrive\Escritorio\Proyecto Desarrollo de Software\SG_BAMS.PruebasCarga\Program.cs:line 225
+   at Program.<>c__DisplayClass0_0.<<<Main>$>b__2>d.MoveNext() in C:\Users\grods\OneDrive\Escritorio\Proyecto Desarrollo de Software\SG_BAMS.PruebasCarga\Program.cs:line 90
+--- End of stack trace from previous location ---
+   at NBomber.FSharp.Scenario.typedRun@69-1.MoveNext()
+   at NBomber.Domain.Scheduler.ScenarioActor.clo@72-1.MoveNext()
+2026-07-22 15:35:27.731 -06:00 [ERR] [ThreadId:18] Unhandled exception for Scenario: 0
+System.InvalidOperationException: Valor de tiempo de espera caducado. El período de tiempo de espera expiró antes de obtener una conexión del grupo. Esto puede suceder porque todas las conexiones de la agrupación estaban en uso y se alcanzó el máximo tamaño del grupo.
+   at Microsoft.Data.Common.ADP.ExceptionWithStackTrace(Exception e)
+--- End of stack trace from previous location ---
+   at ClsFacturaOptimizado.AgregarFacturas(FacturaDTO dto, CancellationToken cancellationToken) in C:\Users\grods\OneDrive\Escritorio\Proyecto Desarrollo de Software\SG_BAMS.PruebasCarga\Program.cs:line 166
+   at ClsFacturaOptimizado.AgregarFacturas(FacturaDTO dto, CancellationToken cancellationToken) in C:\Users\grods\OneDrive\Escritorio\Proyecto Desarrollo de Software\SG_BAMS.PruebasCarga\Program.cs:line 225
+   at Program.<>c__DisplayClass0_0.<<<Main>$>b__2>d.MoveNext() in C:\Users\grods\OneDrive\Escritorio\Proyecto Desarrollo de Software\SG_BAMS.PruebasCarga\Program.cs:line 90
+--- End of stack trace from previous location ---
+   at NBomber.FSharp.Scenario.typedRun@69-1.MoveNext()
+   at NBomber.Domain.Scheduler.ScenarioActor.clo@72-1.MoveNext()
+2026-07-22 15:35:28.199 -06:00 [ERR] [ThreadId:31] Unhandled exception for Scenario: 0
+System.InvalidOperationException: Valor de tiempo de espera caducado. El período de tiempo de espera expiró antes de obtener una conexión del grupo. Esto puede suceder porque todas las conexiones de la agrupación estaban en uso y se alcanzó el máximo tamaño del grupo.
+   at Microsoft.Data.Common.ADP.ExceptionWithStackTrace(Exception e)
+--- End of stack trace from previous location ---
+   at ClsFacturaOptimizado.AgregarFacturas(FacturaDTO dto, CancellationToken cancellationToken) in C:\Users\grods\OneDrive\Escritorio\Proyecto Desarrollo de Software\SG_BAMS.PruebasCarga\Program.cs:line 166
+   at ClsFacturaOptimizado.AgregarFacturas(FacturaDTO dto, CancellationToken cancellationToken) in C:\Users\grods\OneDrive\Escritorio\Proyecto Desarrollo de Software\SG_BAMS.PruebasCarga\Program.cs:line 225
+   at Program.<>c__DisplayClass0_0.<<<Main>$>b__2>d.MoveNext() in C:\Users\grods\OneDrive\Escritorio\Proyecto Desarrollo de Software\SG_BAMS.PruebasCarga\Program.cs:line 90
+--- End of stack trace from previous location ---
+   at NBomber.FSharp.Scenario.typedRun@69-1.MoveNext()
+   at NBomber.Domain.Scheduler.ScenarioActor.clo@72-1.MoveNext()
+2026-07-22 15:35:28.515 -06:00 [ERR] [ThreadId:28] Unhandled exception for Scenario: 0
+System.InvalidOperationException: Valor de tiempo de espera caducado. El período de tiempo de espera expiró antes de obtener una conexión del grupo. Esto puede suceder porque todas las conexiones de la agrupación estaban en uso y se alcanzó el máximo tamaño del grupo.
+   at Microsoft.Data.Common.ADP.ExceptionWithStackTrace(Exception e)
+--- End of stack trace from previous location ---
+   at ClsFacturaOptimizado.AgregarFacturas(FacturaDTO dto, CancellationToken cancellationToken) in C:\Users\grods\OneDrive\Escritorio\Proyecto Desarrollo de Software\SG_BAMS.PruebasCarga\Program.cs:line 166
+   at ClsFacturaOptimizado.AgregarFacturas(FacturaDTO dto, CancellationToken cancellationToken) in C:\Users\grods\OneDrive\Escritorio\Proyecto Desarrollo de Software\SG_BAMS.PruebasCarga\Program.cs:line 225
+   at Program.<>c__DisplayClass0_0.<<<Main>$>b__2>d.MoveNext() in C:\Users\grods\OneDrive\Escritorio\Proyecto Desarrollo de Software\SG_BAMS.PruebasCarga\Program.cs:line 90
+--- End of stack trace from previous location ---
+   at NBomber.FSharp.Scenario.typedRun@69-1.MoveNext()
+   at NBomber.Domain.Scheduler.ScenarioActor.clo@72-1.MoveNext()
+2026-07-22 15:35:26.840 -06:00 [ERR] [ThreadId:27] Unhandled exception for Scenario: 0
+System.InvalidOperationException: Valor de tiempo de espera caducado. El período de tiempo de espera expiró antes de obtener una conexión del grupo. Esto puede suceder porque todas las conexiones de la agrupación estaban en uso y se alcanzó el máximo tamaño del grupo.
+   at Microsoft.Data.Common.ADP.ExceptionWithStackTrace(Exception e)
+--- End of stack trace from previous location ---
+   at ClsFacturaOptimizado.AgregarFacturas(FacturaDTO dto, CancellationToken cancellationToken) in C:\Users\grods\OneDrive\Escritorio\Proyecto Desarrollo de Software\SG_BAMS.PruebasCarga\Program.cs:line 166
+   at ClsFacturaOptimizado.AgregarFacturas(FacturaDTO dto, CancellationToken cancellationToken) in C:\Users\grods\OneDrive\Escritorio\Proyecto Desarrollo de Software\SG_BAMS.PruebasCarga\Program.cs:line 225
+   at Program.<>c__DisplayClass0_0.<<<Main>$>b__2>d.MoveNext() in C:\Users\grods\OneDrive\Escritorio\Proyecto Desarrollo de Software\SG_BAMS.PruebasCarga\Program.cs:line 90
+--- End of stack trace from previous location ---
+   at NBomber.FSharp.Scenario.typedRun@69-1.MoveNext()
+   at NBomber.Domain.Scheduler.ScenarioActor.clo@72-1.MoveNext()
+2026-07-22 15:35:28.185 -06:00 [ERR] [ThreadId:25] Unhandled exception for Scenario: 0
+System.InvalidOperationException: Valor de tiempo de espera caducado. El período de tiempo de espera expiró antes de obtener una conexión del grupo. Esto puede suceder porque todas las conexiones de la agrupación estaban en uso y se alcanzó el máximo tamaño del grupo.
+   at Microsoft.Data.Common.ADP.ExceptionWithStackTrace(Exception e)
+--- End of stack trace from previous location ---
+   at ClsFacturaOptimizado.AgregarFacturas(FacturaDTO dto, CancellationToken cancellationToken) in C:\Users\grods\OneDrive\Escritorio\Proyecto Desarrollo de Software\SG_BAMS.PruebasCarga\Program.cs:line 166
+   at ClsFacturaOptimizado.AgregarFacturas(FacturaDTO dto, CancellationToken cancellationToken) in C:\Users\grods\OneDrive\Escritorio\Proyecto Desarrollo de Software\SG_BAMS.PruebasCarga\Program.cs:line 225
+   at Program.<>c__DisplayClass0_0.<<<Main>$>b__2>d.MoveNext() in C:\Users\grods\OneDrive\Escritorio\Proyecto Desarrollo de Software\SG_BAMS.PruebasCarga\Program.cs:line 90
+--- End of stack trace from previous location ---
+   at NBomber.FSharp.Scenario.typedRun@69-1.MoveNext()
+   at NBomber.Domain.Scheduler.ScenarioActor.clo@72-1.MoveNext()
+2026-07-22 15:35:28.287 -06:00 [ERR] [ThreadId:24] Unhandled exception for Scenario: 0
+System.InvalidOperationException: Valor de tiempo de espera caducado. El período de tiempo de espera expiró antes de obtener una conexión del grupo. Esto puede suceder porque todas las conexiones de la agrupación estaban en uso y se alcanzó el máximo tamaño del grupo.
+   at Microsoft.Data.Common.ADP.ExceptionWithStackTrace(Exception e)
+--- End of stack trace from previous location ---
+   at ClsFacturaOptimizado.AgregarFacturas(FacturaDTO dto, CancellationToken cancellationToken) in C:\Users\grods\OneDrive\Escritorio\Proyecto Desarrollo de Software\SG_BAMS.PruebasCarga\Program.cs:line 166
+   at ClsFacturaOptimizado.AgregarFacturas(FacturaDTO dto, CancellationToken cancellationToken) in C:\Users\grods\OneDrive\Escritorio\Proyecto Desarrollo de Software\SG_BAMS.PruebasCarga\Program.cs:line 225
+   at Program.<>c__DisplayClass0_0.<<<Main>$>b__2>d.MoveNext() in C:\Users\grods\OneDrive\Escritorio\Proyecto Desarrollo de Software\SG_BAMS.PruebasCarga\Program.cs:line 90
+--- End of stack trace from previous location ---
+   at NBomber.FSharp.Scenario.typedRun@69-1.MoveNext()
+   at NBomber.Domain.Scheduler.ScenarioActor.clo@72-1.MoveNext()
+2026-07-22 15:35:28.683 -06:00 [ERR] [ThreadId:23] Unhandled exception for Scenario: 0
+System.InvalidOperationException: Valor de tiempo de espera caducado. El período de tiempo de espera expiró antes de obtener una conexión del grupo. Esto puede suceder porque todas las conexiones de la agrupación estaban en uso y se alcanzó el máximo tamaño del grupo.
+   at Microsoft.Data.Common.ADP.ExceptionWithStackTrace(Exception e)
+--- End of stack trace from previous location ---
+   at ClsFacturaOptimizado.AgregarFacturas(FacturaDTO dto, CancellationToken cancellationToken) in C:\Users\grods\OneDrive\Escritorio\Proyecto Desarrollo de Software\SG_BAMS.PruebasCarga\Program.cs:line 166
+   at ClsFacturaOptimizado.AgregarFacturas(FacturaDTO dto, CancellationToken cancellationToken) in C:\Users\grods\OneDrive\Escritorio\Proyecto Desarrollo de Software\SG_BAMS.PruebasCarga\Program.cs:line 225
+   at Program.<>c__DisplayClass0_0.<<<Main>$>b__2>d.MoveNext() in C:\Users\grods\OneDrive\Escritorio\Proyecto Desarrollo de Software\SG_BAMS.PruebasCarga\Program.cs:line 90
+--- End of stack trace from previous location ---
+   at NBomber.FSharp.Scenario.typedRun@69-1.MoveNext()
+   at NBomber.Domain.Scheduler.ScenarioActor.clo@72-1.MoveNext()
+2026-07-22 15:36:22.026 -06:00 [INF] [ThreadId:14] Stopping scenarios...
+2026-07-22 15:36:22.032 -06:00 [INF] [ThreadId:14] Calculating final statistics...
+2026-07-22 15:36:22.842 -06:00 [INF] [ThreadId:14] Reports saved in folder: C:\Users\grods\OneDrive\Escritorio\Proyecto Desarrollo de Software\SG_BAMS.PruebasCarga\reports\facturas_leer_agregar_500
+2026-07-22 15:36:22.843 -06:00 [WRN] [ThreadId:14] THIS VERSION IS FREE ONLY FOR PERSONAL USE. You can't use it for an organization.

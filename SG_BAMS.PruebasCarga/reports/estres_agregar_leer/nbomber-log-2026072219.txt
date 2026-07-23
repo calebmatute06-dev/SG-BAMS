@@ -1,0 +1,16 @@
+2026-07-22 19:15:26.087 -06:00 [INF] [ThreadId:1] NBomber 6.5.0 started a new session: 2026-07-23_01-15-25_a53e4b43
+2026-07-22 19:15:26.238 -06:00 [INF] [ThreadId:1] NBomber started as single node
+2026-07-22 19:15:26.253 -06:00 [INF] [ThreadId:1] License validation....
+2026-07-22 19:15:26.256 -06:00 [WRN] [ThreadId:1] THIS VERSION IS FREE ONLY FOR PERSONAL USE. You can't use it for an organization.
+2026-07-22 19:15:26.465 -06:00 [INF] [ThreadId:1] Reports folder: C:\Users\grods\OneDrive\Escritorio\Proyecto Desarrollo de Software\SG_BAMS.PruebasCarga\bin\Debug\net8.0-windows\reports/estres_agregar_leer
+2026-07-22 19:15:26.469 -06:00 [INF] [ThreadId:1] Plugins: no plugins were loaded
+2026-07-22 19:15:26.470 -06:00 [INF] [ThreadId:1] Reporting sinks: no reporting sinks were loaded
+2026-07-22 19:15:26.472 -06:00 [INF] [ThreadId:1] Starting init...
+2026-07-22 19:15:26.495 -06:00 [INF] [ThreadId:1] Target scenarios: Estres_AgregarLeer
+2026-07-22 19:15:26.502 -06:00 [INF] [ThreadId:1] Init finished
+2026-07-22 19:15:26.565 -06:00 [INF] [ThreadId:1] Starting bombing...
+2026-07-22 19:18:16.344 -06:00 [WRN] [ThreadId:26] Stopping test early: Stopping test because of too many fails. Scenario 'Estres_AgregarLeer' contains '5013' fails.
+2026-07-22 19:18:17.110 -06:00 [INF] [ThreadId:27] Waiting on scenarios completion...
+2026-07-22 19:18:19.782 -06:00 [INF] [ThreadId:21] Calculating final statistics...
+2026-07-22 19:18:20.524 -06:00 [INF] [ThreadId:17] Reports saved in folder: C:\Users\grods\OneDrive\Escritorio\Proyecto Desarrollo de Software\SG_BAMS.PruebasCarga\reports\estres_agregar_leer
+2026-07-22 19:18:20.525 -06:00 [WRN] [ThreadId:17] THIS VERSION IS FREE ONLY FOR PERSONAL USE. You can't use it for an organization.
