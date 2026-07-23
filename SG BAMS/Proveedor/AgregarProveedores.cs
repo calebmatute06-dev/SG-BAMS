@@ -116,16 +116,17 @@ namespace SG_BAMS.Proveedor
         /// </summary>
         private bool ValidarFormulario()
         {
-            if (ClsValidaciones.CampoVacio(txtNombre, "Nombre del proveedor"))
+
+            if (!ClsValidaciones.EsNombrePersonalValido(txtNombre, "Nombre del proveedor"))
                 return false;
 
-            if (ClsValidaciones.CampoVacio(txtDireccion, "Dirección"))
+            if (!ClsValidaciones.EsAlfanumericoValido(txtDireccion, "Dirección"))
                 return false;
 
-            if (ClsValidaciones.CampoVacio(txtTelefono, "Teléfono"))
+            if (!ClsValidaciones.EsTelefonoHondurasValido(txtTelefono))
                 return false;
 
-            if (ClsValidaciones.CampoVacio(txtRTN, "RTN"))
+            if (!ClsValidaciones.EsRTNValido(txtRTN))
                 return false;
 
             if (phClasificacion.IsPlaceholderActive || cmbClasificacion.SelectedValue == null)
