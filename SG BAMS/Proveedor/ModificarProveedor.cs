@@ -6,6 +6,7 @@ using System;
 using System.Data;
 using System.Windows.Forms;
 
+
 namespace SG_BAMS.Proveedor
 {
     /// <summary>
@@ -34,6 +35,7 @@ namespace SG_BAMS.Proveedor
         /// <param name="repositorio">Repositorio de proveedores.</param>
         /// <param name="estadoRepositorio">Repositorio de estados.</param>
         /// <param name="clasificacionRepositorio">Repositorio de clasificaciones.</param>
+
         public ModificarProveedor(ProveedorDTO dto,
                                    IProveedorRepository repositorio,
                                    IEstadoRepository estadoRepositorio,
@@ -73,9 +75,6 @@ namespace SG_BAMS.Proveedor
 
         private void btnCancelar_Click(object sender, EventArgs e) => this.Close();
 
-        /// <summary>
-        /// Evento Load del formulario. Carga los catálogos de estados y clasificaciones.
-        /// </summary>
         private void ModificarProveedor_Load(object sender, EventArgs e)
         {
             DataTable estados = estadoRepositorio.ObtenerEstados();
@@ -99,19 +98,12 @@ namespace SG_BAMS.Proveedor
             phRTN = new PlaceholderTextBox(txtRTN, "Ingrese el RTN");
         }
 
-        /// <summary>
-        /// Evento Click del botón Aceptar. Valida y guarda los cambios del proveedor.
-        /// </summary>
         private void btnAceptar_Click_1(object sender, EventArgs e)
         {
-            string nombreReal = phNombre.GetRealValue().Trim();
-            string telefonoReal = phTelefono.GetRealValue().Trim();
-            string direccionReal = phDireccion.GetRealValue().Trim();
-            string rtnReal = phRTN.GetRealValue().Trim();
-            int idProveedor = Convert.ToInt32(txtID.Text);
-
-            if (!ValidarFormulario())
+            if (!ValidarFormulario(out string nombreReal, out string telefonoReal, out string direccionReal, out string rtnReal))
                 return;
+
+            int idProveedor = Convert.ToInt32(txtID.Text);
 
             try
             {
@@ -150,14 +142,15 @@ namespace SG_BAMS.Proveedor
         }
 
         /// <summary>
-        /// Valida todos los campos del formulario delegando en ClsValidaciones.
+        /// Valida todos los campos del formulario delegando en ClsValidaciones
+        /// y devuelve los valores reales (sin placeholder) ya validados.
         /// </summary>
-        private bool ValidarFormulario()
+        private bool ValidarFormulario(out string nombreReal, out string telefonoReal, out string direccionReal, out string rtnReal)
         {
-            string nombreReal = phNombre.GetRealValue().Trim();
-            string direccionReal = phDireccion.GetRealValue().Trim();
-            string telefonoReal = phTelefono.GetRealValue().Trim();
-            string rtnReal = phRTN.GetRealValue().Trim();
+            nombreReal = phNombre.GetRealValue().Trim();
+            direccionReal = phDireccion.GetRealValue().Trim();
+            telefonoReal = phTelefono.GetRealValue().Trim();
+            rtnReal = phRTN.GetRealValue().Trim();
 
             bool valido = true;
 

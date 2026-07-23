@@ -66,39 +66,24 @@ namespace SG_BAMS.Proveedor
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            string nombreReal = phNombre.GetRealValue().Trim();
-            string direccionReal = phDireccion.GetRealValue().Trim();
-            string telefonoReal = phTelefono.GetRealValue().Trim();
-            string rtnReal = phRTN.GetRealValue().Trim();
-
-            if (!ValidarFormulario())
+            if (!ValidarFormulario(out ProveedorDTO proveedorDTO))
                 return;
 
             try
             {
-                if (repositorio.ExisteNombre(nombreReal))
+                if (repositorio.ExisteNombre(proveedorDTO.Nombre))
                 {
                     MessageBox.Show("El nombre del proveedor ya existe.", "Nombre Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtNombre.Focus();
                     return;
                 }
 
-                if (repositorio.ExisteRtn(rtnReal))
+                if (repositorio.ExisteRtn(proveedorDTO.Rtn))
                 {
                     MessageBox.Show("El RTN ingresado ya pertenece a otro proveedor.", "RTN Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtRTN.Focus();
                     return;
                 }
-
-                ProveedorDTO proveedorDTO = new ProveedorDTO
-                {
-                    Nombre = nombreReal,
-                    Contacto = telefonoReal,
-                    Direccion = direccionReal,
-                    Rtn = rtnReal,
-                    IdClasificacion = Convert.ToInt32(cmbClasificacion.SelectedValue),
-                    IdUsuario = SesionUsuarioService.Instancia.IdUsuario
-                };
 
                 repositorio.Agregar(proveedorDTO);
 
@@ -113,10 +98,12 @@ namespace SG_BAMS.Proveedor
         }
 
         /// <summary>
-        /// Valida todos los campos del formulario delegando en ClsValidaciones.
+        /// Valida todos los campos del formulario delegando en ClsValidaciones
+        /// y arma el DTO listo para guardar si la validación es exitosa.
         /// </summary>
-        private bool ValidarFormulario()
+        private bool ValidarFormulario(out ProveedorDTO proveedorDTO)
         {
+            proveedorDTO = null;
 
             string nombreReal = phNombre.GetRealValue().Trim();
             string direccionReal = phDireccion.GetRealValue().Trim();
@@ -135,7 +122,7 @@ namespace SG_BAMS.Proveedor
                 tempTelefono.Text = telefonoReal;
                 tempRTN.Text = rtnReal;
 
-                if (!ClsValidaciones.EsNombrePersonalValido(tempNombre, "Nombre del proveedor"))
+                if (ClsValidaciones.CampoVacio(tempNombre, "Nombre del proveedor"))
                     valido = false;
                 else if (!ClsValidaciones.EsAlfanumericoValido(tempDireccion, "Dirección"))
                     valido = false;
@@ -152,6 +139,16 @@ namespace SG_BAMS.Proveedor
                 MessageBox.Show("Debe seleccionar una clasificación.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
+
+            proveedorDTO = new ProveedorDTO
+            {
+                Nombre = nombreReal,
+                Contacto = telefonoReal,
+                Direccion = direccionReal,
+                Rtn = rtnReal,
+                IdClasificacion = Convert.ToInt32(cmbClasificacion.SelectedValue),
+                IdUsuario = SesionUsuarioService.Instancia.IdUsuario
+            };
 
             return true;
         }
@@ -188,4 +185,5 @@ namespace SG_BAMS.Proveedor
 
 
     }
+
 }
