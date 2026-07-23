@@ -16,8 +16,6 @@ namespace SG_BAMS
     {
         /// <summary>
         /// Datos del producto a modificar, recibidos desde el listado (InventarioAdmin/InventarioEmp).
-        /// Reemplaza los campos públicos sueltos (marcaActual, tipoActual, etc.) que se llenaban
-        /// desde afuera después de crear el formulario.
         /// </summary>
         private readonly IProductoRepository productoRepositorio;
         private readonly IComboRepository comboRepositorio;
@@ -33,13 +31,8 @@ namespace SG_BAMS
         private PlaceholderComboBox phProveedor;
 
         /// <summary>
-        /// Inicializa el formulario con los datos del producto que se va a modificar,
-        /// recibiendo sus dependencias de acceso a datos por inyección
-        /// (ver auditoría SOLID, hallazgo relacionado con ClsProducto/ClsLlenarCombo).
+        /// Inicializa el formulario con los datos del producto que se va a modificar.
         /// </summary>
-        /// <param name="productoRepositorio">Acceso a datos de productos.</param>
-        /// <param name="comboRepositorio">Acceso a datos de los catálogos de combo.</param>
-        /// <param name="dto">Datos del producto seleccionado en el listado.</param>
         public ModificarProducto(IProductoRepository productoRepositorio, IComboRepository comboRepositorio, ProductoDTO dto)
         {
             InitializeComponent();
@@ -92,27 +85,27 @@ namespace SG_BAMS
                 }
             }
 
-            if (valido && (phMarca.IsPlaceholderActive || cmbMarca.SelectedIndex == -1))
+            if (valido && (cmbMarca.SelectedIndex == -1))
             {
                 MessageBox.Show("Seleccione una marca válida.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 valido = false;
             }
-            else if (valido && (phTipo.IsPlaceholderActive || cmbTipo.SelectedIndex == -1))
+            else if (valido && (cmbTipo.SelectedIndex == -1))
             {
                 MessageBox.Show("Seleccione un tipo válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 valido = false;
             }
-            else if (valido && (phModelo.IsPlaceholderActive || cmbModelo.SelectedIndex == -1))
+            else if (valido && (cmbModelo.SelectedIndex == -1))
             {
                 MessageBox.Show("Seleccione un modelo válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 valido = false;
             }
-            else if (valido && (phEstado.IsPlaceholderActive || cmbEstado.SelectedIndex == -1))
+            else if (valido && (cmbEstado.SelectedIndex == -1))
             {
                 MessageBox.Show("Seleccione un estado válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 valido = false;
             }
-            else if (valido && (phProveedor.IsPlaceholderActive || cmbProveedor.SelectedIndex == -1))
+            else if (valido && (cmbProveedor.SelectedIndex == -1))
             {
                 MessageBox.Show("Seleccione un proveedor válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 valido = false;
@@ -126,7 +119,10 @@ namespace SG_BAMS
                 int idMarca = Convert.ToInt32(cmbMarca.SelectedValue);
                 int idProveedor = Convert.ToInt32(cmbProveedor.SelectedValue);
                 int stockNuevo = Convert.ToInt32(txtStock.Value);
-                decimal precioNumerico = Convert.ToDecimal(precioReal);
+
+                // CORRECCIÓN APLICADA: Se usa la variable 'precioLimpio' que ya fue saneada
+                string precioLimpio = precioReal.Replace("Lps", "").Replace("L.", "").Replace("$", "").Trim();
+                decimal precioNumerico = Convert.ToDecimal(precioLimpio);
 
                 if (productoRepositorio.ExisteProductoDuplicado(nombreReal, idMarca, idProveedor, idActual))
                 {
@@ -196,7 +192,6 @@ namespace SG_BAMS
             phNombre = new PlaceholderTextBox(txtNombre, "Ingrese Nombre del producto");
             phPrecio = new PlaceholderTextBox(txtPrecio, "Ingrese Precio del producto");
             phCodigoBarra = new PlaceholderTextBox(txtCodigoBarra, "Ingrese o escanee el código");
-
         }
 
         /// <summary>

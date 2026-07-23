@@ -105,7 +105,7 @@ namespace SG_BAMS
                     valido = false;
                 else if (!ClsValidaciones.EsTelefonoHondurasValido(tempTelefono))
                     valido = false;
-                else if (phEstado.IsPlaceholderActive || cmbEstado.SelectedIndex == -1)
+                else if (cmbEstado.SelectedIndex == -1)
                 {
                     MessageBox.Show("Seleccione un estado válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     valido = false;

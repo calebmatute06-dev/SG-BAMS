@@ -165,8 +165,8 @@ namespace SG_BAMS.Proveedor
             if (ClsValidaciones.CampoVacio(txtRTN, "RTN"))
                 return false;
 
-            if (phEstado.IsPlaceholderActive || cmbEstado.SelectedValue == null ||
-                phClasificacion.IsPlaceholderActive || cmbClasificacion.SelectedValue == null)
+            if (cmbEstado.SelectedValue == null ||
+               cmbClasificacion.SelectedValue == null)
             {
                 MessageBox.Show("Asegúrese de seleccionar el Estado y la Clasificación.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
