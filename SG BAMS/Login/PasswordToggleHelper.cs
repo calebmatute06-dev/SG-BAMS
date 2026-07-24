@@ -17,6 +17,11 @@ namespace SG_BAMS.Login
         private bool esPlaceholder;
         private const string TextoPlaceholder = "Ingrese su contraseña";
 
+        // Guardar los colores originales del KryptonTextBox
+        private Color colorOriginalCommon;
+        private Color colorOriginalActive;
+        private Color colorOriginalNormal;
+
         /// <summary>
         /// Constructor del componente. Agrega un ícono de ojo junto al campo de contraseña
         /// que permite alternar la visibilidad del texto.
@@ -27,6 +32,14 @@ namespace SG_BAMS.Login
         public PasswordToggleHelper(Control txtPassword, Control contenedor)
         {
             this.txtPassword = txtPassword ?? throw new ArgumentNullException(nameof(txtPassword));
+
+            // Guardar los colores originales del tema Krypton
+            if (txtPassword is KryptonTextBox ktb)
+            {
+                colorOriginalCommon = ktb.StateCommon.Content.Color1;
+                colorOriginalActive = ktb.StateActive.Content.Color1;
+                colorOriginalNormal = ktb.StateNormal.Content.Color1;
+            }
 
             lblOjo = new Label
             {
@@ -62,16 +75,18 @@ namespace SG_BAMS.Login
         {
             esPlaceholder = true;
             SetText(TextoPlaceholder);
-            SetForeColor(Color.Gray);
             SetUseSystemPasswordChar(false);
+
+            // Aplicar color gris al placeholder
+            AplicarColorPlaceholder();
 
             this.txtPassword.Enter += (s, ev) =>
             {
                 if (esPlaceholder)
                 {
                     SetText("");
-                    SetForeColor(Color.Black);
                     SetUseSystemPasswordChar(!passwordVisible);
+                    RestaurarColoresOriginales();
                     esPlaceholder = false;
                 }
             };
@@ -81,8 +96,8 @@ namespace SG_BAMS.Login
                 if (string.IsNullOrWhiteSpace(GetText()))
                 {
                     SetText(TextoPlaceholder);
-                    SetForeColor(Color.Gray);
                     SetUseSystemPasswordChar(false);
+                    AplicarColorPlaceholder();
                     esPlaceholder = true;
                 }
             };
@@ -114,11 +129,6 @@ namespace SG_BAMS.Login
         private void SetText(string text) => txtPassword.Text = text;
 
         /// <summary>
-        /// Establece el color del texto del campo de contraseña.
-        /// </summary>
-        private void SetForeColor(Color color) => txtPassword.ForeColor = color;
-
-        /// <summary>
         /// Configura si el campo debe mostrar la contraseña como caracteres ocultos.
         /// Soporta tanto TextBox estándar como KryptonTextBox.
         /// </summary>
@@ -128,6 +138,40 @@ namespace SG_BAMS.Login
                 ktb.UseSystemPasswordChar = usePasswordChar;
             else if (txtPassword is TextBox tb)
                 tb.UseSystemPasswordChar = usePasswordChar;
+        }
+
+        /// <summary>
+        /// Aplica color gris al texto (modo placeholder).
+        /// </summary>
+        private void AplicarColorPlaceholder()
+        {
+            if (txtPassword is KryptonTextBox ktb)
+            {
+                ktb.StateCommon.Content.Color1 = Color.Gray;
+                ktb.StateActive.Content.Color1 = Color.Gray;
+                ktb.StateNormal.Content.Color1 = Color.Gray;
+            }
+            else
+            {
+                txtPassword.ForeColor = Color.Gray;
+            }
+        }
+
+        /// <summary>
+        /// Restaura los colores originales del tema Krypton.
+        /// </summary>
+        private void RestaurarColoresOriginales()
+        {
+            if (txtPassword is KryptonTextBox ktb)
+            {
+                ktb.StateCommon.Content.Color1 = colorOriginalCommon;
+                ktb.StateActive.Content.Color1 = colorOriginalActive;
+                ktb.StateNormal.Content.Color1 = colorOriginalNormal;
+            }
+            else
+            {
+                txtPassword.ForeColor = Color.Black;
+            }
         }
     }
 }

@@ -68,7 +68,7 @@
             picBa.Image = Properties.Resources.Bateria_1;
             picBa.Location = new Point(66, 231);
             picBa.Name = "picBa";
-            picBa.Size = new Size(217, 192);
+            picBa.Size = new Size(210, 192);
             picBa.TabIndex = 8;
             picBa.TabStop = false;
             // 
