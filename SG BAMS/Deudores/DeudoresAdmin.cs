@@ -209,6 +209,7 @@ namespace SG_BAMS
             btnDeudores.Enabled = false;
             btnDeudores.BackColor = Color.SkyBlue;
             btnDeudores.ForeColor = Color.White;
+            AdaptadorPantallaCompleta.Habilitar(this);
 
             EstiloDataGridView.Aplicar(dgvDeudores);
 

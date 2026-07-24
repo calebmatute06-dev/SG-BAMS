@@ -68,6 +68,7 @@ namespace SG_BAMS
             ClsTemas.CargarPreferencia();
             ClsTemas.AplicarTema(this);
             EstilizarGrid(dgvVentas);
+            AdaptadorPantallaCompleta.Habilitar(this);
         }
 
         private void MenuPrincipalEmp_Shown(object sender, EventArgs e) => Ayudante_UI.AplicarZoomGlobal(this);

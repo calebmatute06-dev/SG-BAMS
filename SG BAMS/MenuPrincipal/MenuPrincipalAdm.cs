@@ -71,6 +71,7 @@ namespace SG_BAMS
             await ActualizarLabelProductos(label8);
             await CargarGraficoStock(chartStock);
             await CargarGraficoMasVendidos(chartMasVendidos);
+            AdaptadorPantallaCompleta.Habilitar(this);
         }
 
         private void btninventario2_Click(object sender, EventArgs e) { InventarioAdmin Invad = new InventarioAdmin(new ProductoInventario.ProductoRepository(), new ProductoInventario.ComboRepository()); Invad.Show(); this.Hide(); }

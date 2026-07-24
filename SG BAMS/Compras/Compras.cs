@@ -39,8 +39,7 @@ namespace SG_BAMS
             ConfigurarBotonMenuActivo();
             EstiloDataGridView.Aplicar(dgvComprasAdmin);
 
-            this.MaximizeBox = false;
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            AdaptadorPantallaCompleta.Habilitar(this);
 
             CargarCompras();
             FiltrarCompras();

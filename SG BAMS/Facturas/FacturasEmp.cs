@@ -99,6 +99,7 @@ namespace SG_BAMS
         private async void FacturasEmp_Load(object sender, EventArgs e)
         {
             new PlaceholderTextBox(txtBusqueda, PlaceholderText);
+            AdaptadorPantallaCompleta.Habilitar(this);
             btnFacturas.Enabled = false;
             btnFacturas.BackColor = Color.SkyBlue;
             btnFacturas.ForeColor = Color.White;

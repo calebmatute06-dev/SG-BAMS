@@ -72,6 +72,7 @@ namespace SG_BAMS.Reporte
             dtpDesde.MaxDate = DateTime.Today;
             dtpHasta.Value = DateTime.Today;
             dtpDesde.Value = DateTime.Today.AddDays(-30);
+            AdaptadorPantallaCompleta.Habilitar(this);
 
             this.Min.ValueChanged += FiltroStock_ValueChanged;
             this.Max.ValueChanged += FiltroStock_ValueChanged;

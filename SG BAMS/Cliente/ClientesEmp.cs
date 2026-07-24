@@ -186,8 +186,7 @@ namespace SG_BAMS
         private async void ClientesEmp_Load(object sender, EventArgs e)
         {
             new PlaceholderTextBox(txtBusqueda, placeholderTexto);
-            this.MaximizeBox = false;
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            AdaptadorPantallaCompleta.Habilitar(this);
             btnClientes.Enabled = false;
             btnClientes.BackColor = Color.SkyBlue;
             btnClientes.ForeColor = Color.White;

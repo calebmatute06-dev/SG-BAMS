@@ -60,8 +60,7 @@ public partial class BitacoraAdmin : Form
 
     private async void Bitacora_Load(object sender, EventArgs e)
     {
-        MaximizeBox = false;
-        FormBorderStyle = FormBorderStyle.FixedSingle;
+        AdaptadorPantallaCompleta.Habilitar(this);
         new PlaceholderTextBox(txtBuscar, PlaceholderTexto);
 
         btnBitacora.Enabled = false;

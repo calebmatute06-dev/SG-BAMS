@@ -97,6 +97,7 @@ namespace SG_BAMS
             btnInventario.Enabled = false;
             btnInventario.BackColor = Color.SkyBlue;
             btnInventario.ForeColor = Color.White;
+            AdaptadorPantallaCompleta.Habilitar(this);
 
             CargarInventarioCompleto();
 

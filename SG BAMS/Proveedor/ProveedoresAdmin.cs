@@ -51,6 +51,7 @@ namespace SG_BAMS.Proveedor
             btnProveedores.Enabled = false;
             btnProveedores.BackColor = Color.SkyBlue;
             btnProveedores.ForeColor = Color.White;
+            AdaptadorPantallaCompleta.Habilitar(this);
 
             ConfigurarGrilla();
             CargarDatos();

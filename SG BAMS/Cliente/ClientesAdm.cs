@@ -136,8 +136,7 @@ namespace SG_BAMS
             btnClientes.Enabled = false;
             btnClientes.BackColor = Color.SkyBlue;
             btnClientes.ForeColor = Color.White;
-            this.MaximizeBox = false;
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            AdaptadorPantallaCompleta.Habilitar(this);
 
             await TablaClientes();
 
