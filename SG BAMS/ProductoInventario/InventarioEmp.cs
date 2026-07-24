@@ -39,6 +39,7 @@ namespace SG_BAMS
         public InventarioEmp(IProductoRepository productoRepositorio)
         {
             InitializeComponent();
+            AdaptadorPantallaCompleta.Habilitar(this);
             this.productoRepositorio = productoRepositorio;
 
             this.StartPosition = FormStartPosition.CenterScreen;

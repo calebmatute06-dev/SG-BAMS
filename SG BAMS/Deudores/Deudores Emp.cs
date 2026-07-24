@@ -31,6 +31,7 @@ namespace SG_BAMS
         public Deudores_Emp(IDeudaRepository deudaRepositorio)
         {
             InitializeComponent();
+            AdaptadorPantallaCompleta.Habilitar(this);
             this.deudaRepositorio = deudaRepositorio;
 
             CargarGridDeudores();

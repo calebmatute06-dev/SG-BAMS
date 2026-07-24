@@ -40,6 +40,7 @@ namespace SG_BAMS
         internal FacturasEmp(ClsDetalleFactura detalleFactura)
         {
             InitializeComponent();
+            AdaptadorPantallaCompleta.Habilitar(this);
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.StartPosition = FormStartPosition.CenterScreen;

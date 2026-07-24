@@ -51,6 +51,7 @@ namespace SG_BAMS
         public InventarioAdmin(IProductoRepository productoRepositorio, IComboRepository comboRepositorio)
         {
             InitializeComponent();
+            AdaptadorPantallaCompleta.Habilitar(this);
             this.productoRepositorio = productoRepositorio;
             this.comboRepositorio = comboRepositorio;
 

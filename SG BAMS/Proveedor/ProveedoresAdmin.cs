@@ -29,6 +29,7 @@ namespace SG_BAMS.Proveedor
                                  IClasificacionRepository clasificacionRepositorio)
         {
             InitializeComponent();
+            AdaptadorPantallaCompleta.Habilitar(this);
             this.repositorio = repositorio;
             this.estadoRepositorio = estadoRepositorio;
             this.clasificacionRepositorio = clasificacionRepositorio;

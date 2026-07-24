@@ -38,6 +38,7 @@ namespace SG_BAMS.Bitacora
             navegacion = new NavegacionService();
 
             InitializeComponent();
+            AdaptadorPantallaCompleta.Habilitar(this);
             this.StartPosition = FormStartPosition.CenterScreen;
             dtpDesde.MaxDate = DateTime.Today;
             dtpHasta.MaxDate = DateTime.Today;
@@ -47,8 +48,6 @@ namespace SG_BAMS.Bitacora
 
         private void Bitacora_Load(object? sender, EventArgs e)
         {
-            this.MaximizeBox = false;
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             new PlaceholderTextBox(txtBuscar, PlaceholderTexto);
 
             btnBitacora.Enabled = false;

@@ -34,6 +34,7 @@ namespace SG_BAMS
         public DeudoresAdmin(IDeudaRepository deudaRepositorio)
         {
             InitializeComponent();
+            AdaptadorPantallaCompleta.Habilitar(this);
             this.deudaRepositorio = deudaRepositorio;
 
             this.StartPosition = FormStartPosition.CenterScreen;

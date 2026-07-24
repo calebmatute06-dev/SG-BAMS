@@ -27,6 +27,7 @@ namespace SG_BAMS
             _navegacion = navegacion;
 
             InitializeComponent();
+            AdaptadorPantallaCompleta.Habilitar(this);
             this.StartPosition = FormStartPosition.CenterScreen;
 
             ConfigurarLimitesFechas();
@@ -38,9 +39,6 @@ namespace SG_BAMS
             new PlaceholderTextBox(txtBuscarCompra, "Ingrese un Nombre de Comprador, Forma de pago, N.Compra");
             ConfigurarBotonMenuActivo();
             EstiloDataGridView.Aplicar(dgvComprasAdmin);
-
-            this.MaximizeBox = false;
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
 
             CargarCompras();
             FiltrarCompras();

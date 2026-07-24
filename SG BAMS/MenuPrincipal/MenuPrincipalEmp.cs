@@ -44,6 +44,7 @@ namespace SG_BAMS
             : base(dashboard, notificacionesService, chartBuilder, servicioCerrarSesion, navegacion, toastService)
         {
             InitializeComponent();
+            AdaptadorPantallaCompleta.Habilitar(this);
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.StartPosition = FormStartPosition.CenterScreen;

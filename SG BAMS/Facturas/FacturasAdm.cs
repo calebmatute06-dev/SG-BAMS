@@ -45,6 +45,7 @@ namespace SG_BAMS
         internal FacturasAdm(ClsDetalleFactura detalleFactura)
         {
             InitializeComponent();
+            AdaptadorPantallaCompleta.Habilitar(this);
             this.StartPosition = FormStartPosition.CenterScreen;
             this.detalleFactura = detalleFactura;
             ConfigurarGrid();
@@ -113,8 +114,6 @@ namespace SG_BAMS
         private async void FacturasAdm_Load(object sender, EventArgs e)
         {
             new PlaceholderTextBox(txtBusqueda, placeholderText);
-            this.MaximizeBox = false;
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             btnFacturas.Enabled = false;
             btnFacturas.BackColor = Color.SkyBlue;
             btnFacturas.ForeColor = Color.White;

@@ -35,6 +35,7 @@ namespace SG_BAMS.Reporte
             _servicioNavegacion = new NavegacionService();
 
             InitializeComponent();
+            AdaptadorPantallaCompleta.Habilitar(this);
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
