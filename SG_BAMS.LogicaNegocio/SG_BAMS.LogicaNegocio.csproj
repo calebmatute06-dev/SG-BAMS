@@ -41,7 +41,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusquedaProductoService.cs" />
+    <Compile Include="CalculadoraBateriaVieja.cs" />
+    <Compile Include="CalculadoraImpuestosFactura.cs" />
+    <Compile Include="ConversorNumeroALetras.cs" />
+    <Compile Include="FiltroFacturasService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SG_BAMS.AccesoDatos\SG_BAMS.AccesoDatos.csproj">
+      <Project>{3f57a74e-9834-4ee9-a097-8a5e27a70309}</Project>
+      <Name>SG_BAMS.AccesoDatos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SG_BAMS.Dominio\SG_BAMS.Dominio.csproj">
+      <Project>{573d72ec-db36-4654-8c60-d577089e6ff7}</Project>
+      <Name>SG_BAMS.Dominio</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

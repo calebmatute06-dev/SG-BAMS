@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using SG_BAMS.ComprasContratos;
 using SG_BAMS.ComprasDTO;
+using SG_BAMS.AccesoDatos;
 
 namespace SG_BAMS
 {

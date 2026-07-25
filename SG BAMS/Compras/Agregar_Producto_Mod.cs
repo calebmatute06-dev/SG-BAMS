@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using Krypton.Toolkit;
 using SG_BAMS.ComprasContratos;
 using SG_BAMS.Facturas;
+using SG_BAMS.AccesoDatos;
 
 namespace SG_BAMS
 {

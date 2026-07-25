@@ -375,7 +375,7 @@ namespace SG_BAMS.Login
                     using (var rostroProcesado = rostroRecortado.Resize(100, 100, Inter.Linear))
                     {
                         CvInvoke.EqualizeHist(rostroProcesado, rostroProcesado);
-                        CvInvoke.CLAHE(rostroProcesado, 2.0, new Size(8, 8), rostroProcesado);
+                        CvInvoke.CLAHE(rostroProcesado, 2.0, new Size(8, 8), 256, rostroProcesado);
 
                         var resultado = recognizer.Predict(rostroProcesado);
                         double distancia = resultado.Distance;
@@ -447,7 +447,7 @@ namespace SG_BAMS.Login
             using (Mat m = imagen.Mat)
             {
                 CvInvoke.EqualizeHist(m, m);
-                CvInvoke.CLAHE(m, 2.0, new Size(8, 8), m);
+                CvInvoke.CLAHE(m, 2.0, new Size(8, 8), 256, m);
                 CvInvoke.GaussianBlur(m, m, new Size(3, 3), 0.5);
             }
         }

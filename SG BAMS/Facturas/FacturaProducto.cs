@@ -1,7 +1,8 @@
 ﻿using Krypton.Toolkit;
 using Microsoft.Data.SqlClient;
 using SG_BAMS.Facturas;
-using SG_BAMS.Facturas.DTO;
+using SG_BAMS.AccesoDatos;
+using SG_BAMS.Dominio;
 using System;
 using System.Data;
 using System.Drawing;

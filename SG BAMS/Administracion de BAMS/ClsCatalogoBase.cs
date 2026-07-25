@@ -2,6 +2,7 @@
 using System;
 using System.Data;
 using System.Threading.Tasks;
+using SG_BAMS.AccesoDatos;
 
 namespace SG_BAMS.Administracion_de_BAMS
 {

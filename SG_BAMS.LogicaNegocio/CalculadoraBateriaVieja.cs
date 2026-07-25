@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SG_BAMS.Dominio;
+using SG_BAMS.AccesoDatos;
 
-namespace SG_BAMS.Facturas
+namespace SG_BAMS.LogicaNegocio
 {
-    internal class CalculadoraBateriaVieja : ICalculadoraBateriaVieja
+    public class CalculadoraBateriaVieja : ICalculadoraBateriaVieja
     {
         public ResultadoCalculoBateria CalcularTotales(List<BateriaItem> items)
         {

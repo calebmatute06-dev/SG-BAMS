@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SG_BAMS.Facturas
+namespace SG_BAMS.LogicaNegocio
 {
-    internal static class ConversorNumeroALetras
+    public static class ConversorNumeroALetras
     {
         public static string ATexto(double total, string moneda = "LEMPIRAS")
         {

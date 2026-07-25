@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SG_BAMS.Login;
 using SG_BAMS.MenuPrincipal;
+using SG_BAMS.AccesoDatos;
 
 namespace SG_BAMS
 {

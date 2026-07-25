@@ -7,6 +7,7 @@ using System;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SG_BAMS.AccesoDatos;
 
 namespace SG_BAMS
 {

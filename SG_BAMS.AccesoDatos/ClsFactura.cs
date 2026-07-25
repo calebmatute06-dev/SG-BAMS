@@ -1,19 +1,18 @@
 ﻿using Microsoft.Data.SqlClient;
-using SG_BAMS.Facturas.DTO;
+using SG_BAMS.Dominio;        
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
-using System.Drawing.Printing;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+
  
-namespace SG_BAMS.Facturas
+namespace SG_BAMS.AccesoDatos
 {
-    internal class ClsFactura : ClsRepositorioBaseDatos
+    public class ClsFactura : ClsRepositorioBaseDatos
     {
         /// <summary>
         /// Agrega una factura a partir de los datos contenidos en el DTO.

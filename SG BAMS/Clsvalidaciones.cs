@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using SG_BAMS.AccesoDatos;
 
 namespace SG_BAMS
 {

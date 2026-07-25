@@ -2,6 +2,7 @@
 using System.Data;
 using Microsoft.Data.SqlClient;
 using SG_BAMS.Proveedor.DTO;
+using SG_BAMS.AccesoDatos;
 
 namespace SG_BAMS.Proveedor
 {

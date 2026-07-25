@@ -1,6 +1,7 @@
 ﻿using SG_BAMS.Administracion_de_BAMS.Usuarios;
 using System;
 using System.Windows.Forms;
+using SG_BAMS.AccesoDatos;
 
 namespace SG_BAMS.Login
 {

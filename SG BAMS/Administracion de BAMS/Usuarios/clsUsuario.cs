@@ -2,6 +2,7 @@
 using SG_BAMS.Login;
 using System;
 using System.Data;
+using SG_BAMS.AccesoDatos;
 using System.Threading.Tasks;
 
 namespace SG_BAMS.Administracion_de_BAMS.Usuarios

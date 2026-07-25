@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using System;
 using System.Data;
+using SG_BAMS.AccesoDatos;
 
 namespace SG_BAMS.ProductoInventario
 {

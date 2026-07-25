@@ -2,6 +2,7 @@
 using System.Data;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
+using SG_BAMS.AccesoDatos;
 
 namespace SG_BAMS
 {

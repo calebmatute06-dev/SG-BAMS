@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SG_BAMS.Facturas
-{
-    internal class ResultadoImpuestosFactura
+namespace SG_BAMS.Dominio
+{ 
+    public class ResultadoImpuestosFactura
     {
         public double ImporteExonerado { get; set; }
         public double ImporteExento { get; set; }

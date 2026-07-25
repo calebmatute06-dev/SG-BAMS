@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SG_BAMS.Facturas
+namespace SG_BAMS.Dominio
 {
-    internal class BateriaItem
+    public class BateriaItem
     {
         public string Tipo { get; set; }
         public double Precio { get; set; }

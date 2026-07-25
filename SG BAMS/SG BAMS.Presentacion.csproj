@@ -10,23 +10,23 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ClosedXML" Version="0.105.0" />
-    <PackageReference Include="Emgu.CV" Version="4.12.0.5764" />
-    <PackageReference Include="Emgu.CV.Bitmap" Version="4.12.0.5764" />
-    <PackageReference Include="Emgu.CV.runtime.windows" Version="4.12.0.5764" />
-    <PackageReference Include="Krypton.Toolkit" Version="100.26.1.19" />
+    <PackageReference Include="ClosedXML" Version="0.105.1" />
+    <PackageReference Include="Emgu.CV" Version="4.13.0.5924" />
+    <PackageReference Include="Emgu.CV.Bitmap" Version="4.13.0.5924" />
+    <PackageReference Include="Emgu.CV.runtime.windows" Version="4.13.0.5924" />
+    <PackageReference Include="Krypton.Toolkit" Version="105.26.7.201" />
     <PackageReference Include="MailKit" Version="4.17.0" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.4" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="7.0.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
-    <PackageReference Include="OpenCvSharp4" Version="4.13.0.20260228" />
-    <PackageReference Include="OpenCvSharp4.Extensions" Version="4.13.0.20260228" />
-    <PackageReference Include="OpenCvSharp4.runtime.win" Version="4.13.0.20260228" />
-    <PackageReference Include="OpenCvSharp4.Windows" Version="4.13.0.20260228" />
-    <PackageReference Include="PdfPig" Version="0.1.14" />
-    <PackageReference Include="ReaLTaiizor" Version="3.8.1.6" />
-    <PackageReference Include="WinForms.DataVisualization" Version="1.10.0" />
-    <PackageReference Include="QuestPDF" Version="2026.2.2" />
+    <PackageReference Include="OpenCvSharp4" Version="4.13.0.20260627" />
+    <PackageReference Include="OpenCvSharp4.Extensions" Version="4.13.0.20260627" />
+    <PackageReference Include="OpenCvSharp4.runtime.win" Version="4.13.0.20260627" />
+    <PackageReference Include="OpenCvSharp4.Windows" Version="4.13.0.20260627" />
+    <PackageReference Include="PdfPig" Version="0.1.15" />
+    <PackageReference Include="ReaLTaiizor" Version="3.8.2.1" />
+    <PackageReference Include="WinForms.DataVisualization" Version="1.10.2" />
+    <PackageReference Include="QuestPDF" Version="2026.7.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -46,6 +46,12 @@
 
 <ItemGroup>
   <InternalsVisibleTo Include="SG_BAMS.PruebasCarga" />
+</ItemGroup>
+
+<ItemGroup>
+  <ProjectReference Include="..\SG_BAMS.AccesoDatos\SG_BAMS.AccesoDatos.csproj" />
+  <ProjectReference Include="..\SG_BAMS.Dominio\SG_BAMS.Dominio.csproj" />
+  <ProjectReference Include="..\SG_BAMS.LogicaNegocio\SG_BAMS.LogicaNegocio.csproj" />
 </ItemGroup>
 
 </Project>

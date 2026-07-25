@@ -5,6 +5,7 @@ using SG_BAMS.Login;
 using SG_BAMS.ProductoInventario;
 using SG_BAMS.Proveedor;
 using SG_BAMS.Reporte;
+using SG_BAMS.AccesoDatos;
 
 namespace SG_BAMS
 {

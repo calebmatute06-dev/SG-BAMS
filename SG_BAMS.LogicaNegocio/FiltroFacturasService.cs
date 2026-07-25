@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SG_BAMS.Facturas
+namespace SG_BAMS.LogicaNegocio
 {
-    internal class FiltroFacturasService
+    public class FiltroFacturasService
     {
         public DataView Filtrar(DataTable datos, string texto, System.DateTime? fechaInicio, System.DateTime? fechaFin)
         {

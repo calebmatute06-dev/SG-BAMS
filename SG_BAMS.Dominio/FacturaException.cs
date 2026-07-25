@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SG_BAMS.Facturas
+namespace SG_BAMS.Dominio
 {
     public class FacturaException : Exception
     {

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SG_BAMS.Facturas
 {
-    internal class ClsDetalleFactura : ClsRepositorioBaseDatos
+    public class ClsDetalleFactura : ClsRepositorioBaseDatos
     {
         public async Task<DataTable> VerFacturas()
         {

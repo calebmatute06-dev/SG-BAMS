@@ -41,7 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BateriaItem.cs" />
+    <Compile Include="DetalleDTO.cs" />
+    <Compile Include="FacturaDTO.cs" />
+    <Compile Include="FacturaException.cs" />
+    <Compile Include="ICalculadoraBateriaVieja.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResultadoCalculoBateria.cs" />
+    <Compile Include="ResultadoImpuestosFactura.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Factura\" />

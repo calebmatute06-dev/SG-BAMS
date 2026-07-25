@@ -9,6 +9,8 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SG_BAMS.AccesoDatos;
+
 
 namespace SG_BAMS
 {
@@ -346,7 +348,7 @@ namespace SG_BAMS
             var redimensionado = rostro.Resize(100, 100, Inter.Linear);
 
             CvInvoke.EqualizeHist(redimensionado, redimensionado);
-            CvInvoke.CLAHE(redimensionado, 2.5, new Size(8, 8), redimensionado);
+            CvInvoke.CLAHE(redimensionado, 2.5, new Size(8, 8), 256, redimensionado);
 
             return redimensionado;
         }

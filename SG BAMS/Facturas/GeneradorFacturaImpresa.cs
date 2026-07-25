@@ -1,4 +1,5 @@
-﻿using SG_BAMS.Facturas.DTO;
+﻿using SG_BAMS.Dominio;
+using SG_BAMS.LogicaNegocio;
 using System;
 using System.Collections.Generic;
 using System.Drawing.Printing;

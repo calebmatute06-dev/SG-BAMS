@@ -2,6 +2,7 @@
 using System;
 using System.Data;
 using SG_BAMS.ComprasContratos;
+using SG_BAMS.AccesoDatos;
 
 namespace SG_BAMS
 {

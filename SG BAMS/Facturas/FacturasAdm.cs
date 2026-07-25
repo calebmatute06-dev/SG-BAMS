@@ -2,7 +2,9 @@
 using Microsoft.Data.SqlClient;
 using SG_BAMS.Bitacora;
 using SG_BAMS.Facturas;
-using SG_BAMS.Facturas.DTO;
+using SG_BAMS.Dominio;
+using SG_BAMS.LogicaNegocio;
+using SG_BAMS.AccesoDatos;
 using SG_BAMS.Proveedor;
 using SG_BAMS.Reporte;
 using System;

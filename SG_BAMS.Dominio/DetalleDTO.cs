@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SG_BAMS.Facturas.DTO
+namespace SG_BAMS.Dominio
 {
     /// <summary>
     /// Representa una línea de producto dentro de una factura.

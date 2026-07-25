@@ -4,10 +4,11 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SG_BAMS.AccesoDatos;
 
-namespace SG_BAMS.Facturas
+namespace SG_BAMS.LogicaNegocio
 {
-    internal class BusquedaProductoService
+    public class BusquedaProductoService
     {
         private readonly ClsFactura FAC;
 

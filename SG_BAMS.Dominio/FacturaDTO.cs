@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
  
-namespace SG_BAMS.Facturas.DTO
+namespace SG_BAMS.Dominio
 {
     /// <summary>
     /// Transporta todos los datos necesarios para crear, mostrar o imprimir una factura.

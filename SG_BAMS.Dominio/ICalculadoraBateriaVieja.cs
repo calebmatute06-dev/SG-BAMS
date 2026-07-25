@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SG_BAMS.Facturas
+namespace SG_BAMS.Dominio
 {
-    internal interface ICalculadoraBateriaVieja
+    public interface ICalculadoraBateriaVieja
     {
         ResultadoCalculoBateria CalcularTotales(List<BateriaItem> items);
         bool ExcedeLimite(double totalBateria, double limiteFactura);

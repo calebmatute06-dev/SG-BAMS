@@ -2,6 +2,7 @@
 using SG_BAMS.ProductoInventario.DTO;
 using System;
 using System.Data;
+using SG_BAMS.AccesoDatos;
 
 namespace SG_BAMS.ProductoInventario
 {

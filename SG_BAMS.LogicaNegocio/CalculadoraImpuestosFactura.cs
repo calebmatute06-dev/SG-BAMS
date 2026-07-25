@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SG_BAMS.Dominio;
 
-namespace SG_BAMS.Facturas
+namespace SG_BAMS.LogicaNegocio
 {
-    internal class CalculadoraImpuestosFactura
+    public class CalculadoraImpuestosFactura
     {
         public ResultadoImpuestosFactura Calcular(double subtotal, double descuento, bool esGobierno, double montoExento)
         {

@@ -5,6 +5,8 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.Globalization;
+using SG_BAMS.Dominio;
+using SG_BAMS.LogicaNegocio;
 using System.Collections.Generic;
 
 namespace SG_BAMS.Facturas

@@ -1,5 +1,7 @@
 ﻿using SG_BAMS.Facturas;
-using SG_BAMS.Facturas.DTO;
+using SG_BAMS.Dominio;
+using SG_BAMS.LogicaNegocio;
+using SG_BAMS.AccesoDatos;
 using System;
 using System.Collections.Generic;
 using System.Data;

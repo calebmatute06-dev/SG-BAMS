@@ -4,6 +4,7 @@ using System.Data;
 using Microsoft.Data.SqlClient;
 using SG_BAMS.ComprasContratos;
 using SG_BAMS.ComprasDTO;
+using SG_BAMS.AccesoDatos;
 
 namespace SG_BAMS.ProductoInventario
 {
