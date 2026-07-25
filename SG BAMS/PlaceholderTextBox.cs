@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
-    
+
 
     /// <summary>
     /// Contrato mínimo que debe cumplir cualquier control con comportamiento de placeholder.
@@ -44,7 +44,7 @@ namespace SG_BAMS
         private bool _isLoading;
 
         private static readonly Color ColorPlaceholder = Color.Gray;
-        private static readonly Color ColorTextoNormal = Color.Black;
+        private static readonly Color ColorTextoNormal = Color.Navy;
 
         /// <summary>
         /// Inicializa el adaptador vinculando el KryptonTextBox con su texto de placeholder.
