@@ -216,29 +216,7 @@ namespace SG_BAMS
 
             if (dgvFacturas.CurrentRow != null)
             {
-                int bateriaVieja = 0;
-                var valorBateria = dgvFacturas.CurrentRow.Cells["Batería Vieja"].Value?.ToString();
-                if (!string.IsNullOrEmpty(valorBateria) && valorBateria != "No dejó")
-                {
-                    string soloNumero = System.Text.RegularExpressions.Regex.Match(valorBateria, @"\d+").Value;
-                    if (!string.IsNullOrEmpty(soloNumero))
-                        bateriaVieja = int.Parse(soloNumero);
-                }
-
-                string valorCelda = dgvFacturas.CurrentRow.Cells["Rebaja"].Value?.ToString() ?? "0";
-                valorCelda = valorCelda.Replace("L.", "").Trim();
-                double rebaja = Convert.ToDouble(valorCelda);
-
-                FacturaDTO facturaDTO = new FacturaDTO
-                {
-                    IdFactura = Convert.ToInt32(dgvFacturas.CurrentRow.Cells["Factura"].Value),
-                    NombreCliente = dgvFacturas.CurrentRow.Cells["Cliente"].Value.ToString(),
-                    Fecha = Convert.ToDateTime(dgvFacturas.CurrentRow.Cells["Fecha"].Value),
-                    IdFormaPago = Convert.ToInt32(dgvFacturas.CurrentRow.Cells["ID Método de Pago"].Value),
-                    Vendedor = dgvFacturas.CurrentRow.Cells["Vendedor"].Value.ToString(),
-                    CantidadBateriaVieja = bateriaVieja,
-                    RebajaBateria = rebaja
-                };
+                FacturaDTO facturaDTO = ExtractorDatosFactura.DesdeFilaGrid(dgvFacturas.CurrentRow);
 
                 FacturaVer frmFV = new FacturaVer(facturaDTO);
                 frmFV.ShowDialog();

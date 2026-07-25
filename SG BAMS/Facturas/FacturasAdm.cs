@@ -243,7 +243,7 @@ namespace SG_BAMS
 
             if (dgvFacturas.CurrentRow != null)
             {
-                FacturaDTO facturaDTO = FacturaDTO.DesdeFilaGrid(dgvFacturas.CurrentRow);
+                FacturaDTO facturaDTO = ExtractorDatosFactura.DesdeFilaGrid(dgvFacturas.CurrentRow);
 
                 FacturaVer frmFV = new FacturaVer(facturaDTO);
                 frmFV.ShowDialog();
