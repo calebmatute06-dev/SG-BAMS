@@ -55,7 +55,6 @@ namespace SG_BAMS
             this.productoRepositorio = productoRepositorio;
             this.comboRepositorio = comboRepositorio;
 
-            this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.KeyPreview = true;

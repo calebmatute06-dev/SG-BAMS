@@ -54,8 +54,6 @@ namespace SG_BAMS
             InitializeComponent();
             AdaptadorPantallaCompleta.Habilitar(this);
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.MaximizeBox = false;
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
         /// <inheritdoc/>

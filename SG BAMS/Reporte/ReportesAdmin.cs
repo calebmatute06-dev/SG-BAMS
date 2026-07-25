@@ -37,7 +37,6 @@ namespace SG_BAMS.Reporte
             InitializeComponent();
             AdaptadorPantallaCompleta.Habilitar(this);
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.dtpDesde.ValueChanged += FiltroFecha_ValueChanged;
             this.dtpHasta.ValueChanged += FiltroFecha_ValueChanged;

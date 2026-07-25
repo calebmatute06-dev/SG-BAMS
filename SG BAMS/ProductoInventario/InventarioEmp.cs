@@ -43,7 +43,6 @@ namespace SG_BAMS
             this.productoRepositorio = productoRepositorio;
 
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             ConfigurarPlaceholder();
         }

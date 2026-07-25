@@ -39,7 +39,7 @@ namespace SG_BAMS
 
             this.StartPosition = FormStartPosition.CenterScreen;
             CargarGridDeudores();
-            this.MaximizeBox = false;
+
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             dgvDeudores.CellDoubleClick += dgvDeudores_CellDoubleClick;
 

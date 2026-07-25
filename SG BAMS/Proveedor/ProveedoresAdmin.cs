@@ -35,7 +35,7 @@ namespace SG_BAMS.Proveedor
             this.clasificacionRepositorio = clasificacionRepositorio;
 
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.MaximizeBox = false;
+
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             txtBuscar.KeyPress += (s, e) =>
             {
