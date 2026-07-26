@@ -25,6 +25,7 @@
     <PackageReference Include="OpenCvSharp4.Windows" Version="4.13.0.20260627" />
     <PackageReference Include="PdfPig" Version="0.1.15" />
     <PackageReference Include="ReaLTaiizor" Version="3.8.2.1" />
+	<PackageReference Include="WinForms.DataVisualization" Version="1.10.2" />
     <PackageReference Include="WinForms.DataVisualization" Version="1.10.2" />
     <PackageReference Include="QuestPDF" Version="2026.7.1" />
   </ItemGroup>

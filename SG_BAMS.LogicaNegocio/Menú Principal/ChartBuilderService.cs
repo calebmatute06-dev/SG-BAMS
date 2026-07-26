@@ -13,10 +13,10 @@ namespace SG_BAMS.MenuPrincipal
     /// </summary>
     public class ChartBuilderService : IChartBuilderService
     {
-        /// <inheritdoc/>
-        public Task CargarGraficoStock(Chart chart, DataTable tablaStock)
+        public Task CargarGraficoStock(object chartHost, DataTable tablaStock)
         {
-            if (tablaStock == null || tablaStock.Rows.Count == 0)
+            var chart = chartHost as Chart;
+            if (chart == null || tablaStock == null || tablaStock.Rows.Count == 0)
                 return Task.CompletedTask;
 
             chart.Series.Clear();
@@ -78,14 +78,15 @@ namespace SG_BAMS.MenuPrincipal
             return Task.CompletedTask;
         }
 
-        /// <inheritdoc/>
-        public Task CargarGraficoMasVendidos(Chart chart, DataTable datosVentas)
+        public Task CargarGraficoMasVendidos(object chartHost, DataTable datosVentas)
         {
-            if (datosVentas == null || datosVentas.Rows.Count == 0)
+            var chart = chartHost as Chart;
+            if (chart == null || datosVentas == null || datosVentas.Rows.Count == 0)
                 return Task.CompletedTask;
 
             chart.Series.Clear();
             chart.Legends.Clear();
+            if (chart.ChartAreas.Count == 0) chart.ChartAreas.Add(new ChartArea("Default"));
             chart.ChartAreas[0].AxisX.CustomLabels.Clear();
             chart.DataSource = null;
 

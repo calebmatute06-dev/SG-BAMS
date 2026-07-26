@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using SG_BAMS.AccesoDatos;
+using SG_BAMS.Dominio;
+using SG_BAMS.LogicaNegocio;
 
 namespace SG_BAMS
 {

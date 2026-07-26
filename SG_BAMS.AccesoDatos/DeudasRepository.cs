@@ -14,7 +14,7 @@ namespace SG_BAMS
     /// se degradan de forma silenciosa y es responsabilidad del formulario decidir cómo
     /// informarlos al usuario.
     /// </summary>
-    internal class DeudasRepository : ClsRepositorioBaseDatos, IDeudasRepository
+    public class DeudasRepository : ClsRepositorioBaseDatos, IDeudasRepository
     {
         /// <inheritdoc />
         public async Task<bool> InsertarPago(int idDeuda, decimal montoPago, DateTime fechaPago)

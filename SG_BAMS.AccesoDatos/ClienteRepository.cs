@@ -15,7 +15,7 @@ namespace SG_BAMS.Cliente
     /// la que decide cómo informarla (ver auditoría SOLID, hallazgos CLI02/CLI03).
     /// Reemplaza a la antigua clase ClsCliente.
     /// </summary>
-    internal class ClienteRepository : ClsRepositorioBaseDatos, IClienteRepository
+    public class ClienteRepository : ClsRepositorioBaseDatos, IClienteRepository
     {
         /// <inheritdoc />
         public async Task<int> AgregarClientes(ClienteDTO dto)

@@ -11,7 +11,7 @@ namespace SG_BAMS.MenuPrincipal
     /// Gestiona la obtención de datos del perfil y la actualización de la foto
     /// mediante procedimientos almacenados.
     /// </summary>
-    internal class ClsPerfil : IPerfilService
+    public class ClsPerfil : IPerfilService
     {
         private readonly ClsRepositorioBaseDatos repositorio;
 

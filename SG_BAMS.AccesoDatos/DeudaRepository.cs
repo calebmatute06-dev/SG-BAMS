@@ -11,7 +11,7 @@ namespace SG_BAMS
     /// automática de deudas, usando solo Procedimientos Almacenados.
     /// Reemplaza a la antigua clase ClsDeuda (ver auditoría SOLID).
     /// </summary>
-    internal class DeudaRepository : ClsRepositorioBaseDatos, IDeudaRepository
+    public class DeudaRepository : ClsRepositorioBaseDatos, IDeudaRepository
     {
         /// <inheritdoc />
         public DataTable ListarDeudores()

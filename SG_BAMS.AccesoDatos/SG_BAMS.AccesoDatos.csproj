@@ -151,9 +151,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClienteRepository.cs" />
     <Compile Include="ClsDetalleFactura.cs" />
     <Compile Include="ClsFactura.cs" />
     <Compile Include="ClsRepositorioBaseDatos .cs" />
+    <Compile Include="ComboRepository.cs" />
+    <Compile Include="DeudaRepository.cs" />
+    <Compile Include="DeudasRepository.cs" />
+    <Compile Include="ProductoRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+<ItemGroup>
+  <!-- Para proyectos .NET 8 / SDK-style -->
+  <PackageReference Include="System.Windows.Forms.DataVisualization" Version="6.0.0" />
+  <!-- Si su proyecto es .NET Framework (4.x) use esto en su .csproj de presentación -->
+  <!-- <Reference Include="System.Windows.Forms.DataVisualization" /> -->
+</ItemGroup>
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Opción A: Referencia al ensamblado (si está disponible en el sistema) -->
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <!-- Opción B (recomendado en .NET Core/.NET 5+): usar el paquete NuGet.
+         Descomente y ajuste la versión si prefiere esta vía:-->
+    <PackageReference Include="System.Windows.Forms.DataVisualization" Version="6.0.0" />
+  </ItemGroup>
+</Project>

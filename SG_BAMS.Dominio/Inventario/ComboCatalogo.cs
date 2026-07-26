@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using SG_BAMS.ProductoInventario;
+using SG_BAMS.Dominio;
+using SG_BAMS.LogicaNegocio;
+using System.Data;
 
-namespace SG_BAMS.ProductoInventario
+namespace SG_BAMS.LogicaNegocio
 {
     /// <summary>
     /// Describe un catálogo disponible para llenar un ComboBox: el procedimiento almacenado

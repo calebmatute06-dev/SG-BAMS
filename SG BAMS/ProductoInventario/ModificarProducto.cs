@@ -7,6 +7,8 @@ using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using SG_BAMS.AccesoDatos;
+using SG_BAMS.Dominio;
+using SG_BAMS.LogicaNegocio;
 
 namespace SG_BAMS
 {

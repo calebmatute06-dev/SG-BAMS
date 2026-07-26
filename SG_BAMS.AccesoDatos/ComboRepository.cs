@@ -2,6 +2,8 @@
 using System;
 using System.Data;
 using SG_BAMS.AccesoDatos;
+using SG_BAMS.Dominio;
+using SG_BAMS.LogicaNegocio;
 
 namespace SG_BAMS.ProductoInventario
 {
@@ -11,7 +13,7 @@ namespace SG_BAMS.ProductoInventario
     /// solicitado. No conoce nada sobre controles de interfaz gráfica
     /// (a diferencia de la antigua ClsLlenarCombo, ver auditoría SOLID, hallazgos LC01/LC03).
     /// </summary>
-    internal class ComboRepository : ClsRepositorioBaseDatos, IComboRepository
+    public class ComboRepository : ClsRepositorioBaseDatos, IComboRepository
     {
         /// <inheritdoc />
         public DataTable ObtenerDatos(string tipoTabla, int idProveedorActual = 0)

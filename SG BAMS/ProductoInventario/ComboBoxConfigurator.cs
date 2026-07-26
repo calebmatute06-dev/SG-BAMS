@@ -1,6 +1,12 @@
 ﻿using Krypton.Toolkit;
+using SG_BAMS;
+using SG_BAMS.AccesoDatos;
+using SG_BAMS.Dominio;
+using SG_BAMS.LogicaNegocio;
+using SG_BAMS.ProductoInventario;
+using System.Data;
 
-namespace SG_BAMS.ProductoInventario
+namespace SG_BAMS.LogicaNegocio
 {
     /// <summary>
     /// Configura un KryptonComboBox a partir de los datos de un <see cref="IComboRepository"/>.

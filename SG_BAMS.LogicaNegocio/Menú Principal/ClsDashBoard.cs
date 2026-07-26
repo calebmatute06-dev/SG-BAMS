@@ -10,7 +10,7 @@ namespace SG_BAMS.MenuPrincipal
     /// Implementación del servicio de dashboard que proporciona contadores
     /// y datos para los gráficos del panel principal.
     /// </summary>
-    internal class ClsDashboard : IDashboardService
+    public class ClsDashboard : IDashboardService
     {
         private readonly ClsRepositorioBaseDatos repositorio;
 

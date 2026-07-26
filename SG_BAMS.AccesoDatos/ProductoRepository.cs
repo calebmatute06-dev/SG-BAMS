@@ -13,7 +13,7 @@ namespace SG_BAMS.ProductoInventario
     /// gráfica ni sobre reglas de validación de formulario.
     /// Reemplaza a la antigua clase ClsProducto (ver auditoría SOLID, hallazgos CP01-CP04).
     /// </summary>
-    internal class ProductoRepository : ClsRepositorioBaseDatos, IProductoRepository
+    public class ProductoRepository : ClsRepositorioBaseDatos, IProductoRepository
     {
         /// <inheritdoc />
         public DataTable MostrarProductosCompleto()

@@ -10,7 +10,7 @@ namespace SG_BAMS
     /// Implementación del servicio de notificaciones que utiliza procedimientos
     /// almacenados para listar y marcar como leídas las notificaciones del sistema.
     /// </summary>
-    internal class ClsNotificaciones : INotificacionesService
+    public class ClsNotificaciones : INotificacionesService
     {
         private readonly ClsRepositorioBaseDatos repositorio;
 

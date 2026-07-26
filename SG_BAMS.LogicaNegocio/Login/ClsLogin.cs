@@ -10,7 +10,7 @@ namespace SG_BAMS.Login
     /// utilizando el procedimiento almacenado sp_Login_ValidarUsuario.
     /// Hereda de ClsRepositorioBaseDatos para reutilizar la conexión a BD.
     /// </summary>
-    internal class ClsLogin : ClsRepositorioBaseDatos
+    public class ClsLogin : ClsRepositorioBaseDatos
     {
         private readonly IServicioSeguridad servicioSeguridad;
 
@@ -91,7 +91,7 @@ namespace SG_BAMS.Login
                                 string nombreCompletoBD = reader["NombreUsuario"].ToString();
                                 NombreCompleto = nombreCompletoBD;
 
-                                if (!string.IsNullOrEmpty(nombreCompletoBD) && nombreCompletoBD.Contains('_'))
+                                if (!string.IsNullOrEmpty(nombreCompletoBD) && nombreCompletoBD.IndexOf('_') >= 0)
                                 {
                                     NombreUsuario = nombreCompletoBD.Substring(0, nombreCompletoBD.IndexOf('_'));
                                 }
