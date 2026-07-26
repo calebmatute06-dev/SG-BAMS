@@ -1,28 +1,11 @@
 ﻿using SG_BAMS.Administracion_de_BAMS;
-using SG_BAMS.Administracion_de_BAMS.Estado;
 using System;
 using System.Windows.Forms;
+using SG_BAMS.AccesoDatos;
+using SG_BAMS.Dominio.AdministracionBAMS;
 
 namespace SG_BAMS
 {
-    // ============================================================
-    // frmEstado — CORREGIDO
-    // ============================================================
-    // PROBLEMAS DEL OTRO CHAT:
-    //   1. Heredaba de frmCatalogoBase, que rompe el Designer
-    //      porque dgvEstados e InitializeComponent viven en el
-    //      .Designer.cs, no en frmCatalogoBase.
-    //   2. frmAgregarEstado y frmModificarEstado se llamaban con
-    //      constructor de 1 y 3 args que aún no existían.
-    //
-    // CORRECCIÓN:
-    //   - Hereda de Form directamente (sin tocar el Designer)
-    //   - Inyecta ICatalogoRepository por constructor (DIP)
-    //   - Usa EstiloDataGridView.Aplicar() en lugar de bloque duplicado
-    //   - Llama a frmAgregarEstado y frmModificarEstado con sus
-    //     constructores ya corregidos en los archivos del ZIP
-    // ============================================================
-
     public partial class frmEstado : Form
     {
         private readonly ICatalogoRepository _repositorio;

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using SG_BAMS.Dominio;
+using SG_BAMS.LogicaNegocio.Login;
 
 namespace SG_BAMS.Login
 {

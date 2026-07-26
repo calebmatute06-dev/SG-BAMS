@@ -1,10 +1,15 @@
 ﻿using SG_BAMS.Administracion_de_BAMS.Usuarios;
 using System;
+using SG_BAMS.Login; 
 using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using SG_BAMS.Dominio;
+using SG_BAMS.AccesoDatos;          
+using SG_BAMS.Dominio.AdministracionBAMS;      
+using SG_BAMS.LogicaNegocio.AdministracionBAMS; 
 
 namespace SG_BAMS
 {
@@ -39,7 +44,7 @@ namespace SG_BAMS
         /// Constructor sin parámetros para compatibilidad con el diseñador y formularios existentes.
         /// Crea la dependencia internamente como fallback.
         /// </summary>
-        public frmAgregarUsuarios() : this(new clsUsuario()) { }
+        public frmAgregarUsuarios() : this(new clsUsuario(new ServicioSeguridad())) { }
 
         private async System.Threading.Tasks.Task CargarComboRoles()
         {

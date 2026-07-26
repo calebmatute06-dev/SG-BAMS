@@ -1,8 +1,8 @@
-﻿using SG_BAMS.Administracion_de_BAMS;
+﻿
 
-namespace SG_BAMS.Administracion_de_BAMS.Estado
+namespace SG_BAMS.AccesoDatos
 {
-    internal class clsEstado : ClsCatalogoBase
+    public class clsEstado : ClsCatalogoBase
     {
         protected override string SpLeer => "sp_Estados_Detalle";
         protected override string SpInsertar => "PA_insertar_estado";

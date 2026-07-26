@@ -1,24 +1,11 @@
 ﻿using SG_BAMS.Administracion_de_BAMS;
-using SG_BAMS.Administracion_de_BAMS.FormaPago;
 using System;
 using System.Windows.Forms;
+using SG_BAMS.AccesoDatos;
+using SG_BAMS.Dominio.AdministracionBAMS;
 
 namespace SG_BAMS
 {
-    // ============================================================
-    // frmFormaPago — MIGRADO A DIP (igual patrón que Clasificacion/Estado)
-    // ============================================================
-    // PROBLEMA ANTERIOR:
-    //   clsFormaPago objetoFP = new clsFormaPago(); → viola DIP.
-    //   El formulario estaba acoplado a la implementación concreta
-    //   en vez de depender de la abstracción ICatalogoRepository.
-    //
-    // CORRECCIÓN:
-    //   - Inyecta ICatalogoRepository por constructor (DIP)
-    //   - Constructor sin parámetros para el diseñador de WinForms
-    //   - Usa EstiloDataGridView.Aplicar() en vez del bloque de estilos duplicado
-    //   - Delega la apertura de Agregar/Modificar pasando el mismo repositorio
-    // ============================================================
 
     /// <summary>
     /// Representa la interfaz de usuario para la visualización y administración de las formas de pago.

@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace SG_BAMS.Administracion_de_BAMS.Usuarios
+namespace SG_BAMS.Dominio.AdministracionBAMS
 {
     /// <summary>
     /// Contrato para el acceso a datos relacionados con el reconocimiento facial de usuarios.

@@ -1,11 +1,11 @@
 ﻿using Microsoft.Data.SqlClient;
-using SG_BAMS.Administracion_de_BAMS.FormaPago;
+using SG_BAMS.AccesoDatos;
+using SG_BAMS.Dominio.AdministracionBAMS;
 using SG_BAMS.Cliente;
 using SG_BAMS.Deudores;
 using SG_BAMS.Facturas;
 using SG_BAMS.Dominio;
 using SG_BAMS.LogicaNegocio;
-using SG_BAMS.AccesoDatos;
 using SG_BAMS.Login;
 using System;
 using System.Data;
@@ -14,6 +14,7 @@ using System.Globalization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SG_BAMS.LogicaNegocio.Login;
 
 namespace SG_BAMS
 {

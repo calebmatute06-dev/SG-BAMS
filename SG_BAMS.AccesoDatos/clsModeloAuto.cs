@@ -1,8 +1,9 @@
-﻿using SG_BAMS.Administracion_de_BAMS;
+﻿using SG_BAMS.AccesoDatos;
 
-namespace SG_BAMS.Administracion_de_BAMS.ModeloAuto
+
+namespace SG_BAMS.AccesoDatos
 {
-    internal class clsModeloAuto : ClsCatalogoBase
+    public class clsModeloAuto : ClsCatalogoBase
     {
         protected override string SpLeer => "sp_ModelosAuto_Detalle";
         protected override string SpInsertar => "PA_insertar_modelo_auto";

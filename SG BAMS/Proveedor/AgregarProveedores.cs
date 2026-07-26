@@ -1,4 +1,5 @@
-﻿using SG_BAMS.Administracion_de_BAMS.Estado;
+﻿using SG_BAMS.AccesoDatos;
+using SG_BAMS.Dominio.AdministracionBAMS;
 using SG_BAMS.Login;
 using SG_BAMS.Proveedor.DTO;
 using System;

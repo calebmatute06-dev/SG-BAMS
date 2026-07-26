@@ -1,5 +1,6 @@
 ﻿using SG_BAMS.ComprasContratos;
 using SG_BAMS.Login;
+using SG_BAMS.LogicaNegocio.Login;
 
 namespace SG_BAMS
 {

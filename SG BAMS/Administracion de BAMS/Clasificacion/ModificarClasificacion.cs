@@ -2,6 +2,9 @@
 using SG_BAMS.Administracion_de_BAMS.Clasificacion;
 using System;
 using System.Windows.Forms;
+using SG_BAMS.AccesoDatos;
+using SG_BAMS.Dominio.AdministracionBAMS;
+
 
 namespace SG_BAMS.Administracion_de_BAMS.Clasificacion
 {

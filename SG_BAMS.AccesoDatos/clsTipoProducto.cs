@@ -1,8 +1,9 @@
-﻿using SG_BAMS.Administracion_de_BAMS;
+﻿using SG_BAMS.AccesoDatos;
 
-namespace SG_BAMS.Administracion_de_BAMS.TipoProd
+
+namespace SG_BAMS.AccesoDatos
 {
-    internal class clsTipoProducto : ClsCatalogoBase
+    public class clsTipoProducto : ClsCatalogoBase
     {
         protected override string SpLeer => "sp_TipoProducto_Detalle";
         protected override string SpInsertar => "PA_insertar_tipo_producto";

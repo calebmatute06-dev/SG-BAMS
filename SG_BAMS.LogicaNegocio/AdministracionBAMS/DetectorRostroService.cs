@@ -3,8 +3,10 @@ using Emgu.CV.Structure;
 using System;
 using System.Drawing;
 using System.IO;
+using SG_BAMS.Administracion_de_BAMS.Usuarios;
 
-namespace SG_BAMS.Administracion_de_BAMS.Usuarios
+
+namespace SG_BAMS.LogicaNegocio.AdministracionBAMS
 {
     /// <summary>
     /// Servicio de detección de rostros usando Emgu CV.

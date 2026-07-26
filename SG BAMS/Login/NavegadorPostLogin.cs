@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using SG_BAMS.Dominio;
 
 namespace SG_BAMS.Login
 {

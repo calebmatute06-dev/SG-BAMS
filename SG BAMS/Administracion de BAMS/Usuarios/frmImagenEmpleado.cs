@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SG_BAMS.AccesoDatos;
+using SG_BAMS.LogicaNegocio.AdministracionBAMS;
 
 
 namespace SG_BAMS

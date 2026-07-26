@@ -1,4 +1,4 @@
-﻿namespace SG_BAMS.Login
+﻿namespace SG_BAMS.Dominio
 {
     /// <summary>
     /// Define el contrato para las operaciones de seguridad del sistema,

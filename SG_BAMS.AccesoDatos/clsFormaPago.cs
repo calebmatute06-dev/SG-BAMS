@@ -1,8 +1,8 @@
-﻿using SG_BAMS.Administracion_de_BAMS;
+﻿using SG_BAMS.AccesoDatos;
 
-namespace SG_BAMS.Administracion_de_BAMS.FormaPago
+namespace SG_BAMS.AccesoDatos
 {
-    internal class clsFormaPago : ClsCatalogoBase
+    public class clsFormaPago : ClsCatalogoBase
     {
         protected override string SpLeer => "sp_FormasPago_Detalle";
         protected override string SpInsertar => "PA_insertar_tipo_forma_pago";

@@ -1,18 +1,11 @@
 ﻿using SG_BAMS.Administracion_de_BAMS;
-using SG_BAMS.Administracion_de_BAMS.TipoProd;
 using System;
 using System.Windows.Forms;
+using SG_BAMS.AccesoDatos;
+using SG_BAMS.Dominio.AdministracionBAMS;
 
 namespace SG_BAMS
 {
-    // ============================================================
-    // NOTA DE CORRECCIÓN ADICIONAL:
-    // El constructor original llamaba a CargarGridTipos() sin await
-    // (fire-and-forget) Y el evento Load (frmTipoProducto_Load_1)
-    // también la llamaba, cargando el grid dos veces en cada apertura.
-    // Se dejó una sola carga, en el manejador de Load conectado por
-    // el Diseñador.
-    // ============================================================
 
     /// <summary>
     /// Interfaz de usuario para la visualización y gestión de las categorías de productos (Tipos de Producto).

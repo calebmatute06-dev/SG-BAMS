@@ -1,8 +1,9 @@
-﻿using SG_BAMS.Administracion_de_BAMS;
+﻿using SG_BAMS.AccesoDatos;
 
-namespace SG_BAMS.Administracion_de_BAMS.Rol
+
+namespace SG_BAMS.AccesoDatos
 {
-    internal class clsRol : ClsCatalogoBase
+    public class clsRol : ClsCatalogoBase
     {
         protected override string SpLeer => "sp_Roles_Detalle";
         protected override string SpInsertar => "PA_insertar_rol";

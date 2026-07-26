@@ -152,9 +152,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClienteRepository.cs" />
+    <Compile Include="ClsCatalogoBase.cs" />
+    <Compile Include="clsClasificacion.cs" />
     <Compile Include="ClsDetalleFactura.cs" />
+    <Compile Include="clsEstado.cs" />
     <Compile Include="ClsFactura.cs" />
+    <Compile Include="clsFormaPago.cs" />
+    <Compile Include="clsMarca.cs" />
+    <Compile Include="clsModeloAuto.cs" />
     <Compile Include="ClsRepositorioBaseDatos .cs" />
+    <Compile Include="clsRol.cs" />
+    <Compile Include="clsSoporte.cs" />
+    <Compile Include="clsTipoProducto.cs" />
+    <Compile Include="clsUsuario.cs" />
     <Compile Include="ComboRepository.cs" />
     <Compile Include="DeudaRepository.cs" />
     <Compile Include="DeudasRepository.cs" />

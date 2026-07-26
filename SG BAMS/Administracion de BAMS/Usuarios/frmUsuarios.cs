@@ -3,6 +3,11 @@ using System;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
+using SG_BAMS.Login;
+using SG_BAMS.Dominio;
+using SG_BAMS.AccesoDatos;
+using SG_BAMS.Dominio.AdministracionBAMS;
+using SG_BAMS.LogicaNegocio.AdministracionBAMS;
 
 namespace SG_BAMS
 {
@@ -28,7 +33,7 @@ namespace SG_BAMS
         /// <summary>
         /// Constructor sin parámetros para compatibilidad con formularios existentes.
         /// </summary>
-        public frmUsuarios() : this(new clsUsuario()) { }
+        public frmUsuarios() : this(new clsUsuario(new ServicioSeguridad())) { }
 
         private async System.Threading.Tasks.Task CargarGridUsuarios()
         {

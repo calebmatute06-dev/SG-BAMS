@@ -2,6 +2,8 @@
 using System;
 using System.Data;
 using SG_BAMS.AccesoDatos;
+using SG_BAMS.Dominio;
+
 
 namespace SG_BAMS.Login
 {

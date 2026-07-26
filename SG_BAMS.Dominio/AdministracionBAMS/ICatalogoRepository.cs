@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using System.Threading.Tasks;
 
-namespace SG_BAMS.Administracion_de_BAMS
+namespace SG_BAMS.Dominio.AdministracionBAMS
 {
     
 

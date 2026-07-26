@@ -2,8 +2,9 @@
 using System;
 using System.Data;
 using SG_BAMS.AccesoDatos;
+using SG_BAMS.Dominio.AdministracionBAMS;
 
-namespace SG_BAMS.Administracion_de_BAMS.Usuarios
+namespace SG_BAMS.AccesoDatos
 {
     /// <summary>
     /// Repositorio de datos para el módulo de reconocimiento facial.
@@ -11,7 +12,7 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
     /// La detección de rostros fue extraída a DetectorRostroService para cumplir SRP.
     /// DIP: implementa IUsuarioFacialRepository.
     /// </summary>
-    internal class clsSoporte : ClsRepositorioBaseDatos, IUsuarioFacialRepository
+    public class clsSoporte : ClsRepositorioBaseDatos, IUsuarioFacialRepository
     {
         /// <inheritdoc/>
         public DataTable ObtenerUsuarios()
@@ -40,12 +41,6 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
             return dt;
         }
 
-        /// <summary>
-        /// Alias de compatibilidad. Delega a DetectorRostroService.
-        /// </summary>
-        public static void InicializarDirectorio()
-        {
-            new DetectorRostroService().InicializarDirectorio();
-        }
+     
     }
 }

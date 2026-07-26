@@ -7,6 +7,9 @@ using SG_BAMS.Reporte;
 using System;
 using System.Windows.Forms;
 
+using SG_BAMS.AccesoDatos;
+using SG_BAMS.Login;
+
 namespace SG_BAMS
 {
     
@@ -46,7 +49,7 @@ namespace SG_BAMS
 
         private void btnVerUsuarios_Click(object sender, EventArgs e)
         {
-            AbrirOEnfocarFormulario(new frmUsuarios(new clsUsuario()));
+            AbrirOEnfocarFormulario(new frmUsuarios(new clsUsuario(new ServicioSeguridad())));
         }
 
         private void btnClasificacion_Click(object sender, EventArgs e)

@@ -3,10 +3,11 @@ using System;
 using System.Data;
 using System.Threading.Tasks;
 using SG_BAMS.AccesoDatos;
+using SG_BAMS.Dominio.AdministracionBAMS;
 
-namespace SG_BAMS.Administracion_de_BAMS
+namespace SG_BAMS.AccesoDatos
 {
-    
+
 
     /// <summary>
     /// Clase base para catálogos simples (Leer, Insertar, Modificar).
@@ -16,7 +17,7 @@ namespace SG_BAMS.Administracion_de_BAMS
     /// DIP: implementa ICatalogoRepository para que los formularios
     ///      dependan de la abstracción, no de esta clase concreta.
     /// </summary>
-    internal abstract class ClsCatalogoBase : ClsRepositorioBaseDatos, ICatalogoRepository
+    public abstract class ClsCatalogoBase : ClsRepositorioBaseDatos, ICatalogoRepository
     {
         // ---- Propiedades que cada subclase debe definir ----
         protected abstract string SpLeer { get; }

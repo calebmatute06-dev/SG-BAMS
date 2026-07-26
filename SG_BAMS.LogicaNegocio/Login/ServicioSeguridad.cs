@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 using System.Text;
+using SG_BAMS.Dominio;
 
 namespace SG_BAMS.Login
 {

@@ -1,8 +1,8 @@
-﻿using SG_BAMS.Administracion_de_BAMS;
+﻿
 
-namespace SG_BAMS.Administracion_de_BAMS.Clasificacion
+namespace SG_BAMS.AccesoDatos
 {
-    internal class clsClasificacion : ClsCatalogoBase
+    public class clsClasificacion : ClsCatalogoBase
     {
         protected override string SpLeer => "sp_vista_clasificacion";
         protected override string SpInsertar => "PA_insertar_clasificacion";

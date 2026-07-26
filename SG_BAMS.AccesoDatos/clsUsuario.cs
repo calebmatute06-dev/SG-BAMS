@@ -1,11 +1,12 @@
 ﻿using Microsoft.Data.SqlClient;
-using SG_BAMS.Login;
+using SG_BAMS.Dominio;
 using System;
 using System.Data;
 using SG_BAMS.AccesoDatos;
 using System.Threading.Tasks;
+using SG_BAMS.Dominio.AdministracionBAMS;
 
-namespace SG_BAMS.Administracion_de_BAMS.Usuarios
+namespace SG_BAMS.AccesoDatos
 {
     /// <summary>
     /// Repositorio de usuarios: maneja exclusivamente el acceso a datos de la entidad Usuario.
@@ -15,16 +16,11 @@ namespace SG_BAMS.Administracion_de_BAMS.Usuarios
     /// - DIP: Implementa IUsuarioRepository y recibe IServicioSeguridad por constructor
     ///   en lugar de llamar a ClsSeguridad estático.
     /// </summary>
-    internal class clsUsuario : ClsRepositorioBaseDatos, IUsuarioRepository
+    public class clsUsuario : ClsRepositorioBaseDatos, IUsuarioRepository
     {
         private readonly IServicioSeguridad _servicioSeguridad;
 
-        /// <summary>
-        /// Constructor sin parámetros para compatibilidad con código existente.
-        /// </summary>
-        public clsUsuario() : this(new ServicioSeguridad())
-        {
-        }
+  
 
         /// <summary>
         /// Constructor principal con inyección de dependencias.

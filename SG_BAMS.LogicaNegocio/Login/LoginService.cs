@@ -1,4 +1,5 @@
 ﻿using System;
+using SG_BAMS.LogicaNegocio.Login;
 
 namespace SG_BAMS.Login
 {

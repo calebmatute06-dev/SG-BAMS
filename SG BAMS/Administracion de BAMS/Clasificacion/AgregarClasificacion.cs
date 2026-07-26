@@ -2,23 +2,12 @@
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
+using SG_BAMS.AccesoDatos;                    
+using SG_BAMS.Dominio.AdministracionBAMS;
+
 namespace SG_BAMS.Administracion_de_BAMS.Clasificacion
 {
-    // ============================================================
-    // AgregarClasificacion — DIP corrección
-    // ============================================================
-    // PROBLEMA EN EL ORIGINAL:
-    //   clsClasificacion objetoCla = new clsClasificacion(); → viola DIP
-    //   El formulario estaba acoplado a la implementación concreta.
-    //
-    // CORRECCIÓN:
-    //   Recibe ICatalogoRepository por constructor.
-    //   Constructor sin parámetros para el diseñador de WinForms.
-    //
-    // NOTA ADICIONAL: el doble registro del PlaceholderTextBox
-    //   (constructor + Load) generaba que el placeholder se
-    //   inicializara dos veces. Se unifica en el constructor.
-    // ============================================================
+
 
     /// <summary>
     /// Formulario para agregar una nueva clasificación de proveedor.

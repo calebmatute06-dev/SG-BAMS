@@ -2,6 +2,8 @@
 using System;
 using System.Windows.Forms;
 using SG_BAMS.AccesoDatos;
+using SG_BAMS.Dominio;
+using SG_BAMS.LogicaNegocio.AdministracionBAMS;
 
 namespace SG_BAMS.Login
 {

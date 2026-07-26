@@ -2,6 +2,7 @@
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
+using SG_BAMS.Dominio.AdministracionBAMS;
 
 namespace SG_BAMS.Administracion_de_BAMS
 {

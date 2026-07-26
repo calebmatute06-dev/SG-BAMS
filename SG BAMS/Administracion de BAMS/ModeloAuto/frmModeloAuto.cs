@@ -1,21 +1,11 @@
 ﻿using SG_BAMS.Administracion_de_BAMS;
-using SG_BAMS.Administracion_de_BAMS.ModeloAuto;
 using System;
 using System.Windows.Forms;
+using SG_BAMS.AccesoDatos;
+using SG_BAMS.Dominio.AdministracionBAMS;
 
 namespace SG_BAMS
 {
-    // ============================================================
-    // NOTA DE CORRECCIÓN ADICIONAL:
-    // El archivo original tenía DOS manejadores de Load distintos:
-    // uno agregado a mano en el constructor (frmModelosAuto_Load,
-    // que solo cargaba el grid) y otro conectado por el Diseñador
-    // (frmModeloAuto_Load, que solo aplicaba estilos). Esto ejecutaba
-    // ambos en cada apertura del formulario de forma redundante y
-    // desordenada. Se consolidó en un solo manejador conectado por
-    // el Diseñador, que ahora carga el grid Y aplica el estilo
-    // (a través de EstiloDataGridView.Aplicar dentro de CargarGridModelos).
-    // ============================================================
 
     /// <summary>
     /// Interfaz de usuario para la visualización y gestión de los modelos de automóviles en el sistema.

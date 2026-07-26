@@ -1,8 +1,8 @@
-﻿using SG_BAMS.Administracion_de_BAMS;
+﻿
 
-namespace SG_BAMS.Administracion_de_BAMS.MarcaProd
+namespace SG_BAMS.AccesoDatos
 {
-    internal class clsMarca : ClsCatalogoBase
+    public class clsMarca : ClsCatalogoBase
     {
         protected override string SpLeer => "sp_Marcas_Detalle";
         protected override string SpInsertar => "PA_insertar_marca_producto";

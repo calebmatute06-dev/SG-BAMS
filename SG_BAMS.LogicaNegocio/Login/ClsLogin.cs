@@ -1,9 +1,14 @@
 ﻿using Microsoft.Data.SqlClient;
 using System;
 using System.Data;
+using SG_BAMS.Dominio;
 using SG_BAMS.AccesoDatos;
+using SG_BAMS.Login;
 
-namespace SG_BAMS.Login
+
+
+
+namespace SG_BAMS.LogicaNegocio.Login
 {
     /// <summary>
     /// Clase encargada de la validación de credenciales de usuario
@@ -125,4 +130,6 @@ namespace SG_BAMS.Login
             return rol;
         }
     }
+
+    
 }

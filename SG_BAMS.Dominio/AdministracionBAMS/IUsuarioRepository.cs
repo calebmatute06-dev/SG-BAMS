@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using System.Threading.Tasks;
 
-namespace SG_BAMS.Administracion_de_BAMS.Usuarios
+namespace SG_BAMS.Dominio.AdministracionBAMS
 {
     /// <summary>
     /// Contrato que define las operaciones de acceso a datos para la entidad Usuario.

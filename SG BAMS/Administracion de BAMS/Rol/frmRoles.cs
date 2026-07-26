@@ -1,18 +1,12 @@
 ﻿using SG_BAMS.Administracion_de_BAMS;
-using SG_BAMS.Administracion_de_BAMS.Rol;
+
 using System;
 using System.Windows.Forms;
+using SG_BAMS.AccesoDatos;
+using SG_BAMS.Dominio.AdministracionBAMS;
 
 namespace SG_BAMS
 {
-    // ============================================================
-    // NOTA DE CORRECCIÓN ADICIONAL:
-    // Igual que en frmModeloAuto, existían dos manejadores de Load
-    // (uno agregado a mano en el constructor para cargar datos, y
-    // otro conectado por el Diseñador para aplicar estilos). Se
-    // consolidó todo en el manejador conectado por el Diseñador
-    // (frmRoles_Load_1), usando EstiloDataGridView.Aplicar().
-    // ============================================================
 
     /// <summary>
     /// Interfaz de usuario para la visualización y gestión de los roles de usuario en el sistema SG-BAMS.

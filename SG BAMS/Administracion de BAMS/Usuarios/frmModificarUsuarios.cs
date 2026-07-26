@@ -5,6 +5,11 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using SG_BAMS.Login;
+using SG_BAMS.Dominio;
+using SG_BAMS.AccesoDatos;
+using SG_BAMS.Dominio.AdministracionBAMS;
+using SG_BAMS.LogicaNegocio.AdministracionBAMS;
 
 namespace SG_BAMS
 {
@@ -58,7 +63,7 @@ namespace SG_BAMS
         /// Constructor sin parámetros de repositorio para compatibilidad con formularios existentes.
         /// </summary>
         public frmModificarUsuarios(int id, string nombre, int rol, int estado, string correo)
-            : this(id, nombre, rol, estado, correo, new clsUsuario()) { }
+    : this(id, nombre, rol, estado, correo, new clsUsuario(new ServicioSeguridad())) { }
 
         private async void fmrModificarUsuarios_Load(object sender, EventArgs e)
         {

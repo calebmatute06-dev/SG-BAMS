@@ -1,11 +1,13 @@
+using SG_BAMS.AccesoDatos;
 using SG_BAMS.Administracion_de_BAMS.Usuarios;
 using SG_BAMS.Bitacora;
 using SG_BAMS.Facturas;
+using SG_BAMS.LogicaNegocio.AdministracionBAMS;
 using SG_BAMS.Login;
 using SG_BAMS.ProductoInventario;
 using SG_BAMS.Proveedor;
 using SG_BAMS.Reporte;
-using SG_BAMS.AccesoDatos;
+using SG_BAMS.Dominio;                          
 
 namespace SG_BAMS
 {
@@ -18,7 +20,7 @@ namespace SG_BAMS
         [STAThread]
         static void Main()
         {
-            clsSoporte.InicializarDirectorio();
+            DetectorRostroService.InicializarDirectorioEstatico();
             ApplicationConfiguration.Initialize();
 
             IGeneradorToken generadorToken = new GeneradorTokenCriptografico();

@@ -1,25 +1,11 @@
 ﻿using SG_BAMS.Administracion_de_BAMS;
 using System;
 using System.Windows.Forms;
+using SG_BAMS.AccesoDatos;
+using SG_BAMS.Dominio.AdministracionBAMS;
 
 namespace SG_BAMS.Administracion_de_BAMS.Clasificacion
 {
-    // ============================================================
-    // Clasificacion.cs — CORREGIDO
-    // ============================================================
-    // PROBLEMAS DEL OTRO CHAT:
-    //   1. Heredaba de frmCatalogoBase, rompiendo el Designer
-    //      (dgvClasificacion e InitializeComponent no se encontraban).
-    //   2. ModificarClasificacion se llamaba con 3 args pero solo
-    //      aceptaba 2 en el original.
-    //
-    // CORRECCIÓN:
-    //   - Hereda de Form directamente
-    //   - DIP: recibe ICatalogoRepository por constructor
-    //   - EstiloDataGridView.Aplicar() en lugar de estilos duplicados
-    //   - ModificarClasificacion ya viene corregido en el ZIP
-    // ============================================================
-
     public partial class Clasificacion : Form
     {
         private readonly ICatalogoRepository _repositorio;
