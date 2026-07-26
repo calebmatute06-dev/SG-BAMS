@@ -41,17 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BateriaItem.cs" />
-    <Compile Include="DetalleDTO.cs" />
-    <Compile Include="FacturaDTO.cs" />
-    <Compile Include="FacturaException.cs" />
-    <Compile Include="ICalculadoraBateriaVieja.cs" />
+    <Compile Include="Facturas\BateriaItem.cs" />
+    <Compile Include="Facturas\DetalleDTO.cs" />
+    <Compile Include="Facturas\FacturaDTO.cs" />
+    <Compile Include="Facturas\FacturaException.cs" />
+    <Compile Include="Facturas\ICalculadoraBateriaVieja.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ResultadoCalculoBateria.cs" />
-    <Compile Include="ResultadoImpuestosFactura.cs" />
+    <Compile Include="Facturas\ResultadoCalculoBateria.cs" />
+    <Compile Include="Facturas\ResultadoImpuestosFactura.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Factura\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

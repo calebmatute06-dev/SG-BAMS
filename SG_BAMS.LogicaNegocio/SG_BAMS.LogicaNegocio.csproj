@@ -41,11 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusquedaProductoService.cs" />
-    <Compile Include="CalculadoraBateriaVieja.cs" />
-    <Compile Include="CalculadoraImpuestosFactura.cs" />
-    <Compile Include="ConversorNumeroALetras.cs" />
-    <Compile Include="FiltroFacturasService.cs" />
+    <Compile Include="Factura\BusquedaProductoService.cs" />
+    <Compile Include="Factura\CalculadoraBateriaVieja.cs" />
+    <Compile Include="Factura\CalculadoraImpuestosFactura.cs" />
+    <Compile Include="Factura\ConversorNumeroALetras.cs" />
+    <Compile Include="Factura\FiltroFacturasService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
