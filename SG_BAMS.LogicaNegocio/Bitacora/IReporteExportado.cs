@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
+
 namespace SG_BAMS.Bitacora
 {
     /// <summary>

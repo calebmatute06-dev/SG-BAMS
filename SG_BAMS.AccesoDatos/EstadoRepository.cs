@@ -6,17 +6,17 @@ using SG_BAMS.AccesoDatos;
 namespace SG_BAMS.Proveedor
 {
     /// <summary>
-    /// Implementación del repositorio de clasificaciones de proveedor sobre SQL Server.
+    /// Implementación del repositorio de estados de proveedor sobre SQL Server.
     /// </summary>
-    internal class ClasificacionRepository : ClsRepositorioBaseDatos, IClasificacionRepository
+    public class EstadoRepository : ClsRepositorioBaseDatos, IEstadoRepository
     {
         /// <inheritdoc />
-        public DataTable ObtenerClasificaciones()
+        public DataTable ObtenerEstados()
         {
             try
             {
                 AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("sp_vista_clasificacion", Conectar))
+                using (SqlCommand cmd = new SqlCommand("sp_vista_estado", Conectar))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
@@ -29,7 +29,7 @@ namespace SG_BAMS.Proveedor
             }
             catch (Exception ex)
             {
-                throw new ApplicationException("Error al cargar el catálogo de clasificaciones.", ex);
+                throw new ApplicationException("Error al cargar el catálogo de estados.", ex);
             }
             finally
             {

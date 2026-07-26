@@ -10,7 +10,7 @@ namespace SG_BAMS.Bitacora
     /// Única responsabilidad: obtener los registros desde la base de datos,
     /// sin conocer nada sobre controles de interfaz gráfica.
     /// </summary>
-    internal class BitacoraRepository : ClsRepositorioBaseDatos, IBitacoraRepository
+    public class BitacoraRepository : ClsRepositorioBaseDatos, IBitacoraRepository
     {
         public DataTable ObtenerRegistros()
         {

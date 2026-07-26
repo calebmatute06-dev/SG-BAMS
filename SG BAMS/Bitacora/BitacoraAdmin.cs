@@ -13,6 +13,8 @@ using System.IO;
 using System.Windows.Forms;
 using Color = System.Drawing.Color;
 
+
+
 namespace SG_BAMS.Bitacora
 {
     /// <summary>

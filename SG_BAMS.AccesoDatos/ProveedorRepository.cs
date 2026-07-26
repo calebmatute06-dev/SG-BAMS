@@ -4,13 +4,14 @@ using Microsoft.Data.SqlClient;
 using SG_BAMS.Proveedor.DTO;
 using SG_BAMS.AccesoDatos;
 
+
 namespace SG_BAMS.Proveedor
 {
     /// <summary>
     /// Implementación del repositorio de proveedores sobre SQL Server.
     /// Ejecuta las operaciones de datos sin conocer detalles de la interfaz gráfica.
     /// </summary>
-    internal class ProveedorRepository : ClsRepositorioBaseDatos, IProveedorRepository
+    public class ProveedorRepository : ClsRepositorioBaseDatos, IProveedorRepository
     {
         /// <inheritdoc />
         public DataTable ObtenerProveedores()

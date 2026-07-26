@@ -98,6 +98,7 @@
     <Compile Include="AdministracionBAMS\IDetectorRostro.cs" />
     <Compile Include="AdministracionBAMS\IUsuarioFacialRepository.cs" />
     <Compile Include="AdministracionBAMS\IUsuarioRepository.cs" />
+    <Compile Include="Bitacora\BitacoraDTO.cs" />
     <Compile Include="Cliente\ClienteDTO.cs" />
     <Compile Include="Cliente\IClienteRepository.cs" />
     <Compile Include="Deudores\IDeudaRepository.cs" />
@@ -132,10 +133,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Facturas\ResultadoCalculoBateria.cs" />
     <Compile Include="Facturas\ResultadoImpuestosFactura.cs" />
+    <Compile Include="Proveedor\IClasificacionRepository.cs" />
+    <Compile Include="Proveedor\IEstadoRepository.cs" />
+    <Compile Include="Proveedor\IProveedorRepository.cs" />
+    <Compile Include="Proveedor\ProveedorDTO.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,15 +1,19 @@
 ﻿
 using System.Data;
 using System.Globalization;
+using System;
+using System.Collections.Generic;   
+using System.Linq;
 
-namespace SG_BAMS.Bitacora;
+namespace SG_BAMS.Bitacora
+{
 
 /// <summary>
 /// Construye expresiones de filtrado para la bitácora.
 /// Es una operación puramente en memoria (CPU-bound), por lo que
 /// no requiere async/await: no realiza E/S.
 /// </summary>
-internal sealed class FiltroBitacoraservice : IFiltroBitacora
+public sealed class FiltroBitacoraservice : IFiltroBitacora
 {
     /// <inheritdoc />
     public string ConstruirFiltro(DataTable dt, string textoBusqueda, DateTime desde, DateTime hasta)
@@ -40,9 +44,10 @@ internal sealed class FiltroBitacoraservice : IFiltroBitacora
         var columnaFecha = dt.Columns.Cast<DataColumn>()
             .FirstOrDefault(c => c.DataType == typeof(DateTime))?.ColumnName;
 
-        if (columnaFecha is not null)
-            condiciones.Add($"[{columnaFecha}] >= #{fechaDesde}# AND [{columnaFecha}] < #{fechaHasta}#");
+            if (columnaFecha != null)
+                condiciones.Add($"[{columnaFecha}] >= #{fechaDesde}# AND [{columnaFecha}] < #{fechaHasta}#");
 
         return condiciones.Count > 0 ? string.Join(" AND ", condiciones) : string.Empty;
     }
+}
 }

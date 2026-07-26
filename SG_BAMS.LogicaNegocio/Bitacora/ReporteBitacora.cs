@@ -7,7 +7,7 @@ namespace SG_BAMS.Bitacora
     /// <summary>
     /// Genera el documento PDF del reporte de bitácora utilizando QuestPDF.
     /// </summary>
-    internal class ReporteBitacora : IDocument
+    public class ReporteBitacora : IDocument
     {
         private readonly List<BitacoraDTO> _datos;
 
@@ -17,7 +17,7 @@ namespace SG_BAMS.Bitacora
         }
 
         public DocumentMetadata GetMetadata() => DocumentMetadata.Default;
-
+        public DocumentSettings GetSettings() => DocumentSettings.Default;
         public void Compose(IDocumentContainer container)
         {
             container.Page(page =>
@@ -56,10 +56,10 @@ namespace SG_BAMS.Bitacora
                         table.Cell().Element(Celda).Text(item.Fecha.ToString("dd/MM/yyyy HH:mm:ss"));
                     }
 
-                    static IContainer Encabezado(IContainer c) =>
+                    /*static*/IContainer Encabezado(IContainer c) =>
                         c.Border(1).Padding(5).Background("#EAEAEA");
 
-                    static IContainer Celda(IContainer c) =>
+                   /* static */IContainer Celda(IContainer c) =>
                         c.Border(1).Padding(5);
                 });
 
