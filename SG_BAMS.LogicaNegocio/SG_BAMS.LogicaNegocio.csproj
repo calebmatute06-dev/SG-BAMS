@@ -206,7 +206,6 @@
     <Compile Include="Login\ServicioSeguridad.cs" />
     <Compile Include="Login\SesionUsuarioService.cs" />
     <Compile Include="Login\ValidadorTokenEnMemoria.cs" />
-    <Compile Include="Menú Principal\ChartBuilderService.cs" />
     <Compile Include="Menú Principal\ClsDashBoard.cs" />
     <Compile Include="Menú Principal\ClsNotificaciones.cs" />
     <Compile Include="Menú Principal\ClsPerfil.cs" />
