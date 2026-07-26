@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace SG_BAMS
+namespace SG_BAMS.LogicaNegocio
 {
     /// <summary>
     /// 

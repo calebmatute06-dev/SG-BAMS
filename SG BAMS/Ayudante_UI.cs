@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using SG_BAMS.LogicaNegocio;
 
 namespace SG_BAMS
 {

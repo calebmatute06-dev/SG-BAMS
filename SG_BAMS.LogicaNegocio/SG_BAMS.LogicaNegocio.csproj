@@ -199,6 +199,7 @@
   <ItemGroup>
     <Compile Include="AdministracionBAMS\DetectorRostroService.cs" />
     <Compile Include="Cliente\FiltroClientesService.cs" />
+    <Compile Include="Config_Sistema.cs" />
     <Compile Include="Deudas\FiltroDeudoresService.cs" />
     <Compile Include="Deudas\ReglaPagoDeudaService.cs" />
     <Compile Include="Deudas\ResumenPagoService.cs" />
