@@ -1,16 +1,17 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using SG_BAMS.AccesoDatos;
+using SG_BAMS.ComprasContratos;
+using SG_BAMS.ComprasDTO;
+using SG_BAMS.Dominio.AdministracionBAMS;
+using SG_BAMS.Dominio.Compras;
+using SG_BAMS.Facturas;
+using SG_BAMS.Login;
+using SG_BAMS.Proveedor;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
-using Microsoft.Data.SqlClient;
-using SG_BAMS.AccesoDatos;
-using SG_BAMS.Dominio.AdministracionBAMS;
-using SG_BAMS.ComprasContratos;
-using SG_BAMS.ComprasDTO;
-using SG_BAMS.Login;
-using SG_BAMS.Proveedor;
-using SG_BAMS.Dominio.Compras;
 
 namespace SG_BAMS
 {
@@ -24,6 +25,10 @@ namespace SG_BAMS
         private PlaceholderComboBox phFormaPago;
         private object valorOriginal;
 
+        private readonly ServicioEscaneoBarras _servicioEscaneo = new ServicioEscaneoBarras();
+        private readonly IBuscadorProductoProveedorService _buscadorCodigo = new BuscadorProductoProveedorService();
+
+        // Se pasa la instancia de la sesión para evitar que _usuarioSesion sea null en ClsCompras
         public Ingresar_datos__Compra_() : this(new ClsCompras(new UsuarioSesionActual()), new ClsCargaCombos(), new NavegacionService()) { }
 
         public Ingresar_datos__Compra_(IComprasRepository logic, ICargaCombosRepository combos, NavegacionService navegacion)
@@ -35,6 +40,108 @@ namespace SG_BAMS
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.StartPosition = FormStartPosition.CenterScreen;
+
+            _servicioEscaneo.CodigoEscaneado += ManejarCodigoEscaneado;
+        }
+
+        /// <summary>
+        /// Captura las teclas del lector de código de barras en cualquier
+        /// parte del formulario, siempre que el usuario no esté escribiendo
+        /// en un control de texto/combo/grid (para no interferir con la
+        /// digitación manual).
+        /// </summary>
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            Keys key = keyData & Keys.KeyCode;
+
+            bool escribiendoEnControl = txtNotaDetalle.Focused
+                || cmbProveedor.Focused
+                || cmbFormaPago.Focused
+                || dgvIngresarCompra.IsCurrentCellInEditMode;
+
+            if (escribiendoEnControl)
+                return base.ProcessCmdKey(ref msg, keyData);
+
+            if (_servicioEscaneo.ProcesarTecla(key))
+                return true;
+
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        /// <summary>
+        /// Se dispara cuando el lector de código de barras completa un
+        /// código. Si todavía no hay un proveedor fijado en la compra,
+        /// busca en todos los proveedores activos y selecciona
+        /// automáticamente el dueño del producto; si ya hay un proveedor
+        /// fijado (porque ya existen filas en la lista), valida que el
+        /// código pertenezca a ese mismo proveedor. En ambos casos, si el
+        /// producto es válido, se abre la ventanita para capturar cantidad
+        /// y precio unitario antes de agregarlo a la tabla.
+        /// </summary>
+        private void ManejarCodigoEscaneado(string codigo)
+        {
+            if (string.IsNullOrWhiteSpace(codigo)) return;
+
+            ResultadoBusquedaCodigoBarra resultado;
+            bool proveedorYaFijado = !cmbProveedor.Enabled;
+
+            if (proveedorYaFijado)
+            {
+                int idProveedorActual = Convert.ToInt32(cmbProveedor.SelectedValue);
+                resultado = _buscadorCodigo.BuscarEnProveedor(logic, idProveedorActual, codigo);
+
+                if (!resultado.Encontrado)
+                {
+                    MessageBox.Show($"El código [{codigo}] no está vinculado al proveedor seleccionado ({cmbProveedor.Text}).",
+                        "Producto no vinculado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+            else
+            {
+                DataTable proveedoresActivos = combos.ListarProveedoresActivos();
+                resultado = _buscadorCodigo.BuscarEnCualquierProveedor(logic, proveedoresActivos, codigo);
+
+                if (!resultado.Encontrado)
+                {
+                    MessageBox.Show($"El código [{codigo}] no está vinculado a ningún proveedor activo.",
+                        "Producto no encontrado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                cmbProveedor.SelectedValue = resultado.IdProveedor;
+            }
+
+            foreach (DataGridViewRow fila in dgvIngresarCompra.Rows)
+            {
+                if (fila.Cells[0].Value != null && fila.Cells[0].Value.ToString() == resultado.IdProducto.ToString())
+                {
+                    MessageBox.Show("Este producto ya está incluido en la lista de compra. \nModifique la cantidad directamente en la tabla si lo desea.",
+                        "Producto Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+            }
+
+            using (var popup = new FrmCantidadPrecioEscaneo(resultado.NombreProducto))
+            {
+                if (popup.ShowDialog(this) == DialogResult.OK)
+                {
+                    decimal subtotal = popup.CantidadResultado * popup.PrecioResultado;
+
+                    dgvIngresarCompra.Rows.Add(
+                        resultado.IdProducto,
+                        resultado.NombreProducto,
+                        popup.CantidadResultado,
+                        popup.PrecioResultado,
+                        subtotal
+                    );
+
+                    if (dgvIngresarCompra.Rows.Count > 0)
+                        cmbProveedor.Enabled = false;
+
+                    ActualizarGranTotal();
+                }
+            }
         }
 
         private void Ingresar_datos__Compra__Load(object sender, EventArgs e)

@@ -94,7 +94,7 @@ namespace SG_BAMS
         private async void FacturaAgregarDatos_Load(object sender, EventArgs e)
         {
             await LlenarComboPago();
-
+            AdaptadorPantallaCompleta.Habilitar(this);
             phPago = new PlaceholderComboBox(cmbPago, "Seleccione una forma de pago");
             phExento = new PlaceholderTextBox(txtExento, "0");
 

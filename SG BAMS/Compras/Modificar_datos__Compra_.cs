@@ -7,6 +7,8 @@ using Microsoft.Data.SqlClient;
 using SG_BAMS.ComprasContratos;
 using SG_BAMS.ComprasDTO;
 using SG_BAMS.ProductoInventario;
+using SG_BAMS.AccesoDatos;
+using SG_BAMS.Facturas;
 
 namespace SG_BAMS
 {
@@ -24,6 +26,13 @@ namespace SG_BAMS
         private PlaceholderComboBox phProveedor;
         private PlaceholderComboBox phFormaPago;
 
+        // Repositorio de Compras (no el de "Modificar") usado únicamente para
+        // el flujo de escaneo: es el mismo que ya usaba Agregar_Producto_Mod
+        // para consultar productos por proveedor y agregar detalle existente.
+        private readonly IComprasRepository comprasRepo = new ClsCompras();
+        private readonly ServicioEscaneoBarras _servicioEscaneo = new ServicioEscaneoBarras();
+        private readonly IBuscadorProductoProveedorService _buscadorCodigo = new BuscadorProductoProveedorService();
+
         public Modificar_datos__Compra_(int id) : this(id, new ClsModificarCompras(), new NavegacionService()) { }
 
         public Modificar_datos__Compra_(int id, IModificarComprasRepository logic, NavegacionService navegacion)
@@ -39,6 +48,85 @@ namespace SG_BAMS
             dgvProductosModificar.CellValueChanged += dgvProductosModificar_CellValueChanged;
             dgvProductosModificar.CurrentCellDirtyStateChanged += dgvProductosModificar_CurrentCellDirtyStateChanged;
             dgvProductosModificar.CellBeginEdit += dgvProductosModificar_CellBeginEdit;
+
+            _servicioEscaneo.CodigoEscaneado += ManejarCodigoEscaneado;
+        }
+
+        /// <summary>
+        /// Captura las teclas del lector de código de barras en cualquier
+        /// parte del formulario, siempre que el usuario no esté escribiendo
+        /// en un control de texto/combo/grid.
+        /// </summary>
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            Keys key = keyData & Keys.KeyCode;
+
+            bool escribiendoEnControl = txtNotaDetalle.Focused
+                || cmbFormaPago.Focused
+                || dgvProductosModificar.IsCurrentCellInEditMode;
+
+            if (escribiendoEnControl)
+                return base.ProcessCmdKey(ref msg, keyData);
+
+            if (_servicioEscaneo.ProcesarTecla(key))
+                return true;
+
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        /// <summary>
+        /// Se dispara cuando el lector de código de barras completa un
+        /// código. Como en esta pantalla el proveedor de la compra ya está
+        /// fijo (no se puede cambiar), solo se valida que el código
+        /// escaneado pertenezca a ese proveedor; si no, se avisa que no
+        /// está vinculado. Si es válido, se pide cantidad y precio unitario
+        /// y se agrega directamente a la compra existente.
+        /// </summary>
+        private void ManejarCodigoEscaneado(string codigo)
+        {
+            if (string.IsNullOrWhiteSpace(codigo)) return;
+            if (cmbProveedor.SelectedValue == null) return;
+
+            int idProveedorActual = Convert.ToInt32(cmbProveedor.SelectedValue);
+            var resultado = _buscadorCodigo.BuscarEnProveedor(comprasRepo, idProveedorActual, codigo);
+
+            if (!resultado.Encontrado)
+            {
+                MessageBox.Show($"El código [{codigo}] no está vinculado al proveedor de esta compra ({cmbProveedor.Text}).",
+                    "Producto no vinculado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (comprasRepo.ValidarProductoEnCompra(idCompraAEditar.ToString(), resultado.IdProducto))
+            {
+                MessageBox.Show("Este producto ya está incluido en la compra.\nModifique la cantidad en la tabla (doble clic sobre la celda).",
+                    "Producto Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            using (var popup = new FrmCantidadPrecioEscaneo(resultado.NombreProducto))
+            {
+                if (popup.ShowDialog(this) == DialogResult.OK)
+                {
+                    try
+                    {
+                        comprasRepo.AgregarDetalleACompraExistente(idCompraAEditar.ToString(), resultado.IdProducto,
+                            popup.CantidadResultado, popup.PrecioResultado);
+
+                        huboCambios = true;
+                        dgvProductosModificar.DataSource = logic.ObtenerDetalleCompra(idCompraAEditar);
+                        ConfigurarEdicionGrid();
+                        ActualizarTotalGeneral();
+
+                        MessageBox.Show("Producto añadido correctamente a la compra.", "SG-BAMS",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al guardar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
 
         public void Modificar_datos__Compra__Load(object sender, EventArgs e)
