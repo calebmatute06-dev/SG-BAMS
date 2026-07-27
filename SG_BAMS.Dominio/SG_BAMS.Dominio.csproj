@@ -142,6 +142,10 @@
     <Compile Include="Proveedor\IEstadoRepository.cs" />
     <Compile Include="Proveedor\IProveedorRepository.cs" />
     <Compile Include="Proveedor\ProveedorDTO.cs" />
+    <Compile Include="Reportes\IExportadorReporte.cs" />
+    <Compile Include="Reportes\IReportesRepository.cs" />
+    <Compile Include="Reportes\ReporteConfig.cs" />
+    <Compile Include="Reportes\ReporteTipo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

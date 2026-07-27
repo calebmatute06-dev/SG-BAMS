@@ -167,6 +167,7 @@
     <Compile Include="clsModeloAuto.cs" />
     <Compile Include="ClsModificarCompras.cs" />
     <Compile Include="ClsMostrarCompras.cs" />
+    <Compile Include="ClsReportesDatos.cs" />
     <Compile Include="ClsRepositorioBaseDatos .cs" />
     <Compile Include="clsRol.cs" />
     <Compile Include="clsSoporte.cs" />

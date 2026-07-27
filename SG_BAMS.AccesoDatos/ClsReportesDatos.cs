@@ -12,7 +12,7 @@ namespace SG_BAMS.Reporte
     /// consuma (ReportesAdmin) dependa de la abstracción y no de esta
     /// clase concreta.
     /// </summary>
-    internal class ClsReportesDatos : ClsRepositorioBaseDatos, IReportesRepository
+    public class ClsReportesDatos : ClsRepositorioBaseDatos, IReportesRepository
     {
         public DataTable ReporteVentas(DateTime desde, DateTime hasta)
         {

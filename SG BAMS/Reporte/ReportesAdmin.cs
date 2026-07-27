@@ -21,8 +21,8 @@ namespace SG_BAMS.Reporte
 
 
 
-        private DataTable _datosActuales;
-        private ReporteTipo _tipoActual;
+        public DataTable _datosActuales;
+        public ReporteTipo _tipoActual;
 
         public ReportesAdmin()
         {

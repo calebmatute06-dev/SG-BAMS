@@ -48,6 +48,10 @@ namespace SG_BAMS.Reporte
             return total;
         }
 
+        public DocumentMetadata GetMetadata() => DocumentMetadata.Default;
+
+        public DocumentSettings GetSettings() => DocumentSettings.Default;
+
         public void Compose(IDocumentContainer container)
         {
             container.Page(page =>
