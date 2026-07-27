@@ -10,6 +10,7 @@ using SG_BAMS.ComprasContratos;
 using SG_BAMS.ComprasDTO;
 using SG_BAMS.Login;
 using SG_BAMS.Proveedor;
+using SG_BAMS.Dominio.Compras;
 
 namespace SG_BAMS
 {
@@ -23,7 +24,7 @@ namespace SG_BAMS
         private PlaceholderComboBox phFormaPago;
         private object valorOriginal;
 
-        public Ingresar_datos__Compra_() : this(new ClsCompras(), new ClsCargaCombos(), new NavegacionService()) { }
+        public Ingresar_datos__Compra_() : this(new ClsCompras(new UsuarioSesionActual()), new ClsCargaCombos(), new NavegacionService()) { }
 
         public Ingresar_datos__Compra_(IComprasRepository logic, ICargaCombosRepository combos, NavegacionService navegacion)
         {

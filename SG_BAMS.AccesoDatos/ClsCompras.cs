@@ -110,7 +110,10 @@ namespace SG_BAMS.AccesoDatos
             SqlTransaction transaccion = Conectar.BeginTransaction();
             try
             {
-                int idUsuario = _usuarioSesion != null ? _usuarioSesion.IdUsuario() : 1;
+                if (_usuarioSesion == null)
+                    throw new Exception("No se configuró la sesión del usuario para registrar la compra.");
+
+                int idUsuario = _usuarioSesion.IdUsuario();
                 if (idUsuario == 0)
                     throw new Exception("No se ha iniciado sesión o no se pudo obtener el ID del usuario.");
 
