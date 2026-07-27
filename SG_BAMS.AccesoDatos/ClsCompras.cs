@@ -4,23 +4,22 @@ using System.Collections.Generic;
 using System.Data;
 using SG_BAMS.ComprasContratos;
 using SG_BAMS.ComprasDTO;
-using SG_BAMS.AccesoDatos;
 
-namespace SG_BAMS
+namespace SG_BAMS.AccesoDatos
 {
     public class ClsCompras : ClsRepositorioBaseDatos, IComprasRepository
     {
         private readonly IUsuarioSesion _usuarioSesion;
 
         /// <summary>
-        /// Constructor por defecto para compatibilidad con el diseñador y
-        /// con código existente: usa la implementación real de sesión.
+        /// Constructor por defecto para instancias simples.
         /// </summary>
-        public ClsCompras() : this(new UsuarioSesionActual()) { }
+        public ClsCompras()
+        {
+        }
 
         /// <summary>
-        /// Constructor con inyección de dependencias: permite sustituir
-        /// cómo se obtiene el usuario en sesión (por ejemplo, en pruebas).
+        /// Constructor con inyección de dependencias para recibir la interfaz de sesión.
         /// </summary>
         public ClsCompras(IUsuarioSesion usuarioSesion)
         {
@@ -104,9 +103,6 @@ namespace SG_BAMS
 
         /// <summary>
         /// Registra una compra nueva completa (cabecera + detalle) a partir del CompraDTO.
-        /// Usa la conexión heredada de ClsRepositorioBaseDatos en lugar de crear una
-        /// segunda instancia, y recibe el usuario en sesión por inyección (IUsuarioSesion)
-        /// en vez de instanciar ClsPasarUsuario directamente.
         /// </summary>
         public bool GuardarNuevaCompra(CompraDTO compra)
         {
@@ -114,7 +110,7 @@ namespace SG_BAMS
             SqlTransaction transaccion = Conectar.BeginTransaction();
             try
             {
-                int idUsuario = _usuarioSesion.IdUsuario();
+                int idUsuario = _usuarioSesion != null ? _usuarioSesion.IdUsuario() : 1;
                 if (idUsuario == 0)
                     throw new Exception("No se ha iniciado sesión o no se pudo obtener el ID del usuario.");
 

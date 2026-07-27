@@ -9,7 +9,7 @@ namespace SG_BAMS.ProductoInventario
     /// <summary>
     /// Clase para mostrar compras usando solo Procedimientos Almacenados.
     /// </summary>
-    internal class ClsMostrarCompras : ClsRepositorioBaseDatos, IMostrarComprasRepository
+   public class ClsMostrarCompras : ClsRepositorioBaseDatos, IMostrarComprasRepository
     {
         public DataTable ListarCompras()
         {

@@ -207,6 +207,9 @@
     <Compile Include="Bitacora\ReporteBitacora.cs" />
     <Compile Include="Bitacora\ReporteBitacoraPdfExportado.cs" />
     <Compile Include="Cliente\FiltroClientesService.cs" />
+    <Compile Include="Compras\Comprasdominio.cs" />
+    <Compile Include="Compras\Comprasfiltroservice.cs" />
+    <Compile Include="Compras\Usuariosesionactual.cs" />
     <Compile Include="Config_Sistema.cs" />
     <Compile Include="Deudas\FiltroDeudoresService.cs" />
     <Compile Include="Deudas\ReglaPagoDeudaService.cs" />

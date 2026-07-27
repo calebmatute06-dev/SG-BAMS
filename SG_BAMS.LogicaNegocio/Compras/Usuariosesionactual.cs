@@ -2,7 +2,7 @@
 using SG_BAMS.Login;
 using SG_BAMS.LogicaNegocio.Login;
 
-namespace SG_BAMS
+namespace SG_BAMS.Dominio.Compras
 {
     /// <summary>
     /// Implementación por defecto de IUsuarioSesion. Se investigó en el

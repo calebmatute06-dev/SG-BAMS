@@ -41,7 +41,7 @@ namespace SG_BAMS
             dgvProductosModificar.CellBeginEdit += dgvProductosModificar_CellBeginEdit;
         }
 
-        private void Modificar_datos__Compra__Load(object sender, EventArgs e)
+        public void Modificar_datos__Compra__Load(object sender, EventArgs e)
         {
             cmbProveedor.Enabled = false;
             cmbProveedor.BackColor = Color.LightGray;

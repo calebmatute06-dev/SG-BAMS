@@ -101,6 +101,11 @@
     <Compile Include="Bitacora\BitacoraDTO.cs" />
     <Compile Include="Cliente\ClienteDTO.cs" />
     <Compile Include="Cliente\IClienteRepository.cs" />
+    <Compile Include="Compras\CompraDTO.cs" />
+    <Compile Include="Compras\DetalleCompraDTO.cs" />
+    <Compile Include="Compras\Icomprascatalogosysesion.cs" />
+    <Compile Include="Compras\Icomprasrepository.cs" />
+    <Compile Include="Compras\Imodificarcomprasrepository.cs" />
     <Compile Include="Deudores\IDeudaRepository.cs" />
     <Compile Include="Deudores\IDeudasRepository.cs" />
     <Compile Include="Deudores\ResumenPagoDeudaDTO.cs" />

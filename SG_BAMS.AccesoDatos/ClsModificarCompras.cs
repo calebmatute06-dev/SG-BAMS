@@ -8,7 +8,7 @@ using SG_BAMS.AccesoDatos;
 
 namespace SG_BAMS.ProductoInventario
 {
-    internal class ClsModificarCompras : ClsRepositorioBaseDatos, IModificarComprasRepository
+    public class ClsModificarCompras : ClsRepositorioBaseDatos, IModificarComprasRepository
     {
         private readonly ICargaCombosRepository _combos;
         private readonly IDetalleCompraRepository _detalleCompra;
