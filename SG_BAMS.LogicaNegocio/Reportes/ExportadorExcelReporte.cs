@@ -145,7 +145,7 @@ namespace SG_BAMS.Reporte
 
             if (indiceColumnaSumar >= 0)
             {
-                var rangoEtiqueta = worksheet.Range(filaTotales, 1, filaTotales, indiceColumnaSumar + 1).Merge();
+                var rangoEtiqueta = worksheet.Range(filaTotales, 1, filaTotales, indiceColumnaSumar).Merge();
                 rangoEtiqueta.Value = config.EtiquetaTotal;
                 rangoEtiqueta.Style.Font.Bold = true;
                 rangoEtiqueta.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
