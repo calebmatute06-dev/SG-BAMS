@@ -21,7 +21,7 @@ namespace SG_BAMS
         private bool _isLoading;
 
         private static readonly Color ColorPlaceholder = Color.Gray;
-        private static readonly Color ColorTextoNormal = Color.Black;
+        private static readonly Color ColorTextoNormal = Color.Navy;
 
         /// <summary>
         /// Inicializa el adaptador vinculando el KryptonComboBox con su texto de placeholder.
