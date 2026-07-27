@@ -61,6 +61,7 @@ namespace SG_BAMS
         public FacturaAgregarDatos()
         {
             InitializeComponent();
+            AdaptadorPantallaCompleta.Habilitar(this);
             busquedaProducto = new BusquedaProductoService(AF);
             cantidadBateria = "0";
             precioBateria = 0;
@@ -98,8 +99,6 @@ namespace SG_BAMS
             phExento = new PlaceholderTextBox(txtExento, "0");
 
             DateTFecha.Enabled = false;
-            this.MaximizeBox = false;
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             dgvProductos.Columns.Clear();
             dgvProductos.Columns.Add("id_producto", "Código");
             dgvProductos.Columns.Add("nombre_producto", "Nombre");

@@ -19,13 +19,12 @@ namespace SG_BAMS
         public AdministracionBAMS()
         {
             InitializeComponent();
+            AdaptadorPantallaCompleta.Habilitar(this);
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void AdministracionBAMS_Load(object sender, EventArgs e)
         {
-            this.MaximizeBox = false;
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
         private void AbrirOEnfocarFormulario(Form formulario)

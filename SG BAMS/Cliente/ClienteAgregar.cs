@@ -217,6 +217,8 @@ namespace SG_BAMS
         /// </summary>
         private void ClienteAgregar_Load(object sender, EventArgs e)
         {
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             phNombre = new PlaceholderTextBox(txtNombre, "Solo letras y espacios");
             phApellido = new PlaceholderTextBox(txtApellido, "Solo letras y espacios");
             phTelefono = new PlaceholderTextBox(txtTelefono, "Debe comenzar con 2,3,7,8 o 9");
