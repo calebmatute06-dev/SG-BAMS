@@ -72,6 +72,8 @@ namespace SG_BAMS
             cmbRol.SelectedValue = _rolInicial;
             cmbEstado.SelectedValue = _estadoInicial;
 
+            EstiloComboBox.Aplicar(cmbRol, cmbEstado);
+
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             btnImagen.Enabled = (_rolInicial == 1 || _rolInicial == 2);

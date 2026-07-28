@@ -38,8 +38,13 @@
             Contra = new Label();
             btnsalir = new Krypton.Toolkit.KryptonButton();
             btnConfirmar = new Krypton.Toolkit.KryptonButton();
-            txtToken = new Krypton.Toolkit.KryptonTextBox();
             pictureBox2 = new PictureBox();
+            TK1 = new Krypton.Toolkit.KryptonTextBox();
+            TK2 = new Krypton.Toolkit.KryptonTextBox();
+            TK3 = new Krypton.Toolkit.KryptonTextBox();
+            TK4 = new Krypton.Toolkit.KryptonTextBox();
+            TK5 = new Krypton.Toolkit.KryptonTextBox();
+            TK6 = new Krypton.Toolkit.KryptonTextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -53,9 +58,9 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial", 25.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(176, 37);
+            label1.Location = new Point(201, 49);
             label1.Name = "label1";
-            label1.Size = new Size(137, 41);
+            label1.Size = new Size(175, 51);
             label1.TabIndex = 366;
             label1.Text = "TOKEN";
             // 
@@ -65,29 +70,27 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(374, 217);
+            label5.Location = new Point(427, 289);
             label5.Name = "label5";
-            label5.Size = new Size(84, 29);
+            label5.Size = new Size(102, 35);
             label5.TabIndex = 365;
             label5.Text = "BAMS";
             // 
             // pictureBox6
             // 
             pictureBox6.BackColor = Color.Navy;
-            pictureBox6.Location = new Point(-2, 244);
-            pictureBox6.Margin = new Padding(3, 2, 3, 2);
+            pictureBox6.Location = new Point(-2, 325);
             pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(500, 22);
+            pictureBox6.Size = new Size(571, 29);
             pictureBox6.TabIndex = 364;
             pictureBox6.TabStop = false;
             // 
             // pictureBox5
             // 
             pictureBox5.BackColor = Color.Navy;
-            pictureBox5.Location = new Point(764, 9);
-            pictureBox5.Margin = new Padding(3, 2, 3, 2);
+            pictureBox5.Location = new Point(873, 12);
             pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(31, 346);
+            pictureBox5.Size = new Size(35, 461);
             pictureBox5.TabIndex = 363;
             pictureBox5.TabStop = false;
             // 
@@ -95,9 +98,8 @@
             // 
             pictureBox1.BackColor = Color.Navy;
             pictureBox1.Location = new Point(-1, 0);
-            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(31, 266);
+            pictureBox1.Size = new Size(35, 355);
             pictureBox1.TabIndex = 361;
             pictureBox1.TabStop = false;
             // 
@@ -105,9 +107,8 @@
             // 
             pictureBox3.BackColor = Color.Navy;
             pictureBox3.Location = new Point(1, 0);
-            pictureBox3.Margin = new Padding(3, 2, 3, 2);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(498, 22);
+            pictureBox3.Size = new Size(569, 29);
             pictureBox3.TabIndex = 362;
             pictureBox3.TabStop = false;
             // 
@@ -117,9 +118,9 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(46, 164);
+            label3.Location = new Point(53, 219);
             label3.Name = "label3";
-            label3.Size = new Size(0, 22);
+            label3.Size = new Size(0, 27);
             label3.TabIndex = 359;
             // 
             // Contra
@@ -128,22 +129,21 @@
             Contra.BackColor = Color.Transparent;
             Contra.Font = new Font("Arial", 13.8F, FontStyle.Bold);
             Contra.ForeColor = Color.Navy;
-            Contra.Location = new Point(56, 103);
+            Contra.Location = new Point(47, 138);
             Contra.Name = "Contra";
-            Contra.Size = new Size(181, 22);
+            Contra.Size = new Size(215, 27);
             Contra.TabIndex = 360;
             Contra.Text = "Ingrese el TOKEN:";
             // 
             // btnsalir
             // 
-            btnsalir.Location = new Point(257, 152);
-            btnsalir.Margin = new Padding(3, 2, 3, 2);
+            btnsalir.Location = new Point(294, 203);
             btnsalir.Name = "btnsalir";
             btnsalir.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnsalir.OverrideDefault.Back.Color2 = Color.White;
             btnsalir.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnsalir.OverrideFocus.Back.Color2 = Color.White;
-            btnsalir.Size = new Size(196, 45);
+            btnsalir.Size = new Size(224, 60);
             btnsalir.StateCommon.Back.Color1 = Color.SkyBlue;
             btnsalir.StateCommon.Back.Color2 = Color.White;
             btnsalir.StateCommon.Border.Rounding = 5F;
@@ -160,14 +160,13 @@
             // 
             // btnConfirmar
             // 
-            btnConfirmar.Location = new Point(45, 152);
-            btnConfirmar.Margin = new Padding(3, 2, 3, 2);
+            btnConfirmar.Location = new Point(51, 203);
             btnConfirmar.Name = "btnConfirmar";
             btnConfirmar.OverrideDefault.Back.Color1 = Color.SkyBlue;
             btnConfirmar.OverrideDefault.Back.Color2 = Color.White;
             btnConfirmar.OverrideFocus.Back.Color1 = Color.SkyBlue;
             btnConfirmar.OverrideFocus.Back.Color2 = Color.White;
-            btnConfirmar.Size = new Size(196, 45);
+            btnConfirmar.Size = new Size(224, 60);
             btnConfirmar.StateCommon.Back.Color1 = Color.SkyBlue;
             btnConfirmar.StateCommon.Back.Color2 = Color.White;
             btnConfirmar.StateCommon.Border.Rounding = 5F;
@@ -182,35 +181,99 @@
             btnConfirmar.Values.Text = "Confirmar";
             btnConfirmar.Click += btnConfirmar_Click;
             // 
-            // txtToken
-            // 
-            txtToken.Location = new Point(256, 98);
-            txtToken.Margin = new Padding(3, 2, 3, 2);
-            txtToken.Name = "txtToken";
-            txtToken.Size = new Size(192, 31);
-            txtToken.StateCommon.Back.Color1 = Color.White;
-            txtToken.StateCommon.Border.Color1 = Color.Navy;
-            txtToken.StateCommon.Border.Rounding = 5F;
-            txtToken.StateCommon.Content.Color1 = Color.Navy;
-            txtToken.StateCommon.Content.Font = new Font("Arial Narrow", 12.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtToken.TabIndex = 355;
-            // 
             // pictureBox2
             // 
             pictureBox2.BackColor = Color.Navy;
-            pictureBox2.Location = new Point(468, 0);
-            pictureBox2.Margin = new Padding(3, 2, 3, 2);
+            pictureBox2.Location = new Point(535, 0);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(31, 266);
+            pictureBox2.Size = new Size(35, 355);
             pictureBox2.TabIndex = 367;
             pictureBox2.TabStop = false;
             // 
+            // TK1
+            // 
+            TK1.Location = new Point(267, 132);
+            TK1.Name = "TK1";
+            TK1.Size = new Size(35, 36);
+            TK1.StateCommon.Back.Color1 = Color.White;
+            TK1.StateCommon.Border.Color1 = Color.Navy;
+            TK1.StateCommon.Border.Rounding = 5F;
+            TK1.StateCommon.Content.Color1 = Color.Navy;
+            TK1.StateCommon.Content.Font = new Font("Arial Narrow", 12.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            TK1.TabIndex = 368;
+            // 
+            // TK2
+            // 
+            TK2.Location = new Point(311, 132);
+            TK2.Name = "TK2";
+            TK2.Size = new Size(35, 36);
+            TK2.StateCommon.Back.Color1 = Color.White;
+            TK2.StateCommon.Border.Color1 = Color.Navy;
+            TK2.StateCommon.Border.Rounding = 5F;
+            TK2.StateCommon.Content.Color1 = Color.Navy;
+            TK2.StateCommon.Content.Font = new Font("Arial Narrow", 12.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            TK2.TabIndex = 369;
+            // 
+            // TK3
+            // 
+            TK3.Location = new Point(355, 132);
+            TK3.Name = "TK3";
+            TK3.Size = new Size(35, 36);
+            TK3.StateCommon.Back.Color1 = Color.White;
+            TK3.StateCommon.Border.Color1 = Color.Navy;
+            TK3.StateCommon.Border.Rounding = 5F;
+            TK3.StateCommon.Content.Color1 = Color.Navy;
+            TK3.StateCommon.Content.Font = new Font("Arial Narrow", 12.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            TK3.TabIndex = 370;
+            // 
+            // TK4
+            // 
+            TK4.Location = new Point(399, 132);
+            TK4.Name = "TK4";
+            TK4.Size = new Size(35, 36);
+            TK4.StateCommon.Back.Color1 = Color.White;
+            TK4.StateCommon.Border.Color1 = Color.Navy;
+            TK4.StateCommon.Border.Rounding = 5F;
+            TK4.StateCommon.Content.Color1 = Color.Navy;
+            TK4.StateCommon.Content.Font = new Font("Arial Narrow", 12.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            TK4.TabIndex = 371;
+            // 
+            // TK5
+            // 
+            TK5.Location = new Point(442, 132);
+            TK5.Name = "TK5";
+            TK5.Size = new Size(35, 36);
+            TK5.StateCommon.Back.Color1 = Color.White;
+            TK5.StateCommon.Border.Color1 = Color.Navy;
+            TK5.StateCommon.Border.Rounding = 5F;
+            TK5.StateCommon.Content.Color1 = Color.Navy;
+            TK5.StateCommon.Content.Font = new Font("Arial Narrow", 12.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            TK5.TabIndex = 372;
+            // 
+            // TK6
+            // 
+            TK6.Location = new Point(485, 132);
+            TK6.Name = "TK6";
+            TK6.Size = new Size(35, 36);
+            TK6.StateCommon.Back.Color1 = Color.White;
+            TK6.StateCommon.Border.Color1 = Color.Navy;
+            TK6.StateCommon.Border.Rounding = 5F;
+            TK6.StateCommon.Content.Color1 = Color.Navy;
+            TK6.StateCommon.Content.Font = new Font("Arial Narrow", 12.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            TK6.TabIndex = 373;
+            // 
             // LoginToken
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(492, 267);
+            ClientSize = new Size(562, 356);
+            Controls.Add(TK6);
+            Controls.Add(TK5);
+            Controls.Add(TK4);
+            Controls.Add(TK3);
+            Controls.Add(TK2);
+            Controls.Add(TK1);
             Controls.Add(pictureBox2);
             Controls.Add(label1);
             Controls.Add(label5);
@@ -222,8 +285,6 @@
             Controls.Add(Contra);
             Controls.Add(btnsalir);
             Controls.Add(btnConfirmar);
-            Controls.Add(txtToken);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "LoginToken";
             ShowIcon = false;
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
@@ -249,5 +310,11 @@
         private Krypton.Toolkit.KryptonButton btnConfirmar;
         private Krypton.Toolkit.KryptonTextBox txtToken;
         private PictureBox pictureBox2;
+        private Krypton.Toolkit.KryptonTextBox TK1;
+        private Krypton.Toolkit.KryptonTextBox TK2;
+        private Krypton.Toolkit.KryptonTextBox TK3;
+        private Krypton.Toolkit.KryptonTextBox TK4;
+        private Krypton.Toolkit.KryptonTextBox TK5;
+        private Krypton.Toolkit.KryptonTextBox TK6;
     }
 }

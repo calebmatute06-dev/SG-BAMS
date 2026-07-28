@@ -31,6 +31,14 @@ namespace SG_BAMS
         {
             if (formulario == null) throw new ArgumentNullException(nameof(formulario));
 
+            // Reduce parpadeo y artefactos visuales ("fantasmas") al redimensionar rápido.
+            typeof(Control).InvokeMember(
+                "DoubleBuffered",
+                System.Reflection.BindingFlags.SetProperty
+                    | System.Reflection.BindingFlags.Instance
+                    | System.Reflection.BindingFlags.NonPublic,
+                null, formulario, new object[] { true });
+
             _tamanoOriginalForm[formulario] = formulario.ClientSize;
             GuardarEstadoOriginal(formulario);
 
@@ -71,8 +79,16 @@ namespace SG_BAMS
             float escalaY = (float)formulario.ClientSize.Height / tamanoOriginal.Height;
 
             formulario.SuspendLayout();
-            try { ReescalarControles(formulario, escalaX, escalaY); }
-            finally { formulario.ResumeLayout(true); }
+            try
+            {
+                ReescalarControles(formulario, escalaX, escalaY);
+            }
+            finally
+            {
+                formulario.ResumeLayout(true);
+                formulario.Invalidate(true); // fuerza a repintar TODO el formulario y sus hijos
+                formulario.Update();         // aplica el repintado de inmediato, sin esperar
+            }
         }
 
         private static void ReescalarControles(Control contenedor, float escalaX, float escalaY)

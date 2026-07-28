@@ -184,6 +184,7 @@
             txtCorreo.StateCommon.Border.Rounding = 5F;
             txtCorreo.StateCommon.Content.Color1 = Color.Navy;
             txtCorreo.StateCommon.Content.Font = new Font("Arial Narrow", 12.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtCorreo.StateNormal.Content.Color1 = Color.Navy;
             txtCorreo.TabIndex = 368;
             // 
             // LoginCorreo

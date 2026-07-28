@@ -864,79 +864,21 @@ namespace SG_BAMS
                 return false;
             }
 
-            if (Regex.IsMatch(dominio, @"^[.\-]|[.\-]$"))
+            string[] dominiosPermitidos = { "gmail.com", "yahoo.com", "outlook.com", "icloud.com" };
+
+            if (!dominiosPermitidos.Contains(dominio.ToLower()))
             {
-                MessageBox.Show($"El dominio del '{nombreCampo}' no puede iniciar ni terminar con '.' o '-'.",
-                    "Formato Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(
+                    $"El correo debe ser de uno de estos proveedores: {string.Join(", ", dominiosPermitidos.Select(d => "@" + d))}.",
+                    "Proveedor no permitido",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
                 control.Focus();
                 return false;
-            }
-
-            string extension = dominio.Contains(".")
-                ? dominio.Substring(dominio.LastIndexOf('.') + 1).ToLower()
-                : "";
-
-            if (extension.Length < 2)
-            {
-                MessageBox.Show($"La extensión del dominio en '{nombreCampo}' debe tener al menos 2 letras (ej: .com, .hn).",
-                    "Dominio Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                control.Focus();
-                return false;
-            }
-
-            string[] extensionesValidas =
-            {
-                "com", "net", "org", "edu", "gov", "mil",
-                "io", "co", "app", "ai", "info", "biz",
-                "hn", "mx", "gt", "sv", "ni", "cr", "pa",
-                "ve", "ec", "pe", "cl", "ar", "br",
-                "us", "ca", "es", "fr", "de", "uk", "eu"
-            };
-
-            if (!extensionesValidas.Contains(extension))
-            {
-                DialogResult respuesta = MessageBox.Show(
-                    $"La extensión '.{extension}' no es común.\n\n¿Está seguro que el correo es correcto?",
-                    "Extensión Inusual",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question);
-
-                if (respuesta == DialogResult.No)
-                {
-                    control.Focus();
-                    return false;
-                }
-            }
-
-            string[] partesDominio = dominio.Split('.');
-            string nombreDominio = partesDominio[partesDominio.Length - 2].ToLower();
-
-            string[] dominiosConocidos =
-            {
-                "gmail", "yahoo", "outlook", "hotmail", "icloud",
-                "live", "msn", "aol", "protonmail", "zoho"
-            };
-
-            if (!dominiosConocidos.Contains(nombreDominio))
-            {
-                DialogResult respuesta = MessageBox.Show(
-                    $"El proveedor '{nombreDominio}.{extension}' no es un servicio de correo reconocido.\n\n" +
-                    "¿Está seguro que el correo es correcto?",
-                    "Proveedor Inusual",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question);
-
-                if (respuesta == DialogResult.No)
-                {
-                    control.Focus();
-                    return false;
-                }
             }
 
             return true;
         }
-
-
 
         /// <summary>
         /// Valida que la contraseña no esté vacía, no tenga espacios, tenga

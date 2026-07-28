@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Krypton.Toolkit;
+using System;
 using System.Windows.Forms;
 
 namespace SG_BAMS.Login
 {
     /// <summary>
     /// Formulario para la validación del token de recuperación de contraseña.
-    /// Permite al usuario ingresar el token recibido por correo y, si es válido,
-    /// continuar con el establecimiento de una nueva contraseña.
+    /// El token se ingresa en 6 cajas separadas (TK1 a TK6), una letra/número por caja.
     /// </summary>
     public partial class LoginToken : Form
     {
@@ -16,15 +16,6 @@ namespace SG_BAMS.Login
         private readonly IRecuperacionService recuperacionService;
         private readonly INavegacionFormsService navegacionForms;
 
-        /// <summary>
-        /// Constructor principal del formulario de validación de token.
-        /// </summary>
-        /// <param name="correo">Correo del usuario que solicitó la recuperación.</param>
-        /// <param name="token">Token generado que debe ser validado.</param>
-        /// <param name="validadorToken">Servicio de validación de tokens.</param>
-        /// <param name="recuperacionService">Servicio de recuperación de contraseña.</param>
-        /// <param name="navegacionForms">Servicio de navegación entre formularios.</param>
-        /// <exception cref="ArgumentNullException">Si algún parámetro es nulo o vacío.</exception>
         public LoginToken(
             string correo,
             string token,
@@ -45,20 +36,89 @@ namespace SG_BAMS.Login
             this.validadorToken = validadorToken ?? throw new ArgumentNullException(nameof(validadorToken));
             this.recuperacionService = recuperacionService ?? throw new ArgumentNullException(nameof(recuperacionService));
             this.navegacionForms = navegacionForms ?? throw new ArgumentNullException(nameof(navegacionForms));
+
+   
+            TK1.MaxLength = 1;
+            TK2.MaxLength = 1;
+            TK3.MaxLength = 1;
+            TK4.MaxLength = 1;
+            TK5.MaxLength = 1;
+            TK6.MaxLength = 1;
+
+      
+            TK1.TextChanged += TK1_TextChanged;
+            TK2.TextChanged += TK2_TextChanged;
+            TK3.TextChanged += TK3_TextChanged;
+            TK4.TextChanged += TK4_TextChanged;
+            TK5.TextChanged += TK5_TextChanged;
+       
+
+           
+            TK1.KeyDown += TK_KeyDown;
+            TK2.KeyDown += TK_KeyDown;
+            TK3.KeyDown += TK_KeyDown;
+            TK4.KeyDown += TK_KeyDown;
+            TK5.KeyDown += TK_KeyDown;
+            TK6.KeyDown += TK_KeyDown;
+
+            this.Load += (s, e) => TK1.Focus();
         }
 
-        /// <summary>
-        /// Evento Click del botón Confirmar.
-        /// Valida el token ingresado contra el token generado por el sistema.
-        /// Si es correcto, navega al formulario de nueva contraseña.
-        /// </summary>
+
+        private void TK1_TextChanged(object sender, EventArgs e)
+        {
+            if (TK1.Text.Length == 1) TK2.Focus();
+        }
+
+        private void TK2_TextChanged(object sender, EventArgs e)
+        {
+            if (TK2.Text.Length == 1) TK3.Focus();
+        }
+
+        private void TK3_TextChanged(object sender, EventArgs e)
+        {
+            if (TK3.Text.Length == 1) TK4.Focus();
+        }
+
+        private void TK4_TextChanged(object sender, EventArgs e)
+        {
+            if (TK4.Text.Length == 1) TK5.Focus();
+        }
+
+        private void TK5_TextChanged(object sender, EventArgs e)
+        {
+            if (TK5.Text.Length == 1) TK6.Focus();
+        }
+
+    
+
+        private void TK_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Back) return;
+
+            KryptonTextBox cajaActual = (KryptonTextBox)sender;
+            if (cajaActual.Text.Length > 0) return; 
+
+            if (cajaActual == TK2) TK1.Focus();
+            else if (cajaActual == TK3) TK2.Focus();
+            else if (cajaActual == TK4) TK3.Focus();
+            else if (cajaActual == TK5) TK4.Focus();
+            else if (cajaActual == TK6) TK5.Focus();
+        }
+
+     
+        private string ObtenerTokenIngresado()
+        {
+            return TK1.Text + TK2.Text + TK3.Text + TK4.Text + TK5.Text + TK6.Text;
+        }
+
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            string tokenIngresado = txtToken.Text.Trim();
+            string tokenIngresado = ObtenerTokenIngresado().Trim();
 
-            if (string.IsNullOrEmpty(tokenIngresado))
+            if (tokenIngresado.Length < 6)
             {
-                MessageBox.Show("Ingrese el token recibido.");
+                MessageBox.Show("Ingrese el token completo.");
                 return;
             }
 
@@ -70,12 +130,16 @@ namespace SG_BAMS.Login
             else
             {
                 MessageBox.Show("Token incorrecto. Intente de nuevo.");
+                TK1.Text = "";
+                TK2.Text = "";
+                TK3.Text = "";
+                TK4.Text = "";
+                TK5.Text = "";
+                TK6.Text = "";
+                TK1.Focus();
             }
         }
 
-        /// <summary>
-        /// Evento Click del botón Salir. Regresa al formulario de inicio de sesión.
-        /// </summary>
         private void btnsalir_Click(object sender, EventArgs e)
         {
             navegacionForms.NavegarAlLogin();

@@ -22,6 +22,7 @@ namespace SG_BAMS.MenuPrincipal
             "config_tema_krypton_fix.txt");
 
         private static Color colorFondoNegro = Color.FromArgb(25, 25, 25);
+        private static Color colorFondoClaro = Color.White;
         private static Color colorTextoBlanco = Color.White;
 
         /// <summary>
@@ -58,7 +59,9 @@ namespace SG_BAMS.MenuPrincipal
         /// <param name="formulario">Formulario al que se aplicará el tema.</param>
         public static void AplicarTema(Form formulario)
         {
-            formulario.BackColor = modoOscuroEnabled ? colorFondoNegro : SystemColors.Control;
+            // En modo claro se usa blanco, no SystemColors.Control (que es gris
+            // y pisaba el fondo blanco que se definió en el Designer).
+            formulario.BackColor = modoOscuroEnabled ? colorFondoNegro : colorFondoClaro;
 
             foreach (Control objetoControl in formulario.Controls)
             {
@@ -79,7 +82,11 @@ namespace SG_BAMS.MenuPrincipal
             }
             else if (objetoControl is Label || objetoControl is CheckBox || objetoControl is RadioButton)
             {
-                objetoControl.ForeColor = esOscuro ? colorTextoBlanco : SystemColors.ControlText;
+                // Solo se fuerza el color en modo oscuro. En modo claro se respeta
+                // el color original definido en el Designer (ej. navy de los KPI),
+                // en vez de pisarlo con SystemColors.ControlText (negro).
+                if (esOscuro)
+                    objetoControl.ForeColor = colorTextoBlanco;
             }
             else if (objetoControl is TextBox || objetoControl is ComboBox)
             {
@@ -90,7 +97,8 @@ namespace SG_BAMS.MenuPrincipal
             {
                 if (objetoControl.BackColor == SystemColors.Control)
                 {
-                    objetoControl.BackColor = esOscuro ? colorFondoNegro : SystemColors.Control;
+                    // Mismo fix que el formulario: blanco en vez de gris de sistema.
+                    objetoControl.BackColor = esOscuro ? colorFondoNegro : colorFondoClaro;
                 }
             }
 

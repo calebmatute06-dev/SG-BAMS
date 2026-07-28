@@ -47,7 +47,7 @@ namespace SG_BAMS.Login
         private void LoginCorreo_Load(object sender, EventArgs e)
         {
             txtCorreo.Text = correo;
-            txtCorreo.StateCommon.Content.Color1 = Color.Black;
+            txtCorreo.StateCommon.Content.Color1 = Color.Navy;
         }
 
         /// <summary>

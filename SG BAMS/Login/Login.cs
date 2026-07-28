@@ -140,10 +140,10 @@ namespace SG_BAMS.Login
         private void btnOlvidar_Click(object sender, EventArgs e)
         {
             IRecuperacionService recuperacionService = new RecuperacionService(
-                new ClsRecuperacion(new ClsRepositorioBaseDatos(), servicioSeguridad));
+        new ClsRecuperacion(new ClsRepositorioBaseDatos(), servicioSeguridad));
 
             LoginCorreo formularioCorreo = new LoginCorreo(
-                txtUsuCorr.Text.Trim(),
+                string.Empty,
                 recuperacionService,
                 servicioSeguridad,
                 servicioCorreo);
