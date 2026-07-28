@@ -54,8 +54,6 @@ namespace SG_BAMS
             AdaptadorPantallaCompleta.Habilitar(this);
             this.productoRepositorio = productoRepositorio;
             this.comboRepositorio = comboRepositorio;
-
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.KeyPreview = true;
             ConfigurarPlaceholder();
@@ -112,7 +110,7 @@ namespace SG_BAMS
                 dgvProductosAdmin.ReadOnly = true;
                 dgvProductosAdmin.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 dgvProductosAdmin.AllowUserToAddRows = false;
-                dgvProductosAdmin.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                dgvProductosAdmin.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
                 if (dgvProductosAdmin.Columns.Contains("Producto"))
                 {
