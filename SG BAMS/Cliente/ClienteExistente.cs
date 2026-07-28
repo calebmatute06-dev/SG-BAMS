@@ -195,7 +195,6 @@ namespace SG_BAMS
             {
                 using (FacturaAgregarDatos frmFA = new FacturaAgregarDatos(cmbClientes.Text, idCliente, rtn))
                 {
-                    this.Hide();
                     if (frmFA.ShowDialog() == DialogResult.OK)
                     {
                         this.DialogResult = DialogResult.OK;

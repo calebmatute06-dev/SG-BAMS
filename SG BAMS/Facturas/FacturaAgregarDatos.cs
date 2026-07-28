@@ -61,7 +61,6 @@ namespace SG_BAMS
         public FacturaAgregarDatos()
         {
             InitializeComponent();
-            AdaptadorPantallaCompleta.Habilitar(this);
             busquedaProducto = new BusquedaProductoService(AF);
             cantidadBateria = "0";
             precioBateria = 0;
@@ -93,8 +92,9 @@ namespace SG_BAMS
 
         private async void FacturaAgregarDatos_Load(object sender, EventArgs e)
         {
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             await LlenarComboPago();
-            AdaptadorPantallaCompleta.Habilitar(this);
             phPago = new PlaceholderComboBox(cmbPago, "Seleccione una forma de pago");
             phExento = new PlaceholderTextBox(txtExento, "0");
 
