@@ -35,7 +35,7 @@ namespace SG_BAMS
                     !char.IsControl(e.KeyChar))
                 {
                     txt.Text = "";
-                    txt.ForeColor = Color.Black;
+                    txt.ForeColor = Color.Navy;
                     esPlaceholder = false;
                 }
             };
@@ -80,7 +80,7 @@ namespace SG_BAMS
         public static void ActivarK(KryptonTextBox txt)
         {
             Color colorPlaceholder = Color.Gray;
-            Color colorEscritura = Color.Blue;
+            Color colorEscritura = Color.Navy;
 
             // Color del mensaje guía
             txt.CueHint.Color1 = colorPlaceholder;

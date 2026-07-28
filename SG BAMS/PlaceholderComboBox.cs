@@ -4,8 +4,6 @@ using System.Windows.Forms;
 
 namespace SG_BAMS
 {
-    
-
     /// <summary>
     /// Adaptador que añade comportamiento de placeholder a un KryptonComboBox.
     /// SRP: única responsabilidad — gestionar el estado de placeholder de un combo.
@@ -56,7 +54,7 @@ namespace SG_BAMS
             _isLoading = true;
             _cmb.SelectedIndex = -1;
             _cmb.Text = _placeholder;
-            _cmb.StateCommon.ComboBox.Content.Color1 = ColorPlaceholder;
+            ForzarColor(ColorPlaceholder);
             _isPlaceholderActive = true;
             _isLoading = false;
         }
@@ -135,8 +133,20 @@ namespace SG_BAMS
 
         private void PonerTextoNormal()
         {
-            _cmb.StateCommon.ComboBox.Content.Color1 = ColorTextoNormal;
+            ForzarColor(ColorTextoNormal);
             _isPlaceholderActive = false;
+        }
+
+        /// <summary>
+        /// Fuerza el color de texto en todos los estados del combo,
+        /// para que gane siempre sobre cualquier color fijado en el Designer.
+        /// </summary>
+        private void ForzarColor(Color color)
+        {
+            _cmb.StateCommon.ComboBox.Content.Color1 = color;
+            _cmb.StateNormal.ComboBox.Content.Color1 = color;
+            _cmb.StateActive.ComboBox.Content.Color1 = color;
+
         }
     }
 }

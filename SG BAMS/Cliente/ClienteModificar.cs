@@ -215,6 +215,8 @@ namespace SG_BAMS
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             cmbEstado.DropDownStyle = ComboBoxStyle.DropDownList;
 
+            EstiloComboBox.Aplicar(cmbEstado);
+
             phNombre = new PlaceholderTextBox(txtNombre, "Solo letras y espacios");
             phApellido = new PlaceholderTextBox(txtApellido, "Solo letras y espacios");
             phTelefono = new PlaceholderTextBox(txtTelefono, "Debe comenzar con 2,3,7,8 o 9");

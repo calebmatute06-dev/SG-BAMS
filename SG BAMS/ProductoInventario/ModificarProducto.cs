@@ -182,6 +182,7 @@ namespace SG_BAMS
                 txtPrecio.Text = dto.Precio.ToString();
                 txtCodigoBarra.Text = dto.CodigoBarra;
                 txtStock.Value = dto.Stock;
+                EstiloComboBox.Aplicar(cmbMarca, cmbTipo, cmbModelo, cmbEstado, cmbProveedor);
             }
 
             LlenarCombosModificar();

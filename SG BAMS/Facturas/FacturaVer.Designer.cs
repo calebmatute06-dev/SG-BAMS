@@ -90,6 +90,7 @@
             txtBateriaVieja.StateCommon.Border.Rounding = 5F;
             txtBateriaVieja.StateCommon.Content.Color1 = Color.Black;
             txtBateriaVieja.StateCommon.Content.Font = new Font("Arial Narrow", 12F);
+            txtBateriaVieja.StateNormal.Content.Color1 = Color.Navy;
             txtBateriaVieja.TabIndex = 343;
             // 
             // txtCliente

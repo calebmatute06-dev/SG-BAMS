@@ -64,8 +64,9 @@
             txtNotaDetalle.StateCommon.Back.Color1 = Color.White;
             txtNotaDetalle.StateCommon.Border.Color1 = Color.Navy;
             txtNotaDetalle.StateCommon.Border.Rounding = 5F;
-            txtNotaDetalle.StateCommon.Content.Color1 = Color.Black;
+            txtNotaDetalle.StateCommon.Content.Color1 = Color.Navy;
             txtNotaDetalle.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtNotaDetalle.StateNormal.Content.Color1 = Color.Navy;
             txtNotaDetalle.TabIndex = 235;
             // 
             // label4
@@ -165,7 +166,7 @@
             // 
             lblTotal.Location = new Point(751, 580);
             lblTotal.Name = "lblTotal";
-            lblTotal.Size = new Size(91, 31);
+            lblTotal.Size = new Size(57, 24);
             lblTotal.StateCommon.ShortText.Color1 = Color.Navy;
             lblTotal.StateCommon.ShortText.Font = new Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblTotal.TabIndex = 226;

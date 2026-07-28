@@ -261,8 +261,9 @@
             txtID.StateCommon.Back.Color1 = Color.White;
             txtID.StateCommon.Border.Color1 = Color.Navy;
             txtID.StateCommon.Border.Rounding = 5F;
-            txtID.StateCommon.Content.Color1 = Color.Black;
+            txtID.StateCommon.Content.Color1 = Color.Navy;
             txtID.StateCommon.Content.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtID.StateNormal.Content.Color1 = Color.Navy;
             txtID.TabIndex = 327;
             // 
             // cmbEstado
